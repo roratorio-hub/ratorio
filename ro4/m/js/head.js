@@ -1,3 +1,5 @@
+// ダメージ計算スクラッチ状態（BattleCalc999Core とスキル計算式分割先が共有する）。詳細は head-calc-state.js 参照。
+import { CS } from './head-calc-state.js';
 import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 // 武器種テーブル（旧 head.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
 import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from './attackmethod.dat.js';
@@ -606,18 +608,8 @@ import {
 /** シーズモードフラグ */
 /** BaseLv */
 /** 遠距離フラグ. CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL */
-/** レックスエーテルナの計算に係るフラグ. 解析不足でロジックが追えてない. */
-let wLAch = false;
 /** 三段掌に遠距離ダメージUPを適用するフラグ */
 let TyouEnkakuSousa3dan = true;
-/** 計算結果の補足文字列. 既に使われていない可能性がある */
-let str_bSUBname = "";
-/** 計算結果の補足文字列. 既に使われていない可能性がある */
-let str_bSUB = "";
-/** 詠唱短縮が無視されるフラグ */
-let cast_kotei = false;
-/** 必中ダメージ. 號砲 などの計算式に含まれるもの */
-let n_PerfectHIT_DMG = 0;
 /**
  * n_Delay[0]=攻撃間隔判定不能フラグ
  * n_Delay[1]=モーションディレイ
@@ -629,91 +621,35 @@ let n_PerfectHIT_DMG = 0;
  * n_Delay[7]=クールタイム */
 /** 最終的なディレイの値. n_Delay 配列の中で最も大きい値が格納される */
 let wDelay = 0;
-/** 固定詠唱 */
-let n_KoteiCast = 0;
-/** 変動詠唱 */
-let wCast = 0;
-/** スキル倍率％ */
-let wbairitu = 100;
 /** スキルID */
 /** スキルLv */
 /** アイテムSPの効果量を収める配列. ITEM_SP_XXX を添え字にして要素にアクセスする. */
 /** アイテムSPの効果量を収める配列. n_tok と違って耐性上限の 95 を超えて効果量を格納出来る. */
 /** equip.js の古い関数内部で使われていた変数. 削除候補 */
 let first_check = 0;
-/** 必中ダメージ */
-let str_PerfectHIT_DMG = 0;
 /** ダメージ配列 */
-/** ダメージ配列 */
-let Last_DMG_A = [0,0,0];
-/** ダメージ配列 */
-let Last_DMG_B = [0,0,0];
-/** スキル使用条件判定フラグ 武器種 */
-let n_Buki_Muri = false;
-/** ダメージ判定無しフラグ */
-let g_bSkillNoDamage = false;
 /** ヒールを攻撃スキルとして使用する場合の MATK */
-/** MDEF計算モードフラグ. 一部の魔法では除算MDEFが除算として機能しない */
-let directSubtractionMdef = false;
-/** オートスペルフラグ */
-let n_AS_MODE = false;
 /** 命中率. オートスペル計算用 */
 let n_AS_HIT = 0;
-/** 武器属性 */
-let BK_Weapon_zokusei = 0;
-/** 攻撃手段のオプション値 */
-let option_count = 0;
 /** 三段掌の使用フラグ. オートスペル計算用. true がセットされる場面が無いので削除候補 */
 /** 固定詠唱減少値 */
-/** ダメージ配列. デスバウンド用 */
-let n_DEATH_BOUND = [0,0,0,0];
 /** 計算機設定. index = 2 のセーブデータ数しか使われていない. 削除候補 */
-/** 対象の除算DEF */
-let B_Total_DEF = 0;
-/** 対象の除算MDEF */
-let B_Total_MDEF = 0;
 /** オートスペルに関連して所要攻撃回数を計算するための中間変数. */
 let w_DMG_AS_OverHP = 0;
-/** ダメージ配列 */
-let n_A_DMG = [0,0,0];
-/** ダメージ配列. 変数名と裏腹にアースクエイク計算で使われている */
-let n_A_DMG_GX = [0,0,0];
 /** ダメージ配列. アースクエイク専用 */
 let n_A_DMG_QUAKE = [0,0,0];
-/** ダメージ配列. ウォーグ専用 */
-let BK_n_A_DMG_Wolf = [0,0,0];
 /** ダメージ配列 オートスペル専用 */
 let BK_n_A_DMG2 = [0,0,0];
 /** 錐効果の値 */
-/** グランドクロスの反動ダメージ計算フラグ */
-let n_A_GX_HANDO = false;
-/** ヒット数 特殊計算用 */
-let SG_Special_HITnum = 0;
-/** ヒット数 */
-let wHITsuu = 0;
-/** 分割ヒット数 */
-let wActiveHitNum = 0;
-/** 分割ヒットフラグ */
-let n_bunkatuHIT = 0;
-/** ダメージ配列 特殊計算用 */
-let SG_Special_DMG = [0,0,0];
 /** セットされている矢の種類. 種類定数は arrow.dat.js で定義されている*/
 /** セットされているカードの数 */
 let cardCount = 0;
 /** ディレイ減少値 */
 /** ASPD 小数点第ニ位を切り捨てる前の値 */
-/** ダメージ表示部のテキスト配列（最小、平均、最大）. 旧 InnStr での組み立てから、３桁区切り対応で部分改造 */
-let g_damageTextArray = [[],[],[]];
-/** ヒット数配列 */
-let g_wHITsuu_Array = null;
 /** 必中効果の発動率 */
 /** 詠唱時間不明フラグ */
 let g_bUnknownCasts = false;
 /** 設置スキルフラグ */
-/** 命中率 */
-let w_HIT = 0;
-/** 命中率　表示文字列 */
-let w_HIT_HYOUJI = 0;
 /** クリティカル率 */
 let w_Cri = 0;
 /** 回避率 */
@@ -722,12 +658,8 @@ let w_FLEE = 0;
 let itemCountRight = 0;
 /** 装備しているアイテム数　左手 */
 let itemCountLeft = 0;
-/** サイズ補正値 */
-let wCSize = 0;
 /** 武器種に応じて参照されるステータス STR or DEX */
 let w_STRDEX = 0;
-/** クリティカル発生時のATK */
-let n_A_CriATK = 0;
 /** 追加ダメージ計算フラグ */
 let g_appliedAppendDamage = false;
 /** 変動詠唱 計算用一時変数 */
@@ -1110,7 +1042,7 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	//----------------------------------------------------------------
 	if (n_AS_SKILL.length > 0) {
 		// オートスペルフラグ ON
-		n_AS_MODE = true;
+		CS.n_AS_MODE = true;
 	}
 	// 主撃の武器属性を退避する.
 	// SET_ZOKUSEI() は StAllCalc() から主撃のスキルＩＤで一度だけ呼ばれるため、
@@ -1135,7 +1067,7 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	// 主撃の武器属性へ戻す（calc() が計算データ収集で読むため）
 	set_n_A_Weapon_zokusei(BK_AS_Weapon_zokusei);
 	// オートスペルフラグ OFF
-	n_AS_MODE = false;
+	CS.n_AS_MODE = false;
 	return battleCalcResultAll;
 }
 
@@ -1191,10 +1123,10 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 	//--------------------------------
 	set_n_A_ActiveSkill(battleCalcInfo.skillId);
 	set_n_A_ActiveSkillLV(battleCalcInfo.skillLv);
-	n_A_DMG = battleCalcInfo.atkUnitArrayWpn[0].slice();
-	n_A_CriATK = battleCalcInfo.atkUnitArrayCri[0].slice();
-	BK_n_A_DMG_Wolf = battleCalcInfo.atkUnitArrayWug[0].slice();
-	dmgUnitArray = [n_A_DMG, n_A_CriATK];
+	CS.n_A_DMG = battleCalcInfo.atkUnitArrayWpn[0].slice();
+	CS.n_A_CriATK = battleCalcInfo.atkUnitArrayCri[0].slice();
+	CS.BK_n_A_DMG_Wolf = battleCalcInfo.atkUnitArrayWug[0].slice();
+	dmgUnitArray = [CS.n_A_DMG, CS.n_A_CriATK];
 
 	//----------------------------------------------------------------
 	//
@@ -1355,7 +1287,7 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 	//
 	//----------------------------------------------------------------
 	for (idxUnit = 0; idxUnit < dmgUnitArray.length; idxUnit++) {
-		g_wHITsuu_Array = null;
+		CS.g_wHITsuu_Array = null;
 		// クリティカルが発生しない場合は、計算せずゼロにする
 		if (idxUnit == 1) {
 			if (battleCalcResult.criRate <= 0) {
@@ -1397,9 +1329,9 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 		battleCalcResult.coolTime = n_Delay[7];
 
 		// 修正量削減のために、グローバル変数で密結合になっているデータを取得
-		battleCalcResult.dmgPerfectArray[idxUnit] = n_PerfectHIT_DMG;
-		battleCalcResult.hitCountArray[idxUnit] = g_wHITsuu_Array ? g_wHITsuu_Array.slice() : [wHITsuu, wHITsuu, wHITsuu];
-		battleCalcResult.dividedHitCountArray[idxUnit] = [wActiveHitNum, wActiveHitNum, wActiveHitNum];
+		battleCalcResult.dmgPerfectArray[idxUnit] = CS.n_PerfectHIT_DMG;
+		battleCalcResult.hitCountArray[idxUnit] = CS.g_wHITsuu_Array ? CS.g_wHITsuu_Array.slice() : [CS.wHITsuu, CS.wHITsuu, CS.wHITsuu];
+		battleCalcResult.dividedHitCountArray[idxUnit] = [CS.wActiveHitNum, CS.wActiveHitNum, CS.wActiveHitNum];
 		battleCalcResult.castVary = g_wCastTemp;
 		battleCalcResult.castFixed = g_wCastFixedTemp;
 		if (g_bDefinedDamageIntervals) {
@@ -1410,7 +1342,7 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 		}
 
 		// 命中率補正などがあるため、ここで取得する
-		battleCalcResult.hitRate = w_HIT;
+		battleCalcResult.hitRate = CS.w_HIT;
 		if (bCri) {
 			battleCalcResult.criRate = GetActRateCritical(battleCalcInfo.skillId, mobData);
 		}
@@ -1455,24 +1387,24 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 	let clonedClacInfo = null;
 	let ampWork = 0;
 	let w_MATK = [0,0,0];
-	wbairitu = 100;
-	wCast = 0;
-	n_KoteiCast = 0;
-	wHITsuu = 1;
-	wLAch = false;
+	CS.wbairitu = 100;
+	CS.wCast = 0;
+	CS.n_KoteiCast = 0;
+	CS.wHITsuu = 1;
+	CS.wLAch = false;
 	set_w_DMG([0,0,0]);
-	cast_kotei = false;
-	str_PerfectHIT_DMG = 0;
-	wActiveHitNum = 1;
+	CS.cast_kotei = false;
+	CS.str_PerfectHIT_DMG = 0;
+	CS.wActiveHitNum = 1;
 	for(var i=0;i<=2;i++){
-		Last_DMG_A[i] = 0;
-		Last_DMG_B[i] = 0;
+		CS.Last_DMG_A[i] = 0;
+		CS.Last_DMG_B[i] = 0;
 	}
 	set_n_AS_check_3dan(false);
 	g_bUnknownCasts = false;
 	set_g_bDefinedDamageIntervals(false);
-	n_Buki_Muri = false;
-	g_bSkillNoDamage = false;
+	CS.n_Buki_Muri = false;
+	CS.g_bSkillNoDamage = false;
 	hitCountArray = null;
 
 	// 旧通常攻撃処理、もうここに来ることはないはず
@@ -1481,11 +1413,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 	}
 	// 修練が乗らないスキルには、錐効果が適用されない
 	if ((NumSearch(n_A_ActiveSkill, n_SP_SKILL) != 0) && (n_A_ActiveSkill != SKILL_ID_HAKKEI)) {
-		if (!n_AS_MODE && (n_A_QUAKE_KIRI != 0)) {
+		if (!CS.n_AS_MODE && (n_A_QUAKE_KIRI != 0)) {
 			alert("想定外の錐効果演算。\nお手数ですが、投稿フォームから、URL出力のURLを添えて、お知らせください。");
 		}
 		for (var i = 0; i <= 2; i++) {
-			n_A_DMG[i] -= n_A_QUAKE_KIRI;
+			CS.n_A_DMG[i] -= n_A_QUAKE_KIRI;
 		}
 	}
 	//================================================================================================================================
@@ -1507,119 +1439,119 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 四次計算式方式移行分
 			case SKILL_ID_SHARP_SHOOTING:
 				set_n_Enekyori(1);
-				wbairitu = 200 + 50 * n_A_ActiveSkillLV;
-				wCast = 2000;
+				CS.wbairitu = 200 + 50 * n_A_ActiveSkillLV;
+				CS.wCast = 2000;
 				n_Delay[2] = 1500;
 				break;
 
 			case SKILL_ID_KAGEKIRI:
 				n_Delay[0] = 1;
 				set_n_Enekyori(0);
-				wbairitu += (-50 + 150 * n_A_ActiveSkillLV);
+				CS.wbairitu += (-50 + 150 * n_A_ActiveSkillLV);
 				break;
 
 			case SKILL_ID_CRUSH_STRIKE:
-				n_KoteiCast = 3000;
+				CS.n_KoteiCast = 3000;
 				n_Delay[7] = 1000;
-				wbairitu = n_A_WeaponLV * (6 + n_A_Weapon_ATKplus)* 100 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER] + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
+				CS.wbairitu = n_A_WeaponLV * (6 + n_A_Weapon_ATKplus)* 100 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER] + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
 				break;
 
 			case SKILL_ID_EXCEED_BREAK:
-				n_KoteiCast = 4500 + 500 * n_A_ActiveSkillLV;
+				CS.n_KoteiCast = 4500 + 500 * n_A_ActiveSkillLV;
 				n_Delay[0] = 1;
 				n_Delay[2] = 1000;
 				set_n_Enekyori(0);
-				wbairitu = 100 + 15 * n_A_JobLV + 150 * n_A_ActiveSkillLV + Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] * n_A_WeaponLV * n_A_BaseLV / 100);
+				CS.wbairitu = 100 + 15 * n_A_JobLV + 150 * n_A_ActiveSkillLV + Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] * n_A_WeaponLV * n_A_BaseLV / 100);
 				break;
 
 			// 従来からある分
 			case SKILL_ID_BASH:
-				wbairitu += n_A_ActiveSkillLV * 30;
+				CS.wbairitu += n_A_ActiveSkillLV * 30;
 				break;
 
 			case SKILL_ID_MAGNUM_BREAK:
-				wbairitu += n_A_ActiveSkillLV * 20;
+				CS.wbairitu += n_A_ActiveSkillLV * 20;
 				set_n_A_Weapon_zokusei(3);
 				n_Delay[2] = 2000;
 				break;
 
 			case SKILL_ID_SUNAMAKI:
-								wbairitu += 30;
+								CS.wbairitu += 30;
 				set_n_A_Weapon_zokusei(2);
 				break;
 
 			case SKILL_ID_ARROW_SHOWER:
 				set_n_Enekyori(1);
-				wbairitu += 50 + 10 * n_A_ActiveSkillLV;
+				CS.wbairitu += 50 + 10 * n_A_ActiveSkillLV;
 				n_Delay[3] = 1;
 				break;
 
 			case SKILL_ID_CHARGE_ARROW:
 				set_n_Enekyori(1);
-				wCast = 1500;
-				wbairitu += 50;
+				CS.wCast = 1500;
+				CS.wbairitu += 50;
 				break;
 
 			case SKILL_ID_MAMMONITE:
-				wbairitu += n_A_ActiveSkillLV * 50;
+				CS.wbairitu += n_A_ActiveSkillLV * 50;
 				break;
 
 			case SKILL_ID_SPEAR_STUB:
-				wbairitu += n_A_ActiveSkillLV * 20;
+				CS.wbairitu += n_A_ActiveSkillLV * 20;
 				set_n_Enekyori(1);
 				break;
 
 			case SKILL_ID_GRIM_TOOTH:
 				if(n_A_ActiveSkillLV >= 3) set_n_Enekyori(1);
 				else set_n_Enekyori(0);
-				wbairitu += 20 * n_A_ActiveSkillLV;
+				CS.wbairitu += 20 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_SHIELD_CHARGE:
-				wbairitu += 20 * n_A_ActiveSkillLV;
+				CS.wbairitu += 20 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_HOLY_CROSS:
-				wbairitu += 35 * n_A_ActiveSkillLV;
+				CS.wbairitu += 35 * n_A_ActiveSkillLV;
 				set_n_A_Weapon_zokusei(6);
 				break;
 
 			case SKILL_ID_DARK_CROSS:
-				wbairitu += 35 * n_A_ActiveSkillLV;
+				CS.wbairitu += 35 * n_A_ActiveSkillLV;
 				set_n_A_Weapon_zokusei(7);
 				break;
 
 
 			case SKILL_ID_SURPRISE_ATTACK:
-				wbairitu += 80 * n_A_ActiveSkillLV;
+				CS.wbairitu += 80 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_SPEAR_BOOMERANG:
-				wbairitu += 50 * n_A_ActiveSkillLV;
+				CS.wbairitu += 50 * n_A_ActiveSkillLV;
 				n_Delay[2] = 1000;
 				set_n_Enekyori(1);
 				break;
 
 			case SKILL_ID_BRANDISH_SPEAR:
 				w = (100 + 20 * n_A_ActiveSkillLV);
-				if(n_A_ActiveSkillLV == 10)wbairitu += 462.5;
-				else if(n_A_ActiveSkillLV >= 7)wbairitu += (w + w/2 + w/4 - 100);
-				else if(n_A_ActiveSkillLV >= 4)wbairitu += (w + w/2 - 100);
-				else wbairitu += (w - 100);
-				wCast = 700;
+				if(n_A_ActiveSkillLV == 10)CS.wbairitu += 462.5;
+				else if(n_A_ActiveSkillLV >= 7)CS.wbairitu += (w + w/2 + w/4 - 100);
+				else if(n_A_ActiveSkillLV >= 4)CS.wbairitu += (w + w/2 - 100);
+				else CS.wbairitu += (w - 100);
+				CS.wCast = 700;
 				break;
 
 			case SKILL_ID_SONIC_BLOW:
 			case SKILL_ID_SONIC_BLOW_TAMASHI:
-				wActiveHitNum = 8;
-				wbairitu = 400 + 40 * n_A_ActiveSkillLV;
-				if (UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbairitu = ROUNDDOWN(wbairitu / 2);
+				CS.wActiveHitNum = 8;
+				CS.wbairitu = 400 + 40 * n_A_ActiveSkillLV;
+				if (UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
 				n_Delay[3] = 2;
 				if(n_A_ActiveSkill==SKILL_ID_SONIC_BLOW_TAMASHI){
 					if(n_SiegeMode){
-						wbairitu = ROUNDDOWN(wbairitu * 1.25);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.25);
 					}else{
-						wbairitu = ROUNDDOWN(wbairitu * 2);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
 						n_Delay[3] = 1;
 					}
 				}
@@ -1631,34 +1563,34 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				break;
 
 			case SKILL_ID_BACK_STAB:
-				wbairitu += 200 + 40 * n_A_ActiveSkillLV;
+				CS.wbairitu += 200 + 40 * n_A_ActiveSkillLV;
 				n_Delay[2] = 500;
-				w_HIT = 100;
-				w_HIT_HYOUJI = 100;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
 				break;
 
 			case SKILL_ID_INTIMIDATE:
 			case SKILL_ID_INTIMIDATE_FOR_CLONE:
-				wbairitu += 30 * n_A_ActiveSkillLV;
+				CS.wbairitu += 30 * n_A_ActiveSkillLV;
 				n_Delay[2] = 1000;
 				break;
 
 			case SKILL_ID_SANDANSHO:
-				wActiveHitNum = 3;
-				wbairitu = 100 + 20 * n_A_ActiveSkillLV;
+				CS.wActiveHitNum = 3;
+				CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
 				n_Delay[0] = 1;
 				break;
 
 			case SKILL_ID_RENDASHO:
-				wActiveHitNum = 4;
-				wbairitu += 150 + 50 * n_A_ActiveSkillLV;
+				CS.wActiveHitNum = 4;
+				CS.wbairitu += 150 + 50 * n_A_ActiveSkillLV;
 				n_Delay[0] = 1;
 				n_Delay[1] = 0.1;
 				n_Delay[3] = 1 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 				break;
 
 			case SKILL_ID_MORYUKEN:
-				wbairitu = 450 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu = 450 + 50 * n_A_ActiveSkillLV;
 				n_Delay[0] = 1;
 				n_Delay[1] = 0.1;
 				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
@@ -1666,41 +1598,41 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 			case SKILL_ID_HEAD_CRUSH:
 				set_n_Enekyori(1);
-				wbairitu += 40 * n_A_ActiveSkillLV;
+				CS.wbairitu += 40 * n_A_ActiveSkillLV;
 				n_Delay[2] = 500;
 				break;
 
 			case SKILL_ID_JOINT_BEAT:
 				set_n_Enekyori(1);
-				wbairitu += (10 * n_A_ActiveSkillLV - 50);
+				CS.wbairitu += (10 * n_A_ActiveSkillLV - 50);
 				if(n_A_ActiveSkillLV > 5) n_Delay[2] = 1000;
 				else n_Delay[2] = 800;
 				break;
 
 			case SKILL_ID_METEOR_ASSALT:
-				wbairitu += (40 * n_A_ActiveSkillLV - 60);
-				wCast = 500;
+				CS.wbairitu += (40 * n_A_ActiveSkillLV - 60);
+				CS.wCast = 500;
 
 				n_Delay[2] = 500;
 				break;
 
 			case SKILL_ID_MOKOKOHAZAN:
-				wbairitu += (100 + 100 * n_A_ActiveSkillLV);
+				CS.wbairitu += (100 + 100 * n_A_ActiveSkillLV);
 				n_Delay[3] = 1;
 				n_Delay[2] = 300;
 				break;
 
 			case SKILL_ID_BUKKOKEN:
 				n_Delay[0] = 1;
-				wbairitu += 100 * n_A_ActiveSkillLV - 60;
+				CS.wbairitu += 100 * n_A_ActiveSkillLV - 60;
 				n_Delay[1] = 0.1;
 				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 				break;
 
 			case SKILL_ID_RENCHUHOGEKI:
-				wActiveHitNum = ROUNDDOWN((n_A_ActiveSkillLV + 1) / 2);
+				CS.wActiveHitNum = ROUNDDOWN((n_A_ActiveSkillLV + 1) / 2);
 				n_Delay[0] = 1;
-				wbairitu += (300 + 100 * n_A_ActiveSkillLV);
+				CS.wbairitu += (300 + 100 * n_A_ActiveSkillLV);
 				if(n_A_ActiveSkillLV>=6) n_Delay[2] = 1000;
 				else n_Delay[2] = 800;
 				break;
@@ -1711,34 +1643,34 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				break;
 
 			case SKILL_ID_PULSE_STRIKE:
-				wbairitu += (100 * n_A_ActiveSkillLV - 100);
+				CS.wbairitu += (100 * n_A_ActiveSkillLV - 100);
 				break;
 
 			case SKILL_ID_VENOM_KNIFE:
 				set_n_Enekyori(1);
-								n_A_DMG[1] += Math.floor(14.5 * wCSize);
-				n_A_DMG[2] += Math.floor(29 * wCSize);
+								CS.n_A_DMG[1] += Math.floor(14.5 * CS.wCSize);
+				CS.n_A_DMG[2] += Math.floor(29 * CS.wCSize);
 				break;
 
 			case SKILL_ID_FANTASMIC_ARROW:
 				set_n_Enekyori(1);
-								wbairitu += 50;
+								CS.wbairitu += 50;
 				break;
 
 			case SKILL_ID_CHARGE_ATTACK:
 				var w;
 				w = attackMethodConfArray[0].GetOptionValue(0);
-				wbairitu += 100 * w;
-				wCast = 500 * (w+1);
-				if(wCast > 1500) wCast = 1500;
+				CS.wbairitu += 100 * w;
+				CS.wCast = 500 * (w+1);
+				if(CS.wCast > 1500) CS.wCast = 1500;
 				break;
 
 			// 「拳聖」スキル「＊＊の温もり」
 			case SKILL_ID_NUKUMORI:
 			case SKILL_ID_NUKUMORI_KABE:
 				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 設置スキル設定
@@ -1756,249 +1688,249 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 属性
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
-				wbairitu = 100;
+				CS.wbairitu = 100;
 				break;
 
 
 			case SKILL_ID_CART_TERMINATION:
-				wbairitu += Math.floor((attackMethodConfArray[0].GetOptionValue(0) / (16 - n_A_ActiveSkillLV) / 100 -1) * 100);
+				CS.wbairitu += Math.floor((attackMethodConfArray[0].GetOptionValue(0) / (16 - n_A_ActiveSkillLV) / 100 -1) * 100);
 				break;
 
 			case SKILL_ID_SUNKEI:
-								wbairitu += 200;
+								CS.wbairitu += 200;
 				n_Delay[2] = 2000;
 				break;
 
 			case SKILL_ID_FEORICHAGI:
 			case SKILL_ID_NERYOCHAGI:
 				n_Delay[0] = 1;
-				wbairitu += (60 + 20 * n_A_ActiveSkillLV);
+				CS.wbairitu += (60 + 20 * n_A_ActiveSkillLV);
 				break;
 
 			case SKILL_ID_TORURYOCHAGI:
 			case SKILL_ID_APUCHAORURIGI:
 				n_Delay[0] = 1;
-				wbairitu += (90 + 30 * n_A_ActiveSkillLV);
-				if(n_A_ActiveSkill==SKILL_ID_APUCHAORURIGI) wActiveHitNum = 3;
+				CS.wbairitu += (90 + 30 * n_A_ActiveSkillLV);
+				if(n_A_ActiveSkill==SKILL_ID_APUCHAORURIGI) CS.wActiveHitNum = 3;
 				break;
 
 			case SKILL_ID_TEIOAPUCHAGI:
 				set_n_Enekyori(1);
-				wbairitu += (10 * n_A_ActiveSkillLV - 70);
+				CS.wbairitu += (10 * n_A_ActiveSkillLV - 70);
 				break;
 
 			case SKILL_ID_TEIOAPUCHAGI_IN_DASH:
 				set_n_Enekyori(1);
 				n_Delay[0] = 1;
-				if (UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI) && n_A_WeaponType==0) wbairitu += (n_A_BaseLV * 8 - 100);
-				else wbairitu += (n_A_BaseLV * 4 - 100);
+				if (UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI) && n_A_WeaponType==0) CS.wbairitu += (n_A_BaseLV * 8 - 100);
+				else CS.wbairitu += (n_A_BaseLV * 4 - 100);
 				break;
 
 			case SKILL_ID_TATAMI_GAESHI:
-				wbairitu = (100 + 10 * n_A_ActiveSkillLV) * 2;
+				CS.wbairitu = (100 + 10 * n_A_ActiveSkillLV) * 2;
 				n_Delay[2] = 3000;
 				break;
 
 			case SKILL_ID_KASUMIGIRI:
 				n_Delay[0] = 0;
-				wbairitu += (20 * n_A_ActiveSkillLV);
+				CS.wbairitu += (20 * n_A_ActiveSkillLV);
 				break;
 
 			case SKILL_ID_BULLS_EYE:
-								wCast = 500;
+								CS.wCast = 500;
 				n_Delay[2] = 1000;
 				set_n_Enekyori(1);
-				wActiveHitNum = 5;
-				if(mobData[19] == 2 || mobData[19] == 7) wbairitu += 400;
+				CS.wActiveHitNum = 5;
+				if(mobData[19] == 2 || mobData[19] == 7) CS.wbairitu += 400;
 				break;
 
 			case SKILL_ID_RAPID_SHOWER:
 				set_n_Enekyori(1);
-				wActiveHitNum = 5;
-				wbairitu += 400 + 50 * n_A_ActiveSkillLV;
+				CS.wActiveHitNum = 5;
+				CS.wbairitu += 400 + 50 * n_A_ActiveSkillLV;
 				n_Delay[2] = 1700;
 				break;
 
 			case SKILL_ID_TRACKING:
-				wCast = 500 + 100 * n_A_ActiveSkillLV;
-				cast_kotei = true;
+				CS.wCast = 500 + 100 * n_A_ActiveSkillLV;
+				CS.cast_kotei = true;
 				set_n_Enekyori(1);
-				wbairitu += 100 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu += 100 + 100 * n_A_ActiveSkillLV;
 				n_Delay[2] = 1000;
-				w_HIT = w_HIT * 5 +5;
-				if(w_HIT > 100) w_HIT = 100;
-				w_HIT_HYOUJI = w_HIT;
+				CS.w_HIT = CS.w_HIT * 5 +5;
+				if(CS.w_HIT > 100) CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = CS.w_HIT;
 				break;
 
 			case SKILL_ID_DISARM:
-				wCast = 2000;
+				CS.wCast = 2000;
 				n_Delay[2] = 1000;
 				set_n_Enekyori(1);
 				break;
 
 			case SKILL_ID_PIERCING_SHOT:
-				wCast = 1500;
+				CS.wCast = 1500;
 				set_n_Enekyori(1);
-				if(n_A_WeaponType == 18) wbairitu += 150 + 30 * n_A_ActiveSkillLV;
-				else wbairitu += 100 + 20 * n_A_ActiveSkillLV;
+				if(n_A_WeaponType == 18) CS.wbairitu += 150 + 30 * n_A_ActiveSkillLV;
+				else CS.wbairitu += 100 + 20 * n_A_ActiveSkillLV;
 				n_Delay[2] = 500;
-				w_HIT = 100;
-				w_HIT_HYOUJI = 100;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
 				break;
 
 			case SKILL_ID_DUST:
-				cast_kotei = true;
+				CS.cast_kotei = true;
 				set_n_Enekyori(0);
-				wbairitu += 50 * n_A_ActiveSkillLV;
+				CS.wbairitu += 50 * n_A_ActiveSkillLV;
 				n_Delay[3] = 1;
 				break;
 
 			case SKILL_ID_FULL_BASTER:
 				set_n_Enekyori(1);
-				wbairitu += 200 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu += 200 + 100 * n_A_ActiveSkillLV;
 				n_Delay[2] = 1000 + 200 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_SPREAD_ATTACK:
 				set_n_Enekyori(1);
-				wbairitu = 200 + 30 * n_A_ActiveSkillLV;
+				CS.wbairitu = 200 + 30 * n_A_ActiveSkillLV;
 				n_Delay[2] = 1000;
 				break;
 
 			case SKILL_ID_GROUND_DRIFT:
-				wbairitu = 200 + 20 * n_A_ActiveSkillLV;
+				CS.wbairitu = 200 + 20 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
-								wCast = 1000;
+								CS.wCast = 1000;
 				n_Delay[2] = 1000;
 				break;
 
 			case SKILL_ID_SONIC_WAVE:
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				set_n_Enekyori(1);
 				n_Delay[2] = (n_A_ActiveSkillLV <= 5) ? 1000 : 0;
 				n_Delay[7] = (n_A_ActiveSkillLV <= 5) ? 2000 : 200;
-				wbairitu = 700 + 100 * n_A_ActiveSkillLV;
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 700 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_HANDRED_SPEAR:	// ハンドレッドスピア
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
 			case SKILL_ID_WIND_CUTTER:
 				set_n_A_Weapon_zokusei(4);
-				wCast = n_A_ActiveSkillLV * 500 - 500;
+				CS.wCast = n_A_ActiveSkillLV * 500 - 500;
 				n_Delay[2] = 500;
 				n_Delay[7] = 2500 - 500 * n_A_ActiveSkillLV;
-				wbairitu = 100 + 50 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 100 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_PHANTOM_SLAST:	// ファントムスラスト
 				set_n_Enekyori(1);
-				wbairitu = 50 * n_A_ActiveSkillLV + 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
+				CS.wbairitu = 50 * n_A_ActiveSkillLV + 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
 				break;
 
 			case SKILL_ID_IGNITION_BREAK:
 				n_Delay[7] = 3000;
 				var w = attackMethodConfArray[0].GetOptionValue(0);
-				if(w == 0) wbairitu = 300 * n_A_ActiveSkillLV;
-				if(w == 1) wbairitu = 250 * n_A_ActiveSkillLV;
-				if(w == 2) wbairitu = 200 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				if(attackMethodConfArray[0].GetOptionValue(1) == 1) wbairitu -= 1;
-				if(BK_Weapon_zokusei == 3) wbairitu += 100 * n_A_ActiveSkillLV;
+				if(w == 0) CS.wbairitu = 300 * n_A_ActiveSkillLV;
+				if(w == 1) CS.wbairitu = 250 * n_A_ActiveSkillLV;
+				if(w == 2) CS.wbairitu = 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(attackMethodConfArray[0].GetOptionValue(1) == 1) CS.wbairitu -= 1;
+				if(CS.BK_Weapon_zokusei == 3) CS.wbairitu += 100 * n_A_ActiveSkillLV;
 				break;
 
 			// ストームブラスト
 			case SKILL_ID_STORM_BLAST: {
-				wCast = 1000;
-				n_KoteiCast = 1000;
+				CS.wCast = 1000;
+				CS.n_KoteiCast = 1000;
 				n_Delay[7] = 8000;
 				const rune_mastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
-				wbairitu = 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
+				CS.wbairitu = 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
 				break;
 			}
 			case SKILL_ID_CROSS_IMPACT:
-				wActiveHitNum = 7;
+				CS.wActiveHitNum = 7;
 				n_Delay[0] = 2;
 				n_Delay[2] = 3000 - 500 * n_A_ActiveSkillLV;
-				wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbairitu = ROUNDDOWN(wbairitu / 2);
+				CS.wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
+				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
 				break;
 
 			case SKILL_ID_DARK_ILLUSION:
 				set_n_Enekyori(1);
 				n_Delay[7] = 1500 + 500 * n_A_ActiveSkillLV;
-				wbairitu = 100;
+				CS.wbairitu = 100;
 				break;
 
 			case SKILL_ID_VENOM_PRESSURE:
 				n_Delay[0] = 1;
 				n_Delay[2] = 1000;
-				wbairitu = 1000;
+				CS.wbairitu = 1000;
 				break;
 
 			case SKILL_ID_COUNTER_SLASH:
 				n_Delay[2] = 2000;
-				wbairitu = 300 + 150 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
+				CS.wbairitu = 300 + 150 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
 				ampWork = (n_A_JOB == MIG_JOB_ID_SHADOW_CROSS) ? GetJobLevelMax(JOB_ID_GILOTINCROSS) : n_A_JobLV;
-				wbairitu += n_A_AGI * 2 + ampWork * 4;
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbairitu = ROUNDDOWN(wbairitu / 2);
+				CS.wbairitu += n_A_AGI * 2 + ampWork * 4;
+				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
 				break;
 
 			case SKILL_ID_PHANTOM_MENUS:
 				n_Delay[7] = 1000;
-				wbairitu = 300;
-				if(attackMethodConfArray[0].GetOptionValue(0) == 0) wbairitu = 0;
+				CS.wbairitu = 300;
+				if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = 0;
 				break;
 
 			case SKILL_ID_ROLLING_CUTTER:
 				n_Delay[7] = 200;
-				wbairitu = 50 + 50 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbairitu = ROUNDDOWN(wbairitu / 2);
+				CS.wbairitu = 50 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
 				break;
 
 			case SKILL_ID_CROSS_RIPPER_SLASHER:
 				set_n_Enekyori(1);
 				n_Delay[0] = 1;
 				n_Delay[2] = 1000;
-				wbairitu = 400 + 80 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				wbairitu += attackMethodConfArray[0].GetOptionValue(0) * n_A_AGI;
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbairitu = ROUNDDOWN(wbairitu / 2);
+				CS.wbairitu = 400 + 80 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu += attackMethodConfArray[0].GetOptionValue(0) * n_A_AGI;
+				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
 				break;
 
 			case SKILL_ID_ARROW_STORM:
-				wCast = 2000 + 200 * n_A_ActiveSkillLV;
+				CS.wCast = 2000 + 200 * n_A_ActiveSkillLV;
 				n_Delay[2] = 7000 - 400 * n_A_ActiveSkillLV;
 				n_Delay[7] = 5500 - 500 * n_A_ActiveSkillLV;
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				set_n_Enekyori(1);
-				wbairitu = 1000 + 80 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 1000 + 80 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_CLUSTER_BOMB:
-				wbairitu = 200 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_FIRING_TRAP:
-				wbairitu = 100;
+				CS.wbairitu = 100;
 				break;
 
 			case SKILL_ID_ICEBOUND_TRAP:
-				wbairitu = 100;
+				CS.wbairitu = 100;
 				break;
 
 			case SKILL_ID_WUG_BITE: {	// ウォーグバイト
@@ -2012,21 +1944,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 						n_Delay[7] = 2000 + 2000 * n_A_ActiveSkillLV;
 						break;
 				}
-				wbairitu = 800 + 200 * n_A_ActiveSkillLV;
-				if(!n_AS_MODE){
+				CS.wbairitu = 800 + 200 * n_A_ActiveSkillLV;
+				if(!CS.n_AS_MODE){
 					const tooth_of_wug_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOOTH_OF_WUG), UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG));
 					let w = 50 + 10 * n_A_ActiveSkillLV - Math.floor(mobData[8] / 4) + tooth_of_wug_lv * 2;
 					if(w < 50) w = 50;
 					if(w > 100) w = 100;
-					str_bSUBname += "<Font size=2>命中時の拘束確率(推定)<BR></Font>";
-					str_bSUB += w +"%<BR>";
+					CS.str_bSUBname += "<Font size=2>命中時の拘束確率(推定)<BR></Font>";
+					CS.str_bSUB += w +"%<BR>";
 				}
 				break;
 			}
 
 			case SKILL_ID_WUG_STRIKE:
 				set_n_Enekyori(1);
-				wbairitu = 250 * n_A_ActiveSkillLV;
+				CS.wbairitu = 250 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_EIBINNA_KYUKAKU:
@@ -2045,17 +1977,17 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 				}
 
-				wbairitu = 100 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu = 100 + 50 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_WUG_DASH:
-				wbairitu = 300;
+				CS.wbairitu = 300;
 				break;
 
 			// 「メカニック」スキル「アックストルネード」
 			case SKILL_ID_AXE_TORNADE:
 				// 2024/09/18 実測値との誤差無しを確認済み
-				wActiveHitNum = 6;
+				CS.wActiveHitNum = 6;
 				n_Delay[2] = 500;
 				n_Delay[7] = 4500 - 500 * n_A_ActiveSkillLV;
 				// 基本倍率
@@ -2063,95 +1995,95 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				const state_axe_stomp = attackMethodConfArray[0].GetOptionValue(0);
 				if (state_axe_stomp === 1) {
 					// アックスストンプ状態の場合
-					wbairitu = 230 + 230 * n_A_ActiveSkillLV;
-					wbairitu += n_A_VIT * 2;
+					CS.wbairitu = 230 + 230 * n_A_ActiveSkillLV;
+					CS.wbairitu += n_A_VIT * 2;
 				} else {
-					wbairitu = 200 + 180 * n_A_ActiveSkillLV;
-					wbairitu += n_A_VIT;
+					CS.wbairitu = 200 + 180 * n_A_ActiveSkillLV;
+					CS.wbairitu += n_A_VIT;
 				}
 				// 最終倍率
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_AXE_BOOMERANG:
 				set_n_Enekyori(1);
 				var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
-				wCast = 5500 - 500 * n_A_ActiveSkillLV;
-				wbairitu = 250 + 50 * n_A_ActiveSkillLV + w_Weight;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wCast = 5500 - 500 * n_A_ActiveSkillLV;
+				CS.wbairitu = 250 + 50 * n_A_ActiveSkillLV + w_Weight;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			// 「メカニック」スキル「パワースイング」
 			// 2025/01/27 実測値との誤差無しを確認済み
 			case SKILL_ID_POWER_SWING:
-				wCast = Math.max(0, 1000 - 200 * n_A_ActiveSkillLV);
+				CS.wCast = Math.max(0, 1000 - 200 * n_A_ActiveSkillLV);
 				if (attackMethodConfArray[0].GetOptionValue(1) == 1) {
 					// ABRバトルウォリアー状態の場合
-					wActiveHitNum = 2;
-					wbairitu = 500 + 150 * n_A_ActiveSkillLV;
+					CS.wActiveHitNum = 2;
+					CS.wbairitu = 500 + 150 * n_A_ActiveSkillLV;
 				} else {
 					// 通常時
-					wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+					CS.wbairitu = 300 + 100 * n_A_ActiveSkillLV;
 				}
-				wbairitu += ROUNDDOWN((n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
+				CS.wbairitu += ROUNDDOWN((n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
 				break;
 
 			// 「メカニック」スキル「ブーストナックル」
 			case SKILL_ID_BOOST_KNUCKLE:
 				set_n_Enekyori(1);
-				wCast = 500 * n_A_ActiveSkillLV - 500;
+				CS.wCast = 500 * n_A_ActiveSkillLV - 500;
 				n_Delay[1] = n_Delay[1] / 2;
-				if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
-				wbairitu = 200 + 100 * n_A_ActiveSkillLV + n_A_DEX;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
+				if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) CS.wHITsuu = 2;
+				CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV + n_A_DEX;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
 				break;
 
 			case SKILL_ID_PILE_BUNKER:
 				n_Delay[2] = 3000 - 1000 * n_A_ActiveSkillLV;
 				n_Delay[7] = 7500 - 2500 * n_A_ActiveSkillLV;
-				wbairitu = 300 + 100 * n_A_ActiveSkillLV + n_A_STR;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 300 + 100 * n_A_ActiveSkillLV + n_A_STR;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			// 「メカニック」スキル「バルカンアーム」
 			case SKILL_ID_VULCAN_ARM:
 				set_n_Enekyori(1);
-				wCast = 1000 * n_A_ActiveSkillLV - 1000;
-				if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) wHITsuu = 2;
-				wbairitu = 70 * n_A_ActiveSkillLV + n_A_DEX;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
+				CS.wCast = 1000 * n_A_ActiveSkillLV - 1000;
+				if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) CS.wHITsuu = 2;
+				CS.wbairitu = 70 * n_A_ActiveSkillLV + n_A_DEX;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
 				break;
 
 			case SKILL_ID_FLAME_THROWER:
 			case SKILL_ID_COLD_THROWER:
 				if(n_A_ActiveSkill==SKILL_ID_FLAME_THROWER){
 					set_n_A_Weapon_zokusei(3);
-					wCast = 500;
+					CS.wCast = 500;
 				}
 				if(n_A_ActiveSkill==SKILL_ID_COLD_THROWER){
 					set_n_A_Weapon_zokusei(1);
-					wCast = 1000 * n_A_ActiveSkillLV;
+					CS.wCast = 1000 * n_A_ActiveSkillLV;
 				}
 				n_Delay[2] = 2000 - 500 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
-				wbairitu = 300 + 300 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
+				CS.wbairitu = 300 + 300 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
 				break;
 
 			// 「ロイヤルガード」スキル「キャノンスピア」
 			case SKILL_ID_CANNON_SPEAR:
 				set_n_Enekyori(1);
 				n_Delay[7] = 2000;
-				wbairitu = (50 + n_A_STR) * n_A_ActiveSkillLV;
+				CS.wbairitu = (50 + n_A_STR) * n_A_ActiveSkillLV;
 				/*
 				グランドジャッジメント状態スキル倍率
 				実測値との一致を確認済み
 				*/
 				if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
-					wbairitu = (200 + n_A_STR) * n_A_ActiveSkillLV;
+					CS.wbairitu = (200 + n_A_STR) * n_A_ActiveSkillLV;
 				}
 
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			// 「ロイヤルガード」スキル「バニシングポイント」
@@ -2160,72 +2092,72 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// バッシュ習得Lv補正
 				let w_BN = 30 * Math.max(LearnedSkillSearch(SKILL_ID_BASH), attackMethodConfArray[0].GetOptionValue(0));
 				// 基本倍率
-				wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
+				CS.wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
 				/*
 				グランドジャッジメント状態スキル倍率
 				実測値との一致を確認済み
 				*/
 				if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
-					wbairitu *= 2;
+					CS.wbairitu *= 2;
 				}
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_SHIELD_PRESS:
 				n_Delay[7] = 2000;
-				wbairitu = 200 * n_A_ActiveSkillLV
+				CS.wbairitu = 200 * n_A_ActiveSkillLV
 				/*
 				シールドシューティング状態スキル倍率
 				実測値との一致を確認済み
 				*/
 				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
-					wbairitu = 300 * n_A_ActiveSkillLV;
+					CS.wbairitu = 300 * n_A_ActiveSkillLV;
 				}
 
-				wbairitu += n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu += n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_RAGE_BURST_ATTACK:
 				n_Delay[7] = 3000;
-				wbairitu = 200 * attackMethodConfArray[0].GetOptionValue(0);
+				CS.wbairitu = 200 * attackMethodConfArray[0].GetOptionValue(0);
 				if(attackMethodConfArray[0].GetOptionValue(1) > 0) {
-					wbairitu += (charaData[CHARA_DATA_INDEX_MAXHP] - attackMethodConfArray[0].GetOptionValue(1)) / 100;
+					CS.wbairitu += (charaData[CHARA_DATA_INDEX_MAXHP] - attackMethodConfArray[0].GetOptionValue(1)) / 100;
 				}
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_MOON_SLUSHER:
 				// オーバーブランドの習得Lv補正
 				var w_OB = 80 * Math.max(LearnedSkillSearch(SKILL_ID_OVER_BLAND), attackMethodConfArray[0].GetOptionValue(0));
-				wCast = 2000;
+				CS.wCast = 2000;
 				n_Delay[7] = 5500 - 500 * n_A_ActiveSkillLV;
-				wbairitu = 120 * n_A_ActiveSkillLV + w_OB;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 120 * n_A_ActiveSkillLV + w_OB;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_EARTH_DRIVE:
-				wActiveHitNum = 1;
-				wCast = 1000;
+				CS.wActiveHitNum = 1;
+				CS.wCast = 1000;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 8000 - 1000 * n_A_ActiveSkillLV;
-				wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
 				/*
 				シールドシューティング状態スキル倍率
 				実測値との一致を確認済み
 				*/
 				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
-					wbairitu = 300 + 100 * n_A_ActiveSkillLV;
+					CS.wbairitu = 300 + 100 * n_A_ActiveSkillLV;
 				}
 
-				wbairitu = ROUNDDOWN(wbairitu * ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] / 100);
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_FAINT_BOMB:
 				var ratio = 1 + (n_A_ActiveSkillLV == 1 ? 2 : 3) + Math.floor((n_A_ActiveSkillLV - 1) / 3);
-				wbairitu = ROUNDDOWN(ratio * (n_A_DEX / 2) * n_A_JobLV / 10 * n_A_BaseLV / 120);
-				wCast = Math.max(0, 1000 * Math.floor((n_A_ActiveSkillLV - 4) / 3));
+				CS.wbairitu = ROUNDDOWN(ratio * (n_A_DEX / 2) * n_A_JobLV / 10 * n_A_BaseLV / 120);
+				CS.wCast = Math.max(0, 1000 * Math.floor((n_A_ActiveSkillLV - 4) / 3));
 
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
@@ -2246,47 +2178,47 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_FATAL_MENUS:
 				n_Delay[2] = 500;
 				// 基本倍率
-				wbairitu = (n_A_ActiveSkillLV + 1) * 100;
+				CS.wbairitu = (n_A_ActiveSkillLV + 1) * 100;
 				// アビスダガー状態補正
 				if (UsedSkillSearch(SKILL_ID_ABYSS_DAGGER_STATE) == 1) {
-					wbairitu *= 1.2;
+					CS.wbairitu *= 1.2;
 				}
 				// BaseLv補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// ヒット数
 				if (n_A_WeaponType == ITEM_KIND_KNIFE) {
-					wHITsuu = 2;
+					CS.wHITsuu = 2;
 				}
 				break;
 
 			case SKILL_ID_TRIANGLE_SHOT:
-				wActiveHitNum = 3;
-				wbairitu = (n_A_ActiveSkillLV - 1) * (n_A_AGI / 2) + 300;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
+				CS.wActiveHitNum = 3;
+				CS.wbairitu = (n_A_ActiveSkillLV - 1) * (n_A_AGI / 2) + 300;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
 				set_n_A_Weapon_zokusei(GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL));
 				if(eval(document.calcForm.A_Weapon_zokusei.value) != 0) set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
 				set_n_Enekyori(1);
-				wCast = 5000 - 500 * n_A_ActiveSkillLV;
+				CS.wCast = 5000 - 500 * n_A_ActiveSkillLV;
 				n_Delay[2] = 500 - 50 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_SORYUKYAKU:
-				wActiveHitNum = 2;
+				CS.wActiveHitNum = 2;
 
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					wbairitu = 50 + 20 * n_A_ActiveSkillLV;
+					CS.wbairitu = 50 + 20 * n_A_ActiveSkillLV;
 					break;
 
 				default:
-					wbairitu = 100 + 40 * n_A_ActiveSkillLV;
+					CS.wbairitu = 100 + 40 * n_A_ActiveSkillLV;
 					break;
 
 				}
 
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 
 				var w = attackMethodConfArray[0].GetOptionValue(0);
 
@@ -2299,31 +2231,31 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 			case SKILL_ID_TENRACHIMO:
 				n_Delay[7] = 200;
-				wActiveHitNum = 3;
-				if(!n_AS_MODE){
+				CS.wActiveHitNum = 3;
+				if(!CS.n_AS_MODE){
 					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
 						// 単発の場合
-						wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+						CS.wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
 					} else {
 						// コンボの場合
-						wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+						CS.wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
 					}
 				} else {
 					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI){
 						// 閃光連撃から呼ばれた場合
-						wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+						CS.wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
 					} else {
 						// それ以外
-						wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+						CS.wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
 					}
 				}
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_ZIRAISHIN:
 				n_Delay[7] = 3000;
-				if(attackMethodConfArray[0].GetOptionValue(0) == 0) wbairitu = ((50 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 2;
-				else wbairitu = ((150 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 3;
+				if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = ((50 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 2;
+				else CS.wbairitu = ((150 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 3;
 				break;
 
 			case SKILL_ID_BAKKISANDAN: {	// 爆気散弾
@@ -2334,33 +2266,33 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// TODO 爆裂波動の習得Lvがスキル倍率に影響する可能性がある
 				var w = attackMethodConfArray[0].GetOptionValue(0);
 				if (UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN) || UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) || TimeItemNumSearch(34)) {
-					wbairitu = ROUNDDOWN((125 + 25 * n_A_ActiveSkillLV) * n_A_BaseLV / 150 * w);
+					CS.wbairitu = ROUNDDOWN((125 + 25 * n_A_ActiveSkillLV) * n_A_BaseLV / 150 * w);
 				}
-				else wbairitu = ROUNDDOWN(20 * n_A_ActiveSkillLV * n_A_BaseLV / 150 * w);
+				else CS.wbairitu = ROUNDDOWN(20 * n_A_ActiveSkillLV * n_A_BaseLV / 150 * w);
 				break;
 			}
 			case SKILL_ID_DAITENHOSUI:
 				n_Delay[0] = 1;
-				wActiveHitNum = 2;
-				wbairitu = 100 + 250 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
+				CS.wActiveHitNum = 2;
+				CS.wbairitu = 100 + 250 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
 				break;
 
 			case SKILL_ID_RASETSU_HAOGEKI_MAX:
 			case SKILL_ID_RASETSU_HAOGEKI:
-				wActiveHitNum = 7;
-				wCast = 800 + 200 * n_A_ActiveSkillLV;
+				CS.wActiveHitNum = 7;
+				CS.wCast = 800 + 200 * n_A_ActiveSkillLV;
 				n_Delay[2] = 100 * n_A_ActiveSkillLV;
-				wbairitu = 500 * n_A_ActiveSkillLV;
-				if(!n_AS_MODE){
+				CS.wbairitu = 500 * n_A_ActiveSkillLV;
+				if(!CS.n_AS_MODE){
 					if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
-						wbairitu = 800 * n_A_ActiveSkillLV;
+						CS.wbairitu = 800 * n_A_ActiveSkillLV;
 					}
 				}
 				else {
-					wbairitu = 800 * n_A_ActiveSkillLV;
+					CS.wbairitu = 800 * n_A_ActiveSkillLV;
 				}
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_GOHO:
@@ -2368,54 +2300,54 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				n_Delay[7] = 2000;
 				var w1 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXHP] * (10 + 2 * n_A_ActiveSkillLV) / 100);
 				var w2 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (5 + n_A_ActiveSkillLV) / 100);
-				if(!n_AS_MODE){
+				if(!CS.n_AS_MODE){
 					// 手動時
 					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
 						// 単発
-						wCast = 1000 + 100 * n_A_ActiveSkillLV;
-						wbairitu = (w1 + w2) / 4;
+						CS.wCast = 1000 + 100 * n_A_ActiveSkillLV;
+						CS.wbairitu = (w1 + w2) / 4;
 					}
 					if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
 						// コンボ
 						n_Delay[0] = 1;
-						wbairitu = (w1 + w2) / 1.5;
+						CS.wbairitu = (w1 + w2) / 1.5;
 					}
 				} else {
 					// オートスペル時
 					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_COMBO_SORYUKYAKU) {
-						wbairitu = (w1 + w2) / 1.5;
+						CS.wbairitu = (w1 + w2) / 1.5;
 					}
 				}
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_SENPUTAI:
 				n_Delay[7] = 5000;
-				wbairitu = n_A_BaseLV + n_A_DEX;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = n_A_BaseLV + n_A_DEX;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_SISIKO:
-				wCast = 1000;
-				n_KoteiCast = 500;
+				CS.wCast = 1000;
+				CS.n_KoteiCast = 500;
 				n_Delay[7] = 10000;
-				wbairitu = 300 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
+				CS.wbairitu = 300 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
 				break;
 
 			case SKILL_ID_RAIKODAN:
 				set_n_Enekyori(1);
-				wCast = 1000 * n_A_ActiveSkillLV;
-				wbairitu = 200 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				if(BK_Weapon_zokusei == 4) wbairitu = ROUNDDOWN(wbairitu * 125 / 100);
+				CS.wCast = 1000 * n_A_ActiveSkillLV;
+				CS.wbairitu = 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(CS.BK_Weapon_zokusei == 4) CS.wbairitu = ROUNDDOWN(CS.wbairitu * 125 / 100);
 				break;
 
 			case SKILL_ID_TENKETSU_MOKU:
-				wbairitu = 100 * n_A_ActiveSkillLV + n_A_DEX;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				w_HIT = Math.floor(w_HIT * (5 * n_A_ActiveSkillLV + (n_A_DEX + n_A_BaseLV) / 10) / 100);
-				w_HIT_HYOUJI = w_HIT;
+				CS.wbairitu = 100 * n_A_ActiveSkillLV + n_A_DEX;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				CS.w_HIT = Math.floor(CS.w_HIT * (5 * n_A_ActiveSkillLV + (n_A_DEX + n_A_BaseLV) / 10) / 100);
+				CS.w_HIT_HYOUJI = CS.w_HIT;
 				break;
 
 			// 「ジェネティック」スキル「カートトルネード」
@@ -2424,16 +2356,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 詠唱など
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 100 * n_A_ActiveSkillLV
+				CS.wbairitu = 100 * n_A_ActiveSkillLV
 				// ウドゥンウォリアー補正
-				wbairitu += 100 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);
+				CS.wbairitu += 100 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);
 				// 修練補正
 				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-				wbairitu += 50 * cart_kaizo_lv;
+				CS.wbairitu += 50 * cart_kaizo_lv;
 				// カート重量・純粋STR補正
-				wbairitu += Math.floor(attackMethodConfArray[0].GetOptionValue(0) / (150 - SU_STR));;
+				CS.wbairitu += Math.floor(attackMethodConfArray[0].GetOptionValue(0) / (150 - SU_STR));;
 				// 分割ヒット
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				break;
 			}
 
@@ -2455,7 +2387,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				}
 
 				var kihon_bairitu = [300,800,800,500,877];
-				wbairitu = ROUNDDOWN((kihon_bairitu[attackMethodConfArray[0].GetOptionValue(0)] + n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN((kihon_bairitu[attackMethodConfArray[0].GetOptionValue(0)] + n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
 				break;
 
 			// 「ジェネティック」スキル「スポアエクスプロージョン」
@@ -2463,84 +2395,84 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 計算式自体は合っていると判断
 			case SKILL_ID_SPORE_EXPLOSION:
 				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離
 				set_n_Enekyori(1);
 				// 基本倍率
-				wbairitu = 150 * n_A_ActiveSkillLV;
+				CS.wbairitu = 150 * n_A_ActiveSkillLV;
 				// ウドゥンフェアリー補正
-				wbairitu += 100 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);
+				CS.wbairitu += 100 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);
 				// INT補正
-				wbairitu += 200 + n_A_INT;
+				CS.wbairitu += 200 + n_A_INT;
 				// BaseLv補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				break;
 
 			// 「アークビショップ」スキル「グレイアムライト」
 			case SKILL_ID_GRAHAM_LIGHT:
 				set_n_Enekyori(1);
-				wbairitu = 100 + 10 * n_A_ActiveSkillLV;
+				CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_SHIELD_SPELL_LV_1:
-				wCast = 1000;
+				CS.wCast = 1000;
 				n_Delay[0] = 1;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 2000;
-				wbairitu = n_A_BaseLV * 4 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_POWER] * 10 + n_A_VIT * 2;
+				CS.wbairitu = n_A_BaseLV * 4 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_POWER] * 10 + n_A_VIT * 2;
 				break;
 
 			case SKILL_ID_CHIMEITEKINA_KIZU:
-				wbairitu += 0;
+				CS.wbairitu += 0;
 				break;
 
 			case SKILL_ID_HELL_JUDGEMENT:
 			case SKILL_ID_VAMPIRE_GIFT:
 	// 投稿フォームからの連絡　プレイヤーが使用する場合、遠距離扱いではないらしい
 	//			set_n_Enekyori(1);
-				wbairitu = 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 100 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_YOMIGAESHI:	// 黄泉返し
 				set_n_Enekyori(1);
 				n_Delay[7] = 3500 - 500 * n_A_ActiveSkillLV;
-				wbairitu = (100 + 20 * attackMethodConfArray[0].GetOptionValue(0)) * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = (100 + 20 * attackMethodConfArray[0].GetOptionValue(0)) * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			case SKILL_ID_FUMASHURIKEN_RANKA: {	// 風魔手裏剣 -乱華-
 				set_n_Enekyori(1);
-				wActiveHitNum = 5;
-				wCast = Math.max(1200, 2200 - 200 * n_A_ActiveSkillLV);
-				n_KoteiCast = Math.min(1800, 800 + 200 * n_A_ActiveSkillLV);
+				CS.wActiveHitNum = 5;
+				CS.wCast = Math.max(1200, 2200 - 200 * n_A_ActiveSkillLV);
+				CS.n_KoteiCast = Math.min(1800, 800 + 200 * n_A_ActiveSkillLV);
 				n_Delay[7] = 500;
 				// 風魔手裏剣投げの習得Lv
 				const fumashuriken_nage_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_NAGE), attackMethodConfArray[0].GetOptionValue(0));
-				wbairitu = 150 * n_A_ActiveSkillLV + n_A_STR + 100 * fumashuriken_nage_lv;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				if(!n_AS_MODE && n_A_WeaponType != 16) n_Buki_Muri = true;
+				CS.wbairitu = 150 * n_A_ActiveSkillLV + n_A_STR + 100 * fumashuriken_nage_lv;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(!CS.n_AS_MODE && n_A_WeaponType != 16) CS.n_Buki_Muri = true;
 				break;
 			}
 			case SKILL_ID_DARK_CRAW:
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				n_Delay[7] = 60000;
-				wbairitu = 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 100 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_SHUTTER_STORM:
-				wbairitu = 1700 + 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1700 + 200 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
-				wCast = 3500 - 500 * n_A_ActiveSkillLV;
+				CS.wCast = 3500 - 500 * n_A_ActiveSkillLV;
 				n_Delay[2] = 0;
 				n_Delay[7] = 2000;
 				break;
 
 			case SKILL_ID_HOWLING_MINE:
-				wbairitu = 400 * n_A_ActiveSkillLV;
+				CS.wbairitu = 400 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
-				wCast = 1000;
+				CS.wCast = 1000;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 0;
 				break;
@@ -2548,48 +2480,48 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_HOWLING_MINE_APPEND:
 	// TODO: 暫定。ここにはいらない。
 	//			set_n_A_Weapon_zokusei(3);		// 強制火属性
-				wbairitu = 1000 + 400 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1000 + 400 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 0;
 				n_Delay[7] = 0;
 				break;
 
 			case SKILL_ID_FIRE_RAIN:
-				wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+				CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 6000 - 1000 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_FIRE_DANCE: {	// ファイヤーダンス
-				wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
 				// デスペラード習得Lv補正
 				let deathperad_lv = Math.max(LearnedSkillSearch(SKILL_ID_DEATHPERAD), attackMethodConfArray[0].GetOptionValue(0));
-				wbairitu += 20 * deathperad_lv;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu += 20 * deathperad_lv;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				set_n_Enekyori(1);
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 0;
 				break;
 			}
 			case SKILL_ID_BUNISHING_BASTER:
-				wbairitu = 200 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				set_n_Enekyori(1);
-				wCast = 3500 - 500 * n_A_ActiveSkillLV;
-				n_KoteiCast = 1000;
+				CS.wCast = 3500 - 500 * n_A_ActiveSkillLV;
+				CS.n_KoteiCast = 1000;
 				n_Delay[2] = 0;
 				n_Delay[7] = 0;
 				break;
 
 			case SKILL_ID_UNTIMATERIAL_BLAST:
-				wbairitu = 1500 + 300 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1500 + 300 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
-				wCast = 4000;
-				n_KoteiCast = 1000;
+				CS.wCast = 4000;
+				CS.n_KoteiCast = 1000;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 5000;
 				break;
@@ -2597,15 +2529,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_DRAGON_TAIL:
 	// TODO: 暫定。ここにはいらない。
 	//			set_n_A_Weapon_zokusei(0);		// 強制無属性
-				wbairitu = 500 + 200 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 500 + 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				// 烙印状態ならば、攻撃力２倍
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI]) {
-					wbairitu *= 2;
+					CS.wbairitu *= 2;
 				}
 
 				set_n_Enekyori(1);
-				wCast = Math.min(2000, 1000 + 200 * n_A_ActiveSkillLV);
+				CS.wCast = Math.min(2000, 1000 + 200 * n_A_ActiveSkillLV);
 				n_Delay[2] = 2000;
 				n_Delay[7] = 5000;
 				break;
@@ -2613,13 +2545,13 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_SLUG_SHOT:
 	// TODO: 暫定。ここにはいらない。
 	//			set_n_A_Weapon_zokusei(0);		// 強制無属性
-				wbairitu = 600 * n_A_ActiveSkillLV;
-				wbairitu *= (2 + mobData[17]);
+				CS.wbairitu = 600 * n_A_ActiveSkillLV;
+				CS.wbairitu *= (2 + mobData[17]);
 				// 対モンスターのみ２倍 ****
 				if(mobData[0] != MONSTER_ID_PLAYER){
-					wbairitu *= 2;
+					CS.wbairitu *= 2;
 				}
-				wCast = 2500;
+				CS.wCast = 2500;
 				n_Delay[2] = 0;
 				n_Delay[7] = 15000;
 				break;
@@ -2627,53 +2559,53 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_HAMMER_OF_GOD:
 	// TODO: 暫定。ここにはいらない。
 	//			set_n_A_Weapon_zokusei(0);		// 強制無属性
-				wbairitu = 500 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
 
 				// 烙印状態の影響
 				var coincount = attackMethodConfArray[0].GetOptionValue(0);
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI]) {
-					wbairitu += coincount * 200;
+					CS.wbairitu += coincount * 200;
 				} else {
-					wbairitu += coincount * 50;
+					CS.wbairitu += coincount * 50;
 				}
 
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 
 				set_n_Enekyori(1);
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 2000;
 				n_Delay[7] = 30000;
 				break;
 
 			case SKILL_ID_BIND_TRAP:
-				wbairitu = (1000 + 90 * n_A_ActiveSkillLV) / 100;
+				CS.wbairitu = (1000 + 90 * n_A_ActiveSkillLV) / 100;
 				set_n_Enekyori(1);
-				wCast = "不明";
+				CS.wCast = "不明";
 				n_Delay[0] = 2000;
 				break;
 
 			case  SKILL_ID_KAMITSUKU:
-				wbairitu = 1000;
+				CS.wbairitu = 1000;
 				if (attackMethodConfArray[0].GetOptionValue(0) == 1) {
-					wbairitu = ROUNDDOWN(wbairitu * 1.5);
+					CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.5);
 				}
-				wCast = 500;
+				CS.wCast = 500;
 				n_Delay[2] = 500;
 				n_Delay[7] = 0;
 				break;
 
 			case  SKILL_ID_HIKKAKU:
-				wbairitu = 400 + 200 * n_A_ActiveSkillLV;
-				wCast = 0;
+				CS.wbairitu = 400 + 200 * n_A_ActiveSkillLV;
+				CS.wCast = 0;
 				n_Delay[2] = 0;
 				n_Delay[7] = 0;
 				break;
 
 			case  SKILL_ID_PIKKI_TSUKI:
 				set_n_Enekyori(1);
-				wActiveHitNum = 5;
+				CS.wActiveHitNum = 5;
 
-				wbairitu = 1250 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1250 + 50 * n_A_ActiveSkillLV;
 
 				//----------------------------------------------------------------
 				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
@@ -2681,16 +2613,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
-						wbairitu = ROUNDDOWN(wbairitu * 2);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
-						wbairitu = ROUNDDOWN(wbairitu * 1.5);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.5);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
-						wbairitu = ROUNDDOWN(wbairitu * 1.3);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.3);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
-						wbairitu = ROUNDDOWN(wbairitu * 1.1);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.1);
 						break;
 					}
 				}
@@ -2702,10 +2634,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					|| (n_A_ActiveSkillLV == 3 && resthp < 50)
 					|| (n_A_ActiveSkillLV == 4 && resthp < 60)
 					|| (n_A_ActiveSkillLV == 5 && resthp < 70) ) {
-					wbairitu = ROUNDDOWN(wbairitu * 2);
+					CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
 				}
 
-				wCast = 500 * n_A_ActiveSkillLV - 500;
+				CS.wCast = 500 * n_A_ActiveSkillLV - 500;
 				n_Delay[2] = 2500 - 500 * n_A_ActiveSkillLV;
 				n_Delay[7] = 0;
 				break;
@@ -2713,7 +2645,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case  SKILL_ID_TAROUNO_KIZU:
 				set_n_Enekyori(1);
 
-				wbairitu = 4000 + 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = 4000 + 200 * n_A_ActiveSkillLV;
 
 				//----------------------------------------------------------------
 				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
@@ -2721,32 +2653,32 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
-						wbairitu = ROUNDDOWN(wbairitu * 2);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
-						wbairitu = ROUNDDOWN(wbairitu * 1.5);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.5);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
-						wbairitu = ROUNDDOWN(wbairitu * 1.3);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.3);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
-						wbairitu = ROUNDDOWN(wbairitu * 1.1);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.1);
 						break;
 					}
 				}
 
 				// ボスモンスターにはダメージ２倍
 				if (mobData[20] == 1) {
-					wbairitu *= 2;
+					CS.wbairitu *= 2;
 				}
 
 				// タロウの傷状態のモンスターにはダメージ２倍
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_TARONO_KIZU]) {
-					wbairitu *= 2;
+					CS.wbairitu *= 2;
 				}
 
-				wCast = 0;
-				n_KoteiCast = 2000;
+				CS.wCast = 0;
+				CS.n_KoteiCast = 2000;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 15000;
 				break;
@@ -2756,17 +2688,17 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			*/
 			case  SKILL_ID_CARROT_BEAT:
 				set_n_Enekyori(1);
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 
 				// 基礎倍率
-				wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
 
 				// Str補正
-				wbairitu += n_A_STR
+				CS.wbairitu += n_A_STR
 
 				// Lv補正
 				if(n_A_BaseLV >= 100) {
-					wbairitu = ROUNDDOWN(wbairitu * (n_A_BaseLV / 100));
+					CS.wbairitu = ROUNDDOWN(CS.wbairitu * (n_A_BaseLV / 100));
 				}
 
 				//----------------------------------------------------------------
@@ -2775,21 +2707,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
-						wbairitu = ROUNDDOWN(wbairitu * 2);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
-						wbairitu = ROUNDDOWN(wbairitu * 1.5);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.5);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
-						wbairitu = ROUNDDOWN(wbairitu * 1.3);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.3);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
-						wbairitu = ROUNDDOWN(wbairitu * 1.1);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.1);
 						break;
 					}
 				}
 
-				wCast = 2000;
+				CS.wCast = 2000;
 
 				var aDelay = [0, 500, 1000, 1500, 3000];
 				n_Delay[2] = aDelay[n_A_ActiveSkillLV - 1];
@@ -2801,7 +2733,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 				set_n_Enekyori(1);
 
-				wbairitu = 2500 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 2500 + 100 * n_A_ActiveSkillLV;
 
 				//----------------------------------------------------------------
 				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
@@ -2809,22 +2741,22 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
 					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
-						wbairitu = ROUNDDOWN(wbairitu * 2);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
-						wbairitu = ROUNDDOWN(wbairitu * 1.5);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.5);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
-						wbairitu = ROUNDDOWN(wbairitu * 1.3);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.3);
 						break;
 					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
-						wbairitu = ROUNDDOWN(wbairitu * 1.1);
+						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.1);
 						break;
 					}
 				}
 
 				var aCast = [1000, 1000, 1000, 2000, 2000];
-				wCast = aCast[n_A_ActiveSkillLV - 1];
+				CS.wCast = aCast[n_A_ActiveSkillLV - 1];
 				var aDelay = [0, 500, 1000, 1000, 1500];
 				n_Delay[2] = aDelay[n_A_ActiveSkillLV - 1];
 				n_Delay[7] = 2500 - 500 * n_A_ActiveSkillLV;
@@ -2841,20 +2773,20 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					hikariBairitsu = 25 + 5 * hikariLv;
 				}
 	*/
-				wbairitu = 1000 + 220 * n_A_ActiveSkillLV;
-				wbairitu = Math.floor(wbairitu * (100 + hikariBairitsu) / 100);
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 1000 + 220 * n_A_ActiveSkillLV;
+				CS.wbairitu = Math.floor(CS.wbairitu * (100 + hikariBairitsu) / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				n_Delay[7] = 500;
 
 				break;
 
 			case  SKILL_ID_SAKUGETSU_KYAKU:
 
-				wbairitu = 1650 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1650 + 50 * n_A_ActiveSkillLV;
 
-				wCast = 500 + 250 * n_A_ActiveSkillLV;
+				CS.wCast = 500 + 250 * n_A_ActiveSkillLV;
 				n_Delay[7] = 500;
 
 				break;
@@ -2870,18 +2802,18 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					hikariBairitsu = 25 + 5 * hikariLv;
 				}
 	*/
-				wbairitu = 500 + 150 * n_A_ActiveSkillLV;
-				wbairitu = Math.floor(wbairitu * (100 + hikariBairitsu) / 100);
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 500 + 150 * n_A_ActiveSkillLV;
+				CS.wbairitu = Math.floor(CS.wbairitu * (100 + hikariBairitsu) / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 
-				wCast = 100 * n_A_ActiveSkillLV;
-				n_KoteiCast = 100 * n_A_ActiveSkillLV;
+				CS.wCast = 100 * n_A_ActiveSkillLV;
+				CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
 
 				break;
 
 			case  SKILL_ID_SENKO_KYAKU:
 
-				wbairitu = 100;
+				CS.wbairitu = 100;
 
 				n_Delay[7] = 3500 - 500 * n_A_ActiveSkillLV;
 
@@ -2894,15 +2826,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					wbairitu = 750 + 750 * n_A_ActiveSkillLV;
+					CS.wbairitu = 750 + 750 * n_A_ActiveSkillLV;
 					break;
 
 				default:
-					wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+					CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
 					break;
 				}
 
-				n_KoteiCast = 500;
+				CS.n_KoteiCast = 500;
 				n_Delay[7] = 2000;
 
 				if (attackMethodConfArray[0].GetOptionValue(0) == 1) {
@@ -2917,15 +2849,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					wbairitu = 2250 + 750 * n_A_ActiveSkillLV;
+					CS.wbairitu = 2250 + 750 * n_A_ActiveSkillLV;
 					break;
 
 				default:
-					wbairitu = 1500 + 500 * n_A_ActiveSkillLV;
+					CS.wbairitu = 1500 + 500 * n_A_ActiveSkillLV;
 					break;
 				}
 
-				wCast = 500 + 500 * n_A_ActiveSkillLV;
+				CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
 				n_Delay[7] = 3000;
 
 				break;
@@ -3085,24 +3017,24 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 物理の属性倍率は BattleCalc999Body() 内で先に適用されているため間に合わない
 				// （BattleCalcSubDamagePhysicalCommon() は ApplyElementRatio を呼ばない）。
 				// スキル使用条件の判定
-				n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
-				if (n_Buki_Muri) {
-					wbairitu = 0;
+				CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+				if (CS.n_Buki_Muri) {
+					CS.wbairitu = 0;
 					break;
 				}
 				// 詠唱などの情報
-				wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				// ダメージ算出に関する情報
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 				set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
 				// ヒット数に関する情報
-				wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV ,charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV ,charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 				if (n_A_ActiveSkill === SKILL_ID_FLANGE_SHOT) {
-					hitCountArray = [1, wHITsuu, 3];
+					hitCountArray = [1, CS.wHITsuu, 3];
 				}
 				// 地面設置スキルの情報
 				set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
@@ -3120,8 +3052,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_ACIDIFIED_ZONE_HI:
 			case SKILL_ID_ACIDIFIED_ZONE_KAZE:
 				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 初段ダメージの場合
@@ -3130,26 +3062,26 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					set_n_Enekyori(1);
 					// バイオニックファーマシーはダメージ倍率に寄与しない
 					// 基本倍率
-					wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
+					CS.wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
 					// リサーチレポートの状態
 					let research_report = (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0);
 					let effective_race = [RACE_ID_SOLID, RACE_ID_PLANT].includes(mobData[MONSTER_DATA_INDEX_RACE]);
 					// POW補正
 					if (research_report && effective_race) {
 						// リサーチレポート種族特攻は POW 補正だけに 1.5 倍率がかかる
-						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW) * 1.5;
+						CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW) * 1.5;
 					} else {
 						// POW補正
-						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+						CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 					}
 					// リサーチレポート共通補正は全体に 1.5 倍率がかかる
 					if (research_report) {
-						wbairitu *= 1.5;
+						CS.wbairitu *= 1.5;
 					}
 					// BaseLv補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+					CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 					// ヒット数
-					wHITsuu = 3;
+					CS.wHITsuu = 3;
 				}
 				// 設置ダメージの場合
 				// 2024/11/15 YEサーバー実測と全く合わないことを確認済み
@@ -3163,11 +3095,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					// 距離属性
 					set_n_Enekyori(0);
 					// 基本倍率
-					wbairitu = Math.floor(62.5 * n_A_ActiveSkillLV);
+					CS.wbairitu = Math.floor(62.5 * n_A_ActiveSkillLV);
 					// POW補正
 					//wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 					// ベースレベル補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+					CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				}
 				break;
 
@@ -3179,28 +3111,28 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
 				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
 				if (!state_hinode && !state_shougo && !state_tenki_no_mi) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
+					CS.wbairitu = 0;
+					CS.n_Buki_Muri = true;
 					break;
 				}
 				// 距離属性
 				set_n_Enekyori(0);
 				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 1125 + 175 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1125 + 175 * n_A_ActiveSkillLV;
 				// POW補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				CS.wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
 				// 分割ヒット
-				wActiveHitNum = 2;
+				CS.wActiveHitNum = 2;
 				break;
 			}
 			// 「天帝」スキル「天陽」
@@ -3211,28 +3143,28 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				const state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
 				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
 				if (!state_shougo && !state_nichibotsu && !state_tenki_no_mi) {
-					wbairitu = 0;
-					n_Buki_Muri = true;
+					CS.wbairitu = 0;
+					CS.n_Buki_Muri = true;
 					break;
 				}
 				// 距離属性
 				set_n_Enekyori(0);
 				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 1575 + 225 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1575 + 225 * n_A_ActiveSkillLV;
 				// POW補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				CS.wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
 				// 分割ヒット
-				wActiveHitNum = 2;
+				CS.wActiveHitNum = 2;
 				break;
 			}
 
@@ -3241,8 +3173,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 距離属性
 				set_n_Enekyori(0);
 				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 設置スキル
@@ -3251,15 +3183,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// ダメージ間隔
 				n_Delay[5] = 300;
 				// 基本倍率
-				wbairitu = 250 + (100 * n_A_ActiveSkillLV);
+				CS.wbairitu = 250 + (100 * n_A_ActiveSkillLV);
 				// POW補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// 天気修練 補正
-				wbairitu += 3 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				CS.wbairitu += 3 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				break;
 
 			// 「天帝」スキル「天羅万象」
@@ -3267,25 +3199,25 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 距離属性
 				set_n_Enekyori(0);
 				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 300 * n_A_ActiveSkillLV;
+				CS.wbairitu = 300 * n_A_ActiveSkillLV;
 				// POW補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
-				wHITsuu = 1;
+				CS.wHITsuu = 1;
 				switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
 					case RACE_ID_HUMAN:
 						if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
 							break;
 						}
 					case RACE_ID_DEMON:
-						wHITsuu = 3;
+						CS.wHITsuu = 3;
 						break;
 				}
 				break;
@@ -3294,67 +3226,67 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 2025/01/25 もなこさん提供データに対して誤差なしを確認
 			case SKILL_ID_SPIRAL_SHOOTING:
 				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 使用武器制限
 				if (n_A_WeaponType != ITEM_KIND_GRENADEGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
-					n_Buki_Muri = true
-					wbairitu = 0;
+					CS.n_Buki_Muri = true
+					CS.wbairitu = 0;
 					break;
 				}
 				// 遠距離属性
 				set_n_Enekyori(1);
 				if (n_A_WeaponType == ITEM_KIND_GRENADEGUN) {
-					wbairitu = 1700 + 300 * n_A_ActiveSkillLV;
+					CS.wbairitu = 1700 + 300 * n_A_ActiveSkillLV;
 					bCri = false;	// クリティカルしない
-					wHITsuu = 2;	// 2ヒットする
+					CS.wHITsuu = 2;	// 2ヒットする
 				}
 				else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
-					wbairitu = 1950 + 350 * n_A_ActiveSkillLV;
+					CS.wbairitu = 1950 + 350 * n_A_ActiveSkillLV;
 				}
 				// CON補正
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 照準カウンター補正
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
-				wbairitu += option_count * (550 + 100 * n_A_ActiveSkillLV);
+				CS.option_count = attackMethodConfArray[0].GetOptionValue(0);
+				CS.wbairitu += CS.option_count * (550 + 100 * n_A_ActiveSkillLV);
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			// 「ナイトウォッチ」スキル「マガジンフォーワン」
 			// 2025/01/25 もなこさん提供データに対して誤差なしを確認
 			case SKILL_ID_MAGAZIN_FOR_ONE:
 				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 使用武器制限
 				if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
-					n_Buki_Muri = true
-					wbairitu = 0;
+					CS.n_Buki_Muri = true
+					CS.wbairitu = 0;
 					break;
 				}
 				// 遠距離属性
 				set_n_Enekyori(1);
 				if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-					wbairitu = 430 + 90 * n_A_ActiveSkillLV;
+					CS.wbairitu = 430 + 90 * n_A_ActiveSkillLV;
 					bCri = false;	// クリティカルしない
-					wHITsuu = 10;	// 10ヒットする
+					CS.wHITsuu = 10;	// 10ヒットする
 				}
 				else if (n_A_WeaponType == ITEM_KIND_HANDGUN) {
-					wbairitu = 500 + 50 * n_A_ActiveSkillLV;
-					wHITsuu = 6;	// 6ヒットする
+					CS.wbairitu = 500 + 50 * n_A_ActiveSkillLV;
+					CS.wHITsuu = 6;	// 6ヒットする
 				}
 				// CON補正
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				// 照準カウンター補正
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
-				wbairitu += option_count * (125 + 25 * n_A_ActiveSkillLV);
+				CS.option_count = attackMethodConfArray[0].GetOptionValue(0);
+				CS.wbairitu += CS.option_count * (125 + 25 * n_A_ActiveSkillLV);
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			//「ナイトウォッチ」スキル「ビジラントアットナイト」
@@ -3362,39 +3294,39 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_VIGILANT_AT_NIGHT:
 				// 使用武器制限
 				if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
-					n_Buki_Muri = true
-					wbairitu = 0;
+					CS.n_Buki_Muri = true
+					CS.wbairitu = 0;
 					break;
 				}
 				// 詠唱時間など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離属性
 				set_n_Enekyori(1);
 				// 照準カウンター
-				option_count = attackMethodConfArray[0].GetOptionValue(0);
+				CS.option_count = attackMethodConfArray[0].GetOptionValue(0);
 				if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-					wHITsuu = 7;	// 7ヒットする
+					CS.wHITsuu = 7;	// 7ヒットする
 					// 基本倍率
-					wbairitu = 375 + 85 * n_A_ActiveSkillLV;
+					CS.wbairitu = 375 + 85 * n_A_ActiveSkillLV;
 					// 照準カウンター補正
-					wbairitu += option_count * (125 + 25 * n_A_ActiveSkillLV);
+					CS.wbairitu += CS.option_count * (125 + 25 * n_A_ActiveSkillLV);
 					// CON補正
-					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+					CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				}
 				else if (n_A_WeaponType == ITEM_KIND_SHOTGUN) {
-					wHITsuu = 4;	// 4ヒットする
+					CS.wHITsuu = 4;	// 4ヒットする
 					// 基本倍率
-					wbairitu = 700 + 150 * n_A_ActiveSkillLV;
+					CS.wbairitu = 700 + 150 * n_A_ActiveSkillLV;
 					// 照準カウンター補正
-					wbairitu += option_count * (250 + 50 * n_A_ActiveSkillLV);
+					CS.wbairitu += CS.option_count * (250 + 50 * n_A_ActiveSkillLV);
 					// CON補正
-					wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+					CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				}
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			/*
@@ -3402,8 +3334,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			*/
 			case SKILL_ID_TIGER_HOWLING:
 				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離属性
@@ -3413,19 +3345,19 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
 					) {
 					// 基礎倍率
-					wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
-					wbairitu += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					CS.wbairitu = 2400 + 300 * n_A_ActiveSkillLV;
+					CS.wbairitu += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				} else {
 					// 基礎倍率
-					wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
-					wbairitu += 50 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					CS.wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
+					CS.wbairitu += 50 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				}
 				// POW補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// スキル説明にないが3分割スキル
-				wActiveHitNum = 3;
+				CS.wActiveHitNum = 3;
 				break;
 
 			/*
@@ -3433,30 +3365,30 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			*/
 			case SKILL_ID_TIGER_STRIKE:
 				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 遠距離属性
 				set_n_Enekyori(1);
 				// ３ヒット
-				wHITsuu = 3;
+				CS.wHITsuu = 3;
 				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
 					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
 					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
 					) {
 					// 基礎倍率
-					wbairitu = 450 + (150 * n_A_ActiveSkillLV);
-					wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					CS.wbairitu = 450 + (150 * n_A_ActiveSkillLV);
+					CS.wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				} else {
 					// 基礎倍率
-					wbairitu = 300 + (100 * n_A_ActiveSkillLV);
-					wbairitu += 10 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+					CS.wbairitu = 300 + (100 * n_A_ActiveSkillLV);
+					CS.wbairitu += 10 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 				}
 				// POW補正
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
 			// 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
@@ -3464,8 +3396,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_FUMASHURIKEN_SHOUAKU: {
 				set_n_Enekyori(1);			// 遠距離フラグ
 				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 設置
@@ -3475,10 +3407,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 風魔手裏剣 -構築-の習得Lv
 				const fumashuriken_kouchiku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_KOUCHIKU), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				wbairitu = 50 * n_A_ActiveSkillLV;										// 基礎倍率
-				wbairitu += 5 * n_A_ActiveSkillLV * fumashuriken_kouchiku_lv;			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);					// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);						// BaseLv補正
+				CS.wbairitu = 50 * n_A_ActiveSkillLV;										// 基礎倍率
+				CS.wbairitu += 5 * n_A_ActiveSkillLV * fumashuriken_kouchiku_lv;			// 習得済みスキル条件
+				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);					// 特性ステータス補正
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);						// BaseLv補正
 				break;
 			}
 			//「蜃気楼　不知火」スキル「風魔手裏剣 -構築-」
@@ -3486,32 +3418,32 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_FUMASHURIKEN_KOUCHIKU: {
 				set_n_Enekyori(1);			// 遠距離フラグ
 				// 詠唱など
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 風魔手裏剣 -掌握-の習得Lv
 				const fumashuriken_shouaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_SHOUAKU), attackMethodConfArray[0].GetOptionValue(1));
 				// 基礎倍率
 				if (battleCalcInfo.parentSkillId === undefined) {
-					wbairitu = 3800 + 100 * n_A_ActiveSkillLV;						// 初撃 ダメージ倍率
+					CS.wbairitu = 3800 + 100 * n_A_ActiveSkillLV;						// 初撃 ダメージ倍率
 				} else {
-					wbairitu = 10500 + 200 * n_A_ActiveSkillLV;						// 追撃 ダメージ倍率
+					CS.wbairitu = 10500 + 200 * n_A_ActiveSkillLV;						// 追撃 ダメージ倍率
 				}
-				wbairitu += 48 * n_A_ActiveSkillLV * fumashuriken_shouaku_lv;		// 習得済みスキル条件
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);					// BaseLv補正
+				CS.wbairitu += 48 * n_A_ActiveSkillLV * fumashuriken_shouaku_lv;		// 習得済みスキル条件
+				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 				break;
 			}
 
 			// 「アルケミスト」スキル「デモンストレーション」
 			case SKILL_ID_DEMONSTRATION:
 				// 必中
-				w_HIT = 100;
-				w_HIT_HYOUJI = 100;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
 				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 設置スキル設定
@@ -3522,15 +3454,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 属性
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
-				wbairitu = 100 + 20 * n_A_ActiveSkillLV;
+				CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
 				break;
 
 			// 「星帝」スキル「創星の書」
 			case SKILL_ID_SOSENO_SHO:
 				set_n_Enekyori(1);
 				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 設置スキル設定
@@ -3542,9 +3474,9 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
 				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
-					wbairitu = 750 + 750 * n_A_ActiveSkillLV;
+					CS.wbairitu = 750 + 750 * n_A_ActiveSkillLV;
 				} else {
-					wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+					CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
 				}
 				break;
 
@@ -3552,18 +3484,18 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_KAGEMOGURI:
 				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 属性
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
-				wbairitu = 2500 + 500 * n_A_ActiveSkillLV;											// 基本倍率
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);								// 特性ステータス補正
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+				CS.wbairitu = 2500 + 500 * n_A_ActiveSkillLV;											// 基本倍率
+				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);								// 特性ステータス補正
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);									// BaseLv補正
 				// 分割ヒット
-				wActiveHitNum = 2;
+				CS.wActiveHitNum = 2;
 				break;
 
 			// 「星帝」スキル「流星落下」
@@ -3574,13 +3506,13 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			case SKILL_ID_RYUSE_RAKKA:
 			case SKILL_ID_RYUSE_RAKKA_TSUIGEKI:
 				// 基礎倍率
-				wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				// 分割ヒット数
 				if (n_A_ActiveSkill == SKILL_ID_RYUSE_RAKKA && battleCalcInfo.parentSkillId === undefined) {
-					wActiveHitNum = 2;
+					CS.wActiveHitNum = 2;
 				} else {
-					wActiveHitNum = 3;
+					CS.wActiveHitNum = 3;
 				}
 				break;
 
@@ -3607,8 +3539,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		//--------------------------------
 		// スキルダメージ倍率の補正を計算
 		//--------------------------------
-		wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-		wbairitu = ATKbaiJYOUSAN(wbairitu);
+		CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+		CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 
 		//--------------------------------
 		// 参照するＡＴＫを特定
@@ -3618,7 +3550,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_WUG_BITE:
 		case SKILL_ID_WUG_STRIKE:
 		case SKILL_ID_WUG_DASH:
-			dmgUnit = BK_n_A_DMG_Wolf;
+			dmgUnit = CS.BK_n_A_DMG_Wolf;
 			break;
 
 		case SKILL_ID_TUZYO_KOGEKI_CALC_LEFT:
@@ -3631,24 +3563,24 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// ヒット数配列を用意
 		//--------------------------------
 		if (!hitCountArray) {
-			hitCountArray = [wHITsuu, wHITsuu, wHITsuu];
+			hitCountArray = [CS.wHITsuu, CS.wHITsuu, CS.wHITsuu];
 		}
-		g_wHITsuu_Array = hitCountArray.slice();
+		CS.g_wHITsuu_Array = hitCountArray.slice();
 
 		//--------------------------------
 		// ダメージ計算本体
 		//--------------------------------
 		// 通常ダメージ計算
-		ret = BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, n_A_ActiveSkill, dmgUnit, wbairitu, g_wHITsuu_Array, wActiveHitNum, bCri, bLeft);
+		ret = BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, n_A_ActiveSkill, dmgUnit, CS.wbairitu, CS.g_wHITsuu_Array, CS.wActiveHitNum, bCri, bLeft);
 		// 暫定互換性対応
 		set_w_DMG(ret[0].slice());
-		n_PerfectHIT_DMG = ret[1];
+		CS.n_PerfectHIT_DMG = ret[1];
 
 		//--------------------------------
 		// オートスペルのダメージ計算処理中の場合は、処理打ち切り
 		//--------------------------------
 
-		if (n_AS_MODE) {
+		if (CS.n_AS_MODE) {
 			return w_DMG;
 		}
 
@@ -3700,100 +3632,100 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_AIMED_BOLT:
 			set_n_Enekyori(1);
-			wCast = 4000;
-			n_KoteiCast = 1000;
+			CS.wCast = 4000;
+			CS.n_KoteiCast = 1000;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 500;
 			if(n_A_ActiveSkillLV > 5){
-				wCast = 3500 - 400 * (n_A_ActiveSkillLV - 5);
-				n_KoteiCast = 1000 - 150 * (n_A_ActiveSkillLV - 5);
+				CS.wCast = 3500 - 400 * (n_A_ActiveSkillLV - 5);
+				CS.n_KoteiCast = 1000 - 150 * (n_A_ActiveSkillLV - 5);
 				n_Delay[2] = 1000 - 100 * (n_A_ActiveSkillLV - 5);
 				n_Delay[7] = 500 - 50 * (n_A_ActiveSkillLV - 5);
 			}
-			wbairitu = 500 + 50 * n_A_ActiveSkillLV;
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 500 + 50 * n_A_ActiveSkillLV;
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			var w = attackMethodConfArray[0].GetOptionValue(0);
 			if(w == 2){
 				if(mobData[17] == 0){
-					wActiveHitNum = 2;
-					wbairitu *= 2;
+					CS.wActiveHitNum = 2;
+					CS.wbairitu *= 2;
 				}
 				if(mobData[17] == 1){
-					wActiveHitNum = 3;
-					wbairitu *= 3;
+					CS.wActiveHitNum = 3;
+					CS.wbairitu *= 3;
 				}
 				if(mobData[17] == 2){
-					wActiveHitNum = 4;
-					wbairitu *= 4;
+					CS.wActiveHitNum = 4;
+					CS.wbairitu *= 4;
 				}
 			}
 			if(w == 3){
 				if(mobData[17] == 0){
-					wActiveHitNum = 3;
-					wbairitu *= 3;
+					CS.wActiveHitNum = 3;
+					CS.wbairitu *= 3;
 				}
 				if(mobData[17] == 1){
-					wActiveHitNum = 4;
-					wbairitu *= 4;
+					CS.wActiveHitNum = 4;
+					CS.wbairitu *= 4;
 				}
 				if(mobData[17] == 2){
-					wActiveHitNum = 5;
-					wbairitu *= 5;
+					CS.wActiveHitNum = 5;
+					CS.wbairitu *= 5;
 				}
 			}
 
 			// 必中ダメージのみ仮計算（属性倍率未適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 
 			if(w != 1){
-				wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-				wbairitu = ATKbaiJYOUSAN(wbairitu);
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				for(var i=0;i<=2;i++){
-					w_DMG[i] = n_A_DMG[i];
+					w_DMG[i] = CS.n_A_DMG[i];
 					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-					w_DMG[i] += n_PerfectHIT_DMG;
+					w_DMG[i] += CS.n_PerfectHIT_DMG;
 					w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
 					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					if(wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
+					if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
 				}
-				if(n_AS_MODE) return w_DMG;
+				if(CS.n_AS_MODE) return w_DMG;
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-					g_damageTextArray[i].push(Last_DMG_A[i]);
-					if(wActiveHitNum > 1) g_damageTextArray[i].push("(", (w_DMG[i] / wActiveHitNum), "×", wActiveHitNum, "Hit)");
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+					if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (w_DMG[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 				}
 			}
 			else{
 				var sizebai = [[2,2.5,3],[3,3.4,4],[4,4.3,5]];
 				for(var i=0;i<=2;i++){
-					w_DMG[i] = n_A_DMG[i];
+					w_DMG[i] = CS.n_A_DMG[i];
 					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					w_DMG[i] = Math.floor(w_DMG[i] * (wbairitu * sizebai[mobData[17]][i] + GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray)) / 100);
+					w_DMG[i] = Math.floor(w_DMG[i] * (CS.wbairitu * sizebai[mobData[17]][i] + GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray)) / 100);
 					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-					w_DMG[i] += n_PerfectHIT_DMG;
+					w_DMG[i] += CS.n_PerfectHIT_DMG;
 					w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
 					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 					w_DMG[i] = Math.floor(Math.floor(w_DMG[i] / sizebai[mobData[17]][i]) * sizebai[mobData[17]][i]);
 				}
-				if(n_AS_MODE) return w_DMG;
+				if(CS.n_AS_MODE) return w_DMG;
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-					g_damageTextArray[i].push(Last_DMG_A[i]);
-					if(i != 1) g_damageTextArray[i].push("(", Math.floor(w_DMG[i] / sizebai[mobData[17]][i]), "×", sizebai[mobData[17]][i], "Hit)");
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+					if(i != 1) CS.g_damageTextArray[i].push("(", Math.floor(w_DMG[i] / sizebai[mobData[17]][i]), "×", sizebai[mobData[17]][i], "Hit)");
 				}
 
 			}
 
 			// 改めて必中ダメージのみ計算（属性倍率適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-			n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+			CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
 
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -3802,7 +3734,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_MAGIC_CRUSHER:
 			set_n_Enekyori(1);
-			wCast = 300;
+			CS.wCast = 300;
 			n_Delay[2] = 300;
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = BK_n_A_MATK[i];
@@ -3812,34 +3744,34 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 
 			// 必中ダメージのみ仮計算（属性倍率未適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
+				w_DMG[i] = CS.n_A_DMG[i];
 				w_DMG[i] += ROUNDDOWN(w_MATK[i] / 5);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] -= CS.B_Total_DEF;
 				if(w_DMG[i] <1) w_DMG[i] = 1;
 				w_DMG[i] += n_A_WeaponLV_seirenATK;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],n_A_Weapon_zokusei);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-				w_DMG[i] += n_PerfectHIT_DMG;
+				w_DMG[i] += CS.n_PerfectHIT_DMG;
 				w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 
 			// 改めて必中ダメージ計算
-			n_PerfectHIT_DMG = n_A_WeaponLV_seirenATK;
-			n_PerfectHIT_DMG = ApplyElementRatio(mobData, n_PerfectHIT_DMG,n_A_Weapon_zokusei);
-			n_PerfectHIT_DMG += GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-			n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG *(100-w_HIT))/100;
+			CS.n_PerfectHIT_DMG = n_A_WeaponLV_seirenATK;
+			CS.n_PerfectHIT_DMG = ApplyElementRatio(mobData, CS.n_PerfectHIT_DMG,n_A_Weapon_zokusei);
+			CS.n_PerfectHIT_DMG += GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+			CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG *(100-CS.w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -3859,23 +3791,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_QUICKDRAW_SHOT:
 			if(n_A_ActiveSkill==SKILL_ID_DOUBLE_STRAFING){
 				set_n_Enekyori(1);
-				wbairitu += 10 * n_A_ActiveSkillLV - 10;
-				wHITsuu = 2;
+				CS.wbairitu += 10 * n_A_ActiveSkillLV - 10;
+				CS.wHITsuu = 2;
 			}else if(n_A_ActiveSkill==SKILL_ID_PIERCE){
-				wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				wHITsuu = mobData[17]+1;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = mobData[17]+1;
 			}else if(n_A_ActiveSkill==SKILL_ID_BOWLING_BASH){
-				wbairitu += 40 * n_A_ActiveSkillLV;
-				wCast = 700;
-				wHITsuu = 2;
-				if(n_A_ActiveSkillLV == 1) wHITsuu = 1;
-				wLAch = true;
+				CS.wbairitu += 40 * n_A_ActiveSkillLV;
+				CS.wCast = 700;
+				CS.wHITsuu = 2;
+				if(n_A_ActiveSkillLV == 1) CS.wHITsuu = 1;
+				CS.wLAch = true;
 				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 1){
-					wHITsuu = 3;
-					if(n_A_ActiveSkillLV == 1) wHITsuu = 2;
+					CS.wHITsuu = 3;
+					if(n_A_ActiveSkillLV == 1) CS.wHITsuu = 2;
 				}
 			}else if(n_A_ActiveSkill==SKILL_ID_SHIDAN){
-				wbairitu += (25 + 25 * n_A_ActiveSkillLV);
+				CS.wbairitu += (25 + 25 * n_A_ActiveSkillLV);
 				if(GetHigherJobSeriesID(n_A_JOB)==15) {
 					w = UsedSkillSearch(SKILL_ID_KIKO);
 				}
@@ -3885,28 +3817,28 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if(w > n_A_ActiveSkillLV){
 					w = n_A_ActiveSkillLV;
 				}
-				wHITsuu = w;
-				wCast = (1 + w) * 1000;
+				CS.wHITsuu = w;
+				CS.wCast = (1 + w) * 1000;
 				n_Delay[2] = 500;
 				set_n_Enekyori(1);
 			}else if(n_A_ActiveSkill==SKILL_ID_TRIPLE_ACTION){
 				set_n_Enekyori(1);
 				n_Delay[2] = 1000;
-				wbairitu += 50;
-				wHITsuu = 3;
+				CS.wbairitu += 50;
+				CS.wHITsuu = 3;
 			}else if(n_A_ActiveSkill==SKILL_ID_BEAST_STRAIFING){
 				n_Delay[0] = 1;
 				set_n_Enekyori(1);
-				wbairitu += n_A_STR * 8 - 50;
-				wHITsuu = 2;
+				CS.wbairitu += n_A_STR * 8 - 50;
+				CS.wHITsuu = 2;
 			}else if(n_A_ActiveSkill==SKILL_ID_DEATHPERAD){
 				set_n_Enekyori(1);
-				wbairitu += 50 * n_A_ActiveSkillLV - 50;
+				CS.wbairitu += 50 * n_A_ActiveSkillLV - 50;
 				n_Delay[2] = 1000;
 				var DEATH = [1,1.2,1.6,2,2.4,3,3.6,4,5,6,7,8,9,10];
-				wHITsuu = DEATH[attackMethodConfArray[0].GetOptionValue(0)];
+				CS.wHITsuu = DEATH[attackMethodConfArray[0].GetOptionValue(0)];
 			}else if(n_A_ActiveSkill==SKILL_ID_HESPERUS_SLIT){
-				wCast = 2000;
+				CS.wCast = 2000;
 				n_Delay[2] = 1000;
 				n_Delay[7] = 2000;
 
@@ -3920,44 +3852,44 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					if(UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING) == 0) w = 3;
 				}
 
-				wbairitu = 120 * n_A_ActiveSkillLV + 200 * w;
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 120 * n_A_ActiveSkillLV + 200 * w;
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 
 				// ヘスペルスリットは、なぜか「６人のとき“だけ”」威力が１．５倍されるらしい
 				if (w == 6) {
-					wbairitu = Math.floor(wbairitu * 150 / 100);
+					CS.wbairitu = Math.floor(CS.wbairitu * 150 / 100);
 				}
 
-				wHITsuu = w;
+				CS.wHITsuu = w;
 
 			}else if(n_A_ActiveSkill==SKILL_ID_CRAZY_WEED){
 				set_n_A_Weapon_zokusei(2);
-				wCast = 500 + 500 * n_A_ActiveSkillLV;
+				CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
 				n_Delay[2] = 500 + 500 * Math.round(n_A_ActiveSkillLV / 2);
 				n_Delay[7] = 5000;
-				wbairitu = 500 + 100 * n_A_ActiveSkillLV;
-				wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+				CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
+				CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 			}
 
 			else if(n_A_ActiveSkill == SKILL_ID_QUICKDRAW_SHOT){
 				set_n_Enekyori(1);
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 0;
 				n_Delay[7] = 0;
-				wHITsuu = ROUNDDOWN(n_A_JobLV / 20) + 1;
+				CS.wHITsuu = ROUNDDOWN(n_A_JobLV / 20) + 1;
 			}
 
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, n_A_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, CS.n_A_DMG[i]);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				if(n_A_ActiveSkill==391 && mobData[19]!=2 && mobData[19]!=4) w_DMG[i] = 0;
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 			}
-			if (n_AS_MODE && attackMethodConfArray.length > 1) {
+			if (CS.n_AS_MODE && attackMethodConfArray.length > 1) {
 				if(attackMethodConfArray[1].GetSkillId() != 391){
 					// TODO: ダメージ表示方式変更対応
 					// for(var i=0;i<=2;i++) w_DMG[i] *= wHITsuu;
@@ -3965,37 +3897,37 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				}
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_B[i] = w_DMG[i];
-				if(n_A_ActiveSkill==76) Last_DMG_B[i] = w_DMG[i] * 2;
+				CS.Last_DMG_B[i] = w_DMG[i];
+				if(n_A_ActiveSkill==76) CS.Last_DMG_B[i] = w_DMG[i] * 2;
 
 				// TODO: ダメージ表示方式変更対応
 				// Last_DMG_A[i] = w_DMG[i] * wHITsuu;
 
-				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0 || !wLAch) g_damageTextArray[i].push(Math.floor(w_DMG[i] * wHITsuu), "(", w_DMG[i], SubName[8], wHITsuu, "hit)");
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0 || !CS.wLAch) CS.g_damageTextArray[i].push(Math.floor(w_DMG[i] * CS.wHITsuu), "(", w_DMG[i], SubName[8], CS.wHITsuu, "hit)");
 				else{
-					g_damageTextArray[i].push((w_DMG[i] * 3), "(", (w_DMG[i] * 2), "＋", w_DMG[i], ")");
-					Last_DMG_B[i] = w_DMG[i] * 3;
+					CS.g_damageTextArray[i].push((w_DMG[i] * 3), "(", (w_DMG[i] * 2), "＋", w_DMG[i], ")");
+					CS.Last_DMG_B[i] = w_DMG[i] * 3;
 				}
 
 				// TODO: ダメージ表示方式変更対応
 				// w_DMG[i] *= wHITsuu;
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			var wX = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 			wX = ApplyHitJudgeElementRatio(n_A_ActiveSkill, wX, mobData);
 			wX = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wX);
 
 			// TODO: ダメージ表示方式変更対応
 			// w_DMG[1] = (w_DMG[1] * w_HIT + wX * wHITsuu *(100-w_HIT))/100;
-			w_DMG[1] = (w_DMG[1] * w_HIT + wX * (100-w_HIT))/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + wX * (100-CS.w_HIT))/100;
 
-			if(wHITsuu == 0 && n_A_ActiveSkill==192){
-				if(GetHigherJobSeriesID(n_A_JOB) == 15) g_damageTextArray[0] = ["<Font color=Red><B>指弾の計算をするには<BR>気功を1以上にして下さい</B></Font>"];
-				else g_damageTextArray[0] = ["<Font color=Red><B>指弾の計算をするには<BR>気功(天下大将軍C)を<BR>1以上にして下さい</B></Font>"];
+			if(CS.wHITsuu == 0 && n_A_ActiveSkill==192){
+				if(GetHigherJobSeriesID(n_A_JOB) == 15) CS.g_damageTextArray[0] = ["<Font color=Red><B>指弾の計算をするには<BR>気功を1以上にして下さい</B></Font>"];
+				else CS.g_damageTextArray[0] = ["<Font color=Red><B>指弾の計算をするには<BR>気功(天下大将軍C)を<BR>1以上にして下さい</B></Font>"];
 			}
 
-			if (wHITsuu < 3 && n_A_ActiveSkill == SKILL_ID_HESPERUS_SLIT) {
-				g_damageTextArray[0] = ["<Font color=Red><B>パッシブ持続系の欄で<BR>RGの人数を3人以上にするか、インスピレーション状態に設定してください</B></Font>"];
+			if (CS.wHITsuu < 3 && n_A_ActiveSkill == SKILL_ID_HESPERUS_SLIT) {
+				CS.g_damageTextArray[0] = ["<Font color=Red><B>パッシブ持続系の欄で<BR>RGの人数を3人以上にするか、インスピレーション状態に設定してください</B></Font>"];
 			}
 
 			AS_PLUS();
@@ -4003,24 +3935,24 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// TODO: ダメージ表示方式変更対応
 			// n_PerfectHIT_DMG = wX * wHITsuu;
 
-			str_PerfectHIT_DMG = __DIG3(wX * wHITsuu) +"("+ __DIG3(wX) +"×"+ wHITsuu +"hit)";
+			CS.str_PerfectHIT_DMG = __DIG3(wX * CS.wHITsuu) +"("+ __DIG3(wX) +"×"+ CS.wHITsuu +"hit)";
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 
 			break;
 
 		case SKILL_ID_ISHINAGE:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 50;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 50;
 			set_n_A_Weapon_zokusei(0);
 			set_n_Enekyori(1);
 			var ISI = 50;
 			ISI = ApplyElementRatio(mobData, ISI,0);
 			ISI = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, ISI);
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = ISI;
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = ISI;
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				w_DMG[i] = ISI;
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -4030,9 +3962,9 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_BLITZ_BEAT:
 		case SKILL_ID_FALCON_ASSALT: {
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 			set_n_Enekyori(1);
 			const steel_crow_lv = Math.max(LearnedSkillSearch(SKILL_ID_STEEL_CROW), UsedSkillSearch(SKILL_ID_STEEL_CROW));
@@ -4042,25 +3974,25 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wBT = ApplyElementRatio(mobData, wBT,0);
 				wBT = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wBT);
 				wBT *= 5;
-				wCast = 1000;
+				CS.wCast = 1000;
 				n_Delay[2] = 3000;
 			}else{
 				wBT = ApplyElementRatio(mobData, wBT,0);
 				wBT = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wBT);
 				wBT *= n_A_ActiveSkillLV;
-				wCast = 1500;
+				CS.wCast = 1500;
 				n_Delay[2] = 1000;
 			}
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				w_DMG[0] = w_DMG[1] = w_DMG[2] = wBT;
 				return w_DMG;
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = wBT;
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = wBT;
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				if(n_A_ActiveSkill==118){
-					Last_DMG_B[i] = wBT / n_A_ActiveSkillLV;
-					g_damageTextArray[i].push("(", Last_DMG_B[i], "×", n_A_ActiveSkillLV, "Hit)");
+					CS.Last_DMG_B[i] = wBT / n_A_ActiveSkillLV;
+					CS.g_damageTextArray[i].push("(", CS.Last_DMG_B[i], "×", n_A_ActiveSkillLV, "Hit)");
 				}
 				w_DMG[i] = wBT;
 			}
@@ -4075,29 +4007,29 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 本来の分岐条件は以下の通り。ポイズンリアクトの計算式でずれる可能性大
 		// else if(n_A_ActiveSkill==17 || (n_A_ActiveSkill==86 && (mobData[18] <50 || 60 <= mobData[18]))){
 
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 			set_n_A_Weapon_zokusei(5);
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			var AS_ATK = 0;
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				AS_ATK = n_A_ActiveSkillLV * 15;
 				AS_ATK = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, AS_ATK);
 				AS_ATK = ApplyElementRatio(mobData, AS_ATK,n_A_Weapon_zokusei);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, n_A_DMG[i] + AS_ATK);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, CS.n_A_DMG[i] + AS_ATK);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
-			w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4105,7 +4037,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_SHIELD_BOOMERANG:
 		case SKILL_ID_SHIELD_BOOMERANG_TAMASHI:
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
 			n_Delay[2] = 700;
@@ -4116,7 +4048,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = charaData[CHARA_DATA_INDEX_STATUS_ATK] + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] + wSBr;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] -= CS.B_Total_DEF;
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu2 / 100);
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				if(n_B_KYOUKA[10]){
@@ -4124,10 +4056,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					else w_DMG[i] -= Math.floor(w_DMG[i] * (5 + 15 * n_B_KYOUKA[10]) / 100);
 				}
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
-			w_DMG[1] = (w_DMG[1] * w_HIT)/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT)/100;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
@@ -4139,10 +4071,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			 *  式の中で減算Defが効きすぎている模様
 			 *  シールドシューティングの検証以前の話なので実装先送り
 			 */
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			wCast = 1000;
+			CS.wCast = 1000;
 			n_Delay[2] = 1000;
 			var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
 			// 通常スキル倍率
@@ -4155,10 +4087,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 			 */
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
+				w_DMG[i] = CS.n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * SdCBAI[n_A_ActiveSkillLV] / 100);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] -= CS.B_Total_DEF;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				if(n_B_KYOUKA[10]){
 					if(n_B_KYOUKA[10] == 6) w_DMG[i] = Math.floor(w_DMG[i] *12.5 / 100);
@@ -4169,33 +4101,33 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_B[i] = w_DMG[i];
-				Last_DMG_A[i] = Last_DMG_B[i] * 5;
-				g_damageTextArray[i].push(Last_DMG_A[i], "(", Last_DMG_B[i], SubName[8], "5hit)");
-				w_DMG[i] = Last_DMG_A[i];
+				CS.Last_DMG_B[i] = w_DMG[i];
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 5;
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "5hit)");
+				w_DMG[i] = CS.Last_DMG_A[i];
 			}
-			w_DMG[1] = w_DMG[1] * w_HIT /100;
+			w_DMG[1] = w_DMG[1] * CS.w_HIT /100;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_SPIRAL_PIERCE:	// スパイラルピアース
-			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
-			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 			var wSYUUREN = TYPE_SYUUREN(mobData, attackMethodConfArray, false);
 			for(var i=0;i<=2;i++){
 				var wSPP;
-				wSPP = ROUNDDOWN((n_A_DMG[i] - wSYUUREN) * 70 / 100) + ROUNDDOWN(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] * 70 / 100);
+				wSPP = ROUNDDOWN((CS.n_A_DMG[i] - wSYUUREN) * 70 / 100) + ROUNDDOWN(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] * 70 / 100);
 				if(mobData[17] == 0) wSPP = ROUNDDOWN(wSPP * 115 / 100);
 				if(mobData[17] == 2) wSPP = ROUNDDOWN(wSPP * 85 / 100);
 				wSPP += wSYUUREN;
-				wSPP = Math.floor(wSPP * wbairitu / 100);
+				wSPP = Math.floor(wSPP * CS.wbairitu / 100);
 				wSPP = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, wSPP);
 				wSPP = ApplyMonsterDefence(mobData, wSPP,0);
 				w_DMG[i] = wSPP;
@@ -4203,15 +4135,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_B[i] = w_DMG[i];
-				Last_DMG_A[i] = Last_DMG_B[i] * 5;
-				if(!n_AS_MODE) {
-					g_damageTextArray[i].push(Last_DMG_A[i], "(", Last_DMG_B[i], SubName[8], "5hit)");
+				CS.Last_DMG_B[i] = w_DMG[i];
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 5;
+				if(!CS.n_AS_MODE) {
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "5hit)");
 				}
-				w_DMG[i] = Last_DMG_A[i];
+				w_DMG[i] = CS.Last_DMG_A[i];
 			}
-			w_DMG[1] = w_DMG[1] * w_HIT /100 + n_PerfectHIT_DMG * (100- w_HIT)/100;
-			if(n_AS_MODE) return w_DMG;
+			w_DMG[1] = w_DMG[1] * CS.w_HIT /100 + CS.n_PerfectHIT_DMG * (100- CS.w_HIT)/100;
+			if(CS.n_AS_MODE) return w_DMG;
 
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -4219,15 +4151,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			break;
 
 		case SKILL_ID_VENOM_SPLASHER:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			n_Delay[0] = 1;
 			n_Delay[7] = 7000 + 500 * n_A_ActiveSkillLV;
-			wCast = 1000;
+			CS.wCast = 1000;
 			var VSbai = 500 + 75 * n_A_ActiveSkillLV;
 			VSbai = ATKbaiJYOUSAN(VSbai);
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = ROUNDDOWN((n_A_DMG[i]) * VSbai / 100);
+				w_DMG[i] = ROUNDDOWN((CS.n_A_DMG[i]) * VSbai / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
@@ -4235,10 +4167,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				if(mobData[20] == 1) w_DMG[i] = 0;
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -4246,10 +4178,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			break;
 
 		case SKILL_ID_SOUL_BREAKER:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(1);
-			wCast = 500;
+			CS.wCast = 500;
 			n_Delay[2] = 800 + 200 * n_A_ActiveSkillLV;
 			var wbai = (300 + 50 * n_A_ActiveSkillLV);
 			if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbai = ROUNDDOWN(wbai / 2);
@@ -4263,22 +4195,22 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = BaiTaisei_C(mobData, w_MATK[i]);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = ROUNDDOWN(n_A_DMG[i] * wbai / 100);
+				w_DMG[i] = ROUNDDOWN(CS.n_A_DMG[i] * wbai / 100);
 				w_DMG[i] += ROUNDDOWN(w_MATK[i] * wbai / 100);
 				w_DMG[i] -= (mobData[13] + mobData[14] + n_B_MDEF2 + n_B_DEF2[0]);
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			if(5 <= mobData[21] && mobData[21] <= 9){
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = 1;
-					g_damageTextArray[i].push(Last_DMG_A[i]);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = 1;
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -4286,9 +4218,9 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			break;
 
 		case SKILL_ID_GRAND_CROSS:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			myInnerHtml("CRIATKname",'<Font color="#FF0000">発動コスト</Font>',0);
 			myInnerHtml("CRIATK",'<Font color="#FF0000">'+ __DIG3(Math.floor(charaData[CHARA_DATA_INDEX_MAXHP] /5)) +"</Font>",0);
 			myInnerHtml("CRInumname",'<Font color="#FF0000">反動ダメージ</Font>',0);
@@ -4301,23 +4233,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] -= Math.floor(w_MATK[i] * n_tok[57] / 100);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG_GX[i] + w_MATK[i];
+				w_DMG[i] = CS.n_A_DMG_GX[i] + w_MATK[i];
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] / 2);
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * (100 + 40 * n_A_ActiveSkillLV) / 100);
 				w_DMG[i] -= (charaData[CHARA_DATA_INDEX_DEF_DIV] + charaData[CHARA_DATA_INDEX_DEF_MINUS] + charaData[CHARA_DATA_INDEX_MDEF_DIV] + charaData[CHARA_DATA_INDEX_MDEF_MINUS]);
 				w_DMG[i] += ROUNDDOWN(w_DMG[i] * zokusei[n_A_BodyZokusei * 10 +1][6] / 100);
 				w_DMG[i] = Math.floor(w_DMG[i] / 2);
-				n_A_GX_HANDO = true;
+				CS.n_A_GX_HANDO = true;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				n_A_GX_HANDO = false;
+				CS.n_A_GX_HANDO = false;
 				var wGXbai3 = 0;
 				if(EquipNumSearch(2495)) wGXbai3 += n_A_BaseLV;
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * (100+GetEquippedTotalSPEquip(5000+n_A_ActiveSkill)+GetEquippedTotalSPCardAndElse(5000+n_A_ActiveSkill) + wGXbai3) / 100);
 			}
-			if(!n_AS_MODE) myInnerHtml("CRInum",'<Font color="#FF0000">'+ __DIG3(w_DMG[0]) +"×3hit～"+ __DIG3(w_DMG[2]) +"×3hit</Font>",0);
-			wCast = 3000;
+			if(!CS.n_AS_MODE) myInnerHtml("CRInum",'<Font color="#FF0000">'+ __DIG3(w_DMG[0]) +"×3hit～"+ __DIG3(w_DMG[2]) +"×3hit</Font>",0);
+			CS.wCast = 3000;
 			n_Delay[2] = 1500;
-			wLAch = true;
+			CS.wLAch = true;
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_A_MATK[i];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
@@ -4325,11 +4257,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 			}
 			if(n_B_KYOUKA[7]){
-				for(var i=0;i<=2;i++) n_A_DMG[i] += Math.floor(n_A_DMG[i] * (20 * n_B_KYOUKA[7]) / 100);
+				for(var i=0;i<=2;i++) CS.n_A_DMG[i] += Math.floor(CS.n_A_DMG[i] * (20 * n_B_KYOUKA[7]) / 100);
 				w_MATK[i] += Math.floor(w_MATK[i] * (20 * n_B_KYOUKA[7]) / 100);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + w_MATK[i] ;
+				w_DMG[i] = CS.n_A_DMG[i] + w_MATK[i] ;
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] / 2);
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * (100 + 40 * n_A_ActiveSkillLV) / 100);
 				w_DMG[i] -= (mobData[13] + n_B_DEF2[i] + mobData[14] + n_B_MDEF2);
@@ -4343,21 +4275,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if(w_DMG[i] <1)w_DMG[i]=1;
 				if(60<=mobData[18] && mobData[18]<=69)w_DMG[i]=0;
 			}
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				for(var i=0;i<=2;i++) w_DMG[i] = w_DMG[i] * 3;
 				return w_DMG;
 			}
 			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0){
 				for(var b=0;b<=2;b++){
-					Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * 3;
-					g_damageTextArray[b].push(Last_DMG_A[b], "(", w_DMG[b], SubName[8], "3hit)");
-					w_DMG[b] = Last_DMG_A[b];
+					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * 3;
+					CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], "3hit)");
+					w_DMG[b] = CS.Last_DMG_A[b];
 				}
 			}else{
 				for(var b=0;b<=2;b++){
-					Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * 4;
-					g_damageTextArray[b].push(Last_DMG_A[b], "(", (w_DMG[b] * 2), "＋", w_DMG[b], SubName[8], "2hit)");
-					w_DMG[b] = Last_DMG_A[b];
+					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * 4;
+					CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", (w_DMG[b] * 2), "＋", w_DMG[b], SubName[8], "2hit)");
+					w_DMG[b] = CS.Last_DMG_A[b];
 				}
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -4365,22 +4297,22 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			break;
 
 		case SKILL_ID_CART_REVOLUTION: {
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
 			const CRbai = attackMethodConfArray[0].GetOptionValue(0) / (8000 + 500 * cart_kaizo_lv) * 100;
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = ROUNDDOWN(n_A_DMG[i] * 150 / 100);
-				w_DMG[i] += ROUNDDOWN(n_A_DMG[i] * CRbai / 100);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] = ROUNDDOWN(CS.n_A_DMG[i] * 150 / 100);
+				w_DMG[i] += ROUNDDOWN(CS.n_A_DMG[i] * CRbai / 100);
+				w_DMG[i] -= CS.B_Total_DEF;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				if(w_DMG[i] <0) w_DMG[i] = 0;
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -4389,27 +4321,27 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		}
 
 		case SKILL_ID_PRESSURE:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			w_DMG[2] = 500 + 300 * n_A_ActiveSkillLV;
 			if(5 <= mobData[21] && mobData[21] <= 9) w_DMG[2] = 1;
 			w_DMG[0] = w_DMG[1] = w_DMG[2];
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
-			wCast = 1500 + 500 * n_A_ActiveSkillLV;
+			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1500 + n_A_ActiveSkillLV * 500;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_SACRIFICE:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 			w_DMG[2] = Math.floor(charaData[CHARA_DATA_INDEX_MAXHP] * 0.09 * (0.9 + 0.1 * n_A_ActiveSkillLV));
 			w_DMG[2] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[2]);
@@ -4417,39 +4349,39 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			w_DMG[2] = ApplyElementRatio(mobData, w_DMG[2],0);
 			w_DMG[0] = w_DMG[1] = w_DMG[2];
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_HAKKEI:
-			n_PerfectHIT_DMG = 0;
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			wbairitu += 75 * n_A_ActiveSkillLV;
+			CS.n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.wbairitu += 75 * n_A_ActiveSkillLV;
 			var AS_ATK = 0;
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				AS_ATK = Math.floor(mobData[13] / 2);
 				AS_ATK = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, AS_ATK);
 				AS_ATK = ApplyElementRatio(mobData, AS_ATK,n_A_Weapon_zokusei);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + AS_ATK;
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = CS.n_A_DMG[i] + AS_ATK;
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
-			wCast = 1000;
+			CS.wCast = 1000;
 			n_Delay[2] = 500;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4457,16 +4389,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_ASHURA_HAOKEN:
 		case SKILL_ID_ASHURA_HAOKEN_SPKOTEI:
-			n_PerfectHIT_DMG = 0;
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			set_n_A_Weapon_zokusei(0);
 
 			if(n_A_ActiveSkill==SKILL_ID_ASHURA_HAOKEN) {
-				wbairitu += 700 + 10 * (attackMethodConfArray[0].GetOptionValue(0) -1);
+				CS.wbairitu += 700 + 10 * (attackMethodConfArray[0].GetOptionValue(0) -1);
 			}
 			else {
-				wbairitu += 700 + 10 * (charaData[CHARA_DATA_INDEX_MAXSP]-1);
+				CS.wbairitu += 700 + 10 * (charaData[CHARA_DATA_INDEX_MAXSP]-1);
 			}
 
 			var wASYU = 0;
@@ -4485,20 +4417,20 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = Math.floor(n_A_DMG[i] * wbairitu / 100) + wASYU;
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] = Math.floor(CS.n_A_DMG[i] * CS.wbairitu / 100) + wASYU;
+				w_DMG[i] -= CS.B_Total_DEF;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
-			wCast = 4500 - 500 * n_A_ActiveSkillLV;
+			CS.wCast = 4500 - 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 3500 - 500 * n_A_ActiveSkillLV;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4506,21 +4438,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_SHURIKEN_NAGE: {	// 手裏剣投げ
 			set_n_Enekyori(1);
-						n_PerfectHIT_DMG = 0;
-			wbairitu = 100 + 5 * n_A_ActiveSkillLV;
+						CS.n_PerfectHIT_DMG = 0;
+			CS.wbairitu = 100 + 5 * n_A_ActiveSkillLV;
 			// 投擲修練Lv
 			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
 			for(let i = 0; i <= 2; i++){
-				w_DMG[i] = n_A_DMG[i] + SyurikenOBJ[attackMethodConfArray[0].GetOptionValue(0)][0] + 3 * toteki_shuren_lv + 4 * n_A_ActiveSkillLV;
-				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] = CS.n_A_DMG[i] + SyurikenOBJ[attackMethodConfArray[0].GetOptionValue(0)][0] + 3 * toteki_shuren_lv + 4 * n_A_ActiveSkillLV;
+				w_DMG[i] = ROUNDDOWN(w_DMG[i] * CS.wbairitu / 100);
+				w_DMG[i] -= CS.B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4529,68 +4461,68 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_KUNAI_NAGE:
 		case SKILL_ID_HAPPO_KUNAI:
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			if (n_A_ActiveSkill == SKILL_ID_HAPPO_KUNAI) {
-				w_HIT_HYOUJI = 100;
-				w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.w_HIT = 100;
 			}
 			set_n_Enekyori(1);
-			wbairitu = 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = 100 * n_A_ActiveSkillLV;
 			if(n_A_ActiveSkill==SKILL_ID_HAPPO_KUNAI){
-				wbairitu = 300 + 60 * n_A_ActiveSkillLV;
+				CS.wbairitu = 300 + 60 * n_A_ActiveSkillLV;
 			}
 			var wKUNAI = KunaiOBJ[attackMethodConfArray[0].GetOptionValue(0)][0];
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + wKUNAI;
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] = CS.n_A_DMG[i] + wKUNAI;
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+				w_DMG[i] -= CS.B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i], KunaiOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 				if(n_A_ActiveSkill==395){
-					Last_DMG_B[i] = ROUNDDOWN(w_DMG[i] / 3);
-					Last_DMG_A[i] = Last_DMG_B[i] * 3;
-					g_damageTextArray[i].push(Last_DMG_A[i], "(", Last_DMG_B[i], SubName[8], "3hit)");
+					CS.Last_DMG_B[i] = ROUNDDOWN(w_DMG[i] / 3);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 3;
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "3hit)");
 				}else{
-					Last_DMG_B[i] = w_DMG[i];
-					Last_DMG_A[i] = Last_DMG_B[i];
-					g_damageTextArray[i].push(Last_DMG_A[i]);
+					CS.Last_DMG_B[i] = w_DMG[i];
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i];
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
-				w_DMG[i] = Last_DMG_A[i];
+				w_DMG[i] = CS.Last_DMG_A[i];
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_BAKURETSU_KUNAI: {	// 爆裂苦無
-			n_PerfectHIT_DMG = 0;
-			w_HIT_HYOUJI = 100;
-			w_HIT = 100;
+			CS.n_PerfectHIT_DMG = 0;
+			CS.w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
 			set_n_Enekyori(1);
 			n_Delay[2] = 1000;
 			n_Delay[7] = 1000;
-			wCast = 800 * n_A_ActiveSkillLV - 800;
-			n_KoteiCast = 800;
+			CS.wCast = 800 * n_A_ActiveSkillLV - 800;
+			CS.n_KoteiCast = 800;
 			// 投擲修練Lv
 			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
-			wbairitu = n_A_ActiveSkillLV * (50 + Math.floor(n_A_DEX / 4)) * toteki_shuren_lv * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
+			CS.wbairitu = n_A_ActiveSkillLV * (50 + Math.floor(n_A_DEX / 4)) * toteki_shuren_lv * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
 			var wKUNAI = 0;
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + wKUNAI;
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] = CS.n_A_DMG[i] + wKUNAI;
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+				w_DMG[i] -= CS.B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
-				Last_DMG_B[i] = w_DMG[i];
-				Last_DMG_A[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				w_DMG[i] = Last_DMG_A[i];
+				CS.Last_DMG_B[i] = w_DMG[i];
+				CS.Last_DMG_A[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+				w_DMG[i] = CS.Last_DMG_A[i];
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4598,53 +4530,53 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		}
 
 		case SKILL_ID_FUMASHURIKEN_NAGE:
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu += (-50 + 250 * n_A_ActiveSkillLV);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu += (-50 + 250 * n_A_ActiveSkillLV);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 			set_n_Enekyori(1);
-			wCast = 3500 - 500 * n_A_ActiveSkillLV;
+			CS.wCast = 3500 - 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
-			wActiveHitNum = 2 + Math.round(n_A_ActiveSkillLV / 2);
+			CS.wActiveHitNum = 2 + Math.round(n_A_ActiveSkillLV / 2);
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = Math.floor(n_A_DMG[i] * wbairitu / 100);
+				w_DMG[i] = Math.floor(CS.n_A_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				if(wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				g_damageTextArray[i].push("(", (Last_DMG_A[i] / wActiveHitNum), "×", wActiveHitNum, "Hit)");
+				if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+				CS.g_damageTextArray[i].push("(", (CS.Last_DMG_A[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 			}
-			n_PerfectHIT_DMG = ApplyElementRatio(mobData, ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData), 0);
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
+			CS.n_PerfectHIT_DMG = ApplyElementRatio(mobData, ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData), 0);
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_ZENI_NAGE:
-			w_HIT_HYOUJI = 100;
-			w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
 			set_n_Enekyori(1);
 			n_Delay[2] = 5000;
 			for(var i=0;i<=2;i++){
 				var dm = [500,750,1000];
 				w_DMG[i] = Math.floor(dm[i] * n_A_ActiveSkillLV);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_MUCHANAGE:
-			w_HIT = Math.floor((10 - (1 / (n_A_DEX + n_A_LUK)) * 500) * (n_A_ActiveSkillLV / 2 + 5));
-			if(w_HIT > 100) w_HIT = 100;
-			if(w_HIT <0) w_HIT = 0;
-			w_HIT_HYOUJI = w_HIT;
+			CS.w_HIT = Math.floor((10 - (1 / (n_A_DEX + n_A_LUK)) * 500) * (n_A_ActiveSkillLV / 2 + 5));
+			if(CS.w_HIT > 100) CS.w_HIT = 100;
+			if(CS.w_HIT <0) CS.w_HIT = 0;
+			CS.w_HIT_HYOUJI = CS.w_HIT;
 			set_n_Enekyori(1);
-			wCast = 1000;
+			CS.wCast = 1000;
 			n_Delay[7] = 10000;
 			for(var i=0;i<=2;i++){
 				var dm = [5000,7500,10000];
@@ -4654,21 +4586,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if(mobData[20]==1) w_DMG[i] = w_DMG[i] / 2;
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				w_DMG[i] = Math.floor(w_DMG[i] / 10);
-				Last_DMG_B[i] = w_DMG[i];
-				Last_DMG_A[i] = w_DMG[i] * 10;
-				g_damageTextArray[i].push(Last_DMG_A[i], "(", Last_DMG_B[i], SubName[8], "10hit)");
-				w_DMG[i] = Last_DMG_A[i];
+				CS.Last_DMG_B[i] = w_DMG[i];
+				CS.Last_DMG_A[i] = w_DMG[i] * 10;
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "10hit)");
+				w_DMG[i] = CS.Last_DMG_A[i];
 			}
-			w_DMG[1] = (w_DMG[1] * w_HIT)/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT)/100;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_ISSEN:
 		case SKILL_ID_ISSEN_MAX:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 			set_n_Enekyori(1);
 			var w_1senHP;
@@ -4681,60 +4613,60 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			else {
 				w_1senHP = charaData[CHARA_DATA_INDEX_MAXHP];
 			}
-			wActiveHitNum = 0;
+			CS.wActiveHitNum = 0;
 			var wKageBai = 100;
 			if(attackMethodConfArray[0].GetOptionValue(1)){
 				wKageBai = 120 + 20 * attackMethodConfArray[0].GetOptionValue(1);
-				wActiveHitNum = 2 + attackMethodConfArray[0].GetOptionValue(1);
+				CS.wActiveHitNum = 2 + attackMethodConfArray[0].GetOptionValue(1);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] * n_A_ActiveSkillLV + w_1senHP;
+				w_DMG[i] = CS.n_A_DMG[i] * n_A_ActiveSkillLV + w_1senHP;
 				w_DMG[i] = Math.floor(w_DMG[i] * wKageBai / 100);
-				w_DMG[i] = w_DMG[i] - B_Total_DEF;
+				w_DMG[i] = w_DMG[i] - CS.B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				if(mobData[20] == 1) w_DMG[i] = Math.floor(w_DMG[i] / 2);
-				if(wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
+				if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				if(wActiveHitNum > 1) g_damageTextArray[i].push("(", (Last_DMG_A[i] / wActiveHitNum), "×", wActiveHitNum, "Hit)");
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+				if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (CS.Last_DMG_A[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_ACID_TERROR:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			wCast = 1000;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.wCast = 1000;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_A_MATK[i];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + w_MATK[i];
-				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= (B_Total_DEF + B_Total_MDEF);
+				w_DMG[i] = CS.n_A_DMG[i] + w_MATK[i];
+				w_DMG[i] = ROUNDDOWN(w_DMG[i] * CS.wbairitu / 100);
+				w_DMG[i] -= (CS.B_Total_DEF + CS.B_Total_MDEF);
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				if(mobData[20]==1) w_DMG[i] = Math.floor(w_DMG[i] / 2);
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			if(5 <= mobData[21] && mobData[21] <= 9){
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = 1;
-					g_damageTextArray[i].push(Last_DMG_A[i]);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = 1;
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -4743,27 +4675,27 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_ACID_DEMONSTRATION:
 		case SKILL_ID_FIRE_EXPANSION:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			wCast = 400 * n_A_ActiveSkillLV;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.wCast = 400 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			wHITsuu = n_A_ActiveSkillLV;
+			CS.wHITsuu = n_A_ActiveSkillLV;
 
 			if(n_A_ActiveSkill==SKILL_ID_FIRE_EXPANSION){
-				wCast = 2000;
+				CS.wCast = 2000;
 				n_Delay[0] = 1;
 				n_Delay[2] = 500;
 				// アシッドデモンストレーションの習得Lvに応じたヒット数
 				const acid_demonstration_lv = LearnedSkillSearch(SKILL_ID_ACID_DEMONSTRATION);
-				wHITsuu = Math.max(acid_demonstration_lv, attackMethodConfArray[0].GetOptionValue(0));
-				if(wHITsuu <5) wHITsuu = 5;
+				CS.wHITsuu = Math.max(acid_demonstration_lv, attackMethodConfArray[0].GetOptionValue(0));
+				if(CS.wHITsuu <5) CS.wHITsuu = 5;
 			}
 			var w1 = [0,0,0];
 			for(var i=0;i<=2;i++){
-				w1[i] = n_A_DMG[i];
+				w1[i] = CS.n_A_DMG[i];
 				if(n_B_KYOUKA[10]){
 					if(n_B_KYOUKA[10] == 6) w1[i] = Math.floor(w1[i] *12.5 / 100);
 					else w1[i] -= Math.floor(w1[i] * (5 + 15 * n_B_KYOUKA[10]) / 100);
@@ -4778,15 +4710,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// TODO: ダメージ表示方式変更対応
 				// 後続でヒット数で割る処理があるので、問題なし？
 				if(mobData[6] <= 120){
-					w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * wHITsuu / 100 * mobData[6] / 100);
+					w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * CS.wHITsuu / 100 * mobData[6] / 100);
 				}else{
-					w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * wHITsuu / 100 * 120 / 100);
-					if(mobData[0] == 679) w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * wHITsuu / 100 * 125 / 100);
-					if(mobData[0] == 715) w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * wHITsuu / 100 * 127 / 100);
+					w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * CS.wHITsuu / 100 * 120 / 100);
+					if(mobData[0] == 679) w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * CS.wHITsuu / 100 * 125 / 100);
+					if(mobData[0] == 715) w_DMG[i] = ROUNDDOWN((w1[i] + w_MATK[i]) * 1400 * CS.wHITsuu / 100 * 127 / 100);
 				}
-				w_DMG[i] -= (B_Total_DEF + B_Total_MDEF);
+				w_DMG[i] -= (CS.B_Total_DEF + CS.B_Total_MDEF);
 				w_DMG[i] = Math.floor(w_DMG[i] / 2);
-				w_DMG[i] = ROUNDDOWN(w_DMG[i] / wHITsuu);
+				w_DMG[i] = ROUNDDOWN(w_DMG[i] / CS.wHITsuu);
 				if(mobData[0] == 787) w_DMG[i] = Math.floor(w_DMG[i] / 2);
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
@@ -4801,9 +4733,9 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_LAND_MINE:
 		case SKILL_ID_BLAST_MINE:
 		case SKILL_ID_CLAYMORE_TRAP: {
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			n_Delay[0] = 1;
 			set_n_Enekyori(0);
 			if(n_A_ActiveSkill==SKILL_ID_LAND_MINE){
@@ -4824,8 +4756,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			w_DMG[2] = Math.floor(w_DMG[1] * 110 / 100);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4834,14 +4766,14 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_HEAL:
 		case 489:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(6);
 			n_Delay[2] = 1000;
 			set_n_Enekyori(2);
 			if(n_A_ActiveSkill==489){
-				wCast = 400 * n_A_ActiveSkillLV;
+				CS.wCast = 400 * n_A_ActiveSkillLV;
 				n_Delay[7] = 1000;
 				if(CardNumSearch(611)) n_Delay[7] -= 1000;
 			}
@@ -4855,21 +4787,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_DMG[i] = ApplyLexAeterna(mobData, w_DMG[i]);
 				w_DMG[i] = ApplyAttackDamageAmplify(mobData, w_DMG[i]);
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_SANCTUARY: {	// サンクチュアリ
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(6);
-			wCast = 5000;
+			CS.wCast = 5000;
 			n_Delay[0] = 1;
 			set_n_Enekyori(2);
 			if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
@@ -4884,8 +4816,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			w_DMG[2] = ApplyAttackDamageAmplify(mobData, w_DMG[2]);
 			w_DMG[0] = w_DMG[1] = w_DMG[2];
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4894,19 +4826,19 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_TURN_UNDEAD:
 		case SKILL_ID_RESURRECTION:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			if(n_AS_MODE){
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			if(CS.n_AS_MODE){
 				for(var i=0;i<=2;i++) w_DMG[i] = 0;
 				return w_DMG;
 			}
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			if(n_A_ActiveSkill==SKILL_ID_TURN_UNDEAD){
 				set_n_A_Weapon_zokusei(6);
-				wCast = 1000;
+				CS.wCast = 1000;
 			}else{
 				set_n_A_Weapon_zokusei(0);
-				wCast = 8000 - n_A_ActiveSkillLV * 2000;
+				CS.wCast = 8000 - n_A_ActiveSkillLV * 2000;
 			}
 			set_n_Enekyori(2);
 			if(mobData[18] <90){
@@ -4927,25 +4859,25 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_DMG[0] = ApplyElementRatio(mobData, w_DMG[0],n_A_Weapon_zokusei);
 				w_DMG[1] = Math.round((mobData[3] * w + w_DMG[0] * (100-w)/100));
 			}
-			for(var i=0;i<=2;i++) Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-			g_damageTextArray[0].push(w_DMG[0], "(失敗ダメージ)");
-			g_damageTextArray[1].push(w_DMG[1], "(一発期待値)");
-			g_damageTextArray[2].push(ApplyElementRatio(mobData, w_DMG[2], n_A_Weapon_zokusei), "(成功確率", Math.floor(w * 10000) / 100, "％)");
+			for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			CS.g_damageTextArray[0].push(w_DMG[0], "(失敗ダメージ)");
+			CS.g_damageTextArray[1].push(w_DMG[1], "(一発期待値)");
+			CS.g_damageTextArray[2].push(ApplyElementRatio(mobData, w_DMG[2], n_A_Weapon_zokusei), "(成功確率", Math.floor(w * 10000) / 100, "％)");
 			n_Delay[2] = 3000;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case 488:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(6);
-			wCast = 3000;
-			n_KoteiCast = 2000;
+			CS.wCast = 3000;
+			CS.n_KoteiCast = 2000;
 			n_Delay[7] = 1000;
 			n_Delay[0] = 1;
-			wHITsuu = 18;
+			CS.wHITsuu = 18;
 			w_DMG[2] = n_A_BaseLV * 10 + n_A_INT;
 			w_DMG[2] = ApplyElementRatio(mobData, w_DMG[2],6);
 			if(mobData[18] <= 89 || 100 <= mobData[18]) w_DMG[2]=0;
@@ -4955,8 +4887,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 			w_DMG[0] = w_DMG[1] = w_DMG[2];
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i], "(", (w_DMG[i] / wHITsuu), "×", wHITsuu, "hit)");
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", (w_DMG[i] / CS.wHITsuu), "×", CS.wHITsuu, "hit)");
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -4964,8 +4896,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_GRAVITATION_FIELD:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル設定
@@ -4973,7 +4905,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[5] = 500;								// ダメージ間隔
 			n_Delay[6] = 4000 + (n_A_ActiveSkillLV * 1000);	// オブジェクト存続時間
 			// 固定ダメージ設定
-			w_HIT = 100;									// 命中率 100%
+			CS.w_HIT = 100;									// 命中率 100%
 			w_DMG[2] = 500 + 100 * n_A_ActiveSkillLV;		// 固定ダメージ計算式
 			// 固定ダメージ増加
 			var damup = 0;
@@ -4985,14 +4917,14 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			if (5 <= mobData[21] && mobData[21] <= 9) w_DMG[2] = 1;
 			// ダメージ配列作成
 			for (var i=0; i < 3; i++) {
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = w_DMG[2];
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = w_DMG[2];
 			}
 			break;
 
 		case 423:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			n_Delay[2] = 500;
 			set_n_A_Weapon_zokusei(8);
@@ -5003,16 +4935,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + w_MATK[i];
-				w_DMG[i] = w_DMG[i] - B_Total_DEF;
+				w_DMG[i] = CS.n_A_DMG[i] + w_MATK[i];
+				w_DMG[i] = w_DMG[i] - CS.B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],8);
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -5024,23 +4956,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_WATER_DRAGON_BREATH: {
 			// トレーニング未習得でもドラゴンに乗れるので LearnedSkillSearch に置き換えられない
 			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
-				n_Buki_Muri = true;
+				CS.n_Buki_Muri = true;
 				break;
 			}
 			// 遠距離スキル
 			set_n_Enekyori(1);
 			// 必中スキル
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 属性補正
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// --------- ダメージ計算開始 ---------
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			// 現HPとMaxSPから基本ダメージを算出
 			var w_HP = attackMethodConfArray[0].GetOptionValue(0);
 			if(w_HP == 0) {
@@ -5069,15 +5001,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			w = ApplyResistElement(mobData, w);
 			var wX = GetSpiderWebDamageRatio();
 			if(wX != 0) w = ROUNDDOWN(w * (100 + wX) / 100);
-			w -= B_Total_DEF;
+			w -= CS.B_Total_DEF;
 			if(w <0) w = 0;
 			w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
 			w = ApplyElementRatio(mobData, w,n_A_Weapon_zokusei);
 			w = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -5085,7 +5017,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		}
 
 		case SKILL_ID_DEATH_BOUND:
-			if(n_DEATH_BOUND[3] == 0){
+			if(CS.n_DEATH_BOUND[3] == 0){
 				w_DMG[0] = 1;
 				w_DMG[1] = 1;
 				w_DMG[2] = 1;
@@ -5106,30 +5038,30 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 				}
 
-				w_DMG[0] = n_DEATH_BOUND[0];
-				w_DMG[1] = n_DEATH_BOUND[1];
-				w_DMG[2] = n_DEATH_BOUND[2];
+				w_DMG[0] = CS.n_DEATH_BOUND[0];
+				w_DMG[1] = CS.n_DEATH_BOUND[1];
+				w_DMG[2] = CS.n_DEATH_BOUND[2];
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-					g_damageTextArray[i].push(Last_DMG_A[i]);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
-				w_HIT = 100;
-				w_HIT_HYOUJI = 100;
-				if(mobData[20] == 1) g_damageTextArray[0].push("<BR><Font color=Red><B>(BOSS属性には無効)</B></Font>");
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				if(mobData[20] == 1) CS.g_damageTextArray[0].push("<BR><Font color=Red><B>(BOSS属性には無効)</B></Font>");
 				BuildCastAndDelayHtml(mobData);
 				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}
 			break;
 
 		case SKILL_ID_HELL_INFERNO:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			wLAch = true;
-			n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.wLAch = true;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(2);
-			directSubtractionMdef = false;
-			wbairitu = 100;
-			n_bunkatuHIT = 0;
+			CS.directSubtractionMdef = false;
+			CS.wbairitu = 100;
+			CS.n_bunkatuHIT = 0;
 			var wBai = new Array();
 			wBai[0] = 60 * n_A_ActiveSkillLV;
 			wBai[0] = Math.floor(wBai[0] * n_A_BaseLV / 100);
@@ -5137,7 +5069,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wBai[1] = Math.floor(wBai[1] * n_A_BaseLV / 100);
 			wBai[0] += GetBattlerMatkPercentUp();
 			wBai[1] += GetBattlerMatkPercentUp();
-			wCast = 1000 + 200 * n_A_ActiveSkillLV;
+			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
 			var wHell_DMG1 = [0,0,0];
 			var wHell_DMG2 = [0,0,0];
 			set_n_A_Weapon_zokusei(3);
@@ -5164,34 +5096,34 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if(wHell_DMG1[i] <0) wHell_DMG1[i] = 0;
 				if(wHell_DMG2[i] <0) wHell_DMG2[i] = 0;
 			}
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				for(var i=0;i<=2;i++) w_DMG[i] = wHell_DMG1[i] + wHell_DMG2[i];
 				return w_DMG;
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wHell_DMG1[i] + wHell_DMG2[i];
-				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wHell_DMG1[i], "+", wHell_DMG2[i], ")");
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wHell_DMG1[i] + wHell_DMG2[i];
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wHell_DMG1[i], "+", wHell_DMG2[i], ")");
 				else{
 					var w = wHell_DMG1[i] * 2;
 					var w2 = w + wHell_DMG2[i];
-					g_damageTextArray[i].push(w2, " (", w, "+", wHell_DMG2[i], ")");
-					Last_DMG_B[i] = w2;
+					CS.g_damageTextArray[i].push(w2, " (", w, "+", wHell_DMG2[i], ")");
+					CS.Last_DMG_B[i] = w2;
 				}
 			}
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_CHAIN_LIGHTNING:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(2);
 			set_n_A_Weapon_zokusei(4);
-			if(!n_AS_MODE) wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			else wHITsuu = 4;
-			wCast = 500 + 1000 * n_A_ActiveSkillLV;
-			n_KoteiCast = 500;
+			if(!CS.n_AS_MODE) CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+			else CS.wHITsuu = 4;
+			CS.wCast = 500 + 1000 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = 500;
 			n_Delay[7] = 1000;
 			var wC_DMG = new Array();
 			for(var i=0;i<=5;i++) wC_DMG[i] = [0,0,0];
@@ -5207,23 +5139,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wBK_MATK[i] = ApplyRegistPVPNormal(mobData, wBK_MATK[i]);
 			}
 			var T_check = -1;
-			for(var i=0;i<=(wHITsuu-1);i++){
-				wbairitu = 100 * n_A_ActiveSkillLV + 500;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-				wbairitu += (300 + 100 * n_A_ActiveSkillLV - i * 100);
-				wbairitu += GetBattlerMatkPercentUp();
+			for(var i=0;i<=(CS.wHITsuu-1);i++){
+				CS.wbairitu = 100 * n_A_ActiveSkillLV + 500;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu += (300 + 100 * n_A_ActiveSkillLV - i * 100);
+				CS.wbairitu += GetBattlerMatkPercentUp();
 
 				var ampHit = 1;
-				if(!n_AS_MODE) ampHit = attackMethodConfArray[0].GetOptionValue(1);
+				if(!CS.n_AS_MODE) ampHit = attackMethodConfArray[0].GetOptionValue(1);
 
 				if(i <= ampHit){
-					wC_DMG[i][0] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[0] * wbairitu / 100);
-					wC_DMG[i][1] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[1] * wbairitu / 100);
-					wC_DMG[i][2] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[2] * wbairitu / 100);
+					wC_DMG[i][0] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[0] * CS.wbairitu / 100);
+					wC_DMG[i][1] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[1] * CS.wbairitu / 100);
+					wC_DMG[i][2] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[2] * CS.wbairitu / 100);
 				}else{
-					wC_DMG[i][0] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBK_MATK[0] * wbairitu / 100);
-					wC_DMG[i][1] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBK_MATK[1] * wbairitu / 100);
-					wC_DMG[i][2] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBK_MATK[2] * wbairitu / 100);
+					wC_DMG[i][0] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBK_MATK[0] * CS.wbairitu / 100);
+					wC_DMG[i][1] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBK_MATK[1] * CS.wbairitu / 100);
+					wC_DMG[i][2] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, wBK_MATK[2] * CS.wbairitu / 100);
 				}
 				if(i==0){
 					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_TOUKETSU] || n_B_IJYOU[MOB_CONF_DEBUF_ID_SEKIKA]){
@@ -5235,13 +5167,13 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				}
 			}
 			if(T_check != -1) mobData[18] = T_check;
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 
 				for(var i=0;i<=2;i++) {
 					w_DMG[i] = wC_DMG[0][i] + wC_DMG[1][i] + wC_DMG[2][i] + wC_DMG[3][i] + wC_DMG[4][i] + wC_DMG[5][i];
 
 					// TODO: ダメージ表示方式変更対応
-					w_DMG[i] = Math.floor(w_DMG[i] / wHITsuu);
+					w_DMG[i] = Math.floor(w_DMG[i] / CS.wHITsuu);
 				}
 
 				return w_DMG;
@@ -5249,47 +5181,47 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			for(var i=0;i<=2;i++){
 				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0){
 
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wC_DMG[0][i] + wC_DMG[1][i] + wC_DMG[2][i] + wC_DMG[3][i] + wC_DMG[4][i] + wC_DMG[5][i];
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wC_DMG[0][i] + wC_DMG[1][i] + wC_DMG[2][i] + wC_DMG[3][i] + wC_DMG[4][i] + wC_DMG[5][i];
 
 					// TODO: ダメージ表示方式変更対応
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = Math.floor(w_DMG[i] / wHITsuu);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = Math.floor(w_DMG[i] / CS.wHITsuu);
 
-					g_damageTextArray[i].push(w_DMG[i], " (");
-					for(var j=0;j<=(wHITsuu-1);j++){
-						g_damageTextArray[i].push(wC_DMG[j][i]);
-						if(j <5 && wC_DMG[j+1][i] != 0) g_damageTextArray[i].push(" + ");
+					CS.g_damageTextArray[i].push(w_DMG[i], " (");
+					for(var j=0;j<=(CS.wHITsuu-1);j++){
+						CS.g_damageTextArray[i].push(wC_DMG[j][i]);
+						if(j <5 && wC_DMG[j+1][i] != 0) CS.g_damageTextArray[i].push(" + ");
 					}
-					g_damageTextArray[i].push(")");
+					CS.g_damageTextArray[i].push(")");
 				}else{
 
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = (wC_DMG[0][i] * 2) + wC_DMG[1][i] + wC_DMG[2][i] + wC_DMG[3][i] + wC_DMG[4][i] + wC_DMG[5][i];
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = (wC_DMG[0][i] * 2) + wC_DMG[1][i] + wC_DMG[2][i] + wC_DMG[3][i] + wC_DMG[4][i] + wC_DMG[5][i];
 
 					// TODO: ダメージ表示方式変更対応
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = Math.floor(w_DMG[i] / wHITsuu);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = Math.floor(w_DMG[i] / CS.wHITsuu);
 
-					g_damageTextArray[i].push(w_DMG[i], " (");
-					for(var j=0;j<=(wHITsuu-1);j++){
-						if(j==0) g_damageTextArray[i].push(wC_DMG[j][i] * 2);
-						else g_damageTextArray[i].push(wC_DMG[j][i]);
-						if(j <5 && wC_DMG[j+1][i] != 0) g_damageTextArray[i].push(" + ");
+					CS.g_damageTextArray[i].push(w_DMG[i], " (");
+					for(var j=0;j<=(CS.wHITsuu-1);j++){
+						if(j==0) CS.g_damageTextArray[i].push(wC_DMG[j][i] * 2);
+						else CS.g_damageTextArray[i].push(wC_DMG[j][i]);
+						if(j <5 && wC_DMG[j+1][i] != 0) CS.g_damageTextArray[i].push(" + ");
 					}
-					g_damageTextArray[i].push(")");
+					CS.g_damageTextArray[i].push(")");
 				}
 			}
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_TETRA_BOLTEX:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(2);
-			wCast = Math.min(9000, 4000 + 1000 * n_A_ActiveSkillLV);
-			n_KoteiCast = Math.max(1000, 6000 - 1000 * n_A_ActiveSkillLV);
+			CS.wCast = Math.min(9000, 4000 + 1000 * n_A_ActiveSkillLV);
+			CS.n_KoteiCast = Math.max(1000, 6000 - 1000 * n_A_ActiveSkillLV);
 			n_Delay[7] = 1000;
-			wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-			wbairitu += GetBattlerMatkPercentUp();
+			CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+			CS.wbairitu += GetBattlerMatkPercentUp();
 			var wT_DMG1 = [0,0,0];
 			var wT_DMG2 = [0,0,0];
 			var wT_DMG3 = [0,0,0];
@@ -5300,7 +5232,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
-				wT_DMG1[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * wbairitu / 100);
+				wT_DMG1[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * CS.wbairitu / 100);
 			}
 			set_n_A_Weapon_zokusei(Math.floor(attackMethodConfArray[0].GetOptionValue(0) % 10));
 			for(var i=0;i<=2;i++){
@@ -5308,7 +5240,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
-				wT_DMG2[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * wbairitu / 100);
+				wT_DMG2[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * CS.wbairitu / 100);
 			}
 			set_n_A_Weapon_zokusei(Math.floor(attackMethodConfArray[0].GetOptionValue(1) / 10));
 			for(var i=0;i<=2;i++){
@@ -5316,7 +5248,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
-				wT_DMG3[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * wbairitu / 100);
+				wT_DMG3[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * CS.wbairitu / 100);
 			}
 			set_n_A_Weapon_zokusei(Math.floor(attackMethodConfArray[0].GetOptionValue(1) % 10));
 			var T_check = -1;
@@ -5331,7 +5263,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
-				wT_DMG4[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * wbairitu / 100);
+				wT_DMG4[i] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[i] * CS.wbairitu / 100);
 			}
 			if(T_check != -1) mobData[18] = T_check;
 			for(var i=0;i<=2;i++){
@@ -5340,46 +5272,46 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				if(wT_DMG3[i] <0) wT_DMG3[i] = 0;
 				if(wT_DMG4[i] <0) wT_DMG4[i] = 0;
 			}
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				for(var i=0;i<=2;i++) w_DMG[i] = wT_DMG1[i] + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
 				return w_DMG;
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wT_DMG1[i] + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
-				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wT_DMG1[i], "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wT_DMG1[i] + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wT_DMG1[i], "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
 				else{
 					var w = wT_DMG1[i] * 2;
 					var w2 = w + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
-					g_damageTextArray[i].push(w2, " (", w, "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = w2;
+					CS.g_damageTextArray[i].push(w2, " (", w, "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = w2;
 				}
 			}
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		// 「メカニック」スキル「アームズキャノン」
 		case SKILL_ID_ARMS_CANNON:
-			n_PerfectHIT_DMG = 0;
-			w_HIT_HYOUJI = 100;
-			w_HIT = 100;
+			CS.n_PerfectHIT_DMG = 0;
+			CS.w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
 			var wMADO = 0;
 			set_n_Enekyori(1);
-			wCast = Math.min(2000, 500 + 500 * n_A_ActiveSkillLV);
+			CS.wCast = Math.min(2000, 500 + 500 * n_A_ActiveSkillLV);
 			n_Delay[2] = Math.max(500, 2000 - 500 * n_A_ActiveSkillLV);
 			switch (mobData[17]) {
 				case SIZE_ID_SMALL:
-					wbairitu = 300 + 400 * n_A_ActiveSkillLV;
+					CS.wbairitu = 300 + 400 * n_A_ActiveSkillLV;
 					break;
 				case SIZE_ID_MEDIUM:
-					wbairitu = 300 + 350 * n_A_ActiveSkillLV;
+					CS.wbairitu = 300 + 350 * n_A_ActiveSkillLV;
 					break;
 				case SIZE_ID_LARGE:
-					wbairitu = 300 + 300 * n_A_ActiveSkillLV;
+					CS.wbairitu = 300 + 300 * n_A_ActiveSkillLV;
 					break;
 			}
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
 			wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) {
 				wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
@@ -5394,19 +5326,19 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wMADO += 20 * Math.max(LearnedSkillSearch(SKILL_ID_MADOGEAR_LICENSE), UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE));
 			}
 			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) {
-				wHITsuu = 2;
+				CS.wHITsuu = 2;
 			}
 			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + wMADO;
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] = CS.n_A_DMG[i] + wMADO;
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+				w_DMG[i] -= CS.B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -5415,24 +5347,24 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 「ジェネティック」スキル「カートキャノン」
 		// 2024/11/16 YEサーバー誤差無しを確認済み
 		case SKILL_ID_CART_CANNON: {
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			// 必中処理
-			w_HIT_HYOUJI = 100;
-			w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
 			// 遠距離
 			set_n_Enekyori(1);
 			// 詠唱など
-			wCast = 500 + 500 * n_A_ActiveSkillLV;
+			CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 500;
 			// ウドゥンウォリアー補正
 			if (attackMethodConfArray[0].GetOptionValue(1) == 1) {
-				wHITsuu = 2;
+				CS.wHITsuu = 2;
 			}
 			// 基本倍率
-			wbairitu = 60 * n_A_ActiveSkillLV;
+			CS.wbairitu = 60 * n_A_ActiveSkillLV;
 			// カート改造補正
 			const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-			wbairitu += Math.floor(cart_kaizo_lv * 50 * n_A_INT / 40);
+			CS.wbairitu += Math.floor(cart_kaizo_lv * 50 * n_A_INT / 40);
 			// 倍率補正
 			var wMADO = 0;
 			// 斧修練
@@ -5449,15 +5381,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 			// ダメージ算出
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + wMADO;
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
-				w_DMG[i] -= B_Total_DEF;
+				w_DMG[i] = CS.n_A_DMG[i] + wMADO;
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+				w_DMG[i] -= CS.B_Total_DEF;
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			// ダメージ表示（不要な可能性あり）
 			BuildCastAndDelayHtml(mobData);
@@ -5467,21 +5399,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_SELF_DESTRUCTION:
 		case SKILL_ID_SELF_DESTRUCTION_MAX:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
 			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
 			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-				wCast = 10000;
-				n_KoteiCast = 10000;
+				CS.wCast = 10000;
+				CS.n_KoteiCast = 10000;
 				break;
 
 			default:
-				wCast = 1500 + 500 * n_A_ActiveSkillLV;
-				n_KoteiCast = 3500 - 500 * n_A_ActiveSkillLV;
+				CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
+				CS.n_KoteiCast = 3500 - 500 * n_A_ActiveSkillLV;
 				break;
 
 			}
@@ -5504,21 +5436,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			var w = (n_A_ActiveSkillLV + 1) * (mainF + 8) * (w_SP + n_A_VIT);
 			w = Math.floor(w * n_A_BaseLV / 100);
 			w += w_HP;
-			w -= B_Total_DEF;
+			w -= CS.B_Total_DEF;
 			w = ApplyElementRatio(mobData, w,0);
 			w = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_PINGPOINT_ATTACK:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(1);
 			n_Delay[2] = 1000;
 			n_Delay[7] = 5000;
@@ -5528,23 +5460,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wBAI += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			wBAI = ATKbaiJYOUSAN(wBAI);
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, n_A_CriATK[i], true);
+				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, CS.n_A_CriATK[i], true);
 				w_DMG[i] = Math.floor(w_DMG[i] * wBAI / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i],0);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,100);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i], i, true);
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_OVER_BLAND:
-			wLAch = true;
+			CS.wLAch = true;
 			var w3HIT = attackMethodConfArray[0].GetOptionValue(0);
 			// スピアクイッケン習得Lv補正
 			var wSQ = Math.max(LearnedSkillSearch(SKILL_ID_SPEAR_QUICKEN), attackMethodConfArray[0].GetOptionValue(1));
@@ -5554,8 +5486,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			wBai[1] = n_A_ActiveSkillLV * 300 + n_A_STR + n_A_DEX;
 			wBai[1] = Math.floor(wBai[1] * n_A_BaseLV / 150);
 			wBai[2] = n_A_ActiveSkillLV * 200;
-			wCast = 2000;
-			n_KoteiCast = 1000;
+			CS.wCast = 2000;
+			CS.n_KoteiCast = 1000;
 			n_Delay[1] = n_Delay[1] * 2;
 			n_Delay[7] = 2500;
 
@@ -5567,7 +5499,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				wBai[j] += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				wBai[j] = ATKbaiJYOUSAN(wBai[j]);
 				for(var i=0;i<=2;i++){
-					wOB_DMG[j][i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, n_A_DMG[i]);
+					wOB_DMG[j][i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, CS.n_A_DMG[i]);
 					wOB_DMG[j][i] = Math.floor(wOB_DMG[j][i] * wBai[j] / 100);
 					wOB_DMG[j][i] = ApplyMonsterDefence(mobData, wOB_DMG[j][i], 0);
 					wOB_DMG[j][i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, wOB_DMG[j][i],i,-1);
@@ -5576,33 +5508,33 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 			if(w3HIT==1){
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i] + wOB_DMG[2][i];
-					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i] + wOB_DMG[2][i];
+					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
 					else{
 						var w = wOB_DMG[0][i] * 2;
 						var w2 = w + wOB_DMG[1][i] + wOB_DMG[2][i];
-						g_damageTextArray[i].push(w2, " (", w, "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
-						Last_DMG_B[i] = w2;
+						CS.g_damageTextArray[i].push(w2, " (", w, "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
+						CS.Last_DMG_B[i] = w2;
 					}
 				}
 			}else{
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i];
-					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], ")");
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i];
+					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], ")");
 					else{
 						var w = wOB_DMG[0][i] * 2;
 						var w2 = w + wOB_DMG[1][i];
-						g_damageTextArray[i].push(w2, " (", w, "+", wOB_DMG[1][i], ")");
-						Last_DMG_B[i] = w2;
+						CS.g_damageTextArray[i].push(w2, " (", w, "+", wOB_DMG[1][i], ")");
+						CS.Last_DMG_B[i] = w2;
 					}
 				}
 			}
 			w_DMG[1] = 0;
-			w_DMG[1] += (wOB_DMG[0][1] * w_HIT) / 100;
-			w_DMG[1] += (wOB_DMG[1][1] * w_HIT) / 100;
-			if(w3HIT == 1) w_DMG[1] += (wOB_DMG[2][1] * w_HIT) / 100 * w_HIT / 100;
+			w_DMG[1] += (wOB_DMG[0][1] * CS.w_HIT) / 100;
+			w_DMG[1] += (wOB_DMG[1][1] * CS.w_HIT) / 100;
+			if(w3HIT == 1) w_DMG[1] += (wOB_DMG[2][1] * CS.w_HIT) / 100 * CS.w_HIT / 100;
 			AS_PLUS();
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
@@ -5610,19 +5542,19 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_SHURASHINDAN:
 			set_n_Enekyori(1);
 			n_Delay[7] = Math.max(200, 1200 - 200 * n_A_ActiveSkillLV);
-			wbairitu = 500 + 100 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
+				w_DMG[i] = CS.n_A_DMG[i];
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 			}
 			var w2hit = [0,0,0];
-			wLAch = true;
+			CS.wLAch = true;
 			for(var i=0;i<=2;i++){
 				if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] != 1){
 					var w = GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
@@ -5630,34 +5562,34 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					w += ROUNDDOWN(mobData[2] * 5 * n_A_BaseLV / 150);
 					if(mobData[0] == 787 && n_B_TAISEI[37] != 0) w += ROUNDDOWN(1000 * n_B_TAISEI[36] / n_B_TAISEI[37]);
 					w = ATKbaiJYOUSAN(w);
-					w = Math.floor(n_A_DMG[i] * w / 100);
+					w = Math.floor(CS.n_A_DMG[i] * w / 100);
 					w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
 					w = ApplyMonsterDefence(mobData, w, 0);
-					if(i == 0 && w_HIT <100) w = 0;
-					if(i == 1) w = w * w_HIT / 100;
+					if(i == 0 && CS.w_HIT <100) w = 0;
+					if(i == 1) w = w * CS.w_HIT / 100;
 					if(w_DMG[i] <= 0) w = 0;
 					w2hit[i] += w;
 				}
 				w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[i]);
 				w_DMG[i] += w2hit[i] }
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				if(attackMethodConfArray[0].GetOptionValue(0) == 1){
 					var w = w2hit[i];
 					if(w == 0) w = "Miss";
-					g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
+					CS.g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
 				}
 			}
-			w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_HASAICHU:
-			if(n_DEATH_BOUND[3] == 0){
+			if(CS.n_DEATH_BOUND[3] == 0){
 				w_DMG[0] = 1;
 				w_DMG[1] = 1;
 				w_DMG[2] = 1;
@@ -5670,12 +5602,12 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_KoteiCast = 5500 - 500 * n_A_ActiveSkillLV;
+					CS.n_KoteiCast = 5500 - 500 * n_A_ActiveSkillLV;
 					n_Delay[7] = 2000 + 1000 * n_A_ActiveSkillLV;
 					break;
 
 				default:
-					n_KoteiCast = 0;
+					CS.n_KoteiCast = 0;
 					n_Delay[7] = 5000;
 					break;
 
@@ -5686,50 +5618,50 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					wEHP = mobData[3];
 					if(wEHP >= 100000) wEHP = 100000;
 				}
-				wbairitu = Math.floor((wEHP / 100) * n_A_ActiveSkillLV * n_A_BaseLV / 125);
-				wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-				wbairitu = ATKbaiJYOUSAN(wbairitu);
+				CS.wbairitu = Math.floor((wEHP / 100) * n_A_ActiveSkillLV * n_A_BaseLV / 125);
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				for(var i=0;i<=2;i++){
-					w_DMG[i] = n_A_DMG[i];
+					w_DMG[i] = CS.n_A_DMG[i];
 					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				}
-				w_DMG[0] += n_DEATH_BOUND[0];
-				w_DMG[1] += n_DEATH_BOUND[1];
-				w_DMG[2] += n_DEATH_BOUND[2];
+				w_DMG[0] += CS.n_DEATH_BOUND[0];
+				w_DMG[1] += CS.n_DEATH_BOUND[1];
+				w_DMG[2] += CS.n_DEATH_BOUND[2];
 				var w2hit = [0,0,0];
-				wLAch = true;
+				CS.wLAch = true;
 				for(var i=0;i<=2;i++){
 					if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] == 0){
 						var w = GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 						w += 200 * n_A_ActiveSkillLV;
 						w = ATKbaiJYOUSAN(w);
-						w = Math.floor(n_A_DMG[i] * w / 100);
+						w = Math.floor(CS.n_A_DMG[i] * w / 100);
 						w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
 						w = ApplyMonsterDefence(mobData, w, 0);
 						w2hit[i] += w;
 					}
 					w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[i]);
 					w_DMG[i] += w2hit[i] }
-				if(n_AS_MODE) return w_DMG;
+				if(CS.n_AS_MODE) return w_DMG;
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-					g_damageTextArray[i].push(Last_DMG_A[i]);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 					if(attackMethodConfArray[0].GetOptionValue(0) == 1){
 						var w = w2hit[i];
 						if(w == 0) w = "Miss";
-						g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
+						CS.g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
 					}
 				}
-				n_PerfectHIT_DMG = 0;
-				if(w_HIT_HYOUJI <100){
-					if(attackMethodConfArray[0].GetOptionValue(0) == 0 && mobData[20] == 0) str_PerfectHIT_DMG = __DIG3(n_DEATH_BOUND[0]) +"～"+ __DIG3(n_DEATH_BOUND[2]);
-					else str_PerfectHIT_DMG = __DIG3(n_DEATH_BOUND[0]) +"+"+ __DIG3(w2hit[0]) +"～"+ __DIG3(n_DEATH_BOUND[2]) +"+"+ __DIG3(w2hit[2]);
-					n_PerfectHIT_DMG = n_DEATH_BOUND[1] + w2hit[1];
+				CS.n_PerfectHIT_DMG = 0;
+				if(CS.w_HIT_HYOUJI <100){
+					if(attackMethodConfArray[0].GetOptionValue(0) == 0 && mobData[20] == 0) CS.str_PerfectHIT_DMG = __DIG3(CS.n_DEATH_BOUND[0]) +"～"+ __DIG3(CS.n_DEATH_BOUND[2]);
+					else CS.str_PerfectHIT_DMG = __DIG3(CS.n_DEATH_BOUND[0]) +"+"+ __DIG3(w2hit[0]) +"～"+ __DIG3(CS.n_DEATH_BOUND[2]) +"+"+ __DIG3(w2hit[2]);
+					CS.n_PerfectHIT_DMG = CS.n_DEATH_BOUND[1] + w2hit[1];
 				}
-				w_DMG[1] = (w_DMG[1] * w_HIT + (ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) + n_DEATH_BOUND[1] + w2hit[1]) *(100-w_HIT))/100;
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + (ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) + CS.n_DEATH_BOUND[1] + w2hit[1]) *(100-CS.w_HIT))/100;
 				AS_PLUS();
 				BuildCastAndDelayHtml(mobData);
 				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -5750,12 +5682,12 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_BLOOD_SUCKER:
 		case SKILL_ID_THORN_TRAP:
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			wCast = 1500;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.wCast = 1500;
 			n_Delay[2] = 500;
 			n_Delay[5] = 1000;
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 
 			var w;
@@ -5798,19 +5730,19 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 				w_DMG[i] = ApplyAttackDamageAmplify(mobData, w_DMG[i]);
 
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_HELLS_PLANT: {	// ヘルズプラント
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(2);
-			wCast = 2000;
-			n_PerfectHIT_DMG = 0;
+			CS.wCast = 2000;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 			w = n_A_ActiveSkillLV * mobData[2] * 10;
 			w += Math.floor(n_A_INT * 7 / 2) * Math.floor(18 + n_A_JobLV / 4);
@@ -5822,8 +5754,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			if(n_B_KYOUKA[7] && n_Enekyori == 2) w += Math.floor(w * (20 * n_B_KYOUKA[7]) / 100);
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -5832,76 +5764,76 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_ZYUMONZIGIRI:
 			set_n_Enekyori(1);
-			wActiveHitNum = 2;
+			CS.wActiveHitNum = 2;
 			n_Delay[7] = Math.max(600, 6100 - 1100 * n_A_ActiveSkillLV);
-			wbairitu = 200 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu = 200 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 
 			// 必中ダメージのみ仮計算（属性倍率未適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
+				w_DMG[i] = CS.n_A_DMG[i];
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-				w_DMG[i] += n_PerfectHIT_DMG;
+				w_DMG[i] += CS.n_PerfectHIT_DMG;
 				w_DMG[i] = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 				w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				if(wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
+				if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			if(attackMethodConfArray[0].GetOptionValue(0) >= 1){
 				var wjyuu = [0,0,0];
 				for(var i=0;i<=2;i++) wjyuu[i] = w_DMG[i];
-				wbairitu = 150 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-				wbairitu += n_A_BaseLV * n_A_ActiveSkillLV;
-				wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-				wbairitu = ATKbaiJYOUSAN(wbairitu);
+				CS.wbairitu = 150 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
+				CS.wbairitu += n_A_BaseLV * n_A_ActiveSkillLV;
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				n_Delay[0] = 1;
 				for(var i=0;i<=2;i++){
-					w_DMG[i] = n_A_DMG[i];
+					w_DMG[i] = CS.n_A_DMG[i];
 					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-					w_DMG[i] += n_PerfectHIT_DMG;
+					w_DMG[i] += CS.n_PerfectHIT_DMG;
 					w_DMG[i] = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 					w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
 					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					if(wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
+					if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
 				}
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = wjyuu[i] + w_DMG[i] * attackMethodConfArray[0].GetOptionValue(0);
-					g_damageTextArray[i].push(Last_DMG_A[i]);
-					g_damageTextArray[i].push("(", (wjyuu[i] / 2), "×2Hit + ");
-					g_damageTextArray[i].push((w_DMG[i] / 2), "×", (2 * attackMethodConfArray[0].GetOptionValue(0)), ")");
-					w_DMG[i] = Last_DMG_A[i];
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = wjyuu[i] + w_DMG[i] * attackMethodConfArray[0].GetOptionValue(0);
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+					CS.g_damageTextArray[i].push("(", (wjyuu[i] / 2), "×2Hit + ");
+					CS.g_damageTextArray[i].push((w_DMG[i] / 2), "×", (2 * attackMethodConfArray[0].GetOptionValue(0)), ")");
+					w_DMG[i] = CS.Last_DMG_A[i];
 				}
 
 				// 改めて必中ダメージを計算
-				n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-				n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-				n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
-				w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
+				CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+				CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+				CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			}
 			else{
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-					g_damageTextArray[i].push(Last_DMG_A[i]);
-					if(wActiveHitNum > 1) g_damageTextArray[i].push("(", (w_DMG[i] / wActiveHitNum), "×", wActiveHitNum, "Hit)");
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+					if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (w_DMG[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 				}
 
 				// 改めて必中ダメージを計算
-				n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-				n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-				n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
-				w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
+				CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+				CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+				CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			}
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -5926,22 +5858,22 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				n_Delay[3] = 2.35;
 				n_Delay[7] = 14000 - 2000 * n_A_ActiveSkillLV;
 			}else n_Delay[0] = 1;
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++) w_DMG[i] = 0;
 			AS_PLUS();
 			if(GetActHitRateAll(n_A_ActiveSkill, mobData) == 100){
 				for(var i=0;i<=2;i++){
-					Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-					g_damageTextArray[i].push(Last_DMG_A[i]);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 			}else{
-				for(var i=0;i<=2;i++) Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				if(Last_DMG_A[0] >= 1) g_damageTextArray[0].push(ROUNDDOWN(Last_DMG_A[0]));
-				else g_damageTextArray[0].push("Miss<BR><Font size=2>(命中100未満なので)</Font>");
-				g_damageTextArray[1].push(ROUNDDOWN(Last_DMG_A[1]), "<BR><Font size=2>※コンボ系のこの欄は特別仕様で、<BR>※Miss込みの平均与ダメージです。<BR>※Missを消すにはフリオニCなどで。</Font>");
-				g_damageTextArray[2].push(Last_DMG_A[2]);
+				for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				if(CS.Last_DMG_A[0] >= 1) CS.g_damageTextArray[0].push(ROUNDDOWN(CS.Last_DMG_A[0]));
+				else CS.g_damageTextArray[0].push("Miss<BR><Font size=2>(命中100未満なので)</Font>");
+				CS.g_damageTextArray[1].push(ROUNDDOWN(CS.Last_DMG_A[1]), "<BR><Font size=2>※コンボ系のこの欄は特別仕様で、<BR>※Miss込みの平均与ダメージです。<BR>※Missを消すにはフリオニCなどで。</Font>");
+				CS.g_damageTextArray[2].push(CS.Last_DMG_A[2]);
 			}
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
@@ -5949,24 +5881,24 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 「アースクエイク」
 		case SKILL_ID_EARTH_QUAKE:
 			var QuakeBairitu = [0,300,500,600,800,1000,1200,1300,1500,1600,1800];
-			wbairitu = QuakeBairitu[n_A_ActiveSkillLV];
-			wHITsuu = 3;
+			CS.wbairitu = QuakeBairitu[n_A_ActiveSkillLV];
+			CS.wHITsuu = 3;
 			set_n_Enekyori(2);
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
-			if(!n_AS_MODE){
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			if(!CS.n_AS_MODE){
 				var wBunsan = attackMethodConfArray[0].GetOptionValue(0);
-				if(wBunsan >= 2) wbairitu = ROUNDDOWN(wbairitu / wBunsan);
+				if(wBunsan >= 2) CS.wbairitu = ROUNDDOWN(CS.wbairitu / wBunsan);
 			}
 			for(var i=0;i<=2;i++){
 				// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
-				w_DMG[i] = n_A_DMG_GX[i] * wCSize;	
+				w_DMG[i] = CS.n_A_DMG_GX[i] * CS.wCSize;	
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				if(n_B_KYOUKA[7] && n_Enekyori == 2) w_DMG[i] += Math.floor(w_DMG[i] * (20 * n_B_KYOUKA[7]) / 100);
 			}
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				// 最小、平均、最大の 1 hitあたりダメージ
 				w_DMG[0] = w_DMG[0];
 				w_DMG[1] = w_DMG[1];
@@ -5979,11 +5911,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 			//
 			for(var i=0;i<=2;i++){
-				Last_DMG_B[i] = Math.floor(w_DMG[i] / 3);		// B = 1 hitあたりダメージ
-				Last_DMG_A[i] = w_DMG[i];						// A = 3 hit合計ダメージ
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				g_damageTextArray[i].push("(", w_DMG[i], "×3Hit)");
-				w_DMG[i] = Last_DMG_A[i];
+				CS.Last_DMG_B[i] = Math.floor(w_DMG[i] / 3);		// B = 1 hitあたりダメージ
+				CS.Last_DMG_A[i] = w_DMG[i];						// A = 3 hit合計ダメージ
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+				CS.g_damageTextArray[i].push("(", w_DMG[i], "×3Hit)");
+				w_DMG[i] = CS.Last_DMG_A[i];
 			}
 			var wX = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 			wX = ApplyHitJudgeElementRatio(n_A_ActiveSkill, wX, mobData);
@@ -5991,24 +5923,24 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 			// TODO: ダメージ表示方式変更対応
 			//w_DMG[1] = (w_DMG[1] * w_HIT + wX * wHITsuu *(100-w_HIT))/100;
-			w_DMG[1] = (w_DMG[1] * w_HIT + wX * (100-w_HIT))/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + wX * (100-CS.w_HIT))/100;
 
 			AS_PLUS();
 
 			// TODO: ダメージ表示方式変更対応
 			//n_PerfectHIT_DMG = wX * wHITsuu;
 
-			str_PerfectHIT_DMG = __DIG3(wX * wHITsuu) +"("+ __DIG3(wX) +"×"+ wHITsuu +"hit)";
+			CS.str_PerfectHIT_DMG = __DIG3(wX * CS.wHITsuu) +"("+ __DIG3(wX) +"×"+ CS.wHITsuu +"hit)";
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_MAGMA_ILLUPTION:
-			wCast = 2000;
+			CS.wCast = 2000;
 			n_Delay[7] = 11000 - 1000 * n_A_ActiveSkillLV;
-			wbairitu = 450 + 50 * n_A_ActiveSkillLV;
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu = 450 + 50 * n_A_ActiveSkillLV;
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 
 			var MAGUMA = 0;
 
@@ -6029,35 +5961,35 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			MAGUMA = ApplyAttackDamageAmplify(mobData, MAGUMA);
 
 			// 必中ダメージのみ仮計算（属性倍率未適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
+				w_DMG[i] = CS.n_A_DMG[i];
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-				w_DMG[i] += n_PerfectHIT_DMG;
+				w_DMG[i] += CS.n_PerfectHIT_DMG;
 				w_DMG[i] = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 				w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += MAGUMA * 10;
 			}
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				return w_DMG;
 			}
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				g_damageTextArray[i].push("(", (w_DMG[i] - MAGUMA * 10), "＋", MAGUMA, "×10Hit)");
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+				CS.g_damageTextArray[i].push("(", (w_DMG[i] - MAGUMA * 10), "＋", MAGUMA, "×10Hit)");
 			}
 
 			// 改めて必中ダメージ計算
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-			n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
-			n_PerfectHIT_DMG += MAGUMA * 10;
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+			CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
+			CS.n_PerfectHIT_DMG += MAGUMA * 10;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -6065,11 +5997,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		//「メイジ」スキル「ナパームビート」
 		case SKILL_ID_NAPALM_BEAT:
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(2);
-			directSubtractionMdef = true;
-			wbairitu = 100;
-			n_bunkatuHIT = 0;
+			CS.directSubtractionMdef = true;
+			CS.wbairitu = 100;
+			CS.n_bunkatuHIT = 0;
 			set_n_A_Weapon_zokusei(8);
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_Heal_MATK[i];
@@ -6079,33 +6011,33 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 			}
-			wHITsuu = 1;
-			wCast = 500;
+			CS.wHITsuu = 1;
+			CS.wCast = 500;
 			if(n_A_ActiveSkillLV==10) n_Delay[2] = 500;
 			else if(n_A_ActiveSkillLV==9) n_Delay[2] = 600;
 			else if(n_A_ActiveSkillLV==8) n_Delay[2] = 700;
 			else if(n_A_ActiveSkillLV>=6) n_Delay[2] = 800;
 			else if(n_A_ActiveSkillLV>=4) n_Delay[2] = 900;
 			else n_Delay[2] = 1000;
-			wbairitu = 100;
-			wbairitu += GetBattlerMatkPercentUp();
+			CS.wbairitu = 100;
+			CS.wbairitu += GetBattlerMatkPercentUp();
 			var wBunsan = 1;
-			if(!n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
+			if(!CS.n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
 			if(wBunsan >= 2){
 				for(var i=0;i<=2;i++) w_MATK[i] = ROUNDDOWN(w_MATK[i] / wBunsan);
 			}
 			for(var b=0;b<=2;b++){
-				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100);
-				Last_DMG_B[b] = w_DMG[b];
+				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100);
+				CS.Last_DMG_B[b] = w_DMG[b];
 
 				// TODO: ダメージ表示方式変更対応
-				Last_DMG_A[b] = w_DMG[b] * wHITsuu;
+				CS.Last_DMG_A[b] = w_DMG[b] * CS.wHITsuu;
 
-				if(!n_AS_MODE) g_damageTextArray[b].push(Last_DMG_A[b], "(", Last_DMG_B[b], SubName[8], wHITsuu, "hit)");
-				w_DMG[b] = Last_DMG_A[b];
+				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", CS.Last_DMG_B[b], SubName[8], CS.wHITsuu, "hit)");
+				w_DMG[b] = CS.Last_DMG_A[b];
 			}
-			if(n_AS_MODE) return w_DMG;
-			w_HIT_HYOUJI = 100;
+			if(CS.n_AS_MODE) return w_DMG;
+			CS.w_HIT_HYOUJI = 100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -6113,11 +6045,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		// 「ハイウィザード」スキル「ナパームバルカン」
 		case SKILL_ID_NAPALM_VULKAN:
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(2);
-			directSubtractionMdef = true;
-			wbairitu = 100;
-			n_bunkatuHIT = 0;
+			CS.directSubtractionMdef = true;
+			CS.wbairitu = 100;
+			CS.n_bunkatuHIT = 0;
 			set_n_A_Weapon_zokusei(8);
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_Heal_MATK[i];
@@ -6127,42 +6059,42 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 			}
-			wHITsuu = n_A_ActiveSkillLV;
-			wCast = 1000;
+			CS.wHITsuu = n_A_ActiveSkillLV;
+			CS.wCast = 1000;
 			n_Delay[2] = 1000;
-			wbairitu = 100;
-			wbairitu += GetBattlerMatkPercentUp();
+			CS.wbairitu = 100;
+			CS.wbairitu += GetBattlerMatkPercentUp();
 			var wBunsan = 1;
-			if(!n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
+			if(!CS.n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
 			if(wBunsan >= 2){
 				for(var i=0;i<=2;i++) w_MATK[i] = ROUNDDOWN(w_MATK[i] / wBunsan);
 			}
 			for(var b=0;b<=2;b++){
-				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100);
+				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100);
 				// 単発ダメージ Last_DMG_B
-				Last_DMG_B[b] = Math.floor(w_DMG[b] / wHITsuu);
+				CS.Last_DMG_B[b] = Math.floor(w_DMG[b] / CS.wHITsuu);
 				// 最終ダメージ Last_DMG_A
 				// TODO: ダメージ表示方式変更対応
-				Last_DMG_A[b] = w_DMG[b];
-				if(!n_AS_MODE) g_damageTextArray[b].push(Last_DMG_A[b], "(", Last_DMG_B[b], SubName[8], wHITsuu, "hit)");
-				w_DMG[b] = Last_DMG_A[b];
+				CS.Last_DMG_A[b] = w_DMG[b];
+				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", CS.Last_DMG_B[b], SubName[8], CS.wHITsuu, "hit)");
+				w_DMG[b] = CS.Last_DMG_A[b];
 			}
-			if(n_AS_MODE) return w_DMG;
-			w_HIT_HYOUJI = 100;
+			if(CS.n_AS_MODE) return w_DMG;
+			CS.w_HIT_HYOUJI = 100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
 		case SKILL_ID_FIRE_PILLAR:
-			n_PerfectHIT_DMG = 0;
+			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(2);
-			wbairitu = 100;
-			directSubtractionMdef = true;
-			n_bunkatuHIT = 1;
+			CS.wbairitu = 100;
+			CS.directSubtractionMdef = true;
+			CS.n_bunkatuHIT = 1;
 			set_n_A_Weapon_zokusei(3);
-			wHITsuu = (n_A_ActiveSkillLV +2);
-			wCast = 3300 - (300 * n_A_ActiveSkillLV);
+			CS.wHITsuu = (n_A_ActiveSkillLV +2);
+			CS.wCast = 3300 - (300 * n_A_ActiveSkillLV);
 			n_Delay[2] = 1000;
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_Heal_MATK[i];
@@ -6173,17 +6105,17 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 				w_MATK[i] = Math.floor(w_MATK[i] * (100+GetEquippedTotalSPEquip(5122) + GetEquippedTotalSPCardAndElse(5122)) / 100);
 			}
-			wbairitu += GetBattlerMatkPercentUp();
+			CS.wbairitu += GetBattlerMatkPercentUp();
 			for(var b=0;b<=2;b++){
-				w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
-				Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * wHITsuu;
-				if(!n_AS_MODE) g_damageTextArray[b].push(Last_DMG_A[b], "(", w_DMG[b], SubName[8], wHITsuu, "hit)");
+				w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100) / CS.wHITsuu);
+				CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu;
+				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit)");
 
 				// TODO: ダメージ表示方式変更対応
 				// w_DMG[b] *= wHITsuu;
 			}
-			if(n_AS_MODE) return w_DMG;
-			w_HIT_HYOUJI = 100;
+			if(CS.n_AS_MODE) return w_DMG;
+			CS.w_HIT_HYOUJI = 100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -6192,7 +6124,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// リベリオン－マススパイラル（ハッケイから流用）
 		case SKILL_ID_MASS_SPIRAL:
 			set_n_Enekyori(1);
-			wCast = 2000;
+			CS.wCast = 2000;
 			n_Delay[2] = 0;
 			n_Delay[7] = 0;
 
@@ -6202,17 +6134,17 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 同値が mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF]（補正前の値を保持）に入っているためそれを使う。
 			var origDef = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF];
 			var defpower =  origDef > 500 ? 500 :  origDef;
-			wbairitu = (200 + defpower) * n_A_ActiveSkillLV;
+			CS.wbairitu = (200 + defpower) * n_A_ActiveSkillLV;
 
 			var AS_ATK = 0;
-			if(n_AS_MODE){
+			if(CS.n_AS_MODE){
 				AS_ATK = Math.floor(mobData[13] / 2);
 				AS_ATK = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, AS_ATK);
 				AS_ATK = ApplyElementRatio(mobData, AS_ATK,n_A_Weapon_zokusei);
 			}
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i] + AS_ATK;
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = CS.n_A_DMG[i] + AS_ATK;
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				// ＤＥＦの影響を受ける
@@ -6221,10 +6153,10 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 	// バグ？　属性が２回かかってる。
 	//			w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i], n_A_Weapon_zokusei);
 			}
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -6234,26 +6166,26 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// リベリオン－ラウンドトリップ（修羅身弾から流用）
 		case SKILL_ID_ROUND_TRIP:
 			set_n_Enekyori(1);
-			wCast = 0;
+			CS.wCast = 0;
 			n_Delay[2] = 0;
 			n_Delay[7] = Math.max(200, 1200 - 200 * n_A_ActiveSkillLV);
 
 			var basePower = 100 + 40 * n_A_ActiveSkillLV;
 			basePower = ROUNDDOWN(basePower * n_A_BaseLV / 100);
 
-			wbairitu = basePower;
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu = basePower;
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
+				w_DMG[i] = CS.n_A_DMG[i];
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 			}
 			var w2hit = [0,0,0];
-			wLAch = true;
+			CS.wLAch = true;
 			for(var i=0;i<=2;i++){
 				if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] != 1){
 
@@ -6262,26 +6194,26 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 					if(mobData[0] == 787 && n_B_TAISEI[37] != 0) w += ROUNDDOWN(1000 * n_B_TAISEI[36] / n_B_TAISEI[37]);
 					w = ATKbaiJYOUSAN(w);
-					w = Math.floor(n_A_DMG[i] * w / 100);
+					w = Math.floor(CS.n_A_DMG[i] * w / 100);
 					w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
 					w = ApplyMonsterDefence(mobData, w, 0);
-					if(i == 0 && w_HIT <100) w = 0;
-					if(i == 1) w = w * w_HIT / 100;
+					if(i == 0 && CS.w_HIT <100) w = 0;
+					if(i == 1) w = w * CS.w_HIT / 100;
 					if(w_DMG[i] <= 0) w = 0;
 					w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
 				}
 				w_DMG[i] += w2hit[i] }
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				if(attackMethodConfArray[0].GetOptionValue(0) == 1){
 					var w = w2hit[i];
 					if(w == 0) w = "Miss";
-					g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
+					CS.g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
 				}
 			}
-			w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -6290,32 +6222,32 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 紅焔脚（修羅身弾から流用）
 		case SKILL_ID_KOEN_KYAKU:
 			var hitMode = attackMethodConfArray[0].GetOptionValue(0);
-			wCast = 50 + 80 * n_A_ActiveSkillLV + 40 * Math.floor(n_A_ActiveSkillLV / 2);
+			CS.wCast = 50 + 80 * n_A_ActiveSkillLV + 40 * Math.floor(n_A_ActiveSkillLV / 2);
 			for (let idx = 0; idx <= 2; idx++) {
 				w_DMG[idx] = 0;
 			}
 			// 攻撃対象のダメージ計算
 			if ((hitMode & 1) == 1) {
-				wbairitu = 650 + 50 * n_A_ActiveSkillLV;
-				wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-				wbairitu = ATKbaiJYOUSAN(wbairitu);
+				CS.wbairitu = 650 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				for (let idx = 0; idx <= 2; idx++) {
-					w_DMG[idx] = n_A_DMG[idx];
+					w_DMG[idx] = CS.n_A_DMG[idx];
 					w_DMG[idx] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
-					w_DMG[idx] = Math.floor(w_DMG[idx] * wbairitu / 100);
+					w_DMG[idx] = Math.floor(w_DMG[idx] * CS.wbairitu / 100);
 					w_DMG[idx] = ApplyMonsterDefence(mobData, w_DMG[idx], 0);
 					w_DMG[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
 				}
 			}
 			var w2hit = [0,0,0];
-			wLAch = true;
+			CS.wLAch = true;
 			// 追加ダメージの計算
 			if ((hitMode & 2) == 2) {
 				for (let idx = 0; idx <= 2; idx++) {
 					var w = 650 + 50 * n_A_ActiveSkillLV;
 					w += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 					w = ATKbaiJYOUSAN(w);
-					w = Math.floor(n_A_DMG[idx] * w / 100);
+					w = Math.floor(CS.n_A_DMG[idx] * w / 100);
 					w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
 					w = ApplyMonsterDefence(mobData, w, 0);
 					/*
@@ -6331,19 +6263,19 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 					w_DMG[idx] += w2hit[idx]
 				}
 			}
-			if (n_AS_MODE) {
+			if (CS.n_AS_MODE) {
 				return w_DMG;
 			}
 			// 表示の調整
 			for (let idx = 0; idx <= 2; idx++) {
-				Last_DMG_A[idx] = Last_DMG_B[idx] = w_DMG[idx];
-				g_damageTextArray[idx].push(Last_DMG_A[idx]);
+				CS.Last_DMG_A[idx] = CS.Last_DMG_B[idx] = w_DMG[idx];
+				CS.g_damageTextArray[idx].push(CS.Last_DMG_A[idx]);
 				if ((hitMode & 3) == 3) {
 					var w = w2hit[idx];
 					if (w == 0) {
 						w = "Miss";
 					}
-					g_damageTextArray[idx].push(" (", (w_DMG[idx] - w2hit[idx]), " + ", w, ")");
+					CS.g_damageTextArray[idx].push(" (", (w_DMG[idx] - w2hit[idx]), " + ", w, ")");
 				}
 			}
 			//w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
@@ -6354,12 +6286,12 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 		case SKILL_ID_ZYURYOKU_CHOSE:
 
-			wbairitu = 100;
+			CS.wbairitu = 100;
 
-			w_HIT = 100;
-			w_HIT_HYOUJI = 100;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
 
-			n_KoteiCast = 1000;
+			CS.n_KoteiCast = 1000;
 
 			// 特定の戦闘エリアでの補正
 			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
@@ -6374,44 +6306,44 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 
 			}
 
-			wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			wbairitu = ATKbaiJYOUSAN(wbairitu);
+			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 
 			// 必中ダメージのみ仮計算（属性倍率未適用）
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 
 			for(var i=0;i<=2;i++){
-				w_DMG[i] = n_A_DMG[i];
+				w_DMG[i] = CS.n_A_DMG[i];
 //				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * wbairitu / 100);
+				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
 				// 重量ダメージ
 				w_DMG[i] += n_B_TAISEI[MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI];
 				// 防御計算が特殊
 				w_DMG[i] -= (mobData[13] + n_B_DEF2[0]);
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-				w_DMG[i] += n_PerfectHIT_DMG;
+				w_DMG[i] += CS.n_PerfectHIT_DMG;
 				w_DMG[i] = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
 				w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 
-				if(wActiveHitNum > 1) {
-					w_DMG[i] = Math.floor(w_DMG[i] / wActiveHitNum) * wActiveHitNum;
+				if(CS.wActiveHitNum > 1) {
+					w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
 				}
 			}
 
-			if(n_AS_MODE) return w_DMG;
+			if(CS.n_AS_MODE) return w_DMG;
 
 			for(var i=0;i<=2;i++){
-				Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
-				g_damageTextArray[i].push(Last_DMG_A[i]);
-				if(wActiveHitNum > 1) g_damageTextArray[i].push("(", (w_DMG[i] / wActiveHitNum), "×", wActiveHitNum, "Hit)");
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
+				if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (w_DMG[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 			}
 
 			// 改めて必中ダメージ計算
-			n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, n_PerfectHIT_DMG, mobData);
-			n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, n_PerfectHIT_DMG);
-			w_DMG[1] = (w_DMG[1] * w_HIT + n_PerfectHIT_DMG * (100-w_HIT))/100;
+			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+			CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+			CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -6437,11 +6369,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 	//----------------------------------------------------------------
 	while (true) {
 
-		n_PerfectHIT_DMG = 0;
+		CS.n_PerfectHIT_DMG = 0;
 		set_n_Enekyori(2);
-		directSubtractionMdef = false;
-		wbairitu = 100;
-		n_bunkatuHIT = 0;
+		CS.directSubtractionMdef = false;
+		CS.wbairitu = 100;
+		CS.n_bunkatuHIT = 0;
 
 
 		// 四次スキル以降の属性設定共通処理
@@ -6459,23 +6391,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
 				set_n_Enekyori(0);
 				// ヒット数を 1 に補正
-				wHITsuu = 1;
+				CS.wHITsuu = 1;
 				// 詠唱とディレイを 0 にしておく
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 0;
 			}
 			// 上記以外の場合
 			else {
-				wHITsuu = n_A_ActiveSkillLV;
-				wCast = 560 * n_A_ActiveSkillLV;
+				CS.wHITsuu = n_A_ActiveSkillLV;
+				CS.wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
 			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
 				case SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC: 
-					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 					break;
 				case SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE:
-					wbairitu += 75;
+					CS.wbairitu += 75;
 					break;
 			}
 			break;
@@ -6488,23 +6420,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
 				set_n_Enekyori(0);
 				// ヒット数を 1 に補正
-				wHITsuu = 1;
+				CS.wHITsuu = 1;
 				// 詠唱とディレイを 0 にしておく
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 0;
 			}
 			// 上記以外の場合
 			else {
-				wHITsuu = n_A_ActiveSkillLV;
-				wCast = 560 * n_A_ActiveSkillLV;
+				CS.wHITsuu = n_A_ActiveSkillLV;
+				CS.wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
 			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
 				case SERE_SUPPORT_SKILL_ID_AQUA_PLAY:
-					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 					break;
 				case SERE_SUPPORT_SKILL_ID_COLD_FORCE:
-					wbairitu += 75;
+					CS.wbairitu += 75;
 					break;
 			}
 			break;
@@ -6517,23 +6449,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
 				set_n_Enekyori(0);
 				// ヒット数を 1 に補正
-				wHITsuu = 1;
+				CS.wHITsuu = 1;
 				// 詠唱とディレイを 0 にしておく
-				wCast = 0;
+				CS.wCast = 0;
 				n_Delay[2] = 0;
 			}
 			// 上記以外の場合
 			else {
-				wHITsuu = n_A_ActiveSkillLV;
-				wCast = 560 * n_A_ActiveSkillLV;
+				CS.wHITsuu = n_A_ActiveSkillLV;
+				CS.wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
 			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
 				case SERE_SUPPORT_SKILL_ID_GUST:
-					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 					break;
 				case SERE_SUPPORT_SKILL_ID_GRACE_BREEZE:
-					wbairitu += 75;
+					CS.wbairitu += 75;
 					break;
 			}
 			break;
@@ -6541,78 +6473,78 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_FIRE_BALL:
 			set_n_A_Weapon_zokusei(3);
 			if(n_A_ActiveSkillLV <=5){
-				wCast = 1500;
+				CS.wCast = 1500;
 				n_Delay[2] = 1500;
 			}else{
-				wCast = 150;
+				CS.wCast = 150;
 				n_Delay[2] = 1000;
 			}
-			wbairitu = (70 + n_A_ActiveSkillLV * 10) * 2;
+			CS.wbairitu = (70 + n_A_ActiveSkillLV * 10) * 2;
 			break;
 
 		case SKILL_ID_FIRE_WALL:
 			set_n_A_Weapon_zokusei(3);
-			wHITsuu = 4 + n_A_ActiveSkillLV;
-			wCast = 2150 - (n_A_ActiveSkillLV * 150);
+			CS.wHITsuu = 4 + n_A_ActiveSkillLV;
+			CS.wCast = 2150 - (n_A_ActiveSkillLV * 150);
 			n_Delay[2] = 100;
-			wbairitu = 50;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 1) wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+			CS.wbairitu = 50;
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 1) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 			break;
 
 		case SKILL_ID_FROST_DIVER:
 			set_n_A_Weapon_zokusei(1);
-			wCast = 800;
+			CS.wCast = 800;
 			n_Delay[2] = 1500;
-			wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 10) wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+			CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 10) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 			break;
 
 		case SKILL_ID_THUNDER_STORM:
 			set_n_A_Weapon_zokusei(4);
-			wHITsuu = n_A_ActiveSkillLV;
-			wCast = 800 * n_A_ActiveSkillLV;
+			CS.wHITsuu = n_A_ActiveSkillLV;
+			CS.wCast = 800 * n_A_ActiveSkillLV;
 			n_Delay[2] = 2000;
-			wbairitu = 100;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 19) wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+			CS.wbairitu = 100;
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 19) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 			break;
 
 		case SKILL_ID_SOUL_STRIKE:
 			set_n_A_Weapon_zokusei(8);
-			wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
-			wCast = 500;
+			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
+			CS.wCast = 500;
 			if(n_A_ActiveSkillLV % 2 == 0) n_Delay[2] = 800 + n_A_ActiveSkillLV / 2 * 200;
 			else n_Delay[2] = 1000 + (n_A_ActiveSkillLV+1) / 2 * 200;
 			break;
 
 		case SKILL_ID_SIGHT_RASHER:
 			set_n_A_Weapon_zokusei(3);
-			wCast = 700;
+			CS.wCast = 700;
 			n_Delay[2] = 2000;
-			wbairitu = 100 + 20 * n_A_ActiveSkillLV;
+			CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
 			break;
 
 		case SKILL_ID_METEOR_STORM:
-			wbairitu = 125;
+			CS.wbairitu = 125;
 			set_n_A_Weapon_zokusei(3);
-			if(!n_AS_MODE) wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * attackMethodConfArray[0].GetOptionValue(0);
-			else wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * (Math.floor(n_A_ActiveSkillLV / 2) + 2);
-			wCast = 12000;
+			if(!CS.n_AS_MODE) CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * attackMethodConfArray[0].GetOptionValue(0);
+			else CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * (Math.floor(n_A_ActiveSkillLV / 2) + 2);
+			CS.wCast = 12000;
 			if(g_VariableCastTimeRate == 0) n_Delay[1] = n_Delay[1] / 2;
 			n_Delay[2] = Math.floor(n_A_ActiveSkillLV / 2) * 1000 + 2000;
 			break;
 
 		case SKILL_ID_JUPITER_THUNDER:
 			set_n_A_Weapon_zokusei(4);
-			wHITsuu = n_A_ActiveSkillLV + 2;
-			wCast = 1600 + n_A_ActiveSkillLV * 400;
+			CS.wHITsuu = n_A_ActiveSkillLV + 2;
+			CS.wCast = 1600 + n_A_ActiveSkillLV * 400;
 			break;
 
 
 		//「ウィザード」スキル「ロードオブヴァーミリオン」
 		case SKILL_ID_LORD_OF_VERMILLION:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル設定
@@ -6623,34 +6555,34 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率
-			wbairitu = [0,100,105,115,130,150,175,205,240,280,330][n_A_ActiveSkillLV];
+			CS.wbairitu = [0,100,105,115,130,150,175,205,240,280,330][n_A_ActiveSkillLV];
 			// 見た目 10 hit * hit数
-			wActiveHitNum = 10;
+			CS.wActiveHitNum = 10;
 			break;
 
 
 		case SKILL_ID_WATER_BALL:
 		case SKILL_ID_WATER_BALL_FOR_CLONE:
 			set_n_A_Weapon_zokusei(1);
-			if(n_A_ActiveSkillLV >= 4) wHITsuu = 25;
-			else if(n_A_ActiveSkillLV >= 2) wHITsuu = 9;
-			SG_Special_HITnum = wHITsuu;
-			wCast = 1000 * n_A_ActiveSkillLV;
-			wbairitu = 100 + 30 * n_A_ActiveSkillLV;
-			n_Delay[3] = 0.1 * wHITsuu;
+			if(n_A_ActiveSkillLV >= 4) CS.wHITsuu = 25;
+			else if(n_A_ActiveSkillLV >= 2) CS.wHITsuu = 9;
+			CS.SG_Special_HITnum = CS.wHITsuu;
+			CS.wCast = 1000 * n_A_ActiveSkillLV;
+			CS.wbairitu = 100 + 30 * n_A_ActiveSkillLV;
+			n_Delay[3] = 0.1 * CS.wHITsuu;
 			break;
 
 		case SKILL_ID_FROST_NOVA:
-			wbairitu = 100 + 10 * n_A_ActiveSkillLV;
+			CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
 			set_n_A_Weapon_zokusei(1);
-			wCast = 1000;
+			CS.wCast = 1000;
 			break;
 
 		// 「ウィザード」スキル「ストームガスト」
 		case SKILL_ID_STORM_GUST:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[3] = 4500 // 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
@@ -6662,21 +6594,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率
-			wbairitu = 70 + 50 * n_A_ActiveSkillLV;
+			CS.wbairitu = 70 + 50 * n_A_ActiveSkillLV;
 			break;
 
 		// 「ウィザード」スキル「アーススパイク」
 		case SKILL_ID_EARTH_SPIKE:
 			set_n_A_Weapon_zokusei(2);
-			wHITsuu = n_A_ActiveSkillLV;
-			wCast = 560 * n_A_ActiveSkillLV;
+			CS.wHITsuu = n_A_ActiveSkillLV;
+			CS.wCast = 560 * n_A_ActiveSkillLV;
 			n_Delay[2] = 800 + 200 * n_A_ActiveSkillLV;
 			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
 				case SERE_SUPPORT_SKILL_ID_PETROLOGY:
-					wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 					break;
 				case SERE_SUPPORT_SKILL_ID_EARTH_CARE:
-					wbairitu += 75;
+					CS.wbairitu += 75;
 					break;
 			}
 			break;
@@ -6685,35 +6617,35 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_HEAVENS_DRIVE:
 		case SKILL_ID_HEAVENS_DRIVE_FOR_CLONE:
 			set_n_A_Weapon_zokusei(2);
-			wHITsuu = n_A_ActiveSkillLV;
-			wbairitu = 125;
-			wCast = 1000 * n_A_ActiveSkillLV;
+			CS.wHITsuu = n_A_ActiveSkillLV;
+			CS.wbairitu = 125;
+			CS.wCast = 1000 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
-				wbairitu += ROUNDDOWN(n_A_JobLV / 3);
+				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
 			}
 			break;
 
 		case SKILL_ID_RUWACH:
 			set_n_A_Weapon_zokusei(6);
-			wHITsuu = 1;
-			wbairitu = 145;
-			if(attackMethodConfArray[0].GetOptionValue(0) == 0) wbairitu = 0;
+			CS.wHITsuu = 1;
+			CS.wbairitu = 145;
+			if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = 0;
 			break;
 
 		case SKILL_ID_HOLY_LIGHT:
 		case SKILL_ID_HOLY_LIGHT_TAMASHI:
 			set_n_A_Weapon_zokusei(6);
-			wCast = 2000;
-			wbairitu = 125;
-			if(n_A_ActiveSkill==SKILL_ID_HOLY_LIGHT_TAMASHI) wbairitu += 500;
+			CS.wCast = 2000;
+			CS.wbairitu = 125;
+			if(n_A_ActiveSkill==SKILL_ID_HOLY_LIGHT_TAMASHI) CS.wbairitu += 500;
 			break;
 
 		// 「プリースト」スキル「マグヌスエクソシズム」
 		case SKILL_ID_MAGNUS_EXORCISMUS:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル設定
@@ -6724,181 +6656,181 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率
-			wbairitu = 100;
+			CS.wbairitu = 100;
 			// ヒット数
-			wHITsuu = n_A_ActiveSkillLV;
+			CS.wHITsuu = n_A_ActiveSkillLV;
 			break;
 
 		case SKILL_ID_DARK_STRIKE:
 			set_n_A_Weapon_zokusei(7);
-			wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
-			wCast = 500;
+			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
+			CS.wCast = 500;
 			if(n_A_ActiveSkillLV % 2 == 0) n_Delay[2] = 800 + n_A_ActiveSkillLV / 2 * 200;
 			else n_Delay[2] = 1000 + (n_A_ActiveSkillLV+1) / 2 * 200;
 			break;
 
 		case SKILL_ID_ESTIN:
 			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
-			wCast = 100;
+			CS.wCast = 100;
 			n_Delay[2] = 500;
-			if(mobData[17] == 0) wbairitu = 10 * n_A_ActiveSkillLV;
-			else wbairitu = 1;
+			if(mobData[17] == 0) CS.wbairitu = 10 * n_A_ActiveSkillLV;
+			else CS.wbairitu = 1;
 			break;
 
 		case SKILL_ID_ESTON:
 			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
-			wCast = 100;
+			CS.wCast = 100;
 			n_Delay[2] = 500;
-			wbairitu = 5 * n_A_ActiveSkillLV;
+			CS.wbairitu = 5 * n_A_ActiveSkillLV;
 			break;
 
 		case SKILL_ID_ESMA:
 			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
 			n_Delay[0] = 1;
-			wHITsuu = n_A_ActiveSkillLV;
-			wCast = 2000;
+			CS.wHITsuu = n_A_ActiveSkillLV;
+			CS.wCast = 2000;
 			n_Delay[2] = 500;
-			wbairitu = 40 + n_A_BaseLV;
+			CS.wbairitu = 40 + n_A_BaseLV;
 			break;
 
 		case SKILL_ID_KOUENKA:
 			set_n_A_Weapon_zokusei(3);
-			wbairitu = 90;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = n_A_ActiveSkillLV;
-			wCast = 700 * n_A_ActiveSkillLV;
+			CS.wbairitu = 90;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = n_A_ActiveSkillLV;
+			CS.wCast = 700 * n_A_ActiveSkillLV;
 			break;
 
 		case SKILL_ID_KAENZIN:
 			set_n_A_Weapon_zokusei(3);
-			wbairitu = 50;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = Math.round(n_A_ActiveSkillLV / 2) +4 ;
-			wCast = 6500 - 500 * n_A_ActiveSkillLV;
+			CS.wbairitu = 50;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) +4 ;
+			CS.wCast = 6500 - 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
 			n_Delay[0] = 1;
 			break;
 
 		case SKILL_ID_RYUENZIN:
-			n_bunkatuHIT = 1;
+			CS.n_bunkatuHIT = 1;
 			set_n_A_Weapon_zokusei(3);
-			wbairitu = 150 + 150 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = 3;
-			wCast = 3000;
+			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = 3;
+			CS.wCast = 3000;
 			n_Delay[2] = 3000;
 			break;
 
 		case SKILL_ID_HYOSENSO:
 			set_n_A_Weapon_zokusei(1);
-			wbairitu = 70;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = n_A_ActiveSkillLV + 2;
-			wCast = 700 * n_A_ActiveSkillLV;
+			CS.wbairitu = 70;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = n_A_ActiveSkillLV + 2;
+			CS.wCast = 700 * n_A_ActiveSkillLV;
 			break;
 
 		case SKILL_ID_TSURARAOTOSHI:
 			set_n_A_Weapon_zokusei(1);
-			wbairitu = 150 + 150 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = 1;
-			wCast = 1500 + 500 * n_A_ActiveSkillLV;
+			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = 1;
+			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 2000;
 			break;
 
 		case SKILL_ID_FUZIN:
 			set_n_A_Weapon_zokusei(4);
-			wbairitu = 150;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = Math.floor(n_A_ActiveSkillLV / 2) +1;
-			wCast = 1000 + 1000 * Math.floor(n_A_ActiveSkillLV / 2);
+			CS.wbairitu = 150;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = Math.floor(n_A_ActiveSkillLV / 2) +1;
+			CS.wCast = 1000 + 1000 * Math.floor(n_A_ActiveSkillLV / 2);
 			break;
 
 		case SKILL_ID_RAIGEKISAI:
 			set_n_A_Weapon_zokusei(4);
-			wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = 1;
-			wCast = 4000;
+			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = 1;
+			CS.wCast = 4000;
 			break;
 
 		case SKILL_ID_SAKUFU:
 			set_n_A_Weapon_zokusei(4);
-			wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wHITsuu = 1;
-			wCast = 4000;
+			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wHITsuu = 1;
+			CS.wCast = 4000;
 			break;
 
 		case SKILL_ID_SOUL_EXPANSION:
 			set_n_A_Weapon_zokusei(8);
-			n_bunkatuHIT = 1;
-			wHITsuu = 2;
-			wCast = 2000;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 2;
+			CS.wCast = 2000;
 			n_Delay[2] = 500;
-			wbairitu = 400 + 100 * n_A_ActiveSkillLV + n_A_INT;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 400 + 100 * n_A_ActiveSkillLV + n_A_INT;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_FROST_MISTY:
 			set_n_A_Weapon_zokusei(1);
-			n_bunkatuHIT = 1;
-			wHITsuu = 2 + n_A_ActiveSkillLV;
-			wCast = 500 + 500 * n_A_ActiveSkillLV;
-			n_KoteiCast = 1200 - 200 * n_A_ActiveSkillLV;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 2 + n_A_ActiveSkillLV;
+			CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = 1200 - 200 * n_A_ActiveSkillLV;
 			n_Delay[2] = 500;
 			n_Delay[7] = 200;
-			wbairitu = 200 + 100 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_JACK_FROST:
 			set_n_A_Weapon_zokusei(1);
-			n_bunkatuHIT = 1;
-			wHITsuu = 5;
-			n_KoteiCast = 1000;
-			wCast = 1000 + 200 * n_A_ActiveSkillLV;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 5;
+			CS.n_KoteiCast = 1000;
+			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
 			n_Delay[2] = 500;
 			n_Delay[7] = 200;
 			if(attackMethodConfArray[0].GetOptionValue(0) == 1){
-				wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			}else{
-				wbairitu = 500 + 100 * n_A_ActiveSkillLV;
-				wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 150);
+				CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
 			}
 			break;
 
 		case SKILL_ID_DRAIN_LIFE:
 			set_n_A_Weapon_zokusei(0);
-			wHITsuu = 1;
-			n_KoteiCast = 1000;
-			wCast = 4000;
+			CS.wHITsuu = 1;
+			CS.n_KoteiCast = 1000;
+			CS.wCast = 4000;
 			n_Delay[2] = 0;
 			n_Delay[7] = 2000;
-			wbairitu = 200 * n_A_ActiveSkillLV + n_A_INT;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 200 * n_A_ActiveSkillLV + n_A_INT;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_CRYMSON_ROCK:
 			set_n_A_Weapon_zokusei(3);
-			n_bunkatuHIT = 1;
-			wHITsuu = 7;
-			n_KoteiCast = 500;
-			wCast = 1000 + 200 * n_A_ActiveSkillLV;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 7;
+			CS.n_KoteiCast = 500;
+			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
 			n_Delay[2] = 500;
 			n_Delay[7] = 2000;
-			wbairitu = 300 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			wbairitu += 1300;
+			CS.wbairitu = 300 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu += 1300;
 			break;
 
 		case SKILL_ID_COMMET:
 			set_n_A_Weapon_zokusei(0);
-			n_bunkatuHIT = 1;
-			wHITsuu = 20;
-			n_KoteiCast = 1500 + 500 * n_A_ActiveSkillLV;
-			wCast = 8500 + 1500 * n_A_ActiveSkillLV;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 20;
+			CS.n_KoteiCast = 1500 + 500 * n_A_ActiveSkillLV;
+			CS.wCast = 8500 + 1500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 2000;
 			n_Delay[7] = 120000;
 
@@ -6907,37 +6839,37 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			switch (wDistance) {
 
 			case 0:
-				wbairitu = 2500 + 500 * n_A_ActiveSkillLV;
+				CS.wbairitu = 2500 + 500 * n_A_ActiveSkillLV;
 				break;
 
 			case 1:
-				wbairitu = 1600 + 400 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1600 + 400 * n_A_ActiveSkillLV;
 				break;
 
 			case 2:
-				wbairitu = 1200 + 300 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1200 + 300 * n_A_ActiveSkillLV;
 				break;
 
 			case 3:
-				wbairitu = 800 + 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = 800 + 200 * n_A_ActiveSkillLV;
 				break;
 
 			case 4:	// 協力発動
-				wbairitu = Math.floor(2500 + 400 * n_A_ActiveSkillLV * n_A_BaseLV / 120);
+				CS.wbairitu = Math.floor(2500 + 400 * n_A_ActiveSkillLV * n_A_BaseLV / 120);
 				break;
 			}
 			break;
 
 		case SKILL_ID_EARTH_STRAIN:
 			set_n_A_Weapon_zokusei(2);
-			n_bunkatuHIT = 1;
-			wHITsuu = 2;
-			wCast = 1500 + 500 * n_A_ActiveSkillLV;
-			n_KoteiCast = 500;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 2;
+			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = 500;
 			n_Delay[2] = 500;
 			n_Delay[7] = 600 * n_A_ActiveSkillLV;
-			wbairitu = 2000 + 100 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 2000 + 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		case SKILL_ID_SUMMON_FIRE_BALL:
@@ -6948,32 +6880,32 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			if(n_A_ActiveSkill == SKILL_ID_SUMMON_WATER_BALL) set_n_A_Weapon_zokusei(1);
 			if(n_A_ActiveSkill == SKILL_ID_SUMMON_LIGHTNING_BALL) set_n_A_Weapon_zokusei(4);
 			if(n_A_ActiveSkill == SKILL_ID_SUMMON_STONE) set_n_A_Weapon_zokusei(2);
-			wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			wCast = 6000 - 1000 * n_A_ActiveSkillLV;
+			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+			CS.wCast = 6000 - 1000 * n_A_ActiveSkillLV;
 
-			wbairitu = (n_A_BaseLV + n_A_JobLV) * Math.round(n_A_ActiveSkillLV / 2);
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = (n_A_BaseLV + n_A_JobLV) * Math.round(n_A_ActiveSkillLV / 2);
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// メタリックサウンド
 		case SKILL_ID_METALIC_SOUND:
 			set_n_A_Weapon_zokusei(0);
-			n_bunkatuHIT = 1;
-			wCast = Math.min(3000, 500 + 500 * n_A_ActiveSkillLV);
+			CS.n_bunkatuHIT = 1;
+			CS.wCast = Math.min(3000, 500 + 500 * n_A_ActiveSkillLV);
 			n_Delay[7] = 200;
 			// 基本倍率
-			wbairitu = 120 * n_A_ActiveSkillLV
+			CS.wbairitu = 120 * n_A_ActiveSkillLV
 			// サウンドブレンド補正
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
-				wbairitu *= 2;
+				CS.wbairitu *= 2;
 			}
 			// レッスン補正
-			wbairitu += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
+			CS.wbairitu += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 			// BaseLv補正
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			// 睡眠補正
 			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
-				wbairitu = ROUNDDOWN(wbairitu * 150 / 100);
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * 150 / 100);
 			}
 			break;
 
@@ -6981,17 +6913,17 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_ELECTRIC_WALK:
 			if(n_A_ActiveSkill==SKILL_ID_FIRE_WALK) set_n_A_Weapon_zokusei(3);
 			else set_n_A_Weapon_zokusei(4);
-			wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			wCast = 1000;
+			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+			CS.wCast = 1000;
 			n_Delay[0] = 1;
 			n_Delay[2] = 1000;
-			wbairitu = 60 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 60 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			if(n_A_ActiveSkill==SKILL_ID_FIRE_WALK && UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 4) {
-				wbairitu += ROUNDDOWN(n_A_JobLV / 2);
+				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 2);
 			}
 			if(n_A_ActiveSkill==SKILL_ID_ELECTRIC_WALK && UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) {
-				wbairitu += ROUNDDOWN(n_A_JobLV / 2);
+				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 2);
 			}
 			break;
 
@@ -7001,8 +6933,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			set_g_bDefinedDamageIntervals(true);
 
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//1000
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//5000
 
@@ -7013,22 +6945,22 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[6] = 1000 + (n_A_ActiveSkillLV * 500);
 
 			// 属性の設定
-			if(!n_AS_MODE) set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
+			if(!CS.n_AS_MODE) set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
 			else set_n_A_Weapon_zokusei(0);
 
 			// 2025-03-29 SIAさんの検証により n_A_INT による倍率補正が実態と異なる可能性が示唆されている
-			wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
+			CS.wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
 
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
-			wbairitu = ROUNDDOWN(wbairitu);
+			CS.wbairitu *= n_A_BaseLV / 100;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu);
 			break;
 
 		//「ソーサラー」スキル「クラウドキル」
 		case SKILL_ID_CLOUD_KILL:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル設定
@@ -7039,62 +6971,62 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率
-			wbairitu = 40 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 40 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			// 精霊補正
 			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
 				case SERE_SUPPORT_SKILL_ID_CURSED_SOIL:
-					wbairitu += n_A_JobLV;
+					CS.wbairitu += n_A_JobLV;
 					break;
 				case SERE_SUPPORT_SKILL_ID_DEEP_POISONING:
-					wbairitu += 200;
+					CS.wbairitu += 200;
 					break;
 			}				
 			break;
 
 		case SKILL_ID_POISON_BUSTER:
 			set_n_A_Weapon_zokusei(5);
-			n_KoteiCast = 1750 - 250 * n_A_ActiveSkillLV;
-			wCast = 1250 * n_A_ActiveSkillLV - 750;
+			CS.n_KoteiCast = 1750 - 250 * n_A_ActiveSkillLV;
+			CS.wCast = 1250 * n_A_ActiveSkillLV - 750;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 2000;
-			wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 120);
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) wbairitu += ROUNDDOWN(n_A_JobLV * 5);
+			CS.wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
 		case SKILL_ID_EARTH_GRAVE:
 			set_n_A_Weapon_zokusei(2);
-			n_bunkatuHIT = 1;
-			wHITsuu = 3;
-			n_KoteiCast = 2000 - 200 * n_A_ActiveSkillLV;
-			wCast = 2000 + 200 * n_A_ActiveSkillLV;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 3;
+			CS.n_KoteiCast = 2000 - 200 * n_A_ActiveSkillLV;
+			CS.wCast = 2000 + 200 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 5000;
 			var subnumvalue = attackMethodConfArray[0].GetOptionValue(0);
-			wbairitu = 200 * subnumvalue + n_A_INT * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) wbairitu += ROUNDDOWN(n_A_JobLV * 5);
+			CS.wbairitu = 200 * subnumvalue + n_A_INT * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
 		case SKILL_ID_DIAMOND_DUST:
 			set_n_A_Weapon_zokusei(1);
-			n_bunkatuHIT = 1;
-			wHITsuu = 5;
-			wCast = 2000 + 200 * n_A_ActiveSkillLV;
-			n_KoteiCast = 2000 - 200 * n_A_ActiveSkillLV;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 5;
+			CS.wCast = 2000 + 200 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = 2000 - 200 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 5000;
-			wbairitu = 200 * attackMethodConfArray[0].GetOptionValue(0) + n_A_INT * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) wbairitu += ROUNDDOWN(n_A_JobLV * 5);
+			CS.wbairitu = 200 * attackMethodConfArray[0].GetOptionValue(0) + n_A_INT * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
 		// 「ジェネティック」スキル「デモニックファイアー」
 		case SKILL_ID_DEMONIC_FIRE:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル設定
@@ -7105,30 +7037,30 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率
-			wbairitu = 200 * n_A_ActiveSkillLV;
+			CS.wbairitu = 200 * n_A_ActiveSkillLV;
 			break;
 
 		// 「アークビショップ」スキル「ミリアムライト」
 		case SKILL_ID_MIRIAM_LIGHT:
 			set_n_A_Weapon_zokusei(0);
-			wbairitu = 200 + 20 * n_A_ActiveSkillLV;
+			CS.wbairitu = 200 + 20 * n_A_ActiveSkillLV;
 			break;
 
 		case SKILL_ID_SHIELD_SPELL_LV_2:
 			set_n_A_Weapon_zokusei(6);
-			wCast = 1000;
+			CS.wCast = 1000;
 			n_Delay[0] = 1;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 2000;
 			var wX = 0;
 			for(var i=ITEM_DATA_INDEX_SPBEGIN;ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] != 0;i += 2) if(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] == 19) wX += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i+1];
-			wbairitu = n_A_BaseLV * 4 + wX * 100 + n_A_INT * 2;
+			CS.wbairitu = n_A_BaseLV * 4 + wX * 100 + n_A_INT * 2;
 			break;
 
 		case SKILL_ID_ZYUTSUSHIKI_KAIHO:
 			set_n_A_Weapon_zokusei(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU));
-			wbairitu = 200 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 200 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「サモナー」スキル「マタタビランス」
@@ -7152,8 +7084,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				break;
 			}
 
-			wbairitu = 5000;
-			wCast = 2000;
+			CS.wbairitu = 5000;
+			CS.wCast = 2000;
 			n_Delay[2] = 0;
 			n_Delay[7] = 0;
 			break;
@@ -7170,90 +7102,90 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			};
 
 //			wbairitu = 700;		// 旧仕様
-			wbairitu = 400;		// 新仕様
+			CS.wbairitu = 400;		// 新仕様
 			if(n_A_BaseLV >= 100) {
 				// Base100以上の場合BaseLvが影響するように変更
-				wbairitu = wbairitu * (n_A_BaseLV / 100);
+				CS.wbairitu = CS.wbairitu * (n_A_BaseLV / 100);
 			}
-			wHITsuu = attackMethodConfArray[0].GetOptionValue(0) / 2;
-			wCast = 2000;
+			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0) / 2;
+			CS.wCast = 2000;
 			n_Delay[2] = 3000;
 			var aDelay = [1000, 500, 500, 0, 0];
 			n_Delay[7] = aDelay[n_A_ActiveSkillLV - 1];
 			break;
 
 		case SKILL_ID_VERATURE_SPEAR:
-			wCast = Math.min(3000, 2000 + 200 * n_A_ActiveSkillLV);
-			n_KoteiCast = Math.max(1000, 2000 - 200 * n_A_ActiveSkillLV);
+			CS.wCast = Math.min(3000, 2000 + 200 * n_A_ActiveSkillLV);
+			CS.n_KoteiCast = Math.max(1000, 2000 - 200 * n_A_ActiveSkillLV);
 			n_Delay[2] = 1000;
 			n_Delay[7] = 2000;
 			set_n_A_Weapon_zokusei(4);
 
-			n_bunkatuHIT = 1;
-			wHITsuu = 3;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 3;
 
 			var subnumvalue = attackMethodConfArray[0].GetOptionValue(0);
 			var subnumvalue2 = attackMethodConfArray[0].GetOptionValue(1);
-			wbairitu = ROUNDDOWN((120 * (subnumvalue + subnumvalue2) + n_A_INT * (n_A_ActiveSkillLV / 2)) * n_A_BaseLV / 100);
+			CS.wbairitu = ROUNDDOWN((120 * (subnumvalue + subnumvalue2) + n_A_INT * (n_A_ActiveSkillLV / 2)) * n_A_BaseLV / 100);
 
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) wbairitu += ROUNDDOWN(n_A_JobLV * 5);
+			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 
 			break;
 
 		case SKILL_ID_RAY_OF_GENESIS:
-			wCast = 2000;
+			CS.wCast = 2000;
 			n_Delay[2] = 1000;
-			wbairitu = 200 * n_A_ActiveSkillLV;
-			wbairitu = ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = 200 * n_A_ActiveSkillLV;
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 
-			n_bunkatuHIT = 1;
-			wHITsuu = 7;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 7;
 
 			break;
 
 		case SKILL_ID_ESHA:
 			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
-			wCast = 200 * n_A_ActiveSkillLV;
-			n_KoteiCast = 200 * n_A_ActiveSkillLV;
+			CS.wCast = 200 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = 200 * n_A_ActiveSkillLV;
 			n_Delay[7] = 1000;
-			wbairitu = 2000 + (100 * n_A_ActiveSkillLV);
+			CS.wbairitu = 2000 + (100 * n_A_ActiveSkillLV);
 
 			break;
 
 		case SKILL_ID_ESPA:
 			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
-			wCast = 100 * n_A_ActiveSkillLV;
-			n_KoteiCast = 100 * n_A_ActiveSkillLV;
-			wbairitu = 500 + (250 * n_A_ActiveSkillLV);
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wCast = 100 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = 500 + (250 * n_A_ActiveSkillLV);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 
 			break;
 
 		case SKILL_ID_ESFU:
-			n_bunkatuHIT = 1;
-			wHITsuu = 5;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 5;
 			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
-			wCast = 100 * n_A_ActiveSkillLV;
-			n_KoteiCast = 100 * n_A_ActiveSkillLV;
-			wbairitu = 1500 + (250 * n_A_ActiveSkillLV);
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wCast = 100 * n_A_ActiveSkillLV;
+			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = 1500 + (250 * n_A_ActiveSkillLV);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 
 			break;
 
 		case SKILL_ID_SHIRYO_BAKUHATSU:
-			n_bunkatuHIT = 1;
-			wHITsuu = 7;
+			CS.n_bunkatuHIT = 1;
+			CS.wHITsuu = 7;
 			set_n_A_Weapon_zokusei(ELM_ID_DARK);
-			wCast = 2000;
+			CS.wCast = 2000;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 1000;
 			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) {
-				wbairitu = 2500 + (250 * n_A_ActiveSkillLV);
+				CS.wbairitu = 2500 + (250 * n_A_ActiveSkillLV);
 			}
 			else {
-				wbairitu = 2300 + (50 * n_A_ActiveSkillLV);
+				CS.wbairitu = 2300 + (50 * n_A_ActiveSkillLV);
 			}
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 
 			break;
 
@@ -7342,14 +7274,14 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_GROUND_GRAVITATION:
 
 			// スキル使用条件の判定
-			n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
-			if (n_Buki_Muri) {
-				wbairitu = 0;
+			CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+			if (CS.n_Buki_Muri) {
+				CS.wbairitu = 0;
 				break;
 			}
 			// 詠唱などの情報
-			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// ダメージ算出に関する情報
@@ -7361,12 +7293,12 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			if (elmWork != CSkillData.ELEMENT_VOID) {
 				set_n_A_Weapon_zokusei(elmWork);
 			}
-			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-			g_bSkillNoDamage = (wbairitu == 0);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+			CS.g_bSkillNoDamage = (CS.wbairitu == 0);
 			set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
 			// ヒット数に関する情報
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
-			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			// 地面設置スキルの情報
 			set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
 			if (g_bDefinedDamageIntervals) {
@@ -7379,8 +7311,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_NUMATIC_PROCERA: {
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// オブジェクト存続時間
@@ -7392,28 +7324,28 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
-				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 5 * fidos_animus_lv;						// フィドスアニムス補正
-				wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
+				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;				// 基本倍率
+				CS.wbairitu += 5 * fidos_animus_lv;						// フィドスアニムス補正
+				CS.wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// それ以外の場合
 			else {
-				wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;				// 基本倍率
-				wbairitu += 3 * fidos_animus_lv;						// フィドスアニムス補正
-				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
+				CS.wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;				// 基本倍率
+				CS.wbairitu += 3 * fidos_animus_lv;						// フィドスアニムス補正
+				CS.wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
 			}
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			// 見た目10hitで最大40hit
-			wActiveHitNum = 10;
+			CS.wActiveHitNum = 10;
 			break;
 		}
 		// 「カーディナル」スキル「フレーメン」
 		// 2025-01-27 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_PHREMEN: {
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// フィドスアニムス習得Lv
@@ -7421,45 +7353,45 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 不死・悪魔の場合
 			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
 				// 基本倍率
-				wbairitu = (900 * n_A_ActiveSkillLV);
+				CS.wbairitu = (900 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 60 * n_A_ActiveSkillLV * fidos_animus_lv;
+				CS.wbairitu += 60 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
-				wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// それ以外の場合
 			else {
 				// 基本倍率
-				wbairitu = (600 * n_A_ActiveSkillLV);
+				CS.wbairitu = (600 * n_A_ActiveSkillLV);
 				// フィドスアニムス補正
-				wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
+				CS.wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
 				// SPL補正
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 		}
 		// 「アークメイジ」スキル「デッドリープロジェクション」
 		case SKILL_ID_DEADLY_PROJECTION:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
+			CS.wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「レインオブクリスタル」
 		case SKILL_ID_RAIN_OF_CRYSTAL:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			set_g_bDefinedDamageIntervals(true);
@@ -7468,35 +7400,35 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ間隔
 			n_Delay[5] = 500;
 			// 基本倍率
-			wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
+			CS.wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「ソウルバルカンストライク」
 		case SKILL_ID_SOUL_VULKUN_STRIKE:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 350 + 50 * n_A_ActiveSkillLV;
+			CS.wbairitu = 350 + 50 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			// ヒット数
-			wHITsuu = 2 + n_A_ActiveSkillLV;
+			CS.wHITsuu = 2 + n_A_ActiveSkillLV;
 			break;
 
 		// 「アークメイジ」スキル「ストラタムトレマー」
 		case SKILL_ID_STRATUM_TREAMER:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// オブジェクト存続時間
@@ -7505,20 +7437,20 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[5] = 300;
 			set_g_bDefinedDamageIntervals(true);
 			// 基本倍率
-			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
+			CS.wbairitu = 900 + 300 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			// 分割Hit数
-			wActiveHitNum = 2;
+			CS.wActiveHitNum = 2;
 			break;
 
 		// 「アークメイジ」スキル「トルネードストーム」
 		case SKILL_ID_TORNADE_STORM:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			set_g_bDefinedDamageIntervals(true);
@@ -7527,18 +7459,18 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ間隔
 			n_Delay[5] = 300;
 			// 基本倍率
-			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
+			CS.wbairitu = 900 + 300 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「フローラルフレアロード」
 		case SKILL_ID_FLORAL_FLARE_ROAD:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			set_g_bDefinedDamageIntervals(true);
@@ -7547,26 +7479,26 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ間隔
 			n_Delay[5] = 300;
 			// 基本倍率
-			wbairitu = 900 + 300 * n_A_ActiveSkillLV;
+			CS.wbairitu = 900 + 300 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「アストラルストライク」
 		case SKILL_ID_ASTRAL_STRIKE:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 初段ダメージの場合
 			if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
 				// 基本倍率
-				wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
+				CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// 設置持続ダメージの場合
 			else {
@@ -7576,64 +7508,64 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// ダメージ間隔
 				n_Delay[5] = 300;
 				// 基本倍率
-				wbairitu = 200 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アークメイジ」スキル「ロックダウン」
 		case SKILL_ID_ROCK_DOWN:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// クライマックス時
 			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
 				// 基本倍率
-				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// 通常時
 			else {
 				// 基本倍率
-				wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
+				CS.wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			// 分割Hit
-			wActiveHitNum = 5;
+			CS.wActiveHitNum = 5;
 			break;
 
 		// 「アークメイジ」スキル「ストームキャノン」
 		case SKILL_ID_STORM_CANNON:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// クライマックス時
 			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
 				// 基本倍率
-				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// 通常時
 			else {
 				// 基本倍率
-				wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
+				CS.wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		//「アークメイジ」スキル「クリムゾンアロー」
@@ -7641,72 +7573,72 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 初段ＨＩＴの場合
 			if (battleCalcInfo.parentSkillId === undefined) {
 				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 100 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// 追撃の場合
 			else {
 				// 基本倍率
-				wbairitu = 1500 + 500 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1500 + 500 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// 攻撃回数
 				if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
-					wHITsuu = 3;
+					CS.wHITsuu = 3;
 				} else {
-					wHITsuu = 2;
+					CS.wHITsuu = 2;
 				}
 			}
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		//「アークメイジ」スキル「フローズンスラッシュ」
 		case SKILL_ID_FROZEN_SLASH:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// クライマックス時
 			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
 				// 基本倍率
-				wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
+				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// 通常時
 			} else {
 				// 基本倍率
-				wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
+				CS.wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
 				// SPL補正
-				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「インペリアルガード」スキル「ジャッジメントクロス」
 		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
 		case SKILL_ID_JUDGEMENT_CROSS:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
+			CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			// 見た目10hit
-			wActiveHitNum = 10;
+			CS.wActiveHitNum = 10;
 			break;
 
 		// 「アビスチェイサー」スキル「フロムジアビス」
@@ -7715,16 +7647,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 		case SKILL_ID_FROM_THE_ABYSS:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 1500 + 1500 * n_A_ActiveSkillLV;
+			CS.wbairitu = 1500 + 1500 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アビスチェイサー」スキル「オメガアビスストライク」
@@ -7733,16 +7665,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 		case SKILL_ID_OMEGA_ABYSS_STRIKE:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
-			wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
+			CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「アビスチェイサー」スキル「アビススクエア」
@@ -7752,8 +7684,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 参考: ragna-promenade様
 		case SKILL_ID_ABYSS_SQUARE: {
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// オブジェクト存続時間
@@ -7762,17 +7694,17 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			n_Delay[5] = 300;
 			set_g_bDefinedDamageIntervals(true);
 			// 基本倍率
-			wbairitu = 150 * n_A_ActiveSkillLV;
+			CS.wbairitu = 150 * n_A_ActiveSkillLV;
 			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// 魔法剣修練補正
 			const mahoken_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN));
-			wbairitu += 15 * n_A_ActiveSkillLV * mahoken_shuren_lv;
+			CS.wbairitu += 15 * n_A_ActiveSkillLV * mahoken_shuren_lv;
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			// 攻撃回数
 			if (attackMethodConfArray[0].GetOptionValue(0) >= 1) {
-				wHITsuu = 2;
+				CS.wHITsuu = 2;
 			}
 			break;
 		}
@@ -7781,8 +7713,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_LIGHTNING_LAND:
 			// 2024/08/27 実測
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル
@@ -7792,23 +7724,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ倍率
 			if (UsedSkillSearch(SKILL_ID_SERE) == 15) {	// 15: 風 プロセラ
 				// 四次精霊あり
-				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
+				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			} else {
 				// 四次精霊なし
-				wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
-				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
+				CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			CS.wbairitu *= n_A_BaseLV / 100;
 			break;
 			
 		//「エレメンタルマスター」スキル「コンフラグレーション」
 		case SKILL_ID_CONFLAGRATION:
 			// 2024/08/27 実測
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル
@@ -7818,23 +7750,23 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ倍率
 			if (UsedSkillSearch(SKILL_ID_SERE) == 13) {	// 13: 火 アルドール
 				// 四次精霊あり
-				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
+				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			} else {
 				// 四次精霊なし
-				wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
-				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
+				CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			CS.wbairitu *= n_A_BaseLV / 100;
 			break;
 			
 		//「エレメンタルマスター」スキル「ベナムスワンプ」
 		case SKILL_ID_VENOM_SWAMP:
 			// 2024/08/27 実測
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル
@@ -7844,15 +7776,15 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// ダメージ倍率
 			if (UsedSkillSearch(SKILL_ID_SERE) == 17) {	// 17: 毒 サーペンス
 				// 四次精霊あり
-				wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
-				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
+				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			} else {
 				// 四次精霊なし
-				wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
-				wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
+				CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			}
 			// ベースレベル補正
-			wbairitu *= n_A_BaseLV / 100;
+			CS.wbairitu *= n_A_BaseLV / 100;
 			break;
 
 		//「エレメンタルマスター」スキル「エレメンタルバスター」
@@ -7884,21 +7816,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 使用可否判定
 			if (bMatchCond) {
 				// 詠唱時間等
-				wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 基本倍率
-				wbairitu = 10500 + (3000 * n_A_ActiveSkillLV);
+				CS.wbairitu = 10500 + (3000 * n_A_ActiveSkillLV);
 				// SPL補正
-				wbairitu += 135 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				CS.wbairitu += 135 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// ベースレベル補正
-				wbairitu *= n_A_BaseLV / 100;
+				CS.wbairitu *= n_A_BaseLV / 100;
 			}
 			// 使用不可
 			else {
-				wbairitu = 0;
-				n_Buki_Muri = true;
+				CS.wbairitu = 0;
+				CS.n_Buki_Muri = true;
 			}
 			break;
 
@@ -7906,16 +7838,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_SHIHO_GOGYO_ZIN:
 			// 使用条件は 玄武符 or 四方五行陣 状態であること
 			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) < 4) {
-				n_Buki_Muri = true;
+				CS.n_Buki_Muri = true;
 				break;
 			}
-			wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-			wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
 			set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
 			break;
 
@@ -7923,46 +7855,46 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_JUPITER_THUNDER_STORM: {
 			// 2024/09/19 実測値との誤差無しを確認済み
 			// 詠唱時間など
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 基本倍率
 			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			wbairitu = 2700 + (150 * n_A_ActiveSkillLV);
-			wbairitu += 3 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+			CS.wbairitu = 2700 + (150 * n_A_ActiveSkillLV);
+			CS.wbairitu += 3 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
+			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
 			// 最終倍率
-			wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			wbairitu = Math.floor(wbairitu);
+			CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
 			break;
 		}
 		// 「ハイパーノービス」スキル「ヘルズドライブ」
 		case SKILL_ID_HELLS_DRIVE: {
 			// 2024/09/19 実測値との誤差無しを確認済み
 			// 詠唱時間など
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 分割Hit数
-			wActiveHitNum = 3;
+			CS.wActiveHitNum = 3;
 			// 基本倍率
 			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			wbairitu = 2600 + (150 * n_A_ActiveSkillLV);			// 基礎倍率
-			wbairitu += 4 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+			CS.wbairitu = 2600 + (150 * n_A_ActiveSkillLV);			// 基礎倍率
+			CS.wbairitu += 4 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
+			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
 			// 最終倍率
-			wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			wbairitu = Math.floor(wbairitu);
+			CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
 			break;
 		}
 		// 「ハイパーノービス」スキル「ナパームバルカンストライク」
@@ -7970,31 +7902,31 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 2024/09/19 実測値との誤差無しまたは誤差1を確認済み
 			// スキル計算式の問題ではなく後続の計算式の丸め誤差と判断しています
 			// 詠唱時間など
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 分割Hit数
-			wActiveHitNum = 7;
+			CS.wActiveHitNum = 7;
 			// 基本倍率
 			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			wbairitu = 2600 + (150 * n_A_ActiveSkillLV);			// 基礎倍率
-			wbairitu += 4 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+			CS.wbairitu = 2600 + (150 * n_A_ActiveSkillLV);			// 基礎倍率
+			CS.wbairitu += 4 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
+			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
 			// 最終倍率
-			wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-			wbairitu = Math.floor(wbairitu);
-			wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			wbairitu = Math.floor(wbairitu);
+			CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+			CS.wbairitu = Math.floor(CS.wbairitu);
 			break;
 		}
 		// 「ハイパーノービス」スキル「メテオストームバスター」
 		case SKILL_ID_METEOR_STORM_BUSTER: {
 			// 詠唱時間など
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル
@@ -8004,28 +7936,28 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
 			// 隕石
 			if (battleCalcInfo.parentSkillId === undefined) {
-				wActiveHitNum = 3;	// 隕石 1 つあたり見た目 3 Hit
-				wbairitu = 1750 + 50 * n_A_ActiveSkillLV;				// 基礎倍率
-				wbairitu += 5 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				CS.wActiveHitNum = 3;	// 隕石 1 つあたり見た目 3 Hit
+				CS.wbairitu = 1750 + 50 * n_A_ActiveSkillLV;				// 基礎倍率
+				CS.wbairitu += 5 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
+				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
 				// 最終倍率
-				wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
+				CS.wbairitu = Math.floor(CS.wbairitu);
+				CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+				CS.wbairitu = Math.floor(CS.wbairitu);
+				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
 			}
 			// 爆発
 			else {
-				wbairitu = 1175 + 25 * n_A_ActiveSkillLV;				// 基礎倍率
-				wbairitu += 5 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				CS.wbairitu = 1175 + 25 * n_A_ActiveSkillLV;				// 基礎倍率
+				CS.wbairitu += 5 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
+				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
 				// 最終倍率 (爆発には独学補正が掛からない)
-				wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
+				CS.wbairitu = Math.floor(CS.wbairitu);
+				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
 			}
-			wbairitu = Math.floor(wbairitu);
+			CS.wbairitu = Math.floor(CS.wbairitu);
 			break;
 		}
 
@@ -8034,8 +7966,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		*/
 		case SKILL_ID_DEER_BREEZE:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// オブジェクト存続時間
@@ -8055,19 +7987,19 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
 				) {
 				// 基礎倍率
-				wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 40 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				CS.wbairitu += 40 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 			} else {
 				// 基礎倍率
-				wbairitu = 800 + 100 * n_A_ActiveSkillLV;
+				CS.wbairitu = 800 + 100 * n_A_ActiveSkillLV;
 				// スピリットマスタリー補正
-				wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				CS.wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
 			}
 			// SPL補正
-			wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+			CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 			// ベースレベル補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		/**
@@ -8078,8 +8010,8 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		case SKILL_ID_RAIDEN_HOU:
 		case SKILL_ID_KINNRYUU_HOU:{
 			// 詠唱時間など
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 暗転砲の習得Lv
@@ -8088,27 +8020,27 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				// 本体の攻撃
 				const yonshoku_fu = attackMethodConfArray[0].GetOptionValue(1);
 				if (yonshoku_fu === 0) {
-					wbairitu = 4000 + 300 * n_A_ActiveSkillLV;
+					CS.wbairitu = 4000 + 300 * n_A_ActiveSkillLV;
 				} else {
 					// 四色符 は4属性部分の基本倍率のみに影響する
-					wbairitu = 7500 + 300 * n_A_ActiveSkillLV;
+					CS.wbairitu = 7500 + 300 * n_A_ActiveSkillLV;
 				}
-				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// spl補正
-				wbairitu += 70 * n_A_ActiveSkillLV * anten_hou_lv;			// 習得済みスキル条件
-				wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);			// BaseLv補正
+				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// spl補正
+				CS.wbairitu += 70 * n_A_ActiveSkillLV * anten_hou_lv;			// 習得済みスキル条件
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);			// BaseLv補正
 			} else {
 				// 分身の追撃 暗転砲
 				set_n_A_Weapon_zokusei(ELM_ID_DARK);							// 属性は闇固定
 				if (anten_hou_lv == 0) {
-					wbairitu = 0;
+					CS.wbairitu = 0;
 				} else {
-					wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
-					wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-					wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
-					wbairitu = Math.floor(wbairitu * 30 / 100);				// 分身の威力は30%
-					wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
+					CS.wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
+					CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
+					CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);		// BaseLv補正
+					CS.wbairitu = Math.floor(CS.wbairitu * 30 / 100);				// 分身の威力は30%
+					CS.wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
 					// 分割ヒット
-					wActiveHitNum = 4;
+					CS.wActiveHitNum = 4;
 				}
 			}
 			break;
@@ -8118,16 +8050,16 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 		// 2024/12/25 もなこさん提供データに対して誤差なしを確認
 		case SKILL_ID_KAGETOKI:
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ倍率
-			wbairitu = 3200 + 500 * n_A_ActiveSkillLV;											// 基本倍率
-			wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);								// 特性ステータス補正
-			wbairitu = Math.floor(wbairitu * n_A_BaseLV / 100);									// BaseLv補正
+			CS.wbairitu = 3200 + 500 * n_A_ActiveSkillLV;											// 基本倍率
+			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);								// 特性ステータス補正
+			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);									// BaseLv補正
 			// 分割ヒット
-			wActiveHitNum = 2;
+			CS.wActiveHitNum = 2;
 			break;
 
 		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」
@@ -8135,38 +8067,38 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			// 2024/09/19 実測値との誤差1を確認済み
 			// 後続の計算式による丸め誤差と判断しています
 			// 詠唱時間等
-			wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ計算
 			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
 			if (attackMethodConfArray[0].GetOptionValue(0) === 0) {
 				// 初撃ダメージ計算が指定された場合 (独学補正は掛からない)
-				wbairitu = 100 + (20 * n_A_ActiveSkillLV);											// 基礎倍率
-				wbairitu += 3 * n_A_ActiveSkillLV * madogaku;										// 習得済みスキル条件
-				wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
+				CS.wbairitu = 100 + (20 * n_A_ActiveSkillLV);											// 基礎倍率
+				CS.wbairitu += 3 * n_A_ActiveSkillLV * madogaku;										// 習得済みスキル条件
+				CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
+				CS.wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
+				CS.wbairitu = Math.floor(CS.wbairitu);
+				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
 			} else {
 				// 設置ダメージ計算が指定された場合
 				set_g_bDefinedDamageIntervals(true);
 				n_Delay[5] = 500;	// ダメージ間隔
 				n_Delay[6] = 3000;	// オブジェクト存続時間
 				// 分割Hit数
-				wActiveHitNum = 2;
+				CS.wActiveHitNum = 2;
 				// 基本倍率
-				wbairitu = 650 + (25 * n_A_ActiveSkillLV);							// 基礎倍率
-				wbairitu += 3 * n_A_ActiveSkillLV * madogaku;						// 習得済みスキル条件
-				wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
-				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-				wbairitu = Math.floor(wbairitu);
-				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				CS.wbairitu = 650 + (25 * n_A_ActiveSkillLV);							// 基礎倍率
+				CS.wbairitu += 3 * n_A_ActiveSkillLV * madogaku;						// 習得済みスキル条件
+				CS.wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
+				CS.wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+				CS.wbairitu = Math.floor(CS.wbairitu);
+				CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+				CS.wbairitu = Math.floor(CS.wbairitu);
+				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
 			}
-			wbairitu = Math.floor(wbairitu);
+			CS.wbairitu = Math.floor(CS.wbairitu);
 			break;
 		}
 		
@@ -8221,7 +8153,7 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 -------------------------------------------------- */
 		}
 
-		if (g_bSkillNoDamage) {
+		if (CS.g_bSkillNoDamage) {
 			return [0, 0, 0];
 		}
 		for(var i = 0; i <= 2; i++){
@@ -8243,21 +8175,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			}
 		}
 		// ＭＡＴＫ％強化倍率を取得
-		wbairitu += GetBattlerMatkPercentUp(mobData);
+		CS.wbairitu += GetBattlerMatkPercentUp(mobData);
 		// 単発スキルの場合
-		if(n_bunkatuHIT == 0){
+		if(CS.n_bunkatuHIT == 0){
 			for(var b = 0; b <= 2; b++){
-				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100);
-				if(SG_Special_HITnum != 0){
-					SG_Special_DMG[b] = w_DMG[b];
+				w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100);
+				if(CS.SG_Special_HITnum != 0){
+					CS.SG_Special_DMG[b] = w_DMG[b];
 				}
-				Last_DMG_B[b] = w_DMG[b];
+				CS.Last_DMG_B[b] = w_DMG[b];
 				if(n_A_ActiveSkill==658 || n_A_ActiveSkill==659){
-					if(b==1) wHITsuu = 2 * attackMethodConfArray[0].GetOptionValue(0);
-					if(b==2) wHITsuu = 3 * attackMethodConfArray[0].GetOptionValue(0);
+					if(b==1) CS.wHITsuu = 2 * attackMethodConfArray[0].GetOptionValue(0);
+					if(b==2) CS.wHITsuu = 3 * attackMethodConfArray[0].GetOptionValue(0);
 				}
-				Last_DMG_A[b] = ROUNDDOWN(w_DMG[b] * wHITsuu);
-				if(!n_AS_MODE) g_damageTextArray[b].push(Last_DMG_A[b], "(", Last_DMG_B[b], SubName[8], wHITsuu, "hit)");
+				CS.Last_DMG_A[b] = ROUNDDOWN(w_DMG[b] * CS.wHITsuu);
+				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", CS.Last_DMG_B[b], SubName[8], CS.wHITsuu, "hit)");
 				// TODO: 四次データ形式変更対応
 				// w_DMG[b] = Last_DMG_A[b];
 			}
@@ -8268,11 +8200,11 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 			var subnumvalue = attackMethodConfArray[0].GetOptionValue(0);
 			if(n_A_ActiveSkill==518 && subnumvalue >= 1 && mobData[20] == 0){
 				for(var b=0;b<=2;b++){
-					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
+					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100) / CS.wHITsuu);
 					var KoteiDMG = 400 * subnumvalue;
 					KoteiDMG = KoteiDMG * ROUNDDOWN((100 + 40 * UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) / 100);
-					Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * wHITsuu + KoteiDMG;
-					if(!n_AS_MODE) g_damageTextArray[b].push(Last_DMG_A[b], "(", w_DMG[b], SubName[8], wHITsuu, "hit + ", KoteiDMG, ")");
+					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu + KoteiDMG;
+					if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit + ", KoteiDMG, ")");
 					// TODO: 四次データ形式変更対応
 					// w_DMG[b] *= wHITsuu;
 				}
@@ -8280,27 +8212,27 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 				for(var b=0;b<=2;b++){
 					// TODO: 2020年スキル修正に伴う変更（元からこの計算式だったかは不明）
 					// w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
-					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * Math.floor(wbairitu / wHITsuu) * wHITsuu / 100) / wHITsuu);
-					Last_DMG_A[b] = Last_DMG_B[b] = w_DMG[b] * wHITsuu;
-					if(!n_AS_MODE) g_damageTextArray[b].push(Last_DMG_A[b], "(", w_DMG[b], SubName[8], wHITsuu, "hit)");
+					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * Math.floor(CS.wbairitu / CS.wHITsuu) * CS.wHITsuu / 100) / CS.wHITsuu);
+					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu;
+					if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit)");
 					// TODO: 四次データ形式変更対応
 					// w_DMG[b] *= wHITsuu;
 				}
 			}
 		}
-		if(n_AS_MODE){
-			SG_Special_HITnum = 0;
+		if(CS.n_AS_MODE){
+			CS.SG_Special_HITnum = 0;
 			return w_DMG;
 		}
-		if(n_A_ActiveSkill==783 && (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == 0 || UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU) == 0)) g_damageTextArray[0] = ["<Font color=Red><B>術式解放の計算をするにはパッシブ欄で<BR>符の属性と数を設定して下さい</B></Font>"];
+		if(n_A_ActiveSkill==783 && (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == 0 || UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU) == 0)) CS.g_damageTextArray[0] = ["<Font color=Red><B>術式解放の計算をするにはパッシブ欄で<BR>符の属性と数を設定して下さい</B></Font>"];
 		if(n_A_ActiveSkill==526){
-			str_bSUBname += "<FONT color='#0000FF'><B>吸収量</B></FONT><BR>";
+			CS.str_bSUBname += "<FONT color='#0000FF'><B>吸収量</B></FONT><BR>";
 			var w = ROUNDDOWN((8 * n_A_ActiveSkillLV) * n_A_BaseLV / 100);
 			var w0 = ROUNDDOWN(w_DMG[0] * w / 100);
 			var w2 = ROUNDDOWN(w_DMG[2] * w / 100);
-			str_bSUB += "<FONT color='#0000FF'><B>"+ __DIG3(w0) +"～"+ __DIG3(w2) +"</B></FONT><BR>";
+			CS.str_bSUB += "<FONT color='#0000FF'><B>"+ __DIG3(w0) +"～"+ __DIG3(w2) +"</B></FONT><BR>";
 		}
-		w_HIT_HYOUJI = 100;
+		CS.w_HIT_HYOUJI = 100;
 		AS_PLUS();
 		BuildCastAndDelayHtml(mobData);
 		BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -9954,31 +9886,31 @@ export function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
  */
 export function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray) {
 	// 命中率が１００％未満の場合、必中ダメージがあれば追加表示
-	if(n_PerfectHIT_DMG > 0 && w_HIT_HYOUJI <100){
-		str_bSUBname += "<Font size=2>Miss時の必中ダメージ</Font>";
-		if(str_PerfectHIT_DMG == 0){
-			if(wActiveHitNum > 1){
-				var w = ROUNDDOWN(n_PerfectHIT_DMG / wActiveHitNum);
-				str_bSUB += __DIG3(w * wActiveHitNum) +"("+ __DIG3(w) +"×"+ wActiveHitNum +"Hit)";
+	if(CS.n_PerfectHIT_DMG > 0 && CS.w_HIT_HYOUJI <100){
+		CS.str_bSUBname += "<Font size=2>Miss時の必中ダメージ</Font>";
+		if(CS.str_PerfectHIT_DMG == 0){
+			if(CS.wActiveHitNum > 1){
+				var w = ROUNDDOWN(CS.n_PerfectHIT_DMG / CS.wActiveHitNum);
+				CS.str_bSUB += __DIG3(w * CS.wActiveHitNum) +"("+ __DIG3(w) +"×"+ CS.wActiveHitNum +"Hit)";
 			}
-			else str_bSUB += __DIG3(n_PerfectHIT_DMG);
-		}else str_bSUB += str_PerfectHIT_DMG;
+			else CS.str_bSUB += __DIG3(CS.n_PerfectHIT_DMG);
+		}else CS.str_bSUB += CS.str_PerfectHIT_DMG;
 	}
-	myInnerHtml("bSUBname",str_bSUBname,0);
-	myInnerHtml("bSUB",str_bSUB,0);
-	myInnerHtml("BattleHIT",w_HIT_HYOUJI,0);
+	myInnerHtml("bSUBname",CS.str_bSUBname,0);
+	myInnerHtml("bSUB",CS.str_bSUB,0);
+	myInnerHtml("BattleHIT",CS.w_HIT_HYOUJI,0);
 	myInnerHtml("BattlePerfectHIT",n_tok[ITEM_SP_PERFECT_ATTACK_UP],0);
 //	myInnerHtml("nm067","％",0);
 	// 二刀流の通常攻撃時の表示部分
 	if (n_Nitou && n_A_ActiveSkill == 0) {
-		myInnerHtml("BattleHIT",w_HIT_HYOUJI +"％(左手"+ w_HIT +"％)",0);
+		myInnerHtml("BattleHIT",CS.w_HIT_HYOUJI +"％(左手"+ CS.w_HIT +"％)",0);
 //		myInnerHtml("nm067","",0);
 	}
 	// TODO : 謎処理　通常攻撃とグラビテーションフィールド以外
 	if(mobData[21]==6 && n_A_ActiveSkill != 0 && n_A_ActiveSkill != 325){
 		for(var i=0;i<=2;i++){
 			w_DMG[i] = 0;
-			g_damageTextArray[i] = ["Miss"];
+			CS.g_damageTextArray[i] = ["Miss"];
 		}
 		myInnerHtml("MinATKnum","無理です",0);
 		myInnerHtml("AveATKnum","無理です",0);
@@ -9991,11 +9923,11 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 		return;
 	}
 	// スキル使用不可武器の場合の表示部分
-	if (n_Buki_Muri) {
+	if (CS.n_Buki_Muri) {
 		for(var i=0;i<=2;i++) w_DMG[i] = 0;
-		g_damageTextArray[0] = ["<B>この武器では</B>"];
-		g_damageTextArray[1] = ["<B>このスキルを</B>"];
-		g_damageTextArray[2] = ["<B>使用できません</B>"];
+		CS.g_damageTextArray[0] = ["<B>この武器では</B>"];
+		CS.g_damageTextArray[1] = ["<B>このスキルを</B>"];
+		CS.g_damageTextArray[2] = ["<B>使用できません</B>"];
 		myInnerHtml("MinATKnum","-",0);
 		myInnerHtml("AveATKnum","-",0);
 		myInnerHtml("MaxATKnum","-",0);
@@ -10027,15 +9959,15 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 	}
 	// 多段ＨＩＴスキルで１殺の場合、１殺できる確率を表示する
 	var w;
-	if(SG_Special_HITnum != 0){
+	if(CS.SG_Special_HITnum != 0){
 
 		if(w == 1){
 
 			var wHITnum;
 			var x;
 
-			wHITnum = SG_Special_HITnum;
-			x = (SG_Special_DMG[2] * wHITsuu - mobData[3]) / (SG_Special_DMG[2] * wHITsuu - SG_Special_DMG[0] * wHITsuu);
+			wHITnum = CS.SG_Special_HITnum;
+			x = (CS.SG_Special_DMG[2] * CS.wHITsuu - mobData[3]) / (CS.SG_Special_DMG[2] * CS.wHITsuu - CS.SG_Special_DMG[0] * CS.wHITsuu);
 
 			if(x > 1) x = 1;
 			if(x < 0) x = 0;
@@ -10052,8 +9984,8 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 			}
 
 			if(wHITnum >= 4){
-				var y = Math.sqrt(Math.pow(SG_Special_DMG[2]-SG_Special_DMG[0],2) / 12 * wHITnum);
-				x = (SG_Special_DMG[1] * wHITsuu - mobData[3]) / y;
+				var y = Math.sqrt(Math.pow(CS.SG_Special_DMG[2]-CS.SG_Special_DMG[0],2) / 12 * wHITnum);
+				x = (CS.SG_Special_DMG[1] * CS.wHITsuu - mobData[3]) / y;
 				if(x >= 0) x = 0.5+0.5*Math.sqrt(1-Math.exp(-2*Math.pow(x,2)/Math.PI));
 				else x = 0.5-0.5*Math.sqrt(1-Math.exp(-2*Math.pow(x,2)/Math.PI));
 			}
@@ -10063,7 +9995,7 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 			myInnerHtml("MinATKnum","1(1回で倒せる確率"+ x +"%)",0);
 		}
 
-		SG_Special_HITnum = 0;
+		CS.SG_Special_HITnum = 0;
 	}
 	//----------------------------------------------------------------
 	// 経験値効率計算モード（SPMODE）の場合
@@ -10075,13 +10007,13 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 
 	// 最大攻撃回数表示部の組み立て
 	// 命中率が１００％未満の場合は、特殊表示
-	if(w_HIT_HYOUJI <100 && n_PerfectHIT_DMG == 0){
+	if(CS.w_HIT_HYOUJI <100 && CS.n_PerfectHIT_DMG == 0){
 		myInnerHtml("MaxATKnum","<Font size=2>計算不能<BR>(命中100未満なので)</Font>",0);
 	}
 	// 命中率が１００％の場合は、確殺を計算
 	else{
 		var wX = w_DMG[0];
-		if(w_HIT_HYOUJI <100) wX = n_PerfectHIT_DMG;
+		if(CS.w_HIT_HYOUJI <100) wX = CS.n_PerfectHIT_DMG;
 		if(wX > 0){
 			g_AttackCount[2] = Math.ceil(mobData[3] / wX);
 			if(g_AttackCount[2]<10000) myInnerHtml("MaxATKnum",__DIG3(g_AttackCount[2]),0);
@@ -10115,7 +10047,7 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 		if(g_AttackCount[1]<10000){
 			myInnerHtml("AveATKnum",__DIG3(g_AttackCount[1]),0);
 			const n_AveATKnum = g_AttackCount[1];
-			var w2 = (wCast + wDelay) * n_AveATKnum;
+			var w2 = (CS.wCast + wDelay) * n_AveATKnum;
 			w2 = Math.floor(w2 * 100) / 100;
 			if(n_Delay[0]) myInnerHtml("BattleTime","特殊",0);
 			else myInnerHtml("BattleTime",__DIG3(w2) + "秒",0);
@@ -10124,7 +10056,7 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 			myInnerHtml("BattleTime",SubName[6],0);
 		}
 
-		g_dps = 1 / (wCast + wDelay) * w_DMG[1];
+		g_dps = 1 / (CS.wCast + wDelay) * w_DMG[1];
 		g_dps *= 100;
 		g_dps = Math.round(g_dps);
 		g_dps /= 100;
@@ -10488,7 +10420,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 		// 使用不可の場合
-		if (n_Buki_Muri) {
+		if (CS.n_Buki_Muri) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
 			objCellF.style.gridColumnEnd = "6";
@@ -10500,7 +10432,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		}
 
 		// ダメージなし化の場合
-		if (g_bSkillNoDamage) {
+		if (CS.g_bSkillNoDamage) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
 			objCellF.style.gridColumnEnd = "6";
@@ -10677,7 +10609,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	objCell.classList.add("BTLRSLT_TAB_BASIC");
 	objCell.classList.add(partIdStr);
 	objCell.classList.add("CSSCLS_BTLRSLT_VALUE");
-	HtmlCreateTextNode(funcDIG3PXPercent(w_HIT_HYOUJI, 2), objCell);
+	HtmlCreateTextNode(funcDIG3PXPercent(CS.w_HIT_HYOUJI, 2), objCell);
 
 	// 必中効果のみ
 	if (battleCalcResultAll.GetPassiveResultCount() > 0) {
@@ -12020,7 +11952,7 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 		battleCalcInfo.skillId = n_A_ActiveSkill;
 		battleCalcInfo.skillLv = n_A_ActiveSkillLV;	
 		if(n_A_ActiveSkill == SKILL_ID_DEATH_BOUND){
-			if(n_DEATH_BOUND[3]==0){
+			if(CS.n_DEATH_BOUND[3]==0){
 				var wRef_DB;
 				wRef_DB = (500 + 100 * n_A_ActiveSkillLV) * w_sp_rs;
 				// 特定の戦闘エリアでの補正
@@ -12030,33 +11962,33 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 						break;
 				}
 				var wRef4 = new Array();
-				n_DEATH_BOUND[0] = Math.floor((w_HiDam[0] * 0.7) * wRef_DB / 100);
-				n_DEATH_BOUND[1] = Math.floor((wBHD * 0.7) * wRef_DB / 100);
-				n_DEATH_BOUND[2] = Math.floor((w_HiDam[6] * 0.7) * wRef_DB / 100);
-				n_DEATH_BOUND[3] = 1;
+				CS.n_DEATH_BOUND[0] = Math.floor((w_HiDam[0] * 0.7) * wRef_DB / 100);
+				CS.n_DEATH_BOUND[1] = Math.floor((wBHD * 0.7) * wRef_DB / 100);
+				CS.n_DEATH_BOUND[2] = Math.floor((w_HiDam[6] * 0.7) * wRef_DB / 100);
+				CS.n_DEATH_BOUND[3] = 1;
 				BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray);
-				n_DEATH_BOUND[3] = 0;
+				CS.n_DEATH_BOUND[3] = 0;
 				wBHD = Math.floor((wBHD * 0.3) * wRef_DB / 100);
 				w_HiDam[0] = Math.floor((w_HiDam[0] * 0.3) * wRef_DB / 100);
 				w_HiDam[6] = Math.floor((w_HiDam[6] * 0.3) * wRef_DB / 100);
 			}
 		}
 		if(n_A_ActiveSkill == SKILL_ID_HASAICHU){
-			if(n_DEATH_BOUND[3]==0){
+			if(CS.n_DEATH_BOUND[3]==0){
 				var wRef_DB;
 				wRef_DB = (100 + 20 * n_A_ActiveSkillLV) * w_sp_rs;
 				var wRef4 = new Array();
-				n_DEATH_BOUND[0] = Math.floor(w_HiDam[0] * wRef_DB / 100);
-				n_DEATH_BOUND[1] = Math.floor(wBHD * wRef_DB / 100);
-				n_DEATH_BOUND[2] = Math.floor(w_HiDam[6] * wRef_DB / 100);
-				n_DEATH_BOUND[3] = 1;
+				CS.n_DEATH_BOUND[0] = Math.floor(w_HiDam[0] * wRef_DB / 100);
+				CS.n_DEATH_BOUND[1] = Math.floor(wBHD * wRef_DB / 100);
+				CS.n_DEATH_BOUND[2] = Math.floor(w_HiDam[6] * wRef_DB / 100);
+				CS.n_DEATH_BOUND[3] = 1;
 				if(attackMethodConfArray[0].GetOptionValue(2) != 0){
-					n_DEATH_BOUND[0] = Math.floor(attackMethodConfArray[0].GetOptionValue(2) * wRef_DB / 100);
-					n_DEATH_BOUND[1] = n_DEATH_BOUND[0];
-					n_DEATH_BOUND[2] = n_DEATH_BOUND[0];
+					CS.n_DEATH_BOUND[0] = Math.floor(attackMethodConfArray[0].GetOptionValue(2) * wRef_DB / 100);
+					CS.n_DEATH_BOUND[1] = CS.n_DEATH_BOUND[0];
+					CS.n_DEATH_BOUND[2] = CS.n_DEATH_BOUND[0];
 				}
 				BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray);
-				n_DEATH_BOUND[3] = 0;
+				CS.n_DEATH_BOUND[3] = 0;
 			}
 		}
 	}
@@ -13942,8 +13874,8 @@ export function ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, sp
 	// MRES減衰の適用
 	wBMC2 = ApplyMresResist(mobData, wBMC2);
 	// モンスターのＭＤＥＦを適用
-	if(directSubtractionMdef) {
-		wBMC2 = Math.floor(wBMC2 - B_Total_MDEF);
+	if(CS.directSubtractionMdef) {
+		wBMC2 = Math.floor(wBMC2 - CS.B_Total_MDEF);
 	}
 	else{
 		var w = w_MDEF * 4;
@@ -14467,7 +14399,7 @@ export function GetActRateSandansho(skillId, mobData) {
  * @returns 
  */
 export function GetActHitRateSandansho(skillId, mobData) {
-	return GetActRateSandansho(skillId, mobData) * w_HIT / 100;
+	return GetActRateSandansho(skillId, mobData) * CS.w_HIT / 100;
 }
 
 /**
@@ -14502,7 +14434,7 @@ export function GetActHitRateFearBleath(skillId, mobData) {
 		rate *= (100 - n_B_TAISEI[MOB_CONF_PLAYER_ID_LUCKY]) / 100;
 	}
 
-	return rate * w_HIT / 100;
+	return rate * CS.w_HIT / 100;
 }
 
 /**
@@ -14537,7 +14469,7 @@ export function GetActHitRateDA(skillId, mobData) {
 		rate *= (100 - n_B_TAISEI[MOB_CONF_PLAYER_ID_LUCKY]) / 100;
 	}
 
-	return rate * w_HIT / 100;
+	return rate * CS.w_HIT / 100;
 }
 
 /**
@@ -14603,7 +14535,7 @@ export function GetActHitRateNormal(skillId, mobData) {
 		rate *= (100 - n_B_TAISEI[MOB_CONF_PLAYER_ID_LUCKY]) / 100;
 	}
 
-	return rate * w_HIT / 100;
+	return rate * CS.w_HIT / 100;
 }
 
 /**
@@ -14623,7 +14555,7 @@ export function GetActHitRateAll(skillId, mobData) {
 	rate += GetActHitRateNormal(skillId, mobData);
 
 	// 必中ＨＩＴを満たしている場合
-	if(w_HIT >= 100) {
+	if(CS.w_HIT >= 100) {
 		rate = 100;
 	}
 
@@ -14782,12 +14714,12 @@ export function calc() {
 	var attackMethodConfArray = null;
 
 
-	str_bSUBname = "";
-	str_bSUB = "";
-	wbairitu = 100;
+	CS.str_bSUBname = "";
+	CS.str_bSUB = "";
+	CS.wbairitu = 100;
 	
-	for (idx = 0; idx < g_damageTextArray.length; idx++) {
-		g_damageTextArray[idx] = [];
+	for (idx = 0; idx < CS.g_damageTextArray.length; idx++) {
+		CS.g_damageTextArray[idx] = [];
 	}
 
 	// ステータス等の計算（foot.js で定義しているアレ）
@@ -14808,23 +14740,23 @@ export function calc() {
 
 	// 魔法は必中
 	if (w_MagicSkill.indexOf(n_A_ActiveSkill) >= 0) {
-		w_HIT = 100;
+		CS.w_HIT = 100;
 		set_g_perfectHitRate(0);
 	}
 	// 魔法は必中
 	if ((g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_MAGICAL) == CSkillData.TYPE_MAGICAL) {
-		w_HIT = 100;
+		CS.w_HIT = 100;
 		set_g_perfectHitRate(0);
 	}
 
 	// それ以外は、命中率を計算
 	else {
 		// 基本確率
-		w_HIT = 100 - (mobData[32] - charaData[CHARA_DATA_INDEX_HIT]);
-		n_AS_HIT = w_HIT;
+		CS.w_HIT = 100 - (mobData[32] - charaData[CHARA_DATA_INDEX_HIT]);
+		n_AS_HIT = CS.w_HIT;
 
 		// スキルによるHIT補正の適用
-		w_HIT = Math.floor(w_HIT * (100 + GetHitModify()) / 100);
+		CS.w_HIT = Math.floor(CS.w_HIT * (100 + GetHitModify()) / 100);
 
 		// 必中スキルの補正
 		// TODO: なぜここで？
@@ -14834,24 +14766,24 @@ export function calc() {
 		case SKILL_ID_APUCHAORURIGI:
 		case SKILL_ID_SHIELD_BOOMERANG_TAMASHI:
 		case SKILL_ID_SPELL_FIST:
-			w_HIT = 100;
+			CS.w_HIT = 100;
 			break;
 		}
 
 		if (UsedSkillSearch(SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO)) {
-			w_HIT = 100;
+			CS.w_HIT = 100;
 		}
 
 		// 確率範囲補正
-		w_HIT = Math.min(100, Math.max(5, w_HIT));
+		CS.w_HIT = Math.min(100, Math.max(5, CS.w_HIT));
 
 		// 特定スキルの命中補正
 		if (n_A_ActiveSkill == SKILL_ID_SHIELD_CHAIN) {
-			w_HIT += 20;
+			CS.w_HIT += 20;
 		}
 
 		// 確率範囲補正
-		w_HIT = Math.min(100, Math.max(5, w_HIT));
+		CS.w_HIT = Math.min(100, Math.max(5, CS.w_HIT));
 
 		// ○○％の確率で必中　効果の適用
 		//var wkHit = GetEquippedTotalSPEquip(86) + GetEquippedTotalSPCardAndElse(86);
@@ -14867,27 +14799,27 @@ export function calc() {
 		set_g_perfectHitRate(wkHit);
 
 		if (wkHit > 0) {
-			w_HIT = w_HIT + (100 - w_HIT) * wkHit / 100;
+			CS.w_HIT = CS.w_HIT + (100 - CS.w_HIT) * wkHit / 100;
 		}
-		if (w_HIT > 100) {
-			w_HIT = 100;
+		if (CS.w_HIT > 100) {
+			CS.w_HIT = 100;
 		}
 
 		// フェイタルメナスの命中率減少ペナルティ
 		if (n_A_ActiveSkill == SKILL_ID_FATAL_MENUS) {
 
-			w_HIT -= Math.floor(w_HIT * (35 - 5 * n_A_ActiveSkillLV - (n_A_ActiveSkillLV >= 6 ? 5 : 0)) / 100);
+			CS.w_HIT -= Math.floor(CS.w_HIT * (35 - 5 * n_A_ActiveSkillLV - (n_A_ActiveSkillLV >= 6 ? 5 : 0)) / 100);
 
 			// 確率範囲補正
-			w_HIT = Math.min(100, Math.max(5, w_HIT));
+			CS.w_HIT = Math.min(100, Math.max(5, CS.w_HIT));
 		}
 
 		// 丸め処理
-		w_HIT = Math.floor(w_HIT * 100)/100;
+		CS.w_HIT = Math.floor(CS.w_HIT * 100)/100;
 	}
 
 	// 表示用変数にも設定
-	w_HIT_HYOUJI = w_HIT;
+	CS.w_HIT_HYOUJI = CS.w_HIT;
 
 	//----------------------------------------------------------------
 	//
@@ -14949,7 +14881,7 @@ export function calc() {
 	}
 
 	if(n_A_ActiveSkill==0 || n_A_ActiveSkill==SKILL_ID_SHARP_SHOOTING || n_A_ActiveSkill==401 || n_A_ActiveSkill==456 || n_A_ActiveSkill==578 || (n_A_ActiveSkill==86 && (50 <= mobData[18] && mobData[18] <60))){
-		w_HIT_HYOUJI = Math.floor(GetActHitRateAll(n_A_ActiveSkill, mobData) * 100) /100;
+		CS.w_HIT_HYOUJI = Math.floor(GetActHitRateAll(n_A_ActiveSkill, mobData) * 100) /100;
 		myInnerHtml("CRInum",(Math.round(GetActRateCritical(n_A_ActiveSkill, mobData) * 100) / 100) + SubName[0],0);
 	}
 
@@ -15012,7 +14944,7 @@ export function calc() {
 	// 【ＡＴＫ計算】サイズ補正の取得
 	//
 	//----------------------------------------------------------------
-	wCSize = GetSizeModify(mobData, weaponsize[n_A_WeaponType][mobData[17]]);
+	CS.wCSize = GetSizeModify(mobData, weaponsize[n_A_WeaponType][mobData[17]]);
 
 	//----------------------------------------------------------------
 	//
@@ -15045,11 +14977,11 @@ export function calc() {
 	var w = 0;
 	var refineAtk = 0;
 	for(var i=0;i<=2;i++) {
-		n_A_DMG_GX[i] = 0;
+		CS.n_A_DMG_GX[i] = 0;
 	}
 	var wBukiAtk = [0,0,0];
-	n_A_CriATK = [0,0,0];
-	n_A_DMG = [0,0,0];
+	CS.n_A_CriATK = [0,0,0];
+	CS.n_A_DMG = [0,0,0];
 	var wBukiAtkLeft = [0,0,0];
 	var wBukiAtkLeftCri = [0,0,0];
 
@@ -15067,33 +14999,33 @@ export function calc() {
 
 	// 右手系列
 	refineAtk = charaData[CHARA_DATA_INDEX_REFINE_ATK];
-	wBukiAtk = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, wCSize,
+	wBukiAtk = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, CS.wCSize,
 							refineAtk, n_A_WeaponLV_Minplus, n_A_WeaponLV_Maxplus, tsuchifuAtkRate,
 							n_A_ActiveSkill, mobData, false, false, false, false);
 
-	n_A_CriATK = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, wCSize,
+	CS.n_A_CriATK = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, CS.wCSize,
 							refineAtk, n_A_WeaponLV_Minplus, n_A_WeaponLV_Maxplus, tsuchifuAtkRate,
 							n_A_ActiveSkill, mobData, true, false, false, false);
 
 	// 左手系列
 	if (n_Nitou) {
 		refineAtk = charaData[CHARA_DATA_INDEX_REFINE_ATK] - n_A_WeaponLV_seirenATK + n_A_Weapon2LV_seirenATK;
-		wBukiAtkLeft = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_Weapon2Type, n_A_Weapon2LV, n_A_Weapon2_ATK, wCSize,
+		wBukiAtkLeft = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_Weapon2Type, n_A_Weapon2LV, n_A_Weapon2_ATK, CS.wCSize,
 								refineAtk, n_A_Weapon2LV_Minplus, n_A_Weapon2LV_Maxplus, tsuchifuAtkRate,
 								n_A_ActiveSkill, mobData, false, false, false, true);
 
-		wBukiAtkLeftCri = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_Weapon2Type, n_A_Weapon2LV, n_A_Weapon2_ATK, wCSize,
+		wBukiAtkLeftCri = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_Weapon2Type, n_A_Weapon2LV, n_A_Weapon2_ATK, CS.wCSize,
 								refineAtk, n_A_Weapon2LV_Minplus, n_A_Weapon2LV_Maxplus, tsuchifuAtkRate,
 								n_A_ActiveSkill, mobData, true, false, false, true);
 	}
 
 	// 以下、クリティカル未対応
 	refineAtk = charaData[CHARA_DATA_INDEX_REFINE_ATK];
-	n_A_DMG_QUAKE = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, wCSize,
+	n_A_DMG_QUAKE = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, CS.wCSize,
 							refineAtk, n_A_WeaponLV_Minplus, n_A_WeaponLV_Maxplus, tsuchifuAtkRate,
 							n_A_ActiveSkill, mobData, false, true, false, false);
 
-	n_A_DMG_GX = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, wCSize,
+	CS.n_A_DMG_GX = GetWeaponAtk(w_STRDEX, w_BONUS, n_A_WeaponType, n_A_WeaponLV, n_A_Weapon_ATK, CS.wCSize,
 							refineAtk, n_A_WeaponLV_Minplus, n_A_WeaponLV_Maxplus, tsuchifuAtkRate,
 							n_A_ActiveSkill, mobData, false, false, true, false);
 
@@ -15102,26 +15034,26 @@ export function calc() {
 	// 【ＡＴＫ計算】ウォーグスキルの攻撃力を算出
 	//
 	//----------------------------------------------------------------
-	BK_n_A_DMG_Wolf = [0,0,0];
-	for (idx = 0; idx < BK_n_A_DMG_Wolf.length; idx++) {
+	CS.BK_n_A_DMG_Wolf = [0,0,0];
+	for (idx = 0; idx < CS.BK_n_A_DMG_Wolf.length; idx++) {
 		//--------------------------------
 		// 基礎攻撃力
 		//--------------------------------
-		BK_n_A_DMG_Wolf[idx] = charaData[CHARA_DATA_INDEX_STATUS_ATK] + wBukiAtk[idx] - n_tok[ITEM_SP_ATK_PLUS];
+		CS.BK_n_A_DMG_Wolf[idx] = charaData[CHARA_DATA_INDEX_STATUS_ATK] + wBukiAtk[idx] - n_tok[ITEM_SP_ATK_PLUS];
 		//--------------------------------
 		// 強制無属性（倍率適用）
 		//--------------------------------
-		BK_n_A_DMG_Wolf[idx] = ApplyElementRatio(mobData, BK_n_A_DMG_Wolf[idx], ELM_ID_VANITY);
+		CS.BK_n_A_DMG_Wolf[idx] = ApplyElementRatio(mobData, CS.BK_n_A_DMG_Wolf[idx], ELM_ID_VANITY);
 		//--------------------------------
 		// 「トゥースオブウォーグ」の攻撃力増加
 		//--------------------------------
-		BK_n_A_DMG_Wolf[idx] += 10 * Math.max(LearnedSkillSearch(SKILL_ID_TOOTH_OF_WUG), UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG));
+		CS.BK_n_A_DMG_Wolf[idx] += 10 * Math.max(LearnedSkillSearch(SKILL_ID_TOOTH_OF_WUG), UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG));
 		//--------------------------------
 		// 演奏スキル「ダンスウィズウォーグ」の攻撃力増加
 		//--------------------------------
 		if (g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] > 0) {
 			// 仕様変更前の「ミンストレルとワンダラーの人数による効果の変化」を常に最大値 7 が出るものと仮定
-			BK_n_A_DMG_Wolf[idx] += 2 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] * 7;
+			CS.BK_n_A_DMG_Wolf[idx] += 2 * g_confDataSanzi[CCharaConfSanzi.CONF_ID_DANCE_WITH_WUG] * 7;
 		}
 	}
 
@@ -15135,12 +15067,12 @@ export function calc() {
 	battleCalcInfo.criRate = GetActRateCritical(n_A_ActiveSkill, mobData);
 	// 右手ATK
 	battleCalcInfo.atkUnitArrayWpn[0] = wBukiAtk.slice(0, 3);
-	battleCalcInfo.atkUnitArrayCri[0] = n_A_CriATK.slice(0, 3);
+	battleCalcInfo.atkUnitArrayCri[0] = CS.n_A_CriATK.slice(0, 3);
 	// 左手ATK
 	battleCalcInfo.atkUnitArrayWpn[1] = wBukiAtkLeft.slice();
 	battleCalcInfo.atkUnitArrayCri[1] = wBukiAtkLeftCri.slice();
 	// ウォーグATK
-	battleCalcInfo.atkUnitArrayWug[0] = BK_n_A_DMG_Wolf.slice(0, 3);
+	battleCalcInfo.atkUnitArrayWug[0] = CS.BK_n_A_DMG_Wolf.slice(0, 3);
 
 	//----------------------------------------------------------------
 	//
@@ -15152,17 +15084,17 @@ export function calc() {
 	// 攻撃力初期設定
 	for (idx = 0; idx < wBukiAtk.length; idx++) {
 		BK_n_A_DMG2[idx] = wBukiAtk[idx];
-		n_A_DMG[idx] = wBukiAtk[idx];
+		CS.n_A_DMG[idx] = wBukiAtk[idx];
 	}
 
 	// ダメージ反転補正？（未整理）
-	if(n_A_DMG[2] <0){
-		var wBK = n_A_DMG[0];
-		n_A_DMG[0] = n_A_DMG[2];
-		n_A_DMG[2] = wBK;
-		wBK = n_A_CriATK[0];
-		n_A_CriATK[0] = n_A_CriATK[2];
-		n_A_CriATK[2] = wBK;
+	if(CS.n_A_DMG[2] <0){
+		var wBK = CS.n_A_DMG[0];
+		CS.n_A_DMG[0] = CS.n_A_DMG[2];
+		CS.n_A_DMG[2] = wBK;
+		wBK = CS.n_A_CriATK[0];
+		CS.n_A_CriATK[0] = CS.n_A_CriATK[2];
+		CS.n_A_CriATK[2] = wBK;
 	}
 
 	//----------------------------------------------------------------
@@ -15277,30 +15209,30 @@ export function calc() {
 			}
 		}
 		if(n_A_ActiveSkill == 810 || wCH_AS_QUAKE == 1){
-			n_A_DMG_GX[0] = n_A_DMG_QUAKE[0];
-			n_A_DMG_GX[1] = n_A_DMG_QUAKE[1];
-			n_A_DMG_GX[2] = n_A_DMG_QUAKE[2];
+			CS.n_A_DMG_GX[0] = n_A_DMG_QUAKE[0];
+			CS.n_A_DMG_GX[1] = n_A_DMG_QUAKE[1];
+			CS.n_A_DMG_GX[2] = n_A_DMG_QUAKE[2];
 		}
 		var GXsize = GetSizeModify(mobData, weaponsize[n_A_WeaponType][mobData[17]]);
-		for(var i=0;i<=2;i++) n_A_DMG_GX[i] = ROUNDDOWN(n_A_DMG_GX[i] * GXsize);
+		for(var i=0;i<=2;i++) CS.n_A_DMG_GX[i] = ROUNDDOWN(CS.n_A_DMG_GX[i] * GXsize);
 		if(n_A_WeaponType == 0 && charaData[CHARA_DATA_INDEX_REFINE_ATK] != 0){
-			for(var i=0;i<=2;i++) n_A_DMG_GX[i] += charaData[CHARA_DATA_INDEX_REFINE_ATK];
+			for(var i=0;i<=2;i++) CS.n_A_DMG_GX[i] += charaData[CHARA_DATA_INDEX_REFINE_ATK];
 		}
 		if(g_confDataIchizi[CCharaConfIchizi.CONF_ID_MAGNUM_BREAK_ZYOTAI]){
 			if(mobData[18] != 33 && mobData[18] != 34){
 				for(var i=0;i<=2;i++){
-					var w = ApplyElementRatio(mobData, n_A_DMG_GX[i],3);
+					var w = ApplyElementRatio(mobData, CS.n_A_DMG_GX[i],3);
 					w = ROUNDDOWN(w / 5);
-					n_A_DMG_GX[i] += w;
+					CS.n_A_DMG_GX[i] += w;
 				}
 			}
 		}
 		else if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON) && UsedSkillSearch(SKILL_ID_CANCEL_EDP_POISON_ATTACK) == 0){
 			if(n_A_ActiveSkill == 810){
 				for(var i=0;i<=2;i++){
-					var w = ApplyElementRatio(mobData, n_A_DMG_GX[i],5);
+					var w = ApplyElementRatio(mobData, CS.n_A_DMG_GX[i],5);
 					w = ROUNDDOWN(w / 4);
-					n_A_DMG_GX[i] += w;
+					CS.n_A_DMG_GX[i] += w;
 				}
 			}
 		}
@@ -15319,24 +15251,24 @@ export function calc() {
 				w_Arrow = GetEquippedTotalSPArrow(ITEM_SP_ATK_PLUS);
 		}
 
-		for(var i=0;i<=2;i++) n_A_DMG_GX[i] += n_tok[17] + w_Arrow;
-		if(wCH_AS_QUAKE == 1) for(var i=0;i<=2;i++) n_A_DMG_GX[i] -= n_A_QUAKE_KIRI;
-		for(var i=0;i<=2;i++) n_A_DMG_GX[i] = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, n_A_DMG_GX[i]);
+		for(var i=0;i<=2;i++) CS.n_A_DMG_GX[i] += n_tok[17] + w_Arrow;
+		if(wCH_AS_QUAKE == 1) for(var i=0;i<=2;i++) CS.n_A_DMG_GX[i] -= n_A_QUAKE_KIRI;
+		for(var i=0;i<=2;i++) CS.n_A_DMG_GX[i] = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, CS.n_A_DMG_GX[i]);
 		var wBaiB = GetElementFieldDamageRatio();
 
 		for(var i=0;i<=2;i++){
-			n_A_DMG_GX[i] = ApplyElementRatio(mobData, n_A_DMG_GX[i],n_A_Weapon_zokusei);
-			if(wBaiB != 0) n_A_DMG_GX[i] = ROUNDDOWN(n_A_DMG_GX[i] * (100 + wBaiB) / 100);
+			CS.n_A_DMG_GX[i] = ApplyElementRatio(mobData, CS.n_A_DMG_GX[i],n_A_Weapon_zokusei);
+			if(wBaiB != 0) CS.n_A_DMG_GX[i] = ROUNDDOWN(CS.n_A_DMG_GX[i] * (100 + wBaiB) / 100);
 		}
 
 		for(var i=0;i<=2;i++){
-			n_A_DMG_GX[i] = BaiTaisei_A_SP(n_A_DMG_GX[i]);
-			n_A_DMG_GX[i] += charaData[CHARA_DATA_INDEX_STATUS_ATK_GX];
+			CS.n_A_DMG_GX[i] = BaiTaisei_A_SP(CS.n_A_DMG_GX[i]);
+			CS.n_A_DMG_GX[i] += charaData[CHARA_DATA_INDEX_STATUS_ATK_GX];
 		}
-		if(n_A_DMG_GX[2] <0){
-			var wBK = n_A_DMG_GX[0];
-			n_A_DMG_GX[0] = n_A_DMG_GX[2];
-			n_A_DMG_GX[2] = wBK;
+		if(CS.n_A_DMG_GX[2] <0){
+			var wBK = CS.n_A_DMG_GX[0];
+			CS.n_A_DMG_GX[0] = CS.n_A_DMG_GX[2];
+			CS.n_A_DMG_GX[2] = wBK;
 		}
 		mobData[0] = wBK_n_B0;
 		mobData[17] = wBK_n_B17;
@@ -15380,7 +15312,7 @@ export function calc() {
 	//--------------------------------
 	BuildResistElementTinyHtml();
 	RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData);
-	RebuildSizeModifyRatioInfo(null, charaData, n_tok, mobData, wCSize);
+	RebuildSizeModifyRatioInfo(null, charaData, n_tok, mobData, CS.wCSize);
 
 	//----------------------------------------------------------------
 	//
@@ -15472,16 +15404,16 @@ export function calc() {
 	}
 
 	var innerHtmlText = "";
-	for (idx = 0; idx < g_damageTextArray.length; idx++) {
+	for (idx = 0; idx < CS.g_damageTextArray.length; idx++) {
 		innerHtmlText = "";
-		for (idxArray = 0; idxArray < g_damageTextArray[idx].length; idxArray++) {
+		for (idxArray = 0; idxArray < CS.g_damageTextArray[idx].length; idxArray++) {
 			// 数値でなければ、そのまま追記
-			if (isNaN(g_damageTextArray[idx][idxArray])) {
-				innerHtmlText += g_damageTextArray[idx][idxArray];
+			if (isNaN(CS.g_damageTextArray[idx][idxArray])) {
+				innerHtmlText += CS.g_damageTextArray[idx][idxArray];
 			}
 			// 数値の場合は、３桁区切り適用
 			else {
-				innerHtmlText += __DIG3(g_damageTextArray[idx][idxArray]);
+				innerHtmlText += __DIG3(CS.g_damageTextArray[idx][idxArray]);
 			}
 		}
 		myInnerHtml("strID_" + idx, innerHtmlText, 0);
@@ -16303,7 +16235,7 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	// 属性付与状態を取得
 	set_n_A_Weapon_zokusei(HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY));
 	//n_A_Weapon2_zokusei = n_A_Weapon_zokusei;
-	BK_Weapon_zokusei = n_A_Weapon_zokusei;
+	CS.BK_Weapon_zokusei = n_A_Weapon_zokusei;
 	// 属性付与が指定されていない場合のみ、装備の属性を確認
 	if (n_A_Weapon_zokusei == ELM_ID_VANITY) {
 		// 右手武器
@@ -16330,7 +16262,7 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 		//n_A_Weapon2_zokusei = GetArmsElementBySPData(itemRegionIdArray, cardRegionIdArray, n_A_Weapon_zokusei);
 		// 一部のスキルでは、付与属性がダメージに影響するので、保持しておく
 		if (n_A_ActiveSkill == SKILL_ID_IGNITION_BREAK || n_A_ActiveSkill == SKILL_ID_AXE_TORNADE) {
-			BK_Weapon_zokusei = n_A_Weapon_zokusei;
+			CS.BK_Weapon_zokusei = n_A_Weapon_zokusei;
 		}
 		// 矢属性の計算
 		bApplyArrowElement = false;
@@ -16359,7 +16291,7 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 		if (bApplyArrowElement) {
 			// 属性矢
 			set_n_A_Weapon_zokusei(GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData));
-			BK_Weapon_zokusei = n_A_Weapon_zokusei;
+			CS.BK_Weapon_zokusei = n_A_Weapon_zokusei;
 		}
 	}
 	// スキル使用状態による、攻撃属性の変化
@@ -16712,7 +16644,7 @@ export function GetPerfectHitDamage(charaData, specData, mobData, attackMethodCo
 			break;
 		// 號砲
 		case SKILL_ID_GOHO:
-			if(!n_AS_MODE){
+			if(!CS.n_AS_MODE){
 				// オートスペルの計算中でない場合
 				if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
 					// コンボ時のフラグを見て、威力倍率を調整
@@ -16758,7 +16690,7 @@ export function GetPerfectHitDamage(charaData, specData, mobData, attackMethodCo
 
 			// 消費SP、ベースレベルダメージを計算
 			// オートスペル計算中でない場合、かつ、スキルのオプションが『単発発動』の場合
-			if ((!n_AS_MODE) && (attackMethodConfArray[0].GetOptionValue(0) == 0)) {
+			if ((!CS.n_AS_MODE) && (attackMethodConfArray[0].GetOptionValue(0) == 0)) {
 
 				// 消費SPあり
 				syouhiSP = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (10 + n_A_ActiveSkillLV) / 100);
@@ -17836,7 +17768,7 @@ export function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mo
 		if (TyouEnkakuSousa3dan) {
 			rangeUp = n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP];
 		}
-	} else if ((n_A_ActiveSkill == SKILL_ID_GRAND_CROSS) && !n_A_GX_HANDO) {
+	} else if ((n_A_ActiveSkill == SKILL_ID_GRAND_CROSS) && !CS.n_A_GX_HANDO) {
 		// グランドクロスの場合（反動除く）
 		if (TyouEnkakuSousa3dan) {
 			rangeUp = n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP];
@@ -21117,10 +21049,10 @@ export function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 export function ApplyLexAeterna(mobData, dmg) {
 
 	// TODO : 謎判定
-	if(!n_AS_MODE){
+	if(!CS.n_AS_MODE){
 
 		// レックスエーテルナ状態の場合
-		if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] && !wLAch){
+		if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] && !CS.wLAch){
 
 			// チェーンライトニング、テトラボルテックス以外の場合（多段判定以外の場合）
 			if(n_A_ActiveSkill != 530 && n_A_ActiveSkill != 532) return (dmg * 2);
@@ -21171,7 +21103,7 @@ export function CalcMeanDamage(skillId, charaData, specData, mobData, attackMeth
 	}
 
 	// クリティカル攻撃　ダメージ期待値
-	var meanDmgCritical = GetActRateCritical(skillId, mobData) * n_A_CriATK[1];
+	var meanDmgCritical = GetActRateCritical(skillId, mobData) * CS.n_A_CriATK[1];
 
 	// 通常攻撃　ダメージ期待値
 	var meanDmgNormal = GetActHitRateNormal(skillId, mobData) * dmgNormal;
@@ -21194,7 +21126,7 @@ export function CalcMeanDamage(skillId, charaData, specData, mobData, attackMeth
  */
 export function CalcMeanDamageLeftHand(skillId, mobData, dmg) {
 
-	var meanDmgNormal = dmg * (100 - GetActHitRateSandansho(skillId, mobData)) * w_HIT / 100 / 100;
+	var meanDmgNormal = dmg * (100 - GetActHitRateSandansho(skillId, mobData)) * CS.w_HIT / 100 / 100;
 	var meanDmgAll = meanDmgNormal;
 
 	return meanDmgAll;
@@ -21224,8 +21156,8 @@ export function GetFixedAppendAtk(skillId, charaData, specData, mobData, w_DAM, 
 		x_HIT = GetActHitRateAll(skillId, mobData);
 	}
 
-	if (w_HIT == 100) {
-		x_HIT = w_HIT;
+	if (CS.w_HIT == 100) {
+		x_HIT = CS.w_HIT;
 	}
 
 	// オーラブレイドによるＡＴＫ上昇効果
@@ -21310,20 +21242,20 @@ export function BuildCastAndDelayHtmlMIG(mobData){
 	//----------------------------------------------------------------
 
 	// 詠唱時間短縮効果（±○○秒）の適用
-	wCast += GetCastFixOfSkillForCastTimeVary(n_A_ActiveSkill);
+	CS.wCast += GetCastFixOfSkillForCastTimeVary(n_A_ActiveSkill);
 
-	if (wCast < 0) wCast = 0;
+	if (CS.wCast < 0) CS.wCast = 0;
 
 	// 詠唱時間短縮効果（±○○％）の適用
 	scaling = GetCastScalingOfSkillForCastTimeVary(n_A_ActiveSkill);
 
 	if (scaling < 0) scaling = 0;
-	wCast = wCast * scaling / 100;
+	CS.wCast = CS.wCast * scaling / 100;
 
 	// 詠唱時間短縮効果（ステータス）の適用
-	var BK_wCast = wCast;
-	if (!cast_kotei && wCast != "不明") {
-		wCast = wCast * g_VariableCastTimeRate;
+	var BK_wCast = CS.wCast;
+	if (!CS.cast_kotei && CS.wCast != "不明") {
+		CS.wCast = CS.wCast * g_VariableCastTimeRate;
 	}
 
 	//----------------------------------------------------------------
@@ -21331,17 +21263,17 @@ export function BuildCastAndDelayHtmlMIG(mobData){
 	//----------------------------------------------------------------
 
 	// 詠唱時間短縮効果（±○○秒）の適用
-	n_KoteiCast -= n_tok[ITEM_SP_SKILL_FIXED_MINUS];
-	n_KoteiCast += GetAdditionalFixedCastTime();
-	n_KoteiCast += GetCastFixOfSkillForCastTimeFixed(n_A_ActiveSkill);
+	CS.n_KoteiCast -= n_tok[ITEM_SP_SKILL_FIXED_MINUS];
+	CS.n_KoteiCast += GetAdditionalFixedCastTime();
+	CS.n_KoteiCast += GetCastFixOfSkillForCastTimeFixed(n_A_ActiveSkill);
 
-	if (n_KoteiCast < 0) n_KoteiCast = 0;
+	if (CS.n_KoteiCast < 0) CS.n_KoteiCast = 0;
 
 	// 詠唱時間短縮効果（±○○％）の適用
 	scaling = GetCastScalingOfSkillForCastTimeFixed(n_A_ActiveSkill);
 
 	if (scaling < 0) scaling = 0;
-	wCastFixed = n_KoteiCast * scaling / 100;
+	wCastFixed = CS.n_KoteiCast * scaling / 100;
 
 	scaling = (100 - n_A_Kotei_Cast_Keigen);		// スキル全般の固定詠唱マイナス。たぶん乗算。
 	if (scaling < 0) scaling = 0;
@@ -21350,18 +21282,18 @@ export function BuildCastAndDelayHtmlMIG(mobData){
 	//----------------------------------------------------------------
 	// 戦闘結果インスタンスに格納
 	//----------------------------------------------------------------
-g_wCastTemp ??= wCast / 1000;;
+g_wCastTemp ??= CS.wCast / 1000;;
 g_wCastFixedTemp ??= wCastFixed / 1000;
 
 
 	//----------------------------------------------------------------
 	// 変動詠唱時間に固定詠唱時間を加算
 	//----------------------------------------------------------------
-	wCast += wCastFixed;
+	CS.wCast += wCastFixed;
 
-	wCast = wCast / 1000;
+	CS.wCast = CS.wCast / 1000;
 
-	if(n_Delay[5] > 0) wCast = 0;
+	if(n_Delay[5] > 0) CS.wCast = 0;
 
 
 	//----------------------------------------------------------------
@@ -21440,8 +21372,8 @@ g_wCastFixedTemp ??= wCastFixed / 1000;
 				break;
 			}
 		}
-		if(n_Delay[4] > (wDelay + wCast)){
-			wDelay = n_Delay[4] - wCast;
+		if(n_Delay[4] > (wDelay + CS.wCast)){
+			wDelay = n_Delay[4] - CS.wCast;
 			w = 4;
 		}
 
@@ -21452,8 +21384,8 @@ g_wCastFixedTemp ??= wCastFixed / 1000;
 		}
 
 		/// スキル固有のオブジェクト持続時間が最長ディレイの場合、全体ディレイとして採用（ケース６）
-		if(n_Delay[6] > (wDelay + wCast)){
-			wDelay = n_Delay[6] - wCast;
+		if(n_Delay[6] > (wDelay + CS.wCast)){
+			wDelay = n_Delay[6] - CS.wCast;
 			w = 6;
 		}
 
@@ -21691,7 +21623,7 @@ export function ApplyAttackDamageAmplify(mobData, dmg){
 		if(mobData[21] == 7) dmg = 1;
 		if(n_A_ActiveSkill==122) dmg = 0;
 		if(mobData[21] == 6){
-			if(n_AS_MODE && n_A_ActiveSkill != 0) dmg = 0;
+			if(CS.n_AS_MODE && n_A_ActiveSkill != 0) dmg = 0;
 		}
 	}
 
