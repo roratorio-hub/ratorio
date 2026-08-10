@@ -1,5 +1,4 @@
 // === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/card.h.js';
 import { GetElementText } from '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
 import { CardObjNew } from '../../../roro/m/js/card.dat.js';
@@ -632,4 +631,13 @@ export function generateImage() {
 }
 
 import { register } from './engine-registry.js';
+import { ELM_ID_COUNT } from '../../../roro/m/js/const/EnumElmId.js';
+import { CARD_KIND_ENCHANT } from '../../../roro/m/js/const/EnumCardKind.js';
+import { CHARA_DATA_INDEX_CAST_PARAM } from '../../../roro/m/js/const/EnumCharaDataIndex.js';
+import {
+    EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
+} from '../../../roro/m/js/const/EnumEquipRegionId.js';
+import { ITEM_SP_IGNORE_DEF_ALL, ITEM_SP_IGNORE_DEF_RACE_ALL, ITEM_SP_IGNORE_MDEF_ALL, ITEM_SP_IGNORE_MDEF_RACE_ALL, ITEM_SP_KIRI_EFFECT, ITEM_SP_RESIST_ELM_VANITY } from '../../../roro/m/js/const/EnumItemSpId.js';
+import { RND_OPT_DATA_INDEX_SPID } from '../../../roro/m/js/const/EnumRndOptDataIndex.js';
 register('generateImage', generateImage);

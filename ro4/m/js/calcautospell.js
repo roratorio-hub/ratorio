@@ -1,7 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
 import '../../../roro/m/js/autospell.h.js';
-import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
 import '../../../roro/m/js/skill.h.js';
@@ -101,6 +100,17 @@ import {
          SU_LUK, n_A_JobLV, n_A_LUK, n_A_WeaponType,
          n_A_HEAD_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5,
 } from '../../../roro/m/js/roro-state.js';
+import { AUTO_SPELL_DATA_INDEX_ATTACKABLE, AUTO_SPELL_DATA_INDEX_ID, AUTO_SPELL_DATA_INDEX_SKILL_ID, AUTO_SPELL_DATA_INDEX_SKILL_LEVEL, AUTO_SPELL_DATA_INDEX_SORT_NAME } from '../../../roro/m/js/const/EnumAutoSpellDataIndex.js';
+import { AUTO_SPELL_TRIGGER_ANY_ATTACK, AUTO_SPELL_TRIGGER_LONGRANGE_ATTACK, AUTO_SPELL_TRIGGER_PHYSICAL_ATTACK, AUTO_SPELL_TRIGGER_SHORTRANGE_ATTACK } from '../../../roro/m/js/const/EnumAutoSpellTrigger.js';
+import { CARD_DATA_INDEX_SPBEGIN } from '../../../roro/m/js/const/EnumCardDataIndex.js';
+import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT } from '../../../roro/m/js/const/EnumEquipRegionId.js';
+import {
+    ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_BOOK, ITEM_KIND_BOW, ITEM_KIND_CLUB, ITEM_KIND_GRENADEGUN,
+    ITEM_KIND_HANDGUN,
+} from '../../../roro/m/js/const/EnumItemKind.js';
+import { ITEM_SP_AUTO_SPELL, ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL, ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED, ITEM_SP_END } from '../../../roro/m/js/const/EnumItemSpId.js';
+import { JOB_ID_HUNTER, JOB_ID_SNIPER } from '../../../roro/m/js/const/EnumJobId.js';
+import { SKILL_DATA_INDEX_NAME } from '../../../roro/m/js/const/EnumSkillDataIndex.js';
 
 /* オートスペル設定　最大数 */
 export const AUTO_SPELL_SETTING_COUNT = 20;

@@ -1,19 +1,14 @@
 // === AUTO-GENERATED IMPORTS ===
-import '../card.h.js';
 import { CardObjNew } from '../card.dat.js';
 import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 import { CMigEquipableData } from './CMigEquipableData.js';
+import { CARD_DATA_INDEX_ID, CARD_DATA_INDEX_NAME } from '../const/EnumCardDataIndex.js';
+import { MIG_EQUIPABLE_DATA_INDEX_ID, MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY, MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID, MIG_EQUIPABLE_DATA_INDEX_REF_ID } from '../const/EnumMigEquipableDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * カードデータマネージャクラス.
  */
 export function CMigConstDataManagerSubCard () {
-
-	//----------------
-	// 継承定義は、クラス本体の次に記述
-	//----------------
-
-
 
 	/**
 	 * 無名イニシャライザ.
@@ -31,8 +26,6 @@ export function CMigConstDataManagerSubCard () {
 		this.sourceArray = [];
 		this.objectArray = [];
 
-		// TODO: データ移行過渡処理
-		this.idEnumObjectName = "EnumMigCardId";
 
 	}).call(this);
 

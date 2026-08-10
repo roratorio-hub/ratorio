@@ -1,5 +1,4 @@
 // === AUTO-GENERATED IMPORTS ===
-import '../../../roro/m/js/card.h.js';
 import '../../../roro/m/js/common.js';
 import { MigGetBorderFlagText } from '../../../roro/m/js/data/mig.itemsp.h.js';
 import '../../../roro/m/js/rndopttype.h.js';
@@ -30,6 +29,12 @@ import {
 // onChangeShadow（runtime）でのみ参照され module 評価時には未使用のため循環は安全。
 // 自動生成ブロック外に手動で追加し、--force 再生成でも残るようにする。
 import { SaveSlotStateCardAll } from '../../../roro/m/js/slotpager.js';
+import { CARD_DATA_INDEX_NAME } from '../../../roro/m/js/const/EnumCardDataIndex.js';
+import { CONST_DATA_KIND_ENCHANT_LIST } from '../../../roro/m/js/const/EnumConstDataKind.js';
+import { ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_WPNLV } from '../../../roro/m/js/const/EnumItemDataIndex.js';
+import { ITEM_KIND_SHADOW_ACCESSORY_ON1, ITEM_KIND_SHADOW_ACCESSORY_ON2, ITEM_KIND_SHADOW_ARMS_LEFT, ITEM_KIND_SHADOW_ARMS_RIGHT, ITEM_KIND_SHADOW_BODY, ITEM_KIND_SHADOW_FOOT } from '../../../roro/m/js/const/EnumItemKind.js';
+import { MIG_BORDER_FLAG_ID_OVER } from '../../../roro/m/js/const/EnumMigBorderFlagId.js';
+import { RND_OPT_TYPE_DATA_INDEX_LIST_ID_ARRAY } from '../../../roro/m/js/const/EnumRndOptTypeDataIndex.js';
 
 /**
  * シャドウ装備コントローラクラス.

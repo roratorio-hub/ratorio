@@ -1,47 +1,9 @@
-
-import { CGlobalConstManager } from '../CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import { CNameKana } from '../CNameKana.js';
 import { CMigEquipableSpData } from './CMigEquipableSpData.js';
 import { CMigEquipableStaticData } from './CMigEquipableStaticData.js';
+import { MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY, MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID, MIG_EQUIPABLE_DATA_INDEX_REF_ID, MIG_EQUIPABLE_DATA_INDEX_SLOT, MIG_EQUIPABLE_DATA_INDEX_SP_DATA, MIG_EQUIPABLE_DATA_INDEX_STATIC_DATA } from '../const/EnumMigEquipableDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
-
-//----------------------------------------------------------------
-// データの要素番号
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumMigEquipableDataIndex",
-	[
-		"MIG_EQUIPABLE_DATA_INDEX_ID",
-		"MIG_EQUIPABLE_DATA_INDEX_REF_ID",
-		"MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID",
-		"MIG_EQUIPABLE_DATA_INDEX_SLOT",
-
-		"MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY",
-		"MIG_EQUIPABLE_DATA_INDEX_STATIC_DATA",
-		"MIG_EQUIPABLE_DATA_INDEX_SP_DATA",
-
-		// 説明文は、現状対応なし
-		// "MIG_EQUIPABLE_DATA_INDEX_EXPLAIN",
-
-		"MIG_EQUIPABLE_DATA_INDEX_NOTE",
-	],
-	0,
-	1
-);
-
-
-
-
-
-
-/*
-
-	基本的には、配列にデータを格納しており、そのまま操作する
-
-*/
-
-
 
 /**
  * 装備可能品データクラス.
@@ -60,9 +22,6 @@ export function CMigEquipableData (dataArrayC) {
 
 	// SPデータ配列
 	this.spDataArray = null;
-
-
-
 
 
 	/**
@@ -98,8 +57,6 @@ export function CMigEquipableData (dataArrayC) {
 	}).call(this);
 
 
-
-
 	/**
 	 * 公式IDを取得する.
 	 * @return 公式ID
@@ -133,7 +90,6 @@ export function CMigEquipableData (dataArrayC) {
 	};
 
 
-
 	/**
 	 * 指定の固定情報を取得する.
 	 * @param spid 固定情報のSPID
@@ -152,8 +108,6 @@ export function CMigEquipableData (dataArrayC) {
 
 		return value;
 	};
-
-
 
 
 	/**

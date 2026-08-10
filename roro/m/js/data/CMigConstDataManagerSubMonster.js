@@ -3,17 +3,13 @@ import '../monster.h.js';
 import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 import { CMigEquipableData } from './CMigEquipableData.js';
 import { MonsterObjNew } from '../monster.dat.js';
+import { MIG_EQUIPABLE_DATA_INDEX_ID, MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY, MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID, MIG_EQUIPABLE_DATA_INDEX_REF_ID } from '../const/EnumMigEquipableDataIndex.js';
+import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_NAME } from '../const/EnumMonsterDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * モンスターデータマネージャクラス.
  */
 export function CMigConstDataManagerSubMonster () {
-
-	//----------------
-	// 継承定義は、クラス本体の次に記述
-	//----------------
-
-
 
 	/**
 	 * 無名イニシャライザ.
@@ -31,8 +27,6 @@ export function CMigConstDataManagerSubMonster () {
 		this.sourceArray = [];
 		this.objectArray = [];
 
-		// TODO: データ移行過渡処理
-		this.idEnumObjectName = "EnumMigMonsterId";
 
 	}).call(this);
 

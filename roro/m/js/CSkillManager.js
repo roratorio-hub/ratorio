@@ -485,6 +485,21 @@ import {
          n_A_STR, n_A_AGI, n_A_DEX, n_A_INT,
          n_A_WeaponType, n_A_SHIELD_DEF_PLUS,
 } from './roro-state.js';
+import { ELM_ID_FIRE, ELM_ID_POISON, ELM_ID_VANITY, ELM_ID_WATER, ELM_ID_WIND } from './const/EnumElmId.js';
+import { RACE_ID_ANIMAL, RACE_ID_FISH, RACE_ID_HUMAN } from './const/EnumRaceId.js';
+import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from './const/EnumCharaDataIndex.js';
+import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_SHIELD } from './const/EnumEquipRegionId.js';
+import { ITEM_DATA_INDEX_WEIGHT, ITEM_DATA_INDEX_WPNLV } from './const/EnumItemDataIndex.js';
+import {
+    ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_BOOK, ITEM_KIND_BOW, ITEM_KIND_CLUB, ITEM_KIND_GATLINGGUN,
+    ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN, ITEM_KIND_KATAR, ITEM_KIND_KNIFE, ITEM_KIND_MUSICAL, ITEM_KIND_RIFLE,
+    ITEM_KIND_SHOTGUN, ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND, ITEM_KIND_SWORD, ITEM_KIND_SWORD_2HAND, ITEM_KIND_WHIP,
+} from './const/EnumItemKind.js';
+import { ITEM_SP_CRITICAL_DAMAGE_UP, ITEM_SP_ELEMENTAL } from './const/EnumItemSpId.js';
+import { MIG_PARAM_ID_CON, MIG_PARAM_ID_INT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from './const/EnumMigItemParamId.js';
+import { MONSTER_BOSSTYPE_BOSS } from './const/EnumMonsterBossType.js';
+import { MONSTER_DATA_INDEX_ELEMENT, MONSTER_DATA_INDEX_RACE, MONSTER_DATA_INDEX_SIZE } from './const/EnumMonsterDataIndex.js';
+import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from './const/EnumSizeId.js';
 
 
 // UsedSkillSearch は skillstate.js (ro4) から RegisterUsedSkillSearch で注入される。
@@ -847,6 +862,39 @@ export function CSkillManager() {
 		} else {
 			return this.dataArray[skillId].element;
 		}
+	}
+
+	/**
+	 * スキルデータに強制属性が定義されている場合のみ、その属性ＩＤを返す.
+	 * 戻り値は ELM_ID_VANITY 〜 ELM_ID_UNDEAD と同じ値なので、
+	 * そのまま n_A_Weapon_zokusei に代入できる.
+	 *
+	 * ELEMENT_VOID（強制属性なし）と ELEMENT_SPECIAL（複合属性）は
+	 * どちらも CSkillData.ELEMENT_VOID にまとめて返す.
+	 *
+	 * 属性が option 依存の関数になっているスキル（アドラムス、鹿砲、玄鹿の霊力など）は、
+	 * そのスキル自身の攻撃手段設定が無ければ正しく評価できない.
+	 * オートスペルのように option を用意できない呼び出し側は option に null を渡すこと.
+	 * その場合は判定不能として CSkillData.ELEMENT_VOID を返す（option.GetOptionValue の
+	 * TypeError も同時に防ぐ）.
+	 *
+	 * @param {Number} skillId
+	 * @param {CAttackMethodConf} option 攻撃手段設定. 用意できない場合は null
+	 * @param {Array} mobData
+	 * @param {Number} parentSkillId 追撃ダメージを持つスキルの呼び出し元スキルID
+	 * @returns {Number} 強制属性ID、または CSkillData.ELEMENT_VOID
+	 */
+	this.GetForcedElement = function(skillId, option, mobData, parentSkillId) {
+		if (typeof this.dataArray[skillId].element === "function") {
+			if ((option === null) || (option === undefined)) {
+				return CSkillData.ELEMENT_VOID;
+			}
+		}
+		var elmWork = this.GetElement(skillId, option, mobData, parentSkillId);
+		if ((CSkillData.ELEMENT_FORCE_VANITY <= elmWork) && (elmWork <= CSkillData.ELEMENT_FORCE_UNDEAD)) {
+			return elmWork;
+		}
+		return CSkillData.ELEMENT_VOID;
 	}
 
 	/**

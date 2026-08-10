@@ -1,60 +1,11 @@
-
-import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CNameKana } from './CNameKana.js';
 import { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
 // === AUTO-GENERATED IMPORTS ===
 import './CNameKana.js';
+import { MONSTER_MAP_DATA_INDEX_NAME_KANA_ARRAY } from './const/EnumMonsterMapDataIndex.js';
+import { NAME_KANA_DATA_INDEX_KANA, NAME_KANA_DATA_INDEX_SORT } from './const/EnumNameKanaDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 export { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from './monstermap.dat.js';
-
-//----------------------------------------------------------------
-// データの要素番号
-//----------------------------------------------------------------
-
-CGlobalConstManager.DefineEnum(
-	"EnumMonsterMapDataIndex",
-	[
-		"MONSTER_MAP_DATA_INDEX_ID",
-		"MONSTER_MAP_DATA_INDEX_KIND",
-		"MONSTER_MAP_DATA_INDEX_NAME_KANA_ARRAY",
-		"MONSTER_MAP_DATA_INDEX_DATA_ARRAY",
-	],
-	0,
-	1
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumMonsterMapDataIndex",
-	[
-		"MONSTER_MAP_DATA_INDEX_COUNT",
-	],
-	EnumMonsterMapDataIndex.Count,
-	1
-);
-
-
-//----------------------------------------------------------------
-// マップ種別ＩＤ定義
-//----------------------------------------------------------------
-
-CGlobalConstManager.DefineEnum(
-	"EnumMonsterMapKind",
-	[
-		"MONSTER_MAP_KIND_MAP",
-		"MONSTER_MAP_KIND_MEMORIAL_DUNGEON",
-		"MONSTER_MAP_KIND_CATEGORY",
-	],
-	0,
-	1
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumMonsterMapKind",
-	[
-		"MONSTER_MAP_KIND_COUNT",
-	],
-	EnumMonsterMapKind.Count,
-	1
-);
-
 
 /**
  * データ配列のソート仮名を設定する.

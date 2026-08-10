@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip, n_A_card } from './roro-state.js';
-import './card.h.js';
 import './common.js';
 import './item.h.js';
 import './skill.h.js';
@@ -18,6 +17,11 @@ import {
 } from './roro-state.js';
 // C-6: head.js 公開関数（head-bridge 経由）
 import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+import { CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
+import { CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
+import { ITEM_DATA_INDEX_SPBEGIN } from './const/EnumItemDataIndex.js';
+import { ITEM_SP_END, ITEM_SP_LEARNED_SKILL_EFFECT } from './const/EnumItemSpId.js';
+import { SKILL_DATA_INDEX_MAXLV, SKILL_DATA_INDEX_NAME, SKILL_DATA_INDEX_REFID } from './const/EnumSkillDataIndex.js';
 
 /**
  * 習得スキル欄の生成・更新・サーチなどの関数群

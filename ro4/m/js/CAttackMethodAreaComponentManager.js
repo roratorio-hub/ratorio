@@ -1,4 +1,3 @@
-import { CGlobalConstManager } from '../../../roro/m/js/CGlobalConstManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
@@ -118,20 +117,16 @@ import {
 import {
          GetEquippedSPListEquip, GetEquippedSPValueArrayEquip, GetEquippedSPListCardAndElse, GetEquippedSPValueArrayCardAndElse,
 } from '../../../roro/m/js/foot-bridge.js';
-
-//----------------------------------------------------------------
-// オプションリストの種別
-//----------------------------------------------------------------
-CGlobalConstManager.DefineEnum(
-	"EnumAttackMethodOptionListType",
-	[
-		"ATTACK_METHOD_OPTION_LIST_TYPE_SELECT",
-		"ATTACK_METHOD_OPTION_LIST_TYPE_INPUT",
-	],
-	0,
-	1
-);
-
+import {
+    ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_PSYCO, ELM_ID_VANITY,
+    ELM_ID_WATER, ELM_ID_WIND,
+} from '../../../roro/m/js/const/EnumElmId.js';
+import { ATTACK_METHOD_OPTION_LIST_TYPE_INPUT, ATTACK_METHOD_OPTION_LIST_TYPE_SELECT } from '../../../roro/m/js/const/EnumAttackMethodOptionListType.js';
+import { ATTACK_METHOD_SOURCE_TYPE_AUTO_SPELL, ATTACK_METHOD_SOURCE_TYPE_JOB_LEARN, ATTACK_METHOD_SOURCE_TYPE_USABLE_SKILL } from '../../../roro/m/js/const/EnumAttackMethodSource.js';
+import { AUTO_SPELL_DATA_INDEX_ATTACKABLE, AUTO_SPELL_DATA_INDEX_SKILL_ID, AUTO_SPELL_DATA_INDEX_SKILL_LEVEL } from '../../../roro/m/js/const/EnumAutoSpellDataIndex.js';
+import { CONST_DATA_KIND_JOB } from '../../../roro/m/js/const/EnumConstDataKind.js';
+import { ITEM_SP_AUTO_SPELL, ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL, ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED, ITEM_SP_LEARN_SKILL, ITEM_SP_LEARN_SKILL_HIDDEN_DETAIL, ITEM_SP_LEARN_SKILL_LEVEL_UNSPECIFIED } from '../../../roro/m/js/const/EnumItemSpId.js';
+import { USABLE_SKILL_DATA_INDEX_ATTACKABLE, USABLE_SKILL_DATA_INDEX_SKILL_ID, USABLE_SKILL_DATA_INDEX_SKILL_LEVEL } from '../../../roro/m/js/const/EnumUsableSkillDataIndex.js';
 
 /**
  * 攻撃手段オプションデータクラス.

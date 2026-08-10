@@ -1,6 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CMigConstDataManagerSubBase } from './CMigConstDataManagerSubBase.js';
 import { CMigEquipableData } from './CMigEquipableData.js';
+import { MIG_EQUIPABLE_DATA_INDEX_ID, MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY, MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID, MIG_EQUIPABLE_DATA_INDEX_REF_ID } from '../const/EnumMigEquipableDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * エンチャントリストデータマネージャクラス.
@@ -20,14 +21,6 @@ export function CMigConstDataManagerSubEnchList () {
 	// アップグレード系の特殊処理が必要なエンチャントリストIDの配列
 	this.upgradeTypeIdArray = [];
 
-
-
-	//----------------
-	// 継承定義は、クラス本体の次に記述
-	//----------------
-
-
-
 	/**
 	 * 無名イニシャライザ.
 	 */
@@ -44,8 +37,6 @@ export function CMigConstDataManagerSubEnchList () {
 		this.sourceArray = [];
 		this.objectArray = [];
 
-		// TODO: データ移行過渡処理
-		this.idEnumObjectName = "EnumMigEnchListId";
 
 	}).call(this);
 

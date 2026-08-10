@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import './common.js';
-import './rndoptlist.h.js';
 import {
          HtmlCreateElement, HtmlCreateElementOption, HtmlGetElementById,
          HtmlGetObjectValueByIdAsInteger, HtmlRemoveOptionAll, HtmlSetAttribute,
@@ -41,6 +40,18 @@ import {
          g_refinedArray,
          SU_AGI, SU_VIT, SU_DEX, SU_INT, SU_LUK,
 } from './roro-state.js';
+import { PARAM_DEX, PARAM_VIT } from './const/EnumParamId.js';
+import {
+    EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
+    EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER, EnumEquipRegionId,
+} from './const/EnumEquipRegionId.js';
+import { ITEM_DATA_INDEX_WPNLV } from './const/EnumItemDataIndex.js';
+import { ITEM_SP_BASE_LV_BY_1_OFFSET, ITEM_SP_PURE_STR_BY_10_OFFSET, ITEM_SP_REFINE_BY_1_OFFSET } from './const/EnumItemSpId.js';
+import { RND_OPT_DATA_INDEX_ID, RND_OPT_DATA_INDEX_MAX, RND_OPT_DATA_INDEX_MIN, RND_OPT_DATA_INDEX_SPECIAL_FLAG, RND_OPT_DATA_INDEX_SPID, RND_OPT_DATA_INDEX_STEP } from './const/EnumRndOptDataIndex.js';
+import { RND_OPT_LIST_DATA_INDEX_OPT_ID_ARRAY } from './const/EnumRndOptListDataIndex.js';
+import { RND_OPT_SPECIAL_FLAG_ONOFF } from './const/EnumRndOptSpecialFlag.js';
+import { RND_OPT_SLOT_COUNT, RND_OPT_TYPE_DATA_INDEX_LIST_ID_ARRAY } from './const/EnumRndOptTypeDataIndex.js';
 
 
 

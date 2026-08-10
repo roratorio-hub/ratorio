@@ -1,6 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/monster.h.js';
 import { GetArrayTotal, GetArrayMax, GetArrayMin } from '../../../roro/common/js/util.js';
+import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_HP, MONSTER_DATA_INDEX_JOB_EXP } from '../../../roro/m/js/const/EnumMonsterDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 設置スキル計算用クラス

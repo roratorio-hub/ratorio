@@ -1,7 +1,6 @@
 import { ItemPackageDat } from '../../m/js/item.package.dat.js';
 // === AUTO-GENERATED IMPORTS ===
 import { GetJobName, IsMatchJobRestrict } from '../../../ro4/m/js/data/mig.job.h.js';
-import '../../m/js/card.h.js';
 import { MigGetBorderFlagText } from '../../m/js/data/mig.itemsp.h.js';
 import { g_constDataManager } from '../../../ro4/m/js/global.js';
 import { CItemInfoManager } from '../../m/js/CItemInfoManager.js';
@@ -14,6 +13,21 @@ import {
          GetStrPenaltyAvoidStr
 } from '../../m/js/item.h.js';
 import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
+import { CARD_DATA_INDEX_NAME } from '../../m/js/const/EnumCardDataIndex.js';
+import { CONST_DATA_KIND_ENCHANT_LIST } from '../../m/js/const/EnumConstDataKind.js';
+import {
+    ITEM_DATA_INDEX_EQPFLG, ITEM_DATA_INDEX_EQPLV, ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_POWER,
+    ITEM_DATA_INDEX_SLOT, ITEM_DATA_INDEX_SPBEGIN, ITEM_DATA_INDEX_WEIGHT, ITEM_DATA_INDEX_WPNLV,
+} from '../../m/js/const/EnumItemDataIndex.js';
+import {
+    ITEM_KIND_ACCESSORY_ON2, ITEM_KIND_BODY, ITEM_KIND_BOW, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN,
+    ITEM_KIND_HEAD_TOP, ITEM_KIND_HEAD_UNDER, ITEM_KIND_KNIFE, ITEM_KIND_MUSICAL, ITEM_KIND_RIFLE, ITEM_KIND_SHADOW_ACCESSORY_ON1,
+    ITEM_KIND_SHADOW_ACCESSORY_ON2, ITEM_KIND_SHADOW_ARMS_LEFT, ITEM_KIND_SHADOW_ARMS_RIGHT, ITEM_KIND_SHADOW_BODY, ITEM_KIND_SHADOW_FOOT, ITEM_KIND_SHOTGUN,
+    ITEM_KIND_WHIP,
+} from '../../m/js/const/EnumItemKind.js';
+import { ITEM_SP_ELEMENTAL, ITEM_SP_END } from '../../m/js/const/EnumItemSpId.js';
+import { EnumJobId, JOB_ID_NOVICE } from '../../m/js/const/EnumJobId.js';
+import { MIG_BORDER_FLAG_ID_OVER } from '../../m/js/const/EnumMigBorderFlagId.js';
 // === END AUTO-GENERATED IMPORTS ===
 export function OnLoadItemList() {
 	SetUpSelects();

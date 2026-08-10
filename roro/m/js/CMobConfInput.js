@@ -1,5 +1,3 @@
-
-import { CGlobalConstManager } from './CGlobalConstManager.js';
 import { CConfBaseSelectData, CConfBaseConfData, CConfBaseRegisterParam, CConfBaseManagementParam, CConfBase2 } from './CConfBase2.js';
 import { CSaveDataConverter } from './CSaveDataConverter.js';
 // === AUTO-GENERATED IMPORTS ===
@@ -7,40 +5,33 @@ import './CConfBase.js';
 import { GetMonsterElementText, GetRaceText, GetSizeText } from './common.js';
 import { GetBossTypeText, GetGrassTypeText } from './monster.h.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, HtmlCopyToClipboardById } from '../../common/js/util.js';
+import { RACE_ID_SOLID } from './const/EnumRaceId.js';
+import { EnumRaceId } from './const/EnumRaceId.js';
+import { CONTROL_TYPE_CHECKBOX, CONTROL_TYPE_DUMMY, CONTROL_TYPE_NUMBER, CONTROL_TYPE_SELECT, CONTROL_TYPE_TEXT } from './const/EnumControlType.js';
+import {
+    MOB_CONF_INPUT_DATA_INDEX_AGI, MOB_CONF_INPUT_DATA_INDEX_ATK, MOB_CONF_INPUT_DATA_INDEX_BASE_EXP, MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE, MOB_CONF_INPUT_DATA_INDEX_DEF, MOB_CONF_INPUT_DATA_INDEX_DEX,
+    MOB_CONF_INPUT_DATA_INDEX_ELEMENT, MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE, MOB_CONF_INPUT_DATA_INDEX_HP, MOB_CONF_INPUT_DATA_INDEX_INT, MOB_CONF_INPUT_DATA_INDEX_JOB_EXP, MOB_CONF_INPUT_DATA_INDEX_LUK,
+    MOB_CONF_INPUT_DATA_INDEX_LV, MOB_CONF_INPUT_DATA_INDEX_MATK, MOB_CONF_INPUT_DATA_INDEX_MDEF, MOB_CONF_INPUT_DATA_INDEX_MRES, MOB_CONF_INPUT_DATA_INDEX_NAME, MOB_CONF_INPUT_DATA_INDEX_PROTECT,
+    MOB_CONF_INPUT_DATA_INDEX_RACE, MOB_CONF_INPUT_DATA_INDEX_RANGE, MOB_CONF_INPUT_DATA_INDEX_RES, MOB_CONF_INPUT_DATA_INDEX_SIZE, MOB_CONF_INPUT_DATA_INDEX_STR, MOB_CONF_INPUT_DATA_INDEX_VIT,
+} from './const/EnumMobConfId.js';
+import {
+    MOB_CONF_INPUT_CONTROL_ID_AGI, MOB_CONF_INPUT_CONTROL_ID_ATK, MOB_CONF_INPUT_CONTROL_ID_BASE_EXP, MOB_CONF_INPUT_CONTROL_ID_BOSS, MOB_CONF_INPUT_CONTROL_ID_DEF, MOB_CONF_INPUT_CONTROL_ID_DEX,
+    MOB_CONF_INPUT_CONTROL_ID_ELEMENT, MOB_CONF_INPUT_CONTROL_ID_GRASS, MOB_CONF_INPUT_CONTROL_ID_HP, MOB_CONF_INPUT_CONTROL_ID_INT, MOB_CONF_INPUT_CONTROL_ID_JOB_EXP, MOB_CONF_INPUT_CONTROL_ID_LIST,
+    MOB_CONF_INPUT_CONTROL_ID_LUK, MOB_CONF_INPUT_CONTROL_ID_LV, MOB_CONF_INPUT_CONTROL_ID_MATK, MOB_CONF_INPUT_CONTROL_ID_MDEF, MOB_CONF_INPUT_CONTROL_ID_MRES, MOB_CONF_INPUT_CONTROL_ID_NAME,
+    MOB_CONF_INPUT_CONTROL_ID_PROTECT, MOB_CONF_INPUT_CONTROL_ID_RACE, MOB_CONF_INPUT_CONTROL_ID_RANGE, MOB_CONF_INPUT_CONTROL_ID_RES, MOB_CONF_INPUT_CONTROL_ID_SIZE, MOB_CONF_INPUT_CONTROL_ID_STR,
+    MOB_CONF_INPUT_CONTROL_ID_VIT,
+} from './const/EnumMobConfInputConfId.js';
+import { MOB_CONF_INPUT_COUNT } from './const/EnumMobConfInputCount.js';
+import { MOB_CONF_INPUT_VERSION } from './const/EnumMobConfInputVersion.js';
+import { MONSTER_BOSSTYPE_NONE } from './const/EnumMonsterBossType.js';
+import { MONSTER_ELM_VANITY_1 } from './const/EnumMonsterElement.js';
+import { MONSTER_GRASSTYPE_NONE } from './const/EnumMonsterGrassType.js';
+import { EnumSizeId, SIZE_ID_SMALL } from './const/EnumSizeId.js';
+import { EnumMonsterBossType } from './const/EnumMonsterBossType.js';
+import { EnumMonsterElement } from './const/EnumMonsterElement.js';
+import { EnumMonsterGrassType } from './const/EnumMonsterGrassType.js';
 // === END AUTO-GENERATED IMPORTS ===
 
-// パラメータID定義
-CGlobalConstManager.DefineEnum(
-	"EnumMobConfId",
-	[
-		"MOB_CONF_INPUT_DATA_INDEX_PROTECT",
-		"MOB_CONF_INPUT_DATA_INDEX_NAME",
-		"MOB_CONF_INPUT_DATA_INDEX_LV",
-		"MOB_CONF_INPUT_DATA_INDEX_HP",
-		"MOB_CONF_INPUT_DATA_INDEX_STR",
-		"MOB_CONF_INPUT_DATA_INDEX_INT",
-		"MOB_CONF_INPUT_DATA_INDEX_VIT",
-		"MOB_CONF_INPUT_DATA_INDEX_DEX",
-		"MOB_CONF_INPUT_DATA_INDEX_AGI",
-		"MOB_CONF_INPUT_DATA_INDEX_LUK",		// 10
-		"MOB_CONF_INPUT_DATA_INDEX_ATK",
-		"MOB_CONF_INPUT_DATA_INDEX_MATK",
-		"MOB_CONF_INPUT_DATA_INDEX_RANGE",
-		"MOB_CONF_INPUT_DATA_INDEX_DEF",
-		"MOB_CONF_INPUT_DATA_INDEX_MDEF",
-		"MOB_CONF_INPUT_DATA_INDEX_BASE_EXP",
-		"MOB_CONF_INPUT_DATA_INDEX_JOB_EXP",
-		"MOB_CONF_INPUT_DATA_INDEX_SIZE",
-		"MOB_CONF_INPUT_DATA_INDEX_ELEMENT",
-		"MOB_CONF_INPUT_DATA_INDEX_RACE",		// 20
-		"MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE",
-		"MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE",
-		"MOB_CONF_INPUT_DATA_INDEX_RES",
-		"MOB_CONF_INPUT_DATA_INDEX_MRES",
-	],
-	0,
-	1
-);
 
 export function CMobConfInputData() {
 
@@ -137,26 +128,6 @@ export function CMobConfInputData() {
 
 }
 
-
-// コードバージョン
-CGlobalConstManager.DefineEnum(
-	"EnumMobConfInputVersion",
-	[
-		"MOB_CONF_INPUT_VERSION",
-	],
-	29,
-	0
-);
-
-// モンスター手入力設定数
-CGlobalConstManager.DefineEnum(
-	"EnumMobConfInputCount",
-	[
-		"MOB_CONF_INPUT_COUNT",
-	],
-	20,
-	0
-);
 
 // データ管理インスタンス
 export let g_dataManagerMobConfInput = null;
@@ -291,8 +262,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 			// CConfBaseRegisterParam 型の引数で渡す
 
 			// データＩＤ定数登録
-			CGlobalConstManager.DefineEnum("EnumMobConfInputConfId", [regparam.enumName], regparam.data.id, 0);
-
+			
 			// データ追加
 			regArray[regparam.data.id] = regparam.data;
 		};
@@ -550,7 +520,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		enumName = "MOB_CONF_INPUT_CONTROL_ID_SIZE";
 		selectDataArray = new Array();
 		funcGetEnumText = GetSizeText;
-		CGlobalConstManager.SearchMap("EnumSizeId").value.For(funcCreateEnumSelect);
+		EnumSizeId.For(funcCreateEnumSelect);
 		confData = new CConfBaseConfData()
 			.SetId(confId)
 			.SetMappedIndex(MOB_CONF_INPUT_DATA_INDEX_SIZE)
@@ -565,7 +535,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		enumName = "MOB_CONF_INPUT_CONTROL_ID_ELEMENT";
 		selectDataArray = new Array();
 		funcGetEnumText = GetMonsterElementText;
-		CGlobalConstManager.SearchMap("EnumMonsterElement").value.For(funcCreateEnumSelect);
+		EnumMonsterElement.For(funcCreateEnumSelect);
 		confData = new CConfBaseConfData()
 			.SetId(confId)
 			.SetMappedIndex(MOB_CONF_INPUT_DATA_INDEX_ELEMENT)
@@ -580,7 +550,9 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		enumName = "MOB_CONF_INPUT_CONTROL_ID_RACE";
 		selectDataArray = new Array();
 		funcGetEnumText = GetRaceText;
-		CGlobalConstManager.SearchMap("EnumRaceId").value.For(funcCreateEnumSelect);
+		// const 化済み。旧 SearchMap("EnumRaceId") は文字列でレジストリを引いており
+		// 静的解析から見えなかった（const 化で定義が消えても検出できない参照経路）。
+		EnumRaceId.For(funcCreateEnumSelect);
 		confData = new CConfBaseConfData()
 			.SetId(confId)
 			.SetMappedIndex(MOB_CONF_INPUT_DATA_INDEX_RACE)
@@ -595,7 +567,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		enumName = "MOB_CONF_INPUT_CONTROL_ID_BOSS";
 		selectDataArray = new Array();
 		funcGetEnumText = GetBossTypeText;
-		CGlobalConstManager.SearchMap("EnumMonsterBossType").value.For(funcCreateEnumSelect);
+		EnumMonsterBossType.For(funcCreateEnumSelect);
 		confData = new CConfBaseConfData()
 			.SetId(confId)
 			.SetMappedIndex(MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE)
@@ -610,7 +582,7 @@ export function CMobConfInputAreaComponentManager(confMngParam) {
 		enumName = "MOB_CONF_INPUT_CONTROL_ID_GRASS";
 		selectDataArray = new Array();
 		funcGetEnumText = GetGrassTypeText;
-		CGlobalConstManager.SearchMap("EnumMonsterGrassType").value.For(funcCreateEnumSelect);
+		EnumMonsterGrassType.For(funcCreateEnumSelect);
 		confData = new CConfBaseConfData()
 			.SetId(confId)
 			.SetMappedIndex(MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE)

@@ -7,6 +7,7 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRem
 import { CBattleQuickControlAreaComponentManager } from './CBattleQuickControlAreaComponentManager.js';
 import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
 import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+import { TIME_ITEM_DATA_INDEX_EXPLAIN, TIME_ITEM_DATA_INDEX_ID, TIME_ITEM_DATA_INDEX_NAME } from './const/EnumTimeItemDataIndex.js';
 /**
  * 時限アイテムエリアコンポーネントマネージャクラス.
  */

@@ -1,4 +1,33 @@
-import { CGlobalConstManager } from './CGlobalConstManager.js';
+import {
+    ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_POISON, ELM_ID_PSYCO,
+    ELM_ID_UNDEAD, ELM_ID_VANITY, ELM_ID_WATER, ELM_ID_WIND,
+} from './const/EnumElmId.js';
+import { PARAM_AGI, PARAM_DEX, PARAM_INT, PARAM_LUK, PARAM_STR, PARAM_VIT } from './const/EnumParamId.js';
+import {
+    RACE_ID_ANGEL, RACE_ID_ANIMAL, RACE_ID_DEMON, RACE_ID_DRAGON, RACE_ID_FISH, RACE_ID_HUMAN,
+    RACE_ID_INSECT, RACE_ID_PLANT, RACE_ID_SOLID, RACE_ID_UNDEAD,
+} from './const/EnumRaceId.js';
+import {
+    CONST_DATA_KIND_ALIAS, CONST_DATA_KIND_ARROW, CONST_DATA_KIND_AUTO_SPELL, CONST_DATA_KIND_BUFF, CONST_DATA_KIND_CARD, CONST_DATA_KIND_CARD_SORT_DATA,
+    CONST_DATA_KIND_CHANGE_LOG, CONST_DATA_KIND_CHARA, CONST_DATA_KIND_COSTUME, CONST_DATA_KIND_ENCHANT_LIST, CONST_DATA_KIND_ENCHANT_TYPE, CONST_DATA_KIND_HPSPBASE,
+    CONST_DATA_KIND_ITEM, CONST_DATA_KIND_ITEM_PACK, CONST_DATA_KIND_ITEM_SET, CONST_DATA_KIND_JOB, CONST_DATA_KIND_JOB_SKILL_ACTIVE, CONST_DATA_KIND_JOB_SKILL_LEARNED,
+    CONST_DATA_KIND_JOB_SKILL_PASSIVE, CONST_DATA_KIND_MONSTER, CONST_DATA_KIND_MONSTER_GROUP, CONST_DATA_KIND_MONSTER_MAP, CONST_DATA_KIND_PET, CONST_DATA_KIND_RND_OPT,
+    CONST_DATA_KIND_RND_OPT_LIST, CONST_DATA_KIND_RND_OPT_TYPE, CONST_DATA_KIND_SKILL, CONST_DATA_KIND_STATE, CONST_DATA_KIND_TIME_ITEM, CONST_DATA_KIND_TIME_ITEM_SORT_DATA,
+    CONST_DATA_KIND_USABLE_SKILL,
+} from './const/EnumConstDataKind.js';
+import {
+    FRIENDLITY_ID_AUTO, FRIENDLITY_ID_HIGH, FRIENDLITY_ID_HIGHEST, FRIENDLITY_ID_LOW, FRIENDLITY_ID_LOWEST, FRIENDLITY_ID_NORMAL,
+    FRIENDLITY_ID_RUNAWAY,
+} from './const/EnumFriendlityId.js';
+import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from './const/EnumSizeId.js';
+import {
+    STATE_ID_BLEEDING, STATE_ID_BLIND, STATE_ID_BREAK_ACCESSORY, STATE_ID_BREAK_BODY, STATE_ID_BREAK_FOOT, STATE_ID_BREAK_HEAD,
+    STATE_ID_BREAK_SHIELD, STATE_ID_BREAK_SHOULDER, STATE_ID_BREAK_WEAPON, STATE_ID_CONFUSE, STATE_ID_CURSED, STATE_ID_FROZEN,
+    STATE_ID_POISON, STATE_ID_SILENCE, STATE_ID_SLEEP, STATE_ID_STONE, STATE_ID_STUN, STATE_NEW_ID_CONFLAGRATION,
+    STATE_NEW_ID_CRYSTALLIZATION, STATE_NEW_ID_HIGHLYPOISONOUS, STATE_NEW_ID_JETBLACK, STATE_NEW_ID_LETHARGY, STATE_NEW_ID_MELANCHOLY, STATE_NEW_ID_RAPIDCOOLING,
+    STATE_NEW_ID_STILLNESS, STATE_NEW_ID_TORRENT, STATE_NEW_ID_UNHAPPINESS, STATE_R_ID_CHARMED, STATE_R_ID_CHILLED, STATE_R_ID_DEEPSLEEP,
+    STATE_R_ID_FEAR, STATE_R_ID_FRENZY, STATE_R_ID_HOWLING, STATE_R_ID_ICED, STATE_R_ID_IGNITION,
+} from './const/EnumStateId.js';
 
 //================================================================================================
 //================================================================================================
@@ -8,207 +37,11 @@ import { CGlobalConstManager } from './CGlobalConstManager.js';
 //================================================================================================
 //================================================================================================
 
-// 定義済みデータ種別定義
-CGlobalConstManager.DefineEnum(
-	"EnumConstDataKind",
-	[
-		"CONST_DATA_KIND_NONE",
-		"CONST_DATA_KIND_ITEM",					// 時限アイテムで、固定値 1 採用しているので注意
-		"CONST_DATA_KIND_CARD",					// 時限アイテムで、固定値 2 採用しているので注意
-		"CONST_DATA_KIND_COSTUME",
-		"CONST_DATA_KIND_ITEM_SET",
-		"CONST_DATA_KIND_ENCHANT_TYPE",
-		"CONST_DATA_KIND_ENCHANT_LIST",
-		"CONST_DATA_KIND_TIME_ITEM",
-		"CONST_DATA_KIND_ITEM_PACK",
-		"CONST_DATA_KIND_SKILL",
-		"CONST_DATA_KIND_USABLE_SKILL",
-		"CONST_DATA_KIND_AUTO_SPELL",
-		"CONST_DATA_KIND_ARROW",
-		"CONST_DATA_KIND_MONSTER",
-		"CONST_DATA_KIND_MONSTER_GROUP",
-		"CONST_DATA_KIND_MONSTER_MAP",
-		"CONST_DATA_KIND_CARD_SORT_DATA",		// 将来的に削除予定
-		"CONST_DATA_KIND_TIME_ITEM_SORT_DATA",	// 将来的に削除予定
-		"CONST_DATA_KIND_JOB_SKILL_PASSIVE",	// 将来的に削除予定
-		"CONST_DATA_KIND_JOB_SKILL_ACTIVE",		// 将来的に削除予定
-		"CONST_DATA_KIND_JOB_SKILL_LEARNED",	// 将来的に削除予定
-		"CONST_DATA_KIND_PET",
-		"CONST_DATA_KIND_RND_OPT_TYPE",
-		"CONST_DATA_KIND_RND_OPT_LIST",
-		"CONST_DATA_KIND_RND_OPT",
-		"CONST_DATA_KIND_CHANGE_LOG",
-		"CONST_DATA_KIND_ALIAS",
-		"CONST_DATA_KIND_STATE",
-		"CONST_DATA_KIND_BUFF",
-		"CONST_DATA_KIND_HPSPBASE",				// 将来的に削除予定（移行用）
-		"CONST_DATA_KIND_CHARA",
-		"CONST_DATA_KIND_JOB",
-	],
-	0,
-	1
-);
 
-// パラメータID定義
-CGlobalConstManager.DefineEnum(
-	"EnumParamId",
-	[
-		"PARAM_STR",
-		"PARAM_AGI",
-		"PARAM_VIT",
-		"PARAM_INT",
-		"PARAM_DEX",
-		"PARAM_LUK",
+// EnumParamId / EnumRaceId / EnumElmId は const 化済み。
+// 定義は roro/m/js/const/EnumParamId.js ・ EnumRaceId.js ・ EnumElmId.js を参照。
+// （旧 DefineEnum はグローバルへ実行時生成しており定義箇所を追えなかった）
 
-		"PARAM_COUNT",
-	],
-	0,
-	1
-);
-
-// 種族ID定義
-CGlobalConstManager.DefineEnum(
-	"EnumRaceId",
-	[
-		"RACE_ID_SOLID",
-		"RACE_ID_UNDEAD",
-		"RACE_ID_ANIMAL",
-		"RACE_ID_PLANT",
-		"RACE_ID_INSECT",
-		"RACE_ID_FISH",
-		"RACE_ID_DEMON",
-		"RACE_ID_HUMAN",
-		"RACE_ID_ANGEL",
-		"RACE_ID_DRAGON",
-	],
-	0,
-	1
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumRaceId",
-	[
-		"RACE_ID_COUNT",
-		"RACE_ID_ANY",
-	],
-	EnumRaceId.Count,
-	1
-);
-
-// 属性ID定義
-CGlobalConstManager.DefineEnum(
-	"EnumElmId",
-	[
-		"ELM_ID_VANITY",
-		"ELM_ID_WATER",
-		"ELM_ID_EARTH",
-		"ELM_ID_FIRE",
-		"ELM_ID_WIND",
-		"ELM_ID_POISON",
-		"ELM_ID_HOLY",
-		"ELM_ID_DARK",
-		"ELM_ID_PSYCO",
-		"ELM_ID_UNDEAD",
-	],
-	0,
-	1
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumElmId",
-	[
-		"ELM_ID_COUNT",
-		"ELM_ID_ANY",
-	],
-	EnumElmId.Count,
-	1
-);
-
-// サイズID定義
-CGlobalConstManager.DefineEnum(
-	"EnumSizeId",
-	[
-		"SIZE_ID_SMALL",
-		"SIZE_ID_MEDIUM",
-		"SIZE_ID_LARGE",
-	],
-	0,
-	1
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumSizeId",
-	[
-		"SIZE_ID_COUNT",
-		"SIZE_ID_ANY",
-	],
-	EnumSizeId.Count,
-	1
-);
-
-// 状態異常ID定義
-CGlobalConstManager.DefineEnum(
-	"EnumStateId",
-	[
-		"STATE_ID_POISON",
-		"STATE_ID_STUN",
-		"STATE_ID_FROZEN",
-		"STATE_ID_CURSED",
-		"STATE_ID_BLIND",
-		"STATE_ID_SLEEP",
-		"STATE_ID_SILENCE",
-		"STATE_ID_CONFUSE",
-		"STATE_ID_BLEEDING",
-		"STATE_ID_STONE",
-		"STATE_ID_BREAK_WEAPON",
-		"STATE_ID_BREAK_HEAD",
-		"STATE_ID_BREAK_BODY",
-		"STATE_ID_BREAK_SHIELD",
-		"STATE_ID_BREAK_SHOULDER",
-		"STATE_ID_BREAK_FOOT",
-		"STATE_ID_BREAK_ACCESSORY",
-		//Rの新状態異常
-		"STATE_R_ID_CHILLED",// 冷凍
-		"STATE_R_ID_ICED",//　氷結
-		"STATE_R_ID_IGNITION",//　発火
-		"STATE_R_ID_FEAR",//　恐怖
-		"STATE_R_ID_DEEPSLEEP",//　深い眠り
-		"STATE_R_ID_CHARMED",//　魅了
-		"STATE_R_ID_FRENZY",//　狂乱
-		"STATE_R_ID_HOWLING", // 精神衝撃
-		//"STATE_R_ID_HEAT",//　過熱
-		//新状態異常
-		"STATE_NEW_ID_LETHARGY",//　無気力
-		"STATE_NEW_ID_JETBLACK",//　漆黒
-		"STATE_NEW_ID_HIGHLYPOISONOUS",//　強毒
-		"STATE_NEW_ID_TORRENT",//　激流
-		"STATE_NEW_ID_MELANCHOLY",//　憂鬱
-		"STATE_NEW_ID_STILLNESS",//　静寂
-		"STATE_NEW_ID_CONFLAGRATION",//　火災
-		"STATE_NEW_ID_RAPIDCOOLING",//　急冷
-		"STATE_NEW_ID_CRYSTALLIZATION",//　結晶化
-		"STATE_NEW_ID_UNHAPPINESS",//　不幸
-
-		"STATE_ID_COUNT",
-	],
-	0,
-	1
-);
-
-// 親密度ID定義
-CGlobalConstManager.DefineEnum(
-	"EnumFriendlityId",
-	[
-		"FRIENDLITY_ID_AUTO",
-		"FRIENDLITY_ID_RUNAWAY",
-		"FRIENDLITY_ID_LOWEST",
-		"FRIENDLITY_ID_LOW",
-		"FRIENDLITY_ID_NORMAL",
-		"FRIENDLITY_ID_HIGH",
-		"FRIENDLITY_ID_HIGHEST",
-
-		"FRIENDLITY_ID_COUNT",
-	],
-	0,
-	1
-);
 
 /**
  * 定義済みデータ種別のテキストを取得する.
@@ -612,54 +445,6 @@ let const_identifier = 0;
 // 装備部位のインデックス
 const_identifier = 0;
 
-CGlobalConstManager.DefineEnum(
-	"EnumEquipRegionId",
-	[
-		"EQUIP_REGION_ID_ARMS",			// 0 右手
-		"EQUIP_REGION_ID_ARMS_LEFT",	// 1 左手
-		"EQUIP_REGION_ID_HEAD_TOP",		// 2 上段
-		"EQUIP_REGION_ID_HEAD_MID",		// 3 中段
-		"EQUIP_REGION_ID_HEAD_UNDER",	// 4 下段
-		"EQUIP_REGION_ID_SHIELD",		// 5 盾
-		"EQUIP_REGION_ID_BODY",			// 6 鎧
-		"EQUIP_REGION_ID_SHOULDER",		// 7 肩
-		"EQUIP_REGION_ID_SHOES",		// 8 靴
-		"EQUIP_REGION_ID_ACCESSORY_1",	// 9 アクセ1
-		"EQUIP_REGION_ID_ACCESSORY_2",	// 10 アクセ2
-		"EQUIP_REGION_ID_COSTUME_HEAD_TOP",	// 11
-		"EQUIP_REGION_ID_COSTUME_HEAD_MID",	// 12
-		"EQUIP_REGION_ID_COSTUME_HEAD_UNDER",	// 13
-
-		"EQUIP_REGION_ID_SHADOW_ARMS_RIGHT",	// 14
-		"EQUIP_REGION_ID_SHADOW_ARMS_LEFT",		// 15
-		"EQUIP_REGION_ID_SHADOW_HEAD_TOP",		// 16
-		"EQUIP_REGION_ID_SHADOW_HEAD_MID",		// 
-		"EQUIP_REGION_ID_SHADOW_HEAD_UNDER",	// 
-		"EQUIP_REGION_ID_SHADOW_BODY",			// 
-		"EQUIP_REGION_ID_SHADOW_SHOULDER",		// 20
-		"EQUIP_REGION_ID_SHADOW_FOOT",			// 
-		"EQUIP_REGION_ID_SHADOW_ACCESSORY_1",	// 
-		"EQUIP_REGION_ID_SHADOW_ACCESSORY_2",	// 23
-	],
-	0,
-	1
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumMigItemParamId",
-	[
-		"EQUIP_REGION_ID_COUNT",
-	],
-	EnumEquipRegionId.Count,
-	0
-);
-CGlobalConstManager.DefinePseudoEnum(
-	"EnumMigItemParamId",
-	[
-		"EQUIP_REGION_ID_ANY",
-	],
-	-1,
-	0
-);
 
 // カード部位のインデックス
 const_identifier = 0;
