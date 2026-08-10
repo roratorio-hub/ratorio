@@ -47,3 +47,11 @@ export function GetPerfectHitDamage(...a) { return _reg.GetPerfectHitDamage?.(..
 export function GetSpiderWebDamageRatio(...a) { return _reg.GetSpiderWebDamageRatio?.(...a); }
 export function HealCalc(...a) { return _reg.HealCalc?.(...a); }
 export function TYPE_SYUUREN(...a) { return _reg.TYPE_SYUUREN?.(...a); }
+
+// Phase 3c: 残り巨大関数の分割先（head-received-damage.js / head-skill-ratio-*.js）が
+// head.js 本体の関数を呼ぶためのラッパー
+export function BattleCalc999(...a) { return _reg.BattleCalc999?.(...a); }
+export function DamageModifierOfArea(...a) { return _reg.DamageModifierOfArea?.(...a); }
+export function ApplyRegistPVPEnergyCoat(...a) { return _reg.ApplyRegistPVPEnergyCoat?.(...a); }
+export function GetElementFieldDamageRatio(...a) { return _reg.GetElementFieldDamageRatio?.(...a); }
+export function ApplyPhysicalSkillDamageRatioChangeSubArcanaCard(...a) { return _reg.ApplyPhysicalSkillDamageRatioChangeSubArcanaCard?.(...a); }
