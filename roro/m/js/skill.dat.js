@@ -1,14 +1,17 @@
 /*
 	スキルID定数の正式な定義場所はこのファイル。
 
-	ESM移行後は import されたこの const が各モジュールでの実効値であり、
-	CSkillManager.js の Init（skillId カウンターによる採番）はこれを
-	上書きできない（かつての window.SKILL_ID_* 書き込みは dewindow 3e-2 で
-	除去済み。Init 側には対応位置に「// SKILL_ID_XXX」マーカーが残る）。
+	ESM移行後は import されたこの const が各モジュールでの実効値。
+	CSkillManager.js の分割（plan: remining-work-md-cskillmanager-js-cskill-magical-elephant）で
+	旧 skillId カウンター採番は廃止され、roro/m/js/skill/NN-*.js 各ファイルの
+	`defineSkill(SKILL_ID_XXX, function(){...})` が明示的にこの定数を ID として使う形になった
+	（かつての window.SKILL_ID_* 書き込みは dewindow 3e-2 で除去済み）。
 
-	新スキル追加時は CSkillManager.js への登録（マーカー含む）と同時に
-	ここへ定数を追加すること。
-	採番とマーカーと定数の整合は util/skill/verify_skill_ids.py で検証できる。
+	新スキル追加時は、対応する職業・実装時期のグループファイル（roro/m/js/skill/NN-*.js。
+	どのファイルか迷ったら近い ID 範囲のスキルを検索する）へ defineSkill(...) を追加すると同時に
+	ここへ定数を追加すること（末尾に足す。途中挿入は既存セーブデータ・アイテムデータの解釈を壊す）。
+	採番の整合（重複なし・欠番なし・ID昇順）は `pnpm test:run roro/skill-registry`
+	（tests/roro/skill-registry.test.ts。旧 util/skill/verify_skill_ids.py の後継）で検証できる。
 */
 
 export const SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC		= 1;
