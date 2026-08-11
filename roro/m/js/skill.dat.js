@@ -3,12 +3,18 @@
 
 	ESM移行後は import されたこの const が各モジュールでの実効値。
 	CSkillManager.js の分割（plan: remining-work-md-cskillmanager-js-cskill-magical-elephant）で
-	旧 skillId カウンター採番は廃止され、roro/m/js/skill/NN-*.js 各ファイルの
+	旧 skillId カウンター採番は廃止され、roro/m/js/skill/ 配下各ファイルの
 	`defineSkill(SKILL_ID_XXX, function(){...})` が明示的にこの定数を ID として使う形になった
 	（かつての window.SKILL_ID_* 書き込みは dewindow 3e-2 で除去済み）。
 
-	新スキル追加時は、対応する職業・実装時期のグループファイル（roro/m/js/skill/NN-*.js。
-	どのファイルか迷ったら近い ID 範囲のスキルを検索する）へ defineSkill(...) を追加すると同時に
+	2026-08-12: skill/ は職業ツリー単位（roro/m/js/skill/<系統>/<階層>-<職業>.js。
+	例: skill/swordman/2b-crusader.js）に再編済み（plan:
+	roro-m-js-skill-https-rotool-gungho-jp-s-glittery-cupcake）。ファイル索引は
+	.claude/context/architecture.md 参照。
+
+	新スキル追加時は、対応する職業のファイル（迷ったら公式サイト
+	https://rotool.gungho.jp/job_skill_list/<系統> でそのスキルを使える最下位職を確認し、
+	.claude/context/architecture.md の索引でファイルを引く）へ defineSkill(...) を追加すると同時に
 	ここへ定数を追加すること（末尾に足す。途中挿入は既存セーブデータ・アイテムデータの解釈を壊す）。
 	採番の整合（重複なし・欠番なし・ID昇順）は `pnpm test:run roro/skill-registry`
 	（tests/roro/skill-registry.test.ts。旧 util/skill/verify_skill_ids.py の後継）で検証できる。

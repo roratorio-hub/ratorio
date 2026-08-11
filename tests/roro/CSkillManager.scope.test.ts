@@ -14,13 +14,15 @@ const WATCHED_VARS = [
 const JS_DIR = resolve(__dirname, '../../roro/m/js');
 
 // CSkillManager.js の分割（plan: remining-work-md-cskillmanager-js-cskill-magical-elephant）で
-// スキル定義本体は roro/m/js/skill/ 配下の43ファイルへ移った。分割後の CSkillManager.js は
-// アクセサのみのシェルになるため、対象を明示的に glob で拾い直す（分割で対象が消えたことに
-// 気付けなくなるのを防ぐため、下の TARGETS.length アサートも参照）。
+// スキル定義本体は roro/m/js/skill/ 配下へ移った（当初はSKILL_ID連番の43ファイル、
+// 2026-08-12 に職業ツリー単位の77ファイル・13系統ディレクトリへ再分割
+// 〔plan: roro-m-js-skill-https-rotool-gungho-jp-s-glittery-cupcake〕）。分割後の
+// CSkillManager.js はアクセサのみのシェルになるため、対象を明示的に glob で拾い直す
+// （分割で対象が消えたことに気付けなくなるのを防ぐため、下の TARGETS.length アサートも参照）。
 const TARGETS = [
     resolve(JS_DIR, 'CSkillManager.js'),
     resolve(JS_DIR, 'CSkillData.js'),
-    ...globSync(`${JS_DIR}/skill/*.js`).sort(),
+    ...globSync(`${JS_DIR}/skill/**/*.js`).sort(),
 ];
 
 interface Violation {
@@ -79,8 +81,8 @@ function detectUndeclaredAssignments(target: string): Violation[] {
 }
 
 describe('CSkillManager.js 系', () => {
-    it('分割後も監査対象ファイルが残っている（43グループ + CSkillManager.js + CSkillData.js）', () => {
-        expect(TARGETS.length).toBeGreaterThanOrEqual(45);
+    it('分割後も監査対象ファイルが残っている（77グループ + CSkillManager.js + CSkillData.js）', () => {
+        expect(TARGETS.length).toBeGreaterThanOrEqual(79);
     });
 
     describe('スコープ監査: メソッドブロック内の未宣言変数代入', () => {
