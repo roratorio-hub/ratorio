@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { g_constDataManager } from './global.js';
-import { RegisterUsedSkillSearch } from '../../../roro/m/js/CSkillManager.js';
+import { RegisterUsedSkillSearch } from '../../../roro/m/js/skill-search-bridge.js';
 import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
 import { CCharaConfSanzi } from '../../../roro/m/js/CCharaConfSanzi.js';
