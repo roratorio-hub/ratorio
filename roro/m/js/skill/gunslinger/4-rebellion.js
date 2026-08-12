@@ -3,14 +3,15 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import {
     SKILL_ID_AS_QUICKDRAW, SKILL_ID_BIND_TRAP, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CRYMSON_MARKER,
     SKILL_ID_DRAGON_TAIL, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_FALLIN_ANGEL, SKILL_ID_FIRE_DANCE, SKILL_ID_FIRE_RAIN,
     SKILL_ID_FRICKER, SKILL_ID_HAMMER_OF_GOD, SKILL_ID_HEAT_BARREL, SKILL_ID_HEAT_BARREL_COIN_COUNT,
-    SKILL_ID_HOWLING_MINE, SKILL_ID_HOWLING_MINE_APPEND, SKILL_ID_KIHON_SKILL, SKILL_ID_MASS_SPIRAL,
+    SKILL_ID_HOWLING_MINE, SKILL_ID_HOWLING_MINE_APPEND, SKILL_ID_MASS_SPIRAL,
     SKILL_ID_PLATINUM_ALTER, SKILL_ID_PLATINUM_ALTER_COIN_COUNT, SKILL_ID_QUICKDRAW_SHOT, SKILL_ID_RICHS_COIN,
     SKILL_ID_ROUND_TRIP, SKILL_ID_SHUTTER_STORM, SKILL_ID_SLUG_SHOT, SKILL_ID_UNTIMATERIAL_BLAST
 } from '../../skill.dat.js';
@@ -676,20 +677,6 @@ export const skills = [
 			this.name = "クイックドローショットの全追撃";
 			this.kana = "クイツクトロオシヨツトノセンツイケキ";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_PASSIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-		}),
-
-		// ----------------------------------------------------------------
-		// 基本スキル
-		// ----------------------------------------------------------------
-		// SKILL_ID_KIHON_SKILL
-		defineSkill(SKILL_ID_KIHON_SKILL, function() {
-
-			this.name = "基本スキル";
-			this.kana = "キホンスキル";
-			this.maxLv = 9;
 			this.type = CSkillData.TYPE_PASSIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;

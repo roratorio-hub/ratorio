@@ -3,10 +3,13 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import {
+	SKILL_ID_KIHON_SKILL, SKILL_ID_OKYU_TEATE, SKILL_ID_SHOZIGENKAIRYO_ZOKA, SKILL_ID_SHOZIGENKAIRYO_ZOKA_R,
+	SKILL_ID_CHIMEITEKINA_KIZU, SKILL_ID_ATK_FOR_IRON_NAIL, SKILL_ID_HELL_JUDGEMENT,
     SKILL_ID_313, SKILL_ID_314, SKILL_ID_315, SKILL_ID_316, SKILL_ID_323, SKILL_ID_ALCHEMY,
     SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT, SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE, SKILL_ID_COMBO_RESERVED_803,
     SKILL_ID_COMBO_RESERVED_804, SKILL_ID_COMBO_RESERVED_805, SKILL_ID_COMBO_RESERVED_806,
@@ -14,10 +17,224 @@ import {
     SKILL_ID_DARK_STRIKE, SKILL_ID_EARTH_QUAKE, SKILL_ID_FULLSLOT, SKILL_ID_KATAMARI_SEIZO, SKILL_ID_MARIAGE_STATUS,
     SKILL_ID_OKANE_SEIZO, SKILL_ID_POTION_SYNAPSE, SKILL_ID_PULSE_STRIKE, SKILL_ID_SERE, SKILL_ID_SERE_MODE,
     SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SHINDAFURI, SKILL_ID_TOMAHAWKNAGE, SKILL_ID_TUZYO_KOGEKI,
-    SKILL_ID_TUZYO_KOGEKI_CALC_KATAR_APPEND, SKILL_ID_TUZYO_KOGEKI_CALC_LEFT, SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT
+    SKILL_ID_TUZYO_KOGEKI_CALC_KATAR_APPEND, SKILL_ID_TUZYO_KOGEKI_CALC_LEFT, SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT,
+	SKILL_ID_ODINNO_CHIKARA, SKILL_ID_CRITICAL_WOUNDS, SKILL_ID_STONE_SKIN, SKILL_ID_VAMPIRE_GIFT,
+	SKILL_ID_SNOW_FLIP, SKILL_ID_SEKAIZYUNO_HOKORI, SKILL_ID_PISHARI_HERB, SKILL_ID_PEONY_MAMY
 } from '../../skill.dat.js';
 
 export const skills = [
+
+		// ----------------------------------------------------------------
+		// ピオニーマミー
+		// ----------------------------------------------------------------
+		// SKILL_ID_PEONY_MAMY
+		defineSkill(SKILL_ID_PEONY_MAMY, function() {
+
+			this.name = "ピオニーマミー";
+			this.kana = "ヒオニイマミイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 9999;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// ぴしゃりハーブ
+		// ----------------------------------------------------------------
+		// SKILL_ID_PISHARI_HERB
+		defineSkill(SKILL_ID_PISHARI_HERB, function() {
+
+			this.name = "ぴしゃりハーブ";
+			this.kana = "ヒシヤリハアフ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 9999;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// 世界樹のほこり
+		// ----------------------------------------------------------------
+		// SKILL_ID_SEKAIZYUNO_HOKORI
+		defineSkill(SKILL_ID_SEKAIZYUNO_HOKORI, function() {
+
+			this.name = "世界樹のほこり";
+			this.kana = "セカイシユノホコリ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 9999;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// スノーフリップ
+		// ----------------------------------------------------------------
+		// SKILL_ID_SNOW_FLIP
+		defineSkill(SKILL_ID_SNOW_FLIP, function() {
+
+			this.name = "スノーフリップ";
+			this.kana = "スノオフリツフ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 9999;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// ヴァンパイアギフト
+		// ----------------------------------------------------------------
+		// SKILL_ID_VAMPIRE_GIFT
+		defineSkill(SKILL_ID_VAMPIRE_GIFT, function() {
+
+			this.name = "(△)ヴァンパイアギフト";
+			this.kana = "ウアンハイアキフト";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 100 * skillLv;
+			}
+
+		}),
+
+		// ----------------------------------------------------------------
+		// ストーンスキン
+		// ----------------------------------------------------------------
+		// SKILL_ID_STONE_SKIN
+		defineSkill(SKILL_ID_STONE_SKIN, function() {
+
+			this.name = "ストーンスキン";
+			this.kana = "ストオンスキン";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 9999;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// クリティカルウーンズ
+		// ----------------------------------------------------------------
+		// SKILL_ID_CRITICAL_WOUNDS
+		defineSkill(SKILL_ID_CRITICAL_WOUNDS, function() {
+
+			this.name = "クリティカルウーンズ";
+			this.kana = "クリテイカルウウンス";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 9999;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// オーディンの力
+		// ----------------------------------------------------------------
+		// SKILL_ID_ODINNO_CHIKARA
+		defineSkill(SKILL_ID_ODINNO_CHIKARA, function() {
+
+			this.name = "オーディンの力";
+			this.kana = "オオテインノチカラ";
+			this.maxLv = 2;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return (40 + 30 * skillLv);
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// 致命的な傷
+		// ----------------------------------------------------------------
+		// SKILL_ID_CHIMEITEKINA_KIZU
+		defineSkill(SKILL_ID_CHIMEITEKINA_KIZU, function() {
+
+			this.name = "致命的な傷";
+			this.kana = "チメイテキナキス";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 100;
+			}
+
+		}),
+
+		// ----------------------------------------------------------------
+		// アイアンネイル用ATK+
+		// ----------------------------------------------------------------
+		// SKILL_ID_ATK_FOR_IRON_NAIL
+		defineSkill(SKILL_ID_ATK_FOR_IRON_NAIL, function() {
+
+			this.name = "アイアンネイル用ATK+";
+			this.kana = "アイアンネイルヨウアタツクフラス";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		}),
+
+		// ----------------------------------------------------------------
+		// ヘルジャッジメント
+		// ----------------------------------------------------------------
+		// SKILL_ID_HELL_JUDGEMENT
+		defineSkill(SKILL_ID_HELL_JUDGEMENT, function() {
+
+			this.name = "ヘルジャッジメント";
+			this.kana = "ヘルシヤツシメント";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 100 * skillLv;
+			}
+
+		}),
+
+		// ----------------------------------------------------------------
+		// 基本スキル
+		// ----------------------------------------------------------------
+		// SKILL_ID_KIHON_SKILL
+		defineSkill(SKILL_ID_KIHON_SKILL, function() {
+
+			this.name = "基本スキル";
+			this.kana = "キホンスキル";
+			this.maxLv = 9;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+		}),
+
 		// ----------------------------------------------------------------
 		// 通常攻撃
 		// ----------------------------------------------------------------
@@ -41,6 +258,24 @@ export const skills = [
 		}),
 
 		// ----------------------------------------------------------------
+		// 死んだふり
+		// ----------------------------------------------------------------
+		// SKILL_ID_SHINDAFURI
+		defineSkill(SKILL_ID_SHINDAFURI, function() {
+
+			this.name = "死んだふり";
+			this.kana = "シンタフリ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 5;
+			}
+		}),
+
+		// ----------------------------------------------------------------
 		// 応急手当
 		// ----------------------------------------------------------------
 		// SKILL_ID_OKYU_TEATE
@@ -59,21 +294,18 @@ export const skills = [
 		}),
 
 		// ----------------------------------------------------------------
-		// 死んだふり
+		// 所持限界量増加Ｒ
 		// ----------------------------------------------------------------
-		// SKILL_ID_SHINDAFURI
-		defineSkill(SKILL_ID_SHINDAFURI, function() {
+		// SKILL_ID_SHOZIGENKAIRYO_ZOKA_R
+		defineSkill(SKILL_ID_SHOZIGENKAIRYO_ZOKA_R, function() {
 
-			this.name = "死んだふり";
-			this.kana = "シンタフリ";
-			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE;
+			this.refId = SKILL_ID_SHOZIGENKAIRYO_ZOKA;
+			this.name = "所持限界量増加Ｒ";
+			this.kana = "シヨシケンカイリヨウソウカアアル";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_PASSIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 5;
-			}
 		}),
 
 		// ----------------------------------------------------------------

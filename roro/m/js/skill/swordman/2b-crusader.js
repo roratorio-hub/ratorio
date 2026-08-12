@@ -3,13 +3,15 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import {
     SKILL_ID_AUTO_GUARD, SKILL_ID_AUTO_GUARD_OLD, SKILL_ID_DEBOTION, SKILL_ID_DEFENDER, SKILL_ID_FAITH,
     SKILL_ID_GRAND_CROSS, SKILL_ID_HOLY_CROSS, SKILL_ID_PROVIDENCE, SKILL_ID_REFLECT_SHIELD,
-    SKILL_ID_SHIELD_BOOMERANG, SKILL_ID_SHIELD_CHARGE, SKILL_ID_SHRINK, SKILL_ID_SPEAR_QUICKEN
+    SKILL_ID_SHIELD_BOOMERANG, SKILL_ID_SHIELD_CHARGE, SKILL_ID_SHRINK, SKILL_ID_SPEAR_QUICKEN,
+	SKILL_ID_SHIELD_BOOMERANG_TAMASHI
 } from '../../skill.dat.js';
 
 export const skills = [
@@ -25,25 +27,6 @@ export const skills = [
 			this.type = CSkillData.TYPE_PASSIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-		}),
-
-		// ----------------------------------------------------------------
-		// オートガード
-		// ----------------------------------------------------------------
-		// SKILL_ID_AUTO_GUARD_OLD
-		defineSkill(SKILL_ID_AUTO_GUARD_OLD, function() {
-
-			this.name = "オートガード";
-			this.kana = "オオトカアト";
-			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 10 + 2 * skillLv;
-			}
-
 		}),
 
 		// ----------------------------------------------------------------
@@ -92,6 +75,34 @@ export const skills = [
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 700;
+			}
+
+		}),
+
+		// ----------------------------------------------------------------
+		// シールドブーメラン(SL魂版)
+		// ----------------------------------------------------------------
+		// SKILL_ID_SHIELD_BOOMERANG_TAMASHI
+		defineSkill(SKILL_ID_SHIELD_BOOMERANG_TAMASHI, function() {
+
+			this.refId = SKILL_ID_SHIELD_BOOMERANG;
+			this.name = "シールドブーメラン(SL魂版)";
+			this.kana = "シイルトフウメランソウルリンカアタマシイハン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 12;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 200 + 60 * skillLv;
+			}
+
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 350;
 			}
 
 		}),
@@ -258,10 +269,29 @@ export const skills = [
 		}),
 
 		// ----------------------------------------------------------------
-		// オートガード（ダミー　※多重定義ミス）
+		// オートガード
 		// ----------------------------------------------------------------
 		// SKILL_ID_AUTO_GUARD
 		defineSkill(SKILL_ID_AUTO_GUARD, function() {
+
+			this.name = "オートガード";
+			this.kana = "オオトカアト";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 10 + 2 * skillLv;
+			}
+
+		}),
+
+		// ----------------------------------------------------------------
+		// オートガード（ダミー　※多重定義ミス）
+		// ----------------------------------------------------------------
+		// SKILL_ID_AUTO_GUARD_OLD
+		defineSkill(SKILL_ID_AUTO_GUARD_OLD, function() {
 
 			this.name = "オートガード";
 			this.kana = "オオトカアト";

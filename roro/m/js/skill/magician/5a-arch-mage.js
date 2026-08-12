@@ -3,7 +3,8 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from '../../../../../ro4/m/js/hmjob-bridge.js';
 import { n_A_BaseLV } from '../../../../../ro4/m/js/ro4-state.js';
@@ -15,7 +16,7 @@ import {
     SKILL_ID_DEADLY_PROJECTION, SKILL_ID_DESTRACTIVE_HURRICANE, SKILL_ID_ENERGY_CONVERSION,
     SKILL_ID_FLORAL_FLARE_ROAD, SKILL_ID_FROZEN_SLASH, SKILL_ID_MYSTERY_ILLUSION, SKILL_ID_RAIN_OF_CRYSTAL,
     SKILL_ID_ROCK_DOWN, SKILL_ID_RYOTETUSE_SHUREN, SKILL_ID_SOUL_VULKUN_STRIKE, SKILL_ID_STORM_CANNON,
-    SKILL_ID_STRATUM_TREAMER, SKILL_ID_TORNADE_STORM, SKILL_ID_VIOLENT_QUAKE
+    SKILL_ID_STRATUM_TREAMER, SKILL_ID_TORNADE_STORM, SKILL_ID_VIOLENT_QUAKE, SKILL_ID_CLIMAX_HURRICANE_STATE
 } from '../../skill.dat.js';
 
 export const skills = [
@@ -99,6 +100,20 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+		}),
+
+		// ----------------------------------------------------------------
+		// クライマックスハリケーン状態
+		// ----------------------------------------------------------------
+		// SKILL_ID_CLIMAX_HURRICANE_STATE
+		defineSkill(SKILL_ID_CLIMAX_HURRICANE_STATE, function() {
+
+			this.name = "クライマックスハリケーン状態";
+			this.kana = "クライマツクスハリケエンシヨウタイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_PASSIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
 		}),
 
 		// ----------------------------------------------------------------

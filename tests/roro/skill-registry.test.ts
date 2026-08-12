@@ -6,14 +6,19 @@
  * 廃止され、`roro/m/js/skill/NN-*.js` 各ファイルの `defineSkill(SKILL_ID_X, function(){...})`
  * が明示的に ID を持つようになった。カウンター採番とマーカーの整合を検証していた旧スクリプトは
  * 意味を失った（カウンターが無いので「マーカー0件・不整合0件」という偽の緑を返す）ため削除し、
- * 後継として「重複なし・欠番なし・ID昇順」を検証する。
+ * 後継として「重複なし・欠番なし」を検証する。
  *
  * 2026-08-12: skill/ を SKILL_ID 連番分割（43ファイル）から職業ツリー単位（77ファイル・
  * 13系統ディレクトリ）へ再分割（tests/split-skill-by-job.mjs、plan:
- * roro-m-js-skill-https-rotool-gungho-jp-s-glittery-cupcake）。ファイルをまたいだ
- * ID 昇順は職業境界と両立しないため落とし、代わりに「各ファイルの定義ID集合が
+ * roro-m-js-skill-https-rotool-gungho-jp-s-glittery-cupcake）。「各ファイルの定義ID集合が
  * 割当表（skill-job-assignment.json、公式サイトからの機械抽出+手動検証）と完全一致する」
  * 検証を追加した（旧不変条件より強い）。
+ *
+ * ファイル内の並び順（ID昇順）は要求しない: CSkillManager.Init() は `skillData.id` を
+ * キーに `dataArray` へ格納するため実行順序に依存せず、強制すると将来のスキル追加・
+ * 職業間の移動の自由度を不必要に下げるだけ（2026-08-12 人手分類修正時にユーザーが明示）。
+ * 唯一の実害である「コピペ時に同じブロックを二重に貼ってしまう」事故だけを、
+ * ファイル内マーカー重複チェックで検知する。
  *
  * 純粋なテキスト解析（vitest の SSR ローダーで CSkillManager.js 系を import すると
  * 循環 import でハングするため。tests/roro/CSkillManager.scope.test.ts と同じ理由）。
@@ -73,16 +78,22 @@ describe('スキル定義レジストリの採番不変条件（旧 util/skill/v
         ); // 欠番なし
     });
 
-    it('ファイル内は ID 昇順（＝ファイル内での並び替え禁止）', () => {
-        const byFile = new Map<string, number[]>();
+    it('ファイル内に同じマーカーの重複が無い（コピペ時の配列破損検知）', () => {
+        const byFile = new Map<string, string[]>();
         for (const d of defined) {
-            const ids = byFile.get(d.file) ?? [];
-            ids.push(consts.get(d.name)!);
-            byFile.set(d.file, ids);
+            const names = byFile.get(d.file) ?? [];
+            names.push(d.name);
+            byFile.set(d.file, names);
         }
-        for (const [file, ids] of byFile) {
-            expect(ids, file).toEqual([...ids].sort((a, b) => a - b));
+        const dupes: string[] = [];
+        for (const [file, names] of byFile) {
+            const seen = new Set<string>();
+            for (const n of names) {
+                if (seen.has(n)) dupes.push(`${file}:${n}`);
+                seen.add(n);
+            }
         }
+        expect(dupes).toEqual([]);
     });
 
     it('各ファイルの定義ID集合が職業割当表（skill-job-assignment.json）と完全一致する', () => {

@@ -3,7 +3,8 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from '../../../../../ro4/m/js/hmjob-bridge.js';
 import { n_A_BaseLV } from '../../../../../ro4/m/js/ro4-state.js';
@@ -18,7 +19,7 @@ import { RACE_ID_ANIMAL, RACE_ID_FISH } from '../../const/EnumRaceId.js';
 import { GetEquippedTotalSPArrow } from '../../foot-bridge.js';
 import { LearnedSkillSearch, UsedSkillSearch } from '../../skill-search-bridge.js';
 import {
-    SKILL_ID_ADVANCED_TRAP, SKILL_ID_CALAMITY_GALE, SKILL_ID_CLIMAX_HURRICANE_STATE, SKILL_ID_CRESSIVE_VOLT,
+    SKILL_ID_ADVANCED_TRAP, SKILL_ID_CALAMITY_GALE, SKILL_ID_CRESSIVE_VOLT,
     SKILL_ID_DEEP_BLIND_TRAP, SKILL_ID_FLAME_TRAP, SKILL_ID_GALE_STORM, SKILL_ID_HAWK_BOOMERANG,
     SKILL_ID_HAWK_MASTERY, SKILL_ID_HAWK_RUSH, SKILL_ID_SHIZEN_SHINWA, SKILL_ID_SOLID_TRAP, SKILL_ID_STEEL_CROW,
     SKILL_ID_SWIFT_TRAP, SKILL_ID_WILD_WALK, SKILL_ID_WIND_SIGN
@@ -569,20 +570,6 @@ export const skills = [
 				}
 				return nLifeTime;
 			}
-		}),
-
-		// ----------------------------------------------------------------
-		// クライマックスハリケーン状態
-		// ----------------------------------------------------------------
-		// SKILL_ID_CLIMAX_HURRICANE_STATE
-		defineSkill(SKILL_ID_CLIMAX_HURRICANE_STATE, function() {
-
-			this.name = "クライマックスハリケーン状態";
-			this.kana = "クライマツクスハリケエンシヨウタイ";
-			this.maxLv = 1;
-			this.type = CSkillData.TYPE_PASSIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
 		}),
 
 		/** ワイルドウォーク */

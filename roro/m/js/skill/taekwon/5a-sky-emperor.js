@@ -3,7 +3,8 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from '../../../../../ro4/m/js/hmjob-bridge.js';
 import { n_A_BaseLV } from '../../../../../ro4/m/js/ro4-state.js';
@@ -11,7 +12,7 @@ import { CSkillData, defineSkill } from '../../CSkillData.js';
 import { MIG_PARAM_ID_POW } from '../../const/EnumMigItemParamId.js';
 import { LearnedSkillSearch, UsedSkillSearch } from '../../skill-search-bridge.js';
 import {
-    SKILL_ID_HYOHO_SHUREN, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SKY_MOON, SKILL_ID_SKY_SUN, SKILL_ID_STAR_LIGHT_KICK,
+    SKILL_ID_HYOHO_SHUREN, SKILL_ID_SKY_MOON, SKILL_ID_SKY_SUN, SKILL_ID_STAR_LIGHT_KICK,
     SKILL_ID_TAITEN_ICHIGETSU, SKILL_ID_TAITEN_ICHIYO, SKILL_ID_TENCHI_BANSE, SKILL_ID_TENCHI_ICHIGETSU,
     SKILL_ID_TENCHI_ICHIYO, SKILL_ID_TENGETSU, SKILL_ID_TENKINO_MI, SKILL_ID_TENKI_SHUREN, SKILL_ID_TENME_RAKUSE,
     SKILL_ID_TENRA_BANSHO, SKILL_ID_TENSE, SKILL_ID_TENYO, SKILL_ID_UNKONO_ZYOTAI
@@ -524,20 +525,6 @@ export const skills = [
 
 			this.name = "(×)運行の状態";
 			this.kana = "ウンコウノシヨウタイ";
-			this.maxLv = 6;
-			this.type = CSkillData.TYPE_ACTIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-		}),
-
-		// ----------------------------------------------------------------
-		// 四方五行陣状態
-		// ----------------------------------------------------------------
-		// SKILL_ID_SHIHO_FU_ZYOTAI
-		defineSkill(SKILL_ID_SHIHO_FU_ZYOTAI, function() {
-
-			this.name = "四方符状態";
-			this.kana = "シホウフシヨウタイ";
 			this.maxLv = 6;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;

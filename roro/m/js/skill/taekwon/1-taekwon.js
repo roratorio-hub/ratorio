@@ -3,13 +3,14 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import {
     SKILL_ID_APUCHAORURIGI, SKILL_ID_APUCHAORURIGINO_KAMAE, SKILL_ID_ATATAKAI_KAZE, SKILL_ID_FEORICHAGI,
     SKILL_ID_FEORICHAGINO_KAMAE, SKILL_ID_FIGHT, SKILL_ID_NERYOCHAGI, SKILL_ID_NERYOCHAGINO_KAMAE, SKILL_ID_NOPITIGI,
-    SKILL_ID_NUKUMORI, SKILL_ID_NUKUMORI_KABE, SKILL_ID_ODAYAKANA_KYUSOKU, SKILL_ID_RAKHO, SKILL_ID_SPURT_ZYOTAI,
+    SKILL_ID_ODAYAKANA_KYUSOKU, SKILL_ID_RAKHO, SKILL_ID_SPURT_ZYOTAI,
     SKILL_ID_TAEGWON_MISSION, SKILL_ID_TAEGWON_RANKER, SKILL_ID_TAIRIGI, SKILL_ID_TANOSHI_KYUSOKU,
     SKILL_ID_TEIOAPUCHAGI, SKILL_ID_TEIOAPUCHAGI_IN_DASH, SKILL_ID_TORURYOCHAGI, SKILL_ID_TORURYOCHAGINO_KAMAE,
     SKILL_ID_ZIBUNIGAINO_PTNINZU_FOR_FIGHT
@@ -53,63 +54,6 @@ export const skills = [
 				return pow;
 			}
 
-		}),
-
-		// ----------------------------------------------------------------
-		// 温もり
-		// ----------------------------------------------------------------
-		// SKILL_ID_NUKUMORI
-		defineSkill(SKILL_ID_NUKUMORI, function() {
-			this.name = "温もり";
-			this.kana = "ヌクモリ";
-			this.maxLv = 3;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 20;
-			}
-			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0;
-			}
-			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return 0;
-			}
-			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0;
-			}
-			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
-			}
-		}),
-
-		// ----------------------------------------------------------------
-		// 温もり(壁押付)
-		// ----------------------------------------------------------------
-		// SKILL_ID_NUKUMORI_KABE
-		defineSkill(SKILL_ID_NUKUMORI_KABE, function() {
-			this.refId = SKILL_ID_NUKUMORI;
-			this.name = "温もり(壁押付)";
-			this.kana = "ヌクモリカヘオシツケ";
-			this.maxLv = 3;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 20;
-			}
-			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 0;
-			}
-			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return 0;
-			}
-			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 0;
-			}
-			this.CoolTime = function(skillLv, charaDataManger) {
-				return 0;
-			}
 		}),
 
 		// ----------------------------------------------------------------

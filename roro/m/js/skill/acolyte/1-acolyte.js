@@ -3,13 +3,15 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import {
     SKILL_ID_ANGELUS, SKILL_ID_AQUA_BENEDICTA, SKILL_ID_BLESSING, SKILL_ID_CURE, SKILL_ID_DEMON_BANE,
     SKILL_ID_DIVINE_PROTECTION, SKILL_ID_HEAL, SKILL_ID_HOLY_LIGHT, SKILL_ID_PNEUMA, SKILL_ID_RUWACH,
-    SKILL_ID_SIGNUM_CRUCIS, SKILL_ID_SOKUDO_GENSHO, SKILL_ID_SOKUDO_ZOKA, SKILL_ID_TELEPORT, SKILL_ID_WARP_PORTAL
+    SKILL_ID_SIGNUM_CRUCIS, SKILL_ID_SOKUDO_GENSHO, SKILL_ID_SOKUDO_ZOKA, SKILL_ID_TELEPORT, SKILL_ID_WARP_PORTAL,
+	SKILL_ID_HOLY_LIGHT_TAMASHI
 } from '../../skill.dat.js';
 
 export const skills = [
@@ -348,6 +350,33 @@ export const skills = [
 
 			this.Power = function(skillLv, charaDataManger) {
 				return 125;
+			}
+
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 2000;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// ホーリーライト(SL魂版)
+		// ----------------------------------------------------------------
+		// SKILL_ID_HOLY_LIGHT_TAMASHI
+		defineSkill(SKILL_ID_HOLY_LIGHT_TAMASHI, function() {
+
+			this.refId = SKILL_ID_HOLY_LIGHT;
+			this.name = "ホーリーライト(SL魂版)";
+			this.kana = "ホオリイライトソウルリンカアタマシイハン";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_HOLY;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 75;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 625;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

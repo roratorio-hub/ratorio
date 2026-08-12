@@ -3,7 +3,8 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from '../../const/EnumSizeId.js';
@@ -30,7 +31,7 @@ export const skills = [
 		defineSkill(SKILL_ID_ONO_SHUREN_MECHANIC, function() {
 
 			this.name = "斧鍛錬";
-			this.kana = "オノシユウレン";
+			this.kana = "オノタンレン";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_PASSIVE;
 			this.range = CSkillData.RANGE_SHORT;

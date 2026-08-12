@@ -3,19 +3,20 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from '../../mobconfplayer.js';
 import {
-    SKILL_ID_ATK_FOR_IRON_NAIL, SKILL_ID_BAKURETSU_KUNAI, SKILL_ID_CHIMEITEKINA_KIZU, SKILL_ID_DOFU_GOKAI,
+    SKILL_ID_BAKURETSU_KUNAI, SKILL_ID_DOFU_GOKAI,
     SKILL_ID_FUFU_SEIRAN, SKILL_ID_FUMASHURIKEN_RANKA, SKILL_ID_FU_COUNT_OF_FU, SKILL_ID_FU_ELEMENT_OF_FU,
     SKILL_ID_GENZYUTSU_BUNSHIN, SKILL_ID_GENZYUTSU_GENWAKU, SKILL_ID_GENZYUTSU_KAGEFUMI,
     SKILL_ID_GENZYUTSU_KAGEMUSHA, SKILL_ID_GENZYUTSU_KOUGETSU, SKILL_ID_GENZYUTSU_KYOGAKU,
     SKILL_ID_GENZYUTSU_KYOMUNOKAGE, SKILL_ID_GENZYUTSU_OBOROGENSO, SKILL_ID_GENZYUTSU_ZANGETSU,
-    SKILL_ID_GENZYUTSU_ZYUSATSU, SKILL_ID_HAPPO_KUNAI, SKILL_ID_HELL_JUDGEMENT, SKILL_ID_HIDARITE_TANREN,
+    SKILL_ID_GENZYUTSU_ZYUSATSU, SKILL_ID_HAPPO_KUNAI, SKILL_ID_HIDARITE_TANREN,
     SKILL_ID_HIFU_ENTEN, SKILL_ID_HPSPCONF_FOR_GENZYUTSU_ZANGETSU, SKILL_ID_HYOFU_FUBUKI, SKILL_ID_IZAYOI,
     SKILL_ID_MAKIBISHI, SKILL_ID_MEIKYO_SHISUI, SKILL_ID_MIGITE_TANREN, SKILL_ID_MUCHANAGE, SKILL_ID_TOTEKI_SHUREN,
     SKILL_ID_YAMIKUMO, SKILL_ID_YOMIGAESHI, SKILL_ID_ZYUMONZIGIRI, SKILL_ID_ZYUTSUSHIKI_KAIHO,
@@ -23,57 +24,6 @@ import {
 } from '../../skill.dat.js';
 
 export const skills = [
-		// ----------------------------------------------------------------
-		// 致命的な傷
-		// ----------------------------------------------------------------
-		// SKILL_ID_CHIMEITEKINA_KIZU
-		defineSkill(SKILL_ID_CHIMEITEKINA_KIZU, function() {
-
-			this.name = "致命的な傷";
-			this.kana = "チメイテキナキス";
-			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-
-			this.Power = function(skillLv, charaDataManger) {
-				return 100;
-			}
-
-		}),
-
-		// ----------------------------------------------------------------
-		// アイアンネイル用ATK+
-		// ----------------------------------------------------------------
-		// SKILL_ID_ATK_FOR_IRON_NAIL
-		defineSkill(SKILL_ID_ATK_FOR_IRON_NAIL, function() {
-
-			this.name = "アイアンネイル用ATK+";
-			this.kana = "アイアンネイルヨウアタツクフラス";
-			this.maxLv = 5;
-			this.type = CSkillData.TYPE_PASSIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-		}),
-
-		// ----------------------------------------------------------------
-		// ヘルジャッジメント
-		// ----------------------------------------------------------------
-		// SKILL_ID_HELL_JUDGEMENT
-		defineSkill(SKILL_ID_HELL_JUDGEMENT, function() {
-
-			this.name = "ヘルジャッジメント";
-			this.kana = "ヘルシヤツシメント";
-			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-
-			this.Power = function(skillLv, charaDataManger) {
-				return 100 * skillLv;
-			}
-
-		}),
 
 		// ----------------------------------------------------------------
 		// 闇雲

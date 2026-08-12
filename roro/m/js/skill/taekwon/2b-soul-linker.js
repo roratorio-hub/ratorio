@@ -3,7 +3,8 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import { SIZE_ID_SMALL } from '../../const/EnumSizeId.js';
@@ -11,12 +12,11 @@ import { MONSTER_ID_PLAYER } from '../../monster.dat.js';
 import {
     SKILL_ID_ALCHEMISTNO_TAMASHI, SKILL_ID_ASSASINNO_TAMASHI, SKILL_ID_BARDTO_DANCERNO_TAMASHI,
     SKILL_ID_BLACKSMITHNO_TAMASHI, SKILL_ID_CRUSADERNO_TAMASHI, SKILL_ID_ENCHANT_DEADLY_POISON, SKILL_ID_ESKA,
-    SKILL_ID_ESKU, SKILL_ID_ESMA, SKILL_ID_ESTIN, SKILL_ID_ESTON, SKILL_ID_ESU, SKILL_ID_HOLY_LIGHT,
-    SKILL_ID_HOLY_LIGHT_TAMASHI, SKILL_ID_HUNTERNO_TAMASHI, SKILL_ID_HUNTERNO_TAMASHI_KOKA, SKILL_ID_KAAHI,
+    SKILL_ID_ESKU, SKILL_ID_ESMA, SKILL_ID_ESTIN, SKILL_ID_ESTON, SKILL_ID_ESU, 
+	SKILL_ID_HUNTERNO_TAMASHI, SKILL_ID_HUNTERNO_TAMASHI_KOKA, SKILL_ID_KAAHI,
     SKILL_ID_KAINA, SKILL_ID_KAISEL, SKILL_ID_KAITO, SKILL_ID_KAUPU, SKILL_ID_KENSENO_TAMASHI,
-    SKILL_ID_KNIGHTNO_TAMASHI, SKILL_ID_MONKNO_TAMASHI, SKILL_ID_ONEHAND_QUICKEN, SKILL_ID_PRIESTNO_TAMASHI,
+    SKILL_ID_KNIGHTNO_TAMASHI, SKILL_ID_MONKNO_TAMASHI, SKILL_ID_PRIESTNO_TAMASHI,
     SKILL_ID_ROGUENO_TAMASHI, SKILL_ID_SAGENO_TAMASHI, SKILL_ID_SAGENO_TAMASHI_MAHONO_SHUTOKU_LEVEL,
-    SKILL_ID_SHIELD_BOOMERANG, SKILL_ID_SHIELD_BOOMERANG_TAMASHI, SKILL_ID_SONIC_BLOW, SKILL_ID_SONIC_BLOW_TAMASHI,
     SKILL_ID_SOULLINKERNO_TAMASHI, SKILL_ID_SUPER_NOVICENO_TAMASHI, SKILL_ID_TENSE_ICHIZISHOKUNO_TAMASHI,
     SKILL_ID_WIZARDNO_TAMASHI
 } from '../../skill.dat.js';
@@ -316,34 +316,6 @@ export const skills = [
 		}),
 
 		// ----------------------------------------------------------------
-		// シールドブーメラン(SL魂版)
-		// ----------------------------------------------------------------
-		// SKILL_ID_SHIELD_BOOMERANG_TAMASHI
-		defineSkill(SKILL_ID_SHIELD_BOOMERANG_TAMASHI, function() {
-
-			this.refId = SKILL_ID_SHIELD_BOOMERANG;
-			this.name = "シールドブーメラン(SL魂版)";
-			this.kana = "シイルトフウメランソウルリンカアタマシイハン";
-			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_FORCE_VANITY;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 12;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return 200 + 60 * skillLv;
-			}
-
-			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 350;
-			}
-
-		}),
-
-		// ----------------------------------------------------------------
 		// スーパーノービスの魂
 		// ----------------------------------------------------------------
 		// SKILL_ID_SUPER_NOVICENO_TAMASHI
@@ -362,100 +334,6 @@ export const skills = [
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000;
-			}
-
-		}),
-
-		// ----------------------------------------------------------------
-		// ワンハンドクイッケン(SL魂)
-		// ----------------------------------------------------------------
-		// SKILL_ID_ONEHAND_QUICKEN
-		defineSkill(SKILL_ID_ONEHAND_QUICKEN, function() {
-
-			this.name = "ワンハンドクイッケン(SL魂)";
-			this.kana = "ワンハントクイツケンソウルリンカアタマシイ";
-			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 100;
-			}
-
-		}),
-
-		// ----------------------------------------------------------------
-		// ホーリーライト(SL魂版)
-		// ----------------------------------------------------------------
-		// SKILL_ID_HOLY_LIGHT_TAMASHI
-		defineSkill(SKILL_ID_HOLY_LIGHT_TAMASHI, function() {
-
-			this.refId = SKILL_ID_HOLY_LIGHT;
-			this.name = "ホーリーライト(SL魂版)";
-			this.kana = "ホオリイライトソウルリンカアタマシイハン";
-			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
-			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_HOLY;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 75;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				return 625;
-			}
-
-			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 2000;
-			}
-
-		}),
-
-		// ----------------------------------------------------------------
-		// ソニックブロー(SL魂版)
-		// ----------------------------------------------------------------
-		// SKILL_ID_SONIC_BLOW_TAMASHI
-		defineSkill(SKILL_ID_SONIC_BLOW_TAMASHI, function() {
-
-			this.refId = SKILL_ID_SONIC_BLOW;
-			this.name = "ソニックブロー(SL魂版)";
-			this.kana = "ソニツクフロオソウルリンカアタマシイハン";
-			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
-
-			this.CostFixed = function(skillLv, charaDataManger) {
-				return 14 + 2 * skillLv;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-				var edp = 0;
-
-				// 基本式
-				pow = 400 + 40 * skillLv;
-
-				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
-				if (edp > 0) {
-					pow = Math.floor(pow / 2);
-				}
-
-				// 魂効果
-				pow *= (charaDataManger.IsSeedsMode()) ? 1.25 : 2;
-
-				return pow;
-			}
-
-			this.dispHitCount = function(skillLv, charaDataManger) {
-				return 8;
-			}
-
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return (charaDataManger.IsSeedsMode()) ? 2000 : 1;
 			}
 
 		}),

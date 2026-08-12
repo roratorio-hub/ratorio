@@ -3,14 +3,15 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import { MOB_CONF_DEBUF_ID_LEX_AETERNA } from '../../mobconfdebuf.js';
 import {
     SKILL_ID_AUTO_COUNTER, SKILL_ID_BOWLING_BASH, SKILL_ID_BRANDISH_SPEAR, SKILL_ID_CHARGE_ATTACK,
     SKILL_ID_KIHE_SHUREN, SKILL_ID_PIERCE, SKILL_ID_RIDING, SKILL_ID_SPEAR_BOOMERANG, SKILL_ID_SPEAR_STUB,
-    SKILL_ID_TWOHAND_QUICKEN, SKILL_ID_YARI_SHUREN
+    SKILL_ID_TWOHAND_QUICKEN, SKILL_ID_YARI_SHUREN, SKILL_ID_ONEHAND_QUICKEN
 } from '../../skill.dat.js';
 
 export const skills = [
@@ -154,6 +155,24 @@ export const skills = [
 				return 10 + 4 * skillLv;
 			}
 
+		}),
+
+		// ----------------------------------------------------------------
+		// ワンハンドクイッケン(SL魂)
+		// ----------------------------------------------------------------
+		// SKILL_ID_ONEHAND_QUICKEN
+		defineSkill(SKILL_ID_ONEHAND_QUICKEN, function() {
+
+			this.name = "ワンハンドクイッケン(SL魂)";
+			this.kana = "ワンハントクイツケンソウルリンカアタマシイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 100;
+			}
 		}),
 
 		// ----------------------------------------------------------------

@@ -3,13 +3,14 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import {
     SKILL_ID_CART_REVOLUTION, SKILL_ID_CHANGE_CART, SKILL_ID_DISCOUNT, SKILL_ID_ITEM_KANTE, SKILL_ID_LOUD_VOICE,
     SKILL_ID_MAMMONITE, SKILL_ID_OVER_CHARGE, SKILL_ID_PUSH_CART, SKILL_ID_ROTEN_KAISETSU,
-    SKILL_ID_SHOZIGENKAIRYO_ZOKA, SKILL_ID_SHOZIGENKAIRYO_ZOKA_R
+    SKILL_ID_SHOZIGENKAIRYO_ZOKA
 } from '../../skill.dat.js';
 
 export const skills = [
@@ -189,21 +190,6 @@ export const skills = [
 				return 8;
 			}
 
-		}),
-
-		// ----------------------------------------------------------------
-		// 所持限界量増加Ｒ
-		// ----------------------------------------------------------------
-		// SKILL_ID_SHOZIGENKAIRYO_ZOKA_R
-		defineSkill(SKILL_ID_SHOZIGENKAIRYO_ZOKA_R, function() {
-
-			this.refId = SKILL_ID_SHOZIGENKAIRYO_ZOKA;
-			this.name = "所持限界量増加Ｒ";
-			this.kana = "シヨシケンカイリヨウソウカアアル";
-			this.maxLv = 10;
-			this.type = CSkillData.TYPE_PASSIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
 		}),
 
 ];

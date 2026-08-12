@@ -3,7 +3,8 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from '../../../../../ro4/m/js/hmjob-bridge.js';
 import { n_A_BaseLV } from '../../../../../ro4/m/js/ro4-state.js';
@@ -14,7 +15,7 @@ import { LearnedSkillSearch, UsedSkillSearch } from '../../skill-search-bridge.j
 import {
     SKILL_ID_BUSHI_FU, SKILL_ID_BYAKKO_FU, SKILL_ID_COUNT_OF_SOUL_ENERGY, SKILL_ID_GENBU_FU, SKILL_ID_GOFU_SHUREN,
     SKILL_ID_GOGYO_FU, SKILL_ID_GOKON_ISSHIN, SKILL_ID_HOSHI_FU, SKILL_ID_REIDOZYUTSU_SHUREN, SKILL_ID_REIDO_FU,
-    SKILL_ID_SEIRYU_FU, SKILL_ID_SHIHOZIN_FU, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN,
+    SKILL_ID_SEIRYU_FU, SKILL_ID_SHIHOZIN_FU, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN, 
     SKILL_ID_SHIRYO_ZYOKA, SKILL_ID_SHUGO_FU, SKILL_ID_SUZAKU_FU, SKILL_ID_TENCHI_SHINRE, SKILL_ID_ZYOKODO
 } from '../../skill.dat.js';
 
@@ -560,6 +561,20 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 60 * 1000;
 			}
+		}),
+
+		// ----------------------------------------------------------------
+		// 四方符状態
+		// ----------------------------------------------------------------
+		// SKILL_ID_SHIHO_FU_ZYOTAI
+		defineSkill(SKILL_ID_SHIHO_FU_ZYOTAI, function() {
+
+			this.name = "四方符状態";
+			this.kana = "シホウフシヨウタイ";
+			this.maxLv = 6;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
 		}),
 
 		// ----------------------------------------------------------------

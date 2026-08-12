@@ -3,11 +3,13 @@
  *
  * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
- * 並び順＝ID昇順を保つこと。割当根拠は .claude/context/architecture.md 参照。
+ * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
+ * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from '../../CSkillData.js';
 import { MONSTER_BOSSTYPE_BOSS } from '../../const/EnumMonsterBossType.js';
 import {
+	SKILL_ID_NUKUMORI, SKILL_ID_NUKUMORI_KABE,
     SKILL_ID_HOSHINO_ANRAKU, SKILL_ID_HOSHINO_IKARI, SKILL_ID_HOSHINO_NUKUMORI, SKILL_ID_HOSHINO_SHUKUFUKU,
     SKILL_ID_SHUKUFUKU, SKILL_ID_TAIYONO_ANRAKU, SKILL_ID_TAIYONO_IKARI, SKILL_ID_TAIYONO_NUKUMORI,
     SKILL_ID_TAIYONO_SHUKUFUKU, SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA, SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_CHISHIKI,
@@ -40,6 +42,63 @@ export const skills = [
 				return 1000;
 			}
 
+		}),
+
+		// ----------------------------------------------------------------
+		// 温もり
+		// ----------------------------------------------------------------
+		// SKILL_ID_NUKUMORI
+		defineSkill(SKILL_ID_NUKUMORI, function() {
+			this.name = "温もり";
+			this.kana = "ヌクモリ";
+			this.maxLv = 3;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 20;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+		}),
+
+		// ----------------------------------------------------------------
+		// 温もり(壁押付)
+		// ----------------------------------------------------------------
+		// SKILL_ID_NUKUMORI_KABE
+		defineSkill(SKILL_ID_NUKUMORI_KABE, function() {
+			this.refId = SKILL_ID_NUKUMORI;
+			this.name = "温もり(壁押付)";
+			this.kana = "ヌクモリカヘオシツケ";
+			this.maxLv = 3;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {
+				return 20;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
 		}),
 
 		// ----------------------------------------------------------------
