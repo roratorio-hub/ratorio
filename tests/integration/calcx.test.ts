@@ -21,74 +21,26 @@
 
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium, type Browser, type Page } from 'playwright';
-import { createServer, type Server } from 'node:http';
-import { createReadStream, existsSync, readFileSync } from 'node:fs';
-import { extname, join, normalize } from 'node:path';
+import { type Server } from 'node:http';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+    createStaticServer, loadSaveDataEntries,
+    expandAllSections, evalObjidSnapshot, captureFullObjidSnapshot, buildObjidDiffMessage,
+} from '../helpers/objid-snapshot.js';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // ─── 静的ファイルサーバー ────────────────────────────────────────────────────
+// 実体は helpers/objid-snapshot.ts（split-regression.test.ts と共有）。
 
 const PROJECT_ROOT = join(__dirname, '../..');
 
-const CONTENT_TYPES: Record<string, string> = {
-    '.html': 'text/html; charset=utf-8',
-    '.js':   'text/javascript; charset=utf-8',
-    '.mjs':  'text/javascript; charset=utf-8',
-    '.css':  'text/css; charset=utf-8',
-    '.json': 'application/json; charset=utf-8',
-    '.yaml': 'text/yaml; charset=utf-8',
-    '.yml':  'text/yaml; charset=utf-8',
-    '.png':  'image/png',
-    '.gif':  'image/gif',
-    '.jpg':  'image/jpeg',
-    '.svg':  'image/svg+xml',
-    '.woff2':'font/woff2',
-    '.woff': 'font/woff',
-    '.ttf':  'font/ttf',
-};
-
-function createStaticServer(root: string): Server {
-    return createServer((req, res) => {
-        const urlPath = decodeURIComponent((req.url ?? '/').split('?')[0]);
-        const safe = normalize(urlPath).replace(/^(\.\.[/\\])+/, '');
-        const filePath = join(root, safe);
-        if (!filePath.startsWith(root) || !existsSync(filePath)) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.end(`Not found: ${urlPath}`);
-            return;
-        }
-        const ext = extname(filePath).toLowerCase();
-        res.writeHead(200, { 'Content-Type': CONTENT_TYPES[ext] ?? 'application/octet-stream' });
-        createReadStream(filePath).pipe(res);
-    });
-}
-
 // ─── セーブデータフィクスチャ ─────────────────────────────────────────────────
+// 実体は helpers/objid-snapshot.ts。
 
 const FIXTURES_NEW_PATH = join(__dirname, 'fixtures/sample-savedata-new.md');
 const FIXTURES_OLD_PATH = join(__dirname, 'fixtures/sample-savedata-old.md');
-
-type FixtureEntry = { label: string; prodUrl: string; query: string };
-
-/** フィクスチャファイルから本番URLのリストを読み込む */
-function loadSaveDataEntries(filePath: string, prefix: string): FixtureEntry[] {
-    if (!existsSync(filePath)) return [];
-    return readFileSync(filePath, 'utf-8')
-        .split('\n')
-        .map((line) => line.trim())
-        .filter((line) => line.length > 0 && !line.startsWith('#'))
-        .map((url, i) => {
-            const qi = url.indexOf('?');
-            return {
-                label: `${prefix}[${i}]`,
-                prodUrl: url,
-                query: qi >= 0 ? url.slice(qi + 1) : '',
-            };
-        })
-        .filter(({ query }) => query.length > 0);
-}
 
 // 新形式: 比較 + 往復テスト両方の対象
 const entriesNew = loadSaveDataEntries(FIXTURES_NEW_PATH, 'new');
@@ -1164,126 +1116,8 @@ describe('URL セーブ/ロード 往復テスト（新形式フィクスチャ�
 });
 
 // ─── 全 OBJID_* スナップショット（スイート 3 用）────────────────────────────────
-
-/**
- * 全セクション・全設定欄を展開する。
- *
- * Pass 1–2: folding-switch-MIG（calcx.html にハードコードされた CSS折りたたみ開閉スイッチ）
- *   - 2パス実行でネストしたセクション（OBJID_SWITCH_CONFIRM_DIALOG 等）も確実に開く
- *   - 装備スロット・スキルスイッチ等の計算値に直結するチェックボックスは含まない
- * Pass 3: OBJID_CONTROL_CONF_*_SWITCH / OBJID_CONTROL_CONF2_*_SWITCH
- *   - CConfBase / CConfBase2 が BuildUpSelectArea() で動的生成するスイッチ
- *   - onclick="CConfBase.OnClickSwitchHandler(...)" をグローバルスコープで評価するため
- *     window.CConfBase が未登録の場合は ReferenceError が発生する
- *   - このパスを実行することで設定欄の子要素（OBJID_CONTROL_CONF_*_ID_*）が DOM に生成される
- */
-async function expandAllSections(page: Page): Promise<void> {
-    page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
-
-    // Pass 1 & 2: CSS 折りたたみセクション（folding-switch-MIG）
-    for (let pass = 0; pass < 2; pass++) {
-        await page.evaluate(() => {
-            document.querySelectorAll<HTMLInputElement>(
-                'input[type="checkbox"].folding-switch-MIG:not(:checked)'
-            ).forEach((cb) => cb.click());
-        });
-        await page.waitForTimeout(300);
-    }
-
-    // Pass 3: CConfBase / CConfBase2 設定欄スイッチ
-    await page.evaluate(() => {
-        document.querySelectorAll<HTMLInputElement>(
-            '[id^="OBJID_CONTROL_CONF_"][id$="_SWITCH"]:not(:checked), ' +
-            '[id^="OBJID_CONTROL_CONF2_"][id$="_SWITCH"]:not(:checked)'
-        ).forEach((cb) => cb.click());
-    });
-    await page.waitForTimeout(500); // BuildUpSelectArea の DOM 再構築を待つ
-}
-
-/** 全 OBJID_* 要素の値を DOM から直接評価して返す（副作用なし）。 */
-function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
-    return page.evaluate((): Record<string, string> => {
-        const snapshot: Record<string, string> = {};
-        // 本番と意図的に乖離している要素（ローカル側で機能削除済み）。
-        // OBJID_CHECK_A3_SKILLSW: 演奏/踊り系スキル欄の削除に伴い本番にのみ存在する。
-        // OBJID_SELECT_JOB: job.yaml 廃止により value が id_name（"NOVICE"）から
-        //   mig ID の数値文字列（"0"）へ変わった。選択されている職業そのものは
-        //   OBJID_SELECT_JOB-ts-control（表示名）の比較で引き続き検証される。
-        // OBJID_DIV_BATTLE_RESULT_TINY: オートスペルの武器属性が発動順で汚染される既存バグを
-        //   修正した（bugfix/autospell-elemental-change）。混在属性のオートスペルを持つビルドは
-        //   ダメージが（正しい方向に）変わるため、本番未デプロイの間は乖離する
-        //   （new[6]「ギロチンクロス ランダムオプション ペット効果 マップ指定」で確認済み。
-        //   平均212684→205367 / DPS1519172→1466908。差分の原因はバックアップ/リストア追加のみと
-        //   単離検証済みで、四次スキルの強制属性判定（GetForcedElement）側の影響ではない）。
-        //   ⚠ この除外は OBJID_DIV_BATTLE_RESULT_TINY を「全フィクスチャ」で比較対象外にする
-        //   （ID 単位の除外機構のため fixture 単位にできない）。他ビルドの本当のダメージ回帰を
-        //   一時的に見逃すリスクがあるため、本番へデプロイされたら真っ先にこの行を削除すること。
-        const INTENTIONAL_DIVERGENCE_IDS = new Set(['OBJID_CHECK_A3_SKILLSW', 'OBJID_SELECT_JOB', 'OBJID_DIV_BATTLE_RESULT_TINY']);
-        document.querySelectorAll<HTMLElement>('[id^="OBJID_"]').forEach((el) => {
-            const id = el.id;
-            if (INTENTIONAL_DIVERGENCE_IDS.has(id)) return;
-            if (el instanceof HTMLInputElement) {
-                if (el.type === 'checkbox' || el.type === 'radio') {
-                    snapshot[id] = el.checked ? 'true' : 'false';
-                } else {
-                    snapshot[id] = el.value;
-                }
-            } else if (el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement) {
-                snapshot[id] = el.value;
-            } else {
-                // コンテナ要素（子に OBJID_* を持つ）は除外。葉要素のみ記録する。
-                const hasObjidChild = el.querySelector('[id^="OBJID_"]') !== null;
-                if (!hasObjidChild) {
-                    snapshot[id] = el.textContent?.trim() ?? '';
-                }
-            }
-            // bgcolor 属性（スキルヘッダ等の色表現）は常に記録
-            const bg = el.getAttribute('bgcolor');
-            if (bg !== null) snapshot[`${id}:bgcolor`] = bg;
-        });
-        return snapshot;
-    });
-}
-
-/**
- * セーブデータ復元完了まで待ち、全セクションを展開してから全 OBJID_* 要素を取得する。
- */
-async function captureFullObjidSnapshot(page: Page): Promise<Record<string, string>> {
-    await page.waitForFunction(
-        () => {
-            const job = document.getElementById('OBJID_SELECT_JOB') as HTMLSelectElement | null;
-            return job !== null && job.value !== '' && job.value !== '0';
-        },
-        { timeout: 5000 }
-    ).catch(() => { /* 職業未設定のセーブデータはそのまま続行 */ });
-    await expandAllSections(page);
-    await page.waitForTimeout(200);
-    return evalObjidSnapshot(page);
-}
-
-/**
- * 本番スナップショットをベースに、ローカルとの差分を整形して返す。
- * ローカルにしか存在しない要素（未デプロイの新機能）は報告しない。
- * 差分が多い場合は先頭 20 件のみ表示する。
- */
-function buildObjidDiffMessage(
-    label: string,
-    prod: Record<string, string>,
-    local: Record<string, string>,
-): string {
-    const diffs: string[] = [];
-    for (const key of Object.keys(prod).sort()) {
-        const pv = prod[key];
-        const lv = local[key] ?? '(なし)';
-        if (pv !== lv) {
-            diffs.push(`  ${key}:\n    本番:     ${pv}\n    ローカル: ${lv}`);
-        }
-    }
-    const header = `リグレッション検出 (${label}) — ${diffs.length} 項目（本番にある要素がローカルと一致しない）:`;
-    const body   = diffs.slice(0, 20).join('\n');
-    const tail   = diffs.length > 20 ? `\n  ...他 ${diffs.length - 20} 件（全差分はスタックトレースを参照）` : '';
-    return [header, body, tail].filter(Boolean).join('\n');
-}
+// expandAllSections / evalObjidSnapshot / captureFullObjidSnapshot / buildObjidDiffMessage の
+// 実体は helpers/objid-snapshot.ts（split-regression.test.ts と共有）。
 
 // ─── スイート 3: セーブデータ復元比較（全 OBJID_* 要素・本番 vs ローカル）──────────
 //
@@ -1301,7 +1135,7 @@ describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ロー
         });
     }
 
-    for (const { label, prodUrl, query } of allEntries) {
+    for (const { label, url: prodUrl, query } of allEntries) {
         it(`${label}: 全 OBJID_* 要素の値が本番と一致する`, async () => {
             // ── 本番から期待値を取得 ─────────────────────────────────────
             let prodSnapshot: Record<string, string>;
