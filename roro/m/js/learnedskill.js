@@ -9,7 +9,7 @@ import { UpdateLearnedSkillNotice } from './equip.js';
 import { ItemObjNew } from './item.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { HtmlCreateElement, HtmlCreateTextNode } from '../../common/js/util.js';
-import { RegisterLearnedSkillSearch } from './CSkillManager.js';
+import { RegisterLearnedSkillSearch } from './skill-search-bridge.js';
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state 追加分
 import {

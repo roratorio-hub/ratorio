@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { n_A_Equip, n_A_card } from '../../../roro/m/js/roro-state.js';
+import { n_A_Equip } from '../../../roro/m/js/roro-state.js';
 import '../../../roro/m/js/autospell.h.js';
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
@@ -10,7 +10,7 @@ import {
          HtmlRemoveAllChild, myInnerHtml
 } from '../../../roro/common/js/util.js';
 import { AutoSpellSkill } from '../../../roro/m/js/autospell.dat.js';
-import { CARD_ID_GRIFFIN, CARD_ID_NAGUSAMERUMONO, CardObjNew } from '../../../roro/m/js/card.dat.js';
+import { CARD_ID_GRIFFIN, CARD_ID_NAGUSAMERUMONO } from '../../../roro/m/js/card.dat.js';
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara.js';
 import {
          ITEM_ID_FURUBITA_MEISAIUSAGI, ITEM_ID_GLORIOUS_CLAW, ITEM_ID_MAGICAL_BLADE,
@@ -102,13 +102,12 @@ import {
 } from '../../../roro/m/js/roro-state.js';
 import { AUTO_SPELL_DATA_INDEX_ATTACKABLE, AUTO_SPELL_DATA_INDEX_ID, AUTO_SPELL_DATA_INDEX_SKILL_ID, AUTO_SPELL_DATA_INDEX_SKILL_LEVEL, AUTO_SPELL_DATA_INDEX_SORT_NAME } from '../../../roro/m/js/const/EnumAutoSpellDataIndex.js';
 import { AUTO_SPELL_TRIGGER_ANY_ATTACK, AUTO_SPELL_TRIGGER_LONGRANGE_ATTACK, AUTO_SPELL_TRIGGER_PHYSICAL_ATTACK, AUTO_SPELL_TRIGGER_SHORTRANGE_ATTACK } from '../../../roro/m/js/const/EnumAutoSpellTrigger.js';
-import { CARD_DATA_INDEX_SPBEGIN } from '../../../roro/m/js/const/EnumCardDataIndex.js';
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT } from '../../../roro/m/js/const/EnumEquipRegionId.js';
 import {
     ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_BOOK, ITEM_KIND_BOW, ITEM_KIND_CLUB, ITEM_KIND_GRENADEGUN,
     ITEM_KIND_HANDGUN,
 } from '../../../roro/m/js/const/EnumItemKind.js';
-import { ITEM_SP_AUTO_SPELL, ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL, ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED, ITEM_SP_END } from '../../../roro/m/js/const/EnumItemSpId.js';
+import { ITEM_SP_AUTO_SPELL, ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL, ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED } from '../../../roro/m/js/const/EnumItemSpId.js';
 import { JOB_ID_HUNTER, JOB_ID_SNIPER } from '../../../roro/m/js/const/EnumJobId.js';
 import { SKILL_DATA_INDEX_NAME } from '../../../roro/m/js/const/EnumSkillDataIndex.js';
 
@@ -1583,54 +1582,9 @@ export function OnClickEasySetUpAutoSpell(){
 	}
 
 
-	//----------------------------------------------------------------
-	// カードのオートスペルを設定する
-	//----------------------------------------------------------------
-	for(var eqpidx = 0; eqpidx < n_A_card.length; eqpidx++){
-
-		// 該当装備箇所のアイテムデータを取得
-		var cardData = CardObjNew[n_A_card[eqpidx]];
-
-		for(var j2 = 0; ; j2 += 2) {
-
-			// アイテムのＳＰ定義ＩＤを取得
-			var cardSpId = cardData[CARD_DATA_INDEX_SPBEGIN + j2];
-
-			// ＳＰ定義終了ならば処理を抜ける
-			if (cardSpId == ITEM_SP_END) {
-				break;
-			}
-
-			// ＳＰ定義がオートスペル定義で無い場合、処理しない
-			if ((cardSpId != ITEM_SP_AUTO_SPELL)
-				&& (cardSpId != ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED)
-				&& (cardSpId != ITEM_SP_AUTO_SPELL_HIDDEN_DETAIL)) {
-				continue;
-			}
-
-			// アイテムのＳＰ定義値を取得（オートスペルＩＤが設定されている）
-			var asId = cardData[CARD_DATA_INDEX_SPBEGIN + j2 + 1];
-
-			// 当該オートスペルが設定対象外の場合、処理しない
-			if (AutoSpellSkill[asId][1] != 1) {
-				continue;
-			}
-
-			// 当該オートスペルが物理攻撃時オートスペルでない場合、処理しない
-			switch (AutoSpellSkill[asId][5]) {
-			case AUTO_SPELL_TRIGGER_PHYSICAL_ATTACK:
-			case AUTO_SPELL_TRIGGER_SHORTRANGE_ATTACK:
-			case AUTO_SPELL_TRIGGER_LONGRANGE_ATTACK:
-			case AUTO_SPELL_TRIGGER_ANY_ATTACK:
-				break;
-			default:
-				continue;
-			}
-
-			asIdArray[asidx] = asId;
-			asidx++;
-		}
-	}
+	// ※ カード由来のオートスペルは、直前の autoSpellSpArray（GetEquippedSPValueArrayCardAndElse 経由）で
+	//   既に n_A_card 全体を走査済みのため、ここで再度カードをループして同じ判定を行う必要は無い
+	//   （旧実装は同じASを二重登録していた）。
 
 
 	//================================================================

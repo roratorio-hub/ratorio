@@ -45,6 +45,12 @@ export let n_AS_check_3dan = false;
 export let n_CONFIG = [0, 33, 19];
 export let g_perfectHitRate = 0;
 export let g_bDefinedDamageIntervals = false;
+// Phase 3c: head.js 分割（head-battle-result-html.js / head-skill-ratio-physical.js）に伴い
+// head.js 内の別関数（calc() / BattleCalc999Core）が書き込み、分割先が読み取る値を移設。
+export let g_bUnknownCasts = false;
+export let wDelay = 0;
+export let w_FLEE = 0;
+export let TyouEnkakuSousa3dan = true;
 
 export function set_SaveDataAll(v) { SaveDataAll = v; }
 export function set_SaveNameAll(v) { SaveNameAll = v; }
@@ -68,3 +74,7 @@ export function set_n_AS_check_3dan(v) { n_AS_check_3dan = v; }
 export function set_n_CONFIG(v) { n_CONFIG = v; }
 export function set_g_perfectHitRate(v) { g_perfectHitRate = v; }
 export function set_g_bDefinedDamageIntervals(v) { g_bDefinedDamageIntervals = v; }
+export function set_g_bUnknownCasts(v) { g_bUnknownCasts = v; }
+export function set_wDelay(v) { wDelay = v; }
+export function set_w_FLEE(v) { w_FLEE = v; }
+export function set_TyouEnkakuSousa3dan(v) { TyouEnkakuSousa3dan = v; }
