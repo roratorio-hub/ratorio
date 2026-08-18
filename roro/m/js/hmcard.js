@@ -49,16 +49,19 @@ import {
          CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_SHIELD, CARD_REGION_ID_SHOES,
          CARD_REGION_ID_SHOULDER
 } from './common.js';
-import { GetFlagAppendedCardName } from './equip.js';
 import {
          ITEM_ID_ALPHA_CORE_CARD_ENCHANTABLE,
          ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE, ITEM_ID_RUNE_HELM, ItemObjNew
 } from './item.dat.js';
 import { GetMaxSlot } from './item.h.js';
 import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from './data/mig.enchlist.dat.js';
-import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager.js';
 import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: slotpager.js との循環 import 回避のため slotpager-const.js から直接参照
+import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager-const.js';
+// C-6: equip.js との循環 import 回避のため equip-name.js から直接参照
+import { GetFlagAppendedCardName } from './equip-name.js';
+
 // C-6: global.js 管理の共有 conf state
 import {
          n_Nitou,
