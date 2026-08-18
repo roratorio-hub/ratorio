@@ -2,13 +2,14 @@
 import './timeitem.h.js';
 import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 import { g_timeItemConf, g_timeItemConfEffective, g_timeItemConfAllEffective, set_g_timeItemConfAllEffective } from '../../../ro4/m/js/global.js';
-import { CTimeItemAreaComponentManager } from './CTimeItemAreaComponentManager.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
          calc,
 } from '../../../ro4/m/js/head-bridge.js';
+// C-6: engine-registry 型ブリッジ（CTimeItemAreaComponentManager.js との循環 import 回避）
+import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
 import { TIME_ITEM_DATA_INDEX_EXPLAIN, TIME_ITEM_DATA_INDEX_NAME } from './const/EnumTimeItemDataIndex.js';
 
 /**
@@ -209,7 +210,7 @@ CBattleQuickControlAreaComponentManager.OnClickExtractSwitch = function () {
  * 時限効果エリア表示イベントハンドラ.
  */
 CBattleQuickControlAreaComponentManager.OnClickFocusTimeItemArea = function () {
-	CTimeItemAreaComponentManager.FocusArea(0, true);
+	g_timeItemDataBridge.focusArea?.(0, true);
 };
 
 
