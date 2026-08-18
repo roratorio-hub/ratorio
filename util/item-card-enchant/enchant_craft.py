@@ -8,28 +8,34 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     mig_enchlist_dat_js = []
     enchant_id = getLatestEnchantId()
-    
+    merged_enchant_info = {}
+    has_error = False
+
     with open(f'{script_dir}/エンチャント.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
 
     for enchant_info in config['enchant_list']:
-        merged_enchant_info = {}
         for enchant in enchant_info['enchant']:
             enchant_id += 1
             try:
-                item_list = []
-                for item in enchant['item_list']:
-                    item_list.append(ITEM_CODE[item['item_name']])
-                record = buildEnchantRecord2(item_list, enchant_id, enchant)
-            except:
-                print(f"{enchant_info['name']} のエンチャント定義に問題があります")
+                item_list = [ITEM_CODE[item['item_name']] for item in enchant['item_list']]
+            except KeyError as e:
+                print(f"{enchant.get('name', '(不明)')} のアイテム名解決に失敗しました: {e}")
+                has_error = True
+                continue
+            record = buildEnchantRecord2(item_list, enchant_id, enchant)
+            if 'None' in record:
+                print(f"{enchant.get('name', '(不明)')} のエンチャント定義に問題があります"
+                      f"（未定義のエンチャント名が含まれています）")
+                has_error = True
+                continue
             mig_enchlist_dat_js.append(record)
-            for item in enchant['item_list']:
-                item_code = ITEM_CODE[item['item_name']]
+            for item_code in item_list:
                 # 辞書にitem_codeがなければ新しいリストを作成し、あれば既存のリストに追加
-                if item_code not in merged_enchant_info:
-                    merged_enchant_info[item_code] = []
-                merged_enchant_info[item_code].append(enchant_id)
+                merged_enchant_info.setdefault(item_code, []).append(enchant_id)
+
+    if has_error:
+        sys.exit(1)
 
     for item_code in sorted(merged_enchant_info.keys()):
         enchant_ids = merged_enchant_info[item_code]

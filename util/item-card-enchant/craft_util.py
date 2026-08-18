@@ -150,7 +150,9 @@ def loadItemList():
 
 
 def loadSlotInfoList():
-    pattern = r'\[(\d+),-1,0,0,\[\["([^"]+)","([^"]+)"]],\[],\[\[\[174,\[50,\[(\d+)]]],.+\[]]'
+    # [50,[...]] の中は単一アイテムとは限らず（複数アイテム共有・末尾カンマ付き）、
+    # 先頭の1件だけをitem_idとして拾う（呼び出し側はitem_idを使っていないため代表値でよい）
+    pattern = r'\[(\d+),-1,0,0,\[\["([^"]+)","([^"]+)"]],\[],\[\[\[174,\[50,\[(\d+)[\d,]*]]],.+\[]]'
     with open(f'{script_dir}/../../roro/m/js/data/mig.enchlist.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     matches = re.findall(pattern, js_code)
