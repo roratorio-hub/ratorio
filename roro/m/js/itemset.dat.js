@@ -7222,6 +7222,17 @@ CardIdToSetIdMap[4463] = [3610,];
 	w_SE[3667] = [-4531,-4529,-2662,];
 	CardIdToSetIdMap[4529] = [3666,3667,];
 
+	w_SE[3668] = [-4533,-4532,-1245,];
+	CardIdToSetIdMap[4532] = [3668,];
+	w_SE[3669] = [-4535,-4534,-1245,];
+	CardIdToSetIdMap[4534] = [3669,];
+	w_SE[3670] = [-4537,-4536,-1348,];
+	CardIdToSetIdMap[4536] = [3670,];
+	w_SE[3671] = [-4539,-4538,-1348,];
+	CardIdToSetIdMap[4538] = [3671,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3668,3669]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3670,3671]);
+
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 	// itemset はセーブデータに書き出されないので

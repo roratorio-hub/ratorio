@@ -1,118 +1,79 @@
 enchant_list:
   - enchant: #
 
-    - name: セレス・グループ2
+    - name: スペシャルエンチャント(オーブ)
       item_list: #
-        - item_name: セレスティアルリング
+        - item_name: ハルピュイア
       slot_list: #
         - slot: 2
           refine: 0
           enchant_list: #
-            - name: Cri + 50
+            - name: 潜在解放(ウィンドホークXXIII)
+        - slot: 3
+          refine: 8
+          enchant_list: #
+            - name: 火属性付与(鎧)
+            - name: 水属性付与(鎧)
+            - name: 風属性付与(鎧)
+            - name: 地属性付与(鎧)
+            - name: 聖属性付与(鎧)
+            - name: 闇属性付与(鎧)
+            - name: 念属性付与(鎧)
+            - name: 毒属性付与(鎧)
+            - name: 不死属性付与(鎧)
+        - slot: 4
+          refine: 9
+          enchant_list: #
+            - name: スキルディレイ-15%
             - name: 必中攻撃+25%
-            - name: Def50%無視
-            - name: Mdef50%無視
+            - name: 詠唱妨害不可
+            - name: 英雄の凱歌
 
-#    - name: セレアクセ変更不可
-#      item_list: #
-#        - item_name: セレスティアルリング
-#      slot_list: #
-#        - slot: 3
-#          refine: 0
-#          enchant_list: #
-#            - name: スキルオーブ(アークメイジI)
-#            - name: スキルオーブ(アークメイジII)
-#            - name: スキルオーブ(アビスチェイサーI)
-#            - name: スキルオーブ(アビスチェイサーII)
-#            - name: スキルオーブ(アリテアI)
-#            - name: スキルオーブ(アリテアII)
-#            - name: スキルオーブ(アリテアIII)
-#            - name: スキルオーブ(インクイジターI)
-#            - name: スキルオーブ(インクイジターII)
-#            - name: スキルオーブ(インペリアルガードI)
-#            - name: スキルオーブ(インペリアルガードII)
-#            - name: スキルオーブ(ウィンドホークI)
-#            - name: スキルオーブ(ウィンドホークII)
-#            - name: スキルオーブ(ウィンドホークIII)
-#            - name: スキルオーブ(エレメンタルマスターI)
-#            - name: スキルオーブ(カーディナルI)
-#            - name: スキルオーブ(カーディナルII)
-#            - name: スキルオーブ(シャドウクロスI)
-#            - name: スキルオーブ(シャドウクロスII)
-#            - name: スキルオーブ(スピリットハンドラーI)
-#            - name: スキルオーブ(スピリットハンドラーII)
-#            - name: スキルオーブ(ソウルアセティックI)
-#            - name: スキルオーブ(ソウルアセティックII)
-#            - name: スキルオーブ(ドラゴンナイトI)
-#            - name: スキルオーブ(ドラゴンナイトIII)
-#            - name: スキルオーブ(トルバドゥール&トルヴェールI)
-#            - name: スキルオーブ(トルバドゥール&トルヴェールII)
-#            - name: スキルオーブ(ナイトウォッチI)
-#            - name: スキルオーブ(バイオロI)
-#            - name: スキルオーブ(バイオロII)
-#            - name: スキルオーブ(バイオロIII)
-#            - name: スキルオーブ(ハイパーノービスI)
-#            - name: スキルオーブ(ハイパーノービスII)
-#            - name: スキルオーブ(マイスターI)
-#            - name: スキルオーブ(マイスターII)
-#            - name: スキルオーブ(天帝I)
-#            - name: スキルオーブ(天帝II)
-#            - name: スキルオーブ(蜃気楼&不知火I)
-#            - name: スキルオーブ(蜃気楼&不知火II)
-#            - name: スキルオーブ(蜃気楼&不知火III)
-#        - slot: 4
-#          refine: 0
-#          enchant_list: #
-#            - name: 潜在解放(アークメイジIII)
-#            - name: 潜在解放(アークメイジX)
-#            - name: 潜在解放(アークメイジXIX)
-#            - name: 潜在解放(アビスチェイサーIII)
-#            - name: 潜在解放(アビスチェイサーV)
-#            - name: 潜在解放(アリテアIV)
-#            - name: 潜在解放(アリテアVIII)
-#            - name: 潜在解放(アリテアXII)
-#            - name: 潜在解放(インクイジターII)
-#            - name: 潜在解放(インクイジターX)
-#            - name: 潜在解放(インクイジターXIV)
-#            - name: 潜在解放(インペリアルガードV)
-#            - name: 潜在解放(インペリアルガードVI)
-#            - name: 潜在解放(インペリアルガードXXI)
-#            - name: 潜在解放(ウィンドホークIV)
-#            - name: 潜在解放(ウィンドホークXII)
-#            - name: 潜在解放(ウィンドホークXX)
-#            - name: 潜在解放(エレメンタルマスターII)
-#            - name: 潜在解放(エレメンタルマスターIII)
-#            - name: 潜在解放(エレメンタルマスターX)
-#            - name: 潜在解放(カーディナルII)
-#            - name: 潜在解放(カーディナルV)
-#            - name: 潜在解放(カーディナルXX)
-#            - name: 潜在解放(シャドウクロスIV)
-#            - name: 潜在解放(シャドウクロスV)
-#            - name: 潜在解放(シャドウクロスXVIII)
-#            - name: 潜在解放(スピリットハンドラーV)
-#            - name: 潜在解放(スピリットハンドラーXII)
-#            - name: 潜在解放(スピリットハンドラーXXIII)
-#            - name: 潜在解放(ソウルアセティックII)
-#            - name: 潜在解放(ソウルアセティックXIII)
-#            - name: 潜在解放(ソウルアセティックXVIII)
-#            - name: 潜在解放(ドラゴンナイトV)
-#            - name: 潜在解放(ドラゴンナイトXI)
-#            - name: 潜在解放(トルバドゥール&トルヴェールIII)
-#            - name: 潜在解放(トルバドゥール&トルヴェールVIII)
-#            - name: 潜在解放(ナイトウォッチIV)
-#            - name: 潜在解放(ナイトウォッチX)
-#            - name: 潜在解放(ナイトウォッチXVII)
-#            - name: 潜在解放(バイオロIII)
-#            - name: 潜在解放(バイオロXI)
-#            - name: 潜在解放(バイオロXII)
-#            - name: 潜在解放(ハイパーノービスIV)
-#            - name: 潜在解放(ハイパーノービスXIII)
-#            - name: 潜在解放(ハイパーノービスXXII)
-#            - name: 潜在解放(マイスターIV)
-#            - name: 潜在解放(マイスターVI)
-#            - name: 潜在解放(マイスターXVII)
-#            - name: 潜在解放(天帝III)
-#            - name: 潜在解放(天帝IX)
-#            - name: 潜在解放(蜃気楼&不知火X)
-#            - name: 潜在解放(蜃気楼&不知火XI)
-#            - name: 潜在解放(蜃気楼&不知火XXI)
+    - name: スペシャルエンチャント(オーブ)
+      item_list: #
+        - item_name: グリンカムビ
+      slot_list: #
+        - slot: 2
+          refine: 0
+          enchant_list: #
+            - name: 潜在解放(アリテアXXIII)
+        - slot: 3
+          refine: 8
+          enchant_list: #
+            - name: 火属性付与(鎧)
+            - name: 水属性付与(鎧)
+            - name: 風属性付与(鎧)
+            - name: 地属性付与(鎧)
+            - name: 聖属性付与(鎧)
+            - name: 闇属性付与(鎧)
+            - name: 念属性付与(鎧)
+            - name: 毒属性付与(鎧)
+            - name: 不死属性付与(鎧)
+        - slot: 4
+          refine: 9
+          enchant_list: #
+            - name: スキルディレイ-15%
+            - name: 必中攻撃+25%
+            - name: 詠唱妨害不可
+            - name: 英雄の凱歌
+
+    - name: スペシャルエンチャント(ミオン)
+      item_list: #
+        - item_name: マジカルケープ
+      slot_list: #
+        - slot: 4
+          refine: 0
+          enchant_list: #
+            - name: 潜在解放(ハイパーノービスXXIV)
+
+    - name: スペシャルエンチャント(ミオン)
+      item_list: #
+        - item_name: 藤の扇
+      slot_list: #
+        - slot: 4
+          refine: 0
+          enchant_list: #
+            - name: 潜在解放(蜃気楼&不知火XXV)
+
+
+
