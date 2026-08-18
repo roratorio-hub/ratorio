@@ -9,14 +9,6 @@ export default defineConfig({
         exclude: [
             'node_modules',
             'integration',
-            // hmjob / BuffOtherCategory / BuffItemAndFood は head.js を外しても vitest がハングする。
-            // 原因は CAttackMethodAreaComponentManager を起点とする save-data 循環 import
-            // （CAttackMethod ↔ CSaveController ↔ CSaveDataManager ↔ saveload ↔ hmjob）で、
-            // vitest SSR ランナーが expensive モジュール(new CSkillManager 等)を再評価し CPU/メモリを食う。
-            // head.js 除去(Phase 3g)は完了済み。循環解消は roadmap.md「Phase 3g 残作業」参照。
-            'ro4/hmjob.test.ts',
-            'ro4/BuffOtherCategory.test.ts',
-            'ro4/BuffItemAndFood.test.ts',
         ],
         coverage: {
             provider: 'v8',
