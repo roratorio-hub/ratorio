@@ -10,13 +10,18 @@ import { get as registryGet } from './engine-registry.js';
 // Chart.js ESM（auto = 全チャートタイプ登録済みビルド）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
 
-$(function () {
-  const buildForm = () => {
-	let test = document.getElementById("history_graph");
-	if (test) {
-      return;
-	}
-    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(`
+/**
+ * DPS clip 履歴パネルの静的スケルトンHTML（グラフ・ボタン・モーダルの骨組み）。
+ * calchistory.js（新規構築時）と CSaveController.js（セーブデータ復元時）の双方が
+ * 同一マークアップを必要とするため共通化する（従来は2箇所にバイト単位で重複していた）。
+ *
+ * モーダルは jquery-modal ではなくネイティブ <dialog> を使う（jquery-modal はこの
+ * パネル2ファイルのみが使っていた唯一の実プラグイン依存だった。ESCキーでの閉じる・
+ * フォーカストラップはブラウザ標準機能でまかなえる。backdrop クリック・×ボタンでの
+ * 閉じる操作は jquery-modal の既定動作を再現するため呼び出し側で配線する）。
+ */
+export function buildHistoryPanelHtml() {
+    return `
 <div id="history_button" style="margin-left:1em;width:4em">
 <input type="button" id="history_clip" value="Clip" style="width:100%"><br>
 <label style="font-size:x-small;white-space: nowrap;"><input type="checkbox" id="clip_with_memo">memo</label>
@@ -27,11 +32,19 @@ $(function () {
   <canvas id="history_graph"></canvas>
 </div>
 <style>
-.jquery-modal.blocker {
-  z-index: 100 !important;
-}
 #clip_modal {
   min-width: 800px;
+  position: relative;
+}
+#clip_modal_close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  border: none;
+  background: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
 }
 #clip_modal_table {
   width: 100%;
@@ -65,7 +78,8 @@ div.clip_memo {
   min-height: 1.5rem;
 }
 </style>
-<div id="clip_modal" class="modal">
+<dialog id="clip_modal">
+  <button type="button" id="clip_modal_close" aria-label="閉じる">×</button>
   <table id="clip_modal_table">
     <thead><tr>
         <th class="col no">No.</th><th class="col">DPS</th>
@@ -75,8 +89,44 @@ div.clip_memo {
     </tr></thead>
     <tbody></tbody>
   </table>
-</div>
-    `);
+</dialog>
+    `;
+}
+
+/** HTMLエスケープ（テキスト内容・二重引用符属性値の両方に安全）。 */
+function escapeHtml(text) {
+    return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;');
+}
+
+/**
+ * clip 履歴テーブルの1行分のHTMLを組み立てる。
+ * memo はユーザーが prompt() で自由入力した文字列で、テキスト内容と value 属性の
+ * 両方に埋め込まれるため escapeHtml() で必ずエスケープする（従来は無エスケープで、
+ * 二重引用符を含むメモが value 属性を脱出できた。セーブデータに同梱されるURLに
+ * このメモも乗るため self-XSS に留まらない）。
+ */
+export function buildHistoryRowHtml({ no, dps, kill, memo, isFirst, isLast }) {
+    const escapedMemo = escapeHtml(memo);
+    return `<tr>
+              <td class="col no">${no}</td>
+              <td class="col">${dps}</td>
+              <td class="col">${kill}</td>
+              <td class="col memo"><div class="clip_memo">${escapedMemo}</div><input type="text" class="clip_memo" style="display:none;" value="${escapedMemo}"></td>
+              <td class="col action"><button class="up_clip" ${isFirst ? "disabled" : ""}>↑</button><button class="down_clip"${isLast ? "disabled" : ""}>↓</button><button class="remove_clip">×</button></td>
+            </tr>`;
+}
+
+$(function () {
+  const buildForm = () => {
+	let test = document.getElementById("history_graph");
+	if (test) {
+      return;
+	}
+    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(buildHistoryPanelHtml());
 
     let target = 0;
     const data = {
@@ -209,9 +259,9 @@ div.clip_memo {
       g_Chart = null;
     });
     $("#history_list").click(e => {
-      $("#history_graph").insertBefore("#clip_modal_table");
+      document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
       reload_history_table();
-      $("#clip_modal").modal();
+      document.getElementById("clip_modal")?.showModal();
     });
     const flip_clip = (i, j) => {
       [data.datasets[0].data[i], data.datasets[0].data[j]] =
@@ -229,13 +279,14 @@ div.clip_memo {
       $("#clip_modal_table tbody *").remove();
       let body = ""
       for (let i = 0; i < data.labels.length; i++) {
-        body += `<tr>
-                  <td class="col no">${data.labels[i].toLocaleString()}</td>
-                  <td class="col">${data.datasets[0].data[i].toLocaleString()}</td>
-                  <td class="col">${data.datasets[1].data[i].toLocaleString()}</td>
-                  <td class="col memo"><div class="clip_memo">${data.datasets[0].metadata[i].memo}</div><input type="text" class="clip_memo" style="display:none;" value="${data.datasets[0].metadata[i].memo}"></td>
-                  <td class="col action"><button class="up_clip" ${i==0?"disabled":""}>↑</button><button class="down_clip"${i==data.labels.length-1?"disabled":""}>↓</button><button class="remove_clip">×</button></td>
-                </tr>`;
+        body += buildHistoryRowHtml({
+          no: data.labels[i].toLocaleString(),
+          dps: data.datasets[0].data[i].toLocaleString(),
+          kill: data.datasets[1].data[i].toLocaleString(),
+          memo: data.datasets[0].metadata[i].memo,
+          isFirst: i === 0,
+          isLast: i === data.labels.length - 1,
+        });
       }
       $("#clip_modal_table tbody").append(body);
     }
@@ -291,8 +342,16 @@ div.clip_memo {
       reload_history_table();
       g_Chart = chart;
     });
-    $("#clip_modal").on("modal:before-close", () => {
-      $("#history_graph").appendTo("#history_container");
+    document.getElementById("clip_modal_close")?.addEventListener("click", () => {
+      document.getElementById("clip_modal")?.close();
+    });
+    document.getElementById("clip_modal")?.addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) e.currentTarget.close();
+    });
+    document.getElementById("clip_modal")?.addEventListener("close", () => {
+      const graph = document.getElementById("history_graph");
+      const container = document.getElementById("history_container");
+      if (graph && container) container.appendChild(graph);
     });
   };
   buildForm();
