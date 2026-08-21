@@ -7,7 +7,6 @@ import '../../../roro/m/js/item.h.js';
 import '../../../roro/m/js/monster.h.js';
 import { GetBaseLevelMax, GetBaseLevelMin, GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from './data/mig.job.h.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
-import { CSaveController } from './CSaveController.js';
 import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify, myInnerHtml } from '../../../roro/common/js/util.js';
 import { CCharaConfCustomSpecStatus } from '../../../roro/m/js/CCharaConfCustomSpecStatus.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
@@ -40,6 +39,9 @@ import {
 } from '../../../roro/m/js/skill.dat.js';
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: engine-registry（CSaveController.js との循環 import 回避）
+import { get as registryGet } from './engine-registry.js';
+
 // C-6: 共有 state 追加分
 import {
          n_A_JOB,
@@ -272,7 +274,7 @@ export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 	}
 
 	// ポイントキャップをチェック（ロード時はスキップ）
-	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
+	let bPointCap = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNamePointCap);
 	if (bPointCap && !bIgnorePointCap) {
 		// ステータスポイントを超えていたら値を戻す
 		if (((stPointEarned - stPointUsed) < 0) || ((stTSPointEarned - stTSPointUsed) < 0)) {
@@ -1802,7 +1804,7 @@ export function migrateOtherJob(jobId) {
 		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
 		dataURL = SaveSystem(funcModifySaveData);
 		// URL入力を実行
-		CSaveController.loadFromURL(dataURL);
+		registryGet('CSaveController').loadFromURL(dataURL);
 		// 異なる職業系列へ変更する場合
 		if (!IsSameJobGroup(migId, recentJobMigId)) {
 			// 習得スキルの初期化

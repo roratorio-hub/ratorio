@@ -12,6 +12,11 @@ import {
 // テストは各 bridge にフェイクを登録して呼び出しを観測する（globalThis スパイは効かない）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
 import { __registerFootFunctions } from '@roro/foot-bridge.js';
+// refactor/fix-dependency-loop: OnChangeRandomEnchant は equip.js との循環 import 回避のため
+// equip-bridge.js 経由の呼び出しになった。実体を明示的に登録する（equip.js は本番では
+// hmrndopt.js と一緒に必ずロードされ自己登録するが、このテストは hmrndopt.js 単体を見るため）。
+import { OnChangeRandomEnchant } from '@roro/equip.js';
+import { equipBridge } from '@roro/equip-bridge.js';
 
 describe('hmrndopt.js', () => {
     describe('コアロジック確認', () => {
@@ -65,6 +70,7 @@ describe('hmrndopt.js', () => {
             stAllCalc = vi.fn();
             __registerHeadFunctions({ AutoCalc: autoCalc });
             __registerFootFunctions({ StAllCalc: stAllCalc });
+            equipBridge.onChangeRandomEnchant = OnChangeRandomEnchant;
         });
         afterEach(() => {
             document.body.innerHTML = '';

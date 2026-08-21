@@ -8,7 +8,6 @@ import {
          CARD_ID_HENI_CHIMERA_GALENSIS, CARD_ID_KONTONNO_SIDEWINDER, CARD_ID_SIDEWINDER,
          CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1
 } from '../../../roro/m/js/card.dat.js';
-import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara.js';
 import { CARD_REGION_ID_HEAD_TOP_ANY } from '../../../roro/m/js/common.js';
 import {
          ITEM_ID_CIRCUIT_BOARD_OS, ITEM_ID_HIYOKOCHAN, ITEM_ID_HIYOKOCHAN_RENTAL,
@@ -36,6 +35,9 @@ import {
          SKILL_ID_UNLIMIT
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: engine-registry 型ブリッジ（chara.js との循環 import 回避）
+import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from '../../../roro/m/js/chara-search-bridge.js';
+
 // C-6: 共有 state 追加分
 import {
          n_A_JOB,

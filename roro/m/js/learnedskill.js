@@ -5,12 +5,14 @@ import './item.h.js';
 import './skill.h.js';
 import { g_constDataManager } from '../../../ro4/m/js/global.js';
 import { CardObjNew } from './card.dat.js';
-import { UpdateLearnedSkillNotice } from './equip.js';
 import { ItemObjNew } from './item.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { HtmlCreateElement, HtmlCreateTextNode } from '../../common/js/util.js';
 import { RegisterLearnedSkillSearch } from './skill-search-bridge.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: equip.js との循環 import 回避
+import { equipBridge } from './equip-bridge.js';
+
 // C-6: 共有 state 追加分
 import {
          n_A_JOB,
@@ -135,7 +137,7 @@ export function OnClickSkillSWLearned(){
 	objSpan.setAttribute("id", "ID_SKILL_LEARNED_NOTICE");
 	objSpan.setAttribute("style", "color : red");
 	objTd.appendChild(objSpan);
-	UpdateLearnedSkillNotice();
+	equipBridge.updateLearnedSkillNotice?.();
 
 	// 設定欄のヘッダ部分をリフレッシュ（着色処理等）
 	RefreshSkillColumnHeaderLearned(null, -1, 0);

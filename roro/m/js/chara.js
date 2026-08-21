@@ -381,6 +381,9 @@ import {
 } from './skill.dat.js';
 import { n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: engine-registry 型ブリッジ（skillstate.js との循環 import 回避）
+import { RegisterCardNumSearch, RegisterEquipNumSearch, RegisterTimeItemNumSearch } from './chara-search-bridge.js';
+
 // C-6: JOB 定数
 import {
          JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_MAGICIAN, JOB_SERIES_ID_ARCHER,
@@ -12095,3 +12098,8 @@ export function GetStatusModifyTEMPPlus() {
 
 	return val;
 }
+
+// C-6: engine-registry 型ブリッジ（skillstate.js との循環 import 回避）
+RegisterCardNumSearch(CardNumSearch);
+RegisterEquipNumSearch(EquipNumSearch);
+RegisterTimeItemNumSearch(TimeItemNumSearch);

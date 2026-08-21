@@ -75,7 +75,7 @@ import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYO
 import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
 import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from '../../../roro/m/js/mobconfplayer.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from '../../../roro/m/js/rndopttype.h.js';
-import { SaveSystem } from '../../../roro/m/js/saveload.js';
+import { SaveSystem } from '../../../roro/m/js/saveload-bridge.js';
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from '../../../roro/m/js/slotpager.js';
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../../../roro/common/js/util.js';
 import { Click_A1, n_A_PassSkill } from './BuffJobSpecificSelf.js';

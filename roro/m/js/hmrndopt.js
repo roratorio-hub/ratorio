@@ -5,7 +5,6 @@ import {
          HtmlGetObjectValueByIdAsInteger, HtmlRemoveOptionAll, HtmlSetAttribute,
          HtmlSetObjectValueById
 } from '../../common/js/util.js';
-import { OnChangeRandomEnchant } from './equip.js';
 import { isShadowEquipAvailable } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { ItemObjNew } from './item.dat.js';
 import { GetRndOptTypeId } from './item.h.js';
@@ -15,6 +14,9 @@ import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: equip.js との循環 import 回避
+import { equipBridge } from './equip-bridge.js';
+
 // C-6: global.js 管理の共有 conf state
 import {
          n_Nitou,
@@ -261,7 +263,7 @@ export function CreateRndOptValue(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdValue);
-	objSelect.addEventListener("change", () => { OnChangeRandomEnchant(); AutoCalc(); });
+	objSelect.addEventListener("change", () => { equipBridge.onChangeRandomEnchant?.(); AutoCalc(); });
 
 	return objSelect;
 }
@@ -369,7 +371,7 @@ export function OnChangeRndOptKind(eqpRgnId, slotIndex) {
 	SetUpRndOptValue(objRndOptValue, rndOptId);
 
 	// ランダムオプション変更処理
-	OnChangeRandomEnchant();
+	equipBridge.onChangeRandomEnchant?.();
 }
 
 

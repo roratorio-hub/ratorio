@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip, n_A_card } from './roro-state.js';
-import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
 import { set_n_Nitou } from '../../../ro4/m/js/global.js';
 import { shadowEquipRebuildAll } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
@@ -78,6 +77,12 @@ import {
 // C-6: engine-registry（hmjob.js との循環 import 回避）
 import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
+// C-6: hmrndopt.js / learnedskill.js / slotpager.js との循環 import 回避
+import { equipBridge } from './equip-bridge.js';
+
+// C-6: CItemInfoManager.js / hmcard.js との循環 import 回避のため equip-name.js へ移設
+import { GetFlagAppendedItemName, GetFlagAppendedCardName } from './equip-name.js';
+
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
          Init,
@@ -93,7 +98,7 @@ import {
 } from './roro-state.js';
 import { ARROW_DATA_INDEX_ID, ARROW_DATA_INDEX_KANA, ARROW_DATA_INDEX_KIND, ARROW_DATA_INDEX_NAME } from './const/EnumArrowDataIndex.js';
 import { ARROW_KIND_ARROW, ARROW_KIND_BULLET, ARROW_KIND_NONE } from './const/EnumArrowKind.js';
-import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME, CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
+import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
 import { CARD_KIND_ENCHANT } from './const/EnumCardKind.js';
 import { CONST_DATA_KIND_CARD, CONST_DATA_KIND_COSTUME, CONST_DATA_KIND_ITEM, CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
 import {
@@ -517,83 +522,6 @@ export function RebuildArmsRightSelect() {
 		HtmlCreateElementOption(itemId, GetFlagAppendedItemName(itemId), objSelect);
 	}
 }
-
-export function GetFlagAppendedItemName(targetId) {
-
-	var baseName = "";
-
-	baseName = ItemObjNew[targetId][ITEM_DATA_INDEX_NAME];
-
-	return (IsLearnedEffectEquipable(CONST_DATA_KIND_ITEM, targetId)) ? ("【習】" + baseName) : baseName;
-}
-
-export function GetFlagAppendedCardName(targetId) {
-
-	var baseName = "";
-
-	baseName = CardObjNew[targetId][CARD_DATA_INDEX_NAME];
-
-	return (IsLearnedEffectEquipable(CONST_DATA_KIND_CARD, targetId)) ? ("【習】" + baseName) : baseName;
-}
-
-export function IsLearnedEffectEquipable(dataKind, targetId) {
-
-	var idx = 0;
-	var idxSet = 0;
-	var setIndexArray; var setIndex; var setDataId;
-
-	// アイテム単品を判定
-	if (dataKind == CONST_DATA_KIND_ITEM) {
-		for (idx = ITEM_DATA_INDEX_SPBEGIN; idx < ItemObjNew[targetId].length; idx += 2) {
-			if (ItemObjNew[targetId][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-				return true;
-			}
-		}
-		setIndexArray = ItemIdToSetIdMap[targetId];
-	}
-
-	// カード単品を判定
-	else {
-		for (idx = CARD_DATA_INDEX_SPBEGIN; idx < CardObjNew[targetId].length; idx += 2) {
-			if (CardObjNew[targetId][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-				return true;
-			}
-		}
-		setIndexArray = CardIdToSetIdMap[targetId];
-	}
-
-	// セットでの対象を判定
-	if (setIndexArray) {
-
-		for (idxSet = 0; idxSet < setIndexArray.length; idxSet++) {
-
-			setIndex = setIndexArray[idxSet];
-
-			setDataId = w_SE[setIndex][0];
-
-			// セット定義のアイテムを判定
-			if (setDataId >= 0) {
-				for (idx = ITEM_DATA_INDEX_SPBEGIN; idx < ItemObjNew[setDataId].length; idx += 2) {
-					if (ItemObjNew[setDataId][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-						return true;
-					}
-				}
-			}
-
-			// セット定義のカードを判定
-			else {
-				for (idx = CARD_DATA_INDEX_SPBEGIN; idx < CardObjNew[Math.abs(setDataId)].length; idx += 2) {
-					if (CardObjNew[Math.abs(setDataId)][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-						return true;
-					}
-				}
-			}
-		}
-	}
-
-	return false;
-}
-
 
 /************************************************************************************************
  *
@@ -2044,4 +1972,10 @@ export function copyAccs(from, to){
 		})
 	}
 }
+
+// C-6: hmrndopt.js / learnedskill.js / slotpager.js との循環 import 回避
+equipBridge.onChangeRandomEnchant = OnChangeRandomEnchant;
+equipBridge.updateLearnedSkillNotice = UpdateLearnedSkillNotice;
+equipBridge.onChangeCard = OnChangeCard;
+equipBridge.onChangeCostume = OnChangeCostume;
 

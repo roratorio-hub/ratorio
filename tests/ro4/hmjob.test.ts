@@ -1,4 +1,4 @@
-import { vi, describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { vi, describe, it, expect } from 'vitest';
 
 vi.hoisted(() => {
     // Phase 3b で hmjob.js が CAttackMethodAreaComponentManager を import するようになり
@@ -37,11 +37,9 @@ import {
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS } from '@roro/const/EnumMigItemParamId.js';
 
 describe('hmjob.js', () => {
-    describe('window互換確認', () => {
-        it('window.CalcStatusPoint が設定されている', () => {
-            expect((window as any).CalcStatusPoint).toBe(CalcStatusPoint);
-        });
-    });
+    // 3e-3: window compat 除去（window.CalcStatusPoint の state テストは削除）。
+    // CalcStatusPoint は engine-registry 経由（registryGet('CalcStatusPoint')）で公開される
+    // （動作は呼び出し側の bridge テストでカバー）
 
     describe('スモークコール（ReferenceError検出）', () => {
         // 純粋計算関数（グローバル依存なし）
@@ -62,25 +60,12 @@ describe('hmjob.js', () => {
             expect(() => ApplyPAtkLeftHandPenalty([], [], [], 100)).not.toThrow();
         });
 
-        // MIG_PARAM_ID_* グローバルをモックして呼び出す
+        // MIG_PARAM_ID_* は enum const 化（2026-08-01）以降、実体は EnumMigItemParamId.js の
+        // export const（POW=6 / STA=7 / WIS=8 / SPL=9 / CON=10 / CRT=11）。import 済みの値が
+        // そのまま使えるため、旧 DefineEnum 時代のグローバル再代入モックは不要（読み取り専用
+        // バインディングの再代入は TypeError になる）。
         // GetTStatusPoint のような「scope-audit 偽陰性」バグを検出するための重要なテスト
         describe('MIG_PARAM_ID モック使用', () => {
-            beforeAll(() => {
-                MIG_PARAM_ID_POW = 6;
-                MIG_PARAM_ID_STA = 7;
-                MIG_PARAM_ID_WIS = 8;
-                MIG_PARAM_ID_SPL = 9;
-                MIG_PARAM_ID_CON = 10;
-                MIG_PARAM_ID_CRT = 11;
-            });
-            afterAll(() => {
-                delete MIG_PARAM_ID_POW;
-                delete MIG_PARAM_ID_STA;
-                delete MIG_PARAM_ID_WIS;
-                delete MIG_PARAM_ID_SPL;
-                delete MIG_PARAM_ID_CON;
-                delete MIG_PARAM_ID_CRT;
-            });
             it('GetTStatusPoint が呼び出し可能', () => {
                 expect(() => GetTStatusPoint(200)).not.toThrow();
             });
