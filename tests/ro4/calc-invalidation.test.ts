@@ -1,0 +1,171 @@
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { CalcInput, notifyChanged, notifyChangedLegacy, requestRecalc, withBatch, onResults } from '@ro4/calc-invalidation.js';
+// AutoCalc/calc は head-bridge 経由（head.js 直接 import は循環・OOMの原因になるため禁止）。
+import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+
+function setAutoCalcFlag(flag: number) {
+    let el = document.getElementById('OBJID_INPUT_ATTACK_METHOD_AUTO_CALC') as HTMLInputElement | null;
+    if (!el) {
+        el = document.createElement('input');
+        el.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
+        document.body.appendChild(el);
+    }
+    el.value = String(flag);
+}
+
+describe('calc-invalidation.js', () => {
+    let calc: ReturnType<typeof vi.fn>;
+    beforeEach(() => {
+        calc = vi.fn();
+        __registerHeadFunctions({ calc });
+    });
+    afterEach(() => {
+        document.body.innerHTML = '';
+    });
+
+    describe('notifyChanged: 旧 AutoCalc(callFrom) のswitch文と等価なポリシー判定', () => {
+        // 仕様（calc-invalidation.js 冒頭コメント参照）:
+        // flag=0: ATTACK_METHOD 以外の既知kindでのみ再計算
+        // flag=1: 既知kind（ATTACK_METHOD含む）ならすべて再計算
+        // flag=2: 常に再計算しない
+        // flag=3: kindに関わらず常に再計算
+        // kind未指定: flag=3のときのみ再計算
+
+        it('flag=0: CHARA/BUFF/MOBの変更で再計算する', () => {
+            setAutoCalcFlag(0);
+            notifyChanged(CalcInput.CHARA);
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+
+        it('flag=0: ATTACK_METHODの変更では再計算しない', () => {
+            setAutoCalcFlag(0);
+            notifyChanged(CalcInput.ATTACK_METHOD);
+            expect(calc).not.toHaveBeenCalled();
+        });
+
+        it('flag=0: kind未指定では再計算しない', () => {
+            setAutoCalcFlag(0);
+            notifyChanged(undefined);
+            expect(calc).not.toHaveBeenCalled();
+        });
+
+        it('flag=1: ATTACK_METHODの変更でも再計算する（flag=0を包含する）', () => {
+            setAutoCalcFlag(1);
+            notifyChanged(CalcInput.ATTACK_METHOD);
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+
+        it('flag=1: CHARA/BUFF/MOBの変更でも再計算する', () => {
+            setAutoCalcFlag(1);
+            notifyChanged(CalcInput.BUFF);
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+
+        it('flag=1: kind未指定では再計算しない', () => {
+            setAutoCalcFlag(1);
+            notifyChanged(undefined);
+            expect(calc).not.toHaveBeenCalled();
+        });
+
+        it('flag=2: 既知kindでも再計算しない', () => {
+            setAutoCalcFlag(2);
+            notifyChanged(CalcInput.ATTACK_METHOD);
+            notifyChanged(CalcInput.CHARA);
+            expect(calc).not.toHaveBeenCalled();
+        });
+
+        it('flag=3: kind未指定でも再計算する', () => {
+            setAutoCalcFlag(3);
+            notifyChanged(undefined);
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+
+        it('flag=3: 任意のkindで再計算する', () => {
+            setAutoCalcFlag(3);
+            notifyChanged(CalcInput.DISPLAY);
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('notifyChangedLegacy: 旧 AutoCalc(callFrom) 文字列の後方互換シム', () => {
+        it('既知の文字列（攻撃手段グループ）を ATTACK_METHOD として扱う', () => {
+            setAutoCalcFlag(1);
+            notifyChangedLegacy('CAttackMethodAreaComponentManager.OnChangeAttackMethod');
+            expect(calc).toHaveBeenCalledTimes(1);
+            calc.mockClear();
+            setAutoCalcFlag(0);
+            notifyChangedLegacy('CAttackMethodAreaComponentManager.OnChangeAttackMethod');
+            expect(calc).not.toHaveBeenCalled();
+        });
+
+        it('既知の文字列（設定/バフグループ）は flag=0/1 どちらでも再計算する', () => {
+            setAutoCalcFlag(0);
+            notifyChangedLegacy('Click_A4');
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+
+        it('未知の文字列（OnClickSkillLearnedLoad 含む）は kind未指定と同じ扱いになる', () => {
+            setAutoCalcFlag(1);
+            notifyChangedLegacy('OnClickSkillLearnedLoad');
+            expect(calc).not.toHaveBeenCalled();
+            setAutoCalcFlag(3);
+            notifyChangedLegacy('OnClickSkillLearnedLoad');
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('requestRecalc: ポリシーを無視して常に再計算する', () => {
+        it('flag=2（本来は再計算しない設定）でも再計算する', () => {
+            setAutoCalcFlag(2);
+            requestRecalc();
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('withBatch: バッチ中の通知をまとめて高々1回だけ再計算する', () => {
+        it('バッチ中に複数回 notifyChanged しても、バッチ終了後に1回だけ計算する', () => {
+            setAutoCalcFlag(3);
+            withBatch(() => {
+                notifyChanged(CalcInput.CHARA);
+                notifyChanged(CalcInput.BUFF);
+                notifyChanged(CalcInput.MOB);
+            });
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+
+        it('バッチ中に通知が無ければ、バッチ終了後も計算しない', () => {
+            setAutoCalcFlag(3);
+            withBatch(() => {});
+            expect(calc).not.toHaveBeenCalled();
+        });
+
+        it('ネストしたバッチは最も外側の終了まで計算を遅延する', () => {
+            setAutoCalcFlag(3);
+            withBatch(() => {
+                notifyChanged(CalcInput.CHARA);
+                withBatch(() => {
+                    notifyChanged(CalcInput.BUFF);
+                });
+                expect(calc).not.toHaveBeenCalled();
+            });
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+
+        it('バッチ中の requestRecalc も1回にまとめる', () => {
+            setAutoCalcFlag(2);
+            withBatch(() => {
+                requestRecalc();
+                requestRecalc();
+            });
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('onResults: コールバック登録の解除関数を返す', () => {
+        it('登録解除関数を呼んでも例外にならない', () => {
+            const cb = vi.fn();
+            const unsubscribe = onResults(cb);
+            expect(() => unsubscribe()).not.toThrow();
+        });
+    });
+});
