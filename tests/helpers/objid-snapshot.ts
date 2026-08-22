@@ -252,6 +252,10 @@ const STATE_MODULE_PATHS = [
     '/roro/m/js/mobconfplayer.js',
     '/roro/m/js/mobconfbuf.js',
     '/ro4/m/js/hmjob.js',
+    // Phase 8（リファクタリング計画）で追加: n_A_PassSkill/3/4/7/8（バフ配列5本）の
+    // owner。Phase 6でOBJID化した約110入力の書き込み先だが、それまでこの一覧に
+    // 含まれておらずモデル導入の検証（二重hydration差分）の死角になっていた。
+    '/ro4/m/js/skillstate.js',
 ] as const;
 
 /**
