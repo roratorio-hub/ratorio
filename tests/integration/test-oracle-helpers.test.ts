@@ -7,8 +7,10 @@
  * 約30種類しか観測できていなかった問題への対処:
  *
  *   1. evalObjidSnapshot の calcForm 拡張（helpers/objid-snapshot.ts）
- *      — OBJID を持たない name 属性のみの入力（BuffOtherCategory.js 等が実行時生成する
- *        約77個を含む）も `calcForm:<name>` キーで観測できることを確認する。
+ *      — OBJID を持たない name 属性のみの入力（BuffItemAndFood.js 等が実行時生成する
+ *        入力を含む）も `calcForm:<name>` キーで観測できることを確認する。
+ *        （BuffGuildAndGospel.js/BuffOtherCategory.js は Phase 6 で `<template>` 化され、
+ *        生成される入力欄が OBJID を持つようになった。今はこの2ファイルの例は使わない）
  *   2. snapshotAllGlobals（helpers/objid-snapshot.ts）
  *      — 計算用グローバル state モジュールを直接読み、JS 例外なく完走することを確認する
  *        （Phase 7 の hydration 二重実行差分オラクルとして使う前提の土台）。
@@ -62,28 +64,28 @@ describe('evalObjidSnapshot の calcForm 拡張', () => {
         expect(snapshot['calcForm:A_BaseLV']).toBe(snapshot['OBJID_SELECT_BASE_LEVEL']);
     });
 
-    it('OBJID を持たない name のみの入力（A8_Skill1）も calcForm:A8_Skill1 として観測できる', async () => {
+    it('OBJID を持たない name のみの入力（A7_Skill42）も calcForm:A7_Skill42 として観測できる', async () => {
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
         await page.waitForTimeout(500);
 
-        // 「その他の支援/設定」スイッチは folding-switch-MIG を持たないため
+        // 「アイテム・食品他」スイッチは folding-switch-MIG を持たないため
         // expandAllSections では開かない。直接クリックして展開する。
-        await page.check('#OBJID_CHECK_A8_SKILLSW');
+        await page.check('#OBJID_CHECK_A7_SKILLSW');
         await page.waitForTimeout(300);
 
-        // 前提確認: BuffOtherCategory.js が生成する name="A8_Skill1" 要素は
+        // 前提確認: BuffItemAndFood.js の期間限定効果セレクト（A7_Skill42 等）は
         // 実際に id を持たない（OBJID_* 走査の観測対象外であることの直接確認）。
         const elementId = await page.evaluate(
-            () => document.querySelector<HTMLElement>('[name="A8_Skill1"]')?.id ?? null
+            () => document.querySelector<HTMLElement>('[name="A7_Skill42"]')?.id ?? null
         );
         expect(elementId).toBe('');
 
         const snapshot = await evalObjidSnapshot(page);
         await context.close();
 
-        expect(snapshot['calcForm:A8_Skill1']).toBeDefined();
+        expect(snapshot['calcForm:A7_Skill42']).toBeDefined();
     });
 
     it('A_JOB は OBJID_SELECT_JOB と同一要素のため意図的乖離として除外される', async () => {
