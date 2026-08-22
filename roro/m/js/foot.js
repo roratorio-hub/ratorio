@@ -1316,8 +1316,8 @@ export function UpdateEquipItemDataByHtml() {
 	// ＨＴＭＬの入力値を元に、変数を更新する
 	var calcForm = document.calcForm;
 
-	set_n_A_WeaponType(eval(calcForm.A_WeaponType.value));
-	set_n_A_WeaponZokusei(eval(calcForm.A_Weapon_zokusei.value));
+	set_n_A_WeaponType(legacyNum(calcForm.A_WeaponType.value));
+	set_n_A_WeaponZokusei(legacyNum(calcForm.A_Weapon_zokusei.value));
 	set_n_A_Arrow(parseInt(HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE)));
 
 	// 装備部位配列初期化
@@ -1342,11 +1342,11 @@ export function UpdateEquipItemDataByHtml() {
 	n_A_Equip[EQUIP_REGION_ID_COSTUME_HEAD_UNDER] = HtmlGetObjectValueByIdAsInteger("A_isyou3", 0);
 
 	// 各種精錬値
-	set_n_A_HEAD_DEF_PLUS(eval(calcForm.A_HEAD_DEF_PLUS.value));
-	set_n_A_BODY_DEF_PLUS(eval(calcForm.A_BODY_DEF_PLUS.value));
-	set_n_A_SHIELD_DEF_PLUS(eval(calcForm.A_SHIELD_DEF_PLUS.value));
-	set_n_A_SHOULDER_DEF_PLUS(eval(calcForm.A_SHOULDER_DEF_PLUS.value));
-	set_n_A_SHOES_DEF_PLUS(eval(calcForm.A_SHOES_DEF_PLUS.value));
+	set_n_A_HEAD_DEF_PLUS(legacyNum(calcForm.A_HEAD_DEF_PLUS.value));
+	set_n_A_BODY_DEF_PLUS(legacyNum(calcForm.A_BODY_DEF_PLUS.value));
+	set_n_A_SHIELD_DEF_PLUS(legacyNum(calcForm.A_SHIELD_DEF_PLUS.value));
+	set_n_A_SHOULDER_DEF_PLUS(legacyNum(calcForm.A_SHOULDER_DEF_PLUS.value));
+	set_n_A_SHOES_DEF_PLUS(legacyNum(calcForm.A_SHOES_DEF_PLUS.value));
 
 
 	// シャドウ装備データ
@@ -1505,6 +1505,21 @@ export function UpdateEquipCostumeDataByHtml() {
 	n_A_costume[COSTUME_REGION_ID_HEAD_UNDER]	 = GetStatefullData("DATA_OBJID_HEAD_UNDER_COSTUME", 0);
 }
 
+// ---- eval() 撤去用シム（リファクタリング計画 Phase 3） ----
+// eval("") は undefined を返すが Number("") は 0 になる等、eval と素朴な数値変換は
+// 意味論が食い違う。census（全フィクスチャ116件 + 職業総当たり + 全設定欄展開 +
+// 全select/input操作 + "+5"/"1,2"/"5.5"等のエッジケース値直接投入を実ブラウザで
+// 走らせ、Number() では NaN になるが eval() なら評価できてしまう入力が実際に
+// 出現するか調べた）の結果、該当する入力は1件も見つからなかった
+// （tests/census-eval-value.mjs、2026-08-22 実施）。
+// そのため eval への委譲パスは持たず、eval と同じ結果になる範囲
+// （空文字列・通常の数値文字列・非文字列の恒等）のみをカバーする。
+function legacyNum(raw) {
+	if (typeof raw !== 'string') return raw;   // eval(非文字列) は恒等
+	if (raw === '') return undefined;          // eval("") === undefined を保存
+	return Number(raw);
+}
+
 export function StAllCalc(){
 
 	var sandanDelay;
@@ -1553,15 +1568,15 @@ export function StAllCalc(){
 		// 基本パラメタを取得する
 		//----------------------------------------------------------------
 
-		set_n_A_BaseLV(eval(calcForm.A_BaseLV.value));
-		set_n_A_JobLV(eval(calcForm.A_JobLV.value));
+		set_n_A_BaseLV(legacyNum(calcForm.A_BaseLV.value));
+		set_n_A_JobLV(legacyNum(calcForm.A_JobLV.value));
 
-		set_n_A_STR(eval(calcForm.A_STR.value));
-		set_n_A_AGI(eval(calcForm.A_AGI.value));
-		set_n_A_VIT(eval(calcForm.A_VIT.value));
-		set_n_A_DEX(eval(calcForm.A_DEX.value));
-		set_n_A_INT(eval(calcForm.A_INT.value));
-		set_n_A_LUK(eval(calcForm.A_LUK.value));
+		set_n_A_STR(legacyNum(calcForm.A_STR.value));
+		set_n_A_AGI(legacyNum(calcForm.A_AGI.value));
+		set_n_A_VIT(legacyNum(calcForm.A_VIT.value));
+		set_n_A_DEX(legacyNum(calcForm.A_DEX.value));
+		set_n_A_INT(legacyNum(calcForm.A_INT.value));
+		set_n_A_LUK(legacyNum(calcForm.A_LUK.value));
 
 		set_SU_STR(n_A_STR);
 		set_SU_AGI(n_A_AGI);
@@ -1571,7 +1586,7 @@ export function StAllCalc(){
 		set_SU_LUK(n_A_LUK);
 
 
-		n_A_SpeedPOT = eval(calcForm.A_SpeedPOT.value);
+		n_A_SpeedPOT = legacyNum(calcForm.A_SpeedPOT.value);
 
 
 		//----------------------------------------------------------------
@@ -1579,12 +1594,12 @@ export function StAllCalc(){
 		//----------------------------------------------------------------
 
 		// 純粋な値
-		SU_POW = eval(calcForm.A_POW.value);
-		SU_STA = eval(calcForm.A_STA.value);
-		SU_WIS = eval(calcForm.A_WIS.value);
-		SU_SPL = eval(calcForm.A_SPL.value);
-		SU_CON = eval(calcForm.A_CON.value);
-		SU_CRT = eval(calcForm.A_CRT.value);
+		SU_POW = legacyNum(calcForm.A_POW.value);
+		SU_STA = legacyNum(calcForm.A_STA.value);
+		SU_WIS = legacyNum(calcForm.A_WIS.value);
+		SU_SPL = legacyNum(calcForm.A_SPL.value);
+		SU_CON = legacyNum(calcForm.A_CON.value);
+		SU_CRT = legacyNum(calcForm.A_CRT.value);
 		
 		// 合計値
 		n_A_POW = GetTotalSpecStatus(MIG_PARAM_ID_POW);
@@ -1601,13 +1616,13 @@ export function StAllCalc(){
 		UpdateEquipItemDataByHtml();
 
 		// 超越段階
-		set_n_A_Weapon_Transcendence(eval(calcForm.A_Weapon_Transcendence.value));
-		set_n_A_Weapon2_Transcendence(eval(calcForm.A_Weapon2_Transcendence.value));
-		set_n_A_HEAD_DEF_Transcendence(eval(calcForm.A_HEAD_DEF_Transcendence.value));
-		set_n_A_SHIELD_DEF_Transcendence(eval(calcForm.A_SHIELD_DEF_Transcendence.value));
-		set_n_A_BODY_DEF_Transcendence(eval(calcForm.A_BODY_DEF_Transcendence.value));
-		set_n_A_SHOULDER_DEF_Transcendence(eval(calcForm.A_SHOULDER_DEF_Transcendence.value));
-		set_n_A_SHOES_DEF_Transcendence(eval(calcForm.A_SHOES_DEF_Transcendence.value));
+		set_n_A_Weapon_Transcendence(legacyNum(calcForm.A_Weapon_Transcendence.value));
+		set_n_A_Weapon2_Transcendence(legacyNum(calcForm.A_Weapon2_Transcendence.value));
+		set_n_A_HEAD_DEF_Transcendence(legacyNum(calcForm.A_HEAD_DEF_Transcendence.value));
+		set_n_A_SHIELD_DEF_Transcendence(legacyNum(calcForm.A_SHIELD_DEF_Transcendence.value));
+		set_n_A_BODY_DEF_Transcendence(legacyNum(calcForm.A_BODY_DEF_Transcendence.value));
+		set_n_A_SHOULDER_DEF_Transcendence(legacyNum(calcForm.A_SHOULDER_DEF_Transcendence.value));
+		set_n_A_SHOES_DEF_Transcendence(legacyNum(calcForm.A_SHOES_DEF_Transcendence.value));
 
 		//----------------------------------------------------------------
 		// 攻撃手段を取得する
@@ -1624,7 +1639,7 @@ export function StAllCalc(){
 		// 従来の処理
 		set_n_A_Weapon_ATK(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER]);
 		
-		set_n_A_Weapon_ATKplus(eval(calcForm.A_Weapon_ATKplus.value));
+		set_n_A_Weapon_ATKplus(legacyNum(calcForm.A_Weapon_ATKplus.value));
 		set_n_A_WeaponLV_seirenATK(0);
 		set_n_A_WeaponLV_Minplus(0);
 		set_n_A_WeaponLV_Maxplus(0);
@@ -1660,7 +1675,7 @@ export function StAllCalc(){
 
 			set_n_A_Weapon2_ATK(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT]][ITEM_DATA_INDEX_POWER]);
 
-			set_n_A_Weapon2_ATKplus(eval(document.calcForm.A_Weapon2_ATKplus.value));
+			set_n_A_Weapon2_ATKplus(legacyNum(document.calcForm.A_Weapon2_ATKplus.value));
 			set_n_A_Weapon2LV_seirenATK(0);
 			set_n_A_Weapon2LV_Minplus(0);
 			set_n_A_Weapon2LV_Maxplus(0);
@@ -1712,30 +1727,30 @@ export function StAllCalc(){
 			for(let i = 0; i < passiveSkillIdArray.length; i++){
 				let wOBJ = document.getElementById("A_skill"+i);
 				if (wOBJ !== null) {
-					n_A_PassSkill[i] = eval(wOBJ.value);
+					n_A_PassSkill[i] = legacyNum(wOBJ.value);
 				}
 			}
 		}
 
 		if(n_Skill4SW){
 			n_A_PassSkill4[0] = calcForm.A4_Skill0.checked;
-			n_A_PassSkill4[1] = eval(calcForm.A4_Skill1.value);
-			n_A_PassSkill4[2] = eval(calcForm.A4_Skill2.value);
-			n_A_PassSkill4[3] = eval(calcForm.A4_Skill3.value);
-			n_A_PassSkill4[4] = eval(calcForm.A4_Skill4.value);
+			n_A_PassSkill4[1] = legacyNum(calcForm.A4_Skill1.value);
+			n_A_PassSkill4[2] = legacyNum(calcForm.A4_Skill2.value);
+			n_A_PassSkill4[3] = legacyNum(calcForm.A4_Skill3.value);
+			n_A_PassSkill4[4] = legacyNum(calcForm.A4_Skill4.value);
 			n_A_PassSkill4[5] = calcForm.A4_Skill5.checked;
 			n_A_PassSkill4[6] = calcForm.A4_Skill6.checked;
 			n_A_PassSkill4[7] = calcForm.A4_Skill7.checked;
 			n_A_PassSkill4[8] = calcForm.A4_Skill8.checked;
 			n_A_PassSkill4[9] = calcForm.A4_Skill9.checked;
 			n_A_PassSkill4[10] = calcForm.A4_Skill10.checked;
-			n_A_PassSkill4[11] = eval(calcForm.A4_Skill11.value);
-			n_A_PassSkill4[30] = eval(calcForm.A4_Skill30.value);
-			n_A_PassSkill4[31] = eval(calcForm.A4_Skill31.value);
-			n_A_PassSkill4[32] = eval(calcForm.A4_Skill32.value);
-			n_A_PassSkill4[33] = eval(calcForm.A4_Skill33.value);
-			n_A_PassSkill4[34] = eval(calcForm.A4_Skill34.value);
-			n_A_PassSkill4[35] = eval(calcForm.A4_Skill35.value);
+			n_A_PassSkill4[11] = legacyNum(calcForm.A4_Skill11.value);
+			n_A_PassSkill4[30] = legacyNum(calcForm.A4_Skill30.value);
+			n_A_PassSkill4[31] = legacyNum(calcForm.A4_Skill31.value);
+			n_A_PassSkill4[32] = legacyNum(calcForm.A4_Skill32.value);
+			n_A_PassSkill4[33] = legacyNum(calcForm.A4_Skill33.value);
+			n_A_PassSkill4[34] = legacyNum(calcForm.A4_Skill34.value);
+			n_A_PassSkill4[35] = legacyNum(calcForm.A4_Skill35.value);
 		}
 
 		// オートスペル設定の取得
@@ -1743,17 +1758,17 @@ export function StAllCalc(){
 		for (var idx = 0; idx < AUTO_SPELL_SETTING_COUNT; idx++) {
 			objSelect = document.getElementById("OBJID_AS_SKILL_ID_" + (OBJID_OFFSET_AS_SKILL_ID + idx));
 			if (objSelect) {
-				n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_ID + idx] = eval(objSelect.value);
+				n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_ID + idx] = legacyNum(objSelect.value);
 			}
 
 			objSelect = document.getElementById("OBJID_AS_SKILL_LV_" + (OBJID_OFFSET_AS_SKILL_LV + idx));
 			if (objSelect) {
-				n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_LV + idx] = eval(objSelect.value);
+				n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_LV + idx] = legacyNum(objSelect.value);
 			}
 
 			objSelect = document.getElementById("OBJID_AS_SKILL_PROB_" + (OBJID_OFFSET_AS_SKILL_PROB + idx));
 			if (objSelect) {
-				n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + idx] = eval(objSelect.value);
+				n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + idx] = legacyNum(objSelect.value);
 			}
 		}
 
@@ -1762,12 +1777,12 @@ export function StAllCalc(){
 			n_A_PassSkill7[0] = calcForm.A7_Skill0.checked;
 			n_A_PassSkill7[1] = calcForm.A7_Skill1.checked;
 			n_A_PassSkill7[2] = calcForm.A7_Skill2.checked;
-			n_A_PassSkill7[3] = eval(calcForm.A7_Skill3.value);
-			n_A_PassSkill7[4] = eval(calcForm.A7_Skill4.value);
-			n_A_PassSkill7[5] = eval(calcForm.A7_Skill5.value);
-			n_A_PassSkill7[6] = eval(calcForm.A7_Skill6.value);
-			n_A_PassSkill7[7] = eval(calcForm.A7_Skill7.value);
-			n_A_PassSkill7[8] = eval(calcForm.A7_Skill8.value);
+			n_A_PassSkill7[3] = legacyNum(calcForm.A7_Skill3.value);
+			n_A_PassSkill7[4] = legacyNum(calcForm.A7_Skill4.value);
+			n_A_PassSkill7[5] = legacyNum(calcForm.A7_Skill5.value);
+			n_A_PassSkill7[6] = legacyNum(calcForm.A7_Skill6.value);
+			n_A_PassSkill7[7] = legacyNum(calcForm.A7_Skill7.value);
+			n_A_PassSkill7[8] = legacyNum(calcForm.A7_Skill8.value);
 			n_A_PassSkill7[9] = calcForm.A7_Skill9.checked;
 			n_A_PassSkill7[10] = calcForm.A7_Skill10.checked;
 			n_A_PassSkill7[11] = calcForm.A7_Skill11.checked;
@@ -1797,40 +1812,40 @@ export function StAllCalc(){
 			n_A_PassSkill7[35] = calcForm.A7_Skill35.checked;
 			n_A_PassSkill7[36] = calcForm.A7_Skill36.checked;
 			n_A_PassSkill7[37] = calcForm.A7_Skill37.checked;
-			n_A_PassSkill7[38] = eval(calcForm.A7_Skill38.value);
-			n_A_PassSkill7[39] = eval(calcForm.A7_Skill39.value);
+			n_A_PassSkill7[38] = legacyNum(calcForm.A7_Skill38.value);
+			n_A_PassSkill7[39] = legacyNum(calcForm.A7_Skill39.value);
 			n_A_PassSkill7[40] = calcForm.A7_Skill40.checked;
-			n_A_PassSkill7[41] = eval(calcForm.A7_Skill41.value);
-			n_A_PassSkill7[42] = eval(calcForm.A7_Skill42.value);
-			n_A_PassSkill7[43] = eval(calcForm.A7_Skill43.value);
-			n_A_PassSkill7[44] = eval(calcForm.A7_Skill44.value);
-			n_A_PassSkill7[45] = eval(calcForm.A7_Skill45.value);
-			n_A_PassSkill7[46] = eval(calcForm.A7_Skill46.value);
-			n_A_PassSkill7[47] = eval(calcForm.A7_Skill47.value);
+			n_A_PassSkill7[41] = legacyNum(calcForm.A7_Skill41.value);
+			n_A_PassSkill7[42] = legacyNum(calcForm.A7_Skill42.value);
+			n_A_PassSkill7[43] = legacyNum(calcForm.A7_Skill43.value);
+			n_A_PassSkill7[44] = legacyNum(calcForm.A7_Skill44.value);
+			n_A_PassSkill7[45] = legacyNum(calcForm.A7_Skill45.value);
+			n_A_PassSkill7[46] = legacyNum(calcForm.A7_Skill46.value);
+			n_A_PassSkill7[47] = legacyNum(calcForm.A7_Skill47.value);
 			n_A_PassSkill7[48] = calcForm.A7_Skill48.checked;
 			n_A_PassSkill7[49] = calcForm.A7_Skill49.checked;
-			n_A_PassSkill7[50] = eval(calcForm.A7_Skill50.value);
+			n_A_PassSkill7[50] = legacyNum(calcForm.A7_Skill50.value);
 			n_A_PassSkill7[51] = calcForm.A7_Skill51.checked;
-			n_A_PassSkill7[52] = eval(calcForm.A7_Skill52.value);
+			n_A_PassSkill7[52] = legacyNum(calcForm.A7_Skill52.value);
 		}
 		n_A_PassSkill8[14] = 0;
 		if(n_Skill8SW){
-			n_A_PassSkill8[0] = eval(calcForm.A8_Skill0.value);
-			n_A_PassSkill8[1] = eval(calcForm.A8_Skill1.value);
-			n_A_PassSkill8[2] = eval(calcForm.A8_Skill2.value);
-			n_A_PassSkill8[3] = eval(calcForm.A8_Skill3.value);
+			n_A_PassSkill8[0] = legacyNum(calcForm.A8_Skill0.value);
+			n_A_PassSkill8[1] = legacyNum(calcForm.A8_Skill1.value);
+			n_A_PassSkill8[2] = legacyNum(calcForm.A8_Skill2.value);
+			n_A_PassSkill8[3] = legacyNum(calcForm.A8_Skill3.value);
 			n_A_PassSkill8[4] = calcForm.A8_Skill4.checked;
-			n_A_PassSkill8[5] = eval(calcForm.A8_Skill5.value);
-			n_A_PassSkill8[6] = eval(calcForm.A8_Skill6.value);
-			n_A_PassSkill8[7] = eval(calcForm.A8_Skill7.value);
-			n_A_PassSkill8[12] = eval(calcForm.A8_Skill12.value);
+			n_A_PassSkill8[5] = legacyNum(calcForm.A8_Skill5.value);
+			n_A_PassSkill8[6] = legacyNum(calcForm.A8_Skill6.value);
+			n_A_PassSkill8[7] = legacyNum(calcForm.A8_Skill7.value);
+			n_A_PassSkill8[12] = legacyNum(calcForm.A8_Skill12.value);
 			n_A_PassSkill8[13] = calcForm.A8_Skill13.checked;
-			n_A_PassSkill8[15] = eval(calcForm.A8_Skill15.value);
+			n_A_PassSkill8[15] = legacyNum(calcForm.A8_Skill15.value);
 			n_A_PassSkill8[16] = calcForm.A8_Skill16.checked;
-			n_A_PassSkill8[17] = eval(calcForm.A8_Skill17.value);
+			n_A_PassSkill8[17] = legacyNum(calcForm.A8_Skill17.value);
 			n_A_PassSkill8[19] = calcForm.A8_Skill19.checked;
-			n_A_PassSkill8[21] = eval(calcForm.A8_Skill21.value);
-			n_A_PassSkill8[22] = eval(calcForm.A8_Skill22.value);
+			n_A_PassSkill8[21] = legacyNum(calcForm.A8_Skill21.value);
+			n_A_PassSkill8[22] = legacyNum(calcForm.A8_Skill22.value);
 			if(41 <= n_A_JOB && n_A_JOB <= 43){
 				if(n_A_PassSkill8[19] == 0) myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
 				else myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
