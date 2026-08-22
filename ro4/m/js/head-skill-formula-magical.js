@@ -82,6 +82,7 @@ import {
     set_g_bDefinedDamageIntervals, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
 } from './ro4-state.js';
 import { UsedSkillSearch } from './skillstate.js';
+import { n_A_WeaponZokusei } from '../../../roro/m/js/roro-state.js';
 
 export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
     let w_MATK = [0,0,0];
@@ -388,7 +389,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		case SKILL_ID_ESTIN:
-			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
+			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 			CS.wCast = 100;
 			n_Delay[2] = 500;
 			if(mobData[17] == 0) CS.wbairitu = 10 * n_A_ActiveSkillLV;
@@ -396,14 +397,14 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		case SKILL_ID_ESTON:
-			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
+			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 			CS.wCast = 100;
 			n_Delay[2] = 500;
 			CS.wbairitu = 5 * n_A_ActiveSkillLV;
 			break;
 
 		case SKILL_ID_ESMA:
-			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
+			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 			n_Delay[0] = 1;
 			CS.wHITsuu = n_A_ActiveSkillLV;
 			CS.wCast = 2000;
@@ -862,7 +863,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		case SKILL_ID_ESHA:
-			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
+			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 			CS.wCast = 200 * n_A_ActiveSkillLV;
 			CS.n_KoteiCast = 200 * n_A_ActiveSkillLV;
 			n_Delay[7] = 1000;
@@ -871,7 +872,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		case SKILL_ID_ESPA:
-			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
+			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 			CS.wCast = 100 * n_A_ActiveSkillLV;
 			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
 			CS.wbairitu = 500 + (250 * n_A_ActiveSkillLV);
@@ -882,7 +883,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		case SKILL_ID_ESFU:
 			CS.n_bunkatuHIT = 1;
 			CS.wHITsuu = 5;
-			set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
+			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 			CS.wCast = 100 * n_A_ActiveSkillLV;
 			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
 			CS.wbairitu = 1500 + (250 * n_A_ActiveSkillLV);

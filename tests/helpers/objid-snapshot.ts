@@ -269,7 +269,7 @@ const STATE_MODULE_PATHS = [
  * 例: `global.js` の `g_skillManager`）は落とさず `'[unserializable]'` として記録する
  * （こういうフィールドは通常2回の hydration 間で値が変わらないため、diff には出現しない）。
  *
- * hydration の冪等性（`foot.js:1929-1933` で `n_tok` 等を都度ゼロクリアしてから積算する）が
+ * hydration の冪等性（`foot.js:1438-1441` で `n_tok` 等を都度ゼロクリアしてから積算する）が
  * 前提。連続呼び出しで値が累積することはない。
  */
 export function snapshotAllGlobals(page: Page): Promise<Record<string, string>> {
