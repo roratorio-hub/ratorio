@@ -2857,7 +2857,7 @@ export function calc() {
 
 	if(n_A_ActiveSkill==0 || n_A_ActiveSkill==SKILL_ID_SHARP_SHOOTING || n_A_ActiveSkill==401 || n_A_ActiveSkill==456 || n_A_ActiveSkill==578 || (n_A_ActiveSkill==86 && (50 <= mobData[18] && mobData[18] <60))){
 		CS.w_HIT_HYOUJI = Math.floor(GetActHitRateAll(n_A_ActiveSkill, mobData) * 100) /100;
-		myInnerHtml("CRInum",(Math.round(GetActRateCritical(n_A_ActiveSkill, mobData) * 100) / 100) + SubName[0],0);
+		document.getElementById("CRInum").textContent = (Math.round(GetActRateCritical(n_A_ActiveSkill, mobData) * 100) / 100) + SubName[0];
 	}
 
 	set_w_FLEE(95 - (mobData[33] - charaData[CHARA_DATA_INDEX_FLEE]));
@@ -2880,7 +2880,7 @@ export function calc() {
 	// FLEE範囲補正
 	set_w_FLEE(Math.min(95, Math.max(5, w_FLEE)));
 
-	myInnerHtml("BattleFLEE",Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100,0);
+	document.getElementById("BattleFLEE").textContent = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
 
 	//----------------------------------------------------------------
 	//

@@ -41,7 +41,7 @@ export function Click_Skill4SW(){
 		document.calcForm.A4_SKILLSW.checked = true;
 		const name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
 		let html_CS4SW_SKILL = new Array();
-		for(let i = 0; i <= 10; i++) myInnerHtml("EN4"+i+"_1",name_CS4SW_SKILL[i],0);
+		for(let i = 0; i <= 10; i++) document.getElementById("EN4"+i+"_1").textContent = name_CS4SW_SKILL[i];
 		html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0">';
 		html_CS4SW_SKILL[1] = '<select name="A4_Skill1"></select>';
 		html_CS4SW_SKILL[2] = '<select name="A4_Skill2"></select>';
@@ -55,12 +55,12 @@ export function Click_Skill4SW(){
 		html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10">';
 		html_CS4SW_SKILL[11] = '<select name="A4_Skill11"></select>';
 		for(let i = 0; i <= 11; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
-		myInnerHtml("EN430_1","STR",0);
-		myInnerHtml("EN431_1","AGI",0);
-		myInnerHtml("EN432_1","VIT",0);
-		myInnerHtml("EN433_1","INT",0);
-		myInnerHtml("EN434_1","DEX",0);
-		myInnerHtml("EN435_1","LUK",0);
+		document.getElementById("EN430_1").textContent = "STR";
+		document.getElementById("EN431_1").textContent = "AGI";
+		document.getElementById("EN432_1").textContent = "VIT";
+		document.getElementById("EN433_1").textContent = "INT";
+		document.getElementById("EN434_1").textContent = "DEX";
+		document.getElementById("EN435_1").textContent = "LUK";
 		html_CS4SW_SKILL[30] = '<select name="A4_Skill30"></select>';
 		html_CS4SW_SKILL[31] = '<select name="A4_Skill31"></select>';
 		html_CS4SW_SKILL[32] = '<select name="A4_Skill32"></select>';
@@ -149,7 +149,7 @@ export function Click_A4(recalc = false){
 	}
 	if (sw == 0) {
 		document.getElementById('A4TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A4used","",0);
+		document.getElementById("A4used").textContent = "";
 	} else {
 		document.getElementById('A4TD').style.backgroundColor = "#FF7777";
 		myInnerHtml("A4used","　<B>使用中</B>",0);
