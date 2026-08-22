@@ -22,52 +22,11 @@ export function setN_Skill4SW(v) { n_Skill4SW = v; }
  */
 export function Click_Skill4SW(){
 	n_Skill4SW = document.calcForm.A4_SKILLSW.checked;
+	const container = document.getElementById("SP_SIEN02");
 	if(n_Skill4SW){
-		let str;
-		str = '<TABLE Border style="white-space:nowrap;"><TR><TD id="A4TD" ColSpan="10" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR>';
-		str += '<TR><TD ColSpan="10">ギルドスキル</TD></TR>';
-		str += '<TR><TD id="EN40_1"></TD><TD id="EN40_2"></TD><TD id="EN41_1"></TD><TD id="EN41_2"></TD><TD id="EN42_1"></TD><TD id="EN42_2"></TD></TR>';
-		str += '<TR><TD id="EN43_1"></TD><TD id="EN43_2"></TD><TD id="EN44_1"></TD><TD id="EN44_2"></TD></TR>';
-		str += '<TR><TD ColSpan="10">ゴスペルスキル</TD></TR>';
-		str += '<TR><TD id="EN45_1"></TD><TD id="EN45_2"></TD><TD id="EN46_1"></TD><TD id="EN46_2"></TD><TD id="EN47_1"></TD><TD id="EN47_2"></TD></TR>';
-		str += '<TR><TD id="EN48_1"></TD><TD id="EN48_2"></TD><TD id="EN49_1"></TD><TD id="EN49_2"></TD><TD id="EN410_1"></TD><TD id="EN410_2"></TD></TR>';
-		str += '<TR><TD ColSpan="10">一部スキルの持ち替え等による強化<BR><Font size=2>スキル使用時のステータスを入力してください。スキルに無関係なステータスは無視されます。<BR>スキルレベルはパッシブ/持続系欄で選択してください。</Font></TD></TR>';
-		str += '<TR><TD ColSpan="10" id="EN411_2"></TD></TR>';
-		str += '<TR><TD id="EN430_1"></TD><TD id="EN430_2"></TD><TD id="EN431_1"></TD><TD id="EN431_2"></TD><TD id="EN432_1"></TD><TD id="EN432_2"></TD></TR>';
-		str += '<TR><TD id="EN433_1"></TD><TD id="EN433_2"></TD><TD id="EN434_1"></TD><TD id="EN434_2"></TD><TD id="EN435_1"></TD><TD id="EN435_2"></TD></TR>';
-		str += '</TABLE>';
-		myInnerHtml("SP_SIEN02",str,0);
+		container.replaceChildren(document.getElementById("TPL_BUFF_GUILD").content.cloneNode(true));
 		document.querySelector('[name="A4_SKILLSW"]')?.addEventListener('click', Click_Skill4SW);
 		document.calcForm.A4_SKILLSW.checked = true;
-		const name_CS4SW_SKILL = ["臨戦体勢","偉大なる指導力","栄光の傷","冷静な心","鋭い視線","ステータスALL+20","HP+100%","SP+100%","ATK+100%","HIT+50＆FLEE+50","被ダメージ半減"];
-		let html_CS4SW_SKILL = new Array();
-		for(let i = 0; i <= 10; i++) document.getElementById("EN4"+i+"_1").textContent = name_CS4SW_SKILL[i];
-		html_CS4SW_SKILL[0] = '<input type="checkbox" name="A4_Skill0">';
-		html_CS4SW_SKILL[1] = '<select name="A4_Skill1"></select>';
-		html_CS4SW_SKILL[2] = '<select name="A4_Skill2"></select>';
-		html_CS4SW_SKILL[3] = '<select name="A4_Skill3"></select>';
-		html_CS4SW_SKILL[4] = '<select name="A4_Skill4"></select>';
-		html_CS4SW_SKILL[5] = '<input type="checkbox" name="A4_Skill5">';
-		html_CS4SW_SKILL[6] = '<input type="checkbox" name="A4_Skill6">';
-		html_CS4SW_SKILL[7] = '<input type="checkbox" name="A4_Skill7">';
-		html_CS4SW_SKILL[8] = '<input type="checkbox" name="A4_Skill8">';
-		html_CS4SW_SKILL[9] = '<input type="checkbox" name="A4_Skill9">';
-		html_CS4SW_SKILL[10] = '<input type="checkbox" name="A4_Skill10">';
-		html_CS4SW_SKILL[11] = '<select name="A4_Skill11"></select>';
-		for(let i = 0; i <= 11; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
-		document.getElementById("EN430_1").textContent = "STR";
-		document.getElementById("EN431_1").textContent = "AGI";
-		document.getElementById("EN432_1").textContent = "VIT";
-		document.getElementById("EN433_1").textContent = "INT";
-		document.getElementById("EN434_1").textContent = "DEX";
-		document.getElementById("EN435_1").textContent = "LUK";
-		html_CS4SW_SKILL[30] = '<select name="A4_Skill30"></select>';
-		html_CS4SW_SKILL[31] = '<select name="A4_Skill31"></select>';
-		html_CS4SW_SKILL[32] = '<select name="A4_Skill32"></select>';
-		html_CS4SW_SKILL[33] = '<select name="A4_Skill33"></select>';
-		html_CS4SW_SKILL[34] = '<select name="A4_Skill34"></select>';
-		html_CS4SW_SKILL[35] = '<select name="A4_Skill35"></select>';
-		for(let i = 30; i <= 35; i++) myInnerHtml("EN4"+i+"_2",html_CS4SW_SKILL[i],0);
 		// 旧 inline handler の代替: 全コントロール共通で StAllCalc → Click_A4 を発火する
 		// （StAllCalc は workspace I/F として window に残る唯一の foot 関数 — Phase 4 で import 化予定）
 		for (let i = 0; i <= 11; i++) {
@@ -123,9 +82,7 @@ export function Click_Skill4SW(){
 		document.calcForm.A4_Skill34.value = n_A_PassSkill4[34];
 		document.calcForm.A4_Skill35.value = n_A_PassSkill4[35];
 	} else {
-		let str;
-		str = '<TABLE Border><TR><TD id="A4TD" class="title"><input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW"><label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label><span id="A4used"></span></TD></TR></TABLE>';
-		myInnerHtml("SP_SIEN02",str,0);
+		container.replaceChildren(document.getElementById("TPL_BUFF_GUILD_COLLAPSED").content.cloneNode(true));
 		document.querySelector('[name="A4_SKILLSW"]')?.addEventListener('click', Click_Skill4SW);
 		document.calcForm.A4_SKILLSW.checked = 0;
 	}
