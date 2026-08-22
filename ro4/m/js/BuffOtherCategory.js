@@ -109,7 +109,7 @@ export function Click_Skill8SW(){
 		document.calcForm.A8_Skill22.options[2] = new Option("シルバー(↑＋スピードポーション)",2);
 		document.calcForm.A8_Skill22.options[3] = new Option("ゴールド(↑＋Hit+10/Flee+10)",3);
 		document.calcForm.A8_Skill22.options[4] = new Option("レインボー(↑＋MaxHP+20%/MaxSP+20%)",4);
-		myInnerHtml("EN823",'←ジョンダパスはOTPレインボーです',0);
+		document.getElementById("EN823").textContent = "←ジョンダパスはOTPレインボーです";
 		myInnerHtml("EN805",'公平PT人数<select name="A8_Skill5"></select>', 0);
 		document.calcForm.A8_Skill5.options[0] = new Option("-",0);
 		for (let i = 1; i <= 11; i++) {
@@ -203,7 +203,7 @@ export function Click_A8(recalc = false){
 	}
 	if(sw == 0){
 		document.getElementById('A8TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A8used","",0);
+		document.getElementById("A8used").textContent = "";
 	}else{
 		document.getElementById('A8TD').style.backgroundColor = "#FF7777";
 		myInnerHtml("A8used","　<B>使用中</B>",0);

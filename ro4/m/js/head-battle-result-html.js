@@ -72,12 +72,12 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 	}
 	myInnerHtml("bSUBname",CS.str_bSUBname,0);
 	myInnerHtml("bSUB",CS.str_bSUB,0);
-	myInnerHtml("BattleHIT",CS.w_HIT_HYOUJI,0);
-	myInnerHtml("BattlePerfectHIT",n_tok[ITEM_SP_PERFECT_ATTACK_UP],0);
+	document.getElementById("BattleHIT").textContent = CS.w_HIT_HYOUJI;
+	document.getElementById("BattlePerfectHIT").textContent = n_tok[ITEM_SP_PERFECT_ATTACK_UP];
 //	myInnerHtml("nm067","％",0);
 	// 二刀流の通常攻撃時の表示部分
 	if (n_Nitou && n_A_ActiveSkill == 0) {
-		myInnerHtml("BattleHIT",CS.w_HIT_HYOUJI +"％(左手"+ CS.w_HIT +"％)",0);
+		document.getElementById("BattleHIT").textContent = CS.w_HIT_HYOUJI +"％(左手"+ CS.w_HIT +"％)";
 //		myInnerHtml("nm067","",0);
 	}
 	// TODO : 謎処理　通常攻撃とグラビテーションフィールド以外
@@ -86,13 +86,13 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 			w_DMG[i] = 0;
 			CS.g_damageTextArray[i] = ["Miss"];
 		}
-		myInnerHtml("MinATKnum","無理です",0);
-		myInnerHtml("AveATKnum","無理です",0);
-		myInnerHtml("MaxATKnum","無理です",0);
-		myInnerHtml("AveSecondATK","-",0);
-		myInnerHtml("AtkBaseExp","-",0);
-		myInnerHtml("AtkJobExp","-",0);
-		myInnerHtml("BattleTime","-",0);
+		document.getElementById("MinATKnum").textContent = "無理です";
+		document.getElementById("AveATKnum").textContent = "無理です";
+		document.getElementById("MaxATKnum").textContent = "無理です";
+		document.getElementById("AveSecondATK").textContent = "-";
+		document.getElementById("AtkBaseExp").textContent = "-";
+		document.getElementById("AtkJobExp").textContent = "-";
+		document.getElementById("BattleTime").textContent = "-";
 
 		return;
 	}
@@ -102,13 +102,13 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 		CS.g_damageTextArray[0] = ["<B>この武器では</B>"];
 		CS.g_damageTextArray[1] = ["<B>このスキルを</B>"];
 		CS.g_damageTextArray[2] = ["<B>使用できません</B>"];
-		myInnerHtml("MinATKnum","-",0);
-		myInnerHtml("AveATKnum","-",0);
-		myInnerHtml("MaxATKnum","-",0);
-		myInnerHtml("AveSecondATK","-",0);
-		myInnerHtml("AtkBaseExp","-",0);
-		myInnerHtml("AtkJobExp","-",0);
-		myInnerHtml("BattleTime","-",0);
+		document.getElementById("MinATKnum").textContent = "-";
+		document.getElementById("AveATKnum").textContent = "-";
+		document.getElementById("MaxATKnum").textContent = "-";
+		document.getElementById("AveSecondATK").textContent = "-";
+		document.getElementById("AtkBaseExp").textContent = "-";
+		document.getElementById("AtkJobExp").textContent = "-";
+		document.getElementById("BattleTime").textContent = "-";
 
 		return;
 	}
@@ -121,11 +121,11 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 
 		// 最小攻撃回数が１万回未満ならば、そのまま表示
 		if(g_AttackCount[0] < 10000) {
-			myInnerHtml("MinATKnum",__DIG3(g_AttackCount[0]),0);
+			document.getElementById("MinATKnum").textContent = __DIG3(g_AttackCount[0]);
 		}
 		// １万回を超える場合は特殊表示
 		else {
-			myInnerHtml("MinATKnum",SubName[5],0);
+			document.getElementById("MinATKnum").textContent = SubName[5];
 		}
 
 	}else{
@@ -166,7 +166,7 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 
 			x = Math.floor(x * 10000) / 100;
 
-			myInnerHtml("MinATKnum","1(1回で倒せる確率"+ x +"%)",0);
+			document.getElementById("MinATKnum").textContent = "1(1回で倒せる確率"+ x +"%)";
 		}
 
 		CS.SG_Special_HITnum = 0;
@@ -190,8 +190,8 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 		if(CS.w_HIT_HYOUJI <100) wX = CS.n_PerfectHIT_DMG;
 		if(wX > 0){
 			g_AttackCount[2] = Math.ceil(mobData[3] / wX);
-			if(g_AttackCount[2]<10000) myInnerHtml("MaxATKnum",__DIG3(g_AttackCount[2]),0);
-			else myInnerHtml("MaxATKnum",SubName[5],0);
+			if(g_AttackCount[2]<10000) document.getElementById("MaxATKnum").textContent = __DIG3(g_AttackCount[2]);
+			else document.getElementById("MaxATKnum").textContent = SubName[5];
 		}else{
 			myInnerHtml("MaxATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
 		}
@@ -211,23 +211,23 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 		}
 
 		if(g_AttackCount[1]<10000){
-			myInnerHtml("AtkBaseExp",__DIG3(Math.round(mobData[15] / g_AttackCount[1])) +"Exp",0);
-			myInnerHtml("AtkJobExp",__DIG3(Math.round(mobData[16] / g_AttackCount[1])) +"Exp",0);
+			document.getElementById("AtkBaseExp").textContent = __DIG3(Math.round(mobData[15] / g_AttackCount[1])) +"Exp";
+			document.getElementById("AtkJobExp").textContent = __DIG3(Math.round(mobData[16] / g_AttackCount[1])) +"Exp";
 		}else{
-			myInnerHtml("AtkBaseExp",SubName[7],0);
-			myInnerHtml("AtkJobExp",SubName[7],0);
+			document.getElementById("AtkBaseExp").textContent = SubName[7];
+			document.getElementById("AtkJobExp").textContent = SubName[7];
 		}
 
 		if(g_AttackCount[1]<10000){
-			myInnerHtml("AveATKnum",__DIG3(g_AttackCount[1]),0);
+			document.getElementById("AveATKnum").textContent = __DIG3(g_AttackCount[1]);
 			const n_AveATKnum = g_AttackCount[1];
 			var w2 = (CS.wCast + wDelay) * n_AveATKnum;
 			w2 = Math.floor(w2 * 100) / 100;
-			if(n_Delay[0]) myInnerHtml("BattleTime","特殊",0);
-			else myInnerHtml("BattleTime",__DIG3(w2) + "秒",0);
+			if(n_Delay[0]) document.getElementById("BattleTime").textContent = "特殊";
+			else document.getElementById("BattleTime").textContent = __DIG3(w2) + "秒";
 		}else{
-			myInnerHtml("AveATKnum",SubName[5],0);
-			myInnerHtml("BattleTime",SubName[6],0);
+			document.getElementById("AveATKnum").textContent = SubName[5];
+			document.getElementById("BattleTime").textContent = SubName[6];
 		}
 
 		g_dps = 1 / (CS.wCast + wDelay) * w_DMG[1];
@@ -236,9 +236,9 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 		g_dps /= 100;
 		if(n_Delay[0]) {
 			g_dps = -1;
-			myInnerHtml("AveSecondATK","特殊",0);
+			document.getElementById("AveSecondATK").textContent = "特殊";
 		}
-		else myInnerHtml("AveSecondATK",__DIG3(g_dps),0);
+		else document.getElementById("AveSecondATK").textContent = __DIG3(g_dps);
 	}else{
 		myInnerHtml("AtkBaseExp","<Font size=2>計算不能</Font>",0);
 		myInnerHtml("AtkJobExp","<Font size=2>計算不能</Font>",0);
@@ -264,10 +264,10 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 	if(UsedSkillSearch(SKILL_ID_REJECT_SWORD)){
 		w = Math.round(w * (100- UsedSkillSearch(SKILL_ID_REJECT_SWORD) *7.5))/100;
 	}
-	myInnerHtml("B_Ave2Atk",__DIG3(w)+"ダメージ",0);
+	document.getElementById("B_Ave2Atk").textContent = __DIG3(w)+"ダメージ";
 	g_receiveDamageAvoids = w;
 	if(n_A_ActiveSkill==441) {
-		myInnerHtml("B_Ave2Atk","-",0);
+		document.getElementById("B_Ave2Atk").textContent = "-";
 	}
 }
 

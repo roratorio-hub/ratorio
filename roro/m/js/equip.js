@@ -163,9 +163,9 @@ export function changeJobSettings(jobId) {
 
 	// 武器属性付与手段の名称の設定
 	if (41 <= migId && migId <= 43) {
-		myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
+		document.getElementById("ID_A_HUYO_NAME").textContent = "暖かい風";
 	} else {
-		myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
+		document.getElementById("ID_A_HUYO_NAME").textContent = "武器属性付与";
 	}
 
 	// Baseレベル自動調整が有効だと値設定ができない不具合があるので、無効化...
@@ -393,7 +393,7 @@ export function OnChangeArmsTypeRight(itemKind){
 		}
 		else{
 
-			myInnerHtml("A_SobWeaponName","",0);
+			document.getElementById("A_SobWeaponName").textContent = "";
 
 			HtmlRemoveOptionAll(_cf.OBJID_ARMS_LEFT);
 			_cf.OBJID_ARMS_LEFT.options[0] = new Option(ItemObjNew[ITEM_ID_SUDE][ITEM_DATA_INDEX_NAME], ITEM_ID_SUDE);

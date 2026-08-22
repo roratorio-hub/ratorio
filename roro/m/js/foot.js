@@ -762,7 +762,7 @@ import {
          TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from './timeitem.dat.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, toSafeBigInt, myInnerHtml } from '../../common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, toSafeBigInt } from '../../common/js/util.js';
 import {
          SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_ADJUSTMENT, SKILL_ID_ADORAMUS,
          SKILL_ID_ADRENALINE_RUSH, SKILL_ID_ADVANCED_BOOK, SKILL_ID_AIMED_BOLT,
@@ -1847,8 +1847,8 @@ export function StAllCalc(){
 			n_A_PassSkill8[21] = legacyNum(calcForm.A8_Skill21.value);
 			n_A_PassSkill8[22] = legacyNum(calcForm.A8_Skill22.value);
 			if(41 <= n_A_JOB && n_A_JOB <= 43){
-				if(n_A_PassSkill8[19] == 0) myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
-				else myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
+				if(n_A_PassSkill8[19] == 0) document.getElementById("ID_A_HUYO_NAME").textContent = "暖かい風";
+				else document.getElementById("ID_A_HUYO_NAME").textContent = "武器属性付与";
 			}
 		}
 

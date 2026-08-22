@@ -1511,7 +1511,7 @@ export function OnChangeSettingAutoSpell(bCalculate){
 	}
 	else{
 		document.getElementById('OBJID_TD_AUTO_SPELL_SETTING').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("OBJID_USED_MARKER_AUTO_SPELL","",0);
+		document.getElementById("OBJID_USED_MARKER_AUTO_SPELL").textContent = "";
 	}
  }
 

@@ -7,7 +7,7 @@ import '../../../roro/m/js/item.h.js';
 import '../../../roro/m/js/monster.h.js';
 import { GetBaseLevelMax, GetBaseLevelMin, GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from './data/mig.job.h.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
-import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify, myInnerHtml } from '../../../roro/common/js/util.js';
+import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify } from '../../../roro/common/js/util.js';
 import { CCharaConfCustomSpecStatus } from '../../../roro/m/js/CCharaConfCustomSpecStatus.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
 import { CCharaConfYozi } from '../../../roro/m/js/CCharaConfYozi.js';
@@ -360,8 +360,8 @@ export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 	g_CRT = stValCRT;
 	g_BaseLV = Number(_cf.A_BaseLV.value);
 
-	myInnerHtml("A_STPOINT", stPointEarned - stPointUsed, 0);
-	myInnerHtml("OBJID_SPAN_STATUS_T_STATUS_POINT", stTSPointEarned - stTSPointUsed, 0);
+	document.getElementById("A_STPOINT").textContent = stPointEarned - stPointUsed;
+	document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT").textContent = stTSPointEarned - stTSPointUsed;
 
 	// 特性ステータス仮処理
 	g_pureStatus = [];

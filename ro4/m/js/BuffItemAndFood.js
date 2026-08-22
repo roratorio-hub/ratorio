@@ -369,7 +369,7 @@ export function Click_A7(recalc = false){
 	}
 	if (sw == 0) {
 		document.getElementById('A7TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A7used","",0);
+		document.getElementById("A7used").textContent = "";
 	} else {
 		document.getElementById('A7TD').style.backgroundColor = "#FF7777";
 		myInnerHtml("A7used","　<B>使用中</B>",0);
