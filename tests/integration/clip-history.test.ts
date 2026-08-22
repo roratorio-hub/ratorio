@@ -13,6 +13,13 @@
  *   - jquery-modal 依存をネイティブ <dialog> に置換
  *     （このパネル2ファイルのみが使っていた唯一の実プラグイン依存）
  *
+ * 追補（同ブランチ追加コミット）: 上記の <dialog> 置換で `showModal()` を使ったところ、
+ * 内部の自動フォーカスがブラウザ標準のフォーカス時スクロールを誘発し、List/Reset操作の
+ * たびにページが scrollY:0 まで巻き戻る回帰が実ブラウザ確認で発覚した。`showModal()`
+ * （モーダル・top layer昇格）をやめ、`.show()`（非モーダル）+ 自前の #clip_modal_blocker +
+ * `position: fixed` 手動配置に置き換えて解消した（jquery-modal 自身の実装方式を踏襲）。
+ * openHistoryModal()/wireHistoryModalClose() がその配線。
+ *
  * ここは「イベントリスナーの接続」「実際のユーザー操作フロー」（ダイアログの
  * 開閉・ESC・backdropクリック）にあたるため、testing.md の基準により
  * ユニットテストではなく Playwright で検証する。
@@ -232,6 +239,48 @@ describe('clip履歴パネル', () => {
         ).toBe(false);
 
         expect(restoreErrors, `復元中に未捕捉例外: ${restoreErrors.join('\n')}`).toEqual([]);
+        await context.close();
+    });
+
+    // showModal() の内部自動フォーカスがブラウザ標準のフォーカス時スクロールを誘発し、
+    // List操作のたびにページが scrollY:0 まで巻き戻る回帰があった（実ブラウザ確認で発覚）。
+    // jquery-modal は背景ページの位置を一切動かさなかったため、この点は黒箱テストでは
+    // 検出できず、Phase 1 時点のテストには無かった観点。
+    it('ページをスクロールした状態でList/Resetを開閉してもスクロール位置が変化しない', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+
+        await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(1000);
+        await page.click('#history_clip');
+        await page.waitForTimeout(300);
+
+        await page.evaluate(() => window.scrollTo(0, 900));
+        await page.waitForTimeout(200);
+        const before = await page.evaluate(() => window.scrollY);
+        expect(before).toBe(900);
+
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+        expect(await page.evaluate(() => window.scrollY)).toBe(before);
+        expect(
+            await page.evaluate(() => (document.getElementById('clip_modal') as HTMLDialogElement | null)?.open)
+        ).toBe(true);
+
+        await page.click('#clip_modal_close');
+        await page.waitForTimeout(200);
+        expect(await page.evaluate(() => window.scrollY)).toBe(before);
+
+        // Reset側でも同様（別のクリックハンドラなので独立して確認する）
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+        await page.click('#clip_modal_close');
+        await page.waitForTimeout(200);
+        await page.click('#history_reset');
+        await page.waitForTimeout(200);
+        expect(await page.evaluate(() => window.scrollY)).toBe(before);
+
         await context.close();
     });
 });

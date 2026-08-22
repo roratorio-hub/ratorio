@@ -16,9 +16,16 @@ import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
  * 同一マークアップを必要とするため共通化する（従来は2箇所にバイト単位で重複していた）。
  *
  * モーダルは jquery-modal ではなくネイティブ <dialog> を使う（jquery-modal はこの
- * パネル2ファイルのみが使っていた唯一の実プラグイン依存だった。ESCキーでの閉じる・
- * フォーカストラップはブラウザ標準機能でまかなえる。backdrop クリック・×ボタンでの
- * 閉じる操作は jquery-modal の既定動作を再現するため呼び出し側で配線する）。
+ * パネル2ファイルのみが使っていた唯一の実プラグイン依存だった）。ただし `showModal()`
+ * （モーダル・top layer昇格）は使わない —— 内部で最初のフォーカス可能要素へ自動フォーカスし、
+ * ブラウザ標準のフォーカス時スクロールでページが scrollY:0 まで巻き戻る副作用があり、
+ * 事後に scrollTo() で戻すと今度は top layer の絶対配置がフォーカス確定時点のビューポートで
+ * 固定されているためダイアログ自体が画面外にずれる（実測で確認済み）。
+ * 代わりに jquery-modal 自身の実装方式（固定オーバーレイ blocker + 中央配置ボックス）を
+ * ほぼそのまま踏襲する: `.show()`（非モーダル）+ 自前の #clip_modal_blocker +
+ * `position: fixed` 手動配置。これで背景ページの位置に一切触れずに前面へ浮かべられる。
+ * ESCキー・backdropクリック・×ボタンでの閉じる操作、フォーカス移動はすべて
+ * openHistoryModal()/wireHistoryModalClose() で手動配線する（jquery-modal の既定動作を再現）。
  */
 export function buildHistoryPanelHtml() {
     return `
@@ -32,9 +39,32 @@ export function buildHistoryPanelHtml() {
   <canvas id="history_graph"></canvas>
 </div>
 <style>
+#clip_modal_blocker {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+}
+#clip_modal_blocker.active {
+  display: block;
+}
 #clip_modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
   min-width: 800px;
-  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #000;
+  background: #fff;
+  padding: 15px 30px;
+  z-index: 1000;
 }
 #clip_modal_close {
   position: absolute;
@@ -78,7 +108,8 @@ div.clip_memo {
   min-height: 1.5rem;
 }
 </style>
-<dialog id="clip_modal">
+<div id="clip_modal_blocker"></div>
+<dialog id="clip_modal" role="dialog" aria-modal="true">
   <button type="button" id="clip_modal_close" aria-label="閉じる">×</button>
   <table id="clip_modal_table">
     <thead><tr>
@@ -91,6 +122,38 @@ div.clip_memo {
   </table>
 </dialog>
     `;
+}
+
+/** clip履歴モーダルを開く（backdrop表示 + スクロール位置を変えないフォーカス設定）。 */
+export function openHistoryModal() {
+    document.getElementById("clip_modal_blocker")?.classList.add("active");
+    const modal = document.getElementById("clip_modal");
+    modal?.show();
+    modal?.focus({ preventScroll: true });
+}
+
+function closeHistoryModal() {
+    document.getElementById("clip_modal")?.close();
+}
+
+/**
+ * clip履歴モーダルの閉じる操作一式を配線する（×ボタン・backdropクリック・ESCキー）。
+ * close イベントで backdrop の非表示化とグラフの元位置への復帰も行う
+ * （jquery-modal の `modal:before-close` 相当）。
+ * calchistory.js / CSaveController.js の双方の buildForm から1回ずつ呼ぶ。
+ */
+export function wireHistoryModalClose() {
+    document.getElementById("clip_modal_close")?.addEventListener("click", closeHistoryModal);
+    document.getElementById("clip_modal_blocker")?.addEventListener("click", closeHistoryModal);
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && document.getElementById("clip_modal")?.open) closeHistoryModal();
+    });
+    document.getElementById("clip_modal")?.addEventListener("close", () => {
+        document.getElementById("clip_modal_blocker")?.classList.remove("active");
+        const graph = document.getElementById("history_graph");
+        const container = document.getElementById("history_container");
+        if (graph && container) container.appendChild(graph);
+    });
 }
 
 /** HTMLエスケープ（テキスト内容・二重引用符属性値の両方に安全）。 */
@@ -261,7 +324,7 @@ $(function () {
     $("#history_list").click(e => {
       document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
       reload_history_table();
-      document.getElementById("clip_modal")?.showModal();
+      openHistoryModal();
     });
     const flip_clip = (i, j) => {
       [data.datasets[0].data[i], data.datasets[0].data[j]] =
@@ -342,17 +405,7 @@ $(function () {
       reload_history_table();
       g_Chart = chart;
     });
-    document.getElementById("clip_modal_close")?.addEventListener("click", () => {
-      document.getElementById("clip_modal")?.close();
-    });
-    document.getElementById("clip_modal")?.addEventListener("click", (e) => {
-      if (e.target === e.currentTarget) e.currentTarget.close();
-    });
-    document.getElementById("clip_modal")?.addEventListener("close", () => {
-      const graph = document.getElementById("history_graph");
-      const container = document.getElementById("history_container");
-      if (graph && container) container.appendChild(graph);
-    });
+    wireHistoryModalClose();
   };
   buildForm();
 });

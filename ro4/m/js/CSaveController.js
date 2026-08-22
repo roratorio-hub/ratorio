@@ -13,7 +13,7 @@ import { n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
 import { n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
 import { GetJobName } from './data/mig.job.h.js';
 import { floorBigInt32 } from '../../../roro/common/js/util.js';
-import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml } from './calchistory.js';
+import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose } from './calchistory.js';
 // === END AUTO-GENERATED IMPORTS ===
 // Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
@@ -849,7 +849,7 @@ export class CSaveController {
 		    $("#history_list").click(e => {
 		    	document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
 		    	reload_history_table();
-		    	document.getElementById("clip_modal")?.showModal();
+		    	openHistoryModal();
 		    });
 		    const flip_clip = (i, j) => {
 		    	[data.datasets[0].data[i], data.datasets[0].data[j]] =
@@ -930,17 +930,7 @@ export class CSaveController {
 		      reload_history_table();
 		      setG_Chart(chart);
 		    });
-		    document.getElementById("clip_modal_close")?.addEventListener("click", () => {
-		      document.getElementById("clip_modal")?.close();
-		    });
-		    document.getElementById("clip_modal")?.addEventListener("click", (e) => {
-		      if (e.target === e.currentTarget) e.currentTarget.close();
-		    });
-		    document.getElementById("clip_modal")?.addEventListener("close", () => {
-		      const graph = document.getElementById("history_graph");
-		      const container = document.getElementById("history_container");
-		      if (graph && container) container.appendChild(graph);
-		    });
+		    wireHistoryModalClose();
 
 			chart.data = chartDataObj;
 			data = chartDataObj;
