@@ -33,8 +33,9 @@ import {
     ApplyPAtkAmplify, ApplySMatkAmplify, ApplyCRateAmplify,
     ApplyResResist, ApplyMresResist, ApplyPAtkLeftHandPenalty,
     ApplySpecModify, migrateOtherJob, OnChangeJob,
+    StoreBasicStatusBonusAll, GetBasicStatusBonus, GetPureStatus, GetSpecStatusBonus, GetStatusPointRemain,
 } from '@ro4/hmjob.js';
-import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS } from '@roro/const/EnumMigItemParamId.js';
+import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_STR } from '@roro/const/EnumMigItemParamId.js';
 
 describe('hmjob.js', () => {
     // 3e-3: window compat 除去（window.CalcStatusPoint の state テストは削除）。
@@ -74,6 +75,22 @@ describe('hmjob.js', () => {
             });
             it('StoreSpecStatusBonusAll が呼び出し可能', () => {
                 expect(() => StoreSpecStatusBonusAll(0, 0, 0, 0, 0, 0)).not.toThrow();
+            });
+        });
+
+        // リファクタリング計画 Phase 12: saveimage.js がDOMスクレイプせずに参照するための
+        // 新規アクセサ（動作テスト。StoreSpecStatusBonusAll と対称の構造なので同じ形で検証する）
+        describe('Phase 12: classic 6ステータスボーナス・ステータスポイント保存', () => {
+            it('StoreBasicStatusBonusAll で保存した値を GetBasicStatusBonus で取得できる', () => {
+                StoreBasicStatusBonusAll(1, 2, 3, 4, 5, 6);
+                expect(GetBasicStatusBonus(MIG_PARAM_ID_STR)).toBe(1);
+            });
+            it('GetPureStatus / GetSpecStatusBonus が呼び出し可能', () => {
+                expect(() => GetPureStatus(MIG_PARAM_ID_POW)).not.toThrow();
+                expect(() => GetSpecStatusBonus(MIG_PARAM_ID_POW)).not.toThrow();
+            });
+            it('GetStatusPointRemain が呼び出し可能', () => {
+                expect(() => GetStatusPointRemain()).not.toThrow();
             });
         });
 

@@ -16,3 +16,14 @@ export function __registerHmjobFunctions(fns) {
 export function ApplySpecModify(...a)         { return _reg.ApplySpecModify?.(...a); }
 export function GetTotalPureBasicStatus(...a) { return _reg.GetTotalPureBasicStatus?.(...a); }
 export function GetTotalSpecStatus(...a)      { return _reg.GetTotalSpecStatus?.(...a); }
+export function GetBasicStatusBonus(...a)     { return _reg.GetBasicStatusBonus?.(...a); }
+export function GetStatusPointRemain(...a)    { return _reg.GetStatusPointRemain?.(...a); }
+export function GetPureStatus(...a)           { return _reg.GetPureStatus?.(...a); }
+export function GetSpecStatusBonus(...a)      { return _reg.GetSpecStatusBonus?.(...a); }
+export function GetPAtk(...a)                 { return _reg.GetPAtk?.(...a); }
+export function GetSMatk(...a)                { return _reg.GetSMatk?.(...a); }
+export function GetCRate(...a)                { return _reg.GetCRate?.(...a); }
+export function GetRes(...a)                  { return _reg.GetRes?.(...a); }
+export function GetMres(...a)                 { return _reg.GetMres?.(...a); }
+export function GetHPlus(...a)                { return _reg.GetHPlus?.(...a); }
+export function GetTStatusPoint(...a)         { return _reg.GetTStatusPoint?.(...a); }
