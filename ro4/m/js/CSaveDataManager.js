@@ -1280,7 +1280,11 @@ export class CSaveDataManager {
 
 		// スパノビ　全武器チェック
 		if (IsSameJobClass(JOB_ID_SUPERNOVICE) || IsSameJobClass(JOB_ID_SUPERNOVICE_PLUS)) {
-			const bIgnore = true && (saveDataUnit.getProp(CSaveDataConst.propNameSubIgnoreEquipRestrict));
+			// getProp() は BigInt を返す（CSaveDataUnitBase.setProp が toSafeBigInt() を通すため）。
+			// `true && bigint` は BigInt をそのまま返してしまい、呼び出し先の `===` 比較
+			// （foot.js の g_bSuperNoviceFullWeapon === bFull）が常に不一致になっていた。
+			// 明示的に Boolean へ変換する。
+			const bIgnore = Boolean(saveDataUnit.getProp(CSaveDataConst.propNameSubIgnoreEquipRestrict));
 			RefreshSuperNoviceFullWeapon(bIgnore);
 		}
 	}
@@ -1353,10 +1357,14 @@ export class CSaveDataManager {
 		 * @param {*} cardIdF カードID
 		 */
 		const funcLoadAndSetCard = (objIdPrifixF, slotNoF, enchListIdF, cardIdF) => {
+			// getProp() は BigInt を返す（CSaveDataUnitBase.setProp が toSafeBigInt() を通すため）。
+			// 呼び出し元は変換前の生値を渡してくるため、undefined 補正と合わせてここで
+			// Number へ正規化する（下の `cardIdF !== 0` の strict 比較が BigInt では
+			// 常に不一致になり、意図した分岐が機能していなかったバグの修正）。
 			// エンチャントカテゴリIDの補正
-			enchListIdF = (enchListIdF === undefined) ? 0 : enchListIdF;
+			enchListIdF = (enchListIdF === undefined) ? 0 : Number(enchListIdF);
 			// エンチャントIDの補正
-			cardIdF = (cardIdF === undefined) ? 0 : cardIdF;
+			cardIdF = (cardIdF === undefined) ? 0 : Number(cardIdF);
 			// 従来の設定方法による設定
 			HtmlSetObjectValueById(objIdPrifixF + "_CARD_" + slotNoF, cardIdF);
 			// エンチャントの場合はカテゴリも復元する
@@ -1441,7 +1449,7 @@ export class CSaveDataManager {
 				continue;
 			}
 			const saveDataUnitItemDef = this.#saveDataUnitArray[idxItemDef];
-			const itemID = saveDataUnitItemDef.getProp(CSaveDataConst.propNameItemID);
+			const itemID = floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameItemID));
 			if (!IsMatchJobRestrict(itemID, n_A_JOB)){
 				// 装備不可能なアイテムが指定されている場合はスキップする
 				continue;
@@ -1544,12 +1552,15 @@ export class CSaveDataManager {
 			}
 
 			// ランダムオプションデータの読み込み
+			// getProp() は BigInt を返すため、SetEquipRndOptTable() 経由で g_equipRndOptTable
+			// （グローバル計算状態）へ生のまま流れ込まないよう floorBigInt32 で正規化する
+			// （シャドウ装備側の #applyDataToControlsEquipableShadow は既にこの変換をしている）。
 			const rndOptIDArray = [
-				saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID1),
-				saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID2),
-				saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID3),
-				saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID4),
-				saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID5),
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID1)),
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID2)),
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID3)),
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID4)),
+				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptID5)),
 			];
 			const rndOptValueArray = [
 				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameRndOptValue1)),
