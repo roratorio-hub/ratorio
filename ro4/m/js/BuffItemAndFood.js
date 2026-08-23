@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { AutoCalc } from './head-bridge.js';
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 export { n_A_PassSkill7 } from './skillstate.js';
@@ -358,7 +358,7 @@ export function Click_Skill7SW(){
  */
 export function Click_A7(recalc = false){
 	if(recalc) {
-        AutoCalc("Click_A7");
+        notifyChanged(CalcInput.BUFF);
     }
 	let sw=0;
 	for (let i = 0; i < n_A_PassSkill7.length; i++) {

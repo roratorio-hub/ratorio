@@ -24,7 +24,7 @@ describe('learnedskill.js', () => {
 
         it('changedIdx のスキルレベルを newValue に更新する', () => {
             const el = document.createElement('select');
-            // AutoCalc は head-bridge 経由（未登録なら no-op）。状態代入は AutoCalc 呼び出し前に完了する。
+            // 再計算通知は calc-invalidation.js 経由（calc 未登録なら no-op）。状態代入は通知前に完了する。
             RefreshSkillColumnHeaderLearned(el, 3, '7');
             expect(n_A_LearnedSkill[3]).toBe(7);
         });
@@ -42,23 +42,28 @@ describe('learnedskill.js', () => {
             expect(el.getAttribute('class')).toBe('');
         });
 
-        // URL一括ロード（OnClickSkillSWLearned の load ハンドラ）の「AutoCalc 1回化」を支える挙動。
-        // bSuppressAutoCalc=true のとき、状態は更新するが AutoCalc を呼ばないこと。
-        it('bSuppressAutoCalc で AutoCalc 呼び出しが制御され、状態更新は常に行われる', () => {
-            const spy = vi.fn();
-            __registerHeadFunctions({ AutoCalc: spy });
+        // URL一括ロード（OnClickSkillSWLearned の load ハンドラ）の「再計算通知1回化」を支える挙動。
+        // bSuppressAutoCalc=true のとき、状態は更新するが再計算通知しないこと。
+        it('bSuppressAutoCalc で再計算通知が制御され、状態更新は常に行われる', () => {
+            const calc = vi.fn();
+            __registerHeadFunctions({ calc });
+            // 再計算ポリシー（リファクタリング計画 Phase 9）: 常に再計算する flag=3 に設定
+            const autoCalcFlag = document.createElement('input');
+            autoCalcFlag.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
+            autoCalcFlag.value = '3';
+            document.body.appendChild(autoCalcFlag);
             const el = document.createElement('select');
 
-            // 通常（第4引数省略）: 状態更新 + AutoCalc 1回
+            // 通常（第4引数省略）: 状態更新 + 再計算通知1回
             RefreshSkillColumnHeaderLearned(el, 2, '4');
             expect(n_A_LearnedSkill[2]).toBe(4);
-            expect(spy).toHaveBeenCalledTimes(1);
+            expect(calc).toHaveBeenCalledTimes(1);
 
-            // 抑止（true）: 状態は更新するが AutoCalc は呼ばない
-            spy.mockClear();
+            // 抑止（true）: 状態は更新するが再計算通知しない
+            calc.mockClear();
             RefreshSkillColumnHeaderLearned(el, 2, '6', true);
             expect(n_A_LearnedSkill[2]).toBe(6);
-            expect(spy).not.toHaveBeenCalled();
+            expect(calc).not.toHaveBeenCalled();
         });
     });
 });

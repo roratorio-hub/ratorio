@@ -17,8 +17,8 @@ import { equipBridge } from './equip-bridge.js';
 import {
          n_A_JOB,
 } from './roro-state.js';
-// C-6: head.js 公開関数（head-bridge 経由）
-import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+// C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
+import { notifyChanged, CalcInput } from '../../../ro4/m/js/calc-invalidation.js';
 import { CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
 import { CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
 import { ITEM_DATA_INDEX_SPBEGIN } from './const/EnumItemDataIndex.js';
@@ -166,10 +166,10 @@ export function OnClickSkillSWLearned(){
 		try{
 			url = new URL($("#ID_SKILL_LEARNED_URL").val()||location.href);
 			showLoadingIndicator();
-			// 各 select に値を反映したあと AutoCalc をまとめて 1 回だけ呼ぶ。
+			// 各 select に値を反映したあと再計算通知をまとめて 1 回だけ呼ぶ。
 			// 注意: jQuery の .change() はネイティブ addEventListener('change') ハンドラを
 			// 発火させないため、状態更新（n_A_LearnedSkill）と着色は
-			// RefreshSkillColumnHeaderLearned を直接呼んで行う（第4引数で AutoCalc を抑止）。
+			// RefreshSkillColumnHeaderLearned を直接呼んで行う（第4引数で再計算通知を抑止）。
 			setTimeout(() => {
 				$("#ID_SKILL_LEARNED select").each(function(idx,elm) {
 					const id_skill_name = $(elm).attr("id").replace("SELECT","TD").replace("LEVEL","NAME");
@@ -182,11 +182,14 @@ export function OnClickSkillSWLearned(){
 					$(this).val(skill_level);
 					// id 末尾の数値が n_A_LearnedSkill のインデックス
 					const learnedIdx = parseInt($(elm).attr("id").replace("OBJID_SELECT_LEARNED_SKILL_LEVEL_", ""), 10);
-					// 状態更新・着色のみ（AutoCalc はループ後に1回だけ）
+					// 状態更新・着色のみ（再計算通知はループ後に1回だけ）
 					RefreshSkillColumnHeaderLearned(this, learnedIdx, this.value, true);
 				});
 				// まとめて1回だけ再計算
-				AutoCalc("OnClickSkillLearnedLoad");
+				// "OnClickSkillLearnedLoad" は旧 AutoCalc のswitch文のどのcaseにも一致しない
+				// 文字列だった（実質no-op、flag=3のときのみ再計算）。ここでも同じ挙動を保つため
+				// kind未指定で notifyChanged する（calc-invalidation.js 冒頭コメント参照）。
+				notifyChanged();
 				hideLoadingIndicator();
 			},0); // ローディングインジケータ表示のために 0 ms後の非同期処理に送る
 		} catch(e) {}
@@ -334,14 +337,14 @@ export function UpdateLearnedSkillSettingColoring() {
  * @param {*} objSelect
  * @param {*} changedIdx
  * @param {*} newValue
- * @param {boolean} [bSuppressAutoCalc=false] true のとき状態更新・着色のみ行い AutoCalc を呼ばない
- *        （URL一括ロードのように複数 select をまとめて反映してから AutoCalc を1回だけ呼びたい場合に使う）
+ * @param {boolean} [bSuppressAutoCalc=false] true のとき状態更新・着色のみ行い再計算通知しない
+ *        （URL一括ロードのように複数 select をまとめて反映してから1回だけ通知したい場合に使う）
  */
 export function RefreshSkillColumnHeaderLearned(objSelect, changedIdx, newValue, bSuppressAutoCalc = false) {
 	if (0 <= changedIdx) {
 		n_A_LearnedSkill[changedIdx] = parseInt(newValue);
 		if (!bSuppressAutoCalc) {
-			AutoCalc("RefreshSkillColumnHeaderLearned");
+			notifyChanged(CalcInput.CHARA);
 		}
 	}
 	// 背景設定

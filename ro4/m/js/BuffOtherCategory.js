@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { PetIdToSetIdMap } from '../../../roro/m/js/itemset.dat.js';
-import { AutoCalc } from './head-bridge.js';
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 import { GetFriendlityText } from '../../../roro/m/js/common.js';
 import { PET_OBJ } from '../../../roro/m/js/pet.dat.js';
@@ -158,7 +158,7 @@ export function Click_Skill8SW(){
  */
 export function Click_A8(recalc = false){
 	if(recalc) {
-        AutoCalc("Click_A8");
+        notifyChanged(CalcInput.BUFF);
     }
 	let sw=0;
 	for(let i = 0; i < n_A_PassSkill8.length; i++) {

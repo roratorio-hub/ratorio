@@ -15,7 +15,7 @@ import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSel
 // === END AUTO-GENERATED IMPORTS ===
 import { registerShadowEquipController } from './CShadowEquipControllerDataBridge.js';
 // C-6: head.js 公開関数（head-bridge 経由）
-import { AutoCalc } from './head-bridge.js';
+import { notifyChanged } from './calc-invalidation.js';
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import { StAllCalc } from '../../../roro/m/js/foot-bridge.js';
 // C-6: 共有 state 追加分
@@ -367,7 +367,7 @@ export class CShadowEquipController {
 
 		// 再計算
 		StAllCalc();
-		AutoCalc();
+		notifyChanged();
 	}
 
 	/**

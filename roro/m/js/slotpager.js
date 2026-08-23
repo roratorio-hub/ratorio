@@ -17,8 +17,8 @@ import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from './slotpager-const.js';
 import {
          n_Nitou,
 } from '../../../ro4/m/js/global.js';
-// C-6: head.js 公開関数（head-bridge 経由）
-import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+// C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
+import { notifyChanged } from '../../../ro4/m/js/calc-invalidation.js';
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
     EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
@@ -534,7 +534,7 @@ export function __RebuildSlotAsCard(eqpRgnId, objidPrifix) {
 		// カード選択セレクトボックス
 		objSelect = HtmlCreateElement("select", objTd);
 		HtmlSetAttribute(objSelect, "id", objidPrifix + "_CARD_" + idx);
-		objSelect.addEventListener("change", (e) => { equipBridge.onChangeCard?.(e.currentTarget.value); AutoCalc(); });
+		objSelect.addEventListener("change", (e) => { equipBridge.onChangeCard?.(e.currentTarget.value); notifyChanged(); });
 
 		// カード選択セレクトボックスの再構築
 		itemId = GetStatefullData("DATA_" + objidPrifix, 0);
@@ -589,7 +589,7 @@ export function __RebuildSlotAsCardShort(eqpRgnId, objidPrifix) {
 	// カード選択セレクトボックス
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objidPrifix + "_CARD_SHORT");
-	objSelect.addEventListener("change", () => { ApplyCardShort(eqpRgnId, objidPrifix); AutoCalc(); });
+	objSelect.addEventListener("change", () => { ApplyCardShort(eqpRgnId, objidPrifix); notifyChanged(); });
 	if (bVisible) {
 		objSelect.removeAttribute("disabled");
 		objSelect.setAttribute("style", "visibility : visible");

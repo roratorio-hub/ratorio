@@ -63,20 +63,25 @@ describe('hmrndopt.js', () => {
                 GetDefinedName: (id: number) => `EQUIP_REGION_${id}`,
             };
         });
-        let autoCalc: ReturnType<typeof vi.fn>;
+        let calc: ReturnType<typeof vi.fn>;
         let stAllCalc: ReturnType<typeof vi.fn>;
         beforeEach(() => {
-            autoCalc = vi.fn();
+            calc = vi.fn();
             stAllCalc = vi.fn();
-            __registerHeadFunctions({ AutoCalc: autoCalc });
+            __registerHeadFunctions({ calc });
             __registerFootFunctions({ StAllCalc: stAllCalc });
             equipBridge.onChangeRandomEnchant = OnChangeRandomEnchant;
+            // 再計算ポリシー（リファクタリング計画 Phase 9）: 常に再計算する flag=3 に設定
+            const autoCalcFlag = document.createElement('input');
+            autoCalcFlag.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
+            autoCalcFlag.value = '3';
+            document.body.appendChild(autoCalcFlag);
         });
         afterEach(() => {
             document.body.innerHTML = '';
         });
 
-        it('CreateRndOptKind の select 変更で値セレクトが再構築され AutoCalc が呼ばれる', () => {
+        it('CreateRndOptKind の select 変更で値セレクトが再構築され再計算通知が呼ばれる', () => {
             const root = document.createElement('tr');
             document.body.appendChild(root);
 
@@ -94,10 +99,10 @@ describe('hmrndopt.js', () => {
             // OnChangeRndOptKind → SetUpRndOptValue により値セレクトが再構築される
             expect(valueSel.options.length).toBeGreaterThan(1);
             expect(stAllCalc).toHaveBeenCalled();
-            expect(autoCalc).toHaveBeenCalled();
+            expect(calc).toHaveBeenCalled();
         });
 
-        it('CreateRndOptValue の select 変更で StAllCalc / AutoCalc が呼ばれる', () => {
+        it('CreateRndOptValue の select 変更で StAllCalc / 再計算通知が呼ばれる', () => {
             const root = document.createElement('tr');
             document.body.appendChild(root);
 
@@ -105,9 +110,9 @@ describe('hmrndopt.js', () => {
 
             valueSel.dispatchEvent(new Event('change'));
 
-            // OnChangeRandomEnchant → StAllCalc、リスナー末尾で AutoCalc
+            // OnChangeRandomEnchant → StAllCalc、リスナー末尾で再計算通知
             expect(stAllCalc).toHaveBeenCalled();
-            expect(autoCalc).toHaveBeenCalled();
+            expect(calc).toHaveBeenCalled();
         });
     });
 });
