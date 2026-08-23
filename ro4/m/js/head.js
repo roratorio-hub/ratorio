@@ -2650,7 +2650,15 @@ export function AutoCalc(callFrom) {
  * ダメージ計算　命中・クリティカル・耐性などを計算して最終ダメージを算出する
  * @returns 
  */
-export function calc() {
+/**
+ * ダメージ計算本体（DOM非依存・リファクタリング計画 Phase 10）.
+ * 旧 calc() から描画処理（RenderCalcResults 参照）を除いた計算部分。
+ * StAllCalc()/StAllCalcCore() の戻り値をそのまま引数に取ることで、呼び出し元が
+ * DOM経由（StAllCalc）かモデル経由（StAllCalcCore、calc-headless.js 参照）かを選べる。
+ * @param {Array} retValArray [charaData, specData(=n_tok), mobData, attackMethodConfArray]
+ * @returns {{battleCalcResultAll: object, attackMethodConfArray: Array, w_BONUS: number}}
+ */
+export function ComputeBattleResult(retValArray) {
 	var w_EnkyoriSkill = [40,41,44,71,84,72,118,159,192,199,207,244,259,260,261,263,271,272,275,292,302,306,307,324,328,384,394,395,391,396,405,418,419,423,428,430,431,432,435,436,437,438,440,447,497,498,513,542,549,551,552,553,569,570,574,612,613,623,642,723,738,741,769,794];
 	var w_MagicSkill = [37,46,47,51,52,53,54,55,56,57,122,124,125,126,127,128,130,131,132,133,407,408,409,410,411,412,413,414,415,476,478,518,519,520,527,528,529,530,531,532,662,663,666,667,658,659];
 	var idx = 0;
@@ -2670,10 +2678,6 @@ export function calc() {
 	for (idx = 0; idx < CS.g_damageTextArray.length; idx++) {
 		CS.g_damageTextArray[idx] = [];
 	}
-
-	// ステータス等の計算（foot.js で定義しているアレ）
-	var retValArray = null;
-	retValArray = StAllCalc();
 
 	// データの取りだし
 	charaData = retValArray[0];
@@ -3245,6 +3249,18 @@ export function calc() {
 	battleCalcInfo.skillLv = n_A_ActiveSkillLV;
 	battleCalcResultAll = BattleCalc999(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray);
 
+	return { battleCalcResultAll, attackMethodConfArray, w_BONUS };
+}
+
+/**
+ * ComputeBattleResult() の計算結果をDOMへ描画する（リファクタリング計画 Phase 10）.
+ * @param {object} battleCalcResultAll ComputeBattleResult() が返した戦闘結果（charaData/specData/mobData を含む）
+ * @param {Array} attackMethodConfArray
+ * @param {number} w_BONUS
+ */
+function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) {
+	const { charaData, specData, mobData } = battleCalcResultAll;
+
 	//--------------------------------
 	// 戦闘結果を出力
 	//--------------------------------
@@ -3353,9 +3369,9 @@ export function calc() {
 	}
 
 	var innerHtmlText = "";
-	for (idx = 0; idx < CS.g_damageTextArray.length; idx++) {
+	for (let idx = 0; idx < CS.g_damageTextArray.length; idx++) {
 		innerHtmlText = "";
-		for (idxArray = 0; idxArray < CS.g_damageTextArray[idx].length; idxArray++) {
+		for (let idxArray = 0; idxArray < CS.g_damageTextArray[idx].length; idxArray++) {
 			// 数値でなければ、そのまま追記
 			if (isNaN(CS.g_damageTextArray[idx][idxArray])) {
 				innerHtmlText += CS.g_damageTextArray[idx][idxArray];
@@ -3372,6 +3388,16 @@ export function calc() {
 	// ここで再度リフレッシュして拡張情報パネルに最新値を反映する
 	g_extraInfoDataBridge.setDispDataValue?.(DISP_DATA_KEY_STRDEX_BONUS, w_BONUS);
 	g_extraInfoDataBridge.refreshFloatingDispAreaAll?.();
+}
+
+/**
+ * ダメージ計算　命中・クリティカル・耐性などを計算して最終ダメージを算出する
+ * @returns
+ */
+export function calc() {
+	const retValArray = StAllCalc();
+	const { battleCalcResultAll, attackMethodConfArray, w_BONUS } = ComputeBattleResult(retValArray);
+	RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS);
 }
 
 /**
@@ -5702,6 +5728,7 @@ __registerHeadFunctions({
     GetActRateSandansho,
     GetActRateCritical,
     calc,
+    ComputeBattleResult,
     ApplyPhysicalSpecializeMonster,
     AutoCalc,
     // Phase 3b: head-skill-formula-*.js から呼ばれる関数
