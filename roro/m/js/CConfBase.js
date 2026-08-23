@@ -3,8 +3,8 @@ import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from './common.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../../common/js/util.js';
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: head.js 公開関数（head-bridge 経由）
-import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+// C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
+import { notifyChanged, CalcInput } from '../../../ro4/m/js/calc-invalidation.js';
 import {
     CONTROL_TYPE_BLANK, CONTROL_TYPE_CHECKBOX, CONTROL_TYPE_CHECKBOX_SPECIAL, CONTROL_TYPE_DUMMY, CONTROL_TYPE_SELECTBOX_NUMBER, CONTROL_TYPE_SELECTBOX_PERCENT,
     CONTROL_TYPE_SELECTBOX_SPECIAL, CONTROL_TYPE_SPECIAL, CONTROL_TYPE_TEXTBOX_NUMBER, CONTROL_TYPE_TEXTBOX_SPECIAL, CONTROL_TYPE_TEXT_NODE,
@@ -598,7 +598,7 @@ export function CConfBase(confArray) {
 
 		// 再計算フラグが立っている場合は、再計算を実行
 		if (bCalc) {
-			AutoCalc("CConfBase.OnChangeValueHandler");
+			notifyChanged(CalcInput.CHARA);
 		}
 	}
 

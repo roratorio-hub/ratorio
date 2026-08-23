@@ -17,6 +17,9 @@ import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from './attackmethod.dat.js';
 export { SyurikenOBJ, KunaiOBJ, CanonOBJ };
 // 四次スキルの強制属性の決定処理（物理・魔法共通、head.js 外なので単体テスト可能）
 import { GetForcedElementForCalc } from './battle-element.js';
+// 再計算ポリシー（リファクタリング計画 Phase 9）。calc-invalidation.js は
+// head-bridge.js 経由で calc() を呼ぶだけで head.js に依存しないため、循環しない。
+import { notifyChangedLegacy } from './calc-invalidation.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import { CBattleCalcInfo } from './CBattleCalcInfo.js';
@@ -2630,38 +2633,9 @@ export function GetIkariPow(mobData) {
  * 			CAttackMethodAreaComponentManager.OnChangeAttackMethod	: 自動計算のON/OFF
  */
 export function AutoCalc(callFrom) {
-	// 自動設定が有効の場合のみ、再計算する
-	var autoCalcFlag = HtmlGetObjectValueByIdAsInteger("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", 0);
-	switch (autoCalcFlag) {
-		case 1: // 攻撃方法変更時に自動で再計算する
-			if (callFrom === "CAttackMethodAreaComponentManager.OnChangeAttackMethod"
-				|| callFrom === "CAttackMethodAreaComponentManager.OnChangeAttackMethodOption"
-				|| callFrom === "CAttackMethodAreaComponentManager.OnChangeAutoCalc"
-				) {
-					calc();
-				}
-		case 0: // 攻撃方法変更時に自動で再計算しない
-			if (callFrom === "CConfBase.OnChangeValueHandler"
-				|| callFrom === "OnChangeMobConfDebuf"
-				|| callFrom === "OnChangeMobConfBuf"
-				|| callFrom === "OnChangeMobConfPlayer"
-				|| callFrom === "OnChangeSettingAutoSpell"
-				|| callFrom === "CTimeItemAreaComponentManager.OnChangeConf"
-				|| callFrom === "RefreshSkillColumnHeaderLearned"
-				|| callFrom === "Click_A1"
-				|| callFrom === "Click_A4"
-				|| callFrom === "Click_A7"
-				|| callFrom === "Click_A8"
-				) {
-					calc();
-				}
-			break;
-		case 2:	// 全ての項目変更時に自動で再計算しない
-			break;
-		case 3: // 全ての項目変更時に自動で再計算する
-			calc();
-			break;
-	}
+	// 実体は calc-invalidation.js（リファクタリング計画 Phase 9 D1）。
+	// ポリシーの判定ロジック・仕様は calc-invalidation.js 冒頭のコメント参照。
+	notifyChangedLegacy(callFrom);
 }
 
 //================================================================================================================================

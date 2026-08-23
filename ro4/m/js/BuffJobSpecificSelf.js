@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { GetJobName } from './data/mig.job.h.js';
 import { g_constDataManager } from './global.js';
-import { AutoCalc } from './head-bridge.js';
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { n_SieldSp, n_SieldSpDum, n_SieldSpNum } from './ro4-state.js';
 import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
@@ -594,7 +594,7 @@ export function Click_PassSkillSW(){
  */
 export function Click_A1(recalc = false){
 	if (recalc) {
-		AutoCalc("Click_A1");
+		notifyChanged(CalcInput.BUFF);
 	}
 	let sw = 0;
 	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();

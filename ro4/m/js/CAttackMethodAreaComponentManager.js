@@ -3,7 +3,8 @@ import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
 import { UsedSkillSearch } from './BuffJobSpecificSelf.js';
 import { g_constDataManager, g_skillManager } from './global.js';
-import { AutoCalc, calc } from './head-bridge.js';
+import { calc } from './head-bridge.js';
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from './attackmethod.dat.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
 import { CAttackMethodConf } from '../../../roro/m/js/CAttackMethodConf.js';
@@ -1137,7 +1138,7 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethod = function () {
 	CAttackMethodAreaComponentManager.RefreshControls();
 
 	// 自動設定が有効の場合のみ、再計算する
-	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethod");
+	notifyChanged(CalcInput.ATTACK_METHOD);
 };
 
 /**
@@ -1196,7 +1197,7 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 	CAttackMethodAreaComponentManager.RefreshControls();
 
 	// 自動設定が有効の場合のみ、再計算する
-	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethodOption");
+	notifyChanged(CalcInput.ATTACK_METHOD);
 };
 
 /**
@@ -1211,7 +1212,7 @@ CAttackMethodAreaComponentManager.OnChangeAutoCalc = function () {
 	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameAttackAutoCalc, value);
 
 	// 自動計算が有効の場合のみ、再計算する
-	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAutoCalc");
+	notifyChanged(CalcInput.ATTACK_METHOD);
 };
 
 /**

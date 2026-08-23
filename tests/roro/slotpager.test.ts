@@ -1,29 +1,38 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as hmcard from '@roro/hmcard.js';
 import { __RebuildSlotAsCardShort } from '@roro/slotpager.js';
-// dewindow: AutoCalc は head-bridge 経由になった（旧 bare global）。
+// dewindow: calc は head-bridge 経由になった（旧 bare global）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
 import { EQUIP_REGION_ID_ARMS } from '@roro/const/EnumEquipRegionId.js';
+// リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
+// CSaveController.getSettingProp（engine-registry 経由）。
+import { register as registryRegister } from '@ro4/engine-registry.js';
+import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
 // 3e-1: inline handler → addEventListener 変換の wiring 検証。
-// change イベントで「ApplyCardShort(eqpRgnId, prefix) → AutoCalc()」の順に配線されていることを確認する。
+// change イベントで「ApplyCardShort(eqpRgnId, prefix) → 再計算通知」の順に配線されていることを確認する
+// （リファクタリング計画 Phase 9。自動計算ポリシーが常に再計算する flag=3 に設定した状態で確認）。
 // ApplyCardShort 本体（StAllCalc / LoadTomSelect 等）の内部挙動は hmcard 側の責務なのでここでは mock する。
 describe('slotpager.js', () => {
     describe('addEventListener 変換 (3e-1)', () => {
         let applySpy: ReturnType<typeof vi.spyOn>;
-        let autoCalc: ReturnType<typeof vi.fn>;
+        let calc: ReturnType<typeof vi.fn>;
 
         beforeEach(() => {
             applySpy = vi.spyOn(hmcard, 'ApplyCardShort').mockImplementation(() => {});
-            autoCalc = vi.fn();
-            __registerHeadFunctions({ AutoCalc: autoCalc });
+            calc = vi.fn();
+            __registerHeadFunctions({ calc });
+            registryRegister('CSaveController', {
+                getSettingProp: (propName: string) =>
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+            });
         });
         afterEach(() => {
             applySpy.mockRestore();
             document.body.innerHTML = '';
         });
 
-        it('__RebuildSlotAsCardShort が生成した select の変更で ApplyCardShort → AutoCalc が実行される', () => {
+        it('__RebuildSlotAsCardShort が生成した select の変更で ApplyCardShort → 再計算通知が実行される', () => {
             const eqpRgnId = EQUIP_REGION_ID_ARMS;
             const prefix = 'TESTPFX';
 
@@ -51,9 +60,9 @@ describe('slotpager.js', () => {
 
             shortSel.dispatchEvent(new Event('change'));
 
-            // リスナー配線: ApplyCardShort(eqpRgnId, prefix) → AutoCalc()
+            // リスナー配線: ApplyCardShort(eqpRgnId, prefix) → 再計算通知
             expect(applySpy).toHaveBeenCalledWith(eqpRgnId, prefix);
-            expect(autoCalc).toHaveBeenCalled();
+            expect(calc).toHaveBeenCalled();
         });
     });
 });

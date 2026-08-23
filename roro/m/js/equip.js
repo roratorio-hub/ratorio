@@ -72,8 +72,10 @@ import {
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
-         calc, AutoCalc,
+         calc,
 } from '../../../ro4/m/js/head-bridge.js';
+// C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
+import { notifyChanged } from '../../../ro4/m/js/calc-invalidation.js';
 // C-6: engine-registry（hmjob.js との循環 import 回避）
 import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
@@ -349,7 +351,7 @@ export function OnChangeArmsTypeRight(itemKind){
 
 			objSelectArrow = document.createElement("select");
 			objSelectArrow.setAttribute("id", "OBJID_SELECT_ARROW");
-			objSelectArrow.addEventListener("change", () => { StAllCalc(); AutoCalc(); });
+			objSelectArrow.addEventListener("change", () => { StAllCalc(); notifyChanged(); });
 			objRoot.appendChild(objSelectArrow);
 		}
 
@@ -455,7 +457,7 @@ function __WireArmsTypeLeftSelect() {
 	if (objSelect == null) {
 		return;
 	}
-	objSelect.addEventListener("change", (e) => { OnChangeArmsTypeLeft(e.currentTarget.value); StAllCalc(); AutoCalc(); });
+	objSelect.addEventListener("change", (e) => { OnChangeArmsTypeLeft(e.currentTarget.value); StAllCalc(); notifyChanged(); });
 }
 
 

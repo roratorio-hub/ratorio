@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/skill.h.js';
-import { AutoCalc } from './head-bridge.js';
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
 import { myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill4 } from './skillstate.js';
@@ -95,7 +95,7 @@ export function Click_Skill4SW(){
  */
 export function Click_A4(recalc = false){
 	if (recalc) {
-        AutoCalc("Click_A4");
+        notifyChanged(CalcInput.BUFF);
     }
 	let sw=0;
 	for (let i = 0; i < n_A_PassSkill4.length; i++) {

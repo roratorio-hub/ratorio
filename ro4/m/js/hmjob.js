@@ -54,8 +54,10 @@ import {
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
-         calc, ApplyPhysicalSpecializeMonster, AutoCalc,
+         calc, ApplyPhysicalSpecializeMonster,
 } from './head-bridge.js';
+// C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
+import { notifyChanged } from './calc-invalidation.js';
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
@@ -1837,7 +1839,7 @@ export function OnChangeJob(jobId) {
 		changeJobSettings(jobId);
 		StAllCalc();
 		CalcStatusPoint(false);
-		AutoCalc();
+		notifyChanged();
 	}
 }
 
@@ -1863,7 +1865,7 @@ export const OnChangeBaseLV = _debounce(function() {
 	CalcStatusPoint(true);
 	StAllCalc();
 	CAttackMethodAreaComponentManager.RebuildControls();
-	AutoCalc();
+	notifyChanged();
 }, 200);
 
 /**
@@ -1873,7 +1875,7 @@ export const OnChangeBaseLV = _debounce(function() {
 export const OnChangeStatus = _debounce(function() {
 	CalcStatusPoint(false);
 	StAllCalc();
-	AutoCalc();
+	notifyChanged();
 }, 200);
 
 import { register } from './engine-registry.js';

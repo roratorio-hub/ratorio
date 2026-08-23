@@ -28,7 +28,8 @@ import {
          CheckSpDefPureStatus, CheckSpDefRefineOver,
 } from './foot-bridge.js';
 // Phase B: window.AutoCalc 廃止に伴い head-bridge 経由に移行
-import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+// Phase 9: 再計算ポリシーは calc-invalidation.js 経由
+import { notifyChanged } from '../../../ro4/m/js/calc-invalidation.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
@@ -238,7 +239,7 @@ export function CreateRndOptKind(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdKind);
-	objSelect.addEventListener("change", () => { OnChangeRndOptKind(eqpRgnId, slotIndex); AutoCalc(); });
+	objSelect.addEventListener("change", () => { OnChangeRndOptKind(eqpRgnId, slotIndex); notifyChanged(); });
 
 	return objSelect;
 }
@@ -263,7 +264,7 @@ export function CreateRndOptValue(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdValue);
-	objSelect.addEventListener("change", () => { equipBridge.onChangeRandomEnchant?.(); AutoCalc(); });
+	objSelect.addEventListener("change", () => { equipBridge.onChangeRandomEnchant?.(); notifyChanged(); });
 
 	return objSelect;
 }

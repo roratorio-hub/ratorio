@@ -17,6 +17,10 @@ import { __registerFootFunctions } from '@roro/foot-bridge.js';
 // hmrndopt.js と一緒に必ずロードされ自己登録するが、このテストは hmrndopt.js 単体を見るため）。
 import { OnChangeRandomEnchant } from '@roro/equip.js';
 import { equipBridge } from '@roro/equip-bridge.js';
+// リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
+// CSaveController.getSettingProp（engine-registry 経由）。
+import { register as registryRegister } from '@ro4/engine-registry.js';
+import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
 describe('hmrndopt.js', () => {
     describe('コアロジック確認', () => {
@@ -63,20 +67,25 @@ describe('hmrndopt.js', () => {
                 GetDefinedName: (id: number) => `EQUIP_REGION_${id}`,
             };
         });
-        let autoCalc: ReturnType<typeof vi.fn>;
+        let calc: ReturnType<typeof vi.fn>;
         let stAllCalc: ReturnType<typeof vi.fn>;
         beforeEach(() => {
-            autoCalc = vi.fn();
+            calc = vi.fn();
             stAllCalc = vi.fn();
-            __registerHeadFunctions({ AutoCalc: autoCalc });
+            __registerHeadFunctions({ calc });
             __registerFootFunctions({ StAllCalc: stAllCalc });
             equipBridge.onChangeRandomEnchant = OnChangeRandomEnchant;
+            // 再計算ポリシー（リファクタリング計画 Phase 9）: 常に再計算する flag=3 に設定
+            registryRegister('CSaveController', {
+                getSettingProp: (propName: string) =>
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+            });
         });
         afterEach(() => {
             document.body.innerHTML = '';
         });
 
-        it('CreateRndOptKind の select 変更で値セレクトが再構築され AutoCalc が呼ばれる', () => {
+        it('CreateRndOptKind の select 変更で値セレクトが再構築され再計算通知が呼ばれる', () => {
             const root = document.createElement('tr');
             document.body.appendChild(root);
 
@@ -94,10 +103,10 @@ describe('hmrndopt.js', () => {
             // OnChangeRndOptKind → SetUpRndOptValue により値セレクトが再構築される
             expect(valueSel.options.length).toBeGreaterThan(1);
             expect(stAllCalc).toHaveBeenCalled();
-            expect(autoCalc).toHaveBeenCalled();
+            expect(calc).toHaveBeenCalled();
         });
 
-        it('CreateRndOptValue の select 変更で StAllCalc / AutoCalc が呼ばれる', () => {
+        it('CreateRndOptValue の select 変更で StAllCalc / 再計算通知が呼ばれる', () => {
             const root = document.createElement('tr');
             document.body.appendChild(root);
 
@@ -105,9 +114,9 @@ describe('hmrndopt.js', () => {
 
             valueSel.dispatchEvent(new Event('change'));
 
-            // OnChangeRandomEnchant → StAllCalc、リスナー末尾で AutoCalc
+            // OnChangeRandomEnchant → StAllCalc、リスナー末尾で再計算通知
             expect(stAllCalc).toHaveBeenCalled();
-            expect(autoCalc).toHaveBeenCalled();
+            expect(calc).toHaveBeenCalled();
         });
     });
 });
