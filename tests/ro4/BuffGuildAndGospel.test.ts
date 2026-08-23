@@ -18,8 +18,9 @@ describe('BuffGuildAndGospel.js', () => {
             calc = vi.fn();
             __registerHeadFunctions({ calc });
             registryRegister('CSaveController', {
+                // 実際の CSaveController.getSettingProp は BigInt を返す（toSafeBigInt 経由）。
                 getSettingProp: (propName: string) =>
-                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3n : undefined,
             });
             const td = document.createElement('td'); td.id = 'A4TD';
             const used = document.createElement('span'); used.id = 'A4used';

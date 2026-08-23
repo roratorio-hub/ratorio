@@ -23,8 +23,9 @@ describe('slotpager.js', () => {
             calc = vi.fn();
             __registerHeadFunctions({ calc });
             registryRegister('CSaveController', {
+                // 実際の CSaveController.getSettingProp は BigInt を返す（toSafeBigInt 経由）。
                 getSettingProp: (propName: string) =>
-                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3n : undefined,
             });
         });
         afterEach(() => {

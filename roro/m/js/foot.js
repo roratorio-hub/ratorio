@@ -1332,7 +1332,7 @@ export function StAllCalc(){
  * HydrateFromDom() から引数として受け取る（それ以外は hydrate 側専用ローカル変数だった
  * ため、両者間の共有は不要と機械的に確認済み）。
  */
-function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
+export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
     var confval = 0;
     var monsterId = 0;
     var charaData = new Array();
@@ -2223,6 +2223,7 @@ __registerFootFunctions({
     ROUNDDOWN,
     Init,
     StAllCalc,
+    StAllCalcCore,
 });
 
 import { register } from '../../../ro4/m/js/engine-registry.js';

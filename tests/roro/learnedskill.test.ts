@@ -53,8 +53,9 @@ describe('learnedskill.js', () => {
             __registerHeadFunctions({ calc });
             // 再計算ポリシー（リファクタリング計画 Phase 9）: 常に再計算する flag=3 に設定
             registryRegister('CSaveController', {
+                // 実際の CSaveController.getSettingProp は BigInt を返す（toSafeBigInt 経由）。
                 getSettingProp: (propName: string) =>
-                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3n : undefined,
             });
             const el = document.createElement('select');
 

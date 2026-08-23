@@ -96,7 +96,12 @@ export function notifyChangedLegacy(callFrom) {
  * 旧DOM実装のデフォルト値 0 にフォールバックする。
  */
 function readAutoCalcFlag() {
-    return registryGet('CSaveController')?.getSettingProp(CSaveDataConst.propNameAttackAutoCalc) ?? 0;
+    // getSettingProp は savedata のプロパティ格納規約（CSaveDataUnitBase.setProp が
+    // toSafeBigInt() を通す）により BigInt を返す。shouldRecalc() の switch 文は
+    // Number リテラルの case と比較するため（BigInt === Number は常に false で
+    // strict equality が成立しない）、ここで明示的に Number へ変換する。
+    const value = registryGet('CSaveController')?.getSettingProp(CSaveDataConst.propNameAttackAutoCalc);
+    return value === undefined ? 0 : Number(value);
 }
 
 /**
