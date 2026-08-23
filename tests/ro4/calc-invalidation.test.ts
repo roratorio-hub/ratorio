@@ -2,15 +2,16 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { CalcInput, notifyChanged, notifyChangedLegacy, requestRecalc, withBatch, onResults } from '@ro4/calc-invalidation.js';
 // AutoCalc/calc は head-bridge 経由（head.js 直接 import は循環・OOMの原因になるため禁止）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+// リファクタリング計画 Phase 9 D3: ポリシーflagの読み出し元は CSaveController.getSettingProp
+// （engine-registry 経由）。propNameAttackAutoCalc の実値は問わないので、Map で代用する。
+import { register as registryRegister } from '@ro4/engine-registry.js';
+import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
 function setAutoCalcFlag(flag: number) {
-    let el = document.getElementById('OBJID_INPUT_ATTACK_METHOD_AUTO_CALC') as HTMLInputElement | null;
-    if (!el) {
-        el = document.createElement('input');
-        el.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
-        document.body.appendChild(el);
-    }
-    el.value = String(flag);
+    registryRegister('CSaveController', {
+        getSettingProp: (propName: string) =>
+            propName === CSaveDataConst.propNameAttackAutoCalc ? flag : undefined,
+    });
 }
 
 describe('calc-invalidation.js', () => {
@@ -157,6 +158,23 @@ describe('calc-invalidation.js', () => {
                 requestRecalc();
                 requestRecalc();
             });
+            expect(calc).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('readAutoCalcFlag: savedata propが未初期化のときはflag=0にフォールバックする（D3）', () => {
+        it('CSaveController が未登録なら flag=0 として扱う（CHARA/BUFF/MOBで再計算、ATTACK_METHODでは再計算しない）', () => {
+            registryRegister('CSaveController', undefined);
+            notifyChanged(CalcInput.CHARA);
+            expect(calc).toHaveBeenCalledTimes(1);
+            calc.mockClear();
+            notifyChanged(CalcInput.ATTACK_METHOD);
+            expect(calc).not.toHaveBeenCalled();
+        });
+
+        it('getSettingProp が undefined を返すなら flag=0 として扱う', () => {
+            registryRegister('CSaveController', { getSettingProp: () => undefined });
+            notifyChanged(CalcInput.BUFF);
             expect(calc).toHaveBeenCalledTimes(1);
         });
     });

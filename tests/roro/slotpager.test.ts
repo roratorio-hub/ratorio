@@ -4,6 +4,10 @@ import { __RebuildSlotAsCardShort } from '@roro/slotpager.js';
 // dewindow: calc は head-bridge 経由になった（旧 bare global）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
 import { EQUIP_REGION_ID_ARMS } from '@roro/const/EnumEquipRegionId.js';
+// リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
+// CSaveController.getSettingProp（engine-registry 経由）。
+import { register as registryRegister } from '@ro4/engine-registry.js';
+import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
 // 3e-1: inline handler → addEventListener 変換の wiring 検証。
 // change イベントで「ApplyCardShort(eqpRgnId, prefix) → 再計算通知」の順に配線されていることを確認する
@@ -18,10 +22,10 @@ describe('slotpager.js', () => {
             applySpy = vi.spyOn(hmcard, 'ApplyCardShort').mockImplementation(() => {});
             calc = vi.fn();
             __registerHeadFunctions({ calc });
-            const autoCalcFlag = document.createElement('input');
-            autoCalcFlag.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
-            autoCalcFlag.value = '3';
-            document.body.appendChild(autoCalcFlag);
+            registryRegister('CSaveController', {
+                getSettingProp: (propName: string) =>
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+            });
         });
         afterEach(() => {
             applySpy.mockRestore();

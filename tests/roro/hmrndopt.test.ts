@@ -17,6 +17,10 @@ import { __registerFootFunctions } from '@roro/foot-bridge.js';
 // hmrndopt.js と一緒に必ずロードされ自己登録するが、このテストは hmrndopt.js 単体を見るため）。
 import { OnChangeRandomEnchant } from '@roro/equip.js';
 import { equipBridge } from '@roro/equip-bridge.js';
+// リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
+// CSaveController.getSettingProp（engine-registry 経由）。
+import { register as registryRegister } from '@ro4/engine-registry.js';
+import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
 describe('hmrndopt.js', () => {
     describe('コアロジック確認', () => {
@@ -72,10 +76,10 @@ describe('hmrndopt.js', () => {
             __registerFootFunctions({ StAllCalc: stAllCalc });
             equipBridge.onChangeRandomEnchant = OnChangeRandomEnchant;
             // 再計算ポリシー（リファクタリング計画 Phase 9）: 常に再計算する flag=3 に設定
-            const autoCalcFlag = document.createElement('input');
-            autoCalcFlag.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
-            autoCalcFlag.value = '3';
-            document.body.appendChild(autoCalcFlag);
+            registryRegister('CSaveController', {
+                getSettingProp: (propName: string) =>
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+            });
         });
         afterEach(() => {
             document.body.innerHTML = '';

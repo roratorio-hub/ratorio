@@ -6,6 +6,10 @@ import {
 // dewindow: AutoCalc は head-bridge 経由になった（旧 bare global）。
 // テストは head-bridge にフェイクを登録して呼び出しを観測する。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+// リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
+// CSaveController.getSettingProp（engine-registry 経由）。
+import { register as registryRegister } from '@ro4/engine-registry.js';
+import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
 // RefreshSkillColumnHeaderLearned は末尾で header/usedtext 要素を操作するため事前作成が必要
 function setupLearnedSkillHeaderDOM() {
@@ -48,10 +52,10 @@ describe('learnedskill.js', () => {
             const calc = vi.fn();
             __registerHeadFunctions({ calc });
             // 再計算ポリシー（リファクタリング計画 Phase 9）: 常に再計算する flag=3 に設定
-            const autoCalcFlag = document.createElement('input');
-            autoCalcFlag.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
-            autoCalcFlag.value = '3';
-            document.body.appendChild(autoCalcFlag);
+            registryRegister('CSaveController', {
+                getSettingProp: (propName: string) =>
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+            });
             const el = document.createElement('select');
 
             // 通常（第4引数省略）: 状態更新 + 再計算通知1回

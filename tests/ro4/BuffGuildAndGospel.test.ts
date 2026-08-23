@@ -2,6 +2,10 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { n_A_PassSkill4, Click_A4 } from '@ro4/BuffGuildAndGospel.js';
 // dewindow: calc は head-bridge 経由（旧 './head.js' 直接 import → 単体テストが OOM していた）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+// リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
+// CSaveController.getSettingProp（engine-registry 経由）。
+import { register as registryRegister } from '@ro4/engine-registry.js';
+import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
 describe('BuffGuildAndGospel.js', () => {
     // Click_A4 は n_A_PassSkill4 の設定有無で A4TD の背景色と A4used の「使用中」表示を切り替え、
@@ -13,11 +17,13 @@ describe('BuffGuildAndGospel.js', () => {
         beforeEach(() => {
             calc = vi.fn();
             __registerHeadFunctions({ calc });
+            registryRegister('CSaveController', {
+                getSettingProp: (propName: string) =>
+                    propName === CSaveDataConst.propNameAttackAutoCalc ? 3 : undefined,
+            });
             const td = document.createElement('td'); td.id = 'A4TD';
             const used = document.createElement('span'); used.id = 'A4used';
-            const autoCalcFlag = document.createElement('input'); autoCalcFlag.id = 'OBJID_INPUT_ATTACK_METHOD_AUTO_CALC';
-            autoCalcFlag.value = '3';
-            document.body.append(td, used, autoCalcFlag);
+            document.body.append(td, used);
             n_A_PassSkill4.fill(0);
         });
         afterEach(() => {

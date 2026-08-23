@@ -5,11 +5,21 @@
  * 引数なし呼び出し（16箇所）で再計算の要否を判定していた。本モジュールは
  * 「何が変わったか」（`CalcInput`）へ置き換える。
  *
- * D1（本コミット）: `AutoCalc(callFrom)` を本モジュールへ委譲するシムに縮小する。
- *   呼び出し側（30箇所超）はまだ変更しない。
- * D2: 呼び出し側を `AutoCalc("文字列")` → `notifyChanged(CalcInput.X)` に置き換える。
- * D3: 再計算ポリシーの読み出し元をDOM（`OBJID_INPUT_ATTACK_METHOD_AUTO_CALC`）から
+ * D1: `AutoCalc(callFrom)` を本モジュールへ委譲するシムに縮小した（完了）。
+ * D2: 呼び出し側31箇所を `AutoCalc("文字列")` → `notifyChanged(CalcInput.X)` に置き換えた（完了）。
+ * D3（本コミット）: 再計算ポリシーの読み出し元をDOM（`OBJID_INPUT_ATTACK_METHOD_AUTO_CALC`）から
  *     savedata prop（`CSaveController.getSettingProp(propNameAttackAutoCalc)`）へ移す。
+ *
+ * ⚠️ D3着手前に調査した「真実の源が2つある」問題について: 実際には既にDOM要素側が
+ *     savedata prop の**鏡**として設計されていた（`CAttackMethodAreaComponentManager.js`
+ *     の `RebuildSettingArea()` が savedata prop → DOM、`OnChangeAutoCalc()` が
+ *     DOM → savedata prop の一方向ずつを担い、常に同期させる作り）。デシンクは発生しない設計。
+ *     唯一の実際のリスクは、savedata prop が未初期化（`CSaveController` 内部の
+ *     `#settingDataUnit` が null）の場合に `getSettingProp` が `undefined` を返すこと
+ *     （`OBJID_SAVE_BLOCK_MIG` 要素を持たないページでは `LoadSettingFromLocalStorageMIG()`
+ *     自体が呼ばれないため発生しうる。`roro/m/js/foot.js:1788-1790` 参照）。
+ *     `readAutoCalcFlag()` 側で `?? 0` により、DOM版の `HtmlGetObjectValueByIdAsInteger`
+ *     の第2引数（デフォルト値0）と同じフォールバックを再現する。
  *
  * ⚠️ ポリシーの意味（`head.js` の旧実装を精査して確定した仕様。書き換え時に変えない）:
  *   - flag=0: CHARA/BUFF/MOB/DISPLAY のいずれかの変更でのみ再計算（攻撃手段の変更では再計算しない）
@@ -25,7 +35,8 @@
  *     CHARA 扱いにすると、flag=0/1のユーザーで新たに再計算が走るようになり、挙動が変わってしまう）。
  */
 import { calc } from './head-bridge.js';
-import { HtmlGetObjectValueByIdAsInteger } from '../../../roro/common/js/util.js';
+import { get as registryGet } from './engine-registry.js';
+import { CSaveDataConst } from './savedata/CSaveDataConst.js';
 
 /**
  * 再計算のトリガー種別。`AutoCalc(callFrom)` の文字列に代わり「何が変わったか」を表す。
@@ -67,17 +78,25 @@ const LEGACY_CALL_FROM_MAP = new Map([
 ]);
 
 /**
- * D1専用: 旧 `AutoCalc(callFrom)` の文字列を `CalcInput` に変換して `notifyChanged` へ渡す。
- * D2で呼び出し側の変換が完了したら、この関数と `LEGACY_CALL_FROM_MAP` は削除する。
+ * 旧 `AutoCalc(callFrom)` の文字列を `CalcInput` に変換して `notifyChanged` へ渡す。
+ * 内部呼び出し側は全て D2 で `notifyChanged` へ移行済みだが、`head.js` の `AutoCalc` 自体は
+ * `engine-registry.js` に登録された公開APIであり続ける（`calcx-ai.js` 等の外部消費者が
+ * 文字列引数で呼ぶ可能性があるため）。この関数はその後方互換実装として残す。
  * @param {string|undefined} callFrom 旧 `AutoCalc` の呼び出し元文字列
  */
 export function notifyChangedLegacy(callFrom) {
     notifyChanged(LEGACY_CALL_FROM_MAP.get(callFrom));
 }
 
-// D3で savedata prop 側の読み出しに差し替える（今は旧実装と同じくDOMを読む）。
+/**
+ * 現在の自動計算ポリシーのflag値を読む。`CAttackMethodAreaComponentManager.js` の
+ * `RebuildSettingArea()`/`OnChangeAutoCalc()` がDOM要素と双方向に同期させているため、
+ * savedata prop を読めばDOM要素と常に同じ値が得られる（詳細はファイル冒頭コメント参照）。
+ * `getSettingProp` が `undefined` を返す場合（savedata prop 未初期化）は
+ * 旧DOM実装のデフォルト値 0 にフォールバックする。
+ */
 function readAutoCalcFlag() {
-    return HtmlGetObjectValueByIdAsInteger("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", 0);
+    return registryGet('CSaveController')?.getSettingProp(CSaveDataConst.propNameAttackAutoCalc) ?? 0;
 }
 
 /**
