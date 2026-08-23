@@ -7,10 +7,17 @@ import { __registerHeadFunctions } from '@ro4/head-bridge.js';
 import { register as registryRegister } from '@ro4/engine-registry.js';
 import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
 
+// ⚠️ 実際の CSaveController.getSettingProp は BigInt を返す
+// （CSaveDataUnitBase.setProp が toSafeBigInt() を通すため）。D3リリース後に
+// 「flag=3を選んでも再計算されない」という実バグが発生した原因はまさにこれで、
+// readAutoCalcFlag() が Number へ変換せずそのまま switch 文へ渡していたため
+// BigInt !== Number の strict equality で全 case が不一致になり、常に
+// default（再計算しない）へ落ちていた。テスト側のモックが Number を返していたため
+// 発見が遅れた。以降このヘルパーは常に BigInt を返し、実装の型変換漏れを検出する。
 function setAutoCalcFlag(flag: number) {
     registryRegister('CSaveController', {
         getSettingProp: (propName: string) =>
-            propName === CSaveDataConst.propNameAttackAutoCalc ? flag : undefined,
+            propName === CSaveDataConst.propNameAttackAutoCalc ? BigInt(flag) : undefined,
     });
 }
 
