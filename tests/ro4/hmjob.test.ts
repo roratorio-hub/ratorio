@@ -33,8 +33,11 @@ import {
     ApplyPAtkAmplify, ApplySMatkAmplify, ApplyCRateAmplify,
     ApplyResResist, ApplyMresResist, ApplyPAtkLeftHandPenalty,
     ApplySpecModify, migrateOtherJob, OnChangeJob,
+    StoreBasicStatusBonusAll, GetBasicStatusBonus, GetPureStatus, GetSpecStatusBonus, GetStatusPointRemain,
+    GetTStatusPointRemain,
+    GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate, GetDisplayedRes, GetDisplayedMres, GetDisplayedHPlus,
 } from '@ro4/hmjob.js';
-import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS } from '@roro/const/EnumMigItemParamId.js';
+import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_STR } from '@roro/const/EnumMigItemParamId.js';
 
 describe('hmjob.js', () => {
     // 3e-3: window compat 除去（window.CalcStatusPoint の state テストは削除）。
@@ -74,6 +77,41 @@ describe('hmjob.js', () => {
             });
             it('StoreSpecStatusBonusAll が呼び出し可能', () => {
                 expect(() => StoreSpecStatusBonusAll(0, 0, 0, 0, 0, 0)).not.toThrow();
+            });
+        });
+
+        // リファクタリング計画 Phase 12: saveimage.js がDOMスクレイプせずに参照するための
+        // 新規アクセサ（動作テスト。StoreSpecStatusBonusAll と対称の構造なので同じ形で検証する）
+        describe('Phase 12: classic 6ステータスボーナス・ステータスポイント保存', () => {
+            it('StoreBasicStatusBonusAll で保存した値を GetBasicStatusBonus で取得できる', () => {
+                StoreBasicStatusBonusAll(1, 2, 3, 4, 5, 6);
+                expect(GetBasicStatusBonus(MIG_PARAM_ID_STR)).toBe(1);
+            });
+            it('GetPureStatus / GetSpecStatusBonus が呼び出し可能', () => {
+                expect(() => GetPureStatus(MIG_PARAM_ID_POW)).not.toThrow();
+                expect(() => GetSpecStatusBonus(MIG_PARAM_ID_POW)).not.toThrow();
+            });
+            it('GetStatusPointRemain が呼び出し可能', () => {
+                expect(() => GetStatusPointRemain()).not.toThrow();
+            });
+            // マージ前レビュー指摘（R6）対応: saveimage.js が画像生成時に GetTStatusPoint(baseLv) を
+            // 都度再計算していたため、g_pureStatus が直近の CalcStatusPoint() 実行時点のまま古い場合、
+            // 画面表示（DOM書き込み時点の値）とズレうる問題があった。CalcStatusPoint/DisplayStatusBonusAll
+            // 書き込み時点のスナップショットを保存する GetTStatusPointRemain を追加した。
+            it('GetTStatusPointRemain が呼び出し可能', () => {
+                expect(() => GetTStatusPointRemain()).not.toThrow();
+            });
+            // R6と同一の欠陥クラス（P.Atk/S.Matk/C.Rate/Res/Mres/H.Plus も画像生成時の
+            // 都度再計算ではなく DisplayReferStatusAll() 書き込み時点のスナップショットを返す）。
+            // DisplayReferStatusAll() 自体はDOM依存で呼べないため、未書き込み時のフォールバック
+            // （?? 0）が効いていることを検証する。
+            it('GetDisplayedPAtk 等は DisplayReferStatusAll 未実行時は 0 を返す（フォールバック検証）', () => {
+                expect(GetDisplayedPAtk()).toBe(0);
+                expect(GetDisplayedSMatk()).toBe(0);
+                expect(GetDisplayedCRate()).toBe(0);
+                expect(GetDisplayedRes()).toBe(0);
+                expect(GetDisplayedMres()).toBe(0);
+                expect(GetDisplayedHPlus()).toBe(0);
             });
         });
 

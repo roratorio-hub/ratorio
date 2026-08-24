@@ -84,6 +84,28 @@ import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentM
 import { set_n_Nitou } from './global.js';
 export let g_pureStatus = [];
 export let g_bonusStatus = [];
+// リファクタリング計画 Phase 12: STR/AGI/VIT/INT/DEX/LUK（classic 6ステータス）のボーナス値。
+// POW/STA/WIS/SPL/CON/CRT（特性ステータス）は g_bonusStatus に保存されるが、classic 6 は
+// 従来 DisplayStatusBonusAll() への引数渡しのみでDOM書き込み以外に保存先が無かった
+// （saveimage.js がDOMスクレイプに頼らざるを得なかった原因）。StoreBasicStatusBonusAll() で保存する。
+export let g_basicBonusStatus = [];
+// リファクタリング計画 Phase 12: 残ステータスポイント（A_STPOINT表示の値）。
+// 従来 CalcStatusPoint() 内で DOM 書き込みのみが行われ、保存先が無かった。
+export let g_statusPointRemain = 0;
+// リファクタリング計画 Phase 12（マージ前レビュー指摘対応）: 残特性ステータスポイント
+// （OBJID_SPAN_STATUS_T_STATUS_POINT表示の値）。saveimage.js は当初 GetTStatusPoint(baseLv)
+// を画像生成時に都度再計算していたが、baseLv はDOMの最新値を渡す一方 GetTStatusPoint 内部の
+// g_pureStatus は直近の CalcStatusPoint() 実行時点のままのため、ベースLv欄だけ変更して
+// 再計算がまだ走っていないタイミングでは画面表示（DOM書き込み時点の値）と食い違いうる。
+// g_statusPointRemain と対称に、CalcStatusPoint() が書き込むタイミングでスナップショットを
+// 保存することで、画面と画像で常に同じ値を参照するようにする。
+export let g_tStatusPointRemain = 0;
+// マージ前レビュー指摘（R6と同一の欠陥クラス）対応: P.Atk/S.Matk/C.Rate/Res/Mres/H.Plus は
+// GetPAtk() 等の呼び出しごとに g_pureStatus/g_bonusStatus 等の"直近の再計算時点"の値から
+// 都度再計算される。saveimage.js が画像生成時にこれらを直接呼ぶと、g_pureStatus が古い場合に
+// 画面表示（DisplayReferStatusAll() 書き込み時点の値）とズレうる。DisplayReferStatusAll() が
+// 書き込むタイミングでスナップショットを保存する。
+export let g_referStatusDisplay = {};
 
 // 設定値の保存領域
 export let g_STR = 0;
@@ -362,8 +384,10 @@ export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 	g_CRT = stValCRT;
 	g_BaseLV = Number(_cf.A_BaseLV.value);
 
-	document.getElementById("A_STPOINT").textContent = stPointEarned - stPointUsed;
-	document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT").textContent = stTSPointEarned - stTSPointUsed;
+	g_statusPointRemain = stPointEarned - stPointUsed;
+	document.getElementById("A_STPOINT").textContent = g_statusPointRemain;
+	g_tStatusPointRemain = stTSPointEarned - stTSPointUsed;
+	document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT").textContent = g_tStatusPointRemain;
 
 	// 特性ステータス仮処理
 	g_pureStatus = [];
@@ -527,6 +551,7 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 
 	// T.Status Point
 	valWork = GetTStatusPoint(baseLv);
+	g_tStatusPointRemain = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT");
 	objStatus.innerHTML = "" + valWork;
 }
@@ -544,31 +569,37 @@ export function DisplayReferStatusAll() {
 
 	// P.Atk
 	valWork = GetPAtk();
+	g_referStatusDisplay.pAtk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_P_ATK");
 	objStatus.innerHTML = "" + valWork;
 
 	// S.Matk
 	valWork = GetSMatk();
+	g_referStatusDisplay.sMatk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_S_MATK");
 	objStatus.innerHTML = "" + valWork;
 
 	// C.Rate
 	valWork = GetCRate();
+	g_referStatusDisplay.cRate = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_C_RATE");
 	objStatus.innerHTML = "" + valWork;
 
 	// Res
 	valWork = GetRes();
+	g_referStatusDisplay.res = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_RES");
 	objStatus.innerHTML = "" + valWork;
 
 	// Mres
 	valWork = GetMres();
+	g_referStatusDisplay.mres = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_MRES");
 	objStatus.innerHTML = "" + valWork;
 
 	// H.Plus
 	valWork = GetHPlus();
+	g_referStatusDisplay.hPlus = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_H_PLUS");
 	objStatus.innerHTML = "" + valWork;
 }
@@ -580,6 +611,78 @@ export function DisplayReferStatusAll() {
 export function GetTotalPureBasicStatus() {
 	return (SU_STR + SU_AGI + SU_VIT + SU_DEX + SU_INT + SU_LUK);
 }
+
+//================================================================================================================================
+//
+// classic 6ステータス系（STR/AGI/VIT/INT/DEX/LUK）
+//
+//================================================================================================================================
+
+/**
+ * classic 6ステータス（STR/AGI/VIT/INT/DEX/LUK）のボーナス値を保存する.
+ * StoreSpecStatusBonusAll（特性ステータス側）と対称の構造。
+ * リファクタリング計画 Phase 12: 従来 DisplayStatusBonusAll() への引数渡しのみだった値を、
+ * DOM非依存で取得できるようにするため保存する。
+ * @returns {number[]} 保存した値の配列（STR, AGI, VIT, INT, DEX, LUKの順）
+ */
+export function StoreBasicStatusBonusAll(valSTR, valAGI, valVIT, valINT, valDEX, valLUK) {
+
+	g_basicBonusStatus = [];
+	g_basicBonusStatus[MIG_PARAM_ID_STR] = valSTR;
+	g_basicBonusStatus[MIG_PARAM_ID_AGI] = valAGI;
+	g_basicBonusStatus[MIG_PARAM_ID_VIT] = valVIT;
+	g_basicBonusStatus[MIG_PARAM_ID_INT] = valINT;
+	g_basicBonusStatus[MIG_PARAM_ID_DEX] = valDEX;
+	g_basicBonusStatus[MIG_PARAM_ID_LUK] = valLUK;
+
+	return [
+		g_basicBonusStatus[MIG_PARAM_ID_STR],
+		g_basicBonusStatus[MIG_PARAM_ID_AGI],
+		g_basicBonusStatus[MIG_PARAM_ID_VIT],
+		g_basicBonusStatus[MIG_PARAM_ID_INT],
+		g_basicBonusStatus[MIG_PARAM_ID_DEX],
+		g_basicBonusStatus[MIG_PARAM_ID_LUK],
+	];
+}
+
+/**
+ * classic 6ステータス（STR/AGI/VIT/INT/DEX/LUK）のボーナス値を取得する.
+ * @param {*} paramId MIG_PARAM_ID_{STR|AGI|VIT|INT|DEX|LUK}
+ * @returns {number}
+ */
+export function GetBasicStatusBonus(paramId) {
+	return g_basicBonusStatus[paramId] ?? 0;
+}
+
+/**
+ * 残ステータスポイント（A_STPOINT表示の値）を取得する.
+ * リファクタリング計画 Phase 12: saveimage.js 等がDOMスクレイプせずに参照できるようにする。
+ * @returns {number}
+ */
+export function GetStatusPointRemain() {
+	return g_statusPointRemain;
+}
+
+/**
+ * 残特性ステータスポイント（OBJID_SPAN_STATUS_T_STATUS_POINT表示の値）を取得する.
+ * リファクタリング計画 Phase 12（マージ前レビュー指摘対応）: saveimage.js 等がDOMスクレイプせずに
+ * 参照できるようにする。GetTStatusPoint(baseLv) の都度再計算ではなく、画面表示と同じ
+ * スナップショットタイミング（CalcStatusPoint/DisplayStatusBonusAll の最後の書き込み）を返す。
+ * @returns {number}
+ */
+export function GetTStatusPointRemain() {
+	return g_tStatusPointRemain;
+}
+
+// P.Atk/S.Matk/C.Rate/Res/Mres/H.Plus の画面表示値（DisplayReferStatusAll() 書き込み時点の
+// スナップショット）を取得する. GetPAtk() 等の都度再計算ではなく画面と同じ値を返す
+// （マージ前レビュー指摘対応。GetTStatusPointRemain と同じ理由）。
+export function GetDisplayedPAtk()  { return g_referStatusDisplay.pAtk  ?? 0; }
+export function GetDisplayedSMatk() { return g_referStatusDisplay.sMatk ?? 0; }
+export function GetDisplayedCRate() { return g_referStatusDisplay.cRate ?? 0; }
+export function GetDisplayedRes()   { return g_referStatusDisplay.res   ?? 0; }
+export function GetDisplayedMres()  { return g_referStatusDisplay.mres  ?? 0; }
+export function GetDisplayedHPlus() { return g_referStatusDisplay.hPlus ?? 0; }
 
 //================================================================================================================================
 //
@@ -610,9 +713,29 @@ export function StoreSpecStatusBonusAll(valPOW, valSTA, valWIS, valSPL, valCON, 
 }
 
 /**
+ * 特性ステータスの基礎値（素の入力値）を取得する.
+ * リファクタリング計画 Phase 12: saveimage.js 等がDOMスクレイプせずに参照できるようにする。
+ * @param {*} paramId MIG_PARAM_ID_{POW|STA|WIS|SPL|CON|CRT}
+ * @returns {number}
+ */
+export function GetPureStatus(paramId) {
+	return g_pureStatus[paramId] ?? 0;
+}
+
+/**
+ * 特性ステータスのボーナス値を取得する.
+ * リファクタリング計画 Phase 12: saveimage.js 等がDOMスクレイプせずに参照できるようにする。
+ * @param {*} paramId MIG_PARAM_ID_{POW|STA|WIS|SPL|CON|CRT}
+ * @returns {number}
+ */
+export function GetSpecStatusBonus(paramId) {
+	return g_bonusStatus[paramId] ?? 0;
+}
+
+/**
  * 特性ステータスの基本＋ボーナスの合計値を取得する
  * @param {*} paramId MIG_PARAM_ID_{POW|STA|WIS|SPL|CON|CRT}
- * @returns 
+ * @returns
  */
 export function GetTotalSpecStatus(paramId) {
 
@@ -1908,6 +2031,14 @@ import {
     ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL, ITEM_SP_PHYSICAL_RESIST_SIZE_LARGE, ITEM_SP_PHYSICAL_RESIST_SIZE_MEDIUM, ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL, ITEM_SP_P_ATK_PLUS, ITEM_SP_RESIST_ELM_DARK,
     ITEM_SP_RESIST_ELM_UNDEAD, ITEM_SP_RESIST_ELM_WATER, ITEM_SP_RES_PLUS, ITEM_SP_SHORTRANGE_DAMAGE_UP, ITEM_SP_STUFF2HAND, ITEM_SP_S_MATK_PLUS,
 } from '../../../roro/m/js/const/EnumItemSpId.js';
-import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS } from '../../../roro/m/js/const/EnumMigItemParamId.js';
+import {
+    MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS,
+    MIG_PARAM_ID_STR, MIG_PARAM_ID_AGI, MIG_PARAM_ID_VIT, MIG_PARAM_ID_INT, MIG_PARAM_ID_DEX, MIG_PARAM_ID_LUK,
+} from '../../../roro/m/js/const/EnumMigItemParamId.js';
 import { MONSTER_DATA_INDEX_MRES, MONSTER_DATA_INDEX_RES } from '../../../roro/m/js/const/EnumMonsterDataIndex.js';
-__registerHmjobFunctions({ ApplySpecModify, GetTotalPureBasicStatus, GetTotalSpecStatus });
+__registerHmjobFunctions({
+	ApplySpecModify, GetTotalPureBasicStatus, GetTotalSpecStatus, GetBasicStatusBonus, GetStatusPointRemain,
+	GetPureStatus, GetSpecStatusBonus, GetPAtk, GetSMatk, GetCRate, GetRes, GetMres, GetHPlus, GetTStatusPoint,
+	GetTStatusPointRemain, GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate, GetDisplayedRes,
+	GetDisplayedMres, GetDisplayedHPlus,
+});
