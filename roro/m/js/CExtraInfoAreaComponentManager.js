@@ -85,12 +85,6 @@ import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 // リファクタリング計画 Phase 12: DOM非依存の純粋な計算部分は CExtraInfoAreaComponentManagerCalc.js へ抽出した
 import { CalcHealing, CalcRecovery, CalcCapacity, CalcResistElement, CalcResistState, CalcResistStateR, CalcExp } from './CExtraInfoAreaComponentManagerCalc.js';
 
-// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
-let resistValueArray = [];
-let resistValueArrayOver = 0;
-let bodyElmRatioArray = 0;
-let finalRatioArray = 0;
-
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
          n_A_BaseLV, n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, delayDownForDisp, n_tok,

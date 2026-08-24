@@ -31,14 +31,17 @@ import {
 // 精錬値表記等）以外では一切読まない。
 // extractModelFromDom は foot-stallcalc-hydrate.js から直接importせず engine-registry.js
 // 経由で取得する（foot-stallcalc-hydrate.js は CShadowEquipController.js を import し、
-// モジュール評価時にDOM初期化を要求するため、直接importすると saveimage.js が
-// 不必要に「重い」import chainを持つことになる。get('extractModelFromDom') は
-// calc-headless.js が既に登録済みの公開APIを使うだけなので影響を受けない）。
+// モジュール評価時にDOM初期化を要求するため、直接importすると import 時点でDOMが
+// 必要になってしまう。get('extractModelFromDom') は calc-headless.js が既に登録済みの
+// 公開APIを使うだけなので影響を受けない。なお下の CExtraInfoAreaComponentManagerCalc.js
+// は head.js・global.js を推移的に import するため、この迂回は「import chain 全体の軽量化」
+// にはなっていない——避けているのは CShadowEquipController.js 固有の DOM初期化要求のみ）。
 import { GetJobName } from './data/mig.job.h.js';
 import { IsUnconfirmedHP, IsUnconfirmedSP } from '../../../roro/m/js/hmchara.js';
 import {
          GetBasicStatusBonus, GetStatusPointRemain, GetPureStatus, GetSpecStatusBonus,
-         GetPAtk, GetSMatk, GetCRate, GetRes, GetMres, GetHPlus, GetTStatusPoint,
+         GetTStatusPointRemain, GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate,
+         GetDisplayedRes, GetDisplayedMres, GetDisplayedHPlus,
 } from './hmjob-bridge.js';
 import { CalcResistElement } from '../../../roro/m/js/CExtraInfoAreaComponentManagerCalc.js';
 import {
@@ -516,23 +519,23 @@ export function generateImage() {
             <th>Pow</th>
             <td>${GetPureStatus(MIG_PARAM_ID_POW)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_POW))}</td>
             <th>P.Atk</th>
-            <td>${GetPAtk()}</td>
+            <td>${GetDisplayedPAtk()}</td>
             <th>Res</th>
-            <td>${GetRes()}</td>
+            <td>${GetDisplayedRes()}</td>
           </tr>
           <tr>
             <th>Sta</th>
             <td>${GetPureStatus(MIG_PARAM_ID_STA)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_STA))}</td>
             <th>S.Matk</th>
-            <td>${GetSMatk()}</td>
+            <td>${GetDisplayedSMatk()}</td>
             <th>Mres</th>
-            <td>${GetMres()}</td>
+            <td>${GetDisplayedMres()}</td>
           </tr>
           <tr>
             <th>Wis</th>
             <td>${GetPureStatus(MIG_PARAM_ID_WIS)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_WIS))}</td>
             <th>H.Plus</th>
-            <td>${GetHPlus()}</td>
+            <td>${GetDisplayedHPlus()}</td>
             <th></th>
             <td></td>
           </tr>
@@ -540,7 +543,7 @@ export function generateImage() {
             <th>Spl</th>
             <td>${GetPureStatus(MIG_PARAM_ID_SPL)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_SPL))}</td>
             <th>C.Rate</th>
-            <td>${GetCRate()}</td>
+            <td>${GetDisplayedCRate()}</td>
             <th></th>
             <td></td>
           </tr>
@@ -548,7 +551,7 @@ export function generateImage() {
             <th>Con</th>
             <td>${GetPureStatus(MIG_PARAM_ID_CON)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_CON))}</td>
             <th colspan="3">T.Status Point</th>
-            <td>${GetTStatusPoint(model.status.baseLv)}</td>
+            <td>${GetTStatusPointRemain()}</td>
           </tr>
           <tr>
             <th>Crt</th>
