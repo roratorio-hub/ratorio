@@ -27,3 +27,10 @@ export function GetRes(...a)                  { return _reg.GetRes?.(...a); }
 export function GetMres(...a)                 { return _reg.GetMres?.(...a); }
 export function GetHPlus(...a)                { return _reg.GetHPlus?.(...a); }
 export function GetTStatusPoint(...a)         { return _reg.GetTStatusPoint?.(...a); }
+export function GetTStatusPointRemain(...a)   { return _reg.GetTStatusPointRemain?.(...a); }
+export function GetDisplayedPAtk(...a)        { return _reg.GetDisplayedPAtk?.(...a); }
+export function GetDisplayedSMatk(...a)       { return _reg.GetDisplayedSMatk?.(...a); }
+export function GetDisplayedCRate(...a)       { return _reg.GetDisplayedCRate?.(...a); }
+export function GetDisplayedRes(...a)         { return _reg.GetDisplayedRes?.(...a); }
+export function GetDisplayedMres(...a)        { return _reg.GetDisplayedMres?.(...a); }
+export function GetDisplayedHPlus(...a)       { return _reg.GetDisplayedHPlus?.(...a); }

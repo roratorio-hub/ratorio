@@ -92,6 +92,20 @@ export let g_basicBonusStatus = [];
 // リファクタリング計画 Phase 12: 残ステータスポイント（A_STPOINT表示の値）。
 // 従来 CalcStatusPoint() 内で DOM 書き込みのみが行われ、保存先が無かった。
 export let g_statusPointRemain = 0;
+// リファクタリング計画 Phase 12（マージ前レビュー指摘対応）: 残特性ステータスポイント
+// （OBJID_SPAN_STATUS_T_STATUS_POINT表示の値）。saveimage.js は当初 GetTStatusPoint(baseLv)
+// を画像生成時に都度再計算していたが、baseLv はDOMの最新値を渡す一方 GetTStatusPoint 内部の
+// g_pureStatus は直近の CalcStatusPoint() 実行時点のままのため、ベースLv欄だけ変更して
+// 再計算がまだ走っていないタイミングでは画面表示（DOM書き込み時点の値）と食い違いうる。
+// g_statusPointRemain と対称に、CalcStatusPoint() が書き込むタイミングでスナップショットを
+// 保存することで、画面と画像で常に同じ値を参照するようにする。
+export let g_tStatusPointRemain = 0;
+// マージ前レビュー指摘（R6と同一の欠陥クラス）対応: P.Atk/S.Matk/C.Rate/Res/Mres/H.Plus は
+// GetPAtk() 等の呼び出しごとに g_pureStatus/g_bonusStatus 等の"直近の再計算時点"の値から
+// 都度再計算される。saveimage.js が画像生成時にこれらを直接呼ぶと、g_pureStatus が古い場合に
+// 画面表示（DisplayReferStatusAll() 書き込み時点の値）とズレうる。DisplayReferStatusAll() が
+// 書き込むタイミングでスナップショットを保存する。
+export let g_referStatusDisplay = {};
 
 // 設定値の保存領域
 export let g_STR = 0;
@@ -372,7 +386,8 @@ export function CalcStatusPoint(bIgnoreAutoCalc, bIgnorePointCap = false) {
 
 	g_statusPointRemain = stPointEarned - stPointUsed;
 	document.getElementById("A_STPOINT").textContent = g_statusPointRemain;
-	document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT").textContent = stTSPointEarned - stTSPointUsed;
+	g_tStatusPointRemain = stTSPointEarned - stTSPointUsed;
+	document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT").textContent = g_tStatusPointRemain;
 
 	// 特性ステータス仮処理
 	g_pureStatus = [];
@@ -536,6 +551,7 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 
 	// T.Status Point
 	valWork = GetTStatusPoint(baseLv);
+	g_tStatusPointRemain = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT");
 	objStatus.innerHTML = "" + valWork;
 }
@@ -553,31 +569,37 @@ export function DisplayReferStatusAll() {
 
 	// P.Atk
 	valWork = GetPAtk();
+	g_referStatusDisplay.pAtk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_P_ATK");
 	objStatus.innerHTML = "" + valWork;
 
 	// S.Matk
 	valWork = GetSMatk();
+	g_referStatusDisplay.sMatk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_S_MATK");
 	objStatus.innerHTML = "" + valWork;
 
 	// C.Rate
 	valWork = GetCRate();
+	g_referStatusDisplay.cRate = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_C_RATE");
 	objStatus.innerHTML = "" + valWork;
 
 	// Res
 	valWork = GetRes();
+	g_referStatusDisplay.res = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_RES");
 	objStatus.innerHTML = "" + valWork;
 
 	// Mres
 	valWork = GetMres();
+	g_referStatusDisplay.mres = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_MRES");
 	objStatus.innerHTML = "" + valWork;
 
 	// H.Plus
 	valWork = GetHPlus();
+	g_referStatusDisplay.hPlus = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_H_PLUS");
 	objStatus.innerHTML = "" + valWork;
 }
@@ -640,6 +662,27 @@ export function GetBasicStatusBonus(paramId) {
 export function GetStatusPointRemain() {
 	return g_statusPointRemain;
 }
+
+/**
+ * 残特性ステータスポイント（OBJID_SPAN_STATUS_T_STATUS_POINT表示の値）を取得する.
+ * リファクタリング計画 Phase 12（マージ前レビュー指摘対応）: saveimage.js 等がDOMスクレイプせずに
+ * 参照できるようにする。GetTStatusPoint(baseLv) の都度再計算ではなく、画面表示と同じ
+ * スナップショットタイミング（CalcStatusPoint/DisplayStatusBonusAll の最後の書き込み）を返す。
+ * @returns {number}
+ */
+export function GetTStatusPointRemain() {
+	return g_tStatusPointRemain;
+}
+
+// P.Atk/S.Matk/C.Rate/Res/Mres/H.Plus の画面表示値（DisplayReferStatusAll() 書き込み時点の
+// スナップショット）を取得する. GetPAtk() 等の都度再計算ではなく画面と同じ値を返す
+// （マージ前レビュー指摘対応。GetTStatusPointRemain と同じ理由）。
+export function GetDisplayedPAtk()  { return g_referStatusDisplay.pAtk  ?? 0; }
+export function GetDisplayedSMatk() { return g_referStatusDisplay.sMatk ?? 0; }
+export function GetDisplayedCRate() { return g_referStatusDisplay.cRate ?? 0; }
+export function GetDisplayedRes()   { return g_referStatusDisplay.res   ?? 0; }
+export function GetDisplayedMres()  { return g_referStatusDisplay.mres  ?? 0; }
+export function GetDisplayedHPlus() { return g_referStatusDisplay.hPlus ?? 0; }
 
 //================================================================================================================================
 //
@@ -1996,4 +2039,6 @@ import { MONSTER_DATA_INDEX_MRES, MONSTER_DATA_INDEX_RES } from '../../../roro/m
 __registerHmjobFunctions({
 	ApplySpecModify, GetTotalPureBasicStatus, GetTotalSpecStatus, GetBasicStatusBonus, GetStatusPointRemain,
 	GetPureStatus, GetSpecStatusBonus, GetPAtk, GetSMatk, GetCRate, GetRes, GetMres, GetHPlus, GetTStatusPoint,
+	GetTStatusPointRemain, GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate, GetDisplayedRes,
+	GetDisplayedMres, GetDisplayedHPlus,
 });
