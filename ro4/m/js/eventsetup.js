@@ -4,7 +4,7 @@ import {
     OnClickConfirmDialogSwitch,
 } from './saveload.js';
 import { OnChangeBaseLV, OnChangeStatus, OnChangeJob } from './hmjob.js';
-import { AutoCalc } from './head.js';
+import { notifyChanged } from './calc-invalidation.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
 import { CSaveController } from './CSaveController.js';
 import { Click_PassSkillSW } from './BuffJobSpecificSelf.js';
@@ -64,7 +64,7 @@ wire('OBJID_CHECK_A7_SKILLSW', 'click', Click_Skill7SW);
 
 // BaseLV・JobLV・職業・ステータス
 wire('OBJID_SELECT_BASE_LEVEL', 'change', OnChangeBaseLV);
-wire('OBJID_SELECT_JOB_LEVEL',  'change', () => { StAllCalc(); AutoCalc(); });
+wire('OBJID_SELECT_JOB_LEVEL',  'change', () => { StAllCalc(); notifyChanged(); });
 wire('OBJID_SELECT_JOB',        'change', e => OnChangeJob(e.target.value));
 
 const statusIds = [
@@ -76,29 +76,32 @@ const statusIds = [
 statusIds.forEach(id => wire(id, 'change', OnChangeStatus));
 
 // スピードポーション・武器タイプ
-wire('OBJID_SPEED_POT',       'change', () => { StAllCalc(); AutoCalc(); });
-wire('OBJID_ARMS_TYPE_RIGHT', 'change', e => { OnChangeArmsTypeRight(e.target.value); StAllCalc(); AutoCalc(); });
+wire('OBJID_SPEED_POT',       'change', () => { StAllCalc(); notifyChanged(); });
+wire('OBJID_ARMS_TYPE_RIGHT', 'change', e => { OnChangeArmsTypeRight(e.target.value); StAllCalc(); notifyChanged(); });
 
-// 精錬 (refine): OnChangeRefined + AutoCalc
+// 精錬 (refine): OnChangeRefined + 再計算通知
 const refineIds = [
     'OBJID_ARMS_RIGHT_REFINE', 'OBJID_ARMS_LEFT_REFINE',
     'OBJID_HEAD_TOP_REFINE', 'OBJID_SHIELD_REFINE',
     'OBJID_BODY_REFINE', 'OBJID_SHOULDER_REFINE', 'OBJID_SHOES_REFINE',
 ];
-refineIds.forEach(id => wire(id, 'change', () => { OnChangeRefined(); AutoCalc(); }));
+refineIds.forEach(id => wire(id, 'change', () => { OnChangeRefined(); notifyChanged(); }));
 
-// 超越 (transcendence): StAllCalc + AutoCalc
+// 超越 (transcendence): StAllCalc + 再計算通知
 const transcendenceIds = [
     'OBJID_ARMS_RIGHT_TRANSCENDENCE', 'OBJID_ARMS_LEFT_TRANSCENDENCE',
     'OBJID_HEAD_TOP_TRANSCENDENCE', 'OBJID_SHIELD_TRANSCENDENCE',
     'OBJID_BODY_TRANSCENDENCE', 'OBJID_SHOULDER_TRANSCENDENCE', 'OBJID_SHOES_TRANSCENDENCE',
 ];
-transcendenceIds.forEach(id => wire(id, 'change', () => { StAllCalc(); AutoCalc(); }));
+transcendenceIds.forEach(id => wire(id, 'change', () => { StAllCalc(); notifyChanged(); }));
 
 // 武器属性付与
-wire('OBJID_SELECT_ARMS_ELEMENT', 'change', AutoCalc);
+// ⚠️ notifyChanged をハンドラとして直接渡すと Event オブジェクトが kind 引数に渡ってしまい
+// （常に truthy = 既知kind扱いになり、旧 AutoCalc(event) が「未知の callFrom」として
+// flag=3 のときのみ再計算していた挙動と食い違う）、無名関数でラップして kind を渡さない。
+wire('OBJID_SELECT_ARMS_ELEMENT', 'change', () => notifyChanged());
 
-// 装備選択: OnChangeEquip + AutoCalc
+// 装備選択: OnChangeEquip + 再計算通知
 const equipWithAutoCalc = [
     ['OBJID_ARMS_RIGHT',   EQUIP_REGION_ID_ARMS],
     ['OBJID_ARMS_LEFT',    EQUIP_REGION_ID_ARMS_LEFT],
@@ -113,7 +116,7 @@ const equipWithAutoCalc = [
     ['OBJID_ACCESSORY_2',  EQUIP_REGION_ID_ACCESSORY_2],
 ];
 equipWithAutoCalc.forEach(([id, regionId]) => {
-    wire(id, 'change', e => { OnChangeEquip(regionId, parseInt(e.target.value)); AutoCalc(); });
+    wire(id, 'change', e => { OnChangeEquip(regionId, parseInt(e.target.value)); notifyChanged(); });
 });
 
 // シャドウ装備選択: OnChangeEquip のみ

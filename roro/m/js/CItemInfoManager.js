@@ -7,7 +7,6 @@ import { g_constDataManager, g_timeItemConf } from '../../../ro4/m/js/global.js'
 import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
 import { CardObjNew } from './card.dat.js';
 import { COSTUME_ID_HEAD_UNDER_NONE, CostumeOBJ } from './costume.dat.js';
-import { GetFlagAppendedCardName, GetFlagAppendedItemName } from './equip.js';
 import {
          ITEM_ID_NOEQUIP_ACCESSORY, ITEM_ID_NOEQUIP_BODY, ITEM_ID_NOEQUIP_HEAD_MID,
          ITEM_ID_NOEQUIP_HEAD_TOP, ITEM_ID_NOEQUIP_HEAD_UNDER, ITEM_ID_NOEQUIP_SET,
@@ -21,6 +20,9 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateE
 import './timeitem.h.js';
 import { ITEM_SP_TIME_OBJ } from './timeitem.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: equip.js との循環 import 回避のため equip-name.js から直接参照
+import { GetFlagAppendedCardName, GetFlagAppendedItemName } from './equip-name.js';
+
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          n_A_costume, g_itemIdArray,

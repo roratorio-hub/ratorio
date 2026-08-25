@@ -17,7 +17,7 @@ import {
     g_confDataDebuff, g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
     g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus
 } from '../../../ro4/m/js/global.js';
-import { DisplayStatusBonusAll, StoreSpecStatusBonusAll } from '../../../ro4/m/js/hmjob.js';
+import { DisplayStatusBonusAll, StoreSpecStatusBonusAll, StoreBasicStatusBonusAll } from '../../../ro4/m/js/hmjob.js';
 import { n_A_BaseLV, n_tok } from '../../../ro4/m/js/ro4-state.js';
 import { CCharaConfCustomSpecStatus } from './CCharaConfCustomSpecStatus.js';
 import { CCharaConfCustomStatus } from './CCharaConfCustomStatus.js';
@@ -2762,6 +2762,10 @@ export function StPlusCalc() {
 
 	// 特性ステータス補正の保持
 	var spc4thArray = StoreSpecStatusBonusAll(wSPC_POW, wSPC_STA, wSPC_WIS, wSPC_SPL, wSPC_CON, wSPC_CRT);
+
+	// classic 6ステータス補正の保持（リファクタリング計画 Phase 12: saveimage.js 等がDOM経由で
+	// しか取得できなかった値。DisplayStatusBonusAll に渡す値と同一のものをここで保存する）
+	StoreBasicStatusBonusAll(wSPC_STR, wSPC_AGI, wSPC_VIT, wSPC_INT, wSPC_DEX, wSPC_LUK);
 
 	// ステータス補正の画面出力
 	DisplayStatusBonusAll(

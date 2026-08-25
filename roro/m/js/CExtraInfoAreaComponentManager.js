@@ -1,11 +1,8 @@
-import { n_A_Equip } from './roro-state.js';
 import { CInstanceManager } from './CInstanceManager.js';
 // === AUTO-GENERATED IMPORTS ===
 import {
-         GetBaseExpTable,
          GetBaseLevelMax,
          GetJobBonus,
-         GetJobExpTable,
          GetJobLevelMax,
          GetStatusMax,
          IsSameJobClass
@@ -26,10 +23,9 @@ import {
          CAST_PARAM_BORDER, HEALTYPE_COLUCEO_HEAL, HEALTYPE_DILECTIO_HEAL,
          HEALTYPE_EBI_ZANMAI, HEALTYPE_HEAL, HEALTYPE_HIGHNESS, HEALTYPE_SANCTUARY,
          HEALTYPE_SHINSENNA_EBI, HEALTYPE_SHUGO_FU, HEALTYPE_TURTLE_SPRINKLER,
-         HEALTYPE_ZYOKODO, HEAL_TARGETTYPE_PLAYER, HEAL_TARGETTYPE_SELF, HealCalc
+         HEALTYPE_ZYOKODO, HEAL_TARGETTYPE_PLAYER, HEAL_TARGETTYPE_SELF
 } from '../../../ro4/m/js/head.js';
 import { GetElementText, GetParamText, GetRaceText, GetSizeText, GetStateText } from './common.js';
-import { zokusei } from './etc.js';
 import { GetRndOptTotalValue } from './hmrndopt.js';
 import {
          ITEM_ID_AZI_DAHAKANO_KAWA, ITEM_ID_BOTONO_SCARF, ITEM_ID_EUROPA_ROBE,
@@ -47,18 +43,17 @@ import { MIG_JOB_ID_SOUL_ASCETIC, MIG_JOB_ID_SPIRIT_HANDLER } from '../../../ro4
 import {
          SKILL_ID_ANTIDOTE, SKILL_ID_BENEDICTUM, SKILL_ID_COLUCEO_HEAL,
          SKILL_ID_CONCENTRATION, SKILL_ID_DEMONIC_FIRE, SKILL_ID_DILECTIO_HEAL,
-         SKILL_ID_DRAGON_TRAINING, SKILL_ID_EBI_ZANMAI, SKILL_ID_GRAND_CROSS,
+         SKILL_ID_EBI_ZANMAI, SKILL_ID_GRAND_CROSS,
          SKILL_ID_GRAPHITY, SKILL_ID_GRENADE_MASTERY, SKILL_ID_HEAL,
          SKILL_ID_HELL_INFERNO, SKILL_ID_HIGHNESS_HEAL, SKILL_ID_HP_KAIFUKURYOKU_KOZYO,
-         SKILL_ID_IBUKI, SKILL_ID_JUDEX, SKILL_ID_KIHE_SHUREN, SKILL_ID_MAGMA_ILLUPTION,
-         SKILL_ID_MEDITATIO, SKILL_ID_METALIC_SOUND, SKILL_ID_PSYCHIC_WAVE,
+         SKILL_ID_IBUKI, SKILL_ID_JUDEX, SKILL_ID_MAGMA_ILLUPTION,
+         SKILL_ID_METALIC_SOUND, SKILL_ID_PSYCHIC_WAVE,
          SKILL_ID_REIDOZYUTSU_SHUREN, SKILL_ID_REMOVE_TRAP, SKILL_ID_RERIGIO,
          SKILL_ID_SANCTUARY, SKILL_ID_SHINSENNA_EBI, SKILL_ID_SHOZIGENKAIRYO_ZOKA,
          SKILL_ID_SHOZIGENKAIRYO_ZOKA_R, SKILL_ID_SHUGO_FU,
          SKILL_ID_SP_KAIFUKURYOKU_KOZYO, SKILL_ID_TEIOAPUCHAGI, SKILL_ID_ZANEI,
          SKILL_ID_ZYOKODO,
          SKILL_ID_TURTLE_SPRINKLER,
-         SKILL_ID_MADOGEAR,
 } from './skill.dat.js';
 import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from './CExtraInfoDataBridge.js';
@@ -87,11 +82,8 @@ import {
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
-// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
-let resistValueArray = [];
-let resistValueArrayOver = 0;
-let bodyElmRatioArray = 0;
-let finalRatioArray = 0;
+// リファクタリング計画 Phase 12: DOM非依存の純粋な計算部分は CExtraInfoAreaComponentManagerCalc.js へ抽出した
+import { CalcHealing, CalcRecovery, CalcCapacity, CalcResistElement, CalcResistState, CalcResistStateR, CalcExp } from './CExtraInfoAreaComponentManagerCalc.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
@@ -102,16 +94,14 @@ import {
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
          SU_STR, SU_AGI, SU_VIT, SU_DEX,
-         SU_INT, SU_LUK, n_A_JobLV, n_A_AGI,
-         n_A_VIT, n_A_DEX, n_A_INT, n_A_LUK,
-         n_A_STA, n_A_WIS, n_A_SPL, n_A_CRT,
-         n_A_BodyZokusei,
+         SU_INT, SU_LUK, n_A_JobLV,
+         n_A_DEX, n_A_INT, n_A_LUK,
 } from './roro-state.js';
-import { ELM_ID_COUNT, ELM_ID_UNDEAD } from './const/EnumElmId.js';
+import { ELM_ID_COUNT } from './const/EnumElmId.js';
 import { PARAM_AGI, PARAM_DEX, PARAM_INT, PARAM_LUK, PARAM_STR, PARAM_VIT } from './const/EnumParamId.js';
 import { RACE_ID_COUNT, RACE_ID_HUMAN } from './const/EnumRaceId.js';
 import { CARD_DATA_INDEX_NAME } from './const/EnumCardDataIndex.js';
-import { CHARA_DATA_INDEX_CAST_PARAM, CHARA_DATA_INDEX_COMBO_PARAM, CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP, CHARA_DATA_INDEX_MDEF_DIV_IGNORE_BUFF } from './const/EnumCharaDataIndex.js';
+import { CHARA_DATA_INDEX_CAST_PARAM, CHARA_DATA_INDEX_COMBO_PARAM } from './const/EnumCharaDataIndex.js';
 import { CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
 import { EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_ALL, EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_BASIC, EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_EXTRA, EXTRA_INFO_EFFECTIVE_SP_KIND_STATUS_SPECIAL } from './const/EnumExtraInfoEffectiveSpKind.js';
 import {
@@ -120,7 +110,7 @@ import {
     EXTRA_INFO_ID_RESIST_ELEMENT, EXTRA_INFO_ID_RESIST_STATE, EXTRA_INFO_ID_RESIST_STATE_R_NEW, EXTRA_INFO_ID_STATUS_SUM,
 } from './const/EnumExtraInfoIndex.js';
 import { EXTRA_INFO_STATUS_SUM_KIND_ALL_ITEM_AND_CARD, EXTRA_INFO_STATUS_SUM_KIND_MAZYONO_SKILL_CARD } from './const/EnumExtraInfoStatusSumKind.js';
-import { ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_WEIGHT } from './const/EnumItemDataIndex.js';
+import { ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_NAME } from './const/EnumItemDataIndex.js';
 import {
     ITEM_SP_AGI_PLUS, ITEM_SP_AGI_PLUS_PLANE, ITEM_SP_ALL_SPECS_PLUS, ITEM_SP_ASPD_PLUS, ITEM_SP_ASPD_UP, ITEM_SP_ATK_PLUS,
     ITEM_SP_CON_PLUS, ITEM_SP_COST_DOWN, ITEM_SP_CRITICAL_DAMAGE_UP, ITEM_SP_CRT_PLUS, ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL, ITEM_SP_DEF_PLUS,
@@ -132,23 +122,18 @@ import {
     ITEM_SP_MAXSP_PLUS, ITEM_SP_MAXSP_UP, ITEM_SP_MDEF_PLUS, ITEM_SP_MDEF_UP, ITEM_SP_NEVER_CAST_CANCEL, ITEM_SP_NEVER_KNOCK_BACK,
     ITEM_SP_NONE, ITEM_SP_PERFECT_ATTACK_UP, ITEM_SP_PHYSICAL_DAMAGE_UP, ITEM_SP_PHYSICAL_DAMAGE_UP_BOSS, ITEM_SP_PHYSICAL_DAMAGE_UP_MONSTER_ELM_VANITY, ITEM_SP_PHYSICAL_DAMAGE_UP_NOTBOSS,
     ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_ALL, ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_DORAM, ITEM_SP_PHYSICAL_DAMAGE_UP_PLAYER_HUMAN, ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN, ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_HUMAN_NOT_PLAYER, ITEM_SP_PHYSICAL_DAMAGE_UP_RACE_SOLID,
-    ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL, ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL, ITEM_SP_POW_PLUS, ITEM_SP_RESIST_BOSS, ITEM_SP_RESIST_ELM_VANITY, ITEM_SP_RESIST_LONGRANGE,
+    ITEM_SP_PHYSICAL_DAMAGE_UP_SIZE_SMALL, ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL, ITEM_SP_POW_PLUS, ITEM_SP_RESIST_BOSS, ITEM_SP_RESIST_LONGRANGE,
     ITEM_SP_RESIST_MONSTER_ELM_VANITY, ITEM_SP_RESIST_NOTBOSS, ITEM_SP_RESIST_PLAYER_ALL, ITEM_SP_RESIST_PLAYER_DORAM, ITEM_SP_RESIST_PLAYER_HUMAN, ITEM_SP_RESIST_RACE_HUMAN,
-    ITEM_SP_RESIST_RACE_HUMAN_NOT_PLAYER, ITEM_SP_RESIST_RACE_SOLID, ITEM_SP_RESIST_SIZE_SMALL, ITEM_SP_RESIST_STATE_POISON, ITEM_SP_RESIST_STATE_R_CHILLED, ITEM_SP_SHORTRANGE_DAMAGE_UP,
+    ITEM_SP_RESIST_RACE_HUMAN_NOT_PLAYER, ITEM_SP_RESIST_RACE_SOLID, ITEM_SP_RESIST_SIZE_SMALL, ITEM_SP_SHORTRANGE_DAMAGE_UP,
     ITEM_SP_SKILL_DELAY_DOWN, ITEM_SP_SKILL_FIXED_MINUS, ITEM_SP_SPL_PLUS, ITEM_SP_STA_PLUS, ITEM_SP_STR_PLUS, ITEM_SP_VIT_PLUS,
     ITEM_SP_WEAPON_ATK_UP, ITEM_SP_WIS_PLUS,
 } from './const/EnumItemSpId.js';
 import { JOB_ID_ARCBISHOP, JOB_ID_CARDINAL, JOB_ID_SHADOWCHASER, JOB_ID_SUMMONER } from './const/EnumJobId.js';
-import { EQUIP_REGION_ID_COUNT } from './const/EnumMigItemParamId.js';
 import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_JOB_EXP, MONSTER_DATA_INDEX_LEVEL, MONSTER_DATA_INDEX_NAME } from './const/EnumMonsterDataIndex.js';
 import { SIZE_ID_COUNT } from './const/EnumSizeId.js';
 import { SKILL_DATA_INDEX_NAME } from './const/EnumSkillDataIndex.js';
 import {
-    STATE_ID_BLEEDING, STATE_ID_BLIND, STATE_ID_CONFUSE, STATE_ID_COUNT, STATE_ID_CURSED, STATE_ID_FROZEN,
-    STATE_ID_POISON, STATE_ID_SILENCE, STATE_ID_SLEEP, STATE_ID_STONE, STATE_ID_STUN, STATE_NEW_ID_CONFLAGRATION,
-    STATE_NEW_ID_CRYSTALLIZATION, STATE_NEW_ID_HIGHLYPOISONOUS, STATE_NEW_ID_JETBLACK, STATE_NEW_ID_LETHARGY, STATE_NEW_ID_MELANCHOLY, STATE_NEW_ID_RAPIDCOOLING,
-    STATE_NEW_ID_STILLNESS, STATE_NEW_ID_TORRENT, STATE_NEW_ID_UNHAPPINESS, STATE_R_ID_CHARMED, STATE_R_ID_CHILLED, STATE_R_ID_DEEPSLEEP,
-    STATE_R_ID_FEAR, STATE_R_ID_FRENZY, STATE_R_ID_HOWLING, STATE_R_ID_ICED, STATE_R_ID_IGNITION,
+    STATE_ID_STONE, STATE_NEW_ID_UNHAPPINESS, STATE_R_ID_CHILLED,
 } from './const/EnumStateId.js';
 
 //----------------------------------------------------------------
@@ -807,51 +792,10 @@ export function CExtraInfoAreaComponentManager () {
 		//--------------------------------
 		// 回復量計算
 		//--------------------------------
-		if (healType == HEALTYPE_SANCTUARY) {
-			// サンクチュアリの場合
-			lvMax = 10;
-			// 未整理
-			for (i = 0; i<= 6; i++) {
-				valueMinArray[i] = 100 * i;
-			}
-			valueMinArray[7] = valueMinArray[8] = valueMinArray[9] = valueMinArray[10] = 777;
-			var w_BAI = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
-			const meditatio_lv = Math.max(LearnedSkillSearch(SKILL_ID_MEDITATIO), UsedSkillSearch(SKILL_ID_MEDITATIO));
-			if (meditatio_lv > 0) {
-				w_BAI -= meditatio_lv * 2;
-			}
-			for (i = 0; i <= 10; i++) {
-				valueMinArray[i] = Math.floor(valueMinArray[i] * w_BAI / 100);
-				if(healTarget == 0) {
-					valueMinArray[i] = Math.floor(valueMinArray[i] * (100 + n_tok[ITEM_SP_HEAL_UP_USED]) / 100);
-				}
-				valueMaxArray[i] = valueMinArray[i];
-			}
-		} else {
-			// 最大レベルを取得
-			switch (healType) {
-				case HEALTYPE_HEAL:
-				case HEALTYPE_COLUCEO_HEAL:
-					lvMax = 10;
-					break;
-				case HEALTYPE_DILECTIO_HEAL:
-				case HEALTYPE_HIGHNESS:
-				case HEALTYPE_SHINSENNA_EBI:
-				case HEALTYPE_EBI_ZANMAI:
-				case HEALTYPE_SHUGO_FU:
-				case HEALTYPE_ZYOKODO:
-					lvMax = 5;
-					break;
-				case HEALTYPE_TURTLE_SPRINKLER:
-					lvMax = 7;
-					break;
-			}
-			for (lv = 0; lv <= lvMax; lv++) {
-				// HealCalc()関数は ro4/m/js/head.js で定義されています
-				valueMinArray[lv] = HealCalc(lv, healType, 0, healTarget, ptmCount);
-				valueMaxArray[lv] = HealCalc(lv, healType, 2, healTarget, ptmCount);
-			}
-		}
+		var healingCalc = CalcHealing(healType, healTarget, ptmCount);
+		lvMax = healingCalc.lvMax;
+		valueMinArray = healingCalc.valueMinArray;
+		valueMaxArray = healingCalc.valueMaxArray;
 
 		//--------------------------------
 		// HTML組み立て
@@ -1067,53 +1011,15 @@ export function CExtraInfoAreaComponentManager () {
 
 
 		//--------------------------------
-		// HP回復量計算
+		// HP/SP回復量計算
 		//--------------------------------
 
-		valueTextArrayHP = [];
-
-		// HP回復力向上
-		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_HPR_UP_LV_" + this.managerInstanceId, 0);
-		if (lv > 0) {
-			typeText = "HP回復力向上";
-			value = Math.floor((5 + CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_MAXHP] / 500) * lv);
-			valueText = value + "/" + "10秒";
-			valueTextArrayHP.push([typeText, valueText]);
-		}
-
-		// 息吹
-		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_IBUKI_LV_" + this.managerInstanceId, 0);
-		if (lv > 0) {
-			typeText = "息吹";
-			value = Math.floor((4 + CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_MAXHP] / 500) * lv);
-			valueText = value + "/" + "10秒";
-			valueTextArrayHP.push([typeText, valueText]);
-		}
-
-
-		//--------------------------------
-		// SP回復量計算
-		//--------------------------------
-
-		valueTextArraySP = [];
-
-		// SP回復力向上
-		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_SPR_UP_LV_" + this.managerInstanceId, 0);
-		if (lv > 0) {
-			typeText = "SP回復力向上";
-			value = Math.floor((3 + CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_MAXSP] / 500) * lv);
-			valueText = value + "/" + "10秒";
-			valueTextArraySP.push([typeText, valueText]);
-		}
-
-		// 息吹
-		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_IBUKI_LV_" + this.managerInstanceId, 0);
-		if (lv > 0) {
-			typeText = "息吹";
-			value = Math.floor((2 + CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_MAXSP] / 500) * lv);
-			valueText = value + "/" + "10秒";
-			valueTextArraySP.push([typeText, valueText]);
-		}
+		var hprUpLv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_HPR_UP_LV_" + this.managerInstanceId, 0);
+		var ibukiLv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_IBUKI_LV_" + this.managerInstanceId, 0);
+		var sprUpLv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_SPR_UP_LV_" + this.managerInstanceId, 0);
+		var recoveryCalc = CalcRecovery(hprUpLv, ibukiLv, sprUpLv, CExtraInfoAreaComponentManager.charaData);
+		valueTextArrayHP = recoveryCalc.valueTextArrayHP;
+		valueTextArraySP = recoveryCalc.valueTextArraySP;
 
 
 		//--------------------------------
@@ -1281,44 +1187,13 @@ export function CExtraInfoAreaComponentManager () {
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId);
 		this.StoreSelectedValue("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId);
 		//--------------------------------
-		// 所持限界量計算
+		// 所持限界量計算・装備品重量合計計算
 		//--------------------------------
-		value = 2000;
-		// 職業によるボーナス
-		var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB);
-		value += jobData.GetWeightBonus();
-		// 素ＳＴＲによるボーナス
-		value += 30 * SU_STR;
-
-		if (UsedSkillSearch(SKILL_ID_KIHE_SHUREN) > 0) {
-			// ペコ・グリフォンに搭乗時
-			value += 1000;
-		} else if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) > 0) {
-			// ドラゴンに搭乗時
-			// ドラゴントレーニング習得Lv補正. UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
-			const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
-			if (dragon_training_lv > 0) {
-				value += 500 + 200 * dragon_training_lv;
-			}
-		}
-		if (UsedSkillSearch(SKILL_ID_MADOGEAR) > 0) {
-			// 魔導ギアに搭乗中
-			value += 1500;
-		}
-
-		// 所持限界量増加
-		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId, 0);
-		value += 200 * lv;
-		// 所持限界量増加Ｒ
-		lv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId, 0);
-		value += 200 * lv;
-		//--------------------------------
-		// 装備品重量合計計算
-		//--------------------------------
-		weightEquiped = 0;
-		for (idx = 0; idx < EQUIP_REGION_ID_COUNT; idx++) {
-			weightEquiped += ItemObjNew[n_A_Equip[idx]][ITEM_DATA_INDEX_WEIGHT];
-		}
+		var capacityUpLv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_LV_" + this.managerInstanceId, 0);
+		var capacityUpRLv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_CAPACITY_UP_R_LV_" + this.managerInstanceId, 0);
+		var capacityCalc = CalcCapacity(capacityUpLv, capacityUpRLv);
+		value = capacityCalc.value;
+		weightEquiped = capacityCalc.weightEquiped;
 		//--------------------------------
 		// HTML組み立て
 		//--------------------------------
@@ -1409,18 +1284,11 @@ export function CExtraInfoAreaComponentManager () {
 		// 属性倍率計算
 		//--------------------------------
 
-		resistValueArray = [];
-		resistValueArrayOver = [];
-		bodyElmRatioArray = [];
-		finalRatioArray = [];
-
-		// 装備効果等による耐性
-		for (idx = 0; idx < ELM_ID_COUNT; idx++) {
-			resistValueArray[idx] = n_tok[ITEM_SP_RESIST_ELM_VANITY + idx];
-			resistValueArrayOver[idx] = Math.max(0, n_tok_no_limit[ITEM_SP_RESIST_ELM_VANITY + idx] - n_tok[ITEM_SP_RESIST_ELM_VANITY + idx]);
-			bodyElmRatioArray[idx] = zokusei[n_A_BodyZokusei * 10 + 1][idx] + 100;
-			finalRatioArray[idx] = bodyElmRatioArray[idx] - Math.floor(resistValueArray[idx] * bodyElmRatioArray[idx]) / 100;
-		}
+		var resistElementCalc = CalcResistElement();
+		resistValueArray = resistElementCalc.resistValueArray;
+		resistValueArrayOver = resistElementCalc.resistValueArrayOver;
+		bodyElmRatioArray = resistElementCalc.bodyElmRatioArray;
+		finalRatioArray = resistElementCalc.finalRatioArray;
 
 
 		//--------------------------------
@@ -2568,50 +2436,9 @@ export function CExtraInfoAreaComponentManager () {
 		// 状態異常耐性計算
 		//--------------------------------
 
-		equipValueArray = [];
-		paramValueArray = [];
-
-		// 装備効果等による耐性
-		for (idx = 0; idx <= STATE_ID_STONE; idx++) {
-			equipValueArray[idx] = n_tok[ITEM_SP_RESIST_STATE_POISON + idx];
-
-			switch (idx) {
-				case STATE_ID_SLEEP:
-				case STATE_ID_BLEEDING:
-					paramValueArray[idx] = n_A_AGI;
-					break;
-				case STATE_ID_POISON:
-				case STATE_ID_STUN:
-					paramValueArray[idx] = n_A_VIT;
-					break;
-				case STATE_ID_BLIND:
-				case STATE_ID_SILENCE:
-					paramValueArray[idx] = n_A_INT;
-					break;
-				case STATE_ID_CURSED:
-				case STATE_ID_CONFUSE:
-					paramValueArray[idx] = n_A_LUK;
-					break;
-				case STATE_ID_FROZEN:
-				case STATE_ID_STONE:
-					paramValueArray[idx] = CExtraInfoAreaComponentManager.charaData[CHARA_DATA_INDEX_MDEF_DIV_IGNORE_BUFF];
-					break;
-				default:
-					paramValueArray[idx] = 0;
-					break;
-			}
-		}
-
-		// 不死属性付与による、凍結、石化耐性
-		if (n_A_BodyZokusei == ELM_ID_UNDEAD) {
-			equipValueArray[STATE_ID_FROZEN] = 100;
-			equipValueArray[STATE_ID_STONE] = 100;
-		}
-
-		// LUK0 による呪い完全耐性
-		if(n_A_LUK == 0) {
-			paramValueArray[STATE_ID_CURSED] = 100;
-		}
+		var resistStateCalc = CalcResistState(CExtraInfoAreaComponentManager.charaData);
+		equipValueArray = resistStateCalc.equipValueArray;
+		paramValueArray = resistStateCalc.paramValueArray;
 
 
 		//--------------------------------
@@ -2762,149 +2589,10 @@ export function CExtraInfoAreaComponentManager () {
 		// 状態異常耐性計算
 		//--------------------------------
 
-		equipValueArray = [];
-		paramValueArray = [];
-		paramTimeArray = [];
-
-		// 装備効果等による耐性 Rの新状態異常、新状態異常に対応
-		for (idx = STATE_R_ID_CHILLED; idx < STATE_ID_COUNT; idx++) {
-
-			equipValueArray[idx] = n_tok[ITEM_SP_RESIST_STATE_R_CHILLED + (idx-STATE_R_ID_CHILLED)];
-
-			switch (idx) {
-
-			case STATE_R_ID_CHILLED: // 冷凍
-				// ステ耐性 なし
-				paramValueArray[idx] = 0;
-				//効果の持続時間(最大２０秒)
-				paramTimeArray[idx] = 20 - n_A_VIT / 10;
-				break;
-
-			case STATE_R_ID_IGNITION: // 発火
-				// ステ耐性 BaseLv / 600 + Agi / 500
-				paramValueArray[idx] = n_A_BaseLV / 600 + n_A_AGI / 500;
-				//効果の持続時間(最小１０秒)
-				paramTimeArray[idx] = 22 - (0.04 * (n_A_BaseLV - 1)) - (0.04 * (n_A_AGI - 1));
-				paramTimeArray[idx] = (paramTimeArray[idx] >= 10.0) ? paramTimeArray[idx] : 10.0;
-				break;
-
-			case STATE_R_ID_ICED: // 氷結
-				// ステ耐性 なし
-				paramValueArray[idx] = 0;
-				//効果の持続時間(最小３４秒)
-				paramTimeArray[idx] = 40 - (0.0479 * (n_A_VIT - 1));
-				paramTimeArray[idx] = (paramTimeArray[idx] >= 34.0) ? paramTimeArray[idx] : 34.0;
-				break;
-
-			case STATE_R_ID_FEAR: // 恐怖
-				// ステ耐性 BaseLv / 5 + Int / 5
-				paramValueArray[idx] = n_A_BaseLV / 5 + n_A_INT / 5;
-				// 持続時間 ドラゴンハウリング (22 sec) を想定
-				paramTimeArray[idx] = 22 - (0.0365 * (n_A_BaseLV - 1)) - (0.0365 * (n_A_INT - 1));
-				break;
-
-			case STATE_R_ID_DEEPSLEEP: // 深い眠り
-				// ステ耐性
-				paramValueArray[idx] = n_A_INT / 6 + n_A_LUK / 10;
-				//効果の持続時間()
-				paramTimeArray[idx] = 16 - (0.049 * (n_A_BaseLV - 1)) - (0.0255 * (n_A_INT - 1));
-				paramTimeArray[idx] = (paramTimeArray[idx] >= 1.77) ? paramTimeArray[idx] : 1.77;
-				break;
-			
-			case STATE_R_ID_CHARMED: // 魅了
-				// ステ耐性 不明
-				paramValueArray[idx] = 0;
-				// 持続時間 セイレーンの声Lv5 (27 sec) を想定
-				paramTimeArray[idx] = 27; // BaseLv と JobLv で時間短縮
-				break;
-			
-			case STATE_R_ID_FRENZY:	// 狂乱
-				// ステ耐性 不明
-				paramValueArray[idx] = 0;
-				// 持続時間 フライデーナイトフィーバーLv5 (30 sec) を想定
-				paramTimeArray[idx] = 30;	// 時間短縮ステータス不明
-				break;
-			
-			case STATE_R_ID_HOWLING: // 精神衝撃
-				paramValueArray[idx] = (n_A_VIT + n_A_LUK) / 5;
-				// 持続時間 HoM Lv5 (30 sec) を想定
-				paramTimeArray[idx] = 30;	// 時間短縮ステータスなし
-				break;
-			
-			case STATE_NEW_ID_LETHARGY://無気力
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのPOWにより減少する
-				paramTimeArray[idx] = 0;
-				break;
-
-			case STATE_NEW_ID_JETBLACK://漆黒
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのSTAにより減少する
-				paramTimeArray[idx] = 0;
-				break;
-
-				case STATE_NEW_ID_HIGHLYPOISONOUS://強毒
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのSTAにより2秒まで減少する
-				paramTimeArray[idx] = Math.max(2, 9 - Math.floor(n_A_STA / 10));
-				break;
-
-			case STATE_NEW_ID_TORRENT://激流
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのWISにより2秒まで減少する
-				paramTimeArray[idx] = Math.max(2, 9 - Math.floor(n_A_WIS / 10));
-				break;
-
-			case STATE_NEW_ID_MELANCHOLY://憂鬱
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのWISにより減少する
-				paramTimeArray[idx] = 0;
-				break;
-
-			case STATE_NEW_ID_STILLNESS://静寂
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのSPLにより減少する
-				paramTimeArray[idx] = 0;
-				break;
-
-			case STATE_NEW_ID_CONFLAGRATION://火災
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのSPLにより2秒まで減少する
-				paramTimeArray[idx] = Math.max(2, 9 - Math.floor(n_A_SPL / 10));
-				break;
-
-			case STATE_NEW_ID_RAPIDCOOLING://急冷
-			case STATE_NEW_ID_CRYSTALLIZATION://結晶化
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのCRTにより3秒まで減少する
-				paramTimeArray[idx] = Math.max(3, 10 - Math.floor(n_A_CRT / 10));
-				break;
-
-			case STATE_NEW_ID_UNHAPPINESS://不幸
-				// 耐性は術者とターゲットのBaseLv差による
-				paramValueArray[idx] = 0;
-				// 持続時間はターゲットのCRTにより減少する
-				paramTimeArray[idx] = 0;
-				break;
-			
-			default:
-				paramValueArray[idx] = 0;
-				break;
-			}
-			if (equipValueArray[idx] >= 100) {
-				paramTimeArray[idx] = 0;//装備耐性１００％の場合、持続時間０秒にする
-			}
-			paramValueArray[idx] = Math.floor(paramValueArray[idx]);
-			paramTimeArray[idx] = Math.floor(paramTimeArray[idx] * 100) / 100;//小数点以下２桁まで残し切り捨て
-		}
+		var resistStateRCalc = CalcResistStateR();
+		equipValueArray = resistStateRCalc.equipValueArray;
+		paramValueArray = resistStateRCalc.paramValueArray;
+		paramTimeArray = resistStateRCalc.paramTimeArray;
 
 
 		//--------------------------------
@@ -3552,148 +3240,26 @@ export function CExtraInfoAreaComponentManager () {
 
 
 		//--------------------------------
-		// ベース経験値計算
+		// ベース経験値計算・ジョブ経験値計算
 		//--------------------------------
 
-		lvFocusBase = 0;
-		expToNextBase = 0;
-		expToFocusedBase = 0;
-		mobCountToNextBase = 0;
-		mobCountToFocusedBase = 0;
-
-		lvMax = GetBaseLevelMax(n_A_JOB);
-		var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB);
-
-		if(n_A_BaseLV < lvMax) {
-
-			// 参照先切り替え
-			wkRefExpTable = GetBaseExpTable(jobData.GetBaseExpTableId());
-
-			wkMobExp = CExtraInfoAreaComponentManager.mobData[MONSTER_DATA_INDEX_BASE_EXP];
-
-			// 経験値情報を取得
-			expNow = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_BASE_EXP_GAUGE_" + this.managerInstanceId, 0);
-			expNow = Math.floor(wkRefExpTable[n_A_BaseLV] * expNow / 1000);
-
-			expToNextBase = wkRefExpTable[n_A_BaseLV] - expNow;
-
-			// 目標レベルを取得
-			lvFocusBase = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_BASE_LV_FOCUS_" + this.managerInstanceId, lvMax);
-
-			// 必要討伐数を算出
-			wkExpNow = expNow;
-
-			if ((n_A_BaseLV > 1) && (wkMobExp == 0)) {
-				mobCountToNextBase = -1;
-				mobCountToFocusedBase = -1;
-			}
-			else {
-				mobCountToFocusedBase = 0;
-
-				for (idx = n_A_BaseLV; idx < lvFocusBase; idx++) {
-
-					// 次のレベルまでに必要な経験値を取得
-					wkExpLvUp = wkRefExpTable[idx];
-
-					// 累積必要経験値に加算
-					expToFocusedBase += wkExpLvUp;
-
-					// 次のレベルまでに必要な討伐数を計算
-					wkMobCount = Math.ceil((wkExpLvUp - wkExpNow) / wkMobExp);
-
-					// 現在のレベルから次のレベルまでの討伐数は別途保持する
-					if (idx == n_A_BaseLV) {
-						mobCountToNextBase = wkMobCount;
-					}
-
-					// 累計討伐数に加算
-					mobCountToFocusedBase += wkMobCount;
-
-					// 累積経験値を加算
-					wkExpNow += wkMobExp * wkMobCount;
-
-					// レベルアップ分の経験値を減算
-					wkExpNow -= wkExpLvUp;
-
-					// 一度に獲得できる経験値の上限補正
-					wkExpNow = Math.min(wkExpLvUp - 1, wkExpNow)
-				}
-
-				// 累積必要経験値から現在の経験値を減算
-				expToFocusedBase -= expNow;
-			}
-		}
-
-
-		//--------------------------------
-		// ジョブ経験値計算
-		//--------------------------------
-
-		lvFocusJob = 0;
-		expToNextJob = 0;
-		mobCountToNextJob = 0;
-		mobCountToFocusedJob = 0;
-
-		lvMax = GetJobLevelMax(n_A_JOB);
-
-		if(n_A_JobLV < lvMax) {
-
-			// 参照先切り替え
-			wkRefExpTable = GetJobExpTable(jobData.GetJobExpTableId());
-			wkMobExp = CExtraInfoAreaComponentManager.mobData[MONSTER_DATA_INDEX_JOB_EXP];
-
-			// 経験値情報を取得
-			expNow = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_JOB_EXP_GAUGE_" + this.managerInstanceId, 0);
-			expNow = Math.floor(wkRefExpTable[n_A_JobLV] * expNow / 1000);
-
-			expToNextJob = wkRefExpTable[n_A_JobLV] - expNow;
-
-			// 目標レベルを取得
-			lvFocusJob = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId, lvMax);
-
-			// 必要討伐数を算出
-			wkExpNow = expNow;
-
-			if ((n_A_JobLV > 1) && (wkMobExp == 0)) {
-				mobCountToNextJob = -1;
-				mobCountToFocusedJob = -1;
-			}
-			else {
-				mobCountToFocusedJob = 0;
-
-				for (idx = n_A_JobLV; idx < lvFocusJob; idx++) {
-
-					// 次のレベルまでに必要な経験値を取得
-					wkExpLvUp = wkRefExpTable[idx];
-
-					// 累積必要経験値に加算
-					expToFocusedJob += wkExpLvUp;
-
-					// 次のレベルまでに必要な討伐数を計算
-					wkMobCount = Math.ceil((wkExpLvUp - wkExpNow) / wkMobExp);
-
-					// 現在のレベルから次のレベルまでの討伐数は別途保持する
-					if (idx == n_A_JobLV) {
-						mobCountToNextJob = wkMobCount;
-					}
-
-					// 累計討伐数に加算
-					mobCountToFocusedJob += wkMobCount;
-
-					// 累積経験値を加算
-					wkExpNow += wkMobExp * wkMobCount;
-
-					// レベルアップ分の経験値を減算
-					wkExpNow -= wkExpLvUp;
-
-					// 一度に獲得できる経験値の上限補正
-					wkExpNow = Math.min(wkExpLvUp - 1, wkExpNow)
-				}
-
-				// 累積必要経験値から現在の経験値を減算
-				expToFocusedJob -= expNow;
-			}
-		}
+		var lvMaxBaseForFocus = GetBaseLevelMax(n_A_JOB);
+		var lvMaxJobForFocus = GetJobLevelMax(n_A_JOB);
+		var baseExpGaugeInput = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_BASE_EXP_GAUGE_" + this.managerInstanceId, 0);
+		var baseLvFocusInput = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_BASE_LV_FOCUS_" + this.managerInstanceId, lvMaxBaseForFocus);
+		var jobExpGaugeInput = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_JOB_EXP_GAUGE_" + this.managerInstanceId, 0);
+		var jobLvFocusInput = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_EXTRA_INFO_JOB_LV_FOCUS_" + this.managerInstanceId, lvMaxJobForFocus);
+		var expCalc = CalcExp(baseExpGaugeInput, baseLvFocusInput, jobExpGaugeInput, jobLvFocusInput, CExtraInfoAreaComponentManager.mobData);
+		lvFocusBase = expCalc.lvFocusBase;
+		expToNextBase = expCalc.expToNextBase;
+		expToFocusedBase = expCalc.expToFocusedBase;
+		mobCountToNextBase = expCalc.mobCountToNextBase;
+		mobCountToFocusedBase = expCalc.mobCountToFocusedBase;
+		lvFocusJob = expCalc.lvFocusJob;
+		expToNextJob = expCalc.expToNextJob;
+		expToFocusedJob = expCalc.expToFocusedJob;
+		mobCountToNextJob = expCalc.mobCountToNextJob;
+		mobCountToFocusedJob = expCalc.mobCountToFocusedJob;
 
 
 		//--------------------------------

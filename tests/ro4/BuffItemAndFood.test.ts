@@ -17,9 +17,8 @@ vi.hoisted(() => {
     };
     (document as any).getElementById = () => mockEl;
 });
+import { BUFF_CONF_FOOD_LIMIT } from '@ro4/skillstate.js';
 import {
-    BUFF_CONF_FOOD_LIMIT,
-    n_A_PassSkill7,
     n_Skill7SW,
     ID_BUFF_FOOD_CHAGASHI,
     ID_BUFF_FOOD_AGEGASHI,
@@ -112,10 +111,6 @@ describe('BuffItemAndFood.js', () => {
         });
     });
 
-    describe('window互換確認', () => {
-        it('window.n_A_PassSkill7 が設定されている', () => {
-            expect((window as any).n_A_PassSkill7).toBe(n_A_PassSkill7);
-        });
-
-    });
+    // 3e-3: skillstate.js の window compat 除去（window.n_A_PassSkill7 の state テストは削除）。
+    // n_A_PassSkill7 は skillstate.js の export let を import 参照する（動作は skillstate 側でカバー）
 });

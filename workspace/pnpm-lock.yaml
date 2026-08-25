@@ -33,8 +33,8 @@ importers:
         specifier: ^20.8.9
         version: 20.10.6
       js-yaml:
-        specifier: ^4.2.0
-        version: 4.3.0
+        specifier: ^4.3.1
+        version: 4.3.1
       ts-loader:
         specifier: ^9.5.4
         version: 9.6.2(typescript@5.9.3)(webpack@5.108.4)
@@ -46,7 +46,7 @@ importers:
         version: 4.1.10(@types/node@25.9.5)(@vitest/coverage-v8@4.1.10)(@vitest/ui@4.1.10)(happy-dom@20.10.6)(vite@8.1.4(@types/node@25.9.5)(terser@5.49.0))
       webpack:
         specifier: ^5.105.2
-        version: 5.108.4(webpack-cli@6.0.1)
+        version: 5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1)
       webpack-bundle-analyzer:
         specifier: ^5.2.0
         version: 5.3.0
@@ -652,8 +652,8 @@ packages:
   js-tokens@10.0.0:
     resolution: {integrity: sha512-lM/UBzQmfJRo9ABXbPWemivdCW8V2G8FHaHdypQaIy523snUjog0W71ayWXTjiR+ixeMyVHN2XcpnTd/liPg/Q==}
 
-  js-yaml@4.3.0:
-    resolution: {integrity: sha512-1td788aAnnZ5qs7V2QIRl1owjtYpbKt749Y3xauqQgwIIGF/xXWz1wMTEBx5O3LK3lXLVuqXPdPxj2BoFHaW9Q==}
+  js-yaml@4.3.1:
+    resolution: {integrity: sha512-CY6crGq313MX8GkwvB7tzgp99vjQxY1++5y10/BKN/GUfHqWaOGQMNZkBvqSzsZKWk/ijwHlWzzkLulsGHhjWQ==}
     hasBin: true
 
   json-schema-traverse@1.0.0:
@@ -1459,17 +1459,17 @@ snapshots:
 
   '@webpack-cli/configtest@3.0.1(webpack-cli@6.0.1)(webpack@5.108.4)':
     dependencies:
-      webpack: 5.108.4(webpack-cli@6.0.1)
+      webpack: 5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack-bundle-analyzer@5.3.0)(webpack@5.108.4)
 
   '@webpack-cli/info@3.0.1(webpack-cli@6.0.1)(webpack@5.108.4)':
     dependencies:
-      webpack: 5.108.4(webpack-cli@6.0.1)
+      webpack: 5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack-bundle-analyzer@5.3.0)(webpack@5.108.4)
 
   '@webpack-cli/serve@3.0.1(webpack-cli@6.0.1)(webpack@5.108.4)':
     dependencies:
-      webpack: 5.108.4(webpack-cli@6.0.1)
+      webpack: 5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1)
       webpack-cli: 6.0.1(webpack-bundle-analyzer@5.3.0)(webpack@5.108.4)
 
   '@xtuc/ieee754@1.2.0': {}
@@ -1710,7 +1710,7 @@ snapshots:
 
   js-tokens@10.0.0: {}
 
-  js-yaml@4.3.0:
+  js-yaml@4.3.1:
     dependencies:
       argparse: 2.0.1
 
@@ -1791,13 +1791,16 @@ snapshots:
 
   mime-db@1.54.0: {}
 
-  minimizer-webpack-plugin@5.6.1(webpack@5.108.4):
+  minimizer-webpack-plugin@5.6.1(lightningcss@1.32.0)(postcss@8.5.17)(webpack@5.108.4):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.49.0
-      webpack: 5.108.4(webpack-cli@6.0.1)
+      webpack: 5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1)
+    optionalDependencies:
+      lightningcss: 1.32.0
+      postcss: 8.5.17
 
   mrmime@2.0.1: {}
 
@@ -1963,7 +1966,7 @@ snapshots:
       picomatch: 4.0.5
       source-map: 0.7.6
       typescript: 5.9.3
-      webpack: 5.108.4(webpack-cli@6.0.1)
+      webpack: 5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1)
 
   tslib@2.8.1:
     optional: true
@@ -2054,7 +2057,7 @@ snapshots:
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.108.4(webpack-cli@6.0.1)
+      webpack: 5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1)
       webpack-merge: 6.0.1
     optionalDependencies:
       webpack-bundle-analyzer: 5.3.0
@@ -2067,7 +2070,7 @@ snapshots:
 
   webpack-sources@3.5.1: {}
 
-  webpack@5.108.4(webpack-cli@6.0.1):
+  webpack@5.108.4(lightningcss@1.32.0)(postcss@8.5.17)(webpack-cli@6.0.1):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -2085,7 +2088,7 @@ snapshots:
       graceful-fs: 4.2.11
       loader-runner: 4.3.2
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.6.1(webpack@5.108.4)
+      minimizer-webpack-plugin: 5.6.1(lightningcss@1.32.0)(postcss@8.5.17)(webpack@5.108.4)
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3

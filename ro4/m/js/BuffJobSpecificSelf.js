@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { GetJobName } from './data/mig.job.h.js';
 import { g_constDataManager } from './global.js';
-import { AutoCalc } from './head-bridge.js';
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { n_SieldSp, n_SieldSpDum, n_SieldSpNum } from './ro4-state.js';
 import { CCharaConfIchizi } from '../../../roro/m/js/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '../../../roro/m/js/CCharaConfNizi.js';
@@ -121,7 +121,7 @@ export function Click_PassSkillSW(){
 					myInnerHtml("P_Skill"+i, SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME] + "　<a href=\"../kousin/note20210606.html\" target=\"_blank\">(★注意情報★)</a>", 0);
 				}
 				else {
-					myInnerHtml("P_Skill"+i,SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME],0);
+					document.getElementById("P_Skill"+i).textContent = SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME];
 				}
 				myInnerHtml("P_Skill"+i+"s","<select name=A_skill"+i+" id=A_skill"+i+"></select>",0);
 				// inline onChange=Click_A1(true) を addEventListener に変換（Click_A1 は dewindow 済みで bare 参照不可）
@@ -594,7 +594,7 @@ export function Click_PassSkillSW(){
  */
 export function Click_A1(recalc = false){
 	if (recalc) {
-		AutoCalc("Click_A1");
+		notifyChanged(CalcInput.BUFF);
 	}
 	let sw = 0;
 	const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
@@ -607,7 +607,7 @@ export function Click_A1(recalc = false){
 	}
 	if (sw == 0) {
 		document.getElementById('A1TD').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("A1used","",0);
+		document.getElementById("A1used").textContent = "";
 	} else {
 		document.getElementById('A1TD').style.backgroundColor = "#FF7777";
 		myInnerHtml("A1used","　<B>使用中</B>",0);

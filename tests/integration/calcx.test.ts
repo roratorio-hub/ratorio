@@ -976,7 +976,7 @@ describe('ro4/m/calcx.html 起動テスト', () => {
 
             // 「設定欄を表示」ボタン（CTimeItemAreaComponentManager.FocusArea）のクリック
             await page.evaluate(() => {
-                const btn = document.querySelector<HTMLInputElement>('#EN809 input[type="button"]');
+                const btn = document.getElementById('OBJID_BUTTON_A8_TIMEITEM_FOCUS') as HTMLInputElement | null;
                 if (btn) btn.click();
             });
             await page.waitForTimeout(200);

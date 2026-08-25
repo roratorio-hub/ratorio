@@ -95,8 +95,7 @@ import {
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state
 import { n_A_JOB } from '../../../../roro/m/js/roro-state.js';
-import { g_constDataManager } from '../global.js';
-import { get as registryGet } from '../engine-registry.js';
+import { get as registryGet, register } from '../engine-registry.js';
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
@@ -175,7 +174,7 @@ export const JOB_SERIES_ID_SUMMONER		= 51;
  * @param jobId ジョブＩＤ
  */
 export function GetJobName(jobId) {
-	return g_constDataManager.GetName(CONST_DATA_KIND_JOB, jobId);
+	return registryGet('g_constDataManager').GetName(CONST_DATA_KIND_JOB, jobId);
 }
 
 /**
@@ -1121,7 +1120,7 @@ export function IsUsableBSPJob(jobId) {
  * @return パラメータごとのジョブボーナス配列
  */
 export function GetJobBonus(jobId, jobLv) {
-	return g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetJobBonus(jobLv);
+	return registryGet('g_constDataManager').GetDataObject(CONST_DATA_KIND_JOB, jobId).GetJobBonus(jobLv);
 }
 
 /**
@@ -1133,7 +1132,7 @@ export function GetJobBonus(jobId, jobLv) {
 export function GetHPBase(jobId, baseLv, bChild) {
 	// 基礎値の取得
 	var lvOffset = baseLv - Math.max(1, GetBaseLevelMin(jobId));
-	var maxhp = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetHPBase(baseLv);
+	var maxhp = registryGet('g_constDataManager').GetDataObject(CONST_DATA_KIND_JOB, jobId).GetHPBase(baseLv);
 
 	// 各種補正の適用
 	// 転生ボーナス
@@ -1158,7 +1157,7 @@ export function GetSPBase(jobId, baseLv, bChild) {
 
 	// 基礎値の取得
 	var lvOffset = baseLv - Math.max(1, GetBaseLevelMin(jobId));
-	var maxsp = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetSPBase(baseLv);
+	var maxsp = registryGet('g_constDataManager').GetDataObject(CONST_DATA_KIND_JOB, jobId).GetSPBase(baseLv);
 
 
 	// 各種補正の適用
@@ -2729,7 +2728,7 @@ export function IsMatchJobRestrict(itemId, jobId) {
 
 	var idx = 0;
 	var eqpflg = ItemObjNew[itemId][ITEM_DATA_INDEX_EQPFLG];
-	var jobData = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId);
+	var jobData = registryGet('g_constDataManager').GetDataObject(CONST_DATA_KIND_JOB, jobId);
 
 	// 三次職以上限定の場合
 	// TODO: この仕様どうにかしたい
@@ -2923,5 +2922,8 @@ export function UpgradeJobTo4th() {
 		}, 0);
 	}, 0);
 }
+
+// C-6: engine-registry（item.h.js との循環 import 回避）
+register('GetJobName', GetJobName);
 
 

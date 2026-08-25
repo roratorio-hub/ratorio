@@ -1,11 +1,10 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
-import { n_A_PassSkill7 } from './BuffItemAndFood.js';
 import { UsedSkillSearch } from './BuffJobSpecificSelf.js';
-import { CSaveController } from './CSaveController.js';
 import { g_constDataManager, g_skillManager } from './global.js';
-import { AutoCalc, calc } from './head-bridge.js';
+import { calc } from './head-bridge.js';
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from './attackmethod.dat.js';
 import { CSaveDataConst } from './savedata/CSaveDataConst.js';
 import { CAttackMethodConf } from '../../../roro/m/js/CAttackMethodConf.js';
@@ -103,6 +102,12 @@ import {
          SKILL_ID_THUNDERING_FOCUS, SKILL_ID_THUNDERING_ORB,
 } from '../../../roro/m/js/skill.dat.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: engine-registry（CSaveController.js との循環 import 回避）
+import { get as registryGet } from './engine-registry.js';
+
+// C-6: n_A_PassSkill7 は BuffItemAndFood.js の再エクスポート経由だと循環するため実体を直接参照
+import { n_A_PassSkill7 } from './skillstate.js';
+
 // C-6: JOB 定数
 import {
          JOB_SERIES_ID_ROGUE,
@@ -1083,22 +1088,22 @@ CAttackMethodAreaComponentManager.RebuildAttackMethodSelectSubOptionSubCreate = 
  */
 CAttackMethodAreaComponentManager.RebuildSettingArea = function () {
 
-	let bDigit3 = CSaveController.getSettingProp(CSaveDataConst.propNameResultDigit3);
+	let bDigit3 = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameResultDigit3);
 	HtmlSetObjectCheckedById("OBJID_CHECK_DIGIT3", bDigit3 ? "checked" : null);
 
-	let autoCalc = CSaveController.getSettingProp(CSaveDataConst.propNameAttackAutoCalc);
+	let autoCalc = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameAttackAutoCalc);
 	HtmlSetObjectValueById("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", autoCalc);
 
-	let attackInterval = CSaveController.getSettingProp(CSaveDataConst.propNameAttackInterval);
+	let attackInterval = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameAttackInterval);
 	HtmlSetObjectValueById("OBJID_SELECT_ACTIVE_INTERVAL", attackInterval);
 
-	let castSimInterval = CSaveController.getSettingProp(CSaveDataConst.propNameCastSimInterval);
+	let castSimInterval = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameCastSimInterval);
 	HtmlSetObjectValueById("OBJID_SELECT_CASTSIM_INTERVAL", castSimInterval);
 
-	let bPointCap = CSaveController.getSettingProp(CSaveDataConst.propNamePointCap);
+	let bPointCap = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNamePointCap);
 	HtmlSetObjectCheckedById("OBJID_CHECK_POINT_CAP", bPointCap ? "checked" : null);
 
-	let bDPSActual = CSaveController.getSettingProp(CSaveDataConst.propNameDPSActual);
+	let bDPSActual = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameDPSActual);
 	HtmlSetObjectCheckedById("OBJID_CHECK_DPS_ACTUAL", bDPSActual ? "checked" : null);
 
 };
@@ -1133,7 +1138,7 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethod = function () {
 	CAttackMethodAreaComponentManager.RefreshControls();
 
 	// 自動設定が有効の場合のみ、再計算する
-	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethod");
+	notifyChanged(CalcInput.ATTACK_METHOD);
 };
 
 /**
@@ -1192,7 +1197,7 @@ CAttackMethodAreaComponentManager.OnChangeAttackMethodOption = function (objectI
 	CAttackMethodAreaComponentManager.RefreshControls();
 
 	// 自動設定が有効の場合のみ、再計算する
-	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAttackMethodOption");
+	notifyChanged(CalcInput.ATTACK_METHOD);
 };
 
 /**
@@ -1204,10 +1209,10 @@ CAttackMethodAreaComponentManager.OnChangeAutoCalc = function () {
 	const value = HtmlGetObjectValueByIdAsInteger("OBJID_INPUT_ATTACK_METHOD_AUTO_CALC", 0);
 
 	// セーブコントローラへ保存
-	CSaveController.setSettingProp(CSaveDataConst.propNameAttackAutoCalc, value);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameAttackAutoCalc, value);
 
 	// 自動計算が有効の場合のみ、再計算する
-	AutoCalc("CAttackMethodAreaComponentManager.OnChangeAutoCalc");
+	notifyChanged(CalcInput.ATTACK_METHOD);
 };
 
 /**
@@ -1219,7 +1224,7 @@ CAttackMethodAreaComponentManager.OnChangeDigit3 = function () {
 	const checked = HtmlGetObjectCheckedById("OBJID_CHECK_DIGIT3", "checked");
 
 	// セーブコントローラへ保存
-	CSaveController.setSettingProp(CSaveDataConst.propNameResultDigit3, (checked ? 1 : 0));
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameResultDigit3, (checked ? 1 : 0));
 
 	// 再計算する
 	calc();
@@ -1234,7 +1239,7 @@ CAttackMethodAreaComponentManager.OnChangePointCap = function () {
 	const checked = HtmlGetObjectCheckedById("OBJID_CHECK_POINT_CAP", "checked");
 
 	// セーブコントローラへ保存
-	CSaveController.setSettingProp(CSaveDataConst.propNamePointCap, (checked ? 1 : 0));
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNamePointCap, (checked ? 1 : 0));
 
 	// 再計算する
 	calc();
@@ -1249,7 +1254,7 @@ CAttackMethodAreaComponentManager.OnChangeDpsActual = function () {
 	const checked = HtmlGetObjectCheckedById("OBJID_CHECK_DPS_ACTUAL", "checked");
 
 	// セーブコントローラへ保存
-	CSaveController.setSettingProp(CSaveDataConst.propNameDPSActual, (checked ? 1 : 0));
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameDPSActual, (checked ? 1 : 0));
 
 	// 再計算する
 	calc();
@@ -1264,7 +1269,7 @@ CAttackMethodAreaComponentManager.OnChangeAttackInterval = function () {
 	const value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ACTIVE_INTERVAL", 14);
 
 	// セーブコントローラへ保存
-	CSaveController.setSettingProp(CSaveDataConst.propNameAttackInterval, value);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameAttackInterval, value);
 
 	// 再計算する
 	calc();
@@ -1279,7 +1284,7 @@ CAttackMethodAreaComponentManager.OnChangeCastSimInterval = function () {
 	const value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_CASTSIM_INTERVAL", 10);
 
 	// セーブコントローラへ保存
-	CSaveController.setSettingProp(CSaveDataConst.propNameCastSimInterval, value);
+	registryGet('CSaveController').setSettingProp(CSaveDataConst.propNameCastSimInterval, value);
 
 	// 再計算する
 	calc();

@@ -13,7 +13,6 @@ import { ItemObjNew } from './item.dat.js';
 import { MonsterObjNew } from './monster.dat.js';
 import { SkillObjNew } from './skill.dat.js';
 import { InsertSkill } from './usableskill.dat.js';
-import { GetJobName } from '../../../ro4/m/js/data/mig.job.h.js';
 import { PARAM_DEX, PARAM_VIT } from './const/EnumParamId.js';
 import { RACE_ID_HUMAN } from './const/EnumRaceId.js';
 import { AUTO_SPELL_DATA_INDEX_PROBABLY, AUTO_SPELL_DATA_INDEX_SKILL_ID, AUTO_SPELL_DATA_INDEX_SKILL_LEVEL, AUTO_SPELL_DATA_INDEX_TRIGGER } from './const/EnumAutoSpellDataIndex.js';
@@ -124,6 +123,8 @@ import { SKILL_DATA_INDEX_NAME } from './const/EnumSkillDataIndex.js';
 import { STATE_R_ID_CHILLED } from './const/EnumStateId.js';
 import { USABLE_SKILL_DATA_INDEX_SKILL_ID, USABLE_SKILL_DATA_INDEX_SKILL_LEVEL } from './const/EnumUsableSkillDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: engine-registry（mig.job.h.js との循環 import 回避）
+import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
 
 /**
  * アイテムの種別名を取得する.
@@ -903,7 +904,7 @@ export function GetItemExplainText(spId, spValue) {
 	// 職業限定
 	var jobRestrict = Math.floor(spId / ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET) - 1;
 	if (jobRestrict >= 0) {
-		condTextJobRestrict += GetJobName(jobRestrict) + "系が装備時、";
+		condTextJobRestrict += registryGet('GetJobName')(jobRestrict) + "系が装備時、";
 	}
 	spId = spId % ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET;
 
