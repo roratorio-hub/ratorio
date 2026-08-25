@@ -2170,20 +2170,10 @@ export function Init(jobId){
 //	Click_EnemyTaiseiSW();
 //	Click_Monster_MakeSW();
 
-	// TODO: 次世代版ではなくなるため
-	try {
-		Click_CONFIG();
-	}
-	catch (err) {
-	}
-
 	CItemInfoManager.RebuildControls();
 
 	BuildUpCastSimSimulateArea(document.getElementById("OBJID_TD_CASTSIM"), false);
 }
-
-// foot-cast-simulator.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内外どこからも参照されていない（呼び出し元なし。HTML の onclick 属性等でも未参照）。
 
 // 外部ファイル向けの関数公開は foot-bridge.js 経由（C-6 後半・reference.md 参照）
 // GetEquippedTotalSPEquip/GetEquippedSPListEquip/.../CheckSpDefRefineOver の実体は
