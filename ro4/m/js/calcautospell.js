@@ -75,8 +75,10 @@ import {
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
-         GetActRateSandansho, AutoCalc,
+         GetActRateSandansho,
 } from './head-bridge.js';
+// C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
+import { notifyChanged, CalcInput } from './calc-invalidation.js';
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
@@ -1491,7 +1493,7 @@ export function BuildUpSettingHtmlAutoSpell(objTbody) {
 export function OnChangeSettingAutoSpell(bCalculate){
 
 	// 再計算フラグが指定されている場合は、再計算を行う
-	if (bCalculate) AutoCalc("OnChangeSettingAutoSpell");
+	if (bCalculate) notifyChanged(CalcInput.BUFF);
 
 	// オートスペル設定が指定されているかをチェック
 	var bSet = false;
@@ -1511,7 +1513,7 @@ export function OnChangeSettingAutoSpell(bCalculate){
 	}
 	else{
 		document.getElementById('OBJID_TD_AUTO_SPELL_SETTING').style.backgroundColor = "#DDDDFF";
-		myInnerHtml("OBJID_USED_MARKER_AUTO_SPELL","",0);
+		document.getElementById("OBJID_USED_MARKER_AUTO_SPELL").textContent = "";
 	}
  }
 

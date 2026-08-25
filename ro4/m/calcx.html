@@ -158,9 +158,8 @@
 		integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script type="module" src="../../ro4/m/js/saveimage.js"></script>
-	<!-- セーブ履歴機能（Chart.js は calchistory.js が ESM import で読み込む） -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" />
+	<!-- セーブ履歴機能（Chart.js は calchistory.js が ESM import で読み込む。
+	     モーダルはネイティブ <dialog> を使うため jquery-modal は不要） -->
 	<script type="module" src="../../ro4/m/js/calchistory.js"></script>
 	<!-- 重い処理用のローディングインジケーター -->
 	<link href="../../jquery/loadingindicator/spinner.css" rel="stylesheet" />
@@ -1643,6 +1642,83 @@
 					</section>
 					<br clear="left">
 					<hr>
+					<!-- ギルドスキル・ゴスペル他: BuffGuildAndGospel.js が clone して SP_SIEN02 へ挿入する -->
+					<template id="TPL_BUFF_GUILD">
+						<table border style="white-space:nowrap;">
+							<tbody>
+								<tr>
+									<td id="A4TD" colspan="10" class="title">
+										<input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW">
+										<label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label>
+										<span id="A4used"></span>
+									</td>
+								</tr>
+								<tr><td colspan="10">ギルドスキル</td></tr>
+								<tr>
+									<td>臨戦体勢</td>
+									<td><input id="OBJID_CHECK_A4_Skill0" type="checkbox" name="A4_Skill0"></td>
+									<td>偉大なる指導力</td>
+									<td><select id="OBJID_SELECT_A4_Skill1" name="A4_Skill1"></select></td>
+									<td>栄光の傷</td>
+									<td><select id="OBJID_SELECT_A4_Skill2" name="A4_Skill2"></select></td>
+								</tr>
+								<tr>
+									<td>冷静な心</td>
+									<td><select id="OBJID_SELECT_A4_Skill3" name="A4_Skill3"></select></td>
+									<td>鋭い視線</td>
+									<td><select id="OBJID_SELECT_A4_Skill4" name="A4_Skill4"></select></td>
+								</tr>
+								<tr><td colspan="10">ゴスペルスキル</td></tr>
+								<tr>
+									<td>ステータスALL+20</td>
+									<td><input id="OBJID_CHECK_A4_Skill5" type="checkbox" name="A4_Skill5"></td>
+									<td>HP+100%</td>
+									<td><input id="OBJID_CHECK_A4_Skill6" type="checkbox" name="A4_Skill6"></td>
+									<td>SP+100%</td>
+									<td><input id="OBJID_CHECK_A4_Skill7" type="checkbox" name="A4_Skill7"></td>
+								</tr>
+								<tr>
+									<td>ATK+100%</td>
+									<td><input id="OBJID_CHECK_A4_Skill8" type="checkbox" name="A4_Skill8"></td>
+									<td>HIT+50＆FLEE+50</td>
+									<td><input id="OBJID_CHECK_A4_Skill9" type="checkbox" name="A4_Skill9"></td>
+									<td>被ダメージ半減</td>
+									<td><input id="OBJID_CHECK_A4_Skill10" type="checkbox" name="A4_Skill10"></td>
+								</tr>
+								<tr><td colspan="10">一部スキルの持ち替え等による強化<br><font size="2">スキル使用時のステータスを入力してください。スキルに無関係なステータスは無視されます。<br>スキルレベルはパッシブ/持続系欄で選択してください。</font></td></tr>
+								<tr><td colspan="10"><select id="OBJID_SELECT_A4_Skill11" name="A4_Skill11"></select></td></tr>
+								<tr>
+									<td>STR</td>
+									<td><select id="OBJID_SELECT_A4_Skill30" name="A4_Skill30"></select></td>
+									<td>AGI</td>
+									<td><select id="OBJID_SELECT_A4_Skill31" name="A4_Skill31"></select></td>
+									<td>VIT</td>
+									<td><select id="OBJID_SELECT_A4_Skill32" name="A4_Skill32"></select></td>
+								</tr>
+								<tr>
+									<td>INT</td>
+									<td><select id="OBJID_SELECT_A4_Skill33" name="A4_Skill33"></select></td>
+									<td>DEX</td>
+									<td><select id="OBJID_SELECT_A4_Skill34" name="A4_Skill34"></select></td>
+									<td>LUK</td>
+									<td><select id="OBJID_SELECT_A4_Skill35" name="A4_Skill35"></select></td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
+					<template id="TPL_BUFF_GUILD_COLLAPSED">
+						<table border>
+							<tbody>
+								<tr>
+									<td id="A4TD" class="title">
+										<input id="OBJID_CHECK_A4_SKILLSW" type="checkbox" name="A4_SKILLSW">
+										<label for="OBJID_CHECK_A4_SKILLSW">ギルドスキル/ゴスペル/他</label>
+										<span id="A4used"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
 					<!-- ギルドスキル・ゴスペル他 -->
 					<table>
 						<tbody>
@@ -1681,6 +1757,76 @@
 							</tr>
 						</tbody>
 					</table>
+					<!-- その他支援: BuffOtherCategory.js が clone して ID_ETC へ挿入する -->
+					<template id="TPL_BUFF_OTHER">
+						<table border style="white-space:nowrap;">
+							<tbody>
+								<tr>
+									<td id="A8TD" colspan="2" class="title">
+										<input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW">
+										<label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label>
+										<span id="A8used"></span>
+									</td>
+								</tr>
+								<tr>
+									<td>ペット：<select id="OBJID_SELECT_PET" name="A8_Skill0"></select></td>
+									<td>親密度：<select id="OBJID_SELECT_PET_FRIENDLITY" name="A8_Skill17"></select></td>
+								</tr>
+								<tr><td colspan="2"><span id="OBJID_SPAN_PET_EXPLAIN"></span></td></tr>
+								<tr>
+									<td>戦闘教範系<select id="OBJID_SELECT_A8_Skill1" name="A8_Skill1"></select></td>
+									<td>Job教範系<select id="OBJID_SELECT_A8_Skill2" name="A8_Skill2"></select></td>
+								</tr>
+								<tr>
+									<td>ネットカフェ経験値UP<select id="OBJID_SELECT_A8_Skill3" name="A8_Skill3"></select></td>
+									<td>経験値増加キャンペーン<select id="OBJID_SELECT_A8_Skill7" name="A8_Skill7"></select></td>
+								</tr>
+								<tr>
+									<td>OTP<select id="OBJID_SELECT_A8_Skill22" name="A8_Skill22"></select></td>
+									<td id="EN823"></td>
+								</tr>
+								<tr>
+									<td>公平PT人数<select id="OBJID_SELECT_A8_Skill5" name="A8_Skill5"></select></td>
+									<td>共闘ボーナス<select id="OBJID_SELECT_A8_Skill6" name="A8_Skill6"></select></td>
+								</tr>
+								<tr><td colspan="2">討伐クエストのExpを加算(1匹あたりの値)<select id="OBJID_SELECT_A8_Skill21" name="A8_Skill21" disabled="disabled"></select></td></tr>
+								<tr>
+									<td><input id="OBJID_CHECK_A8_Skill4" type="checkbox" name="A8_Skill4"><label for="OBJID_CHECK_A8_Skill4">結婚スパノビステータスALL+1付与</label></td>
+									<td><input id="OBJID_CHECK_A8_Skill13" type="checkbox" name="A8_Skill13"><label for="OBJID_CHECK_A8_Skill13">養子状態にする</label></td>
+								</tr>
+								<tr><td colspan="2"><font size="2" color="red">（時限性補助効果の設定は、「アイテム時限効果」設定欄へ移動しました）</font><input id="OBJID_BUTTON_A8_TIMEITEM_FOCUS" type="button" value="設定欄を表示"></td></tr>
+								<tr>
+									<td>囲んでいる敵の数<select id="OBJID_SELECT_A8_Skill12" name="A8_Skill12"></select></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td><font size="2"><b>攻城戦の設定は[対人プレイヤー設定]欄に移動</b></font></td>
+									<td>防衛値<select id="OBJID_SELECT_A8_Skill15" name="A8_Skill15"></select><font size="2">(攻城戦モード時のみ有効)</font></td>
+								</tr>
+								<tr>
+									<td><input id="OBJID_CHECK_A8_Skill16" type="checkbox" name="A8_Skill16"><label for="OBJID_CHECK_A8_Skill16">クリティカル率を0にする</label></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td id="EN819"></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
+					<template id="TPL_BUFF_OTHER_COLLAPSED">
+						<table border>
+							<tbody>
+								<tr>
+									<td id="A8TD" class="title">
+										<input id="OBJID_CHECK_A8_SKILLSW" type="checkbox" name="A8_SKILLSW">
+										<label for="OBJID_CHECK_A8_SKILLSW">その他の支援/設定 (暫定追加機能)</label>
+										<span id="A8used"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</template>
 					<!-- その他支援 -->
 					<table>
 						<tbody>
@@ -1987,6 +2133,8 @@
 
 <!-- メイン処理系 javascript ファイル -->
 <script type="module" src="js/foot.js"></script>
+<!-- DOM読み書きゼロのヘッドレス計算API（リファクタリング計画 Phase 10）。engine-registry へ自己登録する -->
+<script type="module" src="../../ro4/m/js/calc-headless.js"></script>
 
 <!-- 左メニュー用 javascript ファイル -->
 <script type="module" src="../../ro4/m/js/eventsetup.js"></script>

@@ -129,6 +129,7 @@ import {
     set_g_bDefinedDamageIntervals, set_n_A_Weapon_zokusei, set_n_Enekyori, set_w_DMG, w_DMG
 } from './ro4-state.js';
 import { UsedSkillSearch } from './skillstate.js';
+import { n_A_WeaponZokusei } from '../../../roro/m/js/roro-state.js';
 
 export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
     let ret = null;
@@ -902,7 +903,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = (n_A_ActiveSkillLV - 1) * (n_A_AGI / 2) + 300;
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
 				set_n_A_Weapon_zokusei(GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL));
-				if(eval(document.calcForm.A_Weapon_zokusei.value) != 0) set_n_A_Weapon_zokusei(eval(document.calcForm.A_Weapon_zokusei.value));
+				if(n_A_WeaponZokusei != 0) set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 				set_n_Enekyori(1);
 				CS.wCast = 5000 - 500 * n_A_ActiveSkillLV;
 				n_Delay[2] = 500 - 50 * n_A_ActiveSkillLV;

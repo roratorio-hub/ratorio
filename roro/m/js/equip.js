@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip, n_A_card } from './roro-state.js';
-import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
 import { set_n_Nitou } from '../../../ro4/m/js/global.js';
 import { shadowEquipRebuildAll } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { g_attackMethodBridge } from './CAttackMethodDataBridge.js';
@@ -73,10 +72,18 @@ import {
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
-         calc, AutoCalc,
+         calc,
 } from '../../../ro4/m/js/head-bridge.js';
+// C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
+import { notifyChanged } from '../../../ro4/m/js/calc-invalidation.js';
 // C-6: engine-registry（hmjob.js との循環 import 回避）
 import { get as registryGet } from '../../../ro4/m/js/engine-registry.js';
+
+// C-6: hmrndopt.js / learnedskill.js / slotpager.js との循環 import 回避
+import { equipBridge } from './equip-bridge.js';
+
+// C-6: CItemInfoManager.js / hmcard.js との循環 import 回避のため equip-name.js へ移設
+import { GetFlagAppendedItemName, GetFlagAppendedCardName } from './equip-name.js';
 
 // C-6: foot.js 公開関数（foot-bridge 経由）
 import {
@@ -93,7 +100,7 @@ import {
 } from './roro-state.js';
 import { ARROW_DATA_INDEX_ID, ARROW_DATA_INDEX_KANA, ARROW_DATA_INDEX_KIND, ARROW_DATA_INDEX_NAME } from './const/EnumArrowDataIndex.js';
 import { ARROW_KIND_ARROW, ARROW_KIND_BULLET, ARROW_KIND_NONE } from './const/EnumArrowKind.js';
-import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME, CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
+import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_SPBEGIN } from './const/EnumCardDataIndex.js';
 import { CARD_KIND_ENCHANT } from './const/EnumCardKind.js';
 import { CONST_DATA_KIND_CARD, CONST_DATA_KIND_COSTUME, CONST_DATA_KIND_ITEM, CONST_DATA_KIND_JOB } from './const/EnumConstDataKind.js';
 import {
@@ -158,9 +165,9 @@ export function changeJobSettings(jobId) {
 
 	// 武器属性付与手段の名称の設定
 	if (41 <= migId && migId <= 43) {
-		myInnerHtml("ID_A_HUYO_NAME","暖かい風",0);
+		document.getElementById("ID_A_HUYO_NAME").textContent = "暖かい風";
 	} else {
-		myInnerHtml("ID_A_HUYO_NAME","武器属性付与",0);
+		document.getElementById("ID_A_HUYO_NAME").textContent = "武器属性付与";
 	}
 
 	// Baseレベル自動調整が有効だと値設定ができない不具合があるので、無効化...
@@ -344,7 +351,7 @@ export function OnChangeArmsTypeRight(itemKind){
 
 			objSelectArrow = document.createElement("select");
 			objSelectArrow.setAttribute("id", "OBJID_SELECT_ARROW");
-			objSelectArrow.addEventListener("change", () => { StAllCalc(); AutoCalc(); });
+			objSelectArrow.addEventListener("change", () => { StAllCalc(); notifyChanged(); });
 			objRoot.appendChild(objSelectArrow);
 		}
 
@@ -388,7 +395,7 @@ export function OnChangeArmsTypeRight(itemKind){
 		}
 		else{
 
-			myInnerHtml("A_SobWeaponName","",0);
+			document.getElementById("A_SobWeaponName").textContent = "";
 
 			HtmlRemoveOptionAll(_cf.OBJID_ARMS_LEFT);
 			_cf.OBJID_ARMS_LEFT.options[0] = new Option(ItemObjNew[ITEM_ID_SUDE][ITEM_DATA_INDEX_NAME], ITEM_ID_SUDE);
@@ -450,7 +457,7 @@ function __WireArmsTypeLeftSelect() {
 	if (objSelect == null) {
 		return;
 	}
-	objSelect.addEventListener("change", (e) => { OnChangeArmsTypeLeft(e.currentTarget.value); StAllCalc(); AutoCalc(); });
+	objSelect.addEventListener("change", (e) => { OnChangeArmsTypeLeft(e.currentTarget.value); StAllCalc(); notifyChanged(); });
 }
 
 
@@ -517,83 +524,6 @@ export function RebuildArmsRightSelect() {
 		HtmlCreateElementOption(itemId, GetFlagAppendedItemName(itemId), objSelect);
 	}
 }
-
-export function GetFlagAppendedItemName(targetId) {
-
-	var baseName = "";
-
-	baseName = ItemObjNew[targetId][ITEM_DATA_INDEX_NAME];
-
-	return (IsLearnedEffectEquipable(CONST_DATA_KIND_ITEM, targetId)) ? ("【習】" + baseName) : baseName;
-}
-
-export function GetFlagAppendedCardName(targetId) {
-
-	var baseName = "";
-
-	baseName = CardObjNew[targetId][CARD_DATA_INDEX_NAME];
-
-	return (IsLearnedEffectEquipable(CONST_DATA_KIND_CARD, targetId)) ? ("【習】" + baseName) : baseName;
-}
-
-export function IsLearnedEffectEquipable(dataKind, targetId) {
-
-	var idx = 0;
-	var idxSet = 0;
-	var setIndexArray; var setIndex; var setDataId;
-
-	// アイテム単品を判定
-	if (dataKind == CONST_DATA_KIND_ITEM) {
-		for (idx = ITEM_DATA_INDEX_SPBEGIN; idx < ItemObjNew[targetId].length; idx += 2) {
-			if (ItemObjNew[targetId][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-				return true;
-			}
-		}
-		setIndexArray = ItemIdToSetIdMap[targetId];
-	}
-
-	// カード単品を判定
-	else {
-		for (idx = CARD_DATA_INDEX_SPBEGIN; idx < CardObjNew[targetId].length; idx += 2) {
-			if (CardObjNew[targetId][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-				return true;
-			}
-		}
-		setIndexArray = CardIdToSetIdMap[targetId];
-	}
-
-	// セットでの対象を判定
-	if (setIndexArray) {
-
-		for (idxSet = 0; idxSet < setIndexArray.length; idxSet++) {
-
-			setIndex = setIndexArray[idxSet];
-
-			setDataId = w_SE[setIndex][0];
-
-			// セット定義のアイテムを判定
-			if (setDataId >= 0) {
-				for (idx = ITEM_DATA_INDEX_SPBEGIN; idx < ItemObjNew[setDataId].length; idx += 2) {
-					if (ItemObjNew[setDataId][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-						return true;
-					}
-				}
-			}
-
-			// セット定義のカードを判定
-			else {
-				for (idx = CARD_DATA_INDEX_SPBEGIN; idx < CardObjNew[Math.abs(setDataId)].length; idx += 2) {
-					if (CardObjNew[Math.abs(setDataId)][idx] == ITEM_SP_LEARNED_SKILL_EFFECT) {
-						return true;
-					}
-				}
-			}
-		}
-	}
-
-	return false;
-}
-
 
 /************************************************************************************************
  *
@@ -2044,4 +1974,10 @@ export function copyAccs(from, to){
 		})
 	}
 }
+
+// C-6: hmrndopt.js / learnedskill.js / slotpager.js との循環 import 回避
+equipBridge.onChangeRandomEnchant = OnChangeRandomEnchant;
+equipBridge.updateLearnedSkillNotice = UpdateLearnedSkillNotice;
+equipBridge.onChangeCard = OnChangeCard;
+equipBridge.onChangeCostume = OnChangeCostume;
 

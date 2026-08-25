@@ -10,13 +10,25 @@ import { get as registryGet } from './engine-registry.js';
 // Chart.js ESM（auto = 全チャートタイプ登録済みビルド）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
 
-$(function () {
-  const buildForm = () => {
-	let test = document.getElementById("history_graph");
-	if (test) {
-      return;
-	}
-    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(`
+/**
+ * DPS clip 履歴パネルの静的スケルトンHTML（グラフ・ボタン・モーダルの骨組み）。
+ * calchistory.js（新規構築時）と CSaveController.js（セーブデータ復元時）の双方が
+ * 同一マークアップを必要とするため共通化する（従来は2箇所にバイト単位で重複していた）。
+ *
+ * モーダルは jquery-modal ではなくネイティブ <dialog> を使う（jquery-modal はこの
+ * パネル2ファイルのみが使っていた唯一の実プラグイン依存だった）。ただし `showModal()`
+ * （モーダル・top layer昇格）は使わない —— 内部で最初のフォーカス可能要素へ自動フォーカスし、
+ * ブラウザ標準のフォーカス時スクロールでページが scrollY:0 まで巻き戻る副作用があり、
+ * 事後に scrollTo() で戻すと今度は top layer の絶対配置がフォーカス確定時点のビューポートで
+ * 固定されているためダイアログ自体が画面外にずれる（実測で確認済み）。
+ * 代わりに jquery-modal 自身の実装方式（固定オーバーレイ blocker + 中央配置ボックス）を
+ * ほぼそのまま踏襲する: `.show()`（非モーダル）+ 自前の #clip_modal_blocker +
+ * `position: fixed` 手動配置。これで背景ページの位置に一切触れずに前面へ浮かべられる。
+ * ESCキー・backdropクリック・×ボタンでの閉じる操作、フォーカス移動はすべて
+ * openHistoryModal()/wireHistoryModalClose() で手動配線する（jquery-modal の既定動作を再現）。
+ */
+export function buildHistoryPanelHtml() {
+    return `
 <div id="history_button" style="margin-left:1em;width:4em">
 <input type="button" id="history_clip" value="Clip" style="width:100%"><br>
 <label style="font-size:x-small;white-space: nowrap;"><input type="checkbox" id="clip_with_memo">memo</label>
@@ -27,11 +39,42 @@ $(function () {
   <canvas id="history_graph"></canvas>
 </div>
 <style>
-.jquery-modal.blocker {
-  z-index: 100 !important;
+#clip_modal_blocker {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+}
+#clip_modal_blocker.active {
+  display: block;
 }
 #clip_modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
   min-width: 800px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #000;
+  background: #fff;
+  padding: 15px 30px;
+  z-index: 1000;
+}
+#clip_modal_close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  border: none;
+  background: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
 }
 #clip_modal_table {
   width: 100%;
@@ -65,7 +108,9 @@ div.clip_memo {
   min-height: 1.5rem;
 }
 </style>
-<div id="clip_modal" class="modal">
+<div id="clip_modal_blocker"></div>
+<dialog id="clip_modal" role="dialog" aria-modal="true">
+  <button type="button" id="clip_modal_close" aria-label="閉じる">×</button>
   <table id="clip_modal_table">
     <thead><tr>
         <th class="col no">No.</th><th class="col">DPS</th>
@@ -75,8 +120,76 @@ div.clip_memo {
     </tr></thead>
     <tbody></tbody>
   </table>
-</div>
-    `);
+</dialog>
+    `;
+}
+
+/** clip履歴モーダルを開く（backdrop表示 + スクロール位置を変えないフォーカス設定）。 */
+export function openHistoryModal() {
+    document.getElementById("clip_modal_blocker")?.classList.add("active");
+    const modal = document.getElementById("clip_modal");
+    modal?.show();
+    modal?.focus({ preventScroll: true });
+}
+
+function closeHistoryModal() {
+    document.getElementById("clip_modal")?.close();
+}
+
+/**
+ * clip履歴モーダルの閉じる操作一式を配線する（×ボタン・backdropクリック・ESCキー）。
+ * close イベントで backdrop の非表示化とグラフの元位置への復帰も行う
+ * （jquery-modal の `modal:before-close` 相当）。
+ * calchistory.js / CSaveController.js の双方の buildForm から1回ずつ呼ぶ。
+ */
+export function wireHistoryModalClose() {
+    document.getElementById("clip_modal_close")?.addEventListener("click", closeHistoryModal);
+    document.getElementById("clip_modal_blocker")?.addEventListener("click", closeHistoryModal);
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && document.getElementById("clip_modal")?.open) closeHistoryModal();
+    });
+    document.getElementById("clip_modal")?.addEventListener("close", () => {
+        document.getElementById("clip_modal_blocker")?.classList.remove("active");
+        const graph = document.getElementById("history_graph");
+        const container = document.getElementById("history_container");
+        if (graph && container) container.appendChild(graph);
+    });
+}
+
+/** HTMLエスケープ（テキスト内容・二重引用符属性値の両方に安全）。 */
+function escapeHtml(text) {
+    return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;');
+}
+
+/**
+ * clip 履歴テーブルの1行分のHTMLを組み立てる。
+ * memo はユーザーが prompt() で自由入力した文字列で、テキスト内容と value 属性の
+ * 両方に埋め込まれるため escapeHtml() で必ずエスケープする（従来は無エスケープで、
+ * 二重引用符を含むメモが value 属性を脱出できた。セーブデータに同梱されるURLに
+ * このメモも乗るため self-XSS に留まらない）。
+ */
+export function buildHistoryRowHtml({ no, dps, kill, memo, isFirst, isLast }) {
+    const escapedMemo = escapeHtml(memo);
+    return `<tr>
+              <td class="col no">${no}</td>
+              <td class="col">${dps}</td>
+              <td class="col">${kill}</td>
+              <td class="col memo"><div class="clip_memo">${escapedMemo}</div><input type="text" class="clip_memo" style="display:none;" value="${escapedMemo}"></td>
+              <td class="col action"><button class="up_clip" ${isFirst ? "disabled" : ""}>↑</button><button class="down_clip"${isLast ? "disabled" : ""}>↓</button><button class="remove_clip">×</button></td>
+            </tr>`;
+}
+
+$(function () {
+  const buildForm = () => {
+	let test = document.getElementById("history_graph");
+	if (test) {
+      return;
+	}
+    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(buildHistoryPanelHtml());
 
     let target = 0;
     const data = {
@@ -209,9 +322,9 @@ div.clip_memo {
       g_Chart = null;
     });
     $("#history_list").click(e => {
-      $("#history_graph").insertBefore("#clip_modal_table");
+      document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
       reload_history_table();
-      $("#clip_modal").modal();
+      openHistoryModal();
     });
     const flip_clip = (i, j) => {
       [data.datasets[0].data[i], data.datasets[0].data[j]] =
@@ -229,13 +342,14 @@ div.clip_memo {
       $("#clip_modal_table tbody *").remove();
       let body = ""
       for (let i = 0; i < data.labels.length; i++) {
-        body += `<tr>
-                  <td class="col no">${data.labels[i].toLocaleString()}</td>
-                  <td class="col">${data.datasets[0].data[i].toLocaleString()}</td>
-                  <td class="col">${data.datasets[1].data[i].toLocaleString()}</td>
-                  <td class="col memo"><div class="clip_memo">${data.datasets[0].metadata[i].memo}</div><input type="text" class="clip_memo" style="display:none;" value="${data.datasets[0].metadata[i].memo}"></td>
-                  <td class="col action"><button class="up_clip" ${i==0?"disabled":""}>↑</button><button class="down_clip"${i==data.labels.length-1?"disabled":""}>↓</button><button class="remove_clip">×</button></td>
-                </tr>`;
+        body += buildHistoryRowHtml({
+          no: data.labels[i].toLocaleString(),
+          dps: data.datasets[0].data[i].toLocaleString(),
+          kill: data.datasets[1].data[i].toLocaleString(),
+          memo: data.datasets[0].metadata[i].memo,
+          isFirst: i === 0,
+          isLast: i === data.labels.length - 1,
+        });
       }
       $("#clip_modal_table tbody").append(body);
     }
@@ -291,9 +405,7 @@ div.clip_memo {
       reload_history_table();
       g_Chart = chart;
     });
-    $("#clip_modal").on("modal:before-close", () => {
-      $("#history_graph").appendTo("#history_container");
-    });
+    wireHistoryModalClose();
   };
   buildForm();
 });

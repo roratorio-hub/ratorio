@@ -13,7 +13,7 @@ import { n_B_KYOUKA } from '../../../roro/m/js/mobconfbuf.js';
 import { n_B_IJYOU } from '../../../roro/m/js/mobconfdebuf.js';
 import { GetJobName } from './data/mig.job.h.js';
 import { floorBigInt32 } from '../../../roro/common/js/util.js';
-import { g_Chart, setG_Chart } from './calchistory.js';
+import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose } from './calchistory.js';
 // === END AUTO-GENERATED IMPORTS ===
 // Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
@@ -709,67 +709,7 @@ export class CSaveController {
 		chartOptions = sanitizeForChart(chartOptions);
 		// チャートを再作成
 		const buildForm = () => {
-		    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(`
-				<div id="history_button" style="margin-left:1em;width:4em">
-				<input type="button" id="history_clip" value="Clip" style="width:100%"><br>
-				<label style="font-size:x-small;white-space: nowrap;"><input type="checkbox" id="clip_with_memo">memo</label>
-				<input type="button" id="history_list" value="List" style="margin-top:0.5em;width:100%;font-size:x-small;">
-				<input type="button" id="history_reset" value="Reset" style="margin-top:1.5em;width:100%">
-				</div>
-				<div id="history_container" style="margin-left:1em;padding:0px 5px;height:7em;width:40em">
-				  <canvas id="history_graph"></canvas>
-				</div>
-				<style>
-				.jquery-modal.blocker {
-				  z-index: 100 !important;
-				}
-				#clip_modal {
-				  min-width: 800px;
-				}
-				#clip_modal_table {
-				  width: 100%;
-				  border-collapse: collapse;
-				}
-				#clip_modal_table tr{
-				  border-bottom: 1px solid lightgray;
-				}
-				.col {
-				  width: 7rem;
-				  text-align: right;
-				  padding-right: 1rem;
-				}
-				.col.no {
-				  width: 3rem;
-				}
-				.col.memo {
-				  width: unset;
-				  text-align: left;
-				  padding: unset;
-				}
-				.col.action {
-				  width: 4.5rem;
-				  padding-right: unset;
-				}
-				.clip_memo {
-				  width: 100%;
-				}
-				div.clip_memo {
-				  cursor: pointer;
-				  min-height: 1.5rem;
-				}
-				</style>
-				<div id="clip_modal" class="modal">
-				  <table id="clip_modal_table">
-				    <thead><tr>
-				        <th class="col no">No.</th><th class="col">DPS</th>
-				        <th class="col">確殺</th>
-				        <th class="col memo">メモ</th>
-				        <th class="col action"></th>
-				    </tr></thead>
-				    <tbody></tbody>
-				  </table>
-				</div>
-				    `);
+		    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(buildHistoryPanelHtml());
 
 			let target = 0;
 			let data = {
@@ -907,9 +847,9 @@ export class CSaveController {
 		    	setG_Chart(null);
 		    });
 		    $("#history_list").click(e => {
-		    	$("#history_graph").insertBefore("#clip_modal_table");
+		    	document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
 		    	reload_history_table();
-		    	$("#clip_modal").modal();
+		    	openHistoryModal();
 		    });
 		    const flip_clip = (i, j) => {
 		    	[data.datasets[0].data[i], data.datasets[0].data[j]] =
@@ -927,13 +867,14 @@ export class CSaveController {
 		      $("#clip_modal_table tbody *").remove();
 		      let body = ""
 		      for (let i = 0; i < data.labels.length; i++) {
-		        body += `<tr>
-		                  <td class="col no">${data.labels[i].toLocaleString()}</td>
-		                  <td class="col">${data.datasets[0].data[i].toLocaleString()}</td>
-		                  <td class="col">${data.datasets[1].data[i].toLocaleString()}</td>
-		                  <td class="col memo"><div class="clip_memo">${data.datasets[0].metadata[i].memo}</div><input type="text" class="clip_memo" style="display:none;" value="${data.datasets[0].metadata[i].memo}"></td>
-		                  <td class="col action"><button class="up_clip" ${i==0?"disabled":""}>↑</button><button class="down_clip"${i==data.labels.length-1?"disabled":""}>↓</button><button class="remove_clip">×</button></td>
-		                </tr>`;
+		        body += buildHistoryRowHtml({
+		          no: data.labels[i].toLocaleString(),
+		          dps: data.datasets[0].data[i].toLocaleString(),
+		          kill: data.datasets[1].data[i].toLocaleString(),
+		          memo: data.datasets[0].metadata[i].memo,
+		          isFirst: i === 0,
+		          isLast: i === data.labels.length - 1,
+		        });
 		      }
 		      $("#clip_modal_table tbody").append(body);
 		    }
@@ -989,9 +930,7 @@ export class CSaveController {
 		      reload_history_table();
 		      setG_Chart(chart);
 		    });
-		    $("#clip_modal").on("modal:before-close", () => {
-		      $("#history_graph").appendTo("#history_container");
-		    });
+		    wireHistoryModalClose();
 
 			chart.data = chartDataObj;
 			data = chartDataObj;

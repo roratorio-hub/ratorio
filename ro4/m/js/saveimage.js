@@ -2,7 +2,6 @@
 import { GetElementText } from '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
 import { CardObjNew } from '../../../roro/m/js/card.dat.js';
-import { zokusei } from '../../../roro/m/js/etc.js';
 import { ItemObjNew } from '../../../roro/m/js/item.dat.js';
 import { g_rndOptArray } from '../../../roro/m/js/rndopt.dat.js';
 import { GetRndOptDispName } from '../../../roro/m/js/rndopt.h.js';
@@ -17,13 +16,60 @@ import {
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
-         delayDownForDisp, n_tok, g_perfectHitRate,
+         delayDownForDisp, g_perfectHitRate,
 } from './ro4-state.js';
 
 // C-6: 共有 state（旧 foot.js window 変数）
 import {
-         n_A_BodyZokusei,
+         n_A_JOB,
 } from '../../../roro/m/js/roro-state.js';
+
+// リファクタリング計画 Phase 12: jQueryによるDOM走査（v()/t()/e()）を
+// モデル読み取り（extractModelFromDom）・計算結果ブリッジ（g_extraInfoDataBridge）・
+// 純粋関数（hmjob-bridge.js / hmchara.js / mig.job.h.js）に置換した。
+// DOMは「装備・カード・矢の隠しDATA_要素」等、モデルの対応が無い箇所（衣装欄の
+// 精錬値表記等）以外では一切読まない。
+// extractModelFromDom は foot-stallcalc-hydrate.js から直接importせず engine-registry.js
+// 経由で取得する（foot-stallcalc-hydrate.js は CShadowEquipController.js を import し、
+// モジュール評価時にDOM初期化を要求するため、直接importすると import 時点でDOMが
+// 必要になってしまう。get('extractModelFromDom') は calc-headless.js が既に登録済みの
+// 公開APIを使うだけなので影響を受けない。なお下の CExtraInfoAreaComponentManagerCalc.js
+// は head.js・global.js を推移的に import するため、この迂回は「import chain 全体の軽量化」
+// にはなっていない——避けているのは CShadowEquipController.js 固有の DOM初期化要求のみ）。
+import { GetJobName } from './data/mig.job.h.js';
+import { IsUnconfirmedHP, IsUnconfirmedSP } from '../../../roro/m/js/hmchara.js';
+import {
+         GetBasicStatusBonus, GetStatusPointRemain, GetPureStatus, GetSpecStatusBonus,
+         GetTStatusPointRemain, GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate,
+         GetDisplayedRes, GetDisplayedMres, GetDisplayedHPlus,
+} from './hmjob-bridge.js';
+import { CalcResistElement } from '../../../roro/m/js/CExtraInfoAreaComponentManagerCalc.js';
+import {
+         MIG_PARAM_ID_STR, MIG_PARAM_ID_AGI, MIG_PARAM_ID_VIT, MIG_PARAM_ID_INT, MIG_PARAM_ID_DEX, MIG_PARAM_ID_LUK,
+         MIG_PARAM_ID_POW, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_SPL, MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT,
+} from '../../../roro/m/js/const/EnumMigItemParamId.js';
+import {
+         CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2, CARD_REGION_ID_ARMS_RIGHT_3, CARD_REGION_ID_ARMS_RIGHT_4,
+         CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2, CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4,
+         CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_HEAD_MID, CARD_REGION_ID_HEAD_UNDER, CARD_REGION_ID_SHIELD,
+         CARD_REGION_ID_BODY, CARD_REGION_ID_SHOULDER, CARD_REGION_ID_SHOES, CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2,
+         CARD_REGION_ID_ENCHANT_HEAD_TOP_1, CARD_REGION_ID_ENCHANT_HEAD_TOP_2, CARD_REGION_ID_ENCHANT_HEAD_TOP_3,
+         CARD_REGION_ID_ENCHANT_HEAD_MID_1, CARD_REGION_ID_ENCHANT_HEAD_MID_2, CARD_REGION_ID_ENCHANT_HEAD_MID_3,
+         CARD_REGION_ID_ENCHANT_HEAD_UNDER_1, CARD_REGION_ID_ENCHANT_HEAD_UNDER_2, CARD_REGION_ID_ENCHANT_HEAD_UNDER_3,
+         CARD_REGION_ID_ENCHANT_SHIELD_1, CARD_REGION_ID_ENCHANT_SHIELD_2, CARD_REGION_ID_ENCHANT_SHIELD_3,
+         CARD_REGION_ID_ENCHANT_BODY_1, CARD_REGION_ID_ENCHANT_BODY_2, CARD_REGION_ID_ENCHANT_BODY_3,
+         CARD_REGION_ID_ENCHANT_SHOULDER_1, CARD_REGION_ID_ENCHANT_SHOULDER_2, CARD_REGION_ID_ENCHANT_SHOULDER_3,
+         CARD_REGION_ID_ENCHANT_SHOES_1, CARD_REGION_ID_ENCHANT_SHOES_2, CARD_REGION_ID_ENCHANT_SHOES_3,
+         CARD_REGION_ID_ENCHANT_ACCESSORY_1_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_2, CARD_REGION_ID_ENCHANT_ACCESSORY_1_3,
+         CARD_REGION_ID_ENCHANT_ACCESSORY_2_1, CARD_REGION_ID_ENCHANT_ACCESSORY_2_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_3,
+} from '../../../roro/m/js/common.js';
+import {
+         CHARA_DATA_INDEX_DISP_ASPD, CHARA_DATA_INDEX_DISP_ATK_LEFT, CHARA_DATA_INDEX_DISP_ATK_RIGHT,
+         CHARA_DATA_INDEX_DISP_CRI, CHARA_DATA_INDEX_DISP_DEF_LEFT, CHARA_DATA_INDEX_DISP_DEF_RIGHT,
+         CHARA_DATA_INDEX_DISP_FLEE, CHARA_DATA_INDEX_DISP_HIT, CHARA_DATA_INDEX_DISP_MATK_LEFT,
+         CHARA_DATA_INDEX_DISP_MATK_RIGHT, CHARA_DATA_INDEX_DISP_MAXHP, CHARA_DATA_INDEX_DISP_MAXSP,
+         CHARA_DATA_INDEX_DISP_MDEF_LEFT, CHARA_DATA_INDEX_DISP_MDEF_RIGHT,
+} from '../../../roro/m/js/const/EnumCharaDataIndex.js';
 
 // sample
 // https://ragnarokonline.gungho.jp/campaign_event/campaign/baselv220cp-2.html#modal
@@ -45,39 +91,17 @@ $(function () {
 });
 
 export function generateImage() {
-  const v = (selector) => {
-    return $(selector).val() || $(selector).text();
-  }
-  const t = (selector) => {
-    return $(selector).text() || $(selector).val();
-  }
-  const e = (selector, none_str = "-") => {
-    if (v(selector) == "0") {
-      return none_str;
-    }
-    return t(selector);
-  }
-  const ench_count = (selector, is_weapon = false) => {
-    let count = 0;
-    for (let i = 1; i < 5; i++) {
-      const card_id = v(`#DATA_${selector}_CARD_${i}`)
-      if (i == 1 || is_weapon) {
-        if (CARD_KIND_ENCHANT == CardObjNew[card_id][1]) {
-          count++;
-        }
-      } else if (card_id != "0") {
-        // アルファコアは4スロにカードがくるがエンチャ扱いなので
-        // 防具系は1スロのエンチャチェック以外は何か設定されていれば計上する
-        count++;
-      }
-    }
-    return count
-  }
-  const equip = (selector) => {
-    const equip_id = t("#DATA_" + selector);
+  const model = get('extractModelFromDom')();
+  const charaData = g_extraInfoDataBridge.charaData;
+
+  // ステータス補正欄の表示形式（DisplayStatusBonusAll/DisplayReferStatusAll と同じ「+n」表記）
+  const bonusText = (value) => ((value >= 0) ? "+" : "") + value;
+
+  // 装備部位ごとの{装備部位ID, カード欄4枠のID}対応表。foot-stallcalc-hydrate.js の
+  // ExtractModelFromDom() と同じ対応関係（CARD_REGION_ID_* の割り当て規則）に基づく。
+  const equipSlot = (equipRegionId, cardRegionIds, refined = 0, transcendence = 0) => {
+    const equip_id = model.equip[equipRegionId] ?? 0;
     const equip_name = equip_id == 0 ? "-" : ItemObjNew[equip_id][8];
-    const refined = v(`#${selector}_REFINE`);
-    const transcendence = v(`#${selector}_TRANSCENDENCE`);
 
     let text = "";
     if (refined != 0) {
@@ -87,14 +111,29 @@ export function generateImage() {
       text += `[★${transcendence}] `;
     }
     text += equip_name + " ( ";
-    const enchants = [];
-    [1, 2, 3, 4].forEach(v => {
-      const card_id = t(`#DATA_${selector}_CARD_${v}`);
-      enchants.push(card_id == 0 ? "-" : CardObjNew[card_id][2]);
+    const enchants = cardRegionIds.map((cardRegionId) => {
+      const card_id = model.card[cardRegionId] ?? 0;
+      return card_id == 0 ? "-" : CardObjNew[card_id][2];
     });
     text += enchants.join(", ");
     text += " )";
     return text;
+  }
+  const enchCount = (cardRegionIds, isWeapon = false) => {
+    let count = 0;
+    for (let i = 0; i < cardRegionIds.length; i++) {
+      const card_id = model.card[cardRegionIds[i]] ?? 0;
+      if (i == 0 || isWeapon) {
+        if (CARD_KIND_ENCHANT == CardObjNew[card_id][1]) {
+          count++;
+        }
+      } else if (card_id != 0) {
+        // アルファコアは4スロにカードがくるがエンチャ扱いなので
+        // 防具系は1スロのエンチャチェック以外は何か設定されていれば計上する
+        count++;
+      }
+    }
+    return count
   }
   const randopt_exists = (id) => {
     return g_equipRndOptTable[id].filter(v=>{return v[0]>0}).length>0? "exists" : "";
@@ -138,14 +177,27 @@ export function generateImage() {
     text += " )"
     return text;
   }
-    let regist_elm_vanity = [];
-    let elm_ratio = [];
-    let regist_ratio = [];
-    for (let idx = 0; idx < ELM_ID_COUNT; idx++) {
-      regist_elm_vanity[idx] = n_tok[ITEM_SP_RESIST_ELM_VANITY + idx];
-      elm_ratio[idx] = zokusei[n_A_BodyZokusei * 10 + 1][idx] + 100;
-      regist_ratio[idx] = Math.floor(elm_ratio[idx] - Math.floor(regist_elm_vanity[idx] * elm_ratio[idx]) / 100);
-    }
+
+  // 装備部位ごとの装備欄・カード欄まとめ（EQUIP_REGION_ID_* / CARD_REGION_ID_* は calcx.html 側 import 済み）
+  const headTop = { equip: EQUIP_REGION_ID_HEAD_TOP, cards: [CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_ENCHANT_HEAD_TOP_1, CARD_REGION_ID_ENCHANT_HEAD_TOP_2, CARD_REGION_ID_ENCHANT_HEAD_TOP_3] };
+  const headMid = { equip: EQUIP_REGION_ID_HEAD_MID, cards: [CARD_REGION_ID_HEAD_MID, CARD_REGION_ID_ENCHANT_HEAD_MID_1, CARD_REGION_ID_ENCHANT_HEAD_MID_2, CARD_REGION_ID_ENCHANT_HEAD_MID_3] };
+  const headUnder = { equip: EQUIP_REGION_ID_HEAD_UNDER, cards: [CARD_REGION_ID_HEAD_UNDER, CARD_REGION_ID_ENCHANT_HEAD_UNDER_1, CARD_REGION_ID_ENCHANT_HEAD_UNDER_2, CARD_REGION_ID_ENCHANT_HEAD_UNDER_3] };
+  const body = { equip: EQUIP_REGION_ID_BODY, cards: [CARD_REGION_ID_BODY, CARD_REGION_ID_ENCHANT_BODY_1, CARD_REGION_ID_ENCHANT_BODY_2, CARD_REGION_ID_ENCHANT_BODY_3] };
+  const armsRight = { equip: EQUIP_REGION_ID_ARMS, cards: [CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2, CARD_REGION_ID_ARMS_RIGHT_3, CARD_REGION_ID_ARMS_RIGHT_4] };
+  const armsLeft = { equip: EQUIP_REGION_ID_ARMS_LEFT, cards: [CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2, CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4] };
+  const shield = { equip: EQUIP_REGION_ID_SHIELD, cards: [CARD_REGION_ID_SHIELD, CARD_REGION_ID_ENCHANT_SHIELD_1, CARD_REGION_ID_ENCHANT_SHIELD_2, CARD_REGION_ID_ENCHANT_SHIELD_3] };
+  const shoulder = { equip: EQUIP_REGION_ID_SHOULDER, cards: [CARD_REGION_ID_SHOULDER, CARD_REGION_ID_ENCHANT_SHOULDER_1, CARD_REGION_ID_ENCHANT_SHOULDER_2, CARD_REGION_ID_ENCHANT_SHOULDER_3] };
+  const shoes = { equip: EQUIP_REGION_ID_SHOES, cards: [CARD_REGION_ID_SHOES, CARD_REGION_ID_ENCHANT_SHOES_1, CARD_REGION_ID_ENCHANT_SHOES_2, CARD_REGION_ID_ENCHANT_SHOES_3] };
+  const accessory1 = { equip: EQUIP_REGION_ID_ACCESSORY_1, cards: [CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_2, CARD_REGION_ID_ENCHANT_ACCESSORY_1_3] };
+  const accessory2 = { equip: EQUIP_REGION_ID_ACCESSORY_2, cards: [CARD_REGION_ID_ACCESSORY_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_1, CARD_REGION_ID_ENCHANT_ACCESSORY_2_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_3] };
+  // 左手（二刀流時は武器、それ以外は盾）
+  const armsLeftOrShield = n_Nitou ? armsLeft : shield;
+
+    // 属性倍率（CExtraInfoAreaComponentManager.js の RefreshDispAreaResistElement と共通の計算。
+    // 本欄のみ最終倍率を整数に丸めて表示する = 元実装からの表示仕様を踏襲）
+    const { finalRatioArray } = CalcResistElement();
+    const regist_ratio = finalRatioArray.map((v) => Math.floor(v));
+
     let tpl = `
     <style>
     #imgdiv {
@@ -386,20 +438,20 @@ export function generateImage() {
     <div id="imgframe">
     <div id="base">
       <span>Base lv.</span>
-      <span>${v("#OBJID_SELECT_BASE_LEVEL")}</span>
+      <span>${model.status.baseLv}</span>
       <span>/</span>
-      <span>${t("#OBJID_SELECT_JOB option:selected")}</span>
+      <span>${GetJobName(n_A_JOB)}</span>
       <span>/</span>
       <span>Job lv.</span>
-      <span>${v("#OBJID_SELECT_JOB_LEVEL")}</span>
+      <span>${model.status.jobLv}</span>
     </div>
     <div id="hp">
       <span>HP</span>
-      <span>${t("#OBJID_SPAN_CHARA_MAXHP")}</span>
+      <span>${charaData[CHARA_DATA_INDEX_DISP_MAXHP]}${IsUnconfirmedHP(n_A_JOB, model.status.baseLv) ? "?(情報募集中)" : ""}</span>
     </div>
     <div id="sp">
       <span>SP</span>
-      <span>${t("#OBJID_SPAN_CHARA_MAXSP")}</span>
+      <span>${charaData[CHARA_DATA_INDEX_DISP_MAXSP]}${IsUnconfirmedSP(n_A_JOB, model.status.baseLv) ? "?(情報募集中)" : ""}</span>
     </div>
 
     <div id="status">
@@ -412,45 +464,45 @@ export function generateImage() {
         <tbody>
           <tr>
             <th>Str</th>
-            <td>${v("#OBJID_SELECT_STATUS_STR")}${t("#OBJID_SPAN_STATUS_BONUS_STR")}</td>
+            <td>${model.status.str}${bonusText(GetBasicStatusBonus(MIG_PARAM_ID_STR))}</td>
             <th>Atk</th>
-            <td>${t("#OBJID_SPAN_CHARA_ATK")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_ATK_LEFT]}+${charaData[CHARA_DATA_INDEX_DISP_ATK_RIGHT]}</td>
             <th>Def</th>
-            <td>${t("#OBJID_SPAN_CHARA_DEF")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_DEF_LEFT]}+${charaData[CHARA_DATA_INDEX_DISP_DEF_RIGHT]}</td>
           </tr>
           <tr>
             <th>Agi</th>
-            <td>${v("#OBJID_SELECT_STATUS_AGI")}${t("#OBJID_SPAN_STATUS_BONUS_AGI")}</td>
+            <td>${model.status.agi}${bonusText(GetBasicStatusBonus(MIG_PARAM_ID_AGI))}</td>
             <th>Matk</th>
-            <td>${t("#OBJID_SPAN_CHARA_MATK")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_MATK_LEFT]}+${charaData[CHARA_DATA_INDEX_DISP_MATK_RIGHT]}</td>
             <th>Mdef</th>
-            <td>${t("#OBJID_SPAN_CHARA_MDEF")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_MDEF_LEFT]}+${charaData[CHARA_DATA_INDEX_DISP_MDEF_RIGHT]}</td>
           </tr>
           <tr>
             <th>Vit</th>
-            <td>${v("#OBJID_SELECT_STATUS_VIT")}${t("#OBJID_SPAN_STATUS_BONUS_VIT")}</td>
+            <td>${model.status.vit}${bonusText(GetBasicStatusBonus(MIG_PARAM_ID_VIT))}</td>
             <th>Hit</th>
-            <td>${t("#OBJID_SPAN_CHARA_HIT")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_HIT]}</td>
             <th>Flee</th>
-            <td>${t("#OBJID_SPAN_CHARA_FLEE")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_FLEE]}</td>
           </tr>
           <tr>
             <th>Int</th>
-            <td>${v("#OBJID_SELECT_STATUS_INT")}${t("#OBJID_SPAN_STATUS_BONUS_INT")}</td>
+            <td>${model.status.int}${bonusText(GetBasicStatusBonus(MIG_PARAM_ID_INT))}</td>
             <th>Cri</th>
-            <td>${t("#OBJID_SPAN_CHARA_CRI")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_CRI]}</td>
             <th>Aspd</th>
-            <td>${t("#OBJID_SPAN_CHARA_ASPD")}</td>
+            <td>${charaData[CHARA_DATA_INDEX_DISP_ASPD]}</td>
           </tr>
           <tr>
             <th>Dex</th>
-            <td>${v("#OBJID_SELECT_STATUS_DEX")}${t("#OBJID_SPAN_STATUS_BONUS_DEX")}</td>
+            <td>${model.status.dex}${bonusText(GetBasicStatusBonus(MIG_PARAM_ID_DEX))}</td>
             <th colspan="3">Status Point</th>
-            <td>${t("#A_STPOINT")}</td>
+            <td>${GetStatusPointRemain()}</td>
           </tr>
           <tr>
             <th>Luk</th>
-            <td>${v("#OBJID_SELECT_STATUS_LUK")}${t("#OBJID_SPAN_STATUS_BONUS_LUK")}</td>
+            <td>${model.status.luk}${bonusText(GetBasicStatusBonus(MIG_PARAM_ID_LUK))}</td>
             <th>Guild</th>
             <td colspan="3">ROラトリオHub</td>
           </tr>
@@ -465,45 +517,45 @@ export function generateImage() {
         <tbody>
           <tr>
             <th>Pow</th>
-            <td>${v("#OBJID_SELECT_STATUS_POW")}${t("#OBJID_SPAN_STATUS_BONUS_POW")}</td>
+            <td>${GetPureStatus(MIG_PARAM_ID_POW)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_POW))}</td>
             <th>P.Atk</th>
-            <td>${t("#OBJID_SPAN_STATUS_P_ATK")}</td>
+            <td>${GetDisplayedPAtk()}</td>
             <th>Res</th>
-            <td>${t("#OBJID_SPAN_STATUS_RES")}</td>
+            <td>${GetDisplayedRes()}</td>
           </tr>
           <tr>
             <th>Sta</th>
-            <td>${v("#OBJID_SELECT_STATUS_STA")}${t("#OBJID_SPAN_STATUS_BONUS_STA")}</td>
+            <td>${GetPureStatus(MIG_PARAM_ID_STA)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_STA))}</td>
             <th>S.Matk</th>
-            <td>${t("#OBJID_SPAN_STATUS_S_MATK")}</td>
+            <td>${GetDisplayedSMatk()}</td>
             <th>Mres</th>
-            <td>${t("#OBJID_SPAN_STATUS_MRES")}</td>
+            <td>${GetDisplayedMres()}</td>
           </tr>
           <tr>
             <th>Wis</th>
-            <td>${v("#OBJID_SELECT_STATUS_WIS")}${t("#OBJID_SPAN_STATUS_BONUS_WIS")}</td>
+            <td>${GetPureStatus(MIG_PARAM_ID_WIS)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_WIS))}</td>
             <th>H.Plus</th>
-            <td>${t("#OBJID_SPAN_STATUS_H_PLUS")}</td>
+            <td>${GetDisplayedHPlus()}</td>
             <th></th>
             <td></td>
           </tr>
           <tr>
             <th>Spl</th>
-            <td>${v("#OBJID_SELECT_STATUS_SPL")}${t("#OBJID_SPAN_STATUS_BONUS_SPL")}</td>
+            <td>${GetPureStatus(MIG_PARAM_ID_SPL)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_SPL))}</td>
             <th>C.Rate</th>
-            <td>${t("#OBJID_SPAN_STATUS_C_RATE")}</td>
+            <td>${GetDisplayedCRate()}</td>
             <th></th>
             <td></td>
           </tr>
           <tr>
             <th>Con</th>
-            <td>${v("#OBJID_SELECT_STATUS_CON")}${t("#OBJID_SPAN_STATUS_BONUS_CON")}</td>
+            <td>${GetPureStatus(MIG_PARAM_ID_CON)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_CON))}</td>
             <th colspan="3">T.Status Point</th>
-            <td>${t("#OBJID_SPAN_STATUS_T_STATUS_POINT")}</td>
+            <td>${GetTStatusPointRemain()}</td>
           </tr>
           <tr>
             <th>Crt</th>
-            <td>${v("#OBJID_SELECT_STATUS_CRT")}${t("#OBJID_SPAN_STATUS_BONUS_CRT")}</td>
+            <td>${GetPureStatus(MIG_PARAM_ID_CRT)}${bonusText(GetSpecStatusBonus(MIG_PARAM_ID_CRT))}</td>
             <td colspan="4"></td>
           </tr>
         </tbody>
@@ -570,39 +622,39 @@ export function generateImage() {
     <div id="equip">
       <dl>
         <dt>【兜上段】</dt>
-        <dd class="ench${ench_count("OBJID_HEAD_TOP")}">${equip("OBJID_HEAD_TOP")}</dd>
+        <dd class="ench${enchCount(headTop.cards)}">${equipSlot(headTop.equip, headTop.cards, model.defPlus.head, model.defTranscendence.head)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_HEAD_TOP)}">${randopt(EQUIP_REGION_ID_HEAD_TOP)}</dd>
         <dt>【兜中段】</dt>
-        <dd class="ench${ench_count("OBJID_HEAD_MID")}">${equip("OBJID_HEAD_MID")}</dd>
+        <dd class="ench${enchCount(headMid.cards)}">${equipSlot(headMid.equip, headMid.cards)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_HEAD_MID)}">${randopt(EQUIP_REGION_ID_HEAD_MID)}</dd>
         <dt>【兜下段】</dt>
-        <dd class="ench${ench_count("OBJID_HEAD_UNDER")}">${equip("OBJID_HEAD_UNDER")}</dd>
+        <dd class="ench${enchCount(headUnder.cards)}">${equipSlot(headUnder.equip, headUnder.cards)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_HEAD_UNDER)}">${randopt(EQUIP_REGION_ID_HEAD_UNDER)}</dd>
         <dt>【鎧】</dt>
-        <dd class="ench${ench_count("OBJID_BODY")}">${equip("OBJID_BODY")}</dd>
+        <dd class="ench${enchCount(body.cards)}">${equipSlot(body.equip, body.cards, model.defPlus.body, model.defTranscendence.body)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_BODY)}">${randopt(EQUIP_REGION_ID_BODY)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-body")}">${shadow("eqprgn-body")}</dd>
         <dt>【右手】</dt>
-        <dd class="ench${ench_count("OBJID_ARMS_RIGHT", true)}">${equip("OBJID_ARMS_RIGHT")}</dd>
+        <dd class="ench${enchCount(armsRight.cards, true)}">${equipSlot(armsRight.equip, armsRight.cards, model.weapon.atkPlus, model.weapon.transcendence)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ARMS)}">${randopt(EQUIP_REGION_ID_ARMS)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-arms-right")}">${shadow("eqprgn-arms-right")}</dd>
         <dt>【左手】</dt>
-        <dd class="ench${ench_count(n_Nitou ? "OBJID_ARMS_LEFT" : "OBJID_SHIELD", n_Nitou)}">${equip(n_Nitou ? "OBJID_ARMS_LEFT" : "OBJID_SHIELD")}</dd>
+        <dd class="ench${enchCount(armsLeftOrShield.cards, n_Nitou)}">${equipSlot(armsLeftOrShield.equip, armsLeftOrShield.cards, n_Nitou ? model.weapon.weapon2AtkPlus : model.defPlus.shield, n_Nitou ? model.weapon.weapon2Transcendence : model.defTranscendence.shield)}</dd>
         <dd class="randopt ${randopt_exists(n_Nitou ? EQUIP_REGION_ID_ARMS_LEFT:EQUIP_REGION_ID_SHIELD)}">${randopt(n_Nitou ? EQUIP_REGION_ID_ARMS_LEFT:EQUIP_REGION_ID_SHIELD)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-arms-left")}">${shadow("eqprgn-arms-left")}</dd>
         <dt>【肩にかける物】</dt>
-        <dd class="ench${ench_count("OBJID_SHOULDER")}">${equip("OBJID_SHOULDER")}</dd>
+        <dd class="ench${enchCount(shoulder.cards)}">${equipSlot(shoulder.equip, shoulder.cards, model.defPlus.shoulder, model.defTranscendence.shoulder)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_SHOULDER)}">${randopt(EQUIP_REGION_ID_SHOULDER)}</dd>
         <dt>【靴】</dt>
-        <dd class="ench${ench_count("OBJID_SHOES")}">${equip("OBJID_SHOES")}</dd>
+        <dd class="ench${enchCount(shoes.cards)}">${equipSlot(shoes.equip, shoes.cards, model.defPlus.shoes, model.defTranscendence.shoes)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_SHOES)}">${randopt(EQUIP_REGION_ID_SHOES)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-foot")}">${shadow("eqprgn-foot")}</dd>
         <dt>【アクセサリー(1)】</dt>
-        <dd class="ench${ench_count("OBJID_ACCESSORY_1")}">${equip("OBJID_ACCESSORY_1")}</dd>
+        <dd class="ench${enchCount(accessory1.cards)}">${equipSlot(accessory1.equip, accessory1.cards)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSORY_1)}">${randopt(EQUIP_REGION_ID_ACCESSORY_1)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-accessory-1")}">${shadow("eqprgn-accessory-1")}</dd>
         <dt>【アクセサリー(2)】</dt>
-        <dd class="ench${ench_count("OBJID_ACCESSORY_2")}">${equip("OBJID_ACCESSORY_2")}</dd>
+        <dd class="ench${enchCount(accessory2.cards)}">${equipSlot(accessory2.equip, accessory2.cards)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSORY_2)}">${randopt(EQUIP_REGION_ID_ACCESSORY_2)}</dd>
         <dd class="shadow ${shadow_exists("eqprgn-accessory-2")}">${shadow("eqprgn-accessory-2")}</dd>
       </dl>
@@ -630,14 +682,13 @@ export function generateImage() {
     }
 }
 
-import { register } from './engine-registry.js';
-import { ELM_ID_COUNT } from '../../../roro/m/js/const/EnumElmId.js';
+import { register, get } from './engine-registry.js';
 import { CARD_KIND_ENCHANT } from '../../../roro/m/js/const/EnumCardKind.js';
 import { CHARA_DATA_INDEX_CAST_PARAM } from '../../../roro/m/js/const/EnumCharaDataIndex.js';
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
     EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
 } from '../../../roro/m/js/const/EnumEquipRegionId.js';
-import { ITEM_SP_IGNORE_DEF_ALL, ITEM_SP_IGNORE_DEF_RACE_ALL, ITEM_SP_IGNORE_MDEF_ALL, ITEM_SP_IGNORE_MDEF_RACE_ALL, ITEM_SP_KIRI_EFFECT, ITEM_SP_RESIST_ELM_VANITY } from '../../../roro/m/js/const/EnumItemSpId.js';
+import { ITEM_SP_IGNORE_DEF_ALL, ITEM_SP_IGNORE_DEF_RACE_ALL, ITEM_SP_IGNORE_MDEF_ALL, ITEM_SP_IGNORE_MDEF_RACE_ALL, ITEM_SP_KIRI_EFFECT } from '../../../roro/m/js/const/EnumItemSpId.js';
 import { RND_OPT_DATA_INDEX_SPID } from '../../../roro/m/js/const/EnumRndOptDataIndex.js';
 register('generateImage', generateImage);

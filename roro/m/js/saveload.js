@@ -450,7 +450,7 @@ export function SaveSystem(funcSaveDataModify = null){
 		SaveData[10] = CMonsterMapAreaComponentManager.GetMonsterId();
 
 		// 自動レベル調整
-		SaveData[11] = eval(document.calcForm.BLVauto.checked);
+		SaveData[11] = document.calcForm.BLVauto.checked;
 
 		// 矢、弾丸
 		if (GetLowerJobSeriesID(n_A_JOB) == JOB_SERIES_ID_THIEF

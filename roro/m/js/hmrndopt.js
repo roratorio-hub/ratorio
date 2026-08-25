@@ -5,7 +5,6 @@ import {
          HtmlGetObjectValueByIdAsInteger, HtmlRemoveOptionAll, HtmlSetAttribute,
          HtmlSetObjectValueById
 } from '../../common/js/util.js';
-import { OnChangeRandomEnchant } from './equip.js';
 import { isShadowEquipAvailable } from '../../../ro4/m/js/CShadowEquipControllerDataBridge.js';
 import { ItemObjNew } from './item.dat.js';
 import { GetRndOptTypeId } from './item.h.js';
@@ -15,6 +14,9 @@ import { g_rndOptListArray } from './rndoptlist.dat.js';
 import { g_rndOptTypeArray } from './rndopttype.dat.js';
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from './rndopttype.h.js';
 // === END AUTO-GENERATED IMPORTS ===
+// C-6: equip.js との循環 import 回避
+import { equipBridge } from './equip-bridge.js';
+
 // C-6: global.js 管理の共有 conf state
 import {
          n_Nitou,
@@ -26,7 +28,8 @@ import {
          CheckSpDefPureStatus, CheckSpDefRefineOver,
 } from './foot-bridge.js';
 // Phase B: window.AutoCalc 廃止に伴い head-bridge 経由に移行
-import { AutoCalc } from '../../../ro4/m/js/head-bridge.js';
+// Phase 9: 再計算ポリシーは calc-invalidation.js 経由
+import { notifyChanged } from '../../../ro4/m/js/calc-invalidation.js';
 
 // C-6: ro4 側共有 state（旧 head.js window 変数）
 import {
@@ -236,7 +239,7 @@ export function CreateRndOptKind(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdKind);
-	objSelect.addEventListener("change", () => { OnChangeRndOptKind(eqpRgnId, slotIndex); AutoCalc(); });
+	objSelect.addEventListener("change", () => { OnChangeRndOptKind(eqpRgnId, slotIndex); notifyChanged(); });
 
 	return objSelect;
 }
@@ -261,7 +264,7 @@ export function CreateRndOptValue(objRoot, eqpRgnId, slotIndex) {
 
 	objSelect = HtmlCreateElement("select", objTd);
 	HtmlSetAttribute(objSelect, "id", objIdValue);
-	objSelect.addEventListener("change", () => { OnChangeRandomEnchant(); AutoCalc(); });
+	objSelect.addEventListener("change", () => { equipBridge.onChangeRandomEnchant?.(); notifyChanged(); });
 
 	return objSelect;
 }
@@ -369,7 +372,7 @@ export function OnChangeRndOptKind(eqpRgnId, slotIndex) {
 	SetUpRndOptValue(objRndOptValue, rndOptId);
 
 	// ランダムオプション変更処理
-	OnChangeRandomEnchant();
+	equipBridge.onChangeRandomEnchant?.();
 }
 
 
