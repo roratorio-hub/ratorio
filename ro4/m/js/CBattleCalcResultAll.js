@@ -4,10 +4,32 @@ import { GetArrayTotal, GetArrayMax, GetArrayMin } from '../../../roro/common/js
 import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_HP, MONSTER_DATA_INDEX_JOB_EXP } from '../../../roro/m/js/const/EnumMonsterDataIndex.js';
 // === END AUTO-GENERATED IMPORTS ===
 /**
+ * 設置スキル計算オブジェクトが1回のシミュレーションで共有する状態.
+ * `new instobject(ctx)` の `ctx` に渡す。呼び出し側は毎回 `createInstObjContext()`
+ * で新規に作ること（`instobject` 側では一切ミュータブルな外部状態を持たないため、
+ * 同じ ctx を使い回さない限りシミュレーション同士が混線しない＝再入可能）。
+ * @returns {{array: Array, finalTime: number, releasedCount: number, isApproximate: boolean, finalCount: number}}
+ */
+export function createInstObjContext() {
+	return {
+		array: [],          //設置スキル計算オブジェクトの配列
+		finalTime: 0.0,      //設置スキルオブジェクトによる計算の結果
+		releasedCount: 0,    //設置スキルオブジェクトの計算中に解放されたインスタンスの分のHitカウントの総数
+		isApproximate: false,//概算モードフラグ（コールスタック安全のために、再帰階層が限界値を超えた場合に真になる）
+		finalCount: 0,       //概算モードの際に用いる、処理中段時点までのHITの総数
+	};
+}
+
+/**
  * 設置スキル計算用クラス
  */
 export const instobject = class {
-	constructor() {
+	/**
+	 * @param {*} ctx `createInstObjContext()` が返す共有状態。
+	 *   `exec()`/`getTotalCount()` を使わない呼び出し元（`getHitCount()` のみ使う）は省略可。
+	 */
+	constructor(ctx) {
+		this.ctx = ctx;
 		this.depth = 0;
 		this.maxcount = 0;
 		this.starttime = 0.0;
@@ -49,16 +71,16 @@ export const instobject = class {
 	getTotalCount() {
 		var tc = 0;
 		var cur = 0;
-		for (let i = InstObjArray.length - 1; i >= 0; i--) {
-			cur = InstObjArray[i].getHitCount(this.now);
+		for (let i = this.ctx.array.length - 1; i >= 0; i--) {
+			cur = this.ctx.array[i].getHitCount(this.now);
 			if (cur == this.maxhit) {
-				InstObjArray.splice(i, 1);//これ以上Hitの増えない要素を削除する
-				InstObjReleasedCount += this.maxhit;
+				this.ctx.array.splice(i, 1);//これ以上Hitの増えない要素を削除する
+				this.ctx.releasedCount += this.maxhit;
 			} else {
 				tc += cur;
 			}
 		}
-		tc += InstObjReleasedCount;
+		tc += this.ctx.releasedCount;
 		return tc;
 	}
 
@@ -68,23 +90,23 @@ export const instobject = class {
 
 		//コールスタック安全装置
 		if (this.depth >= 1000) {
-			InstObjIsApproximate = true;
-			InstObjFinalTime = this.starttime;
-			InstObjFinalCount = this.getTotalCount();
+			this.ctx.isApproximate = true;
+			this.ctx.finalTime = this.starttime;
+			this.ctx.finalCount = this.getTotalCount();
 			return true;
 		}
 		for (i = 0; i < this.maxhit; i++) {
 			t0 = this.starttime + this.casttime + (this.interval * i);
 			this.now = t0;
 			if (this.getTotalCount() >= this.maxcount) {//gettotalcount()では、このインスタンスの分も計算される
-					InstObjFinalTime = t0;
+					this.ctx.finalTime = t0;
 				return true;//終了
 			}
 			//インターバル１個増やしたら、次のオブジェクトができる時間に届いたか超えた
 			if ((this.starttime + this.skillinterval) <= t0) {
-				InstObjArray.push(new instobject());
-				InstObjArray[InstObjArray.length-1].init(this.depth+1, this.maxcount, this.starttime + this.skillinterval, this.casttime, this.delay, this.cooltime, this.lifetime, this.interval);
-				if (InstObjArray[InstObjArray.length-1].exec() == true) {
+				this.ctx.array.push(new instobject(this.ctx));
+				this.ctx.array[this.ctx.array.length-1].init(this.depth+1, this.maxcount, this.starttime + this.skillinterval, this.casttime, this.delay, this.cooltime, this.lifetime, this.interval);
+				if (this.ctx.array[this.ctx.array.length-1].exec() == true) {
 					return true;//終了
 				}
 			}
@@ -92,12 +114,6 @@ export const instobject = class {
 		return false;//まだおわらない
 	}
 }
-
-var InstObjArray;//設置スキル計算オブジェクトの配列
-var InstObjFinalTime;//設置スキルオブジェクトによる計算の結果
-var InstObjReleasedCount;//設置スキルオブジェクトの計算中に解放されたインスタンスの分のHitカウントの総数
-var InstObjIsApproximate;//概算モードフラグ（コールスタック安全のために、再帰階層が限界値を超えた場合に真になる）
-var InstObjFinalCount;//概算モードの際に用いる、処理中段時点までのHITの総数
 
 /**
  * 戦闘結果クラス（全体）.
@@ -1079,22 +1095,18 @@ export function CBattleCalcResultAll () {
 				return ret;
 			} else {
 				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
-				var instobj1 = new instobject();
-				InstObjFinalTime = 0.0;
-				InstObjFinalCount = 0;
-				InstObjReleasedCount = 0;
-				InstObjIsApproximate = false;
-				InstObjArray = new Array();
-				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) 
+				const instObjCtx = createInstObjContext();
+				var instobj1 = new instobject(instObjCtx);
+				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval)
 				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
-				InstObjArray.push(instobj1);
-				InstObjArray[0].exec();
+				instObjCtx.array.push(instobj1);
+				instObjCtx.array[0].exec();
 				//再帰階層が限界値を超えた場合はそこまでで処理を中断し、概算で計算する
-				if (InstObjIsApproximate == true) {
+				if (instObjCtx.isApproximate == true) {
 					//概算で所要時間を返す
-					return InstObjFinalTime * atkcnt / InstObjFinalCount;
+					return instObjCtx.finalTime * atkcnt / instObjCtx.finalCount;
 				}
-				return InstObjFinalTime;
+				return instObjCtx.finalTime;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (bJust == true) {
@@ -1161,22 +1173,18 @@ export function CBattleCalcResultAll () {
 				return ret;
 			} else {
 				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
-				var instobj1 = new instobject();
-				InstObjFinalTime = 0.0;
-				InstObjFinalCount = 0;
-				InstObjReleasedCount = 0;
-				InstObjIsApproximate = false;
-				InstObjArray = new Array();
-				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) 
+				const instObjCtx = createInstObjContext();
+				var instobj1 = new instobject(instObjCtx);
+				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval)
 				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
-				InstObjArray.push(instobj1);
-				InstObjArray[0].exec();
+				instObjCtx.array.push(instobj1);
+				instObjCtx.array[0].exec();
 				//再帰階層が限界値を超えた場合はそこまでで処理を中断し、概算で計算する
-				if (InstObjIsApproximate == true) {
+				if (instObjCtx.isApproximate == true) {
 					//概算で所要時間を返す
-					return InstObjFinalTime * atkcnt / InstObjFinalCount;
+					return instObjCtx.finalTime * atkcnt / instObjCtx.finalCount;
 				}
-				return InstObjFinalTime;
+				return instObjCtx.finalTime;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (bJust == true) {
@@ -1243,22 +1251,18 @@ export function CBattleCalcResultAll () {
 				return ret;
 			} else {
 				//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
-				var instobj1 = new instobject();
-				InstObjFinalTime = 0.0;
-				InstObjFinalCount = 0;
-				InstObjReleasedCount = 0;
-				InstObjIsApproximate = false;
-				InstObjArray = new Array();
-				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval) 
+				const instObjCtx = createInstObjContext();
+				var instobj1 = new instobject(instObjCtx);
+				//init(depth, maxcount, starttime, casttime, delay, cooltime, lifetime, interval)
 				instobj1.init(0, atkcnt, 0.0, casttime, this.GetDelayTime(), this.GetCoolTime(), lifetime, intvl);
-				InstObjArray.push(instobj1);
-				InstObjArray[0].exec();
+				instObjCtx.array.push(instobj1);
+				instObjCtx.array[0].exec();
 				//再帰階層が限界値を超えた場合はそこまでで処理を中断し、概算で計算する
-				if (InstObjIsApproximate == true) {
+				if (instObjCtx.isApproximate == true) {
 					//概算で所要時間を返す
-					return InstObjFinalTime * atkcnt / InstObjFinalCount;
+					return instObjCtx.finalTime * atkcnt / instObjCtx.finalCount;
 				}
-				return InstObjFinalTime;
+				return instObjCtx.finalTime;
 			}
 			//オブジェクト維持時間が完了する前に次の詠唱が始まる場合
 			if (bJust == true) {

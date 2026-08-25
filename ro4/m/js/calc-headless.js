@@ -12,10 +12,11 @@
  * のみを順に呼び、`calc()`/`StAllCalc()` が行う描画（DOM書き込み・
  * CFloatingInfoAreaComponentManager 更新等）を一切経由しない。
  *
- * ⚠️ 完全な再入可能性は無い: `CBattleCalcResultAll.js` にモジュールレベルの可変
- * グローバルが4つ残っている（設置スキルのシミュレーション状態）。`calcFromModel` を
- * 2つ以上のモデルに対して並行/インターリーブして呼び出すと、互いの設置スキル状態が
- * 混線する可能性がある。1回呼んで結果を使い切ってから次を呼ぶこと。
+ * `CBattleCalcResultAll.js`（設置スキルのシミュレーション状態）は2026-08-26に
+ * 呼び出しごとの `ctx`（`createInstObjContext()`）へ切り出し済み（残件台帳 B-08）。
+ * この経路に限れば `calcFromModel` の並行呼び出しは安全。ただし `StAllCalcCore()` 自体は
+ * まだ `roro-state.js`/`ro4-state.js` のモジュールグローバルを読み書きするため、
+ * 完全な再入可能性は無い（残件台帳 B-09）。1回呼んで結果を使い切ってから次を呼ぶこと。
  */
 import { createEmptyModel } from '../../../roro/m/js/calc-model.js';
 import { ExtractModelFromDom, HydrateFromModel } from '../../../roro/m/js/foot-stallcalc-hydrate.js';
