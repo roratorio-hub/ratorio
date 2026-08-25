@@ -1323,6 +1323,22 @@ export function StAllCalc(){
     CFloatingInfoAreaComponentManager.setReferData(charaData, n_tok, mobData);
     CFloatingInfoAreaComponentManager.RefreshDispAreaAll();
 
+    // ステータス欄注意喚起（集中力向上）。判定条件は計算結果に依存しないため
+    // StAllCalcCore() の外（Shell側）で完結させる（foot-stallcalc-exp-reflect-atk-size.js
+    // から移設）。
+    const objStatusNoticeDiv = document.getElementById("OBJID_DIV_STATUS_NOTICE");
+    HtmlRemoveAllChild(objStatusNoticeDiv);
+    if (UsedSkillSearch(SKILL_ID_SHUCHURYOKU_KOZYO) > 0) {
+        const objP = HtmlCreateElement("p", objStatusNoticeDiv);
+        objP.setAttribute("class", "CSSCLS_GENERAL_COLOR_RED_BOLD");
+        HtmlCreateTextNode("（★注意情報★）集中力向上の効果が設定されています。", objP);
+        const objA = HtmlCreateElement("a", objP);
+        objA.setAttribute("href", "../kousin/note20210606.html");
+        objA.setAttribute("target", "_blank");
+        HtmlCreateTextNode("『こちら』", objA);
+        HtmlCreateTextNode("の注意事項をご確認ください。", objP);
+    }
+
     return result;
 }
 

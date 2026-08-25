@@ -3263,7 +3263,7 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 	// calc()をトリガーにするその他の処理
 	//--------------------------------
 	BuildResistElementTinyHtml();
-	RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData);
+	$("#OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL").html(RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData));
 	RebuildSizeModifyRatioInfo(null, charaData, n_tok, mobData, CS.wCSize);
 
 	//----------------------------------------------------------------

@@ -246,7 +246,8 @@ export function BuildBattleResultHtml(charaData, specData, mobData, attackMethod
 		myInnerHtml("AveATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
 		myInnerHtml("BattleTime","<Font size=2>計算不能</Font>",0);
 	}
-	w = calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray);
+	w = calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, undefined,
+		document.getElementById("OBJID_ENEMY_SKILL_RATIO")?.value, document.getElementById("OBJID_ENEMY_SKILL_ELEMENT")?.value);
 	w = Math.round(w *(100-charaData[CHARA_DATA_INDEX_LUCKY]))/100;
 	w = Math.round(w *(100-w_FLEE))/100;
 	var agLv = Math.max(
@@ -1739,23 +1740,23 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	CReceivedDamageConfManager.BindPersistence();
 
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_MAX_PAIN] == 0) {
-		calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+		calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView, enemy_skill_ratio.value, enemy_skill_element.value);
 		enemy_skill_ratio.addEventListener("change", () => {
-			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView, enemy_skill_ratio.value, enemy_skill_element.value);
 		});
 		enemy_skill_element.addEventListener("change", () => {
-			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView);
+			calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objPhysicalDamageView, enemy_skill_ratio.value, enemy_skill_element.value);
 		});
 	} else {
 		BattleHiDamMaxPain(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll.GetDamageSummaryAvePerAtk(), objPhysicalDamageView);
 	}
 
-	calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
+	calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView, enemy_magic_skill_ratio.value, enemy_magic_skill_element.value);
 	enemy_magic_skill_ratio.addEventListener("change", () => {
-		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
+		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView, enemy_magic_skill_ratio.value, enemy_magic_skill_element.value);
 	});
 	enemy_magic_skill_element.addEventListener("change", () => {
-		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView);
+		calcReceivedMagicDamage(charaData, mobData, objMagicalDamageView, enemy_magic_skill_ratio.value, enemy_magic_skill_element.value);
 	});
 
 	// 各パートの表示状態の更新

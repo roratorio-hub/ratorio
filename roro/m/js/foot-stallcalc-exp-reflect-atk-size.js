@@ -17,7 +17,6 @@ import { ApplySpecModify, ApplySpecStatusModifications, DisplayReferStatusAll } 
 import {
     n_A_ActiveSkill, n_A_QUAKE_KIRI, n_tok, n_tok_no_limit, set_n_A_QUAKE_KIRI
 } from '../../../ro4/m/js/ro4-state.js';
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild } from '../../common/js/util.js';
 import { CCharaConfCustomAtk } from './CCharaConfCustomAtk.js';
 import { CCharaConfSanzi } from './CCharaConfSanzi.js';
 import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
@@ -78,7 +77,7 @@ import {
 } from './roro-state.js';
 import {
     SKILL_ID_COUNTER_SLASH, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_EXPIATIO, SKILL_ID_FU_COUNT_OF_FU, SKILL_ID_GROOMING,
-    SKILL_ID_HITO_DAICHINO_KENKYU, SKILL_ID_SECRAMENT, SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SHUCHURYOKU_KOZYO,
+    SKILL_ID_HITO_DAICHINO_KENKYU, SKILL_ID_SECRAMENT, SKILL_ID_SENRYU_SHOTEN,
     SKILL_ID_STONE_HARD_SKIN, SKILL_ID_TAIYONO_KAMAE
 } from './skill.dat.js';
 import { NumSearch, ROUNDDOWN } from './foot-bridge.js';
@@ -868,21 +867,8 @@ export function ApplySize100Percent(charaData, mobData, monsterId) {
 
 		// TODO: 攻撃手段更新、ここにいれられないか
 
-
-		// TODO: ステータス欄注意喚起
-		var objDiv = document.getElementById("OBJID_DIV_STATUS_NOTICE");
-		HtmlRemoveAllChild(objDiv);
-		if (UsedSkillSearch(SKILL_ID_SHUCHURYOKU_KOZYO) > 0) {
-			var objP = null;
-			var objA = null;
-			objP = HtmlCreateElement("p", objDiv);
-			objP.setAttribute("class", "CSSCLS_GENERAL_COLOR_RED_BOLD");
-			HtmlCreateTextNode("（★注意情報★）集中力向上の効果が設定されています。", objP);
-			objA = HtmlCreateElement("a", objP);
-			objA.setAttribute("href", "../kousin/note20210606.html");
-			objA.setAttribute("target", "_blank");
-			HtmlCreateTextNode("『こちら』", objA);
-			HtmlCreateTextNode("の注意事項をご確認ください。", objP);
-		}
+		// ステータス欄注意喚起（集中力向上）は StAllCalc() 側（Shell）で描画する。
+		// UsedSkillSearch(SKILL_ID_SHUCHURYOKU_KOZYO) はここでの計算結果に依存しない
+		// 独立した判定のため、DOM書き込みをそのまま呼び出し元へ移設した。
 
 }

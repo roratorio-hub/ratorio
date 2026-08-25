@@ -105,14 +105,18 @@ let w_HiDam = [];
 
 /**
  * 被ダメージを計算する. 戻り値を持つが関数内部で被ダメージ表示も行っている
- * @param {*} charaData 
- * @param {*} specData 
- * @param {*} mobData 
- * @param {*} attackMethodConfArray 
- * @param {*} objCell 
+ * @param {*} charaData
+ * @param {*} specData
+ * @param {*} mobData
+ * @param {*} attackMethodConfArray
+ * @param {*} objCell
+ * @param {*} skillRatioRaw 被ダメージ計算設定「敵スキル倍率」の生値（`OBJID_ENEMY_SKILL_RATIO`
+ *   の`.value`。呼び出し元がDOMから読んで渡す。要素が無い場合は `undefined`）
+ * @param {*} attackElementalRaw 被ダメージ計算設定「敵スキル属性」の生値
+ *   （`OBJID_ENEMY_SKILL_ELEMENT` の`.value`。同上）
  * @returns {number} 回避率を考慮しない被ダメージ
  */
-export function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell = null){
+export function calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, objCell = null, skillRatioRaw = undefined, attackElementalRaw = undefined){
 	var sklLv = 0;
 	w_HiDam = new Array();
 	let idx = 0;
@@ -142,13 +146,11 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 		for(var i=0;i<=6;i++) w_HiDam[i] = mobMaxATK;
 	}
 	
-	const enemy_skill_ratio_elm = document.getElementById("OBJID_ENEMY_SKILL_RATIO");
-	const enemy_skill_element_elm = document.getElementById("OBJID_ENEMY_SKILL_ELEMENT");
-	if (!enemy_skill_ratio_elm || !enemy_skill_element_elm) {
+	if (skillRatioRaw === undefined || attackElementalRaw === undefined) {
 		return;
 	}
-	const skill_ratio = Math.min(60000, Math.max(100, Number(enemy_skill_ratio_elm.value) || 100));
-	const attack_elemental = Number(enemy_skill_element_elm.value);
+	const skill_ratio = Math.min(60000, Math.max(100, Number(skillRatioRaw) || 100));
+	const attack_elemental = Number(attackElementalRaw);
 	w_HiDam = w_HiDam.map(damage => Math.floor(damage * skill_ratio / 100));
 	mobStATK = Math.floor(mobStATK * skill_ratio / 100);
 
@@ -518,12 +520,16 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 }
 
 /**
- * 魔法の被ダメージを計算する. 
- * @param {*} charaData 
- * @param {*} mobData 
- * @param {*} objCell 
+ * 魔法の被ダメージを計算する.
+ * @param {*} charaData
+ * @param {*} mobData
+ * @param {*} objCell
+ * @param {*} skillRatioRaw 被ダメージ計算設定「敵魔法スキル倍率」の生値
+ *   （`OBJID_ENEMY_MAGIC_SKILL_RATIO` の`.value`。呼び出し元がDOMから読んで渡す）
+ * @param {*} attackElementalRaw 被ダメージ計算設定「敵魔法スキル属性」の生値
+ *   （`OBJID_ENEMY_MAGIC_SKILL_ELEMENT` の`.value`）
  */
-export function calcReceivedMagicDamage(charaData, mobData, objCell){
+export function calcReceivedMagicDamage(charaData, mobData, objCell, skillRatioRaw = undefined, attackElementalRaw = undefined){
 	// let mobMinMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MIN];
 	let mobMaxMATK = mobData[MONSTER_DATA_EXTRA_INDEX_MATK_MAX];
 	//	let damage = (mobMinMATK + mobMaxMATK) / 2;
@@ -531,13 +537,11 @@ export function calcReceivedMagicDamage(charaData, mobData, objCell){
 	let damage = mobMaxMATK;
 	let ratio = 0;
 
-	const enemy_magic_skill_ratio_elm = document.getElementById("OBJID_ENEMY_MAGIC_SKILL_RATIO");
-	const enemy_magic_skill_element_elm = document.getElementById("OBJID_ENEMY_MAGIC_SKILL_ELEMENT");
-	if (!enemy_magic_skill_ratio_elm || !enemy_magic_skill_element_elm) {
+	if (skillRatioRaw === undefined || attackElementalRaw === undefined) {
 		return;
 	}
-	const skill_ratio = Math.min(60000, Math.max(100, Number(enemy_magic_skill_ratio_elm.value) || 100));
-	const attack_elemental = Number(enemy_magic_skill_element_elm.value);
+	const skill_ratio = Math.min(60000, Math.max(100, Number(skillRatioRaw) || 100));
+	const attack_elemental = Number(attackElementalRaw);
 	damage = Math.floor(damage * skill_ratio / 100);
 
 	/** モンスター耐性 */

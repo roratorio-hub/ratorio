@@ -1462,10 +1462,12 @@ export function ApplyMagicalSkillDamageRatioChangeSubArcanaCard(cardid) {
 
 /**
  * スキルダメージ倍率強化表示欄の再構築.
- * @param {*} battleCalcInfo 
- * @param {*} charaData 
- * @param {*} specData 
- * @param {*} mobData 
+ * DOM描画はしない（呼び出し元が返り値のHTML文字列を表示欄へ書き込むこと）。
+ * @param {*} battleCalcInfo
+ * @param {*} charaData
+ * @param {*} specData
+ * @param {*} mobData
+ * @returns {string} 表示欄（`OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL`）に書き込むHTML
  */
 export function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData, mobData) {
 
@@ -1494,6 +1496,6 @@ export function RebuildActiveSkillRatioInfo(battleCalcInfo, charaData, specData,
 	if (ratio != 0){
 		html = `スキル強化：<span class="CSSCLS_SKILL_RATIO_${ratio>0?"PLUS":"MINUS"}">${ratio}%</span>`;
 	}
-	$("#OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL").html(html);
+	return html;
 }
 

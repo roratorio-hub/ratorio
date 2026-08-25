@@ -95,7 +95,7 @@ import {
     SU_AGI, SU_DEX, SU_INT, SU_LUK, SU_STR, SU_VIT, n_A_AGI, n_A_BODY_DEF_PLUS, n_A_DEX, n_A_Equip,
     n_A_HEAD_DEF_PLUS, n_A_INT, n_A_JOB, n_A_JobLV, n_A_LUK, n_A_SHIELD_DEF_PLUS, n_A_SHOES_DEF_PLUS,
     n_A_SHOULDER_DEF_PLUS, n_A_STR, n_A_VIT, n_A_Weapon2_ATKplus, n_A_WeaponType, n_A_Weapon_ATKplus, n_A_card,
-    set_n_A_AGI, set_n_A_DEX, set_n_A_INT, set_n_A_JobLV, set_n_A_LUK, set_n_A_STR, set_n_A_VIT
+    set_n_A_AGI, set_n_A_DEX, set_n_A_INT, set_n_A_LUK, set_n_A_STR, set_n_A_VIT
 } from './roro-state.js';
 import {
     SKILL_ID_BLOOD_HOWLING, SKILL_ID_CHASEWALK, SKILL_ID_CHATTERING, SKILL_ID_DAICHINO_CHIKARA,
@@ -170,7 +170,7 @@ export function StPlusCalc() {
 
 	// ジョブ補正の算出
 	InitJobInfo();
-	set_n_A_JobLV(eval(document.calcForm.A_JobLV.value));
+	// n_A_JobLV は HydrateFromModel() が calcForm.A_JobLV から既に設定済み（本関数呼び出し前）。
 	jobBonusArray = GetJobBonus(n_A_JOB, n_A_JobLV);
 
 	// スーパーノービスの無死亡ボーナス

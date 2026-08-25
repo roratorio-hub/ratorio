@@ -1633,7 +1633,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				if(i==0){
 					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_TOUKETSU] || n_B_IJYOU[MOB_CONF_DEBUF_ID_SEKIKA]){
 						T_check = mobData[18];
-						mobData[18] = MonsterObjNew[eval(document.calcForm.B_Enemy.value)][18];
+						mobData[18] = MonsterObjNew[mobData[0]][18];
 						if(n_B_KYOUKA[6]) T_check = n_B_KYOUKA[6];
 						if(n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE]) T_check = n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE] * 10 + (T_check % 10);
 					}
@@ -1727,7 +1727,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			var T_check = -1;
 			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_TOUKETSU] || n_B_IJYOU[MOB_CONF_DEBUF_ID_SEKIKA]){
 				T_check = mobData[3];
-				mobData[18] = MonsterObjNew[eval(document.calcForm.B_Enemy.value)][18];
+				mobData[18] = MonsterObjNew[mobData[0]][18];
 				if(n_B_KYOUKA[6]) T_check = n_B_KYOUKA[6];
 				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE]) T_check = n_B_IJYOU[MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE] * 10 + (T_check % 10);
 			}
