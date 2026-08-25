@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { CalcInput, notifyChanged, notifyChangedLegacy, requestRecalc, withBatch, onResults } from '@ro4/calc-invalidation.js';
+import { CalcInput, notifyChanged, requestRecalc, withBatch, onResults } from '@ro4/calc-invalidation.js';
 // AutoCalc/calc は head-bridge 経由（head.js 直接 import は循環・OOMの原因になるため禁止）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
 // リファクタリング計画 Phase 9 D3: ポリシーflagの読み出し元は CSaveController.getSettingProp
@@ -95,33 +95,6 @@ describe('calc-invalidation.js', () => {
         });
     });
 
-    describe('notifyChangedLegacy: 旧 AutoCalc(callFrom) 文字列の後方互換シム', () => {
-        it('既知の文字列（攻撃手段グループ）を ATTACK_METHOD として扱う', () => {
-            setAutoCalcFlag(1);
-            notifyChangedLegacy('CAttackMethodAreaComponentManager.OnChangeAttackMethod');
-            expect(calc).toHaveBeenCalledTimes(1);
-            calc.mockClear();
-            setAutoCalcFlag(0);
-            notifyChangedLegacy('CAttackMethodAreaComponentManager.OnChangeAttackMethod');
-            expect(calc).not.toHaveBeenCalled();
-        });
-
-        it('既知の文字列（設定/バフグループ）は flag=0/1 どちらでも再計算する', () => {
-            setAutoCalcFlag(0);
-            notifyChangedLegacy('Click_A4');
-            expect(calc).toHaveBeenCalledTimes(1);
-        });
-
-        it('未知の文字列（OnClickSkillLearnedLoad 含む）は kind未指定と同じ扱いになる', () => {
-            setAutoCalcFlag(1);
-            notifyChangedLegacy('OnClickSkillLearnedLoad');
-            expect(calc).not.toHaveBeenCalled();
-            setAutoCalcFlag(3);
-            notifyChangedLegacy('OnClickSkillLearnedLoad');
-            expect(calc).toHaveBeenCalledTimes(1);
-        });
-    });
-
     describe('requestRecalc: ポリシーを無視して常に再計算する', () => {
         it('flag=2（本来は再計算しない設定）でも再計算する', () => {
             setAutoCalcFlag(2);
@@ -186,11 +159,101 @@ describe('calc-invalidation.js', () => {
         });
     });
 
-    describe('onResults: コールバック登録の解除関数を返す', () => {
+    describe('onResults: 再計算のたびに calc() の戻り値を配信する', () => {
+        // resultListeners はモジュールレベルの Set で beforeEach では初期化されないため、
+        // テストをまたいだ登録漏れが後続テストへの余計な配信として残る。
+        // 登録は必ずここで追跡し、afterEach で解除する。
+        const unsubs: Array<() => void> = [];
+        function subscribe(cb: (result: unknown) => void) {
+            const unsubscribe = onResults(cb);
+            unsubs.push(unsubscribe);
+            return unsubscribe;
+        }
+        afterEach(() => {
+            unsubs.splice(0).forEach((u) => u());
+        });
+
         it('登録解除関数を呼んでも例外にならない', () => {
             const cb = vi.fn();
-            const unsubscribe = onResults(cb);
+            const unsubscribe = subscribe(cb);
             expect(() => unsubscribe()).not.toThrow();
+        });
+
+        it('notifyChanged で実際に再計算が起きたら calc() の戻り値をコールバックへ渡す', () => {
+            const battleCalcResultAll = { dummy: 'result' };
+            calc.mockReturnValue(battleCalcResultAll);
+            const cb = vi.fn();
+            subscribe(cb);
+
+            setAutoCalcFlag(3);
+            notifyChanged(CalcInput.CHARA);
+
+            expect(cb).toHaveBeenCalledTimes(1);
+            expect(cb).toHaveBeenCalledWith(battleCalcResultAll);
+        });
+
+        it('notifyChanged がポリシーによりスキップされたら発火しない', () => {
+            const cb = vi.fn();
+            subscribe(cb);
+
+            setAutoCalcFlag(0);
+            notifyChanged(CalcInput.ATTACK_METHOD);
+
+            expect(calc).not.toHaveBeenCalled();
+            expect(cb).not.toHaveBeenCalled();
+        });
+
+        it('requestRecalc でも配信する', () => {
+            const battleCalcResultAll = { dummy: 'requestRecalc' };
+            calc.mockReturnValue(battleCalcResultAll);
+            const cb = vi.fn();
+            subscribe(cb);
+
+            setAutoCalcFlag(2);
+            requestRecalc();
+
+            expect(cb).toHaveBeenCalledWith(battleCalcResultAll);
+        });
+
+        it('withBatch でまとめられた再計算は、バッチ終了後の1回だけ配信する', () => {
+            const battleCalcResultAll = { dummy: 'batched' };
+            calc.mockReturnValue(battleCalcResultAll);
+            const cb = vi.fn();
+            subscribe(cb);
+
+            setAutoCalcFlag(3);
+            withBatch(() => {
+                notifyChanged(CalcInput.CHARA);
+                notifyChanged(CalcInput.BUFF);
+            });
+
+            expect(cb).toHaveBeenCalledTimes(1);
+            expect(cb).toHaveBeenCalledWith(battleCalcResultAll);
+        });
+
+        it('登録解除後は配信されない', () => {
+            const cb = vi.fn();
+            const unsubscribe = subscribe(cb);
+            unsubscribe();
+
+            setAutoCalcFlag(3);
+            notifyChanged(CalcInput.CHARA);
+
+            expect(cb).not.toHaveBeenCalled();
+        });
+
+        it('複数のコールバックをそれぞれ独立して配信する', () => {
+            const cb1 = vi.fn();
+            const cb2 = vi.fn();
+            subscribe(cb1);
+            const unsubscribe2 = subscribe(cb2);
+            unsubscribe2();
+
+            setAutoCalcFlag(3);
+            notifyChanged(CalcInput.CHARA);
+
+            expect(cb1).toHaveBeenCalledTimes(1);
+            expect(cb2).not.toHaveBeenCalled();
         });
     });
 });

@@ -7,8 +7,17 @@
  *
  * D1: `AutoCalc(callFrom)` を本モジュールへ委譲するシムに縮小した（完了）。
  * D2: 呼び出し側31箇所を `AutoCalc("文字列")` → `notifyChanged(CalcInput.X)` に置き換えた（完了）。
- * D3（本コミット）: 再計算ポリシーの読み出し元をDOM（`OBJID_INPUT_ATTACK_METHOD_AUTO_CALC`）から
- *     savedata prop（`CSaveController.getSettingProp(propNameAttackAutoCalc)`）へ移す。
+ * D3: 再計算ポリシーの読み出し元をDOM（`OBJID_INPUT_ATTACK_METHOD_AUTO_CALC`）から
+ *     savedata prop（`CSaveController.getSettingProp(propNameAttackAutoCalc)`）へ移す（完了）。
+ * D4: `onResults()` を実際に配線した。`calc()`（head.js）が `battleCalcResultAll` を
+ *     返すようになったため、`notifyChanged`/`requestRecalc`/`withBatch` 経由の再計算の
+ *     たびに登録済みコールバックへ配信する（完了。残件台帳 B-10）。
+ * D5（本コミット）: D1で導入した `LEGACY_CALL_FROM_MAP`/`notifyChangedLegacy`（旧文字列→kind
+ *     変換シム）を撤去した。D2で内部呼び出し側の移行は完了しており、リポジトリ全体を
+ *     検索しても `AutoCalc(callFrom)` を文字列付きで呼ぶ箇所は無かった（唯一の実呼び出し元
+ *     `workspace/src/rtxApiImport.ts` も常に引数なしで呼ぶ）。ヘッダーコメント自身が
+ *     「D2完了後に撤去する」と予告していた通りの後始末。`AutoCalc()` は `notifyChanged(undefined)`
+ *     を直接呼ぶだけになった。
  *
  * ⚠️ D3着手前に調査した「真実の源が2つある」問題について: 実際には既にDOM要素側が
  *     savedata prop の**鏡**として設計されていた（`CAttackMethodAreaComponentManager.js`
@@ -55,40 +64,6 @@ export const CalcInput = Object.freeze({
 });
 
 /**
- * 旧 `AutoCalc(callFrom)` の文字列 → `CalcInput` の対応表。
- * D1でシムのために導入し、D2で呼び出し側の変換が終わったら撤去する。
- * ここに無い文字列（`OnClickSkillLearnedLoad` を含む）は「kind未指定」と同じ扱いになる
- * （旧実装でもどの case にも一致せず、flag=3 の場合のみ再計算していたのと同じ）。
- */
-const LEGACY_CALL_FROM_MAP = new Map([
-    ['CAttackMethodAreaComponentManager.OnChangeAttackMethod', CalcInput.ATTACK_METHOD],
-    ['CAttackMethodAreaComponentManager.OnChangeAttackMethodOption', CalcInput.ATTACK_METHOD],
-    ['CAttackMethodAreaComponentManager.OnChangeAutoCalc', CalcInput.ATTACK_METHOD],
-    ['CConfBase.OnChangeValueHandler', CalcInput.CHARA],
-    ['OnChangeMobConfDebuf', CalcInput.MOB],
-    ['OnChangeMobConfBuf', CalcInput.MOB],
-    ['OnChangeMobConfPlayer', CalcInput.MOB],
-    ['OnChangeSettingAutoSpell', CalcInput.BUFF],
-    ['CTimeItemAreaComponentManager.OnChangeConf', CalcInput.BUFF],
-    ['RefreshSkillColumnHeaderLearned', CalcInput.CHARA],
-    ['Click_A1', CalcInput.BUFF],
-    ['Click_A4', CalcInput.BUFF],
-    ['Click_A7', CalcInput.BUFF],
-    ['Click_A8', CalcInput.BUFF],
-]);
-
-/**
- * 旧 `AutoCalc(callFrom)` の文字列を `CalcInput` に変換して `notifyChanged` へ渡す。
- * 内部呼び出し側は全て D2 で `notifyChanged` へ移行済みだが、`head.js` の `AutoCalc` 自体は
- * `engine-registry.js` に登録された公開APIであり続ける（`calcx-ai.js` 等の外部消費者が
- * 文字列引数で呼ぶ可能性があるため）。この関数はその後方互換実装として残す。
- * @param {string|undefined} callFrom 旧 `AutoCalc` の呼び出し元文字列
- */
-export function notifyChangedLegacy(callFrom) {
-    notifyChanged(LEGACY_CALL_FROM_MAP.get(callFrom));
-}
-
-/**
  * 現在の自動計算ポリシーのflag値を読む。`CAttackMethodAreaComponentManager.js` の
  * `RebuildSettingArea()`/`OnChangeAutoCalc()` がDOM要素と双方向に同期させているため、
  * savedata prop を読めばDOM要素と常に同じ値が得られる（詳細はファイル冒頭コメント参照）。
@@ -128,6 +103,17 @@ function shouldRecalc(autoCalcFlag, kind) {
 let batchDepth = 0;
 let batchHadNotify = false;
 
+const resultListeners = new Set();
+
+/**
+ * `calc()` を呼び、戻り値（`battleCalcResultAll`）を `onResults` の登録先へ配信する。
+ * `notifyChanged`/`requestRecalc`/`withBatch` の実際の再計算はすべてここを通す。
+ */
+function callCalcAndNotifyResults() {
+    const result = calc();
+    for (const cb of resultListeners) cb(result);
+}
+
 /**
  * 何が変わったかを通知する。`AutoCalc(callFrom)` の後継。
  * `withBatch()` の実行中に呼ばれた場合は即時計算せず、バッチの終了までまとめる。
@@ -140,7 +126,7 @@ export function notifyChanged(kind) {
         return;
     }
     if (shouldRecalc(readAutoCalcFlag(), kind)) {
-        calc();
+        callCalcAndNotifyResults();
     }
 }
 
@@ -154,7 +140,7 @@ export function requestRecalc() {
         batchHadNotify = true;
         return;
     }
-    calc();
+    callCalcAndNotifyResults();
 }
 
 /**
@@ -172,18 +158,17 @@ export function withBatch(fn) {
         batchDepth--;
         if (batchDepth === 0 && batchHadNotify) {
             batchHadNotify = false;
-            calc();
+            callCalcAndNotifyResults();
         }
     }
 }
 
-const resultListeners = new Set();
-
 /**
  * 再計算結果の通知を受け取るコールバックを登録する（描画層の接続点）。
- * 現状 `calc()` はDOM描画を直接行っており結果値を取り出せないため、
- * このAPIはまだ何も発火しない（Phase 10で `calc()` の描画テールを分離した後に配線する）。
- * @param {(result: unknown) => void} cb
+ * `calc()` が返す `battleCalcResultAll`（`calc-headless.js` の `calcFromModel()` と同じ形）を、
+ * `notifyChanged`/`requestRecalc`/`withBatch` 経由で実際に再計算が起きるたびに配信する
+ * （ポリシーにより再計算がスキップされた場合は発火しない。`withBatch` はまとめて高々1回）。
+ * @param {(result: object) => void} cb `battleCalcResultAll` を受け取るコールバック
  * @returns {() => void} 登録解除関数
  */
 export function onResults(cb) {

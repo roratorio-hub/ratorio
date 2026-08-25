@@ -19,7 +19,7 @@ export { SyurikenOBJ, KunaiOBJ, CanonOBJ };
 import { GetForcedElementForCalc } from './battle-element.js';
 // 再計算ポリシー（リファクタリング計画 Phase 9）。calc-invalidation.js は
 // head-bridge.js 経由で calc() を呼ぶだけで head.js に依存しないため、循環しない。
-import { notifyChangedLegacy } from './calc-invalidation.js';
+import { notifyChanged } from './calc-invalidation.js';
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/data/mig.itemsp.h.js';
 import { CBattleCalcInfo } from './CBattleCalcInfo.js';
@@ -2614,28 +2614,15 @@ export function GetIkariPow(mobData) {
 }
 
 /**
- * 各種パラメータ変更時の自動計算機能
- * @param {*} callFrom 関数呼び出し元
- * 						undefined									: 基本ステータス、特性ステータス、装備
- * 						CConfBase.OnChangeValueHandler				: 支援設定、性能カスタマイズ
- * 						OnChangeMobConfDebuf						: モンスター状態異常設定
- * 						OnChangeMobConfBuf							: モンスター状態強化設定
- * 						OnChangeMobConfPlayer						: 対プレイヤー設定
- * 						OnChangeSettingAutoSpell					: オートスペル設定 (テスト中)
- * 						CTimeItemAreaComponentManager.OnChangeConf	: アイテム時限効果
- * 						RefreshSkillColumnHeaderLearned				: 習得スキル
- * 						Click_A1									: パッシブ持続系
- * 						Click_A4									: ギルドスキル/ゴスペル/他
- * 						Click_A7									: アイテム(食品/他)
- * 						Click_A8									: その他の支援/設定 (暫定追加機能)
- * 				CAttackMethodAreaComponentManager.OnChangeAutoCalc	: 攻撃手段
- * 		CAttackMethodAreaComponentManager.OnChangeAttackMethodOption: 攻撃手段オプション
- * 			CAttackMethodAreaComponentManager.OnChangeAttackMethod	: 自動計算のON/OFF
+ * 旧・各種パラメータ変更時の自動計算機能。
+ * 内部呼び出し側は全てリファクタリング計画 Phase 9 D2 で `notifyChanged(CalcInput.X)` へ
+ * 移行済み（旧 `callFrom` 文字列15種による分岐は D5 で撤去。calc-invalidation.js 冒頭コメント
+ * 参照）。現在は `engine-registry.js` に登録された公開APIとしてのみ存在し、
+ * 唯一の呼び出し元 `workspace/src/rtxApiImport.ts` が引数なしで呼ぶ
+ * （`window.AutoCalc` 経由。`.claude/context/window-and-bridges.md` 参照）。
  */
-export function AutoCalc(callFrom) {
-	// 実体は calc-invalidation.js（リファクタリング計画 Phase 9 D1）。
-	// ポリシーの判定ロジック・仕様は calc-invalidation.js 冒頭のコメント参照。
-	notifyChangedLegacy(callFrom);
+export function AutoCalc() {
+	notifyChanged(undefined);
 }
 
 //================================================================================================================================
@@ -3392,12 +3379,14 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 
 /**
  * ダメージ計算　命中・クリティカル・耐性などを計算して最終ダメージを算出する
- * @returns
+ * @returns {object} `battleCalcResultAll`（`CBattleCalcResultAll` インスタンス。
+ *   `calc-headless.js` の `calcFromModel()` と同じ形）
  */
 export function calc() {
 	const retValArray = StAllCalc();
 	const { battleCalcResultAll, attackMethodConfArray, w_BONUS } = ComputeBattleResult(retValArray);
 	RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS);
+	return battleCalcResultAll;
 }
 
 /**
