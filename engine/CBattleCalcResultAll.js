@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import "./monster.h.js";
-import { GetArrayTotal, GetArrayMax, GetArrayMin } from '../roro/common/js/util.js';
+import { GetArrayTotal, GetArrayMax, GetArrayMin } from "./util.js";
 import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_HP, MONSTER_DATA_INDEX_JOB_EXP } from "./const/EnumMonsterDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===
 /**

@@ -55,7 +55,7 @@ import {
 } from "./item.dat.js";
 import { GetMaxSlot } from "./item.h.js";
 import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from "./data/mig.enchlist.dat.js";
-import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from '../roro/common/js/util.js';
+import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: slotpager.js との循環 import 回避のため slotpager-const.js から直接参照
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "./slotpager-const.js";

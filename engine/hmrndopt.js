@@ -4,7 +4,7 @@ import {
          HtmlCreateElement, HtmlCreateElementOption, HtmlGetElementById,
          HtmlGetObjectValueByIdAsInteger, HtmlRemoveOptionAll, HtmlSetAttribute,
          HtmlSetObjectValueById
-} from '../roro/common/js/util.js';
+} from "./util.js";
 import { isShadowEquipAvailable } from "./CShadowEquipControllerDataBridge.js";
 import { ItemObjNew } from "./item.dat.js";
 import { GetRndOptTypeId } from "./item.h.js";

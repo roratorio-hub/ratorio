@@ -2,7 +2,7 @@
 import "./skill.h.js";
 import { notifyChanged, CalcInput } from "./calc-invalidation.js";
 import { SkillObjNew } from "./skill.dat.js";
-import { myInnerHtml } from '../roro/common/js/util.js';
+import { myInnerHtml } from "./util.js";
 import { n_A_PassSkill4 } from "./skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { StAllCalc } from "./foot-bridge.js";

@@ -8,7 +8,7 @@
  */
 import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
 import { n_A_BaseLV } from "../../ro4-state.js";
-import { HtmlGetObjectValueByIdAsInteger } from '../../../roro/common/js/util.js';
+import { HtmlGetObjectValueByIdAsInteger } from "../../util.js";
 import { CSkillData, defineSkill } from "../../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";

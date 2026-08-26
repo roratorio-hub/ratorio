@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { floorBigInt32, toSafeBigInt } from '../roro/common/js/util.js';
+import { floorBigInt32, toSafeBigInt } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * セーブデータの変換を行うクラス.

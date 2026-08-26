@@ -4,7 +4,7 @@ import { GetItemSetMemberText } from "./itemset-bridge.js";
 import "./monster.h.js";
 import "./skill.h.js";
 import "./usableskill.h.js";
-import { toSafeBigInt } from '../roro/common/js/util.js';
+import { toSafeBigInt } from "./util.js";
 import { AutoSpellSkill } from "./autospell.dat.js";
 import { GetAutoSpellTriggerText } from "./autospell.h.js";
 import { CardObjNew } from "./card.dat.js";

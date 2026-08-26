@@ -26,7 +26,7 @@ import {
          } from "./usableskill.dat.js";
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from "./usableskill.h.js";
 import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from "./data/mig.job.h.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlSetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlSetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "./util.js";
 import { MIG_JOB_ID_BIOLO, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_MEISTER, MIG_JOB_ID_SPIRIT_HANDLER } from "./data/mig.job.dat.js";
 import { g_attackMethodBridge } from "./CAttackMethodDataBridge.js";
 import {

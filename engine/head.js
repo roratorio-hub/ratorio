@@ -41,7 +41,7 @@ import { CSaveDataConst } from "./savedata/CSaveDataConst.js";
 import {
          HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
          HtmlGetObjectValueByIdAsInteger, HtmlRemoveAllChild, myInnerHtml
-} from '../roro/common/js/util.js';
+} from "./util.js";
 import { CCharaConfCustomAtk } from "./CCharaConfCustomAtk.js";
 import { CCharaConfCustomDef } from "./CCharaConfCustomDef.js";
 import { CCharaConfCustomSkill } from "./CCharaConfCustomSkill.js";

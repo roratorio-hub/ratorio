@@ -2,7 +2,7 @@
 import "./common.js";
 import { g_charaData } from "./global.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
-import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlCreateElementOption, HtmlRemoveFromParent, HtmlGetSelectedOptgroup, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData } from '../roro/common/js/util.js';
+import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlCreateElementOption, HtmlRemoveFromParent, HtmlGetSelectedOptgroup, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData } from "./util.js";
 import { ApplyCardShort, CardShortObj, RebuildCardSelect, SetCardSlotEnabilityAll } from "./hmcard.js";
 import { RebuildCostumeSelect, SetCostumeSlotEnabilityAll } from "./hmcostume.js";
 import { GetObjectIdRndOptKind, GetObjectIdRndOptKindTD, GetObjectIdRndOptValue, GetObjectIdRndOptValueTD, RebuildRndOptSelect, SetRndOptEnablityAll, SetUpRndOptValue } from "./hmrndopt.js";

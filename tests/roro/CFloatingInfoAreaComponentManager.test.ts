@@ -9,7 +9,7 @@ vi.hoisted(() => {
     document.body.innerHTML = '<div id="ID_FLOATING_INFO_AREA"></div><div id="OBJID_SHADOW_EQUIPS_MIG"></div><div id="ID_TIME_ITEM_AREA"></div><div id="ID_BATTLE_QUICK_CONTROL_AREA"></div>';
 });
 
-vi.mock('../../roro/common/js/util.js', async (importActual) => {
+vi.mock('../../engine/util.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });

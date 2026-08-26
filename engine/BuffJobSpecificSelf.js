@@ -38,7 +38,7 @@ import {
          TIME_ITEM_ID_TRAVELER_RING_GOKETSU, TIME_ITEM_ID_TRIANGLE_DISASTER,
          TIME_ITEM_ID_URUNO_KAGO, TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO
 } from "./timeitem.dat.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, myInnerHtml } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, myInnerHtml } from "./util.js";
 import { n_A_PassSkill, UsedSkillSearch, UsedSkillSearchSubUsedOnly } from "./skillstate.js";
 import {
          SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_AS_QUICKDRAW, SKILL_ID_ATK_FOR_IRON_NAIL,
@@ -117,7 +117,8 @@ export function Click_PassSkillSW(){
 		document.calcForm.A1_SKILLSW.checked = true;
 		for (let i = 0; i <= end; i++) {
 				if (passiveSkillIdArray[i] == SKILL_ID_SHUCHURYOKU_KOZYO) {
-					myInnerHtml("P_Skill"+i, SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME] + "　<a href=\"../kousin/note20210606.html\" target=\"_blank\">(★注意情報★)</a>", 0);
+					// 挿入先ページの深さに依存しないよう import.meta.url 基準の完全修飾URLで解決する（B-23で pages/ へ移動）。
+					myInnerHtml("P_Skill"+i, SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME] + "　<a href=\"" + new URL("../pages/note20210606.html", import.meta.url).href + "\" target=\"_blank\">(★注意情報★)</a>", 0);
 				}
 				else {
 					document.getElementById("P_Skill"+i).textContent = SkillObjNew[passiveSkillIdArray[i]][SKILL_DATA_INDEX_NAME];

@@ -7,7 +7,7 @@ import "./item.h.js";
 import "./monster.h.js";
 import { GetBaseLevelMax, GetBaseLevelMin, GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from "./data/mig.job.h.js";
 import { CSaveDataConst } from "./savedata/CSaveDataConst.js";
-import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify } from '../roro/common/js/util.js';
+import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify } from "./util.js";
 import { CCharaConfCustomSpecStatus } from "./CCharaConfCustomSpecStatus.js";
 import { CCharaConfNizi } from "./CCharaConfNizi.js";
 import { CCharaConfYozi } from "./CCharaConfYozi.js";

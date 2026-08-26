@@ -105,7 +105,7 @@ import {
 	SKILL_ID_TUZYO_KOGEKI,
 } from "./skill.dat.js";
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from "./usableskill.h.js";
-import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from '../roro/common/js/util.js';
+import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from "./util.js";
 import { Click_A1, n_Skill1SW } from "./BuffJobSpecificSelf.js";
 import { n_A_PassSkill3, n_A_PassSkill, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8 } from "./skillstate.js";
 import { Click_A4 } from "./BuffGuildAndGospel.js";

@@ -11,7 +11,7 @@ import { IsSameJobClass } from "./data/mig.job.h.js";
 import { g_timeItemConf, g_timeItemConfEffective } from "./global.js";
 import { g_pureStatus } from "./hmjob.js";
 import { n_A_Arrow, n_A_BaseLV } from "./ro4-state.js";
-import { toSafeBigInt } from '../roro/common/js/util.js';
+import { toSafeBigInt } from "./util.js";
 import { ARROW_ID_ZOKUSE_ZIDO_YA_ATK30, ArrowOBJNew } from "./arrow.dat.js";
 import { CardObjNew } from "./card.dat.js";
 import {

@@ -8,7 +8,7 @@ import { GetHigherJobSeriesID, GetLowerJobSeriesID } from "./data/mig.job.h.js";
 import {
          HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
          HtmlRemoveAllChild, myInnerHtml
-} from '../roro/common/js/util.js';
+} from "./util.js";
 import { AutoSpellSkill } from "./autospell.dat.js";
 import { CARD_ID_GRIFFIN, CARD_ID_NAGUSAMERUMONO } from "./card.dat.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "./chara.js";

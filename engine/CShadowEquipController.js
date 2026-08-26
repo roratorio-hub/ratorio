@@ -11,7 +11,7 @@ import { ItemObjNew } from "./item.dat.js";
 import { GetRndOptTypeId } from "./item.h.js";
 import { g_rndOptTypeArray } from "./rndopttype.dat.js";
 import { IsMatchJobRestrict } from "./data/mig.job.h.js";
-import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { registerShadowEquipController } from "./CShadowEquipControllerDataBridge.js";
 // C-6: head.js 公開関数（head-bridge 経由）

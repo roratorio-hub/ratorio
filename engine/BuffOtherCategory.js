@@ -4,7 +4,7 @@ import { notifyChanged, CalcInput } from "./calc-invalidation.js";
 import { CItemInfoManager } from "./CItemInfoManager.js";
 import { GetFriendlityText } from "./common.js";
 import { PET_OBJ } from "./pet.dat.js";
-import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from '../roro/common/js/util.js';
+import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from "./util.js";
 import { n_A_PassSkill8 } from "./skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state 追加分

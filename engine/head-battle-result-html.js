@@ -11,7 +11,7 @@
  */
 import {
     HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode, myInnerHtml
-} from '../roro/common/js/util.js';
+} from "./util.js";
 import { CCharaConfNizi } from "./CCharaConfNizi.js";
 import { g_extraInfoDataBridge } from "./CExtraInfoDataBridge.js";
 import { TimeItemNumSearch } from "./chara.js";

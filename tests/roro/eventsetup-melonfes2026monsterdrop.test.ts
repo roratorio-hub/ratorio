@@ -15,7 +15,7 @@ beforeAll(async () => {
 	const monsterMapDat = await import('/workspace/ratorio/engine/monstermap.dat.js');
 	g_MonsterMapDataArray = monsterMapDat.g_MonsterMapDataArray;
 
-	const mod = await import('/workspace/ratorio/roro/other/js/eventsetup-melonfes2026monsterdrop.js');
+	const mod = await import('/workspace/ratorio/pages/js/eventsetup-melonfes2026monsterdrop.js');
 	BuildMelonFes2026MonsterDropEntries = mod.BuildMelonFes2026MonsterDropEntries;
 	FilterMelonFes2026MonsterDropEntries = mod.FilterMelonFes2026MonsterDropEntries;
 	SortMelonFes2026MonsterDropEntriesByLevel = mod.SortMelonFes2026MonsterDropEntriesByLevel;

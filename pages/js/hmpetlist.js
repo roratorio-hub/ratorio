@@ -1,11 +1,11 @@
 // === AUTO-GENERATED IMPORTS ===
-import { PetIdToSetIdMap } from "../../../engine/itemset.dat.js";
-import "../../../engine/common.js";
-import { CItemInfoManager } from "../../../engine/CItemInfoManager.js";
-import { PET_OBJ } from "../../../engine/pet.dat.js";
-import { HtmlRemoveAllChild } from '../../common/js/util.js';
-import { CONST_DATA_KIND_PET } from "../../../engine/const/EnumConstDataKind.js";
-import { PET_DATA_INDEX_ID, PET_DATA_INDEX_NAME } from "../../../engine/const/EnumPetDataIndex.js";
+import { PetIdToSetIdMap } from "../../engine/itemset.dat.js";
+import "../../engine/common.js";
+import { CItemInfoManager } from "../../engine/CItemInfoManager.js";
+import { PET_OBJ } from "../../engine/pet.dat.js";
+import { HtmlRemoveAllChild } from "../../engine/util.js";
+import { CONST_DATA_KIND_PET } from "../../engine/const/EnumConstDataKind.js";
+import { PET_DATA_INDEX_ID, PET_DATA_INDEX_NAME } from "../../engine/const/EnumPetDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===
 // 初期処理の実行
 export function OnLoadPetList () {

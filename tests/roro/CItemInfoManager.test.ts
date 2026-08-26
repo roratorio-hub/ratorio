@@ -60,7 +60,7 @@ describe('CItemInfoManager.js', () => {
             expect(focusArea).not.toHaveBeenCalled();
         });
 
-        it('未登録（roro/other ページ相当）の場合、例外を投げず no-op になる', () => {
+        it('未登録（pages/ ページ相当）の場合、例外を投げず no-op になる', () => {
             g_timeItemDataBridge.onChangeConf = null;
             g_timeItemDataBridge.focusArea = null;
             CItemInfoManager.ApplyAutoFocusFlag = true;

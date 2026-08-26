@@ -50,6 +50,15 @@ async function gotoFixture(query: string) {
     // （headless[0]のflake。memory project-calc-headless-test-flake / 残件台帳 B-13）。
     // CAttackMethodAreaComponentManager.selectObjectArray[0] の値が、実際に
     // 有効な攻撃手段データへ解決できるようになるまで条件待機する。
+    //
+    // 加えて calc-headless.js（_ratorioReg.extractModelFromDom / calcFromModel を登録）は
+    // calcx.html 内で CAttackMethodAreaComponentManager.js より後に読み込まれる
+    // <script type="module"> であり、head.js/foot.js 経由の依存チェーンが長いぶん評価完了が
+    // 遅れうる。上記の条件だけでは「攻撃手段セレクトは整った」ことしか保証できず、
+    // フルスイート実行時の負荷が高いと captureHeadless() 側が _ratorioReg の未登録関数を
+    // 呼んで `reg.extractModelFromDom is not a function` になることがあった
+    // （headless[24]/[56]のflake、2026-08-26 B-23検証時に発覚）。calc-headless.js 自体の
+    // 登録完了も同じ条件待機に含める。
     await page.waitForFunction(async () => {
         const dynamicImport = new Function('specifier', 'return import(specifier);') as
             (specifier: string) => Promise<Record<string, any>>;
@@ -57,7 +66,9 @@ async function gotoFixture(query: string) {
         const mgr = mod.CAttackMethodAreaComponentManager;
         const sel = mgr?.selectObjectArray?.[0];
         if (!sel) return false;
-        return mgr.GetAttackMethodData(sel.value) != null;
+        if (mgr.GetAttackMethodData(sel.value) == null) return false;
+        const reg = (globalThis as any)._ratorioReg;
+        return typeof reg?.extractModelFromDom === 'function' && typeof reg?.calcFromModel === 'function';
     });
     return { context, page, errors };
 }

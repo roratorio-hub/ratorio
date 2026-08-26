@@ -18,7 +18,7 @@ vi.hoisted(() => {
     // BuffOtherCategory.js は CTimeItemAreaComponentManager を import しており、その連鎖で
     // CBattleQuickControlAreaComponentManager が評価時に自己初期化(RebuildControls)される。
     // どちらも "このページに設定欄が無ければ何もしない" ガード（document.getElementById(...) が
-    // null なら早期 return）を持つので、対応するルート要素IDは null を返す（実ページの roro/other
+    // null なら早期 return）を持つので、対応するルート要素IDは null を返す（実ページの pages/
     // と同じ状態）。それ以外は既存の汎用 mockEl を返す。
     const rootIdsWithoutArea = new Set(['ID_BATTLE_QUICK_CONTROL_AREA', 'ID_TIME_ITEM_AREA']);
     (document as any).getElementById = (id: string) => (rootIdsWithoutArea.has(id) ? null : mockEl);

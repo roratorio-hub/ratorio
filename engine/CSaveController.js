@@ -12,7 +12,7 @@ import { CItemInfoManager } from "./CItemInfoManager.js";
 import { n_B_KYOUKA } from "./mobconfbuf.js";
 import { n_B_IJYOU } from "./mobconfdebuf.js";
 import { GetJobName } from "./data/mig.job.h.js";
-import { floorBigInt32 } from '../roro/common/js/util.js';
+import { floorBigInt32 } from "./util.js";
 import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose } from "./calchistory.js";
 // === END AUTO-GENERATED IMPORTS ===
 // Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）

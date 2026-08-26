@@ -12,7 +12,7 @@
  *
  * 旧実装（CSkillManager.js のモジュールローカル let）と同じセマンティクス:
  * export let の live binding により、import 側は Register 後の実体を呼び出し時点で参照する。
- * 未登録環境（roro/other ページ・ユニットテスト）で呼ばれた場合は例外を投げる。
+ * 未登録環境（pages/ ページ・ユニットテスト）で呼ばれた場合は例外を投げる。
  */
 
 /**

@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { createArithmeticSequence } from '../../roro/common/js/util.js';
+import { createArithmeticSequence } from "../util.js";
 import { g_constDataManager } from "../global.js";
 import {
          SKILL_ID_ABYSS_DAGGER_STATE, SKILL_ID_ANTEN_HOU, SKILL_ID_BASIC_GRENADE,

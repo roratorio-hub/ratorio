@@ -2,7 +2,7 @@ import { CCustomSelectBase } from "./CCustomSelectBase.js";
 // === AUTO-GENERATED IMPORTS ===
 import "./monster.h.js";
 import "./monstermap.h.js";
-import { HtmlCreateElementOption, HtmlRemoveOptionAll } from '../roro/common/js/util.js';
+import { HtmlCreateElementOption, HtmlRemoveOptionAll } from "./util.js";
 import { TranslateAlias } from "./alias.h.js";
 import { GetElementText, GetRaceText } from "./common.js";
 import { MonsterObjNew } from "./monster.dat.js";

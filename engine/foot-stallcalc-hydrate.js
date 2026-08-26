@@ -31,7 +31,7 @@ import { GetTotalSpecStatus } from "./hmjob.js";
 import {
     set_n_A_ActiveSkill, set_n_A_ActiveSkillLV, set_n_A_Arrow, set_n_A_BaseLV
 } from "./ro4-state.js";
-import { GetStatefullData, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from '../roro/common/js/util.js';
+import { GetStatefullData, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from "./util.js";
 import { ARROW_ID_NONE } from "./arrow.dat.js";
 import {
     CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2, CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,

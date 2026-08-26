@@ -1,33 +1,33 @@
-import { ItemPackageDat } from "../../../engine/item.package.dat.js";
+import { ItemPackageDat } from "../../engine/item.package.dat.js";
 // === AUTO-GENERATED IMPORTS ===
-import { GetJobName, IsMatchJobRestrict } from "../../../engine/data/mig.job.h.js";
-import { MigGetBorderFlagText } from "../../../engine/data/mig.itemsp.h.js";
-import { g_constDataManager } from "../../../engine/global.js";
-import { CItemInfoManager } from "../../../engine/CItemInfoManager.js";
-import { CardObjNew } from "../../../engine/card.dat.js";
-import { GetElementText } from "../../../engine/common.js";
-import { RebuildCardSelectSubCollectEnchListData } from "../../../engine/hmcard.js";
-import { ItemObjNew } from "../../../engine/item.dat.js";
+import { GetJobName, IsMatchJobRestrict } from "../../engine/data/mig.job.h.js";
+import { MigGetBorderFlagText } from "../../engine/data/mig.itemsp.h.js";
+import { g_constDataManager } from "../../engine/global.js";
+import { CItemInfoManager } from "../../engine/CItemInfoManager.js";
+import { CardObjNew } from "../../engine/card.dat.js";
+import { GetElementText } from "../../engine/common.js";
+import { RebuildCardSelectSubCollectEnchListData } from "../../engine/hmcard.js";
+import { ItemObjNew } from "../../engine/item.dat.js";
 import {
          GetItemExplainText, GetItemKindNameText, GetJobRestrictText, GetSlotText,
          GetStrPenaltyAvoidStr
-} from "../../../engine/item.h.js";
-import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../../common/js/util.js';
-import { CARD_DATA_INDEX_NAME } from "../../../engine/const/EnumCardDataIndex.js";
-import { CONST_DATA_KIND_ENCHANT_LIST } from "../../../engine/const/EnumConstDataKind.js";
+} from "../../engine/item.h.js";
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from "../../engine/util.js";
+import { CARD_DATA_INDEX_NAME } from "../../engine/const/EnumCardDataIndex.js";
+import { CONST_DATA_KIND_ENCHANT_LIST } from "../../engine/const/EnumConstDataKind.js";
 import {
     ITEM_DATA_INDEX_EQPFLG, ITEM_DATA_INDEX_EQPLV, ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_POWER,
     ITEM_DATA_INDEX_SLOT, ITEM_DATA_INDEX_SPBEGIN, ITEM_DATA_INDEX_WEIGHT, ITEM_DATA_INDEX_WPNLV,
-} from "../../../engine/const/EnumItemDataIndex.js";
+} from "../../engine/const/EnumItemDataIndex.js";
 import {
     ITEM_KIND_ACCESSORY_ON2, ITEM_KIND_BODY, ITEM_KIND_BOW, ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN,
     ITEM_KIND_HEAD_TOP, ITEM_KIND_HEAD_UNDER, ITEM_KIND_KNIFE, ITEM_KIND_MUSICAL, ITEM_KIND_RIFLE, ITEM_KIND_SHADOW_ACCESSORY_ON1,
     ITEM_KIND_SHADOW_ACCESSORY_ON2, ITEM_KIND_SHADOW_ARMS_LEFT, ITEM_KIND_SHADOW_ARMS_RIGHT, ITEM_KIND_SHADOW_BODY, ITEM_KIND_SHADOW_FOOT, ITEM_KIND_SHOTGUN,
     ITEM_KIND_WHIP,
-} from "../../../engine/const/EnumItemKind.js";
-import { ITEM_SP_ELEMENTAL, ITEM_SP_END } from "../../../engine/const/EnumItemSpId.js";
-import { EnumJobId, JOB_ID_NOVICE } from "../../../engine/const/EnumJobId.js";
-import { MIG_BORDER_FLAG_ID_OVER } from "../../../engine/const/EnumMigBorderFlagId.js";
+} from "../../engine/const/EnumItemKind.js";
+import { ITEM_SP_ELEMENTAL, ITEM_SP_END } from "../../engine/const/EnumItemSpId.js";
+import { EnumJobId, JOB_ID_NOVICE } from "../../engine/const/EnumJobId.js";
+import { MIG_BORDER_FLAG_ID_OVER } from "../../engine/const/EnumMigBorderFlagId.js";
 // === END AUTO-GENERATED IMPORTS ===
 export function OnLoadItemList() {
 	SetUpSelects();

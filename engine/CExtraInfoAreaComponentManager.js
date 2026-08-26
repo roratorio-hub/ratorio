@@ -38,7 +38,7 @@ import {
 import { LearnedSkillSearch } from "./learnedskill.js";
 import { MonsterObjNew } from "./monster.dat.js";
 import { SkillObjNew } from "./skill.dat.js";
-import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, DivideDigits3 } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, DivideDigits3 } from "./util.js";
 import { MIG_JOB_ID_SOUL_ASCETIC, MIG_JOB_ID_SPIRIT_HANDLER } from "./data/mig.job.dat.js";
 import {
          SKILL_ID_ANTIDOTE, SKILL_ID_BENEDICTUM, SKILL_ID_COLUCEO_HEAL,

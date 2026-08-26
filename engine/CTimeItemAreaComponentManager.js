@@ -2,7 +2,7 @@
 import "./timeitem.h.js";
 import { ITEM_SP_TIME_OBJ, ITEM_SP_TIME_OBJ_SORT } from "./timeitem.dat.js";
 import { g_timeItemConf, g_timeItemConfEffective } from "./global.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { CBattleQuickControlAreaComponentManager } from "./CBattleQuickControlAreaComponentManager.js";
 import { g_timeItemDataBridge } from "./CTimeItemDataBridge.js";
@@ -56,7 +56,7 @@ CTimeItemAreaComponentManager.RebuildControls = function () {
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_TIME_ITEM_AREA");
-	// この設定欄を持たないページ（roro/other/ 等）では構築をスキップする
+	// この設定欄を持たないページ（pages/ 等）では構築をスキップする
 	if (!objRoot) {
 		return;
 	}
@@ -347,8 +347,8 @@ CTimeItemAreaComponentManager.FocusArea = function (idxConf, bForceOpen) {
 // 初期構築処理
 CTimeItemAreaComponentManager.RebuildControls();
 
-// roro/other ページから到達する CItemInfoManager.ApplyTimeItem 用のブリッジ登録
-// （このファイルは calcx.html でのみロードされるため、roro/other では未登録のまま no-op になる）
+// pages/ ページから到達する CItemInfoManager.ApplyTimeItem 用のブリッジ登録
+// （このファイルは calcx.html でのみロードされるため、pages/ では未登録のまま no-op になる）
 g_timeItemDataBridge.onChangeConf = (idxConf, dataId) => CTimeItemAreaComponentManager.OnChangeConf(idxConf, dataId);
 g_timeItemDataBridge.focusArea = (idxConf, bForceOpen) => CTimeItemAreaComponentManager.FocusArea(idxConf, bForceOpen);
 

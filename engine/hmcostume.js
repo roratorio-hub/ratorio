@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { COSTUME_REGION_ID_HEAD_UNDER } from "./common.js";
 import { CostumeOBJ } from "./costume.dat.js";
-import { HtmlGetElementById, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSetObjectValueById, SetStatefullData } from '../roro/common/js/util.js';
+import { HtmlGetElementById, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSetObjectValueById, SetStatefullData } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: global.js 管理の共有 conf state
 import {

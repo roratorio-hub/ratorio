@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import "./CConfBase.js";
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from "./common.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
 import { notifyChanged, CalcInput } from "./calc-invalidation.js";

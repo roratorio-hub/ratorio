@@ -211,7 +211,7 @@ export function generateImage() {
     }
 
     #imgdiv div#imgframe {
-      background-image: url(../../ro4/m/img/frame.png);
+      background-image: url(../../assets/img/frame.png);
       width: 1030;
       height: 720;
     }

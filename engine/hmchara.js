@@ -2,7 +2,7 @@
 import "./chara.js";
 import "./item.h.js";
 import { GetUnconfirmedHPSPArray } from "./data/mig.job.h.js";
-import { HtmlCreateTextSpan, HtmlRemoveAllChild } from '../roro/common/js/util.js';
+import { HtmlCreateTextSpan, HtmlRemoveAllChild } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state 追加分
 import {

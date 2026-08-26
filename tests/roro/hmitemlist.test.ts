@@ -31,7 +31,7 @@ beforeAll(async () => {
 	await import('/workspace/ratorio/engine/itemset.h.js'); // GetItemSetMemberText を itemset-bridge に登録（GetItemExplainText が呼ぶ）
 	const itemDat = await import('/workspace/ratorio/engine/item.dat.js');
 	ItemObjNew = itemDat.ItemObjNew;
-	const hmitemlist = await import('/workspace/ratorio/roro/other/js/hmitemlist.js');
+	const hmitemlist = await import('/workspace/ratorio/pages/js/hmitemlist.js');
 	getItemList = hmitemlist.getItemList;
 	const migJobH = await import('/workspace/ratorio/engine/data/mig.job.h.js');
 	IsMatchJobRestrict = migJobH.IsMatchJobRestrict;

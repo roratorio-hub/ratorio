@@ -10,7 +10,7 @@ beforeEach(async () => {
 });
 
 describe('CShadowEquipControllerDataBridge.js', () => {
-    describe('未登録環境（roro/other・単体テスト）', () => {
+    describe('未登録環境（pages/・単体テスト）', () => {
         it('isShadowEquipAvailable は false を返す', () => {
             expect(bridge.isShadowEquipAvailable()).toBe(false);
         });

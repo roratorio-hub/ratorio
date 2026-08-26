@@ -7,7 +7,7 @@ import { CItemInfoManager } from "./CItemInfoManager.js";
 import { CSaveDataConverter } from "./CSaveDataConverter.js";
 import { CSaveDataMappingManager, CURRENT_VERSION } from "./CSaveDataMappingManager.js";
 import { GetSaveDataVersion, VersionModify } from "./savedata-codec.js";
-import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, MallocArray } from '../roro/common/js/util.js';
+import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, MallocArray } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 // 旧データ構造は、最大でバージョン 99 まで

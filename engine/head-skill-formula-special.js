@@ -5,7 +5,7 @@
  * 呼ばれる。制御フロー変換の方針は同ファイルの JSDoc を参照
  * （switch 末尾の `break;` → `return undefined;` の1箇所のみが非バイト単位の変更）。
  */
-import { myInnerHtml } from '../roro/common/js/util.js';
+import { myInnerHtml } from "./util.js";
 import { CCharaConfNizi } from "./CCharaConfNizi.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "./chara.js";
 import {

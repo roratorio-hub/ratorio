@@ -5,7 +5,7 @@ import "./chara.js";
 import { g_timeItemConf } from "./global.js";
 import { CSaveDataConst } from "./savedata/CSaveDataConst.js";
 import { GetJobName } from "./data/mig.job.h.js";
-import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { get as registryGet } from "./engine-registry.js";
 // C-6: 共有 state 追加分
@@ -196,7 +196,7 @@ CFloatingInfoAreaComponentManager.RebuildControls = function () {
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_FLOATING_INFO_AREA");
-	// この設定欄を持たないページ（roro/other/ 等）では構築をスキップする
+	// この設定欄を持たないページ（pages/ 等）では構築をスキップする
 	if (!objRoot) {
 		return;
 	}

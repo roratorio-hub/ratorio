@@ -135,12 +135,12 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('ページロード中', errors)).toHaveLength(0);
     });
 
-    // frame.js の fetch('../date.json') は <base href> 経由でのみ正しく roro/date.json に
-    // 解決していた（calcx.htmlの<base href>を前提にした相対パス）。B-14（engine/統合）で
-    // <base href> を撤去した際に見落とし、404 で失敗するようになっていた
-    // （実害: 手動ブラウザ確認で発覚。frame.js の.catch()に飲まれるため未捕捉JS例外には
-    // ならず、上の「起動テスト」では検出できない）。import.meta.url基準の解決に修正した後、
-    // このテストで再発を検出する。
+    // frame.js（現 assets/frame.js）の fetch('../date.json') は <base href> 経由でのみ
+    // 正しく date.json（当時は roro/date.json）に解決していた（calcx.htmlの<base href>を
+    // 前提にした相対パス）。B-14（engine/統合）で <base href> を撤去した際に見落とし、
+    // 404 で失敗するようになっていた（実害: 手動ブラウザ確認で発覚。frame.js の.catch()に
+    // 飲まれるため未捕捉JS例外にはならず、上の「起動テスト」では検出できない）。
+    // import.meta.url基準の解決に修正した後、このテストで再発を検出する。
     it('サイドバーの更新日時が date.json から正しく読み込まれる（フェッチ失敗しない）', async () => {
         const errors = await collectPageErrors(browser, async (page) => {
             await page.goto(`${baseUrl}/ro4/m/calcx.html`, {

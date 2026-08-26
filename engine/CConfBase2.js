@@ -2,7 +2,7 @@ import { CTargetData } from "./CConfBase.js";
 // === AUTO-GENERATED IMPORTS ===
 import "./CConfBase.js";
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from "./common.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: head.js 公開関数（head-bridge 経由）
 import {

@@ -48,7 +48,7 @@ jobs:
         working-directory: workspace
         run: |
           JST_DATE=$(TZ="Asia/Tokyo" date +"%Y-%m-%d %H:%M")
-          echo "{\"release_date\": \"$JST_DATE\"}" > ../roro/date.json
+          echo "{\"release_date\": \"$JST_DATE\"}" > ../assets/date.json
 
       - name: Deploy to Staging Repository
         env:
@@ -59,7 +59,8 @@ jobs:
           mv ./lib temp_dist/
           mv ./jquery temp_dist/
           mv ./ro4 temp_dist/
-          mv ./roro temp_dist/
+          mv ./assets temp_dist/
+          mv ./pages temp_dist/
           mv ./engine temp_dist/
           mv ./dist temp_dist/
           mv ./README.md temp_dist/

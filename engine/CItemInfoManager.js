@@ -16,7 +16,7 @@ import {
 import { GetItemExplainText, GetSlotText, GetStrPenaltyAvoidStr } from "./item.h.js";
 import { PET_OBJ } from "./pet.dat.js";
 import { CSaveDataConst } from "./savedata/CSaveDataConst.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "./util.js";
 import "./timeitem.h.js";
 import { ITEM_SP_TIME_OBJ } from "./timeitem.dat.js";
 // === END AUTO-GENERATED IMPORTS ===

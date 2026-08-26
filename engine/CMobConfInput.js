@@ -4,7 +4,7 @@ import { CSaveDataConverter } from "./CSaveDataConverter.js";
 import "./CConfBase.js";
 import { GetMonsterElementText, GetRaceText, GetSizeText } from "./common.js";
 import { GetBossTypeText, GetGrassTypeText } from "./monster.h.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, HtmlCopyToClipboardById } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, HtmlCopyToClipboardById } from "./util.js";
 import { RACE_ID_SOLID } from "./const/EnumRaceId.js";
 import { EnumRaceId } from "./const/EnumRaceId.js";
 import { CONTROL_TYPE_CHECKBOX, CONTROL_TYPE_DUMMY, CONTROL_TYPE_NUMBER, CONTROL_TYPE_SELECT, CONTROL_TYPE_TEXT } from "./const/EnumControlType.js";

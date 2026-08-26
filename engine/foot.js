@@ -764,7 +764,7 @@ import {
          TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from "./timeitem.dat.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, toSafeBigInt } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, toSafeBigInt } from "./util.js";
 import {
          SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_ADJUSTMENT, SKILL_ID_ADORAMUS,
          SKILL_ID_ADRENALINE_RUSH, SKILL_ID_ADVANCED_BOOK, SKILL_ID_AIMED_BOLT,
@@ -1334,7 +1334,8 @@ export function StAllCalc(){
         objP.setAttribute("class", "CSSCLS_GENERAL_COLOR_RED_BOLD");
         HtmlCreateTextNode("（★注意情報★）集中力向上の効果が設定されています。", objP);
         const objA = HtmlCreateElement("a", objP);
-        objA.setAttribute("href", "../kousin/note20210606.html");
+        // 挿入先ページの深さに依存しないよう import.meta.url 基準の完全修飾URLで解決する（B-23で pages/ へ移動）。
+        objA.setAttribute("href", new URL("../pages/note20210606.html", import.meta.url).href);
         objA.setAttribute("target", "_blank");
         HtmlCreateTextNode("『こちら』", objA);
         HtmlCreateTextNode("の注意事項をご確認ください。", objP);

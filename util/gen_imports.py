@@ -27,8 +27,7 @@ BASE = Path('/workspace/ratorio')
 
 TARGET_DIRS = [
     BASE / 'engine',
-    BASE / 'roro/other/js',
-    BASE / 'roro/common/js',
+    BASE / 'pages/js',
 ]
 
 MARKER_START = '// === AUTO-GENERATED IMPORTS ===\n'

@@ -1,7 +1,7 @@
 import { g_attackMethodBridge } from "./CAttackMethodDataBridge.js";
 // === AUTO-GENERATED IMPORTS ===
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from "./common.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
 import { notifyChanged, CalcInput } from "./calc-invalidation.js";
@@ -10,6 +10,9 @@ import {
     CONTROL_TYPE_SELECTBOX_SPECIAL, CONTROL_TYPE_SPECIAL, CONTROL_TYPE_TEXTBOX_NUMBER, CONTROL_TYPE_TEXTBOX_SPECIAL, CONTROL_TYPE_TEXT_NODE,
 } from "./const/EnumControlType.js";
 
+// 更新情報ページへのリンク（B-23で pages/ へ移動。ページの深さに依存しないよう
+// import.meta.url を基準に完全修飾URLへ解決する）。
+const KOUSIN_NOTE20210606_URL = new URL("../pages/note20210606.html", import.meta.url).href;
 
 /**
  * データ管理用クラス.
@@ -262,7 +265,7 @@ export function CConfBase(confArray) {
 				objA = document.createElement("a");
 				objTd.appendChild(objA);
 				objText = document.createTextNode("(★注意情報★)");
-				objA.setAttribute("href", "../kousin/note20210606.html");
+				objA.setAttribute("href", KOUSIN_NOTE20210606_URL);
 				objA.setAttribute("target", "_blank");
 				objA.appendChild(objText);
 			}

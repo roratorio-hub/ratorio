@@ -50,7 +50,7 @@ function collectTargets() {
             out.push(p);
         }
     };
-    for (const r of ['engine', 'roro/other/js', 'roro/common/js']) walk(join(REPO, r));
+    for (const r of ['engine', 'pages/js']) walk(join(REPO, r));
     const ai = join(REPO, 'ro4/m/calcx-ai.js');
     if (existsSync(ai)) out.push(ai);
     return out;

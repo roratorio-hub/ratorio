@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CSkillManager } from "./CSkillManager.js";
 import { CMigConstDataManager } from "./data/CMigConstDataManager.js";
-import { HtmlGetObjectCheckedById, MallocArray, DivideDigits3 } from '../roro/common/js/util.js';
+import { HtmlGetObjectCheckedById, MallocArray, DivideDigits3 } from "./util.js";
 import { n_B_TAISEI } from "./mobconfplayer.js";
 import { g_dataManagerMobConfInput } from "./CMobConfInput.js";
 // === END AUTO-GENERATED IMPORTS ===

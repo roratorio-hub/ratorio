@@ -2,7 +2,7 @@
 import "./timeitem.h.js";
 import { ITEM_SP_TIME_OBJ } from "./timeitem.dat.js";
 import { g_timeItemConf, g_timeItemConfEffective, g_timeItemConfAllEffective, set_g_timeItemConfAllEffective } from "./global.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
@@ -65,7 +65,7 @@ CBattleQuickControlAreaComponentManager.RebuildControls = function () {
 
 	// 設定欄を初期化
 	objRoot = document.getElementById("ID_BATTLE_QUICK_CONTROL_AREA");
-	// この設定欄を持たないページ（roro/other/ 等）では構築をスキップする
+	// この設定欄を持たないページ（pages/ 等）では構築をスキップする
 	if (!objRoot) {
 		return;
 	}

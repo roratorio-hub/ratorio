@@ -76,7 +76,7 @@ describe('CCustomSelectMapMonster.js', () => {
             expect(cb).toHaveBeenCalledWith(1002);
         });
 
-        it('コールバック未登録（roro/other 相当）でも OnChangeSelectDataSub が throw しない', () => {
+        it('コールバック未登録（pages/ 相当）でも OnChangeSelectDataSub が throw しない', () => {
             const obj: any = new CCustomSelectMapMonster('TEST_MONSTER4', makeMockMapSelect());
             obj.GetSelectedDataId = () => 1002;
             vi.spyOn(CCustomSelectMapMonster.prototype, 'OnChangeSelectDataSub' as any)

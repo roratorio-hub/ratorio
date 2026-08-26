@@ -15,7 +15,7 @@ import {
          HtmlGetElementById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger,
          HtmlRemoveAllChild, HtmlRemoveFromParent, HtmlRemoveOptionAll,
          HtmlSetObjectValueById, SetStatefullData, myInnerHtml
-} from '../roro/common/js/util.js';
+} from "./util.js";
 import { ARROW_ID_NONE, ArrowOBJNew } from "./arrow.dat.js";
 import { CARD_ID_NONE, CardObjNew } from "./card.dat.js";
 import {

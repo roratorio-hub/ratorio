@@ -77,7 +77,7 @@ import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 import { SaveSystem } from "./savedata-codec.js";
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from "./slotpager.js";
-import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from '../roro/common/js/util.js';
+import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from "./util.js";
 import { Click_A1 } from "./BuffJobSpecificSelf.js";
 import { Click_A4 } from "./BuffGuildAndGospel.js";
 import { Click_A7 } from "./BuffItemAndFood.js";

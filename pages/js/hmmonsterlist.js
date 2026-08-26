@@ -1,24 +1,24 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../../../engine/monstermap.h.js";
-import { CCustomSelectMapCategory } from "../../../engine/CCustomSelectMapCategory.js";
-import { CCustomSelectMapMap } from "../../../engine/CCustomSelectMapMap.js";
-import { GetElementText, GetMonsterElementText, GetRaceText, GetSizeText } from "../../../engine/common.js";
-import { MonsterObjNew } from "../../../engine/monster.dat.js";
-import { GetMonseterElmBasicType } from "../../../engine/monster.h.js";
-import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from "../../../engine/monstermap.dat.js";
-import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, DivideDigits3 } from '../../common/js/util.js';
-import { ELM_ID_COUNT, ELM_ID_UNDEAD } from "../../../engine/const/EnumElmId.js";
-import { RACE_ID_COUNT, RACE_ID_DEMON } from "../../../engine/const/EnumRaceId.js";
-import { MONSTER_BOSSTYPE_BOSS } from "../../../engine/const/EnumMonsterBossType.js";
+import "../../engine/monstermap.h.js";
+import { CCustomSelectMapCategory } from "../../engine/CCustomSelectMapCategory.js";
+import { CCustomSelectMapMap } from "../../engine/CCustomSelectMapMap.js";
+import { GetElementText, GetMonsterElementText, GetRaceText, GetSizeText } from "../../engine/common.js";
+import { MonsterObjNew } from "../../engine/monster.dat.js";
+import { GetMonseterElmBasicType } from "../../engine/monster.h.js";
+import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from "../../engine/monstermap.dat.js";
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, DivideDigits3 } from "../../engine/util.js";
+import { ELM_ID_COUNT, ELM_ID_UNDEAD } from "../../engine/const/EnumElmId.js";
+import { RACE_ID_COUNT, RACE_ID_DEMON } from "../../engine/const/EnumRaceId.js";
+import { MONSTER_BOSSTYPE_BOSS } from "../../engine/const/EnumMonsterBossType.js";
 import {
     MONSTER_DATA_EXTRA_INDEX_100HIT, MONSTER_DATA_EXTRA_INDEX_95FLEE, MONSTER_DATA_EXTRA_INDEX_ATK_MAX, MONSTER_DATA_EXTRA_INDEX_ATK_MIN, MONSTER_DATA_EXTRA_INDEX_MATK_MAX, MONSTER_DATA_EXTRA_INDEX_MATK_MIN,
     MONSTER_DATA_INDEX_AGI, MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_BOSS_TYPE, MONSTER_DATA_INDEX_DEF_DIV, MONSTER_DATA_INDEX_DEX, MONSTER_DATA_INDEX_ELEMENT,
     MONSTER_DATA_INDEX_HP, MONSTER_DATA_INDEX_INT, MONSTER_DATA_INDEX_JOB_EXP, MONSTER_DATA_INDEX_KANA, MONSTER_DATA_INDEX_LEVEL, MONSTER_DATA_INDEX_LUK,
     MONSTER_DATA_INDEX_MDEF_DIV, MONSTER_DATA_INDEX_NAME, MONSTER_DATA_INDEX_RACE, MONSTER_DATA_INDEX_RANGE, MONSTER_DATA_INDEX_SIZE, MONSTER_DATA_INDEX_STR,
     MONSTER_DATA_INDEX_VIT,
-} from "../../../engine/const/EnumMonsterDataIndex.js";
-import { MONSTER_MAP_DATA_INDEX_DATA_ARRAY } from "../../../engine/const/EnumMonsterMapDataIndex.js";
-import { SIZE_ID_COUNT } from "../../../engine/const/EnumSizeId.js";
+} from "../../engine/const/EnumMonsterDataIndex.js";
+import { MONSTER_MAP_DATA_INDEX_DATA_ARRAY } from "../../engine/const/EnumMonsterMapDataIndex.js";
+import { SIZE_ID_COUNT } from "../../engine/const/EnumSizeId.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 // カテゴリ選択セレクト

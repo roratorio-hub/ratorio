@@ -10,7 +10,7 @@ import {
 } from "./itempack.dat.js";
 import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_RNDENCH, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "./slotpager.js";
 import { IsMatchJobRestrict } from "./data/mig.job.h.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "./util.js";
 import { n_A_LearnedSkill } from "./learnedskill.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state 追加分

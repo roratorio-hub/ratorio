@@ -9,7 +9,7 @@
  * （head.js 外・他関数からの参照なしを確認済み）ため、このファイルのモジュール
  * ローカル変数として移設した。
  */
-import { HtmlCreateTextNode, HtmlRemoveAllChild, myInnerHtml } from '../roro/common/js/util.js';
+import { HtmlCreateTextNode, HtmlRemoveAllChild, myInnerHtml } from "./util.js";
 import { CCharaConfCustomDef } from "./CCharaConfCustomDef.js";
 import { CCharaConfNizi } from "./CCharaConfNizi.js";
 import { CARD_ID_ENCHANT_UCHUKONGEN_GENZYU } from "./card.dat.js";

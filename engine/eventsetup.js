@@ -28,7 +28,7 @@ import { OnClickQuickControlSW } from "./quickcontrol.js";
 import { OnClickSlotModeButton } from "./slotpager.js";
 import {
     HtmlCopyToClipboardById, HtmlSetObjectValueById,
-} from '../roro/common/js/util.js';
+} from "./util.js";
 
 function wire(id, event, handler) {
     document.getElementById(id)?.addEventListener(event, handler);

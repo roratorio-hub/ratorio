@@ -7,7 +7,7 @@ import { g_constDataManager } from "./global.js";
 import { CardObjNew } from "./card.dat.js";
 import { ItemObjNew } from "./item.dat.js";
 import { SkillObjNew } from "./skill.dat.js";
-import { HtmlCreateElement, HtmlCreateTextNode } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode } from "./util.js";
 import { RegisterLearnedSkillSearch } from "./skill-search-bridge.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: equip.js との循環 import 回避

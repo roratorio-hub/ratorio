@@ -40,7 +40,7 @@ vi.hoisted(() => {
     };
 });
 
-vi.mock('../../roro/common/js/util.js', async (importActual) => {
+vi.mock('../../engine/util.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });

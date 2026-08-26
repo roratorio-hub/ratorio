@@ -21,8 +21,8 @@ import { readdirSync, statSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = join(process.cwd(), '..');
-const SCAN_DIRS = ['engine', 'roro/other/js', 'roro/common/js'];
-const EXTRA_FILES = ['ro4/m/calcx-ai.js'];
+const SCAN_DIRS = ['engine', 'pages/js'];
+const EXTRA_FILES = ['ro4/m/calcx-ai.js', 'assets/toast.js'];
 
 // 実行時に window 上へ存在することを確認済みだが、静的には公開元を追えない名前。
 // （foot.js の getFlee 等が bare 代入するが runtime では window.itemCountLeft が存在し動作する）

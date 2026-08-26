@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { notifyChanged, CalcInput } from "./calc-invalidation.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from "./util.js";
 import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from "./skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { StAllCalc } from "./foot-bridge.js";

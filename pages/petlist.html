@@ -1,0 +1,101 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+	<title>RO ペットデータ一覧</title>
+	<link rel="stylesheet" href="../assets/common.css" type="text/css">
+	<link rel="stylesheet" href="../assets/calcx-legacy.css" type="text/css">
+	<link rel="stylesheet" href="../assets/calcx-chrome.css" type="text/css">
+	<script type="module" src="../engine/util.js"></script>
+	<script type="module" src="../engine/CNameKana.js"></script>
+	<script type="module" src="../engine/common.js"></script>
+	<!-- [MIG] データ定義系 javascript ファイル -->
+	<script type="module" src="../engine/data/mig.job.h.js"></script>
+	<script type="module" src="../engine/data/mig.itemsp.h.js"></script>
+	<script type="module" src="../engine/data/CMigJobData.js"></script>
+	<script type="module" src="../engine/data/CMigStateData.js"></script>
+	<script type="module" src="../engine/data/CMigEquipableSpTag.js"></script>
+	<script type="module" src="../engine/data/CMigEquipableStaticData.js"></script>
+	<script type="module" src="../engine/data/CMigEquipableSpData.js"></script>
+	<script type="module" src="../engine/data/CMigEquipableData.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubBase.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubJob.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubState.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubBuff.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubMonster.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubArrow.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubItem.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubCard.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubEnchList.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManagerSubRndOpt.js"></script>
+	<script type="module" src="../engine/data/CMigConstDataManager.js"></script>
+	<script type="module" src="../engine/skill.h.js"></script>
+	<script type="module" src="../engine/skill.dat.js"></script>
+	<script type="module" src="../engine/usableskill.h.js"></script>
+	<script type="module" src="../engine/usableskill.dat.js"></script>
+	<script type="module" src="../engine/autospell.h.js"></script>
+	<script type="module" src="../engine/autospell.dat.js"></script>
+	<script type="module" src="../engine/CSkillManager.js"></script>
+	<!-- グローバル変数定義 javascript ファイル（others 用） -->
+	<script type="module" src="../engine/global.js"></script>
+	<!-- [MIG] dat ファイル -->
+	<script type="module" src="../engine/data/mig.job.dat.js"></script>
+	<script type="module" src="../engine/data/mig.enchlist.dat.js"></script>
+	<!-- 処理系 -->
+	<script type="module" src="../engine/monster.h.js"></script>
+	<script type="module" src="../engine/monster.dat.js"></script>
+	<script type="module" src="../engine/item.h.js"></script>
+	<script type="module" src="../engine/item.dat.js"></script>
+	<script type="module" src="../engine/card.dat.js"></script>
+	<script type="module" src="../engine/pet.dat.js"></script>
+	<script type="module" src="../engine/itemset.h.js"></script>
+	<script type="module" src="../engine/itemset.dat.js"></script>
+	<script type="module" src="../engine/timeitem.h.js"></script>
+	<script type="module" src="../engine/timeitem.dat.js"></script>
+	<script type="module" src="../engine/CItemInfoManager.js"></script>
+	<script type="module" src="./js/hmpetlist.js"></script>
+</head>
+
+<body style="overflow-y:auto">
+	<div class="wrapper">
+		<div class="side">
+			<span id="ID_FRAME"></span>
+		</div>
+		<div class="content">
+			<div style="padding: 20px 34px">
+					<form name="ItemForm">
+							計算機用のデータを表示しているため、ゲーム内の表示と違うことがあります。<br>
+							<table border="1">
+								<tbody>
+									<tr>
+										<td>
+											検索
+										</td>
+										<td>
+											<input type="text" style="display:none">
+											<input id="F_CONDITION" type="text" placeholder="検索文字（部分一致）">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<table>
+								<tbody>
+									<tr>
+										<td>
+											※文字コード順(英数字→ひらがな→カタカナ→漢字)
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<span id="OBJID_SPAN_ROOT_OF_PET_LIST">
+							</span>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script type="module" src="./js/eventsetup-petlist.js"></script>
+<script type="module" src="../assets/frame.js"></script>
+
+</html>

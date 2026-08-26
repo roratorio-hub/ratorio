@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CNameKana } from "./CNameKana.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlAppendTextNodeMulti, HtmlRemoveAllChild, EscapeInputtedText } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlAppendTextNodeMulti, HtmlRemoveAllChild, EscapeInputtedText } from "./util.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 

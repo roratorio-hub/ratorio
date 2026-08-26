@@ -1,4 +1,4 @@
-import { ShowToast } from "./common/js/toast.js";
+import { ShowToast } from "./toast.js";
 
 let last_updated = ""; // last_updatedを初期化
 
@@ -20,6 +20,24 @@ function SwitchBGColor() {
 		}
 	}
 }
+
+// サイドバーnavリンクの解決先（完全修飾URL）。
+// 挿入先ドキュメントの深さに関わらず正しく解決させるため、ここで
+// frame.js 自身の位置（import.meta.url）を基準に解決する
+// （ブラウザは注入されたhrefをドキュメントのURL基準で解決するため、
+// 相対パス文字列のままDOMへ入れると挿入先ページの深さに依存してしまう）。
+const NAV_URL = {
+  calcx: new URL('../ro4/m/calcx.html', import.meta.url).href,
+  calcxAi: new URL('../ro4/m/calcx-ai.html', import.meta.url).href,
+  melonfes: new URL('../pages/melonfes2026monsterdrop.html', import.meta.url).href,
+  itemlist: new URL('../pages/itemlist.html', import.meta.url).href,
+  cardlist: new URL('../pages/cardlist.html', import.meta.url).href,
+  petlist: new URL('../pages/petlist.html', import.meta.url).href,
+  monsterlist: new URL('../pages/monsterlist.html', import.meta.url).href,
+  exp: new URL('../pages/exp.html', import.meta.url).href,
+  jobb: new URL('../pages/jobb.html', import.meta.url).href,
+  element: new URL('../pages/element.html', import.meta.url).href,
+};
 
 // オリジナル版とFork版の判定
 let sitename = "ROラトリオHub"
@@ -51,16 +69,16 @@ fetch(new URL('./date.json', import.meta.url))
       <nav class="menu">
         <ul>
 		  <li class="menu-header"><span>Main</span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx.html">計算機</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../ro4/m/calcx-ai.html">計算機(AIラトリオお試し版)</a></span></li>
-      <!--<li class="menu-item"><span class="menu-title"><a href="../../roro/other/melonfes2026monsterdrop.html">メロン素材検索</a></span></li>-->
-      <li class="menu-item"><span class="menu-title"><a href="../../roro/other/itemlist.html">アイテム一覧</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/cardlist.html">カード一覧</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/petlist.html">ペット一覧</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/monsterlist.html">モンスター一覧</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/exp.html">経験値テーブル</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/jobb.html">JOBボーナス表</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="../../roro/other/element.html">属性表</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.calcx}">計算機</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.calcxAi}">計算機(AIラトリオお試し版)</a></span></li>
+      <!--<li class="menu-item"><span class="menu-title"><a href="${NAV_URL.melonfes}">メロン素材検索</a></span></li>-->
+      <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.itemlist}">アイテム一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.cardlist}">カード一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.petlist}">ペット一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.monsterlist}">モンスター一覧</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.exp}">経験値テーブル</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.jobb}">JOBボーナス表</a></span></li>
+		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.element}">属性表</a></span></li>
 
 		  <li class="menu-header"><span>Information</span></li>
           <li class="menu-item"><span class="menu-title"><a href="https://github.com/roratorio-hub/ratorio/wiki/introduction" target="_blank">サイト紹介・使い方</a></span></li>

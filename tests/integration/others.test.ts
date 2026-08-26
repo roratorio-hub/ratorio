@@ -1,5 +1,5 @@
 /**
- * roro/other/ 各ページの起動統合テスト
+ * pages/ 各ページの起動統合テスト
  *
  * 対象: itemlist.html, petlist.html, monsterlist.html, exp.html, jobb.html, element.html
  * 目的: ESM 移行によって window グローバルが壊れていないかを検出する。
@@ -70,15 +70,15 @@ afterAll(async () => {
 });
 
 const PAGES = [
-    'roro/other/itemlist.html',
-    'roro/other/petlist.html',
-    'roro/other/monsterlist.html',
-    'roro/other/exp.html',
-    'roro/other/jobb.html',
-    'roro/other/element.html',
+    'pages/itemlist.html',
+    'pages/petlist.html',
+    'pages/monsterlist.html',
+    'pages/exp.html',
+    'pages/jobb.html',
+    'pages/element.html',
 ];
 
-describe('roro/other/ ページ起動テスト', () => {
+describe('pages/ ページ起動テスト', () => {
     for (const page of PAGES) {
         it(`${page} — 未捕捉 JS 例外が発生しない`, async () => {
             const context = await browser.newContext();
@@ -130,7 +130,7 @@ describe('roro/other/ ページ起動テスト', () => {
 // itemlist のパッケージ選択変更（OnChangePackageRestrict）で未捕捉 JS 例外が出ないことを確認する。
 // 起動テストはパッケージ select を操作しないため、inline onchange の eventsetup 化漏れ
 // （OnChangePackageRestrict の bare 参照）を検出できなかった。
-describe('roro/other/itemlist.html 操作テスト', () => {
+describe('pages/itemlist.html 操作テスト', () => {
     it('パッケージ選択変更で未捕捉 JS 例外が発生しない', async () => {
         const context = await browser.newContext();
         const pg = await context.newPage();
@@ -145,7 +145,7 @@ describe('roro/other/itemlist.html 操作テスト', () => {
                 (window as any).__pendingRejections.push(msg);
             });
         });
-        await pg.goto(`${baseUrl}/roro/other/itemlist.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await pg.goto(`${baseUrl}/pages/itemlist.html`, { waitUntil: 'networkidle', timeout: 60000 });
         await pg.waitForTimeout(500);
 
         const exercised = await pg.evaluate(() => {

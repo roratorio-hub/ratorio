@@ -19,7 +19,7 @@ import {
          USABEL_SKILL_ID_SOUL_STRIKE_5, USABEL_SKILL_ID_TEIOAPUCHAGI_7
 } from "./usableskill.dat.js";
 import { GetHigherJobSeriesID, GetLowerJobSeriesID } from "./data/mig.job.h.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from '../roro/common/js/util.js';
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from "./util.js";
 import { n_A_PassSkill7 } from "./skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state 追加分
