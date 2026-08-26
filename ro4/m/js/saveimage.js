@@ -42,7 +42,7 @@ import {
          GetBasicStatusBonus, GetStatusPointRemain, GetPureStatus, GetSpecStatusBonus,
          GetTStatusPointRemain, GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate,
          GetDisplayedRes, GetDisplayedMres, GetDisplayedHPlus,
-} from './hmjob-bridge.js';
+} from './hmjob.js';
 import { CalcResistElement } from '../../../roro/m/js/CExtraInfoAreaComponentManagerCalc.js';
 import {
          MIG_PARAM_ID_STR, MIG_PARAM_ID_AGI, MIG_PARAM_ID_VIT, MIG_PARAM_ID_INT, MIG_PARAM_ID_DEX, MIG_PARAM_ID_LUK,

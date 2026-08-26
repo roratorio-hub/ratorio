@@ -7,7 +7,7 @@ import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRem
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from '../../../ro4/m/js/head-bridge.js';
+} from '../../../ro4/m/js/head.js';
 // C-6: engine-registry 型ブリッジ（CTimeItemAreaComponentManager.js との循環 import 回避）
 import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';
 import { TIME_ITEM_DATA_INDEX_EXPLAIN, TIME_ITEM_DATA_INDEX_NAME } from './const/EnumTimeItemDataIndex.js';

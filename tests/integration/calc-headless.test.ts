@@ -45,7 +45,20 @@ async function gotoFixture(query: string) {
     const qi = query.indexOf('?');
     const q = qi >= 0 ? query.slice(qi) : `?${query}`;
     await page.goto(`${baseUrl}/ro4/m/calcx.html${q}`, { waitUntil: 'networkidle', timeout: 60000 });
-    await page.waitForTimeout(700);
+    // 固定700ms待機は、フルスイート実行時の負荷次第で攻撃手段セレクトの再構築
+    // （セーブデータ復元によるオプション再生成）が間に合わないことがあった
+    // （headless[0]のflake。memory project-calc-headless-test-flake / 残件台帳 B-13）。
+    // CAttackMethodAreaComponentManager.selectObjectArray[0] の値が、実際に
+    // 有効な攻撃手段データへ解決できるようになるまで条件待機する。
+    await page.waitForFunction(async () => {
+        const dynamicImport = new Function('specifier', 'return import(specifier);') as
+            (specifier: string) => Promise<Record<string, any>>;
+        const mod = await dynamicImport('/ro4/m/js/CAttackMethodAreaComponentManager.js');
+        const mgr = mod.CAttackMethodAreaComponentManager;
+        const sel = mgr?.selectObjectArray?.[0];
+        if (!sel) return false;
+        return mgr.GetAttackMethodData(sel.value) != null;
+    });
     return { context, page, errors };
 }
 
@@ -57,9 +70,9 @@ async function captureDomDriven(page: Awaited<ReturnType<typeof gotoFixture>>['p
         const dynamicImport = new Function('specifier', 'return import(specifier);') as
             (specifier: string) => Promise<Record<string, any>>;
         const footBridge = await dynamicImport('/roro/m/js/foot-bridge.js');
-        const headBridge = await dynamicImport('/ro4/m/js/head-bridge.js');
+        const head = await dynamicImport('/ro4/m/js/head.js');
         const retValArray = footBridge.StAllCalc();
-        const { battleCalcResultAll } = headBridge.ComputeBattleResult(retValArray);
+        const { battleCalcResultAll } = head.ComputeBattleResult(retValArray);
         return JSON.parse(JSON.stringify(battleCalcResultAll));
     });
 }

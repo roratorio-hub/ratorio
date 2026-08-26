@@ -20,8 +20,8 @@
  */
 import { createEmptyModel } from '../../../roro/m/js/calc-model.js';
 import { ExtractModelFromDom, HydrateFromModel } from '../../../roro/m/js/foot-stallcalc-hydrate.js';
-import { StAllCalcCore } from '../../../roro/m/js/foot-bridge.js';
-import { ComputeBattleResult } from './head-bridge.js';
+import { StAllCalcCore } from '../../../roro/m/js/foot.js';
+import { ComputeBattleResult } from './head.js';
 import { register } from './engine-registry.js';
 
 /**

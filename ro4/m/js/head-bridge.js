@@ -17,9 +17,7 @@ export function __registerHeadFunctions(fns) {
 export function GetActRateSandansho(...a) { return _reg.GetActRateSandansho?.(...a); }
 export function GetActRateCritical(...a) { return _reg.GetActRateCritical?.(...a); }
 export function calc(...a) { return _reg.calc?.(...a); }
-export function ComputeBattleResult(...a) { return _reg.ComputeBattleResult?.(...a); }
 export function ApplyPhysicalSpecializeMonster(...a) { return _reg.ApplyPhysicalSpecializeMonster?.(...a); }
-export function AutoCalc(...a) { return _reg.AutoCalc?.(...a); }
 
 // Phase 3b: スキル計算式ブロック（head-skill-formula-*.js）が head.js 本体の関数を呼ぶためのラッパー
 export function ATKbaiJYOUSAN(...a) { return _reg.ATKbaiJYOUSAN?.(...a); }

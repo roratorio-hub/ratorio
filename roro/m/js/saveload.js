@@ -7,7 +7,7 @@ import {
          OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB, OnChangeSettingAutoSpell
 } from '../../../ro4/m/js/calcautospell.js';
 import { g_charaData, g_constDataManager, g_skillManager, g_timeItemConf } from '../../../ro4/m/js/global.js';
-import { calc } from '../../../ro4/m/js/head-bridge.js';
+import { calc } from '../../../ro4/m/js/head.js';
 import { CalcStatusPoint } from '../../../ro4/m/js/hmjob.js';
 import { CAttackMethodConf } from './CAttackMethodConf.js';
 import { CBattleQuickControlAreaComponentManager } from './CBattleQuickControlAreaComponentManager.js';

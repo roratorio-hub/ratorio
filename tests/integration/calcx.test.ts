@@ -1137,12 +1137,24 @@ describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ロー
 
     for (const { label, url: prodUrl, query } of allEntries) {
         it(`${label}: 全 OBJID_* 要素の値が本番と一致する`, async () => {
+            // ページ読み込み後の初回自動計算完了を条件待機する共通ヘルパー。
+            // 固定バッファ無しでは、フルスイート実行時の負荷次第で
+            // captureFullObjidSnapshot() がまだ空の計算結果を読んでしまうことがあった
+            // （本テストのflake。残件台帳 B-13）。
+            const waitForAutoCalc = (p: Page) => p.waitForFunction(async () => {
+                const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                    (specifier: string) => Promise<Record<string, any>>;
+                const mod = await dynamicImport('/roro/m/js/CExtraInfoDataBridge.js');
+                return mod.g_extraInfoDataBridge?.charaData != null;
+            });
+
             // ── 本番から期待値を取得 ─────────────────────────────────────
             let prodSnapshot: Record<string, string>;
             try {
                 const prodCtx  = await browser.newContext();
                 const prodPage = await prodCtx.newPage();
                 await prodPage.goto(prodUrl, { waitUntil: 'networkidle', timeout: 30000 });
+                await waitForAutoCalc(prodPage);
                 prodSnapshot = await captureFullObjidSnapshot(prodPage);
                 await prodCtx.close();
             } catch {
@@ -1157,6 +1169,7 @@ describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ロー
                 waitUntil: 'networkidle',
                 timeout: 60000,
             });
+            await waitForAutoCalc(localPage);
             const localSnapshot = await captureFullObjidSnapshot(localPage);
             await localCtx.close();
 

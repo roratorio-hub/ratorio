@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip, n_A_card } from './roro-state.js';
 import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from './itemset.dat.js';
-import { GetItemSetMemberText } from './itemset-bridge.js';
+import { GetItemSetMemberText } from './itemset.h.js';
 import './common.js';
 import { g_constDataManager, g_timeItemConf } from '../../../ro4/m/js/global.js';
 import { g_timeItemDataBridge } from './CTimeItemDataBridge.js';

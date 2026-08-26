@@ -4,7 +4,7 @@ import { CItemInfoManager } from '../../../roro/m/js/CItemInfoManager.js';
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from './head-bridge.js';
+} from './head.js';
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from './engine-registry.js';
 // Chart.js ESM（auto = 全チャートタイプ登録済みビルド）

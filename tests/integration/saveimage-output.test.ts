@@ -73,12 +73,20 @@ describe('generateImage() の出力が画面表示と一致する（マージ前
             const qi = query.indexOf('?');
             const q = qi >= 0 ? query.slice(qi) : `?${query}`;
             await page.goto(`${baseUrl}/ro4/m/calcx.html${q}`, { waitUntil: 'networkidle', timeout: 60000 });
-            await page.waitForTimeout(700);
+            // 固定700ms待機は、フルスイート実行時の負荷次第でページ読み込み後の初回自動計算が
+            // 間に合わないことがあった（saveimage-old[5]のflake。残件台帳 B-13）。
+            // generateImage() が読む g_extraInfoDataBridge.charaData が実際に埋まるまで待つ。
+            await page.waitForFunction(async () => {
+                const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                    (specifier: string) => Promise<Record<string, any>>;
+                const mod = await dynamicImport('/roro/m/js/CExtraInfoDataBridge.js');
+                return mod.g_extraInfoDataBridge?.charaData != null;
+            });
 
             const result = await page.evaluate(async () => {
                 const dynamicImport = new Function('specifier', 'return import(specifier);') as
                     (specifier: string) => Promise<Record<string, any>>;
-                const hmjobBridge = await dynamicImport('/ro4/m/js/hmjob-bridge.js');
+                const hmjobBridge = await dynamicImport('/ro4/m/js/hmjob.js');
                 const itemDat = await dynamicImport('/roro/m/js/item.dat.js');
                 const reg = (globalThis as any)._ratorioReg;
 

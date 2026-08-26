@@ -50,4 +50,3 @@ export function EquipNumSearchFurubitaSet(...a) { return _reg.EquipNumSearchFuru
 export function ROUNDDOWN(...a) { return _reg.ROUNDDOWN?.(...a); }
 export function Init(...a) { return _reg.Init?.(...a); }
 export function StAllCalc(...a) { return _reg.StAllCalc?.(...a); }
-export function StAllCalcCore(...a) { return _reg.StAllCalcCore?.(...a); }

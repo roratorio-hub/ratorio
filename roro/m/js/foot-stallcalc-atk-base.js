@@ -9,7 +9,7 @@
 import { n_A_PassSkill4, UsedSkillSearch, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { GetLowerJobSeriesID } from '../../../ro4/m/js/data/mig.job.h.js';
 import { g_confDataSanzi, n_Nitou } from '../../../ro4/m/js/global.js';
-import { ApplyElementRatio } from '../../../ro4/m/js/head-bridge.js';
+import { ApplyElementRatio } from '../../../ro4/m/js/head.js';
 import { n_A_ActiveSkill, n_A_ActiveSkillLV, n_tok } from '../../../ro4/m/js/ro4-state.js';
 import { CCharaConfSanzi } from './CCharaConfSanzi.js';
 import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';
