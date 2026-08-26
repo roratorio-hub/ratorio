@@ -33,10 +33,9 @@ export default defineConfig({
                 find: /^https:\/\/cdn\.jsdelivr\.net\/npm\/chart\.js@[\d.]+\/auto\/\+esm$/,
                 replacement: path.resolve(__dirname, './helpers/chart-stub.js'),
             },
-            { find: '@roro', replacement: path.resolve(__dirname, '../roro/m/js') },
-            { find: '@ro4', replacement: path.resolve(__dirname, '../ro4/m/js') },
+            { find: '@engine', replacement: path.resolve(__dirname, '../engine') },
             { find: '@helpers', replacement: path.resolve(__dirname, './helpers') },
-            { find: '@types-roro', replacement: path.resolve(__dirname, './types') },
+            { find: '@types-engine', replacement: path.resolve(__dirname, './types') },
         ],
     },
 });

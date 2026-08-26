@@ -4,7 +4,7 @@ import {
     AS_ID_HEAL_1,
     AS_ID_CHAIN_LIGHTNING_5,
     AutoSpellSkill,
-} from '@roro/autospell.dat.js';
+} from '@engine/autospell.dat.js';
 
 describe('autospell.dat.js', () => {
     describe('エクスポート確認', () => {

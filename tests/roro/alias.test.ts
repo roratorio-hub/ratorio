@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { g_AliasDataArray } from '@roro/alias.dat.js';
-import { TranslateAlias } from '@roro/alias.h.js';
+import { g_AliasDataArray } from '@engine/alias.dat.js';
+import { TranslateAlias } from '@engine/alias.h.js';
 
 describe('alias.dat.js', () => {
     describe('エクスポート確認', () => {

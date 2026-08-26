@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { Click_A4 } from '@ro4/BuffGuildAndGospel.js';
-import { n_A_PassSkill4 } from '@ro4/skillstate.js';
+import { Click_A4 } from '@engine/BuffGuildAndGospel.js';
+import { n_A_PassSkill4 } from '@engine/skillstate.js';
 // dewindow: calc は head-bridge 経由（旧 './head.js' 直接 import → 単体テストが OOM していた）。
-import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+import { __registerHeadFunctions } from '@engine/head-bridge.js';
 // リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
 // CSaveController.getSettingProp（engine-registry 経由）。
-import { register as registryRegister } from '@ro4/engine-registry.js';
-import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
+import { register as registryRegister } from '@engine/engine-registry.js';
+import { CSaveDataConst } from '@engine/savedata/CSaveDataConst.js';
 
 describe('BuffGuildAndGospel.js', () => {
     // Click_A4 は n_A_PassSkill4 の設定有無で A4TD の背景色と A4used の「使用中」表示を切り替え、

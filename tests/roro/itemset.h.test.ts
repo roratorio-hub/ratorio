@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { EQUIP_REGION_ID_COUNT } from '@roro/const/EnumMigItemParamId.js';
+import { EQUIP_REGION_ID_COUNT } from '@engine/const/EnumMigItemParamId.js';
 
 let ITEM_SET_PET_ID_OFFSET: any;
 let ITEMSET_ID_LIMIT_WITH_ITEM: any;
@@ -7,7 +7,7 @@ let ITEMSET_ID_LIMIT_WITH_CARD: any;
 let CheckAndApplyItemSetEquipping: any;
 
 beforeAll(async () => {
-	const mod = await import('/workspace/ratorio/roro/m/js/itemset.h.js');
+	const mod = await import('/workspace/ratorio/engine/itemset.h.js');
 	ITEM_SET_PET_ID_OFFSET = mod.ITEM_SET_PET_ID_OFFSET;
 	ITEMSET_ID_LIMIT_WITH_ITEM = mod.ITEMSET_ID_LIMIT_WITH_ITEM;
 	ITEMSET_ID_LIMIT_WITH_CARD = mod.ITEMSET_ID_LIMIT_WITH_CARD;

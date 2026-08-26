@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calcReceivedDamage, calcReceivedMagicDamage } from '@ro4/head-received-damage.js';
+import { calcReceivedDamage, calcReceivedMagicDamage } from '@engine/head-received-damage.js';
 
 // ⚠️ 「両方指定されていれば計算を実行する」ケースはここでは検証しない。
 // calcReceivedDamage 本体は GetRes/GetMres（hmjob.js）経由で g_objCharaConfCustom* 系

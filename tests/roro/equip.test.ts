@@ -6,28 +6,28 @@ const mockEquip = vi.hoisted(() => ({
     constDataManager: null as any,
 }));
 
-vi.mock('@roro/item.dat.js', async (importActual) => {
+vi.mock('@engine/item.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get ItemObjNew() { return mockEquip.itemObjNew ?? actual.ItemObjNew; } };
 });
 
-vi.mock('@roro/card.dat.js', async (importActual) => {
+vi.mock('@engine/card.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get CardObjNew() { return mockEquip.cardObjNew ?? actual.CardObjNew; } };
 });
 
-vi.mock('@ro4/global.js', async (importActual) => {
+vi.mock('@engine/global.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get g_constDataManager() { return mockEquip.constDataManager ?? actual.g_constDataManager; } };
 });
 import {
     UpdateLearnedSkillNotice,
     sort,
-} from '@roro/equip.js';
-import { CARD_DATA_INDEX_SPBEGIN } from '@roro/const/EnumCardDataIndex.js';
-import { CONST_DATA_KIND_JOB } from '@roro/const/EnumConstDataKind.js';
-import { ITEM_DATA_INDEX_KANA } from '@roro/const/EnumItemDataIndex.js';
-import { ITEM_SP_END, ITEM_SP_LEARNED_SKILL_EFFECT } from '@roro/const/EnumItemSpId.js';
+} from '@engine/equip.js';
+import { CARD_DATA_INDEX_SPBEGIN } from '@engine/const/EnumCardDataIndex.js';
+import { CONST_DATA_KIND_JOB } from '@engine/const/EnumConstDataKind.js';
+import { ITEM_DATA_INDEX_KANA } from '@engine/const/EnumItemDataIndex.js';
+import { ITEM_SP_END, ITEM_SP_LEARNED_SKILL_EFFECT } from '@engine/const/EnumItemSpId.js';
 
 describe('equip.js', () => {
     describe('呼び出しテスト', () => {

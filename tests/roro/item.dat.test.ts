@@ -9,8 +9,8 @@ import {
     ITEM_ID_KNIFE,
     ITEM_ID_SWORD,
     ItemObjNew,
-} from '@roro/item.dat.js';
-import { get as registryGet } from '@ro4/engine-registry.js';
+} from '@engine/item.dat.js';
+import { get as registryGet } from '@engine/engine-registry.js';
 
 describe('item.dat.js', () => {
     describe('エクスポート確認', () => {

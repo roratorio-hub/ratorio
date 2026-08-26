@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
     SprintfTimeStrCastSim,
-} from '@roro/castsim.js';
+} from '@engine/castsim.js';
 
 describe('castsim.js', () => {
     describe('SprintfTimeStrCastSim', () => {

@@ -1,14 +1,14 @@
 import { vi, describe, it, expect, beforeAll } from 'vitest';
-import { CCustomSelectBase } from '@roro/CCustomSelectBase.js';
-import { CCustomSelectMapBase } from '@roro/CCustomSelectMapBase.js';
-import { CCustomSelectMapMap } from '@roro/CCustomSelectMapMap.js';
+import { CCustomSelectBase } from '@engine/CCustomSelectBase.js';
+import { CCustomSelectMapBase } from '@engine/CCustomSelectMapBase.js';
+import { CCustomSelectMapMap } from '@engine/CCustomSelectMapMap.js';
 
 const mockMapRefs = vi.hoisted(() => ({
     categoryArr: [] as any[],
     mapArr: [] as any[],
 }));
 
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+vi.mock('@engine/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return {
         ...actual,

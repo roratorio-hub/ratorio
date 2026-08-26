@@ -1144,7 +1144,7 @@ describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ロー
             const waitForAutoCalc = (p: Page) => p.waitForFunction(async () => {
                 const dynamicImport = new Function('specifier', 'return import(specifier);') as
                     (specifier: string) => Promise<Record<string, any>>;
-                const mod = await dynamicImport('/roro/m/js/CExtraInfoDataBridge.js');
+                const mod = await dynamicImport('/engine/CExtraInfoDataBridge.js');
                 return mod.g_extraInfoDataBridge?.charaData != null;
             });
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { AUTO_SPELL_ID_CUSTOM_BIAS, GetAutoSpellTriggerText } from '@roro/autospell.h.js';
+import { AUTO_SPELL_ID_CUSTOM_BIAS, GetAutoSpellTriggerText } from '@engine/autospell.h.js';
 
 describe('autospell.h.js', () => {
 

@@ -19,7 +19,7 @@ import { readdirSync, statSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = join(process.cwd(), '..');
-const SCAN_DIRS = ['roro/m/js', 'ro4/m/js', 'roro/other/js', 'roro/common/js'];
+const SCAN_DIRS = ['engine', 'roro/other/js', 'roro/common/js'];
 const EXTRA_FILES = ['ro4/m/calcx-ai.js'];
 
 // classic script（type="module" でない <script>）が定義する真のグローバルを収集する対象

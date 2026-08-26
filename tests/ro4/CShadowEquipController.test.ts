@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeAll } from 'vitest';
 
 let CShadowEquipController: any;
 let g_shadowEquipController: any;
-let bridge: typeof import('@ro4/CShadowEquipControllerDataBridge.js');
+let bridge: typeof import('@engine/CShadowEquipControllerDataBridge.js');
 
 beforeAll(async () => {
     const mockRoot = {
@@ -12,10 +12,10 @@ beforeAll(async () => {
     vi.spyOn(document, 'getElementById').mockImplementation((id) =>
         id === 'OBJID_SHADOW_EQUIPS_MIG' ? (mockRoot as any) : null
     );
-    const mod = await import('@ro4/CShadowEquipController.js');
+    const mod = await import('@engine/CShadowEquipController.js');
     CShadowEquipController = mod.CShadowEquipController;
     g_shadowEquipController = mod.g_shadowEquipController;
-    bridge = await import('@ro4/CShadowEquipControllerDataBridge.js');
+    bridge = await import('@engine/CShadowEquipControllerDataBridge.js');
 });
 
 describe('CShadowEquipController.js', () => {

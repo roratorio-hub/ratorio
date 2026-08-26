@@ -1,15 +1,15 @@
 import { describe, it, expect } from 'vitest';
 // UsedSkillSearch は g_constDataManager の職データ（現在職のパッシブスキル配列）を参照するため、
 // 職データを先にロードしておく。
-import '@ro4/data/mig.job.dat.js';
+import '@engine/data/mig.job.dat.js';
 import {
     n_A_PassSkill,
     UsedSkillSearch,
     UsedSkillSearchSubUsedOnly,
-} from '@ro4/skillstate.js';
-import { g_constDataManager } from '@ro4/global.js';
-import { n_A_JOB } from '@roro/roro-state.js';
-import { CONST_DATA_KIND_JOB } from '@roro/const/EnumConstDataKind.js';
+} from '@engine/skillstate.js';
+import { g_constDataManager } from '@engine/global.js';
+import { n_A_JOB } from '@engine/roro-state.js';
+import { CONST_DATA_KIND_JOB } from '@engine/const/EnumConstDataKind.js';
 
 describe('BuffJobSpecificSelf.js', () => {
     // 3e-3: skillstate.js の window compat 除去に伴い window互換確認を behavior テストに置換

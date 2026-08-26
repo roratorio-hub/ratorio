@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CInstanceManager } from '@roro/CInstanceManager.js';
+import { CInstanceManager } from '@engine/CInstanceManager.js';
 
 describe('CInstanceManager', () => {
     describe('registerInstance', () => {

@@ -5,7 +5,7 @@ import {
     TIME_ITEM_ID_ADD_ELEMENTAL_DARK_ATK_30,
     ITEM_SP_TIME_OBJ,
     ITEM_SP_TIME_OBJ_SORT,
-} from '@roro/timeitem.dat.js';
+} from '@engine/timeitem.dat.js';
 
 describe('timeitem.dat.js', () => {
     describe('エクスポート確認', () => {

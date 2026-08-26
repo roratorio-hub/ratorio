@@ -1,0 +1,7468 @@
+
+export const CARD_ID_NONE = 0;
+export const CARD_ID_PHYSICAL_RACE_ALL_20UP = 1;
+export const CARD_ID_PHYSICAL_MONSTER_ELM_ALL_20UP = 2;
+export const CARD_ID_PHYSICAL_SIZE_ALL_15UP = 3;
+export const CARD_ID_FABL = 4;
+export const CARD_ID_DROPPS = 5;
+export const CARD_ID_HORNET = 6;
+export const CARD_ID_LUNATIC = 7;
+export const CARD_ID_MESU_TOCHU = 8;
+export const CARD_ID_SKELETON = 9;
+export const CARD_ID_WOLF = 10;
+export const CARD_ID_ANDRE = 11;
+export const CARD_ID_PEKOPEKONO_TAMAGO = 12;
+export const CARD_ID_13 = 13;
+export const CARD_ID_14 = 14;
+export const CARD_ID_15 = 15;
+export const CARD_ID_16 = 16;
+export const CARD_ID_17 = 17;
+export const CARD_ID_18 = 18;
+export const CARD_ID_19 = 19;
+export const CARD_ID_20 = 20;
+export const CARD_ID_21 = 21;
+export const CARD_ID_22 = 22;
+export const CARD_ID_23 = 23;
+export const CARD_ID_24 = 24;
+export const CARD_ID_25 = 25;
+export const CARD_ID_26 = 26;
+export const CARD_ID_27 = 27;
+export const CARD_ID_28 = 28;
+export const CARD_ID_29 = 29;
+export const CARD_ID_30 = 30;
+export const CARD_ID_SHINENNO_KISHI = 31;
+export const CARD_ID_DRAKE = 32;
+export const CARD_ID_33 = 33;
+export const CARD_ID_34 = 34;
+export const CARD_ID_35 = 35;
+export const CARD_ID_36 = 36;
+export const CARD_ID_37 = 37;
+export const CARD_ID_38 = 38;
+export const CARD_ID_39 = 39;
+export const CARD_ID_40 = 40;
+export const CARD_ID_41 = 41;
+export const CARD_ID_DOPPELGANGER = 42;
+export const CARD_ID_SIDEWINDER = 43;
+export const CARD_ID_FURIONI = 44;
+export const CARD_ID_BAPHOMET = 45;
+export const CARD_ID_HUNTERFLY = 46;
+export const CARD_ID_DRACULA = 47;
+export const CARD_ID_48 = 48;
+export const CARD_ID_49 = 49;
+export const CARD_ID_50 = 50;
+export const CARD_ID_51 = 51;
+export const CARD_ID_ORC_HERO = 52;
+export const CARD_ID_53 = 53;
+export const CARD_ID_54 = 54;
+export const CARD_ID_55 = 55;
+export const CARD_ID_THARA_FROG = 56;
+export const CARD_ID_ORC_WORRIOR = 57;
+export const CARD_ID_BIGFOOT = 58;
+export const CARD_ID_RAFFLESIA = 59;
+export const CARD_ID_SKY_PTITE = 60;
+export const CARD_ID_KHALITZBURG = 61;
+export const CARD_ID_HORN = 62;
+export const CARD_ID_63 = 63;
+export const CARD_ID_64 = 64;
+export const CARD_ID_65 = 65;
+export const CARD_ID_66 = 66;
+export const CARD_ID_67 = 67;
+export const CARD_ID_68 = 68;
+export const CARD_ID_69 = 69;
+export const CARD_ID_70 = 70;
+export const CARD_ID_71 = 71;
+export const CARD_ID_72 = 72;
+export const CARD_ID_73 = 73;
+export const CARD_ID_74 = 74;
+export const CARD_ID_EVIL_DRUID = 75;
+export const CARD_ID_76 = 76;
+export const CARD_ID_77 = 77;
+export const CARD_ID_78 = 78;
+export const CARD_ID_79 = 79;
+export const CARD_ID_DUSTYNESS = 80;
+export const CARD_ID_MARTH = 81;
+export const CARD_ID_JACK = 82;
+export const CARD_ID_HORD = 83;
+export const CARD_ID_MARIONETTE = 84;
+export const CARD_ID_ORC_ZOMBIE = 85;
+export const CARD_ID_86 = 86;
+export const CARD_ID_MIST = 87;
+export const CARD_ID_88 = 88;
+export const CARD_ID_89 = 89;
+export const CARD_ID_90 = 90;
+export const CARD_ID_91 = 91;
+export const CARD_ID_92 = 92;
+export const CARD_ID_93 = 93;
+export const CARD_ID_94 = 94;
+export const CARD_ID_EDDGA = 95;
+export const CARD_ID_96 = 96;
+export const CARD_ID_97 = 97;
+export const CARD_ID_98 = 98;
+export const CARD_ID_99 = 99;
+export const CARD_ID_100 = 100;
+export const CARD_ID_101 = 101;
+export const CARD_ID_102 = 102;
+export const CARD_ID_103 = 103;
+export const CARD_ID_104 = 104;
+export const CARD_ID_105 = 105;
+export const CARD_ID_106 = 106;
+export const CARD_ID_ARCHER_SKELETON = 107;
+export const CARD_ID_108 = 108;
+export const CARD_ID_109 = 109;
+export const CARD_ID_110 = 110;
+export const CARD_ID_111 = 111;
+export const CARD_ID_112 = 112;
+export const CARD_ID_113 = 113;
+export const CARD_ID_114 = 114;
+export const CARD_ID_115 = 115;
+export const CARD_ID_116 = 116;
+export const CARD_ID_117 = 117;
+export const CARD_ID_118 = 118;
+export const CARD_ID_MISTRESS = 119;
+export const CARD_ID_PHARAOH = 120;
+export const CARD_ID_121 = 121;
+export const CARD_ID_ANUBIS = 122;
+export const CARD_ID_123 = 123;
+export const CARD_ID_124 = 124;
+export const CARD_ID_125 = 125;
+export const CARD_ID_OGONCHU = 126;
+export const CARD_ID_MAYA = 127;
+export const CARD_ID_128 = 128;
+export const CARD_ID_129 = 129;
+export const CARD_ID_130 = 130;
+export const CARD_ID_131 = 131;
+export const CARD_ID_132 = 132;
+export const CARD_ID_ARGIOPE = 133;
+export const CARD_ID_ANGELRING = 134;
+export const CARD_ID_BARSLY = 135;
+export const CARD_ID_136 = 136;
+export const CARD_ID_137 = 137;
+export const CARD_ID_ORCLORD = 138;
+export const CARD_ID_139 = 139;
+export const CARD_ID_WORUYAFA = 140;
+export const CARD_ID_VERSEVV = 141;
+export const CARD_ID_142 = 142;
+export const CARD_ID_143 = 143;
+export const CARD_ID_144 = 144;
+export const CARD_ID_145 = 145;
+export const CARD_ID_146 = 146;
+export const CARD_ID_147 = 147;
+export const CARD_ID_148 = 148;
+export const CARD_ID_149 = 149;
+export const CARD_ID_150 = 150;
+export const CARD_ID_151 = 151;
+export const CARD_ID_OSIRIS = 152;
+export const CARD_ID_153 = 153;
+export const CARD_ID_154 = 154;
+export const CARD_ID_155 = 155;
+export const CARD_ID_156 = 156;
+export const CARD_ID_157 = 157;
+export const CARD_ID_158 = 158;
+export const CARD_ID_159 = 159;
+export const CARD_ID_160 = 160;
+export const CARD_ID_HAWARD_ALTIZEN_MVP = 161;
+export const CARD_ID_CECIL_DIMON_MVP = 162;
+export const CARD_ID_163 = 163;
+export const CARD_ID_NAGUSAMERUMONO = 164;
+export const CARD_ID_165 = 165;
+export const CARD_ID_MAKENSHI_THANATOSNO_SHINENTAI = 166;
+export const CARD_ID_HILLWIND = 167;
+export const CARD_ID_RAUREL_VINDER = 168;
+export const CARD_ID_169 = 169;
+export const CARD_ID_RED_PHEROS = 170;
+export const CARD_ID_PITMAN = 171;
+export const CARD_ID_BEAR_DOLL = 172;
+export const CARD_ID_173 = 173;
+export const CARD_ID_174 = 174;
+export const CARD_ID_175 = 175;
+export const CARD_ID_176 = 176;
+export const CARD_ID_KATRINN = 177;
+export const CARD_ID_SEIREN_VIENSER_MVP = 178;
+export const CARD_ID_BLUE_OSIDOS = 179;
+export const CARD_ID_180 = 180;
+export const CARD_ID_181 = 181;
+export const CARD_ID_182 = 182;
+export const CARD_ID_183 = 183;
+export const CARD_ID_184 = 184;
+export const CARD_ID_185 = 185;
+export const CARD_ID_REMOVER = 186;
+export const CARD_ID_187 = 187;
+export const CARD_ID_ARMAIA_DUNZE = 188;
+export const CARD_ID_189 = 189;
+export const CARD_ID_190 = 190;
+export const CARD_ID_191 = 191;
+export const CARD_ID_192 = 192;
+export const CARD_ID_193 = 193;
+export const CARD_ID_194 = 194;
+export const CARD_ID_195 = 195;
+export const CARD_ID_196 = 196;
+export const CARD_ID_197 = 197;
+export const CARD_ID_198 = 198;
+export const CARD_ID_FRUS = 199;
+export const CARD_ID_200 = 200;
+export const CARD_ID_201 = 201;
+export const CARD_ID_202 = 202;
+export const CARD_ID_203 = 203;
+export const CARD_ID_204 = 204;
+export const CARD_ID_205 = 205;
+export const CARD_ID_206 = 206;
+export const CARD_ID_207 = 207;
+export const CARD_ID_208 = 208;
+export const CARD_ID_209 = 209;
+export const CARD_ID_210 = 210;
+export const CARD_ID_211 = 211;
+export const CARD_ID_212 = 212;
+export const CARD_ID_GIBBET = 213;
+export const CARD_ID_214 = 214;
+export const CARD_ID_215 = 215;
+export const CARD_ID_216 = 216;
+export const CARD_ID_217 = 217;
+export const CARD_ID_LUDE = 218;
+export const CARD_ID_LORD_OF_DEATH = 219;
+export const CARD_ID_220 = 220;
+export const CARD_ID_221 = 221;
+export const CARD_ID_ARCLOUSE = 222;
+export const CARD_ID_223 = 223;
+export const CARD_ID_224 = 224;
+export const CARD_ID_APOCALYPSE = 225;
+export const CARD_ID_226 = 226;
+export const CARD_ID_227 = 227;
+export const CARD_ID_AMON_RA = 228;
+export const CARD_ID_229 = 229;
+export const CARD_ID_230 = 230;
+export const CARD_ID_ALICE = 231;
+export const CARD_ID_ANSONI = 232;
+export const CARD_ID_233 = 233;
+export const CARD_ID_234 = 234;
+export const CARD_ID_235 = 235;
+export const CARD_ID_236 = 236;
+export const CARD_ID_237 = 237;
+export const CARD_ID_238 = 238;
+export const CARD_ID_239 = 239;
+export const CARD_ID_240 = 240;
+export const CARD_ID_EXCUTIONER = 241;
+export const CARD_ID_242 = 242;
+export const CARD_ID_ECLIPSE = 243;
+export const CARD_ID_244 = 244;
+export const CARD_ID_245 = 245;
+export const CARD_ID_246 = 246;
+export const CARD_ID_247 = 247;
+export const CARD_ID_248 = 248;
+export const CARD_ID_ORGE_TOOTH = 249;
+export const CARD_ID_ORC_ARCHER = 250;
+export const CARD_ID_251 = 251;
+export const CARD_ID_252 = 252;
+export const CARD_ID_FUR_SEAL = 253;
+export const CARD_ID_254 = 254;
+export const CARD_ID_ONRYOBUSHI = 255;
+export const CARD_ID_256 = 256;
+export const CARD_ID_257 = 257;
+export const CARD_ID_KAPPA = 258;
+export const CARD_ID_259 = 259;
+export const CARD_ID_260 = 260;
+export const CARD_ID_261 = 261;
+export const CARD_ID_262 = 262;
+export const CARD_ID_263 = 263;
+export const CARD_ID_264 = 264;
+export const CARD_ID_265 = 265;
+export const CARD_ID_266 = 266;
+export const CARD_ID_KYODAI_WHISPER = 267;
+export const CARD_ID_268 = 268;
+export const CARD_ID_269 = 269;
+export const CARD_ID_270 = 270;
+export const CARD_ID_KUMIHO = 271;
+export const CARD_ID_272 = 272;
+export const CARD_ID_273 = 273;
+export const CARD_ID_274 = 274;
+export const CARD_ID_275 = 275;
+export const CARD_ID_276 = 276;
+export const CARD_ID_GRIFFIN = 277;
+export const CARD_ID_278 = 278;
+export const CARD_ID_279 = 279;
+export const CARD_ID_280 = 280;
+export const CARD_ID_281 = 281;
+export const CARD_ID_282 = 282;
+export const CARD_ID_GOAT = 283;
+export const CARD_ID_KOKUDAO = 284;
+export const CARD_ID_285 = 285;
+export const CARD_ID_286 = 286;
+export const CARD_ID_287 = 287;
+export const CARD_ID_288 = 288;
+export const CARD_ID_289 = 289;
+export const CARD_ID_290 = 290;
+export const CARD_ID_291 = 291;
+export const CARD_ID_292 = 292;
+export const CARD_ID_293 = 293;
+export const CARD_ID_294 = 294;
+export const CARD_ID_SAMAYOU_MONO = 295;
+export const CARD_ID_296 = 296;
+export const CARD_ID_297 = 297;
+export const CARD_ID_JESTER = 298;
+export const CARD_ID_299 = 299;
+export const CARD_ID_300 = 300;
+export const CARD_ID_301 = 301;
+export const CARD_ID_302 = 302;
+export const CARD_ID_303 = 303;
+export const CARD_ID_ZYUKIHE = 304;
+export const CARD_ID_HATI_BEBE = 305;
+export const CARD_ID_306 = 306;
+export const CARD_ID_307 = 307;
+export const CARD_ID_308 = 308;
+export const CARD_ID_309 = 309;
+export const CARD_ID_STING = 310;
+export const CARD_ID_311 = 311;
+export const CARD_ID_STEM_WORM = 312;
+export const CARD_ID_STORM_KNIGHT = 313;
+export const CARD_ID_314 = 314;
+export const CARD_ID_315 = 315;
+export const CARD_ID_316 = 316;
+export const CARD_ID_317 = 317;
+export const CARD_ID_318 = 318;
+export const CARD_ID_319 = 319;
+export const CARD_ID_DARK_ILLUSION = 320;
+export const CARD_ID_321 = 321;
+export const CARD_ID_DARK_LORD = 322;
+export const CARD_ID_TURTLE_GENERAL = 323;
+export const CARD_ID_324 = 324;
+export const CARD_ID_325 = 325;
+export const CARD_ID_326 = 326;
+export const CARD_ID_CHOCO = 327;
+export const CARD_ID_MOBSTER = 328;
+export const CARD_ID_329 = 329;
+export const CARD_ID_330 = 330;
+export const CARD_ID_331 = 331;
+export const CARD_ID_PEKUSOZIN = 332;
+export const CARD_ID_333 = 333;
+export const CARD_ID_334 = 334;
+export const CARD_ID_335 = 335;
+export const CARD_ID_TENZYA_SENNIN = 336;
+export const CARD_ID_337 = 337;
+export const CARD_ID_TODO = 338;
+export const CARD_ID_339 = 339;
+export const CARD_ID_340 = 340;
+export const CARD_ID_341 = 341;
+export const CARD_ID_342 = 342;
+export const CARD_ID_343 = 343;
+export const CARD_ID_344 = 344;
+export const CARD_ID_345 = 345;
+export const CARD_ID_346 = 346;
+export const CARD_ID_347 = 347;
+export const CARD_ID_348 = 348;
+export const CARD_ID_HATI = 349;
+export const CARD_ID_350 = 350;
+export const CARD_ID_351 = 351;
+export const CARD_ID_352 = 352;
+export const CARD_ID_353 = 353;
+export const CARD_ID_HEATER = 354;
+export const CARD_ID_355 = 355;
+export const CARD_ID_356 = 356;
+export const CARD_ID_KIEL_D01 = 357;
+export const CARD_ID_358 = 358;
+export const CARD_ID_359 = 359;
+export const CARD_ID_360 = 360;
+export const CARD_ID_BLOODY_KNIGHT = 361;
+export const CARD_ID_362 = 362;
+export const CARD_ID_RANDGRIS = 363;
+export const CARD_ID_364 = 364;
+export const CARD_ID_365 = 365;
+export const CARD_ID_366 = 366;
+export const CARD_ID_367 = 367;
+export const CARD_ID_PHENOMENA = 368;
+export const CARD_ID_BOCAL = 369;
+export const CARD_ID_370 = 370;
+export const CARD_ID_371 = 371;
+export const CARD_ID_MASTERING = 372;
+export const CARD_ID_373 = 373;
+export const CARD_ID_374 = 374;
+export const CARD_ID_MISTILTINE = 375;
+export const CARD_ID_376 = 376;
+export const CARD_ID_377 = 377;
+export const CARD_ID_378 = 378;
+export const CARD_ID_379 = 379;
+export const CARD_ID_MUTANT_DRAGON = 380;
+export const CARD_ID_MEGALITH = 381;
+export const CARD_ID_382 = 382;
+export const CARD_ID_RIDEWORD = 383;
+export const CARD_ID_384 = 384;
+export const CARD_ID_WRAITH = 385;
+export const CARD_ID_RAYDRIC_ARCHER = 386;
+export const CARD_ID_387 = 387;
+export const CARD_ID_388 = 388;
+export const CARD_ID_389 = 389;
+export const CARD_ID_390 = 390;
+export const CARD_ID_WILD_ROSE = 391;
+export const CARD_ID_TAOGUNKA = 392;
+export const CARD_ID_393 = 393;
+export const CARD_ID_DEVILRING = 394;
+export const CARD_ID_395 = 395;
+export const CARD_ID_396 = 396;
+export const CARD_ID_397 = 397;
+export const CARD_ID_398 = 398;
+export const CARD_ID_399 = 399;
+export const CARD_ID_400 = 400;
+export const CARD_ID_KAVAC_ICARUS = 401;
+export const CARD_ID_CHUNGE = 402;
+export const CARD_ID_ORC_BABY = 403;
+export const CARD_ID_ELEMES_GAIL_MVP = 404;
+export const CARD_ID_ERIOT = 405;
+export const CARD_ID_406 = 406;
+export const CARD_ID_GOLD_OSIDOS = 407;
+export const CARD_ID_408 = 408;
+export const CARD_ID_LADYTANIE = 409;
+export const CARD_ID_410 = 410;
+export const CARD_ID_411 = 411;
+export const CARD_ID_VIRUS = 412;
+export const CARD_ID_413 = 413;
+export const CARD_ID_414 = 414;
+export const CARD_ID_415 = 415;
+export const CARD_ID_SIKKOSURUMONO = 416;
+export const CARD_ID_DRAGONNO_TAMAGO = 417;
+export const CARD_ID_GREEN_IGUANA = 418;
+export const CARD_ID_419 = 419;
+export const CARD_ID_RSX_0806 = 420;
+export const CARD_ID_MARGARETTE_SORIN_MVP = 421;
+export const CARD_ID_DATAL_ZAURUS = 422;
+export const CARD_ID_IGNISEM_CENIA_MVP = 423;
+export const CARD_ID_CATHERINE_KARON_MVP = 424;
+export const CARD_ID_VESPER = 425;
+export const CARD_ID_426 = 426;
+export const CARD_ID_427 = 427;
+export const CARD_ID_428 = 428;
+export const CARD_ID_429 = 429;
+export const CARD_ID_430 = 430;
+export const CARD_ID_431 = 431;
+export const CARD_ID_432 = 432;
+export const CARD_ID_433 = 433;
+export const CARD_ID_434 = 434;
+export const CARD_ID_435 = 435;
+export const CARD_ID_436 = 436;
+export const CARD_ID_437 = 437;
+export const CARD_ID_438 = 438;
+export const CARD_ID_439 = 439;
+export const CARD_ID_440 = 440;
+export const CARD_ID_441 = 441;
+export const CARD_ID_442 = 442;
+export const CARD_ID_443 = 443;
+export const CARD_ID_444 = 444;
+export const CARD_ID_445 = 445;
+export const CARD_ID_446 = 446;
+export const CARD_ID_447 = 447;
+export const CARD_ID_448 = 448;
+export const CARD_ID_449 = 449;
+export const CARD_ID_450 = 450;
+export const CARD_ID_451 = 451;
+export const CARD_SET_ID_JOBSET_ACOLYTE = 452;
+export const CARD_SET_ID_JOBSET_ARCHER = 453;
+export const CARD_SET_ID_JOBSET_MAGICIAN = 454;
+export const CARD_ID_455 = 455;
+export const CARD_SET_ID_JOBSET_CRUSADER = 456;
+export const CARD_ID_457 = 457;
+export const CARD_ID_458 = 458;
+export const CARD_ID_459 = 459;
+export const CARD_SET_ID_JOBSET_SAGE = 460;
+export const CARD_ID_461 = 461;
+export const CARD_ID_462 = 462;
+export const CARD_ID_ATLOS = 463;
+export const CARD_ID_SWORD_GUARDIAN = 464;
+export const CARD_ID_BOW_GUARDIAN = 465;
+export const CARD_ID_466 = 466;
+export const CARD_ID_467 = 467;
+export const CARD_ID_468 = 468;
+export const CARD_ID_469 = 469;
+export const CARD_ID_470 = 470;
+export const CARD_ID_471 = 471;
+export const CARD_ID_472 = 472;
+export const CARD_ID_473 = 473;
+export const CARD_ID_BANSHEE = 474;
+export const CARD_ID_GROOM_UNDERNIGHT = 475;
+export const CARD_ID_AGAVE = 476;
+export const CARD_ID_EKIO = 477;
+export const CARD_ID_KTULLANUX = 478;
+export const CARD_ID_479 = 479;
+export const CARD_ID_480 = 480;
+export const CARD_ID_481 = 481;
+export const CARD_ID_482 = 482;
+export const CARD_ID_483 = 483;
+export const CARD_ID_484 = 484;
+export const CARD_ID_485 = 485;
+export const CARD_ID_OCHITA_DAISHINKAN_HIBAMU = 486;
+export const CARD_ID_487 = 487;
+export const CARD_ID_SIROMA = 488;
+export const CARD_ID_489 = 489;
+export const CARD_ID_490 = 490;
+export const CARD_ID_491 = 491;
+export const CARD_ID_EFREET = 492;
+export const CARD_ID_IMP = 493;
+export const CARD_ID_494 = 494;
+export const CARD_ID_495 = 495;
+export const CARD_ID_496 = 496;
+export const CARD_ID_497 = 497;
+export const CARD_ID_498 = 498;
+export const CARD_ID_499 = 499;
+export const CARD_ID_ENTVAIEN = 500;
+export const CARD_ID_501 = 501;
+export const CARD_ID_502 = 502;
+export const CARD_ID_503 = 503;
+export const CARD_ID_504 = 504;
+export const CARD_ID_505 = 505;
+export const CARD_ID_506 = 506;
+export const CARD_ID_507 = 507;
+export const CARD_ID_ENCHANT_ATK_2 = 508;
+export const CARD_ID_ENCHANT_ATK_3 = 509;
+export const CARD_ID_ENCHANT_CRI_5 = 510;
+export const CARD_ID_ENCHANT_CRI_7 = 511;
+export const CARD_ID_ENCHANT_FLEE_6 = 512;
+export const CARD_ID_ENCHANT_FLEE_12 = 513;
+export const CARD_ID_ENCHANT_MATK_1_CAST_FIXED_1 = 514;
+export const CARD_ID_ENCHANT_MATK_2_CAST_FIXED_1 = 515;
+export const CARD_ID_ENCHANT_AGI_1 = 516;
+export const CARD_ID_ENCHANT_AGI_2 = 517;
+export const CARD_ID_ENCHANT_AGI_3 = 518;
+export const CARD_ID_ENCHANT_INT_1 = 519;
+export const CARD_ID_ENCHANT_INT_2 = 520;
+export const CARD_ID_ENCHANT_INT_3 = 521;
+export const CARD_ID_ENCHANT_DEX_1 = 522;
+export const CARD_ID_ENCHANT_DEX_2 = 523;
+export const CARD_ID_ENCHANT_DEX_3 = 524;
+export const CARD_ID_525 = 525;
+export const CARD_ID_526 = 526;
+export const CARD_ID_MAGICAL_RACE_ALL_10UP = 527;
+export const CARD_ID_TENDORIRURION = 528;
+export const CARD_ID_529 = 529;
+export const CARD_ID_530 = 530;
+export const CARD_ID_531 = 531;
+export const CARD_ID_532 = 532;
+export const CARD_ID_533 = 533;
+export const CARD_ID_534 = 534;
+export const CARD_ID_535 = 535;
+export const CARD_ID_536 = 536;
+export const CARD_ID_537 = 537;
+export const CARD_ID_538 = 538;
+export const CARD_ID_539 = 539;
+export const CARD_ID_540 = 540;
+export const CARD_ID_NYDHOGNO_KAGE = 541;
+export const CARD_ID_NAHT_ZEEGAR = 542;
+export const CARD_ID_543 = 543;
+export const CARD_ID_544 = 544;
+export const CARD_ID_545 = 545;
+export const CARD_ID_546 = 546;
+export const CARD_ID_547 = 547;
+export const CARD_ID_548 = 548;
+export const CARD_ID_549 = 549;
+export const CARD_ID_550 = 550;
+export const CARD_ID_551 = 551;
+export const CARD_ID_552 = 552;
+export const CARD_ID_553 = 553;
+export const CARD_ID_ENCHANT_STR_1 = 554;
+export const CARD_ID_ENCHANT_STR_2 = 555;
+export const CARD_ID_ENCHANT_STR_3 = 556;
+export const CARD_ID_ENCHANT_STR_4 = 557;
+export const CARD_ID_ENCHANT_STR_5 = 558;
+export const CARD_ID_ENCHANT_AGI_4 = 559;
+export const CARD_ID_ENCHANT_AGI_5 = 560;
+export const CARD_ID_ENCHANT_VIT_1 = 561;
+export const CARD_ID_ENCHANT_VIT_2 = 562;
+export const CARD_ID_ENCHANT_VIT_3 = 563;
+export const CARD_ID_ENCHANT_VIT_4 = 564;
+export const CARD_ID_ENCHANT_VIT_5 = 565;
+export const CARD_ID_ENCHANT_INT_4 = 566;
+export const CARD_ID_ENCHANT_INT_5 = 567;
+export const CARD_ID_ENCHANT_DEX_4 = 568;
+export const CARD_ID_ENCHANT_DEX_5 = 569;
+export const CARD_ID_ENCHANT_LUK_1 = 570;
+export const CARD_ID_ENCHANT_LUK_2 = 571;
+export const CARD_ID_ENCHANT_LUK_3 = 572;
+export const CARD_ID_ENCHANT_LUK_4 = 573;
+export const CARD_ID_ENCHANT_LUK_5 = 574;
+export const CARD_ID_ENCHANT_MAXHP_100 = 575;
+export const CARD_ID_ENCHANT_MAXHP_200 = 576;
+export const CARD_ID_ENCHANT_MAXHP_300 = 577;
+export const CARD_ID_ENCHANT_MAXHP_400 = 578;
+export const CARD_ID_ENCHANT_MAXSP_50 = 579;
+export const CARD_ID_ENCHANT_MAXSP_100 = 580;
+export const CARD_ID_ENCHANT_DEF_3 = 581;
+export const CARD_ID_ENCHANT_DEF_6 = 582;
+export const CARD_ID_ENCHANT_DEF_9 = 583;
+export const CARD_ID_ENCHANT_MDEF_2 = 584;
+export const CARD_ID_ENCHANT_MDEF_4 = 585;
+export const CARD_ID_ENCHANT_MDEF_6 = 586;
+export const CARD_ID_ENCHANT_MDEF_8 = 587;
+export const CARD_ID_ENCHANT_MATK_3_CAST_FIXED_1 = 588;
+export const CARD_ID_ENCHANT_MATK_2_CAST_FIXED_1_BUG = 589;
+export const CARD_ID_ENCHANT_DEF_12 = 590;
+export const CARD_ID_ENCHANT_TOSHI_1 = 591;
+export const CARD_ID_ENCHANT_TOSHI_2 = 592;
+export const CARD_ID_ENCHANT_TOSHI_3 = 593;
+export const CARD_ID_ENCHANT_TOSHI_4 = 594;
+export const CARD_ID_ENCHANT_MAXHP_1P = 595;
+export const CARD_ID_ENCHANT_MAXHP_2P = 596;
+export const CARD_ID_ENCHANT_FLEE_1 = 597;
+export const CARD_ID_ENCHANT_FLEE_3 = 598;
+export const CARD_ID_ENCHANT_SPECIAL_AGI = 599;
+export const CARD_ID_ENCHANT_ASPD_1 = 600;
+export const CARD_ID_ENCHANT_MARYOKU_1 = 601;
+export const CARD_ID_ENCHANT_MARYOKU_2 = 602;
+export const CARD_ID_ENCHANT_MARYOKU_3 = 603;
+export const CARD_ID_ENCHANT_MARYOKU_4 = 604;
+export const CARD_ID_ENCHANT_MEIKYU_1 = 605;
+export const CARD_ID_ENCHANT_MEIKYU_2 = 606;
+export const CARD_ID_ENCHANT_SENEI_1 = 607;
+export const CARD_ID_ENCHANT_SENEI_2 = 608;
+export const CARD_ID_ENCHANT_DAISHIKYO_1 = 609;
+export const CARD_ID_ENCHANT_DAISHIKYO_2 = 610;
+export const CARD_ID_ENCHANT_CHIYU_1 = 611;
+export const CARD_ID_ENCHANT_DAISEIDO_1 = 612;
+export const CARD_ID_613 = 613;
+export const CARD_ID_ZYOO_SUCARAB = 614;
+export const CARD_ID_615 = 615;
+export const CARD_ID_616 = 616;
+export const CARD_ID_617 = 617;
+export const CARD_ID_618 = 618;
+export const CARD_ID_619 = 619;
+export const CARD_ID_620 = 620;
+export const CARD_ID_621 = 621;
+export const CARD_ID_622 = 622;
+export const CARD_ID_623 = 623;
+export const CARD_ID_624 = 624;
+export const CARD_ID_625 = 625;
+export const CARD_ID_ZYOTE_SUCARAB = 626;
+export const CARD_ID_ARNORDY = 627;
+export const CARD_ID_628 = 628;
+export const CARD_ID_629 = 629;
+export const CARD_ID_REYAC = 630;
+export const CARD_ID_KRAKEN = 631;
+export const CARD_ID_632 = 632;
+export const CARD_ID_633 = 633;
+export const CARD_ID_634 = 634;
+export const CARD_ID_635 = 635;
+export const CARD_ID_TORYO_TAKO = 636;
+export const CARD_ID_637 = 637;
+export const CARD_ID_638 = 638;
+export const CARD_ID_ENCHANT_MDEF_10 = 639;
+export const CARD_ID_ENCHANT_SENEI_3 = 640;
+export const CARD_ID_ENCHANT_MEIKYU_3 = 641;
+export const CARD_ID_ENCHANT_MAXSP_25 = 642;
+export const CARD_ID_ENCHANT_MAXSP_75 = 643;
+export const CARD_ID_ENCHANT_MAXHP_3P = 644;
+export const CARD_ID_ENCHANT_ATK_1 = 645;
+export const CARD_ID_ENCHANT_TOSHI_6 = 646;
+export const CARD_ID_ENCHANT_TOSHI_7 = 647;
+export const CARD_ID_ENCHANT_KOGEKISOKUDO_3 = 648;
+export const CARD_ID_ENCHANT_KOGEKISOKUDO_4 = 649;
+export const CARD_ID_ENCHANT_MEIKYU_4 = 650;
+export const CARD_ID_ENCHANT_LUK_6 = 651;
+export const CARD_ID_ENCHANT_KUMANO_CHIKARA_OLD = 652;
+export const CARD_ID_ENCHANT_KOSOKU_OLD = 653;
+export const CARD_ID_ENCHANT_KOGAI_OLD = 654;
+export const CARD_ID_ENCHANT_BOSOSHITA_MARYOKU_OLD = 655;
+export const CARD_ID_ENCHANT_OWASHINO_GANKO_OLD = 656;
+export const CARD_ID_ENCHANT_KOUUNNA_HI_OLD = 657;
+export const CARD_ID_658 = 658;
+export const CARD_ID_ENCHANT_SPECIAL_STR = 659;
+export const CARD_ID_ENCHANT_SPECIAL_VIT = 660;
+export const CARD_ID_ENCHANT_SPECIAL_INT = 661;
+export const CARD_ID_ENCHANT_SPECIAL_DEX = 662;
+export const CARD_ID_ENCHANT_SPECIAL_LUK = 663;
+export const CARD_ID_ENCHANT_STR_6 = 664;
+export const CARD_ID_ENCHANT_STR_7 = 665;
+export const CARD_ID_ENCHANT_STR_8 = 666;
+export const CARD_ID_ENCHANT_STR_9 = 667;
+export const CARD_ID_ENCHANT_STR_10 = 668;
+export const CARD_ID_ENCHANT_AGI_6 = 669;
+export const CARD_ID_ENCHANT_AGI_7 = 670;
+export const CARD_ID_ENCHANT_AGI_8 = 671;
+export const CARD_ID_ENCHANT_AGI_9 = 672;
+export const CARD_ID_ENCHANT_AGI_10 = 673;
+export const CARD_ID_ENCHANT_VIT_6 = 674;
+export const CARD_ID_ENCHANT_VIT_7 = 675;
+export const CARD_ID_ENCHANT_VIT_8 = 676;
+export const CARD_ID_ENCHANT_VIT_9 = 677;
+export const CARD_ID_ENCHANT_VIT_10 = 678;
+export const CARD_ID_ENCHANT_INT_6 = 679;
+export const CARD_ID_ENCHANT_INT_7 = 680;
+export const CARD_ID_ENCHANT_INT_8 = 681;
+export const CARD_ID_ENCHANT_INT_9 = 682;
+export const CARD_ID_ENCHANT_INT_10 = 683;
+export const CARD_ID_ENCHANT_DEX_6 = 684;
+export const CARD_ID_ENCHANT_DEX_7 = 685;
+export const CARD_ID_ENCHANT_DEX_8 = 686;
+export const CARD_ID_ENCHANT_DEX_9 = 687;
+export const CARD_ID_ENCHANT_DEX_10 = 688;
+export const CARD_ID_ENCHANT_LUK_7 = 689;
+export const CARD_ID_ENCHANT_LUK_8 = 690;
+export const CARD_ID_ENCHANT_LUK_9 = 691;
+export const CARD_ID_ENCHANT_LUK_10 = 692;
+export const CARD_ID_ENCHANT_TOSHI_5 = 693;
+export const CARD_ID_ENCHANT_TOSHI_8 = 694;
+export const CARD_ID_ENCHANT_TOSHI_9 = 695;
+export const CARD_ID_ENCHANT_TOSHI_10 = 696;
+export const CARD_ID_ENCHANT_SENEI_4 = 697;
+export const CARD_ID_ENCHANT_SENEI_5 = 698;
+export const CARD_ID_ENCHANT_KOGEKISOKUDO_1 = 699;
+export const CARD_ID_ENCHANT_KOGEKISOKUDO_2 = 700;
+export const CARD_ID_ENCHANT_MARYOKU_5 = 701;
+export const CARD_ID_ENCHANT_MARYOKU_6 = 702;
+export const CARD_ID_ENCHANT_MARYOKU_7 = 703;
+export const CARD_ID_ENCHANT_MARYOKU_8 = 704;
+export const CARD_ID_ENCHANT_MARYOKU_9 = 705;
+export const CARD_ID_ARFOSIO_BASIL_MVP = 706;
+export const CARD_ID_EMUR_PURAMEL_MVP = 707;
+export const CARD_ID_GERTIE_UH_MVP = 708;
+export const CARD_ID_CERIA_ARDE_MVP = 709;
+export const CARD_ID_CHENG_RIU_MVP = 710;
+export const CARD_ID_TRENTINI_MVP = 711;
+export const CARD_ID_RANDEL_RORENCE_MVP = 712;
+export const CARD_ID_ALFOSIO_BASIL = 713;
+export const CARD_ID_714 = 714;
+export const CARD_ID_715 = 715;
+export const CARD_ID_716 = 716;
+export const CARD_ID_717 = 717;
+export const CARD_ID_TRENTINI = 718;
+export const CARD_ID_719 = 719;
+export const CARD_ID_720 = 720;
+export const CARD_ID_BAKONAWA = 721;
+export const CARD_ID_BYONGUNGO = 722;
+export const CARD_ID_BUWAYA = 723;
+export const CARD_ID_724 = 724;
+export const CARD_ID_JEJERIN = 725;
+export const CARD_ID_WAKUWAKU = 726;
+export const CARD_ID_727 = 727;
+export const CARD_ID_BUGISGIS = 728;
+export const CARD_ID_729 = 729;
+export const CARD_ID_SASOINO_MAGAN = 730;
+export const CARD_ID_AMDARAIS = 731;
+export const CARD_ID_732 = 732;
+export const CARD_ID_733 = 733;
+export const CARD_ID_734 = 734;
+export const CARD_ID_LICHT_HERRSCHER = 735;
+export const CARD_ID_KISONSARETA_KOSHO = 736;
+export const CARD_ID_737 = 737;
+export const CARD_ID_738 = 738;
+export const CARD_ID_MENBRITZ = 739;
+export const CARD_ID_740 = 740;
+export const CARD_ID_VASER_RIHITERN = 741;
+export const CARD_ID_FELUS_RIHITERN = 742;
+export const CARD_ID_FUNKE_RIHITERN = 743;
+export const CARD_ID_GERVE_RIHITERN = 748;
+export const CARD_ID_744 = 744;
+export const CARD_ID_745 = 745;
+export const CARD_ID_746 = 746;
+export const CARD_ID_747 = 747;
+export const CARD_ID_749 = 749;
+export const CARD_ID_FENRIR = 750;
+export const CARD_ID_751 = 751;
+export const CARD_ID_ENCHANT_MAXSP_150 = 752;
+export const CARD_ID_ENCHANT_MAXHP_4P = 753;
+export const CARD_ID_ENCHANT_MIZU_DROP_1 = 754;
+export const CARD_ID_ENCHANT_MIZU_DROP_2 = 755;
+export const CARD_ID_ENCHANT_MIZU_DROP_3 = 756;
+export const CARD_ID_ENCHANT_MIZU_DROP_4 = 757;
+export const CARD_ID_ENCHANT_KI_DROP_1 = 758;
+export const CARD_ID_ENCHANT_KI_DROP_2 = 759;
+export const CARD_ID_ENCHANT_KI_DROP_3 = 760;
+export const CARD_ID_ENCHANT_KI_DROP_4 = 761;
+export const CARD_ID_ENCHANT_HI_DROP_1 = 762;
+export const CARD_ID_ENCHANT_HI_DROP_2 = 763;
+export const CARD_ID_ENCHANT_HI_DROP_3 = 764;
+export const CARD_ID_ENCHANT_HI_DROP_4 = 765;
+export const CARD_ID_ENCHANT_HIKARI_DROP_1 = 766;
+export const CARD_ID_ENCHANT_HIKARI_DROP_2 = 767;
+export const CARD_ID_ENCHANT_HIKARI_DROP_3 = 768;
+export const CARD_ID_ENCHANT_HIKARI_DROP_4 = 769;
+export const CARD_ID_ENCHANT_YAMI_DROP_1 = 770;
+export const CARD_ID_ENCHANT_YAMI_DROP_2 = 771;
+export const CARD_ID_ENCHANT_YAMI_DROP_3 = 772;
+export const CARD_ID_ENCHANT_YAMI_DROP_4 = 773;
+export const CARD_ID_ENCHANT_KAIFUKU_DROP_1 = 774;
+export const CARD_ID_ENCHANT_KAIFUKU_DROP_2 = 775;
+export const CARD_ID_ENCHANT_KAIFUKU_DROP_3 = 776;
+export const CARD_ID_ENCHANT_KAIFUKU_DROP_4 = 777;
+export const CARD_ID_TIME_HOLDER = 778;
+export const CARD_ID_779 = 779;
+export const CARD_ID_780 = 780;
+export const CARD_ID_781 = 781;
+export const CARD_ID_782 = 782;
+export const CARD_ID_783 = 783;
+export const CARD_ID_784 = 784;
+export const CARD_ID_785 = 785;
+export const CARD_ID_786 = 786;
+export const CARD_ID_787 = 787;
+export const CARD_ID_788 = 788;
+export const CARD_ID_789 = 789;
+export const CARD_ID_ENCHANT_ATK_4 = 790;
+export const CARD_ID_ENCHANT_ATK_5 = 791;
+export const CARD_ID_ENCHANT_MATK_4 = 792;
+export const CARD_ID_ENCHANT_MATK_5 = 793;
+export const CARD_ID_ENCHANT_MAXHP_5P = 794;
+export const CARD_ID_ENCHANT_DEF_15 = 795;
+export const CARD_ID_ENCHANT_MDEF_1 = 796;
+export const CARD_ID_ENCHANT_MDEF_3 = 797;
+export const CARD_ID_ENCHANT_MDEF_5 = 798;
+export const CARD_ID_799 = 799;
+export const CARD_ID_MAZINNO_WANRYOKU_1 = 800;
+export const CARD_ID_MAZINNO_WANRYOKU_2 = 801;
+export const CARD_ID_MAZINNO_WANRYOKU_3 = 802;
+export const CARD_ID_MAZINNO_ZINSOKU_1 = 803;
+export const CARD_ID_MAZINNO_ZINSOKU_2 = 804;
+export const CARD_ID_MAZINNO_ZINSOKU_3 = 805;
+export const CARD_ID_MAZINNO_TAIRYOKU_1 = 806;
+export const CARD_ID_MAZINNO_TAIRYOKU_2 = 807;
+export const CARD_ID_MAZINNO_TAIRYOKU_3 = 808;
+export const CARD_ID_MAZINNO_CHIRYOKU_1 = 809;
+export const CARD_ID_MAZINNO_CHIRYOKU_2 = 810;
+export const CARD_ID_MAZINNO_CHIRYOKU_3 = 811;
+export const CARD_ID_MAZINNO_SHUCHU_1 = 812;
+export const CARD_ID_MAZINNO_SHUCHU_2 = 813;
+export const CARD_ID_MAZINNO_SHUCHU_3 = 814;
+export const CARD_ID_MAZINNO_KOUN_1 = 815;
+export const CARD_ID_MAZINNO_KOUN_2 = 816;
+export const CARD_ID_MAZINNO_KOUN_3 = 817;
+export const CARD_ID_ENCHANT_MATK_1 = 818;
+export const CARD_ID_ENCHANT_MATK_2 = 819;
+export const CARD_ID_ENCHANT_MATK_3 = 820;
+export const CARD_ID_ENCHANT_HAKUYOKYU = 821;
+export const CARD_ID_ENCHANT_KINGYUKYU = 822;
+export const CARD_ID_ENCHANT_SOUZIKYU = 823;
+export const CARD_ID_ENCHANT_KYOKAIKYU = 824;
+export const CARD_ID_ENCHANT_SHISHIKYU = 825;
+export const CARD_ID_ENCHANT_SHOZYOKYU = 826;
+export const CARD_ID_ENCHANT_TENBINKYU = 827;
+export const CARD_ID_ENCHANT_TENKAIKYU = 828;
+export const CARD_ID_ENCHANT_ZINBAKYU = 829;
+export const CARD_ID_ENCHANT_MAKATSUKYU = 830;
+export const CARD_ID_ENCHANT_HOUHEIKYU = 831;
+export const CARD_ID_ENCHANT_SOUGYOKYU = 832;
+export const CARD_ID_ENCHANT_FAMITSUNO_CHIKARA = 833;
+export const CARD_ID_834 = 834;
+export const CARD_ID_835 = 835;
+export const CARD_ID_836 = 836;
+export const CARD_ID_837 = 837;
+export const CARD_ID_838 = 838;
+export const CARD_ID_839 = 839;
+export const CARD_ID_840 = 840;
+export const CARD_ID_841 = 841;
+export const CARD_ID_842 = 842;
+export const CARD_ID_843 = 843;
+export const CARD_ID_844 = 844;
+export const CARD_ID_845 = 845;
+export const CARD_ID_846 = 846;
+export const CARD_ID_847 = 847;
+export const CARD_ID_848 = 848;
+export const CARD_ID_849 = 849;
+export const CARD_ID_850 = 850;
+export const CARD_ID_851 = 851;
+export const CARD_ID_852 = 852;
+export const CARD_ID_853 = 853;
+export const CARD_ID_854 = 854;
+export const CARD_ID_ENCHANT_HILEVEL = 855;
+export const CARD_ID_ENCHANT_E_FIRE = 856;
+export const CARD_ID_ENCHANT_E_WATER = 857;
+export const CARD_ID_ENCHANT_E_GROUND = 858;
+export const CARD_ID_ENCHANT_E_WIND = 859;
+export const CARD_ID_ENCHANT_R_FIRE = 860;
+export const CARD_ID_ENCHANT_R_WATER = 861;
+export const CARD_ID_ENCHANT_R_GROUND = 862;
+export const CARD_ID_ENCHANT_R_WIND = 863;
+export const CARD_ID_ENCHANT_C_LIFE = 864;
+export const CARD_ID_ENCHANT_C_SOUL = 865;
+export const CARD_ID_ENCHANT_C_HPR = 866;
+export const CARD_ID_ENCHANT_C_SPR = 867;
+export const CARD_ID_ENCHANT_A_STR = 868;
+export const CARD_ID_ENCHANT_A_INT = 869;
+export const CARD_ID_ENCHANT_A_DEF = 870;
+export const CARD_ID_ENCHANT_A_AVOID = 871;
+export const CARD_ID_ENCHANT_A_ATK = 872;
+export const CARD_ID_ENCHANT_A_MATK = 873;
+export const CARD_ID_ENCHANT_A_MAXHP = 874;
+export const CARD_ID_ENCHANT_A_MAXSP = 875;
+export const CARD_ID_ENCHANT_A_FROZEN = 876;
+export const CARD_ID_ENCHANT_A_ASPD = 877;
+export const CARD_ID_878 = 878;
+export const CARD_ID_879 = 879;
+export const CARD_ID_880 = 880;
+export const CARD_ID_881 = 881;
+export const CARD_ID_882 = 882;
+export const CARD_ID_883 = 883;
+export const CARD_ID_884 = 884;
+export const CARD_ID_885 = 885;
+export const CARD_ID_886 = 886;
+export const CARD_ID_AMENHOTEP = 887;
+export const CARD_ID_ENCHANT_BOSOSHITA_MARYOKU = 888;
+export const CARD_ID_889 = 889;
+export const CARD_ID_890 = 890;
+export const CARD_ID_IKEINO_COELACANTH = 891;
+export const CARD_ID_ANKOKUNO_COELACANTH = 892;
+export const CARD_ID_HENINO_COELACANTH = 893;
+export const CARD_ID_BOGYAKUNO_COELACANTH = 894;
+export const CARD_SET_ID_OCHITA_DAISHINKAN_HIBAM_ENCHANT_BOSOSHITA_MARYOKU = 895;
+export const CARD_ID_LOVA_BAHAMUT = 896;
+export const CARD_ID_LOVA_SHINKA_BAHAMUT = 897;
+export const CARD_ID_LOVA_RAGNAROK = 898;
+export const CARD_ID_LOVA_SHINKA_RAGNAROK = 899;
+export const CARD_ID_LOVA_RURU = 900;
+export const CARD_ID_LOVA_SHINKA_RURU = 901;
+export const CARD_ID_LOVA_KIMA = 902;
+export const CARD_ID_LOVA_SHINKA_KIMA = 903;
+export const CARD_ID_LOVA_HADES = 904;
+export const CARD_ID_LOVA_SHINKA_HADES = 905;
+export const CARD_ID_ENCHANT_GUREN = 906;
+export const CARD_ID_ENCHANT_SHINCHU = 907;
+export const CARD_ID_ENCHANT_HAKUGIN = 908;
+export const CARD_ID_ENCHANT_TASOGARE = 909;
+export const CARD_ID_ENCHANT_KONTON = 910;
+export const CARD_ID_ENCHANT_SHOKO = 911;
+export const CARD_ID_ENCHANT_KAIFUKU = 912;
+export const CARD_ID_LEARNING_SLIM_POTION_PITCHER_LV10 = 913;
+export const CARD_ID_LEARNING_SLIM_POTION_PITCHER_LV8_9 = 914;
+export const CARD_ID_LEARNING_SLIM_POTION_PITCHER_LV6_7 = 915;
+export const CARD_ID_LEARNING_SLIM_POTION_PITCHER_LV4_5 = 916;
+export const CARD_ID_LEARNING_SLIM_POTION_PITCHER_LV2_3 = 917;
+export const CARD_ID_LEARNING_SLIM_POTION_PITCHER_LV0_1 = 918;
+export const CARD_ID_LEARNING_CROSS_IMPACT_LV5 = 919;
+export const CARD_ID_LEARNING_CROSS_IMPACT_LV0_4 = 920;
+export const CARD_ID_LEARNING_GRIM_TOOTH_LV5 = 921;
+export const CARD_ID_LEARNING_GRIM_TOOTH_LV0_4 = 922;
+export const CARD_ID_LEARNING_SOUL_BREAKER_LV10 = 923;
+export const CARD_ID_LEARNING_SOUL_BREAKER_LV0_9 = 924;
+export const CARD_ID_KAIKINA_SOSHOKU_TREE = 925;
+export const CARD_SET_ID_KAIKINA_SOSHOKU_TREE_BEAR_DOLL = 926;
+export const CARD_ID_KOZYOKEIBIINNO_TAMASHI = 927;
+export const CARD_SET_ID_KOZYOKEIBIINNO_TAMASHI_AKAI_LANTHANUM = 928;
+export const CARD_SET_ID_KOZYOKEIBIINNO_TAMASHI_PRESENTGA_NAI_YUREI = 929;
+export const CARD_ID_SUTERARETA_KUMANINGYO = 930;
+export const CARD_SET_ID_SUTERARETA_KUMANINGYO_BEAR_DOLL = 931;
+export const CARD_ID_PRESENTGA_NAI_YUREI = 932;
+export const CARD_ID_HOSOSARENAKATTA_NINGYO = 933;
+export const CARD_ID_HOSOSARETA_BOX = 934;
+export const CARD_ID_PRESENT_HOSOTANTOSHA = 935;
+export const CARD_ID_CELINE_KIMI = 936;
+export const CARD_SET_ID_CELINE_KIMI_AKURYONO_ITONO_TEBUKURO = 937;
+export const CARD_SET_ID_CELINE_KIMI_CELINENO_RIBBON = 938;
+export const CARD_SET_ID_CELINE_KIMI_NOBLE_CROSS = 939;
+export const CARD_ID_ENCHANT_A_TOLERANCE = 940;
+export const CARD_ID_ENCHANT_A_HIT = 941;
+export const CARD_ID_ENCHANT_A_FLEE = 942;
+export const CARD_ID_ENCHANT_A_MDEF = 943;
+export const CARD_ID_ENCHANT_S_ATK = 944;
+export const CARD_ID_ENCHANT_S_MATK = 945;
+export const CARD_ID_ENCHANT_S_AVOID = 946;
+export const CARD_ID_ENCHANT_S_MAXHP = 947;
+export const CARD_ID_ENCHANT_S_QUICK = 948;
+export const CARD_ID_ENCHANT_S_CRI = 949;
+export const CARD_ID_LEARNING_WATER_BALL_LV5 = 950;
+export const CARD_ID_LEARNING_WATER_BALL_LV4 = 951;
+export const CARD_ID_LEARNING_WATER_BALL_LV3 = 952;
+export const CARD_ID_LEARNING_WATER_BALL_LV2 = 953;
+export const CARD_ID_LEARNING_WATER_BALL_LV1 = 954;
+export const CARD_ID_LEARNING_WATER_BALL_LV0 = 955;
+export const CARD_ID_LEARNING_FROST_NOVA_LV10 = 956;
+export const CARD_ID_LEARNING_FROST_NOVA_LV9 = 957;
+export const CARD_ID_LEARNING_FROST_NOVA_LV8 = 958;
+export const CARD_ID_LEARNING_FROST_NOVA_LV7 = 959;
+export const CARD_ID_LEARNING_FROST_NOVA_LV6 = 960;
+export const CARD_ID_LEARNING_FROST_NOVA_LV5 = 961;
+export const CARD_ID_LEARNING_FROST_NOVA_LV4 = 962;
+export const CARD_ID_LEARNING_FROST_NOVA_LV3 = 963;
+export const CARD_ID_LEARNING_FROST_NOVA_LV2 = 964;
+export const CARD_ID_LEARNING_FROST_NOVA_LV1 = 965;
+export const CARD_ID_LEARNING_FROST_NOVA_LV0 = 966;
+export const CARD_ID_LEARNING_AIMED_BOLT_LV10 = 967;
+export const CARD_ID_LEARNING_AIMED_BOLT_LV0_9 = 968;
+export const CARD_ID_LEARNING_SHARP_SHOOTING_LV5 = 969;
+export const CARD_ID_LEARNING_SHARP_SHOOTING_LV0_4 = 970;
+export const CARD_ID_LEARNING_BLITZ_BEAT_LV5 = 971;
+export const CARD_ID_LEARNING_BLITZ_BEAT_LV0_4 = 972;
+export const CARD_ID_ENCHANT_EIRI_1 = 973;
+export const CARD_ID_ENCHANT_EIRI_2 = 974;
+export const CARD_ID_ENCHANT_EIRI_3 = 975;
+export const CARD_ID_ENCHANT_EIRI_4 = 976;
+export const CARD_ID_ENCHANT_MAXHP_500 = 977;
+export const CARD_ID_ENCHANT_COST_DOWN_2 = 978;
+export const CARD_ID_ENCHANT_COST_DOWN_4 = 979;
+export const CARD_ID_ENCHANT_COST_DOWN_6 = 980;
+export const CARD_ID_ENCHANT_COST_DOWN_8 = 981;
+export const CARD_ID_ENCHANT_COST_DOWN_10 = 982;
+export const CARD_ID_ENCHANT_DELAY_DOWN_2 = 983;
+export const CARD_ID_ENCHANT_DELAY_DOWN_4 = 984;
+export const CARD_ID_ENCHANT_DELAY_DOWN_6 = 985;
+export const CARD_ID_ENCHANT_DELAY_DOWN_8 = 986;
+export const CARD_ID_ENCHANT_DELAY_DOWN_10 = 987;
+export const CARD_ID_ENCHANT_LUCKY_1 = 988;
+export const CARD_ID_ENCHANT_LUCKY_2 = 989;
+export const CARD_ID_ENCHANT_LUCKY_3 = 990;
+export const CARD_ID_ENCHANT_LUCKY_4 = 991;
+export const CARD_ID_ENCHANT_LUCKY_5 = 992;
+export const CARD_ID_ENCHANT_MUZOKUSEI_TAISEI_1 = 993;
+export const CARD_ID_ENCHANT_MUZOKUSEI_TAISEI_2 = 994;
+export const CARD_ID_ENCHANT_MUZOKUSEI_TAISEI_3 = 995;
+export const CARD_ID_ENCHANT_MUZOKUSEI_TAISEI_4 = 996;
+export const CARD_ID_ENCHANT_MUZOKUSEI_TAISEI_5 = 997;
+export const CARD_ID_ENCHANT_YUSHANO_IKARI = 998;
+export const CARD_ID_ENCHANT_MAHITSUZINO_HOKO = 999;
+export const CARD_ID_ENCHANT_ENERGY_SHUGORYU = 1000;
+export const CARD_ID_ENCHANT_ENERGY_IKUSAOTOME = 1001;
+export const CARD_ID_ENCHANT_ENERGY_REPPU = 1002;
+export const CARD_ID_ENCHANT_RYUBIRYUNO_GENZYU = 1003;
+export const CARD_ID_ENCHANT_MANPASHIKUZYOKUNO_GENZYU = 1004;
+export const CARD_ID_ENCHANT_UCHUKONGEN_GENZYU = 1005;
+export const CARD_ID_ENCHANT_SHIPPU = 1006;
+export const CARD_ID_ENCHANT_TENCHI = 1007;
+export const CARD_ID_SOHION = 1008;
+export const CARD_ID_ELVIRA = 1009;
+export const CARD_ID_LOLA = 1010;
+export const CARD_ID_RUDO = 1011;
+export const CARD_ID_SHOGUN_DAEHYON = 1012;
+export const CARD_ID_MUZIHINA_GIOIA = 1013;
+export const CARD_ID_KYOSHINZYA_PYURIEL = 1014;
+export const CARD_ID_MOZYANO_SHUGOSHA_KADES = 1015;
+export const CARD_ID_HASHANO_SHINEN = 1016;
+export const CARD_ID_LEARNING_ORATIO_LV10 = 1017;
+export const CARD_ID_LEARNING_ORATIO_LV9 = 1018;
+export const CARD_ID_LEARNING_ORATIO_LV8 = 1019;
+export const CARD_ID_LEARNING_ORATIO_LV7 = 1020;
+export const CARD_ID_LEARNING_ORATIO_LV6 = 1021;
+export const CARD_ID_LEARNING_ORATIO_LV5 = 1022;
+export const CARD_ID_LEARNING_ORATIO_LV4 = 1023;
+export const CARD_ID_LEARNING_ORATIO_LV3 = 1024;
+export const CARD_ID_LEARNING_ORATIO_LV2 = 1025;
+export const CARD_ID_LEARNING_ORATIO_LV1 = 1026;
+export const CARD_ID_LEARNING_ORATIO_LV0 = 1027;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV13 = 1028;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV12 = 1029;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV11 = 1030;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV10 = 1031;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV9 = 1032;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV8 = 1033;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV7 = 1034;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV6 = 1035;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV5 = 1036;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV4 = 1037;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV3 = 1038;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV2 = 1039;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV1 = 1040;
+export const CARD_ID_LEARNING_RAUDA_ETC_LV0 = 1041;
+export const CARD_ID_ENCHANT_FLOOD = 1042;
+export const CARD_ID_ENCHANT_CRAY = 1043;
+export const CARD_ID_ENCHANT_BURN = 1044;
+export const CARD_ID_ENCHANT_GAIL = 1045;
+export const CARD_ID_ENCHANT_VENOM = 1046;
+export const CARD_ID_ENCHANT_SACRED = 1047;
+export const CARD_ID_ENCHANT_DEATHPERIA = 1048;
+export const CARD_ID_ENCHANT_GRADGE = 1049;
+export const CARD_ID_ENCHANT_UHA = 1050;
+export const CARD_ID_ENCHANT_HIT_1 = 1051;
+export const CARD_ID_ENCHANT_HIT_2 = 1052;
+export const CARD_ID_ENCHANT_HIT_3 = 1053;
+export const CARD_ID_ENCHANT_HIT_4 = 1054;
+export const CARD_ID_ENCHANT_HIT_5 = 1055;
+export const CARD_ID_ENCHANT_HIT_6 = 1056;
+export const CARD_ID_ENCHANT_HIT_7 = 1057;
+export const CARD_ID_ENCHANT_HIT_8 = 1058;
+export const CARD_ID_ENCHANT_HIT_9 = 1059;
+export const CARD_ID_ENCHANT_HIT_10 = 1060;
+export const CARD_ID_ENCHANT_DEF_21 = 1061;
+export const CARD_ID_ENKONNO_SHIRONO_KISHI = 1062;
+export const CARD_ID_SATSURIKUNO_MAGAN = 1063;
+export const CARD_SET_ID_SATSURIKUNO_MAGAN_MAGANNO_AMDARAIS = 1064;
+export const CARD_ID_MAGANNO_AMDARAIS = 1065;
+export const CARD_ID_ENKONNO_KHALITZBURG = 1066;
+export const CARD_ID_ENCHANT_SUITEN = 1067;
+export const CARD_ID_ECO_TINY_ARMA = 1068;
+export const CARD_ID_ECO_BURIKING_RX1_ARMA = 1069;
+export const CARD_ID_ECO_MINIY_DO_ARMA = 1070;
+export const CARD_ID_ECO_SALAMANDER_ARMA = 1071;
+export const CARD_ID_ECO_MOMO_ARMA = 1072;
+export const CARD_ID_ENCHANT_ENERGY_RYUGARI = 1073;
+export const CARD_ID_ENCHANT_ENERGY_GANKYO = 1074;
+export const CARD_ID_ENCHANT_ENERGY_MADO = 1075;
+export const CARD_ID_ENCHANT_ENERGY_CHIMEINO_ICHIGEKI = 1076;
+export const CARD_ID_POWERFUL_SKELETON = 1077;
+export const CARD_ID_POWERFUL_A_SKELETON = 1078;
+export const CARD_ID_POWERFUL_S_SKELETON = 1079;
+export const CARD_ID_POWERFUL_AMDARAIS = 1080;
+export const CARD_ID_ZOMBIE_GUARD = 1081;
+export const CARD_ID_FUMETSUNO_WINDGHOST = 1082;
+export const CARD_SET_ID_FUMETSUNO_WINDGHOST_FUMETSUNO_NOROWARETA_KISHI = 1083;
+export const CARD_ID_FUSHINO_GUNDAN = 1084;
+export const CARD_ID_FUMETSUNO_NOROWARETA_KISHI = 1085;
+export const CARD_ID_WATCHER = 1086;
+export const CARD_ID_TAPPY = 1087;
+export const CARD_ID_FROZEN_WOLF = 1088;
+export const CARD_ID_S_J_EARNEST_WOLF = 1089;
+export const CARD_ID_BIJOU = 1090;
+export const CARD_ID_ENCHANT_ANSOKUNO_NIEVE_TAIRYOKU = 1091;
+export const CARD_SET_ID_ENCHANT_ANSOKUNO_NIEVE_TAIRYOKU_DARK_HAND = 1092;
+export const CARD_ID_ENCHANT_ANSOKUNO_NIEVE_SEISHIN = 1093;
+export const CARD_SET_ID_ENCHANT_ANSOKUNO_NIEVE_SEISHIN_DARK_HAND = 1094;
+export const CARD_ID_ENCHANT_ANSOKUNO_NIEVE_SEIMEI = 1095;
+export const CARD_SET_ID_ENCHANT_ANSOKUNO_NIEVE_SEIMEI_DARK_HAND = 1096;
+export const CARD_ID_ENCHANT_ANSOKUNO_NIEVE_CHIRYOKU = 1097;
+export const CARD_SET_ID_ENCHANT_ANSOKUNO_NIEVE_CHIRYOKU_DARK_HAND = 1098;
+export const CARD_ID_ENCHANT_EIGONO_NIEVE_HI = 1099;
+export const CARD_SET_ID_ENCHANT_EIGONO_NIEVE_HI_DARK_HAND = 1100;
+export const CARD_ID_ENCHANT_EIGONO_NIEVE_MIZU = 1101;
+export const CARD_SET_ID_ENCHANT_EIGONO_NIEVE_MIZU_DARK_HAND = 1102;
+export const CARD_ID_ENCHANT_EIGONO_NIEVE_KAZE = 1103;
+export const CARD_SET_ID_ENCHANT_EIGONO_NIEVE_KAZE_DARK_HAND = 1104;
+export const CARD_ID_ENCHANT_EIGONO_NIEVE_CHI = 1105;
+export const CARD_SET_ID_ENCHANT_EIGONO_NIEVE_CHI_DARK_HAND = 1106;
+export const CARD_ID_ENCHANT_EIGONO_NIEVE_YAMI = 1107;
+export const CARD_SET_ID_ENCHANT_EIGONO_NIEVE_YAMI_DARK_HAND = 1108;
+export const CARD_ID_ENCHANT_EIGONO_NIEVE_NEN = 1109;
+export const CARD_SET_ID_ENCHANT_EIGONO_NIEVE_NEN_DARK_HAND = 1110;
+export const CARD_ID_ENCHANT_EIGONO_NIEVE_DOKU = 1111;
+export const CARD_SET_ID_ENCHANT_EIGONO_NIEVE_DOKU_DARK_HAND = 1112;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_MUKEI = 1113;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_MUKEI_DARK_HAND = 1114;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_FUSHIKEI = 1115;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_FUSHIKEI_DARK_HAND = 1116;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_DOBUTSUKEI = 1117;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_DOBUTSUKEI_DARK_HAND = 1118;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_SHOKUBUTSUKEI = 1119;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_SHOKUBUTSUKEI_DARK_HAND = 1120;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_KONCHUKEI = 1121;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_KONCHUKEI_DARK_HAND = 1122;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_GYOKAIKEI = 1123;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_GYOKAIKEI_DARK_HAND = 1124;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_AKUMAKEI = 1125;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_AKUMAKEI_DARK_HAND = 1126;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_NINGENKEI = 1127;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_NINGENKEI_DARK_HAND = 1128;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_TENSHIKEI = 1129;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_TENSHIKEI_DARK_HAND = 1130;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_RYUKEI = 1131;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_RYUKEI_DARK_HAND = 1132;
+export const CARD_ID_ENCHANT_CHINO_NIEVE_WANRYOKU = 1133;
+export const CARD_SET_ID_ENCHANT_CHINO_NIEVE_WANRYOKU_DARK_HAND = 1134;
+export const CARD_ID_ENCHANT_CHINO_NIEVE_ZINSOKU = 1135;
+export const CARD_SET_ID_ENCHANT_CHINO_NIEVE_ZINSOKU_DARK_HAND = 1136;
+export const CARD_ID_ENCHANT_CHINO_NIEVE_TAIRYOKU = 1137;
+export const CARD_SET_ID_ENCHANT_CHINO_NIEVE_TAIRYOKU_DARK_HAND = 1138;
+export const CARD_ID_ENCHANT_CHINO_NIEVE_CHIRYOKU = 1139;
+export const CARD_SET_ID_ENCHANT_CHINO_NIEVE_CHIRYOKU_DARK_HAND = 1140;
+export const CARD_ID_ENCHANT_CHINO_NIEVE_SHUCHU = 1141;
+export const CARD_SET_ID_ENCHANT_CHINO_NIEVE_SHUCHU_DARK_HAND = 1142;
+export const CARD_ID_ENCHANT_CHINO_NIEVE_KOUN = 1143;
+export const CARD_SET_ID_ENCHANT_CHINO_NIEVE_KOUN_DARK_HAND = 1144;
+export const CARD_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU = 1145;
+export const CARD_SET_ID_ENCHANT_MEIYONO_NIEVE_ZINSOKU_DARK_HAND = 1146;
+export const CARD_ID_ENCHANT_MEIYONO_NIEVE_SHUCHU = 1147;
+export const CARD_SET_ID_ENCHANT_MEIYONO_NIEVE_SHUCHU_DARK_HAND = 1148;
+export const CARD_ID_ENCHANT_MEIYONO_NIEVE_ZYUKUREN = 1149;
+export const CARD_SET_ID_ENCHANT_MEIYONO_NIEVE_ZYUKUREN_DARK_HAND = 1150;
+export const CARD_ID_ENCHANT_SHINO_NIEVE_WANRYOKU = 1151;
+export const CARD_SET_ID_ENCHANT_SHINO_NIEVE_WANRYOKU_DARK_HAND = 1152;
+export const CARD_ID_ENCHANT_SHINO_NIEVE_CHIRYOKU = 1153;
+export const CARD_SET_ID_ENCHANT_SHINO_NIEVE_CHIRYOKU_DARK_HAND = 1154;
+export const CARD_ID_ENCHANT_SHINO_NIEVE_TAIRYOKU = 1155;
+export const CARD_SET_ID_ENCHANT_SHINO_NIEVE_TAIRYOKU_DARK_HAND = 1156;
+export const CARD_ID_ENCHANT_SHINO_NIEVE_MABO = 1157;
+export const CARD_SET_ID_ENCHANT_SHINO_NIEVE_MABO_DARK_HAND = 1158;
+export const CARD_ID_SKY_PTITE_PENOMENA = 1159;
+export const CARD_ID_ANUBIS_BEAR_DOLL = 1160;
+export const CARD_ID_ORK_WARRIER_RAFFLESIA = 1161;
+export const CARD_ID_ALNOLDI_BIGFOOT = 1162;
+export const CARD_ID_KHALITZBURG_THARA_FROG = 1163;
+export const CARD_ID_VIRGO = 1164;
+export const CARD_ID_VIRGONO_KAKERA = 1165;
+export const CARD_ID_LEO = 1166;
+export const CARD_ID_LEONO_KAKERA = 1167;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_1 = 1168;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_2 = 1169;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_3 = 1170;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_4 = 1171;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_5 = 1172;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_6 = 1173;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_7 = 1174;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_8 = 1175;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_9 = 1176;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_10 = 1177;
+export const CARD_ID_ENCHANT_UNBREAKABLE = 1178;
+export const CARD_ID_ENCHANT_UNINTERRUPTABLE = 1179;
+export const CARD_ID_ENCHANT_DEF_18 = 1180;
+export const CARD_ID_ENCHANT_MDEF_7 = 1181;
+export const CARD_ID_ENCHANT_CRI_10 = 1182;
+export const CARD_ID_ENCHANT_FLEE_10 = 1183;
+export const CARD_ID_ENCHANT_FLEE_5 = 1184;
+export const CARD_ID_RUNE_KNIGHT_SEIREN = 1185;
+export const CARD_ID_RUNE_KNIGHT_SEIREN_MVP = 1186;
+export const CARD_SET_ID_RUNE_KNIGHT_SEIREN_RUNE_KNIGHT_SEIREN_MVP = 1187;
+export const CARD_ID_WARLOCK_CATHERINE = 1188;
+export const CARD_ID_WARLOCK_CATHERINE_MVP = 1189;
+export const CARD_SET_ID_WARLOCK_CATHERINE_WARLOCK_CATHERINE_MVP = 1190;
+export const CARD_ID_RANGER_CECIL = 1191;
+export const CARD_ID_RANGER_CECIL_MVP = 1192;
+export const CARD_SET_ID_RANGER_CECIL_RANGER_CECIL_MVP = 1193;
+export const CARD_ID_ARCH_BISHOP_MARGARETTE = 1194;
+export const CARD_ID_ARCH_BISHOP_MARGARETTE_MVP = 1195;
+export const CARD_SET_ID_ARCH_BISHOP_MARGARETTE_ARCH_BISHOP_MARGARETTE_MVP = 1196;
+export const CARD_ID_GUILLOTINE_CROSS_ELEMES = 1197;
+export const CARD_ID_GUILLOTINE_CROSS_ELEMES_MVP = 1198;
+export const CARD_SET_ID_GUILLOTINE_CROSS_ELEMES_GUILLOTINE_CROSS_ELEMES_MVP = 1199;
+export const CARD_ID_MECHANIC_HAWARD = 1200;
+export const CARD_ID_MECHANIC_HAWARD_MVP = 1201;
+export const CARD_SET_ID_MECHANIC_HAWARD_MECHANIC_HAWARD_MVP = 1202;
+export const CARD_ID_ROYAL_GUARD_RANDEL = 1203;
+export const CARD_ID_ROYAL_GUARD_RANDEL_MVP = 1204;
+export const CARD_SET_ID_ROYAL_GUARD_RANDEL_ROYAL_GUARD_RANDEL_MVP = 1205;
+export const CARD_ID_SORCERER_CERIA = 1206;
+export const CARD_ID_SORCERER_CERIA_MVP = 1207;
+export const CARD_SET_ID_SORCERER_CERIA_SORCERER_CERIA_MVP = 1208;
+export const CARD_ID_MINSTREL_ARFOSIO = 1209;
+export const CARD_ID_MINSTREL_ARFOSIO_MVP = 1210;
+export const CARD_SET_ID_MINSTREL_ARFOSIO_MINSTREL_ARFOSIO_MVP = 1211;
+export const CARD_ID_WANDERER_TRENTINI = 1212;
+export const CARD_ID_WANDERER_TRENTINI_MVP = 1213;
+export const CARD_SET_ID_WANDERER_TRENTINI_WANDERER_TRENTINI_MVP = 1214;
+export const CARD_SET_ID_MINSTREL_ARFOSIO_WANDERER_TRENTINI = 1215;
+export const CARD_ID_SHURA_CHENG = 1216;
+export const CARD_ID_SHURA_CHENG_MVP = 1217;
+export const CARD_SET_ID_SHURA_CHENG_SHURA_CHENG_MVP = 1218;
+export const CARD_ID_SHADOW_CHASER_GARTY = 1219;
+export const CARD_ID_SHADOW_CHASER_GARTY_MVP = 1220;
+export const CARD_SET_ID_SHADOW_CHASER_GARTY_SHADOW_CHASER_GARTY_MVP = 1221;
+export const CARD_ID_GENETIC_EMUR = 1222;
+export const CARD_ID_GENETIC_EMUR_MVP = 1223;
+export const CARD_SET_ID_GENETIC_EMUR_GENETIC_EMUR_MVP = 1224;
+export const CARD_ID_SHURIKATA_VERUSGEAR = 1225;
+export const CARD_ID_TANSAKATA_VERUSGEAR = 1226;
+export const CARD_ID_ROCKSTEP = 1227;
+export const CARD_ID_SMOG = 1228;
+export const CARD_SET_ID_SMOG_SHURIKATA_VERUSGEAR = 1229;
+export const CARD_SET_ID_SMOG_TANSAKATA_VERUSGEAR = 1230;
+export const CARD_ID_KICK_AND_KICK = 1231;
+export const CARD_ID_KICK_STEP = 1232;
+export const CARD_ID_CRAP = 1233;
+export const CARD_ID_CHARLESTON_3GO = 1234;
+export const CARD_ID_GC109 = 1235;
+export const CARD_ID_STEP = 1236;
+export const CARD_ID_DR815 = 1237;
+export const CARD_SET_ID_DR815_GC109 = 1238;
+export const CARD_ID_T_W_O = 1239;
+export const CARD_ID_MEIKYUNO_BAPHOMET = 1240;
+export const CARD_ID_MEIKYUNO_DRACULA = 1241;
+export const CARD_ID_ENCHANT_EIRI_5 = 1242;
+export const CARD_ID_GOKU = 1243;
+export const CARD_ID_ENCHANT_HYAKKA = 1244;
+export const CARD_ID_ENCHANT_SHINRINO_KAIHO = 1245;
+export const CARD_ID_ENCHANT_KOTEIEISHO_50 = 1246;
+export const CARD_ID_ENCHANT_DELAY_DOWN_15 = 1247;
+export const CARD_ID_ENCHANT_COST_DOWN_15 = 1248;
+export const CARD_ID_ENCHANT_KYOGEKI_1 = 1249;
+export const CARD_ID_ENCHANT_KYOGEKI_2 = 1250;
+export const CARD_ID_ENCHANT_KYOGEKI_3 = 1251;
+export const CARD_ID_ENCHANT_KYOGEKI_4 = 1252;
+export const CARD_ID_ENCHANT_KYOGEKI_5 = 1253;
+export const CARD_ID_KOO_GLOZA = 1254;
+export const CARD_SET_ID_KOO_GLOZA_OWASHINO_GANKO = 1255;
+export const CARD_ID_SHINSONO_KOO_GLOZA = 1256;
+export const CARD_ID_ARCANA_DEVIL = 1257;
+export const CARD_ID_ARCANA_POWER = 1258;
+export const CARD_ID_ARCANA_JUSTICE = 1259;
+export const CARD_ID_ARCANA_STAR = 1260;
+export const CARD_ID_ARCANA_SESSEI = 1261;
+export const CARD_ID_ARCANA_CHARIOT = 1262;
+export const CARD_ID_ARCANA_DEATH = 1263;
+export const CARD_ID_ARCANA_HARMIT = 1264;
+export const CARD_ID_ARCANA_EMPEROR = 1265;
+export const CARD_ID_ARCANA_MOON = 1266;
+export const CARD_ID_ARCANA_LOVERS = 1267;
+export const CARD_ID_ARCANA_HOUO = 1268;
+export const CARD_ID_ENCHANT_MEIYONO_NIEVE_MEICHU = 1269;
+export const CARD_SET_ID_ENCHANT_MEIYONO_NIEVE_MEICHU_DARK_HAND = 1270;
+export const CARD_ID_ENCHANT_MEIYONO_NIEVE_KAIHI = 1271;
+export const CARD_SET_ID_ENCHANT_MEIYONO_NIEVE_KAIHI_DARK_HAND = 1272;
+export const CARD_ID_ENCHANT_MEIYONO_NIEVE_KOUN = 1273;
+export const CARD_SET_ID_ENCHANT_MEIYONO_NIEVE_KOUN_DARK_HAND = 1274;
+export const CARD_ID_ENCHANT_SHINO_NIEVE_GIKO = 1275;
+export const CARD_SET_ID_ENCHANT_SHINO_NIEVE_GIKO_DARK_HAND = 1276;
+export const CARD_ID_ENCHANT_SHINO_NIEVE_KOUN = 1277;
+export const CARD_SET_ID_ENCHANT_SHINO_NIEVE_KOUN_DARK_HAND = 1278;
+export const CARD_ID_HEART_HUNTER = 1279;
+export const CARD_ID_MATTER_CHEMERA = 1280;
+export const CARD_ID_HUMANOID_CHEMERA = 1281;
+export const CARD_ID_CUTIE = 1282;
+export const CARD_ID_VENOM_CHEMERA = 1283;
+export const CARD_ID_EABLE = 1284;
+export const CARD_ID_TAUROS = 1285;
+export const CARD_ID_CANCER = 1286;
+export const CARD_ID_TOP_ROUND_RIDER = 1287;
+export const CARD_ID_TOP_SIDE_RIDER = 1288;
+export const CARD_ID_BLADE_RIDER = 1289;
+export const CARD_ID_GASTER = 1290;
+export const CARD_ID_COVOTE = 1291;
+export const CARD_ID_TOP_BLADE_RIDER = 1292;
+export const CARD_ID_CARNIVARAUS = 1293;
+export const CARD_ID_PLASMA_RAT = 1294;
+export const CARD_ID_ROUND_RIDER = 1295;
+export const CARD_ID_SIDE_RIDER = 1296;
+export const CARD_ID_ENCHANT_HAO = 1297;
+export const CARD_ID_GEMINI = 1298;
+export const CARD_ID_SAGITTARIUS = 1299;
+export const CARD_ID_ENCHANT_KUMANO_CHIKARA = 1300;
+export const CARD_ID_ENCHANT_KOSOKU = 1301;
+export const CARD_ID_ENCHANT_KOGAI = 1302;
+export const CARD_ID_ENCHANT_OWASHINO_GANKO = 1303;
+export const CARD_ID_ENCHANT_KOUUNNA_HI = 1304;
+export const CARD_ID_ZYOO_FACEWORM = 1305;
+export const CARD_ID_FACEWORMNO_YOCHU = 1306;
+export const CARD_ID_DAICHORO_AIRIN = 1307;
+export const CARD_ID_PAYON_KEIBIHE_PAYON_SHUGOHE = 1308;
+export const CARD_ID_SARANO_GENEI = 1309;
+export const CARD_ID_FACEWORM = 1310;
+export const CARD_ID_JITTER_BUG = 1311;
+export const CARD_ID_DARK_FACEWORM = 1312;
+export const CARD_ID_FACEWORMNO_TAMAGO = 1313;
+export const CARD_SET_ID_FACEWORMNO_YOCHU_FACEWORMNO_TAMAGO = 1314;
+export const CARD_ID_PERE_KISSME_PERE = 1315;
+export const CARD_ID_SINGING_PERE_SWING_PERE = 1316;
+export const CARD_SET_ID_PERE_KISSME_PERE_SINGING_PERE_SWING_PERE = 1317;
+export const CARD_ID_FFF_JITTER_BUG = 1318;
+export const CARD_ID_ENCHANT_OVERCLOCK = 1319;
+export const CARD_ID_ENCHANT_CHOETSUSHA = 1320;
+export const CARD_ID_ENCHANT_ZYURYOKU = 1321;
+export const CARD_ID_ENCHANT_GOWAN = 1322;
+export const CARD_ID_ENCHANT_RYURIN = 1323;
+export const CARD_ID_EGGRING = 1324;
+export const CARD_ID_JUNGLE_MANDRAGORA = 1325;
+export const CARD_ID_FRUITS_POM_SPIDER = 1326;
+export const CARD_ID_TEISATSU_BASILRISK = 1327;
+export const CARD_ID_TOTSUGEKI_BASILRISK = 1328;
+export const CARD_ID_WILD_HORNET = 1329;
+export const CARD_ID_SWEET_FROG = 1330;
+export const CARD_ID_HUNTER_WOLF = 1331;
+export const CARD_ID_TRANS_SPORE = 1332;
+export const CARD_ID_LEAF_RUNATIC = 1333;
+export const CARD_ID_GRASS_FABLE = 1334;
+export const CARD_ID_BIG_EGGRING = 1335;
+export const CARD_ID_ENCHANT_Z_KNOCKBACK = 1336;
+export const CARD_ID_ENCHANT_Z_IMMORTAL = 1337;
+export const CARD_ID_ENCHANT_Z_KILLGAIN = 1338;
+export const CARD_ID_ENCHANT_Z_REINCARNATION = 1339;
+export const CARD_ID_ENCHANT_Z_NODISPELL = 1340;
+export const CARD_ID_ENCHANT_Z_CLAIRVOYANCE = 1341;
+export const CARD_ID_ENCHANT_Z_CASTFIXED = 1342;
+export const CARD_ID_SERPENTARIUS = 1343;
+export const CARD_ID_AQUARIUS = 1344;
+export const CARD_ID_ENCHANT_KIZUNO_NIEVE_PLAYER = 1345;
+export const CARD_SET_ID_ENCHANT_KIZUNO_NIEVE_PLAYER_DARK_HAND = 1346;
+export const CARD_ID_ENCHANT_KYOZIN = 1347;
+export const CARD_ID_ENCHANT_GOKETSU = 1348;
+export const CARD_ID_MEIKYUNO_DOPPELGANGER = 1349;
+export const CARD_ID_ENCHANT_ZOFUKU_1 = 1350;
+export const CARD_ID_ENCHANT_ZOFUKU_2 = 1351;
+export const CARD_ID_ENCHANT_ZOFUKU_3 = 1352;
+export const CARD_ID_ENCHANT_ZOFUKU_4 = 1353;
+export const CARD_ID_ENCHANT_ZOFUKU_5 = 1354;
+export const CARD_ID_IKARINO_UORUYAFA = 1355;
+export const CARD_ID_IKARINO_KUMIHO = 1356;
+export const CARD_ID_ENKONNO_BONGGONG = 1357;
+export const CARD_ID_ENKONNO_SOPHY = 1358;
+export const CARD_ID_ENKONNO_MONAC = 1359;
+export const CARD_ID_ENKONNO_ASKELTON = 1360;
+export const CARD_ID_SHINRINO_MAHOTSUKAI = 1361;
+export const CARD_ID_KYORANSHITA_BOKENSHA = 1362;
+export const CARD_ID_IKARINO_GAZETY = 1363;
+export const CARD_ID_IKARINO_SNOWER = 1364;
+export const CARD_ID_IKARINO_ICE_TITAN = 1365;
+export const CARD_ID_KAKUSEI_KUTORURANUCKS = 1366;
+export const CARD_ID_LIBRA = 1367;
+export const CARD_ID_SCORPIO = 1368;
+export const CARD_ID_MAT_DRAINRIER = 1369;
+export const CARD_ID_BOMI = 1370;
+export const CARD_ID_IKARINO_DRACULA = 1371;
+export const CARD_ID_SWEET_NIGHTMARE = 1372;
+export const CARD_ID_YASURAGIWO_UBAWARESHI_MONOTACHI = 1373;
+export const CARD_ID_FUKITSUNA_SOLID_TURTLE = 1374;
+export const CARD_ID_FUKITSUNA_FREEZE_TURTLE = 1375;
+export const CARD_ID_FUKITSUNA_TURTLE_G = 1376;
+export const CARD_ID_FUKITSUNA_ASSALT_TURTLE = 1377;
+export const CARD_SET_ID_FUKITSUNA_ASSALT_TURTLE_FUKITSUNA_FREEZE_TURTLE = 1378;
+export const CARD_ID_FUKITSUNA_P_TURTLE = 1379;
+export const CARD_ID_FUKITSUNA_HEAT_TURTLE = 1380;
+export const CARD_ID_ENCHANT_ARCANA = 1381;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_EMPEROR = 1382;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HOUO = 1383;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_LOVERS = 1384;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_CHARIOT = 1385;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_POWER = 1386;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HARMIT = 1387;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_JUSTICE = 1388;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_DEATH = 1389;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_SESSEI = 1390;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_DEVIL = 1391;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_STAR = 1392;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_MOON = 1393;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_11 = 1394;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_12 = 1395;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_13 = 1396;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_14 = 1397;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_15 = 1398;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_16 = 1399;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_17 = 1400;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_18 = 1401;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_19 = 1402;
+export const CARD_ID_ENCHANT_RESIST_PLAYER_20 = 1403;
+export const CARD_ID_MAZYO_ZIRANT = 1404;
+export const CARD_ID_KORYU_ZIRANT = 1405;
+export const CARD_ID_ARIES = 1406;
+export const CARD_ID_CAPRICORN = 1407;
+export const CARD_ID_PISCES = 1408;
+export const CARD_ID_ENCHANT_TOKETSU_TAISE = 1409;
+export const CARD_ID_FLAME_GOLEM = 1410;
+export const CARD_ID_SHINIGAMI_ANKOU = 1411;
+export const CARD_ID_MORS_NECROMANCER = 1412;
+export const CARD_ID_FLAME_SANDMAN = 1413;
+export const CARD_ID_FLAME_CONDOR = 1414;
+export const CARD_ID_BRINARANEA = 1415;
+export const CARD_ID_MUSPELLSKOLL = 1416;
+export const CARD_ID_FLAME_BUG = 1417;
+export const CARD_ID_DARAKUSHITA_SEME = 1418;
+export const CARD_ID_FLAME_FRILLDORA = 1419;
+export const CARD_ID_MAZINNO_SHITO_AHAT = 1420;
+export const CARD_ID_MAZINNO_SHITO_SHINAIM = 1421;
+export const CARD_SET_ID_MAZINNO_SHITO_SHINAIM_MAZINNO_SHITO_AHAT = 1422;
+export const CARD_ID_ZETSUBONO_KAMI_MOROCC = 1423;
+export const CARD_ID_ENCHANT_CHODOKYU = 1424;
+export const CARD_ID_ENCHANT_IGNORE_DEF_50 = 1425;
+export const CARD_ID_ENCHANT_HANGYAKUSHA = 1426;
+export const CARD_ID_ENCHANT_HONOIKAZUCHINOOKAMI = 1427;
+export const CARD_ID_ENCHANT_IGNORE_MDEF_50 = 1428;
+export const CARD_ID_RODOGATA_PITMAN = 1429;
+export const CARD_ID_KAGAYAKU_BEARDOLL = 1430;
+export const CARD_ID_TAMASHINO_HAHEN = 1431;
+export const CARD_ID_COLORFULLNA_BEARDOLL = 1432;
+export const CARD_ID_ZYANENNO_OBISIDIEN = 1433;
+export const CARD_ID_ARCANA_FOOL = 1434;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_FOOL = 1435;
+export const CARD_ID_ARCANA_WHEEL_OF_FORTUNE = 1436;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_WHEEL_OF_FORTUNE = 1437;
+export const CARD_ID_ARCANA_HANGED_MAN = 1438;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HANGED_MAN = 1439;
+export const CARD_ID_ARCANA_WORLD = 1440;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_WORLD = 1441;
+export const CARD_ID_INISHIENO_WOOTANG_FIGHTER = 1442;
+export const CARD_ID_INISHIENO_SANYOCHU = 1443;
+export const CARD_ID_INISHIENO_FLAME_SHOOTER = 1444;
+export const CARD_ID_INISHIENO_TAOGUNKA = 1445;
+export const CARD_ID_INISHIENO_MEGLIS = 1446;
+export const CARD_ID_INISHIENO_WOOTANG_SHOOTER = 1447;
+export const CARD_ID_INISHIENO_WOOTANG_GUARD = 1448;
+export const CARD_ID_INISHIENO_S_GOLEM = 1449;
+export const CARD_ID_ENCHANT_SHINO_YOKUDO = 1450;
+export const CARD_ID_ENCHANT_B_ATK = 1451;
+export const CARD_ID_ENCHANT_B_DEF = 1452;
+export const CARD_ID_ENCHANT_B_HPR = 1453;
+export const CARD_ID_ENCHANT_B_MATK = 1454;
+export const CARD_ID_ENCHANT_B_MAXHP = 1455;
+export const CARD_ID_ENCHANT_B_MAXSP = 1456;
+export const CARD_ID_ENCHANT_B_MDEF = 1457;
+export const CARD_ID_ENCHANT_B_SPR = 1458;
+export const CARD_ID_ENCHANT_G_DRAINHP = 1459;
+export const CARD_ID_ENCHANT_G_DRAINSP = 1460;
+export const CARD_SET_ID_ENCHANT_G_DRAINSP_ENERGY_SHUGORYU = 1461;
+export const CARD_ID_ENCHANT_G_LIFE = 1462;
+export const CARD_ID_ENCHANT_G_SOUL = 1463;
+export const CARD_ID_ENCHANT_Q_ATTRIBUTE = 1464;
+export const CARD_ID_ENCHANT_Q_CAST_FIXED = 1465;
+export const CARD_ID_ENCHANT_Q_CAST_STAT = 1466;
+export const CARD_ID_ENCHANT_Q_DELAY = 1467;
+export const CARD_ID_ENCHANT_Q_FATAL = 1468;
+export const CARD_ID_ENCHANT_Q_HEAL = 1469;
+export const CARD_ID_ENCHANT_Q_PLAYER = 1470;
+export const CARD_ID_ENCHANT_Q_SHOOTER = 1471;
+export const CARD_ID_ENCHANT_Q_SPEED = 1472;
+export const CARD_ID_ENCHANT_X_FATAL_FLASH = 1473;
+export const CARD_ID_ENCHANT_X_FIRING_SHOT = 1474;
+export const CARD_ID_ENCHANT_X_LUCKY_STRIKE = 1475;
+export const CARD_ID_ENCHANT_X_OVER_POWER = 1476;
+export const CARD_ID_ENCHANT_X_SPELL_BUSTER = 1477;
+export const CARD_ID_ENCHANT_X_UNLIMIT_VITAL = 1478;
+export const CARD_ID_PLAGA = 1479;
+export const CARD_ID_DOLOR = 1480;
+export const CARD_ID_TWIN_CAPUT = 1481;
+export const CARD_ID_E_EA1L = 1482;
+export const CARD_ID_EL_A17T = 1483;
+export const CARD_ID_HENSHU_VENENUM = 1484;
+export const CARD_ID_MIGUEL = 1485;
+export const CARD_ID_HEART_HUNTER_SANARE = 1486;
+export const CARD_ID_HENSHU_PLAGA = 1487;
+export const CARD_ID_HEART_HUNTER_BELLARE = 1488;
+export const CARD_ID_HEART_HUNTER_M_BELLARE = 1489;
+export const CARD_ID_HENSHU_DOLOR = 1490;
+export const CARD_ID_EA2S = 1491;
+export const CARD_ID_HEART_HUNTER_M_SANARE = 1492;
+export const CARD_ID_VENENUM = 1493;
+export const CARD_ID_HENSHU_TWIN_CAPUT = 1494;
+export const CARD_ID_R48_85_BESTIA = 1495;
+export const CARD_SET_ID_R48_85_BESTIA_KIEL_D01 = 1496;
+export const CARD_ID_ENCHANT_GREED_EISHO_100 = 1497;
+export const CARD_ID_CURUPIRA = 1498;
+export const CARD_ID_BOITATA = 1499;
+export const CARD_ID_TOUCAN = 1500;
+export const CARD_ID_KUBINASHI_LABA = 1501;
+export const CARD_ID_IARA = 1502;
+export const CARD_ID_PIRANHA = 1503;
+export const CARD_ID_JAGUAR = 1504;
+export const CARD_ID_BLACK_KANEIRY = 1505;
+export const CARD_SET_ID_BLACK_KANEIRY_SET = 1506;
+export const CARD_ID_OLDOR = 1507;
+export const CARD_SET_ID_OLDOR_SET = 1508;
+export const CARD_ID_FEMON = 1509;
+export const CARD_ID_KUROMA = 1510;
+export const CARD_SET_ID_KUROMA_SET = 1511;
+export const CARD_ID_FAY_CANAVIAN = 1512;
+export const CARD_SET_ID_FAY_CANAVIAN_SET = 1513;
+export const CARD_ID_DIO_ANEMOS = 1514;
+export const CARD_SET_ID_DIO_ANEMOS_SET = 1515;
+export const CARD_ID_BILLY_COSRLEASE = 1516;
+export const CARD_ID_IFODOS = 1517;
+export const CARD_ID_YUMEHIME = 1518;
+export const CARD_ID_ARUHI = 1519;
+export const CARD_ID_HIPIA_SNIKI = 1520;
+export const CARD_ID_BLUTO_HAZE = 1521;
+export const CARD_ID_LECHENIE = 1522;
+export const CARD_ID_JUE = 1523;
+export const CARD_SET_ID_JUE_SET = 1524;
+export const CARD_ID_DEWAI = 1525;
+export const CARD_ID_GIGANTES = 1526;
+export const CARD_ID_KISHI_SAKRAY = 1527;
+export const CARD_ID_VAVAYAGA = 1528;
+export const CARD_ID_UZHAS = 1529;
+export const CARD_ID_GOPINICH = 1530;
+export const CARD_ID_WOOD_GOBLIN = 1531;
+export const CARD_ID_LES = 1532;
+export const CARD_ID_MAVKA = 1533;
+export const CARD_ID_BOSOSHITA_SENCHO_PERLOCK = 1534;
+export const CARD_ID_HIKOSEN_SHUGEKIDAN = 1535;
+export const CARD_ID_MAZINNO_KYOEI = 1536;
+export const CARD_ID_MAZINNO_SHINZYA = 1537;
+export const CARD_ID_KONTONNO_SIDEWINDER = 1538;
+export const CARD_ID_KONTONNO_STEMWORM = 1539;
+export const CARD_ID_KONTONNO_BAPHOMET_JR = 1540;
+export const CARD_ID_KONTONNO_KILLER_MANTICE = 1541;
+export const CARD_ID_KONTONNO_HUNTERFLY = 1542;
+export const CARD_ID_KONTONNO_GHOSTRING = 1543;
+export const CARD_ID_KONTONNO_BAPHOMET = 1544;
+export const CARD_ID_KONTONNO_ACOLYTE = 1545;
+export const CARD_ID_KONTONNO_MANTICE = 1546;
+export const CARD_SET_ID_KONTONNO_MANTICE_KONTONNO_KILLER_MANTICE = 1547;
+export const CARD_ID_KONTONNO_POPORING = 1548;
+export const CARD_ID_ENCHANT_ENKYORI_BUTSURI_TAISEI_10 = 1549;
+export const CARD_ID_FUINSARETA_WORUYAFA = 1550;
+export const CARD_ID_ENCHANT_EXTREME = 1551;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_ASPD = 1552;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_ATK = 1553;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_AVOID = 1554;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_DEF = 1555;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_FLEE = 1556;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_FROZEN = 1557;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_HIT = 1558;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_INT = 1559;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_MATK = 1560;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_MAXHP = 1561;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_MAXSP = 1562;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_MDEF = 1563;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_STR = 1564;
+export const CARD_SET_ID_ENCHANT_EXTREME_A_TOLERANCE = 1565;
+export const CARD_SET_ID_ENCHANT_EXTREME_C_HPR = 1566;
+export const CARD_SET_ID_ENCHANT_EXTREME_C_LIFE = 1567;
+export const CARD_SET_ID_ENCHANT_EXTREME_C_SOUL = 1568;
+export const CARD_SET_ID_ENCHANT_EXTREME_C_SPR = 1569;
+export const CARD_SET_ID_ENCHANT_EXTREME_E_FIRE = 1570;
+export const CARD_SET_ID_ENCHANT_EXTREME_E_GROUND = 1571;
+export const CARD_SET_ID_ENCHANT_EXTREME_E_WATER = 1572;
+export const CARD_SET_ID_ENCHANT_EXTREME_E_WIND = 1573;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_FIRE = 1574;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_GROUND = 1575;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_WATER = 1576;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_WIND = 1577;
+export const CARD_SET_ID_ENCHANT_EXTREME_S_ATK = 1578;
+export const CARD_SET_ID_ENCHANT_EXTREME_S_AVOID = 1579;
+export const CARD_SET_ID_ENCHANT_EXTREME_S_CRI = 1580;
+export const CARD_SET_ID_ENCHANT_EXTREME_S_MATK = 1581;
+export const CARD_SET_ID_ENCHANT_EXTREME_S_MAXHP = 1582;
+export const CARD_SET_ID_ENCHANT_EXTREME_S_QUICK = 1583;
+export const CARD_SET_ID_ENCHANT_EXTREME_Z_CASTFIXED = 1584;
+export const CARD_SET_ID_ENCHANT_EXTREME_Z_CLAIRVOYANCE = 1585;
+export const CARD_SET_ID_ENCHANT_EXTREME_Z_IMMORTAL = 1586;
+export const CARD_SET_ID_ENCHANT_EXTREME_Z_KILLGAIN = 1587;
+export const CARD_SET_ID_ENCHANT_EXTREME_Z_KNOCKBACK = 1588;
+export const CARD_SET_ID_ENCHANT_EXTREME_Z_NODISPELL = 1589;
+export const CARD_SET_ID_ENCHANT_EXTREME_Z_REINCARNATION = 1590;
+export const CARD_ID_ENCHANT_MAGNIFICAT_LV5 = 1591;
+export const CARD_ID_ENCHANT_DEF_50 = 1592;
+export const CARD_ID_ENCHANT_RESIST_KNOCKBACK = 1593;
+export const CARD_ID_ENCHANT_SEKIKA_TAISE = 1594;
+export const CARD_ID_OSEN_SARETA_SAMAYOU_MONO = 1595;
+export const CARD_ID_KOKA_KAHO = 1596;
+export const CARD_ID_KOKA_RAVA_GOLEM = 1597;
+export const CARD_ID_PRISON_BREAKER = 1598;
+export const CARD_ID_ICE_GARGOYLE = 1599;
+export const CARD_ID_KOKA_NIGHTMARE_TERROR = 1600;
+export const CARD_ID_KOKA_BLAZER = 1601;
+export const CARD_ID_OSEN_SARETA_DARK_LORD = 1602;
+export const CARD_ID_KOKA_EXPLOSION = 1603;
+export const CARD_ID_OSEN_SARETA_RAYDRIC_A = 1604;
+export const CARD_ID_ICE_GHOST = 1605;
+export const CARD_ID_OSEN_SARETA_STING = 1606;
+export const CARD_ID_OSEN_SARETA_BURINARANEA = 1607;
+export const CARD_ID_KOKA_G_DELETER = 1608;
+export const CARD_ID_KOKA_S_DELETER = 1609;
+export const CARD_ID_KOKA_MUSPERKOLE = 1610;
+export const CARD_ID_FLAME_GHOST = 1611;
+export const CARD_ID_OSEN_SARETA_RAYDRIC = 1612;
+export const CARD_ID_ENCHANT_T_POWER_BOOST = 1613;
+export const CARD_ID_ENCHANT_T_MAGIC_BOOST = 1614;
+export const CARD_ID_ENCHANT_T_ASSAULT = 1615;
+export const CARD_ID_ENCHANT_T_ELECTRICITY = 1616;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ARCBISHOP = 1617;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_GENETIC = 1618;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_SHADOWCHASER = 1619;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_SHURA = 1620;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_SORCERER = 1621;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_MECHANIC = 1622;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_RUNE_KNIGHT = 1623;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ROYALGUARD = 1624;
+export const CARD_ID_ENCHANT_PERFECT_ATTACK_UP_25 = 1625;
+export const CARD_ID_ENCHANT_HIT_100 = 1626;
+export const CARD_ID_HANRYU_OZYO_MARE = 1627;
+export const CARD_ID_OZYO_MARE = 1628;
+export const CARD_ID_ARCANA_JUSTICE_REVERSE = 1629;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_JUSTICE_REVERSE = 1630;
+export const CARD_ID_ARCANA_STAR_REVERSE = 1631;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_STAR_REVERSE = 1632;
+export const CARD_ID_ARCANA_SESSEI_REVERSE = 1633;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_SESSEI_REVERSE = 1634;
+export const CARD_ID_ARCANA_CHARIOT_REVERSE = 1635;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_CHARIOT_REVERSE = 1636;
+export const CARD_ID_ARCANA_DEATH_REVERSE = 1637;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_DEATH_REVERSE = 1638;
+export const CARD_ID_ARCANA_LOVERS_REVERSE = 1639;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_LOVERS_REVERSE = 1640;
+export const CARD_ID_ENCHANT_SENKO = 1641;
+export const CARD_SET_ID_ENCHANT_SENKO_KOSOKU = 1642;
+export const CARD_ID_ENCHANT_KYOGO = 1643;
+export const CARD_SET_ID_ENCHANT_KYOGO_KUMANO_CHIKARA = 1644;
+export const CARD_ID_ENCHANT_TENKYU = 1645;
+export const CARD_SET_ID_ENCHANT_TENKYU_OWASHINO_GANKO = 1646;
+export const CARD_ID_ENCHANT_SHINREKI = 1647;
+export const CARD_SET_ID_ENCHANT_SHINREKI_BOSOSHITA_MARYOKU = 1648;
+export const CARD_ID_ENCHANT_GOTAI = 1649;
+export const CARD_SET_ID_ENCHANT_GOTAI_KOGAI = 1650;
+export const CARD_ID_ENCHANT_HAKUUN = 1651;
+export const CARD_SET_ID_ENCHANT_HAKUUN_KOUNNA_HI = 1652;
+export const CARD_ID_NOROIWO_NOMIKONDA_O = 1653;
+export const CARD_ID_FUINSARETA_KTULLANUX = 1654;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_FIRE = 1655;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_WATER = 1656;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_WIND = 1657;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_EARTH = 1658;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_HOLY = 1659;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_DARK = 1660;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_PSYCO = 1661;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_POISON = 1662;
+export const CARD_ID_ENCHANT_BODY_ELEMENT_UNDEAD = 1663;
+export const CARD_ID_MAGICAL_MONSTER_ELM_ALL_10UP = 1664;
+export const CARD_ID_MAGICAL_SIZE_ALL_8UP = 1665;
+export const CARD_ID_ARCANA_EMPEROR_REVERSE = 1666;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_EMPEROR_REVERSE = 1667;
+export const CARD_ID_ARCANA_POWER_REVERSE = 1668;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_POWER_REVERSE = 1669;
+export const CARD_ID_ARCANA_DEVIL_REVERSE = 1670;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_DEVIL_REVERSE = 1671;
+export const CARD_ID_ARCANA_MOON_REVERSE = 1672;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_MOON_REVERSE = 1673;
+export const CARD_ID_ARCANA_WHEEL_OF_FORTUNE_REVERSE = 1674;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_WHEEL_OF_FORTUNE_REVERSE = 1675;
+export const CARD_ID_ARCANA_WORLD_REVERSE = 1676;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_WORLD_REVERSE = 1677;
+export const CARD_ID_ENCHANT_SHINSONO_O = 1678;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_SOHION = 1679;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_LOLA = 1680;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_ELVIRA = 1681;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_RUDO = 1682;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_SHOGUN_DAEHYON = 1683;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_KYOSHINZYA_PYURIEL = 1684;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_MUZIHINA_GIOIA = 1685;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_MOZYANO_SHUGOSHA_KADES = 1686;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_KOO_GLOZA = 1687;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_KOO_GLOZA_OWASHINO_GANKO = 1688;
+export const CARD_SET_ID_ENCHANT_SHINSONO_O_SHINSONO_KOO_GLOZA = 1689;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_WARLOCK = 1690;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_GUILLOTINE_CROSS = 1691;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_MINSTREL = 1692;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_RANGER = 1693;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_WANDERER = 1694;
+export const CARD_ID_ENCHANT_TAIYO = 1695;
+export const CARD_ID_ENCHANT_TSUKI = 1696;
+export const CARD_ID_ENCHANT_HOSHI = 1697;
+export const CARD_ID_ENCHANT_ES = 1698;
+export const CARD_ID_ENCHANT_SHIRYO = 1699;
+export const CARD_ID_ENCHANT_TAMASHI = 1700;
+export const CARD_ID_FUINSARETA_DARK_LORD = 1701;
+export const CARD_SET_ID_FUINSARETA_DARKLORD_DARK_ILLUSION = 1702;
+export const CARD_ID_ENCHANT_A_REFLECT = 1703;
+export const CARD_ID_ENCHANT_A_SP_COST = 1704;
+export const CARD_ID_ENCHANT_B_STR = 1705;
+export const CARD_ID_ENCHANT_B_AGI = 1706;
+export const CARD_ID_ENCHANT_B_VIT = 1707;
+export const CARD_ID_ENCHANT_B_INT = 1708;
+export const CARD_ID_ENCHANT_B_DEX = 1709;
+export const CARD_ID_ENCHANT_B_LUK = 1710;
+export const CARD_ID_ENCHANT_E_DARKNESS = 1711;
+export const CARD_ID_ENCHANT_E_POISON = 1712;
+export const CARD_ID_ENCHANT_E_SAINT = 1713;
+export const CARD_ID_ENCHANT_E_UNDEAD = 1714;
+export const CARD_ID_ENCHANT_G_CRI = 1715;
+export const CARD_ID_ENCHANT_G_GUIDED = 1716;
+export const CARD_ID_ENCHANT_L_ABSORB_SPIRITS_1 = 1717;
+export const CARD_ID_ENCHANT_L_ANGELUS_1 = 1718;
+export const CARD_ID_ENCHANT_L_AUTO_GUARD_3 = 1719;
+export const CARD_ID_ENCHANT_L_BASH_3 = 1720;
+export const CARD_ID_ENCHANT_L_CALL_SPIRITS_2 = 1721;
+export const CARD_ID_ENCHANT_L_CAST_CANCEL_1 = 1722;
+export const CARD_ID_ENCHANT_L_CLOAKING_1 = 1723;
+export const CARD_ID_ENCHANT_L_CLOSE_CONFINE_1 = 1724;
+export const CARD_ID_ENCHANT_L_COLD_BOLT_3 = 1725;
+export const CARD_ID_ENCHANT_L_CURE_1 = 1726;
+export const CARD_ID_ENCHANT_L_DEC_AGI_1 = 1727;
+export const CARD_ID_ENCHANT_L_DETOXIFY_1 = 1728;
+export const CARD_ID_ENCHANT_L_EARTH_SPIKE_3 = 1729;
+export const CARD_ID_ENCHANT_L_ESTIMATION_1 = 1730;
+export const CARD_ID_ENCHANT_L_FIRE_BALL_3 = 1731;
+export const CARD_ID_ENCHANT_L_FIRE_BOLT_3 = 1732;
+export const CARD_ID_ENCHANT_L_FROST_DIVE_3 = 1733;
+export const CARD_ID_ENCHANT_L_FROST_NOVA_2 = 1734;
+export const CARD_ID_ENCHANT_L_GLORIA_1 = 1735;
+export const CARD_ID_ENCHANT_L_HEAL_1 = 1736;
+export const CARD_ID_ENCHANT_L_HIDING_1 = 1737;
+export const CARD_ID_ENCHANT_L_IDENTIFY_1 = 1738;
+export const CARD_ID_ENCHANT_L_LIGHTNING_BOLT_3 = 1739;
+export const CARD_ID_ENCHANT_L_LOUD_1 = 1740;
+export const CARD_ID_ENCHANT_L_MAGIC_POWER_5 = 1741;
+export const CARD_ID_ENCHANT_L_MAGNUM_3 = 1742;
+export const CARD_ID_ENCHANT_L_METEOR_3 = 1743;
+export const CARD_ID_ENCHANT_L_PEONY_MAMY_1 = 1744;
+export const CARD_ID_ENCHANT_L_POISON_3 = 1745;
+export const CARD_ID_ENCHANT_L_POTION_PITCHER_3 = 1746;
+export const CARD_ID_ENCHANT_L_SADAGUI_1 = 1747;
+export const CARD_ID_ENCHANT_L_SEUOIA_DUST_1 = 1748;
+export const CARD_ID_ENCHANT_L_SIGHT_1 = 1749;
+export const CARD_ID_ENCHANT_L_SNOW_FLIP_1 = 1750;
+export const CARD_ID_ENCHANT_L_SOUL_STRIKE_3 = 1751;
+export const CARD_ID_ENCHANT_L_SPELL_BREAKER_1 = 1752;
+export const CARD_ID_ENCHANT_L_STEAL_1 = 1753;
+export const CARD_ID_ENCHANT_L_STONE_CURSE_3 = 1754;
+export const CARD_ID_ENCHANT_L_TELEPORT_1 = 1755;
+export const CARD_ID_ENCHANT_L_THROW_STONE_1 = 1756;
+export const CARD_ID_ENCHANT_P_CONFUSE = 1757;
+export const CARD_ID_ENCHANT_P_CURSE = 1758;
+export const CARD_ID_ENCHANT_P_FEAR = 1759;
+export const CARD_ID_ENCHANT_P_IGNITION = 1760;
+export const CARD_ID_ENCHANT_P_PETRIFACTION = 1761;
+export const CARD_ID_ENCHANT_P_SILENCE = 1762;
+export const CARD_ID_ENCHANT_P_SLEEP = 1763;
+export const CARD_ID_ENCHANT_Q_BOSS = 1764;
+export const CARD_ID_ENCHANT_Q_NORMAL = 1765;
+export const CARD_ID_ENCHANT_R_DARKNESS = 1766;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_DARKNESS = 1767;
+export const CARD_ID_ENCHANT_R_SAINT = 1768;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_SAINT = 1769;
+export const CARD_ID_ENCHANT_R_TELEKINESIS = 1770;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_TELEKINESIS = 1771;
+export const CARD_ID_ENCHANT_R_UNDEAD = 1772;
+export const CARD_SET_ID_ENCHANT_EXTREME_R_UNDEAD = 1773;
+export const CARD_ID_ENCHANT_S_FATAL_FLASH = 1774;
+export const CARD_ID_ENCHANT_S_FIRING_SHOT = 1775;
+export const CARD_ID_ENCHANT_S_LUCKY_STRIKE = 1776;
+export const CARD_ID_ENCHANT_S_OVER_POWER = 1777;
+export const CARD_ID_ENCHANT_S_SPELL_BUSTER = 1778;
+export const CARD_ID_ENCHANT_S_UNLIMIT_VITAL = 1779;
+export const CARD_ID_YELLOW_PITAYA = 1780;
+export const CARD_ID_ELITE_BERARE = 1781;
+export const CARD_ID_KAIHOSARETA_MARYOKU = 1782;
+export const CARD_ID_GREEN_PITAYA = 1783;
+export const CARD_ID_GESUI_VENENUM = 1784;
+export const CARD_ID_GESUI_WATER_FALL = 1785;
+export const CARD_ID_GESUI_CLAMP = 1786;
+export const CARD_ID_KENKYU_ZYOSHU_ZIDO_NINGYO = 1787;
+export const CARD_ID_KOSHOSITA_NIWASHI_BETA = 1788;
+export const CARD_ID_SILVA_PAPIRIA = 1789;
+export const CARD_ID_SWEETY = 1790;
+export const CARD_ID_TOKUSE_ALNOLDI = 1791;
+export const CARD_SET_ID_KENKYU_ZYOSHU_ZIDO_NINGYO_TOKUSE_ALNOLDI = 1792;
+export const CARD_ID_DRY_RAFFLESIA = 1793;
+export const CARD_SET_ID_KENKYU_ZYOSHU_ZIDO_NINGYO_DRY_RAFFLESIA = 1794;
+export const CARD_ID_PURPLE_PITAYA = 1795;
+export const CARD_ID_HAIKAISURU_MADOSHO = 1796;
+export const CARD_ID_PAPIRA = 1797;
+export const CARD_ID_PAPIRA_KAI = 1798;
+export const CARD_ID_PAPIRA_RUBA = 1799;
+export const CARD_ID_BOOK_WORM = 1800;
+export const CARD_ID_BLUE_ARIES = 1801;
+export const CARD_ID_BLUE_PITAYA = 1802;
+export const CARD_ID_BELPOLTA = 1803;
+export const CARD_ID_BELPOLTE = 1804;
+export const CARD_ID_BOSS_PITAYA = 1805;
+export const CARD_ID_MARYOKU_CHUDOKU_DOLOR = 1806;
+export const CARD_ID_RED_ARIES = 1807;
+export const CARD_SET_ID_BLUE_ARIES_RED_ARIES = 1808;
+export const CARD_ID_RED_PITAYA = 1809;
+export const CARD_ID_RED_PEPPER_KAPPA = 1810;
+export const CARD_ID_ENCHANT_SIGHT_LV1 = 1811;
+export const CARD_ID_ENCHANT_TOUSHI = 1812;
+export const CARD_ID_ENCHANT_SATSUINO_ONNEN = 1813;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_IGNISEM_CENIA_MVP = 1814;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_ELEMES_GAIL_MVP = 1815;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_CATHERINE_KARON_MVP = 1816;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_SEIREN_VIENSER_MVP = 1817;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_CECIL_DIMON_MVP = 1818;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_HAWARD_ALTIZEN_MVP = 1819;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_MARGARETTE_SORIN_MVP = 1820;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_ARFOSIO_BASIL_MVP = 1821;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_EMUR_PURAMEL_MVP = 1822;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_GERTIE_UH_MVP = 1823;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_CERIA_ARDE_MVP = 1824;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_CHENG_RIU_MVP = 1825;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_TRENTINI_MVP = 1826;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_RANDEL_RORENCE_MVP = 1827;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_ARCH_BISHOP_MARGARETTE_MVP = 1828;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_WARLOCK_CATHERINE_MVP = 1829;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_GUILLOTINE_CROSS_ELEMES_MVP = 1830;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_MECHANIC_HAWARD_MVP = 1831;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_RUNE_KNIGHT_SEIREN_MVP = 1832;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_RANGER_CECIL_MVP = 1833;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_GENETIC_EMUR_MVP = 1834;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_SHADOW_CHASER_GARTY_MVP = 1835;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_SHURA_CHENG_MVP = 1836;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_SORCERER_CERIA_MVP = 1837;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_MINSTREL_ARFOSIO_MVP = 1838;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_ROYAL_GUARD_RANDEL_MVP = 1839;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_WANDERER_TRENTINI_MVP = 1840;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT = 1841;
+export const CARD_ID_ENCHANT_ENKYORI_BUTSURI_TAISEI_5 = 1842;
+export const CARD_ID_ENCHANT_LUCKY_25 = 1843;
+export const CARD_ID_ENCHANT_KIDATSU_LV1 = 1844;
+export const CARD_ID_ENCHANT_ZINKU = 1845;
+export const CARD_ID_ENCHANT_NICHTS = 1846;
+export const CARD_SET_ID_ENCHANT_NICHTS_DEVILRING = 1847;
+export const CARD_ID_ENCHANT_MAXHP_15P = 1848;
+export const CARD_ID_ENCHANT_IMMUNE_FIRE = 1849;
+export const CARD_ID_ENCHANT_IMMUNE_WATER = 1850;
+export const CARD_ID_ENCHANT_IMMUNE_WIND = 1851;
+export const CARD_ID_ENCHANT_IMMUNE_EARTH = 1852;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_KAGERO = 1853;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_OBORO = 1854;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_REBELLION = 1855;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_SUMMONER = 1856;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_STAR_EMPEROR = 1857;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_SOUL_REAPER = 1858;
+export const CARD_ID_ENCHANT_EXTRA_STR = 1859;
+export const CARD_ID_ENCHANT_EXTRA_AGI = 1860;
+export const CARD_ID_ENCHANT_EXTRA_VIT = 1861;
+export const CARD_ID_ENCHANT_EXTRA_INT = 1862;
+export const CARD_ID_ENCHANT_EXTRA_DEX = 1863;
+export const CARD_ID_ENCHANT_EXTRA_LUK = 1864;
+export const CARD_ID_NIHIL_MISERIA_HEINE_SIGNED = 1865;
+export const CARD_ID_SPICA_NERIUS_SIGNED = 1866;
+export const CARD_ID_SKIA_NERIUS_SIGNED = 1867;
+export const CARD_ID_NIHIL = 1868;
+export const CARD_ID_AGNES = 1869;
+export const CARD_ID_JURGEN = 1870;
+export const CARD_ID_SPICA = 1871;
+export const CARD_ID_KRONECKER = 1872;
+export const CARD_ID_SKIA = 1873;
+export const CARD_ID_WOLF_L = 1874;
+export const CARD_ID_POE = 1875;
+export const CARD_ID_KATHRYN = 1876;
+export const CARD_ID_ISSAC = 1877;
+export const CARD_ID_ENCHANT_Q_RANGE = 1878;
+export const CARD_SET_ID_ENCHANT_Q_RANGE_HORN = 1879;
+export const CARD_ID_ENCHANT_SHINRA_BANSHO = 1880;
+export const CARD_SET_ID_ENCHANT_SHINRA_BANSHO_SHINO_YOKUDO = 1881;
+export const CARD_SET_ID_ENCHANT_SHINRA_BANSHO_SHINRINO_KAIHO = 1882;
+export const CARD_SET_ID_ENCHANT_SHINRA_BANSHO_GOKETSU = 1883;
+export const CARD_SET_ID_ENCHANT_SHINRA_BANSHO_HAO = 1884;
+export const CARD_ID_DARAKUNO_MAGAN = 1885;
+export const CARD_ID_NOROWARETA_SHITSUZI = 1886;
+export const CARD_ID_HENBONO_SHIROKISHI = 1887;
+export const CARD_ID_HENBONO_KHALITZBURG = 1888;
+export const CARD_ID_ZYUSATSUNO_AMDARAIS = 1889;
+export const CARD_SET_ID_ZYUSATSUNO_AMDARAIS_DARAKUNO_MAGAN = 1890;
+export const CARD_ID_ZYUSATSUNO_HIMERMEZ = 1891;
+export const CARD_ID_NOROWARETA_RAYDRIC_A = 1892;
+export const CARD_ID_NOROWARETA_RAYDRIC = 1893;
+export const CARD_ID_ARCANA_HARMIT_REVERSE = 1894;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HARMIT_REVERSE = 1895;
+export const CARD_ID_ARCANA_FOOL_REVERSE = 1896;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_FOOL_REVERSE = 1897;
+export const CARD_ID_ARCANA_HOUO_REVERSE = 1898;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HOUO_REVERSE = 1899;
+export const CARD_ID_ARCANA_HANGED_MAN_REVERSE = 1900;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HANGED_MAN_REVERSE = 1901;
+export const CARD_ID_ARCANA_HIGH_PRIESTESS = 1902;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HIGH_PRIESTESS = 1903;
+export const CARD_ID_ARCANA_HIGH_PRIESTESS_REVERSE = 1904;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_HIGH_PRIESTESS_REVERSE = 1905;
+export const CARD_ID_ARCANA_TOWER = 1906;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_TOWER = 1907;
+export const CARD_ID_ARCANA_TOWER_REVERSE = 1908;
+export const CARD_SET_ID_ENCHANT_ARCANA_ARCANA_TOWER_REVERSE = 1909;
+export const CARD_ID_ENCHANT_ALLES = 1910;
+export const CARD_ID_ENCHANT_ONO_KAMUI = 1911;
+export const CARD_SET_ID_ENCHANT_ONO_KAMUI_ROYAL_ARMS = 1912;
+export const CARD_SET_ID_ENCHANT_ONO_KAMUI_ROYAL_ARMS_2HAND = 1913;
+export const CARD_SET_ID_ENCHANT_ONO_KAMUI_NOROIWO_NOMIKONDA_O = 1914;
+export const CARD_ID_SHINKAINO_SLOFO = 1915;
+export const CARD_ID_SHINKAINO_CEDORA = 1916;
+export const CARD_ID_SHINKAINO_DEVIAS = 1917;
+export const CARD_ID_SHINKAINO_HANGYOZIN = 1918;
+export const CARD_ID_SHINKAINO_KING_DORAMO = 1919;
+export const CARD_ID_SHINKAINO_MARS = 1920;
+export const CARD_ID_SHINKAINO_KRAKEN = 1921;
+export const CARD_ID_SHINKAINO_STRAUF = 1922;
+export const CARD_ID_SHINKAINO_SWORD_FISH = 1923;
+export const CARD_ID_SHINKAINO_OBEAUNE = 1924;
+export const CARD_ID_SHINKAINO_PHEN = 1925;
+export const CARD_SET_ID_SHINKAINO_PHEN_SHINKAINO_STRAUF = 1926;
+export const CARD_ID_MUGENNO_TOAD = 1927;
+export const CARD_ID_MUGENNO_SASURAI_OKAMI = 1928;
+export const CARD_ID_MUGENNO_VOCAL = 1929;
+export const CARD_ID_MUGENNO_ECLIPSE = 1930;
+export const CARD_ID_MUGENNO_CHIMERA = 1931;
+export const CARD_ID_MUGENNO_OSIRIS = 1932;
+export const CARD_ID_MUGENNO_EDDGA = 1933;
+export const CARD_ID_MUGENNO_PHREEONI = 1934;
+export const CARD_ID_MUGENNO_ORK_HERO = 1935;
+export const CARD_ID_MUGENNO_TAO_GUNKA = 1936;
+export const CARD_ID_PHAROS_DUMMY = 1937;
+export const CARD_ID_ENCHANT_SAITAN = 1938;
+export const CARD_ID_ENCHANT_FUKUTSU = 1939;
+export const CARD_ID_ENCHANT_REFLECT_PHYSICAL_SHORT_5P = 1940;
+export const CARD_ID_FUINSARETA_ATLOS = 1941;
+export const CARD_ID_FUINSARETA_TIME_HOLDER = 1942;
+export const CARD_ID_FUINSARETA_DOPPELGANGER = 1943;
+export const CARD_ID_FUINSARETA_DRAKE = 1944;
+export const CARD_ID_FUINSARETA_BAPHOMET = 1945;
+export const CARD_ID_FUINSARETA_FURIONI = 1946;
+export const CARD_ID_FUINSARETA_ZYOO_SUCARAB = 1947;
+export const CARD_ID_FUINSARETA_MAKENSHI_THANATOSNO_SHINENTAI = 1948;
+export const CARD_ID_FUINSARETA_ORC_HERO = 1949;
+export const CARD_ID_FUINSARETA_ZYOTE_SUCARAB = 1950;
+export const CARD_ID_FUINSARETA_MISTRESS = 1951;
+export const CARD_ID_FUINSARETA_ORCLORD = 1952;
+export const CARD_ID_FUINSARETA_GROOM_UNDERNIGHT = 1953;
+export const CARD_ID_FUINSARETA_OSEN_SARETA_DARK_LORD = 1954;
+export const CARD_ID_FUINSARETA_AMENHOTEP = 1955;
+export const CARD_ID_FUINSARETA_INISHIENO_TAOGUNKA = 1956;
+export const CARD_ID_FUINSARETA_KAKUSEI_KUTORURANUCKS = 1957;
+export const CARD_ID_FUINSARETA_SHINKAINO_KRAKEN = 1958;
+export const CARD_ID_FUINSARETA_MAYA = 1959;
+export const CARD_ID_FUINSARETA_BOMI = 1960;
+export const CARD_ID_FUINSARETA_IGNISEM_CENIA_MVP = 1961;
+export const CARD_ID_FUINSARETA_EDDGA = 1962;
+export const CARD_ID_FUINSARETA_IKARINO_UORUYAFA = 1963;
+export const CARD_ID_FUINSARETA_INISHIENO_WOOTANG_GUARD = 1964;
+export const CARD_ID_FUINSARETA_OSEN_SARETA_BURINARANEA = 1965;
+export const CARD_ID_FUINSARETA_OCHITA_DAISHINKAN_HIBAMU = 1966;
+export const CARD_ID_FUINSARETA_KAGAYAKU_BEARDOLL = 1967;
+export const CARD_ID_FUINSARETA_KOKA_MUSPERKOLE = 1968;
+export const CARD_ID_FUINSARETA_KONTONNO_BAPHOMET = 1969;
+export const CARD_ID_FUINSARETA_FUKITSUNA_TURTLE_G = 1970;
+export const CARD_ID_FUINSARETA_EFREET = 1971;
+export const CARD_ID_FUINSARETA_VERSEVV = 1972;
+export const CARD_ID_FUINSARETA_OSIRIS = 1973;
+export const CARD_ID_FUINSARETA_IKARINO_DRACULA = 1974;
+export const CARD_ID_ENCHANT_EIYUNO_GAIKA = 1975;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FFF_JITTER_BUG = 1976;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_S_J_EARNEST_WOLF = 1977;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_AMDARAIS = 1978;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_OSEN_SARETA_DARK_LORD = 1979;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_OSEN_SARETA_BURINARANEA = 1980;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_KISHI_SAKRAY = 1981;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_KOKA_MUSPERKOLE = 1982;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_SASOINO_MAGAN = 1983;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_SATSURIKUNO_MAGAN = 1984;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_SARANO_GENEI = 1985;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_SHINIGAMI_ANKOU = 1986;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_ZYUSATSUNO_AMDARAIS = 1987;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_ZYUSATSUNO_HIMERMEZ = 1988;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_ZYOO_FACEWORM = 1989;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_ZETSUBONO_KAMI_MOROCC = 1990;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_DARAKUNO_MAGAN = 1991;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_NYDHOGNO_KAGE = 1992;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_NOROIWO_NOMIKONDA_O = 1993;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_BIJOU = 1994;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FENRIR = 1995;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_BOSOSHITA_SENCHO_PERLOCK = 1996;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_MAKENSHI_THANATOSNO_SHINENTAI = 1997;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_MAGANNO_AMDARAIS = 1998;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_MAZINNO_KYOEI = 1999;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_MORS_NECROMANCER = 2000;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FUINSARETA_OSEN_SARETA_DARK_LORD = 2001;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FUINSARETA_OSEN_SARETA_BURINARANEA = 2002;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FUINSARETA_KOKA_MUSPERKOLE = 2003;
+export const CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FUINSARETA_MAKENSHI_THANATOSNO_SHINENTAI = 2004;
+export const CARD_ID_ENCHANT_KIGENNO_O = 2005;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_WORUYAFA = 2006;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_EDDGA = 2007;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_ORC_HERO = 2008;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_ORCLORD = 2009;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_OSIRIS = 2010;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_DOPPELGANGER = 2011;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_DRAKE = 2012;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_BAPHOMET = 2013;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FURIONI = 2014;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_MAYA = 2015;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_MISTRESS = 2016;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_WORUYAFA = 2017;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_EDDGA = 2018;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_ORC_HERO = 2019;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_ORCLORD = 2020;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_OSIRIS = 2021;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_DOPPELGANGER = 2022;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_DRAKE = 2023;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_BAPHOMET = 2024;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_FURIONI = 2025;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_MAYA = 2026;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_FUINSARETA_MISTRESS = 2027;
+export const CARD_ID_ENCHANT_HOZYONO_MEGAMI = 2028;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_ATLOS = 2029;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_EFREET = 2030;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_VERSEVV = 2031;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_OCHITA_DAISHINKAN_HIBAMU = 2032;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_OCHITA_DAISHINKAN_HIBAM_ENCHANT_BOSOSHITA_MARYOKU = 2033;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_KTULLANUX = 2034;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_GROOM_UNDERNIGHT = 2035;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_ATLOS = 2036;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_EFREET = 2037;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_VERSEVV = 2038;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_OCHITA_DAISHINKAN_HIBAMU = 2039;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_OCHITA_DAISHINKAN_HIBAM_ENCHANT_BOSOSHITA_MARYOKU = 2040;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_KTULLANUX = 2041;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_GROOM_UNDERNIGHT = 2042;
+export const CARD_ID_ENCHANT_YAKUSAINO_MASHO = 2043;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_AMENHOTEP = 2044;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_IKARINO_UORUYAFA = 2045;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_IKARINO_DRACULA = 2046;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_INISHIENO_WOOTANG_GUARD = 2047;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_INISHIENO_TAOGUNKA = 2048;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_KAGAYAKU_BEARDOLL = 2049;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_KAKUSEI_KUTORURANUCKS = 2050;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_KYORANSHITA_BOKENSHA = 2051;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_KONTONNO_ACOLYTE = 2052;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_KONTONNO_BAPHOMET = 2053;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_ZYOO_SUCARAB = 2054;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_ZYOTE_SUCARAB = 2055;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_SHINKAINO_KRAKEN = 2056;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_SHINKAINO_DEVIAS = 2057;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_SHINRINO_MAHOTSUKAI = 2058;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_TIME_HOLDER = 2059;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_TAMASHINO_HAHEN = 2060;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUKITSUNA_SOLID_TURTLE = 2061;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUKITSUNA_TURTLE_G = 2062;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_BOMI = 2063;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_AMENHOTEP = 2064;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_IKARINO_UORUYAFA = 2065;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_IKARINO_DRACULA = 2066;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_INISHIENO_WOOTANG_GUARD = 2067;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_INISHIENO_TAOGUNKA = 2068;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_KAKUSEI_KUTORURANUCKS = 2069;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_KAGAYAKU_BEARDOLL = 2070;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_KONTONNO_BAPHOMET = 2071;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_SHINKAINO_KRAKEN = 2072;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_ZYOO_SUCARAB = 2073;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_ZYOTE_SUCARAB = 2074;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_TIME_HOLDER = 2075;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_FUKITSUNA_TURTLE_G = 2076;
+export const CARD_SET_ID_ENCHANT_YAKUSAINO_MASHO_FUINSARETA_BOMI = 2077;
+export const CARD_SET_ID_ENCHANT_SATSUINO_ONNEN_FUINSARETA_IGNISEM_CENIA_MVP = 2078;
+export const CARD_ID_ENCHANT_RESIST_WATER = 2079;
+export const CARD_ID_ENCHANT_RESIST_EARTH = 2080;
+export const CARD_ID_ENCHANT_RESIST_FIRE = 2081;
+export const CARD_ID_ENCHANT_RESIST_WIND = 2082;
+export const CARD_ID_ENCHANT_RESIST_POISON = 2083;
+export const CARD_ID_ENCHANT_RESIST_SAINT = 2084;
+export const CARD_ID_ENCHANT_RESIST_DARKNESS = 2085;
+export const CARD_ID_ENCHANT_RESIST_TELEKINESIS = 2086;
+export const CARD_ID_ENCHANT_RESIST_UNDEAD = 2087;
+export const CARD_ID_ENCHANT_RISETO_KIOKUNO_ZANSHI = 2088;
+export const CARD_SET_ID_ENCHANT_RISETO_KIOKUNO_ZANSHI_SHINEN_ARMS_V1 = 2089;
+export const CARD_SET_ID_ENCHANT_RISETO_KIOKUNO_ZANSHI_SHINEN_ARMS_V2 = 2090;
+export const CARD_SET_ID_ENCHANT_RISETO_KIOKUNO_ZANSHI_SHINEN_ARMS_V3 = 2091;
+export const CARD_SET_ID_ENCHANT_RISETO_KIOKUNO_ZANSHI_SATSUINO_ONNEN = 2092;
+export const CARD_ID_ENCHANT_KYOFU_TAISE = 2093;
+export const CARD_ID_ENCHANT_KONRAN_TAISE = 2094;
+export const CARD_ID_ENCHANT_SUIMIN_TAISE = 2095;
+export const CARD_ID_ENCHANT_KIND_DUMMY_ANNIVERSARY_19 = 2096;
+export const CARD_ID_ENCHANT_KIND_DUMMY_BATTLE_COLOSSEUM_TEST_SEASON_2 = 2097;
+export const CARD_ID_ENCHANT_KYOKUGENNO_MARYOKU = 2098;
+export const CARD_SET_ID_ENCHANT_KYOKUGENNO_MARYOKU_KAKUSE_EIKOWO_TATAESHI_OKEN = 2099;
+export const CARD_SET_ID_ENCHANT_KYOKUGENNO_MARYOKU_KAKUSE_HAMETSUWO_MATOISHI_GOKEN = 2100;
+export const CARD_SET_ID_ENCHANT_KYOKUGENNO_MARYOKU_KAKUSE_KONO_SOZIN = 2101;
+export const CARD_SET_ID_FUINSARETA_OCHITA_DAISHINKAN_HIBAM_ENCHANT_BOSOSHITA_MARYOKU = 2102;
+export const CARD_ID_ENCHANT_KIND_DUMMY_SHINKIRO = 2103;
+export const CARD_ID_ENCHANT_KIND_DUMMY_SEKAIZYUNO_HANA = 2104;
+export const CARD_ID_AGNES_LUGENBURG_SIGNED = 2105;
+export const CARD_ID_POE_RICHARD_SIGNED = 2106;
+export const CARD_ID_ISAAC_WIGNER_SIGNED = 2107;
+export const CARD_ID_NIHIL_MISERIA_HEINE = 2108;
+export const CARD_ID_AGNES_LUGENBURG = 2109;
+export const CARD_ID_JURGEN_WIGNER = 2110;
+export const CARD_ID_SPICA_NERIUS = 2111;
+export const CARD_ID_KRONECKER_GRANZ_HEINE = 2112;
+export const CARD_ID_SKIA_NERIUS = 2113;
+export const CARD_ID_WOLF_LUGENBURG = 2114;
+export const CARD_ID_POE_RICHARD = 2115;
+export const CARD_ID_KATHRYN_WIGNER = 2116;
+export const CARD_ID_ISSAC_WIGNER = 2117;
+export const CARD_ID_MEYER = 2118;
+export const CARD_ID_MEYER_LUGENBURG = 2119;
+export const CARD_ID_HELMUT = 2120;
+export const CARD_ID_HELMUT_LUGENBURG = 2121;
+export const CARD_ID_ENCHANT_CHOETSU = 2122;
+export const CARD_ID_ENCHANT_OKENO_EIKO = 2123;
+export const CARD_ID_ENCHANT_KIND_DUMMY_CHOETSU = 2124;
+export const CARD_ID_ENCHANT_KIND_DUMMY_SEASON_KYUTE_MZYUTSUSHI = 2125;
+export const CARD_ID_ENCHANT_IDOSOKUDO_ZOKA = 2126;
+export const CARD_ID_ENCHANT_KIKO_LV2 = 2127;
+export const CARD_ID_ENCHANT_HASAI = 2128;
+export const CARD_SET_ID_ENCHANT_HASAI_STR_10 = 2129;
+export const CARD_ID_ENCHANT_MAZIN = 2130;
+export const CARD_SET_ID_ENCHANT_MAZIN_INT_10 = 2131;
+export const CARD_ID_MAZIMENA_ANDRE = 2132;
+export const CARD_ID_MAZIMENA_DENIRO = 2133;
+export const CARD_ID_MAZIMENA_HETAI_ANDRE = 2134;
+export const CARD_ID_DOKYONOARU_GAIAS = 2135;
+export const CARD_ID_MAZIMENA_PIERE = 2136;
+export const CARD_ID_GUNYAGUNYASHITA_ARINO_TAMAGO = 2137;
+export const CARD_ID_DOKYONOARU_FAMILIER = 2138;
+export const CARD_ID_MAZIMENA_BITATA = 2139;
+export const CARD_SET_ID_MAZIMENA_BITATA_ENCHANT_YAKUSAINO_MASHO = 2140;
+export const CARD_ID_MAZIMENA_ANDRENO_YOCHU = 2141;
+export const CARD_SET_ID_MAZIMENA_ANDRENO_YOCHU_GUNYAGUNYASHITA_ARINO_TAMAGO = 2142;
+export const CARD_ID_MUKUCHINA_MAYA = 2143;
+export const CARD_SET_ID_MUKUCHINA_MAYA_ENCHANT_YAKUSAINO_MASHO = 2144;
+export const CARD_ID_ENCHANT_KOTEIEISHO_70 = 2145;
+export const CARD_ID_ENCHANT_MAGNUM_BREAK_LV5 = 2146;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_CRAZY_WEED = 2147;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_ARROW_STORM = 2148;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_JUDEX = 2149;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_SEVERE_RAINSTORM = 2150;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_MANGETSU_KYAKU = 2151;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_OTORO = 2152;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_ESHA = 2153;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_SAVAGENO_TAMASHI = 2154;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_SISIKO = 2155;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_SUMMON_VENTOS = 2156;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_ARMS_CANNON = 2157;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_JACK_FROST = 2158;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_IGNITION_BREAK = 2159;
+export const CARD_ID_ENCHANT_U_POWER_ARMOR = 2160;
+export const CARD_SET_ID_ENCHANT_U_POWER_ARMOR_ENCHANT_Q_BOSS_NORMAL_PLAYER = 2161;
+export const CARD_ID_ENCHANT_U_POWER_LEG = 2162;
+export const CARD_SET_ID_ENCHANT_U_POWER_LEG_ENCHANT_Q_BOSS_NORMAL_PLAYER = 2163;
+export const CARD_ID_ENCHANT_U_POWER_SHIELD = 2164;
+export const CARD_SET_ID_ENCHANT_U_POWER_SHIELD_ENCHANT_Q_BOSS_NORMAL_PLAYER = 2165;
+export const CARD_ID_ENCHANT_U_POWER_WING = 2166;
+export const CARD_SET_ID_ENCHANT_U_POWER_WING_ENCHANT_Q_BOSS_NORMAL_PLAYER = 2167;
+export const CARD_ID_ENCHANT_UNBREAKABLE_ARMOR = 2168;
+export const CARD_ID_ENCHANT_CAST_TIME_15 = 2169;
+export const CARD_ID_ENCHANT_ASPD_15 = 2170;
+export const CARD_ID_ENCHANT_EXAM = 2171;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_DARKNESS = 2172;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_FIRE = 2173;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_GROUND = 2174;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_POISON = 2175;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_SAINT = 2176;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_UNDEAD = 2177;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_WATER = 2178;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_E_WIND = 2179;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_G_SERIES = 2180;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_P_CONFUSE = 2181;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_P_CURSE = 2182;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_P_FEAR = 2183;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_P_IGNITION = 2184;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_P_PETRIFACTION = 2185;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_P_SILENCE = 2186;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_P_SLEEP = 2187;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_ATK = 2188;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_AVOID = 2189;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_CRI = 2190;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_FATAL_FLASH = 2191;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_FIRING_SHOT = 2192;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_LUCKY_STRIKE = 2193;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_MATK = 2194;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_MAXHP = 2195;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_OVER_POWER = 2196;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_QUICK = 2197;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_SPELL_BUSTER = 2198;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_S_UNLIMIT_VITAL = 2199;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_X_FATAL_FLASH = 2200;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_X_FIRING_SHOT = 2201;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_X_LUCKY_STRIKE = 2202;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_X_OVER_POWER = 2203;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_X_SPELL_BUSTER = 2204;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_X_UNLIMIT_VITAL = 2205;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_Z_CLAIRVOYANCE = 2206;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_Z_IMMORTAL = 2207;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_Z_KNOCKBACK = 2208;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_Z_NODISPELL = 2209;
+export const CARD_SET_ID_ENCHANT_EXAM_ENCHANT_Z_REINCARNATION = 2210;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_FIRE = 2211;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_WATER = 2212;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_WIND = 2213;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_EARTH = 2214;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_HOLY = 2215;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_DARK = 2216;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_PSYCO = 2217;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_POISON = 2218;
+export const CARD_ID_ENCHANT_ARMS_ELEMENT_UNDEAD = 2219;
+export const CARD_ID_ENCHANT_KOKUYOKUNO_SHITO = 2220;
+export const CARD_SET_ID_ENCHANT_KIGENNO_O_OGONCHU = 2221;
+export const CARD_ID_ENCHANT_ZODIAC = 2222;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_AXE = 2223;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_CROWN = 2224;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_MAIL = 2225;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_MANT = 2226;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_SHOES = 2227;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_RING = 2228;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_SWORD = 2229;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_DIADEM = 2230;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_MAIL = 2231;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_MANT = 2232;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_SHOES = 2233;
+export const CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_RING = 2234;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_MACE = 2235;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_CROWN = 2236;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_MAIL = 2237;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_MANT = 2238;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_SHOES = 2239;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_RING = 2240;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_DEVINE_CROSS = 2241;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_DIADEM = 2242;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_MAIL = 2243;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_MANT = 2244;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_SHOES = 2245;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_RING = 2246;
+export const CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_HUNTER_BOW = 2247;
+export const CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_CROWN = 2248;
+export const CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_MAIL = 2249;
+export const CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_MANT = 2250;
+export const CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_SHOES = 2251;
+export const CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_RING = 2252;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_STUFF_OF_SOUL = 2253;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_DIADEM = 2254;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_MAIL = 2255;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_MANT = 2256;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_SHOES = 2257;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_RING = 2258;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_VIOLIN = 2259;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_ROPE = 2260;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_DIADEM = 2261;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_MAIL = 2262;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_MANT = 2263;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_SHOES = 2264;
+export const CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_RING = 2265;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_KATAR = 2266;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_CROWN = 2267;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_MAIL = 2268;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_MANT = 2269;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_SHOES = 2270;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_RING = 2271;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_KRASNAYA = 2272;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_DIADEM = 2273;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_MAIL = 2274;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_MANT = 2275;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_SHOES = 2276;
+export const CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_RING = 2277;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_SPEAR = 2278;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_CROWN = 2279;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_MAIL = 2280;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_MANT = 2281;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_SHOES = 2282;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_RING = 2283;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_SHIELD = 2284;
+export const CARD_SET_ID_ENCHANT_ZODIAC_PROCYON_DAGGER = 2285;
+export const CARD_SET_ID_ENCHANT_ZODIAC_PROCYON_CROWN = 2286;
+export const CARD_SET_ID_ENCHANT_ZODIAC_PROCYON_ROBE = 2287;
+export const CARD_SET_ID_ENCHANT_ZODIAC_PROCYON_MANT = 2288;
+export const CARD_SET_ID_ENCHANT_ZODIAC_PROCYON_SHOES = 2289;
+export const CARD_SET_ID_ENCHANT_ZODIAC_PROCYON_RING = 2290;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HOBINKYUNO_STUFF = 2291;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HOBINKYUNO_CROWN = 2292;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HOBINKYUNO_MAIL = 2293;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HOBINKYUNO_MANT = 2294;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HOBINKYUNO_SHOES = 2295;
+export const CARD_SET_ID_ENCHANT_ZODIAC_HOBINKYUNO_RING = 2296;
+export const CARD_SET_ID_ENCHANT_ZODIAC_POLLUX_BOOK = 2297;
+export const CARD_SET_ID_ENCHANT_ZODIAC_POLLUX_CROWN = 2298;
+export const CARD_SET_ID_ENCHANT_ZODIAC_POLLUX_ROBE = 2299;
+export const CARD_SET_ID_ENCHANT_ZODIAC_POLLUX_MANT = 2300;
+export const CARD_SET_ID_ENCHANT_ZODIAC_POLLUX_SHOES = 2301;
+export const CARD_SET_ID_ENCHANT_ZODIAC_POLLUX_RING = 2302;
+export const CARD_SET_ID_ENCHANT_ZODIAC_MAKATSUKYUNO_THIEF_BOW = 2303;
+export const CARD_SET_ID_ENCHANT_ZODIAC_MAKATSUKYUNO_DIADEM = 2304;
+export const CARD_SET_ID_ENCHANT_ZODIAC_MAKATSUKYUNO_MAIL = 2305;
+export const CARD_SET_ID_ENCHANT_ZODIAC_MAKATSUKYUNO_MANT = 2306;
+export const CARD_SET_ID_ENCHANT_ZODIAC_MAKATSUKYUNO_SHOES = 2307;
+export const CARD_SET_ID_ENCHANT_ZODIAC_MAKATSUKYUNO_RING = 2308;
+export const CARD_ID_ENCHANT_SEIZOKUSEI_TAISEI_5 = 2309;
+export const CARD_ID_ENCHANT_NENZOKUSEI_TAISEI_5 = 2310;
+export const CARD_ID_ENCHANT_IKYONO_TOKATSUSHA = 2311;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_STORM_KNIGHT = 2312;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_TURTLE_GENERAL = 2313;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_DRACULA = 2314;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_LORD_OF_DEATH = 2315;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_VESPER = 2316;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_KIEL_D01 = 2317;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_PHARAOH = 2318;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_RSX_0806 = 2319;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_DATAL_ZAURUS = 2320;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_HATI = 2321;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_AMON_RA = 2322;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_DARK_LORD = 2323;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_DARK_LORD = 2324;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_BOITATA = 2325;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_ONRYOBUSHI = 2326;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_PEKUSOZIN = 2327;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_KOKUDAO = 2328;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_GOPINICH = 2329;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_TAOGUNKA = 2330;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_BAKONAWA = 2331;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_BYONGUNGO = 2332;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_BUWAYA = 2333;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_REYAC = 2334;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_LADYTANIE = 2335;
+export const CARD_ID_FUINSARETA_RSX_0806 = 2336;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_RSX_0806 = 2337;
+export const CARD_ID_FUINSARETA_AMON_RA = 2338;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_AMON_RA = 2339;
+export const CARD_ID_FUINSARETA_VESPER = 2340;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_VESPER = 2341;
+export const CARD_ID_FUINSARETA_ONRYO_BUSHI = 2342;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_ONRYO_BUSHI = 2343;
+export const CARD_ID_FUINSARETA_KIEL_D_01 = 2344;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_KIEL_D_01 = 2345;
+export const CARD_SET_ID_R48_85_BESTIA_FUINSARETA_KIEL_D01 = 2346;
+export const CARD_ID_FUINSARETA_KOKUDAO = 2347;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_KOKUDAO = 2348;
+export const CARD_ID_FUINSARETA_GOPINICH = 2349;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_GOPINICH = 2350;
+export const CARD_ID_FUINSARETA_STORM_KNIGHT = 2351;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_STORM_KNIGHT = 2352;
+export const CARD_ID_FUINSARETA_TURTLE_GENERAL = 2353;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_TURTLE_GENERAL = 2354;
+export const CARD_ID_FUINSARETA_TAOGUNKA = 2355;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_TAOGUNKA = 2356;
+export const CARD_ID_FUINSARETA_DATAL_ZAURUS = 2357;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_DATAL_ZAURUS = 2358;
+export const CARD_ID_FUINSARETA_DRACULA = 2359;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_DRACULA = 2360;
+export const CARD_ID_FUINSARETA_HATI = 2361;
+export const CARD_SET_ID_HATI_BEBE_FUINSARETA_HATI = 2362;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_HATI = 2363;
+export const CARD_ID_FUINSARETA_PHARAOH = 2364;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_PHARAOH = 2365;
+export const CARD_ID_FUINSARETA_PEKUSOZIN = 2366;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_PEKUSOZIN = 2367;
+export const CARD_ID_FUINSARETA_BOITATA = 2368;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_BOITATA = 2369;
+export const CARD_ID_FUINSARETA_LADYTANIE = 2370;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_LADYTANIE = 2371;
+export const CARD_ID_FUINSARETA_REYAC = 2372;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_REYAC = 2373;
+export const CARD_ID_FUINSARETA_LORD_OF_DEATH = 2374;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_FUINSARETA_LORD_OF_DEATH = 2375;
+export const CARD_ID_ENCHANT_MIZU_ZOKUSEI_TAISEI_5 = 2376;
+export const CARD_ID_ENCHANT_CHI_ZOKUSEI_TAISEI_5 = 2377;
+export const CARD_ID_ENCHANT_HI_ZOKUSEI_TAISEI_5 = 2378;
+export const CARD_ID_ENCHANT_KAZE_ZOKUSEI_TAISEI_5 = 2379;
+export const CARD_ID_ENCHANT_DOKU_ZOKUSEI_TAISEI_5 = 2380;
+export const CARD_ID_ENCHANT_YAMI_ZOKUSEI_TAISEI_5 = 2381;
+export const CARD_ID_ENCHANT_FUSHI_ZOKUSEI_TAISEI_5 = 2382;
+export const CARD_ID_ENCHANT_ENERGY_COAT_LV1 = 2383;
+export const CARD_ID_ENCHANT_KANZYUKU = 2384;
+export const CARD_SET_ID_ENCHANT_KANZYUKU_KYOKUGENNO_MARYOKU = 2385;
+export const CARD_ID_MELORING = 2386;
+export const CARD_SET_ID_ENCHANT_KANZYUKU_MELORING = 2387;
+export const CARD_ID_DAMELORING = 2388;
+export const CARD_SET_ID_ENCHANT_KANZYUKU_DAMELORING = 2389;
+export const CARD_ID_ENCHANT_SENZAI_KAKUSE_BUNISHING_BASTER = 2390;
+export const CARD_ID_ENCHANT_ODINO_CHIKARA_LV2 = 2391;
+export const CARD_ID_SILVER_OSIDOS = 2392;
+export const CARD_ID_TOXIOUS = 2393;
+export const CARD_ID_NEO_MINERAL = 2394;
+export const CARD_ID_BLACK_OSIDOS = 2395;
+export const CARD_ID_BONE_PHEROS = 2396;
+export const CARD_ID_ARCH_PLASMA = 2397;
+export const CARD_ID_JEWGOLIANT = 2398;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_JEWGOLIANT = 2399;
+export const CARD_ID_TREASURE_MIMIC = 2400;
+export const CARD_ID_POISONOUS = 2401;
+export const CARD_ID_HOLY_SKOGUL = 2402;
+export const CARD_ID_HOLY_FRUS = 2403;
+export const CARD_ID_BONE_OSIDOS = 2404;
+export const CARD_ID_REGINLEIF = 2405;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_REGINLEIF = 2406;
+export const CARD_ID_ANGELGOLT = 2407;
+export const CARD_ID_JEWELIANT = 2408;
+export const CARD_ID_BONE_DETAL_ZAURUS = 2409;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_BONE_DETAL_ZAURUS = 2410;
+export const CARD_ID_ABYSS_MAN = 2411;
+export const CARD_ID_INGRID = 2412;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_INGRID = 2413;
+export const CARD_ID_SPECTRUM_PLASMA = 2414;
+export const CARD_ID_PURPLE_PHEROS = 2415;
+export const CARD_ID_WHITE_PORCELLIO = 2416;
+export const CARD_ID_ENCHANT_TENCHI_HOKAI = 2417;
+export const CARD_SET_ID_ENCHANT_TENCHI_HOKAI_MAKENSHI_THANATOSNO_SHINENTAI = 2418;
+export const CARD_SET_ID_ENCHANT_TENCHI_HOKAI_FUINSARETA_MAKENSHI_THANATOSNO_SHINENTAI = 2419;
+export const CARD_ID_ELDEST = 2420;
+export const CARD_ID_THANATOSNO_KIOKU_ENBO = 2421;
+export const CARD_ID_VOID_MIMIC = 2422;
+export const CARD_ID_HASONSHITA_THANATOSNO_KIOKU = 2423;
+export const CARD_SET_ID_HASONSHITA_THANATOSNO_KIOKU_ENCHANT_EIYUNO_GAIKA = 2424;
+export const CARD_SET_ID_ENCHANT_TENCHI_HOKAI_HASONSHITA_THANATOSNO_KIOKU = 2425;
+export const CARD_ID_BOOK_OF_DEATH = 2426;
+export const CARD_ID_THANATOSNO_KIOKU_KYOFU = 2427;
+export const CARD_ID_THANATOSNO_KIOKU_KOKAI = 2428;
+export const CARD_ID_THANATOSNO_KIOKU_FUNNU = 2429;
+export const CARD_ID_CROW_BARON = 2430;
+export const CARD_ID_CROW_DUKE = 2431;
+export const CARD_SET_ID_CROW_BARON_CROW_DUKE = 2432;
+export const CARD_ID_INORU_MONO = 2433;
+export const CARD_ID_KYOKANSURU_MONO = 2434;
+export const CARD_ID_KOFUKUWO_ATAERU_MONO = 2435;
+export const CARD_ID_HOHOEMU_MONO = 2436;
+export const CARD_ID_ENCHANT_CHISHIKINO_TANKYUSHA = 2437;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_CUTIE = 2438;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_CELINE_KIMI = 2439;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_EL_A17T = 2440;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_MIGUEL = 2441;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_RED_PEPPER_KAPPA = 2442;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_VENOM_CHEMERA = 2443;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_EABLE = 2444;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_SILVA_PAPIRIA = 2445;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_BOSS_PITAYA = 2446;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_SWEETY = 2447;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_CHARLESTON_3GO = 2448;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_R48_85_BESTIA = 2449;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_T_W_O = 2450;
+export const CARD_ID_ENCHANT_SKILL_ISHI_SOKUDO_ZOKA_LV10 = 2451;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_RANDGRIS = 2452;
+export const CARD_ID_R001_BESTIA = 2453;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_R001_BESTIA = 2454;
+export const CARD_ID_VENEDI = 2455;
+export const CARD_ID_GAN_CEANN = 2456;
+export const CARD_ID_KYORYOKUNA_MARYOKU = 2457;
+export const CARD_ID_GRAN_PAPILIA = 2458;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_GRAN_PAPILIA = 2459;
+export const CARD_ID_GROTE = 2460;
+export const CARD_ID_KOSHOSHITA_KEBIGATA_BETA = 2461;
+export const CARD_ID_KOSHOSHITA_ZIDO_OSOZIKI_OMEGA = 2462;
+export const CARD_ID_KOSHOSHITA_ZYOKYU_NIWASHI_BETA = 2463;
+export const CARD_ID_KOSHOSHITA_SESOGATA_BETA = 2464;
+export const CARD_ID_GHOST_CUBE = 2465;
+export const CARD_ID_SHINO_DAIMAZYO = 2466;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_SHINO_DAIMAZYO = 2467;
+export const CARD_ID_GIANT_CAPUT = 2468;
+export const CARD_ID_ZYOKYU_KENKYU_ZYOSHU_ZIDO_NINGYO = 2469;
+export const CARD_ID_ZYOKYU_TOKUSE_ALNOLDI = 2470;
+export const CARD_ID_ZYOKYU_DRY_RAFFLESIA = 2471;
+export const CARD_ID_ZYOKYU_PAPILA = 2472;
+export const CARD_ID_ZYOKYU_PAPILA_CAE = 2473;
+export const CARD_ID_ZYOKYU_PAPILA_RUBA = 2474;
+export const CARD_ID_SHINKAINO_MAZYO = 2475;
+export const CARD_ID_SURUDOI_MARYOKU = 2476;
+export const CARD_ID_SEIKINNO_HIME = 2477;
+export const CARD_ID_DISGUISER = 2478;
+export const CARD_ID_DEADRE = 2479;
+export const CARD_ID_DOLORIAN = 2480;
+export const CARD_ID_NETTO_SWORD_FISH = 2481;
+export const CARD_ID_NETTO_PIRANHA = 2482;
+export const CARD_ID_NETTO_PHEN = 2483;
+export const CARD_ID_NETTO_MARC = 2484;
+export const CARD_ID_PIERROT_ZOIST = 2485;
+export const CARD_ID_PLAGARION = 2486;
+export const CARD_ID_BRUTAL_MURDER = 2487;
+export const CARD_ID_BLUE_MOON_LOLIRURI = 2488;
+export const CARD_ID_MARYOKU_CHUDOKU_SANARE = 2489;
+export const CARD_ID_MARYOKU_CHUDOKU_PLAGA = 2490;
+export const CARD_ID_MEIKYUNO_VERSEVV = 2491;
+export const CARD_ID_LUDE_GAL = 2492;
+export const CARD_SET_ID_LUDE_GAL_GHOST_CUBE = 2493;
+export const CARD_ID_RED_PEPPER_LAMBDA = 2494;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_RED_PEPPER_LAMBDA = 2495;
+export const CARD_ID_YOKUZYO_KANRISHA_BETA = 2496;
+export const CARD_ID_ENCHANT_HYOKETSU_TAISE = 2497;
+export const CARD_ID_ENCHANT_REITO_TAISE = 2498;
+export const CARD_ID_ENCHANT_FUMETSUNARU_RIEKISHA = 2499;
+export const CARD_ID_ENCHANT_GENKAITOPPA = 2500;
+export const CARD_ID_ENCHANT_POW_3 = 2501;
+export const CARD_ID_ENCHANT_STA_3 = 2502;
+export const CARD_ID_ENCHANT_WIS_3 = 2503;
+export const CARD_ID_ENCHANT_SPL_3 = 2504;
+export const CARD_ID_ENCHANT_CON_3 = 2505;
+export const CARD_ID_ENCHANT_CRT_3 = 2506;
+export const CARD_ID_ENCHANT_ASPD_10P = 2507;
+export const CARD_ID_ENCHANT_DEF_300 = 2508;
+export const CARD_ID_ENCHANT_MDEF_30 = 2509;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ARCH_MAGE_1 = 2510;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_ARCH_MAGE_1 = 2511;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ABYSS_CHASER_1 = 2512;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_ABYSS_CHASER_1 = 2513;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_INQUISITOR_1 = 2514;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_INQUISITOR_1 = 2515;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_IMPERIAL_GUARD_1 = 2516;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_IMPERIAL_GUARD_1 = 2517;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_WIND_HAWK_1 = 2518;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_1 = 2519;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ELEMENTAL_MASTER_1 = 2520;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_ELEMENTAL_MASTER_1 = 2521;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_CARDINAL_1 = 2522;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_CARDINAL_1 = 2523;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_SHADOW_CROSS_1 = 2524;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CROSS_1 = 2525;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_DRAGON_KNIGHT_1 = 2526;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_DRAGON_KNIGHT_1 = 2527;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_TROUBADOUR_1 = 2528;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_TROUBADOUR_1 = 2529;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_TROUVERE_1 = 2530;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_TROUVERE_1 = 2531;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_BIOLO_1 = 2532;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_BIOLO_1 = 2533;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_MEISTER_1 = 2534;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_MEISTER_1 = 2535;
+export const CARD_ID_ASHRING = 2536;
+export const CARD_ID_VALTY = 2537;
+export const CARD_ID_GRAY_WOLF = 2538;
+export const CARD_ID_VOLCARING = 2539;
+export const CARD_ID_PHANTOM_WOLF = 2540;
+export const CARD_ID_ASH_TODO = 2541;
+export const CARD_ID_FIRE_WIND_KITE = 2542;
+export const CARD_ID_SHIGERING = 2543;
+export const CARD_ID_SHURAN = 2544;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_SHURAN = 2545;
+export const CARD_ID_BURNING_FANG = 2546;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_BURNING_FANG = 2547;
+export const CARD_ID_RAKESON = 2548;
+export const CARD_ID_ASH_HOPPER = 2549;
+export const CARD_ID_DEMI_FREYA = 2550;
+export const CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_DEMI_FREYA = 2551;
+export const CARD_ID_HOT_MOL = 2552;
+export const CARD_ID_LAVA_TODO = 2553;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_CARDINAL_2 = 2554;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_CARDINAL_2 = 2555;
+export const CARD_ID_ENCHANT_DANGEKI = 2556;
+export const CARD_SET_ID_ENCHANT_DANGEKI_STR_7 = 2557;
+export const CARD_ID_ENCHANT_ZANMA = 2558;
+export const CARD_SET_ID_ENCHANT_DANGEKI_INT_7 = 2559;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_KAKUSE_SHIHAISHANO_ROBE = 2560;
+export const CARD_ID_CATHERINE_GAEBOLG_SIGNED = 2561;
+export const CARD_ID_FRIEDRICH_STOLZ_HEINE_SIGNED = 2562;
+export const CARD_ID_KRONECKER_GRANZ_HEINE_SIGNED = 2563;
+export const CARD_ID_CATHRINE = 2564;
+export const CARD_ID_CATHERINE_GAEBOLG = 2565;
+export const CARD_ID_FRIEDRICH = 2566;
+export const CARD_ID_FRIEDRICH_STOLZ_HEINE = 2567;
+export const CARD_ID_CRUX = 2568;
+export const CARD_ID_CRUX_FINDEL = 2569;
+export const CARD_ID_ENCHANT_WOLF_ORB_STR_7 = 2570;
+export const CARD_ID_ENCHANT_WOLF_ORB_AGI_7 = 2571;
+export const CARD_ID_ENCHANT_WOLF_ORB_VIT_7 = 2572;
+export const CARD_ID_ENCHANT_WOLF_ORB_INT_7 = 2573;
+export const CARD_ID_ENCHANT_WOLF_ORB_DEX_7 = 2574;
+export const CARD_ID_ENCHANT_WOLF_ORB_LUK_7 = 2575;
+export const CARD_ID_ENCHANT_WOLF_ORB_POW_3 = 2576;
+export const CARD_ID_ENCHANT_WOLF_ORB_STA_3 = 2577;
+export const CARD_ID_ENCHANT_WOLF_ORB_WIS_3 = 2578;
+export const CARD_ID_ENCHANT_WOLF_ORB_SPL_3 = 2579;
+export const CARD_ID_ENCHANT_WOLF_ORB_CON_3 = 2580;
+export const CARD_ID_ENCHANT_WOLF_ORB_CRT_3 = 2581;
+export const CARD_ID_ENCHANT_WOLF_ORB_DEF_300 = 2582;
+export const CARD_ID_ENCHANT_WOLF_ORB_MDEF_30 = 2583;
+export const CARD_ID_ENCHANT_WOLF_ORB_LUCKY_25 = 2584;
+export const CARD_ID_ENCHANT_WOLF_ORB_ASPD_10P = 2585;
+export const CARD_ID_ENCHANT_WOLF_ORB_CAST_TIME_15 = 2586;
+export const CARD_ID_ENCHANT_WOLF_ORB_SKILL_DELAY_15 = 2587;
+export const CARD_ID_ENCHANT_WOLF_ORB_PHYSICAL_DAMAGE_20 = 2588;
+export const CARD_ID_ENCHANT_WOLF_ORB_MAGICAL_DAMAGE_20 = 2589;
+export const CARD_ID_ENCHANT_WOLF_ORB_IGNORE_DEF_50 = 2590;
+export const CARD_ID_ENCHANT_WOLF_ORB_IGNORE_MDEF_50 = 2591;
+export const CARD_ID_ENCHANT_WOLF_ORB_UNINTERRUPTABLE = 2592;
+export const CARD_ID_ENCHANT_WOLF_ORB_CAST_FIXED_50 = 2593;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ARCH_MAGE_2 = 2594;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_ARCH_MAGE_2 = 2595;
+export const CARD_ID_ENCHANT_CRI_25 = 2596;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_DRAGON_KNIGHT_2 = 2597;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_DRAGON_KNIGHT_2 = 2598;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_BIOLO_2 = 2599;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_BIOLO_2 = 2600;
+export const CARD_ID_ENCHANT_ANKOKU_TAISE = 2601;
+export const CARD_ID_ENCHANT_SHUKKETSU_TAISE = 2602;
+export const CARD_ID_ENCHANT_CHINMOKU_TAISE = 2603;
+export const CARD_ID_ENCHANT_DOKU_TAISE = 2604;
+export const CARD_ID_ENCHANT_HAKKA_TAISE = 2605;
+export const CARD_ID_ENCHANT_NOROI_TAISE = 2606;
+export const CARD_ID_KUSATTA_KI = 2607;
+export const CARD_ID_GRAVE_WORM = 2608;
+export const CARD_ID_BRAIN_SUCKER = 2609;
+export const CARD_ID_MOSQUIRO = 2610;
+export const CARD_ID_YOKAISHITA_PORING = 2611;
+export const CARD_ID_ETAINO_SHIRENAI_SEMETAI = 2612;
+export const CARD_SET_ID_ETAINO_SHIRENAI_SEMETAI_ENCHANT_EIYUNO_GAIKA = 2613;
+export const CARD_ID_HENI_CHIMERA_AMITERA = 2614;
+export const CARD_ID_HENI_CHIMERA_LITUS = 2615;
+export const CARD_ID_HENI_CHIMERA_FILLIA = 2616;
+export const CARD_ID_HENI_CHIMERA_VANILAQUS = 2617;
+export const CARD_ID_HENI_CHIMERA_LAVA = 2618;
+export const CARD_ID_HENI_CHIMERA_FULGOR = 2619;
+export const CARD_ID_HENI_CHIMERA_NAPEO = 2620;
+export const CARD_ID_HENI_CHIMERA_GALENSIS = 2621;
+export const CARD_ID_HENI_CHIMERA_THE_ONE = 2622;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_HENI_CHIMERA_THE_ONE = 2623;
+export const CARD_ID_MAYONAKANO_ARCHI = 2624;
+export const CARD_ID_MAYONAKANO_ANEMOS = 2625;
+export const CARD_ID_MAYONAKANO_KANEIRY = 2626;
+export const CARD_ID_MAYONAKANO_COSRLEASE = 2627;
+export const CARD_ID_MAYONAKANO_SNIKI = 2628;
+export const CARD_ID_MAYONAKANO_FEMON = 2629;
+export const CARD_ID_MAYONAKANO_OLDOR = 2630;
+export const CARD_ID_MAYONAKANO_HAZE = 2631;
+export const CARD_ID_MAYONAKANO_KUROMA = 2632;
+export const CARD_ID_MAYONAKANO_IFODOS = 2633;
+export const CARD_ID_MAYONAKANO_YUMEHIME = 2634;
+export const CARD_ID_MAYONAKANO_RECHENIER = 2635;
+export const CARD_ID_MAYONAKANO_JEW = 2636;
+export const CARD_ID_MAYONAKANO_KANABIAN = 2637;
+export const CARD_ID_MAYONAKANO_D_Y = 2638;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ELEMENTAL_MASTER_2 = 2639;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_ELEMENTAL_MASTER_2 = 2640;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_CARDINAL_3 = 2641;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_CARDINAL_3 = 2642;
+export const CARD_ID_ENCHANT_YUENNARU_TENZYONO_MIYAKO = 2643;
+export const CARD_SET_ID_ENCHANT_YUENNARU_TENZYONO_MIYAKO_KOO_GLOZA = 2644;
+export const CARD_SET_ID_ENCHANT_YUENNARU_TENZYONO_MIYAKO_SHINSONO_KOO_GLOZA = 2645;
+export const CARD_ID_ENCHANT_URUNO_KAGO = 2646;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_SHADOW_CROSS_2 = 2647;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_SHADOW_CROSS_2 = 2648;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ABYSS_CHASER_2 = 2649;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_ABYSS_CHASER_2 = 2650;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_WIND_HAWK_2 = 2651;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_2 = 2652;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_IMPERIAL_GUARD_2 = 2653;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_IMPERIAL_GUARD_2 = 2654;
+export const CARD_ID_ENCHANT_AUTO_SPELL_CHAIN_LIGHTNING = 2655;
+export const CARD_ID_ENCHANT_MAKO = 2656;
+export const CARD_ID_ENCHANT_MAXSP_15P = 2657;
+export const CARD_ID_ENCHANT_ZOFUKUSARETA_ENBO = 2658;
+export const CARD_SET_ID_ENCHANT_ZOFUKUSARETA_ENBO_SHINEN_ARMS_V1 = 2659;
+export const CARD_SET_ID_ENCHANT_ZOFUKUSARETA_ENBO_SHINEN_ARMS_V2 = 2660;
+export const CARD_SET_ID_ENCHANT_ZOFUKUSARETA_ENBO_SHINEN_ARMS_V3 = 2661;
+export const CARD_ID_ENCHANT_INORINO_BANSHO = 2662;
+export const CARD_SET_ID_ENCHANT_INORINO_BANSHO_VIVATUS_ARMS_V1 = 2663;
+export const CARD_SET_ID_ENCHANT_INORINO_BANSHO_VIVATUS_ARMS_V2 = 2664;
+export const CARD_SET_ID_ENCHANT_INORINO_BANSHO_DEMI_FREYA = 2665;
+export const CARD_ID_ENCHANT_HYAKUSHA_KAICHU = 2666;
+export const CARD_ID_ENCHANT_SAISENO_HONO = 2667;
+export const CARD_ID_ENCHANT_SAIHATENO_SHIHAISHA = 2668;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_BIG_EGGRING = 2669;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_HENINO_COELACANTH = 2670;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_BOGYAKUNO_COELACANTH = 2671;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_ANKOKUNO_COELACANTH = 2672;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_IKEINO_COELACANTH = 2673;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_ENTVAIEN = 2674;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_TORYO_TAKO = 2675;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_NAHT_ZEEGAR = 2676;
+export const CARD_SET_ID_ENCHANT_SAIHATENO_SHIHAISHA_KRAKEN = 2677;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_DRAGON_KNIGHT_3 = 2678;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_DRAGON_KNIGHT_3 = 2679;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ARCH_MAGE_3 = 2680;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_ARCH_MAGE_3 = 2681;
+export const CARD_ID_ENCHANT_MUNEN_MUSO = 2682;
+export const CARD_ID_AQUILA = 2683;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_AQUILA = 2684;
+export const CARD_ID_SAIKAKYU_RGAN = 2685;
+export const CARD_ID_SOGAN_DOLLOCARIS = 2686;
+export const CARD_ID_TANGAN_DOLLOCARIS = 2687;
+export const CARD_ID_CHUKYU_RGAN = 2688;
+export const CARD_ID_DOKUTSU_CALMARING = 2689;
+export const CARD_ID_DOKUTSU_FUTOKA = 2690;
+export const CARD_ID_HEART_HUNTER_AT = 2691;
+export const CARD_ID_CALMARING = 2692;
+export const CARD_ID_ULTRA_LIMACINA = 2693;
+export const CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_ULTRA_LIMACINA = 2694;
+export const CARD_ID_HAIKISARETA_GENSHI_RGAN = 2695;
+export const CARD_ID_HALLUCIGENIA = 2696;
+export const CARD_ID_HIKARU_WAKAME = 2697;
+export const CARD_ID_BABY_HALLUCIGENIA = 2698;
+export const CARD_ID_LIMACINA = 2699;
+export const CARD_ID_GENSHI_RGAN = 2700;
+export const CARD_ID_MAKIKOMARETA_CHUKYU_RGAN = 2701;
+export const CARD_ID_ICE_FUNAMUSHI = 2702;
+export const CARD_ID_S_JUNCEA = 2703;
+export const CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_S_JUNCEA = 2704;
+export const CARD_ID_HAIKISARETA_CHUKYU_RGAN = 2705;
+export const CARD_ID_KAIZOSARETA_ZYOKYU_RGAN = 2706;
+export const CARD_ID_ICE_STRAW = 2707;
+export const CARD_ID_KAKYU_RGAN = 2708;
+export const CARD_ID_FUTOKA = 2709;
+export const CARD_ID_ENCHANT_SEKKANO_MARYOKU_RENBU_1 = 2710;
+export const CARD_ID_ENCHANT_SEKKANO_MARYOKU_RENMA_1 = 2711;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_RUNE_KNIGHT_1 = 2712;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_ROYAL_GUARD_1 = 2713;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_ROYAL_GUARD_2 = 2714;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_MECHANIC_1 = 2715;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_MECHANIC_2 = 2716;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_GENETIC_1 = 2717;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_GUILLOTINE_CROSS_1 = 2718;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_SHADOW_CHASER_1 = 2719;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_SHADOW_CHASER_2 = 2720;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_WARLOCK_1 = 2721;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_SOURCERER_1 = 2722;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_ARC_BISHOP_1 = 2723;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_SHURA_1 = 2724;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_RANGER_1 = 2725;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_MINSTREL_WANDERER_1 = 2726;
+export const CARD_ID_ENCHANT_HYOKANO_MARYOKU_MINSTREL_WANDERER_2 = 2727;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ABYSS_CHASER_3 = 2728;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_ABYSS_CHASER_3 = 2729;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_WIND_HAWK_3 = 2730;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_WIND_HAWK_3 = 2731;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_CARDINAL_4 = 2732;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAIHO_CARDINAL_4 = 2733;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_CARDINAL_5 = 2734;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_CARDINAL_5 = 2735;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_BIOLO_3 = 2736;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_BIOLO_3 = 2737;
+export const CARD_ID_ENCHANT_SENARU_BOGO = 2738;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_INQUISITOR_2 = 2739;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_INQUISITOR_2 = 2740;
+export const CARD_ID_ENCHANT_SENZAI_KAIHO_ELEMENTAL_MASTER_3 = 2741;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_ELEMENTAL_MASTER_3 = 2742;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1 = 2756;
+export const CARD_SET_ID_ENCHANT_GOKETSU_OR_SHINRI_AND_INSPIRATION_1 = 2805;
+export const CARD_ID_EXTRA_JORKER = 2892;
+export const CARD_ID_GENERAL_ORK = 2916;
+export const CARD_ID_LOOKIE = 2957;
+export const CARD_ID_HIMITSU_NO_HANE_LEIZI = 2967;
+export const CARD_ID_SENZAI_KAIHOU_TENTEI_IV = 3071;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_SLUGSHOT = 3079;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAKUSEI_PSYCHIC_WAVE_2 = 3081;
+export const CARD_ID_HARD_ROCK_TITAN = 3125;
+export const CARD_ID_DEAD_SERA = 3127;
+export const CARD_ID_PUNCH_BUG = 3132;
+export const CARD_ID_ELITE_RGAN_HEALER = 3209;
+export const CARD_ID_JOR_MUNGANDR_GUARDIAN = 3210;
+export const CARD_ID_FAKE_IWIN_SOLDIERS = 3211;
+export const CARD_ID_ICEBEAR = 3220;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_GUILLOTINE_CROSS_3 = 3345;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_GENETIC_3 = 3349;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_HUNDRED_SPEAR = 3375;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_FEINT_BOMB = 3379;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_PINPOINT_ATTACK = 3381;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_COLD_THROWER = 3383;
+export const CARD_SET_ID_ENCHANT_SENZAI_KAKUSEI_DARK_CLAW = 3385;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_CRAZY_WEED = 3392;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_SHURA_SHINDAN = 3394;
+export const CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_KAKUSEI_ESUFU = 3398;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_BAKURETSU_KUNAI = 3400;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_DRAGON_TAIL = 3402;
+export const CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAKUSEI_TAROU_NO_KIZU = 3404;
+export const CARD_ID_COTNESS = 3428;
+export const CARD_ID_MEDJAY = 3700;
+export const CARD_ID_JACKONETTE = 3706;
+export const CARD_ID_SEA_WIND = 3742;
+export const CARD_ID_YORDOS_EXECUTOR = 3748;
+export const CARD_ID_INFINITE2_ECLIPSE = 4020;
+export const CARD_ID_VOLIMPET = 4152;
+export const CARD_ID_POLLUTED_SILK_FROG = 4155;
+export const CARD_ID_ENCROACHED_DIMIK = 4159;
+export const CARD_ID_NYAISE = 4160
+export const CARD_ID_SHADOW_JAILER = 4161;
+export const CARD_ID_BLOODY_SLASHER = 4174;
+export const CARD_ID_SHADIEST = 4175;
+export const CARD_ID_THE_CHIEF_KNIGHT_OF_ABYSS = 4178;
+export const CARD_ID_PRIDE_CROW_BARON = 4469;
+export const CARD_ID_PRIDE_RUNAWAY_THANATOS = 4481;
+export const CARD_SET_ID_PRIDE_THANATOS_RESENT_EIYU = 4485;
+export const CARD_SET_ID_PRIDE_THANATOS_HORROR_EIYU = 4488;
+
+export const CardObjNew = [
+		[0,0,"(カードなし)","0","0",0],
+		[1,1,"物理全種族+20%","5","※この選択欄は[ヒドラカード]や[スコーピオンカード]などの効果をまとめたものです。",261,20,272,20,0],
+		[2,1,"物理全敵属性+20%","6","※この選択欄は[アナコンダクカード]や[オークスケルトンカード]などの効果をまとめたものです。",262,20,0],
+		[3,1,"物理全サイズ15%,Atk+5","7","※この選択欄は[ミノタウロスカード][スケルワーカーカード][デザートウルフ]の効果をまとめたものです。",260,15,17,5,0],
+		[4,1,"ファブル",,"0",3,1,13,100,0],
+		[5,1,"ドロップス",,"0",5,1,8,3,0],
+		[6,1,"ホーネット",,"0",1,1,17,3,0],
+		[7,1,"ルナティック",,"0",6,1,10,1,11,1,0],
+		[8,1,"雌盗蟲","メストウチュウ","0",2,1,9,1,0],
+		[9,1,"スケルトン",,"0",17,10,131,2,0],
+		[10,1,"ウルフ",,"0",17,15,10,1,0],
+		[11,1,"アンドレ",,"0",17,20,0],
+		[12,1,"ペコペコの卵",,"0",30,20,0],
+		[13,1,"ヒドラ",,"0",37,20,0],
+		[14,1,"ゴブリン",,"0",32,20,0],
+		[15,1,"キャラメル",,"0",34,20,0],
+		[16,1,"スコーピオン",,"0",33,20,0],
+		[17,1,"フローラ",,"0",35,20,0],
+		[18,1,"ストラウフ",,"0",36,20,0],
+		[19,1,"グラウンドプティット",,"0",39,20,0],
+		[20,1,"デビアス",,"<B><BR>【王家の弓】と【カースアロー】と【デビアスC】を同時に装備した時<BR>[王家の弓]の精錬値が1上がる度に、追加で物理攻撃時、人間形モンスターへのダメージ+2%。<BR><BR>【王家の弓】と【スリープアロー】と【デビアスC】を同時に装備した時<BR>[王家の弓]の精錬値が1上がる度に、追加で物理攻撃時、動物形モンスターへのダメージ+2%。<BR><BR>【王家の弓】と【サイレンスアロー】と【デビアスC】を同時に装備した時<BR>[王家の弓]の精錬値が1上がる度に、追加で物理攻撃時、昆虫形モンスターへのダメージ+2%。<BR><BR>【王家の弓】と【フラッシュアロー】と【デビアスC】を同時に装備した時<BR>[王家の弓]の精錬値が1上がる度に、追加で物理攻撃時、植物形モンスターへのダメージ+2%。</B>",37,7,32,7,33,7,34,7,0],
+		[21,1,"ドレインリアー",,"0",41,20,0],
+		[22,1,"サンタポリン",,"0",47,20,0],
+		[23,1,"マンドラゴラ",,"0",44,20,0],
+		[24,1,"バドン",,"0",43,20,0],
+		[25,1,"アナコンダク",,"0",45,20,0],
+		[26,1,"カホ",,"0",42,20,0],
+		[27,1,"オークスケルトン",,"0",46,20,0],
+		[28,1,"デザートウルフ",,"0",27,15,17,5,0],
+		[29,1,"スケルワーカー",,"0",28,15,17,5,0],
+		[30,1,"ミノタウロス",,"0",29,15,17,5,0],
+		[31,1,"深淵の騎士","シンエンノキシ","0",26,25,0],
+		[32,1,"ドレイク",,"全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない。<BR>(武器ATKのサイズ補正を全て100%にする。つまり杖には意味がない)",0],
+		[33,1,"プランクトン",,"0",17,5,135,5,0],
+		[34,1,"スネイク",,"0",17,5,130,5,0],
+		[35,1,"マリナ",,"0",17,5,132,5,0],
+		[36,1,"メタルラ",,"0",17,5,136,5,0],
+		[37,1,"白蓮玉","ビャクレンギョク","0",17,5,133,5,0],
+		[38,1,"ゼノーク",,"0",17,10,130,4,0],
+		[39,1,"ゴーレム",,"武器が絶対に壊れない",17,5,0],
+		[40,1,"マミー",,"0",8,20,0],
+		[41,1,"ソルジャースケルトン",,"0",10,9,0],
+		[42,1,"ドッペルゲンガー",,"0",12,10,0],
+		[43,1,"サイドワインダー",,"[ダブルアタック] Lv 1(全ての武器)<BR>(ダブルアタックLv2以上を修得している場合、発動率はそれ依存)",0],
+		[44,1,"フリオニ",,"0",8,100,0],
+		[45,1,"バフォメット",,"全ての攻撃が９セルの範囲攻撃になる。",8,-10,0],
+		[46,1,"ハンターフライ",,"一定確率(3%）で敵に与えたダメージの15%をHPで吸収する。<BR>(この計算機では未計算)",0],
+		[47,1,"ドラキュラ",,"一定確率で敵に与えたダメージの5%をSPに吸収する。<BR>(この計算機では未計算)",0],
+		[48,2,"ウィロー",,"0",14,80,0],
+		[49,2,"エルダーウィロー",,"0",4,2,0],
+		[50,2,"ナイトメア",,"0",2,1,155,100,0],
+		[51,2,"デビルチ",,"0",1,1,154,100,0],
+		[52,2,"オークヒーロー",,"0",3,3,151,100,0],
+		[53,3,"盗蟲の卵","トウチュウノタマゴ","0",13,400,0],
+		[54,3,"アンドレの卵","アンドレノタマゴ","0",15,5,0],
+		[55,3,"アンバーナイト",,"0",18,2,0],
+		[56,3,"タラフロッグ",,"0",57,30,0],
+		[57,3,"オークウォリアー",,"0",52,30,0],
+		[58,3,"ビッグフット",,"0",54,30,0],
+		[59,3,"ラフレシア",,"0",55,30,0],
+		[60,3,"スカイプティット",,"0",59,30,0],
+		[61,3,"カーリッツバーグ",,"0",56,30,0],
+		[62,3,"ホルン",,"0",78,35,0],
+		[63,3,"メデューサ",,"0",56,15,159,100,0],
+		[64,4,"ポリン",,"0",6,2,11,1,0],
+		[65,4,"ピッキ",,"0",1,1,17,10,0],
+		[66,4,"すごいピッキ",,"0",3,1,13,100,0],
+		[67,4,"盗蟲","トウチュウ","0",2,1,0],
+		[68,4,"ロッカー",,"0",5,1,17,5,0],
+		[69,4,"子デザートウルフ","コデザートウルフ","0",4,1,0],
+		[70,4,"サベージ",,"0",3,3,0],
+		[71,4,"プパ",,"0",13,700,0],
+		[72,4,"ロッダフロッグ",,"0",13,400,14,50,0],
+		[73,4,"ペコペコ",,"0",15,10,0],
+		[74,4,"スチールチョンチョン",,"0",18,2,64,10,0],
+		[75,4,"イビルドルイド",,"0",4,1,18,1,198,9,0],
+		[76,5,"ウィスパー",,"0",9,20,68,-50,0],
+		[77,5,"レイドリック",,"0",60,20,0],
+		[78,5,"バフォメット.Jr",,"0",2,3,10,1,0],
+		[79,5,"コンドル",,"0",9,10,0],
+		[80,5,"ダスティネス",,"0",9,5,64,30,0],
+		[81,5,"マルス",,"0",9,5,61,30,0],
+		[82,5,"ジャック",,"0",9,5,63,30,0],
+		[83,5,"ホード",,"0",9,5,62,30,0],
+		[84,5,"マリオネット",,"0",9,5,68,30,0],
+		[85,5,"オークゾンビ",,"0",9,5,69,30,0],
+		[86,5,"イシス",,"0",9,5,67,30,0],
+		[87,5,"ミスト",,"0",9,5,65,30,0],
+		[88,6,"チョンチョン",,"0",9,2,2,1,0],
+		[89,6,"雄盗蟲","オストウチュウ","0",2,2,0],
+		[90,6,"マーター",,"0",2,1,15,10,0],
+		[91,6,"ソヒー",,"0",16,15,76,3,0],
+		[92,6,"ベリット",,"0",15,8,16,8,0],
+		[93,6,"ゾンビ",,"0",75,20,0],
+		[94,6,"エギラ",,"0",76,15,0],
+		[95,6,"エドガ",,"無限[インデュア]",15,-25,0],
+		[96,7,"スポア",,"0",3,2,0],
+		[97,7,"ククレ",,"0",2,2,0],
+		[98,7,"タロウ",,"0",1,2,0],
+		[99,7,"ワームテール",,"0",5,2,0],
+		[100,7,"ゼロム",,"0",5,3,0],
+		[101,7,"マンティス",,"0",1,3,0],
+		[102,7,"ヨーヨー",,"0",2,1,11,5,0],
+		[103,7,"コボルド",,"0",1,1,10,4,0],
+		[104,7,"ムカー",,"0",75,10,0],
+		[105,7,"フェン",,"",73,25,380,1,0],
+		[106,1,"星のかけら","8","星のかけら1つで修練系ダメージ+5<BR>星のかけら3つ同時の場合は修練系ダメージ+40<BR>製造ランクTOP10の場合は修練系ダメージ+10<BR>(製造ランクTOP10は一番右の武器カード欄)",0],
+		[107,1,"アーチャースケルトン",,"※R化でゲーム内説明文が[弓の攻撃力+10%]と大昔に何故か戻ったが<BR>R化直後現在、仕様は遠距離物理攻撃+10%のまま。",25,10,0],
+		[108,10,"スコーピオンキング",,"0",0],
+		[109,1,"サベージベベ",,"0",131,5,0],
+		[110,1,"ファミリアー",,"0",17,5,134,5,0],
+		[111,1,"レクイエム",,"0",137,5,0],
+		[112,10,"アンドレの幼虫","アンドレノヨウチュウ","0",4,1,0],
+		[113,2,"スタイナー",,"0",18,1,156,20,0],
+		[114,2,"コーコー",,"0",18,1,155,20,0],
+		[115,2,"マーティン",,"0",18,1,154,20,0],
+		[116,2,"グール",,"0",18,1,150,20,0],
+		[117,2,"ガイアス",,"0",157,100,62,15,0],
+		[118,2,"マルドゥーク",,"0",156,100,0],
+		[119,2,"ミストレス",,"ジェムストーンを消費するスキルをジェムストーン無しで使用できる。",102,-25,0],
+		[120,2,"ファラオ",,"0",102,30,0],
+		[121,10,"兵隊アンドレ","ヘイタイアンドレ","0",0],
+		[122,3,"アヌビス",,"0",58,30,0],
+		[123,3,"メガロドン",,"0",18,1,152,20,0],
+		[124,3,"アルゴス",,"0",18,1,159,20,0],
+		[125,3,"ムナック",,"0",18,1,62,5,159,15,0],
+		[126,3,"黄金蟲","オウゴンチュウ","すべての魔法が効かなくなる。(ヒール系含む)",102,-100,0],
+		[127,3,"マヤー",,"ターゲッティングされた魔法を50%の確率で使用者にはね返す。",0],
+		[128,4,"ソードフィッシュ",,"0",18,1,198,1,0],
+		[129,4,"サンドマン",,"0",18,1,198,2,0],
+		[130,4,"パサナ",,"0",18,1,198,3,0],
+		[131,4,"ドケビ",,"0",18,1,198,4,0],
+		[132,4,"カナトウス",,"鎧が絶対に壊れない",18,1,0],
+		[133,4,"アルギオペ",,"0",18,1,198,5,0],
+		[134,4,"エンジェリング",,"0",198,6,0],
+		[135,4,"バースリー",,"0",198,7,0],
+		[136,4,"ゴーストリング",,"0",198,8,75,-25,0],
+		[137,4,"マルク",,"0",152,100,61,5,0],
+		[138,4,"オークロード",,"0",71,30,0],
+		[139,5,"フリルドラ",,"0",220,19,0],
+		[140,6,"月夜花","ウォルヤファ","無限移動ヘイスト(移動速度アップ)",0],
+		[141,7,"ヴェルゼブブ",,"0",73,-30,0],
+		[142,7,"ポイズンスポア",,"0",220,20,0],
+		[143,7,"マリンスフィアー",,"0",220,21,0],
+		[144,7,"ビタタ",,"0",220,5,102,-25,0],
+		[145,7,"スモーキー",,"0",220,22,0],
+		[146,7,"クリーミー",,"0",220,23,0],
+		[147,7,"ポポリン",,"0",220,24,0],
+		[148,7,"オボンヌ",,"0",220,25,0],
+		[149,7,"パイレーツスケル",,"0",220,26,0],
+		[150,7,"ホロン",,"0",220,16,0],
+		[151,7,"ジョーカー",,"0",220,27,0],
+		[152,7,"オシリス",,"復活の時、HPとSPを全回復させる。",0],
+		[153,10,"0",,"0",0],
+		[154,3,"全種族30%耐性",,"※この選択欄は[アヌビスカード]や[タラフロッグカード]などの効果をまとめたものです。",263,30,0],
+		[155,10,"0",,"0",0],
+		[156,1,"クリダメ+10%,クリ+7","9","0",70,10,10,7,0],
+		[157,1,"メタリン",,"0",221,54,0],
+		[158,1,"エレメス=ガイル",,"0",117,10,0],
+		[159,1,"ハワード=アルトアイゼン",,"0",8,30,12,-5,0],
+		[160,1,"セシル=ディモン",,"0",12,5,8,-30,0],
+		[161,1,"ハワード=アルトアイゼン（MVP）",,"物理攻撃時、10%の確率で武器破壊、7%の確率で防具破壊",0],
+		[162,1,"セシル=ディモン（MVP）",,"物理攻撃時、5%の確率で敵に与えたダメージの20%をHPとして吸収",75,-100,0],
+		[163,1,"ブリーズ",,"0",17,5,138,5,0],
+		[164,1,"慰める者","ナグサメルモノ","装備者がプリーストである場合<BR>物理攻撃時、低確率でオートスペル[グランドクロス]Lv5発動",0],
+		[165,1,"タナトスの悲しみ","タナトスノカナシミ","0",17,5,221,55,0],
+		[166,1,"魔剣士タナトスの思念体","マケンシタナトスノシネンタイ","攻撃命中時にSP1消費",23,1,18,-30,9,-30,0],
+		[167,1,"ヒルウィンド",,"装備解除時、SP-50",5057,5,5126,5,5127,5,0],
+		[168,1,"ラウレル=ヴィンダー",,"装備解除時、SP-50",5130,3,5131,3,0],
+		[169,1,"デスワード",,"装備解除時、SP-50",5046,5,5047,5,5277,5,0],
+		[170,1,"レッドペロス",,"装備解除時、SP-50",5122,5,5125,5,0],
+		[171,1,"ピットマン",,"装備解除時、SP-50",5132,5,5133,5,0],
+		[172,3,"ベアドール",,"0",51,30,0],
+		[173,3,"タナトスの絶望",,"精錬値によりINTが増加",4,-6,0],
+		[174,2,"ウンゴリアント",,"0",75,10,158,100,0],
+		[175,2,"モルデン",,"0",6,2,0],
+		[176,2,"ジェミニ-S58",,"AGIが90以上の場合、沈黙、スタンに対する耐性+30%<BR>VITが80以上の場合、石化、睡眠に対する耐性+50%",0],
+		[177,2,"カトリーヌ=ケイロン",,"精錬値1毎に詠唱時間-1%<BR>精錬値が9以上の時、MATK 2%増加",0],
+		[178,2,"セイレン=ウィンザー（MVP）",,"[バーサーク]Lv1使用可能",15,-50,0],
+		[179,2,"ブルーオシドス",,"精錬値が4以下の時、さらに最大SP+40、SP自然回復量+5%",14,40,0],
+		[180,2,"セイレン=ウィンザー",,"精錬値によりSTRが増加",1,-6,0],
+		[181,4,"ジャンクポット",,"0",4,1,17,5,0],
+		[182,4,"ベノマス",,"物理攻撃を受けた時、高確率で敵と自分に毒をかける",0],
+		[183,4,"ポルセリオ",,"0",17,25,18,-5,0],
+		[184,4,"ミネラル",,"0",17,-25,18,3,0],
+		[185,4,"オブシディアン",,"補正値を除いたDEX18毎にVIT+1",0],
+		[186,4,"リムーバ",,"精錬値が高くなるほど最大HP増加量が減少する<BR>※精錬1につき最大HP-40",13,800,75,10,0],
+		[187,4,"イグニゼム=セニア",,"補正値を除いたINT18毎にSTR+1",0],
+		[188,7,"アルマイア=デュンゼ",,"魚類型モンスターを倒す度に、一定確率で貝のスープ(VIT+3)を落とす",0],
+		[189,4,"ヴェナート",,"補正値を除いたAGI18毎にLUK+1",0],
+		[190,4,"アークダム",,"0",17,10,73,20,0],
+		[191,4,"エンシェントミミック",,"補正値を除いたLUK18毎にAGI+1",0],
+		[192,4,"レッドノーバス",,"物理攻撃を受けた時、高確率で敵と自分に混乱をかける",0],
+		[193,4,"イエローノーバス",,"0",13,500,75,10,0],
+		[194,4,"エリセル",,"0",9,10,18,-5,0],
+		[195,4,"スコグル",,"物理攻撃を受けた時、高確率で敵と自分に出血をかける",0],
+		[196,4,"保護する者","ホゴスルモノ","補正値を除いたSTR18毎にINT+1",0],
+		[197,4,"監視する者","カンシスルモノ","補正値を除いたVIT18毎にDEX+1",0],
+		[198,4,"ディミック",,"精錬値によりVITが増加",3,-5,0],
+		[199,4,"プルス",,"精錬値の2倍、魔法反射確率増加。<BR>マジシャン系列が装備時、追加でMDEF+3",0],
+		[200,10,"0",,"0",0],
+		[201,10,"水属性石","1","0",0],
+		[202,10,"土属性石","2","0",0],
+		[203,10,"火属性石","3","0",0],
+		[204,10,"風属性石","4","0",0],
+		[205,10,"予備",,"0",0],
+		[206,10,"予備",,"0",0],
+		[207,10,"予備",,"0",0],
+		[208,10,"予備",,"0",0],
+		[209,10,"予備",,"0",0],
+		[210,10,"予備",,"0",0],
+		[211,10,"予備",,"0",0],
+		[212,7,"キューブ",,"ノービスが装備すると、物理ダメージを受けた時一定確率で速度増加Lv1が発動する。",0],
+		[213,2,"ジビット",,"精錬値が5以下の時、MDEF + 5",0],
+		[214,4,"ディスガイズ",,"物理ダメージを受けた時、一定確率で敵を沈黙状態にする。<BR>VITが77以上の場合、より高確率で沈黙状態にする。",0],
+		[215,1,"デュラハン",,"0",70,10,119,7,0],
+		[216,7,"ハイローゾイスト",,"物理攻撃時、一定確率でモンスターを他のモンスターに変換する。",0],
+		[217,1,"ブラッディマーダー",,"0",70,10,114,7,0],
+		[218,7,"ルード",,"ノービス系装備時、物理攻撃を受けた時、20%の確率でインデュアLv1発動。",0],
+		[219,1,"ロードオブデス",,"攻撃時、一定確率で敵を暗黒、瀕死、スタン、呪い、沈黙、毒、出血状態にする。",0],
+		[220,4,"ロリルリ",,"物理ダメージを受けた時、一定確率で自分にヒールLv3をかける。",0],
+		[221,2,"アークエンジェリング",,"補正値を除いたLUKが77以上の場合、HP回復力とSP回復力100%上昇。",13,300,0],
+		[222,3,"アクラウス",,"精錬値が5以下の時、DEF+2、MDEF+3。",0],
+		[223,1,"アサルトタートル",,"0",70,10,117,7,0],
+		[224,4,"アノリアン",,"集中力向上Lv10を習得している場合、Lv10が発動する。",221,56,0],
+		[225,4,"アポカリプス",,"精錬値が9以上の時、MAXHP+800。",3,2,0],
+		[226,7,"虎人","コジン","天使形モンスターを倒した時、一定確率で「陽光の箱」をドロップする。",0],
+		[227,6,"アムムト",,"0",127,10,57,-20,0],
+		[228,6,"アモンラー",,"純粋なIntが99以上の時、オートスペル[キリエエレイソン]Lv10の発動率が上昇",7,1,221,57,0],
+		[229,6,"アラーム",,"0",3,1,13,300,221,116,0],
+		[230,7,"アリゲーター",,"0",78,5,0],
+		[231,3,"アリス",,"0",77,40,79,-40,0],
+		[232,4,"アンソニ",,"0",221,58,0],
+		[233,1,"一反木綿","イッタンモメン","攻撃時、SPを1ずつ消耗する",70,20,0],
+		[234,2,"インキュバス",,"0",14,150,4,-3,76,-20,0],
+		[235,1,"インジャスティス",,"0",221,59,0],
+		[236,7,"ヴァイオリー",,"寒いジョークLv5を習得している場合、Lv5が発動する。",221,60,0],
+		[237,7,"ウィンドゴースト",,"ユピテルサンダーLv10を習得している場合、Lv10が発動する。",221,61,0],
+		[238,2,"ウータンシューター",,"0",18,1,157,20,0],
+		[239,2,"ウータンファイター",,"0",18,1,158,20,0],
+		[240,4,"ウドゥンゴーレム",,"0",75,30,18,1,0],
+		[241,3,"エクスキューショナー",,"0",18,1,192,25,0],
+		[242,6,"エクスプロージョン",,"0",129,10,59,-20,0],
+		[243,5,"エクリプス",,"0",3,1,0],
+		[244,1,"エルダー",,"攻城戦時、ガーディアンに与えるダメージ40%増加<BR>(2008年11月現在、新攻城戦のガーディアンには効果がない)",1063,40,1064,40,1065,40,0],
+		[245,3,"エンシェントマミー",,"0",221,62,0],
+		[246,6,"エンシェントワーム",,"0",126,10,56,-20,0],
+		[247,7,"オウルデューク",,"0",221,63,0],
+		[248,7,"オウルバロン",,"0",221,64,0],
+		[249,3,"オーガトゥース",,"0",18,1,191,25,0],
+		[250,7,"オークアーチャー",,"人間形モンスターを倒した時、一定確率で「あえぐ箱」をドロップする。",0],
+		[251,7,"大口蛙","オオグチガエル","0",221,65,0],
+		[252,1,"オークレディ",,"0",83,30,0],
+		[253,1,"オットー",,"アコライト系職業が装備すると、悪魔形と不死形モンスターにクリティカル+9",8,10,9,3,0],
+		[254,1,"お化け貝","オバケガイ","カニに与えるダメージ+30%",1072,30,17,5,0],
+		[255,1,"怨霊武士","オンリョウブシ","装備者はHPが自動回復せず、10秒毎に666のHPを失う。<BR>装備解除時、999のHPを失う。",22,1,0],
+		[256,7,"ガーゴイル",,"昆虫形モンスターを倒した時、一定確率で「雷の箱」をドロップする。",0],
+		[257,6,"ガジョマート",,"0",123,10,53,-20,0],
+		[258,5,"河童","カッパ","精錬値が5以下の時、MDEF+8。",0],
+		[259,1,"カニ",,"ヒトデに与えるダメージ+30%",1240,30,17,5,0],
+		[260,7,"カブキ忍者","カブキニンジャ","クローキングを習得しているキャラクターが物理ダメージを受けた時、クローキングLv5が発動する。",2,1,0],
+		[261,4,"カラ傘","カラカサ","物理ダメージを受けた時、一定確率で敵を混乱状態にする。<BR>STRが77以上の場合、より高確率で混乱状態にする。",0],
+		[262,7,"ガラパゴ",,"昆虫形モンスターを倒した時、一定確率でリンゴ、バナナ、ニンジンジュースをドロップする。",0],
+		[263,1,"ギグ",,"近接物理攻撃で昆虫形モンスターを倒した時、SP5回復。<BR>装備解除時、SP5減少。",0],
+		[264,4,"キメラ",,"物理ダメージを受けた時、一定確率で敵を毒状態にする。<BR>アサシンやアサシンクロスが装備すると、より高確率で毒状態にする。",0],
+		[265,1,"キャタピラー",,"近接物理攻撃で植物形モンスターを倒した時、SP5回復。<BR>装備解除時、SP5減少。",0],
+		[266,6,"キャットナインテイル",,"魔法反射率5%",19,3,0],
+		[267,5,"巨大ウィスパー","キョダイウィスパー","補正値を除いたSTRが80以上の場合、ATK+20。<BR>補正値を除いたVITが80以上の場合、MAXHP+3%。<BR>補正値を除いたLUKが80以上の場合、CRI+3。",9,10,0],
+		[268,4,"キラーマンティス",,"物理ダメージを受けた時、一定確率で敵を出血状態にする。",0],
+		[269,6,"クリスマスクッキー",,"0",128,10,58,-20,0],
+		[270,7,"クッキー","クッキー","0",6,2,5037,10,5387,10,0],
+		[271,5,"九尾狐","クミホ","精錬値が9以上の時、FLEE+20。",2,2,0],
+		[272,3,"土精","ドセイ","攻城戦時、ガーディアンから受けるダメージ50%減少<BR>(2008年11月現在、新攻城戦のガーディアンには効果がない)",3063,50,3064,50,3065,50,0],
+		[273,2,"クランプ",,"モンスターを倒した時、一定確率でZenyを獲得する。",0],
+		[274,2,"グランペコ",,"0",221,66,0],
+		[275,4,"クリーミーフィアー",,"物理ダメージを受けた時、一定確率で敵を混乱状態にする。",0],
+		[276,4,"グリズリー",,"物理ダメージを受けた時、一定確率で敵を暗黒状態にする。",0],
+		[277,1,"グリフォン",,"ソードマン系職業が装備すると、攻撃時に低確率でボーリングバッシュLv5が発動する。",9,2,10,7,0],
+		[278,6,"グリンブルスティ",,"0",125,10,55,-20,0],
+		[279,1,"クルーザー",,"0",70,10,112,7,0],
+		[280,4,"クロック",,"オートガードLv10を習得している場合、Lv10が発動する。",221,67,0],
+		[281,4,"コウ",,"マーチャント系職業が装備すると、鎧が破損しなくなる。",6,3,0],
+		[282,4,"エリザ",,"物理攻撃を受けた時、一定確率でオートスペル[魅惑のウィンク]発動<BR>装備者がダンサーである時、10%の確率で発動する",0],
+		[283,4,"ゴート",,"精錬値が5以下の時、DEF+2、MDEF+5。",0],
+		[284,2,"黒蛇王","コクダオウ","0",4,3,154,100,153,100,0],
+		[285,4,"ごっついミノタウロス",,"物理ダメージを受けた時、一定確率で敵をスタン状態にする。",0],
+		[286,1,"ゴブリンアーチャー",,"0",70,10,111,7,0],
+		[287,1,"ゴブリンライダー",,"0",70,10,110,7,0],
+		[288,1,"ゴブリンリーダー",,"0",81,30,0],
+		[289,1,"コボルドアーチャー",,"0",70,10,113,7,0],
+		[290,1,"コボルドリーダー",,"0",82,30,0],
+		[291,4,"サキュバス",,"0",13,1000,3,-3,75,-20,0],
+		[292,7,"酒天狗","サケテング","モンスターを倒した時、一定確率で回復系アイテムをドロップする。",0],
+		[293,4,"サスカッチ",,"物理ダメージを受けた時、一定確率で敵を凍結状態にする。",0],
+		[294,5,"さすらい狼","サスライオオカミ","0",1,1,0],
+		[295,5,"彷徨う者","サマヨウモノ","シーフ系職業が装備すると、回避率+20。",221,68,0],
+		[296,1,"三葉蟲","サンヨウチュウ","近接物理攻撃で無形モンスターを倒した時、SP5回復。<BR>装備解除時、SP5減少。",0],
+		[297,7,"シーオッター",,"魚類形モンスターを倒した時、一定確率でお寿司やおさしみをドロップする。<BR>寿司や刺身を食べる時のHP回復量50%増加。",0],
+		[298,2,"ジェスター",,"精錬値が9以上の時、MaxSP+150",4,2,0],
+		[299,4,"クラベン",,"物理ダメージを受けた時、一定確率で敵を暗黒状態にする。",0],
+		[300,6,"ジェネラルスケルトン",,"0",124,10,54,-20,0],
+		[301,4,"ジオグラファー",,"ブレッシングLv10を習得している場合、Lv10が発動する。",221,69,0],
+		[302,4,"ジャイアントスパイダー",,"物理ダメージを受けた時、一定確率で敵を毒状態にする。",0],
+		[303,2,"ジャイアントホーネット",,"昆虫形モンスターを倒した時、一定確率でウィンドオブヴェルデュールをドロップする。",64,10,0],
+		[304,6,"銃奇兵","ジュウキヘイ","精錬値が9以上の時、MAXHP+10%、MAXSP+10%。",1,2,0],
+		[305,1,"ハティーベベ",,"0",221,70,0],
+		[306,3,"ジルタス",,"0",5207,10,5199,10,6,2,0],
+		[307,3,"人面桃樹","ジンメンヨウジュ","物理攻撃時、一定確率で自分にヒールLv1を使用する。Lv10を習得している場合は、Lv10を使用する。",0],
+		[308,4,"スケルプリズナー",,"物理ダメージを受けた時、一定確率で敵を睡眠状態にする。",0],
+		[309,2,"スタラクタイトゴーレム",,"0",18,1,151,20,0],
+		[310,3,"スティング",,"精錬値が9以上の時、MDEF+5。",18,2,0],
+		[311,1,"ダークプリースト",,"物理攻撃命中時、低確率で敵のSPを減少させる。<BR>魔法攻撃命中時、低確率で敵のSPを減少させる。<BR>セージ、プロフェッサー、ソーサラーが装備した場合、物理攻撃命中時、SPを1回復。",0],
+		[312,7,"ステムワーム",,"動物形モンスターを倒した時、一定確率で「豪雨の箱」をドロップする。",0],
+		[313,1,"ストームナイト",,"0",132,20,221,71,0],
+		[314,7,"スプリングラビット",,"動物形モンスターを倒した時、一定確率でにくや化け物のエサをドロップする。<BR>にくや化け物のエサを食べた時のHP回復量50%増加。",0],
+		[315,7,"スリーパー",,"魚類形モンスターを倒した時、一定確率で「眠い箱」をドロップする。",0],
+		[316,7,"セージワーム",,"モンスターを倒した時、一定確率でジェムストーンをドロップする。",0],
+		[317,4,"ソリッドタートル",,"0",18,2,19,2,0],
+		[318,6,"ゾンビプリズナー",,"0",121,10,51,-20,0],
+		[319,1,"ゾンビマスター",,"近接物理攻撃で不死形モンスターを倒した時、SP5回復。<BR>装備解除時、SP5減少。",0],
+		[320,2,"ダークイリュージョン",,"0",73,-10,15,-10,16,-10,0],
+		[321,4,"ダークフレーム",,"物理ダメージを受けた時、一定確率で敵を石化させる。",0],
+		[322,6,"ダークロード",,"0",221,72,0],
+		[323,1,"タートルジェネラル",,"0",80,20,221,73,0],
+		[324,7,"団子童子","ダンゴドウジ","人間形モンスターを倒した時、一定確率でキャンディーやスティックキャンディーをドロップする。<BR>キャンディーとスティックキャンディーを食べた時のHP回復量50%増加。",0],
+		[325,1,"チェペット",,"(自分にではなく敵に)",221,74,0],
+		[326,1,"チャッキー",,"攻撃時SP1消費。<BR>マーチャント系職業が装備すると、武器が破損しなくなる。",17,30,0],
+		[327,5,"チョコ",,"0",9,10,11,5,0],
+		[328,1,"チンピラ",,"シーフ系職業が装備すると、クリティカル+4。",70,15,0],
+		[329,1,"ディアボリック",,"近接物理攻撃で悪魔形モンスターを倒した時、SP5回復。<BR>装備解除時、SPが5減少する。",0],
+		[330,4,"デーモンパンク",,"物理ダメージを受けた時、一定確率で敵を睡眠状態にする。",0],
+		[331,4,"デッドリーレイス",,"物理ダメージを受けた時、一定確率で敵に呪いをかける。",0],
+		[332,2,"ペクソジン",,"0",102,-15,91,30,0],
+		[333,4,"スカイデリーター",,"近接物理攻撃でモンスターを倒した時、HP100回復。",75,-100,0],
+		[334,4,"グラウンドデリーター",,"近接物理攻撃でモンスターを倒した時、SP10回復。装備解除時、SP100減少。",76,-100,0],
+		[335,7,"天下大将軍","テンカダイショウグン","物理攻撃時、低確率で気功が発動する。<BR>アコライト系職業が装備すると、発動確率が増加する。<BR>ガンスリンガーの場合は、気功ではなくフリップザコインが発動する。",0],
+		[336,7,"天邪仙人","テンジャセンニン","植物形モンスターを倒した時、一定確率で「憂鬱な箱」をドロップする。",0],
+		[337,2,"天仙娘々","テンセンニャンニャン","0",4,1,14,50,0],
+		[338,5,"トード",,"0",11,1,0],
+		[339,2,"時計塔管理者","トケイトウカンリニン","0",73,-5,4,1,0],
+		[340,5,"ドラゴンテイル",,"0",5040,5,5041,5,2,1,9,10,0],
+		[341,5,"ドラゴンフライ",,"0",2,1,0],
+		[342,2,"ドリアード",,"植物形モンスターを倒した時、一定確率でイエローライブをドロップする。",62,10,0],
+		[343,1,"ドリラー",,"近接物理攻撃で竜族モンスターを倒した時、SP5回復。<BR>装備解除時、SPが5減少する。",0],
+		[344,4,"ナイトメアテラー",,"物理ダメージを受けた時、一定確率で敵に呪いをかける。",0],
+		[345,1,"ネレイド",,"近接物理攻撃で動物形モンスターを倒した時、SP5回復。<BR>装備解除時、SP5減少。",0],
+		[346,5,"ハーピー",,"0",60,15,5046,5,0],
+		[347,2,"パーメットタートル",,"0",67,15,69,15,0],
+		[348,3,"ハイオーク",,"0",18,1,71,5,0],
+		[349,4,"ハティー",,"物理ダメージを受けた時、敵を50%の確率で凍結状態にする。",0],
+		[350,7,"パピヨン",,"",73,30,5053,5,380,1,0],
+		[351,6,"半漁人","ハンギョジン","0",75,10,76,10,0],
+		[352,5,"パンク",,"クァグマイアLv5を習得している場合、Lv5が発動する。",221,75,0],
+		[353,1,"パンツァーゴブリン",,"0",70,10,116,7,0],
+		[354,7,"ヒートタートル",,"ソードマン系職業が装備すると、完全回避+3。",10,3,0],
+		[355,1,"ビートル",,"近接物理攻撃で魚類形モンスターを倒した時、SP5回復。<BR>装備解除時、SP5減少。",0],
+		[356,1,"ヒトデ",,"お化け貝に与えるダメージ+30%",1059,30,17,5,0],
+		[357,2,"キエル-D-01",,"0",74,30,0],
+		[358,3,"フェアリーフ",,"※2014年7月22日までゲーム内説明文は無属性モンスター耐性だったが<BR>　実は無形種族耐性だったっぽい。そして今は正式に無属性攻撃耐性",60,5,18,1,0],
+		[359,1,"フェイクエンジェル",,"近接物理攻撃で天使形モンスターを倒した時、SP5回復。<BR>装備解除時、SP5減少。",0],
+		[360,1,"フェンダーク",,"近接物理攻撃で人間形モンスターを倒した時、SP5回復。<BR>装備解除時 SP5減少。",0],
+		[361,1,"ブラッディナイト",,"0",221,76,0],
+		[362,6,"フリーズタートル",,"精錬値が9以上の場合、バッシュのダメージ10%増加。",13,300,0],
+		[363,1,"ランドグリス",,"武器が損傷されない。",80,10,221,77,0],
+		[364,4,"ブリライト",,"物理ダメージを受けた時、一定確率で敵を沈黙状態にする。",0],
+		[365,7,"ブレイザー",,"モンスターを倒した時、一定確率で食べ物系アイテムをドロップする。",0],
+		[366,1,"フレイムシューター",,"0",8,10,17,10,0],
+		[367,4,"ペスト",,"物理ダメージを受けた時、一定確率で敵を石化状態にする。<BR>INTが77以上の場合、より高確率で石化状態にする。",0],
+		[368,3,"ペノメナ",,"0",50,30,0],
+		[369,5,"ボーカル",,"0",19,3,0],
+		[370,7,"ボンゴン",,"ムナックから受けるダメージ100%増加<BR>バッシュ使用時、敵を5セル押し出す。",221,78,3302,-100,0],
+		[371,7,"マーリン",,"モンスターを倒した時、一定確率でゼロピーやでっかいゼロピーをドロップする。",0],
+		[372,5,"マスターリング",,"0",6,1,0],
+		[373,6,"経験値+10%系",,"※この選択欄は[アイアンフィストカード]や[ゾンビプリズナーカード]などの効果をまとめたものです。<BR>※全ての種族に効果があります。",103,10,263,-20,0],
+		[374,2,"マヤパープル",,"ハイディングやクローキングをしているモンスターが見える。",0],
+		[375,3,"ミステルテイン",,"0",18,1,190,25,0],
+		[376,2,"ミストケース",,"モンスターを倒した時、一定確率でプレゼントボックスをドロップする。",0],
+		[377,6,"ミニデモ",,"0",122,10,52,-20,0],
+		[378,7,"ミミック",,"モンスターを倒した時、一定確率で古く青い箱をドロップする。",0],
+		[379,6,"雅人形","ミヤビニンギョウ","0",16,10,5055,5,0],
+		[380,1,"ミュータントドラゴン",,"ファイアーボールLv10を習得している場合、Lv10が発動する。",17,15,221,79,0],
+		[381,6,"メガリス",,"精錬値が5以下の時、MDEF+7。",0],
+		[382,1,"ラーヴァゴーレム",,"0",84,30,0],
+		[383,2,"ライドワード",,"アコライト系職業が装備すると、INT+1、MDEF+1。",4,1,0],
+		[384,4,"リビオ",,"物理ダメージを受けた時、一定確率で敵をスタン状態にする。<BR>DEXが77以上の場合、より高確率でスタン状態にする。",0],
+		[385,7,"レイス",,"不死形モンスターを倒した時、一定確率で「クスクス笑う箱」をドロップする。",0],
+		[386,7,"レイドリックアーチャー",,"悪魔形モンスターを倒した時、一定確率で「恨みの箱」をドロップする。",0],
+		[387,2,"レイブオルマイ",,"動物形モンスターを倒した時、一定確率でレッドブラッドをドロップする。",63,10,0],
+		[388,6,"レグルロ",,"0",1,1,3,1,0],
+		[389,7,"老人参","ロウニンジン","植物形モンスターを倒した時、一定確率で赤ハーブ、黄ハーブ、白ハーブをドロップする。<BR>ハーブアイテムを使用時のHP回復量50%増加。",0],
+		[390,1,"ロータージャイロ",,"0",70,10,115,7,0],
+		[391,6,"ワイルドローズ",,"シーフ系職業が装備すると、完全回避+5。",2,1,0],
+		[392,4,"タオグンカ",,"0",15,100,18,-50,19,-50,0],
+		[393,5,"ヒェグン",,"0",9,15,10,1,0],
+		[394,5,"デビルリング",,"0",60,50,61,-50,62,-50,63,-50,64,-50,65,-50,66,-50,67,-50,68,-50,69,-50,0],
+		[395,7,"小龍舞","コリュウマイ","0",2,1,10,3,0],
+		[396,3,"タムラン",,"0",18,2,5158,10,5159,10,5384,10,0],
+		[397,2,"リーフキャット",,"魚類形モンスターを倒した時、一定確率でクリスタルブルーをドロップする。",61,10,0],
+		[398,1,"ミョグェ",,"0",48,20,0],
+		[399,6,"アイアンフィスト",,"0",120,10,50,-20,0],
+		[400,5,"ノクシャス",,"0",60,10,78,10,0],
+		[401,5,"カヴァク=イカルス",,"精錬値が4以下の時、さらにFlee+10、完全回避+1",9,10,0],
+		[402,5,"チュンイー",,"精錬値によりLUKとクリティカル確率が増加",6,-5,0],
+		[403,5,"オークベイビー",,"精錬値が9以上の場合、さらに無属性攻撃耐性+5%、Flee+5",60,10,9,10,0],
+		[404,5,"エレメス=ガイル（MVP）",,"0",220,28,0],
+		[405,5,"エリオット",,"装備者が剣士、商人、シーフ系列である場合、STR+2、最大HP+5%<BR>装備者がマジシャン、アコライト、アーチャー系列である場合、INT+2、最大SP+5%",0],
+		[406,6,"タナトスの憎悪","タナトスノゾウオ","精錬値によりAGIが増加",2,-5,0],
+		[407,6,"ゴールドオシドス",,"精錬値が4以下の場合、さらに最大HP+4%、最大SP+4%<BR>HP自然回復量+5%、SP自然回復量+5%",15,4,16,4,0],
+		[408,6,"グリーンペロス",,"0",3,1,15,10,0],
+		[409,6,"レディータニー",,"モンスターを倒す度に、低確率でバナナを落とす<BR>バナナの回復量+100%",15,-40,16,50,0],
+		[410,7,"グレムリン",,"動物型モンスターを倒す度に、一定確率でボンバーステーキ(STR+3)を落とす",0],
+		[411,7,"ビホルダー",,"0",220,29,0],
+		[412,7,"ウィレス",,"昆虫型モンスターを倒す度に、一定確率で触手のチーズグラタン(AGI+3)を落とす",0],
+		[413,7,"ヒュッケバイン=トリス",,"0",221,80,0],
+		[414,7,"イレンド=エベシ",,"0",221,81,0],
+		[415,7,"プラズマ",,"モンスターを倒す度に、一定確率でレジストポーションを落とす",0],
+		[416,7,"執行する者","シッコウスルモノ","天使型モンスターを倒す度に、一定確率で大学芋(LUK+3)を落とす",0],
+		[417,7,"ドラゴンの卵","ドラゴンノタマゴ","竜族モンスターを倒す度に一定確率でハチ蜜ハーブティー(INT+3)を落とす",0],
+		[418,7,"グリーンイグアナ",,"無形型モンスターを倒す度に一定確率でフルーツミックス(DEX+3)を落とす",0],
+		[419,7,"ハイドラランサー",,"0",221,82,0],
+		[420,4,"RSX-0806","アールエスエックス0806","鎧が損傷されない",381,1,3,3,0],
+		[421,4,"マーガレッタ=ソリン（MVP）",,"0",221,83,0],
+		[422,4,"データルザウルス",,"0",19,-20,152,100,221,84,0],
+		[423,6,"イグニゼム=セニア（MVP）",,"10秒ごとにHPを50、SPを10回復。",15,10,16,10,0],
+		[424,2,"カトリーヌ=ケイロン（MVP）",,"一般モンスターの魔法防御力を無視する。<BR>装備解除時、SPが2000程度消失する",73,100,76,-100,0],
+		[425,2,"ヴェスパー",,"魔法攻撃時、ボスモンスターのMDEFの 30%を無視してダメージを与える。",5,2,0],
+		[426,2,"マーガレッタ=ソリン",,"0",4,1,221,85,0],
+		[427,1,"タナトスの苦悩",,"0",178,10,0],
+		[428,1,"スケゴルト",,"0",176,2,0],
+		[429,100,"0",,"(インジャスティスCを2枚以上挿しても効果は増えません)",17,20,216,3,0],
+		[430,100,"0",,"オートスペルのフロストダイバー発動確率が大きく増加",0],
+		[431,100,"0",,"水棲種族を倒した時に特定の確率でおさしみを落とす。",41,30,0],
+		[432,100,"0",,"0",18,3,19,3,0],
+		[433,100,"0",,"0",214,4,213,4,75,30,76,30,0],
+		[434,100,"0",,"0",73,-10,15,20,16,20,0],
+		[435,100,"0",,"0",211,3,0],
+		[436,100,"0",,"0",18,3,213,3,0],
+		[437,100,"0",,"0",86,20,0],
+		[438,100,"0",,"近接物理ダメージを受けた場合15%の確率で敵に睡眠をかける",0],
+		[439,100,"0",,"近接物理ダメージを受けた場合15%の確率で敵に暗闇をかける",0],
+		[440,100,"0",,"近接物理ダメージを受けた場合15%の確率で敵に呪いをかける",0],
+		[441,100,"0",,"0",217,1,0],
+		[442,100,"0",,"0",9,18,0],
+		[443,999,"0",],
+		[444,999,"0",],
+		[445,999,"0",],
+		[446,999,"0",],
+		[447,999,"0",],
+		[448,100,"0",,"0",13,300,14,60,0],
+		[449,100,"0",,"0",221,86,0],
+		[450,100,"0",,"敵を倒すごとに、一定確率で赤ポーションを落とす。<BR>セット装備者が剣士系の場合、赤/黄/白ポーションの回復量が50%増加する。",211,10,15,20,75,50,221,87,0],
+		[451,100,"0",,"移動速度+5%<BR>攻撃ごとにSPが1ずつ回復する。<BR>[オートスペル]インティミデイトが発動しなくなる。<BR>セット装備者が盗賊系の場合、スキル使用時にジェムストーンを消費しない。",211,5,212,5,12,5,0],
+		[452,100,"0",,"セット装備者が聖職系の場合、悪魔種族と不死種族からのダメージを30%カットし、<BR>悪魔種族と不死種族を倒した時に貰える経験値+5% ",213,10,73,-10,102,10,0],
+		[453,100,"0",,"セット装備者が弓手系の場合、<BR>動物種族を倒した時に貰える経験値が+5%、<BR>物理攻撃時一定確率で動物種族にコーマ(即死)状態をかける。",25,20,212,5,215,3,86,20,0],
+		[454,100,"0",,"セット装備者が魔系の場合、詠唱時間が15%減少、MATKが + 3%",13,500,18,5,19,5,5051,10,5054,10,5056,10,0],
+		[455,100,"0",,"攻撃時ごとにSPが2ずつ回復する<BR>セット装備者が商人系キャラの場合、<BR>モンスターを倒す度に一定確率で古い紫色の箱を落とし、20%の確率で魔法を反射。",216,10,5065,20,0],
+		[456,100,"0",,"セット装備者がクルセイダーの場合、鎧に聖属性を付与する",211,1,214,1,18,2,76,10,73,-10,5324,10,5284,10,0],
+		[457,100,"0",,"ストリップアーマーLv5を習得している場合オートスペルでLv5が発動<BR>セット装備者がローグである場合、<BR>スキル使用時SP消費量-20%、<BR>オートスペルインティミデイトが発動しない",211,6,212,4,5169,10,0],
+		[458,100,"0",,"セット装備者がモンクの場合、スキル使用時SP消費量-10%",211,3,17,25,14,80,5197,10,5321,10,221,88,1600000000380,1,0],
+		[459,100,"0",,"セット装備者がバードかダンサーの場合、<BR>物理攻撃を受けた時、一定確率でオートスペル[運命のタロットカード]Lv2発動",215,5,5199,10,5207,10,5292,5,0],
+		[460,100,"0",,"セット装備者がセージである場合、<BR>20%の確率で魔法反射、<BR>詠唱時間-20%、<BR>モンスターを倒す度に低確率でレッド・イエロージェムストーンを落とす",214,3,5057,10,5133,10,0],
+		[461,100,"0",,"攻撃する度にSP1回復<BR>セット装備者がアルケミストの場合<BR>物理攻撃時一定確率でオートスペル[アドレナリンラッシュ]Lv1発動<BR>モンスターを倒す度に一定確率でコーティング薬、植物の茎を落とす",211,4,15,7,16,7,5065,20,0],
+		[462,1,"ドロセラ",,"遠距離物理攻撃の時CRI+15",0],
+		[463,1,"アトロス",,"物理攻撃時、一定確率で10秒間攻撃速度+100%",17,25,0],
+		[464,1,"ソードガーディアン",,"片手剣か両手剣の時、ボウリングバッシュのダメージ+25%、CRI+5、HIT+5",0],
+		[465,1,"ボウガーディアン",,"弓の時、アローシャワーのダメージ+50%、CRI+5、HIT+5",0],
+		[466,1,"ネクロマンサー",,"杖の時、INT+1、敵のMDEF2%無視",0],
+		[467,3,"ホドレムリン",,"物理or魔法ダメージを受けた時に一定確率で10秒間完全回避+30",190,15,191,15,192,15,0],
+		[468,3,"シーカー",,"0",220,30,159,30,19,10,0],
+		[469,3,"マスキプラー",,"0",221,89,221,90,0],
+		[470,3,"フレームスカル",,"物理攻撃を受けた時、一定確率で敵にスタン、呪い、暗黒、石化のうち一つをかける",151,30,153,30,154,30,159,30,0],
+		[471,2,"ヴァンベルク",,"物理攻撃時、一定確率で5秒間CRI+100",1,2,0],
+		[472,2,"アイシラ",,"魔法攻撃時、一定確率で5秒間キャスティング時間が50%減少し、Flee+30",4,2,0],
+		[473,2,"ノッカー",,"無形モンスターを倒した時低確率でエルニウム原石、オリデオコン原石ドロップ",30,5,0],
+		[474,2,"バンシー",,"マジシャン系列の場合、SP+100、HP-100<BR>ナパームビート、ソウルストライク、ナパームバルカンのダメージ+20%",0],
+		[475,4,"グルームアンダーナイト",,"0",46,40,47,40,38,40,36,40,0],
+		[476,4,"アガヴ",,"着用者がマジシャン系列の場合追加でSP+100",89,5,18,-10,0],
+		[477,4,"エキオ",,"着用者が剣士系列の場合追加でHP+500",17,15,0],
+		[478,4,"クトルラナックス",,"0",43,50,221,91,0],
+		[479,4,"ビョルグ",,"ローグ、チェイサーが装着時ATK+10%、MATK+10%<BR>(※計算機ではATK+10%はサイン系で計算中)",0],
+		[480,5,"ロウィーン",,"0",9,5,11,3,41,10,115,15,0],
+		[481,5,"サラマンダー",,"0",5122,40,5125,40,0],
+		[482,5,"カーサ",,"0",221,92,221,93,0],
+		[483,5,"マグマリン",,"0",17,5,42,10,112,15,113,15,0],
+		[484,6,"アイスタイタン",,"物理/魔法ダメージを受けた時一定確率で10秒間DEF+10",3,2,0],
+		[485,6,"ゾンビスローター",,"モンスターを倒した時HP50回復",37,1,177,1,0],
+		[486,6,"堕ちた大神官ヒバム","オチタダイシンカンヒバム","0",89,10,16,-50,177,50,178,50,0],
+		[487,7,"スノウアー",,"モンスターを倒した時高確率でアイスクリームを落とす<BR>アイスクリームの回復量100%増加",0],
+		[488,7,"シロマ",,"0",5054,25,7054,25,0],
+		[489,7,"ゲイズティ",,"0",221,94,0],
+		[490,7,"ガリオン",,"0",8,5,41,5,0],
+		[491,7,"スタポ",,"0",220,31,220,32,0],
+		[492,7,"イフリート",,"ATK、CRI、HITが自分のJobレベルに対する一定の割合で増加する。(Jobレベル10毎に1増加)<BR>※0.1%でLv10というのはiRO情報。Lv10のスキル倍率不明。",221,157,0],
+		[493,7,"インプ",,"0",5051,25,7051,25,0],
+		[494,7,"ラギッドゾンビ",,"低確率で自分に状態異常出血",117,5,37,1,177,1,0],
+		[495,7,"ヘルプードル",,"にくの回復量100%増加<BR>近距離物理攻撃時、相手に低確率で出血をかける",8,1,0],
+		[496,100,"0",,"人間型モンスターを倒した時SP2回復",0],
+		[497,1,"ヒルスリオン",,"0",17,25,0],
+		[498,1,"センチピード幼虫","センチピードヨウチュウ","0",4,1,100,3,0],
+		[499,4,"バンシーマスター",,"0",4,1,100,10,0],
+		[500,4,"エントヴァイエン",,"0",100,100,0],
+		[501,3,"タタチョ",,"0",330,20,40,5,0],
+		[502,3,"アクアエレメンタル",,"0",331,20,41,5,0],
+		[503,3,"ドラコ",,"0",332,20,42,5,0],
+		[504,3,"ルシオラヴェスパ",,"0",334,20,44,5,0],
+		[505,3,"センチピード",,"0",335,20,45,5,0],
+		[506,3,"コルヌス",,"0",336,20,46,5,0],
+		[507,3,"ダークシャドー",,"0",337,20,47,5,0],
+		[508,99,"Atk2",,"0",80,2,0],
+		[509,99,"Atk3",,"0",80,3,0],
+		[510,99,"Cri+5",,"0",10,5,0],
+		[511,99,"Cri+7",,"0",10,7,0],
+		[512,99,"Flee+6",,"0",9,6,0],
+		[513,99,"Flee+12",,"0",9,12,0],
+		[514,99,"Matk+1%&固定詠唱-1%",,"0",89,1,0],
+		[515,99,"Matk+2%&固定詠唱-1%",,"0",89,2,0],
+		[516,99,"Agi+1",,"0",2,1,0],
+		[517,99,"Agi+2",,"0",2,2,0],
+		[518,99,"Agi+3",,"0",2,3,0],
+		[519,99,"Int+1",,"0",4,1,0],
+		[520,99,"Int+2",,"0",4,2,0],
+		[521,99,"Int+3",,"0",4,3,0],
+		[522,99,"Dex+1",,"0",5,1,0],
+		[523,99,"Dex+2",,"0",5,2,0],
+		[524,99,"Dex+3",,"0",5,3,0],
+		[525,99,"なし",,"0",0],
+		[526,3,"耐性20%/物理5%系",,"※[属性モンスター耐性]です。[属性耐性]ではありません。<BR>※この選択欄は[アクアエレメンタルカード]や[ルシオラヴェスパカード]などをまとめた物です。",271,20,262,5,0],
+		[527,1,"魔法全種族+10%","A","※この選択欄は[タナトスの苦悩カード]や[ピンギキュラカード]などの効果をまとめたものです。",266,10,273,10,0],
+		[528,1,"テンドリルリオン",,"0",10,5,0],
+		[529,1,"アウノエ",,"0",70,20,0],
+		[530,1,"ファナト",,"両手剣の場合で、かつ精錬値が10の場合、Aspd+1。",17,10,0],
+		[531,1,"ビホルダーマスター",,"武器が弓の場合で、かつ精錬値が10の場合、Aspd+1。",25,3,0],
+		[532,1,"ナーガ",,"0",175,10,0],
+		[533,1,"ネペンテス",,"0",173,10,0],
+		[534,1,"ドラコの卵",,"0",179,10,0],
+		[535,1,"ブラディウムゴーレム",,"0",172,10,0],
+		[536,1,"エンシェントツリー",,"0",171,10,0],
+		[537,1,"ザクダム",,"0",177,10,0],
+		[538,1,"コバルトミネラル",,"0",170,10,0],
+		[539,1,"ピンギキュラ",,"0",174,10,0],
+		[540,1,"ヘルアポカリプス",,"0",176,10,0],
+		[541,4,"ニーズヘッグの影",,"装備者がハイウィザード、ウォーロックの場合、<BR>追加で固定詠唱時間-50%。",4,5,0],
+		[542,4,"ナハトズィーガー",,"0",348,30,0],
+		[543,4,"ハードロックマンモス",,"0",18,5,0],
+		[544,2,"ドゥネイール",,"物理攻撃時、一定の確率で、4秒間完全回避+10。",17,10,0],
+		[545,2,"ラタトスク",,"魔法攻撃時、一定の確率で、4秒間 固定詠唱時間-50%。",100,10,0],
+		[546,2,"リンコ",,"[ヒール]を使用した時のSP消費量+15。",91,4,0],
+		[547,2,"フィラ",,"物理攻撃時、一定の確率で、4秒間Cri+20。",2,1,5,1,0],
+		[548,2,"ダークピンギキュラ",,"モンスターを倒した時、一定確率で毒草ネリウム、<BR>毒草ランタナ、毒草マキュラータ、毒草セラタム、<BR>毒草スコポリア、毒草アモエナ、をドロップ。",17,10,0],
+		[549,6,"ヘビィメタリン",,"マーチャント系の場合、「カートレボリューション」の消費SP+12。<BR>「カートレボリューション」で与えるダメージ +50%",1,2,0],
+		[550,99,"(第1エンチャントなし)",,"0",0],
+		[551,99,"(第2エンチャントなし)",,"0",0],
+		[552,99,"(第3エンチャントなし)",,"0",0],
+		[553,99,"(第4エンチャントなし)",,"0",0],
+		[554,99,"Str+1",,"0",1,1,0],
+		[555,99,"Str+2",,"0",1,2,0],
+		[556,99,"Str+3",,"0",1,3,0],
+		[557,99,"Str+4",,"0",1,4,0],
+		[558,99,"Str+5",,"0",1,5,0],
+		[559,99,"Agi+4",,"0",2,4,0],
+		[560,99,"Agi+5",,"0",2,5,0],
+		[561,99,"Vit+1",,"0",3,1,0],
+		[562,99,"Vit+2",,"0",3,2,0],
+		[563,99,"Vit+3",,"0",3,3,0],
+		[564,99,"Vit+4",,"0",3,4,0],
+		[565,99,"Vit+5",,"0",3,5,0],
+		[566,99,"Int+4",,"0",4,4,0],
+		[567,99,"Int+5",,"0",4,5,0],
+		[568,99,"Dex+4",,"0",5,4,0],
+		[569,99,"Dex+5",,"0",5,5,0],
+		[570,99,"Luk+1",,"0",6,1,0],
+		[571,99,"Luk+2",,"0",6,2,0],
+		[572,99,"Luk+3",,"0",6,3,0],
+		[573,99,"Luk+4",,"0",6,4,0],
+		[574,99,"Luk+5",,"0",6,5,0],
+		[575,99,"MaxHP+100",,"0",13,100,0],
+		[576,99,"MaxHP+200",,"0",13,200,0],
+		[577,99,"MaxHP+300",,"0",13,300,0],
+		[578,99,"MaxHP+400",,"0",13,400,0],
+		[579,99,"SP+50",,"0",14,50,0],
+		[580,99,"SP+100",,"0",14,100,0],
+		[581,99,"Def+3",,"0",18,3,0],
+		[582,99,"Def+6",,"0",18,6,0],
+		[583,99,"Def+9",,"0",18,9,0],
+		[584,99,"Mdef+2",,"0",19,2,0],
+		[585,99,"Mdef+4",,"0",19,4,0],
+		[586,99,"Mdef+6",,"0",19,6,0],
+		[587,99,"Mdef+8",,"0",19,8,0],
+		[588,99,"Matk+3%&固定詠唱-1%",,"0",89,3,0],
+		[589,99,"Matk+2%&固定詠唱-2%(※-1%)",,"公式HPでは固定キャスティングタイム-2%となっているが<BR>ゲーム内では固定キャスティングタイム-1%と書かれている。",89,2,0],
+		[590,99,"Def+12",,"0",18,12,0],
+		[591,99,"闘志1",,"0",17,6,8,2,0],
+		[592,99,"闘志2",,"0",17,9,8,3,0],
+		[593,99,"闘志3",,"0",17,12,8,4,0],
+		[594,99,"闘志4",,"0",17,15,8,5,0],
+		[595,99,"MaxHP1",,"0",15,1,0],
+		[596,99,"MaxHP2",,"0",15,2,0],
+		[597,99,"Flee+1",,"0",9,1,0],
+		[598,99,"Flee+3",,"0",9,3,0],
+		[599,99,"SpecialAgi",,"",2,1,8000002,3,9000080,1,0],
+		[600,99,"Aspd+1",,"0",101,1,0],
+		[601,99,"魔力1",,"0",100,6,73,-4,0],
+		[602,99,"魔力2",,"0",100,9,73,-6,0],
+		[603,99,"魔力3",,"0",100,12,73,-8,0],
+		[604,99,"魔力4",,"0",100,15,73,-10,0],
+		[605,99,"名弓1",,"0",25,2,0],
+		[606,99,"名弓2",,"0",25,4,0],
+		[607,99,"先鋭1",,"0",8,2,10,6,0],
+		[608,99,"先鋭2",,"0",8,3,10,9,0],
+		[609,99,"大司教1",,"0",91,3,0],
+		[610,99,"大司教2",,"0",91,6,102,-5,0],
+		[611,99,"治癒1",,"",7489,100,19489,1000,0],
+		[612,99,"大聖堂1",,"[コルセオヒール]を使用した時のSP消費量-30",0],
+		[613,1,"ブトイジョ",,"0",38,20,0],
+		[614,1,"女王スカラバ","ジョオウスカラバ","スカラバ系に与える物理ダメージ+30%。<BR>※女王・女帝にも効果あり。卵シリーズには効果なし。",1565,30,1566,30,1567,30,1568,30,1569,30,1570,30,1571,30,1572,30,1573,30,1574,30,0],
+		[615,1,"ポムスパイダー",,"0",31,20,0],
+		[616,1,"スロフォ",,"近接物理攻撃時、一定確率で敵を冷凍状態にする",0],
+		[617,1,"セドラ",,"0",70,15,0],
+		[618,1,"リトルファートゥム",,"魔法攻撃時、一定確率で敵を沈黙状態にする",0],
+		[619,1,"バナスパティ",,"物理攻撃時、一定確率で敵を発火状態にする",0],
+		[620,1,"ミミン",,"近接物理攻撃時、一定確率で敵を深い睡眠状態にする。",0],
+		[621,2,"極楽鳥","ゴクラクチョウ","マジシャン系列の場合、精錬値が3上がる度に、追加でInt+1",4,2,0],
+		[622,2,"ドロメデス",,"アーチャー系列の場合、精錬値が3上がる度に、追加でDex+1",5,2,0],
+		[623,2,"パルス",,"アコライト系列の場合、精錬値が2上がる度に、追加で<BR>[ヒール]系[サンクチュアリ][ポーションピッチャー]<BR>を使用した時の回復量+1%",91,3,0],
+		[624,2,"アングラマンティス",,"シーフ系列の場合、精錬値が2上がる度に、追加でクリティカル攻撃で与えるダメージ+1%",70,2,0],
+		[625,2,"キングドラモ",,"ソードマン系列の場合、精錬値が3上がる度に、追加でStr+1",1,2,0],
+		[626,2,"女帝スカラバ","ジョテイスカラバ","精錬値が9以上の場合、追加で昆虫形モンスターから受けるダメージ-5%",4,3,54,10,0],
+		[627,3,"アーノルディ",,"0",53,30,0],
+		[628,4,"ドフレ",,"0",198,1,55,10,0],
+		[629,4,"デワタドラゴン",,"0",18,50,9,-25,0],
+		[630,5,"レヤック",,"物理攻撃を受けた時、一定確率で敵を混乱、恐怖状態にする<BR>魔法攻撃を受けた時、一定確率で敵を混乱、恐怖状態にする",1,3,0],
+		[631,5,"クラーケン",,"[サプライズアタック]使用時、一定確率で5x5セル範囲内の全ての敵を出血状態にする",9,10,220,22,220,44,0],
+		[632,7,"スカラバ",,"0",100,20,16,-1,0],
+		[633,7,"甲帝スカラバ","コウテイスカラバ","0",17,20,15,-1,0],
+		[634,1,"レッドエルマ",,"魔法攻撃時、一定確率で敵を呪い状態にする。",0],
+		[635,1,"子分タコ","コブンタコ","魔法攻撃時、一定確率で敵を暗黒状態にする。",0],
+		[636,4,"頭領タコ","トウリョウタコ","0",15,12,220,46,0],
+		[637,2,"シオラバ",,"マーチャント系列の場合、精錬値が3上がる度に、追加でLuk+1。",6,2,0],
+		[638,6,"ワイルドライダー",,"物理攻撃時、一定確率で自分にオートスペル「速度増加」Lv1発動。",2,1,0],
+		[639,99,"Mdef+10",,"0",19,10,0],
+		[640,99,"先鋭3",,"0",8,4,10,12,0],
+		[641,99,"名弓3",,"0",25,6,0],
+		[642,99,"SP+25",,"0",14,25,0],
+		[643,99,"SP+75",,"0",14,75,0],
+		[644,99,"MaxHP3",,"0",15,3,0],
+		[645,99,"Atk1",,"0",80,1,0],
+		[646,99,"闘志6",,"0",17,21,8,5,0],
+		[647,99,"闘志7",,"0",17,24,8,5,0],
+		[648,99,"攻撃速度3",,"0",12,8,0],
+		[649,99,"攻撃速度4",,"0",12,10,0],
+		[650,99,"名弓4",,"0",25,8,0],
+		[651,99,"Luk+6",,"0",6,6,0],
+		[652,99,"【廃止】[熊の力]",,"",0],
+		[653,99,"【廃止】[光速]",,"",0],
+		[654,99,"【廃止】[鋼鎧]",,"",0],
+		[655,99,"【廃止】[暴走した魔力]",,"",0],
+		[656,99,"【廃止】[大鷲の眼光]",,"",0],
+		[657,99,"【廃止】[幸運な日]",,"",0],
+		[658,2,"11thアニバーサリー","イレブンアニバーサリー","0",0],
+		[659,99,"SpecialStr",,"",1,1,8000001,3,9000080,1,0],
+		[660,99,"SpecialVit",,"",3,1,8000003,3,9000016,1,0],
+		[661,99,"SpecialInt",,"",4,1,8000004,3,9000089,1,0],
+		[662,99,"SpecialDex",,"",5,1,8000005,3,9000089,1,0],
+		[663,99,"SpecialLuk",,"",6,1,8000006,3,9000015,1,0],
+		[664,99,"Str+6",,"0",1,6,0],
+		[665,99,"Str+7",,"0",1,7,0],
+		[666,99,"Str+8",,"0",1,8,0],
+		[667,99,"Str+9",,"0",1,9,0],
+		[668,99,"Str+10",,"0",1,10,0],
+		[669,99,"Agi+6",,"0",2,6,0],
+		[670,99,"Agi+7",,"0",2,7,0],
+		[671,99,"Agi+8",,"0",2,8,0],
+		[672,99,"Agi+9",,"0",2,9,0],
+		[673,99,"Agi+10",,"0",2,10,0],
+		[674,99,"Vit+6",,"0",3,6,0],
+		[675,99,"Vit+7",,"0",3,7,0],
+		[676,99,"Vit+8",,"0",3,8,0],
+		[677,99,"Vit+9",,"0",3,9,0],
+		[678,99,"Vit+10",,"0",3,10,0],
+		[679,99,"Int+6",,"0",4,6,0],
+		[680,99,"Int+7",,"0",4,7,0],
+		[681,99,"Int+8",,"0",4,8,0],
+		[682,99,"Int+9",,"0",4,9,0],
+		[683,99,"Int+10",,"0",4,10,0],
+		[684,99,"Dex+6",,"0",5,6,0],
+		[685,99,"Dex+7",,"0",5,7,0],
+		[686,99,"Dex+8",,"0",5,8,0],
+		[687,99,"Dex+9",,"0",5,9,0],
+		[688,99,"Dex+10",,"0",5,10,0],
+		[689,99,"Luk+7",,"0",6,7,0],
+		[690,99,"Luk+8",,"0",6,8,0],
+		[691,99,"Luk+9",,"0",6,9,0],
+		[692,99,"Luk+10",,"0",6,10,0],
+		[693,99,"闘志5",,"0",17,18,8,5,0],
+		[694,99,"闘志8",,"0",17,27,8,5,0],
+		[695,99,"闘志9",,"0",17,30,8,5,0],
+		[696,99,"闘志10",,"0",17,50,8,15,0],
+		[697,99,"先鋭4",,"0",8,5,10,14,0],
+		[698,99,"先鋭5",,"0",8,6,10,15,0],
+		[699,99,"攻撃速度1",,"0",12,4,0],
+		[700,99,"攻撃速度2",,"0",12,6,0],
+		[701,99,"魔力5",,"0",100,18,73,-10,0],
+		[702,99,"魔力6",,"0",100,21,73,-10,0],
+		[703,99,"魔力7",,"0",100,24,73,-10,0],
+		[704,99,"魔力8",,"0",100,27,73,-10,0],
+		[705,99,"魔力9",,"0",100,30,73,-10,0],
+		[706,4,"アルフォシオ=バジル（MVP）",,"楽器・鞭装備時[ブラギの詩]Lv10使用可能。<BR>純粋なVitが110以上の時、追加でFlee+20。",9,20,0],
+		[707,4,"エミュール=プラメール（MVP）",,"物理攻撃を受けた時、一定確率でアシッドボトルを1個消費して敵にオートスペル[アシッドテラー]Lv5発動。<BR>純粋なStrが110以上の時、追加でCri+20。",10,20,0],
+		[708,4,"ガーティー=ウー（MVP）",,"物理攻撃を受けた時、一定確率で敵にオートスペル[フルストリップ]Lv1発動。<BR>純粋なLukが110以上の時、追加でHit+20。",8,20,0],
+		[709,4,"セリア=アルデ（MVP）",,"魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[ランドプロテクター]Lv5発動。<BR>純粋なDexが110以上の時、追加でMatk＋7%。",89,7,0],
+		[710,4,"チェン=リウ（MVP）",,"純粋なAgiが110以上の時、追加で物理攻撃で与えるダメージ+7%。",80,7,221,166,0],
+		[711,4,"トレンティーニ（MVP）",,"楽器・鞭装備時、[幸運のキス]Lv10使用可能。<BR>純粋なVitが110以上の時、追加でFlee+20。",9,20,0],
+		[712,4,"ランデル=ロレンス（MVP）",,"純粋なIntが110以上の時、追加でMaxHP＋10%。",15,10,221,165,0],
+		[713,5,"アルフォシオ=バジル",,"バード系が装備時、追加でMaxHP+10%、MaxSP+5%。",9,10,0],
+		[714,5,"エミュール=プラメール",,"[レッドスリムポーション]、[イエロースリムポーション]、[ホワイトスリムポーション]使用時、HP回復量+200%。",9,10,0],
+		[715,5,"ガーティー=ウー",,"[クローズコンファイン]Lv1使用可能。",9,10,0],
+		[716,5,"セリア=アルデ",,"[アブラカタブラ]Lv1使用可能。",9,10,0],
+		[717,5,"チェン=リウ",,"[気功]Lv2使用可能。",9,10,0],
+		[718,5,"トレンティーニ",,"ダンサー系が装備時、追加でMaxHP＋10%、MaxSP+5%。",9,10,0],
+		[719,5,"ランデル=ロレンス",,"[オートガード]Lv3使用可能。",9,10,0],
+		[720,1,"マナナンガル",,"攻撃命中時、SP+1。",16,-1,0],
+		[721,4,"バコナワ",,"物理攻撃を受けた時、一定確率で自分を中心とした23x23セル範囲内の敵を出血状態にする。",1,4,0],
+		[722,4,"ビョンウンゴ",,"魔法攻撃を受けた時、一定確率で自分を中心とした23x23セル範囲内の敵を睡眠状態にする。",4,4,0],
+		[723,4,"ブワヤ",,"魔法攻撃を受けた時、一定確率で自分を中心とした23x23セル範囲内の敵を石化状態にする。",3,4,0],
+		[724,4,"マンククーラム",,"近接物理攻撃でモンスターを倒した時、HP-666。",16,10,0],
+		[725,5,"ジェジェリン",,"純粋なVitが10上がる度に追加でMaxHP+200。",0],
+		[726,5,"ワクワク",,"純粋なStrが10上がる度に追加でAtk+5。",0],
+		[727,2,"エンカント",,"0",45,30,355,30,303,30,0],
+		[728,2,"ブギスギス",,"精錬値が2上がる度に追加でMaxHP+1%。",0],
+		[729,7,"チャナック",,"0",117,12,112,12,115,12,0],
+		[730,1,"誘いの魔眼","サソイノマガン","物理攻撃命中時、一定確率で自分を中心とした5x5セル範囲内の敵を睡眠・石化・呪い状態にする。",17,20,0],
+		[731,4,"アムダライス",,"4秒毎にHP-666、SP-66。<BR>装備解除時、HP-6666、SP-666。",89,15,80,15,0],
+		[732,4,"苦痛のロイヤルナイト","クツウノロイヤルナイト","近接物理攻撃で敵を倒した時、HP＋200。<BR>精錬値が1上がる度に追加で近接物理攻撃で敵を倒した時、HP＋10。<BR>装備解除時、HP-4444。",15,-44,0],
+		[733,100,"0",,"6秒毎にHP-100、SP-6。",9,20,60,20,0],
+		[734,5,"呪われたロイヤルナイト","ノロワレタロイヤルナイト","近接物理攻撃で敵を倒した時、SP+20。<BR>精錬値が2上がる度に追加で近接物理攻撃で敵を倒した時、SP+1。<BR>装備解除時、SP-444。",16,-44,0],
+		[735,1,"リヒトヘルシャー",,"本の場合で、かつ精錬値が10の場合、追加でAtk+20、Matk+20。",17,5,100,5,0],
+		[736,5,"毀損された古書","キソンサレタコショ","純粋なIntが10上がる度に追加でMatk+5。",0],
+		[737,5,"チェネレ",,"純粋なAgiが10上がる度に追加で攻撃速度+2%。",0],
+		[738,5,"ペタル",,"純粋なLukが10上がる度に追加でクリティカル攻撃で与えるダメージ+2%。",0],
+		[739,5,"メンブリッツ",,"純粋なDexが10上がる度に追加で遠距離物理攻撃で与えるダメージ+1%。",0],
+		[740,2,"類",,"精錬値が9以上の時、追加で無属性魔法攻撃で与えるダメージ+5%。",100,10,340,5,0],
+		[741,2,"ヴァッサー・リヒテルン",,"",100,10,341,5,9000341,5,0],
+		[742,2,"フェルス・リヒテルン",,"",100,10,342,5,9000342,5,0],
+		[743,2,"フンケ・リヒテルン",,"",100,10,343,5,9000343,5,0],
+		[744,2,"ティクバラン",,"",100,10,344,5,9000344,5,0],
+		[745,2,"類",,"精錬値が9以上の時、追加で毒属性魔法攻撃で与えるダメージ+5%。",100,10,345,5,0],
+		[746,2,"類",,"精錬値が9以上の時、追加で聖属性魔法攻撃で与えるダメージ+5%。",100,10,346,5,0],
+		[747,2,"類",,"精錬値が9以上の時、追加で闇属性魔法攻撃で与えるダメージ+5%。",100,10,347,5,0],
+		[748,2,"ゲルブ・リヒテルン",,"",100,10,348,5,9000348,5,0],
+		[749,2,"類",,"精錬値が9以上の時、追加で不死属性魔法攻撃で与えるダメージ+5%。",100,10,349,5,0],
+		[750,2,"フェンリル",,"精錬値が1上がる度に、追加でMatk+5。<BR>固定詠唱時間-70%。",100,50,0],
+		[751,2,"微力のフェンリル","ビリョクノフェンリル","0",100,25,0],
+		[752,99,"SP+150",,"0",14,150,0],
+		[753,99,"MaxHP4",,"0",15,4,0],
+		[754,99,"水ドロップ+1",,"0",41,2,341,2,61,1,0],
+		[755,99,"水ドロップ+2",,"0",41,4,341,4,61,2,0],
+		[756,99,"水ドロップ+3",,"0",41,6,341,6,61,3,0],
+		[757,99,"水ドロップ+4",,"0",41,8,341,8,61,4,0],
+		[758,99,"木ドロップ+1",,"0",42,2,342,2,62,1,0],
+		[759,99,"木ドロップ+2",,"0",42,4,342,4,62,2,0],
+		[760,99,"木ドロップ+3",,"0",42,6,342,6,62,3,0],
+		[761,99,"木ドロップ+4",,"0",42,8,342,8,62,4,0],
+		[762,99,"火ドロップ+1",,"0",43,2,343,2,63,1,0],
+		[763,99,"火ドロップ+2",,"0",43,4,343,4,63,2,0],
+		[764,99,"火ドロップ+3",,"0",43,6,343,6,63,3,0],
+		[765,99,"火ドロップ+4",,"0",43,8,343,8,63,4,0],
+		[766,99,"光ドロップ+1",,"0",46,2,346,2,66,1,0],
+		[767,99,"光ドロップ+2",,"0",46,4,346,4,66,2,0],
+		[768,99,"光ドロップ+3",,"0",46,6,346,6,66,3,0],
+		[769,99,"光ドロップ+4",,"0",46,8,346,8,66,4,0],
+		[770,99,"闇ドロップ+1",,"0",47,2,347,2,67,1,0],
+		[771,99,"闇ドロップ+2",,"0",47,4,347,4,67,2,0],
+		[772,99,"闇ドロップ+3",,"0",47,6,347,6,67,3,0],
+		[773,99,"闇ドロップ+4",,"0",47,8,347,8,67,4,0],
+		[774,99,"回復ドロップ+1",,"0",91,2,92,2,0],
+		[775,99,"回復ドロップ+2",,"0",91,4,92,4,0],
+		[776,99,"回復ドロップ+3",,"0",91,6,92,6,0],
+		[777,99,"回復ドロップ+4",,"0",91,8,92,8,0],
+		[778,1,"タイムホルダー",,"0",89,20,102,-10,0],
+		[779,1,"ビッグベン",,"0",170,5,176,5,0],
+		[780,1,"ビッグベル",,"0",30,10,36,10,0],
+		[781,3,"ネオパンク",,"0",50,20,56,20,0],
+		[782,100,"0",,"0",50,5,56,5,310,50,316,50,0],
+		[783,100,"0",,"0",50,5,56,5,300,50,306,50,0],
+		[784,5,"アークエルダー",,"精練値が1上がる度に追加で地属性魔法攻撃で与えるダメージ+3%。",60,15,0],
+		[785,6,"タイムキーパー",,"物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を呪い状態にする。",0],
+		[786,100,"0",,"物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を呪い状態にする確率が上昇。",60,5,0],
+		[787,7,"オウルヴァイカウント",,"0",12,3,0],
+		[788,7,"オウルマーキス",,"物理攻撃命中時、一定確率で自分を中心にオートスペル[バイオレントゲイル]Lv1発動。<BR>[バイオレントゲイル]Lv5を習得している場合、Lv5で発動。",0],
+		[789,100,"0",,"0",221,158,0],
+		[790,99,"Atk4",,"0",80,4,0],
+		[791,99,"Atk5",,"0",80,5,0],
+		[792,99,"Matk+4%",,"0",89,4,0],
+		[793,99,"Matk+5%",,"0",89,5,0],
+		[794,99,"MaxHP5",,"0",15,5,0],
+		[795,99,"Def+15",,"0",18,15,0],
+		[796,99,"Mdef+1",,"0",19,1,0],
+		[797,99,"Mdef+3",,"0",19,3,0],
+		[798,99,"Mdef+5",,"0",19,5,0],
+		[799,999,"空き",,"0",0],
+		[800,200,"魔神の腕力1",,"0",1,1,4,-1,17,3,0],
+		[801,200,"魔神の腕力2",,"0",1,2,4,-2,17,6,0],
+		[802,200,"魔神の腕力3",,"0",1,4,4,-4,17,12,0],
+		[803,200,"魔神の迅速1",,"0",2,1,3,-1,9,2,0],
+		[804,200,"魔神の迅速2",,"0",2,2,3,-2,9,4,0],
+		[805,200,"魔神の迅速3",,"0",2,4,3,-4,9,8,0],
+		[806,200,"魔神の体力1",,"0",3,1,2,-1,18,3,19,2,0],
+		[807,200,"魔神の体力2",,"0",3,2,2,-2,18,6,19,4,0],
+		[808,200,"魔神の体力3",,"0",3,4,2,-4,18,12,19,8,0],
+		[809,200,"魔神の知力1",,"0",4,1,1,-1,100,3,0],
+		[810,200,"魔神の知力2",,"0",4,2,1,-2,100,6,0],
+		[811,200,"魔神の知力3",,"0",4,4,1,-4,100,12,0],
+		[812,200,"魔神の集中1",,"0",5,1,6,-1,8,2,0],
+		[813,200,"魔神の集中2",,"0",5,2,6,-2,8,4,0],
+		[814,200,"魔神の集中3",,"0",5,4,6,-4,8,8,0],
+		[815,200,"魔神の幸運1",,"0",6,1,5,-1,10,1,0],
+		[816,200,"魔神の幸運2",,"0",6,2,5,-2,10,2,0],
+		[817,200,"魔神の幸運3",,"0",6,4,5,-4,10,4,0],
+		[818,99,"Matk+1%",,"0",89,1,0],
+		[819,99,"Matk+2%",,"0",89,2,0],
+		[820,99,"Matk+3%",,"0",89,3,0],
+		[821,99,"白羊宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加でMatk + 10<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加でMatk + 10<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大3つまでエンチャントされる可能性がある。",100,10,0],
+		[822,99,"金牛宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加でAtk + 4、Hit + 3<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加でAtk + 2、Hit + 1<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大3つまでエンチャントされる可能性がある。",17,4,8,1,0],
+		[823,99,"双児宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加でスキルディレイ - 1%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加でスキルディレイ - 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大3つまでエンチャントされる可能性がある。",74,1,0],
+		[824,99,"巨蟹宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加でAtk + 2<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加でAtk + 5<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大3つまでエンチャントされる可能性がある。",17,3,0],
+		[825,99,"獅子宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加で攻撃速度 + 1%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加で攻撃速度 + 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大2つまでしかエンチャントされない。",12,3,0],
+		[826,99,"処女宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量 + 2%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量 + 2%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大3つまでエンチャントされる可能性がある。",91,1,0],
+		[827,99,"天秤宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]を受けた時のHP回復量 + 1%<BR>一部の回復アイテムによるHP回復量 + 1%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]を受けた時のHP回復量 + 1%<BR>一部の回復アイテムによるHP回復量 + 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大2つまでしかエンチャントされない。",92,1,0],
+		[828,99,"天蝎宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加で物理攻撃で与えるダメージ + 1%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加で物理攻撃で与えるダメージ + 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大3つまでエンチャントされる可能性がある。",80,1,0],
+		[829,99,"人馬宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加で遠距離物理攻撃で与えるダメージ + 2%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加で遠距離物理攻撃で与えるダメージ + 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大2つまでしかエンチャントされない。",25,1,0],
+		[830,99,"磨羯宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加で魔法攻撃で与えるダメージ + 1%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加で魔法攻撃で与えるダメージ + 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大2つまでしかエンチャントされない。",89,3,0],
+		[831,99,"宝瓶宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加でスキル使用時の消費SP - 2%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加でスキル使用時の消費SP - 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大2つまでしかエンチャントされない。",102,2,0],
+		[832,99,"双魚宮",,"[ニーズヘッグ&ロキ帽]の精錬値が7以上の時、追加で詠唱時間 - 1%<BR>[ニーズヘッグ&ロキ帽]の精錬値が9以上の時、追加で詠唱時間 - 1%<BR><BR>※このエンチャントは[ニーズヘッグ&ロキ帽]に最大2つまでしかエンチャントされない。",73,-2,0],
+		[833,99,"ファミ通の力",,"0",13,832,0],
+		[834,91,"【廃止】イムポシティオマヌスの習得Lv0",,"0",500001,0,0],
+		[835,91,"【廃止】イムポシティオマヌスの習得Lv1",,"0",500001,1,0],
+		[836,91,"【廃止】イムポシティオマヌスの習得Lv2",,"0",500001,2,0],
+		[837,91,"【廃止】イムポシティオマヌスの習得Lv3",,"0",500001,3,0],
+		[838,91,"【廃止】イムポシティオマヌスの習得Lv4",,"0",500001,4,0],
+		[839,91,"【廃止】イムポシティオマヌスの習得Lv5",,"0",500001,5,0],
+		[840,91,"【廃止】　■ヘルインフェルノ習得Lv5■",,"0",0],
+		[841,91,"【廃止】　■ヘルインフェルノ習得Lv0-4",,"0",0],
+		[842,91,"【廃止】　■リリースの習得Lv2■",,"0",0],
+		[843,91,"【廃止】　■リリースの習得Lv0-1■",,"0",0],
+		[844,91,"【廃止】　■魔法力増幅習得Lv10■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[845,91,"【廃止】　■魔法力増幅習得Lv9■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[846,91,"【廃止】　■魔法力増幅習得Lv8■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[847,91,"【廃止】　■魔法力増幅習得Lv7■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[848,91,"【廃止】　■魔法力増幅習得Lv6■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[849,91,"【廃止】　■魔法力増幅習得Lv5■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[850,91,"【廃止】　■魔法力増幅習得Lv4■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[851,91,"【廃止】　■魔法力増幅習得Lv3■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[852,91,"【廃止】　■魔法力増幅習得Lv2■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[853,91,"【廃止】　■魔法力増幅習得Lv1■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[854,91,"【廃止】　■魔法力増幅習得Lv0■",,"[リリース]使用時、1秒間～用の設定。<BR>[その他の支援/設定]欄の[装備/カードの時限性補助効果]のアイオーンスタッフ使用時用",0],
+		[855,99,"ハイレベル",,"0",0],
+		[856,99,"E-Fire",,"0",198,3,0],
+		[857,99,"E-Water",,"0",198,1,0],
+		[858,99,"E-Ground",,"0",198,2,0],
+		[859,99,"E-Wind",,"0",198,4,0],
+		[860,99,"R-Fire",,"0",63,25,61,-25,0],
+		[861,99,"R-Water",,"0",61,25,64,-25,0],
+		[862,99,"R-Ground",,"0",62,25,63,-25,0],
+		[863,99,"R-Wind",,"0",64,25,62,-25,0],
+		[864,99,"C-Life",,"5秒毎にHP+50。<BR>精錬値が6以上の時、追加で5秒毎にHP+50。<BR>精錬値が8以上の時、追加で5秒毎にHP+150。",0],
+		[865,99,"C-Soul",,"5秒毎にSP+1。<BR>精錬値が6以上の時、追加で5秒毎にSP+1。<BR>精錬値が8以上の時、追加で5秒毎にSP+3。",0],
+		[866,99,"C-HPR",,"",75,20,6000075,30,8000075,100,0],
+		[867,99,"C-SPR",,"",76,2,6000076,3,8000076,10,0],
+		[868,99,"A-Str",,"純粋なStrが10上がる度に追加でAtk+1。<BR>精錬値が7以上の時、純粋なStrが10上がる度に追加でAtk+2。<BR>精錬値が8以上の時、純粋なStrが10上がる度に追加でAtk+4。<BR>精錬値が9以上の時、純粋なStrが10上がる度に追加でAtk+8。",0],
+		[869,99,"A-Int",,"純粋なIntが10上がる度に追加でMatk+1。<BR>精錬値が7以上の時、純粋なIntが10上がる度に追加でMatk+2。<BR>精錬値が8以上の時、純粋なIntが10上がる度に追加でMatk+4。<BR>精錬値が9以上の時、純粋なIntが10上がる度に追加でMatk+8。",0],
+		[870,99,"A-Def",,"",18,5,6000018,15,8000018,30,0],
+		[871,99,"A-Avoid",,"",11,1,6000011,1,8000011,1,0],
+		[872,99,"A-Atk",,"",17,3,6000017,4,8000017,8,0],
+		[873,99,"A-Matk",,"",100,3,6000100,4,8000100,8,0],
+		[874,99,"A-MaxHP",,"",13,200,6000013,300,8000013,1000,0],
+		[875,99,"A-MaxSP",,"",14,20,6000014,30,8000014,100,0],
+		[876,99,"A-Frozen",,"0",152,100,0],
+		[877,99,"A-ASPD",,"0",101,1,0],
+		[878,1,"グレイヴミノタウロス",,"0",32,10,31,10,0],
+		[879,100,"0",,"0",52,5,51,5,302,50,301,50,0],
+		[880,1,"グレイヴミミック",,"0",172,5,171,5,0],
+		[881,100,"0",,"0",52,5,51,5,312,50,311,50,0],
+		[882,3,"グレイヴアクラウス",,"0",52,20,51,20,0],
+		[883,5,"グレイヴクラウンマミー",,"精錬値が1上がる度に追加で火属性魔法攻撃で与えるダメージ+3%。",60,15,0],
+		[884,6,"グレイヴマミー",,"物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を睡眠状態にする。",0],
+		[885,100,"0",,"物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を睡眠状態にする確率が上昇。",60,5,0],
+		[886,6,"グレイヴベリット",,"精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+3%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+2%。",89,5,0],
+		[887,4,"アメンホテプ",,"0",357,50,359,50,176,50,171,50,0],
+		[888,99,"暴走した魔力",,"魔法攻撃命中時、一定確率で10秒間、[暴走した魔力]発動<BR>[暴走した魔力]発動時、Int + 200、1秒毎にSP - 200",0],
+		[889,99,"■ミレニアムシールドoff",,"※[ルーンヘルム]装備時のミレニアムシールドの設定です。<BR>※[ジャイアントグロース]などはパッシブ持続系欄で選択してください。<BR>※[ストームブラスト]は攻撃スキル選択欄です。<BR>※ミレニアムシールド本来の効果などは計算機向きでないため導入されていません。",0],
+		[890,99,"■ミレニアムシールドon",,"※以上は[ルーンヘルム]装備時のミレニアムシールドのペナルティです。<BR>※ミレニアムシールド本来の効果などは計算機向きでないため導入されていません。<BR>※[ジャイアントグロース]などはパッシブ持続系欄で選択してください。<BR>※[ストームブラスト]は攻撃スキル選択欄です。",80,-50,25,-50,89,-50,0],
+		[891,4,"異形のシーラカンス","イギョウノシーラカンス","0",19,50,16,5,0],
+		[892,4,"暗黒のシーラカンス","アンコクノシーラカンス","0",18,100,15,10,0],
+		[893,2,"変異のシーラカンス","ヘンイノシーラカンス","精錬値が2上がる度に、追加で魔法攻撃で与えるダメージ+1%、MaxHP-1%。",89,2,0],
+		[894,2,"暴虐のシーラカンス","ボウギャクのシーラカンス","精錬値が2上がる度に、追加で物理攻撃で与えるダメージ+1%、MaxSP-1%。",80,2,0],
+		[895,100,"0",,"[堕ちた大神官ヒバム]カードの効果が発動しない。",0],
+		[896,1,"[LoVA] バハムート","バハムート","精錬値が7以上の時、追加でスキルディレイ-1%",5794,5,5447,5,0],
+		[897,1,"[LoVA] 真化バハムート","シンカバハムート","精錬値が7以上の時、追加でスキルディレイ-3%",5794,15,5447,15,0],
+		[898,5,"[LoVA] ラグナロク","ラグナロク","",19,7,15,6,7005325,9,0],
+		[899,5,"[LoVA] 真化ラグナロク","シンカラグナロク","",19,10,15,10,5100007005325,769,0],
+		[900,6,"[LoVA] ルールー","ルールー","10秒毎にHPが回復<BR>BaseLvが1上がる度に10秒毎に回復するHPが上昇<BR>精錬値が7以上の時、純粋なStrが60上がる度に追加でAtk+6、MaxHP+1%",0],
+		[901,6,"[LoVA] 真化ルールー","シンカルールー","10秒毎にHPが回復<BR>BaseLvが1上がる度に10秒毎に回復するHPが上昇<BR>精錬値が7以上の時、純粋なStrが20上がる度に追加でAtk+6、MaxHP+1%",0],
+		[902,6,"[LoVA] キマ","キマ","BaseLv6以上の時、10秒毎にSPが回復<BR>BaseLvが6上がる度に10秒毎に回復するSPが上昇<BR>精錬値が7以上の時、純粋なIntが30上がる度に追加でMatk+6、MaxSP+1%",0],
+		[903,6,"[LoVA] 真化キマ","シンカキマ","BaseLv2以上の時、10秒毎にSPが回復<BR>BaseLvが2上がる度に10秒毎に回復するSPが上昇<BR>精錬値が7以上の時、純粋なIntが10上がる度に追加でMatk+6、MaxSP+1%",0],
+		[904,4,"[LoVA] ハデス","ハデス","",51,10,0],
+		[905,4,"[LoVA] 真化ハデス","シンカハデス","",198,9,51,10,0],
+		[906,99,"紅蓮",,"",43,10,343,10,63,5,0],
+		[907,99,"真鍮",,"",41,10,341,10,61,5,0],
+		[908,99,"白銀",,"",44,10,344,10,64,5,0],
+		[909,99,"黄昏",,"",42,10,342,10,62,5,0],
+		[910,99,"混沌",,"",47,10,347,10,67,5,0],
+		[911,99,"曙光",,"",46,10,346,10,66,5,0],
+		[912,99,"恢復",,"",91,10,92,10,0],
+		[913,91,"【廃止】　■ｽﾘﾑﾎﾟｰｼｮﾝﾋﾟｯﾁｬｰ習得Lv10■",,"",0],
+		[914,91,"【廃止】　■ｽﾘﾑﾎﾟｰｼｮﾝﾋﾟｯﾁｬｰ習得Lv8-9",,"",0],
+		[915,91,"【廃止】　■ｽﾘﾑﾎﾟｰｼｮﾝﾋﾟｯﾁｬｰ習得Lv6-7",,"",0],
+		[916,91,"【廃止】　■ｽﾘﾑﾎﾟｰｼｮﾝﾋﾟｯﾁｬｰ習得Lv4-5",,"",0],
+		[917,91,"【廃止】　■ｽﾘﾑﾎﾟｰｼｮﾝﾋﾟｯﾁｬｰ習得Lv2-3",,"",0],
+		[918,91,"【廃止】　■ｽﾘﾑﾎﾟｰｼｮﾝﾋﾟｯﾁｬｰ習得Lv0-1",,"",0],
+		[919,91,"【廃止】　■クロスインパクト習得Lv5■",,"",0],
+		[920,91,"【廃止】　■クロスインパクト習得Lv0-4",,"",0],
+		[921,91,"【廃止】　■グリムトゥース習得Lv5■",,"",0],
+		[922,91,"【廃止】　■グリムトゥース習得Lv0-4",,"",0],
+		[923,91,"【廃止】　■ソウルブレイカー習得Lv10■",,"",0],
+		[924,91,"【廃止】　■ソウルブレイカー習得Lv0-9",,"",0],
+		[925,1,"怪奇な装飾ツリー","カイキナソウショクツリー",0,359,10,0],
+		[926,100,0,,0,359,5,0],
+		[927,1,"工場警備員の魂","コウジョウケイビインノタマシイ","魔法攻撃命中時、一定確率で敵を石化状態にする。",0],
+		[928,100,0,,"攻撃命中時、SP+1。",12,10,0],
+		[929,100,0,,"追加で魔法攻撃命中時、一定確率で敵を石化・混乱状態にする確率が上昇。",0],
+		[930,1,"捨てられたクマ人形","ステラレタクマニンギョウ",0,49,20,0],
+		[931,100,0,,0,49,10,0],
+		[932,1,"プレゼントがない幽霊","プレゼントガナイユウレイ","魔法攻撃命中時、一定確率で敵を混乱状態にする。",0],
+		[933,5,"包装されなかった人形","ホウソウサレナカッタニンギョウ","精錬値が9以上の時、追加で念・無属性攻撃で受けるダメージ-10%。",68,10,60,10,0],
+		[934,2,"包装されたボックス","ホウソウサレタボックス","モンスターを倒した時、一定確率で「プレゼントボックス(赤)」、「プレゼントボックス(黄)」、「プレゼントボックス(青)」、「プレゼントボックス(緑)」をドロップ。<BR>「オークアーチャーカード」、「ガーゴイルカード」、「ステムワームカード」、「スリーパーカード」、「天邪仙人カード」、「虎人カード」、「ミミックカード」、「レイスカード」、「レイドリックアーチャーカード」のいずれかと共に装備時、追加で各カードでのアイテムのドロップ確率が上昇。<BR>「ハッピーバルーン」と共に装備時、純粋なLukが77以上の時、追加でモンスターを倒した時、一定確率で「ハッピーボックス」をドロップ。",0],
+		[935,6,"プレゼント包装担当者","プレゼントホウソウタントウシャ","精錬値が9以上の時、追加でMaxHP+10%、MaxSP+10%。",91,10,0],
+		[936,1,"セリーヌ・キミ",,"魔法攻撃命中時、一定確率で敵を中心に5x5セルの敵を致命的な傷状態にする。",89,10,0],
+		[937,100,0,,"物理攻撃命中時、一定確率で敵にオートスペル「ダークストライク」Lv5発動。",13,500,14,250,0],
+		[938,100,0,,"「セリーヌのリボン」の精錬値が1上がる度に追加でMatk+7。",0],
+		[939,100,0,,"「ノーブルクロス」の精錬値が1上がる度に追加でLuk+3、攻撃速度+2%。",0],
+		[940,99,"A-Tolerance",,"",57,1,50,1,300057,1,300050,1,0],
+		[941,99,"A-Hit",,"",8,20,7000008,10,8000008,10,9000008,10,0],
+		[942,99,"A-Flee",,"",9,20,7000009,10,8000009,10,9000009,10,0],
+		[943,99,"A-Mdef",,"",19,2,6000019,4,8000019,8,0],
+		[944,99,"S-Atk",,"精錬値が7以上の時、追加で物理攻撃命中時、一定確率で3秒間、Atk+150。<BR>精錬値が8以上の時、発動率が上昇、効果時間が1秒延長。<BR>精錬値が9以上の時、発動率が上昇、効果時間が1秒延長。",17,50,0],
+		[945,99,"S-Matk",,"精錬値が7以上の時、追加で魔法攻撃命中時、一定確率で3秒間、Matk+150。<BR>精錬値が8以上の時、発動率が上昇、効果時間が1秒延長。<BR>精錬値が9以上の時、発動率が上昇、効果時間が1秒延長。",100,100,0],
+		[946,99,"S-Avoid",,"精錬値が7以上の時、追加で物理攻撃命中時、一定確率で3秒間、完全回避+100。<BR>精錬値が8以上の時、発動率が上昇、効果時間が1秒延長。<BR>精錬値が9以上の時、発動率が上昇、効果時間が1秒延長。",11,5,0],
+		[947,99,"S-MaxHP",,"精錬値が7以上の時、追加で物理攻撃命中時、一定確率で、HP+7500、3秒間MaxHP+7500。<BR>精錬値が8以上の時、発動率が上昇、効果時間が1秒延長。<BR>精錬値が9以上の時、発動率が上昇、効果時間が1秒延長。",13,2500,0],
+		[948,99,"S-Quick",,"精錬値が7以上の時、追加で魔法攻撃命中時、一定確率で3秒間、詠唱時間-100%、スキルディレイ-100%。<BR>精錬値が8以上の時、発動率が上昇、効果時間が1秒延長。<BR>精錬値が9以上の時、発動率が上昇、効果時間が1秒延長。",73,-10,0],
+		[949,99,"S-Cri",,"精錬値が7以上の時、追加で物理攻撃命中時、一定確率で3秒間、Cri+100。<BR>精錬値が8以上の時、発動率が上昇、効果時間が1秒延長。<BR>精錬値が9以上の時、発動率が上昇、効果時間が1秒延長。",10,10,0],
+		[950,91,"【廃止】　■ウォーターボール習得Lv5■",,"",0],
+		[951,91,"【廃止】　■ウォーターボール習得Lv4",,"",0],
+		[952,91,"【廃止】　■ウォーターボール習得Lv3",,"",0],
+		[953,91,"【廃止】　■ウォーターボール習得Lv2",,"",0],
+		[954,91,"【廃止】　■ウォーターボール習得Lv1",,"",0],
+		[955,91,"【廃止】　■ウォーターボール習得Lv0",,"",0],
+		[956,91,"【廃止】　■フロストノヴァ習得Lv10■",,"",0],
+		[957,91,"【廃止】　■フロストノヴァ習得Lv9",,"",0],
+		[958,91,"【廃止】　■フロストノヴァ習得Lv8",,"",0],
+		[959,91,"【廃止】　■フロストノヴァ習得Lv7",,"",0],
+		[960,91,"【廃止】　■フロストノヴァ習得Lv6",,"",0],
+		[961,91,"【廃止】　■フロストノヴァ習得Lv5",,"",0],
+		[962,91,"【廃止】　■フロストノヴァ習得Lv4",,"",0],
+		[963,91,"【廃止】　■フロストノヴァ習得Lv3",,"",0],
+		[964,91,"【廃止】　■フロストノヴァ習得Lv2",,"",0],
+		[965,91,"【廃止】　■フロストノヴァ習得Lv1",,"",0],
+		[966,91,"【廃止】　■フロストノヴァ習得Lv0",,"",0],
+		[967,91,"【廃止】　■エイムドボルト習得Lv10■",,"",0],
+		[968,91,"【廃止】　■エイムドボルト習得Lv0-9",,"",0],
+		[969,91,"【廃止】　■シャープシューティング習得Lv5■",,"",0],
+		[970,91,"【廃止】　■シャープシューティング習得Lv0-4",,"",0],
+		[971,91,"【廃止】　■ブリッツビート習得Lv5■",,"",0],
+		[972,91,"【廃止】　■ブリッツビート習得Lv0-4",,"",0],
+		[973,99,"鋭利1",,0,10,3,70,1,0],
+		[974,99,"鋭利2",,0,10,6,70,2,0],
+		[975,99,"鋭利3",,0,10,9,70,3,0],
+		[976,99,"鋭利4",,0,10,12,70,4,0],
+		[977,99,"MaxHP+500",,0,13,500,0],
+		[978,99,"消費SP-2%",,0,102,2,0],
+		[979,99,"消費SP-4%",,0,102,4,0],
+		[980,99,"消費SP-6%",,0,102,6,0],
+		[981,99,"消費SP-8%",,0,102,8,0],
+		[982,99,"消費SP-10%",,0,102,10,0],
+		[983,99,"スキルディレイ-2%",,0,74,2,0],
+		[984,99,"スキルディレイ-4%",,0,74,4,0],
+		[985,99,"スキルディレイ-6%",,0,74,6,0],
+		[986,99,"スキルディレイ-8%",,0,74,8,0],
+		[987,99,"スキルディレイ-10%",,0,74,10,0],
+		[988,99,"完全回避+1",,0,11,1,0],
+		[989,99,"完全回避+2",,0,11,2,0],
+		[990,99,"完全回避+3",,0,11,3,0],
+		[991,99,"完全回避+4",,0,11,4,0],
+		[992,99,"完全回避+5",,0,11,5,0],
+		[993,99,"無属性耐性1",,0,60,1,0],
+		[994,99,"無属性耐性2",,0,60,2,0],
+		[995,99,"無属性耐性3",,0,60,3,0],
+		[996,99,"無属性耐性4",,0,60,4,0],
+		[997,99,"無属性耐性5",,0,60,5,0],
+		[998,99,"勇者の怒り",,"物理攻撃命中時、一定確率で5秒間、モンスター「堕ちたオークヒーロー」に変身。モンスター「堕ちたオークヒーロー」に変身時、物理攻撃命中時、一定確率で自分を中心にオートスペル「アースクエイク」Lv3発動。",221,187,0],
+		[999,99,"魔羊の咆哮",,"物理攻撃命中時、一定確率で5秒間、モンスター「魔王バフォメット」に変身。モンスター「魔王バフォメット」に変身時、物理攻撃命中時、一定確率で自分を中心にオートスペル「ヘルジャッジメント」Lv6発動。",221,188,0],
+		[1000,99,"エナジー＜守護竜＞",,"BaseLvが3上がる度に追加でMaxSP+1。<BR>「肩にかける物」の精錬値が1上がる度に追加でMaxSP+10。<BR>物理攻撃命中時、一定確率で敵に与えたダメージの1%をSPとして吸収。",264,7,0],
+		[1001,99,"エナジー＜戦乙女＞",,"マジシャン系、アーチャー系、アコライト系職業が装備時、完全回避+5。「肩にかける物」の精錬値が1上がる度に完全回避+2。<BR>ソードマン系、マーチャント系、シーフ系職業が装備時、近接物理攻撃の5%を反射。「肩にかける物」の精錬値が1上がる度にダメージ反射+2%。",0],
+		[1002,99,"エナジー＜烈風＞",,"",13,200,9,10,0],
+		[1003,99,"龍飛琉の幻珠",,"物理攻撃時、モンスター「大長老アイリン」、「女王フェイスワーム」、「フェンリル」、「魔神の巨影」、「サラの幻影」、「怒りの船長ペルロック」、「暴走した船長ペルロック」、「呪いの根源」に与えるダメージ+20%。",0],
+		[1004,99,"万波息笛の幻珠",,"魔法攻撃時、モンスター「大長老アイリン」、「女王フェイスワーム」、「フェンリル」、「魔神の巨影」、「サラの幻影」、「怒りの船長ペルロック」、「暴走した船長ペルロック」、「呪いの根源」に与えるダメージ+20%。",0],
+		[1005,99,"宇宙根源の幻珠",,"モンスター「大長老アイリン」、「女王フェイスワーム」、「フェンリル」、「魔神の巨影」、「サラの幻影」、「怒りの船長ペルロック」、「暴走した船長ペルロック」、「呪いの根源」から受けるダメージ－20%。",0],
+		[1006,99,"疾風",,"物理・魔法攻撃命中時、一定確率で10秒間、「疾風」発動。<BR>「疾風」発動時、攻撃速度+70%、詠唱時間-70%、スキルディレイ-70%。",35,15,175,15,41,15,351,15,0],
+		[1007,99,"天地",,"物理・魔法攻撃命中時、一定確率で10秒間、「天地」発動。<BR>「天地」発動時、詠唱時間-70%、スキルディレイ-70%、敵のDef・Mdef100%無視。",32,15,33,15,172,15,173,15,44,15,42,15,354,15,352,15,0],
+		[1008,1,"ソヒョン",,0,100,30,0],
+		[1009,7,"エルヴィラ",,0,5056,25,7056,25,0],
+		[1010,1,"ローラ",,"鈍器の場合、Hit-10、Cri+10。 クリティカル攻撃で与えるダメージ+10%。<BR>鈍器の場合で、かつ精錬値が1上がる度に追加でHit-1、Cri+1。クリティカル攻撃で与えるダメージ+1%。",0],
+		[1011,6,"ルド",,"物理攻撃を受けた時、一定確率で3秒間、Agi+44。",0],
+		[1012,1,"将軍デヒョン","ショウグンデヒョン","片手剣・両手剣の場合、Atk+100、Matk+100。",0],
+		[1013,5,"無慈悲なジオイア","ムジヒナジオイア","絶対に恐怖状態にならない。",344,100,64,50,0],
+		[1014,1,"狂信者ヒュリエル","キョウシンシャヒュリエル",0,70,30,263,-10,0],
+		[1015,5,"亡者の守護者カデス","モウジャノシュゴシャカデス",0,63,50,61,50,64,50,62,50,67,50,69,50,66,-100,68,-100,0],
+		[1016,200,"覇者の思念",,0,37,5,177,5,0],
+		[1017,91,"【廃止】　■オラティオ習得Lv10■",,"",0],
+		[1018,91,"【廃止】　■オラティオ習得Lv9■",,"",0],
+		[1019,91,"【廃止】　■オラティオ習得Lv8■",,"",0],
+		[1020,91,"【廃止】　■オラティオ習得Lv7■",,"",0],
+		[1021,91,"【廃止】　■オラティオ習得Lv6■",,"",0],
+		[1022,91,"【廃止】　■オラティオ習得Lv5■",,"",0],
+		[1023,91,"【廃止】　■オラティオ習得Lv4■",,"",0],
+		[1024,91,"【廃止】　■オラティオ習得Lv3■",,"",0],
+		[1025,91,"【廃止】　■オラティオ習得Lv2■",,"",0],
+		[1026,91,"【廃止】　■オラティオ習得Lv1■",,"",0],
+		[1027,91,"【廃止】　■オラティオ習得Lv0■",,"",0],
+		[1028,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv13■",,"",0],
+		[1029,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv12■",,"",0],
+		[1030,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv11■",,"",0],
+		[1031,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv10■",,"",0],
+		[1032,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv9■",,"",0],
+		[1033,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv8■",,"",0],
+		[1034,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv7■",,"",0],
+		[1035,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv6■",,"",0],
+		[1036,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv5■",,"",0],
+		[1037,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv4■",,"",0],
+		[1038,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv3■",,"",0],
+		[1039,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv2■",,"",0],
+		[1040,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv1■",,"",0],
+		[1041,91,"【廃止】　■ﾗｳﾀﾞｱｸﾞﾇｽ等習得Lv0■",,"",0],
+		[1042,99,"フラッド",,0,61,15,0],
+		[1043,99,"クレイ",,0,62,15,0],
+		[1044,99,"バーン",,0,63,15,0],
+		[1045,99,"ゲイル",,0,64,15,0],
+		[1046,99,"ベノム",,0,65,15,0],
+		[1047,99,"セイクレッド",,"「フェイス」習得時、追加で聖属性攻撃で受けるダメージ+15%。",199,156,66,15,0],
+		[1048,99,"デスペリア",,0,67,15,0],
+		[1049,99,"グラッジ",,0,68,15,0],
+		[1050,99,"ウーア",,0,69,15,0],
+		[1051,99,"Hit+1",,0,8,1,0],
+		[1052,99,"Hit+2",,0,8,2,0],
+		[1053,99,"Hit+3",,0,8,3,0],
+		[1054,99,"Hit+4",,0,8,4,0],
+		[1055,99,"Hit+5",,0,8,5,0],
+		[1056,99,"Hit+6",,0,8,6,0],
+		[1057,99,"Hit+7",,0,8,7,0],
+		[1058,99,"Hit+8",,0,8,8,0],
+		[1059,99,"Hit+9",,0,8,9,0],
+		[1060,99,"Hit+10",,0,8,10,0],
+		[1061,99,"Def+21",,0,18,21,0],
+		[1062,1,"怨恨の白の騎士","エンコンノシロキシ","両手剣、両手槍、両手斧の場合、追加で物理攻撃で与えるダメージ+5%。<BR>両手剣、両手槍、両手斧の場合で、かつ精錬値が10の時、追加で物理攻撃で与えるダメージ+10%。",80,10,0],
+		[1063,1,"殺戮の魔眼","サツリクノマガン","物理攻撃命中時、一定確率で自分を中心とした5x5セル範囲内の敵を睡眠・石化・呪い状態にする。",8,50,80,10,0],
+		[1064,100,0,,0,80,15,89,15,67,50,0],
+		[1065,4,"魔眼のアムダライス","マガンノアムダライス","6秒毎にHP-666、SP-66。<BR>装備解除時、HP-6666、SP-666。<BR>精錬値が1上がる度に追加で物理攻撃で与えるダメージ+1%、魔法攻撃で与えるダメージ+1%。<BR>精錬値が9以上の時、追加で絶対に凍結状態にならない。",80,6,89,6,0],
+		[1066,2,"怨恨のカーリッツバーグ","エンコンノカーリッツバーグ","精錬値が1上がる度に追加で詠唱時間-1%。<BR>精錬値が9以上の時、追加で物理攻撃で与えるダメージ+4%。",0],
+		[1067,99,"水天",,"物理・魔法攻撃命中時、一定確率で10秒間、「水天」発動。<BR>「水天」発動時、詠唱時間-70%、スキルディレイ-70%、スキル使用時の消費SP-70%",30,15,36,15,170,15,176,15,43,15,353,15,0],
+		[1068,200,"[ECO] タイニー・アルマ","タイニー・アルマ",0,7,2,0],
+		[1069,1,"[ECO] ブリキングRX1・アルマ","ブリキングRX1・アルマ","精錬値が7以上の時、追加で必中攻撃+5%。",5549,25,0],
+		[1070,1,"[ECO] ミニー・ドゥ・アルマ","ミニー・ドゥ・アルマ","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+1%。",11,1,0],
+		[1071,5,"[ECO] サラマンダー・アルマ","サラマンダー・アルマ","精錬値が7以上の時、追加で遠距離物理攻撃で受けるダメージ-10%。",63,20,67,20,0],
+		[1072,6,"[ECO] モーモー・アルマ","モーモー・アルマ","「ミルク」の回復量+900%。<BR>精錬値が1上がる度に、追加でVit+1、Int+1。<BR>精錬値が9以上の時、追加でVit+5、Int+5。",0],
+		[1073,99,"エナジー＜竜狩＞",,0,59,15,0],
+		[1074,99,"エナジー＜頑強＞",,0,19,5,3,10,0],
+		[1075,99,"エナジー＜魔導＞",,"「肩にかける物」の精錬値が5以上の時、精錬値が1上がる度に追加でMaxSP+1%、Mdef+1。",73,15,380,1,0],
+		[1076,99,"エナジー＜致命ノ一撃＞",,"「肩にかける物」の精錬値が1上がる度に追加でLuk+3、Atk+5。<BR>「肩にかける物」精錬値が5以上の時、精錬値が1上がる度に追加でCri+1、完全回避+1。",17,3,10,5,11,4,0],
+		[1077,1,"パワフルスケルトン",,"物理攻撃命中時、一定確率で敵をスタン状態にする。 <BR>BaseLvが20上がる度に追加でAtk+3、敵をスタン状態にする確率が上昇。",17,5,0],
+		[1078,1,"パワフルAスケルトン",,"BaseLvが20上がる度に追加で遠距離物理攻撃で与えるダメージ+1%。",25,5,0],
+		[1079,1,"パワフルSスケルトン",,"BaseLvが20上がる度に追加でAtk+5、Cri+1。",10,5,0],
+		[1080,4,"パワフルアムダライス",,"BaseLvが20上がる度に追加で物理・魔法攻撃で与えるダメージ+1%。<BR>2秒毎にHP-666、SP-66。<BR>装備解除時、HP-6666、SP-666。",80,12,89,12,0],
+		[1081,4,"ゾンビガード",,"物理攻撃命中時、一定確率で敵に与えたダメージの1%をSPとして吸収。",0],
+		[1082,5,"不滅のウィンドゴースト","フメツノウィンドゴースト","精錬値が1上がる度に追加で風属性魔法攻撃で与えるダメージ+3%。",60,15,0],
+		[1083,100,0,,"物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を混乱状態にする確率が上昇。",60,5,0],
+		[1084,6,"不死の軍団","フシノグンダン","精錬値が9以上の時、追加でMaxHP+10%、MaxSP+10%。",5,2,0],
+		[1085,6,"不滅の呪われた騎士","フメツノノロワレタキシ","物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を混乱状態にする。",0],
+		[1086,7,"ウォッチャー",,"「スペルブレイカー」Lv1使用可能。",0],
+		[1087,7,"タフィー",,0,80,3,63,5,0],
+		[1088,7,"フローズンウルフ",,0,89,3,61,5,0],
+		[1089,1,"S・J・アーネストウルフ","エスジェイアーネストウルフ",0,8,50,292,100,0],
+		[1090,5,"ビジョウ",,"物理攻撃を受けた時一定確率で敵を凍結状態にする。",61,100,0],
+		[1091,99,"安息のニーヴ(体力)",,"精錬値が6以上の時、追加でMaxHP+300。<BR>精錬値が8以上の時、追加でMaxHP+500。",13,200,0],
+		[1092,100,0,,0,13,5000,0],
+		[1093,99,"安息のニーヴ(精神)",,"精錬値が6以上の時、追加でMaxSP+20。<BR>精錬値が8以上の時、追加でMaxSP+50。",14,10,0],
+		[1094,100,0,,0,14,100,0],
+		[1095,99,"安息のニーヴ(生命)",,"5秒毎にHP+50。<BR>精錬値が6以上の時、追加で5秒毎にHP+50。<BR>精錬値が8以上の時、追加で5秒毎にHP+150。",0],
+		[1096,100,0,,"5秒毎にHP+1000。",0],
+		[1097,99,"安息のニーヴ(知力)",,"5秒毎にSP+1。<BR>精錬値が6以上の時、追加で5秒毎にSP+1。<BR>精錬値が8以上の時、追加で5秒毎にSP+3。",0],
+		[1098,100,0,,"5秒毎にSP+25。",0],
+		[1099,99,"永劫のニーヴ(火)",,0,63,20,0],
+		[1100,100,0,,0,63,15,0],
+		[1101,99,"永劫のニーヴ(水)",,0,61,20,0],
+		[1102,100,0,,0,61,15,0],
+		[1103,99,"永劫のニーヴ(風)",,0,64,20,0],
+		[1104,100,0,,0,64,15,0],
+		[1105,99,"永劫のニーヴ(地)",,0,62,20,0],
+		[1106,100,0,,0,62,15,0],
+		[1107,99,"永劫のニーヴ(闇)",,0,67,20,0],
+		[1108,100,0,,0,67,15,0],
+		[1109,99,"永劫のニーヴ(念)",,0,68,20,0],
+		[1110,100,0,,0,68,15,0],
+		[1111,99,"永劫のニーヴ(毒)",,0,65,20,0],
+		[1112,100,0,,0,65,15,0],
+		[1113,99,"傷のニーヴ(無形)",,0,50,30,0],
+		[1114,100,0,,0,50,5,0],
+		[1115,99,"傷のニーヴ(不死形)",,0,51,30,0],
+		[1116,100,0,,0,51,5,0],
+		[1117,99,"傷のニーヴ(動物形)",,0,52,30,0],
+		[1118,100,0,,0,52,5,0],
+		[1119,99,"傷のニーヴ(植物形)",,0,53,30,0],
+		[1120,100,0,,0,53,5,0],
+		[1121,99,"傷のニーヴ(昆虫形)",,0,54,30,0],
+		[1122,100,0,,0,54,5,0],
+		[1123,99,"傷のニーヴ(魚貝形)",,0,55,30,0],
+		[1124,100,0,,0,55,5,0],
+		[1125,99,"傷のニーヴ(悪魔形)",,0,56,30,0],
+		[1126,100,0,,0,56,5,0],
+		[1127,99,"傷のニーヴ(人間形)",,0,57,30,0],
+		[1128,100,0,,0,57,5,0],
+		[1129,99,"傷のニーヴ(天使形)",,0,58,30,0],
+		[1130,100,0,,0,58,5,0],
+		[1131,99,"傷のニーヴ(竜形)",,0,59,30,0],
+		[1132,100,0,,0,59,5,0],
+		[1133,99,"血のニーヴ(腕力)",,"精錬値が7以上の時、追加でStr+2。<BR>精錬値が9以上の時、追加でStr+2。",1,3,0],
+		[1134,100,0,,0,211,5,0],
+		[1135,99,"血のニーヴ(迅速)",,"精錬値が7以上の時、追加でAgi+2。<BR>精錬値が9以上の時、追加でAgi+2。",2,3,0],
+		[1136,100,0,,0,212,5,0],
+		[1137,99,"血のニーヴ(体力)",,"精錬値が7以上の時、追加でVit+2。<BR>精錬値が9以上の時、追加でVit+2。",3,3,0],
+		[1138,100,0,,0,213,5,0],
+		[1139,99,"血のニーヴ(知力)",,"精錬値が7以上の時、追加でInt+2。<BR>精錬値が9以上の時、追加でInt+2。",4,3,0],
+		[1140,100,0,,0,214,5,0],
+		[1141,99,"血のニーヴ(集中)",,"精錬値が7以上の時、追加でDex+2。<BR>精錬値が9以上の時、追加でDex+2。",5,3,0],
+		[1142,100,0,,0,215,5,0],
+		[1143,99,"血のニーヴ(幸運)",,"精錬値が7以上の時、追加でLuk+2。<BR>精錬値が9以上の時、追加でLuk+2。",6,3,0],
+		[1144,100,0,,0,216,5,0],
+		[1145,99,"名誉のニーヴ(迅速)",,"精錬値が7以上の時、追加で攻撃速度+3%。<BR>精錬値が9以上の時、追加で攻撃速度+2%。",12,5,0],
+		[1146,100,0,,0,101,1,0],
+		[1147,99,"名誉のニーヴ(集中)",,"精錬値が7以上の時、追加で詠唱時間-5%。<BR>精錬値が9以上の時、追加で詠唱時間-5%。",73,-5,0],
+		[1148,100,0,,0,73,-10,0],
+		[1149,99,"名誉のニーヴ(熟練)",,"精錬値が7以上の時、追加でスキルディレイ-5%。<BR>精錬値が9以上の時、追加でスキルディレイ-5%。",74,5,0],
+		[1150,100,0,,0,74,10,0],
+		[1151,99,"死のニーヴ(腕力)",,"精錬値が7以上の時、追加で物理攻撃で与えるダメージ+1%。<BR>精錬値が9以上の時、追加で物理攻撃で与えるダメージ+1%。",80,3,0],
+		[1152,100,0,,0,80,5,0],
+		[1153,99,"死のニーヴ(知力)",,"精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+1%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+1%。",89,3,0],
+		[1154,100,0,,0,89,5,0],
+		[1155,99,"死のニーヴ(体力)",,"精錬値が7以上の時、追加でDef+15。<BR>精錬値が9以上の時、追加でDef+25。",18,10,0],
+		[1156,100,0,,0,18,500,0],
+		[1157,99,"死のニーヴ(魔防)",,"精錬値が7以上の時、追加でMdef+6。<BR>精錬値が9以上の時、追加でMdef+10。",19,4,0],
+		[1158,100,0,,0,19,20,0],
+		[1159,3,"スカイプティット&ペノメナ",,0,59,25,50,25,0],
+		[1160,3,"アヌビス&ベアドール",,0,58,25,51,25,0],
+		[1161,3,"オークウォリアー&ラフレシア","オークウォリアーラフレシア",0,52,25,55,25,0],
+		[1162,3,"アーノルディ&ビッグフット","アーノルディビッグフット",0,53,25,54,25,0],
+		[1163,3,"カーリッツバーグ&タラフロッグ","カーリッツバーグタラフロッグ",0,56,25,57,25,0],
+		[1164,2,"ヴァルゴ",,"アークビショップが装備時、精錬値が1上がる度に追加でSP自然回復量+2%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。",15,4,16,4,0],
+		[1165,2,"ヴァルゴの欠片",,0,15,2,16,2,0],
+		[1166,2,"レオ",,"修羅が装備時、精錬値が1上がる度に追加でAtk+4、Hit+2。",2,2,12,3,0],
+		[1167,2,"レオの欠片",,0,2,1,12,1,0],
+		[1168,99,"プレイヤー耐性1",,0,243,1,0],
+		[1169,99,"プレイヤー耐性2",,0,243,2,0],
+		[1170,99,"プレイヤー耐性3",,0,243,3,0],
+		[1171,99,"プレイヤー耐性4",,0,243,4,0],
+		[1172,99,"プレイヤー耐性5",,0,243,5,0],
+		[1173,99,"プレイヤー耐性6",,0,243,6,0],
+		[1174,99,"プレイヤー耐性7",,0,243,7,0],
+		[1175,99,"プレイヤー耐性8",,0,243,8,0],
+		[1176,99,"プレイヤー耐性9",,0,243,9,0],
+		[1177,99,"プレイヤー耐性10",,0,243,10,0],
+		[1178,99,"破壊不可",,0,194,1,0],
+		[1179,99,"詠唱妨害不可",,"詠唱妨害不可",380,1,0],
+		[1180,99,"Def+18",,0,18,18,0],
+		[1181,99,"Mdef+7",,0,19,7,0],
+		[1182,99,"Cri+10",,0,10,10,0],
+		[1183,99,"Flee+10",,0,9,10,0],
+		[1184,99,"Flee+5",,0,9,5,0],
+		[1185,7,"ルーンナイトセイレン",,"",5445,50,0],
+		[1186,5,"ルーンナイトセイレン(MVP)",,"ルーンナイトが装備時、Aspd+2、物理攻撃で与えるダメージ+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1187,100,"",,"物理攻撃命中時、一定確率で5秒間、Vit+100、モンスター「セイレン=ウィンザー」(ルーンナイト)に変身。",0],
+		[1188,7,"ウォーロックカトリーヌ",,"",5529,50,0],
+		[1189,5,"ウォーロックカトリーヌ(MVP)",,"ウォーロックが装備時、Mdef+80、魔法攻撃で与えるダメージ+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1190,100,"",,"魔法攻撃命中時、一定確率で5秒間、Int+100、モンスター「カトリーヌ=ケイロン」(ウォーロック)に変身。",0],
+		[1191,7,"レンジャーセシル",,"",5505,100,0],
+		[1192,5,"レンジャーセシル(MVP)",,"レンジャーが装備時、Cri+20、遠距離物理攻撃で与えるダメージ+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1193,100,"",,"物理攻撃命中時、一定確率で5秒間、Dex+100、モンスター「セシル=ディモン」(レンジャー)に変身。",0],
+		[1194,7,"アークビショップマーガレッタ",,"",5476,50,0],
+		[1195,5,"アークビショップマーガレッタ(MVP)",,"アークビショップが装備時、MaxHP+10%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1196,100,"",,"「ヒール」、「ハイネスヒール」、「コルセオヒール」使用時、一定確率で5秒間、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+100%、モンスター「マーガレッタ=ソリン」(アークビショップ)に変身。",0],
+		[1197,7,"ギロチンクロスエレメス",,"",5466,90,0],
+		[1198,5,"ギロチンクロスエレメス(MVP)",,"ギロチンクロスが装備時、完全回避+10、物理攻撃で与えるダメージ+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1199,100,"",,"物理攻撃命中時、一定確率で5秒間、Agi+100、モンスター「エレメス=ガイル」(ギロチンクロス)に変身。",0],
+		[1200,7,"メカニックハワード",,"",5811,100,0],
+		[1201,5,"メカニックハワード(MVP)",,"メカニックが装備時、Hit+20、物理攻撃で与えるダメージ+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1202,100,"",,"物理攻撃命中時、一定確率で5秒間、Luk+100、モンスター「ハワード=アルトアイゼン」(メカニック)に変身。",0],
+		[1203,7,"ロイヤルガードランデル",,"",5585,50,0],
+		[1204,5,"ロイヤルガードランデル(MVP)",,"ロイヤルガードが装備時、Def+350、物理攻撃で与えるダメージ+10%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1205,100,"",,"物理攻撃を受けた時、一定確率で5秒間、Vit+100、モンスター「ランデル=ロレンス」(ロイヤルガード)に変身。",0],
+		[1206,7,"ソーサラーセリア",,"",5663,100,0],
+		[1207,5,"ソーサラーセリア(MVP)",,"ソーサラーが装備時、MaxHP+10%、魔法攻撃で与えるダメージ+10%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1208,100,"",,"魔法攻撃を受けた時、一定確率で5秒間、Int+100、モンスター「セリア=アルデ」(ソーサラー)に変身。",0],
+		[1209,7,"ミンストレルアルフォシオ",,"",5639,50,0],
+		[1210,5,"ミンストレルアルフォシオ(MVP)",,"ミンストレルが装備時、MaxHP+15%、MaxSP+10%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1211,100,"",,"物理攻撃を受けた時、一定確率で5秒間、Dex+100、モンスター「アルフォシオ=バジル」(ミンストレル)に変身。",0],
+		[1212,7,"ワンダラートレンティーニ",,"",5639,50,0],
+		[1213,5,"ワンダラートレンティーニ(MVP)",,"ワンダラーが装備時、MaxHP+10%、MaxSP+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1214,100,"",,"物理攻撃を受けた時、一定確率で5秒間、Dex+100、モンスター「トレンティーニ」(ワンダラー)に変身。",0],
+		[1215,100,"",,"",80,10,89,10,0],
+		[1216,7,"修羅チェン","シュラチェン","",5622,50,0],
+		[1217,5,"修羅チェン(MVP)","シュラチェンMVP","修羅が装備時、MaxHP+10%、物理攻撃で与えるダメージ+10%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1218,100,"",,"物理攻撃命中時、一定確率で5秒間、Str+100、モンスター「チェン=リウ」(修羅)に変身。",0],
+		[1219,7,"シャドウチェイサーガーティー",,"",5608,70,0],
+		[1220,5,"シャドウチェイサーガーティー(MVP)",,"シャドウチェイサーが装備時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1221,100,"",,"物理攻撃を受けた時、一定確率で5秒間、Agi+100、モンスター「ガーティー=ウー」(シャドウチェイサー)に変身。",0],
+		[1222,7,"ジェネティックエミュール",,"",5732,50,0],
+		[1223,5,"ジェネティックエミュール(MVP)",,"ジェネティックが装備時、Flee+20、物理攻撃で与えるダメージ+15%。<BR>BaseLvが165の時、追加で全ての基本ステータス+10。<BR>精錬値が10の時、追加で全ての基本ステータス+10。",0],
+		[1224,100,"",,"物理攻撃を受けた時、一定確率で5秒間、Luk+100、モンスター「エミュール=プラメール」(ジェネティック)に変身。",0],
+		[1225,1,"修理型ウェルスギア","シュウリガタウェルスギア","",178,5,177,5,0],
+		[1226,1,"探査型ウェルスギア","タンサガタウェルスギア","",38,10,37,10,0],
+		[1227,5,"ロックステップ",,"純粋なVitが20上がる度に追加でMaxHP+3%。",0],
+		[1228,3,"スモッグ",,"",58,20,57,20,0],
+		[1229,100,"",,"",58,5,57,5,318,50,317,50,0],
+		[1230,100,"",,"",58,5,57,5,308,50,307,50,0],
+		[1231,6,"キックアンドキック",,"精錬値が7以上の時、追加でクリティカル攻撃で与えるダメージ+3%。<BR>精錬値が9以上の時、追加でクリティカル攻撃で与えるダメージ+2%。",70,5,0],
+		[1232,6,"キックステップ",,"精錬値が7以上の時、追加で遠距離物理攻撃で与えるダメージ+3%。<BR>精錬値が9以上の時、追加で遠距離物理攻撃で与えるダメージ+2%。",25,5,0],
+		[1233,6,"クラップ",,"精錬値が7以上の時、追加で物理攻撃で与えるダメージ+3%。<BR>精錬値が9以上の時、追加で物理攻撃で与えるダメージ+2%",80,5,0],
+		[1234,6,"チャールストン3号",,"",5554,70,5553,70,5552,70,7551,100,7549,100,0],
+		[1235,7,"GC109","ジーシー109","",80,2,74,3,0],
+		[1236,7,"ステップ",,"",70,3,62,5,0],
+		[1237,7,"DR815","ディーアール815","",89,2,73,-3,0],
+		[1238,100,"",,"",80,3,89,3,73,-2,74,2,0],
+		[1239,7,"T W O","ティーダブリュオー","固定詠唱時間-50%。",293,50,298,50,0],
+		[1240,1,"迷宮のバフォメット","メイキュウノバフォメット",0,80,10,0],
+		[1241,1,"迷宮のドラキュラ","メイキュウノドラキュラ",0,80,10,0],
+		[1242,99,"鋭利5",,0,10,15,70,5,0],
+		[1243,99,"獄",,"戦闘不能から復活時、HP・SPを100%回復する。<BR>ルーンナイトが装備時、「ストームブラスト」で与えるダメージ+100%。<BR>ロイヤルガードが装備時、「キャノンスピア」の再使用待機時間-1秒。<BR>ウォーロックが装備時、「クリムゾンロック」の再使用待機時間-1.5秒。<BR>ソーサラーが装備時、詠唱時間-15%。<BR>レンジャーが装備時、「ウォーグストライク」で与えるダメージ+30%。<BR>ミンストレル・ワンダラーが装備時、全ての基本ステータス+10。<BR>アークビショップが装備時、「プロヴィデンス」Lv5使用可能。<BR>修羅が装備時、遠距離物理攻撃で与えるダメージ+10%。<BR>ギロチンクロスが装備時、スキルディレイ-90%、「ハルシネーションウォーク」使用時、ウェポンブロッキング状態の場合、ウェポンブロッキング状態が解除され、50秒間、高確率で攻撃を受け流すウェポンブロッキング状態になる。<BR>シャドウチェイサーが装備時、固定詠唱時間-50%。<BR>メカニックが装備時、攻撃速度+20%。<BR>ジェネティックが装備時、MaxHP+15%、Atk+50、Matk+50。",0],
+		[1244,99,"百火",,"物理・魔法攻撃命中時、一定確率で10秒間、「百火」発動。<BR>「百火」発動時、詠唱時間-70%、スキルディレイ-70%、物理・魔法攻撃時、全ての属性のモンスターに与えるダメージ + 70%",34,15,106,15,174,15,107,15,41,15,42,15,351,15,352,15,0],
+		[1245,99,"真理の解放",,"魔法攻撃命中時、一定確率で10秒間、完全回避+100、魔法攻撃時、ボスモンスターに与えるダメージ+100%、モンスター「カトリーヌ=ケイロン」(ハイウィザード)に変身。",0],
+		[1246,99,"固定詠唱時間-50%",,"固定詠唱時間-50%。",0],
+		[1247,99,"スキルディレイ-15%",,0,74,15,0],
+		[1248,99,"消費SP-15%",,0,102,15,0],
+		[1249,99,"強撃1",,"精錬値が1上がる度に追加で物理攻撃で与えるダメージ+2%。",0],
+		[1250,99,"強撃2",,"精錬値が1上がる度に追加で物理攻撃で与えるダメージ+4%。",0],
+		[1251,99,"強撃3",,"精錬値が1上がる度に追加で物理攻撃で与えるダメージ+6%。",0],
+		[1252,99,"強撃4",,"精錬値が1上がる度に追加で物理攻撃で与えるダメージ+8%。",0],
+		[1253,99,"強撃5",,"精錬値が1上がる度に追加で物理攻撃で与えるダメージ+10%。",0],
+		[1254,6,"古王グローザ","コオウグローザ",0,16,-50,80,10,37,50,39,50,0],
+		[1255,100,0,,0,219,1254,0],
+		[1256,2,"深層の古王グローザ","シンソウノコオウグローザ","精錬値が1上がる度に追加でAtk+10。",17,100,152,100,159,100,0],
+		[1257,200,"悪魔のカード",,"精錬値が1上がる度に追加で「フェイントボム」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「フェイントボム」で与えるダメージ+5%。",5603,5,0],
+		[1258,200,"力のカード",,"精錬値が1上がる度に追加で「天羅地網」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「天羅地網」で与えるダメージ+5%。",5610,5,0],
+		[1259,200,"正義のカード",,"精錬値が1上がる度に追加で「ハンドレッドスピア」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「ハンドレッドスピア」で与えるダメージ+5%。",5442,5,0],
+		[1260,200,"星のカード",,"精錬値が1上がる度に追加で「ソウルエクスパンション」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「ソウルエクスパンション」で与えるダメージ+5%。",5518,5,0],
+		[1261,200,"節制のカード",,"精錬値が1上がる度に追加で「アローストーム」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「アローストーム」で与えるダメージ+5%。",5498,5,0],
+		[1262,200,"戦車のカード",,"精錬値が1上がる度に追加で「アームズキャノン」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「アームズキャノン」で与えるダメージ+5%。",5554,5,0],
+		[1263,200,"死神のカード",,"精錬値が1上がる度に追加で「ローリングカッター」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「ローリングカッター」で与えるダメージ+5%。",5474,5,0],
+		[1264,200,"隠者のカード",,"精錬値が1上がる度に追加で「アドラムス」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「アドラムス」で与えるダメージ+5%。",5478,5,0],
+		[1265,200,"皇帝のカード",,"精錬値が1上がる度に追加で「オーバーブランド」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「オーバーブランド」で与えるダメージ+5%。",5579,5,0],
+		[1266,200,"月のカード",,"精錬値が1上がる度に追加で「ダイヤモンドダスト」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「ダイヤモンドダスト」で与えるダメージ+5%。",5667,5,0],
+		[1267,200,"恋人のカード",,"精錬値が1上がる度に追加で「シビアレインストーム」で与えるダメージ+1%。<BR>精錬値が1上がる度に追加で「シビアレインストーム(特殊)」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「シビアレインストーム(特殊)」で与えるダメージ+5%。<BR>精錬値が10の時、追加で「シビアレインストーム」で与えるダメージ+5%。",5642,5,5753,5,0],
+		[1268,200,"法王のカード",,"精錬値が1上がる度に追加で「カートトルネード」で与えるダメージ+1%。<BR>精錬値が10の時、追加で「カートトルネード」で与えるダメージ+5%。",5722,5,0],
+		[1269,99,"名誉のニーヴ(命中)",,"精錬値が7以上の時、追加でHit+10。<BR>精錬値が9以上の時、追加でHit+10。",8,20,0],
+		[1270,100,0,,0,8,20,0],
+		[1271,99,"名誉のニーヴ(回避)",,"精錬値が7以上の時、追加でFlee+10。<BR>精錬値が9以上の時、追加でFlee+10。",9,20,0],
+		[1272,100,0,,0,9,20,0],
+		[1273,99,"名誉のニーヴ(幸運)",,"精錬値が7以上の時、追加で完全回避+2。<BR>精錬値が9以上の時、追加で完全回避+2。",11,3,0],
+		[1274,100,0,,0,11,5,0],
+		[1275,99,"死のニーヴ(技巧)",,"精錬値が7以上の時、追加で遠距離物理攻撃で与えるダメージ+1%。<BR>精錬値が9以上の時、追加で遠距離物理攻撃で与えるダメージ+1%。",25,3,0],
+		[1276,100,0,,0,25,5,0],
+		[1277,99,"死のニーヴ(幸運)",,"精錬値が7以上の時、追加でクリティカル攻撃で与えるダメージ+1%。<BR>精錬値が9以上の時、追加でクリティカル攻撃で与えるダメージ+1%。",70,3,0],
+		[1278,100,0,,0,70,5,0],
+		[1279,6,"ハートハンター",,"精錬値が9以上の時、追加でMaxHP+10%、MaxSP+10%。",4,2,0],
+		[1280,6,"マッターキメラ",,"精錬値が1上がる度に追加で「ファイアーボルト」、「ライトニングボルト」、「コールドボルト」、「アーススパイク」で与えるダメージ+7%。",89,10,0],
+		[1281,2,"ヒューマノイドキメラ",,"精錬値が3上がる度に追加で「コメット」の再使用待機時間-10秒。",100,40,73,-5,319529,10000,0],
+		[1282,1,"CUTIE","キューティー","魔法攻撃命中時、一定確率で30秒間、攻撃速度+100%。",89,10,0],
+		[1283,4,"ヴェノムキメラ",,0,42,50,45,50,32,50,34,50,352,50,355,50,172,50,174,50,0],
+		[1284,5,"イーブル",,"物理攻撃を受けた時、一定確率で敵を呪い状態にする。",63,100,0],
+		[1285,2,"タウロス",,"「ミルク」の回復量+300%。<BR>ジェネティックが装備時、精錬値が1上がる度に追加でVit+1、Int+1。",3,1,4,1,0],
+		[1286,2,"キャンサー",,"物理攻撃でモンスターを倒した時、HP+50、SP+3。<BR>メカニックが装備時、精錬値が1以上の時、追加で物理攻撃時、一定確率で7秒間、敵のDef 100%無視。精錬値が1上がる度に発動率が上昇。",0],
+		[1287,1,"トップラウンドライダー",,"ハンドガン、ライフル、ガトリングガン、ショットガン、グレネードガンの場合、追加で物理攻撃で与えるダメージ+5%。<BR>ハンドガン、ライフル、ガトリングガン、ショットガン、グレネードガンの精錬値が10の時、追加で物理攻撃で与えるダメージ+10%。",80,10,0],
+		[1288,1,"トップサイドライダー",,"片手杖、両手杖の場合、精錬値が1上がる度に追加で攻撃速度+1%。<BR>精錬値が10の時、追加で魔法攻撃で与えるダメージ+5%。",0],
+		[1289,3,"ブレードライダー",,"",333,20,43,5,0],
+		[1290,3,"ガスター",,"",79,40,77,-40,0],
+		[1291,5,"コヨーテ",,"精錬値が7以上の時、追加で遠距離物理攻撃で受けるダメージ-10%。",61,20,68,20,0],
+		[1292,5,"トップブレードライダー",,"精錬値が7以上の時、追加でAtk+40、Matk+40。",73,15,380,1,0],
+		[1293,5,"カニバラウス",,"純粋なIntが10上がる度に追加でMatk+3、攻撃速度+1%。<BR>純粋なIntが130の時、追加でMatk+50。",0],
+		[1294,5,"プラズマラット",,"純粋なStrが10上がる度に追加でAtk+3、攻撃速度+1%。<BR>純粋なStrが130の時、追加でAtk+50。",0],
+		[1295,6,"ラウンドライダー",,"純粋なAgiが120以上の時、追加で攻撃速度+3%。<BR>純粋なIntが120以上の時、追加でMatk+30。<BR>純粋なDexが120以上の時、追加で物理攻撃で与えるダメージ+5%。",15,10,0],
+		[1296,6,"サイドライダー",,"純粋なStrが120以上の時、追加でAtk+30。<BR>純粋なVitが120以上の時、追加でMaxHP+5%。<BR>純粋なLukが120以上の時、追加でクリティカル攻撃で与えるダメージ+5%。",15,10,0],
+		[1297,99,"覇王",,"物理攻撃命中時、一定確率で10秒間、Str+200、モンスター「ランデル=ロレンス」(パラディン)に変身。",0],
+		[1298,2,"ジェミニ",,"ミンストレルが装備時、精錬値が1上がる度に追加でAtk+5。<BR>ワンダラーが装備時、精錬値が1上がる度に追加でMatk+5。",80,3,89,3,0],
+		[1299,2,"サジタリウス",,"物理攻撃でモンスターを倒した時、SP+5。<BR>レンジャーが装備時、精錬値が1上がる度に追加でHit+5。",0],
+		[1300,99,"熊の力",,"物理攻撃を受けた時、一定確率で5秒間、モンスター「ビッグフット」に変身<BR>モンスター「ビッグフット」に変身時、Str + 200、1秒毎にHP - 500",0],
+		[1301,99,"光速",,"物理攻撃命中時、一定確率で5秒間、[光速]発動<BR>[光速]発動時、攻撃速度 + 100%、完全回避 + 100、1秒毎にHP - 400 , SP - 40",0],
+		[1302,99,"鋼鎧",,"物理攻撃を受けた時、一定確率で5秒間、[鋼鎧]発動<BR>[鋼鎧]発動時、物理攻撃で与えるダメージ - 50%、Matk - 50%、Def + 1000",0],
+		[1303,99,"大鷲の眼光",,"物理攻撃命中時、一定確率で10秒間、[大鷲の眼光]発動<BR>[大鷲の眼光]発動時、Dex + 200、1秒毎にSP - 50",0],
+		[1304,99,"幸運な日",,"物理、魔法攻撃命中時、一定確率で5秒間、[幸運な日]発動<BR>物理、魔法攻撃を受けた時、定確率で5秒間、[幸運な日]発動<BR>[幸運な日]発動時、Luk + 200、モンスターを倒した時、一定確率で[宝箱]をドロップ",0],
+		[1305,1,"女王フェイスワーム","ジョオウフェイスワーム","「エンチャントポイズン」Lv10使用可能。<BR>「サイズミックウェポン」Lv1使用可能。<BR>「フレイムランチャー」Lv1使用可能。<BR>「フロストウェポン」Lv1使用可能。<BR>「ライトニングローダー」Lv1使用可能。<BR>物理攻撃命中時、一定確率で5秒間、Agi+100、移動速度増加。",80,10,0],
+		[1306,3,"フェイスワームの幼虫","フェイスワームノヨウチュウ","",34,5,174,5,54,20,0],
+		[1307,3,"大長老アイリン","ダイチョウロウアイリン","精錬値が7以上の時、追加で小・中・大型モンスターから受けるダメージ-10%。",190,20,191,20,192,20,0],
+		[1308,2,"フェイヨン警備兵&フェイヨン守護兵","フェイヨンケイビヘイフェイヨンシュゴヘイ","",2,1,100,25,12,2,9054,-5000,9051,-5000,9056,-5000,0],
+		[1309,2,"サラの幻影","サラノゲンエイ","「エナジーコート」Lv1使用可能。<BR>精錬値が1上がる度に追加で「ヘルインフェルノ」で与えるダメージ+10%。",63,10,67,10,0],
+		[1310,4,"フェイスワーム",,"",62,5,159,100,0],
+		[1311,4,"ジターバグ",,"ミンストレル・ワンダラーが装備時、「トゥルーサイト」Lv1使用可能、絶対に凍結しない。",381,1,4,3,0],
+		[1312,5,"ダークフェイスワーム",,"精錬値が7以上の時、追加で遠距離物理攻撃で受けるダメージ-10%。<BR>「フェイス」習得時、追加で聖属性攻撃で受けるダメージ+20%。",199,156,64,20,66,20,0],
+		[1313,7,"フェイスワームの卵",,"",34,5,174,5,0],
+		[1314,100,"",,"",34,5,174,5,54,10,0],
+		[1315,7,"ペル&キスミー・ペル",,"",15,3,78,3,0],
+		[1316,7,"シンギング・ペル&スイング・ペル",,"",16,3,196,3,0],
+		[1317,100,"",,"",15,2,16,2,78,2,196,2,0],
+		[1318,7,"fff・ジターバグ","フォルティシモジターバグ","",152,50,5641,50,0],
+		[1319,99,"Overclock",,"「テレポート」Lv1使用可能。",80,5,89,5,63,15,61,15,64,15,62,15,77,10,0],
+		[1320,99,"超越者",,"「スペルブレイカー」Lv1使用可能。",15,20,16,20,37,5,177,5,0],
+		[1321,99,"呪力",,"",4,10,73,-10,0],
+		[1322,99,"剛腕",,"物理攻撃命中時、一定確率で5秒間、Atk+100。",80,5,0],
+		[1323,99,"竜鱗",,"",381,1,32,15,34,15,172,15,174,15,71,10,380,1,0],
+		[1324,4,"エッグリン",,"モンスターを倒した時、HP+50、SP+3。",13,300,14,30,0],
+		[1325,3,"ジャングルマンドラゴラ",,"",64,20,190,15,191,15,192,15,0],
+		[1326,3,"フルーツポムスパイダー",,"",63,20,190,15,191,15,192,15,0],
+		[1327,3,"偵察バジルリスク","テイサツバジリスク","",52,15,155,100,0],
+		[1328,3,"突撃バジルリスク","トツゲキバジリスク","",243,30,0],
+		[1329,5,"ワイルドホーネット",,"",60,15,64,25,0],
+		[1330,5,"スウィートフロッグ",,"",60,15,61,25,0],
+		[1331,5,"ハンターウルフ",,"",60,15,63,25,0],
+		[1332,5,"トランススポア",,"",60,15,62,25,0],
+		[1333,6,"リーフルナティック",,"",14,200,76,10,0],
+		[1334,6,"グラスファブル",,"",13,1000,75,10,0],
+		[1335,2,"ビッグエッグリン",,"精錬値が1上がる度に追加で全ての基本ステータス+1。",0],
+		[1336,99,"Z-Knockback",,"",381,1,0],
+		[1337,99,"Z-Immortal",,"",194,1,0],
+		[1338,99,"Z-Killgain",,"物理攻撃でモンスターを倒した時、SP+2。<BR>精錬値が7以上の時、追加で物理攻撃でモンスターを倒した時、SP+3。<BR>精錬値が8以上の時、追加で物理攻撃でモンスターを倒した時、SP+5。<BR>精錬値が9以上の時、追加で物理攻撃でモンスターを倒した時、SP+10。",0],
+		[1339,99,"Z-Reincarnation",,"戦闘不能から復活時、HP・SPを100%回復する。",0],
+		[1340,99,"Z-NoDispell",,"",380,1,0],
+		[1341,99,"Z-Clairvoyance",,"「ハイディング」や「クローキング」をしているモンスターが見える。",0],
+		[1342,99,"Z-CastFixed",,"固定詠唱時間-50%。",0],
+		[1343,2,"サーペンタリウス",,"モンスターを倒した時、一定確率で「イヌハッカの実」、「エビ」、「ニンジン」をドロップ。<BR>サモナーが装備時、精錬値が1上がる度に追加でMaxHP+2%、MaxSP+2%、詠唱速度-1%。",0],
+		[1344,2,"アクエリアス",,"ウォーロックが装備時、精錬値が1上がる度に追加でMatk+4、MaxSP+1%。",4,2,76,15,0],
+		[1345,99,"傷のニーヴ(プレイヤー)",,0,243,30,0],
+		[1346,100,0,,0,243,5,274,5,0],
+		[1347,99,"強靭",,0,15,5,16,5,274,5,7000018,50,7000019,5,7000274,5,9000018,50,9000019,5,9000274,2,0],
+		[1348,99,"豪傑",,"物理攻撃命中時、一定確率で10秒間、完全回避+100、物理攻撃時、ボスモンスターに与えるダメージ+100%。",0],
+		[1349,1,"迷宮のドッペルゲンガー","メイキュウのドッペルゲンガー","",80,10,0],
+		[1350,99,"増幅1",,"精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+1%。",0],
+		[1351,99,"増幅2",,"精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+2%。",0],
+		[1352,99,"増幅3",,"精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+3%。",0],
+		[1353,99,"増幅4",,"精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+4%。",0],
+		[1354,99,"増幅5",,"精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+5%。",0],
+		[1355,6,"怒りの月夜花","イカリノウォルヤファ","",89,10,172,50,176,50,16,-50,0],
+		[1356,5,"怒りの九尾狐","イカリノクミホ","",62,20,65,20,7000078,10,0],
+		[1357,1,"怨恨のボンゴン","エンコンノボンゴン","",241,20,0],
+		[1358,6,"怨恨のソヒー","エンコンノソヒー","",16,20,19000000080,5,0],
+		[1359,3,"怨恨のムナック","エンコンノムナック","",62,20,190,15,191,15,192,15,0],
+		[1360,1,"怨恨のAスケルトン","エンコンノAスケルトン","物理攻撃命中時、一定確率で敵を恐怖状態にする",17,5,0],
+		[1361,5,"真理の魔法使い","シンリノマホウツカイ","",348,50,68,70,0],
+		[1362,6,"狂乱した冒険者","キョウランシタボウケンシャ","",15,10,16,10,5794,50,5447,50,0],
+		[1363,1,"怒りのゲイズティ","イカリノゲイズティ","",242,10,0],
+		[1364,7,"怒りのスノウアー","イカリノスノウアー","",1,5,19000000080,4,0],
+		[1365,7,"怒りのアイスタイタン","イカリノアイスタイタン","",3,5,21000000015,4,0],
+		[1366,4,"覚醒クトルラナックス","カクセイクトルラナックス","",353,50,350,50,170,50,176,50,0],
+		[1367,2,"リーブラ",,"ルーンナイトが装備時、精錬値が1上がる度に追加で攻撃速度 + 1%",25,2,0],
+		[1368,2,"スコーピオ",,"ギロチンクロスが装備時、精錬値が1上がる度に追加でスキルディレイ - 1%",1,3,80,3,0],
+		[1369,1,"マットドレインリアー",,"カタールの場合、追加で物理攻撃で与えるダメージ + 5%<BR>カタールの精錬値が10の時、追加で物理攻撃で与えるダメージ + 10%",80,10,0],
+		[1370,5,"ボミ",,"",341,50,61,70,0],
+		[1371,7,"怒りのドラキュラ","イカリノドラキュラ","絶対に恐怖状態にならない",153,100,0],
+		[1372,7,"スウィートナイトメア",,"",2,5,20000000012,4,0],
+		[1373,7,"安らぎを奪われし者達","ヤスラギヲウバワレシモノタチ","",6,5,24000000070,4,0],
+		[1374,2,"不吉なソリッドタートル","フキツナソリッドタートル","",18,100,19,10,151,50,0],
+		[1375,5,"不吉なフリーズタートル","フキツナフリーズタートル","",60,15,100341,3,0],
+		[1376,6,"不吉なタートルG","フキツナタートルG","",80,10,30,50,32,50,16,-50,0],
+		[1377,6,"不吉なアサルトタートル","フキツナアサルトタートル","物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を沈黙状態にする",0],
+		[1378,100,0,,"物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を沈黙状態にする確率が上昇",60,5,0],
+		[1379,7,"不吉なPタートル","フキツナPタートル","",91,3,67,5,0],
+		[1380,7,"不吉なヒートタートル","フキツナヒートタートル","",220,34,0],
+		[1381,99,"アルカナ",,"",0],
+		[1382,100,0,,"",213,3,15,10,5579,50,0],
+		[1383,100,0,,"",216,3,92,10,5722,50,0],
+		[1384,100,0,,"",215,3,19,20,5642,50,5753,50,0],
+		[1385,100,0,,"",216,3,25,5,5554,50,0],
+		[1386,100,0,,"",211,3,17,50,5610,50,0],
+		[1387,100,0,,"",91,5,76,50,5478,50,0],
+		[1388,100,0,,"",213,3,18,300,5442,50,0],
+		[1389,100,0,,"",212,3,9,50,5474,50,0],
+		[1390,100,0,,"",215,3,101,1,5498,50,0],
+		[1391,100,0,,"",212,3,8,50,5603,50,0],
+		[1392,100,0,,"",214,3,100,50,5518,50,0],
+		[1393,100,0,,"",214,3,5667,50,380,1,0],
+		[1394,99,"プレイヤー耐性11",,0,243,11,0],
+		[1395,99,"プレイヤー耐性12",,0,243,12,0],
+		[1396,99,"プレイヤー耐性13",,0,243,13,0],
+		[1397,99,"プレイヤー耐性14",,0,243,14,0],
+		[1398,99,"プレイヤー耐性15",,0,243,15,0],
+		[1399,99,"プレイヤー耐性16",,0,243,16,0],
+		[1400,99,"プレイヤー耐性17",,0,243,17,0],
+		[1401,99,"プレイヤー耐性18",,0,243,18,0],
+		[1402,99,"プレイヤー耐性19",,0,243,19,0],
+		[1403,99,"プレイヤー耐性20",,0,243,20,0],
+		[1404,5,"魔女ジラント","マジョジラント","絶対にホワイトインプリズン状態にならない<BR>自分に対して使用した[ホワイトインプリズン]にはこの効果は発動しない",343,100,63,50,0],
+		[1405,7,"古龍ジラント","コリュウジラント","ルーンナイトがアクセサリー(1)に装備時、[ウォータードラゴンブレス]で与えるダメージ + 50%、物理・魔法攻撃を受けた時、自分を3秒間[永久霜]状態にする<BR>ルーンナイトがアクセサリー(2)に装備時、[ファイアードラゴンブレス]で与えるダメージ + 50%、物理・魔法攻撃命中時、一定確率で敵を3秒間[獄炎呪]状態にする",15,50,0],
+		[1406,2,"アリエス",,"ロイヤルガードが装備時、精錬値が1上がる度に追加でMaxHP + 500",3,3,0],
+		[1407,2,"カプリコーン",,"シャドウチェイサーが装備時、精錬値が1上がる度に追加でFlee + 5",5,2,157,100,0],
+		[1408,2,"パイシーズ",,"ソーサラーが装備時、精錬値が1上がる度に追加でInt + 1 , Mdef + 1",343,5,341,5,344,5,342,5,0],
+		[1409,99,"凍結耐性",,"",152,100,0],
+		[1410,1,"フレイムゴーレム",,"",80,10,220,68,0],
+		[1411,2,"死神アンク","シニガミアンク","[Mコメット]で受けるダメージ - 50%",61,10,65,10,159,50,0],
+		[1412,2,"モルス・ネクロマンサー",,"[Mジャックフロスト]で受けるダメージ - 50%",64,10,68,10,155,50,0],
+		[1413,4,"フレイムサンドマン",,"絶対に発火状態にならない",63,5,0],
+		[1414,5,"フレイムコンドル",,"",9,5,43,10,110,15,117,15,0],
+		[1415,5,"ブリナラネア",,"",61,50,64,50,7000015,10,7000016,10,0],
+		[1416,5,"ムスペルスコール",,"",63,50,62,50,7000015,10,7000016,10,0],
+		[1417,6,"フレイムバグ",,"",100343,3,0],
+		[1418,6,"堕落した生命","ダラクシタセイメイ","",6,2,9000015,10,9000016,10,0],
+		[1419,7,"フレイムフリルドラ",,"",5,5,23000000025,4,0],
+		[1420,7,"魔神の使徒・アハト","マジンノシトアハト","",4,5,5,5,6,5,73,-3,0],
+		[1421,7,"魔神の使徒・シナイム","マジンノシトシナイム","",1,5,2,5,3,5,74,3,0],
+		[1422,100,0,,"",17,50,100,50,73,-2,74,2,0],
+		[1423,7,"絶望の神モロク","ゼツボウノカミモロク","物理攻撃命中時、一定確率で10秒間、[インスピレーション]Lv1状態になる",7,3,101,1,0],
+		[1424,99,"超弩級",,"",37,15,77,5,19000000029,30,0],
+		[1425,99,"Def50%無視",,"",290,50,0],
+		[1426,99,"反逆者",,"純粋なAgiが110以上の時、純粋なAgiが（110から）5上がる度に追加で[ラウンドトリップ]で与えるダメージ + 30%<BR>純粋なLukが110以上の時、純粋なLukが（110から）5上がる度に追加で[ドラゴンテイル]で与えるダメージ + 30%",25000019838,10000,28000019839,20000,0],
+		[1427,99,"火雷大神",,"物理攻撃命中時、一定確率でオートスペル[アドレナリンラッシュ]Lv2発動、オートスペル[アドレナリンラッシュ]は全ての武器で発動<BR>純粋なLukが125以上の時、追加で物理攻撃命中時、一定確率で5秒間、Dex + 100",7,10,0],
+		[1428,99,"Mdef50%無視",,"",295,50,0],
+		[1429,2,"労働型ピットマン","ロウドウガタピットマン","",40,30,350,30,300,30,0],
+		[1430,6,"輝くベアドール","カガヤクベアドール","",80,10,31,50,36,50,16,-50,0],
+		[1431,6,"魂の破片","タマシイノハヘン","",15,10,16,10,5497,50,5272,50,0],
+		[1432,7,"カラフルなベアドール",,"",4,5,22000000089,4,0],
+		[1433,7,"邪念のオブシディアン","ジャネンノオブシディアン","",17,10,86,5,0],
+		[1434,200,"愚者のカード",,"",13,500,14,50,100013,100,100014,10,10000013,500,10000014,50,0],
+		[1435,100,0,,"",217,1,13,5000,14,500,220,71,0],
+		[1436,200,"運命の輪のカード",,"",5767,5,105767,1,10005767,5,0],
+		[1437,100,0,,"",211,2,216,2,75,350,5767,50,0],
+		[1438,200,"吊るされた男のカード",,"",5830,5,105830,1,10005830,5,0],
+		[1439,100,0,,"",214,2,215,2,16,10,5830,50,0],
+		[1440,200,"世界のカード",,"",5922,5,105922,1,10005922,5,0],
+		[1441,100,0,,"[ハイディング]や[クローキング]をしているモンスターが見える（この効果は攻城戦TEでは発動しない）",212,2,213,2,5922,50,0],
+		[1442,1,"古のウータンファイター","イニシエノウータンファイター","",80,10,220,72,0],
+		[1443,2,"古の三葉蟲","イニシエノサンヨウチュウ","",221,210,0],
+		[1444,2,"古のフレイムシューター","イニシエノフレイムシューター","純粋なStrが10上がる度に追加でMaxSP + 20",19000000080,5,0],
+		[1445,4,"古のタオグンカ","イニシエノタオグンカ","",15,10,18,-50,19,-50,100015,5,9000152,100,0],
+		[1446,5,"古のメガリス","イニシエノメガリス","純粋なVitが10上がる度に追加でAtk + 3、Hit + 5<BR>純粋なLukが10上がる度に追加でAtk + 3、攻撃速度 + 1%",21000000017,50,21000000008,25,24000000017,50,24000000012,5,0],
+		[1447,5,"古のウータンシューター","イニシエノウータンシューター","純粋なVitが10上がる度に追加でMatk + 3、Def + 10<BR>純粋なLukが10上がる度に追加でMatk + 3、攻撃速度 + 1%",21000000100,50,21000000018,50,24000000100,50,24000000012,5,0],
+		[1448,6,"古のウータンガード","イニシエノウータンガード","",15,10,16,10,5263,50,5264,50,0],
+		[1449,7,"古のSゴーレム","イニシエノSゴーレム","物理攻撃でモンスターを倒した時、HP + 50 , SP + 5",80,3,0],
+		[1450,99,"死の欲動",,"物理攻撃命中時、一定確率で10秒間、Flee+150、スキルディレイ-100%、モンスター「エレメス=ガイル」(アサシンクロス)に変身。",0],
+		[1451,99,"B-Atk",,"",17,6,6000017,8,8000017,16,0],
+		[1452,99,"B-Def",,"",18,10,6000018,20,8000018,60,0],
+		[1453,99,"B-HPR",,"",75,40,6000075,60,8000075,200,0],
+		[1454,99,"B-Matk",,"",100,6,6000100,8,8000100,16,0],
+		[1455,99,"B-MaxHP",,"",13,400,6000013,600,8000013,2000,0],
+		[1456,99,"B-MaxSP",,"",14,40,6000014,60,8000014,200,0],
+		[1457,99,"B-Mdef",,"",19,1,6000019,2,8000019,4,0],
+		[1458,99,"B-SPR",,"",76,4,6000076,6,8000076,20,0],
+		[1459,99,"G-DrainHP",,"精錬値が8以上の時、物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収<BR>精錬値が9以上の時、追加でHPの吸収量 + 1%、吸収する確率が上昇<BR>精錬値が10の時、追加でHPの吸収量 + 2%、吸収する確率が上昇",0],
+		[1460,99,"G-DrainSP",,"精錬値が8以上の時、物理攻撃命中時、一定確率で敵に与えたダメージの2%をSPとして吸収<BR>精錬値が9以上の時、追加でSPの吸収量 + 1%、吸収する確率が上昇<BR>精錬値が10の時、追加でSPの吸収量 + 2%、吸収する確率が上昇",0],
+		[1461,100,0,,"[エナジー<守護竜>]のSP吸収効果が発動しない",0],
+		[1462,99,"G-Life",,"5秒毎にHP + 100<BR>精錬値が7以上の時、追加で5秒毎にHP + 150<BR>精錬値が9以上の時、追加で5秒毎にHP + 200<BR>精錬値が10の時、追加で5秒毎にHP + 250",0],
+		[1463,99,"G-Soul",,"5秒毎にSP + 5<BR>精錬値が7以上の時、追加で5秒毎にSP + 10<BR>精錬値が9以上の時、追加で5秒毎にSP + 20<BR>精錬値が10の時、追加で5秒毎にSP + 30",0],
+		[1464,99,"Q-Attribute",,"",60,1,61,1,62,1,63,1,64,1,65,1,66,1,67,1,68,1,69,1,6000060,2,6000061,2,6000062,2,6000063,2,6000064,2,6000065,2,6000066,2,6000067,2,6000068,2,6000069,2,8000060,2,8000061,2,8000062,2,8000063,2,8000064,2,8000065,2,8000066,2,8000067,2,8000068,2,8000069,2,0],
+		[1465,99,"Q-CastFixed",,"固定詠唱時間 - 20%<BR>精錬値が6以上の時、追加で固定詠唱時間 - 20%<BR>精錬値が8以上の時、追加で固定詠唱時間 - 20%",0],
+		[1466,99,"Q-CastStat",,"",73,-2,6000073,-3,8000073,-5,0],
+		[1467,99,"Q-Delay",,"",74,2,6000074,3,8000074,5,0],
+		[1468,99,"Q-Fatal",,"",70,5,6000070,10,8000070,15,0],
+		[1469,99,"Q-Heal",,"",91,4,6000091,6,8000091,10,0],
+		[1470,99,"Q-Player",,"",243,1,300243,1,0],
+		[1471,99,"Q-Shooter",,"",25,2,6000025,3,8000025,5,0],
+		[1472,99,"Q-Speed",,"",12,2,6000012,3,8000012,5,0],
+		[1473,99,"X-FatalFlash",,"物理・魔法攻撃命中時、一定確率で4秒間、Agi + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000002,50,0],
+		[1474,99,"X-FiringShot",,"物理・魔法攻撃命中時、一定確率で4秒間、Dex + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000005,50,0],
+		[1475,99,"X-LuckyStrike",,"物理・魔法攻撃命中時、一定確率で4秒間、Luk + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000006,50,0],
+		[1476,99,"X-OverPower",,"物理・魔法攻撃命中時、一定確率で4秒間、Str + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000001,50,0],
+		[1477,99,"X-SpellBuster",,"物理・魔法攻撃命中時、一定確率で4秒間、Int + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000004,50,0],
+		[1478,99,"X-UnlimitVital",,"物理・魔法攻撃命中時、一定確率で4秒間、Vit + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000003,50,0],
+		[1479,1,"プラガ",,"",80,10,220,88,0],
+		[1480,1,"ドロール",,"",351,10,0],
+		[1481,1,"ツイン・カプトゥ",,"",100,5,98,8,0],
+		[1482,1,"E-EA1L","イーイーエー1エル","弓の場合、Hit - 10 , Cri + 10、クリティカル攻撃で与えるダメージ + 10%<BR>弓の場合で、かつ精錬値が1上がる度に追加でHit - 1 , Cri + 1、クリティカル攻撃で与えるダメージ + 1%",0],
+		[1483,2,"EL-A17T","イーエルエー17ティー","",62,10,66,10,220,89,105554,10,0],
+		[1484,2,"変種ヴェネヌム","ヘンシュヴェネヌム","",48,30,358,30,307,30,0],
+		[1485,2,"ミグエル",,"リベリオンが装備時、物理攻撃命中時、敵に与えたダメージの1%をHPとして吸収",25,10,220,90,0],
+		[1486,3,"ハートハンター・サナレ",,"",100091,1,10000091,10,0],
+		[1487,5,"変種プラガ","ヘンシュプラガ","",8,5,44,10,114,15,116,15,0],
+		[1488,6,"ハートハンター・ベラレ",,"BaseLvが1上がる度に追加で[スプレッドアタック]で与えるダメージ + 3%<BR>リベリオンが装備時、BaseLvが1上がる度に追加で[スプレッドアタック]で与えるダメージ + 2%<BR>リベリオンが装備時、精錬値が9以上の時、追加でBaseLvが1上がる度に[スプレッドアタック]で与えるダメージ + 1%",80,5,0],
+		[1489,6,"ハートハンター・Mベラレ",,"BaseLvが1上がる度に追加で[ラピッドシャワー]で与えるダメージ + 1%<BR>リベリオンが装備時、BaseLvが1上がる度に追加で[ラピッドシャワー]で与えるダメージ + 1%<BR>リベリオンが装備時、精錬値が9以上の時、追加でBaseLvが1上がる度に[ラピッドシャワー]で与えるダメージ + 1%",80,5,0],
+		[1490,6,"変種ドロール","ヘンシュドロール","",100341,3,0],
+		[1491,7,"EA2S","イーエー2エス","",25,3,64,5,0],
+		[1492,7,"ハートハンター・Mサナレ",,"",11,5,92,5,0],
+		[1493,7,"ヴェネヌム",,"",221,212,0],
+		[1494,7,"変種ツイン・カプトゥ","ヘンシュツイン・カプトゥ","魔法攻撃でモンスターを倒した時、HP + 50 , SP + 5",89,3,0],
+		[1495,7,"R48-85-ベスティア","アール48-85-ベスティア","",74,30,0],
+		[1496,100,0,,"",74,-30,0],
+		[1497,99,"グリード詠唱-100%",,"",7849,100,0],
+		[1498,1,"クルピラ",,"",352,10,0],
+		[1499,1,"ボイタタ",,"",101,1,343,20,344,20,0],
+		[1500,2,"トゥカン",,"",33000000159,50,33000000155,50,100017,3,9000080,2,0],
+		[1501,2,"首なしラバ","クビナシラバ","",17,10,43,5,9000043,5,0],
+		[1502,4,"イアラ",,"",152,100,100100,3,0],
+		[1503,3,"ピラニア",,"",61,20,190,15,191,15,192,15,0],
+		[1504,5,"ジャガー",,"",8,5,12,3,47,10,116,15,0],
+		[1505,2,"ブラック・カネイリー",,"",12,3,221,213,0],
+		[1506,100,0,,"",211,5,212,5,15,10,80,5,0],
+		[1507,4,"オルドル",,"",13,400,14,50,221,71,0],
+		[1508,100,0,,"",15,15,16,15,77,40,198,6,0],
+		[1509,3,"フェモン",,"",14,100,5197,10,5321,10,7197,100,7321,100,0],
+		[1510,5,"黒魔","クロマ","",12,10,220,92,19402,-30000,0],
+		[1511,100,0,,"",101,2,80,10,0],
+		[1512,5,"フェイ・カナビアン",,"[アシッドテラー]で受けるダメージ - 50%",25,5,0],
+		[1513,100,0,,"",86,10,0],
+		[1514,6,"ディオ・アネモス",,"BaseLvが3上がる度に追加で[サンダーストーム]で与えるダメージ + 2%",89,5,0],
+		[1515,100,0,,"",13,1000,14,100,103,5,0],
+		[1516,6,"ビリー・コスルリース",,"BaseLvが1上がる度に追加で[インベナム]で与えるダメージ + 2%",80,5,0],
+		[1517,6,"イフォドス",,"BaseLvが1上がる度に追加で[スピアブーメラン]で与えるダメージ + 4%",80,5,0],
+		[1518,6,"ユメヒメ",,"BaseLvが1上がる度に追加で[アローシャワー]で与えるダメージ + 2%",80,5,0],
+		[1519,7,"アルヒ",,"物理攻撃命中時、一定確率で敵を中心にオートスペル[サンダーストーム]Lv5発動。[サンダーストーム]の習得Lvが6以上の場合、習得Lvで発動",100,15,225,178,0],
+		[1520,7,"ヒピア・スニキ",,"",220,93,0],
+		[1521,7,"ブルート・ハゼ",,"",17,15,5162,50,0],
+		[1522,7,"レチェニエ",,"アクセサリー(1)に装備時、物理攻撃命中時、一定確率で自分にオートスペル[セイフティウォール]Lv5発動<BR>アクセサリー(2)に装備時、物理攻撃命中時、一定確率で自分にオートスペル[ニューマ]Lv1発動",0],
+		[1523,7,"ジュー",,"",341,4,0],
+		[1524,100,0,,"",215,7,89,4,0],
+		[1525,7,"ディワイ",,"",342,4,0],
+		[1526,1,"ギガンテス",,"片手斧、両手斧の場合、追加でHit + 15 , 攻撃速度 + 3%<BR>片手斧、両手斧の精錬値が10の時、追加でAtk + 100",80,10,0],
+		[1527,5,"騎士サクライ","キシサクライ","",80,15,89,15,66,50,9000062,50,9000078,10,0],
+		[1528,1,"ババヤガ",,"魔法攻撃命中時、一定確率で10秒間、2秒毎にHP + 50 , SP + 25",0],
+		[1529,4,"ウジャス",,"",67,5,153,100,0],
+		[1530,4,"ゴピニク",,"純粋なStrとIntとDexの合計が10上がる度に追加で物理・魔法攻撃時、風属性モンスターに与えるダメージ + 3%",0],
+		[1531,3,"ウッドゴブリン",,"",19,10,9000019,10,0],
+		[1532,3,"レス",,"",65,20,190,15,191,15,192,15,0],
+		[1533,7,"マブカ",,"",92,5,69,5,0],
+		[1534,2,"暴走した船長ペルロック","ボウソウシタセンチョウペルロック","",200025,1,10000025,5,0],
+		[1535,5,"飛行船襲撃団","ヒコウセンシュウゲキダン","",78,10,9000060,20,0],
+		[1536,6,"魔神の巨影","マジンノキョエイ","[ベナムナイフ]使用時、[クロスインパクト]が習得Lvで発動",12,10,105460,10,0],
+		[1537,7,"魔神の信者","マジンノシンジャ","",110,12,111,12,116,12,0],
+		[1538,1,"混沌のサイドワインダー","コントンノサイドワインダー","[三段掌]Lv5が素手と全ての武器で使用可能<BR>[三段掌]の習得Lvが6以上の場合、素手と全ての武器で習得Lvの[三段掌]使用可能",199,187,80,10,0],
+		[1539,1,"混沌のステムワーム","コントンノステムワーム","",100,5,97,8,0],
+		[1540,2,"混沌のバフォメット.Jr","コントンノバフォメット.Jr","",220,17,300002,1,0],
+		[1541,4,"混沌のキラーマンティス","コントンノキラーマンティス","純粋なStrが10上がる度に追加でAtk + 5",37000000017,100,0],
+		[1542,5,"混沌のハンターフライ","コントンノハンターフライ","純粋なStrが10上がる度に追加でAtk + 3、Mdef + 1<BR>純粋なAgiが10上がる度に追加でAtk + 3、MaxHP + 1%",19000000017,50,19000000019,5,20000000017,50,20000000015,5,0],
+		[1543,6,"混沌のゴーストリング","コントンノゴーストリング","",48,50,0],
+		[1544,6,"混沌のバフォメット","コントンノバフォメット","",89,10,171,50,174,50,16,-50,0],
+		[1545,6,"混沌のアコライト","コントンノアコライト","",100346,3,0],
+		[1546,7,"混沌のマンティス","コントンノマンティス","",80,3,0],
+		[1547,100,0,,"",211,10,0],
+		[1548,7,"混沌のポポリン","コントンノポポリン","[ぴしゃりハーブ]Lv1使用可能",0],
+		[1549,99,"遠距離物理耐性+10%",,"",78,10,0],
+		[1550,6,"封印された月夜花","フウインサレタウォルヤファ","移動速度増加",8,-50,0],
+		[1551,99,"Extreme",,"絶対にホワイトインプリズン状態にならない　※自分に対して使用した[ホワイトインプリズン]にはこの効果は発動しない<BR>物理・魔法攻撃命中時一定確率で10秒間Dex+100、モンスター[システムメッセージ2]に変身",86,20,0],
+		[1552,100,0,,"",101,1,0],
+		[1553,100,0,,"",17,15,0],
+		[1554,100,0,,"",11,2,0],
+		[1555,100,0,,"",18,500,0],
+		[1556,100,0,,"",9,15,0],
+		[1557,100,0,,"",13,1000,0],
+		[1558,100,0,,"",8,15,0],
+		[1559,100,0,,"",89,3,0],
+		[1560,100,0,,"",100,15,0],
+		[1561,100,0,,"",13,7500,0],
+		[1562,100,0,,"",14,150,0],
+		[1563,100,0,,"",19,20,0],
+		[1564,100,0,,"",80,3,0],
+		[1565,100,0,,"",78,10,0],
+		[1566,100,0,,"",75,350,0],
+		[1567,100,0,,"5秒毎にHP+1500",0],
+		[1568,100,0,,"5秒毎にSP+25",0],
+		[1569,100,0,,"",76,50,0],
+		[1570,100,0,,"",43,10,353,10,0],
+		[1571,100,0,,"",42,10,352,10,0],
+		[1572,100,0,,"",41,10,351,10,0],
+		[1573,100,0,,"",44,10,354,10,0],
+		[1574,100,0,,"",63,25,0],
+		[1575,100,0,,"",62,25,0],
+		[1576,100,0,,"",61,25,0],
+		[1577,100,0,,"",64,25,0],
+		[1578,100,0,,"",12,5,0],
+		[1579,100,0,,"",12,5,0],
+		[1580,100,0,,"",12,5,0],
+		[1581,100,0,,"",12,5,0],
+		[1582,100,0,,"",12,5,0],
+		[1583,100,0,,"",12,5,0],
+		[1584,100,0,,"",15,5,0],
+		[1585,100,0,,"",15,5,0],
+		[1586,100,0,,"",15,5,0],
+		[1587,100,0,,"",15,5,0],
+		[1588,100,0,,"",15,5,0],
+		[1589,100,0,,"",15,5,0],
+		[1590,100,0,,"",15,5,0],
+		[1591,99,"マグニフィカートLv5",,"",220,96,0],
+		[1592,99,"Def+50",,0,18,50,0],
+		[1593,99,"ノックバック無効",,"",381,1,0],
+		[1594,99,"石化耐性",,"",159,100,0],
+		[1595,1,"汚染された彷徨う者","オセンサレタサマヨウモノ","",267,25,0],
+		[1596,1,"硬化カホ","コウカカホ","",30,15,42,15,0],
+		[1597,1,"硬化ラーヴァゴーレム","コウカラーヴァゴーレム","物理・魔法攻撃時、[ノーグロード 3層]に出現するモンスターに与えるダメージ + 30%",0],
+		[1598,1,"プリズンブレイカー",,"",31,15,49,15,0],
+		[1599,2,"アイスガーゴイル",,"",12,3,61,10,0],
+		[1600,2,"硬化ナイトメアテラー","コウカナイトメアテラー","",33000000155,50,33000000159,50,100100,3,9000089,2,0],
+		[1601,2,"硬化ブレイザー","コウカブレイザー","",63,10,8000018,50,8000019,10,0],
+		[1602,4,"汚染されたダークロード","オセンサレタダークロード","純粋なStrとIntとDexの合計が10上がる度に、追加で物理・魔法攻撃時、無属性モンスターに与えるダメージ + 3%",0],
+		[1603,4,"硬化エクスプロージョン","コウカエクスプロージョン","",25,5,8000025,10,0],
+		[1604,5,"汚染されたレイドリックA","オセンサレタレイドリックA","",86,10,0],
+		[1605,6,"アイスゴースト",,"",89,5,23000000089,5,7534,100,0],
+		[1606,6,"汚染されたスティング","オセンサレタスティング","",100091,2,0],
+		[1607,6,"汚染されたブリナラネア","オセンサレタブリナラネア","",15,10,16,10,41,30,351,30,152,50,0],
+		[1608,6,"硬化Gデリーター","コウカGデリーター","物理攻撃でモンスターを倒した時、SP + 20",0],
+		[1609,6,"硬化Sデリーター","コウカSデリーター","物理攻撃でモンスターを倒した時、HP + 400",0],
+		[1610,6,"硬化ムスペルスコール","コウカムスペルスコール","発火に対する耐性 + 50%",15,10,16,10,43,30,353,30,362,50,0],
+		[1611,6,"フレイムゴースト",,"",89,5,22000000089,5,7533,100,0],
+		[1612,7,"汚染されたレイドリック","オセンサレタレイドリック","",293,25,0],
+		[1613,99,"T-PowerBoost",,"精錬値が7以上の時、追加で物理攻撃命中時、一定確率で3秒間、Atk + 100<BR>精錬値が8以上の時、追加で発動率が上昇、効果時間が1秒延長<BR>精錬値が9以上の時、追加で発動率が上昇、効果時間が1秒延長",17,50,0],
+		[1614,99,"T-MagicBoost",,"精錬値が7以上の時、追加で魔法攻撃命中時、一定確率で3秒間、Matk + 100<BR>精錬値が8以上の時、追加で発動率が上昇、効果時間が1秒延長<BR>精錬値が9以上の時、追加で発動率が上昇、効果時間が1秒延長",100,50,0],
+		[1615,99,"T-Assault",,"精錬値が7以上の時、追加で物理攻撃命中時、一定確率で3秒間、クリティカル攻撃で与えるダメージ + 40%<BR>精錬値が8以上の時、追加で発動率が上昇、効果時間が1秒延長<BR>精錬値が9以上の時、追加で発動率が上昇、効果時間が1秒延長",70,10,0],
+		[1616,99,"T-Electricity",,"精錬値が7以上の時、追加で物理攻撃命中時、一定確率で10秒間、[ヴェラチュールスピアー発動]状態になる<BR>精錬値が8以上の時、追加で[ヴェラチュールスピアー発動]状態になる確率が上昇、効果時間が1秒延長<BR>精錬値が9以上の時、追加で[ヴェラチュールスピアー発動]状態になる確率が上昇、効果時間が1秒延長<BR>[ヴェラチュールスピアー発動]状態時、物理攻撃命中時、一定確率で敵にオートスペル[ヴェラチュールスピアー]Lv3発動",221,214,225,215,0],
+		[1617,99,"潜在解放(アークビショップ)",,"戦闘不能から復活時、HP・SPを100%回復する<BR>アークビショップが装備時、「オラティオ」使用時、30秒間、絶対に睡眠・スタン・石化状態にならない",243,12,0],
+		[1618,99,"潜在解放(ジェネティック)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,5900000005328,50,5900000005732,50,0],
+		[1619,99,"潜在解放(シャドウチェイサー)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,5400000019893,1500,0],
+		[1620,99,"潜在解放(修羅)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,5500000000086,20,0],
+		[1621,99,"潜在解放(ソーサラー)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,5800000019669,1000,5800000005669,50,0],
+		[1622,99,"潜在解放(メカニック)",,"戦闘不能から復活時、HP・SPを100%回復する<BR>メカニックが装備時、インデュア状態になる",243,12,0],
+		[1623,99,"潜在解放(ルーンナイト)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,4700000000077,20,0],
+		[1624,99,"潜在解放(ロイヤルガード)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,5300000000026,50,0],
+		[1625,99,"必中攻撃+25%",,"",86,25,0],
+		[1626,99,"Hit+100",,0,8,100,0],
+		[1627,2,"半龍王女メア","ハンリュウオウジョメア","",109,1000,100080,1,100089,1,0],
+		[1628,5,"王女メア","オウジョメア","",89,10,343,50,341,50,344,50,342,50,0],
+		[1629,200,"正義のカード(逆位置)",,"",5440,5,105440,1,10005440,5,0],
+		[1630,100,0,,"",216,3,293,25,5440,50,0],
+		[1631,200,"星のカード(逆位置)",,"",5528,5,105528,1,10005528,5,0],
+		[1632,100,0,,"魔法攻撃でモンスターを倒した時、HP + 200",215,3,5528,50,0],
+		[1633,200,"節制のカード(逆位置)",,"",5497,5,105497,1,10005497,5,0],
+		[1634,100,0,,"",214,3,74,5,5497,50,0],
+		[1635,200,"戦車のカード(逆位置)",,"",5543,5,105543,1,10005543,5,0],
+		[1636,100,0,,"",213,3,26,5,5543,50,0],
+		[1637,200,"死神のカード(逆位置)",,"",5469,5,105469,1,10005469,5,0],
+		[1638,100,0,,"敵から通常攻撃を受けた時、SP + 5",213,3,5469,50,0],
+		[1639,200,"恋人のカード(逆位置)",,"",5657,5,105657,1,10005657,5,0],
+		[1640,100,0,,"",214,3,298,25,5657,50,0],
+		[1641,99,"閃光",,"",100011,1,0],
+		[1642,100,0,,"",9,150,0],
+		[1643,99,"強剛",,"",100261,7,0],
+		[1644,100,0,,"",86,30,0],
+		[1645,99,"天弓",,"",100025,7,0],
+		[1646,100,0,,"",74,30,0],
+		[1647,99,"新暦",,"",100266,7,0],
+		[1648,100,0,,"固定詠唱時間 - 70%",0],
+		[1649,99,"剛体",,"",100015,5,0],
+		[1650,100,0,,"",18,500,19,50,0],
+		[1651,99,"白雲",,"",100070,7,0],
+		[1652,100,0,,"",10,100,0],
+		[1653,2,"呪いを呑み込んだ王","ノロイヲノミコンダオウ","",63,10,66,10,220,98,105585,10,0],
+		[1654,4,"封印されたクトルラナックス","フウインサレタクトルラナックス","",43,15,221,91,0],
+		[1655,99,"火属性付与(鎧)",,"",198,3,0],
+		[1656,99,"水属性付与(鎧)",,"",198,1,0],
+		[1657,99,"風属性付与(鎧)",,"",198,4,0],
+		[1658,99,"地属性付与(鎧)",,"",198,2,0],
+		[1659,99,"聖属性付与(鎧)",,"",198,6,0],
+		[1660,99,"闇属性付与(鎧)",,"",198,7,0],
+		[1661,99,"念属性付与(鎧)",,"",198,8,0],
+		[1662,99,"毒属性付与(鎧)",,"",198,5,0],
+		[1663,99,"不死属性付与(鎧)",,"",198,9,0],
+		[1664,1,"魔法全敵属性+10%","B","※この選択欄は[ドロールカード]や[怪奇な装飾ツリーカード]などの効果をまとめたものです。",269,10,0],
+		[1665,1,"魔法全サイズ8%,Matk+5","C","※この選択欄は[ツイン・カプトゥカード][混沌のステムワームカード]などの効果をまとめたものです。",265,8,100,5,0],
+		[1666,200,"皇帝のカード(逆位置)",,"",5583,5,105583,1,10005583,5,0],
+		[1667,100,0,,"",216,3,71,5,5583,50,0],
+		[1668,200,"力のカード(逆位置)",,"",5623,5,105623,1,10005623,5,0],
+		[1669,100,0,,"物理攻撃でモンスターを倒した時、HP + 200",212,3,5623,50,0],
+		[1670,200,"悪魔のカード(逆位置)",,"",5606,5,105606,1,10005606,5,0],
+		[1671,100,0,,"攻撃命中時、SP + 2",211,3,5606,50,0],
+		[1672,200,"月のカード(逆位置)",,"",5669,5,105669,1,10005669,5,0],
+		[1673,100,0,,"固定詠唱時間 - 50%",215,3,5669,50,0],
+		[1674,200,"運命の輪のカード(逆位置)",,"",5768,5,105768,1,10005768,5,0],
+		[1675,100,0,,"5秒毎にHP + 1500",212,2,213,2,5768,50,0],
+		[1676,200,"世界のカード(逆位置)",,"",5938,5,105938,1,10005938,5,0],
+		[1677,100,0,,"",211,2,216,2,86,10,5938,50,0],
+		[1678,99,"シンソウの王",,"",7,10,0],
+		[1679,100,0,,"",100,100,91,20,0],
+		[1680,100,0,,"",26,25,70,25,0],
+		[1681,100,0,,"",343,10,341,10,344,10,342,10,0],
+		[1682,100,0,,"",12,10,0],
+		[1683,100,0,,"",10000000000017,2,10000000000100,2,0],
+		[1684,100,0,,"",80,20,220,100,0],
+		[1685,100,0,,"魔法攻撃命中時、敵を恐怖状態にする",64,50,0],
+		[1686,100,0,,"",63,50,61,50,64,50,62,50,67,50,69,50,0],
+		[1687,100,0,,"",272,50,0],
+		[1688,100,0,,"",219,1687,0],
+		[1689,100,0,,"",220,101,0],
+		[1690,99,"潜在解放(ウォーロック)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,5100000019798,80000,0],
+		[1691,99,"潜在解放(ギロチンクロス)",,"戦闘不能から復活時、HP・SPを100%回復する<BR>ギロチンクロスが装備時、[メテオアサルト]使用時、3秒間、完全回避 + 100",243,12,0],
+		[1692,99,"潜在解放(ミンストレル)",,"戦闘不能から復活時、HP・SPを100%回復する<BR>ミンストレルが装備時、[アンリミット]Lv5使用可能<BR>装備解除時、[アンリミット]を解除する",243,12,0],
+		[1693,99,"潜在解放(レンジャー)",,"戦闘不能から復活時、HP・SPを100%回復する<BR>装備解除時、[アンリミット]を解除する",243,12,5000000000074,90,5000000019795,180000,0],
+		[1694,99,"潜在解放(ワンダラー)",,"戦闘不能から復活時、HP・SPを100%回復する<BR>ワンダラーが装備時、[アンリミット]Lv5使用可能<BR>装備解除時、[アンリミット]を解除する",243,12,0],
+		[1695,99,"太陽",,"",6500000000085,10,6500000007950,50,6500000005951,50,0],
+		[1696,99,"月",,"",6500000000015,20,6500000007954,50,6500000005955,50,0],
+		[1697,99,"星",,"星帝が装備時、物理攻撃命中時、一定確率で敵をスタン状態にする",6500000000012,10,6500000005959,50,0],
+		[1698,99,"エス",,"",6600000000100,50,106600000005967,1,106600000005968,1,106600000005969,1,0],
+		[1699,99,"死霊",,"",6600000000100,50,106600000005977,1,0],
+		[1700,99,"魂",,"",6600000000243,3,6600000000220,103,16600000000013,50,16600000000014,5,0],
+		[1701,6,"封印されたダークロード","フウインサレタダークロード","",221,218,0],
+		[1702,100,0,,"",15,20,16,20,73,-5,0],
+		[1703,99,"A-Reflect",,"",71,2,6000071,3,8000071,5,0],
+		[1704,99,"A-SPCost",,"",102,1,6000102,2,8000102,3,0],
+		[1705,99,"B-Str",,"",211,1,6000211,2,8000211,3,0],
+		[1706,99,"B-Agi",,"",212,1,6000212,2,8000212,3,0],
+		[1707,99,"B-Vit",,"",213,1,6000213,2,8000213,3,0],
+		[1708,99,"B-Int",,"",214,1,6000214,2,8000214,3,0],
+		[1709,99,"B-Dex",,"",215,1,6000215,2,8000215,3,0],
+		[1710,99,"B-Luk",,"",216,1,6000216,2,8000216,3,0],
+		[1711,99,"E-Darkness",,"",198,7,0],
+		[1712,99,"E-Poison",,"",198,5,0],
+		[1713,99,"E-Saint",,"",198,6,0],
+		[1714,99,"E-Undead",,"",198,9,0],
+		[1715,99,"G-Cri",,"",10,2,7000010,3,9000010,5,10000010,20,0],
+		[1716,99,"G-Guided",,"",86,2,7000086,3,9000086,5,10000086,20,0],
+		[1717,99,"L-AbsorbSpirits1",,"",220,107,0],
+		[1718,99,"L-Angelus1",,"",220,12,0],
+		[1719,99,"L-AutoGuard3",,"",220,108,0],
+		[1720,99,"L-Bash3",,"",220,109,0],
+		[1721,99,"L-CallSpirits2",,"",220,110,0],
+		[1722,99,"L-CastCancel1",,"",220,29,0],
+		[1723,99,"L-Cloaking1",,"",220,19,0],
+		[1724,99,"L-CloseConfine1",,"",220,111,0],
+		[1725,99,"L-ColdBolt3",,"",220,1,0],
+		[1726,99,"L-Cure1",,"",220,6,0],
+		[1727,99,"L-DecAgi1",,"",220,45,0],
+		[1728,99,"L-Detoxify1",,"",220,24,0],
+		[1729,99,"L-EarthSpike3",,"",220,48,0],
+		[1730,99,"L-Estimation1",,"",220,112,0],
+		[1731,99,"L-FireBall3",,"",220,113,0],
+		[1732,99,"L-FireBolt3",,"",220,2,0],
+		[1733,99,"L-FrostDiver3",,"",220,114,0],
+		[1734,99,"L-FrostNova2",,"",220,42,0],
+		[1735,99,"L-Gloria1",,"",220,82,0],
+		[1736,99,"L-Heal1",,"",220,5,0],
+		[1737,99,"L-Hiding1",,"",220,22,0],
+		[1738,99,"L-Identify1",,"",220,69,0],
+		[1739,99,"L-LightningBolt3",,"",220,115,0],
+		[1740,99,"L-Loud1",,"",220,116,0],
+		[1741,99,"L-MagicPower5",,"",220,97,0],
+		[1742,99,"L-Magnum3",,"",220,21,0],
+		[1743,99,"L-Meteor3",,"",220,14,0],
+		[1744,99,"L-PeonyMamy1",,"",220,117,0],
+		[1745,99,"L-Poison3",,"",220,20,0],
+		[1746,99,"L-PotionPitcher3",,"",220,118,0],
+		[1747,99,"L-Sadagui1",,"",220,119,0],
+		[1748,99,"L-SeuoiaDust1",,"",220,120,0],
+		[1749,99,"L-Sight1",,"",220,16,0],
+		[1750,99,"L-SnowFlip1",,"",220,121,0],
+		[1751,99,"L-SoulStrike3",,"",220,122,0],
+		[1752,99,"L-SpellBreaker1",,"",220,123,0],
+		[1753,99,"L-Steal1",,"",220,27,0],
+		[1754,99,"L-StoneCurse3",,"",220,124,0],
+		[1755,99,"L-Teleport1",,"",220,17,0],
+		[1756,99,"L-ThrowStone1",,"",220,32,0],
+		[1757,99,"P-Confuse",,"",157,100,0],
+		[1758,99,"P-Curse",,"",153,100,0],
+		[1759,99,"P-Fear",,"絶対に恐怖状態にならない",0],
+		[1760,99,"P-Ignition",,"絶対に発火状態にならない",0],
+		[1761,99,"P-Petrifaction",,"",159,100,0],
+		[1762,99,"P-Silence",,"",156,100,0],
+		[1763,99,"P-Sleep",,"",155,100,0],
+		[1764,99,"Q-Boss",,"",77,2,300077,1,0],
+		[1765,99,"Q-Normal",,"",79,2,300079,1,0],
+		[1766,99,"R-Darkness",,"",67,25,66,-25,0],
+		[1767,100,0,,"",67,25,0],
+		[1768,99,"R-Saint",,"[フェイス]習得時、追加で聖属性攻撃で受けるダメージ + 25%",199,156,66,25,67,-25,0],
+		[1769,100,0,,"",66,25,0],
+		[1770,99,"R-Telekinesis",,"",68,25,69,-25,0],
+		[1771,100,0,,"",68,25,0],
+		[1772,99,"R-Undead",,"",69,25,68,-25,0],
+		[1773,100,0,,"",69,25,0],
+		[1774,99,"S-FatalFlash",,"物理・魔法攻撃命中時、一定確率で4秒間、Agi + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000002,50,0],
+		[1775,99,"S-FiringShot",,"物理・魔法攻撃命中時、一定確率で4秒間、Dex + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000005,50,0],
+		[1776,99,"S-LuckyStrike",,"物理・魔法攻撃命中時、一定確率で4秒間、Luk + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000006,50,0],
+		[1777,99,"S-OverPower",,"物理・魔法攻撃命中時、一定確率で4秒間、Str + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000001,50,0],
+		[1778,99,"S-SpellBuster",,"物理・魔法攻撃命中時、一定確率で4秒間、Int + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000004,50,0],
+		[1779,99,"S-UnlimitVital",,"物理・魔法攻撃命中時、一定確率で4秒間、Vit + 50<BR>精錬値が5以上の時、精錬値が1上がる度に追加で発動率が上昇、効果時間が3秒延長",10000003,50,0],
+		[1780,1,"イエローピタヤ",,"",34,15,46,15,0],
+		[1781,6,"エリートベラレ",,"",80,5,10000000005435,1,16300000005435,1,16300009005435,1,0],
+		[1782,7,"解放された魔力","カイホウサレタマリョク","モンスターを倒した時、一定確率で[レッドブラッド]、[クリスタルブルー]、[ウィンドオブヴェルデュール]、[イエローライブ]をドロップ。",0],
+		[1783,1,"グリーンピタヤ",,"物理攻撃命中時、一定確率で敵を石化状態にする",17,5,0],
+		[1784,7,"下水ヴェネヌム","ゲスイヴェネヌム","",220,125,0],
+		[1785,1,"下水ウォーターフォール","ゲスイウォーターフォール","",80,10,220,126,0],
+		[1786,5,"下水クランプ","ゲスイクランプ","純粋なIntが10上がる度に、追加でMatk + 3、Flee + 3<BR>純粋なAgiが10上がる度に、追加でMatk + 3、MaxHP + 1%",22000000100,50,22000000009,25,20000000100,50,20000000015,5,0],
+		[1787,3,"研究助手自動人形","ケンキュウジョシュジドウニンギョウ","",55,20,53,20,0],
+		[1788,1,"故障した庭師ベータ","コショウシタニワシベータ","",100,5,99,8,0],
+		[1789,5,"シルヴァパピリア",,"物理攻撃を受けた時、一定確率で敵を猛毒状態にする",62,100,0],
+		[1790,6,"スウィーティ",,"",80,10,10000000005825,1,0],
+		[1791,1,"特製アーノルディ","トクセイアーノルディ","",175,5,173,5,0],
+		[1792,100,0,,"",55,5,53,5,315,50,313,50,0],
+		[1793,1,"ドライラフレシア",,"",35,10,33,10,0],
+		[1794,100,0,,"",55,5,53,5,305,50,303,50,0],
+		[1795,1,"パープルピタヤ",,"風魔手裏剣の場合、追加で物理攻撃で与えるダメージ + 5%<BR>風魔手裏剣の場合で、かつ精錬値が10の時、追加で物理攻撃で与えるダメージ + 10%",80,10,0],
+		[1796,2,"徘徊する魔導書","ハイカイスルマドウショ","",220,16,0],
+		[1797,5,"パピラ",,"",19,5,31,10,111,15,119,15,0],
+		[1798,7,"パピラカイ",,"",220,121,0],
+		[1799,7,"パピラルバ",,"",220,117,0],
+		[1800,1,"ブックワーム",,"魔法攻撃命中時、一定確率で敵を出血状態にする",0],
+		[1801,4,"ブルーアリエス",,"純粋なIntが10上がる度に追加でMatk + 5",40000000100,100,0],
+		[1802,7,"ブルーピタヤ",,"",298,25,0],
+		[1803,3,"ベルポルタ",,"",351,5,331,20,0],
+		[1804,3,"ベルポルテ",,"",353,5,333,20,0],
+		[1805,5,"ボスピタヤ",,"",80,15,89,15,65,50,9000062,50,9000078,10,0],
+		[1806,1,"魔力中毒ドロール","マリョクチュウドクドロール","魔法攻撃命中時、一定確率で敵を凍結状態にする",0],
+		[1807,7,"レッドアリエス",,"",89,3,0],
+		[1808,100,0,,"",214,10,0],
+		[1809,2,"レッドピタヤ",,"精錬値と同じLvの[ファイアーウォール]使用可能",224,63,0],
+		[1810,2,"レッドペッパーカッパ",,"[Mレイオブジェネシス]で受けるダメージ - 50%",64,10,66,10,156,50,0],
+		[1811,99,"サイトLv1",,"",220,16,0],
+		[1812,99,"透視",,"[ハイディング]や[クローキング]をしているモンスターが見える（この効果は攻城戦TEでは発動しない）",0],
+		[1813,99,"殺意の怨念",,"",15,15,16,15,0],
+		[1814,100,0,,"10秒毎に、HP + 5000 , SP + 100",15,20,16,20,0],
+		[1815,100,0,,"",61,50,62,50,220,127,0],
+		[1816,100,0,,"",100,100,220,128,0],
+		[1817,100,0,,"",17,100,220,86,0],
+		[1818,100,0,,"",26,25,220,129,0],
+		[1819,100,0,,"",267,25,220,130,0],
+		[1820,100,0,,"",15,50,152,100,220,131,0],
+		[1821,100,0,,"",9,50,15,50,152,100,27000000009,50,0],
+		[1822,100,0,,"物理攻撃を受けた時、一定確率で敵にオートスペル[アシッドテラー]が発動しない",10,50,15,50,152,100,25000000010,50,0],
+		[1823,100,0,,"物理攻撃を受けた時、一定確率で敵にオートスペル[フルストリップ]が発動しない",8,50,15,50,152,100,30000000008,50,0],
+		[1824,100,0,,"魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[ランドプロテクター]が発動しない",15,50,152,100,89,7,29000000089,7,0],
+		[1825,100,0,,"物理攻撃を受けた時、一定確率で敵にオートスペル[発勁]が発動しない",15,50,152,100,80,7,26000000080,7,0],
+		[1826,100,0,,"",9,50,15,50,152,100,27000000009,50,0],
+		[1827,100,0,,"物理攻撃を受けた時、一定確率で自分を中心にオートスペル[グランドクロス]が発動しない",15,60,152,100,28000000015,10,0],
+		[1828,100,0,,"ジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",60,50,0],
+		[1829,100,0,,"",74,10,60,50,0],
+		[1830,100,0,,"",101,2,60,50,0],
+		[1831,100,0,,"",80,15,60,50,0],
+		[1832,100,0,,"",78,10,60,50,0],
+		[1833,100,0,,"攻撃命中時、SP + 3",60,50,0],
+		[1834,100,0,,"",60,50,10000000000013,50,0],
+		[1835,100,0,,"",86,30,60,50,0],
+		[1836,100,0,,"",9,50,60,50,0],
+		[1837,100,0,,"魔法攻撃でモンスターを倒した時、HP + 200 , SP + 20",60,50,0],
+		[1838,100,0,,"",25,15,60,50,0],
+		[1839,100,0,,"",19,30,60,50,0],
+		[1840,100,0,,"",89,15,60,50,0],
+		[1841,99,"×属性付与（未対応）",,"※未対応。属性付与欄をご利用ください。",0],
+		[1842,99,"遠距離物理耐性+5%",,"",78,5,0],
+		[1843,99,"完全回避+25",,"",11,25,0],
+		[1844,99,"気奪Lv1",,"",220,107,0],
+		[1845,99,"神供",,"",15,15,10000000005284,1,0],
+		[1846,99,"ニヒツ",,"",60,15,0],
+		[1847,100,0,,"",60,-15,0],
+		[1848,99,"MaxHP+15%",,"",15,15,0],
+		[1849,99,"イミューンファイア",,"",63,100,0],
+		[1850,99,"イミューンウォーター",,"",61,100,0],
+		[1851,99,"イミューンウィンド",,"",64,100,0],
+		[1852,99,"イミューンアース",,"",62,100,0],
+		[1853,99,"潜在解放(影狼)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,6000000019773,290000,0],
+		[1854,99,"潜在解放(朧)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,6100000019773,290000,0],
+		[1855,99,"潜在解放(リベリオン)",,"戦闘不能から復活時、HP・SPを100%回復する<BR>リベリオンが装備時、物理攻撃命中時、敵に与えたダメージの2%をHPとして吸収",243,12,0],
+		[1856,99,"潜在解放(サモナー)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,6400000000262,25,6400000000269,25,6400000000381,1,0],
+		[1857,99,"潜在解放(星帝)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,6500000000293,100,0],
+		[1858,99,"潜在解放(ソウルリーパー)",,"戦闘不能から復活時、HP・SPを100%回復する",243,12,6600000000015,20,6600000000016,20,6600000000220,128,0],
+		[1859,99,"ExtraStr",,"",100000080,1,25000000080,5,0],
+		[1860,99,"ExtraAgi",,"",200000086,1,26000000086,5,0],
+		[1861,99,"ExtraVit",,"",300000092,1,27000000092,5,0],
+		[1862,99,"ExtraInt",,"",400000089,1,28000000089,5,0],
+		[1863,99,"ExtraDex",,"",500000025,1,29000000025,5,0],
+		[1864,99,"ExtraLuk",,"",600000070,1,30000000070,5,0],
+		[1865,7,"ニーヒル・M・ハイネン(サイン入り)",,"",19,100,0],
+		[1866,7,"スピーカ・ネリウス(サイン入り)",,"魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",16,15,74,15,0],
+		[1867,7,"スキア・ネリウス(サイン入り)",,"物理攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",15,15,73,-15,0],
+		[1868,7,"ニーヒル",,"",220,94,0],
+		[1869,4,"アグネス",,"",91,10,8000091,20,0],
+		[1870,7,"ユルゲン",,"魔法攻撃を受けた時、一定確率で敵を魅了状態にする",0],
+		[1871,5,"スピーカ",,"",74,5,8000074,5,0],
+		[1872,6,"クロネカー",,"",100347,3,0],
+		[1873,5,"スキア",,"",73,-5,8000073,-5,0],
+		[1874,7,"ヴォルフ",,"",220,135,0],
+		[1875,4,"ポー",,"物理攻撃を受けた時、一定確率で戦闘不能になる<br>精錬値が1上がる度に戦闘不能になる確率が減少する",17,150,0],
+		[1876,2,"カトリン",,"精錬値と同じLvの[ロードオブヴァーミリオン]使用可能<br>計算機では装着部位に関わらずスキルLv10が使えるようになりますが、実際のゲーム内では精錬出来ない装備に挿した場合スキルが使えないのでご注意ください",224,136,0],
+		[1877,2,"アイザック",,"絶対に恐怖状態にならない",0],
+		[1878,99,"Q-Range",,"",78,5,300078,10,0],
+		[1879,100,0,,"",78,-35,0],
+		[1880,99,"森羅万象",,"",27,15,28,15,29,15,97,15,98,15,99,15,0],
+		[1881,100,0,,"[死の欲動]の発動確率が上昇",0],
+		[1882,100,0,,"[真理の解放]の発動確率が上昇",0],
+		[1883,100,0,,"[豪傑]の発動確率が上昇",0],
+		[1884,100,0,,"[覇王]の発動確率が上昇",0],
+		[1885,1,"堕落の魔眼","ダラクノマガン","物理攻撃命中時、一定確率で敵を睡眠・石化・呪い状態にする",80,10,86,20,0],
+		[1886,1,"呪われた執事","ノロワレタシツジ","物理攻撃命中時、一定確率で敵を猛毒状態にする",17,5,0],
+		[1887,1,"変貌の白騎士","ヘンボウノシロキシ","近接物理攻撃で与えるダメージ + 5%<BR>BaseLvが20上がる度に追加で、近接物理攻撃で与えるダメージ + 1%",0],
+		[1888,2,"変貌のカーリッツバーグ","ヘンボウノカーリッツバーグ","固定詠唱時間 - 50%<BR>精錬値が9以上の時、追加で固定詠唱時間 - 10%",0],
+		[1889,4,"呪殺のアムダライス","ジュサツノアムダライス","",80,6,89,6,100080,1,100089,1,9000015,50,0],
+		[1890,100,0,,"",80,15,89,15,67,50,0],
+		[1891,4,"呪殺のヒメルメズ","ジュサツノヒメルメズ","",47,50,49,50,31,50,36,50,0],
+		[1892,4,"呪われたレイドリックA","ノロワレタレイドリックA","",86,10,0],
+		[1893,6,"呪われたレイドリック","ノロワレタレイドリック","",293,25,0],
+		[1894,200,"隠者のカード(逆位置)",,"",5476,5,105476,1,10005476,5,0],
+		[1895,100,0,,"5秒毎にSP + 50",91,5,5476,50,0],
+		[1896,200,"愚者のカード(逆位置)",,"10秒毎に、HP + 500 , SP + 5<BR>精錬値が1上がる度に追加で、10秒毎に、HP + 100 , SP + 1<BR>精錬値が10の時、追加で、10秒毎に、HP + 500 , SP + 5",0],
+		[1897,100,0,,"10秒毎に、HP + 5000 , SP + 50<BR>※[カートブースト]は、ホワイトスミスの方です。",217,1,220,147,0],
+		[1898,200,"法王のカード(逆位置)",,"",5736,5,105736,1,10005736,5,0],
+		[1899,100,0,,"[レッドスリムポーション]、[イエロースリムポーション]、[ホワイトスリムポーション]のHP回復量 + 200%",213,3,5736,50,0],
+		[1900,200,"吊るされた男のカード(逆位置)",,"",5839,5,105839,1,10005839,5,0],
+		[1901,100,0,,"物理攻撃でモンスターを倒した時、SP + 20",212,2,213,2,5839,50,0],
+		[1902,200,"女教皇のカード",,"",5968,5,105968,1,10005968,5,0],
+		[1903,100,0,,"",212,2,214,2,96,5,5968,50,0],
+		[1904,200,"女教皇のカード(逆位置)",,"",5977,5,105977,1,10005977,5,0],
+		[1905,100,0,,"魔法攻撃でモンスターを倒した時、SP + 20",213,2,215,2,5977,50,0],
+		[1906,200,"塔のカード",,"",5965,5,105965,1,10005965,5,0],
+		[1907,100,0,,"",211,2,212,2,73,-5,5965,50,0],
+		[1908,200,"塔のカード(逆位置)",,"",5964,5,105964,1,10005964,5,0],
+		[1909,100,0,,"",215,2,216,2,210,5,5964,50,0],
+		[1910,99,"アレス",,"",264,5,0],
+		[1911,99,"王の神威",,"",10000000000013,25,0],
+		[1912,100,0,,"",12,15,243,10,220,150,0],
+		[1913,100,0,,"",12,15,243,40,220,150,0],
+		[1914,100,0,,"",74,30,5300000019585,3000,0],
+		[1915,1,"深海のスロフォ","シンカイノスロフォ","",35,15,41,15,0],
+		[1916,1,"深海のセドラ","シンカイノセドラ","楽器、鞭の場合、追加で、Hit + 15 , 攻撃速度 + 3%<BR>楽器、鞭の精錬値が10の時、追加で、Atk + 100",80,10,0],
+		[1917,1,"深海のデビアス","シンカイノデビアス","純粋なStrとVitとDexの合計が、25上がる度に追加で、物理攻撃で与えるダメージ + 2%<BR>純粋なAgiとIntとLukの合計が、25上がる度に追加で、魔法攻撃で与えるダメージ + 2%",0],
+		[1918,1,"深海の半漁人","シンカイノハンギョジン","物理・魔法攻撃時、[紫色の深海洞窟 上層]、[紫色の深海洞窟 下層]に出現するモンスターに与えるダメージ + 30%",0],
+		[1919,2,"深海のキングドラモ","シンカイノキングドラモ","",61,10,8000018,50,8000019,10,0],
+		[1920,2,"深海のマルス","シンカイノマルス","",17,10,41,5,9000041,5,0],
+		[1921,4,"深海のクラーケン","シンカイノクラーケン","",41,50,48,50,351,50,358,50,33,50,35,50,173,50,175,50,0],
+		[1922,3,"深海のストラウフ","シンカイノストラウフ","",35,5,175,5,55,20,0],
+		[1923,6,"深海のソードフィッシュ","シンカイノソードフィッシュ","",298,25,0],
+		[1924,7,"深海のオボンヌ","シンカイノオボンヌ","",220,155,0],
+		[1925,7,"深海のフェン","シンカイノフェン","",35,5,175,5,0],
+		[1926,100,0,,"",35,5,175,5,55,10,0],
+		[1927,5,"無限のトード","ムゲンノトード","",100069,5,10000069,50,0],
+		[1928,5,"無限のさすらい狼","ムゲンノサスライオオカミ","",100067,5,10000067,50,0],
+		[1929,5,"無限のボーカル","ムゲンノボーカル","",100068,5,10000068,50,0],
+		[1930,5,"無限のエクリプス","ムゲンノエクリプス","[フェイス]Lv1以上を習得している場合、習得Lvが1上がる度に追加で、聖属性攻撃で受けるダメージ + 5%",199,156,100066,5,10000066,50,0],
+		[1931,5,"無限のキメラ","ムゲンノキメラ","",100065,5,10000065,50,0],
+		[1932,6,"無限のオシリス","ムゲンノオシリス","",100009,10,0],
+		[1933,2,"無限のエドガ","ムゲンノエドガ","精錬値が9以上の時、追加で、インデュア状態になる",63,15,0],
+		[1934,6,"無限のフリオニ","ムゲンノフリオニ","",40,50,0],
+		[1935,7,"無限のオークヒーロー","ムゲンノオークヒーロー","",151,50,85,10,0],
+		[1936,2,"無限のタオグンカ","ムゲンノタオグンカ","一部のダメージを反射する効果で受けるダメージ - 50%(計算機未対応)",0],
+		[1937,0,"(↓ファロスエンチャ↓)",,"",0],
+		[1938,99,"再誕",,"戦闘不能から復活時、HP・SPを100%回復する",0],
+		[1939,99,"不屈",,"インデュア状態になる",0],
+		[1940,99,"近物反射5%",,"",71,5,0],
+		[1941,1,"封印されたアトロス","フウインサレタアトロス","物理攻撃命中時、一定確率で10秒間、攻撃速度 + 30%",17,25,0],
+		[1942,1,"封印されたタイムホルダー","フウインサレタタイムホルダー","",89,10,102,-10,0],
+		[1943,1,"封印されたドッペルゲンガー","フウインサレタドッペルゲンガー","",12,3,0],
+		[1944,1,"封印されたドレイク","フウインサレタドレイク","",228,1,17,-100,0],
+		[1945,1,"封印されたバフォメット","フウインサレタバフォメット","通常攻撃がスプラッシュダメージになる",8,-50,0],
+		[1946,1,"封印されたフリオニ","フウインサレタフリオニ","",8,30,0],
+		[1947,1,"封印された女王スカラバ","フウインサレタジョオウスカラバ","",1565,10,1566,10,1567,10,1568,10,1569,10,1570,10,1571,10,1572,10,1573,10,1574,10,0],
+		[1948,1,"封印された魔剣士タナトスの思念体","フウインサレタマケンシタナトスノシネンタイ","攻撃命中時、SP - 1",293,100,18,-30,9,-30,0],
+		[1949,2,"封印されたオークヒーロー","フウインサレタオークヒーロー","",3,1,151,30,0],
+		[1950,2,"封印された女帝スカラバ","フウインサレタジョテイスカラバ","",4,1,54,3,9000054,2,0],
+		[1951,2,"封印されたミストレス","フウインサレタミストレス","ジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",102,-100,0],
+		[1952,4,"封印されたオークロード","フウインサレタオークロード","",71,10,0],
+		[1953,4,"封印されたグルームアンダーナイト","フウインサレタグルームアンダーナイト","",38,5,36,5,46,5,47,5,0],
+		[1954,4,"封印された汚染されたダークロード","フウインサレタオセンサレタダークロード","純粋なStrとIntとDexの合計が20上がる度に追加で、物理・魔法攻撃時、無属性モンスターに与えるダメージ + 1%",0],
+		[1955,4,"封印されたアメンホテプ","フウインサレタアメンホテプ","",176,5,171,5,357,5,359,5,0],
+		[1956,4,"封印された古のタオグンカ","フウインサレタイニシエノタオグンカ","",15,5,100015,2,0],
+		[1957,4,"封印された覚醒クトルラナックス","フウインサレタカクセイクトルラナックス","",170,5,176,5,353,5,350,5,0],
+		[1958,4,"封印された深海のクラーケン","フウインサレタシンカイノクラーケン","",33,5,35,5,173,5,175,5,41,5,48,5,351,5,358,5,0],
+		[1959,3,"封印されたマヤー","フウインサレタマヤー","ターゲッティング魔法を15%の確率で反射",0],
+		[1960,5,"封印されたボミ","フウインサレタボミ","",341,15,61,25,0],
+		[1961,6,"封印されたイグニゼム=セニア（MVP）","フウインサレタイグニゼムセニア","10秒毎に、HP + 15 , SP + 3",15,5,16,5,0],
+		[1962,6,"封印されたエドガ","フウインサレタエドガ","",221,225,0],
+		[1963,6,"封印された怒りの月夜花","フウインサレタイカリノウォルヤファ","",89,10,16,-50,0],
+		[1964,6,"封印された古のウータンガード","フウインサレタイニシエノウータンガード","",15,5,16,5,5263,15,5264,15,0],
+		[1965,6,"封印された汚染されたブリナラネア","フウインサレタオセンサレタブリナラネア","",15,5,16,5,41,10,351,10,152,15,0],
+		[1966,6,"封印された堕ちた大神官ヒバム","フウインサレタオチタダイシンカンヒバム","",89,10,16,-50,0],
+		[1967,6,"封印された輝くベアドール","フウインサレタカガヤクベアドール","",80,10,16,-50,0],
+		[1968,6,"封印された硬化ムスペルスコール","フウインサレタコウカムスペルスコール","発火に対する耐性 + 15%",15,5,16,5,43,10,353,10,362,15,0],
+		[1969,6,"封印された混沌のバフォメット","フウインサレタコントンノバフォメット","",89,10,16,-50,0],
+		[1970,6,"封印された不吉なタートルG","フウインサレタフキツナタートルG","",80,10,16,-50,0],
+		[1971,7,"封印されたイフリート","フウインサレタイフリート","JobLvが一定の割合で上がる度にAtk , Hit , Cri上昇<BR>※通常のイフリートカード異なり、JobLv20毎に1増加としています。",221,226,0],
+		[1972,7,"封印されたヴェルゼブブ","フウインサレタヴェルゼブブ","",73,-10,0],
+		[1973,7,"封印されたオシリス","フウインサレタオシリス","戦闘不能から復活時、HP・SPを100%回復する<BR>10秒毎に、HP - 1000 , SP - 100",0],
+		[1974,7,"封印された怒りのドラキュラ","フウインサレタイカリノドラキュラ","恐怖に対する耐性 + 30%",153,30,0],
+		[1975,99,"英雄の凱歌",,"",101,1,0],
+		[1976,100,0,,"魔法攻撃命中時、敵を睡眠状態にする",340,10,0],
+		[1977,100,0,,"",100000017,10,100000008,5,37000000026,25,0],
+		[1978,100,0,,"4秒毎にHP + 666 , SP + 66",80,15,89,15,0],
+		[1979,100,0,,"",15,50,220,103,0],
+		[1980,100,0,,"",15,10,16,10,61,15,0],
+		[1981,100,0,,"物理攻撃命中時、一定確率で敵に与えたダメージの2%をSPとして吸収",60,20,0],
+		[1982,100,0,,"",15,10,16,10,63,15,0],
+		[1983,100,0,,"睡眠・石化・呪い状態にする効果の発動率が上昇",0],
+		[1984,100,0,,"",221,227,0],
+		[1985,100,0,,"",347,15,220,162,0],
+		[1986,100,0,,"",15,15,61,10,0],
+		[1987,100,0,,"",15,50,80,15,89,15,0],
+		[1988,100,0,,"物理攻撃命中時、一定確率で敵を瀕死にする",0],
+		[1989,100,0,,"",80,15,0],
+		[1990,100,0,,"[インスピレーション]Lv1状態になる確率が上昇",0],
+		[1991,100,0,,"睡眠・石化・呪い状態にする確率が上昇",0],
+		[1992,100,0,,"ハイウィザード系が装備時、固定詠唱時間 - 70%、鎧の精錬値が1上がる度に、魔法攻撃で与えるダメージ + 3%",15,50,0],
+		[1993,100,0,,"",220,163,210,10,0],
+		[1994,100,0,,"",60,20,220,99,0],
+		[1995,100,0,,"固定詠唱時間 - 80%",0],
+		[1996,100,0,,"",86,30,0],
+		[1997,100,0,,"一部のダメージを反射する効果で受けるダメージ - 10%",10000000000017,1,0],	// 魔剣士タナトスの思念体 + 英雄
+		[1998,100,0,,"6秒毎にHP + 666 , SP + 66",80,15,89,15,0],
+		[1999,100,0,,"",37,30,272,30,0],
+		[2000,100,0,,"",15,15,64,10,0],
+		[2001,100,0,,"純粋なStrとIntとDexの合計が20上がる度に追加で、物理・魔法攻撃時、無属性モンスターに与えるダメージ + 1%",15,25,0],
+		[2002,100,0,,"",15,15,16,15,61,10,0],
+		[2003,100,0,,"",15,15,16,15,63,10,0],
+		[2004,100,0,,"",20000000000017,1,0],
+		[2005,99,"起源の王",,"",13,2500,14,250,0],
+		[2006,100,0,,"",153,100,220,160,0],
+		[2007,100,0,,"",300000018,20,300000019,2,39000000015,50,39000000092,20,0],
+		[2008,100,0,,"[クリティカルスラッシュ]で受けるダメージ - 100%",11,5,0],
+		[2009,100,0,,"",15,50,220,164,0],
+		[2010,100,0,,"攻撃命中時、SP + 2",220,165,0],
+		[2011,100,0,,"",210,20,0],
+		[2012,100,0,,"",27,20,28,20,29,20,0],
+		[2013,100,0,,"物理攻撃命中時、一定確率で5秒間、敵に与えたダメージの1%をHPとして吸収",0],
+		[2014,100,0,,"攻撃命中時、SP + 5",86,50,0],
+		[2015,100,0,,"魔法攻撃を受けた時、一定確率で2秒間、1秒毎にHP + 25%",243,30,0],
+		[2016,100,0,,"",64,15,220,134,0],
+		[2017,100,0,,"",15,20,12,3,0],
+		[2018,100,0,,"",300000018,10,300000019,1,39000000092,10,0],
+		[2019,100,0,,"[クリティカルスラッシュ]で受けるダメージ - 30%",11,2,0],
+		[2020,100,0,,"",15,25,0],
+		[2021,100,0,,"攻撃命中時、SP + 1",0],
+		[2022,100,0,,"",210,10,0],
+		[2023,100,0,,"",27,10,28,10,29,10,0],
+		[2024,100,0,,"物理攻撃命中時、一定確率で3秒間、敵に与えたダメージの1%をHPとして吸収",0],
+		[2025,100,0,,"攻撃命中時、SP + 1",86,15,0],
+		[2026,100,0,,"魔法攻撃を受けた時、一定確率で2秒間、1秒毎にHP + 15%",243,30,0],
+		[2027,100,0,,"",64,15,0],
+		[2028,99,"豊穣の女神",,"",92,15,0],
+		[2029,100,0,,"物理攻撃命中時、一定確率で30秒間、攻撃速度 + 100%",80,25,0],
+		[2030,100,0,,"JobLvが1上がる度に追加で、Atk + 1 , Hit + 1 , Cri + 1",221,228,0],
+		[2031,100,0,,"",600000089,1,42000000089,15,220,157,0],
+		[2032,100,0,,"",273,50,0],
+		[2033,100,"",,"",219,2032,0],
+		[2034,100,0,,"",15,50,220,166,0],
+		[2035,100,0,,"",15,50,220,167,0],
+		[2036,100,0,,"物理攻撃命中時、一定確率で30秒間、攻撃速度 + 30%",80,15,0],
+		[2037,100,0,,"JobLvが2上がる度に追加で、Atk + 1 , Hit + 1 , Cri + 1",0],
+		[2038,100,0,,"純粋なLukが20上がる度に追加で、魔法攻撃で与えるダメージ + 1%",42000000089,10,0],
+		[2039,100,0,,"",177,20,178,20,273,20,0],
+		[2040,100,"",,"",219,2039,0],
+		[2041,100,0,,"",15,25,221,97,0],
+		[2042,100,0,,"",15,25,36,10,38,10,46,10,47,10,0],
+		[2043,99,"厄災の魔将",,"10秒毎に、HP + 1000 , SP + 100",0],
+		[2044,100,0,,"",15,50,220,168,0],
+		[2045,100,0,,"",89,10,220,169,0],
+		[2046,100,0,,"",101,3,0],
+		[2047,100,0,,"[ソウルブレイカー]、[メテオアサルト]の習得Lvが1上がる度に追加で、スキルディレイ - 1%",199,263,199,264,0],
+		[2048,100,0,,"",15,50,220,170,0],
+		[2049,100,0,,"",80,10,220,171,0],
+		[2050,100,0,,"",15,50,220,172,0],
+		[2051,100,0,,"",19447,500,19794,500,0],
+		[2052,100,0,,"純粋なIntが130の時、追加で、魔法攻撃命中時、敵を沈黙状態にする",400000346,1,0],
+		[2053,100,0,,"",89,10,220,136,0],
+		[2054,100,0,,"",261,20,0],
+		[2055,100,0,,"装備解除時、[ケミカルヘルムチャージ]を解除する",157,100,220,173,0],
+		[2056,100,0,,"",15,50,220,152,0],
+		[2057,100,0,,"",217,10,11532,100,0],
+		[2058,100,0,,"",89,10,11276,100,0],
+		[2059,100,0,,"一部のダメージを反射する効果で受けるダメージ - 10%",10000000000100,1,0],
+		[2060,100,0,,"",221,229,0],
+		[2061,100,0,,"",13,5000,14,500,0],
+		[2062,100,0,,"",80,10,220,57,0],
+		[2063,100,0,,"",89,10,220,148,0],
+		[2064,100,0,,"",15,25,176,10,171,10,357,10,359,10,0],
+		[2065,100,0,,"",172,20,176,20,0],
+		[2066,100,0,,"",101,1,0],
+		[2067,100,0,,"[ソウルブレイカー]、[メテオアサルト]の習得Lvが3上がる度に追加で、スキルディレイ - 1%",199,263,199,264,15,5,16,5,0],
+		[2068,100,0,,"",15,25,0],
+		[2069,100,0,,"",15,25,170,10,176,10,353,10,350,10,0],
+		[2070,100,0,,"",31,20,36,20,0],
+		[2071,100,0,,"",171,20,174,20,0],
+		[2072,100,0,,"",15,25,33,10,35,10,173,10,175,10,41,10,48,10,351,10,358,10,0],
+		[2073,100,0,,"",261,15,0],
+		[2074,100,0,,"",157,100,0],
+		[2075,100,0,,"",20000000000100,1,0],
+		[2076,100,0,,"",30,20,32,20,0],
+		[2077,100,0,,"",89,10,0],
+		[2078,100,0,,"10秒毎に、HP + 1500 , SP + 30",15,20,16,20,0],
+		[2079,99,"レジストウォーター",,"",61,70,0],
+		[2080,99,"レジストアース",,"",62,70,0],
+		[2081,99,"レジストファイア",,"",63,70,0],
+		[2082,99,"レジストウィンド",,"",64,70,0],
+		[2083,99,"レジストポイズン",,"",65,70,0],
+		[2084,99,"レジストセイント",,"",66,70,0],
+		[2085,99,"レジストダークネス",,"",67,70,0],
+		[2086,99,"レジストテレキネシス",,"",68,70,0],
+		[2087,99,"レジストアンデッド",,"",69,70,0],
+		[2088,99,"理性と記憶の残滓",,"",73,-10,74,10,0],
+		[2089,100,0,,"",17,100,100,100,243,10,220,86,0],
+		[2090,100,0,,"",17,200,100,200,243,40,220,86,0],
+		[2091,100,0,,"",17,100,100,100,243,40,220,86,0],
+		[2092,100,0,,"10秒毎に、HP + 5000 , SP + 100",15,10,16,10,92,10,0],
+		[2093,99,"恐怖耐性",,"絶対に恐怖状態にならない",363,100,0],
+		[2094,99,"混乱耐性",,"",157,100,0],
+		[2095,99,"睡眠耐性",,"",155,100,0],
+		[2096,0,"(↓アニバ2021特別報酬↓)",,"",0],
+		[2097,0,"(↓コロッセオテスト2期↓)",,"",0],
+		[2098,99,"極限の魔力",,"一般装備に装備時、1秒毎にSP + 1%",0],
+		[2099,100,0,,"一部のダメージを反射する効果で受けるダメージ - 50%(計算機未対応)",0],
+		[2100,100,0,,"一部のダメージを反射する効果で受けるダメージ - 50%(計算機未対応)",0],
+		[2101,100,0,,"武器の精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%",0],
+		[2102,100,"",,"",219,1966,0],
+		[2103,0,"(↓蜃気楼エンチャント↓)",,"",0],
+		[2104,0,"(↓世界樹の花エンチャント↓)",,"",0],
+		[2105,7,"アグネス・レベンブルグ(サイン入り)",,"",15,15,92,15,220,95,0],
+		[2106,7,"ポー・リハルト(サイン入り)",,"物理・魔法攻撃命中時、一定確率で60秒間、[ケミカルアーマーチャージ]、[ケミカルウェポンチャージ]、[ケミカルシールドチャージ]、[ケミカルヘルムチャージ]状態になる",381,1,0],
+		[2107,2,"アイザック・ウィグナー(サイン入り)",,"",293,100,298,100,0],
+		[2108,2,"ニーヒル・M・ハイネン",,"精錬値と同じLvの[ストーンカース]使用可能",0],
+		[2109,7,"アグネス・レベンブルグ",,"",91,15,0],
+		[2110,7,"ユルゲン・ウィグナー",,"",196,5,0],
+		[2111,6,"スピーカ・ネリウス",,"",15,10,8000074,10,0],
+		[2112,5,"クロネカー・ハイネン",,"",60,15,100347,3,0],
+		[2113,6,"スキア・ネリウス",,"",15,10,8000073,-10,0],
+		[2114,7,"ヴォルフ・レベンブルグ",,"",220,174,0],
+		[2115,3,"ポー・リハルト",,"物理・魔法攻撃命中時、一定確率でサイコロを振る。サイコロの目に応じてスキルが発動する<BR>※発動スキルが分かっていないため、計算機は未対応です。",0],
+		[2116,7,"カトリン・ウィグナー",,"",5530,50,0],
+		[2117,7,"アイザック・ウィグナー",,"[ハイディング]や[クローキング]をしているモンスターが見える<BR>この効果は攻城戦TEでは発動しない",0],
+		[2118,7,"マイアー",,"",346,10,347,10,348,10,340,10,0],
+		[2119,6,"マイアー・レベンブルグ",,"",100340,3,0],
+		[2120,7,"ヘルムト",,"",220,175,0],
+		[2121,6,"ヘルムト・レベンブルグ",,"",210,5,7000210,3,9000210,2,0],
+		[2122,99,"超越",,"",10000000000017,1,10000000000100,1,10000000000013,20,10000000000014,2,0],
+		[2123,99,"王家の栄光",,"物理・魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",262,15,269,15,0],
+		[2124,0,"(↓超越エンチャント↓)",,"",0],
+		[2125,0,"(↓シーズン宮廷魔術師↓)",,"",0],
+		[2126,99,"移動速度増加",,"移動速度増加",0],
+		[2127,99,"気功Lv2",,"",220,110,0],
+		[2128,99,"破砕",,"",100080,7,0],
+		[2129,100,0,,"",293,100,0],
+		[2130,99,"魔刃",,"",100089,7,0],
+		[2131,100,0,,"",298,100,0],
+		[2132,1,"真面目なアンドレ","マジメナアンドレ","",34,15,42,15,0],
+		[2133,1,"真面目なデニーロ","マジメナデニーロ","魔法攻撃命中時、一定確率で敵を睡眠状態にする",0],
+		[2134,1,"真面目な兵隊アンドレ","マジメナヘイタイアンドレ","物理・魔法攻撃時、[認識の庭]に出現するモンスターに与えるダメージ + 30%",0],
+		[2135,2,"度胸のあるガイアス","ドキョウノアルガイアス","",68,10,157,100,0],
+		[2136,2,"真面目なピエール","マジメナピエール","",17,10,42,5,9000042,5,0],
+		[2137,5,"ぐにゃぐにゃした蟻の卵","グニャグニャスタアリノタマゴ","",60,15,100348,3,0],
+		[2138,5,"度胸のあるファミリアー","ドキョウノアルファミリアー","",60,15,68,25,0],
+		[2139,5,"真面目なビタタ","マジメナビタタ","",342,50,62,70,0],
+		[2140,100,0,,"",89,10,220,179,0],
+		[2141,6,"真面目なアンドレの幼虫","マジメナアンドレノヨウチュウ","物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を出血状態にする",0],
+		[2142,100,0,,"物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を出血状態にする確率が上昇",60,5,0],
+		[2143,6,"無口なマヤー","ムクチナマヤー","",80,10,33,50,34,50,16,-50,0],
+		[2144,100,0,,"",80,10,220,180,0],
+		[2145,99,"固定詠唱時間-70%",,"固定詠唱時間-70%。",0],
+		[2146,99,"マグナムブレイクLv5",,"",220,43,0],
+		[2147,99,"潜在覚醒(クレイジーウィード)",,"物理攻撃命中時、一定確率で10秒間、[クレイジーウィード]の消費SP - 59",0],
+		[2148,99,"潜在覚醒(アローストーム)",,"物理攻撃命中時、一定確率で10秒間、[アローストーム]の消費SP - 47",0],
+		[2149,99,"潜在覚醒(ジュデックス)",,"魔法攻撃命中時、一定確率で10秒間、[ジュデックス]の消費SP - 46",0],
+		[2150,99,"潜在覚醒(シビアレインストーム)",,"",11642,100,11753,100,0],
+		[2151,99,"潜在覚醒(満月脚)",,"物理攻撃命中時、一定確率で10秒間、[満月脚]の消費SP - 79",0],
+		[2152,99,"潜在覚醒(大トロ)",,"[大トロ]使用時、一定確率で10秒間、[大トロ]の消費SP - 59",0],
+		[2153,99,"潜在覚醒(エスハ)",,"",11967,100,0],
+		[2154,99,"潜在覚醒(サベージの魂)",,"物理攻撃命中時、一定確率で10秒間、[サベージの魂]の消費SP - 59",0],
+		[2155,99,"潜在覚醒(獅子吼)",,"物理攻撃命中時、一定確率で10秒間、[獅子吼]の消費SP - 119",0],
+		[2156,99,"潜在覚醒(サモンベントス)",,"",11673,100,0],
+		[2157,99,"潜在覚醒(アームズキャノン)",,"物理攻撃命中時、一定確率で10秒間、[アームズキャノン]の消費SP - 59",0],
+		[2158,99,"潜在覚醒(ジャックフロスト)",,"魔法攻撃命中時、一定確率で10秒間、[ジャックフロスト]の消費SP - 119",0],
+		[2159,99,"潜在覚醒(イグニッションブレイク)",,"物理攻撃命中時、一定確率で10秒間、[イグニッションブレイク]の消費SP - 54",0],
+		[2160,99,"U-PowerArmor",,"",79,5,77,5,243,7,100261,7,100266,7,0],
+		[2161,100,"",,"",219,2160,0],
+		[2162,99,"U-PowerLeg",,"",79,5,77,5,243,10,100080,7,100089,7,0],
+		[2163,100,"",,"",219,2162,0],
+		[2164,99,"U-PowerShield",,"",60,10,100007,2,10000381,1,0],
+		[2165,100,"",,"",219,2164,0],
+		[2166,99,"U-PowerWing",,"",79,5,77,5,243,5,100068,5,0],
+		[2167,100,"",,"",219,2166,0],
+		[2168,99,"破壊不可(鎧)",,"絶対に鎧が壊れない",0],
+		[2169,99,"詠唱時間-15%",,"",73,-15,0],
+		[2170,99,"攻撃速度+15%",,"",12,15,0],
+		[2171,99,"Exam",,"",220,132,0],
+		[2172,100,"",,"",47,50,357,50,0],
+		[2173,100,"",,"",43,50,353,50,0],
+		[2174,100,"",,"",42,50,352,50,0],
+		[2175,100,"",,"",45,50,355,50,0],
+		[2176,100,"",,"",46,50,356,50,0],
+		[2177,100,"",,"",49,50,359,50,0],
+		[2178,100,"",,"",41,50,351,50,0],
+		[2179,100,"",,"",44,50,354,50,0],
+		[2180,100,"",,"",19,30,0],
+		[2181,100,"",,"",65,15,0],
+		[2182,100,"",,"",67,15,0],
+		[2183,100,"",,"[フェイス]習得時、追加で、聖属性攻撃で受けるダメージ + 15%",199,156,66,15,0],
+		[2184,100,"",,"",63,15,0],
+		[2185,100,"",,"",62,15,0],
+		[2186,100,"",,"",64,15,0],
+		[2187,100,"",,"",68,15,0],
+		[2188,100,"",,"",67,25,0],
+		[2189,100,"",,"",63,25,0],
+		[2190,100,"",,"",69,25,0],
+		[2191,100,"",,"",212,40,74,40,0],
+		[2192,100,"",,"",215,40,74,40,0],
+		[2193,100,"",,"",216,40,74,40,0],
+		[2194,100,"",,"",64,25,0],
+		[2195,100,"",,"",61,25,0],
+		[2196,100,"",,"",211,40,74,40,0],
+		[2197,100,"",,"",62,25,0],
+		[2198,100,"",,"",214,40,74,40,0],
+		[2199,100,"",,"",213,40,74,40,0],
+		[2200,100,"",,"",63,50,0],
+		[2201,100,"",,"",62,50,0],
+		[2202,100,"",,"",69,50,0],
+		[2203,100,"",,"",67,50,0],
+		[2204,100,"",,"",64,50,0],
+		[2205,100,"",,"",61,50,0],
+		[2206,100,"",,"",13,7500,0],
+		[2207,100,"",,"",18,500,0],
+		[2208,100,"",,"",18,500,0],
+		[2209,100,"",,"",73,-30,0],
+		[2210,100,"",,"",13,7500,0],
+		[2211,99,"火属性付与(武器)",,"",229,3,0],
+		[2212,99,"水属性付与(武器)",,"",229,1,0],
+		[2213,99,"風属性付与(武器)",,"",229,4,0],
+		[2214,99,"地属性付与(武器)",,"",229,2,0],
+		[2215,99,"聖属性付与(武器)",,"",229,6,0],
+		[2216,99,"闇属性付与(武器)",,"",229,7,0],
+		[2217,99,"念属性付与(武器)",,"",229,8,0],
+		[2218,99,"毒属性付与(武器)",,"",229,5,0],
+		[2219,99,"不死属性付与(武器)",,"",229,9,0],
+		[2220,99,"黒翼の使徒",,"物理・魔法攻撃命中時、一定確率で10秒間、攻撃速度 + 100%、固定詠唱時間 - 100%",0],
+		[2221,100,0,,"[フルスロットル]使用時、10秒間、[光の盾]状態になる（計算機未対応）",0],
+		[2222,99,"ゾディアック",,"",220,105,0],
+		[2223,100,"",,"",5200000019541,500,0],
+		[2224,100,"",,"メカニックが装備時、[巨蟹宮のクラウン]の精錬値が1上がる度に追加で、スキルディレイ - 3%",0],
+		[2225,100,"",,"メカニックが装備時、[巨蟹宮のメイル]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%",0],
+		[2226,100,"",,"メカニックが装備時、[巨蟹宮のマント]の精錬値が1上がる度に追加で、[アックストルネード]で与えるダメージ + 10%",0],
+		[2227,100,"",,"メカニックが装備時、[巨蟹宮のシューズ]の精錬値が1上がる度に追加で、スキルディレイ - 4%",0],
+		[2228,100,"",,"[グリード]の詠唱時間 - 100%",5200000000080,15,0],
+		[2229,100,"",,"",5900000019722,200,0],
+		[2230,100,"",,"ジェネティックが装備時、[金牛宮のダイアデム]の精錬値が1上がる度に追加で、[カートキャノン]で与えるダメージ + 5%",0],
+		[2231,100,"",,"ジェネティックが装備時、[金牛宮のメイル]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%",0],
+		[2232,100,"",,"ジェネティックが装備時、[金牛宮のマント]の精錬値が1上がる度に追加で、[カートトルネード]で与えるダメージ + 5%",0],
+		[2233,100,"",,"ジェネティックが装備時、[金牛宮のシューズ]の精錬値が1上がる度に追加で、[カートキャノン]で与えるダメージ + 15%、[カートトルネード]で与えるダメージ + 10%",0],
+		[2234,100,"",,"",5900000000080,15,5900000007723,100,0],
+		[2235,100,"",,"",5500000019610,200,0],
+		[2236,100,"",,"修羅が装備時、[獅子宮のクラウン]の精錬値が1上がる度に追加で、必中攻撃 + 2%",0],
+		[2237,100,"",,"修羅が装備時、[獅子宮のメイル]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%",0],
+		[2238,100,"",,"修羅が装備時、[獅子宮のマント]の精錬値が1上がる度に追加で、必中攻撃 + 2%",0],
+		[2239,100,"",,"修羅が装備時、[獅子宮のシューズ]の精錬値が1上がる度に追加で、必中攻撃 + 3%",0],
+		[2240,100,"",,"",5500000000080,15,5500000005610,150,0],
+		[2241,100,"",,"",4900000000346,40,0],
+		[2242,100,"",,"アークビショップが装備時、[処女宮のダイアデム]の精錬値が1上がる度に追加で、[ジュデックス]で与えるダメージ + 10%",0],
+		[2243,100,"",,"アークビショップが装備時、[処女宮のメイル]の精錬値が1上がる度に追加で、魔法攻撃で与えるダメージ + 3%",0],
+		[2244,100,"",,"アークビショップが装備時、[処女宮のマント]の精錬値が1上がる度に追加で、完全回避 + 3",0],
+		[2245,100,"",,"アークビショップが装備時、[処女宮のシューズ]の精錬値が1上がる度に追加で、[ジュデックス]で与えるダメージ + 10%",0],
+		[2246,100,"",,"",4900000000089,15,4900000005476,50,0],
+		[2247,100,"",,"",5000000000086,25,0],
+		[2248,100,"",,"レンジャーが装備時、[人馬宮のクラウン]の精錬値が1上がる度に追加で、ボスモンスターから受けるダメージ - 2%",0],
+		[2249,100,"",,"レンジャーが装備時、[人馬宮のメイル]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%",0],
+		[2250,100,"",,"レンジャーが装備時、[人馬宮のマント]の精錬値が1上がる度に追加で、[アンリミット]の再使用待機時間 - 18秒<BR>レンジャーが装備時、装備解除時、[アンリミット]を解除する",0],
+		[2251,100,"",,"レンジャーが装備時、[人馬宮のシューズ]の精錬値が1上がる度に追加で、必中攻撃 + 3%",0],
+		[2252,100,"",,"",5000000000080,15,5000000005497,30,0],
+		[2253,100,"",,"",5800000000343,40,5800000000341,40,5800000000344,40,5800000000342,40,5800000000340,40,5800000000077,10,0],
+		[2254,100,"",,"ソーサラーが装備時、[双魚宮のダイアデム]の精錬値が1上がる度に追加で、[サイキックウェーブ]の再使用待機時間 - 0.2秒",219,2829,0],
+		[2255,100,"",,"ソーサラーが装備時、[双魚宮のメイル]の精錬値が1上がる度に追加で、魔法攻撃で与えるダメージ + 3%",0],
+		[2256,100,"",,"ソーサラーが装備時、物理攻撃命中時、一定確率で敵にオートスペル[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]が習得Lvで発動<BR>ソーサラーが装備時、[双魚宮のマント]の精錬値が1上がる度に追加で、オートスペル[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]の発動率が上昇",5800000000225,182,5800000000225,179,5800000000225,177,5800000000225,175,0],
+		[2257,100,"",,"ソーサラーが装備時、[双魚宮のシューズ]の精錬値が1上がる度に追加で、[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]で与えるダメージ + 10%",0],
+		[2258,100,"",,"",5800000000089,15,5800000019662,1000,0],
+		[2259,100,"",,"",5600000005639,150,0],
+		[2260,100,"",,"",5700000005639,150,0],
+		[2261,100,"",,"ミンストレル、ワンダラーが装備時、[双児宮のダイアデム]の精錬値が1上がる度に追加で、必中攻撃 + 2%",0],
+		[2262,100,"",,"ミンストレル、ワンダラーが装備時、[双児宮のメイル]の精錬値が1上がる度に追加で、物理・魔法攻撃で与えるダメージ + 3%",0],
+		[2263,100,"",,"ミンストレル、ワンダラーが装備時、[双児宮のマント]の精錬値が1上がる度に追加で、Int + 2 , Dex + 2",0],
+		[2264,100,"",,"ミンストレル、ワンダラーが装備時、[双児宮のシューズ]の精錬値が1上がる度に追加で、必中攻撃 + 3%",0],
+		[2265,100,"",,"",5600000000080,15,5600000000089,15,5600000005639,50,5700000000080,15,5700000000089,15,5700000005639,50,0],
+		[2266,100,"",,"",4800000005474,150,0],
+		[2267,100,"",,"ギロチンクロスが装備時、[天蝎宮のクラウン]の精錬値が1上がる度に追加で、ボスモンスターから受けるダメージ - 2%",0],
+		[2268,100,"",,"ギロチンクロスが装備時、[天蝎宮のメイル]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%",0],
+		[2269,100,"",,"ギロチンクロスが装備時、[天蝎宮のマント]の精錬値が1上がる度に追加で、必中攻撃 + 2%",0],
+		[2270,100,"",,"ギロチンクロスが装備時、[天蝎宮のシューズ]の精錬値が2上がる度に追加で、[ダークイリュージョン]の再使用待機時間 - 0.5秒",0],
+		[2271,100,"",,"",4800000000080,15,4800000019797,25000,0],
+		[2272,100,"",,"",4700000000086,25,0],
+		[2273,100,"",,"ルーンナイトが装備時、[天秤宮のダイアデム]の精錬値が1上がる度に追加で、遠距離物理攻撃で与えるダメージ + 2%",0],
+		[2274,100,"",,"ルーンナイトが装備時、[天秤宮のメイル]の精錬値が1上がる度に追加で、遠距離物理攻撃で与えるダメージ + 3%",0],
+		[2275,100,"",,"ルーンナイトが装備時、[天秤宮のマント]の精錬値が1上がる度に追加で、スキルディレイ - 2%",0],
+		[2276,100,"",,"ルーンナイトが装備時、[天秤宮のシューズ]の精錬値が1上がる度に追加で、[ウォータードラゴンブレス]、[ファイアードラゴンブレス]で与えるダメージ + 5%",0],
+		[2277,100,"",,"",4700000000025,15,4700000023259,10,0],
+		[2278,100,"",,"",5300000000025,25,0],
+		[2279,100,"",,"ロイヤルガードが装備時、[白羊宮のクラウン]の精錬値が1上がる度に追加で、[キャノンスピア]の再使用待機時間 - 0.1秒",0],
+		[2280,100,"",,"ロイヤルガードが装備時、[白羊宮のメイル]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%",0],
+		[2281,100,"",,"ロイヤルガードが装備時、[白羊宮のマント]の精錬値が1上がる度に追加で、攻撃速度 + 2%",0],
+		[2282,100,"",,"ロイヤルガードが装備時、[白羊宮のシューズ]の精錬値が1上がる度に追加で、スキルディレイ - 3%",0],
+		[2283,100,"",,"",5300000000080,15,5300000005569,30,0],
+		[2284,100,"",,"ロイヤルガードが装備時、[白羊宮のシールド]の精錬値が1上がる度に追加で、MaxHP + 500",0],
+		[2285,100,"",,"",6600000005967,25,6600000005968,25,6600000005969,25,0],
+		[2286,100,"",,"ソウルリーパーが装備時、[プロキオンクラウン]の精錬値が1上がる度に追加で、スキルディレイ - 3%",0],
+		[2287,100,"",,"ソウルリーパーが装備時、[プロキオンローブ]の精錬値が1上がる度に追加で、魔法攻撃で与えるダメージ + 3%",0],
+		[2288,100,"",,"ソウルリーパーが装備時、[プロキオンマント]の精錬値が1上がる度に追加で、スキルディレイ - 2%",0],
+		[2289,100,"",,"ソウルリーパーが装備時、[プロキオンシューズ]の精錬値が1上がる度に追加で、スキルディレイ - 3%",0],
+		[2290,100,"",,"",6600000000089,15,6600000019977,500,0],
+		[2291,100,"",,"",5100000005528,150,0],
+		[2292,100,"",,"ウォーロックが装備時、[宝瓶宮のクラウン]の精錬値が1上がる度に追加で、[テレキネシスインテンス]の再使用待機時間 - 8秒<BR>ウォーロックが装備時、装備解除時、[テレキネシスインテンス]を解除する",0],
+		[2293,100,"",,"ウォーロックが装備時、[宝瓶宮のメイル]の精錬値が1上がる度に追加で、魔法攻撃で与えるダメージ + 3%",0],
+		[2294,100,"",,"ウォーロックが装備時、[宝瓶宮のマント]の精錬値が1上がる度に追加で、スキルディレイ - 2%",0],
+		[2295,100,"",,"ウォーロックが装備時、[宝瓶宮のシューズ]の精錬値が1上がる度に追加で、魔法攻撃で与えるダメージ + 2%",0],
+		[2296,100,"",,"ウォーロックが装備時、[テレキネシスインテンス]の再使用待機時間 - 75秒<BR>ウォーロックが装備時、装備解除時、[テレキネシスインテンス]を解除する",5100000000089,15,0],
+		[2297,100,"",,"",6500000000217,10,0],
+		[2298,100,"",,"星帝が装備時、[ポルックスクラウン]の精錬値が1上がる度に追加で、必中攻撃 + 2%",0],
+		[2299,100,"",,"星帝が装備時、[ポルックスローブ]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%",0],
+		[2300,100,"",,"星帝が装備時、[ポルックスマント]の精錬値が1上がる度に追加で、武器攻撃力 + 1%",0],
+		[2301,100,"",,"星帝が装備時、[ポルックスシューズ]の精錬値が1上がる度に追加で、必中攻撃 + 2%",0],
+		[2302,100,"",,"",6500000000080,15,6500000005317,100,6500000005318,100,0],
+		[2303,100,"",,"",5400000000011,20,0],
+		[2304,100,"",,"シャドウチェイサーが装備時、[磨羯宮のダイアデム]の精錬値が1上がる度に追加で、必中攻撃 + 2%",0],
+		[2305,100,"",,"シャドウチェイサーが装備時、[磨羯宮のメイル]の精錬値が1上がる度に追加で、物理・魔法攻撃で与えるダメージ + 3%",0],
+		[2306,100,"",,"シャドウチェイサーが装備時、[磨羯宮のマント]の精錬値が1上がる度に追加で、[トライアングルショット]で与えるダメージ + 15%",0],
+		[2307,100,"",,"シャドウチェイサーが装備時、[磨羯宮のシューズ]の精錬値が1上がる度に追加で、必中攻撃 + 3%",0],
+		[2308,100,"",,"",5400000000080,15,5400000000089,15,5400000005608,70,0],
+		[2309,99,"聖属性耐性+5%",,"",66,5,0],
+		[2310,99,"念属性耐性+5%",,"",68,5,0],
+		[2311,99,"異境の統轄者",,"",17,50,100,50,0],
+		[2312,100,"",,"[ストームナイトカード]の敵を凍結状態にする確率が上昇",80,25,0],
+		[2313,100,"",,"物理攻撃命中時、一定確率で10秒間、火属性物理攻撃力 + 20%",0],
+		[2314,100,"",,"物理攻撃でモンスターを倒した時、HP + 200 , SP + 20",210,15,25,15,0],
+		[2315,100,"",,"物理攻撃命中時、敵を出血・スタン・沈黙・毒・呪い状態にする",80,25,0],
+		[2316,100,"",,"",96,15,0],
+		[2317,100,"",,"",68,15,220,181,0],
+		[2318,100,"",,"",67,15,220,81,0],
+		[2319,100,"",,"",18,500,152,100,0],
+		[2320,100,"",,"[データルザウルスカード]のオートスペル[ランドプロテクター]の発動率が上昇",15,50,0],
+		[2321,100,"",,"物理・魔法攻撃を受けた時、敵を凍結状態にする",15,50,0],
+		[2322,100,"",,"[アモンラーカード]のオートスペル[キリエエレイソン]の発動率が上昇",15,25,0],
+		[2323,100,"",,"",5125,70,0],
+		[2324,100,"",,"",5125,20,0],
+		[2325,100,"",,"",101,1,89,10,0],
+		[2326,100,"",,"",37,35,272,35,0],
+		[2327,100,"",,"",23481,50,0],
+		[2328,100,"",,"JobLvが3上がる度に追加で、Int + 1 , Mdef + 1",0],
+		[2329,100,"",,"",15,50,220,182,0],
+		[2330,100,"",,"",80,15,89,15,220,183,0],
+		[2331,100,"",,"[バコナワカード]のオートスペル[ワイドブリーディング]の発動率が上昇",211,26,0],
+		[2332,100,"",,"[ビョンウンゴカード]のオートスペル[ワイドスリープ]の発動率が上昇",214,26,0],
+		[2333,100,"",,"[ブワヤカード]のオートスペル[ワイドストーン]の発動率が上昇",213,26,0],
+		[2334,100,"",,"[レヤックカード]の敵を恐怖・混乱状態にする確率が上昇",68,50,0],
+		[2335,100,"",,"BaseLvが1上がる度に追加で、[バナナ]のHP回復量 + 30%",261,30,0],
+		[2336,4,"封印されたRSX-0806","フウインサレタアールエスエックス-0806","鎧が絶対に壊れない",3,1,0],
+		[2337,100,"",,"",18,150,152,100,0],
+		[2338,6,"封印されたアモンラー","フウインサレタアモンラー","物理攻撃を受けた時、一定確率で自分にオートスペル[キリエエレイソン]Lv10発動<BR>純粋なIntが99以上の時、オートスペル[キリエエレイソン]Lv10の発動率が上昇",7,1,0],
+		[2339,100,"",,"",15,25,0],
+		[2340,2,"封印されたヴェスパー","フウインサレタヴェスパー","",5,1,297,15,0],
+		[2341,100,"",,"",96,5,0],
+		[2342,1,"封印された怨霊武士","フウインサレタオンリョウブシ","10秒毎にHP - 666<BR>装備解除時、HP - 999",291,30,75,-100,0],
+		[2343,100,"",,"",37,25,272,25,0],
+		[2344,2,"封印されたキエル-D-01","フウインサレタキエル-ディー-01","",74,5,0],
+		[2345,100,"",,"",68,15,0],
+		[2346,100,0,,"",74,-5,0],
+		[2347,2,"封印された黒蛇王","フウインサレタコクダオウ","",4,1,154,30,153,30,0],
+		[2348,100,"",,"JobLvが10上がる度に追加で、Int + 1 , Mdef + 1",0],
+		[2349,4,"封印されたゴピニク","フウインサレタゴピニク","純粋なStrとIntとDexの合計が10上がる度に追加で、物理・魔法攻撃時、風属性モンスターに与えるダメージ + 1%",0],
+		[2350,100,"",,"",15,25,0],
+		[2351,1,"封印されたストームナイト","フウインサレタストームナイト","物理攻撃命中時、一定確率で敵を凍結状態にする",221,71,0],
+		[2352,100,"",,"[封印されたストームナイトカード]の凍結状態にする確率が上昇",80,10,0],
+		[2353,1,"封印されたタートルジェネラル","フウインサレタタートルジェネラル","",80,10,221,73,0],
+		[2354,100,"",,"物理攻撃命中時、一定確率で10秒間、火属性物理攻撃力 + 10%",0],
+		[2355,4,"封印されたタオグンカ","フウインサレタタオグンカ","",15,30,18,-50,19,-50,0],
+		[2356,100,"",,"",80,10,89,10,0],
+		[2357,4,"封印されたデータルザウルス","フウインサレタデータルザウルス","魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[ランドプロテクター]Lv1発動",152,50,19,-20,0],
+		[2358,100,"",,"",15,25,0],
+		[2359,1,"封印されたドラキュラ","フウインサレタドラキュラ","物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収",0],
+		[2360,100,"",,"物理攻撃でモンスターを倒した時、HP + 100 , SP + 10",210,10,25,10,0],
+		[2361,4,"封印されたハティー","フウインサレタハティー","物理攻撃を受けた時、10%の確率で敵を凍結状態にする",0],
+		[2362,100,"",,"[ハティーベベカード]のオートスペル[フロストダイバー]の発動率が上昇",0],
+		[2363,100,"",,"",15,25,0],
+		[2364,2,"封印されたファラオ","フウインサレタファラオ","",102,5,0],
+		[2365,100,"",,"",67,15,0],
+		[2366,2,"封印されたペクソジン","フウインサレタペクソジン","",91,10,102,-15,0],
+		[2367,100,"",,"",23481,25,0],
+		[2368,1,"封印されたボイタタ","フウインサレタボイタタ","",343,10,344,10,0],
+		[2369,100,"",,"",101,1,89,5,0],
+		[2370,6,"封印されたレディータニー","フウインサレタレディータニー","[バナナ]のHP回復量 + 50%<BR>モンスターを倒した時、一定確率で[バナナ]をドロップ",16,15,0],
+		[2371,100,"",,"BaseLvが1上がる度に追加で、[バナナ]のHP回復量 + 10%",261,10,0],
+		[2372,5,"封印されたレヤック","フウインサレタレヤック","物理・魔法攻撃を受けた時、一定確率で敵を恐怖、混乱状態にする",1,1,0],
+		[2373,100,"",,"[封印されたレヤックカード]の敵を恐怖・混乱状態にする確率が上昇",68,30,0],
+		[2374,1,"封印されたロードオブデス","フウインサレタロードオブデス","近接物理攻撃命中時、一定確率で敵を出血・スタン・沈黙・毒・呪い状態にする",0],
+		[2375,100,"",,"[封印されたロードオブデスカード]の敵を出血・スタン・沈黙・毒・呪い状態にする確率が上昇",80,10,0],
+		[2376,99,"水属性耐性+5%",,"",61,5,0],
+		[2377,99,"地属性耐性+5%",,"",62,5,0],
+		[2378,99,"火属性耐性+5%",,"",63,5,0],
+		[2379,99,"風属性耐性+5%",,"",64,5,0],
+		[2380,99,"毒属性耐性+5%",,"",65,5,0],
+		[2381,99,"闇属性耐性+5%",,"",67,5,0],
+		[2382,99,"不死属性耐性+5%",,"",69,5,0],
+		[2383,99,"エナジーコートLv1",,"[エナジーコート]Lv1使用可能",0],
+		[2384,99,"完熟",,"",100017,20,100100,20,100018,30,100019,3,0],
+		[2385,100,"",,"",10000000000013,50,10000000000014,5,0],
+		[2386,1,"メロリン",,"",100017,10,0],
+		[2387,100,"",,"",80,20,0],
+		[2388,1,"堕メロリン","ダメロリン","",100100,10,0],
+		[2389,100,"",,"",89,20,0],
+		[2390,99,"潜在覚醒(バニシングバスター)",,"物理攻撃命中時、一定確率で10秒間、[バニシングバスター]の消費SP - 74",0],
+		[2391,99,"オーディンの力Lv2",,"",220,185,0],
+		[2392,1,"シルバーオシドス",,"",100348,1,10000348,10,0],
+		[2393,1,"トキシャス",,"",80,10,220,187,0],
+		[2394,1,"ネオミネラル",,"物理・魔法攻撃時、[鉱山ダンジョン 03]に出現するモンスターに与えるダメージ + 30%",0],
+		[2395,1,"ブラックオシドス",,"",100347,1,10000347,10,0],
+		[2396,1,"ボーンペロス",,"物理・魔法攻撃時、[アビスレイク地下洞窟 04]に出現するモンスターに与えるダメージ + 30%",0],
+		[2397,2,"アークプラズマ",,"",2000000151,30,2000000156,30,100100,3,9000089,2,0],
+		[2398,2,"ジュゴリアント",,"",100009,10,0],
+		[2399,100,"",,"[カモフラージュ]Lv5使用可能<BR>装備解除時、[カモフラージュ]を解除する",0],
+		[2400,2,"トレジャーミミック",,"精錬値と同じLvの[スティール]使用可能",0],
+		[2401,2,"ポイゾナス",,"",3,1,150,100,0],
+		[2402,2,"ホーリースコグル",,"",66,10,220,22,0],
+		[2403,2,"ホーリープルス",,"",65,10,220,188,0],
+		[2404,2,"ボーンオシドス",,"",298,25,0],
+		[2405,2,"レギンレイヴ",,"兜中段に装備時、火・水・闇・不死属性攻撃で受けるダメージ - 10%",0],
+		[2406,100,"",,"",15,15,67,10,0],
+		[2407,4,"エンジェゴルト",,"",100176,1,9000176,10,0],
+		[2408,4,"ジュエリーアント",,"",210,5,8000210,10,0],
+		[2409,5,"ボーンデータルザウルス",,"",347,50,67,70,0],
+		[2410,100,"",,"",89,10,7368,50,0],
+		[2411,6,"アビスマン",,"",89,5,10000000005133,5,10000000005319,5,0],
+		[2412,7,"イングリッド",,"",15,15,66,5,220,67,0],
+		[2413,100,"",,"",11,10,0],
+		[2414,7,"スペクトラムプラズマ",,"",151,20,156,20,0],
+		[2415,7,"パープルペロス",,"",7794,50,7447,50,0],
+		[2416,7,"ホワイトポルセリオ",,"",5531,50,0],
+		[2417,99,"天地崩壊",,"物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",27,15,28,15,29,15,97,15,98,15,99,15,0],
+		[2418,100,"",,"[神力]状態になる確率が上昇",10000000000017,1,0],	// 魔剣士タナトスの思念体 + 天地
+		[2419,100,"",,"[神力]状態になる確率が上昇",20000000000017,1,0],	// 封印された魔剣士タナトスの思念体 + 天地
+		[2420,1,"エルディスト",,"",100343,1,10000343,10,0],
+		[2421,1,"タナトスの記憶(怨望)","タナトスノキオクエンボウ","",221,233,100017,10,100100,10,0],
+		[2422,2,"ヴォイドミミック",,"",2000000151,30,2000000156,30,100017,3,9000080,2,0],
+		[2423,2,"破損したタナトスの記憶","ハソンシタタナトスノキオク","",85,10,228,1,0],
+		[2424,100,"",,"物理攻撃命中時、一定確率で敵を5秒間[オブリビオンカース]状態にする",63,-10,66,-10,0],	// 破損したタナトスの記憶 英雄
+		[2425,100,"",,"[神力]状態になる確率が上昇<br>物理攻撃命中時、一定確率で敵に与えたダメージの3%をSPとして吸収",0],	// 破損したタナトスの記憶 天地
+		[2426,2,"ブックオブデス",,"",220,69,0],
+		[2427,4,"タナトスの記憶(恐怖)","タナトスノキオクキョウフ","",100178,4,0],
+		[2428,5,"タナトスの記憶(後悔)","タナトスノキオクコウカイ","",100214,3,100067,3,0],
+		[2429,5,"タナトスの記憶(憤怒)","タナトスノキオクフンヌ","",100212,3,100064,3,0],
+		[2430,7,"クロウバロン",,"",220,97,0],
+		[2431,7,"クロウデューク",,"",7755,100,0],
+		[2432,100,"",,"",5051,50,5054,50,5056,50,0],
+		[2433,7,"祈る者","イノルモノ","物理攻撃命中時、一定確率で10秒間、火属性物理攻撃力 + 10%",80,3,0],
+		[2434,7,"共感する者","キョウカンスルモノ","物理攻撃命中時、一定確率で10秒間、水属性物理攻撃力 + 10%",80,3,0],
+		[2435,7,"幸福を与える者","コウフクヲアタエルモノ","物理攻撃命中時、一定確率で10秒間、地属性物理攻撃力 + 10%",80,3,0],
+		[2436,7,"微笑む者","ホホエムモノ","物理攻撃命中時、一定確率で10秒間、風属性物理攻撃力 + 10%",80,3,0],
+		[2437,99,"知識の探求者",,"",18,50,19,10,0],
+		[2438,100,"",,"",340,10,0],
+		[2439,100,"",,"[セリーヌ・キミカード]の魔法攻撃命中時、一定確率で敵を中心にオートスペル[ワイドクリティカルウーンズ]Lv1が発動する確率が上昇",347,20,349,20,0],
+		[2440,100,"",,"",25,10,10000000005553,3,10000000005552,3,0],
+		[2441,100,"",,"",86,10,61,15,0],
+		[2442,100,"",,"",15,15,64,10,0],
+		[2443,100,"",,"",15,50,220,189,0],
+		[2444,100,"",,"",60,20,220,190,0],
+		[2445,100,"",,"",60,20,220,191,0],
+		[2446,100,"",,"物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収",60,20,0],
+		[2447,100,"",,"",80,10,19839,30000,0],
+		[2448,100,"",,"",10000000005551,3,10000000005549,3,0],
+		[2449,100,"",,"",220,192,0],
+		[2450,100,"",,"固定詠唱時間 - 70%",293,50,298,50,0],
+		[2451,99,"スキル石(速度増加Lv10)",,"",220,160,0],
+		[2452,100,"",,"",80,15,220,193,0],
+		[2453,4,"R001-ベスティア","アール001-ヴェスティア","",100000080,2,37000000080,20,0],
+		[2454,100,"",,"",15,50,220,194,0],
+		[2455,1,"ヴェネディ",,"物理・魔法攻撃時、[廃棄実験体遊技場ルドゥス4階]に出現するモンスターに与えるダメージ + 30%",0],
+		[2456,7,"ガンキャン",,"",7259,50,0],
+		[2457,1,"強力な魔力","キョウリョクナマリョク","物理・魔法攻撃時、[第2魔力発電所]に出現するモンスターに与えるダメージ + 30%",0],
+		[2458,4,"グランパピリア",,"",100092,2,0],
+		[2459,100,"",,"物理・魔法攻撃を受けた時、一定確率で敵を混乱・睡眠・沈黙・呪い状態にする",15,50,0],
+		[2460,2,"グロート",,"",19,10,100019,-1,0],
+		[2461,1,"故障した警備型ベータ","コショウシタケイビガタベータ","物理・魔法攻撃時、[貯蔵庫タルタロス上層]、[貯蔵庫タルタロス下層]に出現するモンスターに与えるダメージ + 30%",0],
+		[2462,7,"故障した自動お掃除機Ω","コショウシタジドウオソウジキオメガ","",23610,2,0],
+		[2463,7,"故障した上級庭師ベータ","コショウシタジョウキュウニワシベータ","",23020,2,0],
+		[2464,3,"故障した清掃型β","コショウシタセイソウガタベータ","",28,10,98,10,7000191,30,0],
+		[2465,7,"ゴーストキューブ",,"物理攻撃を受けた時、一定確率で敵にオートスペル[速度減少]Lv5発動",0],
+		[2466,6,"死の大魔女","シノダイマジョ","",89,10,175,50,179,50,16,-50,0],
+		[2467,100,"",,"",89,10,220,195,0],
+		[2468,4,"ジャイアント・カプトゥ",,"",100174,1,9000174,10,0],
+		[2469,7,"上級研究助手自動人形","ジョウキュウケンキュウジョシュジドウニンギョウ","",7478,50,7476,50,0],
+		[2470,6,"上級特製アーノルディ","ジョウキュウトクセイアーノルディ","",5639,100,0],
+		[2471,4,"上級ドライラフレシア","ジョウキュウドライラフレシア","",100035,1,9000035,10,0],
+		[2472,1,"上級パピラ","ジョウキュウパピラ","",100345,1,10000345,10,0],
+		[2473,1,"上級パピラカイ","ジョウキュウパピラカイ","",100341,1,10000341,10,0],
+		[2474,3,"上級パピラルバ","ジョウキュウパピラルバ","",27,10,97,10,7000190,30,0],
+		[2475,5,"深海の魔女","シンカイノマジョ","",341,100,61,50,360,100,0],
+		[2476,7,"鋭い魔力","スルドイマリョク","",154,20,159,20,0],
+		[2477,6,"青衿のヒメ","アオエリのヒメ","",100347,2,100345,2,100349,2,10000347,10,10000345,10,10000349,10,0],
+		[2478,1,"ディスガイザー",,"物理攻撃命中時、一定確率で敵を敵を沈黙状態にする<BR>純粋なIntが10上がる度に、追加で、敵を沈黙状態にする確率が上昇<BR>純粋なIntが130の時、追加で、敵を沈黙状態にする確率が上昇",0],
+		[2479,7,"デッドレ",,"",7528,50,0],
+		[2480,6,"ドローリアン",,"",100345,3,0],
+		[2481,3,"熱湯ソードフィッシュ","ネットウソードフィッシュ","",29,10,99,10,7000192,30,0],
+		[2482,4,"熱湯ピラニア","ネットウピラニア","",100175,1,9000175,10,0],
+		[2483,1,"熱湯フェン","ネットウフェン","物理・魔法攻撃時、[大浴場メディタティオ]に出現するモンスターに与えるダメージ + 30%",0],
+		[2484,2,"熱湯マルク","ネットウマルク","純粋なStaが50以上の時、追加で、凍結に対する耐性 + 25%（計算機未対応）<BR>純粋なWisが50以上の時、追加で、凍結に対する耐性 + 25%（計算機未対応）",0],
+		[2485,1,"ピエロゾイスト",,"物理・魔法攻撃時、[ニブルヘイムダンジョン(崩れたオペラハウス)]に出現するモンスターに与えるダメージ + 30%",0],
+		[2486,1,"プラガリオン",,"物理攻撃命中時、一定確率で10秒間、風属性物理攻撃力 + 20%",80,10,0],
+		[2487,6,"ブルータルマーダー",,"",10,20,24000000070,10,0],
+		[2488,4,"ブルームーンロリルリ",,"物理攻撃を受けた時、一定確率で自分にオートスペル[ハイネスヒール]Lv3発動",0],
+		[2489,1,"魔力中毒サナレ","マリョクチュウドクサナレ","",38,15,40,15,0],
+		[2490,1,"魔力中毒プラガ","マリョクチュウドクプラガ","爪の場合、追加でHit + 15 , 攻撃速度 + 3%<BR>爪の精錬値が10の時、追加で、Atk + 100",80,10,0],
+		[2491,7,"迷宮のヴェルゼブブ","メイキュウノヴェルゼブブ","",7,3,0],
+		[2492,7,"ルードガル",,"物理攻撃を受けた時、一定確率で敵にオートスペル[ストーンカース]Lv5発動",0],
+		[2493,100,"",,"",13,5000,0],
+		[2494,4,"レッドペッパーラムダ",,"純粋なStrとIntとDexの合計が10上がる度に追加で、物理・魔法攻撃時、地属性モンスターに与えるダメージ + 3%",0],
+		[2495,100,"",,"",15,50,220,196,0],
+		[2496,6,"浴場管理者ベータ","ヨクジョウカンリシャベータ","",10000000005169,3,0],
+		[2497,99,"氷結耐性",,"",361,100,0],
+		[2498,99,"冷凍耐性",,"",360,100,0],
+		[2499,99,"不滅なる利益者",,"物理・魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",0],
+		[2500,99,"限界突破",,"",19901,600000,0],
+		[2501,99,"Pow+3",,"",230,3,0],
+		[2502,99,"Sta+3",,"",231,3,0],
+		[2503,99,"Wis+3",,"",232,3,0],
+		[2504,99,"Spl+3",,"",233,3,0],
+		[2505,99,"Con+3",,"",234,3,0],
+		[2506,99,"Crt+3",,"",235,3,0],
+		[2507,99,"攻撃速度+10%",,"",12,10,0],
+		[2508,99,"Def+300",,"",18,300,0],
+		[2509,99,"Mdef+30",,"",19,30,0],
+		[2510,99,"潜在解放(アークメイジI)",,"",0],
+		[2511,100,0,,"",14061,1000,14062,1000,14054,1000,14058,1000,14069,1000,14070,1000,14068,1000,14067,1000,0],
+		[2512,99,"潜在解放(アビスチェイサーI)",,"",0],
+		[2513,100,0,,"",20102,300,20109,300,0],
+		[2514,99,"潜在解放(インクイジターI)",,"",0],
+		[2515,100,0,,"",20124,200,20123,100,0],
+		[2516,99,"潜在解放(インペリアルガードI)",,"",0],
+		[2517,100,0,,"",20095,300,20092,300,20094,300,0],
+		[2518,99,"潜在解放(ウィンドホークI)",,"",0],
+		[2519,100,0,,"",14051,500,14047,500,0],
+		[2520,99,"潜在解放(エレメンタルマスターI)",,"",0],
+		[2521,100,0,,"",14149,500,14146,500,14147,500,14150,500,14148,500,14157,500,0],
+		[2522,99,"潜在解放(カーディナルI)",,"",0],
+		[2523,100,0,,"",14028,500,14033,500,14039,500,0],
+		[2524,99,"潜在解放(シャドウクロスI)",,"",0],
+		[2525,100,0,,"",20014,300,0],
+		[2526,99,"潜在解放(ドラゴンナイトI)",,"",0],
+		[2527,100,0,,"",20008,500,0],
+		[2528,99,"潜在解放(トルバドゥールI)",,"",0],
+		[2529,100,0,,"",14132,500,14131,500,0],
+		[2530,99,"潜在解放(トルヴェールI)",,"",0],
+		[2531,100,0,,"",14132,500,14131,500,0],
+		[2532,99,"潜在解放(バイオロI)",,"",0],
+		[2533,100,0,,"",14165,500,14163,500,14166,500,14164,500,0],
+		[2534,99,"潜在解放(マイスターI)",,"",0],
+		[2535,100,0,,"",20072,300,20073,300,0],
+		[2536,1,"アッシュリン",,"",32,15,43,15,0],
+		[2537,1,"ヴァルティ",,"物理・魔法攻撃時、[オズの迷路 01]、[オズの迷路 02]に出現するモンスターに与えるダメージ + 30%",0],
+		[2538,1,"グレイウルフ",,"物理・魔法攻撃時、[灰色狼の森　01]、[灰色狼の森　02]に出現するモンスターに与えるダメージ + 30%",0],
+		[2539,1,"ボルケリン",,"物理攻撃命中時、一定確率で10秒間、地属性物理攻撃力 + 20%",80,10,0],
+		[2540,3,"ファントムウルフ",,"",48,5,338,20,0],
+		[2541,4,"アッシュトード",,"",100030,1,9000030,10,0],
+		[2542,4,"ファイアウィンドカイト",,"",100172,1,9000172,10,0],
+		[2543,6,"シゲリン",,"物理攻撃を受けた時、一定確率で10秒間、Flee + 50",0],
+		[2544,6,"シュラン",,"",15,10,16,10,5669,50,0],
+		[2545,100,0,,"",11669,100,344,30,0],
+		[2546,6,"バーニングファング",,"",15,10,16,10,42,30,352,30,159,50,0],
+		[2547,100,0,,"",15,10,16,10,62,15,0],
+		[2548,2,"ラケソン",,"",18,100,100018,-10,0],
+		[2549,5,"アッシュホッパー",,"[炎の矢]と共に装備時、追加で、火属性攻撃で受けるダメージ - 50%",25,5,0],
+		[2550,7,"デミフレイヤ",,"魔法攻撃命中時、一定確率で10秒間、[インスピレーション]Lv1状態になる",7,3,101,1,0],
+		[2551,100,0,,"[インスピレーション]Lv1状態になる確率が上昇",0],
+		[2552,7,"ホットモル",,"",112,12,113,12,114,12,0],
+		[2553,7,"ラーヴァトード",,"物理攻撃命中時、一定確率で10秒間、毒属性物理攻撃力 + 10%",80,3,0],
+		[2554,99,"潜在解放(カーディナルII)",,"",0],
+		[2555,100,0,,"",20028,500,0],
+		[2556,99,"断撃",,"",100080,4,0],
+		[2557,100,0,,"",293,100,0],
+		[2558,99,"斬魔",,"",100089,4,0],
+		[2559,100,0,,"",298,100,0],
+		[2560,100,"",,"",27,30,28,30,29,30,97,30,98,30,99,30,0],
+		[2561,7,"キャサリン・ゲオルグ(サイン入り)",,"[Mレイオブジェネシス]で受けるダメージ - 50%<BR>物理・魔法攻撃命中時、一定確率で30秒間、[アスムプティオ]状態になる",0],
+		[2562,7,"フリードリヒ・ハイネン(サイン入り)",,"",16,15,89,15,220,128,0],
+		[2563,7,"クロネカー・ハイネン(サイン入り)",,"1秒毎にSP + 1%<BR>物理・魔法攻撃命中時、一定確率で30秒間、[エナジーコート]状態になる",0],
+		[2564,7,"キャサリン",,"",220,198,0],
+		[2565,4,"キャサリン・ゲオルグ",,"",89,5,100089,1,7000198,6,0],
+		[2566,2,"フリードリヒ",,"",380,1,0],
+		[2567,1,"フリードリヒ・ハイネン",,"",101,1,341,20,342,20,0],
+		[2568,7,"クルックス",,"",210,5,0],
+		[2569,7,"クルックス・ファインデル",,"",5569,50,0],
+		[2570,99,"ウルフオーブ(Str+7)",,"",1,7,0],
+		[2571,99,"ウルフオーブ(Agi+7)",,"",2,7,0],
+		[2572,99,"ウルフオーブ(Vit+7)",,"",3,7,0],
+		[2573,99,"ウルフオーブ(Int+7)",,"",4,7,0],
+		[2574,99,"ウルフオーブ(Dex+7)",,"",5,7,0],
+		[2575,99,"ウルフオーブ(Luk+7)",,"",6,7,0],
+		[2576,99,"ウルフオーブ(Pow+3)",,"",230,3,0],
+		[2577,99,"ウルフオーブ(Sta+3)",,"",231,3,0],
+		[2578,99,"ウルフオーブ(Wis+3)",,"",232,3,0],
+		[2579,99,"ウルフオーブ(Spl+3)",,"",233,3,0],
+		[2580,99,"ウルフオーブ(Con+3)",,"",234,3,0],
+		[2581,99,"ウルフオーブ(Crt+3)",,"",235,3,0],
+		[2582,99,"ウルフオーブ(Def+300)",,"",18,300,0],
+		[2583,99,"ウルフオーブ(Mdef+30)",,"",19,30,0],
+		[2584,99,"ウルフオーブ(完全回避+25)",,"",11,25,0],　
+		[2585,99,"ウルフオーブ(攻撃速度+10%)",,"",12,10,0],
+		[2586,99,"ウルフオーブ(詠唱時間-15%)",,"",73,-15,0],
+		[2587,99,"ウルフオーブ(スキルディレイ-15%)",,"",74,15,0],
+		[2588,99,"ウルフオーブ(物理：ダメージ+20%)",,"",80,20,0],
+		[2589,99,"ウルフオーブ(魔法：ダメージ+20%)",,"",89,20,0],
+		[2590,99,"ウルフオーブ(Def50%無視)",,"",293,50,0],
+		[2591,99,"ウルフオーブ(Mdef50%無視)",,"",298,50,0],
+		[2592,99,"ウルフオーブ(詠唱妨害不可)",,"",380,1,0],
+		[2593,99,"ウルフオーブ(固定詠唱時間-50%)",,"固定詠唱時間-50%",0],
+		[2594,99,"潜在解放(アークメイジII)",,"",0],
+		[2595,100,0,,"",20070,300,20067,300,20058,2000,0],
+		[2596,99,"Cri+25",,"",10,25,0],
+		[2597,99,"潜在解放(ドラゴンナイトII)",,"",0],
+		[2598,100,0,,"",20010,500,0],
+		[2599,99,"潜在解放(バイオロII)",,"",0],
+		[2600,100,0,,"",20165,300,20163,300,20166,300,20164,300,0],
+		[2601,99,"暗黒耐性",,"",154,100,0],
+		[2602,99,"出血耐性",,"",158,100,0],
+		[2603,99,"沈黙耐性",,"",156,100,0],
+		[2604,99,"毒耐性",,"",150,100,0],
+		[2605,99,"発火耐性",,"絶対に発火状態にならない",362,100,0],
+		[2606,99,"呪い耐性",,"",153,100,0],
+		[2607,7,"腐った木","クサッタキ","",343,10,0],
+		[2608,2,"グレイヴワーム",,"物理攻撃でモンスターを倒した時、HP + 200 , SP + 10",0],
+		[2609,4,"ブレインサッカー",,"物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収",0],
+		[2610,1,"モスキロ",,"物理攻撃命中時、一定確率で敵を5秒間[パラライズ]状態にする",0],
+		[2611,4,"溶解したポリン","ヨウカイシタポリン","",235,2,252,1,0],
+		[2612,6,"得体の知れない生命体","エタイノシレナイセイメイタイ","",89,10,10000089,10,0],
+		[2613,100,"",,"10秒毎に、HP + 5000 , SP + 100",156,100,0],
+		[2614,4,"変異キメラアミテラ","ヘンイキメラアミテラ","",300000018,30,0],
+		[2615,7,"変異キメラリートゥス","ヘンイキメラリートゥス","",220,120,0],
+		[2616,6,"変異キメラフィリア","ヘンイキメラフィリア","",25,5,8000012,5,0],
+		[2617,1,"変異キメラヴァニラクス","ヘンイキメラヴァニラクス","物理・魔法攻撃時、[廃棄実験所アミシティア 01]、[廃棄実験所アミシティア 02]に出現するモンスターに与えるダメージ + 30%",0],
+		[2618,1,"変異キメララーヴァ","ヘンイキメララーヴァ","魔法攻撃命中時、一定確率で敵を発火状態にする",0],
+		[2619,7,"変異キメラフルゴル","ヘンイキメラフルゴル","物理攻撃命中時、一定確率で10秒間、聖属性物理攻撃力 + 10%",80,3,0],
+		[2620,4,"変異キメラナペオ","ヘンイキメラナペオ","",64,5,156,100,0],
+		[2621,2,"変異キメラガレンシス","ヘンイキメラガレンシス","精錬値と同じLvの[三段掌]が素手と全ての武器で使用可能",0],
+		[2622,4,"変異キメラ・ザ・ワン","ヘンイキメラザワン","",30,40,39,40,43,40,45,40,0],
+		[2623,100,"",,"",15,50,220,199,0],
+		[2624,7,"真夜中のアルヒ","マヨナカノアルヒ","",220,112,0],
+		[2625,6,"真夜中のアネモス","マヨナカノアネモス","",89,5,10000000005053,3,0],
+		[2626,2,"真夜中のカネイリー","マヨナカノカネイリー","",220,111,0],
+		[2627,7,"真夜中のコスルリース","マヨナカノコスルリース","",7264,50,0],
+		[2628,7,"真夜中のスニキ","マヨナカノスニキ","",7849,50,0],
+		[2629,7,"真夜中のフェモン","マヨナカノフェモン","",7196,50,0],
+		[2630,7,"真夜中のオルドル","マヨナカノオルドル","",7125,50,0],
+		[2631,6,"真夜中のハゼ","マヨナカノハゼ","",15,5,10000000005284,3,0],
+		[2632,7,"真夜中の黒魔","マヨナカノクロマ","",7770,50,0],
+		[2633,7,"真夜中のイフォドス","マヨナカノイフォドス","",220,200,0],
+		[2634,5,"真夜中のユメヒメ","マヨナカノユメヒメ","[無形の矢]と共に装備時、追加で、念属性攻撃で受けるダメージ - 50%",25,5,0],
+		[2635,1,"真夜中のレチェニエ","マヨナカノレチェニエ","",100346,1,10000346,10,0],
+		[2636,6,"真夜中のジュー","マヨナカノジュー","",100344,3,0],
+		[2637,6,"真夜中のカナビアン","マヨナカノカナビアン","",25,5,10000000005328,1,0],
+		[2638,4,"真夜中のディワイ","マヨナカノディワイ","",89,5,100089,1,7000198,8,0],
+		[2639,99,"潜在解放(エレメンタルマスターII)",,"",0],
+		[2640,100,0,,"",20146,500,20150,500,0],
+		[2641,99,"潜在解放(カーディナルIII)",,"",0],
+		[2642,100,0,,"",20031,300,20037,300,0],
+		[2643,99,"悠遠なる天上の都",,"物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",260,15,265,15,0],
+		[2644,100,0,,"[神力]状態になる確率が上昇",0],
+		[2645,100,0,,"物理攻撃命中時、敵に与えたダメージの2%をHPとして吸収",0],
+		[2646,99,"ウルの加護",,"アビスチェイサー、ウィンドホーク、トルヴェール、トルバドゥールが装備時、物理攻撃命中時、一定確率で20秒間、[アンリミット]Lv5状態になる",262,15,0],
+		[2647,99,"潜在解放(シャドウクロスII)",,"",0],
+		[2648,100,0,,"",20021,500,0],
+		[2649,99,"潜在解放(アビスチェイサーII)",,"",0],
+		[2650,100,0,,"",20100,200,20106,200,0],
+		[2651,99,"潜在解放(ウィンドホークII)",,"",0],
+		[2652,100,0,,"",20051,200,20047,200,0],
+		[2653,99,"潜在解放(インペリアルガードII)",,"",0],
+		[2654,100,0,,"",20096,1000,0],
+		[2655,99,"オートスペル(チェーンライトニング)",,"",221,235,0],
+		[2656,99,"魔鉱",,"ジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",0],
+		[2657,99,"MaxSP+15%",,"",16,15,0],
+		[2658,99,"増幅された怨望",,"",12,10,0],
+		[2659,100,0,,"武器の精錬値が1上がる度に追加で、物理・魔法攻撃で与えるダメージ + 5%<BR>武器の精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%",0],
+		[2660,100,0,,"一部のダメージを反射する効果で受けるダメージ - 50%",80,50,0],
+		[2661,100,0,,"一部のダメージを反射する効果で受けるダメージ - 50%",80,50,0],
+		[2662,99,"祈りの晩鐘",,"",27,10,28,10,29,10,97,10,98,10,99,10,0],
+		[2663,100,0,,"",15,15,77,10,220,156,0],
+		[2664,100,0,,"",15,15,77,50,79,40,243,5,220,156,0],	// 祈りの晩鐘 + ウィワートゥス(両手)
+		[2665,100,0,,"1秒毎にHP + 3%",298,50,299,50,0],
+		[2666,99,"百射皆中",,"",86,100,0],
+		[2667,99,"再生の炎",,"物理・魔法攻撃命中時、一定確率で60秒間、[アルティメットサクリファイス]状態になる",0],
+		[2668,99,"最果ての支配者",,"モンスターを倒した時、HP + 100 , SP + 10",0],
+		[2669,100,"",,"",217,10,0],
+		[2670,100,"",,"",15,15,89,10,0],
+		[2671,100,"",,"",16,15,80,10,0],
+		[2672,100,"",,"",15,50,18,150,0],
+		[2673,100,"",,"",15,50,19,25,0],
+		[2674,100,"",,"",15,50,220,91,0],
+		[2675,100,"",,"",15,50,220,99,0],
+		[2676,100,"",,"",15,50,19798,80000,0],
+		[2677,100,"",,"[トンネルドライブ]Lv1使用可能",61,50,0],
+		[2678,99,"潜在解放(ドラゴンナイトIII)",,"",0],
+		[2679,100,0,,"",20002,30000,0],
+		[2680,99,"潜在解放(アークメイジIII)",,"",0],
+		[2681,100,0,,"",20069,300,20068,300,20061,2000,0],
+		[2682,99,"無念無想",,"物理攻撃命中時、一定確率で10秒間、Cri + 100、クリティカル攻撃で与えるダメージ + 100%",0],
+		[2683,1,"アクィラ",,"",80,5,200000000000080,1,0],
+		[2684,100,0,,"物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",0],
+		[2685,1,"最下級ルガン","サイカキュウルガン","物理・魔法攻撃時、[蛇神の温もり 01]、[蛇神の温もり 02]に出現するモンスターに与えるダメージ + 30%",0],
+		[2686,1,"双眼ドロカリス","ソウガンドロカリス","",100342,1,10000342,10,0],
+		[2687,1,"単眼ドロカリス","タンガンドロカリス","物理・魔法攻撃時、[捨てられた穴 02]に出現するモンスターに与えるダメージ + 30%",0],
+		[2688,1,"中級ルガン","チュウキュウルガン","弓の場合、追加で、物理攻撃で与えるダメージ + 5%<BR>弓の精錬値が10の時、追加で、物理攻撃で与えるダメージ + 10%",80,10,0],
+		[2689,1,"洞窟カラマリン","ドウクツカラマリン","物理・魔法攻撃時、[捨てられた穴 01]に出現するモンスターに与えるダメージ + 30%",0],
+		[2690,1,"洞窟不凍花","ドウクツフトウカ","物理攻撃命中時、一定確率で10秒間、水属性物理攻撃力 + 20%",80,10,0],
+		[2691,1,"ハートハンターAT","ハートハンターエーティー","カタールの場合、Hit - 10 , Cri + 10、クリティカル攻撃で与えるダメージ + 10%<BR>カタールの場合で、かつ精錬値が1上がる度に追加で、Hit - 1 , Cri + 1、クリティカル攻撃で与えるダメージ + 1%",0],
+		[2692,2,"カラマリン",,"",62,10,8000018,50,8000019,10,0],
+		[2693,4,"ウルトラリマキナ",,"",500000080,2,41000000080,20,0],
+		[2694,100,0,,"",15,50,220,201,0],
+		[2695,4,"廃棄された原始ルガン","ハイキサレタゲンシルガン","",100170,1,9000170,10,0],
+		[2696,4,"ハルキゲニア",,"",89,5,100089,1,7000198,5,0],
+		[2697,4,"光るワカメ","ヒカルワカメ","",100173,1,9000173,10,0],
+		[2698,4,"ベビーハルキゲニア",,"",80,5,100080,1,7000198,5,0],
+		[2699,4,"リマキナ",,"",100034,1,9000034,10,0],
+		[2700,3,"原始ルガン","ゲンシルガン","",355,5,335,20,0],
+		[2701,3,"巻き込まれた中級ルガン","マキコマレタチュウキュウルガン","",60,5,190,15,191,15,192,15,0],
+		[2702,5,"アイスフナムシ",,"[水晶の矢]と共に装備時、追加で、水属性攻撃で受けるダメージ - 50%",25,5,0],
+		[2703,5,"Sユンケア","エスユンケア","",80,15,89,15,68,50,9000061,50,9000078,10,0],
+		[2704,100,0,,"",92,15,60,20,0],
+		[2705,5,"廃棄された中級ルガン","ハイキサレタチュウキュウルガン","",61,20,65,20,7000078,10,0],
+		[2706,6,"改造された上級ルガン","カイゾウサレタジョウキュウルガン","",89,5,8000012,5,0],
+		[2707,7,"アイスストロー",,"",80,3,61,5,0],
+		[2708,7,"下級ルガン","カキュウルガン","物理攻撃命中時、一定確率で10秒間、闇属性物理攻撃力 + 10%",80,3,0],
+		[2709,7,"不凍花","フトウカ","",341,10,0],
+		[2710,99,"雪花の魔力(練武I)",,"",86,10,100000000000080,1,0],
+		[2711,99,"雪花の魔力(練魔I)",,"",73,-10,100000000000089,1,0],
+		[2712,99,"氷華の魔力(ルーンナイトI)",,"",105445,15,105440,15,0],
+		[2713,99,"氷華の魔力(ロイヤルガードI)",,"",105570,30,105569,10,0],
+		[2714,99,"氷華の魔力(ロイヤルガードII)",,"",105583,15,0],
+		[2715,99,"氷華の魔力(メカニックI)",,"",105541,15,105542,15,105543,15,0],
+		[2716,99,"氷華の魔力(メカニックII)",,"",105554,10,0],
+		[2717,99,"氷華の魔力(ジェネティックI)",,"",105722,30,105723,15,105736,15,0],
+		[2718,99,"氷華の魔力(ギロチンクロスI)",,"",105460,50,105475,50,105474,50,105469,5,0],
+		[2719,99,"氷華の魔力(シャドウチェイサーI)",,"",105608,30,0],
+		[2720,99,"氷華の魔力(シャドウチェイサーII)",,"",105606,15,0],
+		[2721,99,"氷華の魔力(ウォーロックI)",,"",105519,30,105520,30,105528,30,105531,10,0],
+		[2722,99,"氷華の魔力(ソーサラーI)",,"",105666,10,105669,10,105662,10,105667,10,0],
+		[2723,99,"氷華の魔力(アークビショップI)",,"",105478,15,105476,15,0],
+		[2724,99,"氷華の魔力(修羅I)",,"",105622,30,105610,30,105612,30,0],
+		[2725,99,"氷華の魔力(レンジャーI)",,"",105498,5,105497,5,0],
+		[2726,99,"氷華の魔力(ミンストレル&ワンダラーI)",,"",105642,10,105753,10,0],
+		[2727,99,"氷華の魔力(ミンストレル&ワンダラーII)",,"",105641,10,0],
+		[2728,99,"潜在解放(アビスチェイサーIII)",,"",0],
+		[2729,100,0,,"",14107,1500,0],
+		[2730,99,"潜在解放(ウィンドホークIII)",,"",0],
+		[2731,100,0,,"[ホークブーメラン]、[ホークラッシュ]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる<BR>装備解除時、[アンリミット]を解除する",0],
+		[2732,99,"潜在解放(カーディナルIV)",,"",0],
+		[2733,100,0,,"",14028,1000,0],
+		[2734,99,"潜在解放(カーディナルV)",,"",0],
+		[2735,100,0,,"",20037,200,0],
+		[2736,99,"潜在解放(バイオロIII)",,"",0],
+		[2737,100,0,,"",20165,200,20163,200,20166,200,20164,200,0],
+		[2738,99,"聖なる防護",,"物理・魔法攻撃命中時、一定確率で30秒間、[アスムプティオ]状態になる",18,300,0],
+		[2739,99,"潜在解放(インクイジターII)",,"",0],
+		[2740,100,0,,"物理攻撃命中時、一定確率で10秒間、<br>[炎火滅魔神弾]の消費SP - 299、<br>[爆火神弾]の消費SP - 169、<br>[聖油洗礼]の消費SP - 199<br>[烈火気弾]の消費SP - 109",0],
+		[2741,99,"潜在解放(エレメンタルマスターIII)",,"",0],
+		[2742,100,0,,"",20149,2000,20147,2000,0],
+	];
+
+	/* --- usachoco 追加データ -------------------------- */
+
+	// CardObjNew[2343] から数えられるようにダミーデータ
+	// CardObjNew[2742] = [2742,99,"",,"",0];
+
+	CardObjNew[2743] = [2743,99,"潜在覚醒(アースストレインI)",,"",30000000005531,1,0];
+	CardObjNew[2744] = [2744,100,0,,"",19531,3000,0];
+	CardObjNew[2745] = [2745,99,"潜在覚醒(アローストームII)",,"",100000000005498,1,0];
+	CardObjNew[2746] = [2746,100,0,,"",19498,300,0];
+	CardObjNew[2747] = [2747,99,"潜在覚醒(ヴェラチュールスピアーI)",,"",30000000005669,1,0];
+	CardObjNew[2748] = [2748,100,0,,"",19669,1000,0];
+	CardObjNew[2749] = [2749,99,"潜在覚醒(エイムドボルトI)",,"",100000000005497,1,0];
+	CardObjNew[2750] = [2750,100,0,,"",19497,250,0];
+	CardObjNew[2751] = [2751,99,"潜在覚醒(キャノンスピアI)",,"",30000000005569,1,0];
+	CardObjNew[2752] = [2752,100,0,,"",19569,1000,0];
+	CardObjNew[2753] = [2753,99,"潜在覚醒(ジャックフロストII)",,"",20000000005520,1,0];
+	CardObjNew[2754] = [2754,100,0,,"",11520,100,0];
+	CardObjNew[2755] = [2755,99,"潜在覚醒(スペルフィストI)",,"",20000000005051,1,20000000005054,1,20000000005056,1,0];
+	CardObjNew[2756] = [2756,100,0,,"",220,202,13051,-10000,13054,-10000,13056,-10000,0];
+	CardObjNew[2757] = [2757,99,"潜在覚醒(十文字斬りI)",,"",30000000005766,1,0];
+	CardObjNew[2758] = [2758,100,0,,"",19766,600,0];
+	CardObjNew[2759] = [2759,99,"潜在覚醒(太陽爆発I)",,"",100000000005951,1,0];
+	CardObjNew[2760] = [2760,100,0,,"",19952,10000,0];
+	CardObjNew[2761] = [2761,99,"潜在覚醒(満月脚II)",,"",100000000005955,1,0];
+	CardObjNew[2762] = [2762,100,0,,"",19956,10000,0];
+	CardObjNew[2763] = [2763,99,"潜在覚醒(流星落下I)",,"",100000000005959,1,0];
+	CardObjNew[2764] = [2764,100,0,,"",19960,10000,0];
+	CardObjNew[2765] = [2765,99,"潜在解放(アークビショップII)",,"",0];
+	CardObjNew[2766] = [2766,100,0,,"",19484,1500,19493,14000,0];
+	CardObjNew[2767] = [2767,99,"潜在解放(ギロチンクロスII)",,"",0];
+	CardObjNew[2768] = [2768,100,0,,"",19797,35000,19474,200,0];
+	CardObjNew[2769] = [2769,99,"潜在解放(ソウルリーパーII)",,"",0];
+	CardObjNew[2770] = [2770,100,0,,"",11968,100,11969,100,19977,500,0];
+	CardObjNew[2771] = [2771,99,"潜在解放(ソーサラーII)",,"",0];
+	CardObjNew[2772] = [2772,100,0,,"",11662,100,19669,1000,0];
+	CardObjNew[2773] = [2773,99,"潜在解放(ミンストレル&ワンダラーI)",,"",0];
+	CardObjNew[2774] = [2774,100,0,,"",19641,200,19632,2000,0];
+	CardObjNew[2775] = [2775,99,"潜在解放(メカニックII)",,"",0];
+	CardObjNew[2776] = [2776,100,0,,"",19541,2000,19811,2000,0];
+	CardObjNew[2777] = [2777,99,"潜在解放(リベリオンII)",,"",0];
+	CardObjNew[2778] = [2778,100,0,,"",19835,200,19822,3000,0];
+	CardObjNew[2779] = [2779,99,"潜在解放(ルーンナイトII)",,"",0];
+	CardObjNew[2780] = [2780,100,0,,"",19445,300,19440,200,0];
+	CardObjNew[2781] = [2781,99,"潜在解放(ロイヤルガードII)",,"",0];
+	CardObjNew[2782] = [2782,100,0,,"",9585,1000,19577,1500,0];
+	CardObjNew[2783] = [2783,99,"潜在解放(影狼&朧I)",,"",0];
+	CardObjNew[2784] = [2784,100,0,,"",19778,30000,19770,200,0];
+	CardObjNew[2785] = [2785,99,"潜在解放(星帝II)",,"",0];
+	CardObjNew[2786] = [2786,100,0,,"",13955,1000,19954,200,0];
+	CardObjNew[2787] = [2787,99,"氷華の魔力(ソウルリーパーI)",,"",105968,5,105969,5,0];
+	CardObjNew[2788] = [2788,99,"氷華の魔力(星帝I)",,"",105954,5,0];
+	CardObjNew[2789] = [2789,99,"氷華の魔力(リベリオンI)",,"",105830,5,105825,10,105839,10,105831,10,105838,10,105834,10,105828,15,105835,15,105827,15,0];
+	CardObjNew[2790] = [2790,99,"氷華の魔力(影狼&朧I)",,"",105770,5,105766,5,105768,5,105769,20,0];
+	CardObjNew[2791] = [2791,99,"氷華の魔力(サモナーI)",,"",105938,5,0];
+	CardObjNew[2792] = [2792,99,"氷華の魔力(サモナーII)",,"",105920,5,0];
+	CardObjNew[2793] = [2793,99,"潜在解放(天帝I)",,"",0];
+	CardObjNew[2794] = [2794,100,0,,"",14181,1500,0];
+	CardObjNew[2795] = [2795,99,"潜在解放(ソウルアセティックI)",,"",0];
+	CardObjNew[2796] = [2796,100,0,,"",14201,500,14202,500,0];
+	CardObjNew[2797] = [2797,99,"潜在解放(インペリアルガードIII)",,"",0];
+	CardObjNew[2798] = [2798,100,0,,"",20095,200,0];
+	CardObjNew[2799] = [2799,99,"潜在解放(ウィンドホークIV)",,"",0];
+	CardObjNew[2800] = [2800,100,0,,"",20051,100,20047,100,0];
+	CardObjNew[2801] = [2801,99,"潜在解放(トルバドゥール&トルヴェールI)",,"",0];
+	CardObjNew[2802] = [2802,100,0,,"",20132,200,20131,200,0];
+	CardObjNew[2803] = [2803,99,"潜在覚醒(アドラムスI)",,"（計算機未実装）<br>[真理の解放]と共に装備時、追加で[アドラムス]使用時、一定確率で自分にオートスペル[セイフティウォール]Lv3発動<br>[セイフティウォール]の習得Lvが4以上の場合、習得Lvで発動",20000000005478,1,0];
+	CardObjNew[2804] = [2804,99,"潜在覚醒(インスピレーションI)",,"[正義の冠][不死鳥の冠]装備時、[インスピレーション]の再使用待機時間減少効果が発動しない",0];
+	CardObjNew[2805] = [2805,100,0,,"",19587,10000,0];	// インスピI + 真理 or 豪傑 セット
+	CardObjNew[2806] = [2806,100,0,,"",19587,10000,0];	// 廃止
+	CardObjNew[2807] = [2807,99,"潜在覚醒(ジュデックスII)",,"（計算機未実装）<br>[真理の解放]と共に装備時、追加で[ジュデックス]使用時、一定確率で自分にオートスペル[セイフティウォール]Lv3発動<br>[セイフティウォール]の習得Lvが4以上の場合、習得Lvで発動",20000000005476,1,0];
+	CardObjNew[2808] = [2808,99,"潜在覚醒(アースドライブI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[アースドライブ]の消費SP - 83",30000000005585,1,0];
+	CardObjNew[2809] = [2809,100,0,,"",23585,83,0];
+	CardObjNew[2810] = [2810,99,"潜在覚醒(アックストルネードI)",,"<br>特定条件下で、豪傑と共に装備時[アックストルネード]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースマグマスーツ]と[ノブレスオブリージュ]のセット効果発動",20000000005541,1,0];
+	CardObjNew[2811] = [2811,100,0,,"",20000000005541,1,0];
+	CardObjNew[2812] = [2812,99,"潜在覚醒(アックスブーメランI)",,"<br>特定条件下で、豪傑と共に装備時[アックスブーメラン]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースマグマスーツ]と[ノブレスオブリージュ]のセット効果発動",20000000005542,1,0];
+	CardObjNew[2813] = [2813,100,0,,"",20000000005542,1,0];
+	CardObjNew[2814] = [2814,99,"潜在覚醒(イグニッションブレイクII)",,"<br>特定条件下で、豪傑と共に装備時[イグニッションブレイク]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[ジャスパーサークレット]装備<br>[アスモデウスの翼]装備",20000000005445,1,0];
+	CardObjNew[2815] = [2815,100,0,,"",19445,2500,0];
+	CardObjNew[2816] = [2816,99,"潜在覚醒(イヌハッカメテオI)",,"（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[イヌハッカメテオ]の消費SP - 79",50000000005922,1,0];
+	CardObjNew[2817] = [2817,100,0,,"",23922,79,0];
+	CardObjNew[2818] = [2818,99,"潜在覚醒(エスパI)",,"<br>特定条件下で、真理の解放と装備時[エスパ]のダメージ増加効果が発動しない<br>・特定条件<br>[グレーススカルローブ]と[ノブレスオブリージュ]のセット効果発動",50000000005968,1,0];
+	CardObjNew[2819] = [2819,100,0,,"",20000000005968,1,0];
+	CardObjNew[2820] = [2820,99,"潜在覚醒(カートキャノンI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[カートキャノン]の消費SP - 49",20000000005723,1,0];
+	CardObjNew[2821] = [2821,100,0,,"",23723,49,0];
+	CardObjNew[2822] = [2822,99,"潜在覚醒(カートトルネードI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[カートトルネード]の消費SP - 19",20000000005722,1,0];
+	CardObjNew[2823] = [2823,100,0,,"",23722,19,0];
+	CardObjNew[2824] = [2824,99,"潜在覚醒(キャロットビートI)",,"<br>特定条件下で、[豪傑]と共に装備時[キャロットビート]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[よちよちウリボウスタイ]装備<br>[ノブレスオブリージュ]と[グレースアニマルローブ]のセット効果発動",50000000005933,1,0];
+	CardObjNew[2825] = [2825,100,0,,"",19933,300,0];
+	CardObjNew[2826] = [2826,99,"潜在覚醒(クリムゾンロックI)",,"<br>特定条件下で、[真理の解放]と共に装備時[クリムゾンロック]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースパニッシュメントローブ]装備",50000000005527,1,0];
+	CardObjNew[2827] = [2827,100,0,,"",20000000005527,1,0];
+	CardObjNew[2828] = [2828,99,"潜在覚醒(クロスリッパースラッシャーI)",,"[豪傑]と共に装備時、追加で[クロスリッパースラッシャー]使用時、10秒間、[ローリングカッター]で与えるダメージ + 150%",20000000005475,1,0];
+	CardObjNew[2829] = [2829,99,"潜在覚醒(サイキックウェーブI)",,"<br>特定条件下で、[真理の解放]と共に装備時[サイキックウェーブ]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[古代龍の宝冠]装備<br>[赤い猫耳魔女帽子]装備<br>[双魚宮のダイアデム]と[ゾディアック]のセット効果発動",30000000005662,1,0];
+	CardObjNew[2830] = [2830,100,0,,"",19662,2000,0];
+	CardObjNew[2831] = [2831,99,"潜在覚醒(サベージの魂II)",,"[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で15秒間、[猪突猛進]状態になる",50000000005938,1,0];
+	CardObjNew[2832] = [2832,99,"潜在覚醒(シールドプレスI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[シールドプレス]の消費SP - 27",20000000005572,1,0];
+	CardObjNew[2833] = [2833,100,0,,"",23572,27,0];
+	CardObjNew[2834] = [2834,99,"潜在覚醒(シビアレインストームII)",,"<br>特定条件下で、[豪傑]と共に装備時[シビアレインストーム]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[嵐の弓]装備<br>[暴威のマフラー]装備<br>[グレースレインストームスーツ]装備<br>[エルヴンボウ]と[スカラバハイヒール]のセット効果発動",30000000005642,1,0];
+	CardObjNew[2835] = [2835,100,0,,"",19642,2000,0];
+	CardObjNew[2836] = [2836,99,"潜在覚醒(スポアエクスプロージョンI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[スポアエクスプロージョン]の消費SP - 99",20000000005736,1,0];
+	CardObjNew[2837] = [2837,100,0,,"",23736,99,0];
+	CardObjNew[2838] = [2838,99,"潜在覚醒(ソウルエクスパンションI)",,"<br>特定条件下で、[真理の解放]と共に装備時[ソウルエクスパンション]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースパニッシュメントローブ]と[ノブレスオブリージュ]のセット効果発動",50000000005518,1,0];
+	CardObjNew[2839] = [2839,100,0,,"",30000000005518,1,0];
+	CardObjNew[2840] = [2840,99,"潜在覚醒(ソニックウェーブI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[ソニックウェーブ]の消費SP - 56",20000000005440,1,0];
+	CardObjNew[2841] = [2841,100,0,,"",23440,56,0];
+	CardObjNew[2842] = [2842,99,"潜在覚醒(トライアングルショットI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[トライアングルショット]の消費SP - 17",30000000005608,1,0];
+	CardObjNew[2843] = [2843,100,0,,"",23608,17,0];
+	CardObjNew[2844] = [2844,99,"潜在覚醒(バニシングポイントI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[バニシングポイント]の消費SP - 24",10000000005570,1,0];
+	CardObjNew[2845] = [2845,100,0,,"",23570,24,0];
+	CardObjNew[2846] = [2846,99,"潜在覚醒(パワースイングI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[パワースイング]の消費SP - 27",20000000005543,1,0];
+	CardObjNew[2847] = [2847,100,0,,"",23543,27,0];
+	CardObjNew[2848] = [2848,99,"潜在覚醒(ファイアーレインI)",,"<br>特定条件下で、[豪傑]と共に装備時[ファイアーレイン]のダメージ増加効果が発動しない<br>・特定条件<br>[グレースガトリングスーツ]装備<br>[ジャガーノート]装備",20000000005828,1,0];
+	CardObjNew[2849] = [2849,100,0,,"",10000000005828,1,0];
+	CardObjNew[2850] = [2850,99,"潜在覚醒(フェイタルメナスI)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[フェイタルメナス]の消費SP - 46",30000000005606,1,0];
+	CardObjNew[2851] = [2851,100,0,,"",23606,46,0];
+	CardObjNew[2852] = [2852,99,"潜在覚醒(ヘルインフェルノI)",,"（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[ヘルインフェルノ]の消費SP - 29",20000000005528,1,0];
+	CardObjNew[2853] = [2853,100,0,,"",23528,29,0];
+	CardObjNew[2854] = [2854,99,"潜在覚醒(マタタビランスI)",,"（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[マタタビランス]の消費SP - 29",50000000005920,1,0];
+	CardObjNew[2855] = [2855,100,0,,"",23920,29,0];
+	CardObjNew[2856] = [2856,99,"潜在覚醒(メタリックサウンドI)",,"（計算機暫定対応）[真理の解放]と共に装備時、追加で魔法攻撃命中時、一定確率で10秒間、[メタリックサウンド]の消費SP - 24",30000000005641,1,0];
+	CardObjNew[2857] = [2857,100,0,,"",23641,24,0];
+	CardObjNew[2858] = [2858,99,"潜在覚醒(ラウンドトリップI)",,"<br>特定条件下で、[豪傑]と共に装備時[ラウンドトリップ]のダメージ増加効果が発動しない<br>・特定条件<br>[ノブレスオブリージュ]と[グレースガトリングスーツ]のセット効果発動",20000000005835,1,0];
+	CardObjNew[2859] = [2859,100,0,,"",10000000005835,3,0];
+	CardObjNew[2860] = [2860,99,"潜在覚醒(レイオブジェネシスI)",,"[真理の解放]と共に装備時、追加で[プレッシャー]使用時、一定確率で敵を中心にオートスペル[レイオブジェネシス]Lv3発動<br>[レイオブジェネシス]の習得Lvが4以上の場合、習得Lvで発動",30000000005583,1,225,221,0];
+	CardObjNew[2861] = [2861,99,"潜在覚醒(ローリングカッターI)",,"<br>特定条件下で、[豪傑]と共に装備時[ローリングカッター]のダメージ増加効果が発動しない<br>・特定条件<br>[天蝎宮のシューズ]装備<br>[再生の思念体シューズ]と[リッパークロス]のセット効果発動<br>[エンドオブザワールド]装備",20000000005474,1,0];
+	CardObjNew[2862] = [2862,100,0,,"",10000000005474,2,0];
+	CardObjNew[2863] = [2863,99,"潜在覚醒(獅子吼II)",,"<br>特定条件下で、[豪傑]と共に装備時[獅子吼]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[悪魔の手]装備<br>[怨霊怪異の耳]装備<br>[天魔外道の外套]装備",10000000005622,1,0];
+	CardObjNew[2864] = [2864,100,0,,"",19622,9700,0];
+	CardObjNew[2865] = [2865,99,"潜在覚醒(死霊爆発I)",,"<br>特定条件下で、[真理の解放]と共に装備時[死霊爆発]のダメージ増加効果が発動しない<br>・特定条件<br>[グレーススカルローブ]と[ノブレスオブリージュ]のセット効果発動",50000000005977,1,0];
+	CardObjNew[2866] = [2866,100,0,,"",20000000005977,1,0];
+	CardObjNew[2867] = [2867,99,"潜在覚醒(天羅地網I)",,"<br>特定条件下で、[豪傑]と共に装備時[天羅地網]のダメージ増加効果が発動しない<br>・特定条件<br>[獅子宮のリング]装備<br>[辰戌の腕輪]装備<br>[グレース天地スーツ]と[ノブレスオブリージュ]のセット効果発動",20000000005610,1,0];
+	CardObjNew[2868] = [2868,100,0,,"",10000000005610,2,0];
+	CardObjNew[2869] = [2869,99,"潜在覚醒(爆気散弾I)",,"<br>特定条件下で、[豪傑]と共に装備時[爆気散弾]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[イラフィースト]装備<br>[サンクトゥス]装備<br>[覇王]と[アーヌルス イラ]のセット効果発動",20000000005612,1,0];
+	CardObjNew[2870] = [2870,100,0,,"",19612,9700,0];
+	CardObjNew[2871] = [2871,99,"潜在覚醒(風魔手裏剣 -乱華-I)",,"（計算機暫定対応）[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で10秒間、[風魔手裏剣 -乱華-]の消費SP - 59",40000000005770,1,0];
+	CardObjNew[2872] = [2872,100,0,,"",23770,59,0];
+	CardObjNew[2873] = [2873,99,"潜在覚醒(雷光弾I)",,"[豪傑]と共に装備時、追加で物理攻撃命中時、一定確率で15秒間、[雷光弾]使用時、オートスペル[練気功]Lv1発動",20000000005623,1,0];
+	CardObjNew[2874] = [2874,99,"潜在解放(ウォーロックII)",,"装備解除時、[テレキネシスインテンス]を解除する",0];
+	CardObjNew[2875] = [2875,100,0,,"",11527,100,19798,185000,0];
+	CardObjNew[2876] = [2876,99,"潜在解放(サモナーII)",,"（計算機暫定対応）[真理の解放]と共に装備時、追加で[ニャングラス]使用時、10秒間、[イヌハッカメテオ]の消費SP - 79[マタタビランス]の消費SP - 29",0];
+	CardObjNew[2877] = [2877,100,0,,"",23922,79,23920,29,0];
+	CardObjNew[2878] = [2878,99,"潜在解放(ジェネティックII)",,"",0];
+	CardObjNew[2879] = [2879,100,0,,"[カートトルネード]使用時3秒間、必中攻撃 + 100%",19722,200,0];
+	CardObjNew[2880] = [2880,99,"潜在解放(シャドウチェイサーII)",,"",0];
+	CardObjNew[2881] = [2881,100,0,,"[トライアングルショット]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる<br>装備解除時、[アンリミット]を解除する",0];
+	CardObjNew[2882] = [2882,99,"潜在解放(レンジャーII)",,"装備解除時、[アンリミット]を解除する",0];
+	CardObjNew[2883] = [2883,100,0,,"",19498,200,19795,240000,0];
+	CardObjNew[2884] = [2884,99,"潜在解放(修羅II)",,"",0];
+	CardObjNew[2885] = [2885,100,0,,"[天羅地網]使用時、3秒間、完全回避 + 95",19629,3000,0];
+	CardObjNew[2886] = [2886,99,"魔獣の爪牙",,"物理・魔法攻撃命中時、一定確率で10秒間、Pow + 100",0];
+	CardObjNew[2887] = [2887,99,"不滅の肉体",,"物理・魔法攻撃命中時、一定確率で10秒間、Sta + 100",0];
+	CardObjNew[2888] = [2888,99,"叡知の王冠",,"物理・魔法攻撃命中時、一定確率で10秒間、Wis + 100",0];
+	CardObjNew[2889] = [2889,99,"根源への到達",,"物理・魔法攻撃命中時、一定確率で10秒間、Spl + 100",0];
+	CardObjNew[2890] = [2890,99,"蒼穹の覇者",,"物理・魔法攻撃命中時、一定確率で10秒間、Con + 100",0];
+	CardObjNew[2891] = [2891,99,"天与の才",,"物理・魔法攻撃命中時、一定確率で10秒間、Crt + 100",0];
+	CardObjNew[2892] = [2892,5,"エクストラジョーカー",,"",25,5,0];
+	CardObjNew[2893] = [2893,100,0,,"",66,50,0];
+	CardObjNew[2894] = [2894,1,"エルジェーベト",,"（計算機暫定対応）物理攻撃命中時、一定確率で敵にオートスペル[ヘルインフェルノ]Lv3発動",225,194,0];
+	CardObjNew[2895] = [2895,7,"ジェニファー",,"",345,10,0];
+	CardObjNew[2896] = [2896,4,"ジクラウス",,"",100032,1,9000032,10,0];
+	CardObjNew[2897] = [2897,4,"ゴブリンキング",,"",600000070,2,42000000070,20,0];
+	CardObjNew[2898] = [2898,100,0,,"",15,50,220,203,0];
+	CardObjNew[2899] = [2899,99,"スキル石(ブレッシングLv10)",,"",220,105,0];
+	CardObjNew[2900] = [2900,99,"潜在解放(ナイトウォッチI)","センザイカイホウナイトウォッチイチ","",0];
+	CardObjNew[2901] = [2901,100,0,"","",14216,500,14217,500,0];
+	CardObjNew[2902] = [2902,99,"潜在解放(スピリットハンドラーI)","センザイカイホウスピリットハンドラーイチ","",0];
+	CardObjNew[2903] = [2903,100,0,"","",14221,500,14222,500,14223,500,0];
+	CardObjNew[2904] = [2904,99,"潜在解放(スピリットハンドラーII)","センザイカイホウスピリットハンドラーニ","",0];
+	CardObjNew[2905] = [2905,100,0,"","",20221,200,20223,200,0];
+	CardObjNew[2906] = [2906,99,"潜在解放(ソウルアセティックII)","センザイカイホウソウルアセティックニ","",0];
+	CardObjNew[2907] = [2907,100,0,"","",20201,300,20202,300,0];
+	CardObjNew[2908] = [2908,99,"潜在解放(マイスターII)","センサイカイホウマイスターニ","",0];
+	CardObjNew[2909] = [2909,100,0,"","",20237,200,20238,200,20294,200,20076,200,0];
+	CardObjNew[2910] = [2910,99,"潜在解放(ハイパーノービスI)","センサイカイホウハイハアノオヒスイチ","",0];
+	CardObjNew[2911] = [2911,100,0,"","",14231,500,14232,500,14233,500,0];
+	CardObjNew[2912] = [2912,99,"潜在解放(ハイパーノービスII)","センサイカイホウハイハアノオヒスニ","",0];
+	CardObjNew[2913] = [2913,100,0,"","",14234,1500,0];
+	CardObjNew[2914] = [2914,99,"潜在解放(蜃気楼&不知火I)","センサイカイホウシンキロウシラヌイイチ","",0];
+	CardObjNew[2915] = [2915,100,0,"","",20225,300,20226,300,0];
+	CardObjNew[2916] = [2916,1,"ジェネラルオーク","ジェネラルオーク","物理・魔法攻撃時、[アルデバラン時計塔地下 未知の空間]に出現するモンスターに与えるダメージ + 30%",0];
+
+	CardObjNew[2917] = [2917,99,"潜在解放(アビスチェイサーIV)","センサイカイホウアヒスチエイサアヨン","",0];
+	CardObjNew[2918] = [2918,100,0,"","物理攻撃命中時、一定確率で20秒間、<br>[チェーンリアクションショット]の消費SP - 169<br>[フレンジショット]、[ヒットアンドスライディング]の消費SP - 109<br>[チェイシングショット]の消費SP - 199",0];
+	CardObjNew[2919] = [2919,99,"潜在解放(アークメイジIV)","センサイカイホウアアクメイシヨン","",0];
+	CardObjNew[2920] = [2920,100,0,"","",14061,500,14062,500,14054,500,14058,500,0];
+	CardObjNew[2921] = [2921,99,"潜在解放(エレメンタルマスターIV)","センサイカイホウエレメンタルマスタアヨン","",0];
+	CardObjNew[2922] = [2922,100,0,"","",14149,1000,14147,1000,14148,1000,0];
+	CardObjNew[2923] = [2923,99,"潜在解放(インクイジターIII)","センサイカイホウインクイシタアサン","",0];
+	CardObjNew[2924] = [2924,100,0,"","",20124,100,0];
+	CardObjNew[2925] = [2925,99,"潜在解放(ソウルアセティックIII)","センサイカイホウソウルアセテイツクサン","",0];
+	CardObjNew[2926] = [2926,100,0,"","",14197,500,14198,500,14199,500,14200,500,14202,500,0];
+	CardObjNew[2927] = [2927,99,"無属性耐性+5%","ムソクセイタイセイコ","",60,5,0];
+	CardObjNew[2928] = [2928,99,"潜在解放(バイオロIV)","センサイカイホウハイオロヨン","",0];
+	CardObjNew[2929] = [2929,100,"","","物理攻撃命中時、一定確率で20秒間、[アシディファイドゾーン(火)]、[アシディファイドゾーン(風)]の消費SP - 539[アシディファイドゾーン(水)]、[アシディファイドゾーン(地)]の消費SP - 479",0];
+	CardObjNew[2930] = [2930,99,"潜在解放(ドラゴンナイトIV)","センサイカイホウトラコンナイトヨン","",0];
+	CardObjNew[2931] = [2931,100,"","","物理攻撃命中時、一定確率で20秒間、<br>[ハックアンドスラッシャー][マッドネスクラッシャー][ドラゴニックオーラ]の消費SP - 189<br>[ドラゴニックピアース]の消費SP - 109",0];
+	CardObjNew[2932] = [2932,99,"潜在解放(ハイパーノービスIII)","センサイカイホウハイハアノオヒスサン","",0];
+	CardObjNew[2933] = [2933,100,"","","魔法攻撃命中時、一定確率で20秒間、<br>[ユピテルサンダーストーム]の消費SP - 79<br>[ヘルズドライブ]の消費SP - 69<br>[ナパームバルカンストライク]の消費SP - 109",0];
+	CardObjNew[2934] = [2934,99,"潜在解放(インペリアルガードIV)","センサイカイホウインヘリアルカアトヨン","",0];
+	CardObjNew[2935] = [2935,100,"","","物理攻撃命中時、一定確率で20秒間、<br>[オーバースラッシュ]、[レイディアントスピア]の消費SP - 239<br>[グランドジャッジメント]の消費SP - 429<br>[シールドシューティング]の消費SP - 159<br>[インペリアルクロス]の消費SP - 139",0];
+	CardObjNew[2936] = [2936,99,"潜在解放(マイスターIII)","センサイカイホウマイスタアサン","",0];
+	CardObjNew[2937] = [2937,100,"","","物理攻撃命中時、一定確率で20秒間、<br>[アックスストンプ]、[ラッシュストライク]の消費SP - 299<br>[マイティスマッシュ]、[パワフルスイング]の消費SP - 249<br>[ラッシュクエイク]の消費SP - 439",0];
+	CardObjNew[2938] = [2938,99,"潜在解放(ナイトウォッチII)","センサイカイホウナイトウオツチサン","",0];
+	CardObjNew[2939] = [2939,100,"","","物理攻撃命中時、一定確率で20秒間、<br>[オンリーワンバレット]の消費SP - 99<br>[スパイラルシューティング]の消費SP - 179<br>[ワイルドショット]の消費SP - 219",0];
+	CardObjNew[2940] = [2940,99,"潜在解放(スピリットハンドラーIII)","センサイカイホウスヒリツトハントラアサン","",0];
+	CardObjNew[2941] = [2941,100,"","","物理攻撃命中時、一定確率で20秒間、<br>[タイガースラッシュ]の消費SP - 99<br>[タイガーハウリング]の消費SP - 199<br>[タイガーストライク]、[タイガーバトリング]の消費SP - 169",0];
+	CardObjNew[2942] = [2942,99,"潜在解放(シャドウクロスIII)","センサイカイホウシヤトウクロスサン","",0];
+	CardObjNew[2943] = [2943,100,"","","物理攻撃命中時、一定確率で20秒間、[インパクトクレーター]、[サベージインパクト]の消費SP - 209[フェイタルシャドウクロー]の消費SP - 309",0];
+	CardObjNew[2944] = [2944,99,"潜在解放(天帝II)","センサイカイホウテンテイニ","",0];
+	CardObjNew[2945] = [2945,100,"","","物理攻撃命中時、一定確率で20秒間、<br>[天地万星]、[天命落星]、[天星]、[天星の行]の消費SP - 269",0];
+	CardObjNew[2946] = [2946,99,"潜在解放(蜃気楼&不知火II)","センサイカイホウシンキロウシラヌイニ","",0];
+	CardObjNew[2947] = [2947,100,"","","物理攻撃命中時、一定確率で20秒間、[影狩り]の消費SP - 229[影の舞]、[影一閃]の消費SP - 189[幻術 -影縫い-]の消費SP - 279",0];
+	CardObjNew[2948] = [2948,99,"潜在解放(トルバドゥール&トルヴェールII)","センサイカイホウトルハトウウルトルウエエルニ","",0];
+	CardObjNew[2949] = [2949,100,"","","物理攻撃命中時、一定確率で20秒間、[リズムシューティング]の消費SP - 109[ロゼブロッサム]の消費SP - 229",0];
+	CardObjNew[2950] = [2950,99,"潜在解放(ウィンドホークV)","センサイカイホウウイントホオクコ","",0];
+	CardObjNew[2951] = [2951,100,"","","物理攻撃命中時、一定確率で20秒間、[クレッシブボルト]の消費SP - 119[ゲイルストーム]の消費SP - 169",0];
+	CardObjNew[2952] = [2952,99,"潜在解放(カーディナルVI)","センサイカイホウカアテイナルロク","",0];
+	CardObjNew[2953] = [2953,100,"","","魔法攻撃命中時、一定確率で20秒間、<br>[アルビトリウム]、[フレーメン]、[ディヴィヌスフロス]の消費SP - 439<br>[ニューマティックプロセラ]の消費SP - 659",0];
+	// --- 2024バレンタイン ---
+	CardObjNew[2954] = [2954,7,"エレナ","エレナ","",25,5,0];
+	CardObjNew[2955] = [2955,1,"リベリオン・エレナ・ヴォルコヴァ","リベリオンエレナヴォルコヴァ","",25,10,7000025,5,9000025,5,0];
+	CardObjNew[2956] = [2956,7,"リベリオン・エレナ・ヴォルコヴァ(サイン入り)","リベリオンエレナヴォルコヴァサインイリ","",228,1,0];
+	CardObjNew[2957] = [2957,5,"ルッキー","ルッキー","[フェイス]習得時、追加で聖属性攻撃で受けるダメージ + 30%",199,156,9,5,66,30,0];
+	CardObjNew[2958] = [2958,5,"リベリオン・ルッキー","リベリオンルッキー","",60,15,100346,3,0];
+	CardObjNew[2959] = [2959,7,"エスト","エスト","[集中力向上]Lv5使用可能",0];
+	CardObjNew[2960] = [2960,7,"リベリオン・エスト・ラブロイ","リベリオンエストラブロイ","",5825,50,0];
+	CardObjNew[2961] = [2961,7,"リベリオン・エスト・ラブロイ(サイン入り)","リベリオンエストラブロイサインイリ","",10,100,0];
+	CardObjNew[2962] = [2962,2,"ゴニー","ゴニー","",100013,500,0];
+	CardObjNew[2963] = [2963,4,"リベリオン・ゴニー","リベリオンゴニー","鎧が絶対に壊れない",100015,3,0];
+	CardObjNew[2964] = [2964,2,"フィローテス","フィローテス","10秒毎にSP + 10<br>精錬値が1上がる度に追加で10秒毎にSP + 10",0];
+	CardObjNew[2965] = [2965,5,"秘密の羽・フィローテス","ヒミツノハネフィローテス","",100214,1,100016,1,9000214,5,9000016,5,0];
+	CardObjNew[2966] = [2966,7,"レイジー","レイジー","[プロボック]Lv5使用可能",0];
+	CardObjNew[2967] = [2967,6,"秘密の羽・レイジー","ヒミツノハネレイジー","固定詠唱時間 - 70%",0];
+	CardObjNew[2968] = [2968,7,"秘密の羽・レイジー(サイン入り)","ヒミツノハネレイジーサインイリ","[気功]Lv5使用可能",15,15,80,15,0];
+	// --- 2024/2/13 ラグ缶 ---
+	CardObjNew[2969] = [2969,99,"潜在解放(ナイトウォッチIII)","センサイカイホウナイトウオツチサン","",0];
+	CardObjNew[2970] = [2970,100,0,"","",20217,300,0];
+	CardObjNew[2971] = [2971,99,"潜在解放(天帝III)","センサイカイホウテンテイサン","",0];
+	CardObjNew[2972] = [2972,100,0,"","",20181,1000,0];
+	CardObjNew[2973] = [2973,99,"潜在解放(蜃気楼&不知火III)","センサイカイホウシンキロウシラヌイサン","",0];
+	CardObjNew[2974] = [2974,100,0,"","",20225,200,0];
+	// --- 2024/3/12 ラグ缶
+	CardObjNew[2975] = [2975,99,"潜在解放(スピリットハンドラーIV)","センサイカイホウスヒリツトハントラアヨン","",0];
+	CardObjNew[2976] = [2976,100,0,"","",20248,1000,19922,-1000,0];
+	CardObjNew[2977] = [2977,99,"潜在解放(ナイトウォッチIV)","センサイカイホナイトウオツチヨン","",0];
+	CardObjNew[2978] = [2978,100,0,"","",20219,300,0];
+	CardObjNew[2979] = [2979,99,"潜在解放(マイスターIV)","センサイカイホウマイスタアヨン","",0];
+	CardObjNew[2980] = [2980,100,0,"","",20237,100,20238,100,20294,100,20076,100,0];
+	// --- 2024/04/09 生体アップデート ---
+	CardObjNew[2981] = [2981,2,"レッケンベル警備兵","レツケンヘルケイヒヘイ","",210,5,0];
+	CardObjNew[2982] = [2982,7,"レッケンベル警備兵長","レツケンヘルケイヒヘイチヨウ","",86,10,0];
+	CardObjNew[2983] = [2983,7,"レゲンシュルム科学者","レケンシユルムカカクシャ","",74,5,0];
+	CardObjNew[2984] = [2984,5,"無名のソードマン","ムメイノソオトマン","",343,50,63,70,0];
+	CardObjNew[2985] = [2985,100,0,"","",89,10,13526,1000,0];	// 無名のソードマン + 殺意の怨念
+	// --- 2024/04/16 ラグ缶 + GHCアップデート ---
+	CardObjNew[2986] = [2986,99,"潜在解放(アビスチェイサーVII)","センサイカイホウアヒスチエイサアナナ","",0];
+	CardObjNew[2987] = [2987,100,0,"","",20100,100,20106,100,0];
+	CardObjNew[2988] = [2988,99,"潜在解放(ハイパーノービスV)","センサイカイホウハイハアノオヒスコ","",0];
+	CardObjNew[2989] = [2989,100,0,"","",20235,100,20236,100,0];
+	CardObjNew[2990] = [2990,99,"潜在解放(ハイパーノービスVI)","センサイカイホウハイハアノオヒスロク","",0];
+	CardObjNew[2991] = [2991,100,0,"","",20232,300,0];
+	CardObjNew[2992] = [2992,99,"潜在解放(アビスチェイサーV)","センサイカイホウアヒスチエイサアコ","",0];
+	CardObjNew[2993] = [2993,100,0,"","",20102,200,0];
+	CardObjNew[2994] = [2994,99,"潜在解放(アビスチェイサーVI)","センサイカイホウアヒスチエイサアロク","",0];
+	CardObjNew[2995] = [2995,100,0,"","",20109,200,0];
+	CardObjNew[2996] = [2996,99,"潜在解放(インクイジターIV)","センサイカイホウインクイシタアヨン","",0];
+	CardObjNew[2997] = [2997,100,0,"","",20123,100,0];
+	CardObjNew[2998] = [2998,99,"潜在解放(インペリアルガードV)","センサイカイホウインヘリアルカアトコ","",0];
+	CardObjNew[2999] = [2999,100,0,"","",20094,200,0];
+	CardObjNew[3000] = [3000,99,"潜在解放(インペリアルガードVI)","センサイカイホウインヘリアルカアトロク","",0];
+	CardObjNew[3001] = [3001,100,0,"","",20093,200,0];
+	CardObjNew[3002] = [3002,99,"潜在解放(エレメンタルマスターV)","センサイカイホウエレメンタルマスタアコ","",0];
+	CardObjNew[3003] = [3003,100,0,"","",20149,500,20147,500,0];
+	CardObjNew[3004] = [3004,99,"潜在解放(シャドウクロスIV)","センサイカイホウシヤトウクロスヨン","",0];
+	CardObjNew[3005] = [3005,100,0,"","",20021,500,0];
+	CardObjNew[3006] = [3006,99,"潜在解放(シャドウクロスV)","センサイカイホウシヤトウクロスコ","",0];
+	CardObjNew[3007] = [3007,100,0,"","",20022,200,0];
+	CardObjNew[3008] = [3008,99,"潜在解放(ドラゴンナイトV)","センサイカイホウトラコンナイトコ","",0];
+	CardObjNew[3009] = [3009,100,0,"","",20009,300,0];
+	CardObjNew[3010] = [3010,99,"潜在解放(トルバドゥール&トルヴェールIII)","センサイカイホウトルハトウウルトルウエエルサン","",0];
+	CardObjNew[3011] = [3011,100,0,"","",20132,100,20131,100,0];
+	CardObjNew[3012] = [3012,99,"潜在解放(ハイパーノービスIV)","センサイカイホウハイハアノオヒスヨン","",0];
+	CardObjNew[3013] = [3013,100,0,"","",20231,300,0];
+	CardObjNew[3014] = [3014,99,"潜在解放(ソウルアセティックIV)","センサイカイホウソウルアセテイツクヨン","",0];
+	CardObjNew[3015] = [3015,100,0,"","",20197,200,20198,200,20199,200,20200,200,0];
+	CardObjNew[3016] = [3016,99,"潜在解放(スピリットハンドラーV)","センサイカイホウスヒリツトハントラアコ","",0];
+	CardObjNew[3017] = [3017,100,0,"","",20247,200,0];
+	CardObjNew[3018] = [3018,99,"潜在覚醒(風魔手裏剣 -乱華-II)","センサイカクセイフウマシユリケンランカニ","",40000000005770,1,0];
+	CardObjNew[3019] = [3019,100,0,"","",19770,300,0];
+	CardObjNew[3020] = [3020,99,"潜在覚醒(シールドプレスII)","センサイカクセイシイルトフレスニ","",20000000005572,1,0];
+	CardObjNew[3021] = [3021,100,0,"","",19572,2000,0];
+	CardObjNew[3022] = [3022,99,"潜在覚醒(エイムドボルトII)","センサイカクセイエイムトホルトニ","",100000000005497,1,0];
+	CardObjNew[3023] = [3023,100,0,"","",11497,100,0];
+	CardObjNew[3024] = [3024,99,"潜在覚醒(イグニッションブレイクIII)","センサイカクセイイクニツシヨンフレイクサン","",20000000005445,1,0];
+	CardObjNew[3025] = [3025,100,0,"","",19445,200,0];
+	CardObjNew[3026] = [3026,99,"潜在覚醒(アンチマテリアルブラストI)","センサイカクセイアンチマテリアルフラストイチ","",30000000005832,1,0];
+	CardObjNew[3027] = [3027,100,0,"","",19832,5000,0];
+	CardObjNew[3028] = [3028,99,"潜在覚醒(ヴェラチュールスピアーII)","センサイカクセイウエラチユウルスヒアアニ","",30000000005669,1,0];
+	CardObjNew[3029] = [3029,100,0,"","",19669,1000,0];
+	CardObjNew[3030] = [3030,99,"潜在覚醒(ダイヤモンドダストI)","センサイカクセイタイヤモントタストイチ","",30000000005667,1,0];
+	CardObjNew[3031] = [3031,100,0,"","",19667,1000,0];
+	CardObjNew[3032] = [3032,99,"潜在覚醒(アースグレイヴI)","センサイカクセイアアスクレイウイチ","",30000000005666,1,0];
+	CardObjNew[3033] = [3033,100,0,"","",19666,1000,0];
+	CardObjNew[3034] = [3034,99,"潜在覚醒(死霊爆発II)","センサイカクセイシリヨウハクハツニ","",50000000005977,1,0];
+	CardObjNew[3035] = [3035,100,0,"","",19977,500,0];
+	CardObjNew[3036] = [3036,99,"潜在覚醒(天羅地網II)","センサイカクセイテンラチモウニ","",20000000005610,1,0];
+	CardObjNew[3037] = [3037,100,0,"","",19610,200,0];
+	CardObjNew[3038] = [3038,99,"潜在覚醒(クリムゾンロックII)","センサイカクセイクリムソンロツクニ","",50000000005527,1,0];
+	CardObjNew[3039] = [3039,100,0,"","",19527,2000,0];
+	CardObjNew[3040] = [3040,99,"潜在覚醒(獅子吼III)","センサイカクセイシシクサン","",30000000005622,1,0];
+	CardObjNew[3041] = [3041,100,0,"","物理攻撃命中時、一定確率で10秒間、[獅子吼]の消費SP - 119",0];
+	CardObjNew[3042] = [3042,99,"潜在覚醒(アームズキャノンII)","センサイカクセイアアムスキヤノンニ","",50000000005554,1,0];
+	CardObjNew[3043] = [3043,100,0,"","物理攻撃命中時、一定確率で10秒間、[アームズキャノン]の消費SP - 59",0];
+	CardObjNew[3044] = [3044,99,"潜在覚醒(アックストルネードII)","センサイカクセイアツクストルネエトニ","",20000000005541,1,0];
+	CardObjNew[3045] = [3045,100,0,"","物理攻撃命中時、一定確率で10秒間、[アックストルネード]の消費SP - 25",0];
+	CardObjNew[3046] = [3046,99,"潜在覚醒(アックスブーメランII)","センサイカクセイアツクスフウメランニ","",20000000005542,1,0];
+	CardObjNew[3047] = [3047,100,0,"","物理攻撃命中時、一定確率で10秒間、[アックスブーメラン]の消費SP - 27",0];
+	CardObjNew[3048] = [3048,99,"潜在覚醒(カウンタースラッシュI)","センサイカクセイカウンタアスラツシユイチ","",100000000005469,1,0];
+	CardObjNew[3049] = [3049,100,0,"","物理攻撃命中時、一定確率で10秒間、[カウンタースラッシュ]の消費SP - 31",0];
+	CardObjNew[3050] = [3050,99,"潜在覚醒(十文字斬りII)","センサイカクセイシユウモンシキリニ","",30000000005766,1,0];
+	CardObjNew[3051] = [3051,100,0,"","物理攻撃命中時、一定確率で10秒間、[十文字斬り]の消費SP - 45",0];
+	CardObjNew[3052] = [3052,99,"潜在覚醒(ラウンドトリップII)","センサイカクセイラウントトリツフニ","",20000000005835,1,0];
+	CardObjNew[3053] = [3053,100,0,"","物理攻撃命中時、一定確率で10秒間、[ラウンドトリップ]の消費SP - 19",0];
+	CardObjNew[3054] = [3054,99,"潜在覚醒(ファイアーレインII)","センサイカクセイフアイアアレインニ","",20000000005828,1,0];
+	CardObjNew[3055] = [3055,100,0,"","物理攻撃命中時、一定確率で10秒間、[ファイアーレイン]の消費SP - 69",0];
+	CardObjNew[3056] = [3056,99,"潜在覚醒(エスパII)","センサイカクセイエスハニ","",50000000005968,1,0];
+	CardObjNew[3057] = [3057,100,0,"","魔法攻撃命中時、一定確率で10秒間、[エスパ]の消費SP - 29",0];
+	CardObjNew[3058] = [3058,99,"潜在覚醒(エスフI)","センサイカクセイエスフイチ","",50000000005969,1,0];
+	CardObjNew[3059] = [3059,100,0,"","魔法攻撃命中時、一定確率で10秒間、[エスフ]の消費SP - 119",0];
+	CardObjNew[3060] = [3060,99,"潜在覚醒(ローリングカッターII)","センサイカクセイロオリンクカツタアニ","",20000000005474,1,0];
+	CardObjNew[3061] = [3061,100,0,"","[ローリングカッター]使用時、一定確率で自分中心にオートスペル[オラティオ]Lv5発動",0];
+	CardObjNew[3062] = [3062,99,"潜在覚醒(ハンマーオブゴッドI)","センサイカクセイハンマアオフコツトイチ","",30000000005839,1,0];
+	CardObjNew[3063] = [3063,100,0,"","[ハンマーオブゴッド]使用時、オートスペル[リッチズコイン]Lv1発動",0];
+	CardObjNew[3064] = [3064,99,"潜在覚醒(トライアングルショットII)","センサイカクセイトライアンクルシヨツトニ","",30000000005608,1,0];
+	CardObjNew[3065] = [3065,100,0,"","アビスチェイサーが装備時、[アンリミット]Lv5使用可能<br>装備解除時、[アンリミット]を解除する",0];
+	CardObjNew[3066] = [3066,99,"潜在覚醒(レイオブジェネシスII)","センサイカクセイレイオフシエネシスニ","",30000000005583,1,0];
+	CardObjNew[3067] = [3067,100,0,"","魔法攻撃命中時、3秒間、[レイオブジェネシス]使用時、自分にオートスペル[ハイネスヒール]Lv3発動",0];
+	CardObjNew[3068] = [3068,99,"潜在覚醒(シビアレインストームIII)","センサイカクセイシヒアレインストオムサン","",30000000005642,1,0];
+	CardObjNew[3069] = [3069,100,0,"","トルヴェール、トルバドゥールが装備時、[アンリミット]Lv5使用可能<br>装備解除時、[アンリミット]を解除する",0];
+	CardObjNew[3070] = [3070,99,"潜在解放(天帝IV)","センサイカイホウテンテイヨン","",0];
+	CardObjNew[3071] = [3071,100,0,"","物理攻撃命中時、一定確率で10秒間、[天命落星]で与えるダメージ + 100%",20301,500,0];
+	CardObjNew[3072] = [3072,99,"潜在覚醒(アローストームIII)","センサイカクセイアロオストオムサン","",100000000005498,1,0];
+	CardObjNew[3073] = [3073,100,0,"","装備解除時、[アンリミット]を解除する",19795,60000,0];
+	CardObjNew[3074] = [3074,99,"潜在覚醒(ソウルエクスパンションII)","センサイカクセイソウルエクスハンシヨンニ","",50000000005518,1,0];
+	CardObjNew[3075] = [3075,100,0,"","装備解除時、[テレキネシスインテンス]を解除する",19798,75000,0];
+	CardObjNew[3076] = [3076,99,"潜在覚醒(デュプレライトI)","センサイカクセイテユフレライトイチ","",10000000005741,2,10000000005742,2,0];
+	CardObjNew[3077] = [3077,100,0,"","",11492,100,0];
+	CardObjNew[3078] = [3078,99,"潜在覚醒(スラッグショットI)","センサイカクセイスラツクシヨツトイチ","",30000000005838,1,0];
+	CardObjNew[3079] = [3079,100,0,"","<反逆者>を装備しているとき、[スラッグショット]の再使用待機時間減少効果が発動しない",19838,10000,0];
+	CardObjNew[3080] = [3080,99,"潜在覚醒(サイキックウェーブII)","センサイカクセイサイキツクウエエフニ","",30000000005662,1,0];
+	CardObjNew[3081] = [3081,100,0,"","特定条件下で[サイキックウェーブ]の再使用待機時間減少効果が発動しない<br>・特定条件<br>[知覚増幅リング]装備<br>[ブリリアントアクアマリンネックレス]装備<br>[グレースサイキックローブ]と[ノブレスオブリージュ]のセット効果発動<br>[双魚宮のリング]と[ゾディアック]のセット効果発動",19662,2000,0];
+	// --- 2024/05/16 ラグ缶 ---
+	CardObjNew[3082] = [3082,99,"潜在解放(スピリットハンドラーVI)","センサイカイホウスヒリツトハントラアロク","",0];
+	CardObjNew[3083] = [3083,100,0,"","",20221,100,20223,100,0];
+	CardObjNew[3084] = [3084,99,"スキル石(ファイアーウォールLv10)","スキルイシフアイアアウオオルレヘルシユウ","",220,63,0];
+	// --- 2024/06/04 サマーパッケ ---
+	CardObjNew[3085] = [3085,99,"時間の注視者","シカンノチユウシシヤ","",260,10,265,10,0];
+	CardObjNew[3086] = [3086,100,0,"","",15,50,67,50,0];
+	CardObjNew[3087] = [3087,100,0,"","",74,20,220,105,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,0];	// 時間のサークレット(アークメイジ)
+	CardObjNew[3088] = [3088,100,0,"","",74,20,220,105,100000000006102,1,100000000006109,1,100000000006305,1,100000000006307,1,0];
+	CardObjNew[3089] = [3089,100,0,"","",74,20,220,105,100000000006113,1,100000000006123,1,100000000006124,1,100000000006302,1,0];	// 時間のサークレット(インクイジター)
+	CardObjNew[3090] = [3090,100,0,"","",74,20,220,105,100000000006095,1,100000000006092,1,100000000006094,1,100000000006309,1,100000000006310,1,0];
+	CardObjNew[3091] = [3091,100,0,"","",74,20,220,105,100000000006051,1,100000000006047,1,0];
+	CardObjNew[3092] = [3092,100,0,"","",74,20,220,105,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,0];	// エレメンタルマスター
+	CardObjNew[3093] = [3093,100,0,"","",74,20,220,105,100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,0];	// 時間のサークレット(カーディナル)
+	CardObjNew[3094] = [3094,100,0,"","",74,20,220,105,100000000006013,1,100000000006021,1,100000000006016,1,100000000006020,1,100000000006312,1,0];	// 時間の注視者 + 時間のサークレット(シャドウクロス)
+	CardObjNew[3095] = [3095,100,0,"","",74,20,220,105,100000000006247,1,100000000006248,1,100000000006304,1,0];	// 時間のサークレット(スピリットハンドラー)
+	CardObjNew[3096] = [3096,100,0,"","",74,20,220,105,100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006202,1,0];
+	CardObjNew[3097] = [3097,100,0,"","",74,20,220,105,100000000006008,1,100000000006010,1,100000000006009,1,100000000006295,1,0];
+	CardObjNew[3098] = [3098,100,0,"","",74,20,220,105,100000000006132,1,100000000006131,1,0];
+	CardObjNew[3099] = [3099,100,0,"","",74,20,220,105,100000000006216,1,100000000006217,1,100000000006220,1,100000000006296,1,0];
+	CardObjNew[3100] = [3100,100,0,"","",74,20,220,105,100000000006165,1,100000000006163,1,100000000006166,1,100000000006164,1,0];
+	CardObjNew[3101] = [3101,100,0,"","",74,20,220,105,100000000006231,1,100000000006232,1,100000000006233,1,0];
+	CardObjNew[3102] = [3102,100,0,"","",74,20,220,105,100000000006237,1,100000000006238,1,100000000006294,1,100000000006076,1,0];
+	CardObjNew[3103] = [3103,100,0,"","",74,20,220,105,100000000006227,1,100000000006225,1,100000000006226,1,100000000006228,1,0];
+	CardObjNew[3104] = [3104,100,0,"","",74,20,220,105,100000000006181,1,100000000006182,1,100000000006183,1,100000000006301,1,0];	// 時間のサークレット(天帝)
+	CardObjNew[3105] = [3105,99,"星界の暴君","セイカイノホウクン","物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",269,15,262,15,0];
+	CardObjNew[3106] = [3106,99,"深い睡眠耐性","フカイスイミンタイセイ","状態異常 深い睡眠 に対する耐性 + 100%",364,100,0];
+	CardObjNew[3107] = [3107,100,0,"","追加で[神力]状態になる確率が上昇",0];
+	// --- 2024/06/18 ラグ缶追加 ---
+	CardObjNew[3108] = [3108,99,"潜在解放(スピリットハンドラーVII)","センサイカイホウスヒリツトハントラアナナ","",0];
+	CardObjNew[3109] = [3109,100,0,"","",20247,100,0];
+	CardObjNew[3110] = [3110,99,"潜在解放(ハイパーノービスVII)","センサイカイホウハイハアノオヒスナナ","",0];
+	CardObjNew[3111] = [3111,100,0,"","",20235,200,20236,200,0];
+	// --- 2024/07/16 ラグ缶追加 ---
+	CardObjNew[3112] = [3112,99,"潜在解放(ウィンドホークVI)","センサイカイホウウイントホオクロク","",0];
+	CardObjNew[3113] = [3113,100,0,"","",20051,100,0];
+	CardObjNew[3114] = [3114,99,"潜在解放(マイスターV)","センサイカイホウマイスタアコ","",0];
+	CardObjNew[3115] = [3115,100,0,"","",20242,200,0];
+	// --- 2024/08/13 ---
+	CardObjNew[3116] = [3116,99,"Mdef100%無視","エムテフヒヤクハアムシ","",298,100,0];
+	CardObjNew[3117] = [3117,99,"潜在解放(アークメイジV)","センサイカイホウアアクメイシコ","",0];
+	CardObjNew[3118] = [3118,100,0,"","",20069,200,20068,200,20061,500,0];
+	CardObjNew[3119] = [3119,99,"潜在解放(カーディナルVII)","センサイカイホウカアテイナルナナ","",0];
+	CardObjNew[3120] = [3120,100,0,"","",20031,200,0];
+	CardObjNew[3121] = [3121,2,"教皇の夏休み","キヨウコウノナツヤスミ","[Mレイオブジェネシス]で受けるダメージ - 50%",0];
+	CardObjNew[3122] = [3122,100,0,"","",15,15,66,10,0];
+	CardObjNew[3123] = [3123,100,0,"","1秒毎にHP + 1%",298,50,0];
+	// --- 2024/08/30 ---
+	CardObjNew[3124] = [3124,1,"バーニングナイト","ハアニンクナイト","物理攻撃命中時、一定確率で敵を睡眠状態にする<br>純粋なAgiが10上がる度に追加で敵を睡眠状態にする確率が上昇<br>純粋なAgiが130の時、追加で敵を睡眠状態にする確率が上昇",0];
+	CardObjNew[3125] = [3125,1,"ハードロックタイタン","ハアトロツクタイタン","物理・魔法攻撃時、[魔力が歪んだ平原]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3126] = [3126,4,"デッドウィーン","テツトウイイン","",70,5,8000070,10,0];
+	CardObjNew[3127] = [3127,5,"デッドセラ","テツトセラ","",25,5,0];
+	CardObjNew[3128] = [3128,100,0,"","",65,50,0];
+	CardObjNew[3129] = [3129,6,"ガイアポール","カイアホオル","",89,10,170,50,173,50,16,-50,0];
+	CardObjNew[3130] = [3130,100,0,"","[シエナエクセクレイト]Lv3使用可能",89,10,0];
+	CardObjNew[3131] = [3131,7,"アフェルデ","アフエルテ","",348,10,0];
+	CardObjNew[3132] = [3132,1,"パンチバグ","ハンチハク","物理・魔法攻撃時、[ミョルニール地下洞窟]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3133] = [3133,2,"ディスポール","テイスホオル","[リカバリー]Lv1使用可能",0];
+	CardObjNew[3134] = [3134,4,"ティンバーズ","テインハアス","",100033,1,9000033,10,0];
+	CardObjNew[3135] = [3135,4,"ルニレ","ルニレ","",400000089,2,40000000089,20,0];
+	CardObjNew[3136] = [3136,100,0,"","",15,50,220,204,0];
+	// --- 2024/09/17 ---
+	CardObjNew[3137] = [3137,99,"潜在解放(ソウルアセティックV)","センサイカイホウソウルアセテイツクコ","",0];
+	CardObjNew[3138] = [3138,100,0,"","",20201,200,20202,200,0];
+	CardObjNew[3139] = [3139,99,"潜在解放(シャドウクロスVI)","センサイカイホウシヤトウクロスロク","",0];
+	CardObjNew[3140] = [3140,100,0,"","",20022,300,0];
+	CardObjNew[3141] = [3141,99,"潜在解放(マイスターVI)","センサイカイホウマイスタアロク","",0];
+	CardObjNew[3142] = [3142,100,0,"","",20242,100,0];
+	// --- 2024/09/24 死なない者 ---
+	CardObjNew[3143] = [3143,99,"氷華の魔力(アークメイジI)","ヒヨウカノマリヨクアアクメイシイチ","",6064,25,6069,25,6056,25,6070,25,6063,25,6068,25,6060,25,6067,25,0];
+	CardObjNew[3144] = [3144,99,"氷華の魔力(アークメイジII)","ヒヨウカノマリヨクアアクメイシニ","",6059,25,6057,25,6053,25,6066,25,0];
+	CardObjNew[3145] = [3145,99,"氷華の魔力(アビスチェイサーI)","ヒヨウカノマリヨクアヒスチエイサアイチ","",6102,25,6109,25,6305,25,6307,25,0];
+	CardObjNew[3146] = [3146,99,"氷華の魔力(アビスチェイサーII)","ヒヨウカノマリヨクアヒスチエイサアニ","<br>※ゲーム内では [フロムジアビス] ではなく [アビス球体攻撃] と表記されます",6103,25,6107,25,6105,25,6308,25,0];
+	CardObjNew[3147] = [3147,99,"氷華の魔力(アビスチェイサーIII)","ヒヨウカノマリヨクアヒスチエイサアサン","",6100,25,6101,25,6106,25,6305,25,6306,25,0];
+	CardObjNew[3148] = [3148,99,"氷華の魔力(インクイジターI)","ヒヨウカノマリヨクインクイシタアイチ","",6113,25,6123,25,6124,25,6302,25,0];
+	CardObjNew[3149] = [3149,99,"氷華の魔力(インクイジターII)","ヒヨウカノマリヨクインクイシタアニ","",6121,25,6117,25,6122,25,6119,25,6120,25,6118,25,0];
+	CardObjNew[3150] = [3150,99,"氷華の魔力(インペリアルガードI)","ヒヨウカノマリヨクインヘリアルカアトイチ","",6095,25,6092,25,6094,25,6309,25,6310,25,0];
+	CardObjNew[3151] = [3151,99,"氷華の魔力(インペリアルガードII)","ヒヨウカノマリヨクインヘリアルカアトニ","",6096,25,6093,25,6311,25,0];
+	CardObjNew[3152] = [3152,99,"氷華の魔力(ウィンドホークI)","ヒヨウカノマリヨクウイントホオクイチ","",6051,25,6047,25,0];
+	CardObjNew[3153] = [3153,99,"氷華の魔力(ウィンドホークII)","ヒヨウカノマリヨクウイントホオクニ","",6046,25,6043,25,6291,25,0];
+	CardObjNew[3154] = [3154,99,"氷華の魔力(ウィンドホークIII)","ヒヨウカノマリヨクウイントホオクサン","",6052,25,6050,25,6049,25,6048,25,0];
+	CardObjNew[3155] = [3155,99,"氷華の魔力(エレメンタルマスターI)","ヒヨウカノマリヨクエレメンタルマスタアイチ","",6149,25,6146,25,6147,25,6150,25,6148,25,6157,25,6290,25,0];
+	CardObjNew[3156] = [3156,99,"氷華の魔力(カーディナルI)","ヒヨウカノマリヨクカアテイナルイチ","",6028,25,6033,25,6039,25,6313,25,0];
+	CardObjNew[3157] = [3157,99,"氷華の魔力(カーディナルII)","ヒヨウカノマリヨクカアテイナルニ","",6037,25,6031,25,0];
+	CardObjNew[3158] = [3158,99,"氷華の魔力(シャドウクロスI)","ヒヨウカノマリヨクシヤトウクロスイチ","",6022,25,6014,25,6020,25,0];
+	CardObjNew[3159] = [3159,99,"氷華の魔力(シャドウクロスII)","ヒヨウカノマリヨクシヤトウクロスニ","",6013,25,6021,25,6016,25,6020,25,6312,25,0];
+	CardObjNew[3160] = [3160,99,"氷華の魔力(ドラゴンナイトI)","ヒヨウカノマリヨクトラコンナイトイチ","",6008,25,6010,25,6009,25,6295,25,0];
+	CardObjNew[3161] = [3161,99,"氷華の魔力(ドラゴンナイトII)","ヒヨウカノマリヨクトラコンナイトニ","<br>※ゲーム内では [サーヴァントウェポン] ではなく [武器体攻撃] と表記されます",6002,25,6004,25,6005,25,0];
+	CardObjNew[3162] = [3162,99,"氷華の魔力(ドラゴンナイトIII)","ヒヨウカノマリヨクトラコンナイトサン","",6241,25,6009,25,0];
+	CardObjNew[3163] = [3163,99,"氷華の魔力(トルバドゥール&トルヴェールI)","ヒヨウカノマリヨクトルハトウウルトルウエエルイチ","",6132,25,6131,25,0];
+	CardObjNew[3164] = [3164,99,"氷華の魔力(トルバドゥール&トルヴェールII)","ヒヨウカノマリヨクトルハトウウルトルウエエルニ","",6134,25,6133,25,6298,25,0];
+	CardObjNew[3165] = [3165,99,"氷華の魔力(バイオロI)","ヒヨウカノマリヨクハイオロイチ","",6165,25,6163,25,6166,25,6164,25,0];
+	CardObjNew[3166] = [3166,99,"氷華の魔力(バイオロII)","ヒヨウカノマリヨクハイオロニ","",6239,25,6314,25,6315,25,0];
+	CardObjNew[3167] = [3167,99,"氷華の魔力(バイオロIII)","ヒヨウカノマリヨクハイオロサン","",6240,25,0];
+	CardObjNew[3168] = [3168,99,"氷華の魔力(マイスターI)","ヒヨウカノマリヨクマイスタアイチ","",6072,25,6242,25,6073,25,6292,25,6293,25,0];
+	CardObjNew[3169] = [3169,99,"氷華の魔力(マイスターII)","ヒヨウカノマリヨクマイスタアニ","",6237,25,6238,25,6294,25,6076,25,0];
+	CardObjNew[3170] = [3170,99,"氷華の魔力(スピリットハンドラーI)","ヒヨウカノマリヨクスヒリツトハントラアイチ","",6221,25,6222,25,6223,25,6303,25,0];
+	CardObjNew[3171] = [3171,99,"氷華の魔力(スピリットハンドラーII)","ヒヨウカノマリヨクスヒリツトハントラアニ","",6247,25,6248,25,6304,25,0];
+	CardObjNew[3172] = [3172,99,"氷華の魔力(ソウルアセティックI)","ヒヨウカノマリヨクソウルアセテイツクイチ","",6197,25,6198,25,6199,25,6200,25,6201,25,6202,25,0];
+	CardObjNew[3173] = [3173,99,"氷華の魔力(ソウルアセティックII)","ヒヨウカノマリヨクソウルアセテイツクニ","",6195,25,6196,25,6202,25,0];
+	CardObjNew[3174] = [3174,99,"氷華の魔力(ナイトウォッチI)","ヒヨウカノマリヨクナイトウオツチイチ","",6216,25,6217,25,6218,25,6219,25,6220,25,6296,25,6297,25,0];
+	CardObjNew[3175] = [3175,99,"氷華の魔力(ナイトウォッチII)","ヒヨウカノマリヨクナイトウオツチニ","",6249,25,6250,25,6251,25,6252,25,0];
+	CardObjNew[3176] = [3176,99,"氷華の魔力(ハイパーノービスI)","ヒヨウカノマリヨクハイハアノオヒスイチ","",6231,25,6232,25,6233,25,0];
+	CardObjNew[3177] = [3177,99,"氷華の魔力(ハイパーノービスII)","ヒヨウカノマリヨクハイハアノオヒスニ","",6267,25,6268,25,0];
+	CardObjNew[3178] = [3178,99,"氷華の魔力(ハイパーノービスIII)","ヒヨウカノマリヨクハイハアノオヒスサン","",6235,25,6236,25,0];
+	CardObjNew[3179] = [3179,99,"氷華の魔力(蜃気楼&不知火I)","ヒヨウカノマリヨクシンキロウシラヌイイチ","",6227,25,6225,25,6226,25,6228,25,0];
+	CardObjNew[3180] = [3180,99,"氷華の魔力(蜃気楼&不知火II)","ヒヨウカノマリヨクシンキロウシラヌイニ","",6263,25,6264,25,6265,25,6266,25,0];
+	CardObjNew[3181] = [3181,99,"氷華の魔力(蜃気楼&不知火III)","ヒヨウカノマリヨクシンキロウシラヌイサン","",6253,25,6254,25,6255,25,6256,25,6257,25,6258,25,0];
+	CardObjNew[3182] = [3182,99,"氷華の魔力(天帝I)","ヒヨウカノマリヨクテンテイイチ","",6181,25,6182,25,6183,25,6301,25,0];
+	CardObjNew[3183] = [3183,99,"氷華の魔力(天帝II)","ヒヨウカノマリヨクテンテイニ","",6175,25,6176,25,6177,25,6178,25,6179,25,6180,25,6184,25,6299,25,6300,25,0];
+	CardObjNew[3184] = [3184,99,"氷華の魔力(ルーンナイトII)","ヒヨウカノマリヨクルウンナイトニ","",5445,15,5440,15,8005445,20,8005440,20,9005445,40,9005440,40,10005445,75,10005440,75,0];
+	CardObjNew[3185] = [3185,99,"氷華の魔力(ウォーロックII)","ヒヨウカノマリヨクウオオロツクニ","",5527,5,5518,5,5531,10,5520,15,5519,15,5528,15,8005527,10,8005518,10,8005531,15,8005520,20,8005519,20,8005528,20,9005527,15,9005518,15,9005531,25,9005520,40,9005519,40,9005528,40,10005527,30,10005518,30,10005531,50,10005520,75,10005519,75,10005528,75,0];
+	CardObjNew[3186] = [3186,99,"氷華の魔力(レンジャーII)","ヒヨウカノマリヨクレンシヤアニ","",5498,5,5497,5,8005498,5,8005497,5,9005498,5,9005497,5,10005498,15,10005497,15,0];
+	CardObjNew[3187] = [3187,99,"氷華の魔力(アークビショップII)","ヒヨウカノマリヨクアアクヒシヨツフニ","",5478,15,5476,15,8005478,20,8005476,20,9005478,40,9005476,40,10005478,75,10005476,75,0];
+	CardObjNew[3188] = [3188,99,"氷華の魔力(メカニックIII)","ヒヨウカノマリヨクメカニツクサン","",5541,15,5542,15,5543,15,5554,5,8005541,20,8005542,20,8005543,20,8005554,10,9005541,40,9005542,40,9005543,40,9005554,15,10005541,75,10005542,75,10005543,75,10005554,30,0];
+	CardObjNew[3189] = [3189,99,"氷華の魔力(ギロチンクロスII)","ヒヨウカノマリヨクキロチンクロスニ","",5460,15,5475,15,5474,15,5469,5,8005460,20,8005475,20,8005474,20,8005469,5,9005460,40,9005475,40,9005474,40,9005469,5,10005460,75,10005475,75,10005474,75,10005469,15,0];
+	CardObjNew[3190] = [3190,99,"氷華の魔力(ロイヤルガードIII)","ヒヨウカノマリヨクロイヤルカアトサン","",5585,10,5569,10,5572,10,5583,10,5570,25,8005585,15,8005569,15,8005572,15,8005583,15,8005570,50,9005585,25,9005569,25,9005572,25,9005583,25,9005570,75,10005585,50,10005569,50,10005572,50,10005583,50,10005570,150,0];
+	CardObjNew[3191] = [3191,99,"氷華の魔力(ソーサラーII)","ヒヨウカノマリヨクソオサラアニ","",5666,10,5669,10,5662,10,5667,10,8005666,15,8005669,15,8005662,15,8005667,15,9005666,25,9005669,25,9005662,25,9005667,25,10005666,50,10005669,50,10005662,50,10005667,50,0];
+	CardObjNew[3192] = [3192,99,"氷華の魔力(ミンストレル&ワンダラーIII)","ヒヨウカノマリヨクミンストレルワンタラアサン","",5642,10,5641,10,8005642,15,8005641,15,9005642,25,9005641,25,10005642,50,10005641,50,0];
+	CardObjNew[3193] = [3193,99,"氷華の魔力(修羅II)","ヒヨウカノマリヨクシユラニ","",5622,10,5610,15,5612,15,8005622,15,8005610,20,8005612,20,9005622,25,9005610,40,9005612,40,10005622,50,10005610,75,10005612,75,0];
+	CardObjNew[3194] = [3194,99,"氷華の魔力(ジェネティックII)","ヒヨウカノマリヨクシエネテイツクンニ","",5723,15,5722,15,5736,15,8005723,20,8005722,20,8005736,20,9005723,40,9005722,40,9005736,40,10005723,75,10005722,75,10005736,75,0];
+	CardObjNew[3195] = [3195,99,"氷華の魔力(シャドウチェイサーIII)","ヒヨウカノマリヨクシヤトウチエイサアサン","",5608,10,5606,10,8005608,15,8005606,15,9005608,25,9005606,25,10005608,50,10005606,50,0];
+	CardObjNew[3196] = [3196,99,"氷華の魔力(サモナーIII)","ヒヨウカノマリヨクサモナアサン","",5933,5,5938,5,8005933,10,8005938,10,9005933,15,9005938,15,10005933,30,10005938,30,0];
+	CardObjNew[3197] = [3197,99,"氷華の魔力(サモナーIV)","ヒヨウカノマリヨクサモナアヨン","",5922,5,5920,5,8005922,10,8005920,10,9005922,15,9005920,15,10005922,30,10005920,30,0];
+	CardObjNew[3198] = [3198,99,"氷華の魔力(影狼&朧II)","ヒヨウカノマリヨクカケロウオホロニ","",5766,5,5768,5,5769,5,5770,5,8005766,10,8005768,10,8005769,10,8005770,10,9005766,15,9005768,15,9005769,15,9005770,15,10005766,30,10005768,30,10005769,30,10005770,30,0];
+	CardObjNew[3199] = [3199,99,"氷華の魔力(リベリオンII)","ヒヨウカノマリヨクリヘリオンニ","",5830,5,5825,10,5839,10,5831,10,5838,10,5834,10,5828,15,5835,15,5827,15,8005830,10,8005825,15,8005839,15,8005831,15,8005838,15,8005834,15,8005828,20,8005835,20,8005827,20,9005830,15,9005825,25,9005839,25,9005831,25,9005838,25,9005834,25,9005828,40,9005835,40,9005827,40,10005830,30,10005825,50,10005839,50,10005831,50,10005838,50,10005834,50,10005828,75,10005835,75,10005827,75,0];
+	CardObjNew[3200] = [3200,99,"氷華の魔力(星帝II)","ヒヨウカノマリヨクセイテイニ","",5951,5,5955,5,5959,5,8005951,5,8005955,5,8005959,5,9005951,5,9005955,5,9005959,5,10005951,15,10005955,15,10005959,15,0];
+	CardObjNew[3201] = [3201,99,"氷華の魔力(ソウルリーパーII)","ヒヨウカノマリヨクソウルリイハアニ","",5968,5,5969,5,5977,5,8005968,10,8005969,10,8005977,10,9005968,15,9005969,15,9005977,15,10005968,30,10005969,30,10005977,30,0];
+	CardObjNew[3202] = [3202,99,"氷華の魔力(毒属性耐性)","ヒヨウカノマリヨクトクソクセイタイセイ","",65,50,0];
+	CardObjNew[3203] = [3203,99,"氷華の魔力(聖属性耐性)","ヒヨウカノマリヨクセイソクセイタイセイ","",66,50,0];
+	CardObjNew[3204] = [3204,99,"氷華の魔力(念属性耐性)","ヒヨウカノマリヨクネンソクセイタイセイ","",68,50,0];
+	CardObjNew[3205] = [3205,7,"コポ","コホ","",344,10,0];
+	CardObjNew[3206] = [3206,4,"アイスウィンドの卵","アイスウイントのタマコ","",89,5,8000089,10,0];
+	CardObjNew[3207] = [3207,7,"グレーアイスウィンド","クレエアイスウイント","",211,5,43000000080,5,0];
+	CardObjNew[3208] = [3208,7,"ホワイトアイスウィンド","ホワイトアイスウイント","",214,5,46000000089,5,0];
+	CardObjNew[3209] = [3209,1,"ヨルムンガンド教団主教","ヨルムンカントキヨウタンシユキヨウ","両手杖の場合、追加で魔法攻撃で与えるダメージ + 2%<br>両手杖の場合で、かつ精錬値が10の時、追加で魔法攻撃で与えるダメージ + 4%",89,4,0];
+	CardObjNew[3210] = [3210,1,"Jガーディアン","シエイカアテイアン","物理・魔法攻撃時、[蛇神の根源 01]、[蛇神の根源 02]、[蛇神の根源 深い洞窟]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3211] = [3211,1,"怪しいアーウィン兵士","アヤシイアアウインヘイシ","物理・魔法攻撃時、[凍て付いた鱗の海辺]、[古代の氷の峡谷 西部]、[古代の氷の峡谷 東部]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3212] = [3212,2,"上級ルガン呪術師","シヨウキユウルカンシユシユツシ","魔法攻撃でモンスターを倒した時、HP + 200 , SP + 10",0];
+	CardObjNew[3213] = [3213,5,"上級ルガン治療師","シヨウキユウルカンチユシ","",100091,1,10000091,10,0];
+	CardObjNew[3214] = [3214,1,"ヨルムンガンド教団術師","ヨルムンカントキヨウタンシユツシ","",100344,1,10000344,10,0];
+	CardObjNew[3215] = [3215,6,"ヨルムンガンド教団守衛","ヨルムンカントキヨウタンシユエイ","",210,5,8000012,5,0];
+	CardObjNew[3216] = [3216,7,"ルガンクリーナー","ルカンクリイナア","",10,5,48000000010,20,0];
+	CardObjNew[3217] = [3217,4,"天使ウミウシ","テンシウミウシ","",100036,1,9000036,10,0];
+	CardObjNew[3218] = [3218,7,"雪ウサギウミウシ","ユキウサキウミウシ","物理攻撃命中時、一定確率で10秒間、念属性物理攻撃力 + 10%",80,3,0];
+	CardObjNew[3219] = [3219,2,"メリベウミウシ","メリヘウミウシ","",64,10,8000018,50,8000019,10,0];
+	CardObjNew[3220] = [3220,5,"クマムシ","クマムシ","",25,5,0];
+	CardObjNew[3221] = [3221,100,0,"","",62,50,0];	// 矢とのセット効果は個別処理が必要
+	CardObjNew[3222] = [3222,6,"堕落した天使ウミウシ","タラクシタテンシウミウシ","",80,10,10000080,10,0];
+	CardObjNew[3223] = [3223,100,0,"","10秒毎に、HP + 5000 , SP + 100",156,100,0];
+	CardObjNew[3224] = [3224,5,"究極のラスガンド","キユウキヨクノラスカント","",345,50,65,70,0];
+	CardObjNew[3225] = [3225,100,0,"","",89,10,11663,100,0];
+	CardObjNew[3226] = [3226,6,"雪嵐天使ウミウシ","ユキアラシテンシウミウシ","",80,10,35,50,38,50,16,-50,0];
+	CardObjNew[3227] = [3227,100,0,"","[レノヴァティオ]Lv2使用可能",80,10,0];
+	CardObjNew[3228] = [3228,1,"ルガンチーフクリーナー","ルカンチイフクリイナア","物理攻撃命中時、一定確率で敵に与えたダメージの20%をHPとして吸収",0];
+	CardObjNew[3229] = [3229,100,0,"","物理攻撃でモンスターを倒した時、HP + 200 , SP + 20",210,15,25,15,0];
+	// --- 2024/10/15 ---
+	CardObjNew[3230] = [3230,99,"潜在解放(シャドウクロスVII)","センサイカイホウシヤトウクロスナナ","",0];
+	CardObjNew[3231] = [3231,100,0,"","",20016,200,0];
+	CardObjNew[3232] = [3232,99,"潜在解放(エレメンタルマスターVI)","センサイカイホウエレメンタルマスタアロク","",0];
+	CardObjNew[3233] = [3233,100,0,"","",20157,200,0];
+	CardObjNew[3234] = [3234,99,"潜在解放(蜃気楼&不知火IV)","センサイカイホウシンキロウシラヌイヨン","",0];
+	CardObjNew[3235] = [3235,100,0,"","",20253,300,20255,300,0];
+	CardObjNew[3236] = [3236,99,"潜在解放(バイオロV)","センサイカイホウハイオロコ","",0];
+	CardObjNew[3237] = [3237,100,0,"","",20239,200,0];
+	// --- 2024/10/29 ---
+	CardObjNew[3238] = [3238,99,"潜在解放(アークメイジVI)","センサイカイホウアアクメイシロク","",0];
+	CardObjNew[3239] = [3239,100,0,"","",14059,500,14057,500,14066,500,0];
+	CardObjNew[3240] = [3240,99,"潜在解放(アークメイジVII)","センサイカイホウアアクメイシナナ","",0];
+	CardObjNew[3241] = [3241,100,0,"","",14059,1000,14057,1000,14066,1000,0];
+	CardObjNew[3242] = [3242,99,"潜在解放(アビスチェイサーVIII)","センサイカイホウアヒスチエイサアハチ","",0];
+	CardObjNew[3243] = [3243,100,0,"","追加で物理攻撃命中時、一定確率で敵にオートスペル[アビススクエア]が習得Lvで発動",225,237,0];
+	CardObjNew[3244] = [3244,99,"潜在解放(アビスチェイサーIX)","センサイカイホウアヒスチエイサアク","",0];
+	CardObjNew[3245] = [3245,100,0,"","追加で物理攻撃命中時、一定確率で敵にオートスペル[オメガアビスストライク]が習得Lvで発動",225,238,0];
+	CardObjNew[3246] = [3246,99,"潜在解放(インクイジターV)","センサイカイホウインクイシタアコ","",0];
+	CardObjNew[3247] = [3247,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、[第二撃：信念]、[第三撃：断罪]、[第二撃：審判]、[第三撃：浄化]、[第二撃：滅魔の火]、[第三撃：滅火撃]で与えるダメージ + 100%",0];
+	CardObjNew[3248] = [3248,99,"潜在解放(インクイジターVI)","センサイカイホウインクイシタアロク","",0];
+	CardObjNew[3249] = [3249,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、[第一撃：烙印]の消費SP - 139[第二撃：信念]、[第二撃：審判]、[第二撃：滅魔の火]の消費SP - 169[第三撃：断罪]、[第三撃：浄化]、[第三撃：滅火撃]の消費SP - 199",0];
+	CardObjNew[3250] = [3250,99,"潜在解放(インペリアルガードVII)","センサイカイホウインヘリアルカアトナナ","",0];
+	CardObjNew[3251] = [3251,100,0,"","",14096,500,14093,500,0];
+	CardObjNew[3252] = [3252,99,"潜在解放(インペリアルガードVIII)","センサイカイホウインヘリアルカアトハチ","",0];
+	CardObjNew[3253] = [3253,100,0,"","",14096,1000,0];
+	CardObjNew[3254] = [3254,99,"潜在解放(ウィンドホークVII)","センサイカイホウウイントホオクナナ","",0];
+	CardObjNew[3255] = [3255,100,0,"","",14052,1500,14050,1500,0];
+	CardObjNew[3256] = [3256,99,"潜在解放(ウィンドホークVIII)","センサイカイホウウイントホオクハチ","",0];
+	CardObjNew[3257] = [3257,100,0,"","",14049,1500,14048,1500,0];
+	CardObjNew[3258] = [3258,99,"潜在解放(エレメンタルマスターVII)","センサイカイホウエレメンタルマスタアナナ","",0];
+	CardObjNew[3259] = [3259,100,0,"","追加で物理攻撃命中時、一定確率で敵にオートスペル[ライトニングランド]が習得Lvで発動",225,239,0];
+	CardObjNew[3260] = [3260,99,"潜在解放(エレメンタルマスターVIII)","センサイカイホウエレメンタルマスタアハチ","",0];
+	CardObjNew[3261] = [3261,100,0,"","追加で物理攻撃命中時、一定確率で自分を中心にオートスペル[エレメンタルバスター]が習得Lvで発動",225,240,0];
+	CardObjNew[3262] = [3262,99,"潜在解放(カーディナルVIII)","センサイカイホウカアテイナルハチ","",0];
+	CardObjNew[3263] = [3263,100,0,"","追加で物理攻撃命中時、一定確率で敵にオートスペル[ペティティオ]が習得Lvで発動",225,241,0];
+	CardObjNew[3264] = [3264,99,"潜在解放(カーディナルIX)","センサイカイホウカアテイナルク","",0];
+	CardObjNew[3265] = [3265,100,0,"","追加で物理攻撃命中時、一定確率で敵にオートスペル[エフィリゴ]が習得Lvで発動",225,242,0];
+	CardObjNew[3266] = [3266,99,"潜在解放(シャドウクロスVIII)","センサイカイホウシヤトウクロスハチ","",0];
+	CardObjNew[3267] = [3267,100,0,"","追加で[エターナルスラッシュ]使用時、一定確率で10秒間[カウンタースラッシュ]状態になる",0];
+	CardObjNew[3268] = [3268,99,"潜在解放(シャドウクロスIX)","センサイカイホウシヤトウクロスク","",0];
+	CardObjNew[3269] = [3269,100,0,"","",20016,100,0];
+	CardObjNew[3270] = [3270,99,"潜在解放(スピリットハンドラーVIII)","センサイカイホウスヒリツトハントラアハチ","",0];
+	CardObjNew[3271] = [3271,100,0,"","",14247,500,14248,500,0];
+	CardObjNew[3272] = [3272,99,"潜在解放(スピリットハンドラーIX)","センサイカイホウスヒリツトハントラアク","",0];
+	CardObjNew[3273] = [3273,100,0,"","",14248,1000,0];
+	CardObjNew[3274] = [3274,99,"潜在解放(ソウルアセティックVI)","センサイカイホウソウルアセテイツクロク","",0];
+	CardObjNew[3275] = [3275,100,0,"","",20192,1500,0];
+	CardObjNew[3276] = [3276,99,"潜在解放(ソウルアセティックVII)","センサイカイホウソウルアセテイツクナナ","",0];
+	CardObjNew[3277] = [3277,100,0,"","",20192,1500,0];
+	CardObjNew[3278] = [3278,99,"潜在解放(ドラゴンナイトVI)","センサイカイホウトラコンナイトロク","",0];
+	CardObjNew[3279] = [3279,100,0,"","",20008,300,20012,300,0];
+	CardObjNew[3280] = [3280,99,"潜在解放(ドラゴンナイトVII)","センサイカイホウトラコンナイトナナ","",0];
+	CardObjNew[3281] = [3281,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、[ハックアンドスラッシャー]の消費SP - 189[ストームスラッシュ]の消費SP - 109",0];
+	CardObjNew[3282] = [3282,99,"潜在解放(トルバドゥール&トルヴェールIV)","センサイカイホウトウウルトルウエエルヨン","",0];
+	CardObjNew[3283] = [3283,100,0,"","追加で魔法攻撃命中時、一定確率で20秒間、[メタリックフューリー]で与えるダメージ + 100%",0];
+	CardObjNew[3284] = [3284,99,"潜在解放(トルバドゥール&トルヴェールV)","センサイカイホウトウウルトルウエエルコ","",0];
+	CardObjNew[3285] = [3285,100,0,"","追加で魔法攻撃命中時、一定確率で20秒間、<br>[メタリックフューリー]の消費SP - 129<br>[リズミカルウェーブ]の消費SP - 229",0];
+	CardObjNew[3286] = [3286,99,"潜在解放(ナイトウォッチV)","センサイカイホウナイトウオツチコ","",0];
+	CardObjNew[3287] = [3287,100,0,"","",20219,200,0];
+	CardObjNew[3288] = [3288,99,"潜在解放(ナイトウォッチVI)","センサイカイホウナイトウオツチロク","",0];
+	CardObjNew[3289] = [3289,100,"","","追加で物理攻撃命中時、一定確率で20秒間、<br>[ビジラントアットナイト]の消費SP - 179<br>[マガジンフォーワン]の消費SP - 99<br>[ミッドナイトフォーリン]の消費SP - 269",0];
+	CardObjNew[3290] = [3290,99,"潜在解放(バイオロVI)","センサイカイホウハイオロロク","",0];
+	CardObjNew[3291] = [3291,100,0,"","",14240,500,0];
+	CardObjNew[3292] = [3292,99,"潜在解放(バイオロVII)","センサイカイホウハイオロナナ","",0];
+	CardObjNew[3293] = [3293,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、[メイヘミックソーンズ]の消費SP - 299",0];
+	CardObjNew[3294] = [3294,99,"潜在解放(ハイパーノービスVIII)","センサイカイホウハイハアノオヒスハチ","",0];
+	CardObjNew[3295] = [3295,100,0,"","",20267,300,20268,300,0];
+	CardObjNew[3296] = [3296,99,"潜在解放(ハイパーノービスIX)","センサイカイホウハイハアノオヒスク","",0];
+	CardObjNew[3297] = [3297,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、[シールドチェーンラッシュ]の消費SP - 99[スパイラルピアースマックス]の消費SP - 59",0];
+	CardObjNew[3298] = [3298,99,"潜在解放(マイスターVII)","センサイカイホウマイスタアナナ","",0];
+	CardObjNew[3299] = [3299,100,0,"","",14237,500,14238,500,14294,500,14076,500,0];
+	CardObjNew[3300] = [3300,99,"潜在解放(マイスターVIII)","センサイカイホウマイスタアハチ","",0];
+	CardObjNew[3301] = [3301,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、<br>[スパークブラスター]、[攻撃装置有効化]の消費SP - 249<br>[トリプルレーザー]の消費SP - 139<br>[エナジーキャノネード]の消費SP - 299",0];
+	CardObjNew[3302] = [3302,99,"潜在解放(蜃気楼&不知火V)","センサイカイホウシンキロウシラヌイコ","",0];
+	CardObjNew[3303] = [3303,100,0,"","",20257,300,20258,300,0];
+	CardObjNew[3304] = [3304,99,"潜在解放(蜃気楼&不知火VI)","センサイカイホウシンキロウシラヌイロク","",0];
+	CardObjNew[3305] = [3305,100,0,"","追加で魔法攻撃命中時、一定確率で20秒間、[赤炎砲]、[雷電砲]の消費SP - 279[冷血砲]の消費SP - 249[金龍砲]の消費SP - 199[暗転砲]の消費SP - 229[幻術 -暗黒龍-]の消費SP - 409",0];
+	CardObjNew[3306] = [3306,99,"潜在解放(天帝V)","センサイカイホウテンテイコ","",0];
+	CardObjNew[3307] = [3307,100,0,"","",14179,1000,14180,1000,0];
+	CardObjNew[3308] = [3308,99,"潜在解放(天帝VI)","センサイカイホウテンテイロク","",0];
+	CardObjNew[3309] = [3309,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、<br>[天地一陽]の消費SP - 149<br>[天地一月]、[天気身陽]、[天気身月]の消費SP - 269<br>[太天一陽]、[天陽]、[太天一月]、[天月]、[天羅万象]の消費SP - 229",0];
+	CardObjNew[3310] = [3310,2,"魔剣士サクライ","マケンシサクライ","物理攻撃命中時、一定確率で10秒間、[インスピレーション]Lv1 状態になる",62,10,65,10,0];
+	CardObjNew[3311] = [3311,100,0,"","追加で[インスピレーション]Lv1状態になる確率が上昇",0];
+	CardObjNew[3312] = [3312,7,"ティアラ姫","テイアラヒメ","",16,15,89,15,5100000000220,205,5800000000220,205,6600000000220,205,0];
+	CardObjNew[3313] = [3313,100,0,"","",298,50,0];
+	// --- 2024/11/12 ---
+	CardObjNew[3314] = [3314,99,"潜在解放(マイスターIX)","センサイカイホウマイスタアキユウ","",0];
+	CardObjNew[3315] = [3315,100,0,"","",20238,100,20294,100,0];
+	CardObjNew[3316] = [3316,99,"潜在解放(インクイジターVII)","センサイカイホウインクイシタアナナ","",0];
+	CardObjNew[3317] = [3317,100,0,"","",20124,100,0];
+	// --- 2024/11/27 ---
+	CardObjNew[3318] = [3318,99,"悲哀の王宮","ヒアイノオウキユウ","",260,10,265,10,0];
+	CardObjNew[3319] = [3319,100,0,"","",15,15,77,10,220,206,0];	// セット1
+	CardObjNew[3320] = [3320,100,0,"","攻撃命中時、SP + 5",15,15,220,206,0];	// セット2
+	CardObjNew[3321] = [3321,100,0,"","",15,15,77,50,79,40,243,5,220,206,0];	// 悲哀の王宮セット（両手）
+	CardObjNew[3322] = [3322,100,0,"","物理攻撃命中時、一定確率で敵に与えたダメージの3%をSPとして吸収",25,10,210,10,0];	// サクライセット
+	CardObjNew[3323] = [3323,99,"永久の氷河","エイキユウノヒヨウカ","",152,100,361,100,360,100,0];
+	CardObjNew[3324] = [3324,100,0,"","",15,15,77,10,220,132,0];
+	CardObjNew[3325] = [3325,100,0,"","",381,1,15,15,220,132,0];	// セット2
+	CardObjNew[3326] = [3326,100,0,"","",15,15,77,10,243,5,220,132,0];
+	CardObjNew[3327] = [3327,100,0,"","",243,5,61,5,68,5,0];
+	// --- 2024/12/18 ---
+	CardObjNew[3328] = [3328,99,"潜在解放(蜃気楼&不知火X)","センサイカイホウシンキロウシラヌイシユウ","",0];
+	CardObjNew[3329] = [3329,100,0,"","",20254,300,20256,300,0];
+	CardObjNew[3330] = [3330,99,"潜在解放(インペリアルガードXI)","センサイカイホウインヘリアルカアトシユウイチ","",0];
+	CardObjNew[3331] = [3331,100,0,"","",20093,100,0];
+	CardObjNew[3332] = [3332,99,"潜在解放(ドラゴンナイトX)","センサイカイホウトラコンナイトシユウ","",0];
+	CardObjNew[3333] = [3333,100,0,"","",20241,200,0];
+	// --- 2025/01/14 ---
+	CardObjNew[3334] = [3334,99,"潜在解放(バイオロXI)","センサイカイホウハイオロシユウイチ","",0];
+	CardObjNew[3335] = [3335,100,0,"","",20239,100,0];
+	CardObjNew[3336] = [3336,99,"潜在解放(スピリットハンドラーXII)","センサイカイホウスヒリツトハントラアシユウニ","",0];
+	CardObjNew[3337] = [3337,100,0,"","",20221,100,0];
+	CardObjNew[3338] = [3338,99,"潜在解放(カーディナルXIII)","センサイカイホウカアテイナルシユウサン","",0];
+	CardObjNew[3339] = [3339,100,0,"","",20033,4000,0];
+	// --- 2025/01/21 ---
+	CardObjNew[3340] = [3340,99,"潜在解放(アークビショップIII)","センサイカイホウアアクヒシヨツフサン","",0];
+	CardObjNew[3341] = [3341,100,0,"","物理攻撃命中時、一定確率で敵にオートスペル[アドラムス]、[ジュデックス]が習得Lvで発動",225,243,225,245,0];
+	CardObjNew[3342] = [3342,99,"潜在解放(ウォーロックIII)","センサイカイホウウオオロツクサン","",0];
+	CardObjNew[3343] = [3343,100,0,"","装備解除時、[テレキネシスインテンス]を解除する",11527,100,11530,100,19798,260000,0];
+	CardObjNew[3344] = [3344,99,"潜在解放(ギロチンクロスIII)","センサイカイホウキロチンクロスサン","",0];
+	CardObjNew[3345] = [3345,100,0,"","[アヴァレーツォ]、[エンドオブザワールド]、[執行者のシューズ]のいずれかを装備時、[ハルシネーションウォーク]の再使用待機時間減少効果が発動しない",19797,60000,19473,45000,19474,200,0];
+	CardObjNew[3346] = [3346,99,"潜在解放(サモナーIII)","センサイカイホウサモナアサン","",0];
+	CardObjNew[3347] = [3347,100,0,"","",11932,100,19933,100,219,3447,0];
+	CardObjNew[3348] = [3348,99,"潜在解放(ジェネティックIII)","センサイカイホウシエネテイツクサン","",0];
+	CardObjNew[3349] = [3349,100,0,"","[グレースカルティベイションコート]と[ノブレスオブリージュ]のセット効果発動時、[ハウリングオブマンドラゴラ]の固定詠唱時間減少効果が発動しない",13735,500,19735,16000,0];
+	CardObjNew[3350] = [3350,99,"潜在解放(シャドウチェイサーIII)","センサイカイホウシヤトウチエイサアサン","",0];
+	CardObjNew[3351] = [3351,100,0,"","",11596,100,221,234,221,235,0];
+	CardObjNew[3352] = [3352,99,"潜在解放(ソウルリーパーIII)","センサイカイホウ","",0];
+	CardObjNew[3353] = [3353,100,0,"","",11967,100,11968,100,11969,100,19977,1000,0];
+	CardObjNew[3354] = [3354,99,"潜在解放(ソーサラーIII)","センサイカイホウソオサラアサン","",0];
+	CardObjNew[3355] = [3355,100,0,"","",11662,100,11667,100,19669,1000,19667,1000,0];
+	CardObjNew[3356] = [3356,99,"潜在解放(ミンストレル&ワンダラーII)","センサイカイホウミンストレルワンタラアニ","",0];
+	CardObjNew[3357] = [3357,100,0,"","[シビアレインストーム]使用時、20秒間、[アンリミット]Lv5状態になる<br>装備解除時、[アンリミット]を解除する",11642,100,0];
+	CardObjNew[3358] = [3358,99,"潜在解放(メカニックIII)","センサイカイホウメカニツクサン","",0];
+	CardObjNew[3359] = [3359,100,0,"","スキル使用時、[魔導ギア燃料]を消費しない",7554,100,7553,100,7552,100,0];
+	CardObjNew[3360] = [3360,99,"潜在解放(リベリオンIII)","センサイカイホウリヘリオンサン","",0];
+	CardObjNew[3361] = [3361,100,0,"","物理攻撃命中時、一定確率で敵にオートスペル[ドラゴンテイル]が習得Lvで発動",19840,1000,19822,3000,225,244,0];
+	CardObjNew[3362] = [3362,99,"潜在解放(ルーンナイトIII)","センサイカイホウルウンナイトサン","",0];
+	CardObjNew[3363] = [3363,100,0,"","",19445,3000,19440,200,19442,1000,0];
+	CardObjNew[3364] = [3364,99,"潜在解放(レンジャーIII)","センサイカイホウレンシヤアサン","",0];
+	CardObjNew[3365] = [3365,100,0,"","装備解除時、[アンリミット]を解除する",19498,500,19795,300000,0];
+	CardObjNew[3366] = [3366,99,"潜在解放(ロイヤルガードIII)","センサイカイホウロイヤルカアトサン","",0];
+	CardObjNew[3367] = [3367,100,0,"","",19569,2000,19574,5000,0];
+	CardObjNew[3368] = [3368,99,"潜在解放(影狼&朧II)","センサイカイホウカケロウオホロニ","",0];
+	CardObjNew[3369] = [3369,100,0,"","",19778,60000,19768,1000,0];
+	CardObjNew[3370] = [3370,99,"潜在解放(修羅III)","センサイカイホウシユラサン","",0];
+	CardObjNew[3371] = [3371,100,0,"","[修羅身弾]、[天羅地網]使用時、3秒間、完全回避 + 95",19629,3000,19613,200,0];
+	CardObjNew[3372] = [3372,99,"潜在解放(星帝III)","センサイカイホウセイテイサン","",0];
+	CardObjNew[3373] = [3373,100,0,"","",19966,9000,19965,2000,219,3458,0];
+	// --- 2025/01/24 ---
+	CardObjNew[3374] = [3374,99,"潜在覚醒(ハンドレッドスピアI)","センサイカクセイハントレツトスヒアイチ","",30000000005442,1,0];
+	CardObjNew[3375] = [3375,100,0,"","物理攻撃命中時、一定確率で10秒間、[ハンドレッドスピア]の消費SP - 59",0];
+	CardObjNew[3376] = [3376,99,"潜在覚醒(チェーンライトニングI)","センサイカクセイチエエンライトニンクイチ","",30000000005530,1,0];
+	CardObjNew[3377] = [3377,100,0,"","",19530,1000,0];
+	CardObjNew[3378] = [3378,99,"潜在覚醒(フェイントボムI)","センサイカクセイフエイントホムイチ","",20000000005603,1,0];
+	CardObjNew[3379] = [3379,100,0,"","物理攻撃命中時、一定確率で10秒間、[フェイントボム]の消費SP - 29",0];
+	CardObjNew[3380] = [3380,99,"潜在覚醒(ピンポイントアタックI)","センサイカクセイヒンホイントアタツクイチ","",30000000005574,1,0];
+	CardObjNew[3381] = [3381,100,0,"","物理攻撃命中時、一定確率で10秒間、[ピンポイントアタック]の消費SP - 49",0];
+	CardObjNew[3382] = [3382,99,"潜在覚醒(コールドスローワーI)","センサイカクセイコオルトスロオワアイチ","",50000000005553,2,0];
+	CardObjNew[3383] = [3383,100,0,"","物理攻撃命中時、一定確率で10秒間、[コールドスローワー]の消費SP - 19",0];
+	CardObjNew[3384] = [3384,99,"潜在覚醒(ダーククローI)","センサイカクセイタアククロオイチ","",0];
+	CardObjNew[3385] = [3385,100,0,"","[豪傑]、[真理の解放]を両方装備している場合は効果は1つしか発動しない",19797,30000,0];
+	CardObjNew[3386] = [3386,0];
+	CardObjNew[3387] = [3387,99,"潜在覚醒(デュプレライトII)","センサイカクセイテユフレライトニ","",10000000005741,2,10000000005742,2,0];
+	CardObjNew[3388] = [3388,100,0,"","",11492,100,0];
+	CardObjNew[3389] = [3389,99,"潜在覚醒(ダイヤモンドダストII)","センサイカクセイタイヤモントタストニ","",30000000005667,1,0];
+	CardObjNew[3390] = [3390,100,0,"","",19667,4000,0];
+	CardObjNew[3391] = [3391,99,"潜在覚醒(クレイジーウィードII)","センサイカクセイクレイシイウイイトニ","",50000000005732,1,0];
+	CardObjNew[3392] = [3392,100,0,"","[グレースカルティベイションコート]、[ジェジェキャップ]と共に装備時<br>　[クレイジーウィード]の再使用待機時間減少効果が発動しない",19732,4500,0];
+	CardObjNew[3393] = [3393,99,"潜在覚醒(修羅身弾I)","センサイカクセイシユラシンタンイチ","",20000000005613,1,0];
+	CardObjNew[3394] = [3394,100,0,"","[鬼神の盟友]装備時、または[グレース天地スーツ]と[ノブレスオブリージュ]のセット効果発動時<br>　[修羅身弾]のダメージ増加効果が発動しない",10000000005613,2,0];
+	CardObjNew[3395] = [3395,99,"潜在覚醒(星帝降臨I)","センサイカクセイセイテイコウリンイチ","",30000000005964,1,0];
+	CardObjNew[3396] = [3396,100,0,"","",19964,2500,0];
+	CardObjNew[3397] = [3397,99,"潜在覚醒(エスフII)","センサイカクセイエスフニ","",50000000005969,1,0];
+	CardObjNew[3398] = [3398,100,0,"","[グレーススカルローブ]と[ノブレスオブリージュ]のセット効果発動時、<br>　[エスフ]のダメージ増加効果が発動しない",20000000005969,1,0];
+	CardObjNew[3399] = [3399,99,"潜在覚醒(爆裂苦無I)","センサイカクセイハクレツクナイイチ","",50000000005768,1,0];
+	CardObjNew[3400] = [3400,100,0,"","[グレースクルシフォームスーツ]と[ノブレスオブリージュ]のセット効果発動時、<br>　[爆裂苦無]のダメージ増加効果が発動しない",20000000005768,1,0];
+	CardObjNew[3401] = [3401,99,"潜在覚醒(ドラゴンテイルI)","センサイカクセイトラコンテイルイチ","",30000000005834,1,0];
+	CardObjNew[3402] = [3402,100,0,"","[メタルパイソン]装備時、<br>　[ドラゴンテイル]の再使用待機時間減少効果が発動しない",19834,4500,0];
+	CardObjNew[3403] = [3403,99,"潜在覚醒(タロウの傷I)","センサイカクセイタロウノキスイチ","",50000000005932,1,0];
+	CardObjNew[3404] = [3404,100,0,"","[インペリアルアニマルローブ]、[グレースアニマルローブ]装備時<br>　[タロウの傷]の再使用待機時間減少効果が発動しない",19932,12500,0];
+	// --- 2025/01/28 ---
+	CardObjNew[3405] = [3405,99,"星雲の精髄(力1)","セイウンノセイスイチカライチ","",211,10,49000000080,5,0];
+	CardObjNew[3406] = [3406,99,"星雲の精髄(力2)","セイウンノセイスイチカラニ","",211,10,49000000080,10,0];
+	CardObjNew[3407] = [3407,99,"星雲の精髄(技巧1)","セイウンノセイスイキコウイチ","",215,10,53000000021,5,0];
+	CardObjNew[3408] = [3408,99,"星雲の精髄(技巧2)","セイウンノセイスイキコウニ","",215,10,53000000021,10,0];
+	CardObjNew[3409] = [3409,99,"星雲の精髄(俊敏1)","セイウンノセイスイシユンヒンイチ","",212,10,50000000086,5,0];
+	CardObjNew[3410] = [3410,99,"星雲の精髄(俊敏2)","セイウンノセイスイシユンヒンニ","",212,10,50000000086,10,0];
+	CardObjNew[3411] = [3411,99,"星雲の精髄(知力1)","セイウンノセイスイチリキイチ","",214,10,52000000089,5,0];
+	CardObjNew[3412] = [3412,99,"星雲の精髄(知力2)","セイウンノセイスイチリキニ","",214,10,52000000089,10,0];
+	CardObjNew[3413] = [3413,99,"星雲の精髄(幸運1)","セイウンノセイスイコウンイチ","",216,10,54000000070,5,0];
+	CardObjNew[3414] = [3414,99,"星雲の精髄(幸運2)","セイウンノセイスイコウンニ","",216,10,54000000070,10,0];
+	CardObjNew[3415] = [3415,99,"星雲の精髄(体力1)","セイウンノセイスイタイリヨクイチ","純粋なVitが100以上の時、追加で一部の回復アイテムによるHP回復量 + 5%",213,10,51000000092,5,0];
+	CardObjNew[3416] = [3416,99,"星雲の精髄(体力2)","セイウンノセイスイタイリヨクイチ","純粋なVitが100以上の時、追加で一部の回復アイテムによるHP回復量 + 10%",213,10,51000000092,10,0];
+	CardObjNew[3417] = [3417,99,"星雲の精髄(力3)","セイウンノセイスイチカラサン","",211,10,49000000080,10,0];
+	CardObjNew[3418] = [3418,99,"星雲の精髄(技巧3)","セイウンノセイスイキコウサン","",215,10,53000000021,10,0];
+	CardObjNew[3419] = [3419,99,"星雲の精髄(俊敏3)","セイウンノセイスイシユンヒンサン","",212,10,50000000086,10,0];
+	CardObjNew[3420] = [3420,99,"星雲の精髄(知力3)","セイウンノセイスイチリキサン","",214,10,52000000089,10,0];
+	CardObjNew[3421] = [3421,99,"星雲の精髄(幸運3)","セイウンノセイスイコウンサン","",216,10,54000000070,10,0];
+	CardObjNew[3422] = [3422,99,"星雲の精髄(体力3)","セイウンノセイスイタイリヨクサン","純粋なVitが100以上の時、追加で一部の回復アイテムによるHP回復量 + 10%",213,10,51000000092,10,0];
+	CardObjNew[3423] = [3423,100,0,"","追加で物理・魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",0]; // 星雲の精髄3 ＋ 印章セットのリフレ効果
+	// --- 2025/02/04 ---
+	CardObjNew[3424] = [3424,7,"リベリオン・ディエン(サイン入り)","リヘリオンテイエンサインイリ","",86,100,0];
+	CardObjNew[3425] = [3425,7,"リベリオン・コトネス(サイン入り)","リヘリオンコトネスサインイリ","[クリティカルスラッシュ]で受けるダメージ - 50%<br>物理・魔法攻撃命中時、一定確率で30秒間、[キリエエレイソン]Lv10状態になる",0];
+	CardObjNew[3426] = [3426,7,"リベリオン・リードシー(サイン入り)","リヘリオンリイトシイサインイリ","",9,100,0];
+	CardObjNew[3427] = [3427,2,"ディエン","テイエン","",86,10,0];
+	CardObjNew[3428] = [3428,1,"コトネス","コトネス","爪の場合、Hit - 10 , Cri + 10、クリティカル攻撃で与えるダメージ + 10%<br>爪の場合で、かつ精錬値が1上がる度に追加で<br>　Hit - 1 , Cri + 1、クリティカル攻撃で与えるダメージ + 1%",0];
+	CardObjNew[3429] = [3429,7,"リードシー","リイトシイ","",12,5,0];
+	CardObjNew[3430] = [3430,6,"リベリオン・ディエン","リヘリオンテイエン","",293,10,7000293,15,9000293,25,0];
+	CardObjNew[3431] = [3431,2,"リベリオン・コトネス","リヘリオンコトネス","",100216,1,100010,1,9000216,5,9000010,5,0];
+	CardObjNew[3432] = [3432,6,"リベリオン・リードシー","リヘリオンリイトシイ","",15,10,8000011,5,0];
+	// --- 2025/02/18 ---
+	CardObjNew[3433] = [3433,99,"潜在解放(ナイトウォッチIX)","センサイカイホウナイトウオツチク","",0];
+	CardObjNew[3434] = [3434,100,0,"","",20220,300,0];
+	CardObjNew[3435] = [3435,99,"潜在解放(ドラゴンナイトXI)","センサイカイホウトラコンナイトシユウイチ","",0];
+	CardObjNew[3436] = [3436,100,0,"","",20241,100,0];
+	CardObjNew[3437] = [3437,99,"潜在解放(マイスターXII)","センサイカイホウマイスタアシユウニ","",0];
+	CardObjNew[3438] = [3438,100,0,"","",20242,100,0];
+	CardObjNew[3439] = [3439,99,"潜在解放(アークメイジX)","センサイカイホウアアクメイシシユウ","",0];
+	CardObjNew[3440] = [3440,100,0,"","",20057,1000,0];
+	// --- 2025/03/11 ---
+	CardObjNew[3441] = [3441,99,"潜在解放(蜃気楼&不知火XI)","センサイカイホウシンキロウシラヌイシユウイチ","",0];
+	CardObjNew[3442] = [3442,100,0,"","",20226,200,0];
+	CardObjNew[3443] = [3443,99,"潜在解放(アークメイジXI)","センサイカイホウアアクメイシシユウイチ","",0];
+	CardObjNew[3444] = [3444,100,0,"","",20057,500,0];
+	// --- 2025-04-15 ---
+	CardObjNew[3445] = [3445,99,"Def100%無視","テフヒヤクハアセントムシ","",293,100,0];
+	CardObjNew[3446] = [3446,99,"潜在覚醒(キャロットビートII)","センザイカクセイキャロットビートツー","",50000000005933,1,0];
+	CardObjNew[3447] = [3447,100,0,"","",19933,100,0];
+	CardObjNew[3448] = [3448,99,"潜在覚醒(ダーククローII)","センザイカクセイダーククローツー","",0];
+	CardObjNew[3449] = [3449,100,0,"","",19797,30000,0];
+	CardObjNew[3450] = [3450,100,0,"","",0]; // 未使用レコード.上書きして構いません.
+	CardObjNew[3451] = [3451,99,"潜在覚醒(ハンドレッドスピアII)","センザイカクセイハンドレッドスピアツー","",30000000005442,1,0];
+	CardObjNew[3452] = [3452,100,0,"","",19442,1000,0];
+	CardObjNew[3453] = [3453,99,"潜在覚醒(ピンポイントアタックII)","センザイカクセイピンポイントアタックツー","",30000000005574,1,0];
+	CardObjNew[3454] = [3454,100,0,"","",19574,5000,0];
+	CardObjNew[3455] = [3455,99,"潜在覚醒(修羅身弾II)","センザイカクセイシュラミダンツー","",20000000005613,1,0];
+	CardObjNew[3456] = [3456,100,0,"","",19613,200,0];
+	CardObjNew[3457] = [3457,99,"潜在覚醒(創星の書I)","センザイカクセイソウセイノショイチ","",100000000005965,1,0];
+	CardObjNew[3458] = [3458,100,0,"","",19965,2000,0];
+	CardObjNew[3459] = [3459,99,"潜在覚醒(爆裂苦無II)","センザイカクセイバクレツクナイツー","",50000000005768,1,0];
+	CardObjNew[3460] = [3460,100,0,"","",19768,1000,0];
+	CardObjNew[3461] = [3461,99,"潜在解放(インクイジターX)","センサイカイホウインクイジターテン","",0];
+	CardObjNew[3462] = [3462,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、[第二撃：信念]、[第三撃：断罪]、[第二撃：審判]、[第三撃：浄化]、[第二撃：滅魔の火]、[第三撃：滅火撃]で与えるダメージ + 100%",0];
+	CardObjNew[3463] = [3463,99,"潜在解放(ウィンドホークXII)","センサイカイホウウィンドホークジュウニ","",0];
+	CardObjNew[3464] = [3464,100,0,"","",20048,2000,0];
+	CardObjNew[3465] = [3465,99,"潜在解放(エレメンタルマスターX)","センサイカイホウエレメンタルマスターテン","",0];
+	CardObjNew[3466] = [3466,100,0,"","",20148,2000,0];
+	CardObjNew[3467] = [3467,99,"潜在解放(トルバドゥール&トルヴェールVIII)","センサイカイホウトルバドゥールトルヴェールハチ","",0];
+	CardObjNew[3468] = [3468,100,0,"","追加で魔法攻撃命中時、一定確率で20秒間、[メタリックフューリー]で与えるダメージ + 100%",0];
+	CardObjNew[3469] = [3469,99,"潜在解放(ナイトウォッチX)","センサイカイホウナイトウォッチテン","",0];
+	CardObjNew[3470] = [3470,100,0,"","",20216,300,0];
+	CardObjNew[3471] = [3471,99,"潜在解放(バイオロXII)","センサイカイホウバイオロジュウニ","",0];
+	CardObjNew[3472] = [3472,100,0,"","",20240,100,0];
+	CardObjNew[3473] = [3473,99,"潜在解放(ハイパーノービスXIII)","センサイカイホウハイパーノービスジュウサン","",0];
+	CardObjNew[3474] = [3474,100,0,"","",20268,200,0];
+	CardObjNew[3475] = [3475,99,"潜在解放(天帝IX)","センサイカイホウテンテイキュウ","",0];
+	CardObjNew[3476] = [3476,100,0,"","",20179,500,20180,500,20300,500,0];
+	// --- 2025-04-16 ---
+	CardObjNew[3477] = [3477,99,"悪霊の取引","アクリョウノトリヒキ","",46000000220,207,0];
+	CardObjNew[3478] = [3478,99,"潜在解放(アークメイジXII)","センザイカイホウアークメイジトゥエルブ","",0];
+	CardObjNew[3479] = [3479,100,0,"","追加で魔法攻撃命中時、一定確率で20秒間、<br>[クリムゾンアロー]、<br>[フローズンスラッシュ]、<br>[ストームキャノン]、<br>[ロックダウン]の固定詠唱時間 - 0.5秒",0];
+	CardObjNew[3480] = [3480,99,"潜在解放(アークメイジXIV)","センザイカイホウアークメイジフォーティーン","",0];
+	CardObjNew[3481] = [3481,100,0,"","追加で魔法攻撃命中時、一定確率で20秒間、<br>[クリムゾンアロー]、[ストームキャノン]、[ディストラクティブハリケーン]の消費SP - 359<br>[フローズンスラッシュ]、[ロックダウン]、[クリスタルインパクト]の消費SP - 329<br>[オールブルーム]の消費SP - 449<br>[バイオレントクエイク]の消費SP - 409",0];
+	CardObjNew[3482] = [3482,99,"潜在解放(エレメンタルマスターXI)","センザイカイホウエレメンタルマスターイレブン","",0];
+	CardObjNew[3483] = [3483,100,0,"","",20148,500,0];
+	CardObjNew[3484] = [3484,99,"潜在解放(エレメンタルマスターXII)","センザイカイホウエレメンタルマスタートゥエルブ","",0];
+	CardObjNew[3485] = [3485,100,0,"","物理攻撃命中時、一定確率で敵を中心にオートスペル[コンフラグレーション]が習得Lvで発動",225,246,0];
+	CardObjNew[3486] = [3486,99,"潜在解放(インペリアルガードXII)","センザイカイホウインペリアルガードトゥエルブ","",0];
+	CardObjNew[3487] = [3487,100,0,"","追加で物理攻撃命中時、一定確率で20秒間、<br>[オーバースラッシュ]、<br>[グランドジャッジメント]<br>[シールドシューティング]の再使用待機時間 - 0.3秒",0];
+	CardObjNew[3488] = [3488,99,"潜在解放(アビスチェイサーXIII)","センザイカイホウアビスチェイサートゥエルブ","",0];
+	CardObjNew[3489] = [3489,100,0,"","",20103,30000,0];
+	CardObjNew[3490] = [3490,99,"潜在解放(インクイジターXI)","センザイカイホウインクイジターイレブン","",0];
+	CardObjNew[3491] = [3491,100,0,"","[第二撃：信念]、[第二撃：審判]、[第二撃：滅魔の火]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3492] = [3492,99,"潜在解放(ウィンドホークXIII)","センザイカイホウウィンドホークサーティーン","",0];
+	CardObjNew[3493] = [3493,100,0,"","",20052,2000,0];
+	CardObjNew[3494] = [3494,99,"潜在解放(ソウルアセティックXI)","センザイカイホウソウルアセティックイレブン","",0];
+	CardObjNew[3495] = [3495,100,0,"","",20196,200,0];
+	CardObjNew[3496] = [3496,99,"潜在解放(天帝X)","センザイカイホウテンテイテン","",0];
+	CardObjNew[3497] = [3497,100,0,"","",20179,1000,20180,1000,20300,1000,0];
+	CardObjNew[3498] = [3498,99,"潜在解放(ドラゴンナイトXII)","センザイカイホウドラゴンナイトトゥエルブ","",0];
+	CardObjNew[3499] = [3499,100,0,"","",20008,200,20012,200,0];
+	CardObjNew[3500] = [3500,99,"潜在解放(トルバドゥール&トルヴェールIX)","センザイカイホウトルバドゥールアンドトルヴェールナイン","",0];
+	CardObjNew[3501] = [3501,100,0,"","[メタリックフューリー]、[リズミカルウェーブ]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3502] = [3502,99,"潜在解放(バイオロXIII)","センザイカイホウバイオロサーティーン","",0];
+	CardObjNew[3503] = [3503,100,0,"","",20240,200,0];
+	//
+	CardObjNew[3504] = [3504,2,"暴食のネクロマンサー","ボウショクノネクロマンサー","",298,10,7000298,15,9000298,25,0];
+	CardObjNew[3505] = [3505,4,"暴食の魔王ヴェルゼブブ","ボウショクノマオウヴェルゼブブ","",176,50,178,50,356,50,357,50,0];
+	CardObjNew[3506] = [3506,100,0,"","追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 10%",0];
+	CardObjNew[3507] = [3507,4,"暴食のヘルフライ","ボウショクノヘルフライ","",89,5,100089,1,7000198,9,0];
+	CardObjNew[3508] = [3508,5,"暴食のグール","ボウショクノグール","",60,15,100345,3,0];
+	CardObjNew[3509] = [3509,6,"暴食の堕ちた大神官","ボウショクノオチタダイシングウ","",89,10,177,50,178,50,273,50,16,-50,0];
+	CardObjNew[3510] = [3510,100,0,"","",89,10,220,196,0];
+	CardObjNew[3511] = [3511,6,"暴食のバンシー","ボウショクノバンシー","",5518,10,7005518,15,9005518,25,0];
+	CardObjNew[3512] = [3512,7,"暴食のゾンビスローター","ボウショクノゾンビスローター","物理攻撃でモンスターを倒した時、HP + 200",70,3,0];
+	CardObjNew[3513] = [3513,100,0,"","",10,25,70,10,0];
+	CardObjNew[3514] = [3514,7,"暴食のフレームスカル","ボウショクノフレームスカル","物理攻撃を受けた時、一定確率で敵を暗黒・スタン・石化・呪い状態にする",0];
+	CardObjNew[3515] = [3515,7,"暴食のヘルプードル","ボウショクノヘルプードル","一部の回復アイテムによるHP回復量 + 10%",92,10,0];
+	CardObjNew[3516] = [3516,7,"暴食のラギッドゾンビ","ボウショクノラギッドゾンビ","物理攻撃でモンスターを倒した時、SP + 10",70,3,0];
+	// --- 2025-05-13 ---
+	CardObjNew[3517] = [3517,99,"潜在解放(ウィンドホークXIV)","センザイカイホウウィンドホーク１４","",0];
+	CardObjNew[3518] = [3518,100,0,"","",20047,100,0];
+	CardObjNew[3519] = [3519,99,"新毒耐性","シンドクタイセイ","絶対に新毒状態にならない",0];
+	// --- 2025-05-27 ---
+	CardObjNew[3520] = [3520,99,"スキルオーブ(アークメイジI)","スキルオーブアークメイジ1","",100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,0];
+	CardObjNew[3521] = [3521,99,"スキルオーブ(アークメイジII)","スキルオーブアークメイジ2","",100000000006059,1,100000000006057,1,100000000006053,1,100000000006066,1,0];
+	CardObjNew[3522] = [3522,99,"スキルオーブ(アビスチェイサーI)","スキルオーブアビスチェイサー1","",100000000006102,1,100000000006109,1,100000000006305,1,100000000006307,1,0];
+	CardObjNew[3523] = [3523,99,"スキルオーブ(アビスチェイサーII)","スキルオーブアビスチェイサー2","",100000000006103,1,100000000006107,1,100000000006105,1,100000000006308,1,0];
+	CardObjNew[3524] = [3524,99,"スキルオーブ(アビスチェイサーIII)","スキルオーブアビスチェイサー3","",100000000006100,1,100000000006101,1,100000000006106,1,100000000006305,1,100000000006306,1,0];
+	CardObjNew[3525] = [3525,99,"スキルオーブ(インクイジターI)","スキルオーブインクイジター1","",100000000006113,1,100000000006123,1,100000000006124,1,100000000006302,1,0];
+	CardObjNew[3526] = [3526,99,"スキルオーブ(インクイジターII)","スキルオーブインクイジター2","",100000000006121,1,100000000006117,1,100000000006122,1,100000000006119,1,100000000006120,1,100000000006118,1,0];
+	CardObjNew[3527] = [3527,99,"スキルオーブ(インペリアルガードI)","スキルオーブインペリアルガード1","",100000000006095,1,100000000006092,1,100000000006094,1,100000000006309,1,100000000006310,1,0];
+	CardObjNew[3528] = [3528,99,"スキルオーブ(インペリアルガードII)","スキルオーブインペリアルガード2","",100000000006096,1,100000000006093,1,100000000006311,1,0];
+	CardObjNew[3529] = [3529,99,"スキルオーブ(ウィンドホークI)","スキルオーブウィンドホーク1","",100000000006051,1,100000000006047,1,0];
+	CardObjNew[3530] = [3530,99,"スキルオーブ(ウィンドホークII)","スキルオーブウィンドホーク2","",100000000006046,1,100000000006043,1,100000000006291,1,0];
+	CardObjNew[3531] = [3531,99,"スキルオーブ(ウィンドホークIII)","スキルオーブウィンドホーク3","",100000000006052,1,100000000006050,1,100000000006049,1,100000000006048,1,0];
+	CardObjNew[3532] = [3532,99,"スキルオーブ(エレメンタルマスターI)","スキルオーブエレメンタルマスター1","",100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,0];
+	CardObjNew[3533] = [3533,99,"スキルオーブ(カーディナルI)","スキルオーブカーディナル1","",100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,0];
+	CardObjNew[3534] = [3534,99,"スキルオーブ(カーディナルII)","スキルオーブカーディナル2","",100000000006037,1,100000000006031,1,0];
+	CardObjNew[3535] = [3535,99,"スキルオーブ(シャドウクロスI)","スキルオーブシャドウクロス1","",100000000006022,1,100000000006014,1,100000000006020,1,0];
+	CardObjNew[3536] = [3536,99,"スキルオーブ(シャドウクロスII)","スキルオーブシャドウクロス2","",100000000006013,1,100000000006021,1,100000000006016,1,100000000006020,1,100000000006312,1,0];
+	CardObjNew[3537] = [3537,99,"スキルオーブ(スピリットハンドラーI)","スキルオーブスピリットハンドラー1","",100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,0];
+	CardObjNew[3538] = [3538,99,"スキルオーブ(スピリットハンドラーII)","スキルオーブスピリットハンドラー2","",100000000006247,1,100000000006248,1,100000000006304,1,0];
+	CardObjNew[3539] = [3539,99,"スキルオーブ(ソウルアセティックI)","スキルオーブソウルアセティック1","",100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006202,1,0];
+	CardObjNew[3540] = [3540,99,"スキルオーブ(ソウルアセティックII)","スキルオーブソウルアセティック2","",100000000006195,1,100000000006196,1,100000000006202,1,0];
+	CardObjNew[3541] = [3541,99,"スキルオーブ(ドラゴンナイトI)","スキルオーブドラゴンナイト1","",100000000006008,1,100000000006010,1,100000000006012,1,100000000006009,1,100000000006295,1,0];
+	CardObjNew[3542] = [3542,99,"スキルオーブ(ドラゴンナイトII)","スキルオーブドラゴンナイトツー","",100000000006002,1,100000000006004,1,100000000006005,1,0];
+	CardObjNew[3543] = [3543,99,"スキルオーブ(ドラゴンナイトIII)","スキルオーブドラゴンナイト3","",100000000006241,1,100000000006009,1,0];
+	CardObjNew[3544] = [3544,99,"スキルオーブ(トルバドゥール&トルヴェールI)","スキルオーブトルバドゥールアンドトルヴェール1","",100000000006132,1,100000000006131,1,0];
+	CardObjNew[3545] = [3545,99,"スキルオーブ(トルバドゥール&トルヴェールII)","スキルオーブトルバドゥールアンドトルヴェール2","",100000000006134,1,100000000006133,1,100000000006298,1,0];
+	CardObjNew[3546] = [3546,99,"スキルオーブ(ナイトウォッチI)","スキルオーブナイトウォッチ1","",100000000006216,1,100000000006217,1,100000000006218,1,100000000006219,1,100000000006220,1,100000000006296,1,100000000006297,1,0];
+	CardObjNew[3547] = [3547,99,"スキルオーブ(ナイトウォッチII)","スキルオーブナイトウォッチ2","",100000000006249,1,100000000006250,1,100000000006251,1,100000000006252,1,0];
+	CardObjNew[3548] = [3548,99,"スキルオーブ(バイオロI)","スキルオーブバイオロ1","",100000000006165,1,100000000006163,1,100000000006166,1,100000000006164,1,0];
+	CardObjNew[3549] = [3549,99,"スキルオーブ(バイオロII)","スキルオーブバイオロ2","",100000000006239,1,100000000006314,1,100000000006315,1,0];
+	CardObjNew[3550] = [3550,99,"スキルオーブ(バイオロIII)","スキルオーブバイオロ3","",100000000006240,1,0];
+	CardObjNew[3551] = [3551,99,"スキルオーブ(ハイパーノービスI)","スキルオーブハイパーノービス1","",100000000006231,1,100000000006232,1,100000000006233,1,0];
+	CardObjNew[3552] = [3552,99,"スキルオーブ(ハイパーノービスII)","スキルオーブハイパーノービス2","",100000000006267,1,100000000006268,1,0];
+	CardObjNew[3553] = [3553,99,"スキルオーブ(ハイパーノービスIII)","スキルオーブハイパーノービ3","",100000000006235,1,100000000006236,1,0];
+	CardObjNew[3554] = [3554,99,"スキルオーブ(マイスターI)","スキルオーブマイスター1","",100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,0];
+	CardObjNew[3555] = [3555,99,"スキルオーブ(マイスターII)","スキルオーブマイスター2","",100000000006237,1,100000000006238,1,100000000006294,1,100000000006076,1,0];
+	CardObjNew[3556] = [3556,99,"スキルオーブ(天帝I)","スキルオーブテンテイ1","",100000000006181,1,100000000006182,1,100000000006183,1,100000000006301,1,0];
+	CardObjNew[3557] = [3557,99,"スキルオーブ(天帝II)","スキルオーブテンテイ2","",100000000006175,1,100000000006176,1,100000000006177,1,100000000006178,1,100000000006179,1,100000000006180,1,100000000006184,1,100000000006299,1,100000000006300,1,0];
+	CardObjNew[3558] = [3558,99,"スキルオーブ(蜃気楼&不知火I)","スキルオーブシンキロウアンドシラヌイ1","",100000000006227,1,100000000006225,1,100000000006226,1,100000000006228,1,0];
+	CardObjNew[3559] = [3559,99,"スキルオーブ(蜃気楼&不知火II)","スキルオーブシンキロウアンドシラヌイ2","",100000000006263,1,100000000006264,1,100000000006265,1,100000000006266,1,0];
+	CardObjNew[3560] = [3560,99,"スキルオーブ(蜃気楼&不知火III)","スキルオーブシンキロウアンドシラヌイ3","",100000000006253,1,100000000006254,1,100000000006255,1,100000000006256,1,100000000006257,1,100000000006258,1,0];
+	CardObjNew[3561] = [3561,99,"Cri + 50","クリティカルプラスゴジュウ","",10,50,0];
+	CardObjNew[3562] = [3562,99,"水属性耐性 + 5%","ミズゾクセイタイセイプラスゴパーセント","",61,5,0];
+	CardObjNew[3563] = [3563,99,"ガードファイア","ガードファイア","",63,85,0];
+	CardObjNew[3564] = [3564,99,"ガードウォーター","ガードウォーター","",61,85,0];
+	CardObjNew[3565] = [3565,99,"ガードウィンド","ガードウィンド","",64,85,0];
+	CardObjNew[3566] = [3566,99,"ガードアース","ガードアース","",62,85,0];
+	CardObjNew[3567] = [3567,99,"ガードセイント","ガードセイント","",66,85,0];
+	CardObjNew[3568] = [3568,99,"ガードダークネス","ガードダークネス","",67,85,0];
+	CardObjNew[3569] = [3569,99,"ガードテレキネシス","ガードテレキネシス","",68,85,0];
+	CardObjNew[3570] = [3570,99,"ガードポイズン","ガードポイズン","",65,85,0];
+	CardObjNew[3571] = [3571,99,"ガードアンデッド","ガードアンデッド","",69,85,0];
+	// --- 2025-06-03 ---
+	CardObjNew[3572] = [3572,99,"潜在解放(アビスチェイサーXIV)","センザイカイホウアビスチェイサー14","",0];
+	CardObjNew[3573] = [3573,100,0,"","[アビススクエア]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3574] = [3574,99,"潜在解放(アークメイジXIII)","センザイカイホウアークメイジ13","",0];
+	CardObjNew[3575] = [3575,100,0,"","[クリムゾンアロー]、<br>[フローズンスラッシュ]、<br>[ストームキャノン]、<br>[ロックダウン]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3576] = [3576,99,"潜在解放(バイオロXIV)","センザイカイホウバイオロ14","",0];
+	CardObjNew[3577] = [3577,100,0,"","[リサーチレポート]のAP消費量 + 50<br>[リサーチレポート]使用時、60秒間、[P.Atk増加]状態になる<br>装備解除時、[P.Atk増加]状態を解除する",0];
+	CardObjNew[3578] = [3578,99,"潜在解放(カーディナルXIV)","センザイカイホウカーディナル14","",0];
+	CardObjNew[3579] = [3579,100,0,"","[ペティティオ]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3580] = [3580,99,"潜在解放(ドラゴンナイトXIII)","センザイカイホウドラゴンナイト13","",0];
+	CardObjNew[3581] = [3581,100,0,"","[ストームスラッシュ]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3582] = [3582,99,"潜在解放(エレメンタルマスターXIII)","センザイカイホウエレメンタルマスター13","",0];
+	CardObjNew[3583] = [3583,100,0,"","[ダイヤモンドストーム]、<br>[テラドライブ]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3584] = [3584,99,"潜在解放(ハイパーノービスXIV)","センザイカイホウハイパーノービス14","",0];
+	CardObjNew[3585] = [3585,100,0,"","[ルールブレイク]のAP消費量 + 50<br>[ルールブレイク]使用時、60秒間、[S.Matk増加]状態になる<br>装備解除時、[S.Matk増加]状態を解除する",0];
+	CardObjNew[3586] = [3586,99,"潜在解放(インペリアルガードXIII)","センザイカイホウインペリアルガード13","",0];
+	CardObjNew[3587] = [3587,100,0,"","[クロスレイン]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3588] = [3588,99,"潜在解放(インクイジターXII)","センザイカイホウインクイジター12","",0];
+	CardObjNew[3589] = [3589,100,0,"","[爆火神弾]、[烈火気弾]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3590] = [3590,99,"潜在解放(マイスターXIII)","センザイカイホウマイスター13","",0];
+	CardObjNew[3591] = [3591,100,0,"","[ABR インフィニティ]のAP消費量 + 50<br>[ABR インフィニティ]使用時、60秒間、[P.Atk増加]状態になる<br>装備解除時、[P.Atk増加]状態を解除する",0];
+	CardObjNew[3592] = [3592,99,"潜在解放(ナイトウォッチXI)","センザイカイホウナイトウォッチ11","",0];
+	CardObjNew[3593] = [3593,100,0,"","[オンリーワンバレット]、<br>[スパイラルシューティング]<br>[マガジンフォーワン]、<br>[ビジラントアットナイト]<br>[ワイルドファイア]、<br>[ミッドナイトフォーリン]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3594] = [3594,99,"潜在解放(スピリットハンドラーXIII)","センザイカイホウスピリットハンドラー13","",0];
+	CardObjNew[3595] = [3595,100,0,"","[タイガースラッシュ]、<br>[タイガーハウリング]、<br>[タイガーストライク]、<br>[タイガーバトリング]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3596] = [3596,99,"潜在解放(シャドウクロスXII)","センザイカイホウシャドウクロス12","",0];
+	CardObjNew[3597] = [3597,100,0,"","[インパクトクレーター]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3598] = [3598,99,"潜在解放(天帝XI)","センザイカイホウテンテイ11","",0];
+	CardObjNew[3599] = [3599,100,0,"","[天命落星]、<br>[天星]、<br>[天星の行]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3600] = [3600,99,"潜在解放(ソウルアセティックXII)","センザイカイホウソウルアセティック12","",0];
+	CardObjNew[3601] = [3601,100,0,"","[青龍符]、<br>[白虎符]、<br>[朱雀符]、<br>[玄武符]、<br>[四方神符]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3602] = [3602,99,"潜在解放(蜃気楼&不知火XII)","センザイカイホウシンキロウアンドシラヌイ12","",0];
+	CardObjNew[3603] = [3603,100,0,"","[影狩り]、<br>[風魔手裏剣 -掌握-]、<br>[苦無 -歪曲-]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[3604] = [3604,99,"潜在解放(トルバドゥール&トルヴェールX)","センザイカイホウトオルバドゥールアンドトルヴェール10","",0];
+	CardObjNew[3605] = [3605,100,0,"","[ミスティックシンフォニー]のAP消費量 + 50<br>[ミスティックシンフォニー]使用時、60秒間、[P.Atk増加]状態になる<br>装備解除時、[P.Atk増加]状態を解除する",0];
+	CardObjNew[3606] = [3606,99,"潜在解放(ウィンドホークXV)","センザイカイホウウィンドホーク15","",0];
+	CardObjNew[3607] = [3607,100,0,"","[カラミティゲイル]のAP消費量 + 50<br>[カラミティゲイル]使用時、60秒間、[P.Atk増加]状態になる<br>装備解除時、[P.Atk増加]状態を解除する",0];
+	CardObjNew[3608] = [3608,99,"魔喰いの顎","マグイノアギト","物理・魔法攻撃命中時、一定確率で10秒間、<br>詠唱時間 - 100%<br>スキル使用時の消費SP - 100%",0];
+	CardObjNew[3609] = [3609,99,"悪霊の儀式","アクレイノギシキ","",260,10,265,10,0];
+	CardObjNew[3610] = [3610,100,0,"","",15,15,77,10,220,208,0];	// 暴食のスタッフオブディストラクション, 暴食の死神の名簿, 暴食のハンティングスピア いずれかとのセット効果
+	CardObjNew[3611] = [3611,100,0,"","物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",0];	// 暴食のバリアントシューズ とのセット効果
+	CardObjNew[3612] = [3612,100,0,"","",15,50,67,50,0];	// 暴食の魔王ヴェルゼブブカード とのセット効果
+	CardObjNew[3613] = [3613,100,0,"","",74,20,220,105,100000000006008,1,100000000006012,1,0];	// 暴食のクラウン(ドラゴンナイト)
+	CardObjNew[3614] = [3614,100,0,"","",74,20,220,105,100000000006096,1,100000000006093,1,100000000006311,1,0];	// 暴食のクラウン(インペリアルガード)
+	CardObjNew[3615] = [3615,100,0,"","",74,20,220,105,100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,0];	// 暴食のクラウン(マイスター)
+	CardObjNew[3616] = [3616,100,0,"","",74,20,220,105,100000000006240,1,0];	// 暴食のクラウン(バイオロ)
+	CardObjNew[3617] = [3617,100,0,"","",74,20,220,105,100000000006022,1,100000000006014,1,100000000006020,1,0];	// 暴食のクラウン(シャドウクロス)
+	CardObjNew[3618] = [3618,100,0,"","",74,20,220,105,100000000006103,1,100000000006107,1,100000000006105,1,100000000006308,1,0];	// 暴食のクラウン(アビスチェイサー)
+	CardObjNew[3619] = [3619,100,0,"","",74,20,220,105,100000000006037,1,100000000006031,1,0];	// 暴食のクラウン(カーディナル)
+	CardObjNew[3620] = [3620,100,0,"","",74,20,220,105,100000000006121,1,100000000006117,1,100000000006122,1,100000000006119,1,100000000006120,1,100000000006118,1,0];	// 暴食のクラウン(インクイジター)
+	CardObjNew[3621] = [3621,100,0,"","",74,20,220,105,100000000006059,1,100000000006057,1,100000000006053,1,100000000006066,1,0];	// 暴食のクラウン(アークメイジ)
+	CardObjNew[3622] = [3622,100,0,"","",74,20,220,105,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,0];	// 暴食のクラウン(エレメンタルマスター)
+	CardObjNew[3623] = [3623,100,0,"","",74,20,220,105,100000000006052,1,100000000006050,1,100000000006049,1,100000000006048,1,0];	// 暴食のクラウン(ウィンドホーク)
+	CardObjNew[3624] = [3624,100,0,"","",74,20,220,105,100000000006134,1,100000000006133,1,100000000006298,1,0];	// 暴食のクラウン(トルバドゥール&トルヴェール)
+	CardObjNew[3625] = [3625,100,0,"","",74,20,220,105,100000000006175,1,100000000006176,1,100000000006177,1,100000000006178,1,100000000006179,1,100000000006180,1,100000000006184,1,100000000006299,1,100000000006300,1,0];	// 暴食のクラウン(天帝)
+	CardObjNew[3626] = [3626,100,0,"","",74,20,220,105,100000000006195,1,100000000006196,1,100000000006202,1,0];	// 暴食のクラウン(ソウルアセティック)
+	CardObjNew[3627] = [3627,100,0,"","",74,20,220,105,100000000006218,1,100000000006219,1,100000000006220,1,100000000006297,1,0];	// 暴食のクラウン(ナイトウォッチ)
+	CardObjNew[3628] = [3628,100,0,"","",74,20,220,105,100000000006253,1,100000000006254,1,100000000006255,1,100000000006256,1,100000000006257,1,100000000006258,1,0];	// 暴食のクラウン(蜃気楼&不知火)
+	CardObjNew[3629] = [3629,100,0,"","",74,20,220,105,100000000006235,1,100000000006236,1,0];	// 暴食のクラウン(ハイパーノービス)
+	CardObjNew[3630] = [3630,100,0,"","",74,20,220,105,100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,0];	// 暴食のクラウン(スピリットハンドラー)
+	CardObjNew[3631] = [3631,99,"セレスティアルピース","セレスティアルピース","",260,10,265,10,0];
+	CardObjNew[3632] = [3632,100,0,"","",15,15,77,10,220,23,0];	// セレスティアル武器共通
+	CardObjNew[3633] = [3633,100,0,"","攻撃命中時、SP + 5",15,15,10,50,220,23,0];	// セレスティアルフォックステイル
+	CardObjNew[3634] = [3634,100,0,"","",159,100,0];	// セレスティアルダイアデム
+	CardObjNew[3635] = [3635,100,0,"","",152,100,0];	// セレスティアルアーマー, セレスティアルスーツ
+	CardObjNew[3636] = [3636,100,0,"","物理・魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",0];	// セレスティアルマント
+	CardObjNew[3637] = [3637,100,0,"","物理・魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",0];	// セレスティアルブーツ
+	CardObjNew[3638] = [3638,100,0,"","",80,30,89,30,0];	// セレスティアルリング
+	// --- 2025-06-17 ---
+	CardObjNew[3639] = [3639,99,"潜在解放(アークメイジXV)","センザイカイホウアークメイジ15","",0];
+	CardObjNew[3640] = [3640,100,0,"","",20070,200,20067,200,20058,500,0];
+	CardObjNew[3641] = [3641,99,"潜在解放(ドラゴンナイトXIV)","センザイカイホウドラゴンナイト14","",0];
+	CardObjNew[3642] = [3642,100,0,"","",20010,500,0];
+	// --- 2025-06-18 ---
+	CardObjNew[3643] = [3643,99,"バルムントの宝石(火炎1)","バルムントノホウセキカエン1","",100000000000000063n,2,100000000000000067n,2,200000000000000063n,15,200000000000000067n,15,300000000000000063n,2,300000000000000067n,2,400000000000000063n,1,400000000000000067n,1,0];
+	CardObjNew[3644] = [3644,99,"バルムントの宝石(火炎2)","バルムントノホウセキカエン2","",100000000000000063n,3,100000000000000067n,3,200000000000000063n,20,200000000000000067n,20,300000000000000063n,3,300000000000000067n,3,400000000000000063n,2,400000000000000067n,2,0];
+	CardObjNew[3645] = [3645,99,"バルムントの宝石(火炎3)","バルムントノホウセキカエン3","",100000000000000063n,5,100000000000000067n,5,200000000000000063n,25,200000000000000067n,25,300000000000000063n,5,300000000000000067n,5,400000000000000063n,3,400000000000000067n,3,0];
+	CardObjNew[3646] = [3646,99,"バルムントの宝石(火炎4)","バルムントノホウセキカエン4","",100000000000000063n,7,100000000000000067n,7,200000000000000063n,35,200000000000000067n,35,300000000000000063n,7,300000000000000067n,7,400000000000000063n,4,400000000000000067n,4,0];
+	CardObjNew[3647] = [3647,99,"バルムントの宝石(火炎5)","バルムントノホウセキカエン5","",100000000000000063n,10,100000000000000067n,10,200000000000000063n,50,200000000000000067n,50,300000000000000063n,10,300000000000000067n,10,400000000000000063n,5,400000000000000067n,5,0];
+	CardObjNew[3648] = [3648,99,"バルムントの宝石(死屍1)","バルムントノホウセキシシ1","",100000000000000062n,2,100000000000000068n,2,200000000000000062n,15,200000000000000068n,15,300000000000000062n,2,300000000000000068n,2,400000000000000062n,1,400000000000000068n,1,0];
+	CardObjNew[3649] = [3649,99,"バルムントの宝石(死屍2)","バルムントノホウセキシシ2","",100000000000000062n,3,100000000000000068n,3,200000000000000062n,20,200000000000000068n,20,300000000000000062n,3,300000000000000068n,3,400000000000000062n,2,400000000000000068n,2,0];
+	CardObjNew[3650] = [3650,99,"バルムントの宝石(死屍3)","バルムントノホウセキシシ3","",100000000000000062n,5,100000000000000068n,5,200000000000000062n,25,200000000000000068n,25,300000000000000062n,5,300000000000000068n,5,400000000000000062n,3,400000000000000068n,3,0];
+	CardObjNew[3651] = [3651,99,"バルムントの宝石(死屍4)","バルムントノホウセキシシ4","",100000000000000062n,7,100000000000000068n,7,200000000000000062n,35,200000000000000068n,35,300000000000000062n,7,300000000000000068n,7,400000000000000062n,4,400000000000000068n,4,0];
+	CardObjNew[3652] = [3652,99,"バルムントの宝石(死屍5)","バルムントノホウセキシシ5","",100000000000000062n,10,100000000000000068n,10,200000000000000062n,50,200000000000000068n,50,300000000000000062n,10,300000000000000068n,10,400000000000000062n,5,400000000000000068n,5,0];
+	CardObjNew[3653] = [3653,99,"バルムントの宝石(聖殿1)","バルムントノホウセキセイデン1","",100000000000000066n,5,200000000000000066n,20,300000000000000066n,5,400000000000000066n,2,0];
+	CardObjNew[3654] = [3654,99,"バルムントの宝石(聖殿2)","バルムントノホウセキセイデン2","",100000000000000066n,7,200000000000000066n,25,300000000000000066n,7,400000000000000066n,3,0];
+	CardObjNew[3655] = [3655,99,"バルムントの宝石(聖殿3)","バルムントノホウセキセイデン3","",100000000000000066n,10,200000000000000066n,35,300000000000000066n,10,400000000000000066n,4,0];
+	CardObjNew[3656] = [3656,99,"バルムントの宝石(聖殿4)","バルムントノホウセキセイデン4","",100000000000000066n,15,200000000000000066n,50,300000000000000066n,15,400000000000000066n,5,0];
+	CardObjNew[3657] = [3657,99,"バルムントの宝石(聖殿5)","バルムントノホウセキセイデン5","",100000000000000066n,20,200000000000000066n,70,300000000000000066n,20,400000000000000066n,10,0];
+	CardObjNew[3658] = [3658,99,"バルムントの宝石(草原1)","バルムントノホウセキソウゲン1","",100000000000000064n,2,100000000000000065n,2,200000000000000064n,15,200000000000000065n,15,300000000000000064n,2,300000000000000065n,2,400000000000000064n,1,400000000000000065n,1,0];
+	CardObjNew[3659] = [3659,99,"バルムントの宝石(草原2)","バルムントノホウセキソウゲン2","",100000000000000064n,3,100000000000000065n,3,200000000000000064n,20,200000000000000065n,20,300000000000000064n,3,300000000000000065n,3,400000000000000064n,2,400000000000000065n,2,0];
+	CardObjNew[3660] = [3660,99,"バルムントの宝石(草原3)","バルムントノホウセキソウゲン3","",100000000000000064n,5,100000000000000065n,5,200000000000000064n,25,200000000000000065n,25,300000000000000064n,5,300000000000000065n,5,400000000000000064n,3,400000000000000065n,3,0];
+	CardObjNew[3661] = [3661,99,"バルムントの宝石(草原4)","バルムントノホウセキソウゲン4","",100000000000000064n,7,100000000000000065n,7,200000000000000064n,35,200000000000000065n,35,300000000000000064n,7,300000000000000065n,7,400000000000000064n,4,400000000000000065n,4,0];
+	CardObjNew[3662] = [3662,99,"バルムントの宝石(草原5)","バルムントノホウセキソウゲン5","",100000000000000064n,10,100000000000000065n,10,200000000000000064n,50,200000000000000065n,50,300000000000000064n,10,300000000000000065n,10,400000000000000064n,5,400000000000000065n,5,0];
+	CardObjNew[3663] = [3663,99,"バルムントの宝石(氷河1)","バルムントノホウセキヒョウガ1","",100000000000000061n,2,100000000000000066n,2,200000000000000061n,15,200000000000000066n,15,300000000000000061n,2,300000000000000066n,2,400000000000000061n,1,400000000000000066n,1,0];
+	CardObjNew[3664] = [3664,99,"バルムントの宝石(氷河2)","バルムントノホウセキヒョウガ2","",100000000000000061n,3,100000000000000066n,3,200000000000000061n,20,200000000000000066n,20,300000000000000061n,3,300000000000000066n,3,400000000000000061n,2,400000000000000066n,2,0];
+	CardObjNew[3665] = [3665,99,"バルムントの宝石(氷河3)","バルムントノホウセキヒョウガ3","",100000000000000061n,5,100000000000000066n,5,200000000000000061n,25,200000000000000066n,25,300000000000000061n,5,300000000000000066n,5,400000000000000061n,3,400000000000000066n,3,0];
+	CardObjNew[3666] = [3666,99,"バルムントの宝石(氷河4)","バルムントノホウセキヒョウガ4","",100000000000000061n,7,100000000000000066n,7,200000000000000061n,35,200000000000000066n,35,300000000000000061n,7,300000000000000066n,7,400000000000000061n,4,400000000000000066n,4,0];
+	CardObjNew[3667] = [3667,99,"バルムントの宝石(氷河5)","バルムントノホウセキヒョウガ5","",100000000000000061n,10,100000000000000066n,10,200000000000000061n,50,200000000000000066n,50,300000000000000061n,10,300000000000000066n,10,400000000000000061n,5,400000000000000066n,5,0];
+	CardObjNew[3668] = [3668,99,"バルムントの宝石(猛毒1)","バルムントノホウセキモウドク1","",100000000000000065n,5,200000000000000065n,20,300000000000000065n,5,400000000000000065n,2,0];
+	CardObjNew[3669] = [3669,99,"バルムントの宝石(猛毒2)","バルムントノホウセキモウドク2","",100000000000000065n,7,200000000000000065n,25,300000000000000065n,7,400000000000000065n,3,0];
+	CardObjNew[3670] = [3670,99,"バルムントの宝石(猛毒3)","バルムントノホウセキモウドク3","",100000000000000065n,10,200000000000000065n,35,300000000000000065n,10,400000000000000065n,4,0];
+	CardObjNew[3671] = [3671,99,"バルムントの宝石(猛毒4)","バルムントノホウセキモウドク4","",100000000000000065n,15,200000000000000065n,50,300000000000000065n,15,400000000000000065n,5,0];
+	CardObjNew[3672] = [3672,99,"バルムントの宝石(猛毒5)","バルムントノホウセキモウドク5","",100000000000000065n,20,200000000000000065n,70,300000000000000065n,20,400000000000000065n,10,0];
+	CardObjNew[3673] = [3673,99,"バルムントの宝石(霊魂1)","バルムントノホウセキレイコン1","",100000000000000068n,5,200000000000000068n,20,300000000000000068n,5,400000000000000068n,2,0];
+	CardObjNew[3674] = [3674,99,"バルムントの宝石(霊魂2)","バルムントノホウセキレイコン2","",100000000000000068n,7,200000000000000068n,25,300000000000000068n,7,400000000000000068n,3,0];
+	CardObjNew[3675] = [3675,99,"バルムントの宝石(霊魂3)","バルムントノホウセキレイコン3","",100000000000000068n,10,200000000000000068n,35,300000000000000068n,10,400000000000000068n,4,0];
+	CardObjNew[3676] = [3676,99,"バルムントの宝石(霊魂4)","バルムントノホウセキレイコン4","",100000000000000068n,15,200000000000000068n,50,300000000000000068n,15,400000000000000068n,5,0];
+	CardObjNew[3677] = [3677,99,"バルムントの宝石(霊魂5)","バルムントノホウセキレイコン5","",100000000000000068n,20,200000000000000068n,70,300000000000000068n,20,400000000000000068n,10,0];
+	// --- 2025-07-15 ---
+	CardObjNew[3678] = [3678,99,"潜在解放(スピリットハンドラーXIV)","センザイカイホウスピリットハンドラー14","",0];
+	CardObjNew[3679] = [3679,100,0,"","",20247,100,0];
+	CardObjNew[3680] = [3680,99,"潜在解放(蜃気楼&不知火XIII)","センザイカイホウシンキロウアンドシラヌイ13","",0];
+	CardObjNew[3681] = [3681,100,0,"","",20254,200,20256,200,0];
+	CardObjNew[3682] = [3682,99,"潜在解放(カーディナルXV)","センザイカイホウカーディナル15","",0];
+	CardObjNew[3683] = [3683,100,0,"","",12029,100,12027,100,12026,100,0];
+	CardObjNew[3684] = [3684,99,"潜在覚醒(クリアランスI)","センザイカクセイクリアランス1","",0];
+	CardObjNew[3685] = [3685,100,0,"","",19490,1000,0];
+	// --- 2025-08-06 ---
+	CardObjNew[3686] = [3686,1,"偽神の夏休み","ギシンノナツヤスミ","",89,10,100000000000089,1,0];
+	CardObjNew[3687] = [3687,100,0,"","魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",298,50,0];
+	CardObjNew[3688] = [3688,1,"限界科学者の夏休み","ゲンカイカガクシャノナツヤスミ","",80,10,100000000000080,1,0];
+	CardObjNew[3689] = [3689,100,0,"","物理攻撃命中時、一定確率で10秒間、物理攻撃命中時、敵に与えたダメージの1%をHPとして吸収",25,10,210,10,0];
+	// --- 2025-08-12 ---
+	CardObjNew[3690] = [3690,99,"潜在解放(マイスターXIV)","センザイカイホウマイスター14","",0];
+	CardObjNew[3691] = [3691,100,0,"","",20237,100,20076,100,0];
+	CardObjNew[3692] = [3692,99,"潜在解放(ドラゴンナイトXV)","センザイカイホウドラゴンナイト15","",0];
+	CardObjNew[3693] = [3693,100,0,"","",20241,100,0];
+	CardObjNew[3694] = [3694,99,"潜在解放(インペリアルガードXIV)","センザイカイホウインペリアルガード14","",0];
+	CardObjNew[3695] = [3695,100,0,"","",20096,500,0];
+	CardObjNew[3696] = [3696,99,"潜在解放(スピリットハンドラーXV)","センザイカイホウスピリットハンドラー15","",0];
+	CardObjNew[3697] = [3697,100,0,"","",20275,200,0];
+	CardObjNew[3698] = [3698,99,"潜在覚醒(マグロシールドI)","センザイカクセイマグロシールドワン","",0];
+	CardObjNew[3699] = [3699,100,0,"","",11913,100,0];
+	// --- 2025-08-26 ---
+	CardObjNew[3700] = [3700,1,"メジャイ","メジャイ","物理・魔法攻撃時、[古代神殿アケト]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3701] = [3701,2,"ヘカ","ヘカ","",89,5,8000380,1,0];
+	CardObjNew[3702] = [3702,2,"メジェド","メジェド","",500000000000000012n,10,0];
+	CardObjNew[3703] = [3703,4,"ウプウアウト","ウプウアウト","",100038,1,9000038,10,0];
+	CardObjNew[3704] = [3704,4,"死者の案内人","シシャノアンナイニン","",30,50,36,50,43,50,40,50,0];
+	CardObjNew[3705] = [3705,100,0,"","[シレンティウム]Lv3使用可能",15,50,0];
+	CardObjNew[3706] = [3706,1,"ジャックオネット","ジャックオネット","物理・魔法攻撃時、[ニブルヘイムカボチャ農場]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3707] = [3707,2,"リアメット","リアメット","",56000000155,25,56000000159,25,44000000151,50,44000000156,50,0];
+	CardObjNew[3708] = [3708,6,"悪夢のピアメット","アクムノピアメット","",89,10,171,50,176,50,16,-50,0];
+	CardObjNew[3709] = [3709,100,0,"","",89,10,220,209,0];
+	CardObjNew[3710] = [3710,6,"ガーリン","ガーリン","",100342,3,0];
+	CardObjNew[3711] = [3711,7,"ヴィオレン","ヴィオレン","",215,5,47000000080,5,0];
+	CardObjNew[3712] = [3712,7,"スパイダリン","スパイダリン","",342,10,0];
+	// --- 2025-09-10 ---
+	CardObjNew[3713] = [3713,99,"潜在解放(バイオロXV)","センザイカイホウバイオロ15","",0];
+	CardObjNew[3714] = [3714,100,0,"","",20240,100,0];
+	CardObjNew[3715] = [3715,99,"潜在解放(ナイトウォッチXII)","センザイカイホウナイトウォッチ12","",0];
+	CardObjNew[3716] = [3716,100,0,"","",20217,200,0];
+	CardObjNew[3717] = [3717,99,"潜在解放(シャドウクロスXIII)","センザイカイホウシャドウクロス13","",0];
+	CardObjNew[3718] = [3718,100,0,"","",20014,200,0];
+	// --- 2025-09-20 ---
+	CardObjNew[3719] = [3719,99,"潜在解放(アビスチェイサーX)","センザイカイホウアビスチェイサー10","",24102,5,24109,3,24305,3,24307,6,7024102,6,7024109,4,7024305,4,7024307,7,9024102,6,9024109,4,9024305,4,9024307,7,0];
+	CardObjNew[3720] = [3720,99,"潜在解放(アビスチェイサーXI)","センザイカイホウアビスチェイサー11","",24107,6,24105,10,24308,5,7024107,7,7024105,10,7024308,6,9024107,7,9024105,10,9024308,6,0];
+	CardObjNew[3721] = [3721,99,"潜在解放(アビスチェイサーXII)","センザイカイホウアビスチェイサー12","",24100,6,24106,6,24306,6,24101,3,24305,3,7024100,7,7024106,7,7024306,7,7024101,4,7024305,4,9024100,7,9024106,7,9024306,7,9024101,4,9024305,4,0];
+	CardObjNew[3722] = [3722,99,"潜在解放(インクイジターVIII)","センザイカイホウインクイジター8","",24113,6,24123,5,24124,10,24302,3,7024113,7,7024123,6,7024124,10,7024302,4,9024113,7,9024123,6,9024124,10,9024302,4,0];
+	CardObjNew[3723] = [3723,99,"潜在解放(インペリアルガードIX)","センザイカイホウインペリアルガード9","",24095,8,24309,8,24092,14,24094,5,24310,4,7024095,8,7024309,8,7024092,14,7024094,5,7024310,5,9024095,8,9024309,8,9024092,15,9024094,6,9024310,5,0];
+	CardObjNew[3724] = [3724,99,"潜在解放(インペリアルガードX)","センザイカイホウインペリアルガード10","",24096,14,24093,6,24311,11,7024096,14,7024093,7,7024311,12,9024096,15,9024093,7,9024311,12,0];
+	CardObjNew[3725] = [3725,99,"潜在解放(ウィンドホークX)","センザイカイホウウィンドホーク10","",24046,5,24291,5,24043,4,7024046,6,7024291,6,7024043,4,9024046,6,9024291,6,9024043,4,0];
+	CardObjNew[3726] = [3726,99,"潜在解放(エレメンタルマスターIX)","センザイカイホウエレメンタルマスター9","",24149,14,24147,14,24290,14,24146,13,24150,13,24148,11,24157,17,7024149,15,7024147,15,7024146,13,7024150,13,7024148,12,7024157,18,7024290,14,9024149,15,9024147,15,9024146,14,9024150,14,9024290,14,9024148,12,9024157,18,0];
+	CardObjNew[3727] = [3727,99,"潜在解放(カーディナルX)","センザイカイホウカーディナル10","",24028,14,24039,14,24313,14,24033,22,7024028,15,7024039,15,7024313,15,7024033,22,9024028,15,9024039,15,9024313,15,9024033,22,0];
+	CardObjNew[3728] = [3728,99,"潜在解放(シャドウクロスX)","センザイカイホウシャドウクロス10","",24021,3,24016,4,24020,10,24312,7,7024021,3,7024016,4,7024020,10,7024312,7,9024021,4,9024016,4,9024020,11,9024312,7,0];
+	CardObjNew[3729] = [3729,99,"潜在解放(スピリットハンドラーX)","センザイカイホウスピリットハンドラー10","",24221,3,24222,6,24223,5,24303,5,7024221,3,7024222,7,7024223,6,7024303,6,9024221,4,9024222,7,9024223,6,9024303,6,0];
+	CardObjNew[3730] = [3730,99,"潜在解放(スピリットハンドラーXI)","センザイカイホウスピリットハンドラー11","",24247,3,24248,6,24304,5,7024247,4,7024248,7,7024304,6,9024247,4,9024248,7,9024304,6,0];
+	CardObjNew[3731] = [3731,99,"潜在解放(ドラゴンナイトVIII)","センザイカイホウドラゴンナイト8","",24008,6,24010,6,24009,6,24295,3,7024008,6,7024010,6,7024009,6,7024295,4,9024008,7,9024010,7,9024009,7,9024295,4,0];
+	CardObjNew[3732] = [3732,99,"潜在解放(トルバドゥール&トルヴェールVII)","センザイカイホウトルバドゥールアンドトルヴェール7","",24134,1,24133,4,24298,7,7024134,2,7024133,4,7024298,8,9024134,2,9024133,5,9024298,8,0];
+	CardObjNew[3733] = [3733,99,"潜在解放(ナイトウォッチVII)","センザイカイホウナイトウォッチ7","",24216,3,24218,3,24217,6,24219,6,24220,7,24296,7,24297,9,7024216,3,7024218,3,7024217,6,7024219,6,7024220,8,7024296,7,7024297,9,9024216,4,9024218,4,9024217,6,9024219,6,9024220,8,9024296,8,9024297,9,0];
+	CardObjNew[3734] = [3734,99,"潜在解放(バイオロIX)","センザイカイホウバイオロ9","",24239,10,24315,10,24314,12,7024239,10,7024315,10,7024314,12,9024239,10,9024315,10,9024314,12,0];
+	CardObjNew[3735] = [3735,99,"潜在解放(マイスターX)","センザイカイホウマイスター10","",24072,10,24292,10,24242,8,24293,8,24073,14,7024072,10,7024292,10,7024242,8,7024293,8,7024073,15,9024072,10,9024292,10,9024242,9,9024293,9,9024073,15,0];
+	CardObjNew[3736] = [3736,99,"潜在解放(マイスターXI)","センザイカイホウマイスター11","",24237,8,24076,8,24238,4,24294,10,7024237,8,7024076,8,7024238,5,7024294,10,9024237,9,9024076,9,9024238,5,9024294,10,0];
+	CardObjNew[3737] = [3737,99,"潜在解放(天帝VII)","センザイカイホウテンテイ7","",24175,5,24176,7,24177,7,24179,7,24180,7,24178,9,24299,9,24300,9,7024175,5,7024176,8,7024177,8,7024179,8,7024180,8,7024178,9,7024299,9,7024300,9,9024175,5,9024176,8,9024177,8,9024179,8,9024180,8,9024178,9,9024299,9,9024300,9,0];
+	CardObjNew[3738] = [3738,99,"潜在解放(天帝VIII)","センザイカイホウテンテイ8","",24181,9,24182,9,24183,9,24301,9,7024181,9,7024182,9,7024183,9,7024301,9,9024181,9,9024182,9,9024183,9,9024301,9,0];
+	// --- 2025-10-02 ---
+	CardObjNew[3739] = [3739,5,"アイスシーホース","アイスシーホース","",61,25,7000060,15,9000061,25,0];
+	CardObjNew[3740] = [3740,5,"侵食されたタン","シンショクサレタタン","",80,15,89,15,67,50,9000063,50,9000078,10,0];
+	CardObjNew[3741] = [3741,100,0,"","",60,20,159,50,0];
+	CardObjNew[3742] = [3742,1,"シーウィンド","シーウィンド","物理・魔法攻撃時、[ヨルンビル]、[隆起した大地 北部]、[隆起した大地 南部]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3743] = [3743,1,"ヨスタシェフ","ヨスタシェフ","物理攻撃でモンスターを倒した時、HP + 200 , SP + 20",0];
+	CardObjNew[3744] = [3744,1,"ヨルトゥス執行官","ヨルトゥスシッコウカン","",101,1,346,20,340,20,0];
+	CardObjNew[3745] = [3745,100,0,"","",101,1,89,10,0];
+	CardObjNew[3746] = [3746,1,"ヨルトゥス調停官","ヨルトゥスチョウテイカン","",101,1,347,20,340,20,0];
+	CardObjNew[3747] = [3747,100,0,"","",101,1,89,10,0];
+	CardObjNew[3748] = [3748,1,"ヨルドス処刑官","ヨルドスショケイカン","物理・魔法攻撃時、[ギムレー 1階]、[ギムレー 2階]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[3749] = [3749,2,"アイスホーン","アイスホーン","",61,10,360,100,0];
+	CardObjNew[3750] = [3750,100,0,"","[Mジャックフロスト]で受けるダメージ - 100%",61,10,0];
+	CardObjNew[3751] = [3751,2,"クリオリマ","クリオリマ","",100091,1,0];
+	CardObjNew[3752] = [3752,2,"スカレッグ","スカレッグ","",18,50,7000018,50,9000018,50,0];
+	CardObjNew[3753] = [3753,2,"ヨスコプス守護者","ヨスコプスシュゴシャ","",19,5,7000019,5,9000019,5,0];
+	CardObjNew[3754] = [3754,2,"ヨスタクリーナー","ヨスタクリーナー","",293,25,0];
+	CardObjNew[3755] = [3755,2,"ヨルカ牧師","ヨルカボクシ","",220,25,0];
+	CardObjNew[3756] = [3756,2,"ロックストライカー","ロックストライカー","",100010,1,9000070,8,0];
+	CardObjNew[3757] = [3757,4,"ヴェレリン","ヴェレリン","",65,5,150,100,0];
+	CardObjNew[3758] = [3758,4,"ヨスコプス魔術師","ヨスコプス魔術師","",100171,1,9000171,10,0];
+	CardObjNew[3759] = [3759,4,"ヨスタフィクサー","ヨスタフィクサー","",80,5,8000080,10,0];
+	CardObjNew[3760] = [3760,4,"ヨルミ","ヨルミ","",100357,1,9000357,10,0];
+	CardObjNew[3761] = [3761,4,"ヨルミ宣教師","ヨルミセンキョウシ","",100356,1,9000356,10,0];
+	CardObjNew[3762] = [3762,4,"幽霊船の艦長","ユウレイセンノカンチョウ","物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収",0];
+	CardObjNew[3763] = [3763,100,0,"","物理攻撃命中時、一定確率で敵に与えたダメージの1%をSPとして吸収",15,50,0];
+	CardObjNew[3764] = [3764,6,"スキップスキッパー","スキップスキッパー","",100019,1,9000019,10,0];
+	CardObjNew[3765] = [3765,6,"レタースター","レタースター","",86,10,0];
+	CardObjNew[3766] = [3766,7,"ヨスタコレクター","ヨスタコレクター","物理攻撃命中時、一定確率で敵にオートスペル[スティール]Lv5発動",0];
+	CardObjNew[3767] = [3767,7,"ヨスタネゴシエーター","ヨスタネゴシエーター","[オーバーチャージ]Lv5使用可能",0];
+	CardObjNew[3768] = [3768,7,"ヨルカ商人","ヨルカショウニン","[アイテム鑑定]Lv1使用可能",0];
+	CardObjNew[3769] = [3769,7,"ヨルトゥス司教","ヨルトゥスシキョウ","",346,10,0];
+	CardObjNew[3770] = [3770,7,"ヨルトゥス呪術師","ヨルトゥスジュジュツシ","",347,10,0];
+	CardObjNew[3771] = [3771,7,"ヨルドス裁判官","ヨルドスサイバンカン","",5056,25,13056,-5000,0];
+	CardObjNew[3772] = [3772,7,"ヨルドス審問官","ヨルドスシンモンカン","",19,10,0];
+	CardObjNew[3773] = [3773,200,"アイヴァン・ウィグナー","アイヴァンウィグナー","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3774] = [3774,100,0,"","",6113,25,6123,25,6124,25,6302,25,6121,25,6117,25,6122,25,6119,25,6120,25,6118,25,0];
+	CardObjNew[3775] = [3775,200,"イアナ・オペルタ","イアナオペルタ","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3776] = [3776,100,0,"","",6165,25,6163,25,6166,25,6164,25,6239,25,6314,25,6315,25,6240,25,0];
+	CardObjNew[3777] = [3777,200,"イルジェ・エル・ハイネン","イルジェエルハイネン","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3778] = [3778,100,0,"","",6064,25,6069,25,6056,25,6070,25,6063,25,6068,25,6060,25,6067,25,6059,25,6057,25,6053,25,6066,25,0];
+	CardObjNew[3779] = [3779,200,"ヴィルヘルム・レベンブルグ","ヴィルヘルムレベンブルグ","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3780] = [3780,100,0,"","",6197,25,6198,25,6199,25,6200,25,6201,25,6195,25,6196,25,6202,25,0];
+	CardObjNew[3781] = [3781,200,"エフェスト・バルター・メガス","エフェストバルターメガス","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3782] = [3782,100,0,"","",6072,25,6242,25,6073,25,6292,25,6293,25,6237,25,6238,25,6294,25,6076,25,0];
+	CardObjNew[3783] = [3783,200,"オーレリー・プティ","オーレリープティ","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3784] = [3784,100,0,"","",6149,25,6146,25,6147,25,6150,25,6148,25,6157,25,6290,25,0];
+	CardObjNew[3785] = [3785,200,"ガラシア・ネリウス","ガラシアネリウス","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3786] = [3786,100,0,"","",6095,25,6092,25,6094,25,6309,25,6310,25,6096,25,6093,25,6311,25,0];
+	CardObjNew[3787] = [3787,200,"ギュンター","ギュンター","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3788] = [3788,100,0,"","",6100,25,6101,25,6106,25,6305,25,6306,25,6102,25,6109,25,6307,25,6103,25,6107,25,6105,25,6308,25,0];
+	CardObjNew[3789] = [3789,200,"タン","タン","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3790] = [3790,100,0,"","",6022,25,6014,25,6013,25,6021,25,6016,25,6020,25,6312,25,0];
+	CardObjNew[3791] = [3791,200,"トリス","トリス","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3792] = [3792,100,0,"","",6008,25,6010,25,6012,25,6009,25,6295,25,6241,25,6002,25,6004,25,6005,25,0];
+	CardObjNew[3793] = [3793,200,"ナドヨ","ナドヨ","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3794] = [3794,100,0,"","",6221,25,6222,25,6223,25,6303,25,6247,25,6248,25,6304,25,0];
+	CardObjNew[3795] = [3795,200,"マリステラ・バルター","マリステラバルター","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3796] = [3796,100,0,"","",6175,25,6176,25,6177,25,6178,25,6179,25,6180,25,6184,25,6299,25,6300,25,6181,25,6182,25,6183,25,6301,25,0];
+	CardObjNew[3797] = [3797,200,"ヨハン","ヨハン","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3798] = [3798,100,0,"","",6051,25,6047,25,6046,25,6043,25,6291,25,6052,25,6050,25,6049,25,6048,25,0];
+	CardObjNew[3799] = [3799,200,"ラインハルト・レベンブルグ","ラインハルトレベンブルグ","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3800] = [3800,100,0,"","",6028,25,6033,25,6039,25,6313,25,6037,25,6031,25,0];
+	CardObjNew[3801] = [3801,200,"ラウラ・バルダリス","ラウラバルダリス","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3802] = [3802,100,0,"","",6227,25,6225,25,6226,25,6229,25,6230,25,6228,25,6263,25,6264,25,6265,25,6266,25,6253,25,6254,25,6255,25,6256,25,6257,25,6258,25,0];
+	CardObjNew[3803] = [3803,200,"ラライラ・ナザール・ウィグナー","ラライラナザールウィグナー","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3804] = [3804,100,0,"","",6132,25,6131,25,6134,25,6133,25,6298,25,0];
+	CardObjNew[3805] = [3805,200,"リー","リー","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3806] = [3806,100,0,"","",6235,25,6236,25,6267,25,6268,25,6231,25,6232,25,6233,25,6234,25,6270,25,6269,25,0];
+	CardObjNew[3807] = [3807,200,"リハルト・リハルト","リハルトリハルト","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[3808] = [3808,100,0,"","",6216,25,6217,25,6218,25,6219,25,6220,25,6296,25,6297,25,6249,25,6250,25,6251,25,6252,25,0];
+	// --- 2025-10-14 ---
+	CardObjNew[3809] = [3809,99,"プロテクトファイア","プロテクトファイア","",63,95,0];
+	CardObjNew[3810] = [3810,99,"プロテクトウォーター","プロテクトウォーター","",61,95,0];
+	CardObjNew[3811] = [3811,99,"プロテクトウィンド","プロテクトウィンド","",64,95,0];
+	CardObjNew[3812] = [3812,99,"プロテクトアース","プロテクトアース","",62,95,0];
+	CardObjNew[3813] = [3813,99,"プロテクトセイント","プロテクトセイント","",66,95,0];
+	CardObjNew[3814] = [3814,99,"プロテクトダークネス","プロテクトダークネス","",67,95,0];
+	CardObjNew[3815] = [3815,99,"プロテクトテレキネシス","プロテクトテレキネシス","",68,95,0];
+	CardObjNew[3816] = [3816,99,"プロテクトポイズン","プロテクトポイズン","",65,95,0];
+	CardObjNew[3817] = [3817,99,"プロテクトアンデッド","プロテクトアンデッド","",69,95,0];
+	CardObjNew[3818] = [3818,99,"潜在解放(ハイパーノービスXVI)","センザイカイホウハイパーノービス16","",0];
+	CardObjNew[3819] = [3819,100,0,"","",20267,200,0];
+	CardObjNew[3820] = [3820,99,"潜在解放(ソウルアセティックXIII)","センザイカイホウソウルアセティック13","",0];
+	CardObjNew[3821] = [3821,100,0,"","",20195,300,0];
+	CardObjNew[3822] = [3822,99,"潜在解放(ナイトウォッチXIII)","センザイカイホウナイトウォッチ13","",0];
+	CardObjNew[3823] = [3823,100,0,"","",20218,300,0];
+	CardObjNew[3824] = [3824,99,"潜在解放(ハイパーノービスXV)","センザイカイホウハイパーノービス15","",0];
+	CardObjNew[3825] = [3825,100,0,"","",20231,200,0];
+	CardObjNew[3826] = [3826,99,"潜在解放(トルバドゥール&トルヴェールXI)","センザイカイホウトルバドゥールアンドトルヴェール11","",0];
+	CardObjNew[3827] = [3827,100,0,"","",20132,100,0];
+	CardObjNew[3828] = [3828,99,"潜在解放(スピリットハンドラーXVI)","センザイカイホウスピリットハンドラー16","",0];
+	CardObjNew[3829] = [3829,100,0,"","",20223,100,0];
+	// --- 2025-11-26 ---
+	CardObjNew[3830] = [3830,99,"グロウアース","グロウアース","",100062,7,0];
+	CardObjNew[3831] = [3831,99,"グロウウィンド","グロウウィンド","",100064,7,0];
+	CardObjNew[3832] = [3832,99,"グロウウォーター","グロウウォーター","",100061,7,0];
+	CardObjNew[3833] = [3833,99,"グロウセイント","グロウセイント","",100066,7,0];
+	CardObjNew[3834] = [3834,99,"グロウダークネス","グロウダークネス","",100067,7,0];
+	CardObjNew[3835] = [3835,99,"グロウテレキネシス","グロウテレキネシス","",100068,7,0];
+	CardObjNew[3836] = [3836,99,"グロウファイア","グロウファイア","",100063,7,0];
+	CardObjNew[3837] = [3837,99,"グロウポイズン","グロウポイズン","",100065,7,0];
+	CardObjNew[3838] = [3838,99,"偽りの心臓","イツワリノシンゾウ","",260,10,265,10,0];
+	// --- 2025-11-28 ---
+	CardObjNew[3839] = [3839,99,"潜在解放(ドラゴンナイトXVI)","センザイカイホウドラゴンナイト16","",0];
+	CardObjNew[3840] = [3840,100,0,"","",20295,300,0];
+	CardObjNew[3841] = [3841,99,"潜在解放(インペリアルガードXV)","センザイカイホウインペリアルガード15","",0];
+	CardObjNew[3842] = [3842,100,0,"","",20309,300,20310,300,0];
+	CardObjNew[3843] = [3843,99,"潜在解放(アークメイジXVI)","センザイカイホウアークメイジ16","",0];
+	CardObjNew[3844] = [3844,100,0,"","",14064,1000,14056,1000,14063,1000,14060,1000,0];
+	CardObjNew[3845] = [3845,99,"潜在解放(アークメイジXVII)","センザイカイホウアークメイジ17","",0];
+	CardObjNew[3846] = [3846,100,0,"","",14064,500,14056,500,14063,500,14060,500,0];
+	CardObjNew[3847] = [3847,99,"潜在解放(エレメンタルマスターXIV)","センザイカイホウエレメンタルマスター14","",0];
+	CardObjNew[3848] = [3848,100,0,"","",20290,300,0];
+	CardObjNew[3849] = [3849,99,"潜在解放(エレメンタルマスターXV)","センザイカイホウエレメンタルマスター15","",0];
+	CardObjNew[3850] = [3850,100,0,"","魔法攻撃命中時、一定確率で20秒間、<br>[コンフラグレーション]、[ライトニングランド]の消費SP - 439<br>[ダイヤモンドストーム]、[テラドライブ]の消費SP - 399<br>[ベナムスワンプ]の消費SP - 349<br>[エレメンタルバスター]の消費SP - 529<br>[サイキックストリーム]の消費SP - 419",0];
+	CardObjNew[3851] = [3851,99,"潜在解放(ウィンドホークXVI)","センザイカイホウウィンドホーク16","",0];
+	CardObjNew[3852] = [3852,100,0,"","",221,236,0];
+	CardObjNew[3853] = [3853,99,"潜在解放(ウィンドホークXVII)","センザイカイホウウィンドホーク17","",0];
+	CardObjNew[3854] = [3854,100,0,"","",221,247,0];
+	CardObjNew[3855] = [3855,99,"潜在解放(トルバドゥール&トルヴェールXII)","センザイカイホウトルバドゥールアンドトルヴェール12","",0];
+	CardObjNew[3856] = [3856,100,0,"","",14298,500,0];
+	CardObjNew[3857] = [3857,99,"潜在解放(カーディナルXVI)","センザイカイホウカーディナル16","",0];
+	CardObjNew[3858] = [3858,100,0,"","",14313,500,0];
+	CardObjNew[3859] = [3859,99,"潜在解放(カーディナルXVII)","センザイカイホウカーディナル17","",0];
+	CardObjNew[3860] = [3860,100,0,"","",14313,1000,0];
+	CardObjNew[3861] = [3861,99,"潜在解放(インクイジターXIII)","センザイカイホウインクイジター13","",0];
+	CardObjNew[3862] = [3862,100,0,"","",14302,500,0];
+	CardObjNew[3863] = [3863,99,"潜在解放(シャドウクロスXIV)","センザイカイホウシャドウクロス14","",0];
+	CardObjNew[3864] = [3864,100,0,"","",20312,200,0];
+	CardObjNew[3865] = [3865,99,"潜在解放(シャドウクロスXV)","センザイカイホウシャドウクロス15","",0];
+	CardObjNew[3866] = [3866,100,0,"","物理攻撃命中時、一定確率で20秒間、<br>[シャドウスタブ]の消費SP - 99<br>[エターナルスラッシュ]の消費SP - 119<br>[フェイタルシャドウクロー]の消費SP - 309<br>[クロススラッシュ]の消費SP - 209",0];
+	CardObjNew[3867] = [3867,99,"潜在解放(アビスチェイサーXV)","センザイカイホウアビスチェイサー15","",0];
+	CardObjNew[3868] = [3868,100,0,"","",14308,500,0];
+	CardObjNew[3869] = [3869,99,"潜在解放(アビスチェイサーXVI)","センザイカイホウアビスチェイサー16","",0];
+	CardObjNew[3870] = [3870,100,0,"","",14105,1000,0];
+	CardObjNew[3871] = [3871,99,"潜在解放(マイスターXV)","センザイカイホウマイスター15","",0];
+	CardObjNew[3872] = [3872,100,0,"","",20292,200,20293,200,0];
+	CardObjNew[3873] = [3873,99,"潜在解放(バイオロXVI)","センザイカイホウバイオロ16","",0];
+	CardObjNew[3874] = [3874,100,0,"","",20315,200,0];
+	CardObjNew[3875] = [3875,99,"潜在解放(バイオロXVII)","センザイカイホウバイオロ17","",0];
+	CardObjNew[3876] = [3876,100,0,"","物理攻撃命中時、一定確率で20秒間、<br>[エクスプロッシブパウダー][ダストエクスプロージョン]の消費SP - 299<br>[ミステリーパウダー]の消費SP - 359",0];
+	CardObjNew[3877] = [3877,99,"潜在解放(天帝XII)","センザイカイホウテンテイ12","",0];
+	CardObjNew[3878] = [3878,100,0,"","",20301,1000,0];
+	CardObjNew[3879] = [3879,99,"潜在解放(ソウルアセティックXIV)","センザイカイホウソウルアセティック14","",0];
+	CardObjNew[3880] = [3880,100,0,"","魔法攻撃命中時、一定確率で20秒間、<br>[青龍符]の消費SP - 199<br>[白虎符]、[朱雀符]、[玄武符]、[四方五行陣]の消費SP - 359<br>[四方神符]の消費SP - 299",0];
+	CardObjNew[3881] = [3881,99,"潜在解放(蜃気楼&不知火XIV)","センザイカイホウシンキロウアンドシラヌイ14","",0];
+	CardObjNew[3882] = [3882,100,0,"","",20263,300,0];
+	CardObjNew[3883] = [3883,99,"潜在解放(蜃気楼&不知火XV)","センザイカイホウシンキロウアンドシラヌイ15","",0];
+	CardObjNew[3884] = [3884,100,0,"","物理攻撃命中時、一定確率で20秒間、<br>[苦無 -歪曲-]、[幻術 -苦無-]の消費SP - 279<br>[苦無 -回転-]の消費SP - 229<br>[苦無 -屈折-]の消費SP - 189",0];
+	CardObjNew[3885] = [3885,99,"潜在解放(ナイトウォッチXIV)","センザイカイホウナイトウォッチ14","",0];
+	CardObjNew[3886] = [3886,100,0,"","",14297,500,0];
+	CardObjNew[3887] = [3887,99,"潜在解放(ナイトウォッチXV)","センザイカイホウナイトウォッチ15","",0];
+	CardObjNew[3888] = [3888,100,0,"","物理攻撃命中時、一定確率で20秒間、<br>[スパイラルシューティング]の消費SP - 179<br>[ワイルドファイア]の消費SP - 229<br>[ミッドナイトフォーリン]の消費SP - 269",0];
+	CardObjNew[3889] = [3889,99,"潜在解放(ハイパーノービスXVII)","センザイカイホウハイパーノービス17","",0];
+	CardObjNew[3890] = [3890,100,0,"","",14270,500,14269,500,0];
+	CardObjNew[3891] = [3891,99,"潜在解放(ハイパーノービスXVIII)","センザイカイホウハイパーノービス18","",0];
+	CardObjNew[3892] = [3892,100,0,"","",14270,1000,14269,1000,0];
+	CardObjNew[3893] = [3893,99,"潜在解放(スピリットハンドラーXVII)","センザイカイホウスピリットハンドラー17","",0];
+	CardObjNew[3894] = [3894,100,0,"","",14303,500,0];
+	CardObjNew[3895] = [3895,5,"憤怒のアークビショップマーガレッタ(MVP)","フンヌノアークビショップマーガレッタMVP","",346,50,66,70,0];
+	CardObjNew[3896] = [3896,100,0,"","",89,10,220,211,0];
+	CardObjNew[3897] = [3897,9,"憤怒のアークビショップマーガレッタ","フンヌノアークビショップマーガレッタ","",91,5,5000000000000091,15,0];
+	CardObjNew[3898] = [3898,5,"憤怒のウォーロックカトリーヌ(MVP)","フンヌノウォーロックカトリーヌMVP","",347,100,67,50,154,100,0];
+	CardObjNew[3899] = [3899,100,0,"","魔法攻撃命中時、敵を暗黒状態にする",67,50,0];
+	CardObjNew[3900] = [3900,1,"憤怒のウォーロックカトリーヌ","フンヌノウォーロックカトリーヌ","",89,5,5000000000000089,15,0];
+	CardObjNew[3901] = [3901,5,"憤怒のギロチンクロスエレメス(MVP)","フンヌノギロチンクロスエレメスMVP","",86,10,210,10,64,70,0];
+	CardObjNew[3902] = [3902,100,0,"","物理攻撃命中時、一定確率で10秒間、毒属性物理攻撃力 + 50%",86,15,0];
+	CardObjNew[3903] = [3903,9,"憤怒のギロチンクロスエレメス","フンヌノギロチンクロスエレメス","",210,5,5000000000000210,5,0];
+	CardObjNew[3904] = [3904,5,"憤怒のジェネティックエミュール(MVP)","フンヌノジェネティックエミュールMVP","",10,25,25,10,63,70,0];
+	CardObjNew[3905] = [3905,100,0,"","物理攻撃命中時、一定確率で10秒間、火属性物理攻撃力 + 50%",10,25,0];
+	CardObjNew[3906] = [3906,6,"憤怒のジェネティックエミュール","フンヌノジェネティックエミュール","",70,5,5000000000000070,15,0];
+	CardObjNew[3907] = [3907,5,"憤怒のシャドウチェイサーガーティー(MVP)","フンヌノシャドウチェイサーガーティーMVP","",86,10,210,10,61,70,0];
+	CardObjNew[3908] = [3908,100,0,"","物理攻撃命中時、一定確率で10秒間、毒属性物理攻撃力 + 50%",86,15,0];
+	CardObjNew[3909] = [3909,9,"憤怒のシャドウチェイサーガーティー","フンヌノシャドウチェイサーガーティー","",25,5,5000000000000025,5,0];
+	CardObjNew[3910] = [3910,5,"憤怒のソーサラーセリア(MVP)","フンヌノソーサラーセリアMVP","絶対に猛毒状態にならない",345,100,65,50,0];
+	CardObjNew[3911] = [3911,100,0,"","魔法攻撃命中時、敵を猛毒状態にする",65,50,0];
+	CardObjNew[3912] = [3912,6,"憤怒のソーサラーセリア","フンヌノソーサラーセリア","",89,5,5000000000000089,15,0];
+	CardObjNew[3913] = [3913,5,"憤怒のミンストレルアルフォシオ(MVP)","フンヌノミンストレルアルフォシオMVP","",9,50,25,10,62,70,0];
+	CardObjNew[3914] = [3914,100,0,"","物理攻撃命中時、一定確率で10秒間、風属性物理攻撃力 + 50%",9,50,0];
+	CardObjNew[3915] = [3915,6,"憤怒のミンストレルアルフォシオ","フンヌノミンストレルアルフォシオ","",152,25,5000000000000152,25,0];
+	CardObjNew[3916] = [3916,5,"憤怒のメカニックハワード(MVP)","フンヌノメカニックハワードMVP","",10,25,210,10,62,70,0];
+	CardObjNew[3917] = [3917,100,0,"","物理攻撃命中時、一定確率で10秒間、地属性物理攻撃力 + 50%",10,25,0];
+	CardObjNew[3918] = [3918,1,"憤怒のメカニックハワード","フンヌノメカニックハワード","",70,15,5000000000000070,15,0];
+	CardObjNew[3919] = [3919,5,"憤怒のルーンナイトセイレン(MVP)","フンヌノルーンナイトセイレンMVP","",15,10,80,10,63,50,0];
+	CardObjNew[3920] = [3920,100,0,"","物理攻撃命中時、一定確率で10秒間、聖属性物理攻撃力 + 100%",15,10,0];
+	CardObjNew[3921] = [3921,11,"憤怒のルーンナイトセイレン","フンヌノルーンナイトセイレン","",25,4,5000000000000025,4,0];
+	CardObjNew[3922] = [3922,5,"憤怒のレンジャーセシル(MVP)","フンヌノレンジャーセシルMVP","",9,50,25,10,64,70,0];
+	CardObjNew[3923] = [3923,100,0,"","物理攻撃命中時、一定確率で10秒間、風属性物理攻撃力 + 50%",9,50,0];
+	CardObjNew[3924] = [3924,6,"憤怒のレンジャーセシル","フンヌノレンジャーセシル","",80,10,5000000000000080,10,0];
+	CardObjNew[3925] = [3925,5,"憤怒のロイヤルガードランデル(MVP)","フンヌノロイヤルガードランデルMVP","",15,10,210,10,63,70,0];
+	CardObjNew[3926] = [3926,100,0,"","物理攻撃命中時、一定確率で10秒間、聖属性物理攻撃力 + 50%",15,10,0];
+	CardObjNew[3927] = [3927,11,"憤怒のロイヤルガードランデル","フンヌノロイヤルガードランデル","",210,4,5000000000000210,4,0];
+	CardObjNew[3928] = [3928,5,"憤怒のワンダラートレンティーニ(MVP)","フンヌノワンダラートレンティーニMVP","",340,50,60,35,0];
+	CardObjNew[3929] = [3929,100,0,"","",89,10,220,212,0];
+	CardObjNew[3930] = [3930,6,"憤怒のワンダラートレンティーニ","フンヌノワンダラートレンティーニ","",151,25,5000000000000151,25,0];
+	CardObjNew[3931] = [3931,5,"憤怒の修羅チェン(MVP)","フンヌノシュラチェンMVP","",17,50,25,10,61,70,0];
+	CardObjNew[3932] = [3932,100,0,"","物理攻撃命中時、一定確率で10秒間、水属性物理攻撃力 + 50%",17,50,0];
+	CardObjNew[3933] = [3933,1,"憤怒の修羅チェン","フンヌノシュラチェン","",210,5,5000000000000210,15,0];
+	// --- 2025-11-30 ---
+	CardObjNew[3934] = [3934,99,"MaxHP+50","マックスエイチピー50","",13,50,0];
+	CardObjNew[3935] = [3935,99,"MaxHP+350","マックスエイチピー350","",13,350,0];
+	CardObjNew[3936] = [3936,99,"MaxSP+5","マックスエスピー5","",14,5,0];
+	CardObjNew[3937] = [3937,99,"MaxSP+20","マックスエスピー20","",14,20,0];
+	CardObjNew[3938] = [3938,99,"MaxSP+35","マックスエスピー35","",14,35,0];
+	CardObjNew[3939] = [3939,99,"MaxSP+50","マックスエスピー50","",14,50,0];
+	CardObjNew[3940] = [3940,99,"Atk+10","アタック10","",17,10,0];
+	CardObjNew[3941] = [3941,99,"Atk+20","アタック20","",17,20,0];
+	CardObjNew[3942] = [3942,99,"Atk+30","アタック30","",17,30,0];
+	CardObjNew[3943] = [3943,99,"Atk+40","アタック40","",17,40,0];
+	CardObjNew[3944] = [3944,99,"Atk+50","アタック50","",17,50,0];
+	CardObjNew[3945] = [3945,99,"Matk+10","エムアタック10","",100,10,0];
+	CardObjNew[3946] = [3946,99,"Matk+20","エムアタック20","",100,20,0];
+	CardObjNew[3947] = [3947,99,"Matk+30","エムアタック30","",100,30,0];
+	CardObjNew[3948] = [3948,99,"Matk+40","エムアタック40","",100,40,0];
+	CardObjNew[3949] = [3949,99,"Matk+50","エムアタック50","",100,50,0];
+	CardObjNew[3950] = [3950,99,"P.Atk+1","ピーアタック1","",250,1,0];
+	CardObjNew[3951] = [3951,99,"P.Atk+2","ピーアタック2","",250,2,0];
+	CardObjNew[3952] = [3952,99,"P.Atk+3","ピーアタック3","",250,3,0];
+	CardObjNew[3953] = [3953,99,"S.Matk+1","エスエムアタック1","",251,1,0];
+	CardObjNew[3954] = [3954,99,"S.Matk+2","エスエムアタック2","",251,2,0];
+	CardObjNew[3955] = [3955,99,"S.Matk+3","エスエムアタック3","",251,3,0];
+	CardObjNew[3956] = [3956,99,"Def+10","ディフェンス10","",18,10,0];
+	CardObjNew[3957] = [3957,99,"Def+20","ディフェンス20","",18,20,0];
+	CardObjNew[3958] = [3958,99,"Def+30","ディフェンス30","",18,30,0];
+	CardObjNew[3959] = [3959,99,"Def+40","ディフェンス40","",18,40,0];
+	CardObjNew[3960] = [3960,99,"Res+3","レス3","",254,3,0];
+	CardObjNew[3961] = [3961,99,"Res+6","レス6","",254,6,0];
+	CardObjNew[3962] = [3962,99,"Res+9","レス9","",254,9,0];
+	CardObjNew[3963] = [3963,99,"Res+12","レス12","",254,12,0];
+	CardObjNew[3964] = [3964,99,"Res+15","レス15","",254,15,0];
+	CardObjNew[3965] = [3965,99,"Mres+3","エムレス3","",255,3,0];
+	CardObjNew[3966] = [3966,99,"Mres+6","エムレス6","",255,6,0];
+	CardObjNew[3967] = [3967,99,"Mres+9","エムレス9","",255,9,0];
+	CardObjNew[3968] = [3968,99,"Mres+12","エムレス12","",255,12,0];
+	CardObjNew[3969] = [3969,99,"Mres+15","エムレス15","",255,15,0];
+	CardObjNew[3970] = [3970,99,"Hit+20","ヒット20","",8,20,0];
+	CardObjNew[3971] = [3971,99,"Hit+30","ヒット30","",8,30,0];
+	CardObjNew[3972] = [3972,99,"Hit+40","ヒット40","",8,40,0];
+	CardObjNew[3973] = [3973,99,"Hit+50","ヒット50","",8,50,0];
+	CardObjNew[3974] = [3974,99,"Flee+20","フリー20","",9,20,0];
+	CardObjNew[3975] = [3975,99,"Flee+30","フリー30","",9,30,0];
+	CardObjNew[3976] = [3976,99,"Flee+40","フリー40","",9,40,0];
+	CardObjNew[3977] = [3977,99,"Flee+50","フリー50","",9,50,0];
+	CardObjNew[3978] = [3978,99,"クリティカルダメージ+3%","クリティカルダメージ3","",70,3,0];
+	CardObjNew[3979] = [3979,99,"クリティカルダメージ+6%","クリティカルダメージ6","",70,6,0];
+	CardObjNew[3980] = [3980,99,"クリティカルダメージ+9%","クリティカルダメージ9","",70,9,0];
+	CardObjNew[3981] = [3981,99,"クリティカルダメージ+12%","クリティカルダメージ12","",70,12,0];
+	CardObjNew[3982] = [3982,99,"クリティカルダメージ+15%","クリティカルダメージ15","",70,15,0];
+	CardObjNew[3983] = [3983,99,"C.Rate+1","シーレート1","",253,1,0];
+	CardObjNew[3984] = [3984,99,"C.Rate+2","シーレート2","",253,2,0];
+	CardObjNew[3985] = [3985,99,"C.Rate+3","シーレート3","",253,3,0];
+	CardObjNew[3986] = [3986,99,"Pow+1","パウ1","",230,1,0];
+	CardObjNew[3987] = [3987,99,"Pow+2","パウ2","",230,2,0];
+	CardObjNew[3988] = [3988,99,"Spl+1","スプル1","",233,1,0];
+	CardObjNew[3989] = [3989,99,"Spl+2","スプル2","",233,2,0];
+	CardObjNew[3990] = [3990,99,"Sta+1","スタ1","",231,1,0];
+	CardObjNew[3991] = [3991,99,"Sta+2","スタ2","",231,2,0];
+	CardObjNew[3992] = [3992,99,"Wis+1","ウィス1","",232,1,0];
+	CardObjNew[3993] = [3993,99,"Wis+2","ウィス2","",232,2,0];
+	CardObjNew[3994] = [3994,99,"Con+1","コン1","",234,1,0];
+	CardObjNew[3995] = [3995,99,"Con+2","コン2","",234,2,0];
+	CardObjNew[3996] = [3996,99,"Crt+1","シーアールティ1","",235,1,0];
+	CardObjNew[3997] = [3997,99,"Crt+2","シーアールティ2","",235,2,0];
+	// --- 2025-12-01 ---
+	CardObjNew[3998] = [3998,99,"潜在解放(アークメイジVIII)","センザイカイホウアークメイジ8","",24061,15,24062,11,24070,11,24067,11,24054,12,24069,12,24068,12,24058,13,7024061,15,7024062,11,7024070,11,7024067,11,7024054,12,7024069,12,7024068,12,7024058,14,9024061,15,9024062,11,9024070,11,9024067,11,9024054,12,9024069,12,9024068,12,9024058,14,0];
+	CardObjNew[3999] = [3999,99,"潜在解放(アークメイジIX)","センザイカイホウアークメイジ9","",24059,11,24057,15,24053,5,24066,22,7024059,11,7024057,15,7024053,5,7024066,23,9024059,11,9024057,15,9024053,6,9024066,23,0];
+	CardObjNew[4000] = [4000,99,"潜在解放(インクイジターIX)","センザイカイホウインクイジター9","",24121,5,24122,5,24120,5,24117,6,24119,6,24118,6,7024121,6,7024122,6,7024120,6,7024117,7,7024119,7,7024118,7,9024121,6,9024122,6,9024120,6,9024117,7,9024119,7,9024118,7,0];
+	CardObjNew[4001] = [4001,99,"潜在解放(ウィンドホークIX)","センザイカイホウウィンドホーク9","",24051,4,24047,5,7024051,4,7024047,6,9024051,4,9024047,6,0];
+	CardObjNew[4002] = [4002,99,"潜在解放(ウィンドホークXI)","センザイカイホウウィンドホーク11","",24052,7,24050,7,24049,6,24048,8,7024052,7,7024050,7,7024049,6,7024048,8,9024052,7,9024050,7,9024049,6,9024048,9,0];
+	CardObjNew[4003] = [4003,99,"潜在解放(カーディナルXI)","センザイカイホウカーディナル11","",24034,12,24023,5,24032,23,7024034,13,7024023,6,7024032,23,9024034,13,9024023,6,9024032,23,0];
+	CardObjNew[4004] = [4004,99,"潜在解放(カーディナルXII)","センザイカイホウカーディナル12","",24037,7,24031,10,7024037,7,7024031,10,9024037,7,9024031,11,0];
+	CardObjNew[4005] = [4005,99,"潜在解放(シャドウクロスXI)","センザイカイホウシャドウクロス11","",24022,7,24014,7,24020,10,7024022,7,7024014,7,7024020,10,9024022,7,9024014,7,9024020,11,0];
+	CardObjNew[4006] = [4006,99,"潜在解放(ソウルアセティックVIII)","センザイカイホウソウルアセティック8","",24197,6,24198,12,24199,12,24200,12,24202,12,24201,10,7024197,7,7024198,12,7024199,12,7024200,12,7024202,12,7024201,10,9024197,7,9024198,12,9024199,12,9024200,12,9024202,12,9024201,10,0];
+	CardObjNew[4007] = [4007,99,"潜在解放(ソウルアセティックIX)","センザイカイホウソウルアセティック9","",24195,6,24196,10,24202,12,7024195,7,7024196,10,7024202,12,9024195,7,9024196,10,9024202,12,0];
+	CardObjNew[4008] = [4008,99,"潜在解放(ソウルアセティックX)","センザイカイホウソウルアセティック10","",24189,5,24190,5,24191,5,24194,5,24193,19,24203,22,7024189,6,7024190,6,7024191,6,7024194,6,7024193,19,7024203,23,9024189,6,9024190,6,9024191,6,9024194,6,9024193,19,9024203,23,0];
+	CardObjNew[4009] = [4009,99,"潜在解放(ドラゴンナイトIX)","センザイカイホウドラゴンナイト9","",24241,7,24009,6,7024241,8,7024009,6,9024241,8,9024009,7,0];
+	CardObjNew[4010] = [4010,99,"潜在解放(トルバドゥール&トルヴェールVI)","センザイカイホウトルバドゥールアンドトルヴェール6","",24132,3,24131,7,7024132,4,7024131,8,9024132,4,9024131,8,0];
+	CardObjNew[4011] = [4011,99,"潜在解放(ナイトウォッチVIII)","センザイカイホウナイトウォッチ8","",24249,6,24250,7,24251,7,24252,11,7024249,6,7024250,8,7024251,8,7024252,11,9024249,6,9024250,8,9024251,8,9024252,12,0];
+	CardObjNew[4012] = [4012,99,"潜在解放(バイオロVIII)","センザイカイホウバイオロ8","",24165,18,24166,18,24163,16,24164,16,7024165,18,7024166,18,7024163,16,7024164,16,9024165,18,9024166,18,9024163,16,9024164,16,0];
+	CardObjNew[4013] = [4013,99,"潜在解放(バイオロX)","センザイカイホウバイオロ10","",24240,10,7024240,10,9024240,10,0];
+	CardObjNew[4014] = [4014,99,"潜在解放(ハイパーノービスX)","センザイカイホウハイパーノービス10","",24231,2,24232,2,24233,3,7024231,3,7024232,2,7024233,4,9024231,3,9024232,3,9024233,4,0];
+	CardObjNew[4015] = [4015,99,"潜在解放(ハイパーノービスXI)","センザイカイホウハイパーノービス11","",24267,3,24268,2,7024267,3,7024268,2,9024267,4,9024268,2,0];
+	CardObjNew[4016] = [4016,99,"潜在解放(ハイパーノービスXII)","センザイカイホウハイパーノービス12","",24235,2,24236,2,7024235,3,7024236,2,9024235,3,9024236,2,0];
+	CardObjNew[4017] = [4017,99,"潜在解放(蜃気楼&不知火VII)","センザイカイホウシンキロウアンドシラヌイ7","",24227,7,24225,6,24226,6,24228,9,7024227,8,7024225,6,7024226,6,7024228,9,9024227,8,9024225,6,9024226,7,9024228,10,0];
+	CardObjNew[4018] = [4018,99,"潜在解放(蜃気楼&不知火VIII)","センザイカイホウシンキロウアンドシラヌイ8","",24263,9,24266,9,24264,7,24265,6,7024263,9,7024266,9,7024264,8,7024265,6,9024263,10,9024266,10,9024264,8,9024265,7,0];
+	CardObjNew[4019] = [4019,99,"潜在解放(蜃気楼&不知火IX)","センザイカイホウシンキロウアンドシラヌイ9","",24253,9,24255,9,24254,8,24256,6,24257,7,24258,13,7024253,9,7024255,9,7024254,8,7024256,7,7024257,8,7024258,14,9024253,10,9024255,10,9024254,9,9024256,7,9024257,8,9024258,14,0];
+	// --- 2025-12-06 ---
+	CardObjNew[4020] = [4020,5,"超越したエクリプス","チョウエツシタエクリプス","[フェイス]Lv1以上を習得している場合、<br>習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ + 5%",74,10,66,100,10000080,15,10000089,15,0];
+	CardObjNew[4021] = [4021,2,"超越したエドガ","チョウエツシタエドガ","インデュア状態になる",15,15,63,15,68,15,0];
+	CardObjNew[4022] = [4022,7,"超越したオークヒーロー","チョウエツシタオークヒーロー","",151,100,12,15,85,15,0];
+	CardObjNew[4023] = [4023,6,"超越したオシリス","チョウエツシタオシリス","",9,100,15,25,159,100,381,1,0];
+	CardObjNew[4024] = [4024,5,"超越したキメラ","チョウエツシタキメラ","",74,10,65,100,10000080,15,10000089,15,0];
+	CardObjNew[4025] = [4025,5,"超越したさすらい狼","チョウエツシタサスライオオカミ","",74,10,67,100,10000080,15,10000089,15,0];
+	CardObjNew[4026] = [4026,2,"超越したタオグンカ","チョウエツシタタオグンカ","一部のダメージを反射する効果で受けるダメージ - 100%",80,15,89,15,0];
+	CardObjNew[4027] = [4027,5,"超越したトード","チョウエツシタトード","",74,10,69,100,10000080,15,10000089,15,0];
+	CardObjNew[4028] = [4028,6,"超越したフリオニ","チョウエツシタフリオニ","",80,20,40,50,220,132,0];
+	CardObjNew[4029] = [4029,5,"超越したボーカル","チョウエツシタボーカル","",74,10,68,100,10000080,15,10000089,15,0];
+	// --- 2025-12-16 ---
+	/* 1404 魔女ジラントとのセット */
+	CardObjNew[4030] = [4030,100,0,"","魔法攻撃命中時、一定確率で敵を3秒間[獄炎呪]状態にする",63,50,0];
+	CardObjNew[4031] = [4031,100,0,"","",344,100,0];
+	/* 1405 古龍ジラントとのセット */
+	CardObjNew[4032] = [4032,100,0,"","",6241,50,6009,50,0];
+	CardObjNew[4033] = [4033,100,0,"","物理・魔法攻撃命中時、一定確率で10秒間、Vit + 100",0];
+	/* 2475 深海の魔女とのセット */
+	CardObjNew[4034] = [4034,100,0,"","",61,50,11519,100,0];
+	CardObjNew[4035] = [4035,100,0,"","物理・魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 10%",152,100,361,100,0];
+	CardObjNew[4036] = [4036,99,"潜在解放(蜃気楼&不知火XVI)","センザイカイホウシンキロウトシラヌイ16","",0];
+	CardObjNew[4037] = [4037,100,0,"","",20228,200,0];
+	CardObjNew[4038] = [4038,99,"潜在解放(カーディナルXVIII)","センザイカイホウカーディナル18","",0];
+	CardObjNew[4039] = [4039,100,0,"","",20033,4000,0];
+	CardObjNew[4040] = [4040,99,"潜在解放(トルバドゥール&トルヴェールXIII)","センザイカイホウトルバドゥールアンドトルヴェール13","",0];
+	CardObjNew[4041] = [4041,100,0,"","",20298,200,0];
+	// --- 2026-01-13 ---
+	CardObjNew[4042] = [4042,99,"潜在解放(エレメンタルマスターXVI)","センザイカイホウエレメンタルマスター16","",0];
+	CardObjNew[4043] = [4043,100,0,"","",20290,200,0];
+	CardObjNew[4044] = [4044,99,"潜在解放(スピリットハンドラーXIX)","センザイカイホウスピリットハンドラー19","",0];
+	CardObjNew[4045] = [4045,100,0,"","[タートルランページ]使用時、20秒間、[リフレッシュ]Lv1状態になる",0];
+	CardObjNew[4046] = [4046,99,"潜在解放(スピリットハンドラーXVIII)","センザイカイホウスピリットハンドラー18","",0];
+	CardObjNew[4047] = [4047,100,0,"","",14276,1000,0];
+	CardObjNew[4048] = [4048,99,"潜在解放(ドラゴンナイトXVII)","センザイカイホウドラゴンナイト17","",0];
+	CardObjNew[4049] = [4049,100,0,"","",20009,200,0];
+	CardObjNew[4050] = [4050,99,"潜在解放(インクイジターXIV)","センザイカイホウインクイジター14","",0];
+	CardObjNew[4051] = [4051,100,0,"","",20302,300,0];
+	CardObjNew[4052] = [4052,99,"潜在解放(ドラゴンナイトXVIII)","センザイカイホウドラゴンナイト18","",0];
+	CardObjNew[4053] = [4053,100,0,"","",20295,200,0];
+	CardObjNew[4054] = [4054,99,"潜在解放(エレメンタルマスターXVII)","センザイカイホウエレメンタルマスター17","",0];
+	CardObjNew[4055] = [4055,100,0,"","[コンフラグレーション]、[ライトニングランド]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4056] = [4056,99,"潜在解放(カーディナルXIX)","センザイカイホウカーディナル19","",0];
+	CardObjNew[4057] = [4057,100,0,"","[アルビトリウム]、[フレーメン]、[ディヴィヌスフロス]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4058] = [4058,99,"潜在解放(インクイジターXVI)","センザイカイホウインクイジター16","",0];
+	CardObjNew[4059] = [4059,100,0,"","",20302,200,0];
+	CardObjNew[4060] = [4060,99,"潜在解放(シャドウクロスXVI)","センザイカイホウシャドウクロス16","",0];
+	CardObjNew[4061] = [4061,100,0,"","",20021,500,0];
+	CardObjNew[4062] = [4062,99,"潜在解放(アビスチェイサーXVII)","センザイカイホウアビスチェイサー17","",0];
+	CardObjNew[4063] = [4063,100,0,"","",20307,200,0];
+	CardObjNew[4064] = [4064,99,"潜在解放(ソウルアセティックXV)","センザイカイホウソウルアセティック15","",0];
+	CardObjNew[4065] = [4065,100,0,"","",20197,100,20198,100,20199,100,20200,100,0];
+	CardObjNew[4066] = [4066,99,"潜在解放(蜃気楼&不知火XVII)","センザイカイホウシンキロウアンドシラヌイ17","",0];
+	CardObjNew[4067] = [4067,100,0,"","[影の舞]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4068] = [4068,99,"潜在解放(ハイパーノービスXIX)","センザイカイホウハイパーノービス19","",0];
+	CardObjNew[4069] = [4069,100,0,"","",20233,300,0];
+	CardObjNew[4070] = [4070,99,"潜在解放(スピリットハンドラーXX)","センザイカイホウスピリットハンドラー20","",0];
+	CardObjNew[4071] = [4071,100,0,"","",20248,500,19922,-500,0];
+	CardObjNew[4072] = [4072,99,"潜在解放(インペリアルガードXVI)","センザイカイホウインペリアルガード16","",0];
+	CardObjNew[4073] = [4073,100,0,"","",20093,100,0];
+	CardObjNew[4074] = [4074,99,"潜在解放(アークメイジXVIII)","センザイカイホウアークメイジ18","",0];
+	CardObjNew[4075] = [4075,100,0,"","[ミステリーイリュージョン]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4076] = [4076,99,"潜在解放(エレメンタルマスターXVIII)","センザイカイホウエレメンタルマスター18","",0];
+	CardObjNew[4077] = [4077,100,0,"","[ベナムスワンプ]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4078] = [4078,99,"潜在解放(ウィンドホークXVIII)","センザイカイホウウィンドホーク18","",0];
+	CardObjNew[4079] = [4079,100,0,"","",20049,2000,0];
+	CardObjNew[4080] = [4080,99,"潜在解放(インクイジターXV)","センザイカイホウインクイジター15","",0];
+	CardObjNew[4081] = [4081,100,0,"","[最終章：滅魔の炎]のAP消費量 + 50 <br>[最終章：滅魔の炎]使用時、60秒間、[P.Atk増加]状態になる <br>装備解除時、[P.Atk増加]状態を解除する",0];
+	CardObjNew[4082] = [4082,99,"潜在解放(アビスチェイサーXVIII)","センザイカイホウアビスチェイサー18","",0];
+	CardObjNew[4083] = [4083,100,0,"","",20308,200,0];
+	CardObjNew[4084] = [4084,99,"潜在解放(マイスターXVI)","センザイカイホウマイスター16","",0];
+	CardObjNew[4085] = [4085,100,0,"","[アックスストンプ]、[ラッシュストライク]、[パワフルスイング]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4086] = [4086,99,"潜在解放(天帝XIII)","センザイカイホウテンテイ13","",0];
+	CardObjNew[4087] = [4087,100,0,"","[太天一陽]、[天陽]、[太天一月]、[天月]、[天気身陽]、[天気身月]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4088] = [4088,99,"潜在解放(蜃気楼&不知火XVIII)","センザイカイホウシンキロウアンドシラヌイ18","",0];
+	CardObjNew[4089] = [4089,100,0,"","",20257,200,0];
+	CardObjNew[4090] = [4090,99,"潜在解放(ハイパーノービスXX)","センザイカイホウハイパーノービス20","",0];
+	CardObjNew[4091] = [4091,100,0,"","[ダブルボウリングバッシュ][メガソニックブロー]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4092] = [4092,99,"潜在解放(スピリットハンドラーXXI)","センザイカイホウスピリットハンドラー21","",0];
+	CardObjNew[4093] = [4093,100,0,"","",20303,200,0];
+	// --- 2026-01-20 ---
+	CardObjNew[4094] = [4094,7,"迷宮のダークロード","メイキュウノダークロード","",217,3,0];
+	CardObjNew[4095] = [4095,6,"亜空の月夜花","アクウノウオルヤフア","",15,10,16,10,5051,100,5054,100,5056,100,0];
+	CardObjNew[4096] = [4096,100,0,"","",343,30,11051,-100,11054,-100,11056,-100,0];
+	CardObjNew[4097] = [4097,5,"亜空のストームナイト","アクウノストームナイト","物理攻撃命中時、一定確率で10秒間、風属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇",80,10,64,50,0];
+	CardObjNew[4098] = [4098,100,0,"","物理攻撃命中時、一定確率で敵に与えたダメージの2%をSPとして吸収",64,50,0];
+	CardObjNew[4099] = [4099,5,"亜空のハティー","アクウノハティー","物理攻撃命中時、一定確率で10秒間、水属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇",80,10,61,50,0];
+	CardObjNew[4100] = [4100,100,0,"","",360,100,152,100,361,100,61,50,0];
+	CardObjNew[4101] = [4101,99,"潜在解放(アビスチェイサーXIX)","センザイカイホウアビスチェイサー19","",0];
+	CardObjNew[4102] = [4102,100,0,"","[フレンジショット][ヒットアンドスライディング][チェイシングショット]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4103] = [4103,99,"潜在解放(インペリアルガードXVII)","センザイカイホウインペリアルガード17","",0];
+	CardObjNew[4104] = [4104,100,0,"","[オーバースラッシュ][シールドシューティング][レイディアントスピア][インペリアルクロス]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4105] = [4105,99,"潜在解放(ウィンドホークXIX)","センザイカイホウウィンドホーク19","",0];
+	CardObjNew[4106] = [4106,100,0,"","[クレッシブボルト]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4107] = [4107,99,"潜在解放(シャドウクロスXVII)","センザイカイホウシャドウクロス17","",0];
+	CardObjNew[4108] = [4108,100,0,"","[クロススラッシュ]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4109] = [4109,99,"潜在解放(ソウルアセティックXVI)","センザイカイホウソウルアセティック16","",0];
+	CardObjNew[4110] = [4110,100,0,"","[死霊浄化]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4111] = [4111,99,"潜在解放(ドラゴンナイトXIX)","センザイカイホウドドラゴンナイト19","",0];
+	CardObjNew[4112] = [4112,100,0,"","[ドラゴニックピアース]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4113] = [4113,99,"潜在解放(トルバドゥール&トルヴェールXIV)","センザイカイホウトルバドゥールアンドトルヴェール14","",0];
+	CardObjNew[4114] = [4114,100,0,"","[ミスティックシンフォニー]のAP消費量 + 50<br>[ミスティックシンフォニー]使用時、60秒間、[S.Matk増加]状態になる<br>装備解除時、[S.Matk増加]状態を解除する",0];
+	CardObjNew[4115] = [4115,99,"潜在解放(ナイトウォッチXVI)","センザイカイホウナイトウォッチ16","",0];
+	CardObjNew[4116] = [4116,100,0,"","[ヒドゥンカード]のAP消費量 + 50<br>[ヒドゥンカード]使用時、60秒間、[P.Atk増加]状態になる<br>装備解除時、[P.Atk増加]状態を解除する",0];
+	CardObjNew[4117] = [4117,99,"潜在解放(バイオロXVIII)","センザイカイホウバイオロ18","",0];
+	CardObjNew[4118] = [4118,100,0,"","[メイヘミックソーンズ]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4119] = [4119,99,"潜在解放(蜃気楼&不知火XIX)","センザイカイホウシンキロウアンドシラヌイ19","",0];
+	CardObjNew[4120] = [4120,100,0,"","[暗転砲]使用時、一定確率でAP回復量 + 10",0];
+	CardObjNew[4121] = [4121,99,"潜在解放(スピリットハンドラーXXII)","センザイカイホウスピリットハンドラー22","",0];
+	CardObjNew[4122] = [4122,100,0,"","[ディアーキャノン][ディアーブリーズ][ディアースピリットパワー]使用時、一定確率でAP回復量 + 10",0];
+	// --- 2026-02-08 ---
+	CardObjNew[4123] = [4123,7,"アース","アース","",18,100,0];
+	CardObjNew[4124] = [4124,7,"アイゼン・ヴェルナー","アイゼンヴェルナー","",155,100,0];
+	CardObjNew[4125] = [4125,6,"カヤ・トース","カヤトース","",15,10,8000086,10,0];
+	CardObjNew[4126] = [4126,2,"タティオ","タティオ","",100,10,340,5,9000340,5,0];
+	CardObjNew[4127] = [4127,7,"ボルセブ","ボルセブ","",220,213,0];
+	CardObjNew[4128] = [4128,6,"レッケンベル・アース","レッケンベルアース","",15,10,7000018,100,9000018,150,0];
+	CardObjNew[4129] = [4129,2,"レッケンベル・アイゼン・ヴェルナー","レッケンベルアイゼンヴェルナー","",350,30,9000155,100,0];
+	CardObjNew[4130] = [4130,7,"レッケンベル・アイゼン・ヴェルナー(サイン入り)","レッケンベルアイゼンヴェルナーサインイリ","",364,100,220,214,0];
+	CardObjNew[4131] = [4131,2,"レッケンベル・カヤ・トース","レッケンベルカヤトース","",86,5,7000086,10,9000086,10,0];
+	CardObjNew[4132] = [4132,5,"レッケンベル・タティオ","レッケンベルタティオ","",60,15,100340,3,0];
+	CardObjNew[4133] = [4133,7,"レッケンベル・タティオ(サイン入り)","レッケンベルタティオサインイリ","物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する",19901,600000,0];
+	CardObjNew[4134] = [4134,5,"レッケンベル・ボルセブ","レッケンベルボルセブ","物理攻撃命中時、一定確率で10秒間、毒属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇",60,15,0];
+	CardObjNew[4135] = [4135,7,"レッケンベル・ボルセブ(サイン入り)","レッケンベルボルセブサインイリ","絶対に新毒状態にならない",220,199,0];
+	CardObjNew[4136] = [4136,2,"レッケンベル・レッケンベル会長","レッケンベルレッケンベルカイチョウ","",40,30,9000156,100,0];
+	CardObjNew[4137] = [4137,7,"レッケンベル会長","レッケンベルカイチョウ","",156,100,0];
+	// --- 2026-02-10 ---
+	CardObjNew[4138] = [4138,99,"潜在解放(エレメンタルマスターXIX)","センザイカイホウエレメンタルマスター19","",0];
+	CardObjNew[4139] = [4139,100,0,"","",20157,100,0];
+	CardObjNew[4140] = [4140,99,"潜在解放(トルバドゥール&トルヴェールXV)","センザイカイホウトルバドゥールアンドトルヴェール15","",0];
+	CardObjNew[4141] = [4141,100,0,"","",20298,100,0];
+	CardObjNew[4142] = [4142,99,"潜在解放(スピリットハンドラーXXIII)","センザイカイホウスピリットハンドラー23","",0];
+	CardObjNew[4143] = [4143,100,0,"","",20303,300,0];
+	CardObjNew[4144] = [4144,99,"潜在解放(アークメイジXIX)","センザイカイホウアークメイジ19","",0];
+	CardObjNew[4145] = [4145,100,0,"","",20056,2000,20060,2000,20062,500,0];
+	// --- 2026-03-10 ---
+	CardObjNew[4146] = [4146,2,"イグリン","イグリン","[世界樹のほこり]Lv1使用可能",0];
+	CardObjNew[4147] = [4147,5,"リーフリン","リーフリン","",100009,5,0];
+	CardObjNew[4148] = [4148,2,"チャコリン","チャコリン","",80,5,8000380,1,0];
+	CardObjNew[4149] = [4149,7,"ブルリン","ブルリン","",5051,25,13051,-5000,0];
+	CardObjNew[4150] = [4150,6,"ファイアループ","ファイアループ","精錬値と同じLvの[ファイアーウォール]使用可能",224,63,0];
+	CardObjNew[4151] = [4151,6,"不老草","フロウソウ","",89,5,10000000000000089n,15,0];
+	CardObjNew[4152] = [4152,1,"火山貝","カザンガイ","物理・魔法攻撃時、[ヴェルンド渓谷 外郭]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[4153] = [4153,5,"火花","ヒバナ","",63,25,7000060,15,9000063,25,0];
+	CardObjNew[4154] = [4154,1,"ピーピング","ピーピング","",167,10,0];
+	CardObjNew[4155] = [4155,1,"汚染ロッダフロッグ","オセンロッダフロッグ","物理・魔法攻撃時、[破壊されたゲフェンフィールド]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[4156] = [4156,5,"汚染アンバーナイト","オセンアンバーナイト","",67,25,10000000000000067n,25,0];
+	CardObjNew[4157] = [4157,5,"浸食された探査型Vギア","シンショクサレタタンサガタVギア","",68,25,10000000000000068n,25,0];
+	CardObjNew[4158] = [4158,6,"浸食された修理型Vギア","シンショクサレタシュウリガタVギア","",167,5,7000167,3,9000167,2,0];
+	CardObjNew[4159] = [4159,1,"浸食されたディミック","シンショクサレタディミック","物理・魔法攻撃時、[破壊されたウェルス]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[4160] = [4160,1,"ニャイズ","ニャイズ","片手杖、両手杖の場合、精錬値が1上がる度に追加で攻撃速度 + 1%",10000080,5,0];
+	CardObjNew[4161] = [4161,1,"影の看守","カゲノカンシュ","物理・魔法攻撃時、[歪んだブリミル 1階]、[歪んだブリミル 2階]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[4162] = [4162,6,"チューリップ","チューリップ","",100030,3,0];
+	CardObjNew[4163] = [4163,6,"カレンデュラ","カレンデュラ","",100032,3,0];
+	CardObjNew[4164] = [4164,6,"スカビオサ","スカビオサ","",100038,3,0];
+	CardObjNew[4165] = [4165,6,"ロベリア","ロベリア","",100036,3,0];
+	CardObjNew[4166] = [4166,6,"ミオソティス","ミオソティス","",100031,3,0];
+	CardObjNew[4167] = [4167,6,"アネモネ","アネモネ","",100039,3,0];
+	CardObjNew[4168] = [4168,5,"奇怪なスコグル","キカイナスコグル","",66,25,10000000000000066n,25,0];
+	CardObjNew[4169] = [4169,5,"奇怪なプルス","キカイナプルス","",65,25,10000000000000065n,25,0];
+	CardObjNew[4170] = [4170,4,"リスナー","リスナー","",15,15,10000000000000015n,25,0];
+	CardObjNew[4171] = [4171,6,"不吉な軍団","フキツナグンダン","",15,10,10000000000000015n,15,0];
+	CardObjNew[4172] = [4172,6,"トキシン","トキシン","",80,5,10000000000000080n,15,0];
+	CardObjNew[4173] = [4173,1,"ルナリナ","ルナリナ","超越段階が1以上の時、物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",80,15,0];
+	CardObjNew[4174] = [4174,2,"ブラッディスラッシャー","ブラッディスラッシャー","超越段階が1以上の時、固定詠唱時間 - 70%",80,5,0];
+	CardObjNew[4175] = [4175,2,"シャイディエスト","シャイディエスト","超越段階が1以上の時、固定詠唱時間 - 70%",89,5,0];
+	CardObjNew[4176] = [4176,7,"ハイサキュバス","ハイサキュバス","",80,4,5000000000000380,1,0];
+	CardObjNew[4177] = [4177,7,"ハイインキュバス","ハイインキュバス","",89,4,5000000000000380,1,0];
+	CardObjNew[4178] = [4178,5,"深淵の騎士団長","シンエンノキシフトチョウ","物理攻撃命中時、一定確率で10秒間、闇属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇",60,15,0];
+	CardObjNew[4179] = [4179,2,"ブルガサリ","ブルガサリ","",63,10,362,100,0];
+	CardObjNew[4180] = [4180,100,0,"","[Mコメット]で受けるダメージ - 100%",63,10,0];
+	CardObjNew[4181] = [4181,2,"グラトニー","グラトニー","[Mクラウドキル]で受けるダメージ - 50%",62,10,67,10,151,50,0];
+	CardObjNew[4182] = [4182,100,0,"","",15,15,62,10,0];
+	// --- 2026-03-18 ---
+	CardObjNew[4183] = [4183,99,"潜在解放(アークメイジXX)","センザイカイホウアークメイジ20","",0];
+	CardObjNew[4184] = [4184,100,0,"","",20056,500,20060,500,20062,500,0];
+	CardObjNew[4185] = [4185,99,"潜在解放(蜃気楼&不知火XX)","センザイカイホウシンキロウアンドシラヌイ20","",0];
+	CardObjNew[4186] = [4186,100,0,"","",20228,100,0];
+	// --- 2026-04-08 ---
+	CardObjNew[4187] = [4187,99,"スキルオーブ(アリテアI)","スキルオーブアリテア1","",100000000006372,1,100000000006378,1,100000000006384,1,100000000006392,1,100000000006387,1,0];
+	CardObjNew[4188] = [4188,99,"スキルオーブ(アリテアII)","スキルオーブアリテア2","",100000000006373,1,100000000006379,1,100000000006385,1,0];
+	CardObjNew[4189] = [4189,99,"スキルオーブ(アリテアIII)","スキルオーブアリテア3","",100000000006369,1,100000000006393,1,100000000006375,1,100000000006381,1,100000000006386,1,100000000006376,1,100000000006370,1,100000000006382,1,100000000006377,1,100000000006371,1,100000000006383,1,100000000006391,1,0];
+	CardObjNew[4190] = [4190,99,"氷華の魔力(アリテアI)","ヒョウカノマキアリテア1","",6372,25,6378,25,6384,25,6392,25,6387,25,0];
+	CardObjNew[4191] = [4191,99,"氷華の魔力(アリテアII)","ヒョウカノマキアリテア2","",6373,25,6379,25,6385,25,0];
+	CardObjNew[4192] = [4192,99,"氷華の魔力(アリテアIII)","ヒョウカノマキアリテア3","",6369,25,6393,25,6375,25,6381,25,6386,25,6376,25,6370,25,6382,25,6377,25,6371,25,6383,25,6391,25,0];
+	CardObjNew[4193] = [4193,99,"氷華の魔力(カルノスI)","ヒョウカノマキカルノス1","",106350,5,106344,5,106356,5,106360,5,0];
+	CardObjNew[4194] = [4194,99,"氷華の魔力(カルノスII)","ヒョウカノマキカルノス2","",106345,5,106351,5,106357,5,106361,5,0];
+	CardObjNew[4195] = [4195,99,"氷華の魔力(カルノスIII)","ヒョウカノマキカルノス3","",106347,5,106353,5,106348,5,106354,5,106358,5,106355,5,106359,5,106394,5,0];
+	CardObjNew[4196] = [4196,99,"氷華の魔力(カルノスIV)","ヒョウカノマキカルノス4","",6350,5,6344,5,6356,5,6360,5,8006350,10,8006344,10,8006356,10,8006360,10,9006350,15,9006344,15,9006356,15,9006360,15,10006350,30,10006344,30,10006356,30,10006360,30,0];
+	CardObjNew[4197] = [4197,99,"氷華の魔力(カルノスV)","ヒョウカノマキカルノス5","",6345,5,6351,5,6357,5,6361,5,8006345,10,8006351,10,8006357,10,8006361,10,9006345,15,9006351,15,9006357,15,9006361,15,10006345,30,10006351,30,10006357,30,10006361,30,0];
+	CardObjNew[4198] = [4198,99,"氷華の魔力(カルノスVI)","ヒョウカノマキカルノス6","",6347,5,6353,5,6348,5,6354,5,6358,5,6355,5,6359,5,6394,5,8006347,10,8006353,10,8006348,10,8006354,10,8006358,10,8006355,10,8006359,10,8006394,10,9006347,15,9006353,15,9006348,15,9006354,15,9006358,15,9006355,15,9006359,15,9006394,15,10006347,30,10006353,30,10006348,30,10006354,30,10006358,30,10006355,30,10006359,30,10006394,30,0];
+	CardObjNew[4199] = [4199,99,"潜在覚醒(アーススタンプI)","センザイカクセイアーススタンプ1","",100000000006359,1,0];
+	CardObjNew[4200] = [4200,100,0,"","",20359,500,0];
+	CardObjNew[4201] = [4201,99,"潜在覚醒(アーススタンプII)","センザイカクセイアーススタンプ2","",100000000006359,1,0];
+	CardObjNew[4202] = [4202,100,0,"","",20359,500,0];
+	CardObjNew[4203] = [4203,99,"潜在覚醒(アースドリルI)","センザイカクセイアースドリル1","",100000000006355,1,0];
+	CardObjNew[4204] = [4204,100,0,"","",12355,100,0];
+	CardObjNew[4205] = [4205,99,"潜在覚醒(アイススプラッシュI)","センザイカクセイアイススプラッシュ1","",100000000006353,1,0];
+	CardObjNew[4206] = [4206,100,0,"","",20353,500,0];
+	CardObjNew[4207] = [4207,99,"潜在覚醒(アイススプラッシュII)","センザイカクセイアイススプラッシュ2","",100000000006353,1,0];
+	CardObjNew[4208] = [4208,100,0,"","",20353,500,0];
+	CardObjNew[4209] = [4209,99,"潜在覚醒(クローウェーブI)","センザイカクセイクローウェーブ1","",100000000006356,1,0];
+	CardObjNew[4210] = [4210,100,0,"","",20356,300,0];
+	CardObjNew[4211] = [4211,99,"潜在覚醒(クローウェーブII)","センザイカクセイクローウェーブ2","",100000000006356,1,0];
+	CardObjNew[4212] = [4212,100,0,"","",20356,200,0];
+	CardObjNew[4213] = [4213,99,"潜在覚醒(サンダリングオーブI)","センザイカクセイサンダリングオーブ1","",100000000006354,1,0];
+	CardObjNew[4214] = [4214,100,0,"","",20354,500,0];
+	CardObjNew[4215] = [4215,99,"潜在覚醒(サンダリングオーブII)","センザイカクセイサンダリングオーブ2","",100000000006354,1,0];
+	CardObjNew[4216] = [4216,100,0,"","",20354,500,0];
+	CardObjNew[4217] = [4217,99,"潜在覚醒(サンダリングコールI)","センザイカクセイサンダリングコール1","",100000000006358,1,0];
+	CardObjNew[4218] = [4218,100,0,"","",20358,500,0];
+	CardObjNew[4219] = [4219,99,"潜在覚醒(サンダリングコールII)","センザイカクセイサンダリングコール2","",100000000006358,1,0];
+	CardObjNew[4220] = [4220,100,0,"","",20358,500,0];
+	CardObjNew[4221] = [4221,99,"潜在覚醒(フェザースプリンクルI)","センザイカクセイフェザースプリンクル1","",100000000006357,1,0];
+	CardObjNew[4222] = [4222,100,0,"","",20357,300,0];
+	CardObjNew[4223] = [4223,99,"潜在覚醒(フェザースプリンクルII)","センザイカクセイフェザースプリンクル2","",100000000006357,1,0];
+	CardObjNew[4224] = [4224,100,0,"","",20357,200,0];
+	CardObjNew[4225] = [4225,99,"潜在解放(アリテアI)","センザイカイホウアリテア1","",0];
+	CardObjNew[4226] = [4226,100,0,"","",14369,500,14375,500,14381,500,14386,500,14376,500,14370,500,14382,500,14377,500,14371,500,14383,500,14391,500,0];
+	CardObjNew[4227] = [4227,99,"潜在解放(アリテアII)","センザイカイホウアリテア2","",0];
+	CardObjNew[4228] = [4228,100,0,"","",14386,1000,14370,1000,14382,1000,14383,1000,0];
+	CardObjNew[4229] = [4229,99,"潜在解放(アリテアIII)","センザイカイホウアリテア3","",0];
+	CardObjNew[4230] = [4230,100,0,"","",20376,300,20370,500,0];
+	CardObjNew[4231] = [4231,99,"潜在解放(アリテアIV)","センザイカイホウアリテア4","",0];
+	CardObjNew[4232] = [4232,100,0,"","",20376,200,20370,500,0];
+	CardObjNew[4233] = [4233,99,"潜在解放(アリテアV)","センザイカイホウアリテア5","",0];
+	CardObjNew[4234] = [4234,100,0,"","",20382,100,0];
+	CardObjNew[4235] = [4235,99,"潜在解放(アリテアVI)","センザイカイホウアリテア6","",0];
+	CardObjNew[4236] = [4236,100,0,"","",20372,300,20378,300,20384,300,20387,300,0];
+	CardObjNew[4237] = [4237,99,"潜在解放(アリテアVII)","センザイカイホウアリテア7","",0];
+	CardObjNew[4238] = [4238,100,0,"","",20372,300,20378,300,20384,300,0];
+	CardObjNew[4239] = [4239,99,"潜在解放(アリテアVIII)","センザイカイホウアリテア8","",0];
+	CardObjNew[4240] = [4240,100,0,"","",20387,200,0];
+	CardObjNew[4241] = [4241,99,"潜在解放(アリテアIX)","センザイカイホウアリテア9","",0];
+	CardObjNew[4242] = [4242,100,0,"","",20392,100,0];
+	CardObjNew[4243] = [4243,99,"潜在解放(アリテアX)","センザイカイホウアリテア10","",0];
+	CardObjNew[4244] = [4244,100,0,"","",20392,100,0];
+	CardObjNew[4245] = [4245,99,"潜在解放(アリテアXI)","センザイカイホウアリテア11","",0];
+	CardObjNew[4246] = [4246,100,0,"","",20373,300,20379,300,0];
+	CardObjNew[4247] = [4247,99,"潜在解放(アリテアXII)","センザイカイホウアリテア12","",0];
+	CardObjNew[4248] = [4248,100,0,"","",20373,200,0];
+	CardObjNew[4249] = [4249,99,"潜在解放(アリテアXIII)","センザイカイホウアリテア13","",0];
+	CardObjNew[4250] = [4250,100,0,"","",20385,100,0];
+	CardObjNew[4251] = [4251,99,"潜在解放(アリテアXIV)","センザイカイホウアリテア14","",24372,7,24378,7,24384,7,24392,11,24387,3,7024372,8,7024378,8,7024384,8,7024392,11,7024387,4,9024372,8,9024378,8,9024384,8,9024392,12,9024387,4,0];
+	CardObjNew[4252] = [4252,99,"潜在解放(アリテアXV)","センザイカイホウアリテア15","",24373,4,24379,6,24385,9,7024373,4,7024379,6,7024385,9,9024373,5,9024379,7,9024385,10,0];
+	CardObjNew[4253] = [4253,99,"潜在解放(アリテアXVI)","センザイカイホウアリテア16","",24375,6,24381,6,24371,6,24376,7,24370,7,24369,8,24386,8,24377,8,24382,9,24383,10,24391,11,7024375,7,7024381,7,7024371,7,7024369,8,7024386,8,7024376,8,7024370,8,7024377,8,7024382,9,7024383,10,7024391,11,9024375,7,9024381,7,9024371,7,9024376,8,9024370,8,9024369,9,9024386,9,9024377,9,9024382,10,9024383,10,9024391,12,0];
+	CardObjNew[4254] = [4254,99,"潜在解放(アリテアXVII)","センザイカイホウアリテア17","",0];
+	CardObjNew[4255] = [4255,100,0,"","",20379,200,0];
+	CardObjNew[4256] = [4256,99,"潜在解放(カルノスI)","センザイカイホウカルノス1","",0];
+	CardObjNew[4257] = [4257,100,0,"","",12356,100,12357,100,0];
+	CardObjNew[4258] = [4258,99,"潜在解放(カルノスII)","センザイカイホウカルノス2","",0];
+	CardObjNew[4259] = [4259,100,0,"","",12348,100,12354,100,12359,100,0];
+	CardObjNew[4260] = [4260,200,"ハーウェル・メガス・バルター","ハーウェルメガスバルター","",20000000000017,1,20000000000100,1,0];
+	CardObjNew[4261] = [4261,100,0,"","",6372,25,6378,25,6384,25,6392,25,6387,25,6373,25,6379,25,6385,25,6369,25,6393,25,6375,25,6381,25,6386,25,6376,25,6370,25,6382,25,6377,25,6371,25,6383,25,6391,25,0];
+	CardObjNew[4262] = [4262,200,"女帝のカード","ジョテイノカード","",6356,5,106356,1,10006356,5,0];
+	CardObjNew[4263] = [4263,100,0,"","",211,2,216,2,70,10,6356,50,0];
+	CardObjNew[4264] = [4264,200,"女帝のカード(逆位置)","ジョテイノカードギャクイチ","",6357,5,106357,1,10006357,5,0];
+	CardObjNew[4265] = [4265,100,0,"","",212,2,215,2,167,5,6357,50,0];
+	// --- 2026-04-14 ---
+	CardObjNew[4266] = [4266,99,"魔弓の弦音","マキュウノツルネ","物理攻撃命中時、一定確率で10秒間、Hit + 150、攻撃速度 + 100%、[セシル=ディモン]に変身",0];
+	CardObjNew[4267] = [4267,99,"潜在解放(ウィンドホークXX)","センザイカイホウウィンドホーク20","",0];
+	CardObjNew[4268] = [4268,100,0,"","",20046,300,20043,300,20291,300,0];
+	CardObjNew[4269] = [4269,99,"潜在解放(カーディナルXX)","センザイカイホウカーディナル20","",0];
+	CardObjNew[4270] = [4270,100,0,"","",20313,200,0];
+	CardObjNew[4271] = [4271,99,"潜在解放(シャドウクロスXVIII)","センザイカイホウシャドウクロス18","",0];
+	CardObjNew[4272] = [4272,100,0,"","",20312,100,0];
+	CardObjNew[4273] = [4273,99,"潜在解放(ナイトウォッチXVII)","センザイカイホウナイトウォッチ17","",0];
+	CardObjNew[4274] = [4274,100,0,"","",20297,300,0];
+	CardObjNew[4275] = [4275,99,"潜在解放(ハイパーノービスXXII)","センザイカイホウハイパーノービス22","",0];
+	CardObjNew[4276] = [4276,100,0,"","",20269,2000,0];
+	CardObjNew[4277] = [4277,99,"潜在解放(マイスターXVII)","センザイカイホウマイスター17","",0];
+	CardObjNew[4278] = [4278,100,0,"","",20293,100,0];
+	CardObjNew[4279] = [4279,99,"潜在解放(蜃気楼&不知火XXI)","センザイカイホウシンキロウフシラヌイ21","",0];
+	CardObjNew[4280] = [4280,100,0,"","",20264,1000,0];
+	CardObjNew[4281] = [4281,99,"潜在解放(エレメンタルマスターXX)","センザイカイホウエレメンタルマスター20","物理攻撃命中時、一定確率で敵を中心にオートスペル[ダイヤモンドストーム]が習得Lvで発動",0];
+	CardObjNew[4282] = [4282,100,0,"","",221,248,0];
+	CardObjNew[4283] = [4283,99,"潜在解放(アリテアXVIII)","センザイカイホウ(アリテア18)","",0];
+	CardObjNew[4284] = [4284,100,0,"","",20382,200,0];       // フューリアスストーム CD-200ms
+	CardObjNew[4285] = [4285,99,"潜在解放(トルバドゥール&トルヴェールXVI)","センザイカイホウ(トルバドゥールアンドトルヴェール16)","",0];
+	CardObjNew[4286] = [4286,100,0,"","",20298,100,0];       // リズミカルウェーブ CD-100ms
+	CardObjNew[4287] = [4287,99,"冥犬の共吠え","メイケンノトモホエ","物理攻撃命中時、一定確率で10秒間、<br>　必中攻撃 + 50%<br>　命中物理攻撃で与えるダメージ + 50%",0];
+CardObjNew[4288] = [4288,4,"封印されたR001-ベスティア","フウインサレタアールゼロゼロイチベスティア","",1000000000000000080n,2,37000000080,10,0];
+CardObjNew[4289] = [4289,100,0,"","",15,25,0];
+CardObjNew[4290] = [4290,2,"封印されたアイスホーン","フウインサレタアイスホーン","",61,5,0];
+CardObjNew[4291] = [4291,100,0,"","[Mジャックフロスト]で受けるダメージ-30%",61,10,0];
+CardObjNew[4292] = [4292,7,"封印されたイングリッド","フウインサレタイングリッド","",15,5,66,5,0];
+CardObjNew[4293] = [4293,100,0,"","",11,5,0];
+CardObjNew[4294] = [4294,4,"封印されたヴェノムキメラ","フウインサレタヴェノムキメラ","",32,5,34,5,172,5,174,5,42,5,45,5,352,5,355,5,0];
+CardObjNew[4295] = [4295,100,0,"","",15,25,32,10,34,10,172,10,174,10,42,10,45,10,352,10,355,10,0];
+CardObjNew[4296] = [4296,4,"封印されたウルトラリマキナ","フウインサレタウルトラリマキナ","",5000000000000000080n,2,41000000080,10,0];
+CardObjNew[4297] = [4297,100,0,"","",15,25,0];
+CardObjNew[4298] = [4298,6,"封印されたガイアポール","フウインサレタガイアポール","",89,10,16,-50,0];
+CardObjNew[4299] = [4299,100,0,"","",170,20,173,20,0];
+CardObjNew[4300] = [4300,2,"封印されたグラトニー","フウインサレタグラトニー","[Mクラウドキル]で受けるダメージ-15%。",62,5,67,5,151,15,0];
+CardObjNew[4301] = [4301,100,0,"","",15,5,62,10,0];
+CardObjNew[4302] = [4302,4,"封印されたゴブリンキング","フウインサレタゴブリンキング","",6000000000000000070n,2,42000000070,10,0];
+CardObjNew[4303] = [4303,100,0,"","",15,25,0];
+CardObjNew[4304] = [4304,2,"封印されたジュゴリアント","フウインサレタジュゴリアント","",100009,3,0];
+CardObjNew[4305] = [4305,100,0,"","",220,28,0];
+CardObjNew[4306] = [4306,6,"封印されたバーニングファング","フウインサレタバーニングファング","",15,5,16,5,42,10,352,10,159,15,0];
+CardObjNew[4307] = [4307,100,0,"","",15,15,16,15,62,10,0];
+CardObjNew[4308] = [4308,2,"封印されたビッグエッグリン","フウインサレタビッグエッグリン","",200217,1,0];
+CardObjNew[4309] = [4309,100,0,"","",217,5,0];
+CardObjNew[4310] = [4310,2,"封印されたブルガサリ","フウインサレタブルガサリ","",63,5,0];
+CardObjNew[4311] = [4311,100,0,"","[Mコメット]で受けるダメージ-30%",63,10,0];
+CardObjNew[4312] = [4312,5,"封印されたボーンデータルザウルス","フウインサレタボーンデータルザウルス","",347,15,67,25,0];
+CardObjNew[4313] = [4313,100,0,"","",89,10,0];
+CardObjNew[4314] = [4314,1,"封印されたヨルトゥス執行官","フウインサレタヨルトゥスシッコウカン","",346,10,340,10,0];
+CardObjNew[4315] = [4315,100,0,"","",101,1,89,5,0];
+CardObjNew[4316] = [4316,1,"封印されたヨルトゥス調停官","フウインサレタヨルトゥスチョウテイカン","",347,10,340,10,0];
+CardObjNew[4317] = [4317,100,0,"","",101,1,89,5,0];
+CardObjNew[4318] = [4318,1,"封印されたランドグリス","フウインサレタランドグリス","",194,1,80,5,0];
+CardObjNew[4319] = [4319,100,0,"","",3000000000000346,10,3000000000000151,10,3000000000000156,10,2000000000000346,30,2000000000000151,25,2000000000000156,25,0];
+CardObjNew[4320] = [4320,100,0,"","",80,15,0];
+CardObjNew[4321] = [4321,1,"封印されたルガンチーフクリーナー","フウインサレタルガンチーフクリーナー","物理攻撃命中時、一定確率で敵に与えたダメージの20%をHPとして吸収",0];
+CardObjNew[4322] = [4322,100,0,"","物理攻撃でモンスターを倒した時HP+100、SP+10",210,10,25,10,0];
+CardObjNew[4323] = [4323,4,"封印されたルニレ","フウインサレタルニレ","",4000000000000000089n,2,40000000089,10,0];
+CardObjNew[4324] = [4324,100,0,"","",15,25,0];
+CardObjNew[4325] = [4325,2,"封印されたレギンレイヴ","フウインサレタレギンレイヴ","",500000000000000063n,5,500000000000000061n,5,500000000000000067n,5,500000000000000069n,5,0];
+CardObjNew[4326] = [4326,100,0,"","",15,5,67,10,0];
+CardObjNew[4327] = [4327,4,"封印された変異キメラ・ザ・ワン","フウインサレタヘンイキメラザワン","",30,5,39,5,43,5,45,5,0];
+CardObjNew[4328] = [4328,100,0,"","",15,25,30,10,39,10,43,10,45,10,0];
+CardObjNew[4329] = [4329,6,"封印された悪夢のピアメット","フウインサレタアクムノピアメット","",89,10,16,-50,0];
+CardObjNew[4330] = [4330,100,0,"","",171,20,176,20,0];
+CardObjNew[4331] = [4331,6,"封印された死の大魔女","フウインサレタシノダイマジョ","",89,10,16,-50,0];
+CardObjNew[4332] = [4332,100,0,"","",175,20,179,20,0];
+CardObjNew[4333] = [4333,4,"封印された死者の案内人","フウインサレタシシャノアンナイニン","",30,5,36,5,43,5,40,5,0];
+CardObjNew[4334] = [4334,100,0,"","",15,25,30,10,36,10,43,10,40,10,0];
+CardObjNew[4335] = [4335,6,"封印された無口なマヤー","フウインサレタムクチナマヤー","",80,10,16,-50,0];
+CardObjNew[4336] = [4336,100,0,"","",33,20,34,20,0];
+CardObjNew[4337] = [4337,6,"封印された雪嵐天使ウミウシ","フウインサレタユキアラシテンシウミウシ","",80,10,16,-50,0];
+CardObjNew[4338] = [4338,100,0,"","",35,20,38,20,0];
+CardObjNew[4339] = [4339,4,"封印されたマーガレッタ=ソリン（MVP）","フウインサレタマーガレッタソリン","物理・魔法攻撃を受けた時、一定確率でオートスペル[アスムプティオ]Lv5発動。",0];
+CardObjNew[4340] = [4340,100,0,"","",15,25,0];
+CardObjNew[4341] = [4341,4,"封印されたランデル=ロレンス（MVP）","フウインサレタランデルロレンス","",15,5,28000000015,5,0];
+CardObjNew[4342] = [4342,100,0,"","",15,30,28000000015,5,0];
+CardObjNew[4343] = [4343,4,"封印されたアルフォシオ=バジル（MVP）","フウインサレタアルフォシオバジル","",9,5,27000000009,5,0];
+CardObjNew[4344] = [4344,100,0,"","",9,20,15,25,27000000009,20,0];
+CardObjNew[4345] = [4345,4,"封印されたエミュール=プラメール（MVP）","フウインサレタエミュールプラメール","",10,5,25000000010,5,0];
+CardObjNew[4346] = [4346,100,0,"","",10,20,15,25,25000000010,20,0];
+CardObjNew[4347] = [4347,5,"封印されたエレメス=ガイル（MVP）","フウインサレタエレメスガイル","",220,19,0];
+CardObjNew[4348] = [4348,100,0,"","",61,25,62,25,0];
+CardObjNew[4349] = [4349,4,"封印されたガーティー=ウー（MVP）","フウインサレタガーティーウー","",8,5,30000000008,5,0];
+CardObjNew[4350] = [4350,100,0,"","",8,20,15,25,30000000008,20,0];
+CardObjNew[4351] = [4351,1,"封印されたセシル=ディモン（MVP）","フウインサレタセシルディモン","物理攻撃命中時、一定確率で敵に与えたダメージの20%をHPとして吸収<br>HP自然回復量-100%",0];
+CardObjNew[4352] = [4352,100,0,"","",26,20,0];
+CardObjNew[4353] = [4353,4,"封印されたセリア=アルデ（MVP）","フウインサレタセリアアルデ","",89,3,29000000089,3,0];
+CardObjNew[4354] = [4354,100,0,"","",7662,100,0];
+CardObjNew[4355] = [4355,100,0,"","",15,25,89,4,29000000089,4,0];
+CardObjNew[4356] = [4356,4,"封印されたチェン=リウ（MVP）","フウインサレタチェンリウ","",80,3,26000000080,3,0];
+CardObjNew[4357] = [4357,100,0,"","",15,25,80,4,26000000080,4,0];
+CardObjNew[4358] = [4358,4,"封印されたトレンティーニ（MVP）","フウインサレタトレンティーニ","",9,5,27000000009,5,0];
+CardObjNew[4359] = [4359,100,0,"","",9,20,15,25,27000000009,20,0];
+CardObjNew[4360] = [4360,1,"封印されたハワード=アルトアイゼン（MVP）","フウインサレタハワードアルトアイゼン","物理攻撃命中時、一定確率で敵の武器・防具を破壊。",0];
+CardObjNew[4361] = [4361,100,0,"","",267,20,0];
+CardObjNew[4362] = [4362,5,"封印されたアークビショップマーガレッタ(MVP)","フウインサレタアークビショップマーガレッタ","",4900000000015,5,4900000000091,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4363] = [4363,100,0,"","追加で[ヒール]、[ハイネスヒール]、[コルセオヒール]使用時、一定確率で5秒間、<br>　ヒール系スキル使用時、HP回復量 + 30%<br>　モンスター[マーガレッタ=ソリン](アークビショップ)に変身",0];
+CardObjNew[4364] = [4364,5,"封印されたウォーロックカトリーヌ(MVP)","フウインサレタウォーロックカトリーヌ","",5100000000019,25,5100000000089,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4365] = [4365,100,0,"","追加で魔法攻撃命中時、一定確率で5秒間、<br>　Int + 30<br>　モンスター[カトリーヌ=ケイロン](ウォーロック)に変身",0];
+CardObjNew[4366] = [4366,2,"封印されたカトリーヌ=ケイロン（MVP）","フウインサレタカトリーヌケイロン","",296,30,0];
+CardObjNew[4367] = [4367,100,0,"","装備解除時SP-2000。<br>装備解除時[テレキネシスインテンス]を解除する",19798,40000,0];
+CardObjNew[4368] = [4368,100,0,"","",100,100,0];
+CardObjNew[4369] = [4369,5,"封印されたギロチンクロスエレメス(MVP)","フウインサレタギロチンクロスエレメス","",4800000000011,5,4800000000080,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4370] = [4370,100,0,"","追加で物理攻撃命中時、一定確率で5秒間、<br>　Agi + 30<br>　モンスター[エレメス=ガイル](ギロチンクロス)に変身",0];
+CardObjNew[4371] = [4371,5,"封印されたジェネティックエミュール(MVP)","フウインサレタジェネティックエミュール","",5900000000009,5,5900000000080,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4372] = [4372,100,0,"","追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Luk + 30<br>　モンスター[エミュール=プラメール](ジェネティック)に変身",0];
+CardObjNew[4373] = [4373,5,"封印されたシャドウチェイサーガーティー(MVP)","フウインサレタシャドウチェイサーガーティー","",5400000000080,5,5400000000089,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4374] = [4374,100,0,"","追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Agi + 30<br>　モンスター[ガーティー=ウー](シャドウチェイサー)に変身",0];
+CardObjNew[4375] = [4375,5,"封印されたソーサラーセリア(MVP)","フウインサレタソーサラーセリア","",5800000000015,5,5800000000089,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4376] = [4376,100,0,"","追加で魔法攻撃を受けた時、一定確率で5秒間、<br>　Int + 30<br>　モンスター[セリア=アルデ](ソーサラー)に変身",0];
+CardObjNew[4377] = [4377,5,"封印されたミンストレルアルフォシオ(MVP)","フウインサレタミンストレルアルフォシオ","",5600000000015,5,5600000000016,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4378] = [4378,100,0,"","追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Dex + 30<br>　モンスター[アルフォシオ=バジル](ミンストレル)に変身",0];
+CardObjNew[4379] = [4379,5,"封印されたメカニックハワード(MVP)","フウインサレタメカニックハワード","",5200000000008,5,5200000000080,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4380] = [4380,100,0,"","追加で物理攻撃命中時、一定確率で5秒間、<br>　Luk + 30<br>　モンスター[ハワード=アルトアイゼン](メカニック)に変身",0];
+CardObjNew[4381] = [4381,5,"封印されたルーンナイトセイレン(MVP)","フウインサレタルーンナイトセイレン","",4700000000101,1,4700000000080,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4382] = [4382,100,0,"","追加で物理攻撃命中時、一定確率で5秒間、<br>　Vit + 30<br>　モンスター[セイレン=ウィンザー](ルーンナイト)に変身",0];
+CardObjNew[4383] = [4383,5,"封印されたレンジャーセシル(MVP)","フウインサレタレンジャーセシル","",5000000000010,5,5000000000025,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4384] = [4384,100,0,"","追加で物理攻撃命中時、一定確率で5秒間、<br>　Dex + 30<br>　モンスター[セシル=ディモン](レンジャー)に変身",0];
+CardObjNew[4385] = [4385,5,"封印されたロイヤルガードランデル(MVP)","フウインサレタロイヤルガードランデル","",5300000000018,100,5300000000080,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4386] = [4386,100,0,"","追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Vit + 30<br>　モンスター[ランデル=ロレンス](ロイヤルガード)に変身",0];
+CardObjNew[4387] = [4387,5,"封印されたワンダラートレンティーニ(MVP)","フウインサレタワンダラートレンティーニ","",5700000000015,5,5700000000016,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4388] = [4388,100,0,"","追加で物理攻撃を受けた時、一定確率で5秒間、<br>　Dex + 30<br>　モンスター[トレンティーニ](ワンダラー)に変身",0];
+CardObjNew[4389] = [4389,5,"封印された修羅チェン(MVP)","フウインサレタシュラチェン","",5500000000015,5,5500000000080,5,7000000000000217,5,10000217,5,0];
+CardObjNew[4390] = [4390,100,0,"","追加で物理攻撃命中時、一定確率で5秒間、<br>　Str + 30<br>　モンスター[チェン=リウ](修羅)に変身",0];
+CardObjNew[4391] = [4391,100,0,"","",60,25,0];
+CardObjNew[4392] = [4392,100,0,"","",219,4391,0];
+	CardObjNew[4393] = [4393,100,0,"","",10000000000017,2,10000000000100,2,0];	// タナトスの記憶(怨望) 英雄セット
+	CardObjNew[4394] = [4394,100,0,"","オートスペル[ダーククロー]の発動率が上昇",0];	// タナトスの記憶(怨望) 天地セット
+	CardObjNew[4395] = [4395,100,0,"","",15,50,156,100,0];	// タナトスの記憶(恐怖) 英雄セット
+	CardObjNew[4396] = [4396,100,0,"","",178,40,0];	// タナトスの記憶(恐怖) 天地セット
+	CardObjNew[4397] = [4397,100,0,"","",100067,7,0];	// タナトスの記憶(後悔) 英雄セット
+	CardObjNew[4398] = [4398,100,0,"","[ソニックブロー]で受けるダメージ - 100%",60,-35,0];	// タナトスの記憶(後悔) 天地セット
+	CardObjNew[4399] = [4399,100,0,"","",100064,7,0];	// タナトスの記憶(憤怒) 英雄セット
+	CardObjNew[4400] = [4400,100,0,"","[クリティカルスラッシュ]で受けるダメージ - 100%",60,-35,0];	// タナトスの記憶(憤怒) 天地セット
+CardObjNew[4401] = [4401,99,"潜在解放(アークメイジXXII)","センザイカイホウアークメイジ22","",0];
+CardObjNew[4402] = [4402,100,0,"","",20064,2000,20063,2000,20054,500,0];
+CardObjNew[4403] = [4403,99,"潜在解放(アークメイジXXIII)","センザイカイホウアークメイジ23","",0];
+CardObjNew[4404] = [4404,100,0,"","魔法攻撃命中時、一定確率で20秒間、[フローズンスラッシュ]、[ロックダウン]の固定詠唱時間 -100%",0];
+CardObjNew[4405] = [4405,99,"潜在解放(アビスチェイサーXX)","センザイカイホウアビスチェイサー20","",0];
+CardObjNew[4406] = [4406,100,0,"","",20106,100,0];
+CardObjNew[4407] = [4407,99,"潜在解放(アビスチェイサーXXI)","センザイカイホウアビスチェイサー21","",0];
+CardObjNew[4408] = [4408,100,0,"","魔法攻撃命中時、一定確率で20秒間、[オメガアビスストライク]、[アビスフレイム]の固定詠唱時間 -100%",0];
+CardObjNew[4409] = [4409,99,"潜在解放(アリテアXX)","センザイカイホウアリテア20","",0];
+CardObjNew[4410] = [4410,100,0,"","",20385,100,0];
+CardObjNew[4411] = [4411,99,"潜在解放(アリテアXXI)","センザイカイホウアリテア21","",0];
+CardObjNew[4412] = [4412,100,0,"","魔法攻撃命中時、一定確率で20秒間、[ロアリングピアサー]、[ロアリングチャージ]、[フューリアスストーム]の固定詠唱時間 -100%",0];
+CardObjNew[4413] = [4413,99,"潜在解放(インクイジターXVII)","センザイカイホウインクイジター17","",0];
+CardObjNew[4414] = [4414,100,0,"","物理攻撃命中時、一定確率で20秒間、[烈火気弾]の固定詠唱時間 -100%",0];
+CardObjNew[4415] = [4415,99,"潜在解放(インペリアルガードXIX)","センザイカイホウインペリアルガード19","",0];
+CardObjNew[4416] = [4416,100,0,"","",20309,200,0];
+CardObjNew[4417] = [4417,99,"潜在解放(インペリアルガードXX)","センザイカイホウインペリアルガード20","",0];
+CardObjNew[4418] = [4418,100,0,"","魔法攻撃命中時、一定確率で20秒間、[ジャッジメントクロス]、[インペリアルプレッシャー]の固定詠唱時間 -100%",0];
+CardObjNew[4419] = [4419,99,"潜在解放(ウィンドホークXXI)","センザイカイホウウィンドホーク21","",0];
+CardObjNew[4420] = [4420,100,0,"","物理攻撃命中時、一定確率で敵にオートスペル[ワイルドウォーク]が習得Lvで発動",225,249,0];
+CardObjNew[4421] = [4421,99,"潜在解放(ウィンドホークXXII)","センザイカイホウウィンドホーク22","",0];
+CardObjNew[4422] = [4422,100,0,"","物理攻撃命中時、一定確率で20秒間、[クレッシブボルト]、[ゲイルストーム]の固定詠唱時間 -100%",0];
+CardObjNew[4423] = [4423,99,"潜在解放(エレメンタルマスターXXI)","センザイカイホウエレメンタルマスター21","",0];
+CardObjNew[4424] = [4424,100,0,"","魔法攻撃命中時、一定確率で20秒間、[ダイヤモンドストーム]、[テラドライブ]の固定詠唱時間 -100%",0];
+CardObjNew[4425] = [4425,99,"潜在解放(カーディナルXXI)","センザイカイホウカーディナル21","",0];
+CardObjNew[4426] = [4426,100,0,"","",20313,300,0];
+CardObjNew[4427] = [4427,99,"潜在解放(カーディナルXXII)","センザイカイホウカーディナル22","",0];
+CardObjNew[4428] = [4428,100,0,"","魔法攻撃命中時、一定確率で20秒間、[アルビトリウム]、[ニューマティックプロセラ]、[フレーメン]、[ディヴィヌスフロス]の固定詠唱時間 -100%",0];
+CardObjNew[4429] = [4429,99,"潜在解放(シャドウクロスXIX)","センザイカイホウシャドウクロス19","",0];
+CardObjNew[4430] = [4430,100,0,"","",20312,100,0];
+CardObjNew[4431] = [4431,99,"潜在解放(シャドウクロスXX)","センザイカイホウシャドウクロス20","",0];
+CardObjNew[4432] = [4432,100,0,"","[クロススラッシュ]使用時、一定確率でAP回復量 +10",0];
+CardObjNew[4433] = [4433,99,"潜在解放(シャドウクロスXXI)","センザイカイホウシャドウクロス21","",0];
+CardObjNew[4434] = [4434,100,0,"","",20020,1000,0];
+CardObjNew[4435] = [4435,99,"潜在解放(蜃気楼&不知火XXII)","センザイカイホウシンキロウシラヌイ22","",0];
+CardObjNew[4436] = [4436,100,0,"","",20263,200,0];
+CardObjNew[4437] = [4437,99,"潜在解放(蜃気楼&不知火XXIII)","センザイカイホウシンキロウシラヌイ23","",0];
+CardObjNew[4438] = [4438,100,0,"","",20266,100,0];
+CardObjNew[4439] = [4439,99,"潜在解放(蜃気楼&不知火XXIV)","センザイカイホウシンキロウシラヌイ24","",0];
+CardObjNew[4440] = [4440,100,0,"","物理攻撃命中時、一定確率で20秒間、[苦無 -歪曲-]の固定詠唱時間 -100%",0];
+CardObjNew[4441] = [4441,99,"潜在解放(スピリットハンドラーXXIV)","センザイカイホウスピリットハンドラー24","",0];
+CardObjNew[4442] = [4442,100,0,"","物理攻撃命中時、一定確率で20秒間、[タイガーバトリング]の固定詠唱時間 -100%",0];
+CardObjNew[4443] = [4443,99,"潜在解放(ソウルアセティックXVII)","センザイカイホウソウルアセティック17","",0];
+CardObjNew[4444] = [4444,100,0,"","魔法攻撃命中時、一定確率で20秒間、[青龍符]、[白虎符]、[朱雀符]、[玄武符]、[四方神符]、[死霊浄化]、[四方五行陣]の固定詠唱時間 -100%",0];
+CardObjNew[4445] = [4445,99,"潜在解放(天帝XIV)","センザイカイホウテンテイ14","",0];
+CardObjNew[4446] = [4446,100,0,"","",20176,1000,20177,1000,20299,1000,0];
+CardObjNew[4447] = [4447,99,"潜在解放(天帝XV)","センザイカイホウテンテイ15","",0];
+CardObjNew[4448] = [4448,100,0,"","物理攻撃命中時、一定確率で20秒間、[太天一月]、[天月]の固定詠唱時間 -100%",0];
+CardObjNew[4449] = [4449,99,"潜在解放(ドラゴンナイトXX)","センザイカイホウドラゴンナイト20","",0];
+CardObjNew[4450] = [4450,100,0,"","物理攻撃命中時、一定確率で20秒間、[ドラゴニックブレス]の固定詠唱時間 -100%",0];
+CardObjNew[4451] = [4451,99,"潜在解放(トルバドゥール&トルヴェールXVII)","センザイカイホウトルバドゥールトルヴェール17","",0];
+CardObjNew[4452] = [4452,100,0,"","物理攻撃命中時、一定確率で20秒間、[リズムシューティング]、[ロゼブロッサム]の固定詠唱時間 -100%",0];
+CardObjNew[4453] = [4453,99,"潜在解放(ナイトウォッチXVIII)","センザイカイホウナイトウォッチ18","",0];
+CardObjNew[4454] = [4454,100,0,"","物理攻撃命中時、一定確率で20秒間、[オンリーワンバレット]、[スパイラルシューティング]の固定詠唱時間 -100%",0];
+CardObjNew[4455] = [4455,99,"潜在解放(バイオロXIX)","センザイカイホウバイオロ19","",0];
+CardObjNew[4456] = [4456,100,0,"","物理攻撃命中時、一定確率で20秒間、[メイヘミックソーンズ]の固定詠唱時間 -100%",0];
+CardObjNew[4457] = [4457,99,"潜在解放(ハイパーノービスXXI)","センザイカイホウハイパーノービス21","",0];
+CardObjNew[4458] = [4458,100,0,"","",20270,2000,0];
+CardObjNew[4459] = [4459,99,"潜在解放(ハイパーノービスXXIII)","センザイカイホウハイパーノービス23","",0];
+CardObjNew[4460] = [4460,100,0,"","魔法攻撃命中時、一定確率で20秒間、[ユピテルサンダーストーム]、[ヘルズドライブ]、[ナパームバルカンストライク]の固定詠唱時間 -100%",0];
+CardObjNew[4461] = [4461,99,"潜在解放(マイスターXIX)","センザイカイホウマイスター19","",0];
+CardObjNew[4462] = [4462,100,0,"","物理攻撃命中時、一定確率で20秒間、[スパークブラスター]、[トリプルレーザー]、[エナジーキャノネード]の固定詠唱時間 -100%",0];
+CardObjNew[4463] = [4463,99,"潜在解放(マイスターXVIII)","センザイカイホウマイスター18","",0];
+CardObjNew[4464] = [4464,100,0,"","",20292,100,20293,100,0];
+
+	CardObjNew[4465] = [4465,2,"傲慢な祈る者","ゴウマンナイノルモノ","",43,30,353,30,309,30,0];
+	CardObjNew[4466] = [4466,2,"傲慢なヴォイドミミック","ゴウマンナヴォイドミミック","",57000000157,25,57000000152,25,45000000151,50,45000000153,50,0];
+	CardObjNew[4467] = [4467,2,"傲慢な共感する者","ゴウマンナキョウカンスルモノ","",41,30,351,30,305,30,0];
+	CardObjNew[4468] = [4468,2,"傲慢なクロウデューク","ゴウマンナクロウデューク","",341,5,342,5,346,5,348,5,349,5,500000000000000380n,1,0];
+	CardObjNew[4469] = [4469,2,"傲慢なクロウバロン","ゴウマンナクロウバロン","兜上段に装備時、固定詠唱時間 - 70%",343,5,344,5,347,5,340,5,345,5,0];
+	CardObjNew[4470] = [4470,2,"傲慢な幸福を与える者","ゴウマンナコウフクヲアタエルモノ","",42,30,352,30,304,30,0];
+	CardObjNew[4471] = [4471,2,"傲慢なタナトス","ゴウマンナタナトス","",63,10,66,10,23,1,0];
+	CardObjNew[4472] = [4472,100,0,"","",15,15,63,10,0];
+	CardObjNew[4473] = [4473,100,0,"","物理攻撃命中時、一定確率で敵に与えたダメージの3%をSPとして吸収",210,10,25,10,0];
+	CardObjNew[4474] = [4474,2,"傲慢なタナトスの憎悪","ゴウマンナタナトスノゾウオ","",16,15,62,15,68,15,381,1,0];
+	CardObjNew[4475] = [4475,100,0,"","",151,50,0];
+	CardObjNew[4476] = [4476,100,0,"","",151,50,0];
+	CardObjNew[4477] = [4477,2,"傲慢な微笑む者","ゴウマンナホホエムモノ","",44,30,354,30,302,30,0];
+	CardObjNew[4478] = [4478,4,"傲慢なタナトスの憤怒","ゴウマンナタナトスノフンヌ","",80,15,0];
+	CardObjNew[4479] = [4479,100,0,"","",15,50,80,15,0];
+	CardObjNew[4480] = [4480,100,0,"","",80,15,0];
+	CardObjNew[4481] = [4481,4,"傲慢な暴走したタナトス","ゴウマンナボウソウシタタナトス","純粋なStrとIntとDexの合計が10上がる度に追加で物理・魔法攻撃時、念属性モンスターに与えるダメージ + 3%",0];
+	CardObjNew[4482] = [4482,100,0,"","絶対に新毒状態にならない",0];
+	CardObjNew[4483] = [4483,100,0,"","",15,50,67,50,0];
+	CardObjNew[4484] = [4484,5,"傲慢なタナトスの怨望","ゴウマンナタナトスノエンボウ","",100211,3,100061,3,0];
+	CardObjNew[4485] = [4485,100,0,"","",100061,7,0];
+	CardObjNew[4486] = [4486,100,0,"","[スパイラルピアース]で受けるダメージ - 100%",60,35,0];
+	CardObjNew[4487] = [4487,5,"傲慢なタナトスの恐怖","ゴウマンナタナトスノキョウフ","",100215,3,100065,3,0];
+	CardObjNew[4488] = [4488,100,0,"","",100065,7,0];
+	CardObjNew[4489] = [4489,100,0,"","[Mセルフディストラクション]で受けるダメージ - 100%",60,35,0];
+	CardObjNew[4490] = [4490,5,"傲慢なタナトスの絶望","ゴウマンナタナトスノゼツボウ","物理攻撃命中時、一定確率で10秒間、火属性物理攻撃力 + 30%<br>精錬値が1上がる度に追加で発動率が上昇",80,10,63,50,0];
+	CardObjNew[4491] = [4491,100,0,"","物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収",63,50,0];
+	CardObjNew[4492] = [4492,100,0,"","",74,15,0];
+	CardObjNew[4493] = [4493,6,"傲慢なタナトスの悲しみ","ゴウマンナタナトスノカナシミ","",89,10,170,50,176,50,16,-50,0];
+	CardObjNew[4494] = [4494,100,0,"","",89,10,220,152,0];
+	CardObjNew[4495] = [4495,100,0,"","1秒毎にSP + 1%",0];
+	CardObjNew[4496] = [4496,6,"傲慢なタナトスの苦悩","ゴウマンナタナトスノクノウ","",6376,25,6370,25,6382,25,0];
+	CardObjNew[4497] = [4497,100,0,"","",344,30,0];
+	CardObjNew[4498] = [4498,100,0,"","魔法攻撃命中時、一定確率で20秒間、[ロアリングピアサー]、[ロアリングチャージ]、[フューリアスストーム]の固定詠唱時間 - 100%",0];
+	CardObjNew[4499] = [4499,7,"傲慢なエルディスト","ゴウマンナエルディスト","",57000000157,10,57000000152,10,45000000157,15,45000000152,15,0];
+	CardObjNew[4500] = [4500,7,"傲慢な監視する者","ゴウマンナカンシスルモノ","",80,2,89,2,65000000074,10,0];
+	CardObjNew[4501] = [4501,7,"傲慢な執行する者","ゴウマンナシッコウスルモノ","",80,4,61000000086,15,0];
+	CardObjNew[4502] = [4502,7,"傲慢なタナトスの後悔","ゴウマンナタナトスノコウカイ","物理・魔法攻撃命中時、一定確率で自分に発生している[狂乱]状態を解除する",16,15,89,15,0];
+	CardObjNew[4503] = [4503,100,0,"","",298,50,0];
+	CardObjNew[4504] = [4504,100,0,"","",156,100,0];
+	CardObjNew[4505] = [4505,7,"傲慢な慰める者","ゴウマンナナグサメルモノ","",70,4,66000000010,30,0];
+	CardObjNew[4506] = [4506,7,"傲慢なブックオブデス","ゴウマンナブックオブデス","",56000000155,10,56000000159,10,44000000155,15,44000000159,15,0];
+	CardObjNew[4507] = [4507,7,"傲慢な保護する者","ゴウマンナホゴスルモノ","",89,4,64000000298,50,0];
+	CardObjNew[4508] = [4508,100,0,"","",270,15,0];
+	CardObjNew[4509] = [4509,99,"潜在解放(アリテアXIX)","センザイカイホウアリテア19","",0];
+	CardObjNew[4510] = [4510,100,0,"","",20392,200,0];
+	CardObjNew[4511] = [4511,99,"潜在解放(アークメイジXXI)","センザイカイホウアークメイジ21","",0];
+	CardObjNew[4512] = [4512,100,0,"","",20059,300,20066,200,0];
+	CardObjNew[4513] = [4513,99,"潜在解放(インペリアルガードXVIII)","センザイカイホウインペリアルガード18","",0];
+	CardObjNew[4514] = [4514,100,0,"","",20092,200,0];
+	//
+	CardObjNew[4515] = [4515,99,"潜在解放(ナイトウォッチXIX)","センザイカイホウナイトウォッチ19","",0];
+	CardObjNew[4516] = [4516,100,0,"","",20216,200,0];
+	CardObjNew[4517] = [4517,99,"潜在解放(アリテアXXII)","センザイカイホウアリテア22","",0];
+	CardObjNew[4518] = [4518,100,0,"","",20382,100,0];
+	CardObjNew[4519] = [4519,99,"潜在解放(ドラゴンナイトXXI)","センザイカイホウドラゴンナイト21","",0];
+	CardObjNew[4520] = [4520,100,0,"","",14241,500,0];
+	CardObjNew[4521] = [4521,99,"潜在解放(インペリアルガードXXI)","センザイカイホウインペリアルガード21","",0];
+	CardObjNew[4522] = [4522,100,0,"","",20310,200,0];
+	CardObjNew[4523] = [4523,99,"潜在解放(ソウルアセティックXVIII)","センザイカイホウソウルアセティック18","",0];
+	CardObjNew[4524] = [4524,100,0,"","",20197,100,20198,100,20199,100,20200,100,0];
+
+	CardObjNew[4525] = [4525,1,"黒炎龍の夏休み","コクエンリュウノナツヤスミ","",80,10,100000000000080,1,0];
+	CardObjNew[4526] = [4526,100,0,"","",70,50,228,1,0];
+	CardObjNew[4527] = [4527,1,"廣命龍の夏休み","コウメイリュウノナツヤスミ","",80,10,100000000000080,1,0];
+	CardObjNew[4528] = [4528,100,0,"","物理攻撃命中時、一定確率で敵に与えたダメージの10%をHP・SPとして吸収",85,10,0];
+	CardObjNew[4529] = [4529,2,"マラムの夏休み","マラムノナツヤスミ","[Mコメット]で受けるダメージ - 50%",0];
+	CardObjNew[4530] = [4530,100,0,"","",15,15,66,10,0];
+	CardObjNew[4531] = [4531,100,0,"","物理攻撃命中時、一定確率で敵に与えたダメージの3%をSPとして吸収",10,25,0];
+
+	CardObjNew[4532] = [4532,99,"潜在解放(ハイパーノービスXXIV)","センザイカイホウハイパーノービス24","",0];
+	CardObjNew[4533] = [4533,100,0,"","",20232,200,20233,200,0];
+	CardObjNew[4534] = [4534,99,"潜在解放(蜃気楼&不知火XXV)","センザイカイホウシンキロウシラヌイ25","",0];
+	CardObjNew[4535] = [4535,100,0,"","",20253,200,20255,200,0];
+	CardObjNew[4536] = [4536,99,"潜在解放(ウィンドホークXXIII)","センザイカイホウウィンドホーク23","",0];
+	CardObjNew[4537] = [4537,100,0,"","",20046,200,20043,200,20291,200,0];
+	CardObjNew[4538] = [4538,99,"潜在解放(アリテアXXIII)","センザイカイホウアリテア23","",0];
+	CardObjNew[4539] = [4539,100,0,"","",20385,200,0];
+
+	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
+
+export const CARD_ID_MAX = CardObjNew.length;
+
+	/*
+	データ破損せず扱える cardID の最大値は 16bit = 65535 です
+	これを拡張したい場合は ro4/m/js/CSaveDataUnit.js の CSaveDataUnitEquipable クラスで
+	propNameCardID[1-4] の bit 数を更新した上で parse 関数をオーバーライドして後方互換性を確保してください
+	ただし petID = nnn を処理する際に cardID = 100nnn と見なされている部分があるため
+	10進数表現で桁が増える場合には itemset.h.js で定義されている ITEM_SET_PET_ID_OFFSET も拡張してください
+	*/
+
+	//-----------------------------------------------
+	// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+	// CardObjNew はここより上で設定すること
+	//
+	// 全データを元にソート順を作成する
+	//-----------------------------------------------
+export const CardSortOBJ = [];
+export const card_ordered_info = [
+		[0,201,202,203,204,1,2,3,106,156,527,1664,1665],
+		[0,1,2,3,106,156,527,1664,1665],
+		[0],
+		[0,154,526],
+		[0],
+		[0],
+		[0,373],
+		[0],
+		[0],	// 上段
+		[0],	// 中段
+		[0],	// 下段
+		[0],	// アクセ1
+		[0],	// アクセ2
+	]
+	// 全部位カード: 手動で追加する必要がある
+export const ordered_info_for_all = [
+		800,801,802,803,804,805,806,807,808,809,810,811,812,813,814,815,816,817,1016,1068,1257,1670,1258,1668,1259,1629,1260,1631,1261,1633,1262,1635,1263,1637,1264,1894,1265,1666,1266,1672,1267,1639,1268,1898,1434,1896,1436,1674,1438,1900,1440,1676,1906,1908,1902,1904,
+		3773,3775,3777,3779,3781,3783,3785,3787,3789,3791,3793,3795,3797,3799,3801,3803,3805,3807,4260,4262,4264,
+	];
+
+	let sorted_card;
+	if (typeof CardObjNew.toSorted === 'function') {
+		// Chromium系など比較的多くのブラウザ対応
+		sorted_card = CardObjNew.toSorted((a,b) =>{
+			return String(a[3]||a[2]).localeCompare(String(b[3]||b[2]), 'ja');
+		})
+	} else {
+		// WaterFox5.1.3対応
+		sorted_card = CardObjNew.slice().sort((a, b) => {
+			return String(a[3] || a[2]).localeCompare(String(b[3] || b[2]), 'ja');
+		});
+	}
+
+	// 全部位カードを各部位カード配列に追加する
+	for (let i = 0; i < card_ordered_info.length; i++) {
+		CardSortOBJ[i] = card_ordered_info[i].concat(sorted_card.filter(c => {
+			return (c && c[2] != "類"  &&(!card_ordered_info[i].includes(c[0])) && (c[1] == (i==0?1:i)));
+		}).map(c => {
+			return c[0]
+		})).concat(ordered_info_for_all)
+	}
+
+import { register } from "./engine-registry.js";
+register('CardObjNew', CardObjNew);

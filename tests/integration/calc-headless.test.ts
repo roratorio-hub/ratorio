@@ -53,7 +53,7 @@ async function gotoFixture(query: string) {
     await page.waitForFunction(async () => {
         const dynamicImport = new Function('specifier', 'return import(specifier);') as
             (specifier: string) => Promise<Record<string, any>>;
-        const mod = await dynamicImport('/ro4/m/js/CAttackMethodAreaComponentManager.js');
+        const mod = await dynamicImport('/engine/CAttackMethodAreaComponentManager.js');
         const mgr = mod.CAttackMethodAreaComponentManager;
         const sel = mgr?.selectObjectArray?.[0];
         if (!sel) return false;
@@ -69,8 +69,8 @@ async function captureDomDriven(page: Awaited<ReturnType<typeof gotoFixture>>['p
     return page.evaluate(async () => {
         const dynamicImport = new Function('specifier', 'return import(specifier);') as
             (specifier: string) => Promise<Record<string, any>>;
-        const footBridge = await dynamicImport('/roro/m/js/foot-bridge.js');
-        const head = await dynamicImport('/ro4/m/js/head.js');
+        const footBridge = await dynamicImport('/engine/foot-bridge.js');
+        const head = await dynamicImport('/engine/head.js');
         const retValArray = footBridge.StAllCalc();
         const { battleCalcResultAll } = head.ComputeBattleResult(retValArray);
         return JSON.parse(JSON.stringify(battleCalcResultAll));

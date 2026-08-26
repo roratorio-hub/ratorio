@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CCustomSelectBase } from '@roro/CCustomSelectBase.js';
+import { CCustomSelectBase } from '@engine/CCustomSelectBase.js';
 
 describe('CCustomSelectBase.js', () => {
     describe('静的プロパティ確認', () => {

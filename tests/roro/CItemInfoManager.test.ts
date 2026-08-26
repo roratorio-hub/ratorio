@@ -1,8 +1,8 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 
-import { CItemInfoManager } from '@roro/CItemInfoManager.js';
-import { g_timeItemConf } from '@ro4/global.js';
-import { g_timeItemDataBridge } from '@roro/CTimeItemDataBridge.js';
+import { CItemInfoManager } from '@engine/CItemInfoManager.js';
+import { g_timeItemConf } from '@engine/global.js';
+import { g_timeItemDataBridge } from '@engine/CTimeItemDataBridge.js';
 
 describe('CItemInfoManager.js', () => {
     describe('コアロジック', () => {

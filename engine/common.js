@@ -1,0 +1,565 @@
+import {
+    ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_POISON, ELM_ID_PSYCO,
+    ELM_ID_UNDEAD, ELM_ID_VANITY, ELM_ID_WATER, ELM_ID_WIND,
+} from "./const/EnumElmId.js";
+import { PARAM_AGI, PARAM_DEX, PARAM_INT, PARAM_LUK, PARAM_STR, PARAM_VIT } from "./const/EnumParamId.js";
+import {
+    RACE_ID_ANGEL, RACE_ID_ANIMAL, RACE_ID_DEMON, RACE_ID_DRAGON, RACE_ID_FISH, RACE_ID_HUMAN,
+    RACE_ID_INSECT, RACE_ID_PLANT, RACE_ID_SOLID, RACE_ID_UNDEAD,
+} from "./const/EnumRaceId.js";
+import {
+    CONST_DATA_KIND_ALIAS, CONST_DATA_KIND_ARROW, CONST_DATA_KIND_AUTO_SPELL, CONST_DATA_KIND_BUFF, CONST_DATA_KIND_CARD, CONST_DATA_KIND_CARD_SORT_DATA,
+    CONST_DATA_KIND_CHANGE_LOG, CONST_DATA_KIND_CHARA, CONST_DATA_KIND_COSTUME, CONST_DATA_KIND_ENCHANT_LIST, CONST_DATA_KIND_ENCHANT_TYPE, CONST_DATA_KIND_HPSPBASE,
+    CONST_DATA_KIND_ITEM, CONST_DATA_KIND_ITEM_PACK, CONST_DATA_KIND_ITEM_SET, CONST_DATA_KIND_JOB, CONST_DATA_KIND_JOB_SKILL_ACTIVE, CONST_DATA_KIND_JOB_SKILL_LEARNED,
+    CONST_DATA_KIND_JOB_SKILL_PASSIVE, CONST_DATA_KIND_MONSTER, CONST_DATA_KIND_MONSTER_GROUP, CONST_DATA_KIND_MONSTER_MAP, CONST_DATA_KIND_PET, CONST_DATA_KIND_RND_OPT,
+    CONST_DATA_KIND_RND_OPT_LIST, CONST_DATA_KIND_RND_OPT_TYPE, CONST_DATA_KIND_SKILL, CONST_DATA_KIND_STATE, CONST_DATA_KIND_TIME_ITEM, CONST_DATA_KIND_TIME_ITEM_SORT_DATA,
+    CONST_DATA_KIND_USABLE_SKILL,
+} from "./const/EnumConstDataKind.js";
+import {
+    FRIENDLITY_ID_AUTO, FRIENDLITY_ID_HIGH, FRIENDLITY_ID_HIGHEST, FRIENDLITY_ID_LOW, FRIENDLITY_ID_LOWEST, FRIENDLITY_ID_NORMAL,
+    FRIENDLITY_ID_RUNAWAY,
+} from "./const/EnumFriendlityId.js";
+import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "./const/EnumSizeId.js";
+import {
+    STATE_ID_BLEEDING, STATE_ID_BLIND, STATE_ID_BREAK_ACCESSORY, STATE_ID_BREAK_BODY, STATE_ID_BREAK_FOOT, STATE_ID_BREAK_HEAD,
+    STATE_ID_BREAK_SHIELD, STATE_ID_BREAK_SHOULDER, STATE_ID_BREAK_WEAPON, STATE_ID_CONFUSE, STATE_ID_CURSED, STATE_ID_FROZEN,
+    STATE_ID_POISON, STATE_ID_SILENCE, STATE_ID_SLEEP, STATE_ID_STONE, STATE_ID_STUN, STATE_NEW_ID_CONFLAGRATION,
+    STATE_NEW_ID_CRYSTALLIZATION, STATE_NEW_ID_HIGHLYPOISONOUS, STATE_NEW_ID_JETBLACK, STATE_NEW_ID_LETHARGY, STATE_NEW_ID_MELANCHOLY, STATE_NEW_ID_RAPIDCOOLING,
+    STATE_NEW_ID_STILLNESS, STATE_NEW_ID_TORRENT, STATE_NEW_ID_UNHAPPINESS, STATE_R_ID_CHARMED, STATE_R_ID_CHILLED, STATE_R_ID_DEEPSLEEP,
+    STATE_R_ID_FEAR, STATE_R_ID_FRENZY, STATE_R_ID_HOWLING, STATE_R_ID_ICED, STATE_R_ID_IGNITION,
+} from "./const/EnumStateId.js";
+
+//================================================================================================
+//================================================================================================
+//====
+//==== パラメタ定義
+//====
+//================================================================================================
+//================================================================================================
+
+
+// EnumParamId / EnumRaceId / EnumElmId は const 化済み。
+// 定義は roro/m/js/const/EnumParamId.js ・ EnumRaceId.js ・ EnumElmId.js を参照。
+// （旧 DefineEnum はグローバルへ実行時生成しており定義箇所を追えなかった）
+
+
+/**
+ * 定義済みデータ種別のテキストを取得する.
+ * @param kindId 定義済みデータ種別ID
+ */
+export function GetConstDataKindText(kindId) {
+
+	switch (kindId) {
+
+	case CONST_DATA_KIND_ITEM:
+		return "アイテム";
+
+	case CONST_DATA_KIND_ARROW:
+		return "矢";
+
+	case CONST_DATA_KIND_CARD:
+		return "カード";
+
+	case CONST_DATA_KIND_COSTUME:
+		return "衣装";
+
+	case CONST_DATA_KIND_ITEM_SET:
+		return "アイテムセット";
+
+	case CONST_DATA_KIND_ENCHANT_TYPE:
+		return "エンチャントタイプ";
+
+	case CONST_DATA_KIND_ENCHANT_LIST:
+		return "エンチャントリスト";
+
+	case CONST_DATA_KIND_TIME_ITEM:
+		return "時限アイテム";
+
+	case CONST_DATA_KIND_ITEM_PACK:
+		return "アイテムパック";
+
+	case CONST_DATA_KIND_SKILL:
+		return "スキル";
+
+	case CONST_DATA_KIND_USABLE_SKILL:
+		return "使用可能スキル";
+
+	case CONST_DATA_KIND_AUTO_SPELL:
+		return "オートスペル";
+
+	case CONST_DATA_KIND_MONSTER:
+		return "モンスター";
+
+	case CONST_DATA_KIND_MONSTER_GROUP:
+		return "モンスターグループ";
+
+	case CONST_DATA_KIND_MONSTER_MAP:
+		return "モンスターマップ";
+
+	case CONST_DATA_KIND_CARD_SORT_DATA:
+		return "カード整列データ";
+
+	case CONST_DATA_KIND_TIME_ITEM_SORT_DATA:
+		return "時限アイテム整列データ";
+
+	case CONST_DATA_KIND_JOB_SKILL_PASSIVE:
+		return "職業スキル定義（パッシブ）";
+
+	case CONST_DATA_KIND_JOB_SKILL_ACTIVE:
+		return "職業スキル定義（アクティブ）";
+
+	case CONST_DATA_KIND_JOB_SKILL_LEARNED:
+		return "職業スキル定義（習得スキル）";
+
+	case CONST_DATA_KIND_PET:
+		return "ペット";
+
+	case CONST_DATA_KIND_RND_OPT_TYPE:
+		return "ランダムオプションタイプ";
+
+	case CONST_DATA_KIND_RND_OPT_LIST:
+		return "ランダムオプションリスト";
+
+	case CONST_DATA_KIND_RND_OPT:
+		return "ランダムオプション";
+
+	case CONST_DATA_KIND_CHANGE_LOG:
+		return "更新履歴";
+
+	case CONST_DATA_KIND_ALIAS:
+		return "エイリアス";
+
+	case CONST_DATA_KIND_STATE:
+		return "状態異常";
+
+	case CONST_DATA_KIND_BUFF:
+		return "バフ";
+
+	case CONST_DATA_KIND_HPSPBASE:
+		return "HPSP基礎値";
+
+	case CONST_DATA_KIND_CHARA:
+		return "キャラ基本データ";
+
+	case CONST_DATA_KIND_JOB:
+		return "職業データ";
+
+	}
+
+	return "不明";
+}
+
+/**
+ * パラメータ名のテキストを取得する.
+ * @param paramId パラメータID
+ */
+export function GetParamText(paramId) {
+
+	switch (paramId) {
+	case PARAM_STR:
+		return "STR";
+
+	case PARAM_AGI:
+		return "AGI";
+
+	case PARAM_VIT:
+		return "VIT";
+
+	case PARAM_INT:
+		return "INT";
+
+	case PARAM_DEX:
+		return "DEX";
+
+	case PARAM_LUK:
+		return "LUK";
+
+	}
+
+	return "エラー";
+}
+
+/**
+ * 種族名のテキストを取得する.
+ * @param raceId 種族ID
+ */
+export function GetRaceText(raceId) {
+
+	switch (raceId) {
+	case RACE_ID_SOLID:
+		return "無形";
+
+	case RACE_ID_UNDEAD:
+		return "不死";
+
+	case RACE_ID_ANIMAL:
+		return "動物";
+
+	case RACE_ID_PLANT:
+		return "植物";
+
+	case RACE_ID_INSECT:
+		return "昆虫";
+
+	case RACE_ID_FISH:
+		return "魚類";
+
+	case RACE_ID_DEMON:
+		return "悪魔";
+
+	case RACE_ID_HUMAN:
+		return "人間";
+
+	case RACE_ID_ANGEL:
+		return "天使";
+
+	case RACE_ID_DRAGON:
+		return "竜族";
+	}
+
+	return "エラー";
+}
+
+/**
+ * 属性名のテキストを取得する.
+ * @param elmId 属性ID
+ */
+export function GetElementText(elmId) {
+
+	switch (elmId) {
+	case ELM_ID_VANITY:
+		return "無";
+
+	case ELM_ID_WATER:
+		return "水";
+
+	case ELM_ID_EARTH:
+		return "地";
+
+	case ELM_ID_FIRE:
+		return "火";
+
+	case ELM_ID_WIND:
+		return "風";
+
+	case ELM_ID_POISON:
+		return "毒";
+
+	case ELM_ID_HOLY:
+		return "聖";
+
+	case ELM_ID_DARK:
+		return "闇";
+
+	case ELM_ID_PSYCO:
+		return "念";
+
+	case ELM_ID_UNDEAD:
+		return "不死";
+	}
+
+	return "エラー";
+}
+
+/**
+ * モンスター属性のテキストを取得する.
+ * @param モンスター属性ＩＤ
+ */
+export function GetMonsterElementText(monsterElmId) {
+
+	var elmId = Math.floor(monsterElmId / 10);
+	var elmLv = monsterElmId % 10;
+
+	return GetElementText(elmId) + elmLv;
+}
+
+/**
+ * サイズ名のテキストを取得する.
+ * @param sizeId サイズID
+ */
+export function GetSizeText(sizeId) {
+
+	switch (sizeId) {
+	case SIZE_ID_SMALL:
+		return "小型";
+
+	case SIZE_ID_MEDIUM:
+		return "中型";
+
+	case SIZE_ID_LARGE:
+		return "大型";
+
+	}
+
+	return "エラー";
+}
+
+/**
+ * 状態異常名のテキストを取得する.
+ * @param stateId 状態異常ID
+ */
+export function GetStateText(stateId) {
+
+	switch (stateId) {
+	case STATE_ID_POISON:
+		return "毒";
+
+	case STATE_ID_STUN:
+		return "スタン";
+
+	case STATE_ID_FROZEN:
+		return "凍結";
+
+	case STATE_ID_CURSED:
+		return "呪い";
+
+	case STATE_ID_BLIND:
+		return "暗黒";
+
+	case STATE_ID_SLEEP:
+		return "睡眠";
+
+	case STATE_ID_SILENCE:
+		return "沈黙";
+
+	case STATE_ID_CONFUSE:
+		return "混乱";
+
+	case STATE_ID_BLEEDING:
+		return "出血";
+
+	case STATE_ID_STONE:
+		return "石化";
+
+	case STATE_ID_BREAK_WEAPON:
+		return "武器破壊";
+
+	case STATE_ID_BREAK_HEAD:
+		return "兜破壊";
+
+	case STATE_ID_BREAK_BODY:
+		return "鎧破壊";
+
+	case STATE_ID_BREAK_SHIELD:
+		return "盾破壊";
+
+	case STATE_ID_BREAK_SHOULDER:
+		return "肩破壊";
+
+	case STATE_ID_BREAK_FOOT:
+		return "靴破壊";
+
+	case STATE_ID_BREAK_ACCESSORY:
+		return "アクセ破壊";
+
+	//Rの新状態異常
+	case STATE_R_ID_CHILLED:	// 17
+		return "冷凍";
+	case STATE_R_ID_ICED:
+		return "氷結";
+	case STATE_R_ID_IGNITION:
+		return "発火";
+	case STATE_R_ID_FEAR:
+		return "恐怖";
+	case STATE_R_ID_DEEPSLEEP:
+		return "深い眠り";
+	case STATE_R_ID_CHARMED:
+		return "魅了";
+	case STATE_R_ID_FRENZY:
+		return "狂乱";
+	case STATE_R_ID_HOWLING:
+		return "精神衝撃";
+	//case STATE_R_ID_HEAT:
+		//return "過熱";
+	//新状態異常
+	case STATE_NEW_ID_LETHARGY:
+		return "無気力";
+	case STATE_NEW_ID_JETBLACK:
+		return "漆黒";
+	case STATE_NEW_ID_HIGHLYPOISONOUS:
+		return "強毒";
+	case STATE_NEW_ID_TORRENT:
+		return "激流";
+	case STATE_NEW_ID_MELANCHOLY:
+		return "憂鬱";
+	case STATE_NEW_ID_STILLNESS:
+		return "静寂";
+	case STATE_NEW_ID_CONFLAGRATION:
+		return "火災";
+	case STATE_NEW_ID_RAPIDCOOLING:
+		return "急冷";
+	case STATE_NEW_ID_CRYSTALLIZATION:
+		return "結晶化";
+	case STATE_NEW_ID_UNHAPPINESS:
+		return "不幸";	
+
+	}
+
+	return "エラー";
+}
+
+/**
+ * 親密度のテキストを取得する.
+ * @param friendlityId 親密度ID
+ */
+export function GetFriendlityText(friendlityId) {
+
+	switch (friendlityId) {
+	case FRIENDLITY_ID_AUTO:
+		return "未設定(親しい扱い)";
+
+	case FRIENDLITY_ID_RUNAWAY:
+		return "逃亡寸前";
+
+	case FRIENDLITY_ID_LOWEST:
+		return "疎々しい";
+
+	case FRIENDLITY_ID_LOW:
+		return "気まずい";
+
+	case FRIENDLITY_ID_NORMAL:
+		return "普通";
+
+	case FRIENDLITY_ID_HIGH:
+		return "親しい";
+
+	case FRIENDLITY_ID_HIGHEST:
+		return "きわめて親しい";
+
+	}
+
+	return "エラー";
+}
+
+
+//================================================================================================
+//================================================================================================
+//====
+//==== インデックス定義
+//====
+//================================================================================================
+//================================================================================================
+
+let const_identifier = 0;
+
+// 装備部位のインデックス
+const_identifier = 0;
+
+
+// カード部位のインデックス
+const_identifier = 0;
+
+export const CARD_REGION_ID_ARMS_RIGHT_1	 = const_identifier++;	// 0 右手
+export const CARD_REGION_ID_ARMS_RIGHT_2	 = const_identifier++;	// 1
+export const CARD_REGION_ID_ARMS_RIGHT_3	 = const_identifier++;	// 2
+export const CARD_REGION_ID_ARMS_RIGHT_4	 = const_identifier++;	// 3
+export const CARD_REGION_ID_ARMS_LEFT_1	 = const_identifier++;	// 4 左手
+export const CARD_REGION_ID_ARMS_LEFT_2	 = const_identifier++;	// 5
+export const CARD_REGION_ID_ARMS_LEFT_3	 = const_identifier++;	// 6
+export const CARD_REGION_ID_ARMS_LEFT_4	 = const_identifier++;	// 7
+export const CARD_REGION_ID_HEAD_TOP		 = const_identifier++;	// 8
+export const CARD_REGION_ID_HEAD_MID		 = const_identifier++;	// 9
+export const CARD_REGION_ID_SHIELD		 = const_identifier++;	// 10
+export const CARD_REGION_ID_BODY			 = const_identifier++;	// 11
+export const CARD_REGION_ID_SHOULDER		 = const_identifier++;	// 12
+export const CARD_REGION_ID_SHOES		 = const_identifier++;	// 13
+export const CARD_REGION_ID_ACCESSORY_1	 = const_identifier++;	// 14
+export const CARD_REGION_ID_ACCESSORY_2	 = const_identifier++;	// 15
+export const CARD_REGION_ID_HEAD_UNDER	 = const_identifier++;	// 16
+
+const_identifier = 26;
+
+export const CARD_REGION_ID_ENCHANT_HEAD_TOP_1		 = const_identifier++;	// 26
+export const CARD_REGION_ID_ENCHANT_HEAD_TOP_2		 = const_identifier++;	// 27
+export const CARD_REGION_ID_ENCHANT_HEAD_TOP_3		 = const_identifier++;	// 28
+export const CARD_REGION_ID_ENCHANT_HEAD_MID_1		 = const_identifier++;	// 29
+export const CARD_REGION_ID_ENCHANT_HEAD_MID_2		 = const_identifier++;	// 30
+export const CARD_REGION_ID_ENCHANT_HEAD_MID_3		 = const_identifier++;	// 31
+
+const_identifier = 33;
+
+export const CARD_REGION_ID_ENCHANT_HEAD_UNDER_1		 = const_identifier++;	// 33
+export const CARD_REGION_ID_ENCHANT_HEAD_UNDER_2		 = const_identifier++;	// 34
+export const CARD_REGION_ID_ENCHANT_HEAD_UNDER_3		 = const_identifier++;	// 35
+export const CARD_REGION_ID_ENCHANT_SHIELD_1			 = const_identifier++;	// 36
+export const CARD_REGION_ID_ENCHANT_SHIELD_2			 = const_identifier++;	// 37
+export const CARD_REGION_ID_ENCHANT_SHIELD_3			 = const_identifier++;	// 38
+export const CARD_REGION_ID_ENCHANT_BODY_1			 = const_identifier++;	// 39
+export const CARD_REGION_ID_ENCHANT_BODY_2			 = const_identifier++;	// 40
+export const CARD_REGION_ID_ENCHANT_BODY_3			 = const_identifier++;	// 41
+export const CARD_REGION_ID_ENCHANT_SHOULDER_1		 = const_identifier++;	// 42
+export const CARD_REGION_ID_ENCHANT_SHOULDER_2		 = const_identifier++;	// 43
+export const CARD_REGION_ID_ENCHANT_SHOULDER_3		 = const_identifier++;	// 44
+export const CARD_REGION_ID_ENCHANT_SHOES_1			 = const_identifier++;	// 45
+export const CARD_REGION_ID_ENCHANT_SHOES_2			 = const_identifier++;	// 46
+export const CARD_REGION_ID_ENCHANT_SHOES_3			 = const_identifier++;	// 47
+export const CARD_REGION_ID_ENCHANT_ACCESSORY_1_1	 = const_identifier++;	// 48
+export const CARD_REGION_ID_ENCHANT_ACCESSORY_1_2	 = const_identifier++;	// 49
+export const CARD_REGION_ID_ENCHANT_ACCESSORY_1_3	 = const_identifier++;	// 50
+export const CARD_REGION_ID_ENCHANT_ACCESSORY_2_1	 = const_identifier++;	// 51
+export const CARD_REGION_ID_ENCHANT_ACCESSORY_2_2	 = const_identifier++;	// 52
+export const CARD_REGION_ID_ENCHANT_ACCESSORY_2_3	 = const_identifier++;	// 53
+
+export const CARD_REGION_ID_SHADOW_ARMS_RIGHT_1 = const_identifier++;	// 54
+export const CARD_REGION_ID_SHADOW_ARMS_RIGHT_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ARMS_RIGHT_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_SHIELD_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_SHIELD_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_SHIELD_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_BODY_1 = const_identifier++;	// 60
+export const CARD_REGION_ID_SHADOW_ENCHANT_BODY_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_BODY_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_2 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_3 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_1 = const_identifier++;
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_2 = const_identifier++;	// 70
+export const CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_3 = const_identifier++;
+
+export const CARD_REGION_ID_COUNT		 = const_identifier;
+
+// [CARD_REGION_ID_COUNT] ～ [99] まで、セット効果定義で使用
+// CheckAndApplyItemSetEquipping() 関数を参照のこと
+
+const_identifier = -1;
+
+export const CARD_REGION_ID_ANY						 = const_identifier--;
+export const CARD_REGION_ID_ARMS_RIGHT_ANY			 = const_identifier--;
+export const CARD_REGION_ID_ARMS_LEFT_ANY			 = const_identifier--;
+export const CARD_REGION_ID_HEAD_TOP_ANY				 = const_identifier--;
+export const CARD_REGION_ID_HEAD_MID_ANY				 = const_identifier--;
+export const CARD_REGION_ID_HEAD_UNDER_ANY			 = const_identifier--;
+export const CARD_REGION_ID_SHIELD_ANY				 = const_identifier--;
+export const CARD_REGION_ID_BODY_ANY					 = const_identifier--;
+export const CARD_REGION_ID_SHOULDER_ANY				 = const_identifier--;
+export const CARD_REGION_ID_SHOES_ANY				 = const_identifier--;
+export const CARD_REGION_ID_ACCESSORY_ANY			 = const_identifier--;
+export const CARD_REGION_ID_ACCESSORY_1_ANY			 = const_identifier--;
+export const CARD_REGION_ID_ACCESSORY_2_ANY			 = const_identifier--;
+
+//衣装部位のインデックス
+const_identifier = -1;
+
+export const COSTUME_REGION_ID_ANY			 = const_identifier--;
+export const COSTUME_REGION_ID_ARMS_RIGHT	 = const_identifier++;
+export const COSTUME_REGION_ID_ARMS_LEFT		 = const_identifier++;
+export const COSTUME_REGION_ID_HEAD_TOP		 = const_identifier++;
+export const COSTUME_REGION_ID_HEAD_MID		 = const_identifier++;
+export const COSTUME_REGION_ID_HEAD_UNDER	 = const_identifier++;
+export const COSTUME_REGION_ID_SHIELD		 = const_identifier++;
+export const COSTUME_REGION_ID_BODY			 = const_identifier++;
+export const COSTUME_REGION_ID_SHOULDER		 = const_identifier++;
+export const COSTUME_REGION_ID_SHOES			 = const_identifier++;
+export const COSTUME_REGION_ID_ACCESSORY_1	 = const_identifier++;
+export const COSTUME_REGION_ID_ACCESSORY_2	 = const_identifier++;
+
+export const COSTUME_REGION_ID_COUNT		 = const_identifier;
+
+
+export const COLOR_CODE_TABLE_HEADER_IS_SET = "#ff7777";
+export const COLOR_CODE_TABLE_HEADER_IS_NOT_SET = "#ddddff";
+
+

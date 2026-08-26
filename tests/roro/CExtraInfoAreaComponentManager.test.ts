@@ -29,7 +29,7 @@ vi.mock('../../roro/common/js/util.js', async (importActual) => {
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
 
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+vi.mock('@engine/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return {
         ...actual,
@@ -39,17 +39,17 @@ vi.mock('@roro/monstermap.dat.js', async (importActual) => {
     };
 });
 
-vi.mock('@roro/monster.dat.js', async (importActual) => {
+vi.mock('@engine/monster.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import '@roro/CInstanceManager.js';
+import '@engine/CInstanceManager.js';
 import {
     GetExtraInfoText,
     CExtraInfoAreaComponentManager,
-} from '@roro/CExtraInfoAreaComponentManager.js';
-import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '@roro/CExtraInfoDataBridge.js';
+} from '@engine/CExtraInfoAreaComponentManager.js';
+import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '@engine/CExtraInfoDataBridge.js';
 
 describe('CExtraInfoAreaComponentManager.js', () => {
     describe('エクスポート確認', () => {

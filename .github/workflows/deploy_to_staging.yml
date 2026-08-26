@@ -60,6 +60,7 @@ jobs:
           mv ./jquery temp_dist/
           mv ./ro4 temp_dist/
           mv ./roro temp_dist/
+          mv ./engine temp_dist/
           mv ./dist temp_dist/
           mv ./README.md temp_dist/
           mv ./LICENSE temp_dist/

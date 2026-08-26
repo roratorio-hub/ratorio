@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { CCustomSelectBase } from '@roro/CCustomSelectBase.js';
-import { CCustomSelectMapBase } from '@roro/CCustomSelectMapBase.js';
+import { CCustomSelectBase } from '@engine/CCustomSelectBase.js';
+import { CCustomSelectMapBase } from '@engine/CCustomSelectMapBase.js';
 
 describe('CCustomSelectMapBase.js', () => {
     describe('エクスポート確認', () => {

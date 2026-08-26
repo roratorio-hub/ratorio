@@ -11,7 +11,7 @@ const WATCHED_VARS = [
     'val', 'ret', 'result', 'n', 'cnt', 'tmp', 'x', 'y', 'z',
 ];
 
-const JS_DIR = resolve(__dirname, '../../roro/m/js');
+const JS_DIR = resolve(__dirname, '../../engine');
 
 // CSkillManager.js の分割（plan: remining-work-md-cskillmanager-js-cskill-magical-elephant）で
 // スキル定義本体は roro/m/js/skill/ 配下へ移った（当初はSKILL_ID連番の43ファイル、

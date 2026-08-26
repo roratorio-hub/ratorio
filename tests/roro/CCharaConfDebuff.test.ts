@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CCharaConfDebuff } from '@roro/CCharaConfDebuff.js';
+import { CCharaConfDebuff } from '@engine/CCharaConfDebuff.js';
 
 describe('CCharaConfDebuff.js', () => {
     describe('CCharaConfDebuff インスタンス生成', () => {

@@ -24,7 +24,7 @@ vi.mock('../../roro/common/js/util.js', async (importActual) => {
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
 
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+vi.mock('@engine/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return {
         ...actual,
@@ -34,7 +34,7 @@ vi.mock('@roro/monstermap.dat.js', async (importActual) => {
     };
 });
 
-vi.mock('@roro/monster.dat.js', async (importActual) => {
+vi.mock('@engine/monster.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get MonsterObjNew() { return []; } };
 });
@@ -50,8 +50,8 @@ import {
     AdaptSaveDataStrSizeMIG,
     SaveDataChangeMIG,
     OnClickConfirmDialogSwitch,
-} from '@ro4/saveload-mig.js';
-import { get as registryGet } from '@ro4/engine-registry.js';
+} from '@engine/saveload-mig.js';
+import { get as registryGet } from '@engine/engine-registry.js';
 
 describe('saveload-mig.js', () => {
     // dewindow: window.ConvertDataTextMIG / OnClickUrlOutMIG は engine-registry へ移行（旧 window 互換テストを置換）。

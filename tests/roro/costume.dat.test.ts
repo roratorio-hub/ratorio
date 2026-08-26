@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { COSTUME_ID_HEAD_UNDER_NONE, COSTUME_ID_BEGINNER_BO, CostumeOBJ } from '@roro/costume.dat.js';
+import { COSTUME_ID_HEAD_UNDER_NONE, COSTUME_ID_BEGINNER_BO, CostumeOBJ } from '@engine/costume.dat.js';
 
 describe('costume.dat.js', () => {
     describe('エクスポート確認', () => {

@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import '@roro/quickcontrol.js';
+import '@engine/quickcontrol.js';
 
 describe('quickcontrol.js', () => {
     it.todo('動作テストを追加する');

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_NAME } from '@roro/const/EnumItemDataIndex.js';
+import { ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_NAME } from '@engine/const/EnumItemDataIndex.js';
 
 // card.dat.js 等がモジュール初期化時に参照するカード定数を事前設定
 // （card.h.js は enum の const 化に伴い削除済み。ここの CARD_ID_* は card.dat.js 由来）
@@ -25,17 +25,17 @@ let MIG_JOB_ID_SKY_EMPEROR: number; // 天帝 = 79
 let MIG_JOB_ID_ALITEA: number;      // アリテア = 88
 
 beforeAll(async () => {
-	await import('/workspace/ratorio/ro4/m/js/global.js');       // g_constDataManager を window にセット
-	await import('/workspace/ratorio/ro4/m/js/data/mig.job.dat.js'); // 職業データを g_constDataManager にロード
-	await import('/workspace/ratorio/roro/m/js/itemset.dat.js'); // w_SE を window にセット（GetItemExplainText が参照）
-	await import('/workspace/ratorio/roro/m/js/itemset.h.js'); // GetItemSetMemberText を itemset-bridge に登録（GetItemExplainText が呼ぶ）
-	const itemDat = await import('/workspace/ratorio/roro/m/js/item.dat.js');
+	await import('/workspace/ratorio/engine/global.js');       // g_constDataManager を window にセット
+	await import('/workspace/ratorio/engine/data/mig.job.dat.js'); // 職業データを g_constDataManager にロード
+	await import('/workspace/ratorio/engine/itemset.dat.js'); // w_SE を window にセット（GetItemExplainText が参照）
+	await import('/workspace/ratorio/engine/itemset.h.js'); // GetItemSetMemberText を itemset-bridge に登録（GetItemExplainText が呼ぶ）
+	const itemDat = await import('/workspace/ratorio/engine/item.dat.js');
 	ItemObjNew = itemDat.ItemObjNew;
 	const hmitemlist = await import('/workspace/ratorio/roro/other/js/hmitemlist.js');
 	getItemList = hmitemlist.getItemList;
-	const migJobH = await import('/workspace/ratorio/ro4/m/js/data/mig.job.h.js');
+	const migJobH = await import('/workspace/ratorio/engine/data/mig.job.h.js');
 	IsMatchJobRestrict = migJobH.IsMatchJobRestrict;
-	const migJobId = await import('/workspace/ratorio/ro4/m/js/data/mig.job.id.js');
+	const migJobId = await import('/workspace/ratorio/engine/data/mig.job.id.js');
 	MIG_JOB_ID_SKY_EMPEROR = migJobId.MIG_JOB_ID_SKY_EMPEROR;
 	MIG_JOB_ID_ALITEA = migJobId.MIG_JOB_ID_ALITEA;
 });

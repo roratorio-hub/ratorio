@@ -15,7 +15,7 @@ beforeAll(async () => {
     for (const [key, val] of Object.entries(ELM_ID_VALUES)) {
         (globalThis as any)[key] = val;
     }
-    const mod = await import('@roro/monster.h.js');
+    const mod = await import('@engine/monster.h.js');
     GetMonseterElmBasicType = mod.GetMonseterElmBasicType;
     GetBossTypeText = mod.GetBossTypeText;
     GetGrassTypeText = mod.GetGrassTypeText;

@@ -16,10 +16,15 @@
  *
  * 使い方:
  *   node migrate-to-engine.mjs --report          何も書き込まず計画を報告する（既定）
- *   node migrate-to-engine.mjs --apply-moves      git mv のみ実行する（内容は無変更）
- *   node migrate-to-engine.mjs --apply-rewrites   移動後のファイルの中身を書き換える
+ *   node migrate-to-engine.mjs --apply-moves      ファイル移動のみ実行する（内容は無変更。
+ *                                                  git mvではなくfs.renameSync。Claudeのgit操作
+ *                                                  制限のため。git add時にgitの類似度検出で
+ *                                                  通常通りリネームとして記録される）
+ *   node migrate-to-engine.mjs --apply-rewrites   移動後のファイルの中身を書き換える。
+ *                                                  ⚠ べき等ではない。2回実行しないこと
+ *                                                  （成功後にチェックポイントを削除して防止する）
  */
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdirSync, renameSync, unlinkSync } from 'node:fs';
 import { join, dirname, relative, resolve, sep, posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -119,9 +124,21 @@ function collectJsSpecifierRanges(code) {
     return ranges.filter((r) => r.value.startsWith('.') || r.value.startsWith('/'));
 }
 
-/** 1本の .js ファイルについて、書き換え計画（オフセットスプライス列）を作る。 */
-function planJsRewrite(absFilePath, fileMap) {
-    const code = readFileSync(absFilePath, 'utf8');
+/**
+ * 1本の .js ファイルについて、書き換え計画（オフセットスプライス列）を作る。
+ *
+ * @param absFilePath このファイル自身の「論理的な位置」（specifier解決の基準・
+ *   fileMapでの新しい書き込み先の算出に使う）。移動対象ファイルなら旧パス。
+ * @param fileMap 旧絶対パス→新絶対パスのマップ
+ * @param readFromAbsOverride 内容を実際に読み込む場所（省略時は absFilePath と同じ）。
+ *   物理的な移動（2a）が既に完了していて新しい場所に内容がある場合、ここに新パスを
+ *   渡すことで「絶対パスの意味は旧位置基準のまま・読み込みだけ新位置」という分離ができる。
+ *   ⚠ このスクリプトは一度の apply-rewrites 実行内でのみこの引数を使う設計。
+ *   書き換え済みの内容に対して再度これを呼ぶと、既に新形式の specifier を
+ *   旧位置基準で誤って再解決し内容を壊す（実際に一度事故ったので二度としないこと）。
+ */
+function planJsRewrite(absFilePath, fileMap, readFromAbsOverride) {
+    const code = readFileSync(readFromAbsOverride ?? absFilePath, 'utf8');
     const ranges = collectJsSpecifierRanges(code);
     const edits = [];
     for (const { range, value } of ranges) {
@@ -129,10 +146,14 @@ function planJsRewrite(absFilePath, fileMap) {
         const oldAbsTarget = resolve(dirname(absFilePath), value);
         // 拡張子解決（import './foo' が './foo.js' を指す等）は本コードベースに存在しないため考慮しない
         const newAbsTarget = mapAbs(fileMap, oldAbsTarget);
-        if (newAbsTarget === oldAbsTarget) continue; // 移動対象外
         const newFileDir = dirname(mapAbs(fileMap, absFilePath));
         let rel = toPosix(relative(newFileDir, newAbsTarget));
         if (!rel.startsWith('.')) rel = './' + rel;
+        // ⚠ ここで「newAbsTarget === oldAbsTarget なら変更不要」と早期returnしてはいけない。
+        // target 自体は動いていなくても、参照元ファイル（absFilePath）が移動していれば
+        // 相対パスの深さは変わる（roro/common/js/util.js への64箇所のescape参照で実際に
+        // 発生し、一度事故った）。「結果の文字列が変わらないか」だけを見て判定すること。
+        if (rel === value) continue; // 変化なし（対象外 or 相対深さも一致）
         edits.push({ range, oldValue: value, newValue: rel, oldAbsTarget, newAbsTarget });
     }
     return { absFilePath, code, edits };
@@ -212,12 +233,16 @@ function planHtmlRewrite(absHtmlPath, fileMap, { baseOverrideAbs } = {}) {
             const oldAbsTarget = resolve(baseAbs, value);
             const inMovedTree = oldAbsTarget.startsWith(RORO_JS + sep) || oldAbsTarget === RORO_JS
                 || oldAbsTarget.startsWith(RO4_JS + sep) || oldAbsTarget === RO4_JS;
-            if (inMovedTree && !existsSync(oldAbsTarget)) {
+            // 「実在するか」に加え、「fileMap の旧キーとして知っている（＝2a で既に物理移動済みで
+            // 現在は無いだけ）」も正当な既知ターゲットとして扱う。Stage C は2a実行後（2b時点）にも
+            // 呼ばれるため、既存の existsSync 判定だけでは移動済みファイルを誤検出してしまう。
+            const isKnown = existsSync(oldAbsTarget) || fileMap.has(oldAbsTarget);
+            if (inMovedTree && !isKnown) {
                 // 移動対象ツリー配下を指しているのに実体が無い＝本移行が把握し損ねている可能性
                 edits.push({ range: [attrStart, attrEnd], oldValue: value, newValue: null, error: 'T_old not found (moved tree配下のはずが実体なし)', oldAbsTarget });
                 continue;
             }
-            if (!inMovedTree && !existsSync(oldAbsTarget)) {
+            if (!inMovedTree && !isKnown) {
                 // 移動対象ツリー外の既存の壊れたリンク（例: 過去に削除された information/）。
                 // 本移行のスコープ外なので、恒等写像のまま経路だけ再計算して温存する。
             }
@@ -519,13 +544,177 @@ function report() {
     console.log(`未対応ファイル: ${unhandled.length}件（Phase 3/4で個別対応予定。想定外の混入が無いか要確認）`);
 }
 
+// ─── apply-moves / apply-rewrites ───────────────────────────────────────
+//
+// 2a（apply-moves）と2b（apply-rewrites）を別コミットにするため、2aで計算した
+// fileMap を一時ファイルへ永続化し、2bで読み戻す（2a実行後は roro/m/js・ro4/m/js が
+// 空になり、再列挙では復元できないため）。
+//
+// ⚠ apply-rewrites は一度しか安全に実行できない（べき等ではない）。2回目を実行すると、
+// 既に新形式へ書き換え済みの specifier を「まだ旧形式である」前提で誤って再解決し、
+// 内容を壊す（実際に一度事故った）。そのため成功後にチェックポイントを削除し、
+// 2回目の実行を明示的なエラーで止める。
+
+const CHECKPOINT_PATH = process.env.MIGRATE_CHECKPOINT
+    ?? '/tmp/claude-1000/-workspace/48011b4b-866f-481b-95c4-70a5e4a99ff9/scratchpad/migrate-to-engine-filemap.json';
+
+function persistFileMap(fileMap) {
+    const obj = {};
+    for (const [oldAbs, newAbs] of fileMap) {
+        obj[toPosix(relative(ROOT, oldAbs))] = toPosix(relative(ROOT, newAbs));
+    }
+    writeFileSync(CHECKPOINT_PATH, JSON.stringify(obj, null, 2));
+}
+
+function loadFileMap() {
+    if (!existsSync(CHECKPOINT_PATH)) {
+        console.error(`チェックポイントが見つかりません: ${CHECKPOINT_PATH}\n` +
+            '先に --apply-moves を実行するか（初回）、既に --apply-rewrites 済みなら再実行しないこと' +
+            '（べき等ではないため2回目は内容を壊す）。');
+        process.exit(1);
+    }
+    const obj = JSON.parse(readFileSync(CHECKPOINT_PATH, 'utf8'));
+    const map = new Map();
+    for (const [oldRel, newRel] of Object.entries(obj)) {
+        map.set(join(ROOT, oldRel), join(ROOT, newRel));
+    }
+    return map;
+}
+
+function removeEmptyDirsRecursive(dir) {
+    if (!existsSync(dir)) return;
+    for (const name of readdirSync(dir)) {
+        const p = join(dir, name);
+        if (statSync(p).isDirectory()) removeEmptyDirsRecursive(p);
+    }
+    if (readdirSync(dir).length === 0) execFileSync('rmdir', [dir]);
+}
+
+function applyMoves() {
+    const fileMap = buildFileMap();
+    const collisions = checkCollisions(fileMap);
+    if (collisions.length > 0) {
+        console.error(`✗ 衝突 ${collisions.length}件。中止します。`);
+        process.exit(1);
+    }
+    persistFileMap(fileMap);
+    console.log(`チェックポイント保存: ${CHECKPOINT_PATH}（${fileMap.size}件）`);
+
+    let moved = 0;
+    for (const [oldAbs, newAbs] of fileMap) {
+        mkdirSync(dirname(newAbs), { recursive: true });
+        renameSync(oldAbs, newAbs);
+        moved++;
+    }
+    console.log(`移動完了: ${moved}件`);
+
+    removeEmptyDirsRecursive(RORO_JS);
+    removeEmptyDirsRecursive(RO4_JS);
+    console.log(`空ディレクトリ掃除後: roro/m/js存在=${existsSync(RORO_JS)} / ro4/m/js存在=${existsSync(RO4_JS)}`);
+}
+
+function applyRewrites() {
+    const fileMap = loadFileMap();
+    let jsEdits = 0;
+    let htmlEdits = 0;
+
+    // 1) 移動済みファイル自身のimport書き換え（内容は新パスから読む・旧パス基準で解決）
+    for (const [oldAbs, newAbs] of fileMap) {
+        const plan = planJsRewrite(oldAbs, fileMap, newAbs);
+        if (plan.edits.length === 0) continue;
+        writeFileSync(newAbs, applyEdits(plan.code, plan.edits));
+        jsEdits += plan.edits.length;
+    }
+
+    // 2) 外部消費者 .js（roro/other/js、移動しない）
+    const otherJsDir = join(ROOT, 'roro/other/js');
+    for (const f of existsSync(otherJsDir) ? readdirSync(otherJsDir) : []) {
+        const abs = join(otherJsDir, f);
+        if (!abs.endsWith('.js')) continue;
+        const plan = planJsRewrite(abs, fileMap);
+        if (plan.edits.length === 0) continue;
+        writeFileSync(abs, applyEdits(plan.code, plan.edits));
+        jsEdits += plan.edits.length;
+    }
+
+    // 3) workspace/src/*.ts + startup.test.ts（移動しない、正規表現ベース）
+    const wsSrcDir = join(ROOT, 'workspace/src');
+    for (const f of existsSync(wsSrcDir) ? readdirSync(wsSrcDir) : []) {
+        const abs = join(wsSrcDir, f);
+        if (!abs.endsWith('.ts')) continue;
+        const plan = planTsRewrite(abs, fileMap);
+        if (plan.edits.length === 0) continue;
+        writeFileSync(abs, applyRawEdits(plan.code, plan.edits));
+        jsEdits += plan.edits.length;
+    }
+    const startupTest = join(ROOT, 'workspace/__tests__/src/startup.test.ts');
+    if (existsSync(startupTest)) {
+        const plan = planTsRewrite(startupTest, fileMap);
+        if (plan.edits.length > 0) {
+            writeFileSync(startupTest, applyRawEdits(plan.code, plan.edits));
+            jsEdits += plan.edits.length;
+        }
+    }
+
+    // 4) HTML
+    const htmlTargets = [
+        { path: join(ROOT, 'ro4/m/calcx.html') },
+        { path: join(ROOT, 'ro4/m/calcx-ai.html') },
+        ...readdirSync(join(ROOT, 'roro/other')).filter((f) => f.endsWith('.html')).map((f) => ({ path: join(ROOT, 'roro/other', f) })),
+        { path: join(ROOT, 'util/sortedEnchantCardIdArray.html'), baseOverrideAbs: ROOT },
+    ];
+    for (const { path: p, baseOverrideAbs } of htmlTargets) {
+        if (!existsSync(p)) continue;
+        const plan = planHtmlRewrite(p, fileMap, { baseOverrideAbs });
+        const errs = plan.edits.filter((e) => e.newValue === null);
+        if (errs.length > 0) {
+            console.error(`✗ ${toPosix(relative(ROOT, p))}: 未解決参照${errs.length}件。中止します。`);
+            for (const e of errs) console.error(`  ${e.oldValue}: ${e.error}`);
+            process.exit(1);
+        }
+        writeFileSync(p, applyHtmlEdits(plan.code, plan.edits, plan.baseRemoval));
+        htmlEdits += plan.edits.filter((e) => e.newValue !== null).length;
+    }
+
+    // 5) Category E（動的import文字列・snapshotキー文字列）。通常のimport文ではなく
+    // 実行時に組み立てられる文字列なので、Stage B/CのAST/正規表現走査では拾えない。
+    // 各リテラルはファイル内で意味が一意な絶対パスなので単純な文字列置換で安全。
+    let categoryEApplied = 0;
+    for (const { file } of CATEGORY_E_FILES) {
+        const abs = join(ROOT, file);
+        if (!existsSync(abs)) continue;
+        let code = readFileSync(abs, 'utf8');
+        const literals = findCategoryELiterals(abs);
+        let changed = false;
+        for (const lit of literals) {
+            const mapped = mapRootRelative(fileMap, lit.literal);
+            if (mapped === lit.literal || !code.includes(lit.literal)) continue;
+            code = code.split(lit.literal).join(mapped);
+            changed = true;
+            categoryEApplied++;
+        }
+        if (changed) writeFileSync(abs, code);
+    }
+
+    console.log(`JS書き換え適用: ${jsEdits}箇所`);
+    console.log(`HTML書き換え適用: ${htmlEdits}箇所`);
+    console.log(`Category E書き換え適用: ${categoryEApplied}箇所`);
+
+    // べき等ではないため、成功したらチェックポイントを消して2回目の誤実行を防ぐ。
+    unlinkSync(CHECKPOINT_PATH);
+    console.log('\nチェックポイントを削除した（再実行防止）。');
+    console.log('残り: tests/vitest.config.ts等のエイリアス統合・scan-undeclared/gen-depsの');
+    console.log('スキャンルート更新・deploy_to_staging.ymlのmvリスト等は個別に手動対応すること。');
+}
+
 // ─── メイン ────────────────────────────────────────────────────────────
 
 if (mode === '--report') {
     report();
-} else if (mode === '--apply-moves' || mode === '--apply-rewrites') {
-    console.error(`${mode} は Phase 1/2 承認後に実装・実行する（現時点は --report のみ対応）。`);
-    process.exit(1);
+} else if (mode === '--apply-moves') {
+    applyMoves();
+} else if (mode === '--apply-rewrites') {
+    applyRewrites();
 } else {
     console.error(`不明なモード: ${mode}`);
     process.exit(1);

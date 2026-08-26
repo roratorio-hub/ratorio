@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CAttackMethodConf } from '@roro/CAttackMethodConf.js';
+import { CAttackMethodConf } from '@engine/CAttackMethodConf.js';
 
 describe('CAttackMethodConf.js', () => {
 

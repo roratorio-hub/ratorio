@@ -243,19 +243,19 @@ export async function captureFullObjidSnapshot(page: Page): Promise<Record<strin
 // 既存のモジュールキャッシュと一致することで「今まさに計算に使われているライブバインディング」
 // を読む。新しいモジュールインスタンスが作られるわけではない）。
 const STATE_MODULE_PATHS = [
-    '/roro/m/js/roro-state.js',
-    '/ro4/m/js/ro4-state.js',
-    '/ro4/m/js/global.js',
-    '/ro4/m/js/head-calc-state.js',
-    '/roro/m/js/learnedskill.js',
-    '/roro/m/js/mobconfdebuf.js',
-    '/roro/m/js/mobconfplayer.js',
-    '/roro/m/js/mobconfbuf.js',
-    '/ro4/m/js/hmjob.js',
+    '/engine/roro-state.js',
+    '/engine/ro4-state.js',
+    '/engine/global.js',
+    '/engine/head-calc-state.js',
+    '/engine/learnedskill.js',
+    '/engine/mobconfdebuf.js',
+    '/engine/mobconfplayer.js',
+    '/engine/mobconfbuf.js',
+    '/engine/hmjob.js',
     // Phase 8（リファクタリング計画）で追加: n_A_PassSkill/3/4/7/8（バフ配列5本）の
     // owner。Phase 6でOBJID化した約110入力の書き込み先だが、それまでこの一覧に
     // 含まれておらずモデル導入の検証（二重hydration差分）の死角になっていた。
-    '/ro4/m/js/skillstate.js',
+    '/engine/skillstate.js',
 ] as const;
 
 /**

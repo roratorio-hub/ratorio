@@ -14,7 +14,7 @@ import {
     ARROW_ID_POISON_BULLET, ARROW_ID_SILVER_BULLET_C, ARROW_ID_SUNCTFIED_BULLET,
     ARROW_ID_BLIND_BULLET,
     ArrowOBJNew,
-} from '@roro/arrow.dat.js';
+} from '@engine/arrow.dat.js';
 
 describe('arrow.dat.js', () => {
     describe('エクスポート確認', () => {

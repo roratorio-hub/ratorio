@@ -5,11 +5,11 @@ import {
     OBJID_OFFSET_AS_SKILL_LV,
     OBJID_OFFSET_AS_SKILL_PROB,
     OnClickEasySetUpAutoSpell,
-} from '@ro4/calcautospell.js';
-import { __registerFootFunctions } from '@roro/foot-bridge.js';
-import { CardObjNew } from '@roro/card.dat.js';
-import { CARD_DATA_INDEX_SPBEGIN } from '@roro/const/EnumCardDataIndex.js';
-import { n_A_card, set_n_A_card } from '@roro/roro-state.js';
+} from '@engine/calcautospell.js';
+import { __registerFootFunctions } from '@engine/foot-bridge.js';
+import { CardObjNew } from '@engine/card.dat.js';
+import { CARD_DATA_INDEX_SPBEGIN } from '@engine/const/EnumCardDataIndex.js';
+import { n_A_card, set_n_A_card } from '@engine/roro-state.js';
 
 // カード装備領域（roro/m/js/common.js の const_identifier 採番）
 const CARD_REGION_ID_ARMS_RIGHT_1 = 0;

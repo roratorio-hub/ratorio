@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { CalcInput, notifyChanged, requestRecalc, withBatch, onResults } from '@ro4/calc-invalidation.js';
+import { CalcInput, notifyChanged, requestRecalc, withBatch, onResults } from '@engine/calc-invalidation.js';
 // AutoCalc/calc は head-bridge 経由（head.js 直接 import は循環・OOMの原因になるため禁止）。
-import { __registerHeadFunctions } from '@ro4/head-bridge.js';
+import { __registerHeadFunctions } from '@engine/head-bridge.js';
 // リファクタリング計画 Phase 9 D3: ポリシーflagの読み出し元は CSaveController.getSettingProp
 // （engine-registry 経由）。propNameAttackAutoCalc の実値は問わないので、Map で代用する。
-import { register as registryRegister } from '@ro4/engine-registry.js';
-import { CSaveDataConst } from '@ro4/savedata/CSaveDataConst.js';
+import { register as registryRegister } from '@engine/engine-registry.js';
+import { CSaveDataConst } from '@engine/savedata/CSaveDataConst.js';
 
 // ⚠️ 実際の CSaveController.getSettingProp は BigInt を返す
 // （CSaveDataUnitBase.setProp が toSafeBigInt() を通すため）。D3リリース後に

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { CNameKana } from '@roro/CNameKana.js';
+import { CNameKana } from '@engine/CNameKana.js';
 
 describe('CNameKana.js', () => {
 

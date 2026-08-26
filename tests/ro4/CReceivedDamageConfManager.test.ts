@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { CReceivedDamageConfManager } from '@ro4/CReceivedDamageConfManager.js';
+import { CReceivedDamageConfManager } from '@engine/CReceivedDamageConfManager.js';
 
 const STORAGE_NAME = CReceivedDamageConfManager.STORAGE_NAME;
 

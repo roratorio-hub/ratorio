@@ -3,7 +3,7 @@ import {
     CConfBaseSelectData, CConfBaseConfData,
     CConfBaseRegisterParam, CConfBaseManagementParam,
     CConfBase2,
-} from '@roro/CConfBase2.js';
+} from '@engine/CConfBase2.js';
 
 describe('CConfBase2.js', () => {
     describe('CConfBaseSelectData インスタンス', () => {

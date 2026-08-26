@@ -36,8 +36,8 @@ import {
     StoreBasicStatusBonusAll, GetBasicStatusBonus, GetPureStatus, GetSpecStatusBonus, GetStatusPointRemain,
     GetTStatusPointRemain,
     GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate, GetDisplayedRes, GetDisplayedMres, GetDisplayedHPlus,
-} from '@ro4/hmjob.js';
-import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_STR } from '@roro/const/EnumMigItemParamId.js';
+} from '@engine/hmjob.js';
+import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_STR } from '@engine/const/EnumMigItemParamId.js';
 
 describe('hmjob.js', () => {
     // 3e-3: window compat 除去（window.CalcStatusPoint の state テストは削除）。

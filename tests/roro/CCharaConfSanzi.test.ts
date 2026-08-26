@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CCharaConfSanzi } from '@roro/CCharaConfSanzi.js';
+import { CCharaConfSanzi } from '@engine/CCharaConfSanzi.js';
 
 describe('CCharaConfSanzi.js', () => {
     describe('CCharaConfSanzi インスタンス生成', () => {

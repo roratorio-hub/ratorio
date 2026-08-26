@@ -14,7 +14,7 @@ vi.mock('../../roro/common/js/util.js', async (importActual) => {
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
 
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+vi.mock('@engine/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return {
         ...actual,
@@ -24,13 +24,13 @@ vi.mock('@roro/monstermap.dat.js', async (importActual) => {
     };
 });
 
-vi.mock('@roro/monster.dat.js', async (importActual) => {
+vi.mock('@engine/monster.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import { GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager } from '@roro/CFloatingInfoAreaComponentManager.js';
-import { g_extraInfoDataBridge } from '@roro/CExtraInfoDataBridge.js';
+import { GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager } from '@engine/CFloatingInfoAreaComponentManager.js';
+import { g_extraInfoDataBridge } from '@engine/CExtraInfoDataBridge.js';
 
 describe('CFloatingInfoAreaComponentManager.js', () => {
     it('g_extraInfoDataBridge.refreshFloatingDispAreaAll は CFloatingInfoAreaComponentManager.RefreshDispAreaAll に中継される', () => {

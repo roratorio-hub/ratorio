@@ -5,7 +5,7 @@ import {
     SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51,
     SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10,
     SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_0,
-} from '@roro/skill.h.js';
+} from '@engine/skill.h.js';
 
 describe('skill.h.js', () => {
 

@@ -27,7 +27,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, globSync } from 'node:fs';
 import { resolve, relative } from 'node:path';
 
-const JS_DIR = resolve(__dirname, '../../roro/m/js');
+const JS_DIR = resolve(__dirname, '../../engine');
 const SKILL_DIR = `${JS_DIR}/skill`;
 const files = globSync(`${SKILL_DIR}/**/*.js`).sort();
 

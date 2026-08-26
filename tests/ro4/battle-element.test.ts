@@ -19,7 +19,7 @@ let sm: any;
 let mainConf: any;
 
 beforeAll(async () => {
-    const skillDat = await import('@roro/skill.dat.js');
+    const skillDat = await import('@engine/skill.dat.js');
     SKILL_ID_HAWK_RUSH = skillDat.SKILL_ID_HAWK_RUSH;
     SKILL_ID_DRAGON_TAIL = skillDat.SKILL_ID_DRAGON_TAIL;
     SKILL_ID_PETITIO = skillDat.SKILL_ID_PETITIO;
@@ -27,13 +27,13 @@ beforeAll(async () => {
     SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT = skillDat.SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT;
     SKILL_ID_TUZYO_KOGEKI_CALC_LEFT = skillDat.SKILL_ID_TUZYO_KOGEKI_CALC_LEFT;
     SKILL_ID_TUZYO_KOGEKI_CALC_KATAR_APPEND = skillDat.SKILL_ID_TUZYO_KOGEKI_CALC_KATAR_APPEND;
-    await import('@ro4/global.js');
-    const mod = await import('@roro/CSkillManager.js');
+    await import('@engine/global.js');
+    const mod = await import('@engine/CSkillManager.js');
     CSkillData = mod.CSkillData;
     CSkillManager = mod.CSkillManager;
-    const conf = await import('@roro/CAttackMethodConf.js');
+    const conf = await import('@engine/CAttackMethodConf.js');
     CAttackMethodConf = conf.CAttackMethodConf;
-    const battleElement = await import('@ro4/battle-element.js');
+    const battleElement = await import('@engine/battle-element.js');
     GetForcedElementForCalc = battleElement.GetForcedElementForCalc;
     sm = new CSkillManager();
     mainConf = new CAttackMethodConf();

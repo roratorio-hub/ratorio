@@ -1,17 +1,17 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { IsEnableRandomEnchant } from '@roro/rndench.js';
-import { ITEM_DATA_INDEX_WPNLV } from '@roro/const/EnumItemDataIndex.js';
+import { IsEnableRandomEnchant } from '@engine/rndench.js';
+import { ITEM_DATA_INDEX_WPNLV } from '@engine/const/EnumItemDataIndex.js';
 
 const mockRefs = vi.hoisted(() => ({
     itemObjNew: [] as any[],
     getRndOptTypeId: (_: number) => 0,
 }));
 
-vi.mock('@roro/item.dat.js', () => ({
+vi.mock('@engine/item.dat.js', () => ({
     get ItemObjNew() { return mockRefs.itemObjNew; },
 }));
 
-vi.mock('@roro/item.h.js', async (importActual) => {
+vi.mock('@engine/item.h.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get GetRndOptTypeId() { return mockRefs.getRndOptTypeId; } };
 });

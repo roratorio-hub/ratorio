@@ -1,8 +1,8 @@
 import { vi, describe, it, expect, beforeAll } from 'vitest';
-import { CCustomSelectBase } from '@roro/CCustomSelectBase.js';
-import { CCustomSelectMapMonster } from '@roro/CCustomSelectMapMonster.js';
+import { CCustomSelectBase } from '@engine/CCustomSelectBase.js';
+import { CCustomSelectMapMonster } from '@engine/CCustomSelectMapMonster.js';
 
-vi.mock('@roro/monstermap.dat.js', async (importActual) => {
+vi.mock('@engine/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return {
         ...actual,
@@ -11,7 +11,7 @@ vi.mock('@roro/monstermap.dat.js', async (importActual) => {
     };
 });
 
-vi.mock('@roro/monster.dat.js', async (importActual) => {
+vi.mock('@engine/monster.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get MonsterObjNew() { return []; } };
 });

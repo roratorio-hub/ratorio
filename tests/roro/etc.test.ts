@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { weaponsize } from '@roro/etc.js';
+import { weaponsize } from '@engine/etc.js';
 
 describe('etc.js', () => {
     describe('データ確認', () => {

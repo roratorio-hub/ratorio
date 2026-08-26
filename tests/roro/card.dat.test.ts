@@ -5,8 +5,8 @@ import {
     CARD_ID_THE_CHIEF_KNIGHT_OF_ABYSS,
     CARD_ID_MAX,
     CardObjNew,
-} from '@roro/card.dat.js';
-import { get as registryGet } from '@ro4/engine-registry.js';
+} from '@engine/card.dat.js';
+import { get as registryGet } from '@engine/engine-registry.js';
 
 describe('card.dat.js', () => {
     describe('エクスポート確認', () => {

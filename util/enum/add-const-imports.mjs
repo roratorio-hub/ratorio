@@ -17,7 +17,7 @@ import { createRequire } from 'node:module';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = join(__dirname, '..', '..');
-const CONST_DIR = join(REPO, 'roro/m/js/const');
+const CONST_DIR = join(REPO, 'engine/const');
 const DRY = process.argv.includes('--dry');
 
 const require = createRequire(join(REPO, 'tests', 'package.json'));
@@ -50,7 +50,7 @@ function collectTargets() {
             out.push(p);
         }
     };
-    for (const r of ['roro/m/js', 'ro4/m/js', 'roro/other/js', 'roro/common/js']) walk(join(REPO, r));
+    for (const r of ['engine', 'roro/other/js', 'roro/common/js']) walk(join(REPO, r));
     const ai = join(REPO, 'ro4/m/calcx-ai.js');
     if (existsSync(ai)) out.push(ai);
     return out;
@@ -104,7 +104,7 @@ function insertPos(src) {
 
 const symbols = buildSymbolMap();
 if (symbols.size === 0) {
-    console.log('roro/m/js/const/ に export const が1件も無い。パスかファイルの状態を確認すること。');
+    console.log('engine/const/ に export const が1件も無い。パスかファイルの状態を確認すること。');
     process.exit(0);
 }
 

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { ITEM_KIND_BOW, ITEM_KIND_HANDGUN, ITEM_KIND_SWORD } from '@roro/const/EnumItemKind.js';
+import { ITEM_KIND_BOW, ITEM_KIND_HANDGUN, ITEM_KIND_SWORD } from '@engine/const/EnumItemKind.js';
 
 // DefinePseudoEnum がモジュール初期化時に toSafeBigInt を使うため、
 // dynamic import より前に globalThis に設定する
@@ -9,7 +9,7 @@ let IsDexBasedArms: any;
 let IsGunSeriesArms: any;
 
 beforeAll(async () => {
-	const mod = await import('/workspace/ratorio/roro/m/js/item.h.js');
+	const mod = await import('/workspace/ratorio/engine/item.h.js');
 	IsDexBasedArms = mod.IsDexBasedArms;
 	IsGunSeriesArms = mod.IsGunSeriesArms;
 });

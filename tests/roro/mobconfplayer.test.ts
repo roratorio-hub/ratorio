@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import '/workspace/ratorio/roro/m/js/CConfBase.js';
+import '/workspace/ratorio/engine/CConfBase.js';
 import {
     MOB_CONF_PLAYER_ID_DEF_DIV,
     MOB_CONF_PLAYER_DATA_INDEX_ID,
@@ -8,11 +8,11 @@ import {
     MobConfPlayerOBJ,
     SyncronizeMobConfPlayerSettingsCtrlToVar,
     OnChangeMobConfPlayer,
-} from '@roro/mobconfplayer.js';
+} from '@engine/mobconfplayer.js';
 import {
     CONTROL_TYPE_SELECTBOX_NUMBER, CONTROL_TYPE_SELECTBOX_SPECIAL,
     CONTROL_TYPE_TEXTBOX_NUMBER, CONTROL_TYPE_TEXTBOX_SPECIAL,
-} from '@roro/const/EnumControlType.js';
+} from '@engine/const/EnumControlType.js';
 
 // BuildUpMobConfPlayerSelectArea(root, true) は max=1500 等の大量 option を生成して OOM になるため使用不可。
 // MobConfPlayerOBJ を使い、全エントリの最小限 DOM 要素を手動で生成する。

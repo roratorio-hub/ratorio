@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CBattleCalcInfo } from '@ro4/CBattleCalcInfo.js';
+import { CBattleCalcInfo } from '@engine/CBattleCalcInfo.js';
 
 describe('CBattleCalcInfo.js', () => {
     describe('インスタンス動作', () => {

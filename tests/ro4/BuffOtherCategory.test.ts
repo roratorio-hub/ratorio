@@ -23,7 +23,7 @@ vi.hoisted(() => {
     const rootIdsWithoutArea = new Set(['ID_BATTLE_QUICK_CONTROL_AREA', 'ID_TIME_ITEM_AREA']);
     (document as any).getElementById = (id: string) => (rootIdsWithoutArea.has(id) ? null : mockEl);
 });
-import { BUFF_CONF_OTHER_LIMIT } from '@ro4/skillstate.js';
+import { BUFF_CONF_OTHER_LIMIT } from '@engine/skillstate.js';
 import {
     n_A_PassSkill8,
     n_Skill8SW,
@@ -31,7 +31,7 @@ import {
     Click_A8,
     OnChangePetSelect,
     RefreshPetExplain,
-} from '@ro4/BuffOtherCategory.js';
+} from '@engine/BuffOtherCategory.js';
 
 describe('BuffOtherCategory.js', () => {
     describe('エクスポート確認', () => {

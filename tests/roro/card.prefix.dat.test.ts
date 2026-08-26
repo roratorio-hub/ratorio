@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CardPrefix } from '@roro/card.prefix.dat.js';
+import { CardPrefix } from '@engine/card.prefix.dat.js';
 
 describe('card.prefix.dat.js', () => {
     describe('インスタンス動作', () => {

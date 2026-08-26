@@ -5,21 +5,21 @@ import {
          GetBaseLevelMin,
          GetJobExpTable,
          GetJobLevelMax
-} from '../../../ro4/m/js/data/mig.job.h.js';
-import '../../m/js/monster.h.js';
-import { MonsterObjNew } from '../../m/js/monster.dat.js';
+} from "../../../engine/data/mig.job.h.js";
+import "../../../engine/monster.h.js";
+import { MonsterObjNew } from "../../../engine/monster.dat.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger } from '../../common/js/util.js';
-import { MIG_JOB_ID_DRAGON_KNIGHT } from '../../../ro4/m/js/data/mig.job.dat.js';
-import { BASE_EXP_TABLE_ID_NORMAL, BASE_EXP_TABLE_ID_REINCANATED } from '../../m/js/const/BaseExpTableId.js';
+import { MIG_JOB_ID_DRAGON_KNIGHT } from "../../../engine/data/mig.job.dat.js";
+import { BASE_EXP_TABLE_ID_NORMAL, BASE_EXP_TABLE_ID_REINCANATED } from "../../../engine/const/BaseExpTableId.js";
 import {
     JOB_ID_HI_NOVICE, JOB_ID_HI_SWORDMAN, JOB_ID_KNIGHT, JOB_ID_LORDKNIGHT, JOB_ID_NINJA, JOB_ID_NOVICE,
     JOB_ID_RUNEKNIGHT, JOB_ID_STARGRADIATOR, JOB_ID_SUMMONER, JOB_ID_SUPERNOVICE, JOB_ID_SWORDMAN,
-} from '../../m/js/const/EnumJobId.js';
-import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_JOB_EXP, MONSTER_DATA_INDEX_KANA, MONSTER_DATA_INDEX_NAME } from '../../m/js/const/EnumMonsterDataIndex.js';
+} from "../../../engine/const/EnumJobId.js";
+import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_JOB_EXP, MONSTER_DATA_INDEX_KANA, MONSTER_DATA_INDEX_NAME } from "../../../engine/const/EnumMonsterDataIndex.js";
 import {
     JOB_EXP_TABLE_ID_1ST, JOB_EXP_TABLE_ID_1ST_REINCANATED, JOB_EXP_TABLE_ID_2ND, JOB_EXP_TABLE_ID_2ND_REINCANATED, JOB_EXP_TABLE_ID_3RD, JOB_EXP_TABLE_ID_4TH,
     JOB_EXP_TABLE_ID_EXTRA_1ST, JOB_EXP_TABLE_ID_NOVICE, JOB_EXP_TABLE_ID_NOVICE_REINCANATED, JOB_EXP_TABLE_ID_STAR_GRADIATOR, JOB_EXP_TABLE_ID_SUMMONER, JOB_EXP_TABLE_ID_SUPER_NOVICE,
-} from '../../m/js/const/JobExpTableId.js';
+} from "../../../engine/const/JobExpTableId.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 const g_ExpTableInfoArray = [

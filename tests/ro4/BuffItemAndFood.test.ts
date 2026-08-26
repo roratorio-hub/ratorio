@@ -17,7 +17,7 @@ vi.hoisted(() => {
     };
     (document as any).getElementById = () => mockEl;
 });
-import { BUFF_CONF_FOOD_LIMIT } from '@ro4/skillstate.js';
+import { BUFF_CONF_FOOD_LIMIT } from '@engine/skillstate.js';
 import {
     n_Skill7SW,
     ID_BUFF_FOOD_CHAGASHI,
@@ -40,8 +40,8 @@ import {
     ID_BUFF_SOUSHO_CARD,
     Click_Skill7SW,
     Click_A7,
-} from '@ro4/BuffItemAndFood.js';
-import { ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from '@ro4/skillstate.js';
+} from '@engine/BuffItemAndFood.js';
+import { ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from '@engine/skillstate.js';
 
 describe('BuffItemAndFood.js', () => {
     describe('エクスポート確認', () => {

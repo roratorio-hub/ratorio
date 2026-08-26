@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CSaveDataMappingManager } from '@roro/CSaveDataMappingManager.js';
+import { CSaveDataMappingManager } from '@engine/CSaveDataMappingManager.js';
 
 describe('CSaveDataMappingManager.js', () => {
     describe('コアロジック確認', () => {

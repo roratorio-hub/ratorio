@@ -1,6 +1,6 @@
 import { myInnerHtml } from '../../common/js/util.js';
 // === AUTO-GENERATED IMPORTS ===
-import { zokusei } from '../../m/js/etc.js';
+import { zokusei } from "../../../engine/etc.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 window.addEventListener('DOMContentLoaded', function() {

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
     ItemIdToSetIdMap,
     w_SE,
-} from '@roro/itemset.dat.js';
+} from '@engine/itemset.dat.js';
 
 describe('itemset.dat.js', () => {
     it('ItemIdToSetIdMap のセットIDが w_SE の該当セット定義を指す', () => {

@@ -2,11 +2,11 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 // 依存ゼロブリッジ。モジュールレベル state (_ctrl) を各テストで初期化するため
 // vi.resetModules() → 動的 re-import で毎回まっさらなインスタンスを得る。
-let bridge: typeof import('@ro4/CShadowEquipControllerDataBridge.js');
+let bridge: typeof import('@engine/CShadowEquipControllerDataBridge.js');
 
 beforeEach(async () => {
     vi.resetModules();
-    bridge = await import('@ro4/CShadowEquipControllerDataBridge.js');
+    bridge = await import('@engine/CShadowEquipControllerDataBridge.js');
 });
 
 describe('CShadowEquipControllerDataBridge.js', () => {

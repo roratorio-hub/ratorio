@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { MONSTER_DATA_INDEX_LEVEL, MONSTER_DATA_INDEX_NAME } from '@roro/const/EnumMonsterDataIndex.js';
+import { MONSTER_DATA_INDEX_LEVEL, MONSTER_DATA_INDEX_NAME } from '@engine/const/EnumMonsterDataIndex.js';
 
 let BuildMelonFes2026MonsterDropEntries: any;
 let FilterMelonFes2026MonsterDropEntries: any;
@@ -8,11 +8,11 @@ let MonsterObjNew: any;
 let g_MonsterMapDataArray: any;
 
 beforeAll(async () => {
-	await import('/workspace/ratorio/roro/m/js/monster.h.js');
-	const monsterDat = await import('/workspace/ratorio/roro/m/js/monster.dat.js');
+	await import('/workspace/ratorio/engine/monster.h.js');
+	const monsterDat = await import('/workspace/ratorio/engine/monster.dat.js');
 	MonsterObjNew = monsterDat.MonsterObjNew;
-	await import('/workspace/ratorio/roro/m/js/monstermap.h.js');
-	const monsterMapDat = await import('/workspace/ratorio/roro/m/js/monstermap.dat.js');
+	await import('/workspace/ratorio/engine/monstermap.h.js');
+	const monsterMapDat = await import('/workspace/ratorio/engine/monstermap.dat.js');
 	g_MonsterMapDataArray = monsterMapDat.g_MonsterMapDataArray;
 
 	const mod = await import('/workspace/ratorio/roro/other/js/eventsetup-melonfes2026monsterdrop.js');

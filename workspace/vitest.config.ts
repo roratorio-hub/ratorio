@@ -21,8 +21,7 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, './src'),
             '@tests': path.resolve(__dirname, './__tests__'),
-            '@ro4': path.resolve(__dirname, '../ro4/m/js'),
-            '@roro': path.resolve(__dirname, '../roro/m/js'),
+            '@engine': path.resolve(__dirname, '../engine'),
         },
     },
 });

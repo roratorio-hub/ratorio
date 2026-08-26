@@ -9,8 +9,8 @@ vi.hoisted(() => {
     (globalThis as any).$ = mockJQuery;
 });
 
-import { generateImage } from '@ro4/saveimage.js';
-import { get as registryGet } from '@ro4/engine-registry.js';
+import { generateImage } from '@engine/saveimage.js';
+import { get as registryGet } from '@engine/engine-registry.js';
 
 describe('saveimage.js', () => {
     // dewindow: window.generateImage は engine-registry へ移行（旧 window 互換テストを置換）。

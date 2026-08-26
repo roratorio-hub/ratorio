@@ -4,7 +4,7 @@ import {
     MONSTER_MAP_ID_MVP_MONSTER,
     MONSTER_MAP_ID_CATEGORY_ALL,
     MONSTER_MAP_ID_CATEGORY_MEMORIAL_DUNGEON,
-} from '@roro/monstermap.dat.js';
+} from '@engine/monstermap.dat.js';
 
 describe('monstermap.dat.js', () => {
     describe('エクスポート確認（定数）', () => {
