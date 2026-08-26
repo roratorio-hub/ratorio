@@ -730,7 +730,7 @@ import {
 import { PET_ID_MISTRESS, PET_OBJ } from './pet.dat.js';
 import { OnClickQuickControlSW } from './quickcontrol.js';
 import { SetEquipRndOptTable } from './rndopttype.h.js';
-import { LoadCookie3, LoadCookieConf } from './saveload.js';
+import { LoadCookie3, LoadCookieConf } from './savedata-codec.js';
 import {
          SERE_SUPPORT_SKILL_ID_CRYSTAL_ARMOR, SERE_SUPPORT_SKILL_ID_EYES_OF_STORM,
          SERE_SUPPORT_SKILL_ID_FIRE_CLOAK, SERE_SUPPORT_SKILL_ID_FLAME_ARMOR,

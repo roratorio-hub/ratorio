@@ -2,7 +2,7 @@ import {
     OnClickLoadSaveData, OnClickSaveSaveData, OnClickDeleteSaveData,
     OnClickClipboardSaveData, OnClickUrlOutMIG, OnClickUrlInMIG,
     OnClickConfirmDialogSwitch,
-} from './saveload.js';
+} from './saveload-mig.js';
 import { OnChangeBaseLV, OnChangeStatus, OnChangeJob } from './hmjob.js';
 import { notifyChanged } from './calc-invalidation.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';

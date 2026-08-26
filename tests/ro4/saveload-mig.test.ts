@@ -50,10 +50,10 @@ import {
     AdaptSaveDataStrSizeMIG,
     SaveDataChangeMIG,
     OnClickConfirmDialogSwitch,
-} from '@ro4/saveload.js';
+} from '@ro4/saveload-mig.js';
 import { get as registryGet } from '@ro4/engine-registry.js';
 
-describe('saveload.js', () => {
+describe('saveload-mig.js', () => {
     // dewindow: window.ConvertDataTextMIG / OnClickUrlOutMIG は engine-registry へ移行（旧 window 互換テストを置換）。
     // TypeScript 層（optInSavedata.ts）が registryGet('OnClickUrlOutMIG') 等で呼ぶ配線を検証する。
     describe('engine-registry 登録', () => {
