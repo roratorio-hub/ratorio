@@ -1,7 +1,7 @@
 /**
  * スキル効果判定から呼ばれる「装備・カード・時限効果の所持数検索関数」の注入ブリッジ（依存ゼロ）。
  *
- * 実体は roro/m/js/chara.js にあるが、ro4/m/js/skillstate.js から直接 import すると
+ * 実体は engine/chara.js にあるが、engine/skillstate.js から直接 import すると
  *   chara → skillstate → chara
  * の循環が生まれる。head-bridge.js / foot-bridge.js / skill-search-bridge.js と同じ
  * 「依存ゼロの委譲モジュール」で切り離す（import が無いモジュールは「評価途中」になり得ないので
@@ -12,7 +12,7 @@
  */
 
 /**
- * 指定カードが装備中の防具に何枚挿さっているかを検索する。実体は roro/m/js/chara.js。
+ * 指定カードが装備中の防具に何枚挿さっているかを検索する。実体は engine/chara.js。
  * @type {(cardId: number, rgnId?: number) => number}
  */
 export let CardNumSearch = () => {
@@ -25,7 +25,7 @@ export function RegisterCardNumSearch(fn) {
 }
 
 /**
- * 指定アイテムが装備中かどうかを検索する。実体は roro/m/js/chara.js。
+ * 指定アイテムが装備中かどうかを検索する。実体は engine/chara.js。
  * @type {(itemId: number, rgnId?: number) => number}
  */
 export let EquipNumSearch = () => {
@@ -38,7 +38,7 @@ export function RegisterEquipNumSearch(fn) {
 }
 
 /**
- * 指定時限効果が使用中かどうかを検索する。実体は roro/m/js/chara.js。
+ * 指定時限効果が使用中かどうかを検索する。実体は engine/chara.js。
  * @type {(timeItemId: number) => number}
  */
 export let TimeItemNumSearch = () => {

@@ -26,7 +26,7 @@
  *     唯一の実際のリスクは、savedata prop が未初期化（`CSaveController` 内部の
  *     `#settingDataUnit` が null）の場合に `getSettingProp` が `undefined` を返すこと
  *     （`OBJID_SAVE_BLOCK_MIG` 要素を持たないページでは `LoadSettingFromLocalStorageMIG()`
- *     自体が呼ばれないため発生しうる。`roro/m/js/foot.js:1788-1790` 参照）。
+ *     自体が呼ばれないため発生しうる。`engine/foot.js:1788-1790` 参照）。
  *     `readAutoCalcFlag()` 側で `?? 0` により、DOM版の `HtmlGetObjectValueByIdAsInteger`
  *     の第2引数（デフォルト値0）と同じフォールバックを再現する。
  *

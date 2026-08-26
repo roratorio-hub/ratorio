@@ -3,7 +3,7 @@
  *
  * CSkillManager.js の分割（.claude/context/remaining-work.md「着手可能な小タスク」由来、
  * plan: remining-work-md-cskillmanager-js-cskill-magical-elephant）で skillId カウンターが
- * 廃止され、`roro/m/js/skill/NN-*.js` 各ファイルの `defineSkill(SKILL_ID_X, function(){...})`
+ * 廃止され、`engine/skill/NN-*.js` 各ファイルの `defineSkill(SKILL_ID_X, function(){...})`
  * が明示的に ID を持つようになった。カウンター採番とマーカーの整合を検証していた旧スクリプトは
  * 意味を失った（カウンターが無いので「マーカー0件・不整合0件」という偽の緑を返す）ため削除し、
  * 後継として「重複なし・欠番なし」を検証する。

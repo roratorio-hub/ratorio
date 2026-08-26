@@ -11,7 +11,7 @@ import { CardObjNew } from '@engine/card.dat.js';
 import { CARD_DATA_INDEX_SPBEGIN } from '@engine/const/EnumCardDataIndex.js';
 import { n_A_card, set_n_A_card } from '@engine/roro-state.js';
 
-// カード装備領域（roro/m/js/common.js の const_identifier 採番）
+// カード装備領域（engine/common.js の const_identifier 採番）
 const CARD_REGION_ID_ARMS_RIGHT_1 = 0;
 const CARD_REGION_ID_ARMS_RIGHT_2 = 1;
 

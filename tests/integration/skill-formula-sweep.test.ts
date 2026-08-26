@@ -10,7 +10,7 @@
  * （foot.js を vitest の SSR ローダーで直接 import すると CSkillManager 系の循環 import で
  * ハングする既知の問題があるため、実ブラウザの ESM ローダーを経由する）。
  *
- * roro/m/js/skill.dat.js が定義する SKILL_ID_* 定数（約1,382件）全てに対して各関数を呼び、
+ * engine/skill.dat.js が定義する SKILL_ID_* 定数（約1,382件）全てに対して各関数を呼び、
  * 結果を Vitest スナップショットに固定する。foot.js の分割（Phase 1・Phase 2）で該当関数を
  * 別ファイルへ移動する際、本文を1バイトでも変えればここで検出できる。
  *

@@ -14,7 +14,7 @@ const WATCHED_VARS = [
 const JS_DIR = resolve(__dirname, '../../engine');
 
 // CSkillManager.js の分割（plan: remining-work-md-cskillmanager-js-cskill-magical-elephant）で
-// スキル定義本体は roro/m/js/skill/ 配下へ移った（当初はSKILL_ID連番の43ファイル、
+// スキル定義本体は engine/skill/ 配下へ移った（当初はSKILL_ID連番の43ファイル、
 // 2026-08-12 に職業ツリー単位の77ファイル・13系統ディレクトリへ再分割
 // 〔plan: roro-m-js-skill-https-rotool-gungho-jp-s-glittery-cupcake〕）。分割後の
 // CSkillManager.js はアクセサのみのシェルになるため、対象を明示的に glob で拾い直す

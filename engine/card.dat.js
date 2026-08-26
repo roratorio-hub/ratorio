@@ -7408,7 +7408,7 @@ export const CARD_ID_MAX = CardObjNew.length;
 
 	/*
 	データ破損せず扱える cardID の最大値は 16bit = 65535 です
-	これを拡張したい場合は ro4/m/js/CSaveDataUnit.js の CSaveDataUnitEquipable クラスで
+	これを拡張したい場合は engine/savedata/CSaveDataUnit.js の CSaveDataUnitEquipable クラスで
 	propNameCardID[1-4] の bit 数を更新した上で parse 関数をオーバーライドして後方互換性を確保してください
 	ただし petID = nnn を処理する際に cardID = 100nnn と見なされている部分があるため
 	10進数表現で桁が増える場合には itemset.h.js で定義されている ITEM_SET_PET_ID_OFFSET も拡張してください

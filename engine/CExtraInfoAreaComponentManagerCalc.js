@@ -102,7 +102,7 @@ export function CalcHealing(healType, healTarget, ptmCount) {
                 break;
         }
         for (let lv = 0; lv <= lvMax; lv++) {
-            // HealCalc()関数は ro4/m/js/head.js で定義されています
+            // HealCalc()関数は engine/head.js で定義されています
             valueMinArray[lv] = HealCalc(lv, healType, 0, healTarget, ptmCount);
             valueMaxArray[lv] = HealCalc(lv, healType, 2, healTarget, ptmCount);
         }

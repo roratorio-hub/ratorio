@@ -217,7 +217,7 @@ item_list:
 
 ### output_item.dat.js の追記先  
 
-`/roro/m/js/item.dat.js` の末尾に追記します  
+`/engine/item.dat.js` の末尾に追記します  
 例えばファイル末尾が以下のような状態の場合  
 
 ```js  
@@ -231,7 +231,7 @@ item_list:
 
 ### output_itemset.dat.js の追記先  
 
-`/roro/m/js/itemset.dat.js` に追記します  
+`/engine/itemset.dat.js` に追記します  
 例えばファイル末尾が以下のような状態の場合  
 
 ```js  
@@ -245,7 +245,7 @@ item_list:
 
 ### output_mig.enchlist.dat.js の追記先  
 
-`/roro/m/js/data/mig.enchlist.dat.js` に追記します  
+`/engine/data/mig.enchlist.dat.js` に追記します  
 例えばファイル末尾が以下のような状態の場合  
 
 ```js  

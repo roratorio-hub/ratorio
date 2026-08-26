@@ -527,7 +527,7 @@ export const g_MonsterMapDataArray = [
 
 /*
 データ破損せず扱える monsterMapID の最大値は 10bit = 1024 です
-これを拡張したい場合は ro4/m/js/CSaveDataUnitMob.js で
+これを拡張したい場合は engine/savedata/CSaveDataUnitMob.js で
 propNameMonsterMapID の bit 数を更新した上で
 parse 関数をオーバーライドして後方互換性を確保してください
 */
@@ -634,7 +634,7 @@ export const g_MonsterMapCategoryDataArray = [
 
 /*
 データ破損せず扱える monsterMapCategoryID の最大値は 8bit = 256 です
-これを拡張したい場合は ro4/m/js/CSaveDataUnitMob.js で
+これを拡張したい場合は engine/savedata/CSaveDataUnitMob.js で
 propNameMonsterMapCategoryID の bit 数を更新した上で
 parse 関数をオーバーライドして後方互換性を確保してください
 */

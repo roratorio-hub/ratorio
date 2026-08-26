@@ -10904,7 +10904,7 @@ ItemObjNew[5786] = [5786,52,174,0,0,0,10,200,"藤の扇","フジノオウギ",""
 
 /*
 データ破損せず扱える itemID の最大値は 14bit = 16383 です
-これを拡張したい場合は ro4/m/js/CSaveDataUnit.js の CSaveDataUnitEquipable クラスで
+これを拡張したい場合は engine/savedata/CSaveDataUnit.js の CSaveDataUnitEquipable クラスで
 propNameItemID の bit 数を更新した上で
 parse 関数をオーバーライドして後方互換性を確保してください
 オーバーライドされた parse の処理は CSaveDataUnitMob クラスを参考にしてください

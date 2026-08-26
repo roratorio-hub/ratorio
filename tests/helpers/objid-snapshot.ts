@@ -100,7 +100,7 @@ export function loadSaveDataEntries(filePath: string, prefix: string): FixtureEn
  * Pass 4: A1/A4/A7/A8 の SKILLSW スイッチ（BuffJobSpecificSelf.js / BuffGuildAndGospel.js /
  *   BuffItemAndFood.js / BuffOtherCategory.js）
  *   - folding-switch-MIG を持たないため Pass 1-2 では開かない独自の折りたたみ
- *   - StAllCalc（roro/m/js/foot.js）が `n_A_PassSkill4/7/8` へ読み込む calcForm 入力
+ *   - StAllCalc（engine/foot.js）が `n_A_PassSkill4/7/8` へ読み込む calcForm 入力
  *     （`A4_Skill0`〜`A4_Skill35` 等）はこのスイッチを開くまで DOM に存在しない。
  *     Phase 0 のテスト網拡張（.claude/context/remaining-work.md 系リファクタリング計画）の対象
  */
@@ -157,7 +157,7 @@ const INTENTIONAL_DIVERGENCE_FORM_NAMES = new Set([
  * 全 OBJID_* 要素 + document.calcForm の全 name 付きコントロールの値を
  * DOM から直接評価して返す（副作用なし）。
  *
- * 後者は StAllCalc（roro/m/js/foot.js）が `eval(calcForm.X.value)` / `eval(calcForm.X.checked)`
+ * 後者は StAllCalc（engine/foot.js）が `eval(calcForm.X.value)` / `eval(calcForm.X.checked)`
  * で読む入力の可視化が目的（.claude/context/remaining-work.md 系のリファクタリング計画 Phase 0）。
  * StAllCalc が読む calcForm.X は 126 種類あるが、OBJID_ id を持つのは約30種類のみで、
  * 残りは `<template>` 化前のビューコードが実行時生成する name 属性のみの要素だった

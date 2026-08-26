@@ -3,11 +3,11 @@
 
 	ESM移行後は import されたこの const が各モジュールでの実効値。
 	CSkillManager.js の分割（plan: remining-work-md-cskillmanager-js-cskill-magical-elephant）で
-	旧 skillId カウンター採番は廃止され、roro/m/js/skill/ 配下各ファイルの
+	旧 skillId カウンター採番は廃止され、engine/skill/ 配下各ファイルの
 	`defineSkill(SKILL_ID_XXX, function(){...})` が明示的にこの定数を ID として使う形になった
 	（かつての window.SKILL_ID_* 書き込みは dewindow 3e-2 で除去済み）。
 
-	2026-08-12: skill/ は職業ツリー単位（roro/m/js/skill/<系統>/<階層>-<職業>.js。
+	2026-08-12: skill/ は職業ツリー単位（engine/skill/<系統>/<階層>-<職業>.js。
 	例: skill/swordman/2b-crusader.js）に再編済み（plan:
 	roro-m-js-skill-https-rotool-gungho-jp-s-glittery-cupcake）。ファイル索引は
 	.claude/context/architecture.md 参照。
@@ -2846,7 +2846,7 @@ export const SkillObjNew = [
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です
-	これを拡張したい場合は ro4/m/js/CSaveDataUnit.js の
+	これを拡張したい場合は engine/savedata/CSaveDataUnit.js の
 	CSaveDataUnitAttackConf クラスの propNameAttackSkillID と
 	CSaveDataUnitCharaConfSkill クラスの propNameSkillID の両方で
 	該当プロパティの bit 数を更新した上で

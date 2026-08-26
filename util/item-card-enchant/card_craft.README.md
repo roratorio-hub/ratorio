@@ -137,7 +137,7 @@ card_list:
 
 ### output_card.dat.js の追記先  
 
-`/roro/m/js/card.dat.js` の末尾に追記します  
+`/engine/card.dat.js` の末尾に追記します  
 例えばファイル末尾が以下のような状態の場合  
 
 ```js  
@@ -152,7 +152,7 @@ card_list:
 
 ### output_itemset.dat.js の追記先  
 
-`/roro/m/js/itemset.dat.js` に追記します  
+`/engine/itemset.dat.js` に追記します  
 例えばファイル末尾が以下のような状態の場合  
 
 ```js  

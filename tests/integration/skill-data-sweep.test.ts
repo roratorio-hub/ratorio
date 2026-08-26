@@ -68,7 +68,7 @@ describe('CSkillManager 全アクセサ 総当たりスイープ', () => {
 
                 // 本番と同じ経路で引数を1回だけ取得する（StAllCalc の戻り値は
                 // [charaData, specData(=n_tok), mobData, attackMethodConfArray]。
-                // ro4/m/js/head.js の calc() と同じ取り出し方）。
+                // engine/head.js の calc() と同じ取り出し方）。
                 const retVal = bridge.StAllCalc();
                 const charaData = retVal[0];
                 const specData  = retVal[1];

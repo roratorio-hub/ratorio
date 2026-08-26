@@ -3,7 +3,7 @@
  *
  * .claude/context/remaining-work.md 系の「UI/ロジック分離」リファクタリング計画で、
  * 既存の安全網 `evalObjidSnapshot`（`[id^="OBJID_"]` のみ観測）が
- * StAllCalc（roro/m/js/foot.js）の読む calcForm 入力 126 種類のうち
+ * StAllCalc（engine/foot.js）の読む calcForm 入力 126 種類のうち
  * 約30種類しか観測できていなかった問題への対処:
  *
  *   1. evalObjidSnapshot の calcForm 拡張（helpers/objid-snapshot.ts）

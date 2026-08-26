@@ -1,9 +1,9 @@
 /**
  * スキル計算式から呼ばれる「使用中／習得済みスキルLv 検索関数」の注入ブリッジ（依存ゼロ）。
  *
- * UsedSkillSearch の実体は ro4/m/js/skillstate.js、LearnedSkillSearch の実体は
- * roro/m/js/learnedskill.js にあるが、どちらも global.js を起点とする循環 import に含まれる。
- * スキル定義側（roro/m/js/skill/*.js・CSkillData.js）から直接 import すると
+ * UsedSkillSearch の実体は engine/skillstate.js、LearnedSkillSearch の実体は
+ * engine/learnedskill.js にあるが、どちらも global.js を起点とする循環 import に含まれる。
+ * スキル定義側（engine/skill/*.js・CSkillData.js）から直接 import すると
  *   CSkillManager → skill/xx → learnedskill → CSkillManager
  * のような循環が生まれ、learnedskill.js のモジュール本体が実行する Register 呼び出しが
  * CSkillManager.js 側の let の TDZ に突っ込んで ReferenceError になる。
@@ -16,7 +16,7 @@
  */
 
 /**
- * 職固有自己支援等、使用中スキルの設定Lvを取得する。実体は ro4/m/js/skillstate.js。
+ * 職固有自己支援等、使用中スキルの設定Lvを取得する。実体は engine/skillstate.js。
  * @type {(skillId: number) => number}
  */
 export let UsedSkillSearch = () => {
@@ -29,7 +29,7 @@ export function RegisterUsedSkillSearch(fn) {
 }
 
 /**
- * 習得スキル欄の設定Lvを取得する。実体は roro/m/js/learnedskill.js。
+ * 習得スキル欄の設定Lvを取得する。実体は engine/learnedskill.js。
  * @type {(skillId: number) => number}
  */
 export let LearnedSkillSearch = () => {

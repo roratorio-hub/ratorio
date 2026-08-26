@@ -4329,7 +4329,7 @@ export const MonsterObjNew = [
 
 		/*
 		データ破損せず扱える monsterID の最大値は 16bit = 65535 です
-		これを拡張したい場合は ro4/m/js/CSaveDataUnit.js の CSaveDataUnitMob クラスで
+		これを拡張したい場合は engine/savedata/CSaveDataUnit.js の CSaveDataUnitMob クラスで
 		propNameMonsterID の bit 数を更新した上で
 		parse 関数をオーバーライドして後方互換性を確保してください
 		*/

@@ -91,7 +91,7 @@ import "./item.h.js";
  * メンバメソッドの GetXXX( ) を通じて
  * 各スキルのパラメータを取得できる.
  *
- * ⚠ skill オブジェクトは roro/m/js/skill/ 配下のモジュールレベルシングルトンであり、
+ * ⚠ skill オブジェクトは engine/skill/ 配下のモジュールレベルシングルトンであり、
  * 複数の CSkillManager インスタンス間で共有される（生成タイミングも new CSkillManager() 時
  * ではなく各グループモジュール評価時）。構築後に書き換えないこと。
  */

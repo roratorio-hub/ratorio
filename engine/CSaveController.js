@@ -283,7 +283,7 @@ export class CSaveController {
 
 	/**
 	 * Cookie からセーブデータ文字列を取得する
-	 * saveload.js@OnClickClipboardSaveData() から呼び出されるデバッグ関数
+	 * saveload-mig.js@OnClickClipboardSaveData() から呼び出されるデバッグ関数
 	 * @param {*} index 
 	 * @returns {string[2]} [セーブデータ名, セーブデータ文字列]
 	 */

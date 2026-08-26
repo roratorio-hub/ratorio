@@ -1,7 +1,7 @@
 /**
  * スキル定義 acolyte/3a-high-priest（4 件 / SKILL_ID 267〜757 の中から職業ツリーで再抽出）
  *
- * roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
+ * 旧 roro/m/js/skill/NN-*.js（SKILL_ID連番分割）を職業ツリー単位へ再分割したもの
  * （tests/split-skill-by-job.mjs）。本文は分割前と1バイトも変えていない。
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。

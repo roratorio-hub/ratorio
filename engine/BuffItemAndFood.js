@@ -14,7 +14,7 @@ import { CAttackMethodAreaComponentManager } from "./CAttackMethodAreaComponentM
  * Note:
  * 配列数とセーブデータ領域数は等しくない
  * セーブデータ領域の最大値は 70 で CSaveDataUnitItemBuff で定義されている
- * ただし saveload.js が容易に変更できない書き方になっているから迂闊にセーブデータ領域を拡張してはいけない
+ * ただし savedata-codec.js が容易に変更できない書き方になっているから迂闊にセーブデータ領域を拡張してはいけない
  * 70 までは増やしてOK
  */
 /** アイテム・食品他 ウィンドウ可視状態 */

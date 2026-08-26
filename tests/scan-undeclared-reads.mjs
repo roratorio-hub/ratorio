@@ -8,7 +8,7 @@
  * （実例: head.js の SU_INT 等20箇所 / CSkillManager の powCard タイポ / saveload の n_CONFIG_SW）
  *
  * かつて bare read の 97.6% は CGlobalConstManager.DefineEnum() が実行時生成する定数だったが、
- * 現在は全て roro/m/js/const/EnumXxx.js の `export const` に移行済みのため除外は不要。
+ * 現在は全て engine/const/EnumXxx.js の `export const` に移行済みのため除外は不要。
  * DefineEnum が復活していないかも併せて検査する。
  *
  * 実行: cd tests && node scan-undeclared-reads.mjs
@@ -121,7 +121,7 @@ function collectHostGlobals() {
 
 const hostGlobals = collectHostGlobals();
 
-// DefineEnum は全廃済み（定数は roro/m/js/const/EnumXxx.js の export const に移行）。
+// DefineEnum は全廃済み（定数は engine/const/EnumXxx.js の export const に移行）。
 // 復活すると「実行時にグローバルへ生える＝定義箇所が追えない定数」が戻ってくるので検出する。
 const resurrected = files.filter((f) =>
     /CGlobalConstManager\.Define(?:Pseudo)?Enum\s*\(/.test(readFileSync(f, 'utf8')));

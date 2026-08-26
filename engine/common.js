@@ -39,7 +39,7 @@ import {
 
 
 // EnumParamId / EnumRaceId / EnumElmId は const 化済み。
-// 定義は roro/m/js/const/EnumParamId.js ・ EnumRaceId.js ・ EnumElmId.js を参照。
+// 定義は engine/const/EnumParamId.js ・ EnumRaceId.js ・ EnumElmId.js を参照。
 // （旧 DefineEnum はグローバルへ実行時生成しており定義箇所を追えなかった）
 
 

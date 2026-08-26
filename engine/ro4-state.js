@@ -11,7 +11,7 @@
  * 配列の要素書き込み（X[i] = v）は binding の再代入ではないため import したまま行ってよい。
  */
 
-// ---- セーブデータ（書き込み元: saveload.js / head.js）----
+// ---- セーブデータ（書き込み元: savedata-codec.js / head.js）----
 export let SaveDataAll = Array(20).fill("ZZZZ");
 export let SaveNameAll = Array(501).fill("ZZZZ");
 
