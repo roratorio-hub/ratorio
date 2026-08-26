@@ -29,7 +29,7 @@ if (window.location.hostname !== "roratorio-hub.github.io" || window.location.pa
   formurl += `?entry.1590472346=ラトリオHUB以外から遷移しています`
 }
 
-fetch('../date.json')
+fetch(new URL('./date.json', import.meta.url))
   .then(response => response.json())
   .then(data => {
     last_updated = data.release_date;

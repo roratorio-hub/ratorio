@@ -135,6 +135,33 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('ページロード中', errors)).toHaveLength(0);
     });
 
+    // frame.js の fetch('../date.json') は <base href> 経由でのみ正しく roro/date.json に
+    // 解決していた（calcx.htmlの<base href>を前提にした相対パス）。B-14（engine/統合）で
+    // <base href> を撤去した際に見落とし、404 で失敗するようになっていた
+    // （実害: 手動ブラウザ確認で発覚。frame.js の.catch()に飲まれるため未捕捉JS例外には
+    // ならず、上の「起動テスト」では検出できない）。import.meta.url基準の解決に修正した後、
+    // このテストで再発を検出する。
+    it('サイドバーの更新日時が date.json から正しく読み込まれる（フェッチ失敗しない）', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForFunction(() => {
+                const titles = document.querySelectorAll('.menu-title');
+                const last = titles[titles.length - 1];
+                return !!last && last.textContent !== '';
+            }, { timeout: 10000 });
+            const lastUpdatedText = await page.evaluate(() => {
+                const titles = document.querySelectorAll('.menu-title');
+                return titles[titles.length - 1]?.textContent ?? '';
+            });
+            expect(lastUpdatedText).not.toBe('取得失敗...');
+            expect(lastUpdatedText).toMatch(/^\d{4}-\d{2}-\d{2}/);
+        });
+        expect(errors, formatErrorMsg('ページロード中', errors)).toHaveLength(0);
+    });
+
     // 職業変更は equip.js・learnedskill.js 等の初期化コードをトリガーする。
     // ESM 移行で壊れた場合に ReferenceError として現れることがあるため検出する。
     it('職業変更操作で未捕捉 JS 例外が発生しない', async () => {
