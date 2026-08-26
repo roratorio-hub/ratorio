@@ -6,9 +6,7 @@
  * （基礎値算出パート）が調査対象から漏れていた。本ファイルはその1つ。
  * 本文はバイト単位で不変（スクラッチ変数のみローカル再宣言）。
  */
-import { n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { n_A_PassSkill4, UsedSkillSearch, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { GetLowerJobSeriesID } from '../../../ro4/m/js/data/mig.job.h.js';
 import { g_confDataSanzi, n_Nitou } from '../../../ro4/m/js/global.js';
 import { ApplyElementRatio } from '../../../ro4/m/js/head-bridge.js';

@@ -2,7 +2,6 @@
 import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
-export { n_A_PassSkill7 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 import { StAllCalc } from '../../../roro/m/js/foot-bridge.js';
 import { CAttackMethodAreaComponentManager } from './CAttackMethodAreaComponentManager.js';
@@ -44,7 +43,6 @@ export const ID_BUFF_STATUS_20_VIT = 18;
 export const ID_BUFF_STATUS_20_INT = 19;
 export const ID_BUFF_STATUS_20_DEX = 20;
 export const ID_BUFF_STATUS_20_LUK = 21;
-export { ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from './skillstate.js';
 export const ID_BUFF_SOUSHO_CARD = 52;
 
 /**

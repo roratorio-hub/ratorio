@@ -4,7 +4,7 @@
  * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import {
     GetHigherJobSeriesID, GetLowerJobSeriesID, IsDoramJob, JOB_SERIES_ID_BARD, JOB_SERIES_ID_DANCER,
     JOB_SERIES_ID_HUNTER, JOB_SERIES_ID_MAGICIAN, JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_THIEF

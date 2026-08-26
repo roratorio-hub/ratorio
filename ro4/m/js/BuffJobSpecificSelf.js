@@ -40,7 +40,6 @@ import {
 } from '../../../roro/m/js/timeitem.dat.js';
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill, UsedSkillSearch, UsedSkillSearchSubUsedOnly } from './skillstate.js';
-export { n_A_PassSkill, UsedSkillSearch, UsedSkillSearchSubUsedOnly } from './skillstate.js';
 import {
          SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_AS_QUICKDRAW, SKILL_ID_ATK_FOR_IRON_NAIL,
          SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_AURA_BLADE, SKILL_ID_BERSERK,

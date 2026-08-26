@@ -4,7 +4,6 @@ import { notifyChanged, CalcInput } from './calc-invalidation.js';
 import { SkillObjNew } from '../../../roro/m/js/skill.dat.js';
 import { myInnerHtml } from '../../../roro/common/js/util.js';
 import { n_A_PassSkill4 } from './skillstate.js';
-export { n_A_PassSkill4 } from './skillstate.js';
 // === END AUTO-GENERATED IMPORTS ===
 import { StAllCalc } from '../../../roro/m/js/foot-bridge.js';
 import { SKILL_DATA_INDEX_NAME } from '../../../roro/m/js/const/EnumSkillDataIndex.js';

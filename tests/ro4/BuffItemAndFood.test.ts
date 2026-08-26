@@ -37,12 +37,11 @@ import {
     ID_BUFF_POTION_WIND,
     ID_BUFF_MAJO_NO_SKILL_CARD,
     ID_BUFF_STATUS_20_STR,
-    ID_BUFF_MANUK_ISHI,
-    ID_BUFF_VESPER_HONEY,
     ID_BUFF_SOUSHO_CARD,
     Click_Skill7SW,
     Click_A7,
 } from '@ro4/BuffItemAndFood.js';
+import { ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from '@ro4/skillstate.js';
 
 describe('BuffItemAndFood.js', () => {
     describe('エクスポート確認', () => {

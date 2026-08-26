@@ -2,8 +2,7 @@
  * StAllCalc「ＭａｘＨＰ算出」「ＭａｘＳＰ算出」セクションの分割（Phase 2b）。
  * 経緯は foot-stallcalc-atk-base.js の JSDoc を参照。本文はバイト単位で不変。
  */
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { UsedSkillSearch, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { GetHPBase, GetSPBase } from '../../../ro4/m/js/data/mig.job.h.js';
 import { n_A_BaseLV, n_tok } from '../../../ro4/m/js/ro4-state.js';
 import { CExtraInfoAreaComponentManager } from './CExtraInfoAreaComponentManager.js';

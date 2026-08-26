@@ -4,8 +4,7 @@
  * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
-import { n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { n_A_PassSkill7, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { g_confDataSanzi, g_confDataYozi, g_objCharaConfCustomAtk } from '../../../ro4/m/js/global.js';
 import { ApplySpecModify } from '../../../ro4/m/js/hmjob.js';
 import { n_A_BaseLV, n_tok } from '../../../ro4/m/js/ro4-state.js';

@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { n_A_PassSkill4, Click_A4 } from '@ro4/BuffGuildAndGospel.js';
+import { Click_A4 } from '@ro4/BuffGuildAndGospel.js';
+import { n_A_PassSkill4 } from '@ro4/skillstate.js';
 // dewindow: calc は head-bridge 経由（旧 './head.js' 直接 import → 単体テストが OOM していた）。
 import { __registerHeadFunctions } from '@ro4/head-bridge.js';
 // リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は

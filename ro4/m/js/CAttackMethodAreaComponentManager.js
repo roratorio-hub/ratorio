@@ -1,7 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import '../../../roro/m/js/common.js';
 import '../../../roro/m/js/item.h.js';
-import { UsedSkillSearch } from './BuffJobSpecificSelf.js';
 import { g_constDataManager, g_skillManager } from './global.js';
 import { calc } from './head-bridge.js';
 import { notifyChanged, CalcInput } from './calc-invalidation.js';
@@ -106,7 +105,7 @@ import {
 import { get as registryGet } from './engine-registry.js';
 
 // C-6: n_A_PassSkill7 は BuffItemAndFood.js の再エクスポート経由だと循環するため実体を直接参照
-import { n_A_PassSkill7 } from './skillstate.js';
+import { n_A_PassSkill7, UsedSkillSearch } from './skillstate.js';
 
 // C-6: JOB 定数
 import {

@@ -6,7 +6,7 @@
  * n_B_HIT/n_B_FLEE はコードベース全体で書き込みのみ・参照箇所なし（確認済み）のため
  * ローカル変数化した（元々 foot.js のモジュールレベル変数だったが未 export・未参照）。
  */
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import {
     GetLowerJobSeriesID, IsSameJobClass, JOB_SERIES_ID_ACOLYTE, JOB_SERIES_ID_ARCHER, JOB_SERIES_ID_MERCHANT,
     JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_TAEGKUON, JOB_SERIES_ID_THIEF

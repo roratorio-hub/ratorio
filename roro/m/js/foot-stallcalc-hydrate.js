@@ -16,10 +16,11 @@
 // === AUTO-GENERATED IMPORTS ===
 import { InitJobInfo } from './foot-bridge.js';
 // === END AUTO-GENERATED IMPORTS ===
-import { n_A_PassSkill4, n_Skill4SW } from '../../../ro4/m/js/BuffGuildAndGospel.js';
-import { n_A_PassSkill7, n_Skill7SW } from '../../../ro4/m/js/BuffItemAndFood.js';
-import { n_A_PassSkill, n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { n_A_PassSkill8, n_Skill8SW } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { n_Skill4SW } from '../../../ro4/m/js/BuffGuildAndGospel.js';
+import { n_Skill7SW } from '../../../ro4/m/js/BuffItemAndFood.js';
+import { n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { n_Skill8SW } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { CAttackMethodAreaComponentManager } from '../../../ro4/m/js/CAttackMethodAreaComponentManager.js';
 import { CShadowEquipController, g_shadowEquipController } from '../../../ro4/m/js/CShadowEquipController.js';
 import {

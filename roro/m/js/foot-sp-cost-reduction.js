@@ -4,7 +4,7 @@
  * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
  * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
  */
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import {
     GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass, JOB_SERIES_ID_HUNTER, JOB_SERIES_ID_MAGICIAN,
     JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_THIEF

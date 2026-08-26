@@ -11,9 +11,7 @@
  * n_A_SpeedPOT は foot.js 専有のモジュールレベル変数（未export）のため、
  * import ではなく呼び出し元（StAllCalc）から明示的に引数で渡す。
  */
-import { n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { n_A_PassSkill7, UsedSkillSearch, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import {
     GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass, IsUsableBSPJob, IsUsableHSPJob, JOB_SERIES_ID_WIZARD
 } from '../../../ro4/m/js/data/mig.job.h.js';

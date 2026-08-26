@@ -2,8 +2,7 @@
  * StAllCalc「除算Mdef算出」「減算Mdef算出」「HIT 算出」セクションの分割（Phase 2b）。
  * 経緯は foot-stallcalc-atk-base.js の JSDoc を参照。本文はバイト単位で不変。
  */
-import { n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
-import { UsedSkillSearch } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { n_A_PassSkill4, UsedSkillSearch } from '../../../ro4/m/js/skillstate.js';
 import { g_confDataDebuff } from '../../../ro4/m/js/global.js';
 import { n_A_BaseLV, n_tok } from '../../../ro4/m/js/ro4-state.js';
 import { CCharaConfDebuff } from './CCharaConfDebuff.js';

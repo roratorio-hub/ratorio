@@ -6,7 +6,7 @@
  * StAllCalc/StPlusCalc（foot.js に残存）から呼ばれる内部ヘルパーと、
  * foot-bridge.js 経由で他ファイルから呼ばれる公開関数が混在する。
  */
-import { n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
 import { IsSameJobClass } from '../../../ro4/m/js/data/mig.job.h.js';
 import { g_timeItemConf, g_timeItemConfEffective } from '../../../ro4/m/js/global.js';
 import { g_pureStatus } from '../../../ro4/m/js/hmjob.js';

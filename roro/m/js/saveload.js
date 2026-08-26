@@ -106,11 +106,11 @@ import {
 } from './skill.dat.js';
 import { USABLE_SKILL_ID_CUSTOM_BIAS } from './usableskill.h.js';
 import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, MallocArray, myInnerHtml } from '../../common/js/util.js';
-import { Click_A1, n_A_PassSkill, n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
-import { n_A_PassSkill3 } from '../../../ro4/m/js/skillstate.js';
-import { Click_A4, n_A_PassSkill4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
-import { Click_A7, n_A_PassSkill7 } from '../../../ro4/m/js/BuffItemAndFood.js';
-import { Click_A8, n_A_PassSkill8 } from '../../../ro4/m/js/BuffOtherCategory.js';
+import { Click_A1, n_Skill1SW } from '../../../ro4/m/js/BuffJobSpecificSelf.js';
+import { n_A_PassSkill3, n_A_PassSkill, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8 } from '../../../ro4/m/js/skillstate.js';
+import { Click_A4 } from '../../../ro4/m/js/BuffGuildAndGospel.js';
+import { Click_A7 } from '../../../ro4/m/js/BuffItemAndFood.js';
+import { Click_A8 } from '../../../ro4/m/js/BuffOtherCategory.js';
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: JOB 定数
 import {

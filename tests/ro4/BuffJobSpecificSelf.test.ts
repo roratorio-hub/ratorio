@@ -6,7 +6,7 @@ import {
     n_A_PassSkill,
     UsedSkillSearch,
     UsedSkillSearchSubUsedOnly,
-} from '@ro4/BuffJobSpecificSelf.js';
+} from '@ro4/skillstate.js';
 import { g_constDataManager } from '@ro4/global.js';
 import { n_A_JOB } from '@roro/roro-state.js';
 import { CONST_DATA_KIND_JOB } from '@roro/const/EnumConstDataKind.js';
