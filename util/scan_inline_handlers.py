@@ -32,8 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent  # util/ → ratorio/
 
 JS_SCAN_DIRS = [
-    ROOT / "roro/m/js",
-    ROOT / "ro4/m/js",
+    ROOT / "engine",
     ROOT / "roro/common/js",
 ]
 

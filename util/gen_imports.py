@@ -8,7 +8,7 @@ Phase 1 import generator for dewindow migration.
 Usage:
     python3 util/gen_imports.py                          # dry run (変更なし・出力のみ)
     python3 util/gen_imports.py --apply                  # 全対象ファイルに適用
-    python3 util/gen_imports.py --apply --file roro/m/js/foot.js  # 1ファイルのみ
+    python3 util/gen_imports.py --apply --file engine/foot.js     # 1ファイルのみ
     python3 util/gen_imports.py --force --apply          # 既存の自動生成ブロックを再生成
 """
 
@@ -26,8 +26,7 @@ from collections import defaultdict
 BASE = Path('/workspace/ratorio')
 
 TARGET_DIRS = [
-    BASE / 'roro/m/js',
-    BASE / 'ro4/m/js',
+    BASE / 'engine',
     BASE / 'roro/other/js',
     BASE / 'roro/common/js',
 ]
@@ -286,7 +285,7 @@ def build_global_window_assigned_set(all_files: list, symbol_map: dict) -> set:
 # ────────────────────────────────────────────────────────────────
 
 # CGlobalConstManager.DefineEnum("EnumName", ["CONST_A", "CONST_B", ...], ...)
-# ※ DefineEnum は廃止済み（定数は roro/m/js/const/EnumXxx.js の export const へ移行）。
+# ※ DefineEnum は廃止済み（定数は engine/const/EnumXxx.js の export const へ移行）。
 #    このマップは常に空になるが、旧形式のファイルが混入した場合の保険として残している。
 _DEFINE_ENUM_RE = re.compile(
     r'CGlobalConstManager\.Define(?:Pseudo)?Enum\s*\([^,]+,\s*\[(.*?)\]',
@@ -521,12 +520,13 @@ def strip_auto_generated(content: str) -> str:
 # ────────────────────────────────────────────────────────────────
 
 HTML_FILE = BASE / 'ro4/m/calcx.html'
-# <base href="../../roro/m/"> → /workspace/ratorio/roro/m/
-HTML_BASE = BASE / 'roro/m'
+# B-14（2026-08-26）で <base href="../../roro/m/"> を撤去し、script src は
+# 各HTMLファイル自身からの相対パスへ再計算済み。よって base はHTML自身のディレクトリ。
+HTML_BASE = HTML_FILE.parent
 
 def build_html_position_map() -> dict:
     """calcx.html の script src → HTML行番号マップを構築する。
-    base href を考慮してパスを解決する。
+    HTML自身のディレクトリを基準にパスを解決する（<base href>は撤去済み）。
     """
     position_map: dict = {}
     if not HTML_FILE.exists():

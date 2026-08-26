@@ -31,9 +31,9 @@ import { join } from 'node:path';
 import { Linter } from 'eslint';
 
 const REPO = join(process.cwd(), '..');
-const RORO_STATE = 'roro/m/js/roro-state.js';
-const RO4_STATE = 'ro4/m/js/ro4-state.js';
-const FOOT_JS = 'roro/m/js/foot.js';
+const RORO_STATE = 'engine/roro-state.js';
+const RO4_STATE = 'engine/ro4-state.js';
+const FOOT_JS = 'engine/foot.js';
 // StAllCalcCore() の行範囲（1-indexed、両端含む）。ズレたら再確認すること:
 //   grep -n "^export function StAllCalcCore" roro/m/js/foot.js
 const CORE_START = 1351;
@@ -43,12 +43,12 @@ const CORE_END = 1630;
 // foot-stallcalc-*.js / foot-stplus-calc.js 群（.claude/context/architecture.md の
 // Shell/Adapter/Core 対応表を参照）。foot-bridge.js（委譲ブリッジ）と
 // foot-stallcalc-hydrate.js（Adapter。意図的にDOMを読む）は除く。
-const CORE_HELPER_FILES = readdirSync(join(REPO, 'roro/m/js'))
+const CORE_HELPER_FILES = readdirSync(join(REPO, 'engine'))
     .filter((f) => f.startsWith('foot-') && f.endsWith('.js'))
     .filter((f) => f !== 'foot-bridge.js' && f !== 'foot-stallcalc-hydrate.js')
-    .map((f) => `roro/m/js/${f}`);
+    .map((f) => `engine/${f}`);
 
-const SCAN_DIRS = ['roro/m/js', 'ro4/m/js'];
+const SCAN_DIRS = ['engine'];
 
 function collectVarNames(relPath) {
     const src = readFileSync(join(REPO, relPath), 'utf8');

@@ -31,8 +31,7 @@ HTML_FILES = [
 ]
 
 JS_DIRS = [
-    BASE / 'roro/m/js',
-    BASE / 'ro4/m/js',
+    BASE / 'engine',
     BASE / 'roro/other/js',
     BASE / 'roro/common/js',
 ]
