@@ -1368,37 +1368,51 @@ export class CSaveDataManager {
 			cardIdF = (cardIdF === undefined) ? 0 : Number(cardIdF);
 			// 従来の設定方法による設定
 			HtmlSetObjectValueById(objIdPrifixF + "_CARD_" + slotNoF, cardIdF);
-			// エンチャントの場合はカテゴリも復元する
-			if (enchListIdF != 0) {
+			// カードIDが設定されている場合は、選択肢として実在するかを必ず検証する。
+			// 旧実装は enchListIdF（カテゴリ）が非0のときしか検証しておらず、
+			// 「カテゴリ0・カードID非0」という壊れたペア（#1562: エンチャント定義の
+			// 候補入れ替わりで一部スロットが選択肢から消えたセーブデータ）では検証を
+			// 素通りし、実在しないカードIDがそのままステートフルデータへ書き戻されて
+			// いた。この不整合ペアが「職業変更時に装備等を維持する」の内部往復
+			// （SaveSystem→loadFromURL）に再注入されると、旧形式セーブデータの復元処理
+			// が壊れて全装備がリセットされる実害があった（調査ログ参照）。
+			// カテゴリの有無に関わらず必ず検証し、見つからなければカードIDごと
+			// 「無し(0)」に正規化する。
+			if (cardIdF !== 0) {
 				// 対象のセレクトボックスを取得
 				const objId = objIdPrifixF + "_CARD_" + slotNoF;
 				const objSelectF = document.getElementById(objId);
 				if (objSelectF) {
 					// 1. まずは指定された optgroup 内に該当の cardId があるか確認
-					let targetOption = objSelectF.querySelector(`optgroup[data-ench-list-id="${enchListIdF}"] > option[value="${cardIdF}"]`);
+					//    （カテゴリ不明=0 の場合はここではヒットさせない）
+					let targetOption = (enchListIdF !== 0)
+						? objSelectF.querySelector(`optgroup[data-ench-list-id="${enchListIdF}"] > option[value="${cardIdF}"]`)
+						: null;
 					// 2. 指定カテゴリに見つからない場合、セレクトボックス全体から検索
-					if (!targetOption && cardIdF !== 0) {
+					if (!targetOption) {
 						targetOption = objSelectF.querySelector(`option[value="${cardIdF}"]`);
 					}
 					// 3. 反映処理
 					if (targetOption) {
 						// 見つかった場合はその option を選択状態にする
-						objSelectF.value = cardIdF; 
+						objSelectF.value = String(cardIdF);
 						// 親の optgroup から最新の ID を取得して変数を更新
 						const parentGroup = targetOption.closest('optgroup');
-						if (parentGroup && parentGroup.dataset.enchListId) {
-							// 変数 enchListIdF を最新の状態に更新. これにより、次にセーブ処理が走った際に最新のカテゴリIDが保存される
-							enchListIdF = parentGroup.dataset.enchListId;
-						}
+						// 変数 enchListIdF を最新の状態に更新. これにより、次にセーブ処理が走った際に最新のカテゴリIDが保存される
+						enchListIdF = (parentGroup && parentGroup.dataset.enchListId) ? Number(parentGroup.dataset.enchListId) : 0;
 					} else {
-						// どこにも見つからない場合は「無し(0)」にフォールバック
+						// どこにも見つからない場合は「無し(0)」にフォールバック（カードIDも合わせて正規化する）
 						objSelectF.value = "0";
-						enchListIdF = "0";
+						enchListIdF = 0;
+						cardIdF = 0;
 					}
 					// 4. 変更を通知
 					const event = new Event('change', { bubbles: true });
 					objSelectF.dispatchEvent(event);
 				}
+			} else if (enchListIdF !== 0) {
+				// カードIDが「無し」なのにカテゴリだけ残っている不整合も正規化する
+				enchListIdF = 0;
 			}
 			// エンチャントリストIDデータ設定
 			const rgnTextF = objIdPrifixF.replace(/^OBJID_/, "");
