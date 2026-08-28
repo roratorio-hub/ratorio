@@ -1,13 +1,13 @@
 // === AUTO-GENERATED IMPORTS ===
 import "./item.h.js";
 import { CARD_ID_NONE, CardObjNew } from "./card.dat.js";
-import { CARD_REGION_ID_COUNT } from "./common.js";
+import { CARD_REGION_ID_COUNT } from "./runtime/common.js";
 import { ITEM_ID_NOEQUIP_SET, ItemObjNew } from "./item.dat.js";
 import { PET_OBJ } from "./pet.dat.js";
-import { n_A_PassSkill8 } from "./skillstate.js";
+import { n_A_PassSkill8 } from "./skill/skillstate.js";
 import { ITEM_SET_PET_ID_OFFSET, w_SE } from "./itemset.dat.js";
-import { __registerItemSetFunctions } from "./itemset-bridge.js";
-import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from "./roro-state.js";
+import { __registerItemSetFunctions } from "./bridge/itemset-bridge.js";
+import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from "./runtime/roro-state.js";
 import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME } from "./const/EnumCardDataIndex.js";
 import { CARD_KIND_ENCHANT } from "./const/EnumCardKind.js";
 import { ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_NAME } from "./const/EnumItemDataIndex.js";

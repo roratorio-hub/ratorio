@@ -36,7 +36,7 @@ import {
     StoreBasicStatusBonusAll, GetBasicStatusBonus, GetPureStatus, GetSpecStatusBonus, GetStatusPointRemain,
     GetTStatusPointRemain,
     GetDisplayedPAtk, GetDisplayedSMatk, GetDisplayedCRate, GetDisplayedRes, GetDisplayedMres, GetDisplayedHPlus,
-} from '@engine/hmjob.js';
+} from '@engine/chara/hmjob.js';
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_STR } from '@engine/const/EnumMigItemParamId.js';
 
 describe('hmjob.js', () => {

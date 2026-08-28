@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import '/workspace/ratorio/engine/CConfBase.js';
+import '/workspace/ratorio/engine/ui/CConfBase.js';
 import {
     MOB_CONF_PLAYER_ID_DEF_DIV,
     MOB_CONF_PLAYER_DATA_INDEX_ID,
@@ -8,7 +8,7 @@ import {
     MobConfPlayerOBJ,
     SyncronizeMobConfPlayerSettingsCtrlToVar,
     OnChangeMobConfPlayer,
-} from '@engine/mobconfplayer.js';
+} from '@engine/monster/mobconfplayer.js';
 import {
     CONTROL_TYPE_SELECTBOX_NUMBER, CONTROL_TYPE_SELECTBOX_SPECIAL,
     CONTROL_TYPE_TEXTBOX_NUMBER, CONTROL_TYPE_TEXTBOX_SPECIAL,

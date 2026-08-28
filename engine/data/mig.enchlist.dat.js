@@ -1,4 +1,4 @@
-import { g_constDataManager } from "../global.js";
+import { g_constDataManager } from "../runtime/global.js";
 
 export const MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE = 469;
 export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;

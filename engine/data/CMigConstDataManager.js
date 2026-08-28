@@ -8,7 +8,7 @@ import { CMigConstDataManagerSubCard } from "./CMigConstDataManagerSubCard.js";
 import { CMigConstDataManagerSubEnchList } from "./CMigConstDataManagerSubEnchList.js";
 import { CMigConstDataManagerSubRndOpt } from "./CMigConstDataManagerSubRndOpt.js";
 // === AUTO-GENERATED IMPORTS ===
-import "../common.js";
+import "../runtime/common.js";
 import {
     CONST_DATA_KIND_ARROW, CONST_DATA_KIND_BUFF, CONST_DATA_KIND_CARD, CONST_DATA_KIND_ENCHANT_LIST, CONST_DATA_KIND_ITEM, CONST_DATA_KIND_JOB,
     CONST_DATA_KIND_MONSTER, CONST_DATA_KIND_RND_OPT, CONST_DATA_KIND_STATE,

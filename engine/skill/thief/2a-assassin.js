@@ -6,7 +6,7 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_POISON } from "../../const/EnumElmId.js";
 import { MONSTER_DATA_INDEX_ELEMENT } from "../../const/EnumMonsterDataIndex.js";
 import { GetMonseterElmBasicType } from "../../monster.h.js";
@@ -15,7 +15,7 @@ import {
     SKILL_ID_HIDARITE_SHUREN, SKILL_ID_KATAR_SHUREN, SKILL_ID_MIGITE_SHUREN, SKILL_ID_POISON_REACT,
     SKILL_ID_SONIC_ACCELERATION, SKILL_ID_SONIC_BLOW, SKILL_ID_VENOM_DUST, SKILL_ID_VENOM_KNIFE,
     SKILL_ID_VENOM_SPLASHER, SKILL_ID_SONIC_BLOW_TAMASHI
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

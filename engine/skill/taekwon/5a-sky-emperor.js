@@ -6,17 +6,17 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_HYOHO_SHUREN, SKILL_ID_SKY_MOON, SKILL_ID_SKY_SUN, SKILL_ID_STAR_LIGHT_KICK,
     SKILL_ID_TAITEN_ICHIGETSU, SKILL_ID_TAITEN_ICHIYO, SKILL_ID_TENCHI_BANSE, SKILL_ID_TENCHI_ICHIGETSU,
     SKILL_ID_TENCHI_ICHIYO, SKILL_ID_TENGETSU, SKILL_ID_TENKINO_MI, SKILL_ID_TENKI_SHUREN, SKILL_ID_TENME_RAKUSE,
     SKILL_ID_TENRA_BANSHO, SKILL_ID_TENSE, SKILL_ID_TENYO, SKILL_ID_UNKONO_ZYOTAI
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

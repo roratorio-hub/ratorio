@@ -6,18 +6,18 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { MOB_CONF_DEBUF_ID_SHIRYO_HYOI, n_B_IJYOU } from "../../mobconfdebuf.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { MOB_CONF_DEBUF_ID_SHIRYO_HYOI, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_BUSHI_FU, SKILL_ID_BYAKKO_FU, SKILL_ID_COUNT_OF_SOUL_ENERGY, SKILL_ID_GENBU_FU, SKILL_ID_GOFU_SHUREN,
     SKILL_ID_GOGYO_FU, SKILL_ID_GOKON_ISSHIN, SKILL_ID_HOSHI_FU, SKILL_ID_REIDOZYUTSU_SHUREN, SKILL_ID_REIDO_FU,
     SKILL_ID_SEIRYU_FU, SKILL_ID_SHIHOZIN_FU, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN, 
     SKILL_ID_SHIRYO_ZYOKA, SKILL_ID_SHUGO_FU, SKILL_ID_SUZAKU_FU, SKILL_ID_TENCHI_SHINRE, SKILL_ID_ZYOKODO
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

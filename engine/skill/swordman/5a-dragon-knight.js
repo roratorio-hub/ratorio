@@ -6,9 +6,9 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_WEIGHT, ITEM_DATA_INDEX_WPNLV } from "../../const/EnumItemDataIndex.js";
@@ -17,15 +17,15 @@ import {
 } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
 import { ItemObjNew } from "../../item.dat.js";
-import { n_A_Equip } from "../../roro-state.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { n_A_Equip } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_CHARGING_PIERCE, SKILL_ID_DRAGONIC_AURA, SKILL_ID_DRAGONIC_AURA_STATE, SKILL_ID_DRAGONIC_BREATH,
     SKILL_ID_DRAGONIC_PIERCE, SKILL_ID_DRAGON_TRAINING, SKILL_ID_GIANT_GROWTH, SKILL_ID_HACK_AND_SLASHER,
     SKILL_ID_MADNESS_CRUSHER, SKILL_ID_SERVANT_WEAPON, SKILL_ID_SERVANT_WEAPON_DEMOLISION,
     SKILL_ID_SERVANT_WEAPON_PHANTOM, SKILL_ID_SERVANT_WEAPON_SIGN, SKILL_ID_STORM_SLASH, SKILL_ID_TWOHAND_DEFENDING,
     SKILL_ID_VIGOR
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

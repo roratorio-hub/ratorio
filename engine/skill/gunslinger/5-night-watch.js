@@ -6,14 +6,14 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_ActiveSkillLV, n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_ActiveSkillLV, n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     ITEM_KIND_GATLINGGUN, ITEM_KIND_GRENADEGUN, ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE, ITEM_KIND_SHOTGUN
 } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_CON } from "../../const/EnumMigItemParamId.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_AUTO_FIRING_LAUNCHER, SKILL_ID_BASIC_GRENADE, SKILL_ID_BASIC_GRENADE_LEARNED_LEVEL,
     SKILL_ID_GRENADES_DROPPING, SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL, SKILL_ID_GRENADE_FRAGMENT,
@@ -21,7 +21,7 @@ import {
     SKILL_ID_HIDDEN_CARD, SKILL_ID_INTENSIVE_AIM, SKILL_ID_MAGAZIN_FOR_ONE, SKILL_ID_MIDNIGHT_FALLEN,
     SKILL_ID_MISSION_BOMBARD, SKILL_ID_ONLY_ONE_BULLET, SKILL_ID_PFI, SKILL_ID_SPIRAL_SHOOTING,
     SKILL_ID_VIGILANT_AT_NIGHT, SKILL_ID_WILD_FIRE, SKILL_ID_WILD_SHOT
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

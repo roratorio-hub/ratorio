@@ -6,12 +6,12 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { CHARA_DATA_INDEX_MAXHP } from "../../const/EnumCharaDataIndex.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_BAKKA_SHINDAN, SKILL_ID_BAKURETSU_HADO, SKILL_ID_BLAZING_FLAME_BLAST, SKILL_ID_CHUZITSUNA_SHINNEN,
     SKILL_ID_DAIICHIGEKI_RAKUIN, SKILL_ID_DAIISSHO_SHINNENNO_CHIKARA, SKILL_ID_DAINIGEKI_METSUMANO_HI,
@@ -19,7 +19,7 @@ import {
     SKILL_ID_DAISANGEKI_MEKKAGEKI, SKILL_ID_DAISANGEKI_ZYOKA, SKILL_ID_ENKA_METSUMA_SHINDAN,
     SKILL_ID_KENKONA_SHINNEN, SKILL_ID_KIKO, SKILL_ID_KYOZINNA_SHINNEN, SKILL_ID_SAISHUSHO_METSUMANO_HONO,
     SKILL_ID_SEYU_SENRE, SKILL_ID_SHINKONO_ISHI
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

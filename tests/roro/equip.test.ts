@@ -16,14 +16,14 @@ vi.mock('@engine/card.dat.js', async (importActual) => {
     return { ...actual, get CardObjNew() { return mockEquip.cardObjNew ?? actual.CardObjNew; } };
 });
 
-vi.mock('@engine/global.js', async (importActual) => {
+vi.mock('@engine/runtime/global.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get g_constDataManager() { return mockEquip.constDataManager ?? actual.g_constDataManager; } };
 });
 import {
     UpdateLearnedSkillNotice,
     sort,
-} from '@engine/equip.js';
+} from '@engine/equip/equip.js';
 import { CARD_DATA_INDEX_SPBEGIN } from '@engine/const/EnumCardDataIndex.js';
 import { CONST_DATA_KIND_JOB } from '@engine/const/EnumConstDataKind.js';
 import { ITEM_DATA_INDEX_KANA } from '@engine/const/EnumItemDataIndex.js';

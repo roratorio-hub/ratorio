@@ -6,24 +6,24 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { HtmlGetObjectValueByIdAsInteger } from "../../util.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { HtmlGetObjectValueByIdAsInteger } from "../../runtime/util.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
 import { MIG_PARAM_ID_CON } from "../../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
 import { RACE_ID_ANIMAL, RACE_ID_FISH } from "../../const/EnumRaceId.js";
-import { GetEquippedTotalSPArrow } from "../../foot-bridge.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ADVANCED_TRAP, SKILL_ID_CALAMITY_GALE, SKILL_ID_CRESSIVE_VOLT,
     SKILL_ID_DEEP_BLIND_TRAP, SKILL_ID_FLAME_TRAP, SKILL_ID_GALE_STORM, SKILL_ID_HAWK_BOOMERANG,
     SKILL_ID_HAWK_MASTERY, SKILL_ID_HAWK_RUSH, SKILL_ID_SHIZEN_SHINWA, SKILL_ID_SOLID_TRAP, SKILL_ID_STEEL_CROW,
     SKILL_ID_SWIFT_TRAP, SKILL_ID_WILD_WALK, SKILL_ID_WIND_SIGN
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

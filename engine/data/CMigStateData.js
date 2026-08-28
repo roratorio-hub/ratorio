@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { CNameKana } from "../CNameKana.js";
+import { CNameKana } from "../chara/CNameKana.js";
 import { MIG_STATE_DATA_INDEX_NAME_KANA_ARRAY } from "../const/EnumMigStateDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===
 

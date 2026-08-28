@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import "./common.js";
+import "./runtime/common.js";
 import { EQUIP_REGION_ID_COUNT } from "./const/EnumMigItemParamId.js";
 import { RND_OPT_SLOT_COUNT } from "./const/EnumRndOptTypeDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===

@@ -1,7 +1,7 @@
 import { vi, describe, it, expect, beforeAll } from 'vitest';
-import { CCustomSelectBase } from '@engine/CCustomSelectBase.js';
-import { CCustomSelectMapBase } from '@engine/CCustomSelectMapBase.js';
-import { CCustomSelectMapCategory } from '@engine/CCustomSelectMapCategory.js';
+import { CCustomSelectBase } from '@engine/monster/CCustomSelectBase.js';
+import { CCustomSelectMapBase } from '@engine/monster/CCustomSelectMapBase.js';
+import { CCustomSelectMapCategory } from '@engine/monster/CCustomSelectMapCategory.js';
 
 const mockCategoryRefs = vi.hoisted(() => ({ categoryArr: [] as any[] }));
 

@@ -29,10 +29,14 @@ import { resolve, relative } from 'node:path';
 
 const JS_DIR = resolve(__dirname, '../../engine');
 const SKILL_DIR = `${JS_DIR}/skill`;
-const files = globSync(`${SKILL_DIR}/**/*.js`).sort();
+// B-19（残件台帳。engine/トップレベルのドメイン別再配置）で CSkillManager.js/CSkillData.js/
+// skill.dat.js 等11ファイルが engine/skill/ 直下へ合流したため、`**/*.js` のままだと
+// それらも拾ってしまう（77本のはずが88本になる）。職業ツリーの77ファイルは必ず
+// `skill/<系統>/<ファイル>.js` の2階層目にあるので、`*/*.js` で1階層深いものだけに絞る。
+const files = globSync(`${SKILL_DIR}/*/*.js`).sort();
 
 const consts = new Map<string, number>();
-for (const m of readFileSync(`${JS_DIR}/skill.dat.js`, 'utf8')
+for (const m of readFileSync(`${JS_DIR}/skill/skill.dat.js`, 'utf8')
         .matchAll(/^export const (SKILL_ID_\w+)\s*=\s*(-?\d+);/gm)) {
     consts.set(m[1], Number(m[2]));
 }

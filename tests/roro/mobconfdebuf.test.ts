@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import '/workspace/ratorio/engine/CConfBase.js';
+import '/workspace/ratorio/engine/ui/CConfBase.js';
 import {
     MOB_CONF_DEBUF_ID_PROVOKE,
     MOB_CONF_DEBUF_ID_STUN,
@@ -7,7 +7,7 @@ import {
     BuildUpMobConfDebufSelectArea,
     SyncronizeMobConfDebufSettingsCtrlToVar,
     OnChangeMobConfDebuf,
-} from '@engine/mobconfdebuf.js';
+} from '@engine/monster/mobconfdebuf.js';
 
 function buildDOM() {
     const root = document.createElement('div');

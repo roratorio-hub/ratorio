@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../CNameKana.js";
+import "../chara/CNameKana.js";
 import { ArrowOBJNew } from "../arrow.dat.js";
 import { CMigConstDataManagerSubBase } from "./CMigConstDataManagerSubBase.js";
 import { CMigEquipableData } from "./CMigEquipableData.js";

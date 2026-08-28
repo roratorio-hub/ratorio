@@ -2,13 +2,13 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import {
     n_A_LearnedSkill,
     RefreshSkillColumnHeaderLearned,
-} from '@engine/learnedskill.js';
+} from '@engine/skill/learnedskill.js';
 // dewindow: AutoCalc は head-bridge 経由になった（旧 bare global）。
 // テストは head-bridge にフェイクを登録して呼び出しを観測する。
-import { __registerHeadFunctions } from '@engine/head-bridge.js';
+import { __registerHeadFunctions } from '@engine/bridge/head-bridge.js';
 // リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
 // CSaveController.getSettingProp（engine-registry 経由）。
-import { register as registryRegister } from '@engine/engine-registry.js';
+import { register as registryRegister } from '@engine/runtime/engine-registry.js';
 import { CSaveDataConst } from '@engine/savedata/CSaveDataConst.js';
 
 // RefreshSkillColumnHeaderLearned は末尾で header/usedtext 要素を操作するため事前作成が必要

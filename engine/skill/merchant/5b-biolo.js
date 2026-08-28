@@ -6,18 +6,18 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ACIDIFIED_ZONE_CHI, SKILL_ID_ACIDIFIED_ZONE_HI, SKILL_ID_ACIDIFIED_ZONE_KAZE,
     SKILL_ID_ACIDIFIED_ZONE_MIZU, SKILL_ID_BIONICS_MASTERY, SKILL_ID_BIONIC_PHARMACY, SKILL_ID_CREATE_CREAPER,
     SKILL_ID_CREATE_HELL_TREE, SKILL_ID_CREATE_WOODEN_FAIRY, SKILL_ID_CREATE_WOODEN_WARRIER, SKILL_ID_DUST_EXPLOSION,
     SKILL_ID_EXPLOSIVE_POWDER, SKILL_ID_FULL_SHADOW_CHARGE, SKILL_ID_HALL_FULL_CHEMICAL_CHARGE,
     SKILL_ID_MEYHEMIC_THORNS, SKILL_ID_MYSTERY_POWDER, SKILL_ID_RESEARCH_REPORT
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { CNameKana } from "../CNameKana.js";
+import { CNameKana } from "../chara/CNameKana.js";
 import { CMigEquipableSpData } from "./CMigEquipableSpData.js";
 import { CMigEquipableStaticData } from "./CMigEquipableStaticData.js";
 import { MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY, MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID, MIG_EQUIPABLE_DATA_INDEX_REF_ID, MIG_EQUIPABLE_DATA_INDEX_SLOT, MIG_EQUIPABLE_DATA_INDEX_SP_DATA, MIG_EQUIPABLE_DATA_INDEX_STATIC_DATA } from "../const/EnumMigEquipableDataIndex.js";

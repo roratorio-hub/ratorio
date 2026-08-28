@@ -6,12 +6,12 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_CART_REVOLUTION, SKILL_ID_CHANGE_CART, SKILL_ID_DISCOUNT, SKILL_ID_ITEM_KANTE, SKILL_ID_LOUD_VOICE,
     SKILL_ID_MAMMONITE, SKILL_ID_OVER_CHARGE, SKILL_ID_PUSH_CART, SKILL_ID_ROTEN_KAISETSU,
     SKILL_ID_SHOZIGENKAIRYO_ZOKA
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

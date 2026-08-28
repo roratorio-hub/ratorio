@@ -6,7 +6,7 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_APUCHAORURIGI, SKILL_ID_APUCHAORURIGINO_KAMAE, SKILL_ID_ATATAKAI_KAZE, SKILL_ID_FEORICHAGI,
     SKILL_ID_FEORICHAGINO_KAMAE, SKILL_ID_FIGHT, SKILL_ID_NERYOCHAGI, SKILL_ID_NERYOCHAGINO_KAMAE, SKILL_ID_NOPITIGI,
@@ -14,7 +14,7 @@ import {
     SKILL_ID_TAEGWON_MISSION, SKILL_ID_TAEGWON_RANKER, SKILL_ID_TAIRIGI, SKILL_ID_TANOSHI_KYUSOKU,
     SKILL_ID_TEIOAPUCHAGI, SKILL_ID_TEIOAPUCHAGI_IN_DASH, SKILL_ID_TORURYOCHAGI, SKILL_ID_TORURYOCHAGINO_KAMAE,
     SKILL_ID_ZIBUNIGAINO_PTNINZU_FOR_FIGHT
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

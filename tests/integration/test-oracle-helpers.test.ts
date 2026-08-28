@@ -114,7 +114,7 @@ describe('snapshotAllGlobals', () => {
 
         expect(Object.keys(snapshot).length).toBeGreaterThan(100);
         // roro-state.js の n_A_STR はデフォルト状態で 1（初期値）。
-        expect(snapshot['/engine/roro-state.js#n_A_STR']).toBe('1');
+        expect(snapshot['/engine/runtime/roro-state.js#n_A_STR']).toBe('1');
     });
 
     it('職業変更の前後で異なるグローバル値を検出できる（差分オラクルとしての基本性質）', async () => {

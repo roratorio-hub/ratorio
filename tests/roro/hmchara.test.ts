@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { IsUnconfirmedHP, IsUnconfirmedSP } from '@engine/hmchara.js';
+import { IsUnconfirmedHP, IsUnconfirmedSP } from '@engine/chara/hmchara.js';
 import '@engine/data/mig.job.dat.js';
 
 describe('hmchara.js', () => {

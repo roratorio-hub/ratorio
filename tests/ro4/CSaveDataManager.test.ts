@@ -58,7 +58,7 @@ vi.hoisted(() => {
     }
 });
 
-vi.mock('../../engine/util.js', async (importActual) => {
+vi.mock('../../engine/runtime/util.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
@@ -78,7 +78,7 @@ vi.mock('@engine/monster.dat.js', async (importActual) => {
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import { CSaveDataManager } from '@engine/CSaveDataManager.js';
+import { CSaveDataManager } from '@engine/savedata/CSaveDataManager.js';
 
 describe('CSaveDataManager.js', () => {
     it.todo('動作テストを追加する');

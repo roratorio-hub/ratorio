@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import * as hmcard from '@engine/hmcard.js';
-import { __RebuildSlotAsCardShort } from '@engine/slotpager.js';
+import * as hmcard from '@engine/equip/hmcard.js';
+import { __RebuildSlotAsCardShort } from '@engine/equip/slotpager.js';
 // dewindow: calc は head-bridge 経由になった（旧 bare global）。
-import { __registerHeadFunctions } from '@engine/head-bridge.js';
+import { __registerHeadFunctions } from '@engine/bridge/head-bridge.js';
 import { EQUIP_REGION_ID_ARMS } from '@engine/const/EnumEquipRegionId.js';
 // リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
 // CSaveController.getSettingProp（engine-registry 経由）。
-import { register as registryRegister } from '@engine/engine-registry.js';
+import { register as registryRegister } from '@engine/runtime/engine-registry.js';
 import { CSaveDataConst } from '@engine/savedata/CSaveDataConst.js';
 
 // 3e-1: inline handler → addEventListener 変換の wiring 検証。

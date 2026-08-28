@@ -6,18 +6,18 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ALL_BLOOM, SKILL_ID_ASTRAL_STRIKE, SKILL_ID_CLIMAX, SKILL_ID_CRYMSON_ARROW, SKILL_ID_CRYSTAL_IMPACT,
     SKILL_ID_DEADLY_PROJECTION, SKILL_ID_DESTRACTIVE_HURRICANE, SKILL_ID_ENERGY_CONVERSION,
     SKILL_ID_FLORAL_FLARE_ROAD, SKILL_ID_FROZEN_SLASH, SKILL_ID_MYSTERY_ILLUSION, SKILL_ID_RAIN_OF_CRYSTAL,
     SKILL_ID_ROCK_DOWN, SKILL_ID_RYOTETUSE_SHUREN, SKILL_ID_SOUL_VULKUN_STRIKE, SKILL_ID_STORM_CANNON,
     SKILL_ID_STRATUM_TREAMER, SKILL_ID_TORNADE_STORM, SKILL_ID_VIOLENT_QUAKE, SKILL_ID_CLIMAX_HURRICANE_STATE
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

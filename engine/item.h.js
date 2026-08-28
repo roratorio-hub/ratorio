@@ -1,18 +1,18 @@
 import { w_SE } from "./itemset.dat.js";
-import { GetItemSetMemberText } from "./itemset-bridge.js";
+import { GetItemSetMemberText } from "./bridge/itemset-bridge.js";
 // === AUTO-GENERATED IMPORTS ===
 import "./monster.h.js";
-import "./skill.h.js";
-import "./usableskill.h.js";
-import { toSafeBigInt } from "./util.js";
-import { AutoSpellSkill } from "./autospell.dat.js";
-import { GetAutoSpellTriggerText } from "./autospell.h.js";
+import "./skill/skill.h.js";
+import "./skill/usableskill.h.js";
+import { toSafeBigInt } from "./runtime/util.js";
+import { AutoSpellSkill } from "./skill/autospell.dat.js";
+import { GetAutoSpellTriggerText } from "./skill/autospell.h.js";
 import { CardObjNew } from "./card.dat.js";
-import { GetElementText, GetRaceText, GetSizeText, GetStateText } from "./common.js";
+import { GetElementText, GetRaceText, GetSizeText, GetStateText } from "./runtime/common.js";
 import { ItemObjNew } from "./item.dat.js";
 import { MonsterObjNew } from "./monster.dat.js";
-import { SkillObjNew } from "./skill.dat.js";
-import { InsertSkill } from "./usableskill.dat.js";
+import { SkillObjNew } from "./skill/skill.dat.js";
+import { InsertSkill } from "./skill/usableskill.dat.js";
 import { PARAM_DEX, PARAM_VIT } from "./const/EnumParamId.js";
 import { RACE_ID_HUMAN } from "./const/EnumRaceId.js";
 import { AUTO_SPELL_DATA_INDEX_PROBABLY, AUTO_SPELL_DATA_INDEX_SKILL_ID, AUTO_SPELL_DATA_INDEX_SKILL_LEVEL, AUTO_SPELL_DATA_INDEX_TRIGGER } from "./const/EnumAutoSpellDataIndex.js";
@@ -124,7 +124,7 @@ import { STATE_R_ID_CHILLED } from "./const/EnumStateId.js";
 import { USABLE_SKILL_DATA_INDEX_SKILL_ID, USABLE_SKILL_DATA_INDEX_SKILL_LEVEL } from "./const/EnumUsableSkillDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: engine-registry（mig.job.h.js との循環 import 回避）
-import { get as registryGet } from "./engine-registry.js";
+import { get as registryGet } from "./runtime/engine-registry.js";
 
 /**
  * アイテムの種別名を取得する.

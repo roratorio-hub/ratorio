@@ -6,11 +6,11 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_AKUMU_KESHI, SKILL_ID_ANTEN_HOU, SKILL_ID_ANTEN_HOU_LEARNED_LEVEL, SKILL_ID_FOUR_CHARM,
     SKILL_ID_FUMASHURIKEN_KOUCHIKU, SKILL_ID_FUMASHURIKEN_SHOUAKU, SKILL_ID_GENJUTSU_KAGE_NUI,
@@ -18,7 +18,7 @@ import {
     SKILL_ID_KAGE_GARI, SKILL_ID_KAGE_ISSEN, SKILL_ID_KAGE_NO_MAI, SKILL_ID_KINNRYUU_HOU, SKILL_ID_KUNAI_KAITEN,
     SKILL_ID_KUNAI_KUSSETSU, SKILL_ID_KUNAI_WAIKYOKU, SKILL_ID_RAIDEN_HOU, SKILL_ID_REIKETSU_HOU,
     SKILL_ID_SEKIEN_HOU, SKILL_ID_SHINKIRO_BUNSHIN
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

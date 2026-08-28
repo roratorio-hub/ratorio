@@ -4,7 +4,7 @@ import {
     USABEL_SKILL_ID_COLD_BOLT_3,
     USABEL_SKILL_ID_GLORIA_5,
     InsertSkill,
-} from '@engine/usableskill.dat.js';
+} from '@engine/skill/usableskill.dat.js';
 
 describe('usableskill.dat.js', () => {
     describe('エクスポート確認', () => {

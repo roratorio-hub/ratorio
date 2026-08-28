@@ -6,17 +6,17 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_KATAR, ITEM_KIND_KNIFE } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_CROSS_SLASH, SKILL_ID_DANCING_KNIFE, SKILL_ID_ENCHANTING_SHADOW, SKILL_ID_ETERNAL_SLASH,
     SKILL_ID_FATAL_SHADOW_CRAW, SKILL_ID_IMPACT_CRATER, SKILL_ID_POTENT_VENOM, SKILL_ID_SAVAGE_IMPACT,
     SKILL_ID_SHADOW_EXCEED, SKILL_ID_SHADOW_SENSE, SKILL_ID_SHADOW_STAB
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

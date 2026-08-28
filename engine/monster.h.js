@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import "./common.js";
+import "./runtime/common.js";
 import {
     ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_POISON, ELM_ID_PSYCO,
     ELM_ID_UNDEAD, ELM_ID_VANITY, ELM_ID_WATER, ELM_ID_WIND,

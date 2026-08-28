@@ -196,7 +196,7 @@ def loadEnchantList():
 def loadSkillDict() -> dict:
     """key = str スキル名, value = int スキルID"""
     pattern = r'\[(\d+),\d+,"(\(.+\))*([^"]+)"(,.+)*\],'
-    with open(f'{script_dir}/../../engine/skill.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../engine/skill/skill.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { m[2]: int(m[0]) for m in re.findall(pattern, js_code) }
 
@@ -204,7 +204,7 @@ def loadSkillDict() -> dict:
 def loadUsableSkillDict() -> dict:
     """key = (int スキルID, int スキルLv), value = int 使用可能スキルID"""
     pattern = r'\[(\d+),\d,(\d+),(\d+)\],'
-    with open(f'{script_dir}/../../engine/usableskill.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../engine/skill/usableskill.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { (int(m[1]), int(m[2])): int(m[0]) for m in re.findall(pattern, js_code) }
 
@@ -212,7 +212,7 @@ def loadUsableSkillDict() -> dict:
 def loadAutoSpellDict() -> dict:
     """key = (int スキルID, int スキルLv), value = int 使用可能スキルID"""
     pattern = r'\[(\d+),\d,(\d+),(\d+),\d+,\d+\],'
-    with open(f'{script_dir}/../../engine/autospell.dat.js', 'r', encoding='utf-8') as file:
+    with open(f'{script_dir}/../../engine/skill/autospell.dat.js', 'r', encoding='utf-8') as file:
         js_code = file.read()
     return { (int(m[1]), int(m[2])): int(m[0]) for m in re.findall(pattern, js_code) }
 

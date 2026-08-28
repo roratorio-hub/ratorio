@@ -55,9 +55,9 @@ describe('CSkillManager 全アクセサ 総当たりスイープ', () => {
         // 関数で渡すと中の dynamic import() が Vite に書き換えられブラウザ内で解決できない）。
         const result = await page.evaluate(`
             (async () => {
-                const globalMod = await import('/engine/global.js');
-                const bridge    = await import('/engine/foot-bridge.js');
-                const skillMod  = await import('/engine/skill.dat.js');
+                const globalMod = await import('/engine/runtime/global.js');
+                const bridge    = await import('/engine/bridge/foot-bridge.js');
+                const skillMod  = await import('/engine/skill/skill.dat.js');
                 const kindsMod  = await import('/engine/const/EnumItemKind.js');
 
                 const sm = globalMod.g_skillManager;

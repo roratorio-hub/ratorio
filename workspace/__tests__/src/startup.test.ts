@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { register } from '../../../engine/engine-registry.js';
+import { register } from '../../../engine/runtime/engine-registry.js';
 import { buildJobSelectOptions } from '../../src/startup';
 
 describe('startup.ts - 起動時初期化処理', () => {

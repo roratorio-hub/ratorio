@@ -6,18 +6,18 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOOK, ITEM_KIND_CLUB } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ARBITRIUM, SKILL_ID_ARUGUTUS_TERUM, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_BENEDICTUM, SKILL_ID_CONPETENTIA,
     SKILL_ID_DILECTIO_HEAL, SKILL_ID_DIVINUS_FLOS, SKILL_ID_DONKI_HON_SHUREN, SKILL_ID_EFIRIGO,
     SKILL_ID_FIDOS_ANIMUS, SKILL_ID_MEDIA_REBOTUM, SKILL_ID_NUMATIC_PROCERA, SKILL_ID_PETITIO,
     SKILL_ID_PETITIO_LEARNED, SKILL_ID_PHREMEN, SKILL_ID_PRESENSE_AKYACE, SKILL_ID_REPARATIO, SKILL_ID_RERIGIO
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

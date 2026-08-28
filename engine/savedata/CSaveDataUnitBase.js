@@ -1,10 +1,10 @@
-import { CSaveDataConverter } from "../CSaveDataConverter.js";
+import { CSaveDataConverter } from "./CSaveDataConverter.js";
 import { CSaveDataConst } from "./CSaveDataConst.js";
 import { CSaveDataPropInfo } from "./CSaveDataPropInfo.js";
 import { CSingletonMapper } from "./CSingletonMapper.js";
 import { CMultiValueMapper } from "./CMultiValueMapper.js";
 // === AUTO-GENERATED IMPORTS ===
-import { floorBigInt32, toSafeBigInt } from "../util.js";
+import { floorBigInt32, toSafeBigInt } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * セーブデータユニットクラス：基底.

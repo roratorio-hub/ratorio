@@ -1,12 +1,12 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../../engine/monstermap.h.js";
-import { CCustomSelectMapCategory } from "../../engine/CCustomSelectMapCategory.js";
-import { CCustomSelectMapMap } from "../../engine/CCustomSelectMapMap.js";
-import { GetElementText, GetMonsterElementText, GetRaceText, GetSizeText } from "../../engine/common.js";
+import { CCustomSelectMapCategory } from "../../engine/monster/CCustomSelectMapCategory.js";
+import { CCustomSelectMapMap } from "../../engine/monster/CCustomSelectMapMap.js";
+import { GetElementText, GetMonsterElementText, GetRaceText, GetSizeText } from "../../engine/runtime/common.js";
 import { MonsterObjNew } from "../../engine/monster.dat.js";
 import { GetMonseterElmBasicType } from "../../engine/monster.h.js";
 import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from "../../engine/monstermap.dat.js";
-import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, DivideDigits3 } from "../../engine/util.js";
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, DivideDigits3 } from "../../engine/runtime/util.js";
 import { ELM_ID_COUNT, ELM_ID_UNDEAD } from "../../engine/const/EnumElmId.js";
 import { RACE_ID_COUNT, RACE_ID_DEMON } from "../../engine/const/EnumRaceId.js";
 import { MONSTER_BOSSTYPE_BOSS } from "../../engine/const/EnumMonsterBossType.js";

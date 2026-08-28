@@ -6,7 +6,7 @@ import {
     SKILL_ID_OKYU_TEATE,
     SKILL_ID_ABYSS_DAGGER_STATE,
     SkillObjNew,
-} from '@engine/skill.dat.js';
+} from '@engine/skill/skill.dat.js';
 
 describe('skill.dat.js', () => {
     describe('エクスポート確認', () => {

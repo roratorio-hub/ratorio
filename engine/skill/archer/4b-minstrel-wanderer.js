@@ -6,19 +6,19 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { HtmlGetObjectValueByIdAsInteger } from "../../util.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { HtmlGetObjectValueByIdAsInteger } from "../../runtime/util.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
-import { GetEquippedTotalSPArrow } from "../../foot-bridge.js";
-import { MOB_CONF_DEBUF_ID_SUIMIN } from "../../mobconfdebuf.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { MOB_CONF_DEBUF_ID_SUIMIN } from "../../monster/mobconfdebuf.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
-} from "../../mobconfplayer.js";
-import { n_A_AGI, n_A_DEX } from "../../roro-state.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+} from "../../monster/mobconfplayer.js";
+import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_BEYOND_OF_WARCRY, SKILL_ID_DANCE_WITH_WUG, SKILL_ID_DOMINION_IMPULSE, SKILL_ID_ECHONO_UTA,
     SKILL_ID_ENDLESS_HUMMING_VOICE, SKILL_ID_FRIDAY_NIGHT_FEVER, SKILL_ID_FRIGNO_UTA, SKILL_ID_FUKAKUTEYOSONO_GENGO,
@@ -28,7 +28,7 @@ import {
     SKILL_ID_SEVERE_RAINSTORM, SKILL_ID_SEVERE_RAINSTORM_EX, SKILL_ID_SHINDOZANKYO, SKILL_ID_SIRENNO_KOE,
     SKILL_ID_SOUND_OF_DESTRUCTION, SKILL_ID_SWING_DANCE, SKILL_ID_TSUKIAKARINO_SERENADE,
     SKILL_ID_YASURAGINO_KOMORIUTA, SKILL_ID_ZIGOKUNO_UTA, SKILL_ID_ZYUNKANSURU_SIZENNO_OTO
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CCharaConfYozi } from '@engine/CCharaConfYozi.js';
+import { CCharaConfYozi } from '@engine/chara/CCharaConfYozi.js';
 
 describe('CCharaConfYozi.js', () => {
     describe('CCharaConfYozi インスタンス生成', () => {

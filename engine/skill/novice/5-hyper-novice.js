@@ -6,20 +6,20 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_SIZE } from "../../const/EnumMonsterDataIndex.js";
 import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../../const/EnumSizeId.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_BREAKING_LIMIT, SKILL_ID_BREAKING_LIMIT_STATE, SKILL_ID_DOKUGAKU_MADOGAKU, SKILL_ID_DOKUGAKU_SENTOGAKU,
     SKILL_ID_DOUBLE_BOWLING_BASH, SKILL_ID_GROUND_GRAVITATION, SKILL_ID_HELLS_DRIVE, SKILL_ID_JACK_FROST_NOVA,
     SKILL_ID_JUPITER_THUNDER_STORM, SKILL_ID_MEGA_SONIC_BLOW, SKILL_ID_METEOR_STORM_BUSTER,
     SKILL_ID_NAPALM_VULKAN_STRIKE, SKILL_ID_OVERCOMING_CRISIS, SKILL_ID_RULE_BREAK, SKILL_ID_RULE_BREAK_STATE,
     SKILL_ID_SHIELD_CHAIN_RUSH, SKILL_ID_SPIRAL_PIERCE_MAX
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

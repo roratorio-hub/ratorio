@@ -7,18 +7,18 @@ import {
     CalcResistState,
     CalcResistStateR,
     CalcExp,
-} from '@engine/CExtraInfoAreaComponentManagerCalc.js';
+} from '@engine/ui/CExtraInfoAreaComponentManagerCalc.js';
 import {
     n_tok, n_tok_no_limit, set_n_tok, set_n_tok_no_limit, set_n_A_BaseLV,
-} from '@engine/ro4-state.js';
+} from '@engine/runtime/ro4-state.js';
 import {
     set_n_A_AGI, set_n_A_VIT, set_n_A_INT, set_n_A_LUK, set_n_A_BodyZokusei, set_n_A_JOB, set_n_A_JobLV, set_SU_STR, set_n_A_Equip,
-} from '@engine/roro-state.js';
+} from '@engine/runtime/roro-state.js';
 import { ELM_ID_UNDEAD } from '@engine/const/EnumElmId.js';
 import { EQUIP_REGION_ID_COUNT } from '@engine/const/EnumMigItemParamId.js';
 import { STATE_ID_STONE, STATE_ID_FROZEN, STATE_ID_CURSED, STATE_R_ID_CHILLED } from '@engine/const/EnumStateId.js';
 import { ITEM_SP_HEAL_UP_USING, ITEM_SP_HEAL_UP_USED, ITEM_SP_RESIST_ELM_VANITY, ITEM_SP_RESIST_STATE_R_CHILLED } from '@engine/const/EnumItemSpId.js';
-import { HEALTYPE_SANCTUARY } from '@engine/head.js';
+import { HEALTYPE_SANCTUARY } from '@engine/battle/head.js';
 import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP, CHARA_DATA_INDEX_MDEF_DIV_IGNORE_BUFF } from '@engine/const/EnumCharaDataIndex.js';
 import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_JOB_EXP } from '@engine/const/EnumMonsterDataIndex.js';
 

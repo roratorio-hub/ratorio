@@ -1,7 +1,7 @@
-import { CNameKana } from "./CNameKana.js";
+import { CNameKana } from "./chara/CNameKana.js";
 import { g_MonsterMapDataArray, g_MonsterMapCategoryDataArray } from "./monstermap.dat.js";
 // === AUTO-GENERATED IMPORTS ===
-import "./CNameKana.js";
+import "./chara/CNameKana.js";
 import { MONSTER_MAP_DATA_INDEX_NAME_KANA_ARRAY } from "./const/EnumMonsterMapDataIndex.js";
 import { NAME_KANA_DATA_INDEX_KANA, NAME_KANA_DATA_INDEX_SORT } from "./const/EnumNameKanaDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===

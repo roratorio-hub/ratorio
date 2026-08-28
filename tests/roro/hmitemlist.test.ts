@@ -25,7 +25,7 @@ let MIG_JOB_ID_SKY_EMPEROR: number; // 天帝 = 79
 let MIG_JOB_ID_ALITEA: number;      // アリテア = 88
 
 beforeAll(async () => {
-	await import('/workspace/ratorio/engine/global.js');       // g_constDataManager を window にセット
+	await import('/workspace/ratorio/engine/runtime/global.js');       // g_constDataManager を window にセット
 	await import('/workspace/ratorio/engine/data/mig.job.dat.js'); // 職業データを g_constDataManager にロード
 	await import('/workspace/ratorio/engine/itemset.dat.js'); // w_SE を window にセット（GetItemExplainText が参照）
 	await import('/workspace/ratorio/engine/itemset.h.js'); // GetItemSetMemberText を itemset-bridge に登録（GetItemExplainText が呼ぶ）

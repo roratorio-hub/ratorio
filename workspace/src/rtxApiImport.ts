@@ -1,6 +1,6 @@
 import { load as loadYAML } from "js-yaml"
 import { decodeProcess, API_VERSION, RtxData, RtxEquipmentLocation, RtxEquipments, RtxStatus, CONTROL_CONF_LIST } from "./rtxApiCommon";
-import { get as registryGet } from "../../engine/engine-registry.js";
+import { get as registryGet } from "../../engine/runtime/engine-registry.js";
 
 // LocalFile読み込み
 function loadFromLocalFile(): void {

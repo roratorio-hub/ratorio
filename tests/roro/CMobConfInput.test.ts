@@ -1,16 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import '/workspace/ratorio/engine/common.js';
+import '/workspace/ratorio/engine/runtime/common.js';
 import '/workspace/ratorio/engine/monster.h.js';
-import '/workspace/ratorio/engine/CConfBase.js';
-import '/workspace/ratorio/engine/CConfBase2.js';
-import '/workspace/ratorio/engine/CSaveDataConverter.js';
+import '/workspace/ratorio/engine/ui/CConfBase.js';
+import '/workspace/ratorio/engine/ui/CConfBase2.js';
+import '/workspace/ratorio/engine/savedata/CSaveDataConverter.js';
 import {
 	CMobConfInputData,
 	CMobConfInputAreaComponentManager,
 	GetMobConfInput,
 	SetMobConfInput,
 	SetActiveIndexMobConfInput,
-} from '/workspace/ratorio/engine/CMobConfInput.js';
+} from '/workspace/ratorio/engine/monster/CMobConfInput.js';
 import { MOB_CONF_INPUT_DATA_INDEX_HP } from '@engine/const/EnumMobConfId.js';
 
 describe('CMobConfInput', () => {

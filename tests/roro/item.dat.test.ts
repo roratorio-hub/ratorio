@@ -10,7 +10,7 @@ import {
     ITEM_ID_SWORD,
     ItemObjNew,
 } from '@engine/item.dat.js';
-import { get as registryGet } from '@engine/engine-registry.js';
+import { get as registryGet } from '@engine/runtime/engine-registry.js';
 
 describe('item.dat.js', () => {
     describe('エクスポート確認', () => {

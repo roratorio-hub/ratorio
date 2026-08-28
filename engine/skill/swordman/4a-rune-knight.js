@@ -6,16 +6,16 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
 import { ItemObjNew } from "../../item.dat.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
-} from "../../mobconfplayer.js";
-import { n_A_Equip } from "../../roro-state.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+} from "../../monster/mobconfplayer.js";
+import { n_A_Equip } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_AVANDANCE, SKILL_ID_CRUSH_STRIKE, SKILL_ID_DEATH_BOUND, SKILL_ID_DRAGONIC_AURA_STATE,
     SKILL_ID_DRAGON_HOWLING, SKILL_ID_DRAGON_TRAINING, SKILL_ID_ENCHANT_BLADE, SKILL_ID_FIGHTING_SPIRIT,
@@ -23,7 +23,7 @@ import {
     SKILL_ID_MILLENNIUM_SHIELD, SKILL_ID_PHANTOM_SLAST, SKILL_ID_REFRESH, SKILL_ID_RUNE_MASTERY, SKILL_ID_SONIC_WAVE,
     SKILL_ID_SPIRAL_PIERCE, SKILL_ID_STONE_HARD_SKIN, SKILL_ID_STORM_BLAST, SKILL_ID_VITARITY_ACTIVATION,
     SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WIND_CUTTER, SKILL_ID_YARI_SHUREN
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

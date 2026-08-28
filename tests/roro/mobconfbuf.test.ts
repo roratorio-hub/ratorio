@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import '/workspace/ratorio/engine/CConfBase.js';
+import '/workspace/ratorio/engine/ui/CConfBase.js';
 import {
     MOB_CONF_BUF_ID_SOKUDO_ZOKA,
     MOB_CONF_BUF_ID_ASSUMPTIO,
@@ -7,7 +7,7 @@ import {
     BuildUpMobConfBufSelectArea,
     SyncronizeMobConfBufSettingsCtrlToVar,
     OnChangeMobConfBuf,
-} from '@engine/mobconfbuf.js';
+} from '@engine/monster/mobconfbuf.js';
 
 // bAsExpand=true でセレクト要素を含む完全な DOM を構築する
 function buildDOM() {

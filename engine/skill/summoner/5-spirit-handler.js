@@ -6,18 +6,18 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_CHUL_HO_BATTERING, SKILL_ID_DEER_BREEZE, SKILL_ID_DEER_CANON, SKILL_ID_HYUN_ROK_SPIRIT_POWER,
     SKILL_ID_MARIN_FESTIVAL, SKILL_ID_NYANTOMO_KAMESETSU, SKILL_ID_NYANTOMO_KENROKU, SKILL_ID_NYANTOMO_TEKKO,
     SKILL_ID_NYAN_BRESSING, SKILL_ID_RAINBOW_HORN, SKILL_ID_RURTLE_RAMPAGE, SKILL_ID_SAND_FESTIVAL,
     SKILL_ID_SANREI_ITTAI, SKILL_ID_SPIRIT_MASTERY, SKILL_ID_TIGER_HOWLING, SKILL_ID_TIGER_SLASH,
     SKILL_ID_TIGER_STRIKE, SKILL_ID_TURTLE_SPRINKLER
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

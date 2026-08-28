@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from 'vitest';
 
-vi.mock('@engine/CCustomSelectMapCategory.js', () => ({
+vi.mock('@engine/monster/CCustomSelectMapCategory.js', () => ({
     CCustomSelectMapCategory: function () {
         return {
             GetRootObject: function () { return { style: {}, setAttribute: function(){}, appendChild: function(){} }; },
@@ -11,7 +11,7 @@ vi.mock('@engine/CCustomSelectMapCategory.js', () => ({
     }
 }));
 
-vi.mock('@engine/CCustomSelectMapMap.js', () => ({
+vi.mock('@engine/monster/CCustomSelectMapMap.js', () => ({
     CCustomSelectMapMap: function () {
         return {
             GetRootObject: function () { return { style: {}, setAttribute: function(){}, appendChild: function(){} }; },
@@ -22,7 +22,7 @@ vi.mock('@engine/CCustomSelectMapMap.js', () => ({
     }
 }));
 
-vi.mock('@engine/CCustomSelectMapMonster.js', () => ({
+vi.mock('@engine/monster/CCustomSelectMapMonster.js', () => ({
     CCustomSelectMapMonster: function () {
         return {
             GetRootObject: function () { return { style: {}, setAttribute: function(){}, appendChild: function(){} }; },
@@ -64,7 +64,7 @@ vi.hoisted(() => {
     };
 });
 
-import { CMonsterMapAreaComponentManager } from '@engine/CMonsterMapAreaComponentManager.js';
+import { CMonsterMapAreaComponentManager } from '@engine/monster/CMonsterMapAreaComponentManager.js';
 
 describe('CMonsterMapAreaComponentManager.js', () => {
     it.todo('動作テストを追加する');

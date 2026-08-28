@@ -9,7 +9,7 @@ vi.hoisted(() => {
     document.body.innerHTML = '<div id="ID_FLOATING_INFO_AREA"></div><div id="OBJID_SHADOW_EQUIPS_MIG"></div><div id="ID_TIME_ITEM_AREA"></div><div id="ID_BATTLE_QUICK_CONTROL_AREA"></div>';
 });
 
-vi.mock('../../engine/util.js', async (importActual) => {
+vi.mock('../../engine/runtime/util.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
@@ -29,8 +29,8 @@ vi.mock('@engine/monster.dat.js', async (importActual) => {
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import { GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager } from '@engine/CFloatingInfoAreaComponentManager.js';
-import { g_extraInfoDataBridge } from '@engine/CExtraInfoDataBridge.js';
+import { GetFloatingInfoText, CFloatingInfoAreaInfoUnit, CFloatingInfoAreaComponentManager } from '@engine/ui/CFloatingInfoAreaComponentManager.js';
+import { g_extraInfoDataBridge } from '@engine/ui/CExtraInfoDataBridge.js';
 
 describe('CFloatingInfoAreaComponentManager.js', () => {
     it('g_extraInfoDataBridge.refreshFloatingDispAreaAll は CFloatingInfoAreaComponentManager.RefreshDispAreaAll に中継される', () => {

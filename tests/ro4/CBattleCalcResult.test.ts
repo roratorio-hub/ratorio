@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { CBattleCalcResult } from '@engine/CBattleCalcResult.js';
+import { CBattleCalcResult } from '@engine/battle/CBattleCalcResult.js';
 
 /**
  * ダメージ計算に必要な配列を埋めた結果インスタンスを作る.

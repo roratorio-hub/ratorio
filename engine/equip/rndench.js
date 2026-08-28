@@ -1,0 +1,28 @@
+// === AUTO-GENERATED IMPORTS ===
+import { ItemObjNew } from "../item.dat.js";
+import { GetRndOptTypeId } from "../item.h.js";
+import { ITEM_DATA_INDEX_WPNLV } from "../const/EnumItemDataIndex.js";
+// === END AUTO-GENERATED IMPORTS ===
+
+/************************************************************************************************
+ *
+ * ランダムエンチャント対応装備判定.
+ *
+ *-----------------------------------------------------------------------------------------------
+ *-----------------------------------------------------------------------------------------------
+ * @return true:対応 false:非対応
+ ************************************************************************************************/
+export function IsEnableRandomEnchant(itemId) {
+
+	var wpnlv = ItemObjNew[itemId][ITEM_DATA_INDEX_WPNLV];
+	var flag = (wpnlv * 10) % 10;
+
+	if (GetRndOptTypeId(wpnlv) > 0) {
+		return true;
+	}
+
+
+	return (flag & 1) == 1;
+}
+
+

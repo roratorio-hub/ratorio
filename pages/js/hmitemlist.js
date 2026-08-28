@@ -2,17 +2,17 @@ import { ItemPackageDat } from "../../engine/item.package.dat.js";
 // === AUTO-GENERATED IMPORTS ===
 import { GetJobName, IsMatchJobRestrict } from "../../engine/data/mig.job.h.js";
 import { MigGetBorderFlagText } from "../../engine/data/mig.itemsp.h.js";
-import { g_constDataManager } from "../../engine/global.js";
-import { CItemInfoManager } from "../../engine/CItemInfoManager.js";
+import { g_constDataManager } from "../../engine/runtime/global.js";
+import { CItemInfoManager } from "../../engine/equip/CItemInfoManager.js";
 import { CardObjNew } from "../../engine/card.dat.js";
-import { GetElementText } from "../../engine/common.js";
-import { RebuildCardSelectSubCollectEnchListData } from "../../engine/hmcard.js";
+import { GetElementText } from "../../engine/runtime/common.js";
+import { RebuildCardSelectSubCollectEnchListData } from "../../engine/equip/hmcard.js";
 import { ItemObjNew } from "../../engine/item.dat.js";
 import {
          GetItemExplainText, GetItemKindNameText, GetJobRestrictText, GetSlotText,
          GetStrPenaltyAvoidStr
 } from "../../engine/item.h.js";
-import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from "../../engine/util.js";
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from "../../engine/runtime/util.js";
 import { CARD_DATA_INDEX_NAME } from "../../engine/const/EnumCardDataIndex.js";
 import { CONST_DATA_KIND_ENCHANT_LIST } from "../../engine/const/EnumConstDataKind.js";
 import {

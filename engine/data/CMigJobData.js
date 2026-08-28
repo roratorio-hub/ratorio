@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { CNameKana } from "../CNameKana.js";
+import { CNameKana } from "../chara/CNameKana.js";
 import { GetBaseLevelMin } from "./mig.job.h.js";
 import {
     MIG_JOB_DATA_INDEX_ATTACK_SKILL_ID_ARRAY, MIG_JOB_DATA_INDEX_BASE_EXP_TABLE_ID, MIG_JOB_DATA_INDEX_EQUIPABLE_EQUIP_FLAG_ARRAY, MIG_JOB_DATA_INDEX_HP_ARRAY, MIG_JOB_DATA_INDEX_ID, MIG_JOB_DATA_INDEX_JOB_BONUS_ARRAY,

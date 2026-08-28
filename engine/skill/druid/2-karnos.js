@@ -6,10 +6,10 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
-import { n_A_DEX, n_A_INT, n_A_STR } from "../../roro-state.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_DEX, n_A_INT, n_A_STR } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_CHOP_CHOP, SKILL_ID_CLAW_WAVE, SKILL_ID_DOUBLE_SLASH, SKILL_ID_EARTH_BUD, SKILL_ID_EARTH_DRILL,
     SKILL_ID_EARTH_STAMP, SKILL_ID_ENRAGE_RAPTOR, SKILL_ID_ENRAGE_WOLF, SKILL_ID_FEATHER_SPRINKLE,
@@ -18,7 +18,7 @@ import {
     SKILL_ID_SHARPEN_HAIL, SKILL_ID_THUNDERING_CALL, SKILL_ID_THUNDERING_FOCUS, SKILL_ID_THUNDERING_ORB,
     SKILL_ID_TRUTH_OF_EARTH, SKILL_ID_TRUTH_OF_ICE, SKILL_ID_TRUTH_OF_WIND, SKILL_ID_TYPHOON_WING,
     SKILL_ID_WIND_VEIL, SKILL_ID_WOLF_INSTINCT
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		/** ダブルスラッシュ */

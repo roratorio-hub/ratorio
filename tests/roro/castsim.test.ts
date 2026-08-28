@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
     SprintfTimeStrCastSim,
-} from '@engine/castsim.js';
+} from '@engine/battle/castsim.js';
 
 describe('castsim.js', () => {
     describe('SprintfTimeStrCastSim', () => {

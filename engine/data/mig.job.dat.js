@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
-import { createArithmeticSequence } from "../util.js";
-import { g_constDataManager } from "../global.js";
+import { createArithmeticSequence } from "../runtime/util.js";
+import { g_constDataManager } from "../runtime/global.js";
 import {
          SKILL_ID_ABYSS_DAGGER_STATE, SKILL_ID_ANTEN_HOU, SKILL_ID_BASIC_GRENADE,
          SKILL_ID_DEER_BREEZE, SKILL_ID_DEER_CANON, SKILL_ID_DOKUGAKU_MADOGAKU,
@@ -54,7 +54,7 @@ import {
          SKILL_ID_WEREWOLF, SKILL_ID_WILD_SHOT, SKILL_ID_WILD_WALK, SKILL_ID_WIND_BOMB,
          SKILL_ID_WIND_VEIL, SKILL_ID_WOLF_INSTINCT,
          SKILL_ID_KOGEKI_SOCHI_YUKOKA,
-} from "../skill.dat.js";
+} from "../skill/skill.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 export const MIG_JOB_ID_NOVICE = 0;

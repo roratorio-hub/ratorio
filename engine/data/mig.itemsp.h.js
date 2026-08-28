@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../common.js";
+import "../runtime/common.js";
 import "../item.h.js";
 import { CardObjNew } from "../card.dat.js";
 import { ItemObjNew } from "../item.dat.js";

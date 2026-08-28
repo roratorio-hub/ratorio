@@ -1,8 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../../engine/common.js";
+import "../../engine/runtime/common.js";
 import "../../engine/data/mig.itemsp.h.js";
-import { g_constDataManager } from "../../engine/global.js";
-import { CItemInfoManager } from "../../engine/CItemInfoManager.js";
+import { g_constDataManager } from "../../engine/runtime/global.js";
+import { CItemInfoManager } from "../../engine/equip/CItemInfoManager.js";
 import {
          CARD_ID_ENCHANT_ARMS_ELEMENT_DARK, CARD_ID_ENCHANT_ARMS_ELEMENT_EARTH,
          CARD_ID_ENCHANT_ARMS_ELEMENT_FIRE, CARD_ID_ENCHANT_ARMS_ELEMENT_HOLY,
@@ -25,8 +25,8 @@ import { CardPrefix } from "../../engine/card.prefix.dat.js";
 import { ItemObjNew } from "../../engine/item.dat.js";
 import { GetItemKindNameText } from "../../engine/item.h.js";
 import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from "../../engine/data/mig.enchlist.dat.js";
-import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "../../engine/slotpager.js";
-import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from "../../engine/util.js";
+import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "../../engine/equip/slotpager.js";
+import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from "../../engine/runtime/util.js";
 import { CARD_DATA_INDEX_ID, CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME } from "../../engine/const/EnumCardDataIndex.js";
 import {
     CARD_KIND_ACCESSORY, CARD_KIND_ACCESSORY_ON1, CARD_KIND_ACCESSORY_ON2, CARD_KIND_ANY, CARD_KIND_ARMS, CARD_KIND_BODY,

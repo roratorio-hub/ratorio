@@ -24,7 +24,7 @@ vi.hoisted(() => {
     (document as any).createElement = () => mockEl;
 });
 
-vi.mock('../../engine/util.js', async (importActual) => {
+vi.mock('../../engine/runtime/util.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
@@ -44,12 +44,12 @@ vi.mock('@engine/monster.dat.js', async (importActual) => {
     return { ...actual, get MonsterObjNew() { return []; } };
 });
 
-import '@engine/CInstanceManager.js';
+import '@engine/runtime/CInstanceManager.js';
 import {
     GetExtraInfoText,
     CExtraInfoAreaComponentManager,
-} from '@engine/CExtraInfoAreaComponentManager.js';
-import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '@engine/CExtraInfoDataBridge.js';
+} from '@engine/ui/CExtraInfoAreaComponentManager.js';
+import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from '@engine/ui/CExtraInfoDataBridge.js';
 
 describe('CExtraInfoAreaComponentManager.js', () => {
     describe('エクスポート確認', () => {

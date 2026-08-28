@@ -6,13 +6,13 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MIG_PARAM_ID_CON, MIG_PARAM_ID_INT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL
 } from "../../const/EnumMigItemParamId.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_AERO_SYNC, SKILL_ID_ALPHA_CLAW, SKILL_ID_ALPHA_PHASE, SKILL_ID_APEX_PHASE, SKILL_ID_CHILLING_BLAST,
     SKILL_ID_FERAL_CLAW, SKILL_ID_FLIP_FLAP, SKILL_ID_FRENZY_FANG, SKILL_ID_FURIOS_STORM, SKILL_ID_GLACIER_MONOLITH,
@@ -22,7 +22,7 @@ import {
     SKILL_ID_SAVAGE_LUNGE, SKILL_ID_SIXTH_SENSE, SKILL_ID_SOLID_STOMP, SKILL_ID_TEMPEST_FLAP, SKILL_ID_TERRA_HARVEST,
     SKILL_ID_TERRA_WAVE, SKILL_ID_TRUTH_OF_EARTH, SKILL_ID_TRUTH_OF_ICE, SKILL_ID_TRUTH_OF_WIND,
     SKILL_ID_ZEPHYR_LINK
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		/** パルスオブマッドネス */

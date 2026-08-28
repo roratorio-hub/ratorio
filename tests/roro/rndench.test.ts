@@ -1,5 +1,5 @@
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { IsEnableRandomEnchant } from '@engine/rndench.js';
+import { IsEnableRandomEnchant } from '@engine/equip/rndench.js';
 import { ITEM_DATA_INDEX_WPNLV } from '@engine/const/EnumItemDataIndex.js';
 
 const mockRefs = vi.hoisted(() => ({

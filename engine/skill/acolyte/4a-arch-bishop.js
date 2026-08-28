@@ -6,19 +6,19 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
     n_B_TAISEI
-} from "../../mobconfplayer.js";
+} from "../../monster/mobconfplayer.js";
 import {
     SKILL_ID_ADORAMUS, SKILL_ID_ANCILLA, SKILL_ID_CANTOCANDIDUS, SKILL_ID_CLEARANCE, SKILL_ID_CLEMENTIA,
     SKILL_ID_COLUCEO_HEAL, SKILL_ID_DUPLELIGHT, SKILL_ID_EPICLESIS, SKILL_ID_EUCHARISTICA, SKILL_ID_EXPIATIO,
     SKILL_ID_GRAHAM_LIGHT, SKILL_ID_HIGHNESS_HEAL, SKILL_ID_JUDEX, SKILL_ID_LAUDAAGNUS, SKILL_ID_LAUDARAMUS,
     SKILL_ID_MIRIAM_LIGHT, SKILL_ID_OFFERTORIUM, SKILL_ID_ORATIO, SKILL_ID_PRAEFATIO, SKILL_ID_RENOVATIO,
     SKILL_ID_SECRAMENT, SKILL_ID_SILENTIUM
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

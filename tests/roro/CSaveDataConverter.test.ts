@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll } from 'vitest';
-import { CSaveDataConverter } from '@engine/CSaveDataConverter.js';
+import { CSaveDataConverter } from '@engine/savedata/CSaveDataConverter.js';
 
 beforeAll(() => {
     (globalThis as any).toSafeBigInt = (value: unknown): bigint => BigInt(value as any);

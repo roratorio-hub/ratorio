@@ -79,14 +79,14 @@ describe('generateImage() の出力が画面表示と一致する（マージ前
             await page.waitForFunction(async () => {
                 const dynamicImport = new Function('specifier', 'return import(specifier);') as
                     (specifier: string) => Promise<Record<string, any>>;
-                const mod = await dynamicImport('/engine/CExtraInfoDataBridge.js');
+                const mod = await dynamicImport('/engine/ui/CExtraInfoDataBridge.js');
                 return mod.g_extraInfoDataBridge?.charaData != null;
             });
 
             const result = await page.evaluate(async () => {
                 const dynamicImport = new Function('specifier', 'return import(specifier);') as
                     (specifier: string) => Promise<Record<string, any>>;
-                const hmjobBridge = await dynamicImport('/engine/hmjob.js');
+                const hmjobBridge = await dynamicImport('/engine/chara/hmjob.js');
                 const itemDat = await dynamicImport('/engine/item.dat.js');
                 const reg = (globalThis as any)._ratorioReg;
 

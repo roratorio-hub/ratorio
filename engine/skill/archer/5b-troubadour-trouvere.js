@@ -6,24 +6,24 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { HtmlGetObjectValueByIdAsInteger } from "../../util.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { HtmlGetObjectValueByIdAsInteger } from "../../runtime/util.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { GetEquippedTotalSPArrow } from "../../foot-bridge.js";
-import { MOB_CONF_DEBUF_ID_SOUND_BLEND, n_B_IJYOU } from "../../mobconfdebuf.js";
-import { n_A_WeaponType } from "../../roro-state.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { MOB_CONF_DEBUF_ID_SOUND_BLEND, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_GEFFENIA_NOCTURNE, SKILL_ID_KAISO, SKILL_ID_KOINNO_RHAPSODY, SKILL_ID_LOKINO_KIMAGURE,
     SKILL_ID_METALIC_FURY, SKILL_ID_MUSICAL_INTERLUDE, SKILL_ID_MYSTIC_SYMPHONY, SKILL_ID_PRONTERA_MARCH,
     SKILL_ID_RHYTHMICAL_WAVE, SKILL_ID_RHYTHM_SHOOTING, SKILL_ID_ROSE_BLOSSOM, SKILL_ID_SHISHATACHIHENO_REQUIEM,
     SKILL_ID_SONATA_OF_KUVASIL, SKILL_ID_SOUND_BLEND, SKILL_ID_STAGE_MANNER, SKILL_ID_YUYAKENO_SERENADE
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

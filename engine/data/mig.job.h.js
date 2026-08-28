@@ -1,6 +1,6 @@
-import { SaveSystem } from "../saveload-bridge.js";
+import { SaveSystem } from "../bridge/saveload-bridge.js";
 // === AUTO-GENERATED IMPORTS ===
-import "../common.js";
+import "../runtime/common.js";
 import "../item.h.js";
 import { ItemObjNew } from "../item.dat.js";
 import {
@@ -94,13 +94,13 @@ import {
 } from "./mig.job.id.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: 共有 state
-import { n_A_JOB } from "../roro-state.js";
-import { get as registryGet, register } from "../engine-registry.js";
+import { n_A_JOB } from "../runtime/roro-state.js";
+import { get as registryGet, register } from "../runtime/engine-registry.js";
 
 // C-6: head.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from "../head-bridge.js";
+} from "../bridge/head-bridge.js";
 import { BASE_EXP_TABLE_ID_NORMAL, BASE_EXP_TABLE_ID_REINCANATED } from "../const/BaseExpTableId.js";
 import { CONST_DATA_KIND_JOB } from "../const/EnumConstDataKind.js";
 import { ITEM_DATA_INDEX_EQPFLG, ITEM_DATA_INDEX_EQPLV, ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KIND } from "../const/EnumItemDataIndex.js";

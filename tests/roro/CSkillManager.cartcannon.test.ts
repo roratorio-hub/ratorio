@@ -18,11 +18,11 @@ let learnedLv = 0;
 let usedLv = 0;
 
 beforeAll(async () => {
-    const skillDat = await import('@engine/skill.dat.js');
+    const skillDat = await import('@engine/skill/skill.dat.js');
     SKILL_ID_CART_CANNON = skillDat.SKILL_ID_CART_CANNON;
     SKILL_ID_CART_KAIZO = skillDat.SKILL_ID_CART_KAIZO;
-    await import('@engine/global.js');
-    const mod = await import('@engine/CSkillManager.js');
+    await import('@engine/runtime/global.js');
+    const mod = await import('@engine/skill/CSkillManager.js');
     mod.RegisterLearnedSkillSearch((id: number) => (id === SKILL_ID_CART_KAIZO ? learnedLv : 0));
     mod.RegisterUsedSkillSearch((id: number) => (id === SKILL_ID_CART_KAIZO ? usedLv : 0));
     sm = new mod.CSkillManager();

@@ -19,7 +19,7 @@ vi.hoisted(() => {
     (document as any).getElementById = () => mockEl;
 });
 
-vi.mock('../../engine/util.js', async (importActual) => {
+vi.mock('../../engine/runtime/util.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
@@ -50,8 +50,8 @@ import {
     AdaptSaveDataStrSizeMIG,
     SaveDataChangeMIG,
     OnClickConfirmDialogSwitch,
-} from '@engine/saveload-mig.js';
-import { get as registryGet } from '@engine/engine-registry.js';
+} from '@engine/savedata/saveload-mig.js';
+import { get as registryGet } from '@engine/runtime/engine-registry.js';
 
 describe('saveload-mig.js', () => {
     // dewindow: window.ConvertDataTextMIG / OnClickUrlOutMIG は engine-registry へ移行（旧 window 互換テストを置換）。

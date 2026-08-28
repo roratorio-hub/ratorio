@@ -6,11 +6,11 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_WIND } from "../../const/EnumElmId.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
-} from "../../mobconfplayer.js";
+} from "../../monster/mobconfplayer.js";
 import {
     SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
     SKILL_ID_GOHO, SKILL_ID_HASAICHU, SKILL_ID_KYUKIKO, SKILL_ID_RAIKODAN, SKILL_ID_RASETSU_HAOGEKI,
@@ -18,7 +18,7 @@ import {
     SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SHURASHINDAN, SKILL_ID_SISIKO, SKILL_ID_SORYUKYAKU, SKILL_ID_TENKETSU_HAN,
     SKILL_ID_TENKETSU_KAI, SKILL_ID_TENKETSU_KATSU, SKILL_ID_TENKETSU_KYU, SKILL_ID_TENKETSU_MOKU,
     SKILL_ID_TENRACHIMO, SKILL_ID_ZENKI_CHUNYU, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUBAKUZIN
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

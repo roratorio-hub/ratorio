@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { CConfBase, CTargetData } from '@engine/CConfBase.js';
+import { CConfBase, CTargetData } from '@engine/ui/CConfBase.js';
 
 describe('CConfBase.js', () => {
     describe('インスタンス生成', () => {

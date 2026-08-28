@@ -6,18 +6,18 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ACTIVITY_BURN, SKILL_ID_CONFLAGRATION, SKILL_ID_DIAMOND_STORM, SKILL_ID_ELEMENTAL_BASTER,
     SKILL_ID_ELEMENTAL_SPIRIT_MASTERY, SKILL_ID_ELEMENTAL_VEIL, SKILL_ID_INCREASING_ACTIVITY,
     SKILL_ID_LIGHTNING_LAND, SKILL_ID_MAHO_HON_SHUREN, SKILL_ID_PSYCHIC_STREAM, SKILL_ID_SERE,
     SKILL_ID_SPELL_ENCHANTING, SKILL_ID_SUMMON_ALDOR, SKILL_ID_SUMMON_DILBIO, SKILL_ID_SUMMON_PROCERA,
     SKILL_ID_SUMMON_SERPENSE, SKILL_ID_SUMMON_TELEMOTUS, SKILL_ID_TERA_DRIVE, SKILL_ID_VENOM_SWAMP
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

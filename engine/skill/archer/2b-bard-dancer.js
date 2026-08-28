@@ -6,10 +6,10 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
-import { GetEquippedTotalSPArrow } from "../../foot-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
 import {
     SKILL_ID_ADLIB, SKILL_ID_BRAGINO_UTA, SKILL_ID_DANCENO_RENSHU, SKILL_ID_EIENNO_KONTON, SKILL_ID_ENCORE,
     SKILL_ID_FUKYOWAON, SKILL_ID_FUZIMINO_SIEGFRIED, SKILL_ID_GAKKINO_RENSHU, SKILL_ID_HUMMING,
@@ -18,7 +18,7 @@ import {
     SKILL_ID_NIBELUGENNO_YUBIWA, SKILL_ID_NJORDNO_UTAGE, SKILL_ID_SAMUI_JOKE, SKILL_ID_SCREAM,
     SKILL_ID_SERVICE_FOR_YOU, SKILL_ID_SHINENNO_NAKANI, SKILL_ID_WATASHIWO_WASURENAIDE, SKILL_ID_YAUCHI,
     SKILL_ID_YUHINO_ASSASINCROSS, SKILL_ID_ZIBUNKATTENA_DANCE
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

@@ -55,7 +55,12 @@ const BUCKETS = {
         'CConfBase.js', 'CConfBase2.js', 'CExtraInfoAreaComponentManager.js',
         'CExtraInfoAreaComponentManagerCalc.js', 'CExtraInfoDataBridge.js',
         'CFloatingInfoAreaComponentManager.js', 'CModalWindow.js', 'CReceivedDamageConfManager.js',
-        'calchistory.js', 'etc.js', 'eventsetup.js', 'saveimage.js',
+        'calchistory.js', 'eventsetup.js', 'saveimage.js',
+        // ⚠ etc.js は含めない: 残件台帳 B-25 で *.dat.js/*.h.js 34件と共に据え置き対象と
+        // ユーザー承認済み（属性相性テーブルという純粋データで、拡張子だけ*.dat.js群と異なるため
+        // 同枠）。過去に一度この配列へ誤って残してしまい engine/ui/etc.js へ移動する事故を
+        // 起こした（Phase 2実行時に発覚・手動で engine/etc.js へ復元済み）。再発防止のため
+        // このコメントを残す。
     ],
     'battle': [
         'CAttackMethodAreaComponentManager.js', 'CAttackMethodConf.js', 'CAttackMethodDataBridge.js',

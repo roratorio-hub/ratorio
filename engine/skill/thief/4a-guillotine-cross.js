@@ -6,17 +6,17 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
-} from "../../mobconfplayer.js";
+} from "../../monster/mobconfplayer.js";
 import {
     SKILL_ID_ANTIDOTE, SKILL_ID_CLOAKING_EXCEED, SKILL_ID_COUNTER_SLASH, SKILL_ID_CROSS_IMPACT,
     SKILL_ID_CROSS_RIPPER_SLASHER, SKILL_ID_DARK_CRAW, SKILL_ID_DARK_ILLUSION, SKILL_ID_ENCHANT_DEADLY_POISON,
     SKILL_ID_HALLUCINATION_WALK, SKILL_ID_PHANTOM_MENUS, SKILL_ID_POISONING_WEAPON, SKILL_ID_POISON_SMOKE,
     SKILL_ID_ROLLING_CUTTER, SKILL_ID_SHINDOKU_KENKYU, SKILL_ID_SHINDOKU_SEIZO, SKILL_ID_VENOM_IMPRESS,
     SKILL_ID_VENOM_PRESSURE, SKILL_ID_WEAPON_BLOCKING, SKILL_ID_WEAPON_CRUSH
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

@@ -1,4 +1,4 @@
-import { myInnerHtml } from "../../engine/util.js";
+import { myInnerHtml } from "../../engine/runtime/util.js";
 // === AUTO-GENERATED IMPORTS ===
 import { zokusei } from "../../engine/etc.js";
 // === END AUTO-GENERATED IMPORTS ===

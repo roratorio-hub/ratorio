@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach } from 'vitest';
-import { ModalWindow } from '@engine/CModalWindow.js';
+import { ModalWindow } from '@engine/ui/CModalWindow.js';
 
 describe('CModalWindow.js', () => {
     describe('createModal の動作', () => {

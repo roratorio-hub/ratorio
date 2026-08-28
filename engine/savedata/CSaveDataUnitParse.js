@@ -34,8 +34,8 @@ import {
 } from "./CSaveDataUnit.js";
 // === AUTO-GENERATED IMPORTS ===
 import "../item.h.js";
-import { CSaveDataConverter } from "../CSaveDataConverter.js";
-import { CSaveDataMappingManager, CURRENT_VERSION } from "../CSaveDataMappingManager.js";
+import { CSaveDataConverter } from "./CSaveDataConverter.js";
+import { CSaveDataMappingManager, CURRENT_VERSION } from "./CSaveDataMappingManager.js";
 import {
          ITEM_ID_ARROW_NONE, ITEM_ID_BULLET_NONE, ITEM_ID_ISHO_BEGINNER_BO,
          ITEM_ID_ISHO_NONE, ItemObjNew
@@ -54,7 +54,7 @@ import {
          MOB_CONF_PLAYER_ID_SEI_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_STR,
          MOB_CONF_PLAYER_ID_VIT, MOB_CONF_PLAYER_ID_YAMI_ZOKUSEI_TAISEI,
          MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI, n_B_TAISEI
-} from "../mobconfplayer.js";
+} from "../monster/mobconfplayer.js";
 import { GetHigherJobSeriesID, GetLowerJobSeriesID } from "../data/mig.job.h.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: JOB 定数
@@ -65,8 +65,8 @@ import {
 // C-6: global.js 管理の共有 conf state
 import {
          g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomStatus,
-} from "../global.js";
-import { get } from "../engine-registry.js";
+} from "../runtime/global.js";
+import { get } from "../runtime/engine-registry.js";
 import { ITEM_DATA_INDEX_KIND } from "../const/EnumItemDataIndex.js";
 import { ITEM_KIND_SHIELD } from "../const/EnumItemKind.js";
 

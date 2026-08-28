@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import { GetJobBonus, GetJobLevelMax, GetJobName } from "../../engine/data/mig.job.h.js";
 import "../../engine/data/mig.itemsp.h.js";
-import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlGetObjectValueByIdAsInteger } from "../../engine/util.js";
+import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlGetObjectValueByIdAsInteger } from "../../engine/runtime/util.js";
 import { MIG_JOB_ID_NOVICE, MIG_JOB_ID_SPIRIT_HANDLER } from "../../engine/data/mig.job.dat.js";
 import { JOB_ID_NOVICE } from "../../engine/const/EnumJobId.js";
 // === END AUTO-GENERATED IMPORTS ===

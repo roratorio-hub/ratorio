@@ -6,19 +6,19 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
-import { UsedSkillSearch } from "../../skill-search-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ABR_BATTLE_WARRIER, SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_ABR_INFINITY, SKILL_ID_ABR_MASTERY,
     SKILL_ID_ABR_MOTHER_NET, SKILL_ID_AXE_STOMP, SKILL_ID_AXE_STOMP_STATUS, SKILL_ID_BOGYO_SOCHI_YUKOKA,
     SKILL_ID_ENERGY_CANNONADE, SKILL_ID_KOGEKI_SOCHI_YUKOKA, SKILL_ID_MADOGEAR, SKILL_ID_MIGHTY_SMASH,
     SKILL_ID_POWERFUL_SWING, SKILL_ID_RUSH_QUAKE, SKILL_ID_RUSH_STATE, SKILL_ID_RUSH_STRIKE, SKILL_ID_SOCHI_SEIZO,
     SKILL_ID_SPARK_BLASTER, SKILL_ID_TRIPLE_LASER, SKILL_ID_TWO_AXE_DEFENDING
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

@@ -22,7 +22,7 @@ let sm: any;
 let sd: any;
 
 beforeAll(async () => {
-    const skillDat = await import('@engine/skill.dat.js');
+    const skillDat = await import('@engine/skill/skill.dat.js');
     SKILL_ID_TUZYO_KOGEKI = skillDat.SKILL_ID_TUZYO_KOGEKI;
     SKILL_ID_OKYU_TEATE = skillDat.SKILL_ID_OKYU_TEATE;
     SKILL_ID_GLACIER_NOVA = skillDat.SKILL_ID_GLACIER_NOVA;
@@ -32,17 +32,17 @@ beforeAll(async () => {
     SKILL_ID_PETITIO = skillDat.SKILL_ID_PETITIO;
     SKILL_ID_ELEMENTAL_BASTER = skillDat.SKILL_ID_ELEMENTAL_BASTER;
     SKILL_ID_ADORAMUS = skillDat.SKILL_ID_ADORAMUS;
-    const autospellDat = await import('@engine/autospell.dat.js');
+    const autospellDat = await import('@engine/skill/autospell.dat.js');
     AutoSpellSkill = autospellDat.AutoSpellSkill;
     // global.js を CSkillManager.js より先に評価する。global.js は top-level import を
     // すべて解決してから（＝CSkillManager.js を完全に評価してから）body の new CSkillManager() を
     // 走らせるため、ここで安全に Init が完了する。CSkillManager.js を直接先に import すると
     // global.js:53 が CSkillManager.js の評価途中に再入し import #11 の TDZ になる。
-    await import('@engine/global.js');
-    const mod = await import('@engine/CSkillManager.js');
+    await import('@engine/runtime/global.js');
+    const mod = await import('@engine/skill/CSkillManager.js');
     CSkillData = mod.CSkillData;
     CSkillManager = mod.CSkillManager;
-    const conf = await import('@engine/CAttackMethodConf.js');
+    const conf = await import('@engine/battle/CAttackMethodConf.js');
     CAttackMethodConf = conf.CAttackMethodConf;
     sd = new CSkillData();
     sm = new CSkillManager();

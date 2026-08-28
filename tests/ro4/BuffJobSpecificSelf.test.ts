@@ -6,9 +6,9 @@ import {
     n_A_PassSkill,
     UsedSkillSearch,
     UsedSkillSearchSubUsedOnly,
-} from '@engine/skillstate.js';
-import { g_constDataManager } from '@engine/global.js';
-import { n_A_JOB } from '@engine/roro-state.js';
+} from '@engine/skill/skillstate.js';
+import { g_constDataManager } from '@engine/runtime/global.js';
+import { n_A_JOB } from '@engine/runtime/roro-state.js';
 import { CONST_DATA_KIND_JOB } from '@engine/const/EnumConstDataKind.js';
 
 describe('BuffJobSpecificSelf.js', () => {

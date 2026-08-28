@@ -1,6 +1,6 @@
 import { vi, describe, it, expect, beforeAll } from 'vitest';
-import { CCustomSelectBase } from '@engine/CCustomSelectBase.js';
-import { CCustomSelectMapMonster } from '@engine/CCustomSelectMapMonster.js';
+import { CCustomSelectBase } from '@engine/monster/CCustomSelectBase.js';
+import { CCustomSelectMapMonster } from '@engine/monster/CCustomSelectMapMonster.js';
 
 vi.mock('@engine/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();

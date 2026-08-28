@@ -19,10 +19,16 @@ const JS_DIR = resolve(__dirname, '../../engine');
 // 〔plan: roro-m-js-skill-https-rotool-gungho-jp-s-glittery-cupcake〕）。分割後の
 // CSkillManager.js はアクセサのみのシェルになるため、対象を明示的に glob で拾い直す
 // （分割で対象が消えたことに気付けなくなるのを防ぐため、下の TARGETS.length アサートも参照）。
+// B-19（残件台帳。engine/トップレベルのドメイン別再配置）で CSkillManager.js/CSkillData.js は
+// engine/skill/ 直下へ合流した。glob を `**/*.js` のままにすると、同じく合流した
+// skillstate.js/learnedskill.js/skill.dat.js 等9ファイルも余計に拾ってしまう上、
+// 下2行で明示追加している CSkillManager.js/CSkillData.js も二重に拾ってしまう。
+// 職業ツリーの77ファイルは必ず `skill/<系統>/<ファイル>.js` の2階層目にあるので、
+// `*/*.js` で1階層深いものだけに絞る。
 const TARGETS = [
-    resolve(JS_DIR, 'CSkillManager.js'),
-    resolve(JS_DIR, 'CSkillData.js'),
-    ...globSync(`${JS_DIR}/skill/**/*.js`).sort(),
+    resolve(JS_DIR, 'skill/CSkillManager.js'),
+    resolve(JS_DIR, 'skill/CSkillData.js'),
+    ...globSync(`${JS_DIR}/skill/*/*.js`).sort(),
 ];
 
 interface Violation {

@@ -6,22 +6,22 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOW, ITEM_KIND_KNIFE, ITEM_KIND_SWORD } from "../../const/EnumItemKind.js";
 import {
     MIG_PARAM_ID_CON, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL
 } from "../../const/EnumMigItemParamId.js";
-import { n_A_WeaponType } from "../../roro-state.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ABYSS_DAGGER, SKILL_ID_ABYSS_DAGGER_STATE, SKILL_ID_ABYSS_FLAME, SKILL_ID_ABYSS_SLAYER,
     SKILL_ID_ABYSS_SQUARE, SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL, SKILL_ID_CHAIN_REACTION_SHOT, SKILL_ID_CHASING_BREAK,
     SKILL_ID_CHASING_SHOT, SKILL_ID_DEFT_STAB, SKILL_ID_FLANGE_SHOT, SKILL_ID_FROM_THE_ABYSS,
     SKILL_ID_HIT_AND_SLIDING, SKILL_ID_MAHOKEN_SHUREN, SKILL_ID_OMEGA_ABYSS_STRIKE, SKILL_ID_STRIP_SHADOW,
     SKILL_ID_TANKEN_YUMI_SHUREN, SKILL_ID_UNLUCKY_RUSH
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

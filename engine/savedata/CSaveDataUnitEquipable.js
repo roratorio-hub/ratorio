@@ -2,7 +2,7 @@ import { CSaveDataUnitBase } from "./CSaveDataUnitBase.js";
 import { CSaveDataConst } from "./CSaveDataConst.js";
 import { CSaveDataPropInfo } from "./CSaveDataPropInfo.js";
 // === AUTO-GENERATED IMPORTS ===
-import { toSafeBigInt } from "../util.js";
+import { toSafeBigInt } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
 /**
  * 「武器＆防具/カード」情報クラス

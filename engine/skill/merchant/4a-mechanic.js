@@ -6,12 +6,12 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../../const/EnumSizeId.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE,
     MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, n_B_TAISEI
-} from "../../mobconfplayer.js";
+} from "../../monster/mobconfplayer.js";
 import {
     SKILL_ID_ACCELARATION, SKILL_ID_ANALYZE, SKILL_ID_ARMS_CANNON, SKILL_ID_AXE_BOOMERANG, SKILL_ID_AXE_TORNADE,
     SKILL_ID_BOOST_KNUCKLE, SKILL_ID_COLD_THROWER, SKILL_ID_EMERGENCY_COOL, SKILL_ID_FAW_KAIZYO,
@@ -21,7 +21,7 @@ import {
     SKILL_ID_NUTRAL_BARRIER, SKILL_ID_ONO_SHUREN_MECHANIC, SKILL_ID_PILE_BUNKER, SKILL_ID_POWER_SWING,
     SKILL_ID_REARSIDE_SLIDE, SKILL_ID_REPEAR, SKILL_ID_SELF_DESTRUCTION, SKILL_ID_SELF_DESTRUCTION_MAX,
     SKILL_ID_SHAPE_SHIFT, SKILL_ID_STEALTH_FIELD, SKILL_ID_VULCAN_ARM
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

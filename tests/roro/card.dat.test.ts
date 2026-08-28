@@ -6,7 +6,7 @@ import {
     CARD_ID_MAX,
     CardObjNew,
 } from '@engine/card.dat.js';
-import { get as registryGet } from '@engine/engine-registry.js';
+import { get as registryGet } from '@engine/runtime/engine-registry.js';
 
 describe('card.dat.js', () => {
     describe('エクスポート確認', () => {

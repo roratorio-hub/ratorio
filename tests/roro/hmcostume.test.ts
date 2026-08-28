@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import '@engine/hmcostume.js';
+import '@engine/equip/hmcostume.js';
 
 describe('hmcostume.js', () => {
     it.todo('動作テストを追加する');

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CBattleCalcResultAll, instobject, createInstObjContext } from '@engine/CBattleCalcResultAll.js';
+import { CBattleCalcResultAll, instobject, createInstObjContext } from '@engine/battle/CBattleCalcResultAll.js';
 
 describe('CBattleCalcResultAll.js', () => {
     it.todo('CBattleCalcResultAll 本体の動作テストを追加する');

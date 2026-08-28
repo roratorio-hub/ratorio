@@ -6,18 +6,18 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
-} from "../../mobconfplayer.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+} from "../../monster/mobconfplayer.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BLOOD_SUCKER, SKILL_ID_CART_BOOST_GENETIC, SKILL_ID_CART_CANNON,
     SKILL_ID_CART_KAIZO, SKILL_ID_CART_TORNADO, SKILL_ID_CHANGE_MATERIAL, SKILL_ID_CRAZY_WEED, SKILL_ID_DEMONIC_FIRE,
     SKILL_ID_FIRE_EXPANSION, SKILL_ID_HELLS_PLANT, SKILL_ID_HOWLING_OF_MANDRAGORA, SKILL_ID_ILLUSION_DOOPING,
     SKILL_ID_KEN_SHUREN_GENETIC, SKILL_ID_MIX_COOKING, SKILL_ID_SLING_ITEM, SKILL_ID_SPECIAL_PHARMACY,
     SKILL_ID_SPORE_EXPLOSION, SKILL_ID_THORN_TRAP, SKILL_ID_THORN_WALL
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

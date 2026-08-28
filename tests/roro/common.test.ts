@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import * as common from '@engine/common.js';
+import * as common from '@engine/runtime/common.js';
 import {
     GetConstDataKindText,
     GetParamText,
@@ -9,7 +9,7 @@ import {
     GetSizeText,
     GetStateText,
     GetFriendlityText,
-} from '@engine/common.js';
+} from '@engine/runtime/common.js';
 import { CONST_DATA_KIND_ITEM } from '@engine/const/EnumConstDataKind.js';
 
 describe('common.js', () => {

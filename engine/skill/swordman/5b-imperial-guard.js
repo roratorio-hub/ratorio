@@ -6,23 +6,23 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { GetTotalSpecStatus } from "../../hmjob-bridge.js";
-import { n_A_BaseLV } from "../../ro4-state.js";
-import { CSkillData, defineSkill } from "../../CSkillData.js";
+import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import { EQUIP_REGION_ID_SHIELD } from "../../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
 import { ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { ITEM_ID_NOEQUIP_SHIELD, ItemObjNew } from "../../item.dat.js";
-import { n_A_Equip, n_A_SHIELD_DEF_PLUS, n_A_WeaponType } from "../../roro-state.js";
-import { LearnedSkillSearch, UsedSkillSearch } from "../../skill-search-bridge.js";
+import { n_A_Equip, n_A_SHIELD_DEF_PLUS, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ATTACK_STANCE, SKILL_ID_CROSS_RAIN, SKILL_ID_GRAND_JUDGEMENT, SKILL_ID_GRAND_JUDGEMENT_STATE,
     SKILL_ID_GUARDIAN_SHIELD, SKILL_ID_GUARD_STANCE, SKILL_ID_HOLY_SHIELD, SKILL_ID_IMPERIAL_CROSS,
     SKILL_ID_IMPERIAL_PRESSURE, SKILL_ID_JUDGEMENT_CROSS, SKILL_ID_OVER_SLASH, SKILL_ID_RADIANT_SPEAR,
     SKILL_ID_REBOUND_SHIELD, SKILL_ID_SHIELD_SHOOTING, SKILL_ID_SHIELD_SHOOTING_STATE, SKILL_ID_TATE_SHUREN,
     SKILL_ID_ULTIMATE_SACRIFICE, SKILL_ID_YARI_KATATE_KEN_SHUREN
-} from "../../skill.dat.js";
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------

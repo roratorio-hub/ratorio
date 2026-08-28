@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { USABLE_SKILL_ID_CUSTOM_BIAS } from '@engine/usableskill.h.js';
+import { USABLE_SKILL_ID_CUSTOM_BIAS } from '@engine/skill/usableskill.h.js';
 
 describe('usableskill.h.js', () => {
 
