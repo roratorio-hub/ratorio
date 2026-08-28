@@ -8,7 +8,7 @@ Phase 1 import generator for dewindow migration.
 Usage:
     python3 util/gen_imports.py                          # dry run (変更なし・出力のみ)
     python3 util/gen_imports.py --apply                  # 全対象ファイルに適用
-    python3 util/gen_imports.py --apply --file engine/foot.js     # 1ファイルのみ
+    python3 util/gen_imports.py --apply --file engine/status/foot.js     # 1ファイルのみ
     python3 util/gen_imports.py --force --apply          # 既存の自動生成ブロックを再生成
 """
 

@@ -8,7 +8,7 @@
  *
  * 使い方:
  *   node find-free-vars.mjs body.js > freevars.txt
- *   node build-imports.mjs ../engine/foot.js freevars.txt
+ *   node build-imports.mjs ../engine/status/foot.js freevars.txt
  *
  * 見つからない識別子（元ファイルの import 文に無い = モジュールレベル変数や関数など）は
  * stderr に "NOT FOUND" として出す。個別に出典を確認して手で import 文を足すこと。

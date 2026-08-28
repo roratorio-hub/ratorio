@@ -3,7 +3,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 // CSkillManager.js.test.ts と同じ TDZ 回避順（skill.dat.js → global.js → CSkillManager.js）。
 // battle-element.js も CSkillManager.js を import するため、静的 import で先頭に置くと
 // global.js より先に評価されてしまい TDZ になる。動的 import で順序を強制する。
-// 詳細は tests/roro/CSkillManager.test.ts の先頭コメント参照。
+// 詳細は tests/engine/CSkillManager.test.ts の先頭コメント参照。
 let CSkillData: any;
 let CSkillManager: any;
 let CAttackMethodConf: any;

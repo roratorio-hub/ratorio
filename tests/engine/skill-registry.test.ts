@@ -21,7 +21,7 @@
  * ファイル内マーカー重複チェックで検知する。
  *
  * 純粋なテキスト解析（vitest の SSR ローダーで CSkillManager.js 系を import すると
- * 循環 import でハングするため。tests/roro/CSkillManager.scope.test.ts と同じ理由）。
+ * 循環 import でハングするため。tests/engine/CSkillManager.scope.test.ts と同じ理由）。
  */
 import { describe, it, expect } from 'vitest';
 import { readFileSync, globSync } from 'node:fs';

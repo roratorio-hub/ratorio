@@ -5,7 +5,7 @@
  * 背景（マージ前レビュー指摘 R1 対応）: refactor/savedata-and-view-from-model ブランチで
  * saveimage.js の jQuery DOM走査（v()/t()/e()）をモデル読み取り（extractModelFromDom）・
  * 計算結果ブリッジ（g_extraInfoDataBridge）・純粋関数（hmjob-bridge.js 等）に置き換えたが、
- * 出力HTMLの内容そのものを検証する自動テストが存在しなかった（tests/ro4/saveimage.test.ts は
+ * 出力HTMLの内容そのものを検証する自動テストが存在しなかった（tests/engine/saveimage.test.ts は
  * engine-registry への登録確認のみ）。等価性はソース突合で確認済みだが、実行時の裏付けが無い
  * ままだったギャップを埋める。
  *

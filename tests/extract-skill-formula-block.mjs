@@ -16,7 +16,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const [, , startArg, endArg, flagName, outRel] = process.argv;
 const start = Number(startArg), end = Number(endArg);
-const HEAD_JS = '../engine/head.js';
+const HEAD_JS = '../engine/battle/head.js'; // 残件台帳 B-19 で head.js は engine/battle/ へ移動
 
 const allLines = readFileSync(HEAD_JS, 'utf8').split('\n');
 const bodyLines = allLines.slice(start - 1, end); // start行 "while (true) {" 〜 end行 "}"

@@ -31,22 +31,26 @@ import { join } from 'node:path';
 import { Linter } from 'eslint';
 
 const REPO = join(process.cwd(), '..');
-const RORO_STATE = 'engine/roro-state.js';
-const RO4_STATE = 'engine/ro4-state.js';
-const FOOT_JS = 'engine/foot.js';
+// 残件台帳 B-19（engine/トップレベルのドメイン別再配置）で roro-state.js/ro4-state.js は
+// engine/runtime/ へ、foot.js は engine/status/ へ移動した。
+const RORO_STATE = 'engine/runtime/roro-state.js';
+const RO4_STATE = 'engine/runtime/ro4-state.js';
+const FOOT_JS = 'engine/status/foot.js';
 // StAllCalcCore() の行範囲（1-indexed、両端含む）。ズレたら再確認すること:
-//   grep -n "^export function StAllCalcCore" roro/m/js/foot.js
+//   grep -n "^export function StAllCalcCore" engine/status/foot.js
 const CORE_START = 1351;
 const CORE_END = 1630;
 
 // 「Core」の実体は StAllCalcCore() 自身の280行だけではなく、そこから呼ばれる
 // foot-stallcalc-*.js / foot-stplus-calc.js 群（.claude/context/architecture.md の
-// Shell/Adapter/Core 対応表を参照）。foot-bridge.js（委譲ブリッジ）と
-// foot-stallcalc-hydrate.js（Adapter。意図的にDOMを読む）は除く。
-const CORE_HELPER_FILES = readdirSync(join(REPO, 'engine'))
+// Shell/Adapter/Core 対応表を参照）。foot-bridge.js（委譲ブリッジ。B-19で engine/bridge/ へ
+// 移動済みのため元々このディレクトリの対象外）と foot-stallcalc-hydrate.js（Adapter。
+// 意図的にDOMを読む。B-19後も foot-* 系ファイルと同じ engine/status/ に同居するため
+// ファイル名では除外できず、明示的な除外リストで弾く）は除く。
+const CORE_HELPER_FILES = readdirSync(join(REPO, 'engine/status'))
     .filter((f) => f.startsWith('foot-') && f.endsWith('.js'))
-    .filter((f) => f !== 'foot-bridge.js' && f !== 'foot-stallcalc-hydrate.js')
-    .map((f) => `engine/${f}`);
+    .filter((f) => f !== 'foot-stallcalc-hydrate.js')
+    .map((f) => `engine/status/${f}`);
 
 const SCAN_DIRS = ['engine'];
 

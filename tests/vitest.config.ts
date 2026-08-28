@@ -5,7 +5,7 @@ export default defineConfig({
     test: {
         environment: 'happy-dom',
         globals: true,
-        include: ['roro/**/*.test.ts', 'ro4/**/*.test.ts'],
+        include: ['engine/**/*.test.ts'],
         exclude: [
             'node_modules',
             'integration',
@@ -20,7 +20,7 @@ export default defineConfig({
         // 属する循環依存グループ（global.js 等17ファイル）の初回 import が渡すファイル数が増え、
         // 全テスト並列実行時（esbuild transform のワーカー間競合）に beforeAll の
         // `await import(...)` がデフォルト10秒のhookTimeoutを超えることがある
-        // （ro4/CShadowEquipController.test.ts 等。単体実行や再実行では容易に間に合う＝
+        // （engine/CShadowEquipController.test.ts 等。単体実行や再実行では容易に間に合う＝
         // 循環自体がハングしているのではなく、cold transform の実時間コスト）。
         // 実測に基づき安全マージンとして倍にする。
         hookTimeout: 20000,

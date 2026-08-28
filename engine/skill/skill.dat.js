@@ -17,7 +17,7 @@
 	.claude/context/architecture.md の索引でファイルを引く）へ defineSkill(...) を追加すると同時に
 	ここへ定数を追加すること（末尾に足す。途中挿入は既存セーブデータ・アイテムデータの解釈を壊す）。
 	採番の整合（重複なし・欠番なし・ID昇順）は `pnpm test:run roro/skill-registry`
-	（tests/roro/skill-registry.test.ts。旧 util/skill/verify_skill_ids.py の後継）で検証できる。
+	（tests/engine/skill-registry.test.ts。旧 util/skill/verify_skill_ids.py の後継）で検証できる。
 */
 
 export const SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC		= 1;

@@ -15,7 +15,7 @@
  *
  * 使い方:
  *   node analyze-section-vars.mjs <対象ファイル> <開始行> <終了行> [<開始行> <終了行> ...]
- *   例: node analyze-section-vars.mjs ../engine/foot.js 2621 2662 2663 3994 ...
+ *   例: node analyze-section-vars.mjs ../engine/status/foot.js 2621 2662 2663 3994 ...
  *
  * 出力: セクションごとに「危険」変数があれば一覧表示。全セクションで危険ゼロなら
  *   最後に "✓ 全セクション安全" と出す。
