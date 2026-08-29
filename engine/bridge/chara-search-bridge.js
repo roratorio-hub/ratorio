@@ -3,7 +3,7 @@
  *
  * 実体は engine/chara/chara.js にあるが、engine/skill/skillstate.js から直接 import すると
  *   chara → skillstate → chara
- * の循環が生まれる。head-bridge.js / foot-bridge.js / skill-search-bridge.js と同じ
+ * の循環が生まれる。battlecalc-bridge.js / stallcalc-bridge.js / skill-search-bridge.js と同じ
  * 「依存ゼロの委譲モジュール」で切り離す（import が無いモジュールは「評価途中」になり得ないので
  * 構造的に循環しない）。
  *

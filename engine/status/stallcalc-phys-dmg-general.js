@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: 物理攻撃で与えるダメージ＋○○％（全般）。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { n_A_PassSkill7 } from "../skill/skillstate.js";
@@ -82,7 +82,7 @@ import {
     SKILL_ID_SAVAGENO_TAMASHI, SKILL_ID_SORYUKYAKU, SKILL_ID_TAROUNO_KIZU, SKILL_ID_TENKETSU_MOKU,
     SKILL_ID_TENRACHIMO
 } from "../skill/skill.dat.js";
-import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyPhysicalDamageUpGeneral() {

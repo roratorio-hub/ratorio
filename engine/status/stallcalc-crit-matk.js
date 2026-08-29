@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: 物理攻撃クリティカル率(対モンスター形)・MATK+ の各適用処理。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 各セクションの本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { n_A_PassSkill7, UsedSkillSearch } from "../skill/skillstate.js";
@@ -96,7 +96,7 @@ import {
     TIME_ITEM_ID_OWLDUKENO_SILKHAT_AMPLV2, TIME_ITEM_ID_OWLDUKENO_SILKHAT_AMPLV4,
     TIME_ITEM_ID_OWLDUKENO_SILKHAT_AMPLV6
 } from "../equip/timeitem.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyPlayerCritRateVsMonsterShape(charaData, mobData) {

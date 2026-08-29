@@ -1,8 +1,8 @@
 /**
  * 特定スキルの消費SP軽減効果を取得する（GetCostScalingOfSkill / GetCostFixOfSkill）。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { g_objCharaConfCustomSkill } from "../runtime/global.js";
 import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";

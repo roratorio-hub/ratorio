@@ -2,11 +2,11 @@
  * 被ダメージ計算関連の分割（Phase 3c）。
  *
  * calcReceivedDamage / calcReceivedMagicDamage / getResistanceOfEnvironment /
- * BattleHiDamMaxPain を head.js から移動。本文はバイト単位で不変。
+ * BattleHiDamMaxPain を battlecalc.js から移動。本文はバイト単位で不変。
  *
- * g_receiveDamageAverage / wRef1 / wRef2 / wRef3 / w_HiDam は元 head.js の
+ * g_receiveDamageAverage / wRef1 / wRef2 / wRef3 / w_HiDam は元 battlecalc.js の
  * モジュールレベル scratch 変数のうち、このファイル内の関数からのみ参照されていた
- * （head.js 外・他関数からの参照なしを確認済み）ため、このファイルのモジュール
+ * （battlecalc.js 外・他関数からの参照なしを確認済み）ため、このファイルのモジュール
  * ローカル変数として移設した。
  */
 import { HtmlCreateTextNode, HtmlRemoveAllChild, myInnerHtml } from "../runtime/util.js";
@@ -41,7 +41,7 @@ import {
     RACE_ID_ANIMAL, RACE_ID_DEMON, RACE_ID_FISH, RACE_ID_HUMAN, RACE_ID_PLANT
 } from "../const/EnumRaceId.js";
 import { zokusei } from "../data/element-affinity.dat.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, NumSearch } from "../bridge/foot-bridge.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, NumSearch } from "../bridge/stallcalc-bridge.js";
 import {
     ITEM_ID_ABANDONED_CLOAK, ITEM_ID_ANCIENT_MEGALIS_MANT, ITEM_ID_AURORA_CURTAIN_ROBE, ITEM_ID_BLACK_VEIL,
     ITEM_ID_BURNING_FISH_CLOAK, ITEM_ID_DISCARDED_CAPE, ITEM_ID_DISTORTED_MAGIC_HOOD, ITEM_ID_DRAGON_SCALE_SHAWL,
@@ -95,7 +95,7 @@ import { n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_SieldSp, n_tok } from
 import {
     ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY, UsedSkillSearch, n_A_PassSkill4, n_A_PassSkill7
 } from "../skill/skillstate.js";
-import { BattleCalc999, DamageModifierOfArea } from "../bridge/head-bridge.js";
+import { BattleCalc999, DamageModifierOfArea } from "../bridge/battlecalc-bridge.js";
 
 let g_receiveDamageAverage = 0;
 let wRef1 = [];

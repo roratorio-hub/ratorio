@@ -70,10 +70,10 @@ import {
          n_Nitou,
 } from "../runtime/global.js";
 
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 // C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
 import { notifyChanged } from "../runtime/calc-invalidation.js";
 // C-6: engine-registry（hmjob.js との循環 import 回避）
@@ -85,13 +85,13 @@ import { equipBridge } from "../bridge/equip-bridge.js";
 // C-6: CItemInfoManager.js / hmcard.js との循環 import 回避のため equip-name.js へ移設
 import { GetFlagAppendedItemName, GetFlagAppendedCardName } from "./equip-name.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          Init,
          InitJobInfo, StAllCalc,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          n_A_WeaponType, set_n_A_WeaponType, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence,
          n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus,
@@ -120,15 +120,15 @@ import { RND_OPT_SLOT_COUNT } from "../const/EnumRndOptTypeDataIndex.js";
 import { SKILL_DATA_INDEX_NAME } from "../const/EnumSkillDataIndex.js";
 
 // スパノビの魂による装備制限解除フラグ。本モジュールが所有者。
-// 書き手は foot.js の RefreshSuperNoviceFullWeapon（SetSuperNoviceFullWeapon 経由）と
+// 書き手は stallcalc.js の RefreshSuperNoviceFullWeapon（SetSuperNoviceFullWeapon 経由）と
 // 当モジュールの changeJobSettings（職変更時に undefined へリセット）。
-// ESM 移行(#1394)で foot.js 側にも別個の宣言ができてしまい状態が分断していたため、
+// ESM 移行(#1394)で stallcalc.js 側にも別個の宣言ができてしまい状態が分断していたため、
 // 単一の所有者へ統一して live binding で共有する。
 export var g_bSuperNoviceFullWeapon;
 
 /**
  * スパノビの魂による装備制限解除フラグを設定する。
- * foot.js など他モジュールは import したライブバインディングを直接代入できないため、
+ * stallcalc.js など他モジュールは import したライブバインディングを直接代入できないため、
  * このセッター経由で更新する。
  * @param {boolean|undefined} bFull
  */

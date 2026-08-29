@@ -15,7 +15,7 @@ import { ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumItemDataIndex.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_SPL } from "../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
 import { RACE_ID_DEMON, RACE_ID_UNDEAD } from "../const/EnumRaceId.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
@@ -73,7 +73,7 @@ import { __DIG3, g_VariableCastTimeRate, g_skillManager } from "../runtime/globa
 import {
     ApplyMagicalSkillDamageRatioChange, ApplyMagicalSpecializeMonster, ApplyRegistPVPNormal, ApplyResistElement,
     BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerMatkPercentUp
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 import { SubName } from "./sub-name.js";
 import { CS } from "./calc-state.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
@@ -915,7 +915,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		//----------------------------------------------------------------
 
 		//----------------------------------------------------------------
-		// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
+		// 計算式を CSkillManager.js へ移動させ battlecalc.js をスリム化する対応を進めています
 		//----------------------------------------------------------------
 		/* バード */
 		case SKILL_ID_FUKYOWAON:	// 不協和音

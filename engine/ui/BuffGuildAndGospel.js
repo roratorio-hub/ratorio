@@ -5,7 +5,7 @@ import { SkillObjNew } from "../skill/skill.dat.js";
 import { myInnerHtml } from "../runtime/util.js";
 import { n_A_PassSkill4 } from "../skill/skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
-import { StAllCalc } from "../bridge/foot-bridge.js";
+import { StAllCalc } from "../bridge/stallcalc-bridge.js";
 import { SKILL_DATA_INDEX_NAME } from "../const/EnumSkillDataIndex.js";
 "use strict"
 /**

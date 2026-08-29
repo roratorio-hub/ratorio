@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: 必中攻撃＋○○％。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { n_A_PassSkill7, UsedSkillSearch } from "../skill/skillstate.js";
@@ -64,7 +64,7 @@ import {
     SKILL_ID_SHURASHINDAN, SKILL_ID_SNAKE_EYE, SKILL_ID_SONIC_WAVE, SKILL_ID_SORYUKYAKU, SKILL_ID_SOUL_ATTACK,
     SKILL_ID_TENRACHIMO, SKILL_ID_TRAP_KENKYU, SKILL_ID_WASHINO_ME, SKILL_ID_WIND_CUTTER
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyGuaranteedHitUpPercent() {

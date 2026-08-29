@@ -8,10 +8,10 @@ import { GetElementText, GetRaceText } from "../runtime/common.js";
 import { MonsterObjNew } from "./monster.dat.js";
 import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from "./monstermap.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 import {
     MONSTER_DATA_EXTRA_INDEX_100HIT, MONSTER_DATA_EXTRA_INDEX_95FLEE, MONSTER_DATA_EXTRA_INDEX_ATK_MAX, MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_ELEMENT, MONSTER_DATA_INDEX_HP,
     MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_JOB_EXP, MONSTER_DATA_INDEX_KANA, MONSTER_DATA_INDEX_NAME, MONSTER_DATA_INDEX_RACE,

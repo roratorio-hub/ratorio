@@ -24,7 +24,7 @@ import {
          HEALTYPE_EBI_ZANMAI, HEALTYPE_HEAL, HEALTYPE_HIGHNESS, HEALTYPE_SANCTUARY,
          HEALTYPE_SHINSENNA_EBI, HEALTYPE_SHUGO_FU, HEALTYPE_TURTLE_SPRINKLER,
          HEALTYPE_ZYOKODO, HEAL_TARGETTYPE_PLAYER, HEAL_TARGETTYPE_SELF
-} from "../battle/head.js";
+} from "../battle/battlecalc.js";
 import { GetElementText, GetParamText, GetRaceText, GetSizeText, GetStateText } from "../runtime/common.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
@@ -73,25 +73,25 @@ import {
          g_confDataYozi, g_objCharaConfCustomSpecStatus, costDownForDisp, g_VariableCastTimeRate,
 } from "../runtime/global.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
          GetCoolFixOfSkill, GetEquippedTotalSPCardAndElse,
          GetEquippedTotalSPEquip,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from "../runtime/engine-registry.js";
 
 // リファクタリング計画 Phase 12: DOM非依存の純粋な計算部分は CExtraInfoAreaComponentManagerCalc.js へ抽出した
 import { CalcHealing, CalcRecovery, CalcCapacity, CalcResistElement, CalcResistState, CalcResistStateR, CalcExp } from "./CExtraInfoAreaComponentManagerCalc.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_BaseLV, n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, delayDownForDisp, n_tok,
          n_tok_no_limit,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          SU_STR, SU_AGI, SU_VIT, SU_DEX,
          SU_INT, SU_LUK, n_A_JobLV,

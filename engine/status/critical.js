@@ -1,8 +1,8 @@
 /**
  * クリティカルダメージ増加率・クリティカル率加算値を取得する。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { n_A_PassSkill7, UsedSkillSearch, n_A_PassSkill8 } from "../skill/skillstate.js";
 import {
@@ -70,9 +70,9 @@ import {
     SKILL_ID_SIXTH_SENSE, SKILL_ID_SOUL_ATTACK, SKILL_ID_SPEAR_QUICKEN, SKILL_ID_TRUE_SIGHT
 } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_RING_OF_FLAME_LORD, TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO } from "../equip/timeitem.dat.js";
-import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
-// foot.js 専有のモジュールレベル変数（各関数内で書いてから読む。write-before-read 確認済み）
+// stallcalc.js 専有のモジュールレベル変数（各関数内で書いてから読む。write-before-read 確認済み）
 let itemCountRight = 0;
 let itemCountLeft = 0;
 

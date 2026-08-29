@@ -5,7 +5,7 @@
  * 「宣言も import もされていない変数を読む」バグは検出できない状態だった。
  * ESM は常に strict mode なので、未定義識別子の読み取りは実行時 ReferenceError になる。
  * これは「その分岐を通る操作をしたときだけ」落ちるため、integration 全緑のまますり抜ける。
- * （実例: head.js の SU_INT 等20箇所 / CSkillManager の powCard タイポ / saveload の n_CONFIG_SW）
+ * （実例: battlecalc.js（旧head.js） の SU_INT 等20箇所 / CSkillManager の powCard タイポ / saveload の n_CONFIG_SW）
  *
  * かつて bare read の 97.6% は CGlobalConstManager.DefineEnum() が実行時生成する定数だったが、
  * 現在は全て engine/const/EnumXxx.js の `export const` に移行済みのため除外は不要。
@@ -62,7 +62,7 @@ const DEAD_CODE_ALLOWLIST = new Map([
     ['n_EnchantType', 'hmcard.js BuildUpCardSlotsCard/Enchant は呼び出し元なし（デッド）'],
     ['n_EnchantList', 'hmcard.js BuildUpCardSlotsCard/Enchant は呼び出し元なし（デッド）'],
     ['n_A_PassSkill8', 'mig.job.h.js UpgradeJobTo4th は呼び出し元なし（デッド）。import すると skillstate→item.h→mig.job.h の循環になるため据置'],
-    ['Click_CONFIG', 'foot.js で try/catch に包まれた「次世代版では消える」暫定呼び出し'],
+    ['Click_CONFIG', 'stallcalc.js（旧foot.js）で try/catch に包まれた「次世代版では消える」暫定呼び出し'],
 ]);
 // ファイル単位の除外。現在は該当なし。
 // （mig.itemsp.h.js のデッド関数14個は削除済み。未定義 MIG_* 136箇所はその中にあった）

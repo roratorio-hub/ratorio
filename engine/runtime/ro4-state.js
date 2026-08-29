@@ -1,21 +1,21 @@
 /**
  * ro4 計算エンジンの共有 mutable state（C-6: 脱 window フェーズ）.
  *
- * かつて head.js の Object.defineProperties(window, ...) で公開されていた変数のうち、
+ * かつて battlecalc.js の Object.defineProperties(window, ...) で公開されていた変数のうち、
  * 実際にモジュール間で共有されているものをこのモジュールで管理する。
  * 依存ゼロの葉モジュールであり、どのファイルからも安全に import できる
- * （head.js / foot.js 直接 import の vitest ハング問題を回避。roro 側は roro-state.js）。
+ * （battlecalc.js / stallcalc.js 直接 import の vitest ハング問題を回避。roro 側は roro-state.js）。
  *
  * 読み取り: `import { X } from './ro4-state.js'`（live binding — 常に現在値が見える）
  * 書き込み: ESM の import binding は読み取り専用のため、必ず対応する set_X() を使う。
  * 配列の要素書き込み（X[i] = v）は binding の再代入ではないため import したまま行ってよい。
  */
 
-// ---- セーブデータ（書き込み元: savedata-codec.js / head.js）----
+// ---- セーブデータ（書き込み元: savedata-codec.js / battlecalc.js）----
 export let SaveDataAll = Array(20).fill("ZZZZ");
 export let SaveNameAll = Array(501).fill("ZZZZ");
 
-// ---- foot.js（roro 側）から書き込まれる計算入力 ----
+// ---- stallcalc.js（roro 側）から書き込まれる計算入力 ----
 export let n_SiegeMode = false;
 export let n_A_BaseLV = 1;
 export let n_A_ActiveSkill = null;
@@ -27,14 +27,14 @@ export let delayDownForDisp = 0;
 export let aspdRaw = 0;
 export let n_A_Weapon_zokusei = 0;
 
-// ---- head.js が公開する静的データ（シールドスペル値テーブル）----
+// ---- battlecalc.js が公開する静的データ（シールドスペル値テーブル）----
 export const n_SieldSp = ["off","on",20,35,40,50,60,75,80,85,90,95,98,105,110,120,130,150,100,140,170];
 /** シールドスペル：ATK加算値（表示用）*/
 export const n_SieldSpDum = ["off","on",20,35,40,50,60,75,80,85,90,95,98,100,105,110,120,130,140,150,170];
 /** シールドスペル：順序が違う配列を並び替えるために使われる index 値 */
 export const n_SieldSpNum = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12, 18, 13, 14, 15, 16, 19, 17, 20];
 
-// ---- head.js が公開する計算結果・状態（外部は読み取りのみ）----
+// ---- battlecalc.js が公開する計算結果・状態（外部は読み取りのみ）----
 export let n_Enekyori = false;
 export let n_Delay = [0, 0, 0, 0, 0, 0, 0, 0];
 export let n_tok = Array(451).fill(0);
@@ -45,8 +45,8 @@ export let n_AS_check_3dan = false;
 export let n_CONFIG = [0, 33, 19];
 export let g_perfectHitRate = 0;
 export let g_bDefinedDamageIntervals = false;
-// Phase 3c: head.js 分割（battle-result-html.js / skill-ratio-physical.js）に伴い
-// head.js 内の別関数（calc() / BattleCalc999Core）が書き込み、分割先が読み取る値を移設。
+// Phase 3c: battlecalc.js 分割（battle-result-html.js / skill-ratio-physical.js）に伴い
+// battlecalc.js 内の別関数（calc() / BattleCalc999Core）が書き込み、分割先が読み取る値を移設。
 export let g_bUnknownCasts = false;
 export let wDelay = 0;
 export let w_FLEE = 0;

@@ -1,8 +1,8 @@
 /**
  * モンスター特化補正（物理・魔法）の分割（Phase 3c）。
  *
- * ApplyMagicalSpecializeMonster 系（head.js 前半）と ApplyPhysicalSpecializeMonster
- * （head.js 後半、両者は head.js 内で大きく離れた位置にあった）を1ファイルへまとめた。
+ * ApplyMagicalSpecializeMonster 系（battlecalc.js 前半）と ApplyPhysicalSpecializeMonster
+ * （battlecalc.js 後半、両者は battlecalc.js 内で大きく離れた位置にあった）を1ファイルへまとめた。
  * ApplyMagicalSpecializeMonster と ApplyPhysicalSpecializeMonster20211014（コメントアウト
  * 済みの死んだコード）の間にある死んだコードブロックも含め、本文はバイト単位で不変。
  */
@@ -38,7 +38,7 @@ import {
     MONSTER_DATA_INDEX_SIZE
 } from "../const/EnumMonsterDataIndex.js";
 import { RACE_ID_HUMAN } from "../const/EnumRaceId.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, NumSearch } from "../bridge/foot-bridge.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, NumSearch } from "../bridge/stallcalc-bridge.js";
 import {
     ITEM_ID_ABANDONED_CLOAK, ITEM_ID_ANCIENT_MEGALIS_MANT, ITEM_ID_AURORA_CURTAIN_ROBE, ITEM_ID_BLACK_VEIL,
     ITEM_ID_BURNING_FISH_CLOAK, ITEM_ID_DIAVOLOS_WING, ITEM_ID_DISCARDED_CAPE, ITEM_ID_DISTORTED_MAGIC_HOOD,
@@ -93,7 +93,7 @@ import { g_objCharaConfCustomAtk, g_skillManager } from "../runtime/global.js";
 import { ApplySMatkAmplify } from "../chara/hmjob.js";
 import { n_A_ActiveSkill, n_A_Weapon_zokusei, n_tok } from "../runtime/ro4-state.js";
 import { UsedSkillSearch, n_A_PassSkill7 } from "../skill/skillstate.js";
-import { GetSpiderWebDamageRatio } from "../bridge/head-bridge.js";
+import { GetSpiderWebDamageRatio } from "../bridge/battlecalc-bridge.js";
 
 /**
  * モンスター特化（魔法）を適用する.

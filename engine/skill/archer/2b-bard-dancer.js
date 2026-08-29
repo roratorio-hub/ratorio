@@ -9,7 +9,7 @@
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
-import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import {
     SKILL_ID_ADLIB, SKILL_ID_BRAGINO_UTA, SKILL_ID_DANCENO_RENSHU, SKILL_ID_EIENNO_KONTON, SKILL_ID_ENCORE,
     SKILL_ID_FUKYOWAON, SKILL_ID_FUZIMINO_SIEGFRIED, SKILL_ID_GAKKINO_RENSHU, SKILL_ID_HUMMING,

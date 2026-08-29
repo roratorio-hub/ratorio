@@ -403,25 +403,25 @@ import {
          g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomStatus,
 } from "../runtime/global.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, GetEquippedTotalSPArrow, EquipNumSearchFurubitaSet,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 // C-6: hmjob.js 公開関数（hmjob-bridge 経由・循環 import 回避）
 import { ApplySpecModify, GetTotalPureBasicStatus } from "../bridge/hmjob-bridge.js";
 
-// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+// C-6: 旧 battlecalc.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let itemCountRight = 0;
 let itemCountLeft = 0;
 let cardCount = 0;
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei,
          n_SieldSp,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          SU_STR, SU_AGI, SU_VIT, SU_DEX,
          SU_INT, SU_LUK, n_A_JobLV, n_A_WeaponType,

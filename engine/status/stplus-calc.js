@@ -1,8 +1,8 @@
 /**
  * ステータス加算効果（Str + ◯ など）を算出する（StPlusCalc）。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { n_A_PassSkill4, n_A_PassSkill7, UsedSkillSearch, n_A_PassSkill8 } from "../skill/skillstate.js";
 import {
@@ -117,7 +117,7 @@ import {
     TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD, TIME_ITEM_ID_RUDO_MASK, TIME_ITEM_ID_SHISHIONO_KABUTO,
     TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO, TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from "../equip/timeitem.dat.js";
-import { InitJobInfo, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { InitJobInfo, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 /**
  * 公式サイトで Str + ◯ などと表記される

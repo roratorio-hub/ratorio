@@ -1,8 +1,8 @@
 /**
  * 特定スキルの詠唱時間短縮効果を取得する（変動・固定・強制詠唱の各スケーリング/固定値）。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
 import { GetHigherJobSeriesID, IsSameJobClass, JOB_SERIES_ID_BLACKSMITH } from "../data/mig.job.h.js";
@@ -79,7 +79,7 @@ import {
     SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WEAPON_BLOCKING, SKILL_ID_WEAPON_CRUSH, SKILL_ID_WIND_CUTTER,
     SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 /**
  * 特定スキルの変動詠唱時間を％で取得する。短縮効果が付与されていない場合は100が返される。

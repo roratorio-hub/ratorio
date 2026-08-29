@@ -66,8 +66,8 @@ import { GetFlagAppendedCardName } from "./equip-name.js";
 import {
          n_Nitou,
 } from "../runtime/global.js";
-// C-6: foot.js 公開関数（foot-bridge 経由）
-import { StAllCalc } from "../bridge/foot-bridge.js";
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
+import { StAllCalc } from "../bridge/stallcalc-bridge.js";
 import { CARD_DATA_INDEX_NAME } from "../const/EnumCardDataIndex.js";
 import {
     CARD_KIND_ACCESSORY, CARD_KIND_ACCESSORY_ON1, CARD_KIND_ACCESSORY_ON2, CARD_KIND_ARMS, CARD_KIND_BODY, CARD_KIND_FOOT,

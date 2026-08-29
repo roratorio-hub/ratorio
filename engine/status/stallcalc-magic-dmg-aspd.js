@@ -8,7 +8,7 @@
  * tests/check-stallcalc-boundaries.mjs 参照）につき1ファイルへ統合した。
  *
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
- * n_A_SpeedPOT は foot.js 専有のモジュールレベル変数（未export）のため、
+ * n_A_SpeedPOT は stallcalc.js 専有のモジュールレベル変数（未export）のため、
  * import ではなく呼び出し元（StAllCalc）から明示的に引数で渡す。
  */
 import { n_A_PassSkill7, UsedSkillSearch, n_A_PassSkill8 } from "../skill/skillstate.js";
@@ -112,7 +112,7 @@ import {
     SKILL_ID_TAMASHINO_RENKETSU, SKILL_ID_TUZYO_KOGEKI, SKILL_ID_TWOHAND_QUICKEN
 } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_ENCHANT_HONOIKAZUCHINOOKAMI_AR, TIME_ITEM_ID_RALF_FONG_TWIEGE_666 } from "../equip/timeitem.dat.js";
-import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyMagicalDamageUpAndAspdBase(charaData, n_A_SpeedPOT) {

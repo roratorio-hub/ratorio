@@ -11,10 +11,10 @@ import {
 import { MONSTER_ID_PLAYER, MonsterObjNew } from "./monster.dat.js";
 import { HtmlCreateElement } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          ROUNDDOWN,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 import { MONSTER_BOSSTYPE_NONE } from "../const/EnumMonsterBossType.js";
 import {
     MONSTER_DATA_EXTRA_INDEX_100CRI, MONSTER_DATA_EXTRA_INDEX_100HIT, MONSTER_DATA_EXTRA_INDEX_95FLEE, MONSTER_DATA_EXTRA_INDEX_ATK_MAX, MONSTER_DATA_EXTRA_INDEX_ATK_MIN, MONSTER_DATA_EXTRA_INDEX_DEF_MINUS_MAX,

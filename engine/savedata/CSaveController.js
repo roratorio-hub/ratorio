@@ -7,7 +7,7 @@ import { CSaveDataUnitParse } from "./CSaveDataUnitParse.js";
 import { SAVE_DATA_UNIT_TYPE_SETTINGS } from "./CSaveDataUnit.js";
 // === AUTO-GENERATED IMPORTS ===
 import { CSaveDataManager } from "./CSaveDataManager.js";
-import { calc } from "../battle/head.js";
+import { calc } from "../battle/battlecalc.js";
 import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
@@ -22,7 +22,7 @@ import {
          n_A_JOB,
 } from "../runtime/roro-state.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_BaseLV,
 } from "../runtime/ro4-state.js";

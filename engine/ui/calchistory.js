@@ -1,10 +1,10 @@
 // === AUTO-GENERATED IMPORTS ===
 import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from "../battle/head.js";
+} from "../battle/battlecalc.js";
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from "../runtime/engine-registry.js";
 // Chart.js ESM（auto = 全チャートタイプ登録済みビルド）

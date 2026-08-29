@@ -1,7 +1,7 @@
 /**
  * 再計算の起動ポリシー（リファクタリング計画 Phase 9）。
  *
- * 旧 `AutoCalc(callFrom)`（head.js）は「誰が呼んだか」を表すマジック文字列15種＋
+ * 旧 `AutoCalc(callFrom)`（battlecalc.js）は「誰が呼んだか」を表すマジック文字列15種＋
  * 引数なし呼び出し（16箇所）で再計算の要否を判定していた。本モジュールは
  * 「何が変わったか」（`CalcInput`）へ置き換える。
  *
@@ -9,7 +9,7 @@
  * D2: 呼び出し側31箇所を `AutoCalc("文字列")` → `notifyChanged(CalcInput.X)` に置き換えた（完了）。
  * D3: 再計算ポリシーの読み出し元をDOM（`OBJID_INPUT_ATTACK_METHOD_AUTO_CALC`）から
  *     savedata prop（`CSaveController.getSettingProp(propNameAttackAutoCalc)`）へ移す（完了）。
- * D4: `onResults()` を実際に配線した。`calc()`（head.js）が `battleCalcResultAll` を
+ * D4: `onResults()` を実際に配線した。`calc()`（battlecalc.js）が `battleCalcResultAll` を
  *     返すようになったため、`notifyChanged`/`requestRecalc`/`withBatch` 経由の再計算の
  *     たびに登録済みコールバックへ配信する（完了。残件台帳 B-10）。
  * D5（本コミット）: D1で導入した `LEGACY_CALL_FROM_MAP`/`notifyChangedLegacy`（旧文字列→kind
@@ -26,11 +26,11 @@
  *     唯一の実際のリスクは、savedata prop が未初期化（`CSaveController` 内部の
  *     `#settingDataUnit` が null）の場合に `getSettingProp` が `undefined` を返すこと
  *     （`OBJID_SAVE_BLOCK_MIG` 要素を持たないページでは `LoadSettingFromLocalStorageMIG()`
- *     自体が呼ばれないため発生しうる。`engine/status/foot.js:1788-1790` 参照）。
+ *     自体が呼ばれないため発生しうる。`engine/status/stallcalc.js:1788-1790` 参照）。
  *     `readAutoCalcFlag()` 側で `?? 0` により、DOM版の `HtmlGetObjectValueByIdAsInteger`
  *     の第2引数（デフォルト値0）と同じフォールバックを再現する。
  *
- * ⚠️ ポリシーの意味（`head.js` の旧実装を精査して確定した仕様。書き換え時に変えない）:
+ * ⚠️ ポリシーの意味（`battlecalc.js` の旧実装を精査して確定した仕様。書き換え時に変えない）:
  *   - flag=0: CHARA/BUFF/MOB/DISPLAY のいずれかの変更でのみ再計算（攻撃手段の変更では再計算しない）
  *   - flag=1: 上記に加えて ATTACK_METHOD の変更でも再計算する（flag=1 のポリシーは flag=0 を包含する。
  *     旧実装の `case 1` に `break` が無く `case 0` のブロックへフォールスルーしていたのはこの意図）
@@ -43,7 +43,7 @@
  *     「期待差分ゼロ」の原則により実装の動作をそのまま踏襲する（ドキュメント側の意図を汲んで
  *     CHARA 扱いにすると、flag=0/1のユーザーで新たに再計算が走るようになり、挙動が変わってしまう）。
  */
-import { calc } from "../bridge/head-bridge.js";
+import { calc } from "../bridge/battlecalc-bridge.js";
 import { get as registryGet } from "./engine-registry.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 

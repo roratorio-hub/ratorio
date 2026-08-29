@@ -135,7 +135,7 @@ export function set_g_timeItemConfAllEffective(v) { g_timeItemConfAllEffective =
 import { register } from "./engine-registry.js";
 register('g_constDataManager', g_constDataManager);
 
-// C-6: 性能カスタマイズ系 conf オブジェクト（旧・foot.js が window 直書きしていた分）
+// C-6: 性能カスタマイズ系 conf オブジェクト（旧・stallcalc.js が window 直書きしていた分）
 export let g_objCharaConfCustomAtk = null;
 export let g_objCharaConfCustomDef = null;
 export let g_objCharaConfCustomSkill = null;

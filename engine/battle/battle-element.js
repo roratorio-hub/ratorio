@@ -1,10 +1,10 @@
 /**
  * ダメージ計算における「四次スキルの強制属性」の決定処理.
  *
- * head.js は vitest から import できない（依存ゼロの葉モジュールではないため。
+ * battlecalc.js は vitest から import できない（依存ゼロの葉モジュールではないため。
  * ro4/hmjob.test.ts 等が exclude されている理由と同じ save-data 循環 import に触れる）。
- * そこでこの判定ロジックだけを head.js の外へ切り出し、ユニットテスト可能にする。
- * head.js 側は本モジュールが返した値を set_n_A_Weapon_zokusei() に渡すだけの薄い層になる。
+ * そこでこの判定ロジックだけを battlecalc.js の外へ切り出し、ユニットテスト可能にする。
+ * battlecalc.js 側は本モジュールが返した値を set_n_A_Weapon_zokusei() に渡すだけの薄い層になる。
  */
 
 import { CSkillData } from "../skill/CSkillManager.js";

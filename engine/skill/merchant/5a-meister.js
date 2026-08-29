@@ -686,7 +686,7 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;			
 			this.element = CSkillData.ELEMENT_VOID;
-			// Def無視設定は head.js の _SUB_ApplyMonsterDefence にある
+			// Def無視設定は battlecalc.js の _SUB_ApplyMonsterDefence にある
 			this.WeaponCondition = function(weapon) {
 				// 魔導ギア搭乗はスキル倍率以外に追加ATKへの補正があるので職固有自己支援で設定する
 				const armed_gear = UsedSkillSearch(SKILL_ID_MADOGEAR) === 1;

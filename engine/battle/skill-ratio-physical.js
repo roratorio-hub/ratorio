@@ -1,11 +1,11 @@
 /**
  * 物理判定攻撃に対するスキル倍率の増減の分割（Phase 3c）。
  *
- * GetPhysicalSkillDamageRatioChange を head.js から移動。本文はバイト単位で不変。
+ * GetPhysicalSkillDamageRatioChange を battlecalc.js から移動。本文はバイト単位で不変。
  *
- * itemCountRight / itemCountLeft は元 head.js のモジュールレベル scratch 変数だが、
+ * itemCountRight / itemCountLeft は元 battlecalc.js のモジュールレベル scratch 変数だが、
  * この関数内では「書いてから読む」で完結しており（read-before-write ゼロ件）、
- * head.js 側の GetSizeModify など他の利用箇所とは独立しているため、
+ * battlecalc.js 側の GetSizeModify など他の利用箇所とは独立しているため、
  * このファイルのローカル変数として再宣言している（Phase 1 の itemCount 処理と同じ方針）。
  */
 import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";
@@ -35,7 +35,7 @@ import {
     JOB_ID_GENETIC, JOB_ID_MECHANIC, JOB_ID_RANGER, JOB_ID_REBELLION, JOB_ID_RUNEKNIGHT, JOB_ID_SHADOWCHASER,
     JOB_ID_STAR_EMPEROR
 } from "../const/EnumJobId.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import {
     ITEM_ID_AKKI_RASETSUNO_YUBIWA, ITEM_ID_AKUMANO_TE, ITEM_ID_ARKUIENNO_NECKLACE, ITEM_ID_AVARECO,
     ITEM_ID_AVENGER_FUMASHURIKEN, ITEM_ID_AVENGER_HUNTERBOW, ITEM_ID_AVENGER_LANCE, ITEM_ID_AVENGER_TWOHAND_AXE,
@@ -128,7 +128,7 @@ import { IsSameJobClass } from "../data/mig.job.h.js";
 import { g_confDataSanzi, g_objCharaConfCustomSkill } from "../runtime/global.js";
 import { TyouEnkakuSousa3dan, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Arrow, n_A_BaseLV } from "../runtime/ro4-state.js";
 import { UsedSkillSearch } from "../skill/skillstate.js";
-import { ApplyPhysicalSkillDamageRatioChangeSubArcanaCard } from "../bridge/head-bridge.js";
+import { ApplyPhysicalSkillDamageRatioChangeSubArcanaCard } from "../bridge/battlecalc-bridge.js";
 
 /**
  * 物理判定攻撃に対するスキル倍率の増減を適用する.

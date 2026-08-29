@@ -52,29 +52,29 @@ import {
          g_confDataNizi, g_confDataYozi, g_objCharaConfCustomSpecStatus,
 } from "../runtime/global.js";
 
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          calc, ApplyPhysicalSpecializeMonster,
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 // C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
 import { notifyChanged } from "../runtime/calc-invalidation.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, InitJobInfo, StAllCalc,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 // ↑ GetEquippedTotalSPEquip/GetEquippedTotalSPCardAndElse の実体は equipped-sp.js へ
 //   移動済み。equipped-sp.js が g_pureStatus を本ファイル(hmjob.js)から import しているため、
 //   本ファイルから equipped-sp.js への直接 import は 2 ファイル間の循環になり不可
 //   （実際に全消費先で直接 import を試みたところ既存の循環グループが 5→1・34→49ファイルに
 //   合体した。ブリッジ経由に統一して回避している）。
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_ActiveSkill, n_A_ActiveSkillLV, n_tok,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          SU_STR, SU_AGI, SU_VIT, SU_DEX,
          SU_INT, SU_LUK, n_A_WeaponType,
@@ -1379,7 +1379,7 @@ export function ApplyPAtkLeftHandPenalty(charaData, specData, mobData, dmg) {
 
 /**
  * 特性データの補正を適用する.
- * @remarks foot.js を移植したくなかったため、無理やり分離した
+ * @remarks stallcalc.js を移植したくなかったため、無理やり分離した
  * @remarks ただ、呼び出し側も途中で追加計算していたりするため、特性ごとに個別に呼び出し処理をかかないといけない
  */
 export function ApplySpecModify(spid, spVal) {

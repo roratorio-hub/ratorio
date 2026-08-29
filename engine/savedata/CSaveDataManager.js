@@ -99,17 +99,17 @@ import {
          g_objCharaConfCustomDef, g_objCharaConfCustomSkill, g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus,
 } from "../runtime/global.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          RefreshSuperNoviceFullWeapon, StAllCalc,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_Arrow, set_n_A_Arrow,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
          n_A_SHOES_DEF_PLUS, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence, n_A_HEAD_DEF_Transcendence,
@@ -1283,7 +1283,7 @@ export class CSaveDataManager {
 		if (IsSameJobClass(JOB_ID_SUPERNOVICE) || IsSameJobClass(JOB_ID_SUPERNOVICE_PLUS)) {
 			// getProp() は BigInt を返す（CSaveDataUnitBase.setProp が toSafeBigInt() を通すため）。
 			// `true && bigint` は BigInt をそのまま返してしまい、呼び出し先の `===` 比較
-			// （foot.js の g_bSuperNoviceFullWeapon === bFull）が常に不一致になっていた。
+			// （stallcalc.js の g_bSuperNoviceFullWeapon === bFull）が常に不一致になっていた。
 			// 明示的に Boolean へ変換する。
 			const bIgnore = Boolean(saveDataUnit.getProp(CSaveDataConst.propNameSubIgnoreEquipRestrict));
 			RefreshSuperNoviceFullWeapon(bIgnore);

@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: 魔法攻撃で与えるダメージ＋○○％（対属性・サイズ・ボス・一般モンスター）。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { g_objCharaConfCustomAtk } from "../runtime/global.js";
@@ -51,7 +51,7 @@ import {
     SKILL_ID_LAUDARAMUS, SKILL_ID_MELANCHOLY, SKILL_ID_MYAUMYAU, SKILL_ID_PSYCHIC_WAVE, SKILL_ID_SHIRYO_BAKUHATSU,
     SKILL_ID_STRIKING
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyMagicalDamageUpVsMonsterElement() {

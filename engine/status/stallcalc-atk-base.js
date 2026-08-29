@@ -9,7 +9,7 @@
 import { n_A_PassSkill4, UsedSkillSearch, n_A_PassSkill8 } from "../skill/skillstate.js";
 import { GetLowerJobSeriesID } from "../data/mig.job.h.js";
 import { g_confDataSanzi, n_Nitou } from "../runtime/global.js";
-import { ApplyElementRatio } from "../battle/head.js";
+import { ApplyElementRatio } from "../battle/battlecalc.js";
 import { n_A_ActiveSkill, n_A_ActiveSkillLV, n_tok } from "../runtime/ro4-state.js";
 import { CCharaConfSanzi } from "../chara/CCharaConfSanzi.js";
 import { CExtraInfoAreaComponentManager } from "../ui/CExtraInfoAreaComponentManager.js";
@@ -30,7 +30,7 @@ import {
     n_A_WeaponLV_seirenATK, n_A_WeaponType, n_A_Weapon_ATK, n_A_WeaponZokusei,
 } from "../runtime/roro-state.js";
 import { SKILL_ID_ENVENOM, SKILL_ID_POISON_REACT, SKILL_ID_TENKETSU_HAN } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 export function ApplyPlayerAtkBase(charaData, mobData) {
 	let sklLv = 0;

@@ -14,7 +14,7 @@ import {
 
 import { CAttackMethodAreaComponentManager } from "../battle/CAttackMethodAreaComponentManager.js";
 import { CTimeItemAreaComponentManager } from "../equip/CTimeItemAreaComponentManager.js";
-import { StAllCalc } from "../bridge/foot-bridge.js";
+import { StAllCalc } from "../bridge/stallcalc-bridge.js";
 import { RebuildStatusSelect, CalcStatusPoint } from "../chara/hmjob.js";
 import { CONST_DATA_KIND_PET } from "../const/EnumConstDataKind.js";
 import { FRIENDLITY_ID_AUTO, FRIENDLITY_ID_COUNT } from "../const/EnumFriendlityId.js";

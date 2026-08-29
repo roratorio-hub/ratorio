@@ -73,31 +73,31 @@ import {
          n_A_JOB,
 } from "../runtime/roro-state.js";
 
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          GetActRateSandansho,
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 // C-6: 再計算ポリシー（リファクタリング計画 Phase 9）
 import { notifyChanged, CalcInput } from "../runtime/calc-invalidation.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedSPValueArrayEquip, GetEquippedSPValueArrayCardAndElse, StAllCalc,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 
-// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+// C-6: 旧 battlecalc.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let itemCountRight = 0;
 let itemCountLeft = 0;
 let cardCount = 0;
 let w_DMG_AS_OverHP = 0;
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_ActiveSkill, n_A_ActiveSkillLV, n_Enekyori, w_DMG,
          n_AS_check_3dan,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          SU_LUK, n_A_JobLV, n_A_LUK, n_A_WeaponType,
          n_A_HEAD_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5,

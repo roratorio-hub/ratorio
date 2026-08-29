@@ -1,19 +1,19 @@
 /**
- * foot.js の公開関数への軽量ブリッジ（依存ゼロ・C-6 後半）.
+ * stallcalc.js の公開関数への軽量ブリッジ（依存ゼロ・C-6 後半）.
  *
- * foot.js を直接 import すると循環・vitest ハングを引き起こすため（reference.md 参照）、
+ * stallcalc.js を直接 import すると循環・vitest ハングを引き起こすため（reference.md 参照）、
  * 外部ファイルは本モジュールの委譲ラッパーを import して呼び出す。
- * 実体は foot.js がモジュール評価時に __registerFootFunctions() で登録する。
+ * 実体は stallcalc.js がモジュール評価時に __registerFootFunctions() で登録する。
  * 未登録環境（pages/ ページ・ユニットテスト）では各ラッパーは no-op（undefined を返す）。
  *
  * ※ StAllCalc は workspace TS（rtxApiImport.ts）が window 経由で呼ぶ Workspace I/F のため
- *    foot.js の window.StAllCalc は Phase B（engine-registry 導入）まで残置。
+ *    stallcalc.js の window.StAllCalc は Phase B（engine-registry 導入）まで残置。
  *    エンジン内部からは本ブリッジの StAllCalc を import して呼ぶ。
  */
 
 const _reg = {};
 
-/** foot.js がモジュール評価時に実体を登録する */
+/** stallcalc.js がモジュール評価時に実体を登録する */
 export function __registerFootFunctions(fns) {
 	Object.assign(_reg, fns);
 }

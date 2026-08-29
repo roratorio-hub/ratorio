@@ -1,7 +1,7 @@
 /**
  * DOM読み書きゼロのダメージ計算API（リファクタリング計画 Phase 10）。
  *
- * `StAllCalc()`（foot.js）/ `calc()`（head.js）はどちらもDOM経由の入力読み取り・
+ * `StAllCalc()`（stallcalc.js）/ `calc()`（battlecalc.js）はどちらもDOM経由の入力読み取り・
  * DOM経由の結果描画を内部で行う。本モジュールはその中間にある純粋な計算だけを
  * 取り出して公開する:
  *
@@ -20,8 +20,8 @@
  */
 import { createEmptyModel } from "./calc-model.js";
 import { ExtractModelFromDom, HydrateFromModel } from "../status/stallcalc-hydrate.js";
-import { StAllCalcCore } from "../status/foot.js";
-import { ComputeBattleResult } from "../battle/head.js";
+import { StAllCalcCore } from "../status/stallcalc.js";
+import { ComputeBattleResult } from "../battle/battlecalc.js";
 import { register } from "./engine-registry.js";
 
 /**

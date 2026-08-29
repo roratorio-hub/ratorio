@@ -22,7 +22,7 @@ import {
     HEALTYPE_COLUCEO_HEAL, HEALTYPE_DILECTIO_HEAL, HEALTYPE_EBI_ZANMAI, HEALTYPE_HEAL,
     HEALTYPE_HIGHNESS, HEALTYPE_SANCTUARY, HEALTYPE_SHINSENNA_EBI, HEALTYPE_SHUGO_FU,
     HEALTYPE_TURTLE_SPRINKLER, HEALTYPE_ZYOKODO, HealCalc,
-} from "../battle/head.js";
+} from "../battle/battlecalc.js";
 import {
     SKILL_ID_DRAGON_TRAINING, SKILL_ID_KIHE_SHUREN, SKILL_ID_MADOGEAR, SKILL_ID_MEDITATIO,
 } from "../skill/skill.dat.js";
@@ -102,7 +102,7 @@ export function CalcHealing(healType, healTarget, ptmCount) {
                 break;
         }
         for (let lv = 0; lv <= lvMax; lv++) {
-            // HealCalc()関数は engine/battle/head.js で定義されています
+            // HealCalc()関数は engine/battle/battlecalc.js で定義されています
             valueMinArray[lv] = HealCalc(lv, healType, 0, healTarget, ptmCount);
             valueMaxArray[lv] = HealCalc(lv, healType, 2, healTarget, ptmCount);
         }

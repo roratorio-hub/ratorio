@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: MDEF無視・属性モンスター被ダメージ軽減・属性物理ダメージ増加。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import {
@@ -38,7 +38,7 @@ import {
 import {
     SKILL_ID_FRIGNO_UTA, SKILL_ID_FROST_NOVA, SKILL_ID_HELL_INFERNO, SKILL_ID_NYAN_GRASS, SKILL_ID_SIGHT_RASHER
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyMdefIgnore(mobData) {

@@ -1,17 +1,17 @@
 /**
- * head.js のダメージ計算（BattleCalc999Core）用スクラッチ状態。
+ * battlecalc.js のダメージ計算（BattleCalc999Core）用スクラッチ状態。
  *
  * 1 回のダメージ計算中だけ有効な作業変数で、物理スキル基本/特殊計算式・
  * 魔法判定スキルの各計算式ブロック（`head-skill-formula-*.js` として分割予定）と
- * head.js 本体の両方から読み書きされる。ESM では import した束縛に代入できないため
+ * battlecalc.js 本体の両方から読み書きされる。ESM では import した束縛に代入できないため
  * 単純な `export let` では共有できず、1 つのオブジェクトへ集約している。
  *
- * head.js 外からは一切参照されない（head.js とその分割先だけが import する）。
+ * battlecalc.js 外からは一切参照されない（battlecalc.js とその分割先だけが import する）。
  * `export let` + `set_XXX()` という他ファイルの通例からは意図的に外れている
  * （`wbairitu += x` のような複合代入が700箇所以上あり、セッター呼び出しへの
  * 書き換えは差分が大きくなりすぎるため）。
  *
- * 各プロパティの説明は head.js の元 `let` 宣言に付いていた JSDoc を引き継いでいる。
+ * 各プロパティの説明は battlecalc.js の元 `let` 宣言に付いていた JSDoc を引き継いでいる。
  */
 export const CS = {
     /** レックスエーテルナの計算に係るフラグ. 解析不足でロジックが追えてない. */

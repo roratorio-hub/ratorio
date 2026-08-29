@@ -10,8 +10,8 @@ import {
 } from '@engine/equip/hmrndopt.js';
 // dewindow: AutoCalc/StAllCalc は bare global を廃し head-bridge/foot-bridge 経由になった。
 // テストは各 bridge にフェイクを登録して呼び出しを観測する（globalThis スパイは効かない）。
-import { __registerHeadFunctions } from '@engine/bridge/head-bridge.js';
-import { __registerFootFunctions } from '@engine/bridge/foot-bridge.js';
+import { __registerHeadFunctions } from '@engine/bridge/battlecalc-bridge.js';
+import { __registerFootFunctions } from '@engine/bridge/stallcalc-bridge.js';
 // refactor/fix-dependency-loop: OnChangeRandomEnchant は equip.js との循環 import 回避のため
 // equip-bridge.js 経由の呼び出しになった。実体を明示的に登録する（equip.js は本番では
 // hmrndopt.js と一緒に必ずロードされ自己登録するが、このテストは hmrndopt.js 単体を見るため）。

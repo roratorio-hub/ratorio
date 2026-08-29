@@ -23,7 +23,7 @@ import { ITEM_SP_TIME_OBJ } from "./timeitem.dat.js";
 // C-6: equip.js との循環 import 回避のため equip-name.js から直接参照
 import { GetFlagAppendedCardName, GetFlagAppendedItemName } from "./equip-name.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          n_A_costume, g_itemIdArray,
 } from "../runtime/roro-state.js";

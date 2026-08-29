@@ -12,7 +12,7 @@
  *
  * セーブデータ復元テストで検出できる主なバグ（スイート 3）:
  *   - Pattern A バリアント: let X（classic script）と window.X の乖離
- *     例: n_A_Arrow が head.js の let バインディングを読んで矢の選択値がズレる
+ *     例: n_A_Arrow が battlecalc.js の let バインディングを読んで矢の選択値がズレる
  *   - Pattern B: 非ESMスクリプトが export let 配列を差し替えて習得スキル表示が消える
  *   - 折りたたみセクション内要素（CConfBase 等）がクリックなしでは生成されないバグ
  *
@@ -435,12 +435,12 @@ describe('ro4/m/calcx.html 起動テスト', () => {
     });
 
     // スーパーノービスの魂 ON で装備制限が解除されることを確認する。
-    // 回帰背景: スパノビの魂フラグ g_bSuperNoviceFullWeapon は foot.js（書き手・
+    // 回帰背景: スパノビの魂フラグ g_bSuperNoviceFullWeapon は stallcalc.js（書き手・
     // RefreshSuperNoviceFullWeapon）と equip.js（読み手・RebuildArmorsSelect 等）で
     // 共有される必要があるが、ESM 移行(#1394)で両ファイルに別個のモジュールローカル変数が
-    // 宣言され状態が分断していた。結果 foot.js が値を立てても equip.js 側は undefined のままで
+    // 宣言され状態が分断していた。結果 stallcalc.js が値を立てても equip.js 側は undefined のままで
     // 「魂を ON にしても効果が出ない」バグになっていた。
-    // ユニットでは foot.js が巨大で import できずクロスモジュール結線を検証できないため
+    // ユニットでは stallcalc.js が巨大で import できずクロスモジュール結線を検証できないため
     // 実機（calcx.html）で「魂 ON → 頭装備の選択肢が増える」ことを確認する。
     it('スーパーノービスの魂 ON で頭装備の選択肢が解禁される（魂フラグのクロスモジュール同期）', async () => {
         let result: { found: boolean; headBefore: number; headAfter: number; tsBefore: number; tsAfter: number } =

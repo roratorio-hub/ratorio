@@ -9,7 +9,7 @@ import {
          n_A_JOB, g_lucky_over,
 } from "../runtime/roro-state.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_BaseLV,
 } from "../runtime/ro4-state.js";

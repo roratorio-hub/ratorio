@@ -1,8 +1,8 @@
 /**
  * 特定スキルのクールタイム／消費SP短縮効果を取得する（GetCoolFixOfSkill）。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
 import { IsSameJobClass } from "../data/mig.job.h.js";

@@ -24,7 +24,7 @@ import { MIG_PARAM_ID_POW } from "../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF } from "../const/EnumMonsterDataIndex.js";
 import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../const/EnumSizeId.js";
 import { zokusei } from "../data/element-affinity.dat.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
@@ -86,7 +86,7 @@ import {
     BaiTaisei_A_SP, BaiTaisei_C, BaiTaisei_E, BuildBattleResultHtml, BuildCastAndDelayHtml, GetActHitRateAll,
     GetBattlerAtkPercentUp, GetBattlerMatkPercentUp, GetFixedAppendAtk, GetPerfectHitDamage, GetSpiderWebDamageRatio,
     HealCalc, TYPE_SYUUREN
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 import { SubName } from "./sub-name.js";
 import { CS } from "./calc-state.js";
 import { GetPAtk, GetTotalSpecStatus } from "../chara/hmjob.js";

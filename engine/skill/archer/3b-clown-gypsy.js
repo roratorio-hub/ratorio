@@ -10,7 +10,7 @@ import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
-import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import {
     SKILL_ID_ARRAW_VULKAN, SKILL_ID_HELLMODENO_TUE, SKILL_ID_MARIONET_CONTROL, SKILL_ID_TSUKIAKARINO_SHITADE,
     SKILL_ID_UNMEINO_TALOTCARD, SKILL_ID_WATASHIWO_SHIBARANAIDE

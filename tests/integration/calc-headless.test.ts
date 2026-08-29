@@ -53,7 +53,7 @@ async function gotoFixture(query: string) {
     //
     // 加えて calc-headless.js（_ratorioReg.extractModelFromDom / calcFromModel を登録）は
     // calcx.html 内で CAttackMethodAreaComponentManager.js より後に読み込まれる
-    // <script type="module"> であり、head.js/foot.js 経由の依存チェーンが長いぶん評価完了が
+    // <script type="module"> であり、battlecalc.js/stallcalc.js 経由の依存チェーンが長いぶん評価完了が
     // 遅れうる。上記の条件だけでは「攻撃手段セレクトは整った」ことしか保証できず、
     // フルスイート実行時の負荷が高いと captureHeadless() 側が _ratorioReg の未登録関数を
     // 呼んで `reg.extractModelFromDom is not a function` になることがあった
@@ -80,8 +80,8 @@ async function captureDomDriven(page: Awaited<ReturnType<typeof gotoFixture>>['p
     return page.evaluate(async () => {
         const dynamicImport = new Function('specifier', 'return import(specifier);') as
             (specifier: string) => Promise<Record<string, any>>;
-        const footBridge = await dynamicImport('/engine/bridge/foot-bridge.js');
-        const head = await dynamicImport('/engine/battle/head.js');
+        const footBridge = await dynamicImport('/engine/bridge/stallcalc-bridge.js');
+        const head = await dynamicImport('/engine/battle/battlecalc.js');
         const retValArray = footBridge.StAllCalc();
         const { battleCalcResultAll } = head.ComputeBattleResult(retValArray);
         return JSON.parse(JSON.stringify(battleCalcResultAll));

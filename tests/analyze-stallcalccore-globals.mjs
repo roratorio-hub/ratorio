@@ -2,12 +2,13 @@
  * StAllCalcCore()（残件台帳 B-09 調査用）が読み書きする roro-state.js/ro4-state.js の
  * export let 変数（計85個）について、以下を機械的に集計する:
  *
- *   1. 「Core」＝ StAllCalcCore() 自身の本体（foot.js の該当行範囲）
+ *   1. 「Core」＝ StAllCalcCore() 自身の本体（stallcalc.js の該当行範囲。旧foot.js。
+ *      B-25・B-26で移動・改名済み）
  *      + そこから呼ばれる stallcalc-*.js / stplus-calc.js 群（旧 foot-stallcalc-*.js /
  *      foot-stplus-calc.js。B-26a でプレフィックス撤廃済み）
- *      （foot-bridge.js・stallcalc-hydrate.js は除く。詳細はコード内 CORE_HELPER_FILES）
+ *      （stallcalc-bridge.js（旧foot-bridge.js）・stallcalc-hydrate.js は除く。詳細はコード内 CORE_HELPER_FILES）
  *      で「読むだけ」「書くだけ」（= set_X() 呼び出し）「両方」のどれか
- *   2. Core の外（他ファイル・foot.js の他関数）でも読み書きされているか
+ *   2. Core の外（他ファイル・stallcalc.js の他関数）でも読み書きされているか
  *      （= 引数/戻り値化する際に影響が及ぶ範囲）
  *
  * ⚠️ 初版（Core = StAllCalcCore の280行のみ）では85個中73個が「未使用」と出て
@@ -33,23 +34,24 @@ import { Linter } from 'eslint';
 
 const REPO = join(process.cwd(), '..');
 // 残件台帳 B-19（engine/トップレベルのドメイン別再配置）で roro-state.js/ro4-state.js は
-// engine/runtime/ へ、foot.js は engine/status/ へ移動した。
+// engine/runtime/ へ移動、残件台帳 B-25・B-26 で foot.js は engine/status/stallcalc.js へ
+// 移動・改名した。
 const RORO_STATE = 'engine/runtime/roro-state.js';
 const RO4_STATE = 'engine/runtime/ro4-state.js';
-const FOOT_JS = 'engine/status/foot.js';
+const FOOT_JS = 'engine/status/stallcalc.js';
 // StAllCalcCore() の行範囲（1-indexed、両端含む）。ズレたら再確認すること:
-//   grep -n "^export function StAllCalcCore" engine/status/foot.js
+//   grep -n "^export function StAllCalcCore" engine/status/stallcalc.js
 const CORE_START = 1351;
 const CORE_END = 1630;
 
 // 「Core」の実体は StAllCalcCore() 自身の280行だけではなく、そこから呼ばれる
 // stallcalc-*.js / stplus-calc.js 群（.claude/context/architecture.md の
-// Shell/Adapter/Core 対応表を参照）。foot.js 自身と stallcalc-hydrate.js（Adapter。
+// Shell/Adapter/Core 対応表を参照）。stallcalc.js 自身と stallcalc-hydrate.js（Adapter。
 // 意図的にDOMを読む）は除く。B-26a でプレフィックス撤廃したため「foot-」では
-// もう判定できず、「engine/status/ 配下から foot.js とAdapter1本を除いた全部」で判定する。
+// もう判定できず、「engine/status/ 配下から stallcalc.js とAdapter1本を除いた全部」で判定する。
 const CORE_HELPER_FILES = readdirSync(join(REPO, 'engine/status'))
     .filter((f) => f.endsWith('.js'))
-    .filter((f) => f !== 'foot.js' && f !== 'stallcalc-hydrate.js')
+    .filter((f) => f !== 'stallcalc.js' && f !== 'stallcalc-hydrate.js')
     .map((f) => `engine/status/${f}`);
 
 const SCAN_DIRS = ['engine'];

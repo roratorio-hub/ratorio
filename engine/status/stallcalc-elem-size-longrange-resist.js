@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: 属性耐性・属性モンスター耐性・サイズ耐性・遠距離攻撃耐性。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
@@ -36,7 +36,7 @@ import {
     n_A_BODY_DEF_PLUS, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus
 } from "../runtime/roro-state.js";
 import { SKILL_ID_ADJUSTMENT } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyElementResist() {

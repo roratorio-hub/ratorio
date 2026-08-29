@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { Click_A4 } from '@engine/ui/BuffGuildAndGospel.js';
 import { n_A_PassSkill4 } from '@engine/skill/skillstate.js';
-// dewindow: calc は head-bridge 経由（旧 './head.js' 直接 import → 単体テストが OOM していた）。
-import { __registerHeadFunctions } from '@engine/bridge/head-bridge.js';
+// dewindow: calc は head-bridge 経由（旧 './battlecalc.js' 直接 import → 単体テストが OOM していた）。
+import { __registerHeadFunctions } from '@engine/bridge/battlecalc-bridge.js';
 // リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
 // CSaveController.getSettingProp（engine-registry 経由）。
 import { register as registryRegister } from '@engine/runtime/engine-registry.js';

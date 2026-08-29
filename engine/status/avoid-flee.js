@@ -1,8 +1,8 @@
 /**
  * 完全回避・固定詠唱時間短縮率・FLEE の各算出関数。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { n_A_PassSkill4, n_A_PassSkill7, UsedSkillSearch, n_A_PassSkill8 } from "../skill/skillstate.js";
 import {
@@ -118,9 +118,9 @@ import {
     SKILL_ID_TSUKINO_HIKARI, SKILL_ID_TSUKINO_KAMAE, SKILL_ID_UNLIMIT, SKILL_ID_WIND_WALK
 } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_KOKUYOKUNO_SHITO, TIME_ITEM_ID_RATATOSK_CAD } from "../equip/timeitem.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
-// foot.js 専有のモジュールレベル変数（getFlee 内で書いてから読む。write-before-read 確認済み）
+// stallcalc.js 専有のモジュールレベル変数（getFlee 内で書いてから読む。write-before-read 確認済み）
 let itemCountRight = 0;
 let itemCountLeft = 0;
 

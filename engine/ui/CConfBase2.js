@@ -4,10 +4,10 @@ import "./CConfBase.js";
 import { COLOR_CODE_TABLE_HEADER_IS_NOT_SET, COLOR_CODE_TABLE_HEADER_IS_SET } from "../runtime/common.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectCheckedById, ValueRangeModify } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 import {
     CONTROL_TYPE_CHECKBOX, CONTROL_TYPE_CHECKBOX_SPECIAL, CONTROL_TYPE_DUMMY, CONTROL_TYPE_NUMBER, CONTROL_TYPE_SELECT, CONTROL_TYPE_SELECTBOX_NUMBER,
     CONTROL_TYPE_SELECTBOX_PERCENT, CONTROL_TYPE_SELECTBOX_SPECIAL, CONTROL_TYPE_SPECIAL, CONTROL_TYPE_TEXT, CONTROL_TYPE_TEXTBOX_NUMBER, CONTROL_TYPE_TEXTBOX_SPECIAL,

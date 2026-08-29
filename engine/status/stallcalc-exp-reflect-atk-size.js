@@ -1,10 +1,10 @@
 /**
  * StAllCalc セクション分割: 獲得経験値＋○○％・近接物理ダメージ反射・武器攻撃力＋○○％・サイズ100%。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  * n_B_HIT/n_B_FLEE はコードベース全体で書き込みのみ・参照箇所なし（確認済み）のため
- * ローカル変数化した（元々 foot.js のモジュールレベル変数だったが未 export・未参照）。
+ * ローカル変数化した（元々 stallcalc.js のモジュールレベル変数だったが未 export・未参照）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
 import {
@@ -12,7 +12,7 @@ import {
     JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_TAEGKUON, JOB_SERIES_ID_THIEF
 } from "../data/mig.job.h.js";
 import { g_confDataSanzi, g_objCharaConfCustomAtk } from "../runtime/global.js";
-import { n_SP_SKILL } from "../battle/head.js";
+import { n_SP_SKILL } from "../battle/battlecalc.js";
 import { ApplySpecModify, ApplySpecStatusModifications, DisplayReferStatusAll } from "../chara/hmjob.js";
 import {
     n_A_ActiveSkill, n_A_QUAKE_KIRI, n_tok, n_tok_no_limit, set_n_A_QUAKE_KIRI
@@ -80,7 +80,7 @@ import {
     SKILL_ID_HITO_DAICHINO_KENKYU, SKILL_ID_SECRAMENT, SKILL_ID_SENRYU_SHOTEN,
     SKILL_ID_STONE_HARD_SKIN, SKILL_ID_TAIYONO_KAMAE
 } from "../skill/skill.dat.js";
-import { NumSearch, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { NumSearch, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyExpUpPercent() {

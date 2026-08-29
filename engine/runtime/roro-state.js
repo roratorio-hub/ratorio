@@ -1,19 +1,19 @@
 /**
  * roro 計算エンジンの共有 mutable state（C-6: 脱 window フェーズ）.
  *
- * かつて foot.js の Object.defineProperties(window, ...) で公開されていた変数を
+ * かつて stallcalc.js の Object.defineProperties(window, ...) で公開されていた変数を
  * 段階的にこのモジュールへ移動する。依存ゼロの葉モジュールであり、
- * どのファイルからも安全に import できる（head.js / foot.js 直接 import の
+ * どのファイルからも安全に import できる（battlecalc.js / stallcalc.js 直接 import の
  * vitest ハング問題を回避できる。経緯: .claude/context/dewindow/reference.md）。
  *
  * 読み取り: `import { X } from './roro-state.js'`（live binding — 常に現在値が見える）
  * 書き込み: ESM の import binding は読み取り専用のため、必ず対応する setX() を使う。
  */
 
-// ---- foot.js が公開する静的データ ----
+// ---- stallcalc.js が公開する静的データ ----
 export const SpeedPotName = ["なし","スピードアップポーション","ハイスピードポーション","バーサークポーション"];
 
-// ---- foot.js から移行した共有 state（C-6 一括移行分）----
+// ---- stallcalc.js から移行した共有 state（C-6 一括移行分）----
 
 export let SU_STR = 0;
 export let SU_AGI = 0;
@@ -132,7 +132,7 @@ export function set_g_lucky_over(v) { g_lucky_over = v; }
 export function set_n_CastCutForDisp(v) { n_CastCutForDisp = v; }
 export function set_n_A_Weapon2Type(v) { n_A_Weapon2Type = v; }
 
-// ---- 3f-5: 旧 foot.js の Object.defineProperties 管理だった装備・カード配列 ----
+// ---- 3f-5: 旧 stallcalc.js の Object.defineProperties 管理だった装備・カード配列 ----
 // itemset.h.js の CheckAndApplyItemSetEquipping() が配列ごと差し替えるため set_ が必要
 export let n_A_Equip = [];
 export let n_A_card = [];

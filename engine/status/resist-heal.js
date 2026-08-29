@@ -1,8 +1,8 @@
 /**
  * 状態異常耐性・属性耐性・HP回復力の各適用関数。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { n_A_PassSkill7, UsedSkillSearch, n_A_PassSkill8 } from "../skill/skillstate.js";
 import {
@@ -112,9 +112,9 @@ import {
     SKILL_ID_SUMMON_TERA, SKILL_ID_SUMMON_VENTOS, SKILL_ID_TRANSCENDENCE, SKILL_ID_TRIANGLE_SHOT,
     SKILL_ID_UMINO_CHIKARA, SKILL_ID_WUG_RIDER
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
-// foot.js 専有のモジュールレベル変数（各関数内で書いてから読む。write-before-read 確認済み）
+// stallcalc.js 専有のモジュールレベル変数（各関数内で書いてから読む。write-before-read 確認済み）
 let itemCountRight = 0;
 let itemCountLeft = 0;
 

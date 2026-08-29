@@ -1,10 +1,10 @@
 /**
  * 装備・カード等のアイテムSP集計、および装備制限（SpDef）判定。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
- * StAllCalc/StPlusCalc（foot.js に残存）から呼ばれる内部ヘルパーと、
- * foot-bridge.js 経由で他ファイルから呼ばれる公開関数が混在する。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
+ * StAllCalc/StPlusCalc（stallcalc.js に残存）から呼ばれる内部ヘルパーと、
+ * stallcalc-bridge.js 経由で他ファイルから呼ばれる公開関数が混在する。
  */
 import { n_A_PassSkill8 } from "../skill/skillstate.js";
 import { IsSameJobClass } from "../data/mig.job.h.js";

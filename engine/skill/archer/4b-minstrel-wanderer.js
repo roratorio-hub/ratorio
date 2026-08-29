@@ -12,7 +12,7 @@ import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
-import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import { MOB_CONF_DEBUF_ID_SUIMIN } from "../../monster/mobconfdebuf.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI

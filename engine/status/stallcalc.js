@@ -31,7 +31,7 @@ import {
          OBJID_OFFSET_AS_SKILL_PROB, OnClickExtractSettingAutoSpell
 } from "../skill/calcautospell.js";
 import { g_constDataManager, g_timeItemConf, g_timeItemConfEffective } from "../runtime/global.js";
-import { ApplyElementRatio, CAST_PARAM_BORDER, SET_ZOKUSEI, calc, n_SP_SKILL } from "../battle/head.js";
+import { ApplyElementRatio, CAST_PARAM_BORDER, SET_ZOKUSEI, calc, n_SP_SKILL } from "../battle/battlecalc.js";
 import {
          ApplySpecModify, ApplySpecStatusModifications, ApplySpecStatusModifyMATK,
          CalcStatusPoint, DisplayReferStatusAll, DisplayStatusBonusAll,
@@ -965,14 +965,14 @@ import {
          set_g_objCharaConfCustomStatus,
 } from "../runtime/global.js";
 
-import { __registerFootFunctions } from "../bridge/foot-bridge.js";
+import { __registerFootFunctions } from "../bridge/stallcalc-bridge.js";
 
-// C-6: 旧 head.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
+// C-6: 旧 battlecalc.js の window 経由共有スクラッチ変数（宣言忘れ関数の var-leak 対応・ファイルローカル化）
 let itemCountRight = 0;
 let itemCountLeft = 0;
 let cardCount = 0;
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          SaveDataAll, set_n_SiegeMode, n_A_BaseLV, set_n_A_BaseLV,
          n_A_ActiveSkill, set_n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_A_ActiveSkillLV,
@@ -1026,7 +1026,7 @@ import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from "../runtime/ror
  * なので厳密には様々な処理が入り混じっている
  */
 
-// foot.js 専有のモジュールレベル変数（ESM化で新規宣言）
+// stallcalc.js 専有のモジュールレベル変数（ESM化で新規宣言）
 // SU_POW/SU_STA/SU_WIS/SU_SPL/SU_CON/SU_CRT・n_A_POW・n_A_CON・n_A_SpeedPOT は
 // StAllCalc 分割（リファクタリング計画 Phase 5）で stallcalc-hydrate.js へ移設。
 // 前者8個は書き込まれるだけで一度も読まれないデッドコードと判明したため削除、
@@ -1632,27 +1632,27 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 }
 
 // avoid-flee.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { getCompleteAvoidance, getFixedCastTimeReductionRate, getFlee } from "./avoid-flee.js";
 
 // resist-heal.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { ApplyResistBadStatus, ApplyAdditionalResistElement, ApplyHealRecoveryUp } from "./resist-heal.js";
 
 // cast-delay.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { getDelayTimeReductionRate, getVariableCastTimeRate } from "./cast-delay.js";
 
 // sp-cost-reduction.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { getSPCostReductionRate } from "./sp-cost-reduction.js";
 
 // critical.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { getCriticalDamageRate, GetAdditionalCriticalRate } from "./critical.js";
 
 // aspd.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { GetAdditionalAspdPercent } from "./aspd.js";
 
 // skill-cast-param.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
@@ -1664,7 +1664,7 @@ import {
 } from "./skill-cast-param.js";
 
 // skill-cool.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { GetCoolFixOfSkill } from "./skill-cool.js";
 
 // skill-cost.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
@@ -1672,14 +1672,14 @@ import { GetCoolFixOfSkill } from "./skill-cool.js";
 import { GetCostScalingOfSkill, GetCostFixOfSkill } from "./skill-cost.js";
 
 // stplus-calc.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
+// stallcalc.js 内部（StAllCalc）が直接呼ぶため再 import する。
 import { StPlusCalc } from "./stplus-calc.js";
 
 // equipped-sp.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // GetEquippedTotalSPEquip/GetEquippedTotalSPEquipExact/GetEquippedTotalSPCardAndElse/
-// GetEquippedTotalSPCostume は foot.js 内部（StAllCalc/StPlusCalc）が直接呼ぶ。
-// 残りは他ファイルが foot-bridge.js 経由で使うため、__registerFootFunctions への
-// 再登録専用に import する（呼び出し元は従来どおり foot-bridge.js のまま・変更なし）。
+// GetEquippedTotalSPCostume は stallcalc.js 内部（StAllCalc/StPlusCalc）が直接呼ぶ。
+// 残りは他ファイルが stallcalc-bridge.js 経由で使うため、__registerFootFunctions への
+// 再登録専用に import する（呼び出し元は従来どおり stallcalc-bridge.js のまま・変更なし）。
 import {
     GetEquippedTotalSPEquip, GetEquippedTotalSPEquipExact, GetEquippedTotalSPCardAndElse, GetEquippedTotalSPCostume,
     GetEquippedSPListEquip, GetEquippedSPValueArrayEquip, GetEquippedSPListCardAndElse, GetEquippedSPValueArrayCardAndElse,
@@ -2193,10 +2193,10 @@ export function Init(jobId){
 	BuildUpCastSimSimulateArea(document.getElementById("OBJID_TD_CASTSIM"), false);
 }
 
-// 外部ファイル向けの関数公開は foot-bridge.js 経由（C-6 後半・reference.md 参照）
+// 外部ファイル向けの関数公開は stallcalc-bridge.js 経由（C-6 後半・reference.md 参照）
 // GetEquippedTotalSPEquip/GetEquippedSPListEquip/.../CheckSpDefRefineOver の実体は
 // equipped-sp.js へ移動済み（.claude/context/remaining-work.md「残作業 1」）。
-// foot.js は自身の内部使用（StAllCalc/StPlusCalc からの直接呼び出し）のために
+// stallcalc.js は自身の内部使用（StAllCalc/StPlusCalc からの直接呼び出し）のために
 // 冒頭で import 済みの束縛を、そのままここで再登録する。
 __registerFootFunctions({
     RefreshSuperNoviceFullWeapon,

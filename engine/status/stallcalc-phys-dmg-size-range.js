@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: 物理攻撃で与えるダメージ＋○○％（対サイズモンスター・遠距離）。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { n_A_PassSkill7, UsedSkillSearch } from "../skill/skillstate.js";
@@ -77,7 +77,7 @@ import {
     SKILL_ID_TAROUNO_KIZU, SKILL_ID_UNLIMIT, SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WERERAPTOR, SKILL_ID_WEREWOLF,
     SKILL_ID_WOLF_INSTINCT, SKILL_ID_WUG_RIDER
 } from "../skill/skill.dat.js";
-import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyPhysicalDamageUpVsMonsterSize() {

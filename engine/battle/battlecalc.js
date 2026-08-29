@@ -1,10 +1,10 @@
 // ダメージ計算スクラッチ状態（BattleCalc999Core とスキル計算式分割先が共有する）。詳細は calc-state.js 参照。
 import { CS } from "./calc-state.js";
-// BattleCalc999Core のスキル計算式ブロック分割先（Phase 3b）。循環しないため head.js が直接 import する。
+// BattleCalc999Core のスキル計算式ブロック分割先（Phase 3b）。循環しないため battlecalc.js が直接 import する。
 import { ApplyPhysicalSkillFormulaBasic } from "./skill-formula-physical.js";
 import { ApplyPhysicalSkillFormulaSpecial } from "./skill-formula-special.js";
 import { ApplyMagicalSkillFormula } from "./skill-formula-magical.js";
-// head.js 残り巨大関数の分割先（Phase 3c）。循環しないため head.js が直接 import する。
+// battlecalc.js 残り巨大関数の分割先（Phase 3c）。循環しないため battlecalc.js が直接 import する。
 import { ApplyMagicalSpecializeMonster, ApplyPhysicalSpecializeMonster } from "./specialize-monster.js";
 import { BuildBattleResultHtml, BuildBattleResultHtmlMIG } from "./battle-result-html.js";
 import { GetPhysicalSkillDamageRatioChange } from "./skill-ratio-physical.js";
@@ -12,13 +12,13 @@ import {
     ApplyMagicalSkillDamageRatioChange, RebuildActiveSkillRatioInfo,
 } from "./skill-ratio-magical.js";
 import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
-// 武器種テーブル（旧 head.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
+// 武器種テーブル（旧 battlecalc.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
 import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from "./attackmethod.dat.js";
 export { SyurikenOBJ, KunaiOBJ, CanonOBJ };
-// 四次スキルの強制属性の決定処理（物理・魔法共通、head.js 外なので単体テスト可能）
+// 四次スキルの強制属性の決定処理（物理・魔法共通、battlecalc.js 外なので単体テスト可能）
 import { GetForcedElementForCalc } from "./battle-element.js";
 // 再計算ポリシー（リファクタリング計画 Phase 9）。calc-invalidation.js は
-// head-bridge.js 経由で calc() を呼ぶだけで head.js に依存しないため、循環しない。
+// battlecalc-bridge.js 経由で calc() を呼ぶだけで battlecalc.js に依存しないため、循環しない。
 import { notifyChanged } from "../runtime/calc-invalidation.js";
 // === AUTO-GENERATED IMPORTS ===
 import "../data/mig.itemsp.h.js";
@@ -572,17 +572,17 @@ import {
          g_VariableCastTimeRate,
 } from "../runtime/global.js";
 
-// C-6: 旧 global.js window 変数（読み書きとも head.js 内のみ → 内部化）
+// C-6: 旧 global.js window 変数（読み書きとも battlecalc.js 内のみ → 内部化）
 let n_NitouCalc = false;
 
-// C-6: foot.js 公開関数（foot-bridge 経由。foot.js 直接 import は循環増悪のため不可）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由。stallcalc.js 直接 import は循環増悪のため不可）
 import {
          GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
          GetAdditionalFixedCastTime, GetCoolFixOfSkill, GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse,
          GetEquippedTotalSPArrow, NumSearch, ROUNDDOWN, StAllCalc,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 
-import { __registerHeadFunctions } from "../bridge/head-bridge.js";
+import { __registerHeadFunctions } from "../bridge/battlecalc-bridge.js";
 
 // C-6: 共有 state（ro4-state.js へ移行済み）
 import {
@@ -602,7 +602,7 @@ import {
          w_FLEE, set_w_FLEE, TyouEnkakuSousa3dan, set_TyouEnkakuSousa3dan,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          SU_STR, SU_AGI, SU_VIT, SU_INT, SU_DEX, SU_LUK,
          n_A_JobLV, n_A_STR, n_A_AGI,
@@ -691,17 +691,17 @@ let resistValueArrayOver = 0;
 let bodyElmRatioArray = 0;
 /** 属性倍率　耐性を考慮した最終的な値 */
 let finalRatioArray = 0;
-/** 武器属性（foot.js も読み書きするグローバル変数） */
+/** 武器属性（stallcalc.js も読み書きするグローバル変数） */
 /** 変動詠唱 0 を達成するために必要な DEX */
 export const CAST_PARAM_BORDER = 265;
 // SubName は sub-name.js へ移動（Phase 3b: スキル計算式分割先と共有するため）。
 // w_AG は battle-result-html.js へ移動（Phase 3c）。
-// head.js 内部（ダメージ計算）と後方互換のため import + re-export する。
+// battlecalc.js 内部（ダメージ計算）と後方互換のため import + re-export する。
 import { SubName } from "./sub-name.js";
 export { SubName };
 // n_SieldSpDum / n_SieldSpNum は ro4-state.js へ移動
-// （dewindow: BuffJobSpecificSelf の head.js 直接 import を除去し単体テスト再有効化するため。
-//  head.js 内部では未使用の静的データだった。n_SieldSp と同じ場所に集約）
+// （dewindow: BuffJobSpecificSelf の battlecalc.js 直接 import を除去し単体テスト再有効化するため。
+//  battlecalc.js 内部では未使用の静的データだった。n_SieldSp と同じ場所に集約）
 /** 修練が乗らないスキルID */
 export const n_SP_SKILL = [66,159,162,193,197,244,248,263,321,324,328,384,394,395,405,423,432,438,554,669,723,738,768,769,810, SKILL_ID_ZYURYOKU_CHOSE];
 /** 回復スキル種類：ヒール */
@@ -3371,7 +3371,7 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 		myInnerHtml("strID_" + idx, innerHtmlText, 0);
 	}
 
-	// StAllCalc() 内の RefreshDispAreaAll（foot.js）は w_BONUS 確定前に走るため、
+	// StAllCalc() 内の RefreshDispAreaAll（stallcalc.js）は w_BONUS 確定前に走るため、
 	// ここで再度リフレッシュして拡張情報パネルに最新値を反映する
 	g_extraInfoDataBridge.setDispDataValue?.(DISP_DATA_KEY_STRDEX_BONUS, w_BONUS);
 	g_extraInfoDataBridge.refreshFloatingDispAreaAll?.();
@@ -5712,7 +5712,7 @@ export function DamageModifierOfArea(mobData, dmg) {
 	return dmg;
 }
 
-// 外部ファイル向けの関数公開は head-bridge.js 経由（C-6 後半・reference.md 参照）
+// 外部ファイル向けの関数公開は battlecalc-bridge.js 経由（C-6 後半・reference.md 参照）
 __registerHeadFunctions({
     GetActRateSandansho,
     GetActRateCritical,

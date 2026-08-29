@@ -56,7 +56,7 @@ describe('CSkillManager 全アクセサ 総当たりスイープ', () => {
         const result = await page.evaluate(`
             (async () => {
                 const globalMod = await import('/engine/runtime/global.js');
-                const bridge    = await import('/engine/bridge/foot-bridge.js');
+                const bridge    = await import('/engine/bridge/stallcalc-bridge.js');
                 const skillMod  = await import('/engine/skill/skill.dat.js');
                 const kindsMod  = await import('/engine/const/EnumItemKind.js');
 
@@ -68,7 +68,7 @@ describe('CSkillManager 全アクセサ 総当たりスイープ', () => {
 
                 // 本番と同じ経路で引数を1回だけ取得する（StAllCalc の戻り値は
                 // [charaData, specData(=n_tok), mobData, attackMethodConfArray]。
-                // engine/head.js の calc() と同じ取り出し方）。
+                // engine/battlecalc.js の calc() と同じ取り出し方）。
                 const retVal = bridge.StAllCalc();
                 const charaData = retVal[0];
                 const specData  = retVal[1];

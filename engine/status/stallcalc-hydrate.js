@@ -1,7 +1,7 @@
 /**
  * StAllCalc の DOM 走査プロローグ（リファクタリング計画 Phase 5・Phase 8）。
  *
- * foot.js の StAllCalc は「DOM からグローバル状態へ書き込む」処理と「純粋な計算」処理が
+ * stallcalc.js の StAllCalc は「DOM からグローバル状態へ書き込む」処理と「純粋な計算」処理が
  * 同一関数内に混在していた。本ファイルは前者（hydration）を切り出したもの。
  *
  * Phase 5（初回分割）では `HydrateFromDom()` が直接 `document.calcForm` 等を読んでいたが、
@@ -14,7 +14,7 @@
  * （攻撃手段・シャドウ装備・性能カスタマイズ合計値・職業選択）経由の値は境界の外側。
  */
 // === AUTO-GENERATED IMPORTS ===
-import { InitJobInfo } from "../bridge/foot-bridge.js";
+import { InitJobInfo } from "../bridge/stallcalc-bridge.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { n_Skill4SW } from "../ui/BuffGuildAndGospel.js";
 import { n_Skill7SW } from "../ui/BuffItemAndFood.js";

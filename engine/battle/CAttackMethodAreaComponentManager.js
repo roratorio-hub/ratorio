@@ -2,7 +2,7 @@
 import "../runtime/common.js";
 import "../equip/item.h.js";
 import { g_constDataManager, g_skillManager } from "../runtime/global.js";
-import { calc } from "../bridge/head-bridge.js";
+import { calc } from "../bridge/battlecalc-bridge.js";
 import { notifyChanged, CalcInput } from "../runtime/calc-invalidation.js";
 import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "./attackmethod.dat.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
@@ -117,10 +117,10 @@ import {
          n_A_JOB,
 } from "../runtime/roro-state.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          GetEquippedSPListEquip, GetEquippedSPValueArrayEquip, GetEquippedSPListCardAndElse, GetEquippedSPValueArrayCardAndElse,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 import {
     ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_PSYCO, ELM_ID_VANITY,
     ELM_ID_WATER, ELM_ID_WIND,
@@ -4403,7 +4403,7 @@ CAttackMethodAreaComponentManager.CreateNoticeBlock = function () {
 // CAttackMethodAreaComponentManager.RebuildControls();
 
 // roro 側ファイル（equip / hmcard / CConfBase / saveload）向けのブリッジ登録。
-// 直接 import は head.js への static import パスを生むため不可（reference.md 参照）
+// 直接 import は battlecalc.js への static import パスを生むため不可（reference.md 参照）
 g_attackMethodBridge.rebuildControls = () => CAttackMethodAreaComponentManager.RebuildControls();
 g_attackMethodBridge.getAttackMethodConf = () => CAttackMethodAreaComponentManager.GetAttackMethodConf();
 g_attackMethodBridge.setAttackMethodConf = (conf) => CAttackMethodAreaComponentManager.SetAttackMethodConf(conf);

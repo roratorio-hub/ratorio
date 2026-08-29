@@ -22,7 +22,7 @@ import { SKILL_ID_BERSERK, SKILL_ID_INSPIRATION, SKILL_ID_TAEGWON_RANKER } from 
 import {
     TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD, TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from "../equip/timeitem.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 export function ApplyPlayerMaxHpMaxSp(charaData) {
 	let vartmp = 0;

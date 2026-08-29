@@ -4,10 +4,10 @@ import { ITEM_SP_TIME_OBJ } from "../equip/timeitem.dat.js";
 import { g_timeItemConf, g_timeItemConfEffective, g_timeItemConfAllEffective, set_g_timeItemConfAllEffective } from "../runtime/global.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from "./head.js";
+} from "./battlecalc.js";
 // C-6: engine-registry 型ブリッジ（CTimeItemAreaComponentManager.js との循環 import 回避）
 import { g_timeItemDataBridge } from "../equip/CTimeItemDataBridge.js";
 import { TIME_ITEM_DATA_INDEX_EXPLAIN, TIME_ITEM_DATA_INDEX_NAME } from "../const/EnumTimeItemDataIndex.js";

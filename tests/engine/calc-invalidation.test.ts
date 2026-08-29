@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { CalcInput, notifyChanged, requestRecalc, withBatch, onResults } from '@engine/runtime/calc-invalidation.js';
-// AutoCalc/calc は head-bridge 経由（head.js 直接 import は循環・OOMの原因になるため禁止）。
-import { __registerHeadFunctions } from '@engine/bridge/head-bridge.js';
+// AutoCalc/calc は head-bridge 経由（battlecalc.js 直接 import は循環・OOMの原因になるため禁止）。
+import { __registerHeadFunctions } from '@engine/bridge/battlecalc-bridge.js';
 // リファクタリング計画 Phase 9 D3: ポリシーflagの読み出し元は CSaveController.getSettingProp
 // （engine-registry 経由）。propNameAttackAutoCalc の実値は問わないので、Map で代用する。
 import { register as registryRegister } from '@engine/runtime/engine-registry.js';

@@ -70,12 +70,12 @@ import {
          n_A_JOB,
 } from "../runtime/roro-state.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          NumSearch,
          NumSearch2,
          RefreshSuperNoviceFullWeapon,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 import { CONST_DATA_KIND_JOB } from "../const/EnumConstDataKind.js";
 import { JOB_ID_CHAMPION, JOB_ID_MONK } from "../const/EnumJobId.js";
 import { SKILL_DATA_INDEX_MAXLV, SKILL_DATA_INDEX_NAME } from "../const/EnumSkillDataIndex.js";

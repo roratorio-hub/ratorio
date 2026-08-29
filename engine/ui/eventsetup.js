@@ -11,7 +11,7 @@ import { Click_PassSkillSW } from "./BuffJobSpecificSelf.js";
 import { Click_Skill4SW } from "./BuffGuildAndGospel.js";
 import { Click_Skill7SW } from "./BuffItemAndFood.js";
 import { Click_Skill8SW } from "./BuffOtherCategory.js";
-import { StAllCalc } from "../status/foot.js";
+import { StAllCalc } from "../status/stallcalc.js";
 import {
     copyAccs, OnChangeArmsTypeRight, OnChangeRefined, OnChangeEquip,
 } from "../equip/equip.js";

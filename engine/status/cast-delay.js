@@ -1,8 +1,8 @@
 /**
  * スキルディレイ軽減率・変動詠唱時間の割合軽減率を取得する。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
 import {
@@ -10,7 +10,7 @@ import {
     JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_PRIEST, JOB_SERIES_ID_SWORDMAN
 } from "../data/mig.job.h.js";
 import { g_confDataNizi, g_confDataSanzi, g_objCharaConfCustomStatus } from "../runtime/global.js";
-import { CAST_PARAM_BORDER } from "../battle/head.js";
+import { CAST_PARAM_BORDER } from "../battle/battlecalc.js";
 import { GetTotalPureBasicStatus } from "../chara/hmjob.js";
 import { n_A_BaseLV, n_tok, set_delayDownForDisp } from "../runtime/ro4-state.js";
 import { CCharaConfCustomStatus } from "../chara/CCharaConfCustomStatus.js";
@@ -114,9 +114,9 @@ import {
     SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WEAPON_BLOCKING, SKILL_ID_WUG_RIDER, SKILL_ID_YARI_SHUREN,
     SKILL_ID_YASURAGINO_KOMORIUTA
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
-// foot.js 専有のモジュールレベル変数（各関数内で書いてから読む。write-before-read 確認済み）
+// stallcalc.js 専有のモジュールレベル変数（各関数内で書いてから読む。write-before-read 確認済み）
 let itemCountRight = 0;
 let itemCountLeft = 0;
 

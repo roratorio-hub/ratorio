@@ -3,7 +3,7 @@ import { notifyChanged, CalcInput } from "../runtime/calc-invalidation.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, myInnerHtml } from "../runtime/util.js";
 import { n_A_PassSkill7, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from "../skill/skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
-import { StAllCalc } from "../bridge/foot-bridge.js";
+import { StAllCalc } from "../bridge/stallcalc-bridge.js";
 import { CAttackMethodAreaComponentManager } from "../battle/CAttackMethodAreaComponentManager.js";
 "use strict"
 /**

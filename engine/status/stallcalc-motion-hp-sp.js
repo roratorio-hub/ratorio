@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: モーションディレイ・HP回復力＋○○・SP回復力＋○○。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { n_A_PassSkill7, UsedSkillSearch } from "../skill/skillstate.js";
@@ -39,7 +39,7 @@ import {
     SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SHINSENNA_EBI, SKILL_ID_TENKETSU_KATSU
 } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_RING_OF_FLAME_LORD, TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO } from "../equip/timeitem.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyMotionDelay(charaData) {

@@ -5,7 +5,7 @@ import {
 } from '@engine/skill/learnedskill.js';
 // dewindow: AutoCalc は head-bridge 経由になった（旧 bare global）。
 // テストは head-bridge にフェイクを登録して呼び出しを観測する。
-import { __registerHeadFunctions } from '@engine/bridge/head-bridge.js';
+import { __registerHeadFunctions } from '@engine/bridge/battlecalc-bridge.js';
 // リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
 // CSaveController.getSettingProp（engine-registry 経由）。
 import { register as registryRegister } from '@engine/runtime/engine-registry.js';

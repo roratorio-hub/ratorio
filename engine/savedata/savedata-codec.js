@@ -7,7 +7,7 @@ import {
          OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB, OnChangeSettingAutoSpell
 } from "../skill/calcautospell.js";
 import { g_charaData, g_constDataManager, g_skillManager, g_timeItemConf } from "../runtime/global.js";
-import { calc } from "../battle/head.js";
+import { calc } from "../battle/battlecalc.js";
 import { CalcStatusPoint } from "../chara/hmjob.js";
 import { CAttackMethodConf } from "../battle/CAttackMethodConf.js";
 import { CBattleQuickControlAreaComponentManager } from "../battle/CBattleQuickControlAreaComponentManager.js";
@@ -130,20 +130,20 @@ import {
          g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus, n_Nitou,
 } from "../runtime/global.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          RefreshSuperNoviceFullWeapon, StAllCalc,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from "../runtime/engine-registry.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          SaveDataAll, set_SaveDataAll, SaveNameAll, set_SaveNameAll,
          n_CONFIG,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          n_A_costume, n_A_PassSkill5, g_objMobConfInput,
 } from "../runtime/roro-state.js";
@@ -5215,7 +5215,7 @@ export function LoadCookie3(){
 // 　　前者について考えると、wStr を split しているのだから、wStr が "ZZZZ?ZZZZ?ZZZZ?ZZZZ" のようになっていることになる。
 // 　　では、wStr はどこで取得されるかと考えると、ここより上の部分で、
 // 　　SaveData[i].substr(14, SaveData[i].length);　か　localStorage.ROratorioDOM_SaveData;　によって取得される。
-// 　　あるいは、ch == 0 の場合は、head.js で定義されている ZZZZ が採用される（ハズ）。
+// 　　あるいは、ch == 0 の場合は、battlecalc.js で定義されている ZZZZ が採用される（ハズ）。
 // 　　ということは、やはり ch == 0 の場合にトラップを仕掛ければ良さそうである。
 // 　　
 // 　　……とここまで考えて、cookie の容量オーバーの可能性が脳裏をよぎった。

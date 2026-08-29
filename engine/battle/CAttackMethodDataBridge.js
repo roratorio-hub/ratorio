@@ -3,7 +3,7 @@
  *
  * 実体は CAttackMethodAreaComponentManager.js（calcx.html でのみロード）が
  * モジュール評価時に登録する。roro 側ファイルが CAttackMethodAreaComponentManager
- * を直接 import すると head.js への static import パスが生じ、循環・vitest ハング・
+ * を直接 import すると battlecalc.js への static import パスが生じ、循環・vitest ハング・
  * pages/ ページへの副作用を引き起こすため、必ず本ブリッジ経由で呼び出すこと
  * （経緯: .claude/context/dewindow/reference.md）。
  *

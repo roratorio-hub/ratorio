@@ -1,5 +1,5 @@
 import { SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO } from "./skill.dat.js";
-import { GetActRateCritical } from "../bridge/head-bridge.js";
+import { GetActRateCritical } from "../bridge/battlecalc-bridge.js";
 import { ITEM_SP_CRITICAL_DAMAGE_UP } from "../const/EnumItemSpId.js";
 import { UsedSkillSearch } from "../bridge/skill-search-bridge.js";
 

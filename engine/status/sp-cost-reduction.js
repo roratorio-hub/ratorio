@@ -1,8 +1,8 @@
 /**
  * 消費SP軽減効果（getSPCostReductionRate）を取得する。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
 import {
@@ -41,7 +41,7 @@ import {
     SKILL_ID_BEAST_BANE, SKILL_ID_DRAGONOLOGY, SKILL_ID_FIRE_RAIN, SKILL_ID_MANA_RECHARGE, SKILL_ID_OFFERTORIUM,
     SKILL_ID_ORATIO, SKILL_ID_RECOGNIZED_SPELL, SKILL_ID_REPORDUCE, SKILL_ID_RYOUTKEN_SHUREN
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 /**
  * 公式サイトで「消費SP - ◯%」と表記される消費SP減少効果を適用した

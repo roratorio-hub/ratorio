@@ -19,7 +19,7 @@ import { ITEM_SP_HIT_PLUS, ITEM_SP_MDEF_PLUS, ITEM_SP_MDEF_UP } from "../const/E
 import { n_A_DEX, n_A_INT, n_A_LUK, n_A_VIT } from "../runtime/roro-state.js";
 import { SKILL_ID_BERSERK, SKILL_ID_TENKETSU_HAN } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_WOLF_HEZIN } from "../equip/timeitem.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 export function ApplyPlayerMdefHit(charaData) {
 	let vartmp = 0, sklLv = 0, bufLv = 0;

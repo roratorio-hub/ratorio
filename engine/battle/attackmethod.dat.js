@@ -1,7 +1,7 @@
 // 攻撃方法（投擲・キャノン）の武器種テーブル。
-// 旧 head.js が定義していたが、CAttackMethodAreaComponentManager がこの3配列のためだけに
-// head.js（全エンジン）を import グラフに引き込み単体テストが OOM していた。
-// head.js 内部（ダメージ計算）と CAttackMethod（選択肢の表示名）の両方から参照される共通データを
+// 旧 battlecalc.js が定義していたが、CAttackMethodAreaComponentManager がこの3配列のためだけに
+// battlecalc.js（全エンジン）を import グラフに引き込み単体テストが OOM していた。
+// battlecalc.js 内部（ダメージ計算）と CAttackMethod（選択肢の表示名）の両方から参照される共通データを
 // 依存の軽いデータモジュールへ分離する（dewindow: 除外テスト再有効化 Phase 3g）。
 //
 // CanonOBJ の属性列は ELM_ID_*（common.js が DefineEnum で定義するグローバル定数）を参照するため、

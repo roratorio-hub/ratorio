@@ -1,7 +1,7 @@
 /**
  * 戦闘結果表示（BuildBattleResultHtml 系）の分割（Phase 3c）。
  *
- * BuildBattleResultHtml / BuildBattleResultHtmlMIG を head.js から移動。
+ * BuildBattleResultHtml / BuildBattleResultHtmlMIG を battlecalc.js から移動。
  * 両者の間にあった、コメントアウト済みの旧 OnClickTabBTLRSLT（死んだコード）も
  * バイト単位で不変のまま含めている。
  *
@@ -23,7 +23,7 @@ import {
     ELM_ID_WATER, ELM_ID_WIND
 } from "../const/EnumElmId.js";
 import { ITEM_SP_PERFECT_ATTACK_UP } from "../const/EnumItemSpId.js";
-import { GetCastScalingOfSkillForCastTimeFixed, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { GetCastScalingOfSkillForCastTimeFixed, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import { MOB_CONF_BUF_ID_MAX_PAIN, n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import { n_A_WeaponType } from "../runtime/roro-state.js";
 import { SKILL_ID_AUTO_GUARD, SKILL_ID_PARIYING, SKILL_ID_REJECT_SWORD } from "../skill/skill.dat.js";
@@ -40,7 +40,7 @@ import {
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import { UsedSkillSearch } from "../skill/skillstate.js";
 import { BattleHiDamMaxPain, calcReceivedDamage, calcReceivedMagicDamage } from "./received-damage.js";
-import { GetActRateCritical } from "../bridge/head-bridge.js";
+import { GetActRateCritical } from "../bridge/battlecalc-bridge.js";
 
 /** オートガードによるダメージ減衰率 */
 export const w_AG = [100,95,90,86,82,79,76,74,72,71,70];

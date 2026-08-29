@@ -3,7 +3,7 @@
  *
  * GetMagicalSkillDamageRatioChange / ApplyMagicalSkillDamageRatioChange /
  * ApplyMagicalSkillDamageRatioChangeSubArcanaCard / RebuildActiveSkillRatioInfo を
- * head.js から移動。本文はバイト単位で不変。
+ * battlecalc.js から移動。本文はバイト単位で不変。
  *
  * itemCountRight / itemCountLeft は GetMagicalSkillDamageRatioChange 内だけで
  * 「書いてから読む」で完結していたスクラッチ変数（skill-ratio-physical.js と
@@ -24,7 +24,7 @@ import {
 } from "../runtime/common.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT } from "../const/EnumEquipRegionId.js";
 import { JOB_ID_ARCBISHOP, JOB_ID_SORCERER, JOB_ID_SUMMONER } from "../const/EnumJobId.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import {
     ITEM_ID_AVENGER_WIZARDSTUFF, ITEM_ID_AZATOI_KEROKERO_KAPPA, ITEM_ID_CIRCUIT_BOARD_OS, ITEM_ID_DIA_DE_MUERTOS,
     ITEM_ID_ELVIRA_BOOTS, ITEM_ID_EMERALDEARRING, ITEM_ID_ENRAIMAZYONO_OTSUE, ITEM_ID_FURUBITA_BALLERINA,
@@ -84,7 +84,7 @@ import { GetPhysicalSkillDamageRatioChange } from "./skill-ratio-physical.js";
 import {
     ApplyAttackDamageAmplify, ApplyElementRatio, ApplyLexAeterna, ApplyRegistPVPEnergyCoat,
     GetElementFieldDamageRatio,
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 
 /**
  * 魔法判定攻撃に対するスキル倍率の増減を取得する.

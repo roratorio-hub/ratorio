@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: ボス/一般モンスター被ダメージ軽減・状態異常耐性・DEF無視。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
@@ -56,7 +56,7 @@ import {
     SKILL_ID_PSYCHIC_WAVE, SKILL_ID_RECOGNIZED_SPELL, SKILL_ID_SANREI_ITTAI, SKILL_ID_SECRAMENT,
     SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SPECIAL_PHARMACY, SKILL_ID_UNTIMATERIAL_BLAST
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
 export function ApplyBossDamageDownPercent() {

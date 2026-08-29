@@ -1,15 +1,15 @@
 /**
- * head.js の公開関数への軽量ブリッジ（依存ゼロ・C-6 後半）.
+ * battlecalc.js の公開関数への軽量ブリッジ（依存ゼロ・C-6 後半）.
  *
- * head.js を直接 import すると循環・vitest ハング / OOM を引き起こすため（reference.md 参照）、
+ * battlecalc.js を直接 import すると循環・vitest ハング / OOM を引き起こすため（reference.md 参照）、
  * 外部ファイルは本モジュールの委譲ラッパーを import して呼び出す。
- * 実体は head.js がモジュール評価時に __registerHeadFunctions() で登録する。
+ * 実体は battlecalc.js がモジュール評価時に __registerHeadFunctions() で登録する。
  * 未登録環境（pages/ ページ・ユニットテスト）では各ラッパーは no-op（undefined を返す）。
  */
 
 const _reg = {};
 
-/** head.js がモジュール評価時に実体を登録する */
+/** battlecalc.js がモジュール評価時に実体を登録する */
 export function __registerHeadFunctions(fns) {
 	Object.assign(_reg, fns);
 }
@@ -19,7 +19,7 @@ export function GetActRateCritical(...a) { return _reg.GetActRateCritical?.(...a
 export function calc(...a) { return _reg.calc?.(...a); }
 export function ApplyPhysicalSpecializeMonster(...a) { return _reg.ApplyPhysicalSpecializeMonster?.(...a); }
 
-// Phase 3b: スキル計算式ブロック（head-skill-formula-*.js）が head.js 本体の関数を呼ぶためのラッパー
+// Phase 3b: スキル計算式ブロック（head-skill-formula-*.js）が battlecalc.js 本体の関数を呼ぶためのラッパー
 export function ATKbaiJYOUSAN(...a) { return _reg.ATKbaiJYOUSAN?.(...a); }
 export function BattleCalcSubDamagePhysicalCommon(...a) { return _reg.BattleCalcSubDamagePhysicalCommon?.(...a); }
 export function GetBattlerAtkPercentUp(...a) { return _reg.GetBattlerAtkPercentUp?.(...a); }
@@ -48,7 +48,7 @@ export function HealCalc(...a) { return _reg.HealCalc?.(...a); }
 export function TYPE_SYUUREN(...a) { return _reg.TYPE_SYUUREN?.(...a); }
 
 // Phase 3c: 残り巨大関数の分割先（received-damage.js / head-skill-ratio-*.js）が
-// head.js 本体の関数を呼ぶためのラッパー
+// battlecalc.js 本体の関数を呼ぶためのラッパー
 export function BattleCalc999(...a) { return _reg.BattleCalc999?.(...a); }
 export function DamageModifierOfArea(...a) { return _reg.DamageModifierOfArea?.(...a); }
 export function ApplyRegistPVPEnergyCoat(...a) { return _reg.ApplyRegistPVPEnergyCoat?.(...a); }

@@ -32,14 +32,14 @@ import {
          g_VariableCastTimeRate,
 } from "../runtime/global.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary, GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
          GetCastScalingOfSkillForCastTimeForce, GetCastFixOfSkillForCastTimeForce, GetCoolFixOfSkill, GetCostScalingOfSkill,
          GetCostFixOfSkill, GetEquippedSPValueArrayEquip, GetEquippedSPValueArrayCardAndElse,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_Kotei_Cast_Keigen, n_tok,
 } from "../runtime/ro4-state.js";

@@ -22,21 +22,21 @@ import {
          n_Nitou,
 } from "../runtime/global.js";
 
-// C-6: foot.js 公開関数（foot-bridge 経由）
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
          IsMatchSpDefId, CheckSpDefFriendlyOver, CheckSpDefBaseLvOver, CheckSpDefJobRestrict,
          CheckSpDefPureStatus, CheckSpDefRefineOver,
-} from "../bridge/foot-bridge.js";
+} from "../bridge/stallcalc-bridge.js";
 // Phase B: window.AutoCalc 廃止に伴い head-bridge 経由に移行
 // Phase 9: 再計算ポリシーは calc-invalidation.js 経由
 import { notifyChanged } from "../runtime/calc-invalidation.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          n_A_BaseLV,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          SU_STR, n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS,
          n_A_SHOULDER_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus,

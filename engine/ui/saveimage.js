@@ -14,12 +14,12 @@ import {
          n_Nitou,
 } from "../runtime/global.js";
 
-// C-6: ro4 側共有 state（旧 head.js window 変数）
+// C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
          delayDownForDisp, g_perfectHitRate,
 } from "../runtime/ro4-state.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          n_A_JOB,
 } from "../runtime/roro-state.js";
@@ -34,7 +34,7 @@ import {
 // モジュール評価時にDOM初期化を要求するため、直接importすると import 時点でDOMが
 // 必要になってしまう。get('extractModelFromDom') は calc-headless.js が既に登録済みの
 // 公開APIを使うだけなので影響を受けない。なお下の CExtraInfoAreaComponentManagerCalc.js
-// は head.js・global.js を推移的に import するため、この迂回は「import chain 全体の軽量化」
+// は battlecalc.js・global.js を推移的に import するため、この迂回は「import chain 全体の軽量化」
 // にはなっていない——避けているのは CShadowEquipController.js 固有の DOM初期化要求のみ）。
 import { GetJobName } from "../data/mig.job.h.js";
 import { IsUnconfirmedHP, IsUnconfirmedSP } from "../chara/hmchara.js";

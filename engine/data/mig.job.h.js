@@ -97,10 +97,10 @@ import {
 import { n_A_JOB } from "../runtime/roro-state.js";
 import { get as registryGet, register } from "../runtime/engine-registry.js";
 
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import {
          calc,
-} from "../bridge/head-bridge.js";
+} from "../bridge/battlecalc-bridge.js";
 import { BASE_EXP_TABLE_ID_NORMAL, BASE_EXP_TABLE_ID_REINCANATED } from "../const/BaseExpTableId.js";
 import { CONST_DATA_KIND_JOB } from "../const/EnumConstDataKind.js";
 import { ITEM_DATA_INDEX_EQPFLG, ITEM_DATA_INDEX_EQPLV, ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KIND } from "../const/EnumItemDataIndex.js";

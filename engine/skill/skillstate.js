@@ -48,7 +48,7 @@ import {
          g_confDataIchizi, g_confDataNizi, g_confDataSanzi,
 } from "../runtime/global.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          n_A_WeaponType, n_A_HEAD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus,
 } from "../runtime/roro-state.js";

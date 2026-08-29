@@ -7,7 +7,7 @@
  *   CSkillManager → skill/xx → learnedskill → CSkillManager
  * のような循環が生まれ、learnedskill.js のモジュール本体が実行する Register 呼び出しが
  * CSkillManager.js 側の let の TDZ に突っ込んで ReferenceError になる。
- * head-bridge.js / foot-bridge.js / hmjob-bridge.js と同じ「依存ゼロの委譲モジュール」で切り離す
+ * battlecalc-bridge.js / stallcalc-bridge.js / hmjob-bridge.js と同じ「依存ゼロの委譲モジュール」で切り離す
  * （import が無いモジュールは「評価途中」になり得ないので構造的に循環しない）。
  *
  * 旧実装（CSkillManager.js のモジュールローカル let）と同じセマンティクス:

@@ -62,7 +62,7 @@ describe('CCustomSelectMapMonster.js', () => {
     // 3f-1: window.CMonsterMapAreaComponentManager 経由の直接呼び出しをコールバックに置換
     describe('onMonsterSelected コールバック (3f-1)', () => {
         beforeAll(() => {
-            // calc は head.js の bare global（C-6 まで window 経由）— unit 環境ではモック
+            // calc は battlecalc.js の bare global（C-6 まで window 経由）— unit 環境ではモック
             (globalThis as any).calc = vi.fn();
         });
         it('OnChangeSelectDataSub が選択中モンスターIDでコールバックを呼ぶ', () => {

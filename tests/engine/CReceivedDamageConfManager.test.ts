@@ -3,7 +3,7 @@ import { CReceivedDamageConfManager } from '@engine/ui/CReceivedDamageConfManage
 
 const STORAGE_NAME = CReceivedDamageConfManager.STORAGE_NAME;
 
-// head.js の被ダメージ計算設定欄と同じ構成の画面部品を生成する
+// battlecalc.js の被ダメージ計算設定欄と同じ構成の画面部品を生成する
 function buildControls() {
     const mkRatio = (id: string) => {
         const input = document.createElement('input');

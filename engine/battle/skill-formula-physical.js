@@ -22,7 +22,7 @@ import { MIG_PARAM_ID_CON, MIG_PARAM_ID_POW } from "../const/EnumMigItemParamId.
 import { MONSTER_BOSSTYPE_BOSS } from "../const/EnumMonsterBossType.js";
 import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
 import { RACE_ID_DEMON, RACE_ID_HUMAN, RACE_ID_PLANT, RACE_ID_SOLID } from "../const/EnumRaceId.js";
-import { GetEquippedTotalSPArrow, ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { GetEquippedTotalSPArrow, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
@@ -121,7 +121,7 @@ import {
 import { MIG_JOB_ID_SHADOW_CROSS } from "../data/mig.job.dat.js";
 import { GetJobLevelMax } from "../data/mig.job.h.js";
 import { g_skillManager } from "../runtime/global.js";
-import { ATKbaiJYOUSAN, BattleCalcSubDamagePhysicalCommon, GetBattlerAtkPercentUp } from "../bridge/head-bridge.js";
+import { ATKbaiJYOUSAN, BattleCalcSubDamagePhysicalCommon, GetBattlerAtkPercentUp } from "../bridge/battlecalc-bridge.js";
 import { CS } from "./calc-state.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
@@ -1570,7 +1570,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			//----------------------------------------------------------------
-			// 計算式を CSkillManager.js へ移動させ head.js をスリム化する対応を進めています
+			// 計算式を CSkillManager.js へ移動させ battlecalc.js をスリム化する対応を進めています
 			//----------------------------------------------------------------
 			/* ミンストレル・ワンダラー */
 			case SKILL_ID_SEVERE_RAINSTORM:	// シビアレインストーム

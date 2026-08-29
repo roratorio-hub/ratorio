@@ -16,7 +16,7 @@ import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
 import { MIG_PARAM_ID_CON } from "../../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
 import { RACE_ID_ANIMAL, RACE_ID_FISH } from "../../const/EnumRaceId.js";
-import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ADVANCED_TRAP, SKILL_ID_CALAMITY_GALE, SKILL_ID_CRESSIVE_VOLT,

@@ -14,10 +14,10 @@ import { IsMatchJobRestrict } from "../data/mig.job.h.js";
 import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { registerShadowEquipController } from "./CShadowEquipControllerDataBridge.js";
-// C-6: head.js 公開関数（head-bridge 経由）
+// C-6: battlecalc.js 公開関数（head-bridge 経由）
 import { notifyChanged } from "../runtime/calc-invalidation.js";
-// C-6: foot.js 公開関数（foot-bridge 経由）
-import { StAllCalc } from "../bridge/foot-bridge.js";
+// C-6: stallcalc.js 公開関数（foot-bridge 経由）
+import { StAllCalc } from "../bridge/stallcalc-bridge.js";
 // C-6: 共有 state 追加分
 import {
          n_A_JOB,

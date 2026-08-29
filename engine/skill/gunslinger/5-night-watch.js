@@ -703,7 +703,7 @@ export const skills = [
 				return mutch_weapon;
 			}
 			this.hitCount = 3;
-			// Def無視設定は head.js の _SUB_ApplyMonsterDefence にある
+			// Def無視設定は battlecalc.js の _SUB_ApplyMonsterDefence にある
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// ヒドゥンカードはスキル倍率だけでなくP.Atkと遠距離ダメージに影響するので職固有自己支援で設定する

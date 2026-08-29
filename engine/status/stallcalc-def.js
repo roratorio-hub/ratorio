@@ -26,7 +26,7 @@ import {
     SKILL_ID_AUTO_BERSERK, SKILL_ID_BERSERK, SKILL_ID_CONCENTRATION, SKILL_ID_SERE_SUPPORT_SKILL,
     SKILL_ID_TENKETSU_KATSU
 } from "../skill/skill.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 export function ApplyPlayerDef(charaData) {
 	let sklLv = 0, bufLv = 0, idx = 0;

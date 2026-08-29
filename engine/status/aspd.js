@@ -1,8 +1,8 @@
 /**
  * 攻撃速度（ASPD）の加算効果を取得する（GetAdditionalAspdPercent）。
  *
- * foot.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
- * 関数本文は foot.js から移動のみで変更していない（バイト単位で同一）。
+ * stallcalc.js から分割（.claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」）。
+ * 関数本文は stallcalc.js から移動のみで変更していない（バイト単位で同一）。
  */
 import { n_A_PassSkill7, UsedSkillSearch } from "../skill/skillstate.js";
 import {
@@ -94,7 +94,7 @@ import {
     SKILL_ID_TAROUNO_KIZU, SKILL_ID_TENKETSU_HAN, SKILL_ID_WEREWOLF, SKILL_ID_YASURAGINO_KOMORIUTA
 } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_AWL_BARRONNO_MANT } from "../equip/timeitem.dat.js";
-import { ROUNDDOWN } from "../bridge/foot-bridge.js";
+import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 /**
  * 公式サイトで「攻撃速度 + ◯%」と表記されるASPDの増加値を取得する

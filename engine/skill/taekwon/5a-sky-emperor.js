@@ -541,7 +541,7 @@ export const skills = [
 			this.range = CSkillData.RANGE_SHORT;			
 			this.element = CSkillData.ELEMENT_VOID;
 			// 天気の身はスキルの使用可否だけに影響するので制約条件をチェックしない
-			// Def無視設定は head.js の _SUB_ApplyMonsterDefence にある
+			// Def無視設定は battlecalc.js の _SUB_ApplyMonsterDefence にある
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const tenki_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_TENKI_SHUREN), LearnedSkillSearch(SKILL_ID_TENKI_SHUREN));

@@ -9,7 +9,7 @@ import {
          n_Nitou,
 } from "../runtime/global.js";
 
-// C-6: 共有 state（旧 foot.js window 変数）
+// C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
          n_A_costume,
 } from "../runtime/roro-state.js";

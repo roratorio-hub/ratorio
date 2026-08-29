@@ -14,7 +14,7 @@ import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { GetEquippedTotalSPArrow } from "../../bridge/foot-bridge.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import { MOB_CONF_DEBUF_ID_SOUND_BLEND, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import { n_A_WeaponType } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";

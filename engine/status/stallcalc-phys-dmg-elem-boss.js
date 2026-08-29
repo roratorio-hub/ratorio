@@ -1,7 +1,7 @@
 /**
  * StAllCalc セクション分割: 物理攻撃で与えるダメージ＋○○％（対属性・ボス・一般モンスター）。
  *
- * foot.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
+ * stallcalc.js の StAllCalc から分割（.claude/context/remaining-work.md「残作業 1」Phase 2）。
  * 本文はバイト単位で不変（ラップした関数シグネチャ・ローカル変数宣言のみ新規）。
  */
 import { UsedSkillSearch } from "../skill/skillstate.js";
