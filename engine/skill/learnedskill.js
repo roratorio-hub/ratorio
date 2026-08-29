@@ -1,11 +1,11 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
 import "../runtime/common.js";
-import "../item.h.js";
+import "../equip/item.h.js";
 import "./skill.h.js";
 import { g_constDataManager } from "../runtime/global.js";
-import { CardObjNew } from "../card.dat.js";
-import { ItemObjNew } from "../item.dat.js";
+import { CardObjNew } from "../equip/card.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import { SkillObjNew } from "./skill.dat.js";
 import { HtmlCreateElement, HtmlCreateTextNode } from "../runtime/util.js";
 import { RegisterLearnedSkillSearch } from "../bridge/skill-search-bridge.js";

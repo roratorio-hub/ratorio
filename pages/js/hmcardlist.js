@@ -20,10 +20,10 @@ import {
          CARD_ID_ENCHANT_SPECIAL_STR, CARD_ID_ENCHANT_SPECIAL_VIT,
          CARD_ID_ENCHANT_TOSHI_10, CARD_ID_ENCHANT_ZOFUKU_4, CARD_ID_ENCHANT_ZOFUKU_5,
          CardObjNew
-} from "../../engine/card.dat.js";
-import { CardPrefix } from "../../engine/card.prefix.dat.js";
-import { ItemObjNew } from "../../engine/item.dat.js";
-import { GetItemKindNameText } from "../../engine/item.h.js";
+} from "../../engine/equip/card.dat.js";
+import { CardPrefix } from "../../engine/equip/card.prefix.dat.js";
+import { ItemObjNew } from "../../engine/equip/item.dat.js";
+import { GetItemKindNameText } from "../../engine/equip/item.h.js";
 import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from "../../engine/data/mig.enchlist.dat.js";
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "../../engine/equip/slotpager.js";
 import { HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild } from "../../engine/runtime/util.js";

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import '/workspace/ratorio/engine/runtime/common.js';
-import '/workspace/ratorio/engine/monster.h.js';
+import '/workspace/ratorio/engine/monster/monster.h.js';
 import '/workspace/ratorio/engine/ui/CConfBase.js';
 import '/workspace/ratorio/engine/ui/CConfBase2.js';
 import '/workspace/ratorio/engine/savedata/CSaveDataConverter.js';

@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
 import { g_charaData } from "../runtime/global.js";
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../rndopttype.h.js";
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlCreateElementOption, HtmlRemoveFromParent, HtmlGetSelectedOptgroup, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData } from "../runtime/util.js";
 import { ApplyCardShort, CardShortObj, RebuildCardSelect, SetCardSlotEnabilityAll } from "./hmcard.js";
 import { RebuildCostumeSelect, SetCostumeSlotEnabilityAll } from "./hmcostume.js";

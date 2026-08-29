@@ -33,13 +33,13 @@ import {
 	SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
 } from "./CSaveDataUnit.js";
 // === AUTO-GENERATED IMPORTS ===
-import "../item.h.js";
+import "../equip/item.h.js";
 import { CSaveDataConverter } from "./CSaveDataConverter.js";
 import { CSaveDataMappingManager, CURRENT_VERSION } from "./CSaveDataMappingManager.js";
 import {
          ITEM_ID_ARROW_NONE, ITEM_ID_BULLET_NONE, ITEM_ID_ISHO_BEGINNER_BO,
          ITEM_ID_ISHO_NONE, ItemObjNew
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import {
          MOB_CONF_PLAYER_ID_AGI, MOB_CONF_PLAYER_ID_BUTSURI_TAISEI,
          MOB_CONF_PLAYER_ID_CHI_ZOKUSEI_TAISEI, MOB_CONF_PLAYER_ID_CHUGATA_TAISEI,

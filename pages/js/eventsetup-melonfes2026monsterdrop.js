@@ -1,8 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../../engine/monster.h.js";
-import { MonsterObjNew } from "../../engine/monster.dat.js";
-import "../../engine/monstermap.h.js";
-import { g_MonsterMapDataArray, MONSTER_MAP_ID_MAP_ALL, MONSTER_MAP_ID_MVP_MONSTER } from "../../engine/monstermap.dat.js";
+import "../../engine/monster/monster.h.js";
+import { MonsterObjNew } from "../../engine/monster/monster.dat.js";
+import "../../engine/monster/monstermap.h.js";
+import { g_MonsterMapDataArray, MONSTER_MAP_ID_MAP_ALL, MONSTER_MAP_ID_MVP_MONSTER } from "../../engine/monster/monstermap.dat.js";
 import { HtmlRemoveAllChild } from "../../engine/runtime/util.js";
 import { MelonFes2026MonsterDropList } from './melonfes2026monsterdrop.dat.js';
 import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_LEVEL, MONSTER_DATA_INDEX_NAME } from "../../engine/const/EnumMonsterDataIndex.js";

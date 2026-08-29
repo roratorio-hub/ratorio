@@ -1,10 +1,10 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
-import "../item.h.js";
-import { CARD_ID_CATHERINE_KARON_MVP } from "../card.dat.js";
+import "../equip/item.h.js";
+import { CARD_ID_CATHERINE_KARON_MVP } from "../equip/card.dat.js";
 import { CardNumSearch, TimeItemNumSearch } from "../chara/chara.js";
-import { MONSTER_ID_MONSTER_TENYURYOKU, MONSTER_ID_PLAYER, MonsterObjNew } from "../monster.dat.js";
-import { GetMonseterElmBasicType } from "../monster.h.js";
+import { MONSTER_ID_MONSTER_TENYURYOKU, MONSTER_ID_PLAYER, MonsterObjNew } from "./monster.dat.js";
+import { GetMonseterElmBasicType } from "./monster.h.js";
 import {
     n_B_KYOUKA,
     MOB_CONF_BUF_ID_ASSUMPTIO, MOB_CONF_BUF_ID_KEEPING, MOB_CONF_BUF_ID_MAXIMIZE_POWER,

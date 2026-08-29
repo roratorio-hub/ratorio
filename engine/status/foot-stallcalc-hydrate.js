@@ -32,7 +32,7 @@ import {
     set_n_A_ActiveSkill, set_n_A_ActiveSkillLV, set_n_A_Arrow, set_n_A_BaseLV
 } from "../runtime/ro4-state.js";
 import { GetStatefullData, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger } from "../runtime/util.js";
-import { ARROW_ID_NONE } from "../arrow.dat.js";
+import { ARROW_ID_NONE } from "../equip/arrow.dat.js";
 import {
     CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2, CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
     CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4, CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2,
@@ -69,8 +69,8 @@ import { ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_WPNLV } from "../const/EnumItemD
 import {
     EQUIP_REGION_ID_COUNT, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_CRT
 } from "../const/EnumMigItemParamId.js";
-import { ItemObjNew } from "../item.dat.js";
-import { SetEquipRndOptTable } from "../rndopttype.h.js";
+import { ItemObjNew } from "../equip/item.dat.js";
+import { SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import {
     g_itemIdArray, g_refinedArray, n_A_AGI, n_A_DEX, n_A_Equip, n_A_INT, n_A_JOB, n_A_LUK, n_A_PassSkill5, n_A_STR,
     n_A_VIT, n_A_Weapon2LV, n_A_Weapon2_ATKplus, n_A_WeaponLV, n_A_Weapon_ATKplus, n_A_card, n_A_costume, set_SU_AGI,

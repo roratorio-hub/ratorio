@@ -9,7 +9,7 @@ let IsDexBasedArms: any;
 let IsGunSeriesArms: any;
 
 beforeAll(async () => {
-	const mod = await import('/workspace/ratorio/engine/item.h.js');
+	const mod = await import('/workspace/ratorio/engine/equip/item.h.js');
 	IsDexBasedArms = mod.IsDexBasedArms;
 	IsGunSeriesArms = mod.IsGunSeriesArms;
 });

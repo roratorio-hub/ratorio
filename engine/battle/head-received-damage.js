@@ -12,7 +12,7 @@
 import { HtmlCreateTextNode, HtmlRemoveAllChild, myInnerHtml } from "../runtime/util.js";
 import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
 import { CCharaConfNizi } from "../chara/CCharaConfNizi.js";
-import { CARD_ID_ENCHANT_UCHUKONGEN_GENZYU } from "../card.dat.js";
+import { CARD_ID_ENCHANT_UCHUKONGEN_GENZYU } from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
 import {
     CHARA_DATA_INDEX_DEF_DIV, CHARA_DATA_INDEX_DEF_MINUS, CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MDEF_DIV,
@@ -40,7 +40,7 @@ import {
 import {
     RACE_ID_ANIMAL, RACE_ID_DEMON, RACE_ID_FISH, RACE_ID_HUMAN, RACE_ID_PLANT
 } from "../const/EnumRaceId.js";
-import { zokusei } from "../etc.js";
+import { zokusei } from "../data/element-affinity.dat.js";
 import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, NumSearch } from "../bridge/foot-bridge.js";
 import {
     ITEM_ID_ABANDONED_CLOAK, ITEM_ID_ANCIENT_MEGALIS_MANT, ITEM_ID_AURORA_CURTAIN_ROBE, ITEM_ID_BLACK_VEIL,
@@ -55,14 +55,14 @@ import {
     ITEM_ID_YAGIGENO_MUFFLER, ITEM_ID_ZIKKEN_SEITAI_GOATGATA_CAP, ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ARMOR,
     ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_BOOTS, ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_MANT,
     ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_RING, ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ROBE, ItemObjNew
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, MOB_CONF_PLAYER_ID_SHUZOKU,
     MOB_CONF_PLAYER_ID_SHUZOKU_DORAM, MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, n_B_TAISEI
 } from "../monster/mobconfplayer.js";
-import { MONSTER_ID_PLAYER } from "../monster.dat.js";
-import { GetMonseterElmBasicType } from "../monster.h.js";
+import { MONSTER_ID_PLAYER } from "../monster/monster.dat.js";
+import { GetMonseterElmBasicType } from "../monster/monster.h.js";
 import {
     MONSTER_GROUP_ID_ABYSS_LAKE_CHIKA_DOKUTSU_04, MONSTER_GROUP_ID_BALMUNT_TE_DAIYOKUZYO_MEDITATIO,
     MONSTER_GROUP_ID_BOKUTSUONO_DOKUTSU, MONSTER_GROUP_ID_CHIKA_HAISUIRO, MONSTER_GROUP_ID_EIYUENCHANT,
@@ -75,7 +75,7 @@ import {
     MONSTER_GROUP_ID_SEITAI, MONSTER_GROUP_ID_SPRENDED, MONSTER_GROUP_ID_SUTERARETA_ANA_01,
     MONSTER_GROUP_ID_SUTERARETA_ANA_02, MONSTER_GROUP_ID_THANATOS, MONSTER_GROUP_ID_TOKEITO, MONSTER_GROUP_ID_VERNAR,
     MONSTER_GROUP_ID_YUGANDA_MEIKYUNO_MORI, MonsterGroupObj
-} from "../monstergroup.dat.js";
+} from "../monster/monstergroup.dat.js";
 import {
     n_A_BODY_DEF_PLUS, n_A_BodyZokusei, n_A_DEX, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_LUK, n_A_SHIELD_DEF_PLUS,
     n_A_SHOES_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon2_ATKplus, n_A_Weapon_ATKplus
@@ -86,7 +86,7 @@ import {
     SKILL_ID_RANGER_MAIN, SKILL_ID_REFLECT_SHIELD, SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SHIELD_SPELL_REFLECT,
     SKILL_ID_TAIYONO_ANRAKU, SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI, SKILL_ID_UZUKUMARU
 } from "../skill/skill.dat.js";
-import { TIME_ITEM_ID_WOLF_HEZIN } from "../timeitem.dat.js";
+import { TIME_ITEM_ID_WOLF_HEZIN } from "../equip/timeitem.dat.js";
 import { CBattleCalcInfo } from "./CBattleCalcInfo.js";
 import { __DIG3, g_confDataNizi, g_objCharaConfCustomDef } from "../runtime/global.js";
 import { CS } from "./head-calc-state.js";

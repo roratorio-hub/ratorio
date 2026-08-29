@@ -21,7 +21,7 @@ import { n_A_INT, n_A_JOB, n_A_JobLV, n_A_VIT } from "../runtime/roro-state.js";
 import { SKILL_ID_BERSERK, SKILL_ID_INSPIRATION, SKILL_ID_TAEGWON_RANKER } from "../skill/skill.dat.js";
 import {
     TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD, TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
-} from "../timeitem.dat.js";
+} from "../equip/timeitem.dat.js";
 import { ROUNDDOWN } from "../bridge/foot-bridge.js";
 
 export function ApplyPlayerMaxHpMaxSp(charaData) {

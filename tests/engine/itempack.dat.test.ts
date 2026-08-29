@@ -13,7 +13,7 @@ import {
     ITEM_PACK_ID_CLEAR_EQUIP_ALL, ITEM_PACK_ID_CLEAR_REFINE_ALL,
     ITEM_PACK_ID_CLEAR_CARD_ALL, ITEM_PACK_ID_CLEAR_SHADOW_ALL,
     ItemPackOBJ,
-} from '@engine/itempack.dat.js';
+} from '@engine/equip/itempack.dat.js';
 
 describe('itempack.dat.js', () => {
     describe('エクスポート確認', () => {

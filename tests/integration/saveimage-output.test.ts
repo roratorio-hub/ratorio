@@ -87,7 +87,7 @@ describe('generateImage() の出力が画面表示と一致する（マージ前
                 const dynamicImport = new Function('specifier', 'return import(specifier);') as
                     (specifier: string) => Promise<Record<string, any>>;
                 const hmjobBridge = await dynamicImport('/engine/chara/hmjob.js');
-                const itemDat = await dynamicImport('/engine/item.dat.js');
+                const itemDat = await dynamicImport('/engine/equip/item.dat.js');
                 const reg = (globalThis as any)._ratorioReg;
 
                 const byId = (id: string) => document.getElementById(id);

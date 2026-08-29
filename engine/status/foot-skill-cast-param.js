@@ -12,7 +12,7 @@ import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";
 import { CCharaConfDebuff } from "../chara/CCharaConfDebuff.js";
 import {
     CARD_SET_ID_ENCHANT_GOKETSU_SENZAI_KAIHO_GENETIC_3, CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_RING
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG } from "../chara/chara.js";
 import {
     EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_SHOES,
@@ -47,7 +47,7 @@ import {
     ITEM_SET_ID_GOFUSEKI_GERADRIA, ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_CULTIVATION_COAT,
     ITEM_SET_ID_SABAKINO_KUTSU_HOLY_STICK, ITEM_SET_ID_ULTIMATE_MODE_CHANGER_NABUNO_CLOTH,
     ITEM_SET_ID_ULTIMATE_MODE_CHANGER_PEORTH_GREEVE
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     n_A_BODY_DEF_PLUS, n_A_JOB, n_A_SHIELD_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus

@@ -1,11 +1,11 @@
 // === AUTO-GENERATED IMPORTS ===
-import "./runtime/common.js";
+import "../runtime/common.js";
 import {
     ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_POISON, ELM_ID_PSYCO,
     ELM_ID_UNDEAD, ELM_ID_VANITY, ELM_ID_WATER, ELM_ID_WIND,
-} from "./const/EnumElmId.js";
-import { MONSTER_BOSSTYPE_BOSS, MONSTER_BOSSTYPE_NONE } from "./const/EnumMonsterBossType.js";
-import { MONSTER_GRASSTYPE_EMPERIUM, MONSTER_GRASSTYPE_GLASS, MONSTER_GRASSTYPE_GLASS_NEW, MONSTER_GRASSTYPE_NONE } from "./const/EnumMonsterGrassType.js";
+} from "../const/EnumElmId.js";
+import { MONSTER_BOSSTYPE_BOSS, MONSTER_BOSSTYPE_NONE } from "../const/EnumMonsterBossType.js";
+import { MONSTER_GRASSTYPE_EMPERIUM, MONSTER_GRASSTYPE_GLASS, MONSTER_GRASSTYPE_GLASS_NEW, MONSTER_GRASSTYPE_NONE } from "../const/EnumMonsterGrassType.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

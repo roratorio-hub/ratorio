@@ -48,7 +48,7 @@ import {
 } from "../data/mig.job.h.js";
 import "../runtime/common.js";
 import "../data/mig.itemsp.h.js";
-import "../item.h.js";
+import "../equip/item.h.js";
 import { CMonsterMapAreaComponentManager } from "../monster/CMonsterMapAreaComponentManager.js";
 import { CShadowEquipController, g_shadowEquipController } from "../equip/CShadowEquipController.js";
 import {
@@ -69,12 +69,12 @@ import { CTimeItemAreaComponentManager } from "../equip/CTimeItemAreaComponentMa
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from "../equip/equip.js";
 import { RebuildCardSelect, SetCardSlotEnability } from "../equip/hmcard.js";
 import { RebuildRndOptSelect, SetRndOptEnablity } from "../equip/hmrndopt.js";
-import { ItemObjNew } from "../item.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import { OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from "../monster/mobconfplayer.js";
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../rndopttype.h.js";
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import { SaveSystem } from "./savedata-codec.js";
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from "../runtime/util.js";

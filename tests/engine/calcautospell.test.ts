@@ -7,7 +7,7 @@ import {
     OnClickEasySetUpAutoSpell,
 } from '@engine/skill/calcautospell.js';
 import { __registerFootFunctions } from '@engine/bridge/foot-bridge.js';
-import { CardObjNew } from '@engine/card.dat.js';
+import { CardObjNew } from '@engine/equip/card.dat.js';
 import { CARD_DATA_INDEX_SPBEGIN } from '@engine/const/EnumCardDataIndex.js';
 import { n_A_card, set_n_A_card } from '@engine/runtime/roro-state.js';
 

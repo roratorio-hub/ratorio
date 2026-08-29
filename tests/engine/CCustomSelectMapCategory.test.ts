@@ -5,7 +5,7 @@ import { CCustomSelectMapCategory } from '@engine/monster/CCustomSelectMapCatego
 
 const mockCategoryRefs = vi.hoisted(() => ({ categoryArr: [] as any[] }));
 
-vi.mock('@engine/monstermap.dat.js', async (importActual) => {
+vi.mock('@engine/monster/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get g_MonsterMapCategoryDataArray() { return mockCategoryRefs.categoryArr; } };
 });

@@ -17,7 +17,7 @@ import {
     ITEM_ID_RASEN_FUMANO_HOZYU, ITEM_ID_REIKINO_MADOSHO, ITEM_ID_RING_OF_PAZUZU, ITEM_ID_SCALL_RING,
     ITEM_ID_SHIELD_RING, ITEM_ID_SHINPANNO_TENBIN, ITEM_ID_SNIPING_SHOES, ITEM_SET_ID_MEDICAL_BOOTS_KAIFUKUNO_HIKARI,
     ITEM_SET_ID_RUISENO_AKAIKUTSU_MORDEN_CARD, ITEM_SET_ID_ULTIMATE_MODE_CHANGER_PEORTH_PLATE
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import { n_A_BODY_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_Weapon_ATKplus } from "../runtime/roro-state.js";
 import {

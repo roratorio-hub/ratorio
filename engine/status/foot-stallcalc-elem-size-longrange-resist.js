@@ -15,7 +15,7 @@ import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
 import {
     CARD_ID_COVOTE, CARD_ID_DAICHORO_AIRIN, CARD_ID_DARK_FACEWORM, CARD_ID_ECO_SALAMANDER_ARMA, CARD_ID_HORN,
     CARD_ID_STING
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch } from "../chara/chara.js";
 import {
     ITEM_SP_PHYSICAL_RESIST_SIZE_LARGE, ITEM_SP_PHYSICAL_RESIST_SIZE_SMALL, ITEM_SP_RESIST_LONGRANGE,
@@ -31,7 +31,7 @@ import {
     ITEM_ID_SHINKUNO_BARA, ITEM_ID_SNIPING_VEIL, ITEM_ID_STINGNO_SILKRIBBON, ITEM_ID_YOICHINO_KATAKAE,
     ITEM_ID_YOZINBONO_SCARF, ITEM_SET_ID_GIGANT_BOOTS_GIGANT_SHIELD, ITEM_SET_ID_GOFUSEKI_PEORTH_MANT,
     ITEM_SET_ID_GOYUMUSONO_MIKOSHI_GOYUMUSONO_KACCHU
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import {
     n_A_BODY_DEF_PLUS, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon_ATKplus
 } from "../runtime/roro-state.js";

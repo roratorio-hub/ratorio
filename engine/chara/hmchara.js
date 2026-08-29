@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import "./chara.js";
-import "../item.h.js";
+import "../equip/item.h.js";
 import { GetUnconfirmedHPSPArray } from "../data/mig.job.h.js";
 import { HtmlCreateTextSpan, HtmlRemoveAllChild } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===

@@ -23,7 +23,7 @@ import { CExtraInfoAreaComponentManager } from "../ui/CExtraInfoAreaComponentMan
 import {
     CARD_ID_ENCHANT_ENERGY_IKUSAOTOME, CARD_SET_ID_ENCHANT_ZODIAC_POLLUX_MANT, CARD_SET_ID_JOBSET_ACOLYTE,
     CARD_SET_ID_JOBSET_ARCHER
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT } from "../const/EnumEquipRegionId.js";
 import {
@@ -68,7 +68,7 @@ import {
     ITEM_SET_ID_SOIGANO_SHO_RAYDRIC_ARCHER_CARD, ITEM_SET_ID_SOIGANO_SHO_SIKKOSURUMONO_CARD,
     ITEM_SET_ID_SOIGANO_SHO_STEM_WORM_CARD, ITEM_SET_ID_SOIGANO_SHO_TENZYA_SENNIN_CARD,
     ITEM_SET_ID_SOIGANO_SHO_VIRUS_CARD, ITEM_SET_ID_SOIGANO_SHO_WRAITH_CARD
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import { GetMobDataParameters } from "../monster/mob.js";
 import {

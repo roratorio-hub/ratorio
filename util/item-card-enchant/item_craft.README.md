@@ -217,7 +217,7 @@ item_list:
 
 ### output_item.dat.js の追記先  
 
-`/engine/item.dat.js` の末尾に追記します  
+`/engine/equip/item.dat.js` の末尾に追記します  
 例えばファイル末尾が以下のような状態の場合  
 
 ```js  
@@ -231,7 +231,7 @@ item_list:
 
 ### output_itemset.dat.js の追記先  
 
-`/engine/itemset.dat.js` に追記します  
+`/engine/equip/itemset.dat.js` に追記します  
 例えばファイル末尾が以下のような状態の場合  
 
 ```js  

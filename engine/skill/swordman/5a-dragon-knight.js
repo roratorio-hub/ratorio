@@ -16,7 +16,7 @@ import {
     ITEM_KIND_AXE_2HAND, ITEM_KIND_SPEAR_2HAND, ITEM_KIND_SWORD_2HAND
 } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
-import { ItemObjNew } from "../../item.dat.js";
+import { ItemObjNew } from "../../equip/item.dat.js";
 import { n_A_Equip } from "../../runtime/roro-state.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {

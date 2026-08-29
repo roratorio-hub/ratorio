@@ -7464,5 +7464,5 @@ export const ordered_info_for_all = [
 		})).concat(ordered_info_for_all)
 	}
 
-import { register } from "./runtime/engine-registry.js";
+import { register } from "../runtime/engine-registry.js";
 register('CardObjNew', CardObjNew);

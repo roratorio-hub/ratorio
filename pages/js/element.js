@@ -1,6 +1,6 @@
 import { myInnerHtml } from "../../engine/runtime/util.js";
 // === AUTO-GENERATED IMPORTS ===
-import { zokusei } from "../../engine/etc.js";
+import { zokusei } from "../../engine/data/element-affinity.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 window.addEventListener('DOMContentLoaded', function() {

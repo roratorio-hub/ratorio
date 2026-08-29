@@ -6,13 +6,13 @@ import {
          HtmlSetObjectValueById
 } from "../runtime/util.js";
 import { isShadowEquipAvailable } from "./CShadowEquipControllerDataBridge.js";
-import { ItemObjNew } from "../item.dat.js";
-import { GetRndOptTypeId } from "../item.h.js";
-import { g_rndOptArray } from "../rndopt.dat.js";
-import { GetRndOptDispName } from "../rndopt.h.js";
-import { g_rndOptListArray } from "../rndoptlist.dat.js";
-import { g_rndOptTypeArray } from "../rndopttype.dat.js";
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../rndopttype.h.js";
+import { ItemObjNew } from "./item.dat.js";
+import { GetRndOptTypeId } from "./item.h.js";
+import { g_rndOptArray } from "./rndopt.dat.js";
+import { GetRndOptDispName } from "./rndopt.h.js";
+import { g_rndOptListArray } from "./rndoptlist.dat.js";
+import { g_rndOptTypeArray } from "./rndopttype.dat.js";
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: equip.js との循環 import 回避
 import { equipBridge } from "../bridge/equip-bridge.js";

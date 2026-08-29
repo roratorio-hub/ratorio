@@ -5,7 +5,7 @@ import {
     CARD_ID_THE_CHIEF_KNIGHT_OF_ABYSS,
     CARD_ID_MAX,
     CardObjNew,
-} from '@engine/card.dat.js';
+} from '@engine/equip/card.dat.js';
 import { get as registryGet } from '@engine/runtime/engine-registry.js';
 
 describe('card.dat.js', () => {

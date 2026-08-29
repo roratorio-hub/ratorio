@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
-import "./runtime/common.js";
-import { EQUIP_REGION_ID_COUNT } from "./const/EnumMigItemParamId.js";
-import { RND_OPT_SLOT_COUNT } from "./const/EnumRndOptTypeDataIndex.js";
+import "../runtime/common.js";
+import { EQUIP_REGION_ID_COUNT } from "../const/EnumMigItemParamId.js";
+import { RND_OPT_SLOT_COUNT } from "../const/EnumRndOptTypeDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 // ランダムオプション設定状況テーブル初期化

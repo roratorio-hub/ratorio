@@ -22,7 +22,7 @@ import {
     CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_MANT, CARD_SET_ID_ENCHANT_ZODIAC_SHISHIKYUNO_SHOES,
     CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_DIADEM, CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_SHOES,
     CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_MANT, CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_SHOES
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG } from "../chara/chara.js";
 import { CARD_REGION_ID_ARMS_LEFT_ANY, CARD_REGION_ID_ARMS_RIGHT_ANY } from "../runtime/common.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT } from "../const/EnumEquipRegionId.js";
@@ -49,7 +49,7 @@ import {
     ITEM_ID_YOCHIYOCHI_URIBO_SUTAI, ITEM_ID_YOGANNO_MANT, ITEM_ID_ZYASPER_RING,
     ITEM_SET_ID_CRYSTAL_BLADE_NECKLACE_KYOGEKI, ITEM_SET_ID_ILLUSION_NEKKETSU_HACHIMAKI_ILLUSION_RENGEKINO_TSUME,
     ITEM_SET_ID_KUGUTSUNO_UDEWA_DARK_HAND
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_LUK, SU_STR, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_SHOES_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon2_ATKplus,

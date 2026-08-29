@@ -1,10 +1,10 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
-import "../item.h.js";
+import "../equip/item.h.js";
 import { g_constDataManager, g_skillManager } from "../runtime/global.js";
 import { calc } from "../bridge/head-bridge.js";
 import { notifyChanged, CalcInput } from "../runtime/calc-invalidation.js";
-import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "../attackmethod.dat.js";
+import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "./attackmethod.dat.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import { CAttackMethodConf } from "./CAttackMethodConf.js";
 import { CCharaConfYozi } from "../chara/CCharaConfYozi.js";

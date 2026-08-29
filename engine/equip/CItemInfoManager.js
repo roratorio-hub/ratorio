@@ -1,24 +1,24 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
-import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from "../itemset.dat.js";
-import { GetItemSetMemberText } from "../itemset.h.js";
+import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from "./itemset.dat.js";
+import { GetItemSetMemberText } from "./itemset.h.js";
 import "../runtime/common.js";
 import { g_constDataManager, g_timeItemConf } from "../runtime/global.js";
 import { g_timeItemDataBridge } from "./CTimeItemDataBridge.js";
-import { CardObjNew } from "../card.dat.js";
-import { COSTUME_ID_HEAD_UNDER_NONE, CostumeOBJ } from "../costume.dat.js";
+import { CardObjNew } from "./card.dat.js";
+import { COSTUME_ID_HEAD_UNDER_NONE, CostumeOBJ } from "./costume.dat.js";
 import {
          ITEM_ID_NOEQUIP_ACCESSORY, ITEM_ID_NOEQUIP_BODY, ITEM_ID_NOEQUIP_HEAD_MID,
          ITEM_ID_NOEQUIP_HEAD_TOP, ITEM_ID_NOEQUIP_HEAD_UNDER, ITEM_ID_NOEQUIP_SET,
          ITEM_ID_NOEQUIP_SHIELD, ITEM_ID_NOEQUIP_SHOES, ITEM_ID_NOEQUIP_SHOULDER,
          ITEM_ID_SUDE, ItemObjNew
-} from "../item.dat.js";
-import { GetItemExplainText, GetSlotText, GetStrPenaltyAvoidStr } from "../item.h.js";
-import { PET_OBJ } from "../pet.dat.js";
+} from "./item.dat.js";
+import { GetItemExplainText, GetSlotText, GetStrPenaltyAvoidStr } from "./item.h.js";
+import { PET_OBJ } from "./pet.dat.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "../runtime/util.js";
-import "../timeitem.h.js";
-import { ITEM_SP_TIME_OBJ } from "../timeitem.dat.js";
+import "./timeitem.h.js";
+import { ITEM_SP_TIME_OBJ } from "./timeitem.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: equip.js との循環 import 回避のため equip-name.js から直接参照
 import { GetFlagAppendedCardName, GetFlagAppendedItemName } from "./equip-name.js";

@@ -23,7 +23,7 @@ import { MONSTER_BOSSTYPE_BOSS } from "../const/EnumMonsterBossType.js";
 import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
 import { RACE_ID_DEMON, RACE_ID_HUMAN, RACE_ID_PLANT, RACE_ID_SOLID } from "../const/EnumRaceId.js";
 import { GetEquippedTotalSPArrow, ROUNDDOWN } from "../bridge/foot-bridge.js";
-import { ItemObjNew } from "../item.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI, MOB_CONF_DEBUF_ID_TARONO_KIZU, n_B_IJYOU
@@ -31,7 +31,7 @@ import {
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../monster/mobconfplayer.js";
-import { MONSTER_ID_PLAYER } from "../monster.dat.js";
+import { MONSTER_ID_PLAYER } from "../monster/monster.dat.js";
 import {
     SU_STR, n_A_AGI, n_A_DEX, n_A_Equip, n_A_INT, n_A_JOB, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV, n_A_WeaponType,
     n_A_Weapon_ATKplus

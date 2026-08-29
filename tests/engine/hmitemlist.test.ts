@@ -27,9 +27,9 @@ let MIG_JOB_ID_ALITEA: number;      // アリテア = 88
 beforeAll(async () => {
 	await import('/workspace/ratorio/engine/runtime/global.js');       // g_constDataManager を window にセット
 	await import('/workspace/ratorio/engine/data/mig.job.dat.js'); // 職業データを g_constDataManager にロード
-	await import('/workspace/ratorio/engine/itemset.dat.js'); // w_SE を window にセット（GetItemExplainText が参照）
-	await import('/workspace/ratorio/engine/itemset.h.js'); // GetItemSetMemberText を itemset-bridge に登録（GetItemExplainText が呼ぶ）
-	const itemDat = await import('/workspace/ratorio/engine/item.dat.js');
+	await import('/workspace/ratorio/engine/equip/itemset.dat.js'); // w_SE を window にセット（GetItemExplainText が参照）
+	await import('/workspace/ratorio/engine/equip/itemset.h.js'); // GetItemSetMemberText を itemset-bridge に登録（GetItemExplainText が呼ぶ）
+	const itemDat = await import('/workspace/ratorio/engine/equip/item.dat.js');
 	ItemObjNew = itemDat.ItemObjNew;
 	const hmitemlist = await import('/workspace/ratorio/pages/js/hmitemlist.js');
 	getItemList = hmitemlist.getItemList;

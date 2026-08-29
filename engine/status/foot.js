@@ -12,10 +12,10 @@ import {
          IsUsableHSPJob
 } from "../data/mig.job.h.js";
 import "../data/mig.itemsp.h.js";
-import "../monster.h.js";
-import "../timeitem.h.js";
+import "../monster/monster.h.js";
+import "../equip/timeitem.h.js";
 import { HydrateFromDom } from "./foot-stallcalc-hydrate.js";
-import { ITEM_SP_TIME_OBJ } from "../timeitem.dat.js";
+import { ITEM_SP_TIME_OBJ } from "../equip/timeitem.dat.js";
 import { Click_Skill4SW, n_Skill4SW, setN_Skill4SW } from "../ui/BuffGuildAndGospel.js";
 import { Click_Skill7SW, n_Skill7SW, setN_Skill7SW } from "../ui/BuffItemAndFood.js";
 import { Click_PassSkillSW, n_Skill1SW, setN_Skill1SW } from "../ui/BuffJobSpecificSelf.js";
@@ -63,7 +63,7 @@ import {
          ARROW_ID_SEINARU_YA, ARROW_ID_SILENCE_ARROW, ARROW_ID_SLEEP_ARROW,
          ARROW_ID_SUISHONO_YA, ARROW_ID_SURUDOI_YA, ARROW_ID_YA,
          ARROW_ID_ZOKUSE_ZIDO_YA_ATK30, ArrowOBJNew
-} from "../arrow.dat.js";
+} from "../equip/arrow.dat.js";
 import {
          CARD_ID_AQUARIUS, CARD_ID_ARCH_BISHOP_MARGARETTE_MVP, CARD_ID_ARFOSIO_BASIL_MVP,
          CARD_ID_ASH_HOPPER, CARD_ID_BIG_EGGRING, CARD_ID_BLOODY_SLASHER,
@@ -195,7 +195,7 @@ import {
 		 CARD_ID_PRIDE_CROW_BARON,CARD_ID_PRIDE_RUNAWAY_THANATOS,CARD_SET_ID_PRIDE_THANATOS_RESENT_EIYU,
 		 CARD_SET_ID_PRIDE_THANATOS_HORROR_EIYU,
          CardObjNew
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { BuildUpCastSimSimulateArea } from "../battle/castsim.js";
 import {
          CardNumSearch, CostumeNumSearch, EXBUF_ID_HOM_S_PAINKILLER,
@@ -246,13 +246,13 @@ import {
          COSTUME_REGION_ID_ACCESSORY_2, COSTUME_REGION_ID_COUNT,
          COSTUME_REGION_ID_HEAD_UNDER
 } from "../runtime/common.js";
-import { COSTUME_ID_BEGINNER_BO, CostumeOBJ } from "../costume.dat.js";
+import { COSTUME_ID_BEGINNER_BO, CostumeOBJ } from "../equip/costume.dat.js";
 import {
          ClearEquipAll, InitEquipDefaultAll, IsLongRange, OnChangeArmsTypeRight,
          OnChangeCard, OnChangeEquip, RebuildArmorsSelect, SetSuperNoviceFullWeapon,
          UpdateStatefullDataOnChangeEquip, changeJobSettings, g_bSuperNoviceFullWeapon
 } from "../equip/equip.js";
-import { zokusei } from "../etc.js";
+import { zokusei } from "../data/element-affinity.dat.js";
 import { ClearCardSlotAll, SetCardSlotEnabilityAll } from "../equip/hmcard.js";
 import { UpdateCharaDataHtml } from "../chara/hmchara.js";
 import { ClearCostumeSlotAll, SetCostumeSlotEnabilityAll } from "../equip/hmcostume.js";
@@ -708,12 +708,12 @@ import {
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI_S2, 
 		 ITEM_ID_ANGELIC_HEALM_BIOLO,ITEM_ID_ANGELIC_HEALM_INQUISITOR,ITEM_ID_ANGELIC_HEALM_HYPERNOVICE,
 		 ItemObjNew
-} from "../item.dat.js";
-import { GetItemKindNameText } from "../item.h.js";
+} from "../equip/item.dat.js";
+import { GetItemKindNameText } from "../equip/item.h.js";
 import {
          CheckAndApplyItemSetEquipping, ITEMSET_ID_LIMIT_WITH_CARD,
          ITEMSET_ID_LIMIT_WITH_ITEM
-} from "../itemset.h.js";
+} from "../equip/itemset.h.js";
 import { LearnedSkillSearch, OnClickSkillSWLearned } from "../skill/learnedskill.js";
 import { GetMobDataBasicAttribute, GetMobDataParameters } from "../monster/mob.js";
 import { BuildUpMobConfBufSelectArea, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
@@ -727,9 +727,9 @@ import {
          MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, RefreshMobConfPlayerControlCSS,
          RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI
 } from "../monster/mobconfplayer.js";
-import { PET_ID_MISTRESS, PET_OBJ } from "../pet.dat.js";
+import { PET_ID_MISTRESS, PET_OBJ } from "../equip/pet.dat.js";
 import { OnClickQuickControlSW } from "../battle/quickcontrol.js";
-import { SetEquipRndOptTable } from "../rndopttype.h.js";
+import { SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import { LoadCookie3, LoadCookieConf } from "../savedata/savedata-codec.js";
 import {
          SERE_SUPPORT_SKILL_ID_CRYSTAL_ARMOR, SERE_SUPPORT_SKILL_ID_EYES_OF_STORM,
@@ -763,7 +763,7 @@ import {
          TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO,
          TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
-} from "../timeitem.dat.js";
+} from "../equip/timeitem.dat.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveOptionAll, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData, toSafeBigInt } from "../runtime/util.js";
 import {
          SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_ADJUSTMENT, SKILL_ID_ADORAMUS,

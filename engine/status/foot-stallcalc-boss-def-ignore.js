@@ -12,7 +12,7 @@ import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
 import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
 import {
     CARD_SET_ID_ENCHANT_ZODIAC_TENKATSUKYUNO_CROWN, CARD_SET_ID_ENCHANT_ZODIAC_ZINBAKYUNO_CROWN
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG } from "../chara/chara.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT } from "../const/EnumEquipRegionId.js";
 import {
@@ -43,7 +43,7 @@ import {
     ITEM_SET_ID_GIGANT_BOOTS_GIGANT_LANCE, ITEM_SET_ID_GIGANT_BOOTS_GIGANT_SHIELD,
     ITEM_SET_ID_ILLUSION_NEKKETSU_HACHIMAKI_ILLUSION_RENGEKINO_TSUME, ITEM_SET_ID_KUGUTSUNO_UDEWA_DARK_HAND,
     ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI, ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI_S2
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_LUK, n_A_BODY_DEF_PLUS, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_SHIELD_DEF_PLUS, n_A_SHOES_DEF_PLUS,

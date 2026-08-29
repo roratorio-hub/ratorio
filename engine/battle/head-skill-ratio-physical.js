@@ -12,7 +12,7 @@ import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";
 import { CCharaConfSanzi } from "../chara/CCharaConfSanzi.js";
 import {
     ARROW_ID_GANSEKINO_YA, ARROW_ID_HONOONO_YA, ARROW_ID_KAZENO_YA, ARROW_ID_SUISHONO_YA
-} from "../arrow.dat.js";
+} from "../equip/arrow.dat.js";
 import {
     CARD_ID_ARCANA_CHARIOT, CARD_ID_ARCANA_DEATH, CARD_ID_ARCANA_DEVIL, CARD_ID_ARCANA_EMPEROR, CARD_ID_ARCANA_HOUO,
     CARD_ID_ARCANA_JUSTICE, CARD_ID_ARCANA_LOVERS, CARD_ID_ARCANA_POWER, CARD_ID_ARCANA_SESSEI,
@@ -21,7 +21,7 @@ import {
     CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_DIADEM, CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_MANT,
     CARD_SET_ID_ENCHANT_ZODIAC_KINGYUKYUNO_SHOES, CARD_SET_ID_ENCHANT_ZODIAC_KYOKAIKYUNO_MANT,
     CARD_SET_ID_ENCHANT_ZODIAC_MAKATSUKYUNO_MANT, CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_SHOES
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG, TimeItemNumSearch } from "../chara/chara.js";
 import { CARD_REGION_ID_ACCESSORY_1_ANY, CARD_REGION_ID_ACCESSORY_2_ANY } from "../runtime/common.js";
 import { CHARA_DATA_INDEX_MAXHP } from "../const/EnumCharaDataIndex.js";
@@ -82,7 +82,7 @@ import {
     ITEM_SET_ID_SCARABA_HIGHHEEL_ELVEN_BOW, ITEM_SET_ID_SHINMA_BAPHOMETNO_TSUNO_BLOODY_CROSS,
     ITEM_SET_ID_YSF01_PLATE_FULLSET, ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_JUDGEMENT_ROBE,
     ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_PLATE, ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_KEN
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
@@ -123,7 +123,7 @@ import {
     SKILL_ID_WUG_BITE, SKILL_ID_WUG_DASH, SKILL_ID_WUG_STRIKE, SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN,
     SKILL_ID_ZYUMONZIGIRI
 } from "../skill/skill.dat.js";
-import { TIME_ITEM_ID_CHOTOTSU_MOUSHIN, TIME_ITEM_ID_SANGAKU_HELMET } from "../timeitem.dat.js";
+import { TIME_ITEM_ID_CHOTOTSU_MOUSHIN, TIME_ITEM_ID_SANGAKU_HELMET } from "../equip/timeitem.dat.js";
 import { IsSameJobClass } from "../data/mig.job.h.js";
 import { g_confDataSanzi, g_objCharaConfCustomSkill } from "../runtime/global.js";
 import { TyouEnkakuSousa3dan, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Arrow, n_A_BaseLV } from "../runtime/ro4-state.js";

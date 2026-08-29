@@ -6,8 +6,8 @@
 //
 // CanonOBJ の属性列は ELM_ID_*（common.js が DefineEnum で定義するグローバル定数）を参照するため、
 // 本モジュール評価前に必ず common.js を評価しておく。
-import "./runtime/common.js";
-import { ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_WATER, ELM_ID_WIND } from "./const/EnumElmId.js";
+import "../runtime/common.js";
+import { ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_WATER, ELM_ID_WIND } from "../const/EnumElmId.js";
 
 /** 手裏剣の種類 */
 export const SyurikenOBJ = [ [10,0,"手裏剣"] ,[30,0,"雨雲の手裏剣"] ,[45,0,"閃光の手裏剣"] ,[70,0,"鋭刃の手裏剣"] ,[100,0,"棘針の手裏剣"] ,[110,0,"星ヒトデ"] ];

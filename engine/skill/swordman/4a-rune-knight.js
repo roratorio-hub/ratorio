@@ -10,7 +10,7 @@ import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
-import { ItemObjNew } from "../../item.dat.js";
+import { ItemObjNew } from "../../equip/item.dat.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";

@@ -27,7 +27,7 @@ import { CCharaConfDebuff } from "../chara/CCharaConfDebuff.js";
 import { CCharaConfNizi } from "../chara/CCharaConfNizi.js";
 import { CCharaConfSanzi } from "../chara/CCharaConfSanzi.js";
 import { CExtraInfoAreaComponentManager } from "../ui/CExtraInfoAreaComponentManager.js";
-import { ARROW_ID_GANSEKINO_YA, ARROW_ID_HONOONO_YA, ARROW_ID_KAZENO_YA, ARROW_ID_SUISHONO_YA } from "../arrow.dat.js";
+import { ARROW_ID_GANSEKINO_YA, ARROW_ID_HONOONO_YA, ARROW_ID_KAZENO_YA, ARROW_ID_SUISHONO_YA } from "../equip/arrow.dat.js";
 import {
     CARD_ID_ELITE_RGAN_HEALER, CARD_ID_ENCHANT_SHINO_NIEVE_CHIRYOKU, CARD_ID_ENCHANT_ZOFUKU_1,
     CARD_ID_ENCHANT_ZOFUKU_2, CARD_ID_ENCHANT_ZOFUKU_3, CARD_ID_ENCHANT_ZOFUKU_4, CARD_ID_ENCHANT_ZOFUKU_5,
@@ -39,7 +39,7 @@ import {
     CARD_SET_ID_ENCHANT_ZODIAC_PROCYON_ROBE, CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_MAIL,
     CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_MAIL, CARD_SET_ID_ENCHANT_ZODIAC_SOZIKYUNO_MAIL,
     CARD_SET_ID_ENCHANT_ZOFUKUSARETA_ENBO_SHINEN_ARMS_V1
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG, TimeItemNumSearch } from "../chara/chara.js";
 import {
     CARD_REGION_ID_ARMS_LEFT_ANY, CARD_REGION_ID_ARMS_RIGHT_ANY, CARD_REGION_ID_BODY_ANY, CARD_REGION_ID_HEAD_TOP,
@@ -89,7 +89,7 @@ import {
     ITEM_SET_ID_KUWAETA_HEARTNO_ACE_GAMBLER_SEAL, ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO,
     ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA_PET, ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_ROD_DEX_SURVIVAL_MANT,
     ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_ROD_INT_SURVIVAL_MANT
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
@@ -111,7 +111,7 @@ import {
     SKILL_ID_SPEAR_QUICKEN, SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_AKUMA, SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI,
     SKILL_ID_TAMASHINO_RENKETSU, SKILL_ID_TUZYO_KOGEKI, SKILL_ID_TWOHAND_QUICKEN
 } from "../skill/skill.dat.js";
-import { TIME_ITEM_ID_ENCHANT_HONOIKAZUCHINOOKAMI_AR, TIME_ITEM_ID_RALF_FONG_TWIEGE_666 } from "../timeitem.dat.js";
+import { TIME_ITEM_ID_ENCHANT_HONOIKAZUCHINOOKAMI_AR, TIME_ITEM_ID_RALF_FONG_TWIEGE_666 } from "../equip/timeitem.dat.js";
 import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/foot-bridge.js";
 
 

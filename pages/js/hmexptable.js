@@ -6,8 +6,8 @@ import {
          GetJobExpTable,
          GetJobLevelMax
 } from "../../engine/data/mig.job.h.js";
-import "../../engine/monster.h.js";
-import { MonsterObjNew } from "../../engine/monster.dat.js";
+import "../../engine/monster/monster.h.js";
+import { MonsterObjNew } from "../../engine/monster/monster.dat.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger } from "../../engine/runtime/util.js";
 import { MIG_JOB_ID_DRAGON_KNIGHT } from "../../engine/data/mig.job.dat.js";
 import { BASE_EXP_TABLE_ID_NORMAL, BASE_EXP_TABLE_ID_REINCANATED } from "../../engine/const/BaseExpTableId.js";

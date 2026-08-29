@@ -10909,5 +10909,5 @@ propNameItemID の bit 数を更新した上で
 parse 関数をオーバーライドして後方互換性を確保してください
 オーバーライドされた parse の処理は CSaveDataUnitMob クラスを参考にしてください
 */
-import { register } from "./runtime/engine-registry.js";
+import { register } from "../runtime/engine-registry.js";
 register('ItemObjNew', ItemObjNew);

@@ -21,14 +21,14 @@ import { CCharaConfDebuff } from "../chara/CCharaConfDebuff.js";
 import { CCharaConfNizi } from "../chara/CCharaConfNizi.js";
 import { CCharaConfSanzi } from "../chara/CCharaConfSanzi.js";
 import { CCharaConfYozi } from "../chara/CCharaConfYozi.js";
-import { ARROW_ID_SURUDOI_YA } from "../arrow.dat.js";
+import { ARROW_ID_SURUDOI_YA } from "../equip/arrow.dat.js";
 import {
     CARD_ID_BOW_GUARDIAN, CARD_ID_CHUNGE, CARD_ID_COTNESS, CARD_ID_EFREET, CARD_ID_ENCHANT_ENERGY_CHIMEINO_ICHIGEKI,
     CARD_ID_ENCHANT_SHINO_NIEVE_KOUN, CARD_ID_E_EA1L, CARD_ID_FUINSARETA_EFREET, CARD_ID_FUR_SEAL,
     CARD_ID_HEART_HUNTER_AT, CARD_ID_KICK_AND_KICK, CARD_ID_KYODAI_WHISPER, CARD_ID_LOLA, CARD_ID_MOBSTER,
     CARD_ID_POWERFUL_S_SKELETON, CARD_ID_RANGER_CECIL_MVP, CARD_ID_SIDE_RIDER, CARD_ID_SWORD_GUARDIAN,
     CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_EFREET, CARD_SET_ID_ENCHANT_HOZYONO_MEGAMI_FUINSARETA_EFREET
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG, TimeItemNumSearch } from "../chara/chara.js";
 import {
     CARD_REGION_ID_ARMS_LEFT_ANY, CARD_REGION_ID_ARMS_RIGHT_ANY, CARD_REGION_ID_BODY_ANY, CARD_REGION_ID_HEAD_TOP,
@@ -56,7 +56,7 @@ import {
     ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_LINDY_HOP, ITEM_SET_ID_HAIHANENO_BOOTS_SHIRAHANO_SUITS,
     ITEM_SET_ID_KUWAETA_HEARTNO_ACE_GAMBLER_SEAL, ITEM_SET_ID_NIEVE_VALLETTA_NIEVE_ARMS,
     ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO, ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_ASSAULT
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_AGI, SU_DEX, SU_LUK, SU_STR, n_A_BODY_DEF_PLUS, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_JobLV, n_A_LUK,
@@ -69,7 +69,7 @@ import {
     SKILL_ID_KATAR_SHUREN, SKILL_ID_MACE_SHUREN, SKILL_ID_SEIMEINO_CHIKARA, SKILL_ID_SENRYU_SHOTEN,
     SKILL_ID_SIXTH_SENSE, SKILL_ID_SOUL_ATTACK, SKILL_ID_SPEAR_QUICKEN, SKILL_ID_TRUE_SIGHT
 } from "../skill/skill.dat.js";
-import { TIME_ITEM_ID_RING_OF_FLAME_LORD, TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO } from "../timeitem.dat.js";
+import { TIME_ITEM_ID_RING_OF_FLAME_LORD, TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO } from "../equip/timeitem.dat.js";
 import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/foot-bridge.js";
 
 // foot.js 専有のモジュールレベル変数（各関数内で書いてから読む。write-before-read 確認済み）

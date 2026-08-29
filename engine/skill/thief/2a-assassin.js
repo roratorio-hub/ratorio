@@ -9,7 +9,7 @@
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_POISON } from "../../const/EnumElmId.js";
 import { MONSTER_DATA_INDEX_ELEMENT } from "../../const/EnumMonsterDataIndex.js";
-import { GetMonseterElmBasicType } from "../../monster.h.js";
+import { GetMonseterElmBasicType } from "../../monster/monster.h.js";
 import {
     SKILL_ID_CLOAKING, SKILL_ID_ENCHANT_DEADLY_POISON, SKILL_ID_ENCHANT_POISON, SKILL_ID_GRIM_TOOTH,
     SKILL_ID_HIDARITE_SHUREN, SKILL_ID_KATAR_SHUREN, SKILL_ID_MIGITE_SHUREN, SKILL_ID_POISON_REACT,

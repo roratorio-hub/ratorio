@@ -2,7 +2,7 @@
 import { n_A_Equip } from "../runtime/roro-state.js";
 import "./autospell.h.js";
 import "../runtime/common.js";
-import "../item.h.js";
+import "../equip/item.h.js";
 import "./skill.h.js";
 import { GetHigherJobSeriesID, GetLowerJobSeriesID } from "../data/mig.job.h.js";
 import {
@@ -10,13 +10,13 @@ import {
          HtmlRemoveAllChild, myInnerHtml
 } from "../runtime/util.js";
 import { AutoSpellSkill } from "./autospell.dat.js";
-import { CARD_ID_GRIFFIN, CARD_ID_NAGUSAMERUMONO } from "../card.dat.js";
+import { CARD_ID_GRIFFIN, CARD_ID_NAGUSAMERUMONO } from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
 import {
          ITEM_ID_FURUBITA_MEISAIUSAGI, ITEM_ID_GLORIOUS_CLAW, ITEM_ID_MAGICAL_BLADE,
          ITEM_ID_SHINIGAMINO_MEIBO, ITEM_ID_SORATOBU_GARAPAGO, ITEM_ID_TORIKAINO_YOBIKO,
          ITEM_ID_ZYOO_FACEWORMNO_ASHI
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "./learnedskill.js";
 import {
          MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,

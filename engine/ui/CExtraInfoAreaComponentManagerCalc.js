@@ -16,8 +16,8 @@
  */
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import { UsedSkillSearch } from "../skill/skillstate.js";
-import { zokusei } from "../etc.js";
-import { ItemObjNew } from "../item.dat.js";
+import { zokusei } from "../data/element-affinity.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import {
     HEALTYPE_COLUCEO_HEAL, HEALTYPE_DILECTIO_HEAL, HEALTYPE_EBI_ZANMAI, HEALTYPE_HEAL,
     HEALTYPE_HIGHNESS, HEALTYPE_SANCTUARY, HEALTYPE_SHINSENNA_EBI, HEALTYPE_SHUGO_FU,

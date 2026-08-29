@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../monster.h.js";
+import "../monster/monster.h.js";
 import { GetArrayTotal, GetArrayMax, GetArrayMin } from "../runtime/util.js";
 import { MONSTER_DATA_INDEX_BASE_EXP, MONSTER_DATA_INDEX_HP, MONSTER_DATA_INDEX_JOB_EXP } from "../const/EnumMonsterDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===

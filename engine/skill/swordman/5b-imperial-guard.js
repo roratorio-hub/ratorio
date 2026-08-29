@@ -13,7 +13,7 @@ import { EQUIP_REGION_ID_SHIELD } from "../../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
 import { ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { ITEM_ID_NOEQUIP_SHIELD, ItemObjNew } from "../../item.dat.js";
+import { ITEM_ID_NOEQUIP_SHIELD, ItemObjNew } from "../../equip/item.dat.js";
 import { n_A_Equip, n_A_SHIELD_DEF_PLUS, n_A_WeaponType } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {

@@ -1,7 +1,7 @@
 import { vi, describe, it, expect } from 'vitest';
-import { MonsterToughness } from '@engine/monster.toughness.dat.js';
+import { MonsterToughness } from '@engine/monster/monster.toughness.dat.js';
 
-vi.mock('@engine/monster.dat.js', () => {
+vi.mock('@engine/monster/monster.dat.js', () => {
     const arr: any[] = [];
     arr[1] = [1, 'テストモンスター'];
     return { MonsterObjNew: arr };

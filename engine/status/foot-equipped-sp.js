@@ -12,8 +12,8 @@ import { g_timeItemConf, g_timeItemConfEffective } from "../runtime/global.js";
 import { g_pureStatus } from "../chara/hmjob.js";
 import { n_A_Arrow, n_A_BaseLV } from "../runtime/ro4-state.js";
 import { toSafeBigInt } from "../runtime/util.js";
-import { ARROW_ID_ZOKUSE_ZIDO_YA_ATK30, ArrowOBJNew } from "../arrow.dat.js";
-import { CardObjNew } from "../card.dat.js";
+import { ARROW_ID_ZOKUSE_ZIDO_YA_ATK30, ArrowOBJNew } from "../equip/arrow.dat.js";
+import { CardObjNew } from "../equip/card.dat.js";
 import {
     CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2, CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
     CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4, CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2,
@@ -60,9 +60,9 @@ import { MONSTER_DATA_INDEX_ELEMENT } from "../const/EnumMonsterDataIndex.js";
 import { PARAM_DEX, PARAM_VIT } from "../const/EnumParamId.js";
 import { PET_DATA_INDEX_SPBEGIN } from "../const/EnumPetDataIndex.js";
 import { TIME_ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumTimeItemDataIndex.js";
-import { CostumeOBJ } from "../costume.dat.js";
-import { ItemObjNew } from "../item.dat.js";
-import { PET_OBJ } from "../pet.dat.js";
+import { CostumeOBJ } from "../equip/costume.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
+import { PET_OBJ } from "../equip/pet.dat.js";
 import {
     SU_AGI, SU_DEX, SU_INT, SU_LUK, SU_STR, SU_VIT, g_itemIdArray, g_refinedArray, n_A_BODY_DEF_PLUS,
     n_A_BODY_DEF_Transcendence, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_HEAD_DEF_Transcendence, n_A_SHIELD_DEF_PLUS,
@@ -70,7 +70,7 @@ import {
     n_A_SHOULDER_DEF_Transcendence, n_A_Weapon2_ATKplus, n_A_Weapon2_Transcendence, n_A_Weapon_ATKplus,
     n_A_Weapon_Transcendence, n_A_card, n_A_costume
 } from "../runtime/roro-state.js";
-import { ITEM_SP_TIME_OBJ } from "../timeitem.dat.js";
+import { ITEM_SP_TIME_OBJ } from "../equip/timeitem.dat.js";
 
 /**
  * 装備中のＳＰの合計値を取得する（装備のみ）.

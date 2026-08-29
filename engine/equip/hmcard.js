@@ -25,7 +25,7 @@ import {
          CARD_ID_PHYSICAL_MONSTER_ELM_ALL_20UP, CARD_ID_PHYSICAL_RACE_ALL_20UP,
          CARD_ID_PHYSICAL_SIZE_ALL_15UP, CARD_ID_POWERFUL_A_SKELETON,
          CARD_ID_SHINENNO_KISHI, CardObjNew, CardSortOBJ
-} from "../card.dat.js";
+} from "./card.dat.js";
 import {
          CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2,
          CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
@@ -52,8 +52,8 @@ import {
 import {
          ITEM_ID_ALPHA_CORE_CARD_ENCHANTABLE,
          ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE, ITEM_ID_RUNE_HELM, ItemObjNew
-} from "../item.dat.js";
-import { GetMaxSlot } from "../item.h.js";
+} from "./item.dat.js";
+import { GetMaxSlot } from "./item.h.js";
 import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from "../data/mig.enchlist.dat.js";
 import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===

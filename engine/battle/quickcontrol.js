@@ -1,13 +1,13 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
-import "../item.h.js";
-import { CardObjNew } from "../card.dat.js";
+import "../equip/item.h.js";
+import { CardObjNew } from "../equip/card.dat.js";
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, OnChangeCard, OnChangeEquip } from "../equip/equip.js";
-import { ItemObjNew } from "../item.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import {
          ITEM_PACK_ID_CLEAR_CARD_ALL, ITEM_PACK_ID_CLEAR_EQUIP_ALL,
          ITEM_PACK_ID_CLEAR_REFINE_ALL, ITEM_PACK_ID_CLEAR_SHADOW_ALL, ItemPackOBJ
-} from "../itempack.dat.js";
+} from "../equip/itempack.dat.js";
 import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_RNDENCH, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "../equip/slotpager.js";
 import { IsMatchJobRestrict } from "../data/mig.job.h.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "../runtime/util.js";

@@ -7,15 +7,15 @@ import { CCharaConfSanzi } from "../chara/CCharaConfSanzi.js";
 import {
          CARD_ID_HENI_CHIMERA_GALENSIS, CARD_ID_KONTONNO_SIDEWINDER, CARD_ID_SIDEWINDER,
          CARD_SET_ID_ENCHANT_SHINRINO_KAIHO_SENZAI_SPELL_FIST_1
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CARD_REGION_ID_HEAD_TOP_ANY } from "../runtime/common.js";
 import {
          ITEM_ID_CIRCUIT_BOARD_OS, ITEM_ID_HIYOKOCHAN, ITEM_ID_HIYOKOCHAN_RENTAL,
          ITEM_ID_NEIGAN, ITEM_ID_STUFF_OF_PUFFY, ITEM_ID_TOTONO_SHO,
          ITEM_ID_TOTONO_SHO_T1, ITEM_ID_ZINBAORI, ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA,
          ITEM_SET_ID_VALENTINE_BO_HANTAIHANO_AKASHI
-} from "../item.dat.js";
-import { IsGunSeriesArms } from "../item.h.js";
+} from "../equip/item.dat.js";
+import { IsGunSeriesArms } from "../equip/item.h.js";
 import { LearnedSkillSearch } from "./learnedskill.js";
 import {
          TIME_ITEM_ID_BLUE_RIBBON, TIME_ITEM_ID_DARK_TRIAD,
@@ -26,7 +26,7 @@ import {
          TIME_ITEM_ID_JITTER_BUG, TIME_ITEM_ID_LEASER_OF_EAGLE_TRUE_SIGHT,
          TIME_ITEM_ID_TRAVELER_RING_GOKETSU, TIME_ITEM_ID_TRIANGLE_DISASTER,
          TIME_ITEM_ID_URUNO_KAGO, TIME_ITEM_ID_VNDER_CANMER_SHUCHURYOKU_KOZYO
-} from "../timeitem.dat.js";
+} from "../equip/timeitem.dat.js";
 import {
          SKILL_ID_AURA_BLADE, SKILL_ID_BERSERK, SKILL_ID_CHAIN_ACTION,
          SKILL_ID_DOUBLE_ATTACK, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_KONGO,

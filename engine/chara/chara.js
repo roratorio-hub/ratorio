@@ -1,6 +1,6 @@
 import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
 // === AUTO-GENERATED IMPORTS ===
-import "../item.h.js";
+import "../equip/item.h.js";
 import { GetHigherJobSeriesID, GetLowerJobSeriesID, IsSameJobClass } from "../data/mig.job.h.js";
 import { g_timeItemConf, g_timeItemConfEffective } from "../runtime/global.js";
 import { CCharaConfCustomAtk } from "./CCharaConfCustomAtk.js";
@@ -51,7 +51,7 @@ import {
          CARD_SET_ID_ENCHANT_IKYONO_TOKATSUSHA_KOKUDAO,
          CARD_SET_ID_ENCHANT_ZODIAC_HAKUYOKYUNO_SHIELD, CARD_SET_ID_JOBSET_CRUSADER,
          CARD_SET_ID_OCHITA_DAISHINKAN_HIBAM_ENCHANT_BOSOSHITA_MARYOKU
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import {
          CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_1_ANY,
          CARD_REGION_ID_ACCESSORY_2, CARD_REGION_ID_ACCESSORY_2_ANY,
@@ -81,7 +81,7 @@ import {
          CARD_REGION_ID_SHOES, CARD_REGION_ID_SHOES_ANY, CARD_REGION_ID_SHOULDER,
          CARD_REGION_ID_SHOULDER_ANY, COSTUME_REGION_ID_ANY
 } from "../runtime/common.js";
-import { COSTUME_ID_BEGINNER_BO } from "../costume.dat.js";
+import { COSTUME_ID_BEGINNER_BO } from "../equip/costume.dat.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
          ITEM_ID_10SHUNEN_KINEN_BADGE, ITEM_ID_ACADEMY_BADGE, ITEM_ID_ACOLYTE_FIGURE,
@@ -305,7 +305,7 @@ import {
          ITEM_SET_ID_YUSHANOIKARI_ORCISH_AXE_ORCISH_SWORD,
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_ONO,
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_ONO_S2, ItemObjNew
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
          MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_GVG,
@@ -325,7 +325,7 @@ import {
 import {
          TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_LUDE, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
-} from "../timeitem.dat.js";
+} from "../equip/timeitem.dat.js";
 import {
          SKILL_ID_ADJUSTMENT, SKILL_ID_ARCLOUSE_DASH, SKILL_ID_ARMS_CANNON,
          SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_AXE_BOOMERANG, SKILL_ID_BANDING,

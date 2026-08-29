@@ -1,5 +1,5 @@
 import { g_AliasDataArray } from "./alias.dat.js";
-import { ALIAS_DATA_INDEX_ALIAS, ALIAS_DATA_INDEX_ORIGIN } from "./const/EnumAliasDataIndex.js";
+import { ALIAS_DATA_INDEX_ALIAS, ALIAS_DATA_INDEX_ORIGIN } from "../const/EnumAliasDataIndex.js";
 
 /**
  * エイリアスを変換する.

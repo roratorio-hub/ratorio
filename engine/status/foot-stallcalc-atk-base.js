@@ -24,7 +24,7 @@ import {
 } from "../const/EnumItemKind.js";
 import { ITEM_SP_ATK_PLUS } from "../const/EnumItemSpId.js";
 import { JOB_ID_TAEGWON } from "../const/EnumJobId.js";
-import { zokusei } from "../etc.js";
+import { zokusei } from "../data/element-affinity.dat.js";
 import {
     n_A_BodyZokusei, n_A_DEX, n_A_JOB, n_A_LUK, n_A_STR, n_A_Weapon2LV_seirenATK, n_A_Weapon2_ATK, n_A_WeaponLV,
     n_A_WeaponLV_seirenATK, n_A_WeaponType, n_A_Weapon_ATK, n_A_WeaponZokusei,

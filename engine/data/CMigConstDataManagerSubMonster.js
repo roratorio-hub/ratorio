@@ -1,8 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../monster.h.js";
+import "../monster/monster.h.js";
 import { CMigConstDataManagerSubBase } from "./CMigConstDataManagerSubBase.js";
 import { CMigEquipableData } from "./CMigEquipableData.js";
-import { MonsterObjNew } from "../monster.dat.js";
+import { MonsterObjNew } from "../monster/monster.dat.js";
 import { MIG_EQUIPABLE_DATA_INDEX_ID, MIG_EQUIPABLE_DATA_INDEX_NAME_KANA_ARRAY, MIG_EQUIPABLE_DATA_INDEX_OFFICIAL_ID, MIG_EQUIPABLE_DATA_INDEX_REF_ID } from "../const/EnumMigEquipableDataIndex.js";
 import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_NAME } from "../const/EnumMonsterDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===

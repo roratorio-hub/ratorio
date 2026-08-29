@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../timeitem.h.js";
-import { ITEM_SP_TIME_OBJ } from "../timeitem.dat.js";
+import "../equip/timeitem.h.js";
+import { ITEM_SP_TIME_OBJ } from "../equip/timeitem.dat.js";
 import { g_timeItemConf, g_timeItemConfEffective, g_timeItemConfAllEffective, set_g_timeItemConfAllEffective } from "../runtime/global.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===

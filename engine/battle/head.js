@@ -13,7 +13,7 @@ import {
 } from "./head-skill-ratio-magical.js";
 import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
 // 武器種テーブル（旧 head.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
-import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from "../attackmethod.dat.js";
+import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from "./attackmethod.dat.js";
 export { SyurikenOBJ, KunaiOBJ, CanonOBJ };
 // 四次スキルの強制属性の決定処理（物理・魔法共通、head.js 外なので単体テスト可能）
 import { GetForcedElementForCalc } from "./battle-element.js";
@@ -53,7 +53,7 @@ import { CSkillData } from "../skill/CSkillManager.js";
 import {
          ARROW_ID_GANSEKINO_YA, ARROW_ID_HONOONO_YA, ARROW_ID_KAZENO_YA,
          ARROW_ID_SUISHONO_YA
-} from "../arrow.dat.js";
+} from "../equip/arrow.dat.js";
 import { AutoSpellSkill } from "../skill/autospell.dat.js";
 import {
          CARD_ID_ARCANA_CHARIOT, CARD_ID_ARCANA_DEATH, CARD_ID_ARCANA_DEVIL,
@@ -84,7 +84,7 @@ import {
          CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_SHOES,
          CARD_SET_ID_ENCHANT_ZODIAC_SOGYOKYUNO_SHOES,
          CARD_SET_ID_ENCHANT_ZODIAC_TENBINKYUNO_SHOES, CardObjNew
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG, TimeItemNumSearch } from "../chara/chara.js";
 import {
          CARD_REGION_ID_ACCESSORY_1_ANY, CARD_REGION_ID_ACCESSORY_2_ANY,
@@ -98,7 +98,7 @@ import {
          CARD_REGION_ID_SHOULDER_ANY, GetElementText
 } from "../runtime/common.js";
 import { IsLongRange } from "../equip/equip.js";
-import { weaponsize, zokusei } from "../etc.js";
+import { weaponsize, zokusei } from "../data/element-affinity.dat.js";
 import {
          ITEM_ID_AKKI_RASETSUNO_YUBIWA, ITEM_ID_AKUMANO_TE, ITEM_ID_ANCIENT_MEGALIS_MANT,
          ITEM_ID_ARKUIENNO_NECKLACE, ITEM_ID_AURORA_CURTAIN_ROBE, ITEM_ID_AVARECO,
@@ -222,8 +222,8 @@ import {
          ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_PLATE,
          ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_KEN, ItemObjNew,
 		 ITEM_ID_ABANDONED_CLOAK,
-} from "../item.dat.js";
-import { IsDexBasedArms, IsEffectiveExceededRefinedAtkArms, IsGunSeriesArms } from "../item.h.js";
+} from "../equip/item.dat.js";
+import { IsDexBasedArms, IsEffectiveExceededRefinedAtkArms, IsGunSeriesArms } from "../equip/item.h.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import { MOB_CONF_BUF_ID_DAMAGE_DIVIDE, MOB_CONF_BUF_ID_MAX_PAIN, n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import {
@@ -252,8 +252,8 @@ import {
          MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI,
          n_B_TAISEI
 } from "../monster/mobconfplayer.js";
-import { MONSTER_ID_PLAYER, MonsterObjNew } from "../monster.dat.js";
-import { GetMonseterElmBasicType } from "../monster.h.js";
+import { MONSTER_ID_PLAYER, MonsterObjNew } from "../monster/monster.dat.js";
+import { GetMonseterElmBasicType } from "../monster/monster.h.js";
 import {
          MONSTER_GROUP_ID_ABYSS_LAKE_CHIKA_DOKUTSU_04, MONSTER_GROUP_ID_AKHET,
          MONSTER_GROUP_ID_BALMUNT_TE_CHOZOKO_TARUTAROS,
@@ -287,7 +287,7 @@ import {
          MONSTER_GROUP_ID_TOKEITO, MONSTER_GROUP_ID_TOKEITO_MICHI_NO_KUUKAN,
          MONSTER_GROUP_ID_UKNW_RUIN, MONSTER_GROUP_ID_VERNAR,
          MONSTER_GROUP_ID_YUGANDA_MEIKYUNO_MORI, MonsterGroupObj
-} from "../monstergroup.dat.js";
+} from "../monster/monstergroup.dat.js";
 import {
          SERE_SUPPORT_SKILL_ID_AQUA_PLAY, SERE_SUPPORT_SKILL_ID_COLD_FORCE,
          SERE_SUPPORT_SKILL_ID_CURSED_SOIL, SERE_SUPPORT_SKILL_ID_DEEP_POISONING,
@@ -339,7 +339,7 @@ import {
          TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD, TIME_ITEM_ID_PLAGARION,
          TIME_ITEM_ID_SANGAKU_HELMET, TIME_ITEM_ID_VOLCARING, TIME_ITEM_ID_WOLF_HEZIN,
          TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
-} from "../timeitem.dat.js";
+} from "../equip/timeitem.dat.js";
 import { MIG_JOB_ID_SHADOW_CROSS } from "../data/mig.job.dat.js";
 import {
          SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_ABYSS_DAGGER, SKILL_ID_ABYSS_DAGGER_STATE,

@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import "../monster.h.js";
+import "./monster.h.js";
 import { CMonsterMapAreaComponentManager } from "./CMonsterMapAreaComponentManager.js";
 import { __DIG3 } from "../runtime/global.js";
 import { GetMobMres, GetMobRes } from "../chara/hmjob.js";
@@ -8,7 +8,7 @@ import {
          MOB_CONF_PLAYER_ID_SHUZOKU, MOB_CONF_PLAYER_ID_SHUZOKU_DORAM,
          MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, n_B_TAISEI
 } from "./mobconfplayer.js";
-import { MONSTER_ID_PLAYER, MonsterObjNew } from "../monster.dat.js";
+import { MONSTER_ID_PLAYER, MonsterObjNew } from "./monster.dat.js";
 import { HtmlCreateElement } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: foot.js 公開関数（foot-bridge 経由）

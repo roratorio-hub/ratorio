@@ -16,8 +16,8 @@ import {
          HtmlRemoveAllChild, HtmlRemoveFromParent, HtmlRemoveOptionAll,
          HtmlSetObjectValueById, SetStatefullData, myInnerHtml
 } from "../runtime/util.js";
-import { ARROW_ID_NONE, ArrowOBJNew } from "../arrow.dat.js";
-import { CARD_ID_NONE, CardObjNew } from "../card.dat.js";
+import { ARROW_ID_NONE, ArrowOBJNew } from "./arrow.dat.js";
+import { CARD_ID_NONE, CardObjNew } from "./card.dat.js";
 import {
          CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2,
          CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
@@ -45,9 +45,9 @@ import {
          ITEM_ID_NOEQUIP_ACCESSORY, ITEM_ID_NOEQUIP_BODY, ITEM_ID_NOEQUIP_HEAD_MID,
          ITEM_ID_NOEQUIP_HEAD_TOP, ITEM_ID_NOEQUIP_HEAD_UNDER, ITEM_ID_NOEQUIP_SHIELD,
          ITEM_ID_NOEQUIP_SHOES, ITEM_ID_NOEQUIP_SHOULDER, ITEM_ID_SUDE, ItemObjNew
-} from "../item.dat.js";
-import { GetItemKindNameText, GetItemSP } from "../item.h.js";
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../rndopttype.h.js";
+} from "./item.dat.js";
+import { GetItemKindNameText, GetItemSP } from "./item.h.js";
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 import { SkillObjNew } from "../skill/skill.dat.js";
 import {
          GetSlotMode, OnClickSlotModeButton, SaveSlotStateCard, SaveSlotStateCardAll,

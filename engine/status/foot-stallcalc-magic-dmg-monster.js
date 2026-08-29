@@ -12,7 +12,7 @@ import {
     CARD_ID_FUINSARETA_GOPINICH, CARD_ID_FUINSARETA_OSEN_SARETA_DARK_LORD, CARD_ID_GOPINICH,
     CARD_ID_OSEN_SARETA_DARK_LORD, CARD_ID_PRIDE_RUNAWAY_THANATOS, CARD_ID_RED_PEPPER_LAMBDA,
     CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FUINSARETA_OSEN_SARETA_DARK_LORD
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG } from "../chara/chara.js";
 import { EQUIP_REGION_ID_ACCESSORY_1 } from "../const/EnumEquipRegionId.js";
 import {
@@ -39,7 +39,7 @@ import {
     ITEM_SET_ID_CELINENO_BROACH_MIZUMIZUSHI_BARA, ITEM_SET_ID_CHINURARETA_NINGYONO_DRESS_CELINENO_RIBBON,
     ITEM_SET_ID_FRONTIER_BOOTS_KIGENNO_SHO, ITEM_SET_ID_SABAKINO_KUTSU_HOLY_STICK,
     ITEM_SET_ID_SCARABA_HIGHHEEL_LAFINE_STUFF
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_DEX, SU_INT, SU_LUK, SU_STR, n_A_BODY_DEF_PLUS, n_A_HEAD_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOES_DEF_PLUS,

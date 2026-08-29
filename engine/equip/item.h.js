@@ -1,23 +1,23 @@
 import { w_SE } from "./itemset.dat.js";
-import { GetItemSetMemberText } from "./bridge/itemset-bridge.js";
+import { GetItemSetMemberText } from "../bridge/itemset-bridge.js";
 // === AUTO-GENERATED IMPORTS ===
-import "./monster.h.js";
-import "./skill/skill.h.js";
-import "./skill/usableskill.h.js";
-import { toSafeBigInt } from "./runtime/util.js";
-import { AutoSpellSkill } from "./skill/autospell.dat.js";
-import { GetAutoSpellTriggerText } from "./skill/autospell.h.js";
+import "../monster/monster.h.js";
+import "../skill/skill.h.js";
+import "../skill/usableskill.h.js";
+import { toSafeBigInt } from "../runtime/util.js";
+import { AutoSpellSkill } from "../skill/autospell.dat.js";
+import { GetAutoSpellTriggerText } from "../skill/autospell.h.js";
 import { CardObjNew } from "./card.dat.js";
-import { GetElementText, GetRaceText, GetSizeText, GetStateText } from "./runtime/common.js";
+import { GetElementText, GetRaceText, GetSizeText, GetStateText } from "../runtime/common.js";
 import { ItemObjNew } from "./item.dat.js";
-import { MonsterObjNew } from "./monster.dat.js";
-import { SkillObjNew } from "./skill/skill.dat.js";
-import { InsertSkill } from "./skill/usableskill.dat.js";
-import { PARAM_DEX, PARAM_VIT } from "./const/EnumParamId.js";
-import { RACE_ID_HUMAN } from "./const/EnumRaceId.js";
-import { AUTO_SPELL_DATA_INDEX_PROBABLY, AUTO_SPELL_DATA_INDEX_SKILL_ID, AUTO_SPELL_DATA_INDEX_SKILL_LEVEL, AUTO_SPELL_DATA_INDEX_TRIGGER } from "./const/EnumAutoSpellDataIndex.js";
-import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME } from "./const/EnumCardDataIndex.js";
-import { CARD_KIND_SET } from "./const/EnumCardKind.js";
+import { MonsterObjNew } from "../monster/monster.dat.js";
+import { SkillObjNew } from "../skill/skill.dat.js";
+import { InsertSkill } from "../skill/usableskill.dat.js";
+import { PARAM_DEX, PARAM_VIT } from "../const/EnumParamId.js";
+import { RACE_ID_HUMAN } from "../const/EnumRaceId.js";
+import { AUTO_SPELL_DATA_INDEX_PROBABLY, AUTO_SPELL_DATA_INDEX_SKILL_ID, AUTO_SPELL_DATA_INDEX_SKILL_LEVEL, AUTO_SPELL_DATA_INDEX_TRIGGER } from "../const/EnumAutoSpellDataIndex.js";
+import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME } from "../const/EnumCardDataIndex.js";
+import { CARD_KIND_SET } from "../const/EnumCardKind.js";
 import {
     ITEM_EQPFLG_4TH, ITEM_EQPFLG_4TH_ACOLYTE, ITEM_EQPFLG_4TH_BLADE_USER, ITEM_EQPFLG_4TH_BOOK_USER, ITEM_EQPFLG_4TH_BOW_USER, ITEM_EQPFLG_4TH_EXCLUDE_CAT,
     ITEM_EQPFLG_4TH_HAMMER_USER, ITEM_EQPFLG_4TH_ROD_USER_EXCLUDE_NOVICE, ITEM_EQPFLG_4TH_SWORDMAN, ITEM_EQPFLG_4TH_SWORDMAN_MERCHANT, ITEM_EQPFLG_4TH_SWORDMAN_MERCHANT_ALITEA, ITEM_EQPFLG_4TH_THIEF,
@@ -42,8 +42,8 @@ import {
     ITEM_EQPFLG_TYPE_GOOGLE, ITEM_EQPFLG_TYPE_KOJOSEN_TE_MAGIC, ITEM_EQPFLG_TYPE_KOZAN_HELMET, ITEM_EQPFLG_TYPE_MAJESTIC_GOAT, ITEM_EQPFLG_TYPE_MANT, ITEM_EQPFLG_TYPE_MIRROR_SHIELD,
     ITEM_EQPFLG_TYPE_ONEHAND_AXE, ITEM_EQPFLG_TYPE_RENDO, ITEM_EQPFLG_TYPE_SENTO_GREEVE, ITEM_EQPFLG_TYPE_SHARP_HEAD_GEAR, ITEM_EQPFLG_TYPE_SILKROBE, ITEM_EQPFLG_WANDERER,
     ITEM_EQPFLG_WARLOCK, ITEM_EQPFLG_WIND_HAWK,
-} from "./const/EnumEquipFlag.js";
-import { ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_SPBEGIN } from "./const/EnumItemDataIndex.js";
+} from "../const/EnumEquipFlag.js";
+import { ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumItemDataIndex.js";
 import {
     ITEM_KIND_ACCESSORY, ITEM_KIND_ACCESSORY_ON1, ITEM_KIND_ACCESSORY_ON2, ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_BODY,
     ITEM_KIND_BOOK, ITEM_KIND_BOW, ITEM_KIND_CLUB, ITEM_KIND_FIST, ITEM_KIND_FOOT, ITEM_KIND_FUMA,
@@ -52,7 +52,7 @@ import {
     ITEM_KIND_SHADOW_ACCESSORY_ON1, ITEM_KIND_SHADOW_ACCESSORY_ON2, ITEM_KIND_SHADOW_ARMS_LEFT, ITEM_KIND_SHADOW_ARMS_RIGHT, ITEM_KIND_SHADOW_BODY, ITEM_KIND_SHADOW_FOOT,
     ITEM_KIND_SHIELD, ITEM_KIND_SHOTGUN, ITEM_KIND_SHOULDER, ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND, ITEM_KIND_STUFF,
     ITEM_KIND_SWORD, ITEM_KIND_SWORD_2HAND, ITEM_KIND_WHIP,
-} from "./const/EnumItemKind.js";
+} from "../const/EnumItemKind.js";
 import {
     ITEM_SP_AGI_PLUS, ITEM_SP_AGI_PLUS_FOR_SET, ITEM_SP_ALLSTATUS_PLUS, ITEM_SP_ALLSTATUS_PLUS_FOR_SET, ITEM_SP_ALL_SPECS_PLUS, ITEM_SP_APPEND_STATE_BLEEDING,
     ITEM_SP_APPEND_STATE_BLIND, ITEM_SP_APPEND_STATE_BREAK_ACCESSORY, ITEM_SP_APPEND_STATE_BREAK_ARMOR, ITEM_SP_APPEND_STATE_BREAK_HELM, ITEM_SP_APPEND_STATE_BREAK_SHIELD, ITEM_SP_APPEND_STATE_BREAK_SHOES,
@@ -117,14 +117,14 @@ import {
     ITEM_SP_SKILL_FIXED_MINUS_OFFSET, ITEM_SP_SKILL_FIXED_TIME_OFFSET, ITEM_SP_SPECIAL_RANGE, ITEM_SP_SPL_PLUS, ITEM_SP_SPR_UP, ITEM_SP_STA_PLUS,
     ITEM_SP_STR_PLUS, ITEM_SP_STR_PLUS_FOR_SET, ITEM_SP_STUFF2HAND, ITEM_SP_S_MATK_PLUS, ITEM_SP_TRANSCENDENCE_1, ITEM_SP_UNBREAKABLE,
     ITEM_SP_UNREFINABLE, ITEM_SP_VIT_PLUS, ITEM_SP_VIT_PLUS_FOR_SET, ITEM_SP_WEAPON_ATK_UP, ITEM_SP_WIS_PLUS,
-} from "./const/EnumItemSpId.js";
-import { MONSTER_DATA_INDEX_NAME } from "./const/EnumMonsterDataIndex.js";
-import { SKILL_DATA_INDEX_NAME } from "./const/EnumSkillDataIndex.js";
-import { STATE_R_ID_CHILLED } from "./const/EnumStateId.js";
-import { USABLE_SKILL_DATA_INDEX_SKILL_ID, USABLE_SKILL_DATA_INDEX_SKILL_LEVEL } from "./const/EnumUsableSkillDataIndex.js";
+} from "../const/EnumItemSpId.js";
+import { MONSTER_DATA_INDEX_NAME } from "../const/EnumMonsterDataIndex.js";
+import { SKILL_DATA_INDEX_NAME } from "../const/EnumSkillDataIndex.js";
+import { STATE_R_ID_CHILLED } from "../const/EnumStateId.js";
+import { USABLE_SKILL_DATA_INDEX_SKILL_ID, USABLE_SKILL_DATA_INDEX_SKILL_LEVEL } from "../const/EnumUsableSkillDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: engine-registry（mig.job.h.js との循環 import 回避）
-import { get as registryGet } from "./runtime/engine-registry.js";
+import { get as registryGet } from "../runtime/engine-registry.js";
 
 /**
  * アイテムの種別名を取得する.

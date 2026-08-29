@@ -1,8 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
-import "../item.h.js";
-import { CardObjNew } from "../card.dat.js";
-import { ItemObjNew } from "../item.dat.js";
+import "../equip/item.h.js";
+import { CardObjNew } from "../equip/card.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import { IsDualArmsJob } from "./mig.job.h.js";
 import {
          MIG_JOB_ID_ACOLYTE,

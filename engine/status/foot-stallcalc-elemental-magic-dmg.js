@@ -11,7 +11,7 @@ import { n_A_BaseLV, n_tok } from "../runtime/ro4-state.js";
 import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
 import { CCharaConfSanzi } from "../chara/CCharaConfSanzi.js";
 import { CCharaConfYozi } from "../chara/CCharaConfYozi.js";
-import { CARD_ID_FUMETSUNO_WINDGHOST } from "../card.dat.js";
+import { CARD_ID_FUMETSUNO_WINDGHOST } from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG, TimeItemNumSearch } from "../chara/chara.js";
 import {
     EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_SHOULDER
@@ -38,7 +38,7 @@ import {
     ITEM_SET_ID_POROROCA_SHOES_LACRYMA_STICK, ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_ELECTRICITY,
     ITEM_SET_ID_RYUGOROSHINO_CHOKEN_RANDGRIS_CARD, ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_CIRCLET,
     ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_ROD_DEX_S1, ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_ROD_INT_S1
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_DEX, SU_INT, n_A_BODY_DEF_PLUS, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
@@ -54,7 +54,7 @@ import {
 import {
     TIME_ITEM_ID_KAKUSE_TOKUSHU_KANKYO_KATSUDOYO_BOOTS_FUINSARETA_DARKLORD_CARD,
     TIME_ITEM_ID_TOKUSHU_KANKYO_KATSUDOYO_BOOTS_FUINSARETA_DARKLORD_CARD
-} from "../timeitem.dat.js";
+} from "../equip/timeitem.dat.js";
 import { ROUNDDOWN } from "../bridge/foot-bridge.js";
 
 

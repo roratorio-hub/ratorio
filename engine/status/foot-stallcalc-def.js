@@ -17,7 +17,7 @@ import { CHARA_DATA_INDEX_DEF_DIV, CHARA_DATA_INDEX_DEF_MINUS } from "../const/E
 import { EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_HEAD_TOP } from "../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_POWER } from "../const/EnumItemDataIndex.js";
 import { ITEM_SP_DEF_DIVIDE_PENARTY, ITEM_SP_DEF_PLUS, ITEM_SP_DEF_UP } from "../const/EnumItemSpId.js";
-import { ItemObjNew } from "../item.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import {
     n_A_AGI, n_A_BODY_DEF_PLUS, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOES_DEF_PLUS,
     n_A_SHOULDER_DEF_PLUS, n_A_VIT

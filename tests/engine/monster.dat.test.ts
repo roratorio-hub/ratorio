@@ -4,7 +4,7 @@ import {
     MONSTER_ID_ARCHER_SKELETON,
     MONSTER_ID_MARYOKUBOSOSHITA_ZYOKYU_RGAN_QUEST,
     MonsterObjNew,
-} from '@engine/monster.dat.js';
+} from '@engine/monster/monster.dat.js';
 
 describe('monster.dat.js', () => {
     describe('エクスポート確認', () => {

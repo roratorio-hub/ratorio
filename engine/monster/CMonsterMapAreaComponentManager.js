@@ -2,7 +2,7 @@ import { CCustomSelectMapCategory } from "./CCustomSelectMapCategory.js";
 import { CCustomSelectMapMap } from "./CCustomSelectMapMap.js";
 import { CCustomSelectMapMonster } from "./CCustomSelectMapMonster.js";
 // === AUTO-GENERATED IMPORTS ===
-import { MonsterToughness } from "../monster.toughness.dat.js";
+import { MonsterToughness } from "./monster.toughness.dat.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
 

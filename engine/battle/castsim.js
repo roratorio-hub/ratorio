@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../skill/autospell.h.js";
-import "../item.h.js";
+import "../equip/item.h.js";
 import "../skill/usableskill.h.js";
 import { g_constDataManager, g_skillManager } from "../runtime/global.js";
 import { CSkillData } from "../skill/CSkillManager.js";

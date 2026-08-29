@@ -3,8 +3,8 @@ import { n_A_Equip } from "../runtime/roro-state.js";
 import { SaveSystem } from "../bridge/saveload-bridge.js";
 import "../runtime/common.js";
 import "../data/mig.itemsp.h.js";
-import "../item.h.js";
-import "../monster.h.js";
+import "../equip/item.h.js";
+import "../monster/monster.h.js";
 import { GetBaseLevelMax, GetBaseLevelMin, GetStatusMax, IsDualArmsJob, IsReincarnatedJob, IsSameJobGroup, IsYojiJob } from "../data/mig.job.h.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import { HtmlGetObjectValueByIdAsInteger, ValueRangeModify } from "../runtime/util.js";
@@ -17,7 +17,7 @@ import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
          ITEM_ID_MICHINARU_SHUCHUNO_BOOTS, ITEM_ID_MICHINARU_SOZONO_BOOTS,
          ITEM_ID_NOEQUIP_SHIELD
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LEARNED_SKILL_MAX_COUNT, LearnedSkillSearch, OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { MOB_CONF_DEBUF_ID_JACK_FROST_NOVA, MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA, n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import {

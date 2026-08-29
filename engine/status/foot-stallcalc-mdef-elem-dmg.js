@@ -29,7 +29,7 @@ import {
     ITEM_SET_ID_KOREZYUTSUSHINO_TEKAGAMI_DRESS, ITEM_SET_ID_KUGUTSUNO_UDEWA_DARK_HAND,
     ITEM_SET_ID_POROROCA_SHOES_LACRYMA_STICK, ITEM_SET_ID_SCARABA_HIGHHEEL_LAFINE_STUFF,
     ITEM_SET_ID_SOLOMONNO_PENDANT_ZOFUKU
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_STR, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_SHIELD_DEF_PLUS, n_A_SHOES_DEF_PLUS, n_A_Weapon2_ATKplus, n_A_WeaponType,

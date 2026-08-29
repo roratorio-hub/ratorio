@@ -1,7 +1,7 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
 import { g_constDataManager } from "../runtime/global.js";
-import { CardObjNew } from "../card.dat.js";
+import { CardObjNew } from "./card.dat.js";
 import { RebuildCardSelectSubCollectEnchListData } from "./hmcard.js";
 import { CONST_DATA_KIND_ENCHANT_LIST } from "../const/EnumConstDataKind.js";
 // === END AUTO-GENERATED IMPORTS ===

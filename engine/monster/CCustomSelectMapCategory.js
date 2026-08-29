@@ -3,7 +3,7 @@
 
 import { CCustomSelectMapBase } from "./CCustomSelectMapBase.js";
 // === AUTO-GENERATED IMPORTS ===
-import { g_MonsterMapCategoryDataArray } from "../monstermap.dat.js";
+import { g_MonsterMapCategoryDataArray } from "./monstermap.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

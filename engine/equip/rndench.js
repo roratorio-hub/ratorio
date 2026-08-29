@@ -1,6 +1,6 @@
 // === AUTO-GENERATED IMPORTS ===
-import { ItemObjNew } from "../item.dat.js";
-import { GetRndOptTypeId } from "../item.h.js";
+import { ItemObjNew } from "./item.dat.js";
+import { GetRndOptTypeId } from "./item.h.js";
 import { ITEM_DATA_INDEX_WPNLV } from "../const/EnumItemDataIndex.js";
 // === END AUTO-GENERATED IMPORTS ===
 

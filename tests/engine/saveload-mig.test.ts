@@ -24,7 +24,7 @@ vi.mock('../../engine/runtime/util.js', async (importActual) => {
     return { ...actual, HtmlRemoveAllChild: () => {} };
 });
 
-vi.mock('@engine/monstermap.dat.js', async (importActual) => {
+vi.mock('@engine/monster/monstermap.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return {
         ...actual,
@@ -34,7 +34,7 @@ vi.mock('@engine/monstermap.dat.js', async (importActual) => {
     };
 });
 
-vi.mock('@engine/monster.dat.js', async (importActual) => {
+vi.mock('@engine/monster/monster.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get MonsterObjNew() { return []; } };
 });

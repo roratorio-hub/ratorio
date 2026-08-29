@@ -1,5 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
-import { CardObjNew } from "../card.dat.js";
+import { CardObjNew } from "../equip/card.dat.js";
 import { CMigConstDataManagerSubBase } from "./CMigConstDataManagerSubBase.js";
 import { CMigEquipableData } from "./CMigEquipableData.js";
 import { CARD_DATA_INDEX_ID, CARD_DATA_INDEX_NAME } from "../const/EnumCardDataIndex.js";

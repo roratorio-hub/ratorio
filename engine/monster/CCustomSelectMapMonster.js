@@ -1,12 +1,12 @@
 import { CCustomSelectBase } from "./CCustomSelectBase.js";
 // === AUTO-GENERATED IMPORTS ===
-import "../monster.h.js";
-import "../monstermap.h.js";
+import "./monster.h.js";
+import "./monstermap.h.js";
 import { HtmlCreateElementOption, HtmlRemoveOptionAll } from "../runtime/util.js";
-import { TranslateAlias } from "../alias.h.js";
+import { TranslateAlias } from "./alias.h.js";
 import { GetElementText, GetRaceText } from "../runtime/common.js";
-import { MonsterObjNew } from "../monster.dat.js";
-import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from "../monstermap.dat.js";
+import { MonsterObjNew } from "./monster.dat.js";
+import { MONSTER_MAP_ID_MAP_ALL, g_MonsterMapDataArray } from "./monstermap.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: head.js 公開関数（head-bridge 経由）
 import {

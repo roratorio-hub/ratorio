@@ -6,12 +6,12 @@ const mockEquip = vi.hoisted(() => ({
     constDataManager: null as any,
 }));
 
-vi.mock('@engine/item.dat.js', async (importActual) => {
+vi.mock('@engine/equip/item.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get ItemObjNew() { return mockEquip.itemObjNew ?? actual.ItemObjNew; } };
 });
 
-vi.mock('@engine/card.dat.js', async (importActual) => {
+vi.mock('@engine/equip/card.dat.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get CardObjNew() { return mockEquip.cardObjNew ?? actual.CardObjNew; } };
 });

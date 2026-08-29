@@ -1,8 +1,8 @@
 // === AUTO-GENERATED IMPORTS ===
-import { PetIdToSetIdMap } from "../../engine/itemset.dat.js";
+import { PetIdToSetIdMap } from "../../engine/equip/itemset.dat.js";
 import "../../engine/runtime/common.js";
 import { CItemInfoManager } from "../../engine/equip/CItemInfoManager.js";
-import { PET_OBJ } from "../../engine/pet.dat.js";
+import { PET_OBJ } from "../../engine/equip/pet.dat.js";
 import { HtmlRemoveAllChild } from "../../engine/runtime/util.js";
 import { CONST_DATA_KIND_PET } from "../../engine/const/EnumConstDataKind.js";
 import { PET_DATA_INDEX_ID, PET_DATA_INDEX_NAME } from "../../engine/const/EnumPetDataIndex.js";

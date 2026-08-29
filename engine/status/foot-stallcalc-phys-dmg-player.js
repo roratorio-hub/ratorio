@@ -17,7 +17,7 @@ import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
 import {
     ARROW_ID_CURSE_ARROW, ARROW_ID_FLASH_ARROW, ARROW_ID_SEINARU_YA, ARROW_ID_SILENCE_ARROW, ARROW_ID_SLEEP_ARROW,
     ARROW_ID_YA
-} from "../arrow.dat.js";
+} from "../equip/arrow.dat.js";
 import { CardNumSearch, EquipNumSearch } from "../chara/chara.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY } from "../const/EnumEquipRegionId.js";
 import {
@@ -48,7 +48,7 @@ import {
     ITEM_ID_RYORAN_ZYU, ITEM_ID_SHINENNO_DRESS, ITEM_ID_SHIRYOMAZYUTSUSHINO_NITTOBO, ITEM_ID_YUSHANO_BROACH,
     ITEM_ID_ZINRAI_KEN, ITEM_ID_ZINRAI_TSUCHI, ITEM_ID_ZINRAI_YARI, ITEM_ID_ZINRAI_YUMI, ITEM_ID_ZINRAI_ZYU,
     ITEM_SET_ID_CRYSTAL_BLADE_NECKLACE_KYOGEKI, ITEM_SET_ID_GOFUSEKI_GERADRIA
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     n_A_BODY_DEF_PLUS, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_SHIELD_DEF_PLUS, n_A_SHOES_DEF_PLUS,

@@ -1,9 +1,9 @@
 // === AUTO-GENERATED IMPORTS ===
-import { PetIdToSetIdMap } from "../itemset.dat.js";
+import { PetIdToSetIdMap } from "../equip/itemset.dat.js";
 import { notifyChanged, CalcInput } from "../runtime/calc-invalidation.js";
 import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { GetFriendlityText } from "../runtime/common.js";
-import { PET_OBJ } from "../pet.dat.js";
+import { PET_OBJ } from "../equip/pet.dat.js";
 import { HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueByIdAsInteger, myInnerHtml } from "../runtime/util.js";
 import { n_A_PassSkill8 } from "../skill/skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===

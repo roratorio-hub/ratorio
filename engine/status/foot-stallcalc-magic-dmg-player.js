@@ -36,7 +36,7 @@ import {
     ITEM_SET_ID_KYODAIZYUNO_WAKABA_TENDORIRURION_CARD, ITEM_SET_ID_SABAKINO_KUTSU_HOLY_STICK,
     ITEM_SET_ID_SOLOMONNO_PENDANT_ZOFUKU, ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_ROD_DEX_S1,
     ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_ROD_INT_S1
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     n_A_BODY_DEF_PLUS, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_JOB, n_A_SHIELD_DEF_PLUS, n_A_Weapon2_ATKplus,

@@ -7,8 +7,8 @@ import {
          GetStatusMax,
          IsSameJobClass
 } from "../data/mig.job.h.js";
-import "../item.h.js";
-import "../monster.h.js";
+import "../equip/item.h.js";
+import "../monster/monster.h.js";
 import "../skill/skill.h.js";
 import { CMonsterMapAreaComponentManager } from "../monster/CMonsterMapAreaComponentManager.js";
 import { g_constDataManager, g_skillManager } from "../runtime/global.js";
@@ -17,7 +17,7 @@ import { CCharaConfYozi } from "../chara/CCharaConfYozi.js";
 import {
          CARD_ID_GOPINICH, CARD_ID_OSEN_SARETA_DARK_LORD, CARD_ID_SHINKAINO_DEVIAS,
          CardObjNew
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { EquipNumSearch } from "../chara/chara.js";
 import {
          CAST_PARAM_BORDER, HEALTYPE_COLUCEO_HEAL, HEALTYPE_DILECTIO_HEAL,
@@ -34,9 +34,9 @@ import {
          ITEM_ID_LORD_OF_ROYALS, ITEM_ID_MARRACONO_KAWA, ITEM_ID_RADOONNO_KAWA,
          ITEM_ID_REIZOKUNO_KUBIWA, ITEM_ID_SAITANNO_HOKAN, ITEM_ID_SUNADOKENO_NECKLACE,
          ITEM_ID_TUPOONNO_KAWA, ItemObjNew
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
-import { MonsterObjNew } from "../monster.dat.js";
+import { MonsterObjNew } from "../monster/monster.dat.js";
 import { SkillObjNew } from "../skill/skill.dat.js";
 import { HtmlCreateElement, HtmlCreateTextSpan, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, DivideDigits3 } from "../runtime/util.js";
 import { MIG_JOB_ID_SOUL_ASCETIC, MIG_JOB_ID_SPIRIT_HANDLER } from "../data/mig.job.dat.js";

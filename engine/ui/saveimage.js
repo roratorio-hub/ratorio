@@ -1,11 +1,11 @@
 // === AUTO-GENERATED IMPORTS ===
 import { GetElementText } from "../runtime/common.js";
-import "../item.h.js";
-import { CardObjNew } from "../card.dat.js";
-import { ItemObjNew } from "../item.dat.js";
-import { g_rndOptArray } from "../rndopt.dat.js";
-import { GetRndOptDispName } from "../rndopt.h.js";
-import { g_equipRndOptTable } from "../rndopttype.h.js";
+import "../equip/item.h.js";
+import { CardObjNew } from "../equip/card.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
+import { g_rndOptArray } from "../equip/rndopt.dat.js";
+import { GetRndOptDispName } from "../equip/rndopt.h.js";
+import { g_equipRndOptTable } from "../equip/rndopttype.h.js";
 import { g_extraInfoDataBridge } from "./CExtraInfoDataBridge.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { getShadowEquippedID, getShadowRefined, getShadowRndOptInfoArray } from "../equip/CShadowEquipControllerDataBridge.js";

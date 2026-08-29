@@ -8,11 +8,11 @@ let MonsterObjNew: any;
 let g_MonsterMapDataArray: any;
 
 beforeAll(async () => {
-	await import('/workspace/ratorio/engine/monster.h.js');
-	const monsterDat = await import('/workspace/ratorio/engine/monster.dat.js');
+	await import('/workspace/ratorio/engine/monster/monster.h.js');
+	const monsterDat = await import('/workspace/ratorio/engine/monster/monster.dat.js');
 	MonsterObjNew = monsterDat.MonsterObjNew;
-	await import('/workspace/ratorio/engine/monstermap.h.js');
-	const monsterMapDat = await import('/workspace/ratorio/engine/monstermap.dat.js');
+	await import('/workspace/ratorio/engine/monster/monstermap.h.js');
+	const monsterMapDat = await import('/workspace/ratorio/engine/monster/monstermap.dat.js');
 	g_MonsterMapDataArray = monsterMapDat.g_MonsterMapDataArray;
 
 	const mod = await import('/workspace/ratorio/pages/js/eventsetup-melonfes2026monsterdrop.js');

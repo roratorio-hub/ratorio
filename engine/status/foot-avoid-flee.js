@@ -35,7 +35,7 @@ import {
     CARD_SET_ID_ENCHANT_CHISHIKINO_TANKYUSHA_T_W_O, CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FENRIR,
     CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_NYDHOGNO_KAGE, CARD_SET_ID_ENCHANT_SHINREKI_BOSOSHITA_MARYOKU,
     CARD_SET_ID_ENCHANT_ZODIAC_SHOZYOKYUNO_MANT
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG, TimeItemNumSearch } from "../chara/chara.js";
 import {
     CARD_REGION_ID_ACCESSORY_1_ANY, CARD_REGION_ID_ACCESSORY_2_ANY, CARD_REGION_ID_ARMS_LEFT_ANY,
@@ -91,12 +91,12 @@ import {
     ITEM_SET_ID_SETONO_ONCHO_IKYONO_TOKATSUSHA, ITEM_SET_ID_SETSUKA_ARMORS_MAGICAL,
     ITEM_SET_ID_SHINRA_BANSHONO_YUBIWA_SHINRINO_KAIHO, ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_MANT,
     ITEM_SET_ID_ULTIMATE_MODE_CHANGER_NABUNO_CLOTH, ITEM_SET_ID_WILD_BEAST_WOLF_ORB_CAST_FIXED_50
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../monster/mobconfplayer.js";
-import { PET_ID_MISTRESS } from "../pet.dat.js";
+import { PET_ID_MISTRESS } from "../equip/pet.dat.js";
 import {
     SU_AGI, SU_DEX, SU_INT, SU_LUK, SU_STR, SU_VIT, n_A_AGI, n_A_BODY_DEF_PLUS, n_A_BODY_DEF_Transcendence, n_A_DEX,
     n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_HEAD_DEF_Transcendence, n_A_JOB, n_A_LUK, n_A_SHIELD_DEF_PLUS,
@@ -117,7 +117,7 @@ import {
     SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_HI, SKILL_ID_TENKETSU_HAN, SKILL_ID_TETRA_BOLTEX, SKILL_ID_TSUKINO_ANRAKU,
     SKILL_ID_TSUKINO_HIKARI, SKILL_ID_TSUKINO_KAMAE, SKILL_ID_UNLIMIT, SKILL_ID_WIND_WALK
 } from "../skill/skill.dat.js";
-import { TIME_ITEM_ID_KOKUYOKUNO_SHITO, TIME_ITEM_ID_RATATOSK_CAD } from "../timeitem.dat.js";
+import { TIME_ITEM_ID_KOKUYOKUNO_SHITO, TIME_ITEM_ID_RATATOSK_CAD } from "../equip/timeitem.dat.js";
 import { ROUNDDOWN } from "../bridge/foot-bridge.js";
 
 // foot.js 専有のモジュールレベル変数（getFlee 内で書いてから読む。write-before-read 確認済み）

@@ -7,9 +7,9 @@
  * equip.js はこの3関数を re-export する。
  */
 
-import { ItemObjNew } from "../item.dat.js";
-import { CardObjNew } from "../card.dat.js";
-import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from "../itemset.dat.js";
+import { ItemObjNew } from "./item.dat.js";
+import { CardObjNew } from "./card.dat.js";
+import { CardIdToSetIdMap, ItemIdToSetIdMap, w_SE } from "./itemset.dat.js";
 import { CONST_DATA_KIND_CARD, CONST_DATA_KIND_ITEM } from "../const/EnumConstDataKind.js";
 import { CARD_DATA_INDEX_NAME, CARD_DATA_INDEX_SPBEGIN } from "../const/EnumCardDataIndex.js";
 import { ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumItemDataIndex.js";

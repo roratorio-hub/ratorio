@@ -16,7 +16,7 @@ import { MIG_PARAM_ID_CON, MIG_PARAM_ID_SPL } from "../const/EnumMigItemParamId.
 import { MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
 import { RACE_ID_DEMON, RACE_ID_UNDEAD } from "../const/EnumRaceId.js";
 import { ROUNDDOWN } from "../bridge/foot-bridge.js";
-import { ItemObjNew } from "../item.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     MOB_CONF_DEBUF_ID_SHIRYO_HYOI, MOB_CONF_DEBUF_ID_SOUND_BLEND, MOB_CONF_DEBUF_ID_SUIMIN, n_B_IJYOU

@@ -1,15 +1,15 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
 import { MigGetBorderFlagText } from "../data/mig.itemsp.h.js";
-import "../rndopttype.h.js";
+import "./rndopttype.h.js";
 import { g_constDataManager } from "../runtime/global.js";
-import { CARD_ID_NONE, CardObjNew } from "../card.dat.js";
+import { CARD_ID_NONE, CardObjNew } from "./card.dat.js";
 import { OnChangeCard } from "./equip.js";
 import { RebuildCardSelectSubCollectEnchListData } from "./hmcard.js";
 import { SetUpRndOptKind, SetUpRndOptValue } from "./hmrndopt.js";
-import { ItemObjNew } from "../item.dat.js";
-import { GetRndOptTypeId } from "../item.h.js";
-import { g_rndOptTypeArray } from "../rndopttype.dat.js";
+import { ItemObjNew } from "./item.dat.js";
+import { GetRndOptTypeId } from "./item.h.js";
+import { g_rndOptTypeArray } from "./rndopttype.dat.js";
 import { IsMatchJobRestrict } from "../data/mig.job.h.js";
 import { HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlSelectObjectValueAsInteger } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===

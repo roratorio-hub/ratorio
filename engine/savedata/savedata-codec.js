@@ -32,7 +32,7 @@ import {
          ARROW_ID_SILENCE_ARROW, ARROW_ID_SILVER_BULLET_C, ARROW_ID_SLEEP_ARROW,
          ARROW_ID_SUISHONO_YA, ARROW_ID_SUNCTFIED_BULLET, ARROW_ID_SURUDOI_YA,
          ARROW_ID_TETSUNO_YA, ARROW_ID_YA, ARROW_ID_ZOKUSE_ZIDO_YA_ATK30
-} from "../arrow.dat.js";
+} from "../equip/arrow.dat.js";
 import { AutoSpellSkill } from "../skill/autospell.dat.js";
 import { AUTO_SPELL_ID_CUSTOM_BIAS } from "../skill/autospell.h.js";
 import {
@@ -42,7 +42,7 @@ import {
          CARD_ID_ENCHANT_KOUUNNA_HI_OLD, CARD_ID_ENCHANT_KUMANO_CHIKARA,
          CARD_ID_ENCHANT_KUMANO_CHIKARA_OLD, CARD_ID_ENCHANT_OWASHINO_GANKO,
          CARD_ID_ENCHANT_OWASHINO_GANKO_OLD, CARD_ID_ENCHANT_SACRED, CARD_ID_NONE
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { COSTUME_REGION_ID_HEAD_UNDER } from "../runtime/common.js";
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from "../equip/equip.js";
 import { RebuildCardSelect, SetCardSlotEnability } from "../equip/hmcard.js";
@@ -66,8 +66,8 @@ import {
          ITEM_ID_MERCHANT_FIGURE, ITEM_ID_NOVICE_FIGURE, ITEM_ID_RIKUTO_SANRYAKU,
          ITEM_ID_SHIRONO_KISHIDANNO_NEKOZYARASHI, ITEM_ID_SWORDMAN_FIGURE,
          ITEM_ID_THIEF_FIGURE, ItemObjNew
-} from "../item.dat.js";
-import { GetEnchantTypeId } from "../item.h.js";
+} from "../equip/item.dat.js";
+import { GetEnchantTypeId } from "../equip/item.h.js";
 import { OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import {
@@ -90,14 +90,14 @@ import {
          MOB_CONF_PLAYER_ID_ZOKUSEI_MONSTER_TAISEI, RefreshMobConfPlayerControlCSS,
          RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI
 } from "../monster/mobconfplayer.js";
-import { MONSTER_MAP_ID_CATEGORY_ALL, MONSTER_MAP_ID_MAP_ALL } from "../monstermap.dat.js";
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../rndopttype.h.js";
+import { MONSTER_MAP_ID_CATEGORY_ALL, MONSTER_MAP_ID_MAP_ALL } from "../monster/monstermap.dat.js";
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_CARD, SLOTPAGER_MODE_RNDOPT, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "../equip/slotpager.js";
 import {
          TIME_ITEM_ID_BOSOSHITA_MARYOKU, TIME_ITEM_ID_KOGAI, TIME_ITEM_ID_KOSOKU,
          TIME_ITEM_ID_KOUUNNA_HI, TIME_ITEM_ID_KUMANO_CHIKARA,
          TIME_ITEM_ID_OWASHINO_GANKO
-} from "../timeitem.dat.js";
+} from "../equip/timeitem.dat.js";
 import { InsertSkill } from "../skill/usableskill.dat.js";
 import {
 	SKILL_ID_AIMED_BOLT, SKILL_ID_FREEZING_TRAP, SKILL_ID_HAMMER_OF_GOD,

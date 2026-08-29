@@ -83,7 +83,7 @@ export { RegisterUsedSkillSearch, RegisterLearnedSkillSearch } from "../bridge/s
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
 import "../data/mig.itemsp.h.js";
-import "../item.h.js";
+import "../equip/item.h.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 /**

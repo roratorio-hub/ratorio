@@ -9,12 +9,12 @@ import { g_objCharaConfCustomAtk } from "../runtime/global.js";
 import { ApplySpecModify } from "../chara/hmjob.js";
 import { n_A_Arrow, n_A_BaseLV, n_tok } from "../runtime/ro4-state.js";
 import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
-import { ARROW_ID_YA } from "../arrow.dat.js";
+import { ARROW_ID_YA } from "../equip/arrow.dat.js";
 import {
     CARD_ID_FUINSARETA_GOPINICH, CARD_ID_FUINSARETA_OSEN_SARETA_DARK_LORD, CARD_ID_GOPINICH,
     CARD_ID_OSEN_SARETA_DARK_LORD, CARD_ID_PRIDE_RUNAWAY_THANATOS, CARD_ID_RED_PEPPER_LAMBDA,
     CARD_SET_ID_ENCHANT_EIYUNO_GAIKA_FUINSARETA_OSEN_SARETA_DARK_LORD
-} from "../card.dat.js";
+} from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, EquipNumSearchMIG } from "../chara/chara.js";
 import { ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_WATER, ELM_ID_WIND } from "../const/EnumElmId.js";
 import {
@@ -53,7 +53,7 @@ import {
     ITEM_SET_ID_ORCLORDNO_YOROI_ORCLORD_CARD, ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO,
     ITEM_SET_ID_SCARABA_HIGHHEEL_CARGA_MACE, ITEM_SET_ID_SCARABA_HIGHHEEL_DULLGER,
     ITEM_SET_ID_SCARABA_HIGHHEEL_ELVEN_BOW
-} from "../item.dat.js";
+} from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_DEX, SU_INT, SU_LUK, SU_STR, n_A_BODY_DEF_PLUS, n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_SHIELD_DEF_PLUS,

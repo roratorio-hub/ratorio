@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { g_rndOptArray } from '@engine/rndopt.dat.js';
+import { g_rndOptArray } from '@engine/equip/rndopt.dat.js';
 
 describe('rndopt.dat.js', () => {
     describe('エクスポート確認', () => {

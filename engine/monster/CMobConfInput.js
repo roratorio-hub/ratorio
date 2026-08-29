@@ -3,7 +3,7 @@ import { CSaveDataConverter } from "../savedata/CSaveDataConverter.js";
 // === AUTO-GENERATED IMPORTS ===
 import "../ui/CConfBase.js";
 import { GetMonsterElementText, GetRaceText, GetSizeText } from "../runtime/common.js";
-import { GetBossTypeText, GetGrassTypeText } from "../monster.h.js";
+import { GetBossTypeText, GetGrassTypeText } from "./monster.h.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, HtmlCopyToClipboardById } from "../runtime/util.js";
 import { RACE_ID_SOLID } from "../const/EnumRaceId.js";
 import { EnumRaceId } from "../const/EnumRaceId.js";

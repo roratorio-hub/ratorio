@@ -1,8 +1,8 @@
 import { SaveSystem } from "../bridge/saveload-bridge.js";
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
-import "../item.h.js";
-import { ItemObjNew } from "../item.dat.js";
+import "../equip/item.h.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import {
          MIG_JOB_ID_ABYSS_CHASER,
          MIG_JOB_ID_ACOLYTE,

@@ -8,7 +8,7 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { SIZE_ID_SMALL } from "../../const/EnumSizeId.js";
-import { MONSTER_ID_PLAYER } from "../../monster.dat.js";
+import { MONSTER_ID_PLAYER } from "../../monster/monster.dat.js";
 import {
     SKILL_ID_ALCHEMISTNO_TAMASHI, SKILL_ID_ASSASINNO_TAMASHI, SKILL_ID_BARDTO_DANCERNO_TAMASHI,
     SKILL_ID_BLACKSMITHNO_TAMASHI, SKILL_ID_CRUSADERNO_TAMASHI, SKILL_ID_ENCHANT_DEADLY_POISON, SKILL_ID_ESKA,

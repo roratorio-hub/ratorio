@@ -2,13 +2,13 @@ import { vi, describe, it, expect } from 'vitest';
 
 // EQUIP_REGION_ID_COUNT は const 化され import で解決できるようになったため、
 // 旧来のグローバル注入（vi.hoisted で 24 を代入）は不要になった。
-import '@engine/rndopttype.dat.js';
+import '@engine/equip/rndopttype.dat.js';
 import {
     g_equipRndOptTable,
     SetEquipRndOptTable,
     GetEquipRndOptTableKind,
     GetEquipRndOptTableValue,
-} from '@engine/rndopttype.h.js';
+} from '@engine/equip/rndopttype.h.js';
 import { EQUIP_REGION_ID_COUNT } from '@engine/const/EnumMigItemParamId.js';
 
 describe('rndopttype.h.js', () => {

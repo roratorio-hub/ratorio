@@ -13,7 +13,7 @@ import { n_A_ActiveSkill, n_Delay, n_tok } from "../runtime/ro4-state.js";
 import { CCharaConfCustomStatus } from "../chara/CCharaConfCustomStatus.js";
 import { CCharaConfDebuff } from "../chara/CCharaConfDebuff.js";
 import { CCharaConfSanzi } from "../chara/CCharaConfSanzi.js";
-import { CARD_ID_VIRGO } from "../card.dat.js";
+import { CARD_ID_VIRGO } from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
 import { CARD_REGION_ID_HEAD_MID, CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_HEAD_TOP_ANY } from "../runtime/common.js";
 import {
@@ -26,7 +26,7 @@ import { JOB_ID_ARCBISHOP } from "../const/EnumJobId.js";
 import { getFixedCastTimeReductionRate } from "./foot-avoid-flee.js";
 import { getDelayTimeReductionRate, getVariableCastTimeRate } from "./foot-cast-delay.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
-import { ITEM_ID_DIVA_ROBE, ITEM_ID_KAWAII_KUSANO_NECKLACE, ITEM_ID_MIRRORAGE_ROBE } from "../item.dat.js";
+import { ITEM_ID_DIVA_ROBE, ITEM_ID_KAWAII_KUSANO_NECKLACE, ITEM_ID_MIRRORAGE_ROBE } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import {
     SU_LUK, n_A_AGI, n_A_BODY_DEF_PLUS, n_A_DEX, n_A_HEAD_DEF_PLUS, n_A_INT, n_A_JOB, n_A_SHOES_DEF_PLUS, n_A_VIT,
@@ -38,7 +38,7 @@ import {
     SKILL_ID_NATURE_VIGOUR, SKILL_ID_NODOWO_NARASU, SKILL_ID_OTORO, SKILL_ID_SANDANSHO, SKILL_ID_SANDAN_DELAY_ZOKA,
     SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SHINSENNA_EBI, SKILL_ID_TENKETSU_KATSU
 } from "../skill/skill.dat.js";
-import { TIME_ITEM_ID_RING_OF_FLAME_LORD, TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO } from "../timeitem.dat.js";
+import { TIME_ITEM_ID_RING_OF_FLAME_LORD, TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO } from "../equip/timeitem.dat.js";
 import { ROUNDDOWN } from "../bridge/foot-bridge.js";
 
 

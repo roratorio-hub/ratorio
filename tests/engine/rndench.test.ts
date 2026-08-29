@@ -7,11 +7,11 @@ const mockRefs = vi.hoisted(() => ({
     getRndOptTypeId: (_: number) => 0,
 }));
 
-vi.mock('@engine/item.dat.js', () => ({
+vi.mock('@engine/equip/item.dat.js', () => ({
     get ItemObjNew() { return mockRefs.itemObjNew; },
 }));
 
-vi.mock('@engine/item.h.js', async (importActual) => {
+vi.mock('@engine/equip/item.h.js', async (importActual) => {
     const actual = await importActual<any>();
     return { ...actual, get GetRndOptTypeId() { return mockRefs.getRndOptTypeId; } };
 });

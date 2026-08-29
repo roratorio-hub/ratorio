@@ -23,9 +23,9 @@ import {
 import { MIG_PARAM_ID_POW } from "../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF } from "../const/EnumMonsterDataIndex.js";
 import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../const/EnumSizeId.js";
-import { zokusei } from "../etc.js";
+import { zokusei } from "../data/element-affinity.dat.js";
 import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/foot-bridge.js";
-import { ItemObjNew } from "../item.dat.js";
+import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
 import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import {
@@ -37,7 +37,7 @@ import {
     MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO,
     MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI, n_B_TAISEI
 } from "../monster/mobconfplayer.js";
-import { MonsterObjNew } from "../monster.dat.js";
+import { MonsterObjNew } from "../monster/monster.dat.js";
 import {
     BK_n_A_MATK, n_A_AGI, n_A_BodyZokusei, n_A_DEX, n_A_Equip, n_A_INT, n_A_JOB, n_A_JobLV, n_A_LUK, n_A_MATK,
     n_A_SHIELD_DEF_PLUS, n_A_STR, n_A_VIT, n_A_WeaponLV_seirenATK, n_A_WeaponType, n_B_DEF2, n_B_MDEF2
@@ -74,8 +74,8 @@ import {
 } from "../skill/skill.dat.js";
 import {
     TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD, TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
-} from "../timeitem.dat.js";
-import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "../attackmethod.dat.js";
+} from "../equip/timeitem.dat.js";
+import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "./attackmethod.dat.js";
 import { AS_PLUS } from "../skill/calcautospell.js";
 import { GetHigherJobSeriesID } from "../data/mig.job.h.js";
 import { __DIG3, g_confDataNizi, g_skillManager } from "../runtime/global.js";
