@@ -148,3 +148,43 @@ describe('calcFromModel()の同一コンテキスト内連続呼び出しが順�
         }, 60000);
     }
 });
+
+/**
+ * n_Enekyori（Phase 3で修正した実バグ）の回帰テスト。
+ *
+ * 上の D2 スイープは「既知の最有力候補（n_Enekyori）を動かす異物」を使っても
+ * 12件のフィクスチャでは出力差分が出なかった（=バグの実害を検出できなかった）。
+ * そのため、機構そのもの（層1の入口で n_Enekyori が初期値へリセットされること）を
+ * 直接確認する: 呼び出し前に n_Enekyori を人為的に汚染しても、クリーンな呼び出しと
+ * 同じ結果になることを検証する（Phase 2で確立した「グローバルを意図的に汚してから
+ * calcFromModel() を呼ぶ」パターンと同型）。
+ */
+describe('n_Enekyori は層1(StAllCalcCore)の入口で初期値へリセットされる（残件台帳 B-09 Phase 3）', () => {
+    if (entries.length === 0) {
+        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
+            console.warn('generated-job-corpus.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    const target = entries[0];
+
+    it(`${target.label}: 呼び出し前に n_Enekyori を汚染しても、クリーンな呼び出しと結果が一致する`, async () => {
+        const { context, page, errors } = await gotoFixture(target.query);
+        const result = await page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const state = await dynamicImport('/engine/runtime/ro4-state.js');
+            const reg = (globalThis as any)._ratorioReg;
+            const m = reg.extractModelFromDom();
+            const clean = reg.calcFromModel(m);
+            // 前回呼び出しの層2が残した値を模した汚染。層1入口のリセットが効いていれば無視される。
+            state.set_n_Enekyori(2);
+            const poisoned = reg.calcFromModel(m);
+            return { clean: JSON.parse(JSON.stringify(clean)), poisoned: JSON.parse(JSON.stringify(poisoned)) };
+        });
+        await context.close();
+        if (errors.length) throw new Error(`テスト中に未捕捉例外: ${errors.join('\n')}`);
+        expect(result.poisoned).toEqual(result.clean);
+    }, 60000);
+});
