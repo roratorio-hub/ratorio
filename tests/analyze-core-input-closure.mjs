@@ -60,6 +60,21 @@
  *
  * 「HydrateFromModel が書く」変数は上記のどれであっても「供給済み」として別記する。
  *
+ * ---- 既知の限界（誤検出の実例あり。B-09 Phase 2h で確認） ----
+ *
+ * - **多次元の添字代入**（`X[a][b] = c`）は書き込みとして検出できない
+ *   （検出ロジックが1段のMemberExpressionしか見ていないため）。
+ * - **外部ファイル発見は1ホップのみ**: entryファイル（stallcalc.js/battlecalc.js）から
+ *   直接参照されたシンボルの所属ファイルしか「Core」と判定しない。発見済み外部ファイル
+ *   （例: skill-formula-*.js）が**さらに別の外部ファイル**（例: calcautospell.js の
+ *   `AS_PLUS`）を呼んでいても、その2段目のファイル・関数までは辿らない。
+ *
+ * 上記2つが重なると、Core内で完結する正規のスクラッチ変数（`n_AS_DMG`/
+ * `n_AS_DMG_OverHP`）が (A) 隠れ入力に誤分類される実例が確認されている
+ * （`AS_Calc()` が毎回リセットし `AS_PLUS()` が同一呼び出し内で読むだけで、
+ * 外部からの書き込みは存在しない。詳細は `.claude/context/b09-core-purification-design.md`）。
+ * (A) の判定結果は**人間によるダブルチェックを前提**とし、鵜呑みにしないこと。
+ *
  * 使い方:
  *   cd ratorio/tests && node analyze-core-input-closure.mjs
  *   node analyze-core-input-closure.mjs --json > /tmp/out.json   # JSON出力（後続フェーズ用）

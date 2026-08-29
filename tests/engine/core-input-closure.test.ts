@@ -6,13 +6,17 @@
  * ——skill-registry.test.ts 等と同じ「生成物の不変条件をスクリプトで検証する」パターンだが、
  * こちらはロジックが大きく別ファイル化されているため import ではなく子プロセス実行にした）が
  * 検出する「(A) 確定 隠れ入力」（`calcFromModel()` チェーンが読むのに
- * `HydrateFromModel` が書かず、Core内でも書かれない変数）のリストを、
- * 2026-08-29 Phase 0 完了時点のベースラインでスナップショットする。
+ * `HydrateFromModel` が書かず、Core内でも書かれない変数）のリストを、ベースラインで
+ * スナップショットする。
  *
- * Phase 2 が1グループずつモデルへ追加するたびに、対応する変数がこのリストから
- * 消えていくのが期待される進み方（減るのはOK、増えたら fail）。
- * 増えた場合は新しく発見された隠れ入力を意味し、Phase 2 のモデル化対象に
- * 追加する判断が必要になる（このテストはその検知だけを行い、判断はしない）。
+ * Phase 2（2026-08-30完了）で22件中20件をモデル化し解消。残る2件
+ * （`n_AS_DMG`/`n_AS_DMG_OverHP`）は分析ツール自体の誤検出と判明済み
+ * （Core内で完結する正規のスクラッチ変数。`analyze-core-input-closure.mjs`冒頭の
+ * 「既知の限界」参照）——モデル化不要のためベースラインとして残置する。
+ *
+ * 新規の変数がこのリストに増えたら fail する（新しい隠れ入力の発見、または
+ * 分析ツールの別の誤検出のどちらか。要調査）。減るのは常に歓迎（さらなる
+ * 誤検出の解消や、将来の再修正で判明した場合）。
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 import { execFileSync } from 'node:child_process';
@@ -24,32 +28,11 @@ const ANALYZER_TIMEOUT = 30000;
 const SCRIPT = resolve(__dirname, '../analyze-core-input-closure.mjs');
 const CWD = resolve(__dirname, '..');
 
-// 2026-08-29 Phase 0 完了時点のベースライン（analyze-core-input-closure.mjs --json の
-// hiddenInput）。Phase 2 でグループを1つ潰すごとに、ここから対応する項目を削除すること
-// （台帳・設計docの更新と同じタイミングで）。
+// Phase 2完了時点のベースライン（analyze-core-input-closure.mjs --json の hiddenInput）。
+// 2件とも分析ツールの誤検出と確認済み（上記コメント参照）。
 const BASELINE_HIDDEN_INPUT = [
-    'g_bonusStatus',
-    'g_confDataDebuff',
-    'g_confDataIchizi',
-    'g_confDataNizi',
-    'g_confDataSanzi',
-    'g_confDataYozi',
-    'g_objCharaConfCustomAtk',
-    'g_objCharaConfCustomDef',
-    'g_objCharaConfCustomSkill',
-    'g_objCharaConfCustomSpecStatus',
-    'g_objCharaConfCustomStatus',
-    'g_pureStatus',
-    'g_timeItemConf',
-    'g_timeItemConfEffective',
     'n_AS_DMG',
     'n_AS_DMG_OverHP',
-    'n_A_JOB',
-    'n_A_LearnedSkill',
-    'n_B_IJYOU',
-    'n_B_KYOUKA',
-    'n_B_TAISEI',
-    'n_Nitou',
 ].sort();
 
 function runAnalyzer(): {
