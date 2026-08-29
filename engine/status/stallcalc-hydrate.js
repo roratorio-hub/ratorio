@@ -26,6 +26,7 @@ import { CShadowEquipController, g_shadowEquipController } from "../equip/CShado
 import { n_B_TAISEI } from "../monster/mobconfplayer.js";
 import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
+import { n_A_LearnedSkill } from "../skill/learnedskill.js";
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB
 } from "../skill/calcautospell.js";
@@ -519,6 +520,12 @@ export function ExtractModelFromDom() {
     model.mobConfIjyou = Array.from(n_B_IJYOU ?? []);
     model.mobConfKyouka = Array.from(n_B_KYOUKA ?? []);
 
+    //----------------------------------------------------------------
+    // 習得スキル欄
+    //----------------------------------------------------------------
+    // n_SkillSWLearned（設定欄の開閉）に応じてDOM要素の有無が変わるため、現在値をそのまま運ぶ。
+    model.learnedSkill = Array.from(n_A_LearnedSkill ?? []);
+
     return model;
 }
 
@@ -848,6 +855,10 @@ export function HydrateFromModel(model) {
     for (const v of model.mobConfIjyou) n_B_IJYOU.push(v);
     n_B_KYOUKA.length = 0;
     for (const v of model.mobConfKyouka) n_B_KYOUKA.push(v);
+
+    // 習得スキル欄。同じく setter が無い。
+    n_A_LearnedSkill.length = 0;
+    for (const v of model.learnedSkill) n_A_LearnedSkill.push(v);
 
     return { attackMethodConfArray };
 }

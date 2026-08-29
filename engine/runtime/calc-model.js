@@ -49,6 +49,9 @@
  * `mobConfTaisei`/`mobConfIjyou`/`mobConfKyouka`（モンスター設定欄。対プレイヤー/異常/強化。
  * 残件台帳 B-09 Phase 2g）: `mobconfplayer.js`/`mobconfdebuf.js`/`mobconfbuf.js` の
  * 設定欄も同様に展開状態に依存するため、意味づけしない不透明配列として現在値をそのまま運ぶ。
+ *
+ * `learnedSkill`（習得スキル欄。残件台帳 B-09 Phase 2h）: `n_SkillSWLearned` の
+ * 開閉に応じてDOM要素の有無が変わるため、上記と同型で現在値をそのまま運ぶ。
  */
 
 /** @returns {object} 全フィールドを既定値で埋めたモデル */
@@ -145,5 +148,7 @@ export function createEmptyModel() {
         mobConfIjyou: Array(80).fill(0),
         /** モンスター設定・強化欄（MOB_CONF_BUF_ID_* で添字アクセス。80件） */
         mobConfKyouka: Array(80).fill(0),
+        /** 習得スキル欄のLv（REFIDで添字アクセス。LEARNED_SKILL_MAX_COUNT=200） */
+        learnedSkill: Array(200).fill(0),
     };
 }
