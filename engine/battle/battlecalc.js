@@ -1,5 +1,5 @@
 // ダメージ計算スクラッチ状態（BattleCalc999Core とスキル計算式分割先が共有する）。詳細は calc-state.js 参照。
-import { CS } from "./calc-state.js";
+import { CS, createBattleScratchTemplate } from "./calc-state.js";
 // BattleCalc999Core のスキル計算式ブロック分割先（Phase 3b）。循環しないため battlecalc.js が直接 import する。
 import { ApplyPhysicalSkillFormulaBasic } from "./skill-formula-physical.js";
 import { ApplyPhysicalSkillFormulaSpecial } from "./skill-formula-special.js";
@@ -569,7 +569,7 @@ import {
 import {
          g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataDebuff,
          g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomSkill, n_Nitou,
-         g_VariableCastTimeRate,
+         g_VariableCastTimeRate, set_g_VariableCastTimeRate,
 } from "../runtime/global.js";
 
 // C-6: 旧 global.js window 変数（読み書きとも battlecalc.js 内のみ → 内部化）
@@ -2658,13 +2658,38 @@ export function ComputeBattleResult(retValArray) {
 	var attackMethodConfArray = null;
 
 
-	CS.str_bSUBname = "";
-	CS.str_bSUB = "";
-	CS.wbairitu = 100;
-	
-	for (idx = 0; idx < CS.g_damageTextArray.length; idx++) {
-		CS.g_damageTextArray[idx] = [];
-	}
+	// スクラッチ状態を初期値へ戻す（残件台帳 B-09 Phase 4）。CS は全プロパティを
+	// 新しいテンプレートで丸ごと置き換える。トップレベル let 群と、層1では参照されず
+	// 層2内で完結する変数も同じ入口で戻す（n_A_Weapon_zokusei は対象外——
+	// SET_ZOKUSEI() が呼び出しのたび無条件に上書きするため既に安全）。
+	Object.assign(CS, createBattleScratchTemplate());
+
+	n_NitouCalc = false;
+	first_check = 0;
+	n_AS_HIT = 0;
+	n_A_DMG_QUAKE = [0,0,0];
+	BK_n_A_DMG2 = [0,0,0];
+	cardCount = 0;
+	w_Cri = 0;
+	itemCountRight = 0;
+	itemCountLeft = 0;
+	w_STRDEX = 0;
+	g_appliedAppendDamage = false;
+	g_wCastTemp = null;
+	g_wCastFixedTemp = null;
+	g_attackIntervalTemp = null;
+	resistValueArray = [];
+	resistValueArrayOver = 0;
+	bodyElmRatioArray = 0;
+	finalRatioArray = 0;
+
+	set_TyouEnkakuSousa3dan(true);
+	set_g_bDefinedDamageIntervals(false);
+	set_g_perfectHitRate(0);
+	set_wDelay(0);
+	set_w_DMG([0,0,0]);
+	set_w_FLEE(0);
+	set_g_VariableCastTimeRate(0);
 
 	// データの取りだし
 	charaData = retValArray[0];
