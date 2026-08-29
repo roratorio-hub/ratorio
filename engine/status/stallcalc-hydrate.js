@@ -80,7 +80,7 @@ import {
     set_n_A_SHIELD_DEF_Transcendence, set_n_A_SHOES_DEF_PLUS, set_n_A_SHOES_DEF_Transcendence,
     set_n_A_SHOULDER_DEF_PLUS, set_n_A_SHOULDER_DEF_Transcendence, set_n_A_SPL, set_n_A_STA, set_n_A_STR,
     set_n_A_VIT, set_n_A_WIS, set_n_A_Weapon2LV, set_n_A_Weapon2LV_Maxplus, set_n_A_Weapon2LV_Minplus,
-    set_n_A_Weapon2LV_seirenATK, set_n_A_Weapon2_ATK, set_n_A_Weapon2_ATKplus, set_n_A_Weapon2_Transcendence,
+    set_n_A_Weapon2LV_seirenATK, set_n_A_Weapon2Type, set_n_A_Weapon2_ATK, set_n_A_Weapon2_ATKplus, set_n_A_Weapon2_Transcendence,
     set_n_A_WeaponLV, set_n_A_WeaponLV_Maxplus, set_n_A_WeaponLV_Minplus, set_n_A_WeaponLV_seirenATK,
     set_n_A_WeaponType, set_n_A_WeaponZokusei, set_n_A_Weapon_ATK, set_n_A_Weapon_ATKplus,
     set_n_A_Weapon_Transcendence
@@ -129,6 +129,10 @@ export function ExtractModelFromDom() {
     //----------------------------------------------------------------
     model.weapon.type = legacyNum(calcForm.A_WeaponType.value);
     model.weapon.zokusei = legacyNum(calcForm.A_Weapon_zokusei.value);
+    // 残件台帳 B-09 Step 5: 二刀流の左手武器種別。従来 stallcalc-hydrate.js を経由せず
+    // equip.js（Shell）が直接DOMから読んで n_A_Weapon2Type へ書き込んでいたため、
+    // headless経路（calcFromModel）ではモデルに載らずグローバルの残存値に暗黙依存していた。
+    model.weapon.weapon2Type = HtmlGetObjectValueById("OBJID_ARMS_TYPE_LEFT", 0);
     model.arrow = HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE);
 
     model.equip = new Array(EQUIP_REGION_ID_COUNT).fill(0);
@@ -455,6 +459,9 @@ export function HydrateFromModel(model) {
 
     set_n_A_WeaponType(model.weapon.type);
     set_n_A_WeaponZokusei(model.weapon.zokusei);
+    // 残件台帳 B-09 Step 5: 二刀流でなくてもデフォルト0（素手or盾）で確定させる
+    // （equip.js側の実装と同じ既定値。n_Nitouで分岐する必要はない）。
+    set_n_A_Weapon2Type(model.weapon.weapon2Type ?? 0);
     set_n_A_Arrow(parseInt(model.arrow));
 
     for (let idx = 0; idx < EQUIP_REGION_ID_COUNT; idx++) {

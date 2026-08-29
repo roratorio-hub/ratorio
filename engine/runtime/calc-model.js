@@ -47,6 +47,7 @@ export function createEmptyModel() {
             zokusei: undefined,                // calcForm.A_Weapon_zokusei
             atkPlus: undefined,                // calcForm.A_Weapon_ATKplus
             transcendence: undefined,          // calcForm.A_Weapon_Transcendence
+            weapon2Type: undefined,            // OBJID_ARMS_TYPE_LEFT（二刀流の左手武器種別）
             weapon2AtkPlus: undefined,         // calcForm.A_Weapon2_ATKplus
             weapon2Transcendence: undefined,   // calcForm.A_Weapon2_Transcendence
         },

@@ -186,3 +186,53 @@ describe('calcCoreFromModel() の coreOutput がDOM駆動側の書き込み結�
         }, 60000);
     }
 });
+
+describe('extractModelFromDom() がOBJID_ARMS_TYPE_LEFT（二刀流左手武器種別）を捕捉する（残件台帳 B-09 Step 5）', () => {
+    if (entries.length === 0) {
+        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
+            console.warn('generated-job-corpus.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    // OBJID_ARMS_TYPE_LEFT は equip.js が二刀流可能な武器を右手に装備したときだけ
+    // 動的に<select>を生成する要素（stallcalc-hydrate.js は元々これを一切読んでおらず、
+    // headless経路ではモデルに載らずグローバルの残存値に暗黙依存していた）。
+    // 実際の二刀流装備を組む代わりに、要素を直接注入して境界の読み取り自体を検証する。
+    const { query } = entries[0];
+
+    it('OBJID_ARMS_TYPE_LEFTが存在する場合、その値をmodel.weapon.weapon2Typeへ捕捉する', async () => {
+        const { context, page, errors } = await gotoFixture(query);
+        const captured = await page.evaluate(() => {
+            const select = document.createElement('select');
+            select.id = 'OBJID_ARMS_TYPE_LEFT';
+            select.innerHTML = '<option value="6">6</option>';
+            select.value = '6';
+            document.body.appendChild(select);
+
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+            return model.weapon.weapon2Type;
+        });
+        await context.close();
+        expect(errors, `未捕捉例外: ${errors.join('\n')}`).toEqual([]);
+        expect(captured).toBe('6');
+    }, 60000);
+
+    it('OBJID_ARMS_TYPE_LEFTが存在しない場合（非二刀流。通常ケース）、既定値0を捕捉する', async () => {
+        const { context, page, errors } = await gotoFixture(query);
+        const captured = await page.evaluate(() => {
+            // 通常のフィクスチャは二刀流でないため要素は元々存在しない前提。
+            // 念のため明示的に無いことを確認してから抽出する。
+            if (document.getElementById('OBJID_ARMS_TYPE_LEFT') !== null) {
+                throw new Error('想定外: このフィクスチャは既にOBJID_ARMS_TYPE_LEFTを持つ');
+            }
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+            return model.weapon.weapon2Type;
+        });
+        await context.close();
+        expect(errors, `未捕捉例外: ${errors.join('\n')}`).toEqual([]);
+        expect(captured).toBe(0);
+    }, 60000);
+});
