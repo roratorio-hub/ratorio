@@ -569,7 +569,7 @@ import {
 import {
          g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataDebuff,
          g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomSkill, n_Nitou,
-         g_VariableCastTimeRate, set_g_VariableCastTimeRate,
+         g_VariableCastTimeRate,
 } from "../runtime/global.js";
 
 // C-6: 旧 global.js window 変数（読み書きとも battlecalc.js 内のみ → 内部化）
@@ -2661,7 +2661,11 @@ export function ComputeBattleResult(retValArray) {
 	// スクラッチ状態を初期値へ戻す（残件台帳 B-09 Phase 4）。CS は全プロパティを
 	// 新しいテンプレートで丸ごと置き換える。トップレベル let 群と、層1では参照されず
 	// 層2内で完結する変数も同じ入口で戻す（n_A_Weapon_zokusei は対象外——
-	// SET_ZOKUSEI() が呼び出しのたび無条件に上書きするため既に安全）。
+	// SET_ZOKUSEI() が呼び出しのたび無条件に上書きするため既に安全。
+	// g_VariableCastTimeRate も対象外——層1（stallcalc-motion-hp-sp.js の
+	// ApplyMotionDelay()）が毎回無条件に書き、層2（本関数内の
+	// BuildCastAndDelayHtmlMIG()）が読む受け渡し変数のため、ここでリセットすると
+	// 層1が書いた値が層2に渡る前に消え、変動詠唱時間が常に0になる）。
 	Object.assign(CS, createBattleScratchTemplate());
 
 	n_NitouCalc = false;
@@ -2689,7 +2693,6 @@ export function ComputeBattleResult(retValArray) {
 	set_wDelay(0);
 	set_w_DMG([0,0,0]);
 	set_w_FLEE(0);
-	set_g_VariableCastTimeRate(0);
 
 	// データの取りだし
 	charaData = retValArray[0];

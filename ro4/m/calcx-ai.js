@@ -1,5 +1,5 @@
 import { CreateMLCEngine } from "https://esm.run/@mlc-ai/web-llm";
-import { get as registryGet } from "./js/engine-registry.js";
+import { get as registryGet } from "../../engine/runtime/engine-registry.js";
 
 // ================================================================
 // チューニングパラメータ（ここを編集するだけで挙動を調整できる）

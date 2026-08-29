@@ -188,3 +188,46 @@ describe('n_Enekyori は層1(StAllCalcCore)の入口で初期値へリセット�
         expect(result.poisoned).toEqual(result.clean);
     }, 60000);
 });
+
+/**
+ * g_VariableCastTimeRate（Phase 4で層2専用スクラッチと誤分類したバグ）の回帰テスト。
+ *
+ * 層1（stallcalc-motion-hp-sp.js の ApplyMotionDelay()）が毎回無条件に書き、
+ * 層2（battlecalc.js の BuildCastAndDelayHtmlMIG()）が読む受け渡し変数。
+ * Phase 4 で `ComputeBattleResult()` 入口に `set_g_VariableCastTimeRate(0)` が
+ * 追加されると、層1が書いた値が層2に渡る前に毎回0へ潰され、変動詠唱時間
+ * （castVary）が常に0になる。これは呼び出し順序に依存しない一発目からの破壊なので、
+ * 上のD2スイープ（再入検証）では検出できない——`job-corpus-snapshot.test.ts` が
+ * OBJID_付き要素しか見ておらず戦闘結果パネル（castVary の表示先）を素通りすることとは
+ * 別に、そもそも1回の呼び出しだけで壊れる問題であるため、単純な1回呼び出しで直接検証する。
+ *
+ * フィクスチャは generated-job-corpus.md の Pass B「ウォーロック（スキル攻撃）」
+ * （非0の変動詠唱時間を持つ代表例）を固定インデックスで指定する。
+ */
+describe('g_VariableCastTimeRate は層1が書いた値が層2の詠唱計算まで保たれる', () => {
+    // Pass B「ウォーロック（スキル攻撃）」固定。フィクスチャが再生成された場合は
+    // generated-job-corpus.md の該当行番号から非コメント行インデックスを数え直すこと。
+    const WARLOCK_SKILL_INDEX = 98;
+    const target = allEntries[WARLOCK_SKILL_INDEX];
+
+    if (!target) {
+        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
+            console.warn('generated-job-corpus.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    it(`${target.label}: calcFromModel() 単発呼び出しで変動詠唱時間(castVary)が0にならない`, async () => {
+        const { context, page, errors } = await gotoFixture(target.query);
+        const result = await page.evaluate(() => {
+            const reg = (globalThis as any)._ratorioReg;
+            const m = reg.extractModelFromDom();
+            const battleCalcResultAll = reg.calcFromModel(m);
+            const castVary = battleCalcResultAll?.activeResultArray?.[0]?.castVary;
+            return { castVary };
+        });
+        await context.close();
+        if (errors.length) throw new Error(`テスト中に未捕捉例外: ${errors.join('\n')}`);
+        expect(result.castVary).toBeGreaterThan(0);
+    }, 60000);
+});
