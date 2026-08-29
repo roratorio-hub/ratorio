@@ -26,7 +26,11 @@ import { CShadowEquipController, g_shadowEquipController } from "../equip/CShado
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB
 } from "../skill/calcautospell.js";
-import { g_constDataManager, n_Nitou, set_n_Nitou } from "../runtime/global.js";
+import {
+    g_confDataDebuff, g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
+    g_constDataManager, n_Nitou, set_g_confDataDebuff, set_g_confDataIchizi, set_g_confDataNizi,
+    set_g_confDataSanzi, set_g_confDataYozi, set_n_Nitou,
+} from "../runtime/global.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     set_n_A_ActiveSkill, set_n_A_ActiveSkillLV, set_n_A_Arrow, set_n_A_BaseLV
@@ -112,6 +116,24 @@ function legacyNum(raw) {
  */
 function deriveNitou(weapon2Type) {
     return Number(weapon2Type ?? 0) !== 0; // 未設定（createEmptyModel()の既定値）は非二刀流扱い
+}
+
+/**
+ * 設定欄配列（g_confDataIchizi等）の中身を、既存の配列があれば **中身だけ**
+ * モデルの値へ差し替える（束縛を新しい配列に置き換えない）。
+ * `g_objCharaConfIchizi` 等のUIコンポーネントが同じ配列オブジェクトを
+ * `this.confArray` として保持しているため、束縛ごと差し替えるとUI側の参照が
+ * 古い配列を指したままになり表示が狂う。呼び出し側で `set_g_confDataXxx(戻り値)`
+ * すること（未初期化なら新規配列を返すので、その場合も同じ呼び方でよい）。
+ * @param {any} current 現在のグローバル配列（null なら未初期化＝headless経路）
+ * @param {any[]} values モデル側の値
+ * @returns {any[]} 書き込み先の配列（set_g_confDataXxx へ渡す）
+ */
+function syncConfArray(current, values) {
+    const target = current ?? [];
+    target.length = 0;
+    for (const v of values) target.push(v);
+    return target;
 }
 
 /**
@@ -430,6 +452,17 @@ export function ExtractModelFromDom() {
         model.buff8[22] = legacyNum(calcForm.A8_Skill22.value);
     }
 
+    //----------------------------------------------------------------
+    // 一次〜四次職支援・デバフ設定欄
+    //----------------------------------------------------------------
+    // calcForm に個別フィールドは無く、CConfBase 派生の配列（g_confDataIchizi 等）が
+    // 唯一の実体（HydrateFromModel側のコメント参照）。
+    model.confIchizi = Array.from(g_confDataIchizi ?? []);
+    model.confNizi = Array.from(g_confDataNizi ?? []);
+    model.confSanzi = Array.from(g_confDataSanzi ?? []);
+    model.confYozi = Array.from(g_confDataYozi ?? []);
+    model.confDebuff = Array.from(g_confDataDebuff ?? []);
+
     return model;
 }
 
@@ -713,6 +746,13 @@ export function HydrateFromModel(model) {
         n_A_PassSkill8[21] = model.buff8[21];
         n_A_PassSkill8[22] = model.buff8[22];
     }
+
+    // 一次〜四次職支援・デバフ設定欄（syncConfArrayの説明参照）
+    set_g_confDataIchizi(syncConfArray(g_confDataIchizi, model.confIchizi));
+    set_g_confDataNizi(syncConfArray(g_confDataNizi, model.confNizi));
+    set_g_confDataSanzi(syncConfArray(g_confDataSanzi, model.confSanzi));
+    set_g_confDataYozi(syncConfArray(g_confDataYozi, model.confYozi));
+    set_g_confDataDebuff(syncConfArray(g_confDataDebuff, model.confDebuff));
 
     return { attackMethodConfArray };
 }

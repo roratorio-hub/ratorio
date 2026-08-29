@@ -31,6 +31,11 @@
  * 書き込まれないため、DOM イベントが一切発火しない headless 経路では
  * 職業IDがモデルの意図と無関係な残存値のままになる——D1（入力閉包）の観点で
  * 本物の隠れ入力だったため、他のフィールドと同じ扱いへ格上げした。
+ *
+ * `confIchizi`/`confNizi`/`confSanzi`/`confYozi`/`confDebuff`（一次〜四次職支援・
+ * デバフ設定欄。残件台帳 B-09 Phase 2c）: 個別の calcForm フィールドを持たず、
+ * `CConfBase` 派生クラスが保持する配列（`g_confDataIchizi` 等）が唯一の実体。
+ * 装備欄と同じ添字アクセス配列として扱う。
  */
 
 /** @returns {object} 全フィールドを既定値で埋めたモデル */
@@ -93,5 +98,15 @@ export function createEmptyModel() {
         buff7: Array(53).fill(0),
         /** その他の支援/設定（A8欄）。n_A_PassSkill8 と同じ添字 */
         buff8: Array(28).fill(0),
+        /** 一次職支援設定欄（CCharaConfIchizi.CONF_ID_* で添字アクセス。50件） */
+        confIchizi: Array(50).fill(0),
+        /** 二次職支援設定欄（CCharaConfNizi.CONF_ID_* で添字アクセス。50件） */
+        confNizi: Array(50).fill(0),
+        /** 三次職支援設定欄（CCharaConfSanzi.CONF_ID_* で添字アクセス。100件） */
+        confSanzi: Array(100).fill(0),
+        /** 四次職支援設定欄（CCharaConfYozi.CONF_ID_* で添字アクセス。30件） */
+        confYozi: Array(30).fill(0),
+        /** デバフ設定欄（CCharaConfDebuff.CONF_ID_* で添字アクセス。50件） */
+        confDebuff: Array(50).fill(0),
     };
 }
