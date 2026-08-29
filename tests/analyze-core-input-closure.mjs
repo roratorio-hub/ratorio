@@ -269,9 +269,10 @@ for (let round = 0; round < 5; round++) {
 // Core ファイル集合
 // ============================================================
 //
-// `engine/status/*.js`（stallcalc.js/stallcalc-hydrate.jsを除く）は既存の複数フェーズの
-// 調査で「ほぼ100% Core」と人手検証済みの閉じた集合なので、引き続きファイル丸ごとを
-// Core として扱う（ディレクトリ丸ごと近似）。
+// `engine/status/*.js`（stallcalc.js/stallcalc-hydrate.js/stallcalc-shell.jsを除く）は
+// 既存の複数フェーズの調査で「ほぼ100% Core」と人手検証済みの閉じた集合なので、引き続き
+// ファイル丸ごとを Core として扱う（ディレクトリ丸ごと近似）。stallcalc-shell.js は
+// Phase 5 で新設した Shell 側（DOM初期化）のため、stallcalc-hydrate.js と同様に除外する。
 //
 // 一方、closure() が新規に発見した外部ファイル（stallClosure/battleClosure の
 // externalFiles）は玉石混淆で、skill-formula-*.js のような「100% Core」の小さな
@@ -286,7 +287,7 @@ for (let round = 0; round < 5; round++) {
 const statusDirBlanket = new Set(
     readdirSync(join(REPO, 'engine/status'))
         .filter((f) => f.endsWith('.js'))
-        .filter((f) => f !== 'stallcalc.js' && f !== 'stallcalc-hydrate.js')
+        .filter((f) => f !== 'stallcalc.js' && f !== 'stallcalc-hydrate.js' && f !== 'stallcalc-shell.js')
         .map((f) => `engine/status/${f}`),
 );
 

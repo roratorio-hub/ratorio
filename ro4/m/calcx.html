@@ -2129,8 +2129,8 @@
 <!-- 機能処理系 javascript ファイル （この辺の順序整理したい）-->
 <script type="module" src="../../engine/battle/CAttackMethodAreaComponentManager.js"></script>
 
-<!-- メイン処理系 javascript ファイル -->
-<script type="module" src="../../engine/status/stallcalc.js"></script>
+<!-- メイン処理系 javascript ファイル（Shell側。内部で stallcalc.js を import する。残件台帳 B-09 Phase 5） -->
+<script type="module" src="../../engine/status/stallcalc-shell.js"></script>
 <!-- DOM読み書きゼロのヘッドレス計算API（リファクタリング計画 Phase 10）。engine-registry へ自己登録する -->
 <script type="module" src="../../engine/runtime/calc-headless.js"></script>
 

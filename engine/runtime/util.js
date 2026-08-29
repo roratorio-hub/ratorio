@@ -2,10 +2,10 @@
  * 低レイヤーのユーティリティ関数群
  */
 
-window.CONSOLE_LOG_LEVEL_NONE	= 0;
-window.CONSOLE_LOG_LEVEL_DEBUG	= 1;
-window.g_bStoreConsoleLog = false;
-window.g_storedConsoleLogArray = null;
+globalThis.CONSOLE_LOG_LEVEL_NONE	= 0;
+globalThis.CONSOLE_LOG_LEVEL_DEBUG	= 1;
+globalThis.g_bStoreConsoleLog = false;
+globalThis.g_storedConsoleLogArray = null;
 
 /************************************************************************************************
  *

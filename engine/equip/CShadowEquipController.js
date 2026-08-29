@@ -158,6 +158,10 @@ export class CShadowEquipController {
 
 		// ルート要素の取得
 		const objRoot = document.getElementById("OBJID_SHADOW_EQUIPS_MIG");
+		// この設定欄を持たないページ（pages/ 等）では構築をスキップする
+		if (!objRoot) {
+			return;
+		}
 
 		// 装備ブロックのリスト
 		const equipBlockList = objRoot.querySelectorAll(":scope .equip-block");

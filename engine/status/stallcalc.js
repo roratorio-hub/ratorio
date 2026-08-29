@@ -24,7 +24,6 @@ import { n_A_PassSkill4, n_A_PassSkill7, UsedSkillSearch, n_A_PassSkill, n_A_Pas
 import { CAttackMethodAreaComponentManager } from "../battle/CAttackMethodAreaComponentManager.js";
 import { enchSearch } from "../equip/CEnchSearch.js";
 import { CMonsterMapAreaComponentManager } from "../monster/CMonsterMapAreaComponentManager.js";
-import { CSaveController } from "../savedata/CSaveController.js";
 import { CShadowEquipController, g_shadowEquipController } from "../equip/CShadowEquipController.js";
 import {
          AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV,
@@ -39,7 +38,6 @@ import {
          g_pureStatus
 } from "../chara/hmjob.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
-import { CBattleQuickControlAreaComponentManager } from "../battle/CBattleQuickControlAreaComponentManager.js";
 import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
 import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
 import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";
@@ -53,8 +51,6 @@ import { CCharaConfYozi } from "../chara/CCharaConfYozi.js";
 import { CExtraInfoAreaComponentManager } from "../ui/CExtraInfoAreaComponentManager.js";
 import { CFloatingInfoAreaComponentManager } from "../ui/CFloatingInfoAreaComponentManager.js";
 import { CItemInfoManager } from "../equip/CItemInfoManager.js";
-import { CMobConfInputAreaComponentManager, g_dataManagerMobConfInput } from "../monster/CMobConfInput.js";
-import { CTimeItemAreaComponentManager } from "../equip/CTimeItemAreaComponentManager.js";
 import {
          ARROW_ID_CURSE_ARROW, ARROW_ID_ELFNO_YA, ARROW_ID_FLASH_ARROW,
          ARROW_ID_GANSEKINO_YA, ARROW_ID_GINNO_YA, ARROW_ID_HONOONO_YA,
@@ -730,7 +726,6 @@ import {
 import { PET_ID_MISTRESS, PET_OBJ } from "../equip/pet.dat.js";
 import { OnClickQuickControlSW } from "../battle/quickcontrol.js";
 import { SetEquipRndOptTable } from "../equip/rndopttype.h.js";
-import { LoadCookie3, LoadCookieConf } from "../savedata/savedata-codec.js";
 import {
          SERE_SUPPORT_SKILL_ID_CRYSTAL_ARMOR, SERE_SUPPORT_SKILL_ID_EYES_OF_STORM,
          SERE_SUPPORT_SKILL_ID_FIRE_CLOAK, SERE_SUPPORT_SKILL_ID_FLAME_ARMOR,
@@ -1007,7 +1002,7 @@ import {
          n_A_BodyZokusei, set_n_A_BodyZokusei, n_B_DEF2, set_n_B_DEF2,
          n_B_MDEF2, set_n_B_MDEF2, n_A_costume, set_n_A_costume,
          n_A_PassSkill5, set_n_A_PassSkill5, g_itemIdArray, set_g_itemIdArray,
-         g_refinedArray, set_g_refinedArray, g_objMobConfInput, set_g_objMobConfInput,
+         g_refinedArray, set_g_refinedArray,
          SpeedPotName,
          n_A_JOB, n_A_MATK, set_n_A_MATK, BK_n_A_MATK, set_BK_n_A_MATK, set_g_lucky_over, g_lucky_over, set_n_CastCutForDisp, n_CastCutForDisp, n_A_Weapon2Type,
          set_n_A_WeaponZokusei,
@@ -1309,40 +1304,6 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 
 }
 
-/**
- * StAllCalc のDOM走査プロローグを HydrateFromDom()（stallcalc-hydrate.js）へ
- * 切り出した後の骨組み（リファクタリング計画 Phase 5）。
- * 描画呼び出し（RefreshDispAreaAll 等）は StAllCalcCore() の外、本関数の末尾に置く
- * ——将来 calcFromModel() が StAllCalcCore() だけを呼べば描画を経由せずに済むようにするため。
- */
-export function StAllCalc(){
-    const { n_A_SpeedPOT, attackMethodConfArray } = HydrateFromDom();
-    const result = StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray);
-    const [charaData, , mobData] = result;
-
-    // 拡張表示を更新
-    CFloatingInfoAreaComponentManager.setReferData(charaData, n_tok, mobData);
-    CFloatingInfoAreaComponentManager.RefreshDispAreaAll();
-
-    // ステータス欄注意喚起（集中力向上）。判定条件は計算結果に依存しないため
-    // StAllCalcCore() の外（Shell側）で完結させる（stallcalc-exp-reflect-atk-size.js
-    // から移設）。
-    const objStatusNoticeDiv = document.getElementById("OBJID_DIV_STATUS_NOTICE");
-    HtmlRemoveAllChild(objStatusNoticeDiv);
-    if (UsedSkillSearch(SKILL_ID_SHUCHURYOKU_KOZYO) > 0) {
-        const objP = HtmlCreateElement("p", objStatusNoticeDiv);
-        objP.setAttribute("class", "CSSCLS_GENERAL_COLOR_RED_BOLD");
-        HtmlCreateTextNode("（★注意情報★）集中力向上の効果が設定されています。", objP);
-        const objA = HtmlCreateElement("a", objP);
-        // 挿入先ページの深さに依存しないよう import.meta.url 基準の完全修飾URLで解決する（B-23で pages/ へ移動）。
-        objA.setAttribute("href", new URL("../pages/note20210606.html", import.meta.url).href);
-        objA.setAttribute("target", "_blank");
-        HtmlCreateTextNode("『こちら』", objA);
-        HtmlCreateTextNode("の注意事項をご確認ください。", objP);
-    }
-
-    return result;
-}
 
 /**
  * StAllCalc の純粋計算部分（DOM参照ゼロ）。HydrateFromDom() が書き込んだグローバル状態を
@@ -1702,14 +1663,11 @@ import {
 } from "./equipped-sp.js";
 
 /**
- * 職業の基本条件を設定する
+ * 既知の罠: 引数の有無に関わらず何もしない（実質no-op）。
+ * DOM非依存が必要な呼び出し元（HydrateFromModel()）があるため、
+ * 未使用だった DOM 参照（jobId 省略時の OBJID_SELECT_JOB 読み取り）は撤去済み。
  */
 export function InitJobInfo(jobId) {
-	// 職業IDが引数で渡されなかった時用のコード
-	if (typeof jobId === "undefined" || jobId === null) {
-		jobId = document.getElementById("OBJID_SELECT_JOB").value;
-	}
-
 }
 
 /**
@@ -1808,404 +1766,8 @@ export function ROUNDUP(num){
 	return num;
 }
 
-const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 
-// 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. DOMContentLoaded を指定する必要がある.
-document.addEventListener('DOMContentLoaded', () => {
-	console.log("DOM Content is loaded.");
-	// YAMLデータのロードが完了していたら発火
-	waitForDataLoaded().then(() => {
-		console.log("All data is loaded.");
 
-		// 計算機設定の読み込み
-		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-			CSaveController.LoadSettingFromLocalStorageMIG();
-		}
-
-		document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
-		document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
-
-		for (var i=0; i<=9; i++) {
-			document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
-		}
-
-		CMonsterMapAreaComponentManager.RebuildControls();
-
-		//--------------------------------
-		// モンスター手入力設定欄の初期化
-		//--------------------------------
-		set_g_objMobConfInput(new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput));
-		g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
-
-		//--------------------------------
-		// ステートフルデータの初期化
-		//--------------------------------
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_TOP);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_MID);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHIELD);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_BODY);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOULDER);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOES);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_1);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_2);
-
-		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-			CSaveController.LoadFromLocalStorageMIG();
-			// 画面上部セーブ選択セレクトボックスの初期化
-			const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
-			HtmlRemoveAllChild(objSelect)
-			for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
-				const optText = CSaveController.getDisplayName(idx);
-				HtmlCreateElementOption(idx, optText, objSelect);
-			}
-			// 確認ダイアログの有効化スイッチを初期化
-			if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
-				$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
-			}
-		}
-		else {
-			LoadSaveDataToCalculator();
-		}
-
-		/**
-		 * 新形式を前提としたロード処理
-		 * 初代の a 形式
-		 * 避難所の b 形式
-		 * Hub の c 形式
-		 * どれも読み込めることを確認
-		 */
-		// URL引数のチェック
-		const query = window.location.search;
-		const param = query.replace("?", "");
-		const patternRtx = /^rtx[0-9]+:/
-
-		if (param.length > 0 && !patternRtx.test(param)) {
-			// ラトリオ独自のロード処理
-			CSaveController.loadFromURL(param);
-		} else {
-			// URLロードがない場合は、ノービスを初期ジョブとして設定
-			// job.yaml 廃止によりセレクトボックスの value は mig ID の数値文字列
-			changeJobSettings(String(JOB_ID_NOVICE));
-			// 検索可能ドロップダウンリストのロード
-			LoadTomSelect();
-		}
-
-		// 再計算
-		CalcStatusPoint(true);
-		calc();
-
-		/**
-		 * カスタム表示の状態を復元する
-		 * 装備・ステータスに依存するカスタム表示欄があるので再計算後に実施する
-		 */
-		if (CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch) === 1n) {
-			// カスタム表示を開く
-			document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").click();
-			// 中身を復元する
-			CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
-		}
-		/**
-		 * アイテム情報の状態を復元する
-		 */
-		if (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoSwitch) === 1n) {
-			// カスタム表示を開く
-			document.getElementById("OBJID_ITEM_INFO_EXTRACT_CHECKBOX").click();
-			// 中身を復元する
-			CItemInfoManager.LoadFromLocalStorage();
-		}
-
-		// エンチャントサーチのロード
-		new enchSearch();
-	});
-});
-
-export function LoadSaveDataToCalculator () {
-
-	var idx = 0;
-	var idxUndefined = 0;
-
-	LoadCookieConf();
-
-	LoadCookie3();
-
-	// セーブデータをミスって公開してしまった時の保険か何か？
-	for (idx = 1; idx <= 19; idx++) {
-
-		idxUndefined = SaveDataAll[idx].search("undefined");
-
-		if (idxUndefined >= 0) {
-			SaveDataAll[idx] = SaveDataAll[idx].substring(0, idxUndefined) + "a999";
-		}
-	}
-}
-
-/**
- * 計算機の初回ロード時、および職業変更時に呼び出される初期化関数
- * @param {*} jobId 
- */
-export function Init(jobId){
-	// 職業IDが引数で渡されなかった時用のコード
-	if (typeof jobId === "undefined" || jobId === null) {
-		jobId = document.getElementById("OBJID_SELECT_JOB").value;
-	}
-
-	var i, idx = 0, objInput = null;
-
-	set_n_A_BaseLV(1);
-	set_n_A_JobLV(1);
-
-	set_n_A_STR(1);
-	set_n_A_AGI(1);
-	set_n_A_VIT(1);
-	set_n_A_DEX(1);
-	set_n_A_INT(1);
-	set_n_A_LUK(1);
-
-	set_SU_STR(n_A_STR);
-	set_SU_AGI(n_A_AGI);
-	set_SU_VIT(n_A_VIT);
-	set_SU_DEX(n_A_DEX);
-	set_SU_INT(n_A_INT);
-	set_SU_LUK(n_A_LUK);
-
-	document.calcForm.A_Weapon_zokusei.value = 0;
-	set_n_A_Weapon_zokusei(0);
-	document.calcForm.A_Weapon_ATKplus.value = 0;
-	set_n_A_Weapon_ATKplus(0);
-	set_n_A_Weapon2_ATKplus(0);
-	document.calcForm.A_HEAD_DEF_PLUS.value = 0;
-	document.calcForm.A_BODY_DEF_PLUS.value = 0;
-	document.calcForm.A_SHIELD_DEF_PLUS.value = 0;
-	document.calcForm.A_SHOULDER_DEF_PLUS.value = 0;
-	document.calcForm.A_SHOES_DEF_PLUS.value = 0;
-	set_n_A_HEAD_DEF_PLUS(0);
-	set_n_A_BODY_DEF_PLUS(0);
-	set_n_A_SHIELD_DEF_PLUS(0);
-	set_n_A_SHOULDER_DEF_PLUS(0);
-	set_n_A_SHOES_DEF_PLUS(0);
-
-	set_n_A_Equip(new Array());
-	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_ITEM; i++) n_A_Equip[i] = 0;
-
-	set_n_A_card(new Array());
-	for(let i = 0; i <= ITEMSET_ID_LIMIT_WITH_CARD; i++) n_A_card[i] = 0;
-
-	set_n_A_costume(new Array());
-	for(i = 0; i < COSTUME_REGION_ID_COUNT; i++) {
-		n_A_costume[i] = 0;
-	}
-
-	// 対プレイヤー設定 の初期化
-	n_B_TAISEI.fill(0);
-	// モンスター状態強化 の初期化
-	n_B_KYOUKA.fill(0);
-	// モンスター状態異常 の初期化
-	n_B_IJYOU.fill(0);
-	// ギルドスキル/ゴスペル/他 の初期化
-	n_A_PassSkill4.fill(0);
-	// アイテム・食品他 の初期化
-	n_A_PassSkill7.fill(0);
-	// 職固有自己支援 の初期化
-	n_A_PassSkill.fill(0);
-	// その他の支援/設定 の初期化
-	n_A_PassSkill8.fill(0);
-
-	// オートスペル設定
-	set_n_A_PassSkill5(new Array());
-	for (var idx = 0 ; idx < AUTO_SPELL_SETTING_COUNT; idx++) {
-		n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_ID + idx] = 0;
-		n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_LV + idx] = 0;
-		n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + idx] = 0;
-	}
-
-	// プレイヤー状態異常設定
-	set_g_confDataDebuff(Array(50).fill(0));
-
-	// 時限効果
-	for (idx = 0; idx < g_timeItemConf.length; idx++) {
-		g_timeItemConf[idx] = 0;
-	}
-	for (idx = 0; idx < g_timeItemConfEffective.length; idx++) {
-		g_timeItemConfEffective[idx] = true;
-	}
-
-	if (GetSlotMode() == 0) {
-		//--------------------------------
-		// カードスロットの初期化
-		//--------------------------------
-		BreakSlotOfCardAll();
-		BreakSlotOfCostumeAll();
-		RebuildSlotAsCardAll();
-		RebuildSlotAsCostumeAll(jobId);
-		ClearCardSlotAll();
-		ClearCostumeSlotAll();
-		ClearRndOptSelectAll();
-		// ClearRndEnchSlotAll();
-		SetCardSlotEnabilityAll();
-		SetCostumeSlotEnabilityAll();
-		SetStatefullData("DATA_OBJID_SLOT_MODE_BUTTON", 0);
-	}
-	else {
-		//--------------------------------
-		// ランダムエンチャントの初期化
-		//--------------------------------
-		BreakSlotOfRndEnchAll();
-		RebuildSlotAsRndEnchAll();
-		ClearCardSlotAll();
-		ClearCostumeSlotAll();
-		ClearRndOptSelectAll();
-		// ClearRndEnchSlotAll();
-		SetRndOptEnablityAll();
-		// SetEnchSlotsEnablity();
-	}
-
-	//--------------------------------
-	// 装備欄の初期化
-	//--------------------------------
-	InitEquipDefaultAll();
-	ClearEquipAll();
-
-	setN_Skill1SW(false);
-	setN_Skill4SW(false);
-	setN_Skill7SW(false);
-	setN_Skill8SW(false);
-	document.calcForm.A1_SKILLSW.checked = 0;
-
-	//--------------------------------
-	// 一次職支援設定欄の初期化
-	//--------------------------------
-	set_g_confDataIchizi(new Array());
-	set_g_objCharaConfIchizi(new CCharaConfIchizi(g_confDataIchizi));
-	g_objCharaConfIchizi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_ICHIZI"), false);
-
-	//--------------------------------
-	// 二次職支援設定欄の初期化
-	//--------------------------------
-	set_g_confDataNizi(new Array());
-	set_g_objCharaConfNizi(new CCharaConfNizi(g_confDataNizi));
-	g_objCharaConfNizi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_NIZI"), false);
-
-	//--------------------------------
-	// 三次職支援設定欄の初期化
-	//--------------------------------
-	set_g_confDataSanzi(new Array());
-	set_g_objCharaConfSanzi(new CCharaConfSanzi(g_confDataSanzi));
-	g_objCharaConfSanzi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_SANZI"), false);
-
-	//--------------------------------
-	// 四次職支援設定欄の初期化
-	//--------------------------------
-	set_g_confDataYozi(new Array());
-	set_g_objCharaConfYozi(new CCharaConfYozi(g_confDataYozi));
-	g_objCharaConfYozi.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_YOZI"), false);
-
-	//--------------------------------
-	// デバフ設定欄の初期化
-	//--------------------------------
-	set_g_confDataDebuff(new Array());
-	set_g_objCharaConfDebuff(new CCharaConfDebuff(g_confDataDebuff));
-	g_objCharaConfDebuff.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_DEBUFF"), false);
-
-	document.calcForm.A4_SKILLSW.checked = 0;
-
-	// オートスペル設定欄
-	objInput = document.getElementById("OBJID_EXTRACT_SETTING_AUTO_SPELL");
-	if (objInput) {
-		objInput.checked = 0;
-	}
-
-	document.calcForm.A7_SKILLSW.checked = 0;
-	document.calcForm.A8_SKILLSW.checked = 0;
-
-
-	//--------------------------------
-	// 時限効果欄の初期化
-	//--------------------------------
-	CTimeItemAreaComponentManager.CloseArea();
-
-
-	//--------------------------------
-	// 攻撃方法欄の初期化
-	//--------------------------------
-	CAttackMethodAreaComponentManager.RebuildControls();
-
-
-	//--------------------------------
-	// 戦闘クイック調整欄の初期化
-	//--------------------------------
-	CBattleQuickControlAreaComponentManager.CloseArea();
-
-
-	//--------------------------------
-	// 性能カスタマイズ欄の初期化
-	//--------------------------------
-	set_g_confDataCustomStatus(new Array());
-	set_g_objCharaConfCustomStatus(new CCharaConfCustomStatus(g_confDataCustomStatus));
-	g_objCharaConfCustomStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_STATUS"), false);
-
-	set_g_confDataCustomAtk(new Array());
-	set_g_objCharaConfCustomAtk(new CCharaConfCustomAtk(g_confDataCustomAtk));
-	g_objCharaConfCustomAtk.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_ATK"), false);
-
-	set_g_confDataCustomDef(new Array());
-	set_g_objCharaConfCustomDef(new CCharaConfCustomDef(g_confDataCustomDef));
-	g_objCharaConfCustomDef.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_DEF"), false);
-
-	set_g_confDataCustomSkill(new Array());
-	set_g_objCharaConfCustomSkill(new CCharaConfCustomSkill(g_confDataCustomSkill));
-	g_objCharaConfCustomSkill.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SKILL"), false);
-
-	set_g_confDataCustomSpecStatus(new Array());
-	set_g_objCharaConfCustomSpecStatus(new CCharaConfCustomSpecStatus(g_confDataCustomSpecStatus));
-	g_objCharaConfCustomSpecStatus.BuildUpSelectArea(document.getElementById("OBJID_TD_CHARA_CONF_CUSTOM_SPECSTATUS"), false);
-
-
-//	document.calcForm.B_IJYOUSW.checked = 0;
-	BuildUpMobConfDebufSelectArea(document.getElementById("OBJID_TD_MOB_CONF_DEBUF"), false);
-	RefreshMobConfDebufSelectAreaHeader();
-
-//	document.calcForm.B_KYOUKASW.checked = 0;
-	BuildUpMobConfBufSelectArea(document.getElementById("OBJID_TD_MOB_CONF_BUF"), false);
-	RefreshMobConfBufSelectAreaHeader();
-
-//	document.calcForm.B_TAISEISW.checked = 0;
-	BuildUpMobConfPlayerSelectArea(document.getElementById("OBJID_TD_MOB_CONF_PLAYER"), false);
-	RefreshMobConfPlayerSelectAreaHeader();
-	RefreshMobConfPlayerControlCSS();
-
-//	document.calcForm.B_MAKESW.checked = 0;
-/*
-	BuildUpMobConfInputSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT"), false);
-	RefreshMobConfInputSelectAreaHeader();
-	RefreshMobConfInputControlCSS();
-*/
-
-
-	OnClickQuickControlSW();
-	Click_PassSkillSW();
-	OnClickSkillSWLearned();
-	Click_Skill4SW();
-	OnClickExtractSettingAutoSpell();
-
-//	Click_Skill6SW();
-
-	Click_Skill7SW();
-	Click_Skill8SW();
-//	Click_Skill9SW();
-//	Click_Skill10SW();
-
-//	Click_IjyouSW();
-//	Click_EnemyKyoukaSW();
-//	Click_EnemyTaiseiSW();
-//	Click_Monster_MakeSW();
-
-	CItemInfoManager.RebuildControls();
-
-	BuildUpCastSimSimulateArea(document.getElementById("OBJID_TD_CASTSIM"), false);
-}
 
 // 外部ファイル向けの関数公開は stallcalc-bridge.js 経由（C-6 後半・reference.md 参照）
 // GetEquippedTotalSPEquip/GetEquippedSPListEquip/.../CheckSpDefRefineOver の実体は
@@ -2243,8 +1805,6 @@ __registerFootFunctions({
     EquipNumSearchFurubitaHead,
     EquipNumSearchFurubitaSet,
     ROUNDDOWN,
-    Init,
-    StAllCalc,
     StAllCalcCore,
 });
 
@@ -2340,4 +1900,3 @@ import {
 } from "../const/EnumMonsterDataIndex.js";
 import { PET_DATA_INDEX_SPBEGIN } from "../const/EnumPetDataIndex.js";
 import { TIME_ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumTimeItemDataIndex.js";
-register('StAllCalc', StAllCalc);
