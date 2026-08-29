@@ -120,13 +120,16 @@ async function captureReentrancy(query: string) {
     return result;
 }
 
-// 現時点で一致しないと判明している項目（Phase 3で層1側のリセット保証を入れるまでは
-// 既知の失敗として扱う）。
-// ⚠️ ここが縮む（Phase 3で修正され一致するようになる）のは歓迎だが、
-// 増える場合は新しい順序依存バグの発見を意味するので、安易に追加しないこと。
+// 現時点で一致しないと判明している項目（既知の失敗として扱う）。
 // it.fails は「失敗するはず」のテストが実際に失敗した場合にPASSと報告し、
 // 逆に（修正されて）成功してしまった場合はFAILと報告する — つまりこの配列からの
 // 削除漏れを自動検知できる。
+//
+// ⚠️ 層1が層2の出力を「1回遅れ」で読む変数（n_Enekyori等）は、ここに追加する前に
+// core-shell.md「既知の罠」を確認すること。ブラウザのカスケード式UIでは複数回の
+// calc()呼び出しで自己修復する設計であり、単発のcalcFromModel()比較で不一致が
+// 出ても実在のバグとは限らない（B-09 Phase 3はこれを誤診断してリグレッションを
+// 作り込み、revertした。詳細はgit log参照）。
 // 2026-08-29実測: n_Enekyoriを標的にした異物モデルで12件全てに差分なし（上記コメント参照）。
 // 現時点で既知の失敗は無い。
 const KNOWN_ORDER_DEPENDENT: string[] = [];
@@ -147,46 +150,6 @@ describe('calcFromModel()の同一コンテキスト内連続呼び出しが順�
             expect(r2).toEqual(r1);
         }, 60000);
     }
-});
-
-/**
- * n_Enekyori（Phase 3で修正した実バグ）の回帰テスト。
- *
- * 上の D2 スイープは「既知の最有力候補（n_Enekyori）を動かす異物」を使っても
- * 12件のフィクスチャでは出力差分が出なかった（=バグの実害を検出できなかった）。
- * そのため、機構そのもの（層1の入口で n_Enekyori が初期値へリセットされること）を
- * 直接確認する: 呼び出し前に n_Enekyori を人為的に汚染しても、クリーンな呼び出しと
- * 同じ結果になることを検証する（Phase 2で確立した「グローバルを意図的に汚してから
- * calcFromModel() を呼ぶ」パターンと同型）。
- */
-describe('n_Enekyori は層1(StAllCalcCore)の入口で初期値へリセットされる（残件台帳 B-09 Phase 3）', () => {
-    if (entries.length === 0) {
-        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
-            console.warn('generated-job-corpus.md にエントリがないためスキップ');
-        });
-        return;
-    }
-
-    const target = entries[0];
-
-    it(`${target.label}: 呼び出し前に n_Enekyori を汚染しても、クリーンな呼び出しと結果が一致する`, async () => {
-        const { context, page, errors } = await gotoFixture(target.query);
-        const result = await page.evaluate(async () => {
-            const dynamicImport = new Function('specifier', 'return import(specifier);') as
-                (specifier: string) => Promise<Record<string, any>>;
-            const state = await dynamicImport('/engine/runtime/ro4-state.js');
-            const reg = (globalThis as any)._ratorioReg;
-            const m = reg.extractModelFromDom();
-            const clean = reg.calcFromModel(m);
-            // 前回呼び出しの層2が残した値を模した汚染。層1入口のリセットが効いていれば無視される。
-            state.set_n_Enekyori(2);
-            const poisoned = reg.calcFromModel(m);
-            return { clean: JSON.parse(JSON.stringify(clean)), poisoned: JSON.parse(JSON.stringify(poisoned)) };
-        });
-        await context.close();
-        if (errors.length) throw new Error(`テスト中に未捕捉例外: ${errors.join('\n')}`);
-        expect(result.poisoned).toEqual(result.clean);
-    }, 60000);
 });
 
 /**

@@ -973,7 +973,7 @@ import {
          n_A_ActiveSkill, set_n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_A_ActiveSkillLV,
          n_A_Kotei_Cast_Keigen, set_n_A_Kotei_Cast_Keigen, n_A_QUAKE_KIRI, set_n_A_QUAKE_KIRI,
          n_A_Arrow, set_n_A_Arrow, set_delayDownForDisp, delayDownForDisp, set_aspdRaw, aspdRaw,
-         set_n_A_Weapon_zokusei, n_Enekyori, set_n_Enekyori, n_Delay, n_tok,
+         set_n_A_Weapon_zokusei, n_Enekyori, n_Delay, n_tok,
          n_tok_no_limit, n_Heal_MATK,
 } from "../runtime/ro4-state.js";
 
@@ -1412,11 +1412,6 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 	// 特性値を初期化
 	// TODO: 配列長　直打ち
 	for (idx = 0; idx <= 7; idx++) n_Delay[idx] = 0;
-
-	// n_Enekyori は層2（ComputeBattleResult）でしか書かれないが、層1
-	// （critical.js の GetAdditionalCriticalRate 等）からも読まれる。前回呼び出しの
-	// 層2が残した値を今回の層1が読んでしまう順序依存を防ぐため、ここで初期値へ戻す。
-	set_n_Enekyori(false);
 
 	// 移行処理の関係で、初期化のみ別ループ
 	for (idx = 1; idx <= 400; idx++){
