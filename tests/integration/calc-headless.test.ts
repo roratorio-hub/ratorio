@@ -370,3 +370,95 @@ describe('支援・デバフ設定欄（confIchizi/confNizi/confSanzi/confYozi/c
         expect(headlessResult).toEqual(domResult);
     }, 60000);
 });
+
+describe('性能カスタマイズ欄・特性ステータス（残件台帳 B-09 Phase 2d）', () => {
+    if (entries.length === 0) {
+        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
+            console.warn('generated-job-corpus.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    const { query } = entries[0];
+    // 生成コーパスは性能カスタマイズ欄・特性ステータスも既定値のため、
+    // CONF_ID_WEAPON_ATK_UP（武器ATK上昇）と特性ステータスSTAを直接注入して非既定値を作る。
+
+    it('extractModelFromDom() が性能カスタマイズ欄・特性ステータスの現在値を捕捉する', async () => {
+        const { context, page, errors } = await gotoFixture(query);
+        const captured = await page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const { CCharaConfCustomAtk } = await dynamicImport('/engine/chara/CCharaConfCustomAtk.js');
+            const g = await dynamicImport('/engine/runtime/global.js');
+            const hmjob = await dynamicImport('/engine/chara/hmjob.js');
+            const migParam = await dynamicImport('/engine/const/EnumMigItemParamId.js');
+            g.g_confDataCustomAtk[CCharaConfCustomAtk.CONF_ID_WEAPON_ATK_UP] = 5;
+            hmjob.g_pureStatus[migParam.MIG_PARAM_ID_STA] = 7;
+
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+            return {
+                confCustomAtk: model.confCustomAtk[CCharaConfCustomAtk.CONF_ID_WEAPON_ATK_UP],
+                pureStatus: model.pureStatus[migParam.MIG_PARAM_ID_STA],
+            };
+        });
+        await context.close();
+        expect(errors, `未捕捉例外: ${errors.join('\n')}`).toEqual([]);
+        expect(captured.confCustomAtk).toBe(5);
+        expect(captured.pureStatus).toBe(7);
+    }, 60000);
+
+    // 修正前は confCustomAtk 等・pureStatus/bonusStatus のモデルフィールドが無く、
+    // HydrateFromModel が g_confDataCustomAtk 等・g_pureStatus/g_bonusStatus を
+    // 一切書き込んでいなかった（headless経路での隠れ入力）。ここでは意図的に
+    // 「間違った」値をグローバルへ書き込んでから calcFromModel() を呼び、
+    // それでも DOM 駆動側と同じ結果になることを検証する。
+    it('性能カスタマイズ欄・特性ステータスのグローバルを意図的に汚しても、calcFromModel()の結果はDOM駆動側と一致する', async () => {
+        const dom = await gotoFixture(query);
+        const domResult = await dom.page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const { CCharaConfCustomAtk } = await dynamicImport('/engine/chara/CCharaConfCustomAtk.js');
+            const g = await dynamicImport('/engine/runtime/global.js');
+            const hmjob = await dynamicImport('/engine/chara/hmjob.js');
+            const migParam = await dynamicImport('/engine/const/EnumMigItemParamId.js');
+            g.g_confDataCustomAtk[CCharaConfCustomAtk.CONF_ID_WEAPON_ATK_UP] = 5;
+            hmjob.g_pureStatus[migParam.MIG_PARAM_ID_STA] = 7;
+
+            const footBridge = await dynamicImport('/engine/bridge/stallcalc-bridge.js');
+            const head = await dynamicImport('/engine/battle/battlecalc.js');
+            const retValArray = footBridge.StAllCalc();
+            const { battleCalcResultAll } = head.ComputeBattleResult(retValArray);
+            return JSON.parse(JSON.stringify(battleCalcResultAll));
+        });
+        await dom.context.close();
+        expect(dom.errors, `DOM駆動側で未捕捉例外: ${dom.errors.join('\n')}`).toEqual([]);
+
+        const headless = await gotoFixture(query);
+        const headlessResult = await headless.page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const { CCharaConfCustomAtk } = await dynamicImport('/engine/chara/CCharaConfCustomAtk.js');
+            const g = await dynamicImport('/engine/runtime/global.js');
+            const hmjob = await dynamicImport('/engine/chara/hmjob.js');
+            const migParam = await dynamicImport('/engine/const/EnumMigItemParamId.js');
+            g.g_confDataCustomAtk[CCharaConfCustomAtk.CONF_ID_WEAPON_ATK_UP] = 5; // DOM駆動側と同じ設定を注入
+            hmjob.g_pureStatus[migParam.MIG_PARAM_ID_STA] = 7;
+
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+
+            // 意図的に汚す（別の呼び出しが残した想定の値で全埋め）
+            for (let i = 0; i < g.g_confDataCustomAtk.length; i++) g.g_confDataCustomAtk[i] = -1;
+            hmjob.g_pureStatus[migParam.MIG_PARAM_ID_STA] = -1;
+            hmjob.g_bonusStatus[migParam.MIG_PARAM_ID_STA] = -1;
+
+            const battleCalcResultAll = reg.calcFromModel(model);
+            return JSON.parse(JSON.stringify(battleCalcResultAll));
+        });
+        await headless.context.close();
+        expect(headless.errors, `headless側で未捕捉例外: ${headless.errors.join('\n')}`).toEqual([]);
+
+        expect(headlessResult).toEqual(domResult);
+    }, 60000);
+});

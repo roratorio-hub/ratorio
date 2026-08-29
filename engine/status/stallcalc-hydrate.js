@@ -27,11 +27,21 @@ import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB
 } from "../skill/calcautospell.js";
 import {
-    g_confDataDebuff, g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
-    g_constDataManager, n_Nitou, set_g_confDataDebuff, set_g_confDataIchizi, set_g_confDataNizi,
-    set_g_confDataSanzi, set_g_confDataYozi, set_n_Nitou,
+    g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomSpecStatus,
+    g_confDataCustomStatus, g_confDataDebuff, g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
+    g_constDataManager, g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomSkill,
+    g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus, n_Nitou,
+    set_g_confDataCustomAtk, set_g_confDataCustomDef, set_g_confDataCustomSkill, set_g_confDataCustomSpecStatus,
+    set_g_confDataCustomStatus, set_g_confDataDebuff, set_g_confDataIchizi, set_g_confDataNizi,
+    set_g_confDataSanzi, set_g_confDataYozi, set_g_objCharaConfCustomAtk, set_g_objCharaConfCustomDef,
+    set_g_objCharaConfCustomSkill, set_g_objCharaConfCustomSpecStatus, set_g_objCharaConfCustomStatus, set_n_Nitou,
 } from "../runtime/global.js";
-import { GetTotalSpecStatus } from "../chara/hmjob.js";
+import { GetTotalSpecStatus, g_bonusStatus, g_pureStatus } from "../chara/hmjob.js";
+import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
+import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
+import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";
+import { CCharaConfCustomSpecStatus } from "../chara/CCharaConfCustomSpecStatus.js";
+import { CCharaConfCustomStatus } from "../chara/CCharaConfCustomStatus.js";
 import {
     set_n_A_ActiveSkill, set_n_A_ActiveSkillLV, set_n_A_Arrow, set_n_A_BaseLV
 } from "../runtime/ro4-state.js";
@@ -134,6 +144,20 @@ function syncConfArray(current, values) {
     target.length = 0;
     for (const v of values) target.push(v);
     return target;
+}
+
+/**
+ * 性能カスタマイズ欄のUIコンポーネント（`g_objCharaConfCustomAtk`等）を返す。
+ * 既存インスタンスがあればそのまま返す（`BuildUpSelectArea`でDOMと紐づいているUI
+ * コンポーネントを headless 経路の都合で作り直さない）。無ければ
+ * （headless の初回呼び出し等）`factory()` で新規生成する。`GetConf(id)` は
+ * `this.confArray[id]` を読むだけなので、既存インスタンスの場合は
+ * `syncConfArray` で中身を更新した配列を継続して参照する形で足りる。
+ * @param {any} existing 既存インスタンス（null なら未生成）
+ * @param {() => any} factory 新規生成する関数
+ */
+function ensureConfWrapper(existing, factory) {
+    return existing ?? factory();
 }
 
 /**
@@ -463,6 +487,17 @@ export function ExtractModelFromDom() {
     model.confYozi = Array.from(g_confDataYozi ?? []);
     model.confDebuff = Array.from(g_confDataDebuff ?? []);
 
+    //----------------------------------------------------------------
+    // 性能カスタマイズ欄・特性ステータス
+    //----------------------------------------------------------------
+    model.confCustomStatus = Array.from(g_confDataCustomStatus ?? []);
+    model.confCustomAtk = Array.from(g_confDataCustomAtk ?? []);
+    model.confCustomDef = Array.from(g_confDataCustomDef ?? []);
+    model.confCustomSkill = Array.from(g_confDataCustomSkill ?? []);
+    model.confCustomSpecStatus = Array.from(g_confDataCustomSpecStatus ?? []);
+    model.pureStatus = Array.from(g_pureStatus ?? []);
+    model.bonusStatus = Array.from(g_bonusStatus ?? []);
+
     return model;
 }
 
@@ -753,6 +788,31 @@ export function HydrateFromModel(model) {
     set_g_confDataSanzi(syncConfArray(g_confDataSanzi, model.confSanzi));
     set_g_confDataYozi(syncConfArray(g_confDataYozi, model.confYozi));
     set_g_confDataDebuff(syncConfArray(g_confDataDebuff, model.confDebuff));
+
+    // 性能カスタマイズ欄。配列を同期してからUIコンポーネントを確保する順序が重要
+    // （ensureConfWrapperの説明参照。新規生成時にその時点の配列を束縛するため）。
+    set_g_confDataCustomStatus(syncConfArray(g_confDataCustomStatus, model.confCustomStatus));
+    set_g_objCharaConfCustomStatus(ensureConfWrapper(g_objCharaConfCustomStatus, () => new CCharaConfCustomStatus(g_confDataCustomStatus)));
+
+    set_g_confDataCustomAtk(syncConfArray(g_confDataCustomAtk, model.confCustomAtk));
+    set_g_objCharaConfCustomAtk(ensureConfWrapper(g_objCharaConfCustomAtk, () => new CCharaConfCustomAtk(g_confDataCustomAtk)));
+
+    set_g_confDataCustomDef(syncConfArray(g_confDataCustomDef, model.confCustomDef));
+    set_g_objCharaConfCustomDef(ensureConfWrapper(g_objCharaConfCustomDef, () => new CCharaConfCustomDef(g_confDataCustomDef)));
+
+    set_g_confDataCustomSkill(syncConfArray(g_confDataCustomSkill, model.confCustomSkill));
+    set_g_objCharaConfCustomSkill(ensureConfWrapper(g_objCharaConfCustomSkill, () => new CCharaConfCustomSkill(g_confDataCustomSkill)));
+
+    set_g_confDataCustomSpecStatus(syncConfArray(g_confDataCustomSpecStatus, model.confCustomSpecStatus));
+    set_g_objCharaConfCustomSpecStatus(ensureConfWrapper(g_objCharaConfCustomSpecStatus, () => new CCharaConfCustomSpecStatus(g_confDataCustomSpecStatus)));
+
+    // 特性ステータス（素点・ボーナス分）。既定値が null ではなく [] なので
+    // syncConfArray は使わず配列の中身を直接書き換える（setter が無いため。
+    // 束縛の再代入ではないのでESMのimport制約に抵触しない）。
+    g_pureStatus.length = 0;
+    for (const v of model.pureStatus) g_pureStatus.push(v);
+    g_bonusStatus.length = 0;
+    for (const v of model.bonusStatus) g_bonusStatus.push(v);
 
     return { attackMethodConfArray };
 }

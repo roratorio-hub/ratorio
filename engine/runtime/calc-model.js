@@ -10,7 +10,6 @@
  * - `CAttackMethodAreaComponentManager.GetAttackMethodConf()` の戻り値
  *   （攻撃手段コンポーネント自身の内部状態。メソッドを持つオブジェクトで
  *   プレーンなJSON化ができない）
- * - `GetTotalSpecStatus(...)`（性能カスタマイズ欄の合計値。別コンポーネントの集計）
  * - `g_shadowEquipController.getEquippedID/getRefined/getRndOptInfoArray(...)`
  *   （シャドウ装備コンポーネント自身の内部状態）
  *
@@ -36,6 +35,12 @@
  * デバフ設定欄。残件台帳 B-09 Phase 2c）: 個別の calcForm フィールドを持たず、
  * `CConfBase` 派生クラスが保持する配列（`g_confDataIchizi` 等）が唯一の実体。
  * 装備欄と同じ添字アクセス配列として扱う。
+ *
+ * `confCustomStatus`/`confCustomAtk`/`confCustomDef`/`confCustomSkill`/
+ * `confCustomSpecStatus`（性能カスタマイズ欄。残件台帳 B-09 Phase 2d）: 上記と同型。
+ * `pureStatus`/`bonusStatus`（特性ステータスの素点・ボーナス分）も同様に配列として持つ。
+ * `GetTotalSpecStatus(id)`（両者の合計を返す関数。hmjob.js）自体は境界の外側の実装詳細
+ * として呼び出し続ける——モデルが運ぶのはその入力データのみ。
  */
 
 /** @returns {object} 全フィールドを既定値で埋めたモデル */
@@ -108,5 +113,19 @@ export function createEmptyModel() {
         confYozi: Array(30).fill(0),
         /** デバフ設定欄（CCharaConfDebuff.CONF_ID_* で添字アクセス。50件） */
         confDebuff: Array(50).fill(0),
+        /** 性能カスタマイズ・基本ステータス欄（CCharaConfCustomStatus.CONF_ID_* で添字アクセス。30件） */
+        confCustomStatus: Array(30).fill(0),
+        /** 性能カスタマイズ・攻撃関連欄（CCharaConfCustomAtk.CONF_ID_* で添字アクセス。30件） */
+        confCustomAtk: Array(30).fill(0),
+        /** 性能カスタマイズ・防御関連欄（CCharaConfCustomDef.CONF_ID_* で添字アクセス。20件） */
+        confCustomDef: Array(20).fill(0),
+        /** 性能カスタマイズ・スキル関連欄（CCharaConfCustomSkill.CONF_ID_* で添字アクセス。20件） */
+        confCustomSkill: Array(20).fill(0),
+        /** 性能カスタマイズ・特性ステータス欄（CCharaConfCustomSpecStatus.CONF_ID_* で添字アクセス。20件） */
+        confCustomSpecStatus: Array(20).fill(0),
+        /** 特性ステータス（素点。MIG_PARAM_ID_POW〜CRT で添字アクセス） */
+        pureStatus: Array(12).fill(0),
+        /** 特性ステータス（装備等ボーナス分。MIG_PARAM_ID_POW〜CRT で添字アクセス） */
+        bonusStatus: Array(12).fill(0),
     };
 }
