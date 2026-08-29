@@ -56,7 +56,7 @@ import {
 } from "../const/EnumJobId.js";
 import {
     GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, GetEquippedTotalSPEquipExact
-} from "./foot-equipped-sp.js";
+} from "./equipped-sp.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
     ITEM_ID_AMANOZYAKUNO_KIMEN, ITEM_ID_AMAZING_GRACE, ITEM_ID_CHOETSUSHANO_ROBE, ITEM_ID_DAISHIZENNO_GUITAR,

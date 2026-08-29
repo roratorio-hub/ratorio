@@ -24,7 +24,7 @@ import {
 } from "../const/EnumItemSpId.js";
 import { JOB_ID_MECHANIC, JOB_ID_SUMMONER } from "../const/EnumJobId.js";
 import { EQUIP_REGION_ID_ANY } from "../const/EnumMigItemParamId.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip } from "./foot-equipped-sp.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip } from "./equipped-sp.js";
 import {
     ITEM_ID_AEON_STUFF, ITEM_ID_AKUMANO_TE, ITEM_ID_ANULUS_IRA, ITEM_ID_ASMODEUSNO_TSUBASA, ITEM_ID_ASSAULT_SUIT,
     ITEM_ID_BOOK_OF_SOURCERERY, ITEM_ID_ELEMENTAL_BOOTS, ITEM_ID_EMERALDEARRING, ITEM_ID_FAFNIR_HELM,

@@ -89,7 +89,7 @@ import {
 import { TIME_ITEM_ID_WOLF_HEZIN } from "../equip/timeitem.dat.js";
 import { CBattleCalcInfo } from "./CBattleCalcInfo.js";
 import { __DIG3, g_confDataNizi, g_objCharaConfCustomDef } from "../runtime/global.js";
-import { CS } from "./head-calc-state.js";
+import { CS } from "./calc-state.js";
 import { GetMres, GetRes } from "../chara/hmjob.js";
 import { n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_SieldSp, n_tok } from "../runtime/ro4-state.js";
 import {

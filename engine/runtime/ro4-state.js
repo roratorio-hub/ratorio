@@ -45,7 +45,7 @@ export let n_AS_check_3dan = false;
 export let n_CONFIG = [0, 33, 19];
 export let g_perfectHitRate = 0;
 export let g_bDefinedDamageIntervals = false;
-// Phase 3c: head.js 分割（head-battle-result-html.js / head-skill-ratio-physical.js）に伴い
+// Phase 3c: head.js 分割（battle-result-html.js / skill-ratio-physical.js）に伴い
 // head.js 内の別関数（calc() / BattleCalc999Core）が書き込み、分割先が読み取る値を移設。
 export let g_bUnknownCasts = false;
 export let wDelay = 0;

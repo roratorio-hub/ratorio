@@ -1,16 +1,16 @@
-// ダメージ計算スクラッチ状態（BattleCalc999Core とスキル計算式分割先が共有する）。詳細は head-calc-state.js 参照。
-import { CS } from "./head-calc-state.js";
+// ダメージ計算スクラッチ状態（BattleCalc999Core とスキル計算式分割先が共有する）。詳細は calc-state.js 参照。
+import { CS } from "./calc-state.js";
 // BattleCalc999Core のスキル計算式ブロック分割先（Phase 3b）。循環しないため head.js が直接 import する。
-import { ApplyPhysicalSkillFormulaBasic } from "./head-skill-formula-physical.js";
-import { ApplyPhysicalSkillFormulaSpecial } from "./head-skill-formula-special.js";
-import { ApplyMagicalSkillFormula } from "./head-skill-formula-magical.js";
+import { ApplyPhysicalSkillFormulaBasic } from "./skill-formula-physical.js";
+import { ApplyPhysicalSkillFormulaSpecial } from "./skill-formula-special.js";
+import { ApplyMagicalSkillFormula } from "./skill-formula-magical.js";
 // head.js 残り巨大関数の分割先（Phase 3c）。循環しないため head.js が直接 import する。
-import { ApplyMagicalSpecializeMonster, ApplyPhysicalSpecializeMonster } from "./head-specialize-monster.js";
-import { BuildBattleResultHtml, BuildBattleResultHtmlMIG } from "./head-battle-result-html.js";
-import { GetPhysicalSkillDamageRatioChange } from "./head-skill-ratio-physical.js";
+import { ApplyMagicalSpecializeMonster, ApplyPhysicalSpecializeMonster } from "./specialize-monster.js";
+import { BuildBattleResultHtml, BuildBattleResultHtmlMIG } from "./battle-result-html.js";
+import { GetPhysicalSkillDamageRatioChange } from "./skill-ratio-physical.js";
 import {
     ApplyMagicalSkillDamageRatioChange, RebuildActiveSkillRatioInfo,
-} from "./head-skill-ratio-magical.js";
+} from "./skill-ratio-magical.js";
 import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
 // 武器種テーブル（旧 head.js 定義）。内部のダメージ計算で使用しつつ後方互換で re-export する。
 import { SyurikenOBJ, KunaiOBJ, CanonOBJ } from "./attackmethod.dat.js";
@@ -624,7 +624,7 @@ import {
 /** シーズモードフラグ */
 /** BaseLv */
 /** 遠距離フラグ. CSkillData.RANGE_SHORT | CSkillData.RANGE_LONG | CSkillData.RANGE_MAGIC | CSkillData.RANGE_SPECIAL */
-// TyouEnkakuSousa3dan は Phase 3c で ro4-state.js へ移設（head-skill-ratio-physical.js と共有するため）
+// TyouEnkakuSousa3dan は Phase 3c で ro4-state.js へ移設（skill-ratio-physical.js と共有するため）
 /**
  * n_Delay[0]=攻撃間隔判定不能フラグ
  * n_Delay[1]=モーションディレイ
@@ -634,7 +634,7 @@ import {
  * n_Delay[5]=設置ダメージ発生間隔
  * n_Delay[6]=持続時間
  * n_Delay[7]=クールタイム */
-// wDelay は Phase 3c で ro4-state.js へ移設（head-battle-result-html.js と共有するため）
+// wDelay は Phase 3c で ro4-state.js へ移設（battle-result-html.js と共有するため）
 /** スキルID */
 /** スキルLv */
 /** アイテムSPの効果量を収める配列. ITEM_SP_XXX を添え字にして要素にアクセスする. */
@@ -648,7 +648,7 @@ let n_AS_HIT = 0;
 /** 三段掌の使用フラグ. オートスペル計算用. true がセットされる場面が無いので削除候補 */
 /** 固定詠唱減少値 */
 /** 計算機設定. index = 2 のセーブデータ数しか使われていない. 削除候補 */
-// w_DMG_AS_OverHP は Phase 3c で head-battle-result-html.js のローカル変数へ移設
+// w_DMG_AS_OverHP は Phase 3c で battle-result-html.js のローカル変数へ移設
 /** ダメージ配列. アースクエイク専用 */
 let n_A_DMG_QUAKE = [0,0,0];
 /** ダメージ配列 オートスペル専用 */
@@ -660,11 +660,11 @@ let cardCount = 0;
 /** ディレイ減少値 */
 /** ASPD 小数点第ニ位を切り捨てる前の値 */
 /** 必中効果の発動率 */
-// g_bUnknownCasts は Phase 3c で ro4-state.js へ移設（head-battle-result-html.js と共有するため）
+// g_bUnknownCasts は Phase 3c で ro4-state.js へ移設（battle-result-html.js と共有するため）
 /** 設置スキルフラグ */
 /** クリティカル率 */
 let w_Cri = 0;
-// w_FLEE は Phase 3c で ro4-state.js へ移設（head-battle-result-html.js と共有するため）
+// w_FLEE は Phase 3c で ro4-state.js へ移設（battle-result-html.js と共有するため）
 /** 装備しているアイテム数　右手 */
 let itemCountRight = 0;
 /** 装備しているアイテム数　左手 */
@@ -679,10 +679,10 @@ let g_wCastTemp = null;
 let g_wCastFixedTemp = null;
 /** 攻撃間隔 計算用一時変数 */
 let g_attackIntervalTemp = null;
-// g_AttackCount / g_dps は Phase 3c で head-battle-result-html.js のローカル変数へ移設
+// g_AttackCount / g_dps は Phase 3c で battle-result-html.js のローカル変数へ移設
 // w_HiDam / wRef1 / wRef2 / wRef3 / g_receiveDamageAverage は
-// Phase 3c で head-received-damage.js のモジュールローカル変数へ移設
-// g_receiveDamageAvoids は Phase 3c で head-battle-result-html.js のローカル変数へ移設
+// Phase 3c で received-damage.js のモジュールローカル変数へ移設
+// g_receiveDamageAvoids は Phase 3c で battle-result-html.js のローカル変数へ移設
 /** 属性耐性　上限95 */
 let resistValueArray = [];
 /** 属性耐性　上限95を超えて格納出来る配列 */
@@ -694,10 +694,10 @@ let finalRatioArray = 0;
 /** 武器属性（foot.js も読み書きするグローバル変数） */
 /** 変動詠唱 0 を達成するために必要な DEX */
 export const CAST_PARAM_BORDER = 265;
-// SubName は head-sub-name.js へ移動（Phase 3b: スキル計算式分割先と共有するため）。
-// w_AG は head-battle-result-html.js へ移動（Phase 3c）。
+// SubName は sub-name.js へ移動（Phase 3b: スキル計算式分割先と共有するため）。
+// w_AG は battle-result-html.js へ移動（Phase 3c）。
 // head.js 内部（ダメージ計算）と後方互換のため import + re-export する。
-import { SubName } from "./head-sub-name.js";
+import { SubName } from "./sub-name.js";
 export { SubName };
 // n_SieldSpDum / n_SieldSpNum は ro4-state.js へ移動
 // （dewindow: BuffJobSpecificSelf の head.js 直接 import を除去し単体テスト再有効化するため。
@@ -5747,7 +5747,7 @@ __registerHeadFunctions({
     GetSpiderWebDamageRatio,
     HealCalc,
     TYPE_SYUUREN,
-    // Phase 3c: head-received-damage.js / head-skill-ratio-*.js から呼ばれる関数
+    // Phase 3c: received-damage.js / head-skill-ratio-*.js から呼ばれる関数
     BattleCalc999,
     DamageModifierOfArea,
     ApplyRegistPVPEnergyCoat,

@@ -19,7 +19,7 @@
  * 完全な再入可能性は無い（残件台帳 B-09）。1回呼んで結果を使い切ってから次を呼ぶこと。
  */
 import { createEmptyModel } from "./calc-model.js";
-import { ExtractModelFromDom, HydrateFromModel } from "../status/foot-stallcalc-hydrate.js";
+import { ExtractModelFromDom, HydrateFromModel } from "../status/stallcalc-hydrate.js";
 import { StAllCalcCore } from "../status/foot.js";
 import { ComputeBattleResult } from "../battle/head.js";
 import { register } from "./engine-registry.js";

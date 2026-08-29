@@ -63,9 +63,9 @@ import { notifyChanged } from "../runtime/calc-invalidation.js";
 import {
          GetEquippedTotalSPEquip, GetEquippedTotalSPCardAndElse, InitJobInfo, StAllCalc,
 } from "../bridge/foot-bridge.js";
-// ↑ GetEquippedTotalSPEquip/GetEquippedTotalSPCardAndElse の実体は foot-equipped-sp.js へ
-//   移動済み。foot-equipped-sp.js が g_pureStatus を本ファイル(hmjob.js)から import しているため、
-//   本ファイルから foot-equipped-sp.js への直接 import は 2 ファイル間の循環になり不可
+// ↑ GetEquippedTotalSPEquip/GetEquippedTotalSPCardAndElse の実体は equipped-sp.js へ
+//   移動済み。equipped-sp.js が g_pureStatus を本ファイル(hmjob.js)から import しているため、
+//   本ファイルから equipped-sp.js への直接 import は 2 ファイル間の循環になり不可
 //   （実際に全消費先で直接 import を試みたところ既存の循環グループが 5→1・34→49ファイルに
 //   合体した。ブリッジ経由に統一して回避している）。
 

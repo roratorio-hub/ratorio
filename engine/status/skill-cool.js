@@ -28,7 +28,7 @@ import {
     JOB_ID_GILOTINCROSS, JOB_ID_RANGER, JOB_ID_ROYALGUARD, JOB_ID_SORCERER, JOB_ID_WARLOCK
 } from "../const/EnumJobId.js";
 import { EQUIP_REGION_ID_ANY } from "../const/EnumMigItemParamId.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip } from "./foot-equipped-sp.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip } from "./equipped-sp.js";
 import {
     ITEM_ID_AKAI_NEKOMIMI_MAZYO_BOSHI, ITEM_ID_AKUMANO_TE, ITEM_ID_ANGELIC_HEALM_BIOLO,
     ITEM_ID_ANGELIC_HEALM_HYPERNOVICE, ITEM_ID_ANGELIC_HEALM_INQUISITOR, ITEM_ID_ASMODEUSNO_TSUBASA,

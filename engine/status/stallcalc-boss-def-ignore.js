@@ -22,7 +22,7 @@ import {
     ITEM_SP_RESIST_BOSS, ITEM_SP_RESIST_NOTBOSS
 } from "../const/EnumItemSpId.js";
 import { JOB_ID_GILOTINCROSS, JOB_ID_RANGER, JOB_ID_SUMMONER } from "../const/EnumJobId.js";
-import { ApplyHealRecoveryUp, ApplyResistBadStatus } from "./foot-resist-heal.js";
+import { ApplyHealRecoveryUp, ApplyResistBadStatus } from "./resist-heal.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
     ITEM_ID_AKUMANO_TE, ITEM_ID_AMANOZYAKUNO_KIMEN, ITEM_ID_BLUTO_CLEAVER, ITEM_ID_BLUTO_DUMASCUS,

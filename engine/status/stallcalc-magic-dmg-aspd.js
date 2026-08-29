@@ -61,7 +61,7 @@ import {
     JOB_ID_ARCBISHOP, JOB_ID_MINSTREL, JOB_ID_RUNEKNIGHT, JOB_ID_SHADOWCHASER, JOB_ID_SORCERER, JOB_ID_SOUL_REAPER,
     JOB_ID_STARGRADIATOR, JOB_ID_SUMMONER, JOB_ID_WANDERER, JOB_ID_WARLOCK, JOB_ID_WIZARD
 } from "../const/EnumJobId.js";
-import { GetAdditionalAspdPercent } from "./foot-aspd.js";
+import { GetAdditionalAspdPercent } from "./aspd.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
     ITEM_ID_AKUMASUHAISHANO_KUTSU, ITEM_ID_ANGELING_SUITS, ITEM_ID_DAISHINKANNO_TEBUKURO, ITEM_ID_DARK_HAND,

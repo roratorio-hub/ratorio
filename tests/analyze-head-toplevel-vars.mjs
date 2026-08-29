@@ -2,7 +2,7 @@
  * head.js のモジュールトップレベル let/var 宣言を列挙し、各識別子の全参照を
  * ESLint スコープ解析で厳密に収集する（シャドーイングを正しく除外する）。
  * 三大 switch ブロック（物理基本/物理特殊/魔法判定）の内側・外側の両方から
- * 参照されている変数だけが Phase 3a（head-calc-state.js 化）の対象候補になる。
+ * 参照されている変数だけが Phase 3a（calc-state.js 化。旧 head-calc-state.js。B-26aでプレフィックス撤廃）の対象候補になる。
  *
  * 使い方: node analyze-head-toplevel-vars.mjs <file> <block1start> <block1end> <block2start> <block2end> <block3start> <block3end>
  */

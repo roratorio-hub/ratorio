@@ -31,15 +31,15 @@ import { CReceivedDamageConfManager } from "../ui/CReceivedDamageConfManager.js"
 import { n_AS_SKILL } from "../skill/calcautospell.js";
 import { get as registryGet } from "../runtime/engine-registry.js";
 import { __DIG3, g_confDataNizi, n_Nitou } from "../runtime/global.js";
-import { CS } from "./head-calc-state.js";
-import { SubName } from "./head-sub-name.js";
+import { CS } from "./calc-state.js";
+import { SubName } from "./sub-name.js";
 import {
     aspdRaw, delayDownForDisp, n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, n_Delay, n_tok, w_DMG,
     g_bUnknownCasts, wDelay, w_FLEE,
 } from "../runtime/ro4-state.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import { UsedSkillSearch } from "../skill/skillstate.js";
-import { BattleHiDamMaxPain, calcReceivedDamage, calcReceivedMagicDamage } from "./head-received-damage.js";
+import { BattleHiDamMaxPain, calcReceivedDamage, calcReceivedMagicDamage } from "./received-damage.js";
 import { GetActRateCritical } from "../bridge/head-bridge.js";
 
 /** オートガードによるダメージ減衰率 */

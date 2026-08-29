@@ -74,8 +74,8 @@ import {
     ApplyMagicalSkillDamageRatioChange, ApplyMagicalSpecializeMonster, ApplyRegistPVPNormal, ApplyResistElement,
     BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerMatkPercentUp
 } from "../bridge/head-bridge.js";
-import { SubName } from "./head-sub-name.js";
-import { CS } from "./head-calc-state.js";
+import { SubName } from "./sub-name.js";
+import { CS } from "./calc-state.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     g_bDefinedDamageIntervals, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay,

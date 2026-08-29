@@ -23,8 +23,8 @@ import {
 } from "../const/EnumCharaDataIndex.js";
 import { ITEM_SP_HPR_UP, ITEM_SP_SKILL_DELAY_DOWN, ITEM_SP_SPR_UP } from "../const/EnumItemSpId.js";
 import { JOB_ID_ARCBISHOP } from "../const/EnumJobId.js";
-import { getFixedCastTimeReductionRate } from "./foot-avoid-flee.js";
-import { getDelayTimeReductionRate, getVariableCastTimeRate } from "./foot-cast-delay.js";
+import { getFixedCastTimeReductionRate } from "./avoid-flee.js";
+import { getDelayTimeReductionRate, getVariableCastTimeRate } from "./cast-delay.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import { ITEM_ID_DIVA_ROBE, ITEM_ID_KAWAII_KUSANO_NECKLACE, ITEM_ID_MIRRORAGE_ROBE } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";

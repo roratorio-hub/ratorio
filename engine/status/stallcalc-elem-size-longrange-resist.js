@@ -23,7 +23,7 @@ import {
     ITEM_SP_RESIST_SIZE_MEDIUM, ITEM_SP_RESIST_SIZE_SMALL
 } from "../const/EnumItemSpId.js";
 import { JOB_ID_GILOTINCROSS, JOB_ID_KAGERO, JOB_ID_OBORO, JOB_ID_RANGER } from "../const/EnumJobId.js";
-import { ApplyAdditionalResistElement } from "./foot-resist-heal.js";
+import { ApplyAdditionalResistElement } from "./resist-heal.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
     ITEM_ID_DORAM_SHIELD, ITEM_ID_FUSHOHENO_HOTAI, ITEM_ID_ILLUSION_MUFFLER, ITEM_ID_ILLUSION_SURVIVAL_STUFF,

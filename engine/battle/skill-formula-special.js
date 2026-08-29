@@ -1,7 +1,7 @@
 /**
  * BattleCalc999Core「物理スキル　特殊計算式」ブロックの分割（Phase 3b）。
  *
- * 物理基本計算式（head-skill-formula-physical.js）で該当スキルが無かった場合に
+ * 物理基本計算式（skill-formula-physical.js）で該当スキルが無かった場合に
  * 呼ばれる。制御フロー変換の方針は同ファイルの JSDoc を参照
  * （switch 末尾の `break;` → `return undefined;` の1箇所のみが非バイト単位の変更）。
  */
@@ -87,8 +87,8 @@ import {
     GetBattlerAtkPercentUp, GetBattlerMatkPercentUp, GetFixedAppendAtk, GetPerfectHitDamage, GetSpiderWebDamageRatio,
     HealCalc, TYPE_SYUUREN
 } from "../bridge/head-bridge.js";
-import { SubName } from "./head-sub-name.js";
-import { CS } from "./head-calc-state.js";
+import { SubName } from "./sub-name.js";
+import { CS } from "./calc-state.js";
 import { GetPAtk, GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay, n_Enekyori, n_Heal_MATK, n_tok,

@@ -6,7 +6,7 @@
  * head.js から移動。本文はバイト単位で不変。
  *
  * itemCountRight / itemCountLeft は GetMagicalSkillDamageRatioChange 内だけで
- * 「書いてから読む」で完結していたスクラッチ変数（head-skill-ratio-physical.js と
+ * 「書いてから読む」で完結していたスクラッチ変数（skill-ratio-physical.js と
  * 同じ扱い）。
  */
 import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";
@@ -76,11 +76,11 @@ import {
 import { CBattleCalcInfo } from "./CBattleCalcInfo.js";
 import { GetLowerJobSeriesID, IsSameJobClass } from "../data/mig.job.h.js";
 import { g_objCharaConfCustomSkill, g_skillManager } from "../runtime/global.js";
-import { CS } from "./head-calc-state.js";
+import { CS } from "./calc-state.js";
 import { ApplyMresResist } from "../chara/hmjob.js";
 import { n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Enekyori } from "../runtime/ro4-state.js";
 import { UsedSkillSearch } from "../skill/skillstate.js";
-import { GetPhysicalSkillDamageRatioChange } from "./head-skill-ratio-physical.js";
+import { GetPhysicalSkillDamageRatioChange } from "./skill-ratio-physical.js";
 import {
     ApplyAttackDamageAmplify, ApplyElementRatio, ApplyLexAeterna, ApplyRegistPVPEnergyCoat,
     GetElementFieldDamageRatio,

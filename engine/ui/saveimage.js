@@ -29,8 +29,8 @@ import {
 // 純粋関数（hmjob-bridge.js / hmchara.js / mig.job.h.js）に置換した。
 // DOMは「装備・カード・矢の隠しDATA_要素」等、モデルの対応が無い箇所（衣装欄の
 // 精錬値表記等）以外では一切読まない。
-// extractModelFromDom は foot-stallcalc-hydrate.js から直接importせず engine-registry.js
-// 経由で取得する（foot-stallcalc-hydrate.js は CShadowEquipController.js を import し、
+// extractModelFromDom は stallcalc-hydrate.js から直接importせず engine-registry.js
+// 経由で取得する（stallcalc-hydrate.js は CShadowEquipController.js を import し、
 // モジュール評価時にDOM初期化を要求するため、直接importすると import 時点でDOMが
 // 必要になってしまう。get('extractModelFromDom') は calc-headless.js が既に登録済みの
 // 公開APIを使うだけなので影響を受けない。なお下の CExtraInfoAreaComponentManagerCalc.js
@@ -97,7 +97,7 @@ export function generateImage() {
   // ステータス補正欄の表示形式（DisplayStatusBonusAll/DisplayReferStatusAll と同じ「+n」表記）
   const bonusText = (value) => ((value >= 0) ? "+" : "") + value;
 
-  // 装備部位ごとの{装備部位ID, カード欄4枠のID}対応表。foot-stallcalc-hydrate.js の
+  // 装備部位ごとの{装備部位ID, カード欄4枠のID}対応表。stallcalc-hydrate.js の
   // ExtractModelFromDom() と同じ対応関係（CARD_REGION_ID_* の割り当て規則）に基づく。
   const equipSlot = (equipRegionId, cardRegionIds, refined = 0, transcendence = 0) => {
     const equip_id = model.equip[equipRegionId] ?? 0;

@@ -140,7 +140,7 @@ export let n_A_card = [];
 export function set_n_A_Equip(v) { n_A_Equip = v; }
 export function set_n_A_card(v) { n_A_card = v; }
 
-// Phase 2b: foot-stallcalc-hydrate.js の HydrateFromModel() が書き込み、StAllCalc の
-// ATKの算出（foot-stallcalc-atk-base.js）が読む値のため移設。
+// Phase 2b: stallcalc-hydrate.js の HydrateFromModel() が書き込み、StAllCalc の
+// ATKの算出（stallcalc-atk-base.js）が読む値のため移設。
 export let n_A_WeaponZokusei = 0;
 export function set_n_A_WeaponZokusei(v) { n_A_WeaponZokusei = v; }

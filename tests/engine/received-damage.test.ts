@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calcReceivedDamage, calcReceivedMagicDamage } from '@engine/battle/head-received-damage.js';
+import { calcReceivedDamage, calcReceivedMagicDamage } from '@engine/battle/received-damage.js';
 
 // ⚠️ 「両方指定されていれば計算を実行する」ケースはここでは検証しない。
 // calcReceivedDamage 本体は GetRes/GetMres（hmjob.js）経由で g_objCharaConfCustom* 系
@@ -13,7 +13,7 @@ import { calcReceivedDamage, calcReceivedMagicDamage } from '@engine/battle/head
  * （残件台帳 B-07）。DOM要素の有無ではなく、呼び出し元が渡す生値の有無で
  * 「設定が無いので計算しない」を判定するようになったことを検証する。
  */
-describe('head-received-damage.js: 被ダメージ計算設定は引数で受け取る（DOM非依存）', () => {
+describe('received-damage.js: 被ダメージ計算設定は引数で受け取る（DOM非依存）', () => {
     // MONSTER_DATA_EXTRA_INDEX_ATK_MAX/MIN 等の添字にマジックナンバーが使われている
     // 既存コードに合わせ、テストも実データに近い最小限のモンスターデータ配列で代用する。
     const mobData: number[] = new Array(30).fill(0);

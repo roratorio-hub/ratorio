@@ -1,6 +1,6 @@
 /**
  * StAllCalc「除算Mdef算出」「減算Mdef算出」「HIT 算出」セクションの分割（Phase 2b）。
- * 経緯は foot-stallcalc-atk-base.js の JSDoc を参照。本文はバイト単位で不変。
+ * 経緯は stallcalc-atk-base.js の JSDoc を参照。本文はバイト単位で不変。
  */
 import { n_A_PassSkill4, UsedSkillSearch } from "../skill/skillstate.js";
 import { g_confDataDebuff } from "../runtime/global.js";

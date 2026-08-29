@@ -1,6 +1,6 @@
 /**
  * StAllCalc「ＭａｘＨＰ算出」「ＭａｘＳＰ算出」セクションの分割（Phase 2b）。
- * 経緯は foot-stallcalc-atk-base.js の JSDoc を参照。本文はバイト単位で不変。
+ * 経緯は stallcalc-atk-base.js の JSDoc を参照。本文はバイト単位で不変。
  */
 import { UsedSkillSearch, n_A_PassSkill8 } from "../skill/skillstate.js";
 import { GetHPBase, GetSPBase } from "../data/mig.job.h.js";
@@ -16,7 +16,7 @@ import {
     ITEM_SP_MAXSP_PLUS, ITEM_SP_MAXSP_PLUS_GVGTE, ITEM_SP_MAXSP_UP, ITEM_SP_VIT_PLUS
 } from "../const/EnumItemSpId.js";
 import { JOB_ID_TAEGWON } from "../const/EnumJobId.js";
-import { GetEquippedTotalSPEquip } from "./foot-equipped-sp.js";
+import { GetEquippedTotalSPEquip } from "./equipped-sp.js";
 import { n_A_INT, n_A_JOB, n_A_JobLV, n_A_VIT } from "../runtime/roro-state.js";
 import { SKILL_ID_BERSERK, SKILL_ID_INSPIRATION, SKILL_ID_TAEGWON_RANKER } from "../skill/skill.dat.js";
 import {

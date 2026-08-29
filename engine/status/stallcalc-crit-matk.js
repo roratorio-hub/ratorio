@@ -37,7 +37,7 @@ import {
     ITEM_SP_MATK_PLUS_TYPE_WEAPON
 } from "../const/EnumItemSpId.js";
 import { JOB_ID_GENETIC, JOB_ID_WANDERER, JOB_ID_WARLOCK } from "../const/EnumJobId.js";
-import { GetAdditionalCriticalRate } from "./foot-critical.js";
+import { GetAdditionalCriticalRate } from "./critical.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
     ITEM_ID_AMAZING_GRACE, ITEM_ID_ANEMOS_SHIELD, ITEM_ID_CHIRYOKUNO_ZIKU_BOOTS_S1, ITEM_ID_DORAM_SHOES,

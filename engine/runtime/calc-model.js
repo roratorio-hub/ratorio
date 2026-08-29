@@ -1,7 +1,7 @@
 /**
  * StAllCalc の入力を表すプレーンなモデル（リファクタリング計画 Phase 8）。
  *
- * `engine/status/foot-stallcalc-hydrate.js` の `HydrateFromDom()` が `document.calcForm` から
+ * `engine/status/stallcalc-hydrate.js` の `HydrateFromDom()` が `document.calcForm` から
  * 直接読んでいた値のうち、**この hydrate ファイル自身が直接DOMから読んでいる値のみ**を
  * 対象とする。以下は意図的にモデルへ含めない（既存グローバルを直接読む、
  * 「境界の外側の既にhydrate済みの前提」として扱う）:

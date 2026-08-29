@@ -122,7 +122,7 @@ import { MIG_JOB_ID_SHADOW_CROSS } from "../data/mig.job.dat.js";
 import { GetJobLevelMax } from "../data/mig.job.h.js";
 import { g_skillManager } from "../runtime/global.js";
 import { ATKbaiJYOUSAN, BattleCalcSubDamagePhysicalCommon, GetBattlerAtkPercentUp } from "../bridge/head-bridge.js";
-import { CS } from "./head-calc-state.js";
+import { CS } from "./calc-state.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     g_bDefinedDamageIntervals, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, n_SiegeMode,

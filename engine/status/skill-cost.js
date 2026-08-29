@@ -9,7 +9,7 @@ import { CCharaConfCustomSkill } from "../chara/CCharaConfCustomSkill.js";
 import { EquipNumSearch } from "../chara/chara.js";
 import { ITEM_SP_SKILL_COST_MINUS_OFFSET, ITEM_SP_SKILL_COST_SCALING_OFFSET } from "../const/EnumItemSpId.js";
 import { EQUIP_REGION_ID_ANY } from "../const/EnumMigItemParamId.js";
-import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip } from "./foot-equipped-sp.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip } from "./equipped-sp.js";
 import {
     ITEM_ID_AKKI_RASETSUNO_YUBIWA, ITEM_ID_CATAPULT, ITEM_ID_CHEMICAL_GLOVE, ITEM_ID_CHIKAKU_ZOFUKU_RING,
     ITEM_ID_FUWAFUWA_TANPOPO_SHOES, ITEM_ID_GEFFENIA_KORINO_MADOGU, ITEM_ID_JAGUAR_NOTE, ITEM_ID_KAIFUKUNO_HIKARI,

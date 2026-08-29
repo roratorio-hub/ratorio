@@ -24,7 +24,7 @@ import {
     ITEM_SP_MAGICAL_DAMAGE_UP_NOTBOSS, ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_ALL, ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_LARGE,
     ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_MEDIUM, ITEM_SP_MAGICAL_DAMAGE_UP_SIZE_SMALL
 } from "../const/EnumItemSpId.js";
-import { getSPCostReductionRate } from "./foot-sp-cost-reduction.js";
+import { getSPCostReductionRate } from "./sp-cost-reduction.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
     ITEM_ID_ANEMOS_SHIELD, ITEM_ID_BOOK_OF_SOURCERERY, ITEM_ID_GAIA_SHIELD, ITEM_ID_GRACE_PSYCHIC_ROBE,

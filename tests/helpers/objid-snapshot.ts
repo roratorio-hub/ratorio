@@ -246,7 +246,7 @@ const STATE_MODULE_PATHS = [
     '/engine/runtime/roro-state.js',
     '/engine/runtime/ro4-state.js',
     '/engine/runtime/global.js',
-    '/engine/battle/head-calc-state.js',
+    '/engine/battle/calc-state.js',
     '/engine/skill/learnedskill.js',
     '/engine/monster/mobconfdebuf.js',
     '/engine/monster/mobconfplayer.js',

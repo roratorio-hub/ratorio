@@ -14,7 +14,7 @@ import {
 import "../data/mig.itemsp.h.js";
 import "../monster/monster.h.js";
 import "../equip/timeitem.h.js";
-import { HydrateFromDom } from "./foot-stallcalc-hydrate.js";
+import { HydrateFromDom } from "./stallcalc-hydrate.js";
 import { ITEM_SP_TIME_OBJ } from "../equip/timeitem.dat.js";
 import { Click_Skill4SW, n_Skill4SW, setN_Skill4SW } from "../ui/BuffGuildAndGospel.js";
 import { Click_Skill7SW, n_Skill7SW, setN_Skill7SW } from "../ui/BuffItemAndFood.js";
@@ -891,51 +891,51 @@ import {
 } from "../skill/skill.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
 // StAllCalc セクション分割（.claude/context/remaining-work.md「残作業 1」Phase 2）
-import { ApplyPlayerCritRateVsMonsterShape, ApplyMatkPlus } from "./foot-stallcalc-crit-matk.js";
-import { ApplyMagicalDamageUpAndAspdBase } from "./foot-stallcalc-magic-dmg-aspd.js";
-import { ApplyMotionDelay, ApplyHpRecoveryUp, ApplySpRecoveryUp } from "./foot-stallcalc-motion-hp-sp.js";
+import { ApplyPlayerCritRateVsMonsterShape, ApplyMatkPlus } from "./stallcalc-crit-matk.js";
+import { ApplyMagicalDamageUpAndAspdBase } from "./stallcalc-magic-dmg-aspd.js";
+import { ApplyMotionDelay, ApplyHpRecoveryUp, ApplySpRecoveryUp } from "./stallcalc-motion-hp-sp.js";
 import {
     ApplyPhysicalDamageUpVsPlayer, ApplyPhysicalDamageUpVsDoramPlayer,
     ApplyPhysicalDamageUpVsHumanPlayer, ApplyPhysicalDamageUpVsMonsterShape,
-} from "./foot-stallcalc-phys-dmg-player.js";
+} from "./stallcalc-phys-dmg-player.js";
 import {
     ApplyPhysicalDamageUpVsMonsterSize, ApplyPhysicalDamageUpLongRange,
-} from "./foot-stallcalc-phys-dmg-size-range.js";
+} from "./stallcalc-phys-dmg-size-range.js";
 import {
     ApplyPhysicalDamageUpVsMonsterElement, ApplyPhysicalDamageUpVsBoss, ApplyPhysicalDamageUpVsNormalMonster,
-} from "./foot-stallcalc-phys-dmg-elem-boss.js";
-import { ApplyPhysicalDamageUpGeneral } from "./foot-stallcalc-phys-dmg-general.js";
+} from "./stallcalc-phys-dmg-elem-boss.js";
+import { ApplyPhysicalDamageUpGeneral } from "./stallcalc-phys-dmg-general.js";
 import {
     ApplyMagicalDamageUpVsPlayer, ApplyMagicalDamageUpVsDoramPlayer,
     ApplyMagicalDamageUpVsHumanPlayer, ApplyMagicalDamageUpVsMonsterShape,
-} from "./foot-stallcalc-magic-dmg-player.js";
+} from "./stallcalc-magic-dmg-player.js";
 import {
     ApplyPlayerResist, ApplyDoramPlayerResist, ApplyHumanPlayerResist, ApplyRaceResist,
-} from "./foot-stallcalc-player-race-resist.js";
+} from "./stallcalc-player-race-resist.js";
 import {
     ApplyElementResist, ApplyMonsterElementResist, ApplySizeResist, ApplyLongRangeResist,
-} from "./foot-stallcalc-elem-size-longrange-resist.js";
+} from "./stallcalc-elem-size-longrange-resist.js";
 import {
     ApplyBossDamageDownPercent, ApplyNormalMonsterDamageDownPercent,
     ApplyBadStatusResistIgnore, ApplyDefIgnore,
-} from "./foot-stallcalc-boss-def-ignore.js";
+} from "./stallcalc-boss-def-ignore.js";
 import {
     ApplyMdefIgnore, ApplyMonsterElementDamageDownPercent, ApplyElementalPhysicalDamageUpPercent,
-} from "./foot-stallcalc-mdef-elem-dmg.js";
-import { ApplyElementalMagicalDamageUpPercent } from "./foot-stallcalc-elemental-magic-dmg.js";
+} from "./stallcalc-mdef-elem-dmg.js";
+import { ApplyElementalMagicalDamageUpPercent } from "./stallcalc-elemental-magic-dmg.js";
 import {
     ApplyMagicalDamageUpVsMonsterElement, ApplyMagicalDamageUpVsMonsterSize,
     ApplyMagicalDamageUpVsBoss, ApplyMagicalDamageUpVsNormalMonster,
-} from "./foot-stallcalc-magic-dmg-monster.js";
-import { ApplyGuaranteedHitUpPercent } from "./foot-stallcalc-guaranteed-hit.js";
+} from "./stallcalc-magic-dmg-monster.js";
+import { ApplyGuaranteedHitUpPercent } from "./stallcalc-guaranteed-hit.js";
 import {
     ApplyExpUpPercent, ApplyMeleePhysicalDamageReflect, ApplyWeaponAtkUpPercent, ApplySize100Percent,
-} from "./foot-stallcalc-exp-reflect-atk-size.js";
+} from "./stallcalc-exp-reflect-atk-size.js";
 // StAllCalc セクション分割（.claude/context/remaining-work.md「残作業 1」Phase 2b）
-import { ApplyPlayerAtkBase } from "./foot-stallcalc-atk-base.js";
-import { ApplyPlayerMaxHpMaxSp } from "./foot-stallcalc-maxhp-maxsp.js";
-import { ApplyPlayerDef } from "./foot-stallcalc-def.js";
-import { ApplyPlayerMdefHit } from "./foot-stallcalc-mdef-hit.js";
+import { ApplyPlayerAtkBase } from "./stallcalc-atk-base.js";
+import { ApplyPlayerMaxHpMaxSp } from "./stallcalc-maxhp-maxsp.js";
+import { ApplyPlayerDef } from "./stallcalc-def.js";
+import { ApplyPlayerMdefHit } from "./stallcalc-mdef-hit.js";
 // C-6: JOB 定数（mig.job.h.js の export const 化に伴う）
 import {
          JOB_SERIES_ID_NOVICE, JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_MAGICIAN, JOB_SERIES_ID_ARCHER,
@@ -1028,10 +1028,10 @@ import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from "../runtime/ror
 
 // foot.js 専有のモジュールレベル変数（ESM化で新規宣言）
 // SU_POW/SU_STA/SU_WIS/SU_SPL/SU_CON/SU_CRT・n_A_POW・n_A_CON・n_A_SpeedPOT は
-// StAllCalc 分割（リファクタリング計画 Phase 5）で foot-stallcalc-hydrate.js へ移設。
+// StAllCalc 分割（リファクタリング計画 Phase 5）で stallcalc-hydrate.js へ移設。
 // 前者8個は書き込まれるだけで一度も読まれないデッドコードと判明したため削除、
 // n_A_SpeedPOT は HydrateFromDom() の戻り値経由で StAllCalcCore() に渡す形にした。
-// n_A_WeaponZokusei は Phase 2b で roro-state.js へ移設（foot-stallcalc-atk-base.js と共有するため）
+// n_A_WeaponZokusei は Phase 2b で roro-state.js へ移設（stallcalc-atk-base.js と共有するため）
 let n_B_HIT = 0, n_B_FLEE = 0;
 // g_bSuperNoviceFullWeapon は equip.js が所有（import 済みのライブバインディング）。
 // 書き込みは SetSuperNoviceFullWeapon 経由で行う。
@@ -1310,7 +1310,7 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 }
 
 /**
- * StAllCalc のDOM走査プロローグを HydrateFromDom()（foot-stallcalc-hydrate.js）へ
+ * StAllCalc のDOM走査プロローグを HydrateFromDom()（stallcalc-hydrate.js）へ
  * 切り出した後の骨組み（リファクタリング計画 Phase 5）。
  * 描画呼び出し（RefreshDispAreaAll 等）は StAllCalcCore() の外、本関数の末尾に置く
  * ——将来 calcFromModel() が StAllCalcCore() だけを呼べば描画を経由せずに済むようにするため。
@@ -1325,7 +1325,7 @@ export function StAllCalc(){
     CFloatingInfoAreaComponentManager.RefreshDispAreaAll();
 
     // ステータス欄注意喚起（集中力向上）。判定条件は計算結果に依存しないため
-    // StAllCalcCore() の外（Shell側）で完結させる（foot-stallcalc-exp-reflect-atk-size.js
+    // StAllCalcCore() の外（Shell側）で完結させる（stallcalc-exp-reflect-atk-size.js
     // から移設）。
     const objStatusNoticeDiv = document.getElementById("OBJID_DIV_STATUS_NOTICE");
     HtmlRemoveAllChild(objStatusNoticeDiv);
@@ -1494,18 +1494,18 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-crit-matk.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-crit-matk.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyPlayerCritRateVsMonsterShape(charaData, mobData);
 
 		ApplyMatkPlus(charaData);
 
-// foot-stallcalc-magic-dmg-aspd.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-magic-dmg-aspd.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyMagicalDamageUpAndAspdBase(charaData, n_A_SpeedPOT);
 
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-motion-hp-sp.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-motion-hp-sp.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyMotionDelay(charaData);
 		ApplyHpRecoveryUp(charaData);
 		ApplySpRecoveryUp(charaData);
@@ -1513,7 +1513,7 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-phys-dmg-player.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-phys-dmg-player.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyPhysicalDamageUpVsPlayer();
 		ApplyPhysicalDamageUpVsDoramPlayer();
 		ApplyPhysicalDamageUpVsHumanPlayer();
@@ -1522,14 +1522,14 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-phys-dmg-size-range.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-phys-dmg-size-range.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyPhysicalDamageUpVsMonsterSize();
 		ApplyPhysicalDamageUpLongRange();
 
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-phys-dmg-elem-boss.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-phys-dmg-elem-boss.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyPhysicalDamageUpVsMonsterElement();
 		ApplyPhysicalDamageUpVsBoss();
 		ApplyPhysicalDamageUpVsNormalMonster();
@@ -1537,13 +1537,13 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-phys-dmg-general.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-phys-dmg-general.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyPhysicalDamageUpGeneral();
 
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-magic-dmg-player.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-magic-dmg-player.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyMagicalDamageUpVsPlayer();
 		ApplyMagicalDamageUpVsDoramPlayer();
 		ApplyMagicalDamageUpVsHumanPlayer();
@@ -1552,7 +1552,7 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-player-race-resist.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-player-race-resist.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyPlayerResist();
 		ApplyDoramPlayerResist();
 		ApplyHumanPlayerResist();
@@ -1561,7 +1561,7 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-elem-size-longrange-resist.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-elem-size-longrange-resist.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyElementResist();
 		ApplyMonsterElementResist();
 		ApplySizeResist();
@@ -1570,7 +1570,7 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-boss-def-ignore.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-boss-def-ignore.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyBossDamageDownPercent();
 		ApplyNormalMonsterDamageDownPercent();
 		ApplyBadStatusResistIgnore();
@@ -1579,7 +1579,7 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-mdef-elem-dmg.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-mdef-elem-dmg.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyMdefIgnore(mobData);
 		ApplyMonsterElementDamageDownPercent();
 		ApplyElementalPhysicalDamageUpPercent();
@@ -1588,13 +1588,13 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //====
 //==== 公式サイトで「属性魔法攻撃で与えるダメージ + ◯%」と表記される
-// foot-stallcalc-elemental-magic-dmg.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-elemental-magic-dmg.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyElementalMagicalDamageUpPercent();
 
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-magic-dmg-monster.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-magic-dmg-monster.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyMagicalDamageUpVsMonsterElement();
 		ApplyMagicalDamageUpVsMonsterSize();
 		ApplyMagicalDamageUpVsBoss();
@@ -1603,13 +1603,13 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-guaranteed-hit.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-guaranteed-hit.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyGuaranteedHitUpPercent();
 
 //================================================================================================================================
 //================================================================================================================================
 //====
-// foot-stallcalc-exp-reflect-atk-size.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
+// stallcalc-exp-reflect-atk-size.js へ移動（.claude/context/remaining-work.md「残作業 1」Phase 2）
 		ApplyExpUpPercent();
 		ApplyMeleePhysicalDamageReflect();
 		ApplyWeaponAtkUpPercent();
@@ -1631,51 +1631,51 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
     return [charaData, n_tok, mobData, attackMethodConfArray];
 }
 
-// foot-avoid-flee.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// avoid-flee.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { getCompleteAvoidance, getFixedCastTimeReductionRate, getFlee } from "./foot-avoid-flee.js";
+import { getCompleteAvoidance, getFixedCastTimeReductionRate, getFlee } from "./avoid-flee.js";
 
-// foot-resist-heal.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// resist-heal.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { ApplyResistBadStatus, ApplyAdditionalResistElement, ApplyHealRecoveryUp } from "./foot-resist-heal.js";
+import { ApplyResistBadStatus, ApplyAdditionalResistElement, ApplyHealRecoveryUp } from "./resist-heal.js";
 
-// foot-cast-delay.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// cast-delay.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { getDelayTimeReductionRate, getVariableCastTimeRate } from "./foot-cast-delay.js";
+import { getDelayTimeReductionRate, getVariableCastTimeRate } from "./cast-delay.js";
 
-// foot-sp-cost-reduction.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// sp-cost-reduction.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { getSPCostReductionRate } from "./foot-sp-cost-reduction.js";
+import { getSPCostReductionRate } from "./sp-cost-reduction.js";
 
-// foot-critical.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// critical.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { getCriticalDamageRate, GetAdditionalCriticalRate } from "./foot-critical.js";
+import { getCriticalDamageRate, GetAdditionalCriticalRate } from "./critical.js";
 
-// foot-aspd.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// aspd.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { GetAdditionalAspdPercent } from "./foot-aspd.js";
+import { GetAdditionalAspdPercent } from "./aspd.js";
 
-// foot-skill-cast-param.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// skill-cast-param.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // StAllCalc からの直接呼び出し・bridge 再登録のため import する。
 import {
     GetCastScalingOfSkillForCastTimeVary, GetCastFixOfSkillForCastTimeVary,
     GetCastScalingOfSkillForCastTimeFixed, GetCastFixOfSkillForCastTimeFixed,
     GetAdditionalFixedCastTime, GetCastScalingOfSkillForCastTimeForce, GetCastFixOfSkillForCastTimeForce,
-} from "./foot-skill-cast-param.js";
+} from "./skill-cast-param.js";
 
-// foot-skill-cool.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// skill-cool.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { GetCoolFixOfSkill } from "./foot-skill-cool.js";
+import { GetCoolFixOfSkill } from "./skill-cool.js";
 
-// foot-skill-cost.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// skill-cost.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // StAllCalc からの直接呼び出し・bridge 再登録のため import する。
-import { GetCostScalingOfSkill, GetCostFixOfSkill } from "./foot-skill-cost.js";
+import { GetCostScalingOfSkill, GetCostFixOfSkill } from "./skill-cost.js";
 
-// foot-stplus-calc.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// stplus-calc.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js 内部（StAllCalc）が直接呼ぶため再 import する。
-import { StPlusCalc } from "./foot-stplus-calc.js";
+import { StPlusCalc } from "./stplus-calc.js";
 
-// foot-equipped-sp.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
+// equipped-sp.js へ移動（.claude/context/remaining-work.md「残作業 1」）。
 // GetEquippedTotalSPEquip/GetEquippedTotalSPEquipExact/GetEquippedTotalSPCardAndElse/
 // GetEquippedTotalSPCostume は foot.js 内部（StAllCalc/StPlusCalc）が直接呼ぶ。
 // 残りは他ファイルが foot-bridge.js 経由で使うため、__registerFootFunctions への
@@ -1685,7 +1685,7 @@ import {
     GetEquippedSPListEquip, GetEquippedSPValueArrayEquip, GetEquippedSPListCardAndElse, GetEquippedSPValueArrayCardAndElse,
     GetEquippedTotalSPArrow, IsMatchSpDefId, CheckSpDefFriendlyOver, CheckSpDefBaseLvOver,
     CheckSpDefJobRestrict, CheckSpDefPureStatus, CheckSpDefRefineOver,
-} from "./foot-equipped-sp.js";
+} from "./equipped-sp.js";
 
 /**
  * 職業の基本条件を設定する
@@ -2195,7 +2195,7 @@ export function Init(jobId){
 
 // 外部ファイル向けの関数公開は foot-bridge.js 経由（C-6 後半・reference.md 参照）
 // GetEquippedTotalSPEquip/GetEquippedSPListEquip/.../CheckSpDefRefineOver の実体は
-// foot-equipped-sp.js へ移動済み（.claude/context/remaining-work.md「残作業 1」）。
+// equipped-sp.js へ移動済み（.claude/context/remaining-work.md「残作業 1」）。
 // foot.js は自身の内部使用（StAllCalc/StPlusCalc からの直接呼び出し）のために
 // 冒頭で import 済みの束縛を、そのままここで再登録する。
 __registerFootFunctions({

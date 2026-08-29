@@ -3,15 +3,16 @@
  * export let 変数（計85個）について、以下を機械的に集計する:
  *
  *   1. 「Core」＝ StAllCalcCore() 自身の本体（foot.js の該当行範囲）
- *      + そこから呼ばれる foot-stallcalc-*.js / foot-stplus-calc.js 群
- *      （foot-bridge.js・foot-stallcalc-hydrate.js は除く。詳細はコード内 CORE_HELPER_FILES）
+ *      + そこから呼ばれる stallcalc-*.js / stplus-calc.js 群（旧 foot-stallcalc-*.js /
+ *      foot-stplus-calc.js。B-26a でプレフィックス撤廃済み）
+ *      （foot-bridge.js・stallcalc-hydrate.js は除く。詳細はコード内 CORE_HELPER_FILES）
  *      で「読むだけ」「書くだけ」（= set_X() 呼び出し）「両方」のどれか
  *   2. Core の外（他ファイル・foot.js の他関数）でも読み書きされているか
  *      （= 引数/戻り値化する際に影響が及ぶ範囲）
  *
  * ⚠️ 初版（Core = StAllCalcCore の280行のみ）では85個中73個が「未使用」と出て
  * 明らかにおかしかった。実際には StAllCalcCore は大半の計算を呼び出し先の
- * foot-stallcalc-*.js 群に委譲しており、変数の読み書きもそちら側で起きている
+ * stallcalc-*.js 群に委譲しており、変数の読み書きもそちら側で起きている
  * ため、範囲を広げて再計測している。
  *
  * 判定方式: これらの変数はすべて `export let X` + `export function set_X(v){X=v;}`
@@ -42,14 +43,13 @@ const CORE_START = 1351;
 const CORE_END = 1630;
 
 // 「Core」の実体は StAllCalcCore() 自身の280行だけではなく、そこから呼ばれる
-// foot-stallcalc-*.js / foot-stplus-calc.js 群（.claude/context/architecture.md の
-// Shell/Adapter/Core 対応表を参照）。foot-bridge.js（委譲ブリッジ。B-19で engine/bridge/ へ
-// 移動済みのため元々このディレクトリの対象外）と foot-stallcalc-hydrate.js（Adapter。
-// 意図的にDOMを読む。B-19後も foot-* 系ファイルと同じ engine/status/ に同居するため
-// ファイル名では除外できず、明示的な除外リストで弾く）は除く。
+// stallcalc-*.js / stplus-calc.js 群（.claude/context/architecture.md の
+// Shell/Adapter/Core 対応表を参照）。foot.js 自身と stallcalc-hydrate.js（Adapter。
+// 意図的にDOMを読む）は除く。B-26a でプレフィックス撤廃したため「foot-」では
+// もう判定できず、「engine/status/ 配下から foot.js とAdapter1本を除いた全部」で判定する。
 const CORE_HELPER_FILES = readdirSync(join(REPO, 'engine/status'))
-    .filter((f) => f.startsWith('foot-') && f.endsWith('.js'))
-    .filter((f) => f !== 'foot-stallcalc-hydrate.js')
+    .filter((f) => f.endsWith('.js'))
+    .filter((f) => f !== 'foot.js' && f !== 'stallcalc-hydrate.js')
     .map((f) => `engine/status/${f}`);
 
 const SCAN_DIRS = ['engine'];

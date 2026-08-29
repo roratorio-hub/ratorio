@@ -22,7 +22,7 @@ const AS_ID_WILD_WALK = 249;
 const SKILL_LV_WILD_WALK = 5;
 
 /**
- * GetEquippedSPValueArrayCardAndElse（foot-equipped-sp.js）の簡略フェイク.
+ * GetEquippedSPValueArrayCardAndElse（equipped-sp.js）の簡略フェイク.
  * 本物は BuffOtherCategory.js を import しており、そこから save-data の循環 import
  * （vitest.config.ts の exclude コメント参照: hmjob/BuffOtherCategory/BuffItemAndFood が
  * 起点でワーカーがハングする）に触れてしまうため、単体テストでは import できない。
