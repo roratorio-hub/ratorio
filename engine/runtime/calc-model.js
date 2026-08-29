@@ -41,6 +41,10 @@
  * `pureStatus`/`bonusStatus`（特性ステータスの素点・ボーナス分）も同様に配列として持つ。
  * `GetTotalSpecStatus(id)`（両者の合計を返す関数。hmjob.js）自体は境界の外側の実装詳細
  * として呼び出し続ける——モデルが運ぶのはその入力データのみ。
+ *
+ * `timeItemConf`/`timeItemConfEffective`（時限効果欄。残件台帳 B-09 Phase 2e）:
+ * どちらも対応する設定欄が展開されていないとDOM要素自体が存在しない
+ * （`n_Skill{1,4,7,8}SW` と同型）ため、他の設定欄配列と同じく現在値をそのまま運ぶ。
  */
 
 /** @returns {object} 全フィールドを既定値で埋めたモデル */
@@ -127,5 +131,9 @@ export function createEmptyModel() {
         pureStatus: Array(12).fill(0),
         /** 特性ステータス（装備等ボーナス分。MIG_PARAM_ID_POW〜CRT で添字アクセス） */
         bonusStatus: Array(12).fill(0),
+        /** 時限効果欄のアイテムID（TIME_ITEM_CONF_COUNT=20枠） */
+        timeItemConf: Array(20).fill(0),
+        /** 時限効果欄の各枠のON/OFF（クイック調整欄） */
+        timeItemConfEffective: Array(20).fill(true),
     };
 }

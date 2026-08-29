@@ -30,7 +30,7 @@ import {
     g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomSpecStatus,
     g_confDataCustomStatus, g_confDataDebuff, g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi,
     g_constDataManager, g_objCharaConfCustomAtk, g_objCharaConfCustomDef, g_objCharaConfCustomSkill,
-    g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus, n_Nitou,
+    g_objCharaConfCustomSpecStatus, g_objCharaConfCustomStatus, g_timeItemConf, g_timeItemConfEffective, n_Nitou,
     set_g_confDataCustomAtk, set_g_confDataCustomDef, set_g_confDataCustomSkill, set_g_confDataCustomSpecStatus,
     set_g_confDataCustomStatus, set_g_confDataDebuff, set_g_confDataIchizi, set_g_confDataNizi,
     set_g_confDataSanzi, set_g_confDataYozi, set_g_objCharaConfCustomAtk, set_g_objCharaConfCustomDef,
@@ -498,6 +498,16 @@ export function ExtractModelFromDom() {
     model.pureStatus = Array.from(g_pureStatus ?? []);
     model.bonusStatus = Array.from(g_bonusStatus ?? []);
 
+    //----------------------------------------------------------------
+    // 時限効果欄
+    //----------------------------------------------------------------
+    // OBJID_SELECT_TIME_ITEM_N・クイック調整欄のON/OFF切替は、どちらも設定欄が
+    // 展開（OBJID_TIME_ITEM_AREA_EXTRACT_CHECKBOX）されていないとDOM要素自体が
+    // 存在しない（CTimeItemAreaComponentManager.RebuildControls参照）。
+    // n_Skill{1,4,7,8}SW と同型のため、現在値をそのまま運ぶ。
+    model.timeItemConf = Array.from(g_timeItemConf ?? []);
+    model.timeItemConfEffective = Array.from(g_timeItemConfEffective ?? []);
+
     return model;
 }
 
@@ -813,6 +823,12 @@ export function HydrateFromModel(model) {
     for (const v of model.pureStatus) g_pureStatus.push(v);
     g_bonusStatus.length = 0;
     for (const v of model.bonusStatus) g_bonusStatus.push(v);
+
+    // 時限効果欄。同じく setter が無いため配列の中身を直接書き換える。
+    g_timeItemConf.length = 0;
+    for (const v of model.timeItemConf) g_timeItemConf.push(v);
+    g_timeItemConfEffective.length = 0;
+    for (const v of model.timeItemConfEffective) g_timeItemConfEffective.push(v);
 
     return { attackMethodConfArray };
 }
