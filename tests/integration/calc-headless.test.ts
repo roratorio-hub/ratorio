@@ -68,7 +68,8 @@ async function gotoFixture(query: string) {
         if (!sel) return false;
         if (mgr.GetAttackMethodData(sel.value) == null) return false;
         const reg = (globalThis as any)._ratorioReg;
-        return typeof reg?.extractModelFromDom === 'function' && typeof reg?.calcFromModel === 'function';
+        return typeof reg?.extractModelFromDom === 'function' && typeof reg?.calcFromModel === 'function'
+            && typeof reg?.calcCoreFromModel === 'function';
     });
     return { context, page, errors };
 }
@@ -97,6 +98,41 @@ async function captureHeadless(page: Awaited<ReturnType<typeof gotoFixture>>['pa
     });
 }
 
+// B-09 Phase 1: StAllCalcCore() が「書くだけ」で roro-state.js/ro4-state.js へ書き込む6変数
+// （aspdRaw/delayDownForDisp/g_lucky_over/n_B_MDEF2/n_CastCutForDisp/n_SiegeMode）は、
+// Phase 1 で戻り値の第5要素 coreOutput に格上げされたが、既存の set_X() 呼び出し・
+// グローバル自体は削除していない（期待差分ゼロの前提）。そのため両者は常に一致するはずで、
+// 一致しなければ Phase 1 の実装（読み取りタイミング・import 先の取り違え等）にバグがある。
+const CORE_OUTPUT_STATE_MODULES = ['/engine/runtime/ro4-state.js', '/engine/runtime/roro-state.js'];
+const CORE_OUTPUT_KEYS = ['aspdRaw', 'delayDownForDisp', 'g_lucky_over', 'n_B_MDEF2', 'n_CastCutForDisp', 'n_SiegeMode'];
+
+/** DOM駆動の計算後、roro-state.js/ro4-state.js の現在値から coreOutput 相当のオブジェクトを組み立てる。 */
+async function captureDomCoreOutputViaGlobals(page: Awaited<ReturnType<typeof gotoFixture>>['page']) {
+    return page.evaluate(async ({ modules, keys }) => {
+        const dynamicImport = new Function('specifier', 'return import(specifier);') as
+            (specifier: string) => Promise<Record<string, any>>;
+        const footBridge = await dynamicImport('/engine/bridge/stallcalc-bridge.js');
+        // StAllCalc() が内部で StAllCalcCore() を呼び、set_X() 経由でグローバルへ書き込む。
+        // ComputeBattleResult() は不要（coreOutput の6変数は Core 内で確定するため）。
+        footBridge.StAllCalc();
+        const states = await Promise.all(modules.map((m: string) => dynamicImport(m)));
+        const merged = Object.assign({}, ...states);
+        const out: Record<string, unknown> = {};
+        for (const k of keys) out[k] = merged[k];
+        return out;
+    }, { modules: CORE_OUTPUT_STATE_MODULES, keys: CORE_OUTPUT_KEYS });
+}
+
+/** headless経路（calcCoreFromModel）から coreOutput をそのまま取り出す。 */
+async function captureHeadlessCoreOutput(page: Awaited<ReturnType<typeof gotoFixture>>['page']) {
+    return page.evaluate(async () => {
+        const reg = (globalThis as any)._ratorioReg;
+        const model = reg.extractModelFromDom();
+        const { coreOutput } = reg.calcCoreFromModel(model);
+        return coreOutput;
+    });
+}
+
 describe('calcFromModel(extractModelFromDom()) がDOM経由の結果と一致する（Phase 10）', () => {
     if (entries.length === 0) {
         it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
@@ -118,6 +154,35 @@ describe('calcFromModel(extractModelFromDom()) がDOM経由の結果と一致す
             expect(headless.errors, `headless側で未捕捉例外: ${headless.errors.join('\n')}`).toEqual([]);
 
             expect(headlessResult).toEqual(domResult);
+        }, 60000);
+    }
+});
+
+describe('calcCoreFromModel() の coreOutput がDOM駆動側の書き込み結果と一致する（残件台帳 B-09 Phase 1）', () => {
+    if (entries.length === 0) {
+        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
+            console.warn('generated-job-corpus.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    // coreOutput の6変数は全フィクスチャで挙動が変わりにくいため、サンプルは4件に絞る
+    // （既存のheadless一致テストが12件で全体を広くカバー済み。ここは配線の正しさの確認）。
+    const coreOutputEntries = entries.slice(0, 4);
+
+    for (const { label, query } of coreOutputEntries) {
+        it(`${label}: coreOutputがDOM駆動側のグローバル書き込み結果と一致する`, async () => {
+            const dom = await gotoFixture(query);
+            const domCoreOutput = await captureDomCoreOutputViaGlobals(dom.page);
+            await dom.context.close();
+            expect(dom.errors, `DOM駆動側で未捕捉例外: ${dom.errors.join('\n')}`).toEqual([]);
+
+            const headless = await gotoFixture(query);
+            const headlessCoreOutput = await captureHeadlessCoreOutput(headless.page);
+            await headless.context.close();
+            expect(headless.errors, `headless側で未捕捉例外: ${headless.errors.join('\n')}`).toEqual([]);
+
+            expect(headlessCoreOutput).toEqual(domCoreOutput);
         }, 60000);
     }
 });

@@ -974,10 +974,10 @@ let cardCount = 0;
 
 // C-6: ro4 側共有 state（旧 battlecalc.js window 変数）
 import {
-         SaveDataAll, set_n_SiegeMode, n_A_BaseLV, set_n_A_BaseLV,
+         SaveDataAll, set_n_SiegeMode, n_SiegeMode, n_A_BaseLV, set_n_A_BaseLV,
          n_A_ActiveSkill, set_n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_A_ActiveSkillLV,
          n_A_Kotei_Cast_Keigen, set_n_A_Kotei_Cast_Keigen, n_A_QUAKE_KIRI, set_n_A_QUAKE_KIRI,
-         n_A_Arrow, set_n_A_Arrow, set_delayDownForDisp, set_aspdRaw,
+         n_A_Arrow, set_n_A_Arrow, set_delayDownForDisp, delayDownForDisp, set_aspdRaw, aspdRaw,
          set_n_A_Weapon_zokusei, n_Enekyori, n_Delay, n_tok,
          n_tok_no_limit, n_Heal_MATK,
 } from "../runtime/ro4-state.js";
@@ -1009,7 +1009,7 @@ import {
          n_A_PassSkill5, set_n_A_PassSkill5, g_itemIdArray, set_g_itemIdArray,
          g_refinedArray, set_g_refinedArray, g_objMobConfInput, set_g_objMobConfInput,
          SpeedPotName,
-         n_A_JOB, n_A_MATK, set_n_A_MATK, BK_n_A_MATK, set_BK_n_A_MATK, set_g_lucky_over, set_n_CastCutForDisp, n_A_Weapon2Type,
+         n_A_JOB, n_A_MATK, set_n_A_MATK, BK_n_A_MATK, set_BK_n_A_MATK, set_g_lucky_over, g_lucky_over, set_n_CastCutForDisp, n_CastCutForDisp, n_A_Weapon2Type,
          set_n_A_WeaponZokusei,
 } from "../runtime/roro-state.js";
 
@@ -1628,7 +1628,16 @@ export function StAllCalcCore(n_A_SpeedPOT, attackMethodConfArray) {
 		charaData[CHARA_DATA_INDEX_SKILL_COST_SCALING] = GetCostScalingOfSkill(n_A_ActiveSkill);
 		charaData[CHARA_DATA_INDEX_SKILL_COST_FIX] = GetCostFixOfSkill(n_A_ActiveSkill);
 
-    return [charaData, n_tok, mobData, attackMethodConfArray];
+    // B-09 Phase 1: Core内では書くだけの6変数を戻り値へ格上げする（残件台帳 B-09）。
+    // 既存の set_X() 呼び出し・roro-state.js/ro4-state.js のグローバル自体は削除しない
+    // （外部の読み取り元は今まで通りグローバル経由で動く＝期待差分ゼロ）。
+    // ここで読むのは全ての sub-module 呼び出しが完了した後（このコメントの直前）なので、
+    // ESM live binding として最終確定値が入る。
+    const coreOutput = {
+        aspdRaw, delayDownForDisp, g_lucky_over, n_B_MDEF2, n_CastCutForDisp, n_SiegeMode,
+    };
+
+    return [charaData, n_tok, mobData, attackMethodConfArray, coreOutput];
 }
 
 // avoid-flee.js へ移動（.claude/context/remaining-work.md「残作業 1」）。

@@ -36,6 +36,21 @@ export function calcFromModel(model) {
     return battleCalcResultAll;
 }
 
+/**
+ * モデルから `StAllCalcCore()` までの結果を得る（`ComputeBattleResult()` の手前で止める）。
+ * 残件台帳 B-09 Phase 1 で追加。`coreOutput`（Core内では書くだけの6変数）を検証する経路として、
+ * また将来 Core を Web Worker 側で回す際の入口として使う。
+ * @param {object} model `createEmptyModel()` の形をしたモデル
+ * @returns {{charaData: Array, specData: Array, mobData: Array, attackMethodConfArray: Array, coreOutput: object}}
+ */
+export function calcCoreFromModel(model) {
+    const { attackMethodConfArray } = HydrateFromModel(model);
+    const [charaData, specData, mobData, retAttackMethodConfArray, coreOutput] =
+        StAllCalcCore(model.status.speedPot, attackMethodConfArray);
+    return { charaData, specData, mobData, attackMethodConfArray: retAttackMethodConfArray, coreOutput };
+}
+
 register('calcFromModel', calcFromModel);
+register('calcCoreFromModel', calcCoreFromModel);
 register('extractModelFromDom', ExtractModelFromDom);
 register('createEmptyModel', createEmptyModel);
