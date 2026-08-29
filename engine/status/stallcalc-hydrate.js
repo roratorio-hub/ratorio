@@ -23,6 +23,9 @@ import { n_Skill8SW } from "../ui/BuffOtherCategory.js";
 import { n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill, n_A_PassSkill8 } from "../skill/skillstate.js";
 import { CAttackMethodAreaComponentManager } from "../battle/CAttackMethodAreaComponentManager.js";
 import { CShadowEquipController, g_shadowEquipController } from "../equip/CShadowEquipController.js";
+import { n_B_TAISEI } from "../monster/mobconfplayer.js";
+import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
+import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB
 } from "../skill/calcautospell.js";
@@ -508,6 +511,14 @@ export function ExtractModelFromDom() {
     model.timeItemConf = Array.from(g_timeItemConf ?? []);
     model.timeItemConfEffective = Array.from(g_timeItemConfEffective ?? []);
 
+    //----------------------------------------------------------------
+    // モンスター設定欄（対プレイヤー特性・異常・強化）
+    //----------------------------------------------------------------
+    // 展開状態にDOM要素の有無が依存する同型の設定欄のため、現在値をそのまま運ぶ。
+    model.mobConfTaisei = Array.from(n_B_TAISEI ?? []);
+    model.mobConfIjyou = Array.from(n_B_IJYOU ?? []);
+    model.mobConfKyouka = Array.from(n_B_KYOUKA ?? []);
+
     return model;
 }
 
@@ -829,6 +840,14 @@ export function HydrateFromModel(model) {
     for (const v of model.timeItemConf) g_timeItemConf.push(v);
     g_timeItemConfEffective.length = 0;
     for (const v of model.timeItemConfEffective) g_timeItemConfEffective.push(v);
+
+    // モンスター設定欄（対プレイヤー特性・異常・強化）。同じく setter が無い。
+    n_B_TAISEI.length = 0;
+    for (const v of model.mobConfTaisei) n_B_TAISEI.push(v);
+    n_B_IJYOU.length = 0;
+    for (const v of model.mobConfIjyou) n_B_IJYOU.push(v);
+    n_B_KYOUKA.length = 0;
+    for (const v of model.mobConfKyouka) n_B_KYOUKA.push(v);
 
     return { attackMethodConfArray };
 }

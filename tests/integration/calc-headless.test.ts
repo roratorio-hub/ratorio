@@ -543,3 +543,84 @@ describe('時限効果欄（timeItemConf/timeItemConfEffective）（残件台帳
         expect(headlessResult).toEqual(domResult);
     }, 60000);
 });
+
+describe('モンスター設定欄（mobConfTaisei/mobConfIjyou/mobConfKyouka）（残件台帳 B-09 Phase 2g）', () => {
+    if (entries.length === 0) {
+        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
+            console.warn('generated-job-corpus.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    const { query } = entries[0];
+    // モンスター設定欄も展開状態にDOM要素の有無が依存するため（2eと同型）、
+    // グローバル配列へ直接注入して非既定値を作る
+    // （MOB_CONF_PLAYER_ID_SENTO_AREA=YE_COLOSSEUMは戦闘エリア判定として広く読まれる）。
+
+    it('extractModelFromDom() がモンスター設定欄の現在値を捕捉する', async () => {
+        const { context, page, errors } = await gotoFixture(query);
+        const captured = await page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const mobconfplayer = await dynamicImport('/engine/monster/mobconfplayer.js');
+            mobconfplayer.n_B_TAISEI[mobconfplayer.MOB_CONF_PLAYER_ID_SENTO_AREA] =
+                mobconfplayer.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM;
+
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+            return model.mobConfTaisei[mobconfplayer.MOB_CONF_PLAYER_ID_SENTO_AREA];
+        });
+        await context.close();
+        expect(errors, `未捕捉例外: ${errors.join('\n')}`).toEqual([]);
+        expect(captured).toBeGreaterThan(0);
+    }, 60000);
+
+    // 修正前は mobConfTaisei 等のモデルフィールドが無く、HydrateFromModel が
+    // n_B_TAISEI/n_B_IJYOU/n_B_KYOUKA を一切書き込んでいなかった
+    // （headless経路での隠れ入力）。ここでは意図的に「間違った」値をグローバルへ
+    // 書き込んでから calcFromModel() を呼び、それでも DOM 駆動側と同じ結果になることを検証する。
+    it('モンスター設定欄のグローバルを意図的に汚しても、calcFromModel()の結果はDOM駆動側と一致する', async () => {
+        const dom = await gotoFixture(query);
+        const domResult = await dom.page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const mobconfplayer = await dynamicImport('/engine/monster/mobconfplayer.js');
+            mobconfplayer.n_B_TAISEI[mobconfplayer.MOB_CONF_PLAYER_ID_SENTO_AREA] =
+                mobconfplayer.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM;
+
+            const footBridge = await dynamicImport('/engine/bridge/stallcalc-bridge.js');
+            const head = await dynamicImport('/engine/battle/battlecalc.js');
+            const retValArray = footBridge.StAllCalc();
+            const { battleCalcResultAll } = head.ComputeBattleResult(retValArray);
+            return JSON.parse(JSON.stringify(battleCalcResultAll));
+        });
+        await dom.context.close();
+        expect(dom.errors, `DOM駆動側で未捕捉例外: ${dom.errors.join('\n')}`).toEqual([]);
+
+        const headless = await gotoFixture(query);
+        const headlessResult = await headless.page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const mobconfplayer = await dynamicImport('/engine/monster/mobconfplayer.js');
+            mobconfplayer.n_B_TAISEI[mobconfplayer.MOB_CONF_PLAYER_ID_SENTO_AREA] =
+                mobconfplayer.MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM; // DOM駆動側と同じ設定を注入
+
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+
+            // 意図的に汚す（別の呼び出しが残した想定の値で全埋め）
+            for (let i = 0; i < mobconfplayer.n_B_TAISEI.length; i++) mobconfplayer.n_B_TAISEI[i] = -1;
+            const mobconfdebuf = await dynamicImport('/engine/monster/mobconfdebuf.js');
+            for (let i = 0; i < mobconfdebuf.n_B_IJYOU.length; i++) mobconfdebuf.n_B_IJYOU[i] = -1;
+            const mobconfbuf = await dynamicImport('/engine/monster/mobconfbuf.js');
+            for (let i = 0; i < mobconfbuf.n_B_KYOUKA.length; i++) mobconfbuf.n_B_KYOUKA[i] = -1;
+
+            const battleCalcResultAll = reg.calcFromModel(model);
+            return JSON.parse(JSON.stringify(battleCalcResultAll));
+        });
+        await headless.context.close();
+        expect(headless.errors, `headless側で未捕捉例外: ${headless.errors.join('\n')}`).toEqual([]);
+
+        expect(headlessResult).toEqual(domResult);
+    }, 60000);
+});

@@ -45,6 +45,10 @@
  * `timeItemConf`/`timeItemConfEffective`（時限効果欄。残件台帳 B-09 Phase 2e）:
  * どちらも対応する設定欄が展開されていないとDOM要素自体が存在しない
  * （`n_Skill{1,4,7,8}SW` と同型）ため、他の設定欄配列と同じく現在値をそのまま運ぶ。
+ *
+ * `mobConfTaisei`/`mobConfIjyou`/`mobConfKyouka`（モンスター設定欄。対プレイヤー/異常/強化。
+ * 残件台帳 B-09 Phase 2g）: `mobconfplayer.js`/`mobconfdebuf.js`/`mobconfbuf.js` の
+ * 設定欄も同様に展開状態に依存するため、意味づけしない不透明配列として現在値をそのまま運ぶ。
  */
 
 /** @returns {object} 全フィールドを既定値で埋めたモデル */
@@ -135,5 +139,11 @@ export function createEmptyModel() {
         timeItemConf: Array(20).fill(0),
         /** 時限効果欄の各枠のON/OFF（クイック調整欄） */
         timeItemConfEffective: Array(20).fill(true),
+        /** モンスター設定・対プレイヤー特性欄（MOB_CONF_PLAYER_ID_* で添字アクセス。54件） */
+        mobConfTaisei: Array(54).fill(0),
+        /** モンスター設定・異常状態欄（MOB_CONF_DEBUF_ID_* で添字アクセス。80件） */
+        mobConfIjyou: Array(80).fill(0),
+        /** モンスター設定・強化欄（MOB_CONF_BUF_ID_* で添字アクセス。80件） */
+        mobConfKyouka: Array(80).fill(0),
     };
 }
