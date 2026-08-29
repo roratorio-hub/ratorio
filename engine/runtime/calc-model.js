@@ -6,7 +6,6 @@
  * 対象とする。以下は意図的にモデルへ含めない（既存グローバルを直接読む、
  * 「境界の外側の既にhydrate済みの前提」として扱う）:
  *
- * - `n_A_JOB`（職業選択。`InitJobInfo()` 経由、別のUIフローで既にhydrate済み）
  * - `n_Skill{1,4,7,8}SW`（バフパネルの開閉状態。各 `Buff*.js` のクリックハンドラが管理）
  * - `CAttackMethodAreaComponentManager.GetAttackMethodConf()` の戻り値
  *   （攻撃手段コンポーネント自身の内部状態。メソッドを持つオブジェクトで
@@ -24,6 +23,14 @@
  * 同じ「`EnumEquipRegionId.js` 等の定数で添字アクセスする配列」の形を踏襲する
  * （named field に変換すると約45個のカード欄で転記ミスのリスクが上がるため、
  * 既存の添字方式をそのまま流用するほうが安全）。
+ *
+ * `status.jobId`（残件台帳 B-09 Phase 2b。旧版は `n_A_JOB` を「別のUIフローで
+ * 既にhydrate済み」として意図的に除外していたが、これは `calcFromModel()` を
+ * 単体で（Node/Workerで）呼ぶケースを想定していなかった判断だった。
+ * `changeJobSettings()`（equip.js。job-select の change イベント経由）でしか
+ * 書き込まれないため、DOM イベントが一切発火しない headless 経路では
+ * 職業IDがモデルの意図と無関係な残存値のままになる——D1（入力閉包）の観点で
+ * 本物の隠れ入力だったため、他のフィールドと同じ扱いへ格上げした。
  */
 
 /** @returns {object} 全フィールドを既定値で埋めたモデル */
@@ -31,6 +38,7 @@ export function createEmptyModel() {
     return {
         /** 基本ステータス（A_BaseLV 等） */
         status: {
+            jobId: undefined,      // OBJID_SELECT_JOB.value（MigID。残件台帳 B-09 Phase 2b）
             baseLv: undefined,     // calcForm.A_BaseLV
             jobLv: undefined,      // calcForm.A_JobLV
             str: undefined,        // calcForm.A_STR

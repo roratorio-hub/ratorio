@@ -26,7 +26,7 @@ import { CShadowEquipController, g_shadowEquipController } from "../equip/CShado
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB
 } from "../skill/calcautospell.js";
-import { g_constDataManager, n_Nitou } from "../runtime/global.js";
+import { g_constDataManager, n_Nitou, set_n_Nitou } from "../runtime/global.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     set_n_A_ActiveSkill, set_n_A_ActiveSkillLV, set_n_A_Arrow, set_n_A_BaseLV
@@ -76,7 +76,7 @@ import {
     n_A_VIT, n_A_Weapon2LV, n_A_Weapon2_ATKplus, n_A_WeaponLV, n_A_Weapon_ATKplus, n_A_card, n_A_costume, set_SU_AGI,
     set_SU_DEX, set_SU_INT, set_SU_LUK, set_SU_STR, set_SU_VIT, set_g_itemIdArray, set_g_refinedArray, set_n_A_AGI,
     set_n_A_BODY_DEF_PLUS, set_n_A_BODY_DEF_Transcendence, set_n_A_CRT, set_n_A_DEX, set_n_A_HEAD_DEF_PLUS,
-    set_n_A_HEAD_DEF_Transcendence, set_n_A_INT, set_n_A_JobLV, set_n_A_LUK, set_n_A_SHIELD_DEF_PLUS,
+    set_n_A_HEAD_DEF_Transcendence, set_n_A_INT, set_n_A_JOB, set_n_A_JobLV, set_n_A_LUK, set_n_A_SHIELD_DEF_PLUS,
     set_n_A_SHIELD_DEF_Transcendence, set_n_A_SHOES_DEF_PLUS, set_n_A_SHOES_DEF_Transcendence,
     set_n_A_SHOULDER_DEF_PLUS, set_n_A_SHOULDER_DEF_Transcendence, set_n_A_SPL, set_n_A_STA, set_n_A_STR,
     set_n_A_VIT, set_n_A_WIS, set_n_A_Weapon2LV, set_n_A_Weapon2LV_Maxplus, set_n_A_Weapon2LV_Minplus,
@@ -103,6 +103,18 @@ function legacyNum(raw) {
 }
 
 /**
+ * 二刀流状態を「左手武器種別」から導出する（残件台帳 B-09 Phase 2b）。
+ * equip.js の `OnChangeArmsTypeLeft(itemKind)` が `itemKind != ITEM_KIND_NONE` で
+ * `n_Nitou` を確定させているのと同じ判定基準（`ITEM_KIND_NONE === 0`）。
+ * `n_Nitou` はこの値から常に導出可能な派生値であり、独立したモデルフィールドは持たない。
+ * @param {number|string|undefined} weapon2Type model.weapon.weapon2Type（OBJID_ARMS_TYPE_LEFT）
+ * @returns {boolean}
+ */
+function deriveNitou(weapon2Type) {
+    return Number(weapon2Type ?? 0) !== 0; // 未設定（createEmptyModel()の既定値）は非二刀流扱い
+}
+
+/**
  * document.calcForm 等の DOM から、モデル境界に含まれる値だけを読み取る（書き込みはしない）。
  * モデルに何が含まれ何が含まれないかは calc-model.js のコメントを参照。
  * @returns {object} createEmptyModel() の形をした、DOMから読み取った値で埋まったモデル
@@ -114,6 +126,10 @@ export function ExtractModelFromDom() {
     //----------------------------------------------------------------
     // 基本パラメタ
     //----------------------------------------------------------------
+    // 残件台帳 B-09 Phase 2b: 職業ID。従来モデルの意図的除外対象だったが
+    // （changeJobSettings()経由でのみ書き込まれ、DOMイベントが発火しないheadless経路では
+    // 残存値に暗黙依存していた）、他フィールドと同じ扱いへ格上げした（calc-model.js参照）。
+    model.status.jobId = legacyNum(calcForm.A_JOB.value);
     model.status.baseLv = legacyNum(calcForm.A_BaseLV.value);
     model.status.jobLv = legacyNum(calcForm.A_JobLV.value);
     model.status.str = legacyNum(calcForm.A_STR.value);
@@ -133,11 +149,17 @@ export function ExtractModelFromDom() {
     // equip.js（Shell）が直接DOMから読んで n_A_Weapon2Type へ書き込んでいたため、
     // headless経路（calcFromModel）ではモデルに載らずグローバルの残存値に暗黙依存していた。
     model.weapon.weapon2Type = HtmlGetObjectValueById("OBJID_ARMS_TYPE_LEFT", 0);
+    // 残件台帳 B-09 Phase 2b: 以前はここでグローバル n_Nitou を読んで左手欄を抽出するか
+    // 判定していたが、n_Nitou 自体が「別のUIフロー（equip.js）で既に更新済み」という
+    // 前提に依存する隠れ入力だった（headless経路では残存値のまま）。上で読んだ
+    // weapon2Type から同じ基準で導出することで、この関数自身の抽出結果が
+    // グローバルの残存値に左右されないようにする。
+    const isNitou = deriveNitou(model.weapon.weapon2Type);
     model.arrow = HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE);
 
     model.equip = new Array(EQUIP_REGION_ID_COUNT).fill(0);
     model.equip[EQUIP_REGION_ID_ARMS] = HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_RIGHT", 0);
-    if (n_Nitou) {
+    if (isNitou) {
         model.equip[EQUIP_REGION_ID_ARMS_LEFT] = HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_LEFT", 0);
     }
     model.equip[EQUIP_REGION_ID_HEAD_TOP] = HtmlGetObjectValueByIdAsInteger("OBJID_HEAD_TOP", 0);
@@ -166,7 +188,7 @@ export function ExtractModelFromDom() {
     model.defTranscendence.shoes = legacyNum(calcForm.A_SHOES_DEF_Transcendence.value);
 
     model.weapon.atkPlus = legacyNum(calcForm.A_Weapon_ATKplus.value);
-    if (n_Nitou) {
+    if (isNitou) {
         model.weapon.weapon2AtkPlus = legacyNum(calcForm.A_Weapon2_ATKplus.value);
     }
 
@@ -180,7 +202,7 @@ export function ExtractModelFromDom() {
     model.card[CARD_REGION_ID_ARMS_RIGHT_3] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_3", 0);
     model.card[CARD_REGION_ID_ARMS_RIGHT_4] = GetStatefullData("DATA_OBJID_ARMS_RIGHT_CARD_4", 0);
 
-    if (n_Nitou) {
+    if (isNitou) {
         model.card[CARD_REGION_ID_ARMS_LEFT_1] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_1", 0);
         model.card[CARD_REGION_ID_ARMS_LEFT_2] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_2", 0);
         model.card[CARD_REGION_ID_ARMS_LEFT_3] = GetStatefullData("DATA_OBJID_ARMS_LEFT_CARD_3", 0);
@@ -262,7 +284,10 @@ export function ExtractModelFromDom() {
     // 職業スキル（パッシブ/持続系。A1欄）
     //----------------------------------------------------------------
     if (n_Skill1SW) {
-        const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, n_A_JOB).GetPassiveSkillIdArray();
+        // 残件台帳 B-09 Phase 2b: グローバル n_A_JOB ではなくこの関数自身が読んだ
+        // model.status.jobId を使う（この関数はまだ n_A_JOB を書き込んでいないため、
+        // グローバルを読むとheadless経路で残存値の隠れ入力になる）。
+        const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, model.status.jobId).GetPassiveSkillIdArray();
         // 要素が存在しない項目は null のままにする（legacyNum が undefined を返すケースと
         // 区別するため。「未抽出」は null、「抽出したが値が空文字」は undefined で表す）。
         model.passiveSkill = new Array(passiveSkillIdArray.length).fill(null);
@@ -426,6 +451,8 @@ export function HydrateFromModel(model) {
     // 基本パラメタを設定する
     //----------------------------------------------------------------
 
+    // 残件台帳 B-09 Phase 2b: 職業ID（calc-model.js参照）。
+    set_n_A_JOB(model.status.jobId);
     set_n_A_BaseLV(model.status.baseLv);
     set_n_A_JobLV(model.status.jobLv);
 
@@ -462,6 +489,12 @@ export function HydrateFromModel(model) {
     // 残件台帳 B-09 Step 5: 二刀流でなくてもデフォルト0（素手or盾）で確定させる
     // （equip.js側の実装と同じ既定値。n_Nitouで分岐する必要はない）。
     set_n_A_Weapon2Type(model.weapon.weapon2Type ?? 0);
+    // 残件台帳 B-09 Phase 2b: n_Nitou はモデルの独立フィールドではなく weapon2Type からの
+    // 派生値（deriveNitou参照）。ここで書き込んでおくことで、以降このファイル内・
+    // Core側の両方が「今回のモデルに基づく最新値」を読めるようにする
+    // （旧実装はこの書き込みが無く、DOMイベントで前回更新されたグローバルの残存値に
+    // 依存していた＝headless経路での隠れ入力だった）。
+    set_n_Nitou(deriveNitou(model.weapon.weapon2Type));
     set_n_A_Arrow(parseInt(model.arrow));
 
     for (let idx = 0; idx < EQUIP_REGION_ID_COUNT; idx++) {

@@ -236,3 +236,60 @@ describe('extractModelFromDom() がOBJID_ARMS_TYPE_LEFT（二刀流左手武器�
         expect(captured).toBe(0);
     }, 60000);
 });
+
+describe('model.status.jobId / n_Nitou 導出が残存グローバルに依存しない（残件台帳 B-09 Phase 2b）', () => {
+    if (entries.length === 0) {
+        it('フィクスチャなし（tests/generate-job-corpus.mjs で生成してください）', () => {
+            console.warn('generated-job-corpus.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    const { query } = entries[0];
+
+    it('extractModelFromDom() がOBJID_SELECT_JOB.valueをmodel.status.jobIdへ捕捉する', async () => {
+        const { context, page, errors } = await gotoFixture(query);
+        const captured = await page.evaluate(() => {
+            const domValue = (document as any).calcForm.A_JOB.value;
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+            return { domValue, modelValue: model.status.jobId };
+        });
+        await context.close();
+        expect(errors, `未捕捉例外: ${errors.join('\n')}`).toEqual([]);
+        expect(String(captured.modelValue)).toBe(String(captured.domValue));
+    }, 60000);
+
+    // 修正前は n_A_JOB・n_Nitou のどちらも HydrateFromModel が書き込んでおらず、
+    // ページに残存しているグローバルの値に暗黙依存していた（headless経路での隠れ入力。
+    // 残件台帳 B-09 Phase 0 の分析で確定）。ここでは意図的に「間違った」値を
+    // グローバルへ書き込んでから calcFromModel() を呼び、それでも DOM 駆動側と
+    // 同じ結果になる（＝もう残存値に影響されない）ことを検証する。
+    it('n_A_JOB/n_Nitouのグローバルを意図的に汚しても、calcFromModel()の結果はDOM駆動側と一致する', async () => {
+        const dom = await gotoFixture(query);
+        const domResult = await captureDomDriven(dom.page);
+        await dom.context.close();
+        expect(dom.errors, `DOM駆動側で未捕捉例外: ${dom.errors.join('\n')}`).toEqual([]);
+
+        const headless = await gotoFixture(query);
+        const headlessResult = await headless.page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const roroState = await dynamicImport('/engine/runtime/roro-state.js');
+            const globalState = await dynamicImport('/engine/runtime/global.js');
+            // 実際の値と食い違う値を故意に書き込む（0/falseは非二刀流の職業では
+            // 実際の値と一致してしまいうるため、明確に異なる値を選ぶ）。
+            roroState.set_n_A_JOB(-1);
+            globalState.set_n_Nitou(true);
+
+            const reg = (globalThis as any)._ratorioReg;
+            const model = reg.extractModelFromDom();
+            const battleCalcResultAll = reg.calcFromModel(model);
+            return JSON.parse(JSON.stringify(battleCalcResultAll));
+        });
+        await headless.context.close();
+        expect(headless.errors, `headless側で未捕捉例外: ${headless.errors.join('\n')}`).toEqual([]);
+
+        expect(headlessResult).toEqual(domResult);
+    }, 60000);
+});
