@@ -76,6 +76,7 @@ import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B
 import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from "../monster/mobconfplayer.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import { SaveSystem } from "./savedata-codec.js";
+import { serializeSaveDataUnitsToJSON } from "./CSaveDataUnitJsonCodec.js";
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from "../runtime/util.js";
 import { Click_A1 } from "../ui/BuffJobSpecificSelf.js";
@@ -363,35 +364,7 @@ export class CSaveDataManager {
 			return "";
 		}
 
-		// 全てのセーブデータユニットを効率的に JSON に変換
-		const unitDataArray = this.#saveDataUnitArray.map((unit) => {
-			// Map -> Object に変換（JSON 対応）
-			const parsedMapObj = {};
-			unit.parsedMap.forEach((value, key) => {
-				parsedMapObj[key] = value;
-			});
-
-			const propInfoMapObj = {};
-			unit.propInfoMap.forEach((value, key) => {
-				propInfoMapObj[key] = {
-					name: value.name,
-					bits: value.bits
-				};
-			});
-
-			return {
-				parsedMap: parsedMapObj,
-				propInfoMap: propInfoMapObj
-			};
-		});
-
-		// JSON 文字列に変換して返す（BigInt を文字列に変換）
-		return JSON.stringify(unitDataArray, (key, value) => {
-			if (typeof value === 'bigint') {
-				return value.toString();
-			}
-			return value;
-		});
+		return serializeSaveDataUnitsToJSON(this.#saveDataUnitArray);
 	}
 
 	/**
