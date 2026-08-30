@@ -75,8 +75,8 @@ import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYO
 import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from "../monster/mobconfplayer.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../equip/rndopttype.h.js";
-import { SaveSystem } from "./savedata-codec.js";
 import { serializeSaveDataUnitsToJSON } from "./CSaveDataUnitJsonCodec.js";
+import { buildSaveDataUnitsFromState } from "./savedata-collect.js";
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from "../runtime/util.js";
 import { Click_A1 } from "../ui/BuffJobSpecificSelf.js";
@@ -443,7 +443,7 @@ export class CSaveDataManager {
 			return "";
 		}
 
-		this.parseDataTextForCreateSave(SaveSystem());
+		this.#saveDataUnitArray = buildSaveDataUnitsFromState();
 		this.#collectDataEquipable();
 		this.#collectDataCharaConfDebuff();
 		this.#collectDataShadowEquips();
@@ -464,9 +464,10 @@ export class CSaveDataManager {
 			return "";
 		}
 
-		// TODO: 暫定対処　旧形式の保存処理を呼び出してパースする
-		// パース処理のなかで、メンバ変数の配列を置き換えるため、データ追記はこれ以降に行う
-		this.parseDataTextForCreateSave(SaveSystem())
+		// 状態から直接ユニット配列を組み立てる（B-11 Phase A5-1。旧: SaveSystem()経由の
+		// 変換だったが、メンバ変数の配列を置き換える点は変わらないため、データ追記は
+		// これ以降に行う）。
+		this.#saveDataUnitArray = buildSaveDataUnitsFromState();
 
 		// 次世代版限定データの追加
 		this.#collectDataEquipable();

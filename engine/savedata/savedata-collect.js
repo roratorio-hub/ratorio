@@ -253,6 +253,26 @@ function buildEquipRegionsCostumeUnit() {
     return unit;
 }
 
+/**
+ * 装備位置（アイテム）ユニットの「矢」欄だけを種として作る.
+ * 実データ（11部位の実際の割り当て）は `CSaveDataManager#collectDataEquipable()` が
+ * `#setupRegionUnit()` 経由でこのユニットを見つけて上書きする（B-11 Phase A の対象外）。
+ * ただし `#collectDataEquipable()` 自身のループは矢欄（propNameEqpRgnArrow）を一切触らない
+ * ため、translateFromOldFormat() が unconditional に埋めていた固定値11
+ * （EQUIPABLE の矢defIDと同じ値。装備品としての矢が別途 defID=11 で扱われるための旧設計の
+ * 名残）をここで再現しないと欠落する。この種ユニットは MIGRATED_SAVE_DATA_UNITS の対象外
+ * （#collectDataEquipable() 適用後の最終形は savedata-collect.js 単体のオラクルでは検証できず、
+ * tests/integration/calcx.test.ts の URL往復テストが実質的なオラクルになる）。
+ */
+function buildEquipRegionsItemArrowSeedUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameDataKind, CSaveDataConst.eqpRgnKindItem);
+    unit.setProp(CSaveDataConst.propNameEqpRgnArrow, 11);
+    unit.doCompaction();
+    return unit;
+}
+
 /** 習得スキルユニットを組み立てる（n_A_LearnedSkill をそのまま運ぶ）。 */
 function buildLearnedSkillsUnit() {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS))();
@@ -717,6 +737,13 @@ export function buildSaveDataUnitsFromState() {
     const units = [
         buildVersionUnit(),
         buildCharaUnit(jobId),
+        // EQUIP_REGIONS ×3（アイテム/衣装/シャドウ）は doCompaction() の安定ソートにより、
+        // 同一type内では元の挿入順を保つ。encodeToURL() のバイト列は挿入順に依存するため、
+        // 旧経路（translateFromOldFormat()。アイテム→衣装→シャドウの順で生成）と同じ順で
+        // ここに置く（アイテムのみ本関数が種を作り、衣装は本関数がそのまま作る。シャドウは
+        // #collectDataShadowEquips() が末尾に追加する——両経路とも同じ場所で追加されるため
+        // 順序は自然に一致する）。
+        buildEquipRegionsItemArrowSeedUnit(),
         buildEquipRegionsCostumeUnit(),
         buildLearnedSkillsUnit(),
         buildEquipArrowUnit(),
