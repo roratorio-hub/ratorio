@@ -138,20 +138,15 @@ export async function expandAllSections(page: Page): Promise<void> {
     await page.waitForTimeout(300);
 }
 
-// 本番と意図的に乖離している要素（ローカル側で機能削除済み・仕様差分）。
-// calcx.test.ts のスイート3で運用してきた除外リストをそのまま引き継ぐ。
-const INTENTIONAL_DIVERGENCE_IDS = new Set([
-    'OBJID_CHECK_A3_SKILLSW',
-    'OBJID_SELECT_JOB',
-    'OBJID_DIV_BATTLE_RESULT_TINY',
-]);
+// 本番と意図的に乖離している要素（ローカル側で機能削除済み・仕様差分）を入れる置き場。
+// 2026-08-31（残件台帳 B-29）時点では該当ゼロ——過去に入っていた3件
+// （OBJID_CHECK_A3_SKILLSW / OBJID_SELECT_JOB / OBJID_DIV_BATTLE_RESULT_TINY）は
+// 本番デプロイ完了・機能自体の消滅により全て陳腐化したため撤去した。
+// 将来また本番未デプロイの差分が出た場合の一時的な置き場として空のまま残す。
+const INTENTIONAL_DIVERGENCE_IDS = new Set<string>([]);
 
-// calcForm の name 属性ベースで同じ理由により除外するもの。
-// OBJID_SELECT_JOB は name="A_JOB" の同一要素なので、除外理由（本番/ローカルの
-// 意図的乖離）がそのまま calcForm:A_JOB にも波及する。二重に diff ノイズを出さないための対応。
-const INTENTIONAL_DIVERGENCE_FORM_NAMES = new Set([
-    'A_JOB',
-]);
+// calcForm の name 属性ベースで同じ理由により除外するもの（同じく現在は空）。
+const INTENTIONAL_DIVERGENCE_FORM_NAMES = new Set<string>([]);
 
 /**
  * 全 OBJID_* 要素 + document.calcForm の全 name 付きコントロールの値を
@@ -217,14 +212,124 @@ export function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
             });
         }
 
+        // ── 戦闘結果パネル（BATTLE_RESULT_BASIC / BATTLE_RESULT_DAMAGE / 簡易表示・旧出力欄）───
+        //
+        // 上記の [id^="OBJID_"] 走査は engine/battle/battle-result-html.js が
+        // HtmlCreateElement() で id 無し生成するセル（詠唱時間・ディレイ・与ダメージ・DPS・
+        // 攻撃回数・経験値効率）を一切拾えない。残件台帳 B-29（本番リリース前レビューで発覚。
+        // B-09 Phase 4 の g_VariableCastTimeRate 誤削除がこの死角のため素通りした）。
+        // class を 見出し(HEADER)→攻撃手段名(METHOD_LABEL)→小見出し(PERSEC_LABEL)→行ラベル→
+        // 値(VALUE) の階層として解釈し、`battle:<GRID> > 見出し > 攻撃手段名 > 小見出し > 行ラベル`
+        // をキーに組み立てる（列見出し CENTERING は行ラベルにしない。値が複数列並ぶ行は
+        // calcForm の同名重複と同じ #index 規則で取りこぼさない）。
+
+        // 直下のテキストノードだけを連結する。「最大被ダメージ」行のラベルセルは
+        // <select> を内包しており、textContent をそのまま使うと全属性名の選択肢が
+        // キーへ混入するため。空になる場合のみ textContent へフォールバックする。
+        const directText = (el: Element): string => {
+            let s = '';
+            el.childNodes.forEach((n) => { if (n.nodeType === Node.TEXT_NODE) s += n.textContent ?? ''; });
+            s = s.trim();
+            return s.length > 0 ? s : (el.textContent ?? '').trim().slice(0, 40);
+        };
+
+        const captureBattleResultGrid = (gridId: string): void => {
+            const root = document.getElementById(gridId);
+            if (!root) return;
+            const pathCounts = new Map<string, number>();
+            let section = '';
+            let block = '';
+            let subsection = '';
+            let row = '';
+            Array.from(root.children).forEach((cellEl) => {
+                const cell = cellEl as HTMLElement;
+                const cls = cell.classList;
+                if (cls.contains('CSSCLS_BTLRSLT_HEADER')) {
+                    section = (cell.textContent ?? '').trim();
+                    block = ''; subsection = ''; row = '';
+                    return;
+                }
+                if (cls.contains('CSSCLS_BTLRSLT_METHOD_LABEL') || cls.contains('CSSCLS_BTLRSLT_METHOD_LABEL_APPEND')) {
+                    block = (cell.textContent ?? '').trim();
+                    subsection = ''; row = '';
+                    return;
+                }
+                if (cls.contains('CSSCLS_BTLRSLT_PERSEC_LABEL')) {
+                    subsection = (cell.textContent ?? '').trim();
+                    row = '';
+                    return;
+                }
+                if (cls.contains('CSSCLS_BTLRSLT_CENTERING')) {
+                    return; // 列見出し（行ラベルにしない）
+                }
+                if (cls.contains('CSSCLS_BTLRSLT_VALUE')) {
+                    const path = [section, block, subsection, row].filter((s) => s.length > 0).join(' > ');
+                    const seen = pathCounts.get(path) ?? 0;
+                    pathCounts.set(path, seen + 1);
+                    const key = `battle:${gridId} > ${path}${seen === 0 ? '' : `#${seen}`}`;
+                    snapshot[key] = directText(cell);
+                    return;
+                }
+                row = directText(cell);
+            });
+            // 値そのものが変わらないまま行・列構成だけが変化する回帰（グリッド構造変化）を拾う。
+            snapshot[`battle:${gridId} > cellCount`] = String(root.children.length);
+        };
+        captureBattleResultGrid('BATTLE_RESULT_BASIC');
+        captureBattleResultGrid('BATTLE_RESULT_DAMAGE');
+
+        // 簡易表示（ラベルspan・値spanが交互に並ぶ）。
+        const tiny = document.getElementById('OBJID_DIV_BATTLE_RESULT_TINY');
+        if (tiny) {
+            const children = Array.from(tiny.children);
+            for (let i = 0; i + 1 < children.length; i += 2) {
+                const label = (children[i].textContent ?? '').trim();
+                snapshot[`battle:TINY > ${label}`] = (children[i + 1].textContent ?? '').trim();
+            }
+        }
+
+        // 旧レイアウトの出力欄（OBJID_ を持たない素の id）。ページ上の非OBJID id を
+        // 無差別に拾うと巨大な TomSelect 生成 <select>（数万文字）まで混入するため許可リスト方式。
+        const LEGACY_BATTLE_RESULT_IDS = [
+            'BattleHIT', 'BattlePerfectHIT', 'BattleFLEE',
+            'CRIATKname', 'CRIATK', 'CRInumname', 'CRInum', 'bSUBname', 'bSUB', 'bSUB2name', 'bSUB2',
+            'MinATKnum', 'AveATKnum', 'MaxATKnum', 'AveSecondATK', 'BattleTime',
+            'AtkBaseExp', 'AtkJobExp', 'B_AveAtk', 'B_Ave2Atk',
+            'strID_0', 'strID_1', 'strID_2', 'A_STPOINT', 'A_SobWeaponName',
+        ];
+        for (const id of LEGACY_BATTLE_RESULT_IDS) {
+            const el = document.getElementById(id);
+            if (!el) continue;
+            if (el instanceof HTMLInputElement) {
+                snapshot[`legacy:${id}`] = (el.type === 'checkbox' || el.type === 'radio')
+                    ? (el.checked ? 'true' : 'false') : el.value;
+            } else if (el instanceof HTMLSelectElement || el instanceof HTMLTextAreaElement) {
+                snapshot[`legacy:${id}`] = el.value;
+            } else {
+                snapshot[`legacy:${id}`] = (el.textContent ?? '').trim();
+            }
+        }
+
         return snapshot;
     }, { excludeIds: [...INTENTIONAL_DIVERGENCE_IDS], excludeFormNames: [...INTENTIONAL_DIVERGENCE_FORM_NAMES] });
 }
 
 /**
+ * 初回自動計算による戦闘結果パネルの描画完了を待つ。
+ * BATTLE_RESULT_BASIC は calcx.html に常に空 <div> として置かれており、
+ * StAllCalc の描画（engine/battle/battle-result-html.js）で初めて子要素が入る。
+ * DOM だけを見るので、モジュール配置の違い（本番 roro/m/js・ローカル engine/）に依存しない。
+ */
+export const waitForBattleResultRendered = (page: Page): Promise<unknown> => page.waitForFunction(
+    () => (document.getElementById('BATTLE_RESULT_BASIC')?.childElementCount ?? 0) > 0,
+    { timeout: 30000 },
+);
+
+/**
  * セーブデータ復元完了まで待ち、全セクションを展開してから全 OBJID_* 要素を取得する。
  */
 export async function captureFullObjidSnapshot(page: Page): Promise<Record<string, string>> {
+    await waitForBattleResultRendered(page);
     await page.waitForFunction(
         () => {
             const job = document.getElementById('OBJID_SELECT_JOB') as HTMLSelectElement | null;

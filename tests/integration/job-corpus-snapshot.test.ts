@@ -62,18 +62,28 @@ describe('職業×攻撃手段コーパス 全 OBJID_* スナップショット'
         page.on('pageerror', (e) => pageErrors.push(String(e)));
 
         const out: Record<string, Record<string, string>> = {};
+        const emptyBattlePanelLabels: string[] = [];
         for (const { label, query } of entries) {
             await page.goto(`${baseUrl}/ro4/m/calcx.html?${query}`, {
                 waitUntil: 'networkidle',
                 timeout: 60000,
             });
             out[label] = await captureFullObjidSnapshot(page);
+            // 戦闘結果パネル（battle:）が空振りしていないことを確認する（残件台帳 B-29）。
+            // ここを見ずにゴールデンを再固定すると、空振りしたまま「正しいスナップショット」
+            // として凍結されてしまう（B-16の運用上、以降誰も気付けなくなる）。
+            const battleKeyCount = Object.keys(out[label]).filter((k) => k.startsWith('battle:')).length;
+            if (battleKeyCount <= 10) emptyBattlePanelLabels.push(`${label}(${battleKeyCount}件)`);
         }
 
         await context.close();
 
         expect(pageErrors, `コーパス走査中に未捕捉例外: ${pageErrors.join('\n')}`).toEqual([]);
         expect(Object.keys(out).length).toBe(entries.length);
+        expect(
+            emptyBattlePanelLabels,
+            `戦闘結果パネル（battle:）がほぼ空振りのフィクスチャがあります: ${emptyBattlePanelLabels.join(', ')}`,
+        ).toEqual([]);
 
         const sweepOut = process.env.JOB_CORPUS_SWEEP_OUT;
         if (sweepOut) {
