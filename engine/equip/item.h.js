@@ -612,7 +612,7 @@ export function GetJobRestrictText(eqpflg) {
 		case ITEM_EQPFLG_4TH_SWORDMAN_MERCHANT:
 			return "4次職ソードマン系 4次職マーチャント系";
 		case ITEM_EQPFLG_4TH_BLADE_USER:
-			return "ハイパーノービス 4次職ソードマン系 4次職マジシャン系 4次職アーチャー系 4次職シーフ系 4次職マーチャント系 ソウルアセティック 蜃気楼 不知火";
+			return "ハイパーノービス 4次職ソードマン系 4次職マジシャン系 4次職アーチャー系 4次職シーフ系 4次職マーチャント系 ソウルアセティック 蜃気楼 不知火 アリテア";
 		case ITEM_EQPFLG_4TH_SWORDMAN:
 			return "4次職ソードマン系";
 		case ITEM_EQPFLG_4TH_BOOK_USER:
