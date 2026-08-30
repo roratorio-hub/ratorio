@@ -1,4 +1,22 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+// buildMobUnit() が CMonsterMapAreaComponentManager 経由でモンスターデータファイルを
+// 参照するため、CSaveDataManager.test.ts と同じくモックして実データ読み込みを避ける
+// （実データを読み込むと happy-dom 環境でヒープOOMになる。原因未特定・残件台帳 B-28 参照。
+// import 前にモックを効かせる必要があるため savedata-collect.js の import より前に置く）。
+vi.mock('@engine/monster/monstermap.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return {
+        ...actual,
+        MONSTER_MAP_ID_MAP_ALL: -1,
+        get g_MonsterMapDataArray() { return []; },
+        get g_MonsterMapCategoryDataArray() { return []; },
+    };
+});
+vi.mock('@engine/monster/monster.dat.js', async (importActual) => {
+    const actual = await importActual<any>();
+    return { ...actual, get MonsterObjNew() { return []; } };
+});
+
 // buildSkillBuffSelfUnit() が g_constDataManager の職データ（現在職のパッシブスキル配列）を
 // 参照するため、職データを先にロードしておく（tests/engine/BuffJobSpecificSelf.test.ts と同型）。
 import '@engine/data/mig.job.dat.js';
@@ -27,6 +45,17 @@ import { OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKI
 import {
     g_confDataCustomStatus, g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomSpecStatus,
 } from '@engine/runtime/global.js';
+import {
+    SAVE_DATA_UNIT_TYPE_MOB, SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER, SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2,
+    SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT, SAVE_DATA_UNIT_TYPE_MOB_BUFF, SAVE_DATA_UNIT_TYPE_MOB_DEBUFF,
+    SAVE_DATA_UNIT_TYPE_ATTACK_CONF,
+} from '@engine/savedata/CSaveDataUnit.js';
+import { n_B_TAISEI } from '@engine/monster/mobconfplayer.js';
+import { n_B_KYOUKA } from '@engine/monster/mobconfbuf.js';
+import { n_B_IJYOU } from '@engine/monster/mobconfdebuf.js';
+import { SetMobConfInput } from '@engine/monster/CMobConfInput.js';
+import { MOB_CONF_INPUT_DATA_INDEX_LV, MOB_CONF_INPUT_DATA_INDEX_HP } from '@engine/const/EnumMobConfId.js';
+import { g_attackMethodBridge } from '@engine/battle/CAttackMethodDataBridge.js';
 
 /** テスト対象が読む OBJID_* 要素をまとめて用意する（値は既定値のまま）。 */
 function buildDom() {
@@ -336,6 +365,107 @@ describe('savedata-collect.js', () => {
                 g_confDataCustomSpecStatus[1] = 0;
                 g_confDataCustomSpecStatus[12] = 0;
             }
+        });
+    });
+
+    describe('buildSaveDataUnitsFromState: A4 モンスター・攻撃手段系', () => {
+        it('MOB_CONF_PLAYERは常に空（現行のtranslateFromOldFormat()も固定0を送るため）', () => {
+            const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER);
+            expect(unit).toBeUndefined();
+        });
+
+        it('MOB_CONF_PLAYER2はn_B_TAISEIをそのまま運ぶ', () => {
+            const prev0 = n_B_TAISEI[0];
+            n_B_TAISEI[0] = 5;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameStMaxHP))).toBe(5);
+            } finally {
+                n_B_TAISEI[0] = prev0;
+            }
+        });
+
+        it('MOB_CONF_PLAYER2のStResPlus(pos41)/StMresPlus(pos42)は符号を常に0にする', () => {
+            const prev41 = n_B_TAISEI[41];
+            const prev42 = n_B_TAISEI[42];
+            n_B_TAISEI[41] = -7;
+            n_B_TAISEI[42] = -3;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameStResPlusSign))).toBe(0);
+                expect(Number(unit.getProp(CSaveDataConst.propNameStResPlus))).toBe(7);
+                expect(Number(unit.getProp(CSaveDataConst.propNameStMresPlusSign))).toBe(0);
+                expect(Number(unit.getProp(CSaveDataConst.propNameStMresPlus))).toBe(3);
+            } finally {
+                n_B_TAISEI[41] = prev41;
+                n_B_TAISEI[42] = prev42;
+            }
+        });
+
+        it('MOB_CONF_INPUTはGetMobConfInput()経由の値をmobLv/mobHPへ運ぶ', () => {
+            SetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LV, 99);
+            SetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_HP, 123456);
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameMobLv))).toBe(99);
+                expect(Number(unit.getProp(CSaveDataConst.propNameMobHP))).toBe(123456);
+            } finally {
+                SetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LV, 0);
+                SetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_HP, 0);
+            }
+        });
+
+        it('MOB_BUFFはn_B_KYOUKAを80要素に0埋めして運ぶ', () => {
+            n_B_KYOUKA[0] = 4;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB_BUFF)!;
+                const buffLv = unit.getProp(CSaveDataConst.propNameBuffLv) as bigint[];
+                expect(buffLv.length).toBe(80);
+                expect(Number(buffLv[0])).toBe(4);
+            } finally {
+                n_B_KYOUKA[0] = 0;
+            }
+        });
+
+        it('MOB_DEBUFFはn_B_IJYOUを80要素に0埋めして運ぶ', () => {
+            n_B_IJYOU[0] = 6;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB_DEBUFF)!;
+                const buffLv = unit.getProp(CSaveDataConst.propNameBuffLv) as bigint[];
+                expect(buffLv.length).toBe(80);
+                expect(Number(buffLv[0])).toBe(6);
+            } finally {
+                n_B_IJYOU[0] = 0;
+            }
+        });
+
+        it('ATTACK_CONFはg_attackMethodBridge.getAttackMethodConf()経由で組み立てる', () => {
+            const prevGetter = g_attackMethodBridge.getAttackMethodConf;
+            g_attackMethodBridge.getAttackMethodConf = () => ({
+                GetSkillId: () => 401,
+                GetSourceType: () => 2,
+                GetSkillLv: () => 5,
+                GetOptionValueCount: () => 2,
+                GetOptionValue: (idx: number) => (idx === 0 ? 10 : 20),
+            });
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_ATTACK_CONF)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameAttackSkillID))).toBe(401);
+                expect(Number(unit.getProp(CSaveDataConst.propNameSourceTypeID))).toBe(2);
+                expect(Number(unit.getProp(CSaveDataConst.propNameAttackSkillLv))).toBe(5);
+                const options = unit.getProp(CSaveDataConst.propNameAttackSkillOption) as bigint[];
+                expect(options.length).toBe(5);
+                expect(Number(options[0])).toBe(10);
+                expect(Number(options[1])).toBe(20);
+                expect(Number(options[2])).toBe(0);
+            } finally {
+                g_attackMethodBridge.getAttackMethodConf = prevGetter;
+            }
+        });
+
+        it('MOBユニットは常に出力する（isEmptyUnit()が常にfalse）', () => {
+            const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB);
+            expect(unit).toBeDefined();
         });
     });
 });

@@ -34,6 +34,13 @@ import {
     SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE,
     SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL,
     SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
+    SAVE_DATA_UNIT_TYPE_MOB,
+    SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER,
+    SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2,
+    SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT,
+    SAVE_DATA_UNIT_TYPE_MOB_BUFF,
+    SAVE_DATA_UNIT_TYPE_MOB_DEBUFF,
+    SAVE_DATA_UNIT_TYPE_ATTACK_CONF,
 } from "./CSaveDataUnit.js";
 import { HtmlGetObjectCheckedById, HtmlGetObjectValueByIdAsInteger } from "../runtime/util.js";
 import { GetHigherJobSeriesID, JOB_SERIES_ID_SUPERNOVICE } from "../data/mig.job.h.js";
@@ -51,6 +58,21 @@ import {
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB,
 } from "../skill/calcautospell.js";
+import { CMonsterMapAreaComponentManager } from "../monster/CMonsterMapAreaComponentManager.js";
+import { n_B_TAISEI } from "../monster/mobconfplayer.js";
+import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
+import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
+import { GetMobConfInput } from "../monster/CMobConfInput.js";
+import {
+    MOB_CONF_INPUT_DATA_INDEX_LV, MOB_CONF_INPUT_DATA_INDEX_HP, MOB_CONF_INPUT_DATA_INDEX_STR,
+    MOB_CONF_INPUT_DATA_INDEX_INT, MOB_CONF_INPUT_DATA_INDEX_VIT, MOB_CONF_INPUT_DATA_INDEX_DEX,
+    MOB_CONF_INPUT_DATA_INDEX_AGI, MOB_CONF_INPUT_DATA_INDEX_LUK, MOB_CONF_INPUT_DATA_INDEX_ATK,
+    MOB_CONF_INPUT_DATA_INDEX_MATK, MOB_CONF_INPUT_DATA_INDEX_RANGE, MOB_CONF_INPUT_DATA_INDEX_DEF,
+    MOB_CONF_INPUT_DATA_INDEX_MDEF, MOB_CONF_INPUT_DATA_INDEX_BASE_EXP, MOB_CONF_INPUT_DATA_INDEX_JOB_EXP,
+    MOB_CONF_INPUT_DATA_INDEX_SIZE, MOB_CONF_INPUT_DATA_INDEX_ELEMENT, MOB_CONF_INPUT_DATA_INDEX_RACE,
+    MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE, MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE,
+} from "../const/EnumMobConfId.js";
+import { g_attackMethodBridge } from "../battle/CAttackMethodDataBridge.js";
 
 /** 配列を長さ len に揃える（不足分は0埋め、超過分は切り捨て）。 */
 function padArray(arr, len) {
@@ -128,6 +150,14 @@ export const MIGRATED_SAVE_DATA_UNITS = Object.freeze([
     { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindDefencekAny },
     { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL },
     { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC },
+    // Phase A4
+    { type: SAVE_DATA_UNIT_TYPE_MOB },
+    { type: SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER },
+    { type: SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2 },
+    { type: SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT },
+    { type: SAVE_DATA_UNIT_TYPE_MOB_BUFF },
+    { type: SAVE_DATA_UNIT_TYPE_MOB_DEBUFF },
+    { type: SAVE_DATA_UNIT_TYPE_ATTACK_CONF },
 ]);
 
 /**
@@ -547,6 +577,134 @@ function buildCharaConfSpecBasicUnit() {
     return unit;
 }
 
+/** モンスター基本情報ユニットを組み立てる（現在選択中のカテゴリ/マップ/モンスターIDをそのまま運ぶ）。 */
+function buildMobUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameMonsterMapCategoryID, CMonsterMapAreaComponentManager.GetCategoryId());
+    unit.setProp(CSaveDataConst.propNameMonsterMapID, CMonsterMapAreaComponentManager.GetMapId());
+    unit.setProp(CSaveDataConst.propNameMonsterID, CMonsterMapAreaComponentManager.GetMonsterId());
+    return unit;
+}
+
+/**
+ * 対プレイヤー設定ユニットを組み立てる（旧形式専用・現行は常に空).
+ * translateFromOldFormat() 自身がこのユニットの実装をコメントアウトし固定0を送っている
+ * （このユニットのSAVE側は既に無効化されており、ロード時も直後に MOB_CONF_PLAYER2 の
+ * 適用が n_B_TAISEI を丸ごと fill(0) で上書きするため実質無害）。
+ */
+function buildMobConfPlayerUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * 対プレイヤー設定2ユニットを組み立てる（n_B_TAISEIをそのまま運ぶ。現行の実質的な実体）.
+ * pos41(StResPlus)・pos42(StMresPlus)は現行の translateFromOldFormat() 同様、符号を
+ * 常に0として送る（符号ペアだが常に絶対値のみを渡している——CSaveDataUnitParse.js
+ * 「対プレイヤー設定2」ブロックの `signValueArray[41][1]`/`[42][1]` 単独参照を参照）。
+ */
+function buildMobConfPlayer2Unit() {
+    const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2);
+    const unit = new UnitClass();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    const mig = padArray(n_B_TAISEI, 49);
+    mig[41] = Math.abs(mig[41] ?? 0);
+    mig[42] = Math.abs(mig[42] ?? 0);
+    fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * モンスター手入力欄ユニットを組み立てる.
+ * 特性ステータス系12項目（Pow〜Mres）は現行UIの入力元が無いため常に0
+ * （CSaveDataManager#applyDataToControlsMobConfInput() が参照する objectIDMapMap の
+ * MOB_CONF_INPUT型エントリに、この12項目に対応する MOB_CONF_INPUT_DATA_INDEX_* が
+ * 登録されていない。うち Res/Mres は CMobConfInput.js 自体には格納領域があるが、
+ * セーブデータのマッピングテーブルには繋がっていない）。
+ */
+function buildMobConfInputUnit() {
+    const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT);
+    const unit = new UnitClass();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    const mig = [
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LV) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_HP) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_STR) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_INT) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_VIT) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_DEX) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_AGI) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LUK) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_ATK) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_MATK) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_RANGE) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_DEF) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_MDEF) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_BASE_EXP) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_JOB_EXP) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_SIZE) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_ELEMENT) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_RACE) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE) ?? 0,
+        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE) ?? 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Pow,Sta,Wis,Spl,Con,Crt,PAtk,SMatk,HPlus,CRate,Res,Mres — 入力元なし
+    ];
+    fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
+    unit.doCompaction();
+    return unit;
+}
+
+/** 敵状態強化ユニットを組み立てる（n_B_KYOUKAをそのまま運ぶ）。 */
+function buildMobBuffUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_BUFF))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_B_KYOUKA, 80));
+    unit.doCompaction();
+    return unit;
+}
+
+/** 敵状態異常ユニットを組み立てる（n_B_IJYOUをそのまま運ぶ）。 */
+function buildMobDebuffUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_DEBUFF))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_B_IJYOU, 80));
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * 攻撃手段情報ユニットを組み立てる.
+ * SaveSystem() の [0276-0285] 区画と同じ入力源（g_attackMethodBridge 経由の現在の
+ * CAttackMethodConf）を使う。
+ */
+function buildAttackConfUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_ATTACK_CONF))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    const attackMethodConf = g_attackMethodBridge.getAttackMethodConf?.();
+    const optionArray = [];
+    const optionCount = attackMethodConf ? Math.min(5, attackMethodConf.GetOptionValueCount()) : 0;
+    for (let idx = 0; idx < 5; idx++) {
+        optionArray.push(idx < optionCount ? (attackMethodConf.GetOptionValue(idx) ?? 0) : 0);
+    }
+    unit.setProp(CSaveDataConst.propNameAttackSkillID, attackMethodConf ? attackMethodConf.GetSkillId() : 0);
+    unit.setProp(CSaveDataConst.propNameSourceTypeID, attackMethodConf ? attackMethodConf.GetSourceType() : 0);
+    unit.setProp(CSaveDataConst.propNameAttackSkillLv, attackMethodConf ? attackMethodConf.GetSkillLv() : 0);
+    unit.setProp(CSaveDataConst.propNameAttackSkillOption, optionArray);
+    unit.doCompaction();
+    return unit;
+}
+
 /**
  * 状態からセーブデータユニット配列を直接組み立てる.
  * 空ユニット（`isEmptyUnit()`）は除く——`CSaveDataManager.doCompaction()` が
@@ -580,6 +738,13 @@ export function buildSaveDataUnitsFromState() {
         buildCharaConfSpecializeDefenceAnyUnit(),
         buildCharaConfSkillUnit(),
         buildCharaConfSpecBasicUnit(),
+        buildMobUnit(),
+        buildMobConfPlayerUnit(),
+        buildMobConfPlayer2Unit(),
+        buildMobConfInputUnit(),
+        buildMobBuffUnit(),
+        buildMobDebuffUnit(),
+        buildAttackConfUnit(),
     ];
     return units.filter((unit) => !unit.isEmptyUnit());
 }
