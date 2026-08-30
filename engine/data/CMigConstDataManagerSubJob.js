@@ -1,0 +1,27 @@
+// === AUTO-GENERATED IMPORTS ===
+import { CMigConstDataManagerSubBase } from "./CMigConstDataManagerSubBase.js";
+import { CMigJobData } from "./CMigJobData.js";
+import { MIG_JOB_DATA_INDEX_ID, MIG_JOB_DATA_INDEX_NAME_KANA_ARRAY } from "../const/EnumMigJobDataIndex.js";
+// === END AUTO-GENERATED IMPORTS ===
+/**
+ * 職業データマネージャクラス.
+ */
+export function CMigConstDataManagerSubJob () {
+
+	/**
+	 * 無名イニシャライザ.
+	 */
+	(function () {
+
+		// データを設定
+		this.dataObjectClass = CMigJobData;
+		this.dataIndexId = MIG_JOB_DATA_INDEX_ID;
+		this.dataIndexNameKanaArray = MIG_JOB_DATA_INDEX_NAME_KANA_ARRAY;
+		this.sourceArray = [];
+		this.objectArray = [];
+
+
+	}).call(this);
+
+}
+CMigConstDataManagerSubJob.prototype = new CMigConstDataManagerSubBase();

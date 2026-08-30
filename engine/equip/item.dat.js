@@ -1,0 +1,10913 @@
+
+export const ITEM_ID_SUDE = 0;
+export const ITEM_ID_KNIFE = 1;
+export const ITEM_ID_CUTTER = 2;
+export const ITEM_ID_MAINGAUCHE = 3;
+export const ITEM_ID_DARK = 4;
+export const ITEM_ID_DAGGER = 5;
+export const ITEM_ID_STILETT = 6;
+export const ITEM_ID_ZENY_KNIFE = 7;
+export const ITEM_ID_POISON_KNIFE = 8;
+export const ITEM_ID_GRADIUS = 9;
+export const ITEM_ID_DAMASCUS = 10;
+export const ITEM_ID_GEKKOKEN = 11;
+export const ITEM_ID_FORTUNE_SWORD = 12;
+export const ITEM_ID_ASSASIN_DAGGER = 13;
+export const ITEM_ID_SUCSAMAD = 14;
+export const ITEM_ID_OGRE_TOOTH = 15;
+export const ITEM_ID_SWORD = 16;
+export const ITEM_ID_FALCHION = 17;
+export const ITEM_ID_BLADE = 18;
+export const ITEM_ID_RAPIER = 19;
+export const ITEM_ID_SCIMITAR = 20;
+export const ITEM_ID_KANTOTACHI = 21;
+export const ITEM_ID_SASHIMI_BOCHO = 22;
+export const ITEM_ID_ORCISH_SWORD = 23;
+export const ITEM_ID_JEWEL_SWORD = 24;
+export const ITEM_ID_GAIA_SWORD = 25;
+export const ITEM_ID_SABEL = 26;
+export const ITEM_ID_KAITOKEN = 27;
+export const ITEM_ID_HOLY_AVENGER = 28;
+export const ITEM_ID_TSURUGI = 29;
+export const ITEM_ID_FLAMBERGE = 30;
+export const ITEM_ID_TAIYOKEN = 31;
+export const ITEM_ID_ICE_FALCHION = 32;
+export const ITEM_ID_FIRE_BLAND = 33;
+export const ITEM_ID_CUTLASS = 34;
+export const ITEM_ID_MISTILTEINN = 35;
+export const ITEM_ID_TYRFING = 36;
+export const ITEM_ID_KATANA = 37;
+export const ITEM_ID_SLAYER = 38;
+export const ITEM_ID_BASTARD_SWORD = 39;
+export const ITEM_ID_BROAD_SWORD = 40;
+export const ITEM_ID_TWOHAND_SWORD = 41;
+export const ITEM_ID_CLAYMORE = 42;
+export const ITEM_ID_EXECUTIONER = 43;
+export const ITEM_ID_MURAMASA = 44;
+export const ITEM_ID_KATZBALGER = 45;
+export const ITEM_ID_ZWEIHANDER = 46;
+export const ITEM_ID_MASAMUNE = 47;
+export const ITEM_ID_JAVELIN = 48;
+export const ITEM_ID_SPEAR = 49;
+export const ITEM_ID_PIKE = 50;
+export const ITEM_ID_POLE_AXE = 51;
+export const ITEM_ID_GUNGNIR = 52;
+export const ITEM_ID_GISARM = 53;
+export const ITEM_ID_GRAVE = 54;
+export const ITEM_ID_PARTISAN = 55;
+export const ITEM_ID_TRIDENT = 56;
+export const ITEM_ID_HALBERD = 57;
+export const ITEM_ID_LANCE = 58;
+export const ITEM_ID_ZEPHYROS = 59;
+export const ITEM_ID_CRESCENT_CIZER = 60;
+export const ITEM_ID_AXE = 61;
+export const ITEM_ID_ORCISH_AXE = 62;
+export const ITEM_ID_WAR_AXE = 63;
+export const ITEM_ID_BATTLE_AXE = 64;
+export const ITEM_ID_HAMMER = 65;
+export const ITEM_ID_BASTER = 66;
+export const ITEM_ID_TWOHAND_AXE = 67;
+export const ITEM_ID_BLOOD_AXE = 68;
+export const ITEM_ID_LIGHT_EPSILON = 69;
+export const ITEM_ID_GREAT_AXE = 70;
+export const ITEM_ID_CLUB = 71;
+export const ITEM_ID_MACE = 72;
+export const ITEM_ID_SMASHER = 73;
+export const ITEM_ID_FLAIL = 74;
+export const ITEM_ID_CHAIN = 75;
+export const ITEM_ID_MORNINGSTAR = 76;
+export const ITEM_ID_SPANNER = 77;
+export const ITEM_ID_SWORD_MACE = 78;
+export const ITEM_ID_STUNNER = 79;
+export const ITEM_ID_IRON_DRIVER = 80;
+export const ITEM_ID_GOLDEN_MACE = 81;
+export const ITEM_ID_LONG_MACE = 82;
+export const ITEM_ID_GRANDCROSS = 83;
+export const ITEM_ID_MJOLLNIR = 84;
+export const ITEM_ID_ROD = 85;
+export const ITEM_ID_WAND = 86;
+export const ITEM_ID_STUFF = 87;
+export const ITEM_ID_STUFF_OF_SOUL = 88;
+export const ITEM_ID_GAIKOTSUNO_TUE = 89;
+export const ITEM_ID_ARC_WAND = 90;
+export const ITEM_ID_SHINKANNO_TUE = 91;
+export const ITEM_ID_WIZARD_STUFF = 92;
+export const ITEM_ID_MIGHT_STUFF = 93;
+export const ITEM_ID_BOW = 94;
+export const ITEM_ID_COMPOSIT_BOW = 95;
+export const ITEM_ID_GREAT_BOW = 96;
+export const ITEM_ID_CROSS_BOW = 97;
+export const ITEM_ID_ARBALEST = 98;
+export const ITEM_ID_RENDO = 99;
+export const ITEM_ID_TSUNOYUMI = 100;
+export const ITEM_ID_HUNTER_BOW = 101;
+export const ITEM_ID_TOZOKUNO_YUMI = 102;
+export const ITEM_ID_BALLISTA = 103;
+export const ITEM_ID_RUDRANO_YUMI = 104;
+export const ITEM_ID_JUR = 105;
+export const ITEM_ID_HAYATENO_KATAR = 106;
+export const ITEM_ID_TOGATTEIRU_IBARANO_KATAR = 107;
+export const ITEM_ID_BAKUENNO_KATAR = 108;
+export const ITEM_ID_TSUMETAI_TSURARANO_KATAR = 109;
+export const ITEM_ID_KATAR = 110;
+export const ITEM_ID_DEATH_KNIFE = 111;
+export const ITEM_ID_JAMADHAR = 112;
+export const ITEM_ID_URAGIRIMONO = 113;
+export const ITEM_ID_BOOK = 114;
+export const ITEM_ID_KAWAITERU_KAZENO_SHO = 115;
+export const ITEM_ID_AREKURU_NAMINO_SHO = 116;
+export const ITEM_ID_MOERU_TAIYONO_SHO = 117;
+export const ITEM_ID_SAKETA_DAICHINO_SHO = 118;
+export const ITEM_ID_BIBLE = 119;
+export const ITEM_ID_TABLET = 120;
+export const ITEM_ID_SHOZYONO_NIKKI = 121;
+export const ITEM_ID_MOKUSHIROKU = 122;
+export const ITEM_ID_BUGNUG = 123;
+export const ITEM_ID_KNUCKLE_DUSTER = 124;
+export const ITEM_ID_HORA = 125;
+export const ITEM_ID_CLAW = 126;
+export const ITEM_ID_FINGER = 127;
+export const ITEM_ID_FIST = 128;
+export const ITEM_ID_VIOLIN = 129;
+export const ITEM_ID_MANDOLIN = 130;
+export const ITEM_ID_LUTE = 131;
+export const ITEM_ID_HARP = 132;
+export const ITEM_ID_GOMUNGO = 133;
+export const ITEM_ID_GUITAR = 134;
+export const ITEM_ID_ROPE = 135;
+export const ITEM_ID_LINE = 136;
+export const ITEM_ID_WIRE = 137;
+export const ITEM_ID_TAIL = 138;
+export const ITEM_ID_WHIP = 139;
+export const ITEM_ID_RANTE = 140;
+export const ITEM_ID_SHUMETI = 141;
+export const ITEM_ID_NOEQUIP_HEAD_TOP = 142;
+export const ITEM_ID_ARE = 143;
+export const ITEM_ID_144 = 144;
+export const ITEM_ID_145 = 145;
+export const ITEM_ID_146 = 146;
+export const ITEM_ID_147 = 147;
+export const ITEM_ID_148 = 148;
+export const ITEM_ID_149 = 149;
+export const ITEM_ID_150 = 150;
+export const ITEM_ID_151 = 151;
+export const ITEM_ID_152 = 152;
+export const ITEM_ID_153 = 153;
+export const ITEM_ID_154 = 154;
+export const ITEM_ID_155 = 155;
+export const ITEM_ID_156 = 156;
+export const ITEM_ID_157 = 157;
+export const ITEM_ID_158 = 158;
+export const ITEM_ID_159 = 159;
+export const ITEM_ID_160 = 160;
+export const ITEM_ID_161 = 161;
+export const ITEM_ID_162 = 162;
+export const ITEM_ID_163 = 163;
+export const ITEM_ID_164 = 164;
+export const ITEM_ID_165 = 165;
+export const ITEM_ID_166 = 166;
+export const ITEM_ID_167 = 167;
+export const ITEM_ID_168 = 168;
+export const ITEM_ID_169 = 169;
+export const ITEM_ID_170 = 170;
+export const ITEM_ID_171 = 171;
+export const ITEM_ID_172 = 172;
+export const ITEM_ID_173 = 173;
+export const ITEM_ID_174 = 174;
+export const ITEM_ID_175 = 175;
+export const ITEM_ID_176 = 176;
+export const ITEM_ID_177 = 177;
+export const ITEM_ID_178 = 178;
+export const ITEM_ID_HAT = 179;
+export const ITEM_ID_180 = 180;
+export const ITEM_ID_181 = 181;
+export const ITEM_ID_182 = 182;
+export const ITEM_ID_183 = 183;
+export const ITEM_ID_184 = 184;
+export const ITEM_ID_185 = 185;
+export const ITEM_ID_186 = 186;
+export const ITEM_ID_187 = 187;
+export const ITEM_ID_188 = 188;
+export const ITEM_ID_189 = 189;
+export const ITEM_ID_190 = 190;
+export const ITEM_ID_191 = 191;
+export const ITEM_ID_192 = 192;
+export const ITEM_ID_193 = 193;
+export const ITEM_ID_194 = 194;
+export const ITEM_ID_195 = 195;
+export const ITEM_ID_196 = 196;
+export const ITEM_ID_197 = 197;
+export const ITEM_ID_198 = 198;
+export const ITEM_ID_199 = 199;
+export const ITEM_ID_200 = 200;
+export const ITEM_ID_201 = 201;
+export const ITEM_ID_202 = 202;
+export const ITEM_ID_203 = 203;
+export const ITEM_ID_204 = 204;
+export const ITEM_ID_205 = 205;
+export const ITEM_ID_206 = 206;
+export const ITEM_ID_207 = 207;
+export const ITEM_ID_208 = 208;
+export const ITEM_ID_209 = 209;
+export const ITEM_ID_210 = 210;
+export const ITEM_ID_211 = 211;
+export const ITEM_ID_212 = 212;
+export const ITEM_ID_213 = 213;
+export const ITEM_ID_214 = 214;
+export const ITEM_ID_215 = 215;
+export const ITEM_ID_216 = 216;
+export const ITEM_ID_217 = 217;
+export const ITEM_ID_218 = 218;
+export const ITEM_ID_219 = 219;
+export const ITEM_ID_220 = 220;
+export const ITEM_ID_221 = 221;
+export const ITEM_ID_222 = 222;
+export const ITEM_ID_223 = 223;
+export const ITEM_ID_224 = 224;
+export const ITEM_ID_225 = 225;
+export const ITEM_ID_226 = 226;
+export const ITEM_ID_227 = 227;
+export const ITEM_ID_228 = 228;
+export const ITEM_ID_229 = 229;
+export const ITEM_ID_230 = 230;
+export const ITEM_ID_231 = 231;
+export const ITEM_ID_232 = 232;
+export const ITEM_ID_233 = 233;
+export const ITEM_ID_234 = 234;
+export const ITEM_ID_235 = 235;
+export const ITEM_ID_236 = 236;
+export const ITEM_ID_237 = 237;
+export const ITEM_ID_238 = 238;
+export const ITEM_ID_239 = 239;
+export const ITEM_ID_240 = 240;
+export const ITEM_ID_241 = 241;
+export const ITEM_ID_242 = 242;
+export const ITEM_ID_NOEQUIP_HEAD_MID = 243;
+export const ITEM_ID_GLASS = 244;
+export const ITEM_ID_SUNGLASS = 245;
+export const ITEM_ID_246 = 246;
+export const ITEM_ID_247 = 247;
+export const ITEM_ID_248 = 248;
+export const ITEM_ID_249 = 249;
+export const ITEM_ID_250 = 250;
+export const ITEM_ID_251 = 251;
+export const ITEM_ID_252 = 252;
+export const ITEM_ID_253 = 253;
+export const ITEM_ID_254 = 254;
+export const ITEM_ID_255 = 255;
+export const ITEM_ID_256 = 256;
+export const ITEM_ID_257 = 257;
+export const ITEM_ID_258 = 258;
+export const ITEM_ID_259 = 259;
+export const ITEM_ID_260 = 260;
+export const ITEM_ID_261 = 261;
+export const ITEM_ID_262 = 262;
+export const ITEM_ID_263 = 263;
+export const ITEM_ID_264 = 264;
+export const ITEM_ID_265 = 265;
+export const ITEM_ID_OPERA_MASK = 266;
+export const ITEM_ID_267 = 267;
+export const ITEM_ID_NOEQUIP_HEAD_UNDER = 268;
+export const ITEM_ID_269 = 269;
+export const ITEM_ID_270 = 270;
+export const ITEM_ID_PIPE_TABACCO = 271;
+export const ITEM_ID_272 = 272;
+export const ITEM_ID_273 = 273;
+export const ITEM_ID_274 = 274;
+export const ITEM_ID_275 = 275;
+export const ITEM_ID_276 = 276;
+export const ITEM_ID_277 = 277;
+export const ITEM_ID_278 = 278;
+export const ITEM_ID_NOEQUIP_BODY = 279;
+export const ITEM_ID_280 = 280;
+export const ITEM_ID_COTTON_SHIRTS = 281;
+export const ITEM_ID_282 = 282;
+export const ITEM_ID_283 = 283;
+export const ITEM_ID_284 = 284;
+export const ITEM_ID_285 = 285;
+export const ITEM_ID_286 = 286;
+export const ITEM_ID_287 = 287;
+export const ITEM_ID_288 = 288;
+export const ITEM_ID_289 = 289;
+export const ITEM_ID_290 = 290;
+export const ITEM_ID_291 = 291;
+export const ITEM_ID_292 = 292;
+export const ITEM_ID_293 = 293;
+export const ITEM_ID_294 = 294;
+export const ITEM_ID_295 = 295;
+export const ITEM_ID_296 = 296;
+export const ITEM_ID_297 = 297;
+export const ITEM_ID_298 = 298;
+export const ITEM_ID_299 = 299;
+export const ITEM_ID_300 = 300;
+export const ITEM_ID_301 = 301;
+export const ITEM_ID_302 = 302;
+export const ITEM_ID_303 = 303;
+export const ITEM_ID_304 = 304;
+export const ITEM_ID_NOEQUIP_SHIELD = 305;
+export const ITEM_ID_GUARD = 306;
+export const ITEM_ID_307 = 307;
+export const ITEM_ID_308 = 308;
+export const ITEM_ID_309 = 309;
+export const ITEM_ID_310 = 310;
+export const ITEM_ID_NOEQUIP_SHOULDER = 311;
+export const ITEM_ID_HOOD = 312;
+export const ITEM_ID_313 = 313;
+export const ITEM_ID_314 = 314;
+export const ITEM_ID_315 = 315;
+export const ITEM_ID_316 = 316;
+export const ITEM_ID_NOEQUIP_SHOES = 317;
+export const ITEM_ID_318 = 318;
+export const ITEM_ID_319 = 319;
+export const ITEM_ID_SANDAL = 320;
+export const ITEM_ID_321 = 321;
+export const ITEM_ID_322 = 322;
+export const ITEM_ID_323 = 323;
+export const ITEM_ID_324 = 324;
+export const ITEM_ID_325 = 325;
+export const ITEM_ID_NOEQUIP_ACCESSORY = 326;
+export const ITEM_ID_327 = 327;
+export const ITEM_ID_328 = 328;
+export const ITEM_ID_329 = 329;
+export const ITEM_ID_330 = 330;
+export const ITEM_ID_331 = 331;
+export const ITEM_ID_332 = 332;
+export const ITEM_ID_333 = 333;
+export const ITEM_ID_334 = 334;
+export const ITEM_ID_335 = 335;
+export const ITEM_ID_336 = 336;
+export const ITEM_ID_337 = 337;
+export const ITEM_ID_338 = 338;
+export const ITEM_ID_BELT = 339;
+export const ITEM_ID_340 = 340;
+export const ITEM_ID_341 = 341;
+export const ITEM_ID_342 = 342;
+export const ITEM_ID_343 = 343;
+export const ITEM_ID_344 = 344;
+export const ITEM_ID_345 = 345;
+export const ITEM_ID_346 = 346;
+export const ITEM_ID_347 = 347;
+export const ITEM_ID_348 = 348;
+export const ITEM_ID_349 = 349;
+export const ITEM_ID_350 = 350;
+export const ITEM_ID_351 = 351;
+export const ITEM_ID_352 = 352;
+export const ITEM_ID_353 = 353;
+export const ITEM_ID_354 = 354;
+export const ITEM_ID_355 = 355;
+export const ITEM_ID_356 = 356;
+export const ITEM_ID_357 = 357;
+export const ITEM_ID_358 = 358;
+export const ITEM_ID_359 = 359;
+export const ITEM_ID_360 = 360;
+export const ITEM_ID_361 = 361;
+export const ITEM_ID_362 = 362;
+export const ITEM_ID_363 = 363;
+export const ITEM_ID_364 = 364;
+export const ITEM_ID_365 = 365;
+export const ITEM_ID_366 = 366;
+export const ITEM_ID_367 = 367;
+export const ITEM_ID_368 = 368;
+export const ITEM_ID_369 = 369;
+export const ITEM_ID_370 = 370;
+export const ITEM_ID_371 = 371;
+export const ITEM_ID_372 = 372;
+export const ITEM_ID_373 = 373;
+export const ITEM_ID_374 = 374;
+export const ITEM_ID_375 = 375;
+export const ITEM_ID_376 = 376;
+export const ITEM_ID_377 = 377;
+export const ITEM_ID_378 = 378;
+export const ITEM_ID_379 = 379;
+export const ITEM_ID_380 = 380;
+export const ITEM_ID_381 = 381;
+export const ITEM_ID_382 = 382;
+export const ITEM_ID_383 = 383;
+export const ITEM_ID_384 = 384;
+export const ITEM_ID_385 = 385;
+export const ITEM_ID_386 = 386;
+export const ITEM_ID_387 = 387;
+export const ITEM_ID_388 = 388;
+export const ITEM_ID_389 = 389;
+export const ITEM_ID_390 = 390;
+export const ITEM_ID_391 = 391;
+export const ITEM_ID_392 = 392;
+export const ITEM_ID_393 = 393;
+export const ITEM_ID_394 = 394;
+export const ITEM_ID_395 = 395;
+export const ITEM_ID_396 = 396;
+export const ITEM_ID_397 = 397;
+export const ITEM_ID_398 = 398;
+export const ITEM_ID_NEIGAN = 399;
+export const ITEM_ID_400 = 400;
+export const ITEM_ID_401 = 401;
+export const ITEM_ID_EXCALIBUR = 402;
+export const ITEM_ID_403 = 403;
+export const ITEM_ID_404 = 404;
+export const ITEM_ID_405 = 405;
+export const ITEM_ID_406 = 406;
+export const ITEM_ID_407 = 407;
+export const ITEM_ID_GERADRIA = 408;
+export const ITEM_ID_409 = 409;
+export const ITEM_ID_410 = 410;
+export const ITEM_ID_411 = 411;
+export const ITEM_ID_412 = 412;
+export const ITEM_ID_413 = 413;
+export const ITEM_ID_414 = 414;
+export const ITEM_ID_CLEAVER = 415;
+export const ITEM_ID_416 = 416;
+export const ITEM_ID_417 = 417;
+export const ITEM_ID_418 = 418;
+export const ITEM_ID_419 = 419;
+export const ITEM_ID_420 = 420;
+export const ITEM_ID_421 = 421;
+export const ITEM_ID_422 = 422;
+export const ITEM_ID_423 = 423;
+export const ITEM_ID_424 = 424;
+export const ITEM_ID_425 = 425;
+export const ITEM_ID_426 = 426;
+export const ITEM_ID_427 = 427;
+export const ITEM_ID_428 = 428;
+export const ITEM_ID_429 = 429;
+export const ITEM_ID_430 = 430;
+export const ITEM_ID_431 = 431;
+export const ITEM_ID_432 = 432;
+export const ITEM_ID_433 = 433;
+export const ITEM_ID_434 = 434;
+export const ITEM_ID_435 = 435;
+export const ITEM_ID_SURVIVAL_MANT = 436;
+export const ITEM_ID_437 = 437;
+export const ITEM_ID_438 = 438;
+export const ITEM_ID_439 = 439;
+export const ITEM_ID_440 = 440;
+export const ITEM_ID_441 = 441;
+export const ITEM_ID_TOZOKUNO_YUBIWA = 442;
+export const ITEM_ID_443 = 443;
+export const ITEM_ID_444 = 444;
+export const ITEM_ID_445 = 445;
+export const ITEM_ID_446 = 446;
+export const ITEM_ID_447 = 447;
+export const ITEM_ID_448 = 448;
+export const ITEM_ID_449 = 449;
+export const ITEM_ID_450 = 450;
+export const ITEM_ID_451 = 451;
+export const ITEM_ID_452 = 452;
+export const ITEM_ID_453 = 453;
+export const ITEM_ID_454 = 454;
+export const ITEM_ID_455 = 455;
+export const ITEM_ID_456 = 456;
+export const ITEM_ID_457 = 457;
+export const ITEM_ID_458 = 458;
+export const ITEM_ID_459 = 459;
+export const ITEM_ID_460 = 460;
+export const ITEM_ID_461 = 461;
+export const ITEM_ID_462 = 462;
+export const ITEM_ID_463 = 463;
+export const ITEM_ID_464 = 464;
+export const ITEM_ID_465 = 465;
+export const ITEM_ID_466 = 466;
+export const ITEM_ID_467 = 467;
+export const ITEM_ID_468 = 468;
+export const ITEM_ID_469 = 469;
+export const ITEM_ID_470 = 470;
+export const ITEM_ID_471 = 471;
+export const ITEM_ID_472 = 472;
+export const ITEM_ID_473 = 473;
+export const ITEM_ID_SURVIVAL_ROD_DEX_S0 = 474;
+export const ITEM_ID_SURVIVAL_ROD_DEX_S1 = 475;
+export const ITEM_ID_SURVIVAL_ROD_INT_S0 = 476;
+export const ITEM_ID_SURVIVAL_ROD_INT_S1 = 477;
+export const ITEM_ID_478 = 478;
+export const ITEM_ID_479 = 479;
+export const ITEM_ID_480 = 480;
+export const ITEM_ID_481 = 481;
+export const ITEM_ID_482 = 482;
+export const ITEM_ID_BLOODY_ROAR = 483;
+export const ITEM_ID_484 = 484;
+export const ITEM_ID_485 = 485;
+export const ITEM_ID_486 = 486;
+export const ITEM_ID_487 = 487;
+export const ITEM_ID_488 = 488;
+export const ITEM_ID_489 = 489;
+export const ITEM_ID_490 = 490;
+export const ITEM_ID_491 = 491;
+export const ITEM_ID_492 = 492;
+export const ITEM_ID_493 = 493;
+export const ITEM_ID_494 = 494;
+export const ITEM_ID_495 = 495;
+export const ITEM_ID_496 = 496;
+export const ITEM_ID_497 = 497;
+export const ITEM_ID_498 = 498;
+export const ITEM_ID_499 = 499;
+export const ITEM_ID_500 = 500;
+export const ITEM_ID_501 = 501;
+export const ITEM_ID_502 = 502;
+export const ITEM_ID_503 = 503;
+export const ITEM_ID_504 = 504;
+export const ITEM_ID_505 = 505;
+export const ITEM_ID_506 = 506;
+export const ITEM_ID_507 = 507;
+export const ITEM_ID_508 = 508;
+export const ITEM_ID_509 = 509;
+export const ITEM_ID_510 = 510;
+export const ITEM_ID_511 = 511;
+export const ITEM_ID_512 = 512;
+export const ITEM_ID_513 = 513;
+export const ITEM_ID_514 = 514;
+export const ITEM_ID_515 = 515;
+export const ITEM_ID_516 = 516;
+export const ITEM_ID_517 = 517;
+export const ITEM_ID_518 = 518;
+export const ITEM_ID_519 = 519;
+export const ITEM_ID_520 = 520;
+export const ITEM_ID_RUNA_BOW = 521;
+export const ITEM_ID_522 = 522;
+export const ITEM_ID_523 = 523;
+export const ITEM_ID_524 = 524;
+export const ITEM_ID_525 = 525;
+export const ITEM_ID_526 = 526;
+export const ITEM_ID_527 = 527;
+export const ITEM_ID_528 = 528;
+export const ITEM_ID_529 = 529;
+export const ITEM_ID_530 = 530;
+export const ITEM_ID_531 = 531;
+export const ITEM_ID_532 = 532;
+export const ITEM_ID_533 = 533;
+export const ITEM_ID_VALKYRIE_ARMER = 534;
+export const ITEM_ID_VALKYRIE_MANT = 535;
+export const ITEM_ID_VALKIRIE_SHOES = 536;
+export const ITEM_ID_537 = 537;
+export const ITEM_ID_538 = 538;
+export const ITEM_ID_539 = 539;
+export const ITEM_ID_540 = 540;
+export const ITEM_ID_541 = 541;
+export const ITEM_ID_542 = 542;
+export const ITEM_ID_543 = 543;
+export const ITEM_ID_544 = 544;
+export const ITEM_ID_FUMA_SHURIKEN_DAISHARIN = 545;
+export const ITEM_ID_546 = 546;
+export const ITEM_ID_547 = 547;
+export const ITEM_ID_SIX_SHOOTER = 548;
+export const ITEM_ID_549 = 549;
+export const ITEM_ID_550 = 550;
+export const ITEM_ID_551 = 551;
+export const ITEM_ID_BRANCH = 552;
+export const ITEM_ID_553 = 553;
+export const ITEM_ID_554 = 554;
+export const ITEM_ID_ROLLING_STONE = 555;
+export const ITEM_ID_556 = 556;
+export const ITEM_ID_557 = 557;
+export const ITEM_ID_DRIFTER = 558;
+export const ITEM_ID_559 = 559;
+export const ITEM_ID_DESTROYER = 560;
+export const ITEM_ID_561 = 561;
+export const ITEM_ID_562 = 562;
+export const ITEM_ID_563 = 563;
+export const ITEM_ID_564 = 564;
+export const ITEM_ID_565 = 565;
+export const ITEM_ID_566 = 566;
+export const ITEM_ID_567 = 567;
+export const ITEM_ID_568 = 568;
+export const ITEM_ID_569 = 569;
+export const ITEM_ID_HIYOKOCHAN = 570;
+export const ITEM_ID_571 = 571;
+export const ITEM_ID_572 = 572;
+export const ITEM_ID_573 = 573;
+export const ITEM_ID_574 = 574;
+export const ITEM_ID_575 = 575;
+export const ITEM_ID_576 = 576;
+export const ITEM_ID_577 = 577;
+export const ITEM_ID_578 = 578;
+export const ITEM_ID_579 = 579;
+export const ITEM_ID_580 = 580;
+export const ITEM_ID_581 = 581;
+export const ITEM_ID_582 = 582;
+export const ITEM_ID_583 = 583;
+export const ITEM_ID_584 = 584;
+export const ITEM_ID_585 = 585;
+export const ITEM_ID_586 = 586;
+export const ITEM_ID_587 = 587;
+export const ITEM_ID_588 = 588;
+export const ITEM_ID_589 = 589;
+export const ITEM_ID_590 = 590;
+export const ITEM_ID_591 = 591;
+export const ITEM_ID_592 = 592;
+export const ITEM_ID_593 = 593;
+export const ITEM_ID_594 = 594;
+export const ITEM_ID_595 = 595;
+export const ITEM_ID_596 = 596;
+export const ITEM_ID_597 = 597;
+export const ITEM_ID_598 = 598;
+export const ITEM_ID_599 = 599;
+export const ITEM_ID_600 = 600;
+export const ITEM_ID_601 = 601;
+export const ITEM_ID_602 = 602;
+export const ITEM_ID_603 = 603;
+export const ITEM_ID_604 = 604;
+export const ITEM_ID_605 = 605;
+export const ITEM_ID_606 = 606;
+export const ITEM_ID_607 = 607;
+export const ITEM_ID_608 = 608;
+export const ITEM_ID_609 = 609;
+export const ITEM_ID_610 = 610;
+export const ITEM_ID_611 = 611;
+export const ITEM_ID_612 = 612;
+export const ITEM_ID_613 = 613;
+export const ITEM_ID_614 = 614;
+export const ITEM_ID_615 = 615;
+export const ITEM_ID_LONG_HORN = 616;
+export const ITEM_ID_BATTLE_FOOK = 617;
+export const ITEM_ID_HUNTING_SPEAR = 618;
+export const ITEM_ID_619 = 619;
+export const ITEM_ID_620 = 620;
+export const ITEM_ID_DOOM_SLAYER = 621;
+export const ITEM_ID_622 = 622;
+export const ITEM_ID_623 = 623;
+export const ITEM_ID_624 = 624;
+export const ITEM_ID_HORGRENNO_SEIREN_HUMMER = 625;
+export const ITEM_ID_MOERU_YUMI = 626;
+export const ITEM_ID_HYOTENNO_YUMI = 627;
+export const ITEM_ID_DAICHINO_YUMI = 628;
+export const ITEM_ID_HAYATENO_YUMI = 629;
+export const ITEM_ID_ORC_ARCHER_YUMI = 630;
+export const ITEM_ID_631 = 631;
+export const ITEM_ID_632 = 632;
+export const ITEM_ID_633 = 633;
+export const ITEM_ID_634 = 634;
+export const ITEM_ID_635 = 635;
+export const ITEM_ID_636 = 636;
+export const ITEM_ID_637 = 637;
+export const ITEM_ID_638 = 638;
+export const ITEM_ID_639 = 639;
+export const ITEM_ID_640 = 640;
+export const ITEM_ID_SHINIGAMINO_MEIBO = 641;
+export const ITEM_ID_STUFF_OF_CURSING = 642;
+export const ITEM_ID_643 = 643;
+export const ITEM_ID_644 = 644;
+export const ITEM_ID_645 = 645;
+export const ITEM_ID_646 = 646;
+export const ITEM_ID_647 = 647;
+export const ITEM_ID_648 = 648;
+export const ITEM_ID_649 = 649;
+export const ITEM_ID_650 = 650;
+export const ITEM_ID_651 = 651;
+export const ITEM_ID_652 = 652;
+export const ITEM_ID_653 = 653;
+export const ITEM_ID_KOYANO_YOZINBO = 654;
+export const ITEM_ID_LONG_BARREL = 655;
+export const ITEM_ID_JUNGLE_CARBIN = 656;
+export const ITEM_ID_LEVER_ACTION_RIFLE = 657;
+export const ITEM_ID_GATE_KEEPER_DD = 658;
+export const ITEM_ID_659 = 659;
+export const ITEM_ID_660 = 660;
+export const ITEM_ID_661 = 661;
+export const ITEM_ID_662 = 662;
+export const ITEM_ID_663 = 663;
+export const ITEM_ID_664 = 664;
+export const ITEM_ID_665 = 665;
+export const ITEM_ID_666 = 666;
+export const ITEM_ID_667 = 667;
+export const ITEM_ID_668 = 668;
+export const ITEM_ID_669 = 669;
+export const ITEM_ID_670 = 670;
+export const ITEM_ID_671 = 671;
+export const ITEM_ID_672 = 672;
+export const ITEM_ID_673 = 673;
+export const ITEM_ID_674 = 674;
+export const ITEM_ID_675 = 675;
+export const ITEM_ID_SHISHINO_KAMEN = 676;
+export const ITEM_ID_677 = 677;
+export const ITEM_ID_ROUJINNO_KAMEN = 678;
+export const ITEM_ID_679 = 679;
+export const ITEM_ID_680 = 680;
+export const ITEM_ID_681 = 681;
+export const ITEM_ID_682 = 682;
+export const ITEM_ID_683 = 683;
+export const ITEM_ID_684 = 684;
+export const ITEM_ID_685 = 685;
+export const ITEM_ID_686 = 686;
+export const ITEM_ID_687 = 687;
+export const ITEM_ID_688 = 688;
+export const ITEM_ID_689 = 689;
+export const ITEM_ID_690 = 690;
+export const ITEM_ID_691 = 691;
+export const ITEM_ID_692 = 692;
+export const ITEM_ID_693 = 693;
+export const ITEM_ID_694 = 694;
+export const ITEM_ID_695 = 695;
+export const ITEM_ID_696 = 696;
+export const ITEM_ID_697 = 697;
+export const ITEM_ID_698 = 698;
+export const ITEM_ID_699 = 699;
+export const ITEM_ID_700 = 700;
+export const ITEM_ID_701 = 701;
+export const ITEM_ID_702 = 702;
+export const ITEM_ID_703 = 703;
+export const ITEM_ID_704 = 704;
+export const ITEM_ID_705 = 705;
+export const ITEM_ID_706 = 706;
+export const ITEM_ID_707 = 707;
+export const ITEM_ID_708 = 708;
+export const ITEM_ID_709 = 709;
+export const ITEM_ID_710 = 710;
+export const ITEM_ID_711 = 711;
+export const ITEM_ID_712 = 712;
+export const ITEM_ID_713 = 713;
+export const ITEM_ID_714 = 714;
+export const ITEM_ID_VARIANT_SHOES = 715;
+export const ITEM_ID_716 = 716;
+export const ITEM_ID_717 = 717;
+export const ITEM_ID_718 = 718;
+export const ITEM_ID_719 = 719;
+export const ITEM_ID_720 = 720;
+export const ITEM_ID_721 = 721;
+export const ITEM_ID_722 = 722;
+export const ITEM_ID_723 = 723;
+export const ITEM_ID_724 = 724;
+export const ITEM_ID_CHINURARETA_TEKKYU = 725;
+export const ITEM_ID_726 = 726;
+export const ITEM_ID_727 = 727;
+export const ITEM_ID_728 = 728;
+export const ITEM_ID_729 = 729;
+export const ITEM_ID_730 = 730;
+export const ITEM_ID_731 = 731;
+export const ITEM_ID_732 = 732;
+export const ITEM_ID_733 = 733;
+export const ITEM_ID_734 = 734;
+export const ITEM_ID_735 = 735;
+export const ITEM_ID_NOEQUIP_SET = 736;
+export const ITEM_ID_737 = 737;
+export const ITEM_ID_738 = 738;
+export const ITEM_ID_739 = 739;
+export const ITEM_ID_740 = 740;
+export const ITEM_ID_741 = 741;
+export const ITEM_SET_ID_ODINNO_SHUKUFUKU_MAGNI_SET = 742;
+export const ITEM_ID_743 = 743;
+export const ITEM_ID_744 = 744;
+export const ITEM_ID_745 = 745;
+export const ITEM_ID_746 = 746;
+export const ITEM_ID_747 = 747;
+export const ITEM_ID_748 = 748;
+export const ITEM_ID_749 = 749;
+export const ITEM_SET_ID_SPIRITUAL_RING_AND_STUFF = 750;
+export const ITEM_ID_751 = 751;
+export const ITEM_ID_752 = 752;
+export const ITEM_ID_753 = 753;
+export const ITEM_ID_754 = 754;
+export const ITEM_ID_755 = 755;
+export const ITEM_ID_756 = 756;
+export const ITEM_ID_757 = 757;
+export const ITEM_ID_758 = 758;
+export const ITEM_ID_759 = 759;
+export const ITEM_ID_760 = 760;
+export const ITEM_ID_761 = 761;
+export const ITEM_ID_BRUNHILD = 762;
+export const ITEM_ID_763 = 763;
+export const ITEM_ID_ODINNO_SHUKUFUKU_FRIGG_SET = 764;
+export const ITEM_ID_765 = 765;
+export const ITEM_ID_766 = 766;
+export const ITEM_ID_767 = 767;
+export const ITEM_ID_768 = 768;
+export const ITEM_ID_QUILL_PENRING = 769;
+export const ITEM_SET_ID_QUILL_PENRING_SMALL_BOOK_PENDANT = 770;
+export const ITEM_ID_771 = 771;
+export const ITEM_ID_772 = 772;
+export const ITEM_ID_773 = 773;
+export const ITEM_ID_774 = 774;
+export const ITEM_ID_775 = 775;
+export const ITEM_ID_776 = 776;
+export const ITEM_ID_777 = 777;
+export const ITEM_ID_778 = 778;
+export const ITEM_ID_779 = 779;
+export const ITEM_ID_780 = 780;
+export const ITEM_ID_781 = 781;
+export const ITEM_ID_782 = 782;
+export const ITEM_ID_783 = 783;
+export const ITEM_ID_784 = 784;
+export const ITEM_ID_785 = 785;
+export const ITEM_ID_786 = 786;
+export const ITEM_ID_787 = 787;
+export const ITEM_ID_788 = 788;
+export const ITEM_ID_789 = 789;
+export const ITEM_ID_790 = 790;
+export const ITEM_ID_791 = 791;
+export const ITEM_ID_792 = 792;
+export const ITEM_ID_793 = 793;
+export const ITEM_ID_794 = 794;
+export const ITEM_ID_795 = 795;
+export const ITEM_ID_796 = 796;
+export const ITEM_ID_797 = 797;
+export const ITEM_ID_798 = 798;
+export const ITEM_ID_799 = 799;
+export const ITEM_ID_800 = 800;
+export const ITEM_ID_801 = 801;
+export const ITEM_ID_802 = 802;
+export const ITEM_ID_803 = 803;
+export const ITEM_ID_804 = 804;
+export const ITEM_ID_805 = 805;
+export const ITEM_ID_806 = 806;
+export const ITEM_ID_807 = 807;
+export const ITEM_ID_808 = 808;
+export const ITEM_ID_TARE_LEAF = 809;
+export const ITEM_ID_810 = 810;
+export const ITEM_ID_811 = 811;
+export const ITEM_ID_812 = 812;
+export const ITEM_ID_813 = 813;
+export const ITEM_ID_814 = 814;
+export const ITEM_ID_815 = 815;
+export const ITEM_ID_816 = 816;
+export const ITEM_ID_817 = 817;
+export const ITEM_ID_818 = 818;
+export const ITEM_ID_819 = 819;
+export const ITEM_ID_820 = 820;
+export const ITEM_ID_EXSIONNO_HANE = 821;
+export const ITEM_ID_822 = 822;
+export const ITEM_ID_823 = 823;
+export const ITEM_ID_824 = 824;
+export const ITEM_ID_825 = 825;
+export const ITEM_ID_826 = 826;
+export const ITEM_ID_RIDEWORD_BO = 827;
+export const ITEM_ID_828 = 828;
+export const ITEM_ID_DIABOLOS_ROBE = 829;
+export const ITEM_ID_DIABOLOS_ARMER = 830;
+export const ITEM_ID_831 = 831;
+export const ITEM_ID_832 = 832;
+export const ITEM_ID_833 = 833;
+export const ITEM_ID_834 = 834;
+export const ITEM_ID_DIABOLOS_MANT = 835;
+export const ITEM_ID_DIABOLOS_BOOTS = 836;
+export const ITEM_ID_837 = 837;
+export const ITEM_ID_838 = 838;
+export const ITEM_ID_839 = 839;
+export const ITEM_ID_840 = 840;
+export const ITEM_ID_841 = 841;
+export const ITEM_ID_842 = 842;
+export const ITEM_ID_843 = 843;
+export const ITEM_ID_DIABOLOS_RING = 844;
+export const ITEM_ID_845 = 845;
+export const ITEM_ID_846 = 846;
+export const ITEM_ID_847 = 847;
+export const ITEM_ID_848 = 848;
+export const ITEM_ID_BALLOON_HAT = 849;
+export const ITEM_ID_850 = 850;
+export const ITEM_ID_851 = 851;
+export const ITEM_ID_852 = 852;
+export const ITEM_ID_853 = 853;
+export const ITEM_ID_854 = 854;
+export const ITEM_ID_855 = 855;
+export const ITEM_ID_856 = 856;
+export const ITEM_ID_857 = 857;
+export const ITEM_ID_858 = 858;
+export const ITEM_SET_ID_FALCON_BRITZ_LITTLE_FEATHER_HAT = 859;
+export const ITEM_ID_860 = 860;
+export const ITEM_ID_861 = 861;
+export const ITEM_ID_862 = 862;
+export const ITEM_ID_HOLY_STICK = 863;
+export const ITEM_ID_864 = 864;
+export const ITEM_ID_865 = 865;
+export const ITEM_ID_866 = 866;
+export const ITEM_ID_867 = 867;
+export const ITEM_ID_868 = 868;
+export const ITEM_ID_869 = 869;
+export const ITEM_ID_870 = 870;
+export const ITEM_ID_871 = 871;
+export const ITEM_ID_872 = 872;
+export const ITEM_ID_873 = 873;
+export const ITEM_ID_874 = 874;
+export const ITEM_ID_875 = 875;
+export const ITEM_ID_876 = 876;
+export const ITEM_ID_877 = 877;
+export const ITEM_ID_878 = 878;
+export const ITEM_ID_879 = 879;
+export const ITEM_ID_880 = 880;
+export const ITEM_ID_ACADEMY_SHINNYUSE_BOSHI = 881;
+export const ITEM_ID_ACADEMY_DAIICHISHURYO_BOSHI = 882;
+export const ITEM_ID_ACADEMY_BADGE = 883;
+export const ITEM_ID_884 = 884;
+export const ITEM_ID_885 = 885;
+export const ITEM_ID_886 = 886;
+export const ITEM_ID_887 = 887;
+export const ITEM_ID_888 = 888;
+export const ITEM_ID_889 = 889;
+export const ITEM_ID_890 = 890;
+export const ITEM_ID_891 = 891;
+export const ITEM_ID_892 = 892;
+export const ITEM_ID_893 = 893;
+export const ITEM_ID_894 = 894;
+export const ITEM_ID_895 = 895;
+export const ITEM_ID_896 = 896;
+export const ITEM_ID_897 = 897;
+export const ITEM_ID_898 = 898;
+export const ITEM_ID_899 = 899;
+export const ITEM_ID_900 = 900;
+export const ITEM_ID_901 = 901;
+export const ITEM_ID_902 = 902;
+export const ITEM_ID_903 = 903;
+export const ITEM_ID_904 = 904;
+export const ITEM_ID_905 = 905;
+export const ITEM_ID_906 = 906;
+export const ITEM_ID_907 = 907;
+export const ITEM_ID_908 = 908;
+export const ITEM_ID_909 = 909;
+export const ITEM_ID_910 = 910;
+export const ITEM_ID_911 = 911;
+export const ITEM_ID_912 = 912;
+export const ITEM_ID_913 = 913;
+export const ITEM_ID_914 = 914;
+export const ITEM_ID_915 = 915;
+export const ITEM_ID_916 = 916;
+export const ITEM_ID_917 = 917;
+export const ITEM_ID_918 = 918;
+export const ITEM_ID_919 = 919;
+export const ITEM_ID_920 = 920;
+export const ITEM_ID_921 = 921;
+export const ITEM_ID_922 = 922;
+export const ITEM_ID_923 = 923;
+export const ITEM_ID_924 = 924;
+export const ITEM_ID_925 = 925;
+export const ITEM_ID_926 = 926;
+export const ITEM_ID_927 = 927;
+export const ITEM_ID_928 = 928;
+export const ITEM_ID_929 = 929;
+export const ITEM_ID_930 = 930;
+export const ITEM_ID_931 = 931;
+export const ITEM_ID_932 = 932;
+export const ITEM_ID_933 = 933;
+export const ITEM_ID_TEGRYONG = 934;
+export const ITEM_ID_935 = 935;
+export const ITEM_ID_936 = 936;
+export const ITEM_ID_937 = 937;
+export const ITEM_ID_938 = 938;
+export const ITEM_ID_939 = 939;
+export const ITEM_ID_940 = 940;
+export const ITEM_ID_941 = 941;
+export const ITEM_ID_KARD = 942;
+export const ITEM_ID_943 = 943;
+export const ITEM_ID_944 = 944;
+export const ITEM_ID_945 = 945;
+export const ITEM_ID_946 = 946;
+export const ITEM_ID_947 = 947;
+export const ITEM_ID_948 = 948;
+export const ITEM_ID_949 = 949;
+export const ITEM_ID_950 = 950;
+export const ITEM_ID_951 = 951;
+export const ITEM_ID_952 = 952;
+export const ITEM_ID_OGATA_MAJESTIC_GOAT = 953;
+export const ITEM_ID_954 = 954;
+export const ITEM_ID_955 = 955;
+export const ITEM_ID_956 = 956;
+export const ITEM_ID_957 = 957;
+export const ITEM_ID_958 = 958;
+export const ITEM_ID_959 = 959;
+export const ITEM_ID_960 = 960;
+export const ITEM_ID_961 = 961;
+export const ITEM_ID_962 = 962;
+export const ITEM_ID_963 = 963;
+export const ITEM_ID_964 = 964;
+export const ITEM_ID_965 = 965;
+export const ITEM_ID_966 = 966;
+export const ITEM_ID_967 = 967;
+export const ITEM_ID_968 = 968;
+export const ITEM_ID_969 = 969;
+export const ITEM_ID_970 = 970;
+export const ITEM_ID_971 = 971;
+export const ITEM_ID_972 = 972;
+export const ITEM_ID_973 = 973;
+export const ITEM_ID_974 = 974;
+export const ITEM_ID_975 = 975;
+export const ITEM_ID_976 = 976;
+export const ITEM_ID_977 = 977;
+export const ITEM_ID_978 = 978;
+export const ITEM_ID_979 = 979;
+export const ITEM_ID_980 = 980;
+export const ITEM_ID_981 = 981;
+export const ITEM_ID_982 = 982;
+export const ITEM_ID_983 = 983;
+export const ITEM_ID_984 = 984;
+export const ITEM_ID_985 = 985;
+export const ITEM_ID_CHAMELEON_ARMER = 986;
+export const ITEM_ID_SPRINT_MAIL = 987;
+export const ITEM_ID_988 = 988;
+export const ITEM_ID_989 = 989;
+export const ITEM_ID_990 = 990;
+export const ITEM_ID_991 = 991;
+export const ITEM_ID_992 = 992;
+export const ITEM_ID_993 = 993;
+export const ITEM_ID_994 = 994;
+export const ITEM_ID_995 = 995;
+export const ITEM_ID_996 = 996;
+export const ITEM_ID_997 = 997;
+export const ITEM_ID_998 = 998;
+export const ITEM_ID_999 = 999;
+export const ITEM_ID_1000 = 1000;
+export const ITEM_ID_1001 = 1001;
+export const ITEM_ID_1002 = 1002;
+export const ITEM_ID_1003 = 1003;
+export const ITEM_ID_1004 = 1004;
+export const ITEM_ID_1005 = 1005;
+export const ITEM_ID_1006 = 1006;
+export const ITEM_ID_1007 = 1007;
+export const ITEM_ID_1008 = 1008;
+export const ITEM_ID_1009 = 1009;
+export const ITEM_ID_1010 = 1010;
+export const ITEM_ID_1011 = 1011;
+export const ITEM_ID_1012 = 1012;
+export const ITEM_ID_1013 = 1013;
+export const ITEM_ID_1014 = 1014;
+export const ITEM_ID_1015 = 1015;
+export const ITEM_ID_1016 = 1016;
+export const ITEM_ID_1017 = 1017;
+export const ITEM_ID_1018 = 1018;
+export const ITEM_ID_1019 = 1019;
+export const ITEM_ID_1020 = 1020;
+export const ITEM_ID_1021 = 1021;
+export const ITEM_ID_1022 = 1022;
+export const ITEM_ID_1023 = 1023;
+export const ITEM_ID_1024 = 1024;
+export const ITEM_ID_1025 = 1025;
+export const ITEM_ID_SANTANO_HIGE = 1026;
+export const ITEM_ID_1027 = 1027;
+export const ITEM_ID_1028 = 1028;
+export const ITEM_ID_1029 = 1029;
+export const ITEM_ID_1030 = 1030;
+export const ITEM_ID_1031 = 1031;
+export const ITEM_ID_1032 = 1032;
+export const ITEM_ID_1033 = 1033;
+export const ITEM_ID_1034 = 1034;
+export const ITEM_ID_1035 = 1035;
+export const ITEM_ID_1036 = 1036;
+export const ITEM_ID_1037 = 1037;
+export const ITEM_ID_1038 = 1038;
+export const ITEM_ID_1039 = 1039;
+export const ITEM_ID_1040 = 1040;
+export const ITEM_ID_1041 = 1041;
+export const ITEM_ID_1042 = 1042;
+export const ITEM_ID_1043 = 1043;
+export const ITEM_ID_1044 = 1044;
+export const ITEM_ID_1045 = 1045;
+export const ITEM_ID_1046 = 1046;
+export const ITEM_ID_1047 = 1047;
+export const ITEM_ID_1048 = 1048;
+export const ITEM_ID_1049 = 1049;
+export const ITEM_ID_1050 = 1050;
+export const ITEM_ID_1051 = 1051;
+export const ITEM_ID_1052 = 1052;
+export const ITEM_ID_1053 = 1053;
+export const ITEM_ID_1054 = 1054;
+export const ITEM_ID_1055 = 1055;
+export const ITEM_ID_1056 = 1056;
+export const ITEM_ID_1057 = 1057;
+export const ITEM_ID_1058 = 1058;
+export const ITEM_ID_1059 = 1059;
+export const ITEM_ID_1060 = 1060;
+export const ITEM_ID_1061 = 1061;
+export const ITEM_ID_1062 = 1062;
+export const ITEM_ID_1063 = 1063;
+export const ITEM_ID_1064 = 1064;
+export const ITEM_ID_1065 = 1065;
+export const ITEM_ID_1066 = 1066;
+export const ITEM_ID_1067 = 1067;
+export const ITEM_ID_1068 = 1068;
+export const ITEM_ID_1069 = 1069;
+export const ITEM_ID_1070 = 1070;
+export const ITEM_ID_1071 = 1071;
+export const ITEM_ID_1072 = 1072;
+export const ITEM_ID_1073 = 1073;
+export const ITEM_ID_1074 = 1074;
+export const ITEM_ID_1075 = 1075;
+export const ITEM_ID_GLORIOUS_DAMASKS = 1076;
+export const ITEM_ID_1077 = 1077;
+export const ITEM_ID_1078 = 1078;
+export const ITEM_ID_1079 = 1079;
+export const ITEM_ID_1080 = 1080;
+export const ITEM_ID_1081 = 1081;
+export const ITEM_ID_1082 = 1082;
+export const ITEM_ID_1083 = 1083;
+export const ITEM_ID_GLORIOUS_ARK_WAND = 1084;
+export const ITEM_ID_1085 = 1085;
+export const ITEM_ID_1086 = 1086;
+export const ITEM_ID_1087 = 1087;
+export const ITEM_ID_1088 = 1088;
+export const ITEM_ID_1089 = 1089;
+export const ITEM_ID_1090 = 1090;
+export const ITEM_ID_1091 = 1091;
+export const ITEM_ID_1092 = 1092;
+export const ITEM_ID_1093 = 1093;
+export const ITEM_ID_1094 = 1094;
+export const ITEM_ID_GLORIOUS_MOKUSHIROKU = 1095;
+export const ITEM_ID_GLORIOUS_CLAW = 1096;
+export const ITEM_ID_GLORIOUS_FIST = 1097;
+export const ITEM_ID_1098 = 1098;
+export const ITEM_ID_1099 = 1099;
+export const ITEM_ID_GLORIOUS_RIFLE = 1100;
+export const ITEM_ID_1101 = 1101;
+export const ITEM_ID_1102 = 1102;
+export const ITEM_ID_1103 = 1103;
+export const ITEM_ID_GLORIOUS_SUIT = 1104;
+export const ITEM_ID_GLORIOUS_RYOSANGATA_SUIT = 1105;
+export const ITEM_ID_GLORIOUS_FUKYUYO_SUIT = 1106;
+export const ITEM_ID_GLORIOUS_SHOES = 1107;
+export const ITEM_ID_GLORIOUS_RYOSANGATA_SHOES = 1108;
+export const ITEM_ID_GLORIOUS_FUKYUYO_SHOES = 1109;
+export const ITEM_ID_GLORIOUS_MUFFLER = 1110;
+export const ITEM_ID_GLORIOUS_RING = 1111;
+export const ITEM_ID_GLORIOUS_RYOSANGATA_RING = 1112;
+export const ITEM_ID_GLORIOUS_FUKYUYO_RING = 1113;
+export const ITEM_ID_1114 = 1114;
+export const ITEM_ID_1115 = 1115;
+export const ITEM_ID_NOVICE_FIGURE = 1116;
+export const ITEM_ID_SWORDMAN_FIGURE = 1117;
+export const ITEM_ID_ACOLYTE_FIGURE = 1118;
+export const ITEM_ID_MAGICIAN_FIGURE = 1119;
+export const ITEM_ID_ARCHER_FIGURE = 1120;
+export const ITEM_ID_THIEF_FIGURE = 1121;
+export const ITEM_ID_MERCHANT_FIGURE = 1122;
+export const ITEM_ID_1123 = 1123;
+export const ITEM_ID_1124 = 1124;
+export const ITEM_ID_1125 = 1125;
+export const ITEM_ID_1126 = 1126;
+export const ITEM_ID_1127 = 1127;
+export const ITEM_ID_1128 = 1128;
+export const ITEM_ID_1129 = 1129;
+export const ITEM_ID_1130 = 1130;
+export const ITEM_ID_1131 = 1131;
+export const ITEM_ID_1132 = 1132;
+export const ITEM_ID_1133 = 1133;
+export const ITEM_ID_1134 = 1134;
+export const ITEM_ID_1135 = 1135;
+export const ITEM_ID_1136 = 1136;
+export const ITEM_ID_1137 = 1137;
+export const ITEM_ID_1138 = 1138;
+export const ITEM_ID_1139 = 1139;
+export const ITEM_ID_1140 = 1140;
+export const ITEM_ID_1141 = 1141;
+export const ITEM_ID_1142 = 1142;
+export const ITEM_ID_1143 = 1143;
+export const ITEM_ID_1144 = 1144;
+export const ITEM_ID_1145 = 1145;
+export const ITEM_ID_1146 = 1146;
+export const ITEM_ID_1147 = 1147;
+export const ITEM_ID_SHINKUNO_BARA = 1148;
+export const ITEM_ID_1149 = 1149;
+export const ITEM_ID_1150 = 1150;
+export const ITEM_ID_1151 = 1151;
+export const ITEM_ID_1152 = 1152;
+export const ITEM_ID_1153 = 1153;
+export const ITEM_ID_1154 = 1154;
+export const ITEM_ID_1155 = 1155;
+export const ITEM_ID_1156 = 1156;
+export const ITEM_ID_1157 = 1157;
+export const ITEM_ID_1158 = 1158;
+export const ITEM_ID_TATSUZINNO_KEN = 1159;
+export const ITEM_ID_KRASNAYA = 1160;
+export const ITEM_ID_TATSUZINNO_TSUCHI = 1161;
+export const ITEM_ID_1162 = 1162;
+export const ITEM_ID_1163 = 1163;
+export const ITEM_ID_BECHEL_AXE = 1164;
+export const ITEM_ID_TATSUZINNO_ONO = 1165;
+export const ITEM_ID_1166 = 1166;
+export const ITEM_ID_GIGANT_AXE = 1167;
+export const ITEM_ID_KODAIZYUNO_TSUE = 1168;
+export const ITEM_ID_LACRYMA_STICK = 1169;
+export const ITEM_ID_CROCE_STUFF = 1170;
+export const ITEM_ID_STUFF_OF_ORD = 1171;
+export const ITEM_ID_CHRONOS = 1172;
+export const ITEM_ID_1173 = 1173;
+export const ITEM_ID_1174 = 1174;
+export const ITEM_ID_1175 = 1175;
+export const ITEM_ID_CACRAM = 1176;
+export const ITEM_ID_1177 = 1177;
+export const ITEM_ID_1178 = 1178;
+export const ITEM_ID_1179 = 1179;
+export const ITEM_ID_1180 = 1180;
+export const ITEM_ID_1181 = 1181;
+export const ITEM_ID_1182 = 1182;
+export const ITEM_ID_1183 = 1183;
+export const ITEM_ID_1184 = 1184;
+export const ITEM_ID_1185 = 1185;
+export const ITEM_ID_1186 = 1186;
+export const ITEM_ID_1187 = 1187;
+export const ITEM_ID_1188 = 1188;
+export const ITEM_ID_1189 = 1189;
+export const ITEM_ID_1190 = 1190;
+export const ITEM_ID_1191 = 1191;
+export const ITEM_ID_1192 = 1192;
+export const ITEM_ID_SKIN_OF_SHADOW = 1193;
+export const ITEM_ID_1194 = 1194;
+export const ITEM_ID_CHIENOONO_YUBIWA = 1195;
+export const ITEM_ID_1196 = 1196;
+export const ITEM_ID_1197 = 1197;
+export const ITEM_ID_1198 = 1198;
+export const ITEM_ID_1199 = 1199;
+export const ITEM_ID_1200 = 1200;
+export const ITEM_ID_1201 = 1201;
+export const ITEM_ID_1202 = 1202;
+export const ITEM_ID_1203 = 1203;
+export const ITEM_ID_1204 = 1204;
+export const ITEM_ID_1205 = 1205;
+export const ITEM_ID_1206 = 1206;
+export const ITEM_ID_1207 = 1207;
+export const ITEM_ID_1208 = 1208;
+export const ITEM_ID_1209 = 1209;
+export const ITEM_ID_1210 = 1210;
+export const ITEM_ID_1211 = 1211;
+export const ITEM_ID_1212 = 1212;
+export const ITEM_ID_1213 = 1213;
+export const ITEM_ID_1214 = 1214;
+export const ITEM_ID_1215 = 1215;
+export const ITEM_ID_1216 = 1216;
+export const ITEM_SET_ID_SENCHO_BOUSHI_AND_PIPE = 1217;
+export const ITEM_ID_TSUKIUSAGINO_BOSHI = 1218;
+export const ITEM_ID_1219 = 1219;
+export const ITEM_ID_1220 = 1220;
+export const ITEM_ID_1221 = 1221;
+export const ITEM_ID_1222 = 1222;
+export const ITEM_ID_1223 = 1223;
+export const ITEM_ID_1224 = 1224;
+export const ITEM_ID_1225 = 1225;
+export const ITEM_ID_1226 = 1226;
+export const ITEM_ID_1227 = 1227;
+export const ITEM_ID_1228 = 1228;
+export const ITEM_ID_1229 = 1229;
+export const ITEM_ID_1230 = 1230;
+export const ITEM_ID_1231 = 1231;
+export const ITEM_ID_1232 = 1232;
+export const ITEM_ID_1233 = 1233;
+export const ITEM_ID_1234 = 1234;
+export const ITEM_ID_1235 = 1235;
+export const ITEM_ID_1236 = 1236;
+export const ITEM_ID_1237 = 1237;
+export const ITEM_ID_1238 = 1238;
+export const ITEM_ID_1239 = 1239;
+export const ITEM_ID_1240 = 1240;
+export const ITEM_ID_1241 = 1241;
+export const ITEM_ID_1242 = 1242;
+export const ITEM_ID_1243 = 1243;
+export const ITEM_ID_1244 = 1244;
+export const ITEM_ID_1245 = 1245;
+export const ITEM_ID_1246 = 1246;
+export const ITEM_ID_1247 = 1247;
+export const ITEM_ID_1248 = 1248;
+export const ITEM_ID_1249 = 1249;
+export const ITEM_ID_1250 = 1250;
+export const ITEM_ID_TOY_SHIELD = 1251;
+export const ITEM_ID_1252 = 1252;
+export const ITEM_ID_1253 = 1253;
+export const ITEM_ID_1254 = 1254;
+export const ITEM_ID_1255 = 1255;
+export const ITEM_ID_VALENTINE_BO = 1256;
+export const ITEM_ID_SANSEIHANO_AKASHI = 1257;
+export const ITEM_SET_ID_VALENTINE_BO_SANSEIHANO_AKASHI = 1258;
+export const ITEM_ID_HANTAIHANO_AKASHI = 1259;
+export const ITEM_SET_ID_VALENTINE_BO_HANTAIHANO_AKASHI = 1260;
+export const ITEM_ID_1261 = 1261;
+export const ITEM_ID_1262 = 1262;
+export const ITEM_ID_1263 = 1263;
+export const ITEM_ID_1264 = 1264;
+export const ITEM_ID_1265 = 1265;
+export const ITEM_ID_1266 = 1266;
+export const ITEM_ID_1267 = 1267;
+export const ITEM_ID_1268 = 1268;
+export const ITEM_ID_1269 = 1269;
+export const ITEM_ID_1270 = 1270;
+export const ITEM_ID_1271 = 1271;
+export const ITEM_ID_DAIDAIBO = 1272;
+export const ITEM_ID_SAMAYOUMONO_NO_KASA = 1273;
+export const ITEM_ID_1274 = 1274;
+export const ITEM_ID_1275 = 1275;
+export const ITEM_ID_1276 = 1276;
+export const ITEM_ID_OKAKAN = 1277;
+export const ITEM_SET_ID_OKAKAN_HANABIRA = 1278;
+export const ITEM_SET_ID_OKAKAN_SHIROI_HANABIRA = 1279;
+export const ITEM_SET_ID_OKAKAN_KUSANOHA = 1280;
+export const ITEM_ID_ANUBISNO_BOSHI = 1281;
+export const ITEM_ID_1282 = 1282;
+export const ITEM_ID_PILEBUNKER = 1283;
+export const ITEM_ID_1284 = 1284;
+export const ITEM_ID_1285 = 1285;
+export const ITEM_ID_1286 = 1286;
+export const ITEM_ID_1287 = 1287;
+export const ITEM_ID_1288 = 1288;
+export const ITEM_ID_1289 = 1289;
+export const ITEM_ID_1290 = 1290;
+export const ITEM_ID_1291 = 1291;
+export const ITEM_ID_1292 = 1292;
+export const ITEM_ID_1293 = 1293;
+export const ITEM_ID_1294 = 1294;
+export const ITEM_ID_1295 = 1295;
+export const ITEM_ID_1296 = 1296;
+export const ITEM_ID_1297 = 1297;
+export const ITEM_ID_1298 = 1298;
+export const ITEM_ID_1299 = 1299;
+export const ITEM_ID_1300 = 1300;
+export const ITEM_ID_1301 = 1301;
+export const ITEM_ID_1302 = 1302;
+export const ITEM_ID_1303 = 1303;
+export const ITEM_ID_1304 = 1304;
+export const ITEM_ID_1305 = 1305;
+export const ITEM_ID_1306 = 1306;
+export const ITEM_ID_1307 = 1307;
+export const ITEM_ID_RUNE_CIRCLET = 1308;
+export const ITEM_ID_CHINMOKUNO_SHIKKOSHA = 1309;
+export const ITEM_ID_1310 = 1310;
+export const ITEM_ID_SNIPER_GOGGLE = 1311;
+export const ITEM_ID_MARYOKUSEKI_NO_BOUSHI = 1312;
+export const ITEM_ID_DRIVER_BAND_AKA = 1313;
+export const ITEM_ID_SCHMITTNO_HELM = 1314;
+export const ITEM_ID_SHADOW_CROWN = 1315;
+export const ITEM_ID_BLAZING_SOUL = 1316;
+export const ITEM_ID_1317 = 1317;
+export const ITEM_ID_1318 = 1318;
+export const ITEM_ID_KAZE_NO_SASAYAKI = 1319;
+export const ITEM_ID_MIDASSNO_SASAYAKI = 1320;
+export const ITEM_ID_1321 = 1321;
+export const ITEM_ID_1322 = 1322;
+export const ITEM_ID_1323 = 1323;
+export const ITEM_SET_ID_STRONG_SHIELD_JUSOHOHEI_NO_KABUTO = 1324;
+export const ITEM_ID_MAKCIMILIAN_VON_BEBE = 1325;
+export const ITEM_ID_CARGA_MACE = 1326;
+export const ITEM_ID_ELVEN_BOW = 1327;
+export const ITEM_ID_DULLGER = 1328;
+export const ITEM_ID_LAFINE_STUFF = 1329;
+export const ITEM_ID_MAKKANA_DRESSHAT = 1330;
+export const ITEM_ID_1331 = 1331;
+export const ITEM_ID_1332 = 1332;
+export const ITEM_ID_1333 = 1333;
+export const ITEM_ID_1334 = 1334;
+export const ITEM_ID_1335 = 1335;
+export const ITEM_ID_1336 = 1336;
+export const ITEM_ID_1337 = 1337;
+export const ITEM_ID_1338 = 1338;
+export const ITEM_ID_1339 = 1339;
+export const ITEM_ID_1340 = 1340;
+export const ITEM_ID_1341 = 1341;
+export const ITEM_ID_1342 = 1342;
+export const ITEM_ID_1343 = 1343;
+export const ITEM_ID_1344 = 1344;
+export const ITEM_ID_1345 = 1345;
+export const ITEM_ID_1346 = 1346;
+export const ITEM_ID_1347 = 1347;
+export const ITEM_ID_1348 = 1348;
+export const ITEM_ID_1349 = 1349;
+export const ITEM_ID_1350 = 1350;
+export const ITEM_ID_1351 = 1351;
+export const ITEM_ID_1352 = 1352;
+export const ITEM_ID_1353 = 1353;
+export const ITEM_ID_1354 = 1354;
+export const ITEM_ID_1355 = 1355;
+export const ITEM_ID_1356 = 1356;
+export const ITEM_ID_PUMPKIN_HAT_2010 = 1357;
+export const ITEM_ID_1358 = 1358;
+export const ITEM_ID_1359 = 1359;
+export const ITEM_ID_1360 = 1360;
+export const ITEM_ID_1361 = 1361;
+export const ITEM_ID_1362 = 1362;
+export const ITEM_ID_1363 = 1363;
+export const ITEM_ID_HADENA_PHANTOM_MASK = 1364;
+export const ITEM_ID_1365 = 1365;
+export const ITEM_ID_1366 = 1366;
+export const ITEM_ID_1367 = 1367;
+export const ITEM_ID_1368 = 1368;
+export const ITEM_ID_1369 = 1369;
+export const ITEM_ID_1370 = 1370;
+export const ITEM_ID_1371 = 1371;
+export const ITEM_ID_1372 = 1372;
+export const ITEM_ID_1373 = 1373;
+export const ITEM_ID_1374 = 1374;
+export const ITEM_ID_1375 = 1375;
+export const ITEM_ID_1376 = 1376;
+export const ITEM_ID_1377 = 1377;
+export const ITEM_ID_1378 = 1378;
+export const ITEM_SET_ID_SKULL_CAP_AND_WAND = 1379;
+export const ITEM_ID_1380 = 1380;
+export const ITEM_ID_1381 = 1381;
+export const ITEM_ID_1382 = 1382;
+export const ITEM_ID_1383 = 1383;
+export const ITEM_ID_1384 = 1384;
+export const ITEM_ID_1385 = 1385;
+export const ITEM_ID_1386 = 1386;
+export const ITEM_ID_SHUZINNO_FUKU = 1387;
+export const ITEM_SET_ID_SHUZINNOFUKU_ASHIKUSARI = 1388;
+export const ITEM_ID_1389 = 1389;
+export const ITEM_ID_1390 = 1390;
+export const ITEM_ID_1391 = 1391;
+export const ITEM_ID_1392 = 1392;
+export const ITEM_ID_1393 = 1393;
+export const ITEM_ID_TSUGAKU_BAG = 1394;
+export const ITEM_ID_1395 = 1395;
+export const ITEM_ID_MAHONO_STOLE = 1396;
+export const ITEM_ID_1397 = 1397;
+export const ITEM_ID_1398 = 1398;
+export const ITEM_ID_1399 = 1399;
+export const ITEM_ID_1400 = 1400;
+export const ITEM_ID_WHITE_FEATHER = 1401;
+export const ITEM_ID_1402 = 1402;
+export const ITEM_ID_RUNE_BOOTS = 1403;
+export const ITEM_ID_1404 = 1404;
+export const ITEM_ID_1405 = 1405;
+export const ITEM_ID_1406 = 1406;
+export const ITEM_ID_1407 = 1407;
+export const ITEM_SET_ID_WHITE_FEATHER_PIPE_TABACCO = 1408;
+export const ITEM_ID_1409 = 1409;
+export const ITEM_SET_ID_RUNE_BOOTS_CONTINENTAL_GUARDNO_INSHO = 1410;
+export const ITEM_SET_ID_RUNE_BOOTS_RUNE_STONE = 1411;
+export const ITEM_ID_1412 = 1412;
+export const ITEM_ID_1413 = 1413;
+export const ITEM_ID_1414 = 1414;
+export const ITEM_ID_1415 = 1415;
+export const ITEM_ID_1416 = 1416;
+export const ITEM_ID_1417 = 1417;
+export const ITEM_ID_1418 = 1418;
+export const ITEM_ID_1419 = 1419;
+export const ITEM_ID_1420 = 1420;
+export const ITEM_ID_SAMAYOUMONONO_HAORI = 1421;
+export const ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA = 1422;
+export const ITEM_ID_1423 = 1423;
+export const ITEM_ID_1424 = 1424;
+export const ITEM_ID_1425 = 1425;
+export const ITEM_ID_1426 = 1426;
+export const ITEM_ID_1427 = 1427;
+export const ITEM_ID_1428 = 1428;
+export const ITEM_ID_1429 = 1429;
+export const ITEM_ID_1430 = 1430;
+export const ITEM_ID_GALAXY_CIRCLET = 1431;
+export const ITEM_ID_1432 = 1432;
+export const ITEM_ID_1433 = 1433;
+export const ITEM_ID_1434 = 1434;
+export const ITEM_ID_1435 = 1435;
+export const ITEM_ID_1436 = 1436;
+export const ITEM_ID_1437 = 1437;
+export const ITEM_ID_ITOSHISA_NO_KAKERA_AND_HEART_WING_HAIRBAND = 1438;
+export const ITEM_ID_1439 = 1439;
+export const ITEM_ID_1440 = 1440;
+export const ITEM_ID_1441 = 1441;
+export const ITEM_ID_1442 = 1442;
+export const ITEM_ID_1443 = 1443;
+export const ITEM_ID_1444 = 1444;
+export const ITEM_ID_1445 = 1445;
+export const ITEM_ID_1446 = 1446;
+export const ITEM_ID_1447 = 1447;
+export const ITEM_ID_1448 = 1448;
+export const ITEM_ID_1449 = 1449;
+export const ITEM_ID_ELNST_VON_VOLF = 1450;
+export const ITEM_ID_LUXURY_MINI_CROWN = 1451;
+export const ITEM_ID_1452 = 1452;
+export const ITEM_ID_1453 = 1453;
+export const ITEM_ID_1454 = 1454;
+export const ITEM_ID_1455 = 1455;
+export const ITEM_ID_1456 = 1456;
+export const ITEM_ID_1457 = 1457;
+export const ITEM_ID_1458 = 1458;
+export const ITEM_ID_1459 = 1459;
+export const ITEM_ID_1460 = 1460;
+export const ITEM_ID_1461 = 1461;
+export const ITEM_ID_1462 = 1462;
+export const ITEM_ID_VANARGANDNO_KABUTO = 1463;
+export const ITEM_ID_DEVILCH_HEADPHONE = 1464;
+export const ITEM_ID_1465 = 1465;
+export const ITEM_ID_1466 = 1466;
+export const ITEM_ID_1467 = 1467;
+export const ITEM_ID_1468 = 1468;
+export const ITEM_ID_1469 = 1469;
+export const ITEM_ID_1470 = 1470;
+export const ITEM_ID_1471 = 1471;
+export const ITEM_ID_1472 = 1472;
+export const ITEM_ID_1473 = 1473;
+export const ITEM_ID_1474 = 1474;
+export const ITEM_ID_MENTAL_STICK = 1475;
+export const ITEM_ID_1476 = 1476;
+export const ITEM_ID_1477 = 1477;
+export const ITEM_ID_1478 = 1478;
+export const ITEM_ID_1479 = 1479;
+export const ITEM_ID_1480 = 1480;
+export const ITEM_ID_1481 = 1481;
+export const ITEM_ID_1482 = 1482;
+export const ITEM_ID_MAJO_NO_BOUSHI = 1483;
+export const ITEM_ID_1484 = 1484;
+export const ITEM_ID_1485 = 1485;
+export const ITEM_ID_1486 = 1486;
+export const ITEM_ID_1487 = 1487;
+export const ITEM_ID_1488 = 1488;
+export const ITEM_ID_1489 = 1489;
+export const ITEM_ID_1490 = 1490;
+export const ITEM_ID_1491 = 1491;
+export const ITEM_ID_1492 = 1492;
+export const ITEM_ID_1493 = 1493;
+export const ITEM_ID_1494 = 1494;
+export const ITEM_ID_1495 = 1495;
+export const ITEM_ID_1496 = 1496;
+export const ITEM_ID_1497 = 1497;
+export const ITEM_ID_1498 = 1498;
+export const ITEM_ID_1499 = 1499;
+export const ITEM_ID_1500 = 1500;
+export const ITEM_ID_1501 = 1501;
+export const ITEM_ID_1502 = 1502;
+export const ITEM_ID_DATITOZOKUNO_TEKUSARI = 1503;
+export const ITEM_ID_1504 = 1504;
+export const ITEM_SET_ID_DAITOZOKUNO_TEKUSARI_SHUZINNO_FUKU = 1505;
+export const ITEM_SET_ID_DAITOZOKUNO_TEKUSARI_ASHIKUSARI = 1506;
+export const ITEM_ID_1507 = 1507;
+export const ITEM_ID_1508 = 1508;
+export const ITEM_ID_1509 = 1509;
+export const ITEM_ID_1510 = 1510;
+export const ITEM_ID_1511 = 1511;
+export const ITEM_ID_1512 = 1512;
+export const ITEM_ID_1513 = 1513;
+export const ITEM_ID_1514 = 1514;
+export const ITEM_ID_1515 = 1515;
+export const ITEM_ID_1516 = 1516;
+export const ITEM_ID_1517 = 1517;
+export const ITEM_ID_1518 = 1518;
+export const ITEM_ID_1519 = 1519;
+export const ITEM_ID_1520 = 1520;
+export const ITEM_ID_1521 = 1521;
+export const ITEM_ID_1522 = 1522;
+export const ITEM_ID_1523 = 1523;
+export const ITEM_ID_HYAKUSENRENMANO_OMAMORI = 1524;
+export const ITEM_ID_SENTEHISSHONO_OMAMORI = 1525;
+export const ITEM_ID_MUBYOSOKUSAINO_OMAMORI = 1526;
+export const ITEM_ID_HYPPATSUHYAKUCHUNO_OMAMORI = 1527;
+export const ITEM_ID_HAKUGAKUTASAINO_OMAMORI = 1528;
+export const ITEM_ID_SHOBAIHANZYONO_OMAMORI = 1529;
+export const ITEM_ID_1530 = 1530;
+export const ITEM_ID_FUROSHIKI_MANT = 1531;
+export const ITEM_ID_1532 = 1532;
+export const ITEM_ID_1533 = 1533;
+export const ITEM_ID_1534 = 1534;
+export const ITEM_ID_1535 = 1535;
+export const ITEM_ID_1536 = 1536;
+export const ITEM_ID_1537 = 1537;
+export const ITEM_ID_1538 = 1538;
+export const ITEM_ID_1539 = 1539;
+export const ITEM_ID_1540 = 1540;
+export const ITEM_ID_1541 = 1541;
+export const ITEM_ID_1542 = 1542;
+export const ITEM_ID_1543 = 1543;
+export const ITEM_ID_1544 = 1544;
+export const ITEM_ID_1545 = 1545;
+export const ITEM_ID_1546 = 1546;
+export const ITEM_ID_1547 = 1547;
+export const ITEM_ID_1548 = 1548;
+export const ITEM_ID_1549 = 1549;
+export const ITEM_ID_1550 = 1550;
+export const ITEM_ID_1551 = 1551;
+export const ITEM_ID_1552 = 1552;
+export const ITEM_ID_1553 = 1553;
+export const ITEM_ID_1554 = 1554;
+export const ITEM_ID_1555 = 1555;
+export const ITEM_ID_1556 = 1556;
+export const ITEM_ID_1557 = 1557;
+export const ITEM_ID_1558 = 1558;
+export const ITEM_ID_1559 = 1559;
+export const ITEM_ID_1560 = 1560;
+export const ITEM_ID_1561 = 1561;
+export const ITEM_ID_1562 = 1562;
+export const ITEM_ID_1563 = 1563;
+export const ITEM_ID_1564 = 1564;
+export const ITEM_ID_1565 = 1565;
+export const ITEM_ID_1566 = 1566;
+export const ITEM_ID_1567 = 1567;
+export const ITEM_ID_1568 = 1568;
+export const ITEM_ID_1569 = 1569;
+export const ITEM_ID_1570 = 1570;
+export const ITEM_ID_1571 = 1571;
+export const ITEM_ID_1572 = 1572;
+export const ITEM_ID_1573 = 1573;
+export const ITEM_ID_1574 = 1574;
+export const ITEM_ID_1575 = 1575;
+export const ITEM_ID_1576 = 1576;
+export const ITEM_ID_1577 = 1577;
+export const ITEM_ID_1578 = 1578;
+export const ITEM_ID_1579 = 1579;
+export const ITEM_ID_URUZ_PLATE = 1580;
+export const ITEM_SET_ID_URUZ_PLATE_ARTIFACT = 1581;
+export const ITEM_ID_URUZ_MANT = 1582;
+export const ITEM_ID_URUZ_GREAVE = 1583;
+export const ITEM_ID_URUZ_BROOCH = 1584;
+export const ITEM_ID_PEORTH_PLATE = 1585;
+export const ITEM_ID_1586 = 1586;
+export const ITEM_ID_PEORTH_MANT = 1587;
+export const ITEM_ID_PEORTH_GREEVE = 1588;
+export const ITEM_ID_PEORTH_BROOCH = 1589;
+export const ITEM_ID_1590 = 1590;
+export const ITEM_ID_1591 = 1591;
+export const ITEM_ID_1592 = 1592;
+export const ITEM_ID_1593 = 1593;
+export const ITEM_ID_1594 = 1594;
+export const ITEM_ID_NABUNO_CLOTH = 1595;
+export const ITEM_SET_ID_NABUNO_CLOTH_ARTIFACT = 1596;
+export const ITEM_ID_NABUNO_HOOD = 1597;
+export const ITEM_ID_NABUNO_SHOES = 1598;
+export const ITEM_ID_NABUNO_RING = 1599;
+export const ITEM_ID_SHIRAHANO_SUIT = 1600;
+export const ITEM_SET_ID_SHIRAHANO_SUIT_ARTIFACT = 1601;
+export const ITEM_ID_1602 = 1602;
+export const ITEM_ID_1603 = 1603;
+export const ITEM_ID_1604 = 1604;
+export const ITEM_ID_KUROHANO_SUIT = 1605;
+export const ITEM_SET_ID_KUROHANO_SUIT_ARTIFACT = 1606;
+export const ITEM_ID_KUROHANO_MANT = 1607;
+export const ITEM_ID_KUROHANO_BOOTS = 1608;
+export const ITEM_ID_KUROHANO_BROOCH = 1609;
+export const ITEM_ID_SPRINT_GLOVE = 1610;
+export const ITEM_SET_ID_SPRINT_GLOVE_SPRINT_RING = 1611;
+export const ITEM_SET_ID_SPRINT_GLOVE_SPRINT_SHOES = 1612;
+export const ITEM_SET_ID_SPRINT_GLOVE_SPRINT_MAIL = 1613;
+export const ITEM_ID_1614 = 1614;
+export const ITEM_ID_1615 = 1615;
+export const ITEM_ID_LAGUZ_KNIFE = 1616;
+export const ITEM_ID_EIHWAZ_KNIFE = 1617;
+export const ITEM_ID_KANO_KNIFE = 1618;
+export const ITEM_ID_HAGALAZ_KNIFE = 1619;
+export const ITEM_ID_1620 = 1620;
+export const ITEM_ID_1621 = 1621;
+export const ITEM_ID_1622 = 1622;
+export const ITEM_ID_1623 = 1623;
+export const ITEM_ID_1624 = 1624;
+export const ITEM_ID_1625 = 1625;
+export const ITEM_ID_1626 = 1626;
+export const ITEM_ID_1627 = 1627;
+export const ITEM_ID_STUFF_OF_PIERCING_CASTTIME_REDUCTION = 1628;
+export const ITEM_ID_1629 = 1629;
+export const ITEM_ID_1630 = 1630;
+export const ITEM_ID_1631 = 1631;
+export const ITEM_ID_1632 = 1632;
+export const ITEM_ID_1633 = 1633;
+export const ITEM_ID_1634 = 1634;
+export const ITEM_ID_IDUNNNO_HANEMIMI = 1635;
+export const ITEM_ID_1636 = 1636;
+export const ITEM_ID_1637 = 1637;
+export const ITEM_ID_1638 = 1638;
+export const ITEM_ID_1639 = 1639;
+export const ITEM_ID_1640 = 1640;
+export const ITEM_ID_ONDINENO_YARI = 1641;
+export const ITEM_ID_1642 = 1642;
+export const ITEM_ID_1643 = 1643;
+export const ITEM_ID_1644 = 1644;
+export const ITEM_ID_AEGIR_HELM = 1645;
+export const ITEM_ID_AEGIR_ARMOR = 1646;
+export const ITEM_ID_AEGIR_MANT = 1647;
+export const ITEM_ID_AEGIR_SHOES = 1648;
+export const ITEM_ID_1649 = 1649;
+export const ITEM_ID_1650 = 1650;
+export const ITEM_ID_1651 = 1651;
+export const ITEM_ID_1652 = 1652;
+export const ITEM_ID_TAKOHIKI_HOCHO = 1653;
+export const ITEM_ID_1654 = 1654;
+export const ITEM_ID_1655 = 1655;
+export const ITEM_ID_1656 = 1656;
+export const ITEM_ID_1657 = 1657;
+export const ITEM_ID_MAGICAL_BLADE = 1658;
+export const ITEM_ID_1659 = 1659;
+export const ITEM_ID_1660 = 1660;
+export const ITEM_ID_1661 = 1661;
+export const ITEM_ID_1662 = 1662;
+export const ITEM_ID_1663 = 1663;
+export const ITEM_ID_DAKATSU_DAIZENSHU = 1664;
+export const ITEM_ID_1665 = 1665;
+export const ITEM_ID_1666 = 1666;
+export const ITEM_ID_1667 = 1667;
+export const ITEM_ID_1668 = 1668;
+export const ITEM_ID_1669 = 1669;
+export const ITEM_ID_1670 = 1670;
+export const ITEM_ID_1671 = 1671;
+export const ITEM_ID_1672 = 1672;
+export const ITEM_ID_1673 = 1673;
+export const ITEM_ID_1674 = 1674;
+export const ITEM_ID_1675 = 1675;
+export const ITEM_ID_1676 = 1676;
+export const ITEM_ID_1677 = 1677;
+export const ITEM_ID_1678 = 1678;
+export const ITEM_ID_1679 = 1679;
+export const ITEM_ID_1680 = 1680;
+export const ITEM_ID_1681 = 1681;
+export const ITEM_ID_1682 = 1682;
+export const ITEM_ID_1683 = 1683;
+export const ITEM_ID_1684 = 1684;
+export const ITEM_ID_GIGANT_SHIELD = 1685;
+export const ITEM_ID_GEFENIA_MIZUNO_KOSHO = 1686;
+export const ITEM_SET_ID_GEFENIA_MIZUNO_KOSHO_LACRYMA_STICK = 1687;
+export const ITEM_ID_1688 = 1688;
+export const ITEM_ID_1689 = 1689;
+export const ITEM_ID_1690 = 1690;
+export const ITEM_ID_1691 = 1691;
+export const ITEM_ID_1692 = 1692;
+export const ITEM_ID_1693 = 1693;
+export const ITEM_ID_1694 = 1694;
+export const ITEM_ID_1695 = 1695;
+export const ITEM_ID_1696 = 1696;
+export const ITEM_ID_REIKINO_MADOSHO = 1697;
+export const ITEM_ID_KAIFUKUNO_HIKARI = 1698;
+export const ITEM_ID_1699 = 1699;
+export const ITEM_ID_1700 = 1700;
+export const ITEM_ID_BLOODY_CROSS = 1701;
+export const ITEM_ID_AGENT_KATAR = 1702;
+export const ITEM_ID_1703 = 1703;
+export const ITEM_ID_1704 = 1704;
+export const ITEM_ID_1705 = 1705;
+export const ITEM_ID_GIGANT_LANCE = 1706;
+export const ITEM_ID_CATAPULT = 1707;
+export const ITEM_ID_OGATA_CROSSBOW = 1708;
+export const ITEM_ID_1709 = 1709;
+export const ITEM_ID_1710 = 1710;
+export const ITEM_ID_1711 = 1711;
+export const ITEM_ID_1712 = 1712;
+export const ITEM_ID_1713 = 1713;
+export const ITEM_ID_1714 = 1714;
+export const ITEM_ID_SKIN_OF_VENTUS_REFINE_7 = 1715;
+export const ITEM_ID_1716 = 1716;
+export const ITEM_ID_1717 = 1717;
+export const ITEM_ID_VALKIRIE_CAPE = 1718;
+export const ITEM_ID_1719 = 1719;
+export const ITEM_ID_1720 = 1720;
+export const ITEM_ID_1721 = 1721;
+export const ITEM_ID_1722 = 1722;
+export const ITEM_ID_1723 = 1723;
+export const ITEM_ID_1724 = 1724;
+export const ITEM_ID_1725 = 1725;
+export const ITEM_ID_1726 = 1726;
+export const ITEM_ID_1727 = 1727;
+export const ITEM_ID_1728 = 1728;
+export const ITEM_ID_1729 = 1729;
+export const ITEM_ID_1730 = 1730;
+export const ITEM_ID_KIKOSHINO_KUTSU = 1731;
+export const ITEM_ID_HAKAMORINO_KUTSU = 1732;
+export const ITEM_ID_KARYUDONO_KUTSU = 1733;
+export const ITEM_ID_NIWASHINO_KUTSU = 1734;
+export const ITEM_ID_KONCHUSAISHUUKANO_KUTSU = 1735;
+export const ITEM_ID_RYOUSHINO_KUTSU = 1736;
+export const ITEM_ID_TAIMANO_KUTSU = 1737;
+export const ITEM_ID_ANSATSUSHANO_KUTSU = 1738;
+export const ITEM_ID_DATENSHINO_KUTSU = 1739;
+export const ITEM_ID_TORYUUNO_KUTSU = 1740;
+export const ITEM_ID_1741 = 1741;
+export const ITEM_ID_1742 = 1742;
+export const ITEM_ID_1743 = 1743;
+export const ITEM_ID_1744 = 1744;
+export const ITEM_ID_1745 = 1745;
+export const ITEM_ID_1746 = 1746;
+export const ITEM_ID_1747 = 1747;
+export const ITEM_ID_1748 = 1748;
+export const ITEM_ID_1749 = 1749;
+export const ITEM_ID_BANGUNGOT_BOOTS = 1750;
+export const ITEM_ID_BAYANI_BANGUNGOT_BOOTS = 1751;
+export const ITEM_ID_1752 = 1752;
+export const ITEM_ID_1753 = 1753;
+export const ITEM_ID_1754 = 1754;
+export const ITEM_ID_1755 = 1755;
+export const ITEM_ID_1756 = 1756;
+export const ITEM_ID_1757 = 1757;
+export const ITEM_ID_1758 = 1758;
+export const ITEM_ID_1759 = 1759;
+export const ITEM_ID_1760 = 1760;
+export const ITEM_ID_1761 = 1761;
+export const ITEM_ID_1762 = 1762;
+export const ITEM_ID_1763 = 1763;
+export const ITEM_ID_1764 = 1764;
+export const ITEM_ID_UNMEI_NO_SHO = 1765;
+export const ITEM_ID_1766 = 1766;
+export const ITEM_ID_1767 = 1767;
+export const ITEM_ID_KENZYANO_KUTSU = 1768;
+export const ITEM_ID_NECTAR_SUIT = 1769;
+export const ITEM_ID_1770 = 1770;
+export const ITEM_ID_1771 = 1771;
+export const ITEM_ID_1772 = 1772;
+export const ITEM_ID_1773 = 1773;
+export const ITEM_ID_1774 = 1774;
+export const ITEM_ID_1775 = 1775;
+export const ITEM_ID_1776 = 1776;
+export const ITEM_ID_1777 = 1777;
+export const ITEM_ID_1778 = 1778;
+export const ITEM_ID_1779 = 1779;
+export const ITEM_ID_1780 = 1780;
+export const ITEM_ID_1781 = 1781;
+export const ITEM_ID_1782 = 1782;
+export const ITEM_ID_1783 = 1783;
+export const ITEM_ID_1784 = 1784;
+export const ITEM_ID_1785 = 1785;
+export const ITEM_ID_1786 = 1786;
+export const ITEM_ID_1787 = 1787;
+export const ITEM_ID_1788 = 1788;
+export const ITEM_ID_1789 = 1789;
+export const ITEM_ID_1790 = 1790;
+export const ITEM_ID_IMPERIAL_FEATHER = 1791;
+export const ITEM_ID_1792 = 1792;
+export const ITEM_ID_HASANSHANO_KAMEN = 1793;
+export const ITEM_SET_ID_HASANSHANO_KAMEN_OKANEWO_USHINATTAMONONO_KOKORO = 1794;
+export const ITEM_ID_1795 = 1795;
+export const ITEM_ID_1796 = 1796;
+export const ITEM_ID_1797 = 1797;
+export const ITEM_ID_1798 = 1798;
+export const ITEM_ID_1799 = 1799;
+export const ITEM_ID_1800 = 1800;
+export const ITEM_ID_1801 = 1801;
+export const ITEM_ID_1802 = 1802;
+export const ITEM_ID_1803 = 1803;
+export const ITEM_ID_1804 = 1804;
+export const ITEM_ID_1805 = 1805;
+export const ITEM_ID_1806 = 1806;
+export const ITEM_ID_1807 = 1807;
+export const ITEM_ID_10SHUNEN_KINEN_BADGE = 1808;
+export const ITEM_ID_1809 = 1809;
+export const ITEM_ID_BOSS_BO = 1810;
+export const ITEM_ID_1811 = 1811;
+export const ITEM_ID_1812 = 1812;
+export const ITEM_ID_KARYUDONO_MANT = 1813;
+export const ITEM_ID_1814 = 1814;
+export const ITEM_ID_1815 = 1815;
+export const ITEM_ID_1816 = 1816;
+export const ITEM_ID_ENZINO_BOSHI = 1817;
+export const ITEM_ID_KIBONO_UWABAKI = 1818;
+export const ITEM_ID_1819 = 1819;
+export const ITEM_ID_1820 = 1820;
+export const ITEM_ID_IRON_NAIL = 1821;
+export const ITEM_ID_1822 = 1822;
+export const ITEM_ID_1823 = 1823;
+export const ITEM_ID_1824 = 1824;
+export const ITEM_ID_1825 = 1825;
+export const ITEM_ID_1826 = 1826;
+export const ITEM_ID_1827 = 1827;
+export const ITEM_ID_1828 = 1828;
+export const ITEM_ID_1829 = 1829;
+export const ITEM_ID_1830 = 1830;
+export const ITEM_ID_1831 = 1831;
+export const ITEM_ID_1832 = 1832;
+export const ITEM_ID_1833 = 1833;
+export const ITEM_ID_1834 = 1834;
+export const ITEM_ID_1835 = 1835;
+export const ITEM_ID_1836 = 1836;
+export const ITEM_ID_1837 = 1837;
+export const ITEM_ID_1838 = 1838;
+export const ITEM_ID_1839 = 1839;
+export const ITEM_ID_1840 = 1840;
+export const ITEM_ID_1841 = 1841;
+export const ITEM_ID_1842 = 1842;
+export const ITEM_ID_1843 = 1843;
+export const ITEM_ID_1844 = 1844;
+export const ITEM_ID_1845 = 1845;
+export const ITEM_ID_1846 = 1846;
+export const ITEM_ID_1847 = 1847;
+export const ITEM_ID_1848 = 1848;
+export const ITEM_ID_1849 = 1849;
+export const ITEM_ID_1850 = 1850;
+export const ITEM_ID_1851 = 1851;
+export const ITEM_ID_1852 = 1852;
+export const ITEM_ID_1853 = 1853;
+export const ITEM_ID_1854 = 1854;
+export const ITEM_ID_1855 = 1855;
+export const ITEM_ID_1856 = 1856;
+export const ITEM_ID_1857 = 1857;
+export const ITEM_ID_1858 = 1858;
+export const ITEM_ID_1859 = 1859;
+export const ITEM_ID_1860 = 1860;
+export const ITEM_ID_1861 = 1861;
+export const ITEM_ID_1862 = 1862;
+export const ITEM_ID_1863 = 1863;
+export const ITEM_ID_1864 = 1864;
+export const ITEM_ID_1865 = 1865;
+export const ITEM_ID_1866 = 1866;
+export const ITEM_ID_1867 = 1867;
+export const ITEM_ID_1868 = 1868;
+export const ITEM_ID_1869 = 1869;
+export const ITEM_ID_1870 = 1870;
+export const ITEM_ID_1871 = 1871;
+export const ITEM_ID_1872 = 1872;
+export const ITEM_ID_1873 = 1873;
+export const ITEM_ID_1874 = 1874;
+export const ITEM_ID_1875 = 1875;
+export const ITEM_ID_1876 = 1876;
+export const ITEM_ID_1877 = 1877;
+export const ITEM_ID_1878 = 1878;
+export const ITEM_ID_1879 = 1879;
+export const ITEM_ID_1880 = 1880;
+export const ITEM_ID_1881 = 1881;
+export const ITEM_ID_1882 = 1882;
+export const ITEM_ID_1883 = 1883;
+export const ITEM_ID_1884 = 1884;
+export const ITEM_ID_1885 = 1885;
+export const ITEM_ID_1886 = 1886;
+export const ITEM_ID_1887 = 1887;
+export const ITEM_ID_KENSENO_OKAN = 1888;
+export const ITEM_ID_1889 = 1889;
+export const ITEM_ID_1890 = 1890;
+export const ITEM_ID_1891 = 1891;
+export const ITEM_ID_1892 = 1892;
+export const ITEM_ID_1893 = 1893;
+export const ITEM_ID_ELEMENTAL_BOOTS = 1894;
+export const ITEM_ID_1895 = 1895;
+export const ITEM_ID_1896 = 1896;
+export const ITEM_ID_1897 = 1897;
+export const ITEM_ID_1898 = 1898;
+export const ITEM_ID_1899 = 1899;
+export const ITEM_ID_1900 = 1900;
+export const ITEM_ID_1901 = 1901;
+export const ITEM_ID_1902 = 1902;
+export const ITEM_ID_1903 = 1903;
+export const ITEM_ID_1904 = 1904;
+export const ITEM_ID_1905 = 1905;
+export const ITEM_ID_1906 = 1906;
+export const ITEM_ID_1907 = 1907;
+export const ITEM_ID_1908 = 1908;
+export const ITEM_ID_1909 = 1909;
+export const ITEM_ID_1910 = 1910;
+export const ITEM_ID_1911 = 1911;
+export const ITEM_ID_1912 = 1912;
+export const ITEM_ID_1913 = 1913;
+export const ITEM_ID_SUVEL = 1914;
+export const ITEM_ID_1915 = 1915;
+export const ITEM_ID_ZIKU_BOOTS = 1916;
+export const ITEM_ID_CHIKARANO_ZIKU_BOOTS = 1917;
+export const ITEM_ID_CHIRYOKUNO_ZIKU_BOOTS = 1918;
+export const ITEM_ID_SHUNBINNO_ZIKU_BOOTS = 1919;
+export const ITEM_ID_TAIRYOKUNO_ZIKU_BOOTS = 1920;
+export const ITEM_ID_GIKONO_ZIKU_BOOTS = 1921;
+export const ITEM_ID_KOUNNO_ZIKU_BOOTS = 1922;
+export const ITEM_ID_1923 = 1923;
+export const ITEM_ID_1924 = 1924;
+export const ITEM_ID_1925 = 1925;
+export const ITEM_ID_1926 = 1926;
+export const ITEM_ID_1927 = 1927;
+export const ITEM_ID_1928 = 1928;
+export const ITEM_ID_1929 = 1929;
+export const ITEM_ID_1930 = 1930;
+export const ITEM_ID_1931 = 1931;
+export const ITEM_ID_1932 = 1932;
+export const ITEM_ID_1933 = 1933;
+export const ITEM_ID_1934 = 1934;
+export const ITEM_ID_1935 = 1935;
+export const ITEM_ID_1936 = 1936;
+export const ITEM_ID_1937 = 1937;
+export const ITEM_ID_1938 = 1938;
+export const ITEM_ID_1939 = 1939;
+export const ITEM_ID_1940 = 1940;
+export const ITEM_ID_1941 = 1941;
+export const ITEM_ID_1942 = 1942;
+export const ITEM_ID_1943 = 1943;
+export const ITEM_ID_1944 = 1944;
+export const ITEM_ID_1945 = 1945;
+export const ITEM_ID_CHIKARANO_GLOVE = 1946;
+export const ITEM_ID_CHIRYOKUNO_GLOVE = 1947;
+export const ITEM_ID_SHUNBINNO_GLOVE = 1948;
+export const ITEM_ID_TAIRYOKUNO_GLOVE = 1949;
+export const ITEM_ID_KIYOSANO_GLOVE = 1950;
+export const ITEM_ID_KOUNNO_GLOVE = 1951;
+export const ITEM_ID_1952 = 1952;
+export const ITEM_ID_1953 = 1953;
+export const ITEM_ID_1954 = 1954;
+export const ITEM_ID_1955 = 1955;
+export const ITEM_ID_1956 = 1956;
+export const ITEM_ID_1957 = 1957;
+export const ITEM_ID_1958 = 1958;
+export const ITEM_ID_1959 = 1959;
+export const ITEM_ID_1960 = 1960;
+export const ITEM_ID_1961 = 1961;
+export const ITEM_ID_1962 = 1962;
+export const ITEM_ID_1963 = 1963;
+export const ITEM_ID_1964 = 1964;
+export const ITEM_ID_1965 = 1965;
+export const ITEM_ID_1966 = 1966;
+export const ITEM_ID_1967 = 1967;
+export const ITEM_ID_1968 = 1968;
+export const ITEM_ID_1969 = 1969;
+export const ITEM_ID_1970 = 1970;
+export const ITEM_ID_1971 = 1971;
+export const ITEM_ID_1972 = 1972;
+export const ITEM_ID_1973 = 1973;
+export const ITEM_ID_1974 = 1974;
+export const ITEM_ID_1975 = 1975;
+export const ITEM_ID_GERHERT_VON_DEVILCH = 1976;
+export const ITEM_ID_1977 = 1977;
+export const ITEM_ID_1978 = 1978;
+export const ITEM_ID_1979 = 1979;
+export const ITEM_ID_1980 = 1980;
+export const ITEM_ID_1981 = 1981;
+export const ITEM_ID_1982 = 1982;
+export const ITEM_ID_1983 = 1983;
+export const ITEM_ID_1984 = 1984;
+export const ITEM_ID_1985 = 1985;
+export const ITEM_ID_1986 = 1986;
+export const ITEM_ID_1987 = 1987;
+export const ITEM_ID_1988 = 1988;
+export const ITEM_ID_1989 = 1989;
+export const ITEM_ID_1990 = 1990;
+export const ITEM_ID_1991 = 1991;
+export const ITEM_ID_1992 = 1992;
+export const ITEM_ID_1993 = 1993;
+export const ITEM_ID_1994 = 1994;
+export const ITEM_ID_1995 = 1995;
+export const ITEM_ID_1996 = 1996;
+export const ITEM_ID_1997 = 1997;
+export const ITEM_ID_1998 = 1998;
+export const ITEM_ID_1999 = 1999;
+export const ITEM_ID_2000 = 2000;
+export const ITEM_ID_2001 = 2001;
+export const ITEM_ID_2002 = 2002;
+export const ITEM_ID_2003 = 2003;
+export const ITEM_ID_2004 = 2004;
+export const ITEM_ID_2005 = 2005;
+export const ITEM_ID_2006 = 2006;
+export const ITEM_ID_2007 = 2007;
+export const ITEM_ID_2008 = 2008;
+export const ITEM_ID_2009 = 2009;
+export const ITEM_ID_2010 = 2010;
+export const ITEM_ID_2011 = 2011;
+export const ITEM_ID_2012 = 2012;
+export const ITEM_ID_2013 = 2013;
+export const ITEM_ID_2014 = 2014;
+export const ITEM_ID_2015 = 2015;
+export const ITEM_ID_2016 = 2016;
+export const ITEM_ID_2017 = 2017;
+export const ITEM_ID_2018 = 2018;
+export const ITEM_ID_2019 = 2019;
+export const ITEM_ID_2020 = 2020;
+export const ITEM_ID_2021 = 2021;
+export const ITEM_ID_2022 = 2022;
+export const ITEM_ID_GENTLEMAN_STUFF_CASTTIME_REDCTION = 2023;
+export const ITEM_ID_2024 = 2024;
+export const ITEM_ID_2025 = 2025;
+export const ITEM_ID_2026 = 2026;
+export const ITEM_ID_2027 = 2027;
+export const ITEM_ID_2028 = 2028;
+export const ITEM_ID_2029 = 2029;
+export const ITEM_ID_2030 = 2030;
+export const ITEM_ID_2031 = 2031;
+export const ITEM_ID_2032 = 2032;
+export const ITEM_ID_2033 = 2033;
+export const ITEM_ID_2034 = 2034;
+export const ITEM_ID_2035 = 2035;
+export const ITEM_ID_2036 = 2036;
+export const ITEM_ID_2037 = 2037;
+export const ITEM_ID_2038 = 2038;
+export const ITEM_ID_2039 = 2039;
+export const ITEM_ID_2040 = 2040;
+export const ITEM_ID_2041 = 2041;
+export const ITEM_ID_2042 = 2042;
+export const ITEM_ID_2043 = 2043;
+export const ITEM_ID_2044 = 2044;
+export const ITEM_ID_2045 = 2045;
+export const ITEM_ID_2046 = 2046;
+export const ITEM_ID_2047 = 2047;
+export const ITEM_ID_2048 = 2048;
+export const ITEM_ID_2049 = 2049;
+export const ITEM_ID_2050 = 2050;
+export const ITEM_ID_2051 = 2051;
+export const ITEM_ID_2052 = 2052;
+export const ITEM_ID_2053 = 2053;
+export const ITEM_ID_2054 = 2054;
+export const ITEM_ID_2055 = 2055;
+export const ITEM_ID_2056 = 2056;
+export const ITEM_ID_KIKAININGYOYO_ZOFUKUSOCHI_KAI = 2057;
+export const ITEM_SET_ID_KIKAININGYOYO_ZOFUKUSOCHI_KAI_ERIOT_CARD = 2058;
+export const ITEM_ID_KIKAININGYOYO_KASOKUSOCHI_KAI = 2059;
+export const ITEM_ID_2060 = 2060;
+export const ITEM_ID_2061 = 2061;
+export const ITEM_ID_2062 = 2062;
+export const ITEM_ID_2063 = 2063;
+export const ITEM_ID_2064 = 2064;
+export const ITEM_ID_2065 = 2065;
+export const ITEM_ID_2066 = 2066;
+export const ITEM_ID_2067 = 2067;
+export const ITEM_ID_KAGAYAKU_HENSHIKAKUTAMENTAI = 2068;
+export const ITEM_ID_2069 = 2069;
+export const ITEM_ID_2070 = 2070;
+export const ITEM_ID_2071 = 2071;
+export const ITEM_ID_2072 = 2072;
+export const ITEM_ID_2073 = 2073;
+export const ITEM_ID_2074 = 2074;
+export const ITEM_ID_2075 = 2075;
+export const ITEM_ID_2076 = 2076;
+export const ITEM_ID_2077 = 2077;
+export const ITEM_ID_2078 = 2078;
+export const ITEM_ID_2079 = 2079;
+export const ITEM_ID_2080 = 2080;
+export const ITEM_ID_2081 = 2081;
+export const ITEM_ID_KIKAI_SHOKUBUTSU_BO = 2082;
+export const ITEM_ID_2083 = 2083;
+export const ITEM_ID_2084 = 2084;
+export const ITEM_ID_2085 = 2085;
+export const ITEM_ID_2086 = 2086;
+export const ITEM_ID_2087 = 2087;
+export const ITEM_ID_2088 = 2088;
+export const ITEM_ID_2089 = 2089;
+export const ITEM_ID_2090 = 2090;
+export const ITEM_ID_2091 = 2091;
+export const ITEM_ID_2092 = 2092;
+export const ITEM_ID_2093 = 2093;
+export const ITEM_ID_2094 = 2094;
+export const ITEM_ID_2095 = 2095;
+export const ITEM_ID_2096 = 2096;
+export const ITEM_ID_2097 = 2097;
+export const ITEM_ID_2098 = 2098;
+export const ITEM_ID_2099 = 2099;
+export const ITEM_ID_2100 = 2100;
+export const ITEM_ID_2101 = 2101;
+export const ITEM_ID_2102 = 2102;
+export const ITEM_ID_2103 = 2103;
+export const ITEM_ID_2104 = 2104;
+export const ITEM_ID_2105 = 2105;
+export const ITEM_ID_2106 = 2106;
+export const ITEM_ID_2107 = 2107;
+export const ITEM_ID_2108 = 2108;
+export const ITEM_ID_2109 = 2109;
+export const ITEM_ID_2110 = 2110;
+export const ITEM_ID_2111 = 2111;
+export const ITEM_ID_2112 = 2112;
+export const ITEM_ID_2113 = 2113;
+export const ITEM_ID_2114 = 2114;
+export const ITEM_ID_2115 = 2115;
+export const ITEM_ID_2116 = 2116;
+export const ITEM_ID_2117 = 2117;
+export const ITEM_ID_2118 = 2118;
+export const ITEM_ID_2119 = 2119;
+export const ITEM_ID_2120 = 2120;
+export const ITEM_ID_BERET_OF_BOSS_REFINE_7 = 2121;
+export const ITEM_ID_2122 = 2122;
+export const ITEM_ID_2123 = 2123;
+export const ITEM_ID_ZYOO_FACEWORMNO_ASHI = 2124;
+export const ITEM_ID_KYOZINHEBINO_KAWA = 2125;
+export const ITEM_ID_2126 = 2126;
+export const ITEM_ID_2127 = 2127;
+export const ITEM_ID_2128 = 2128;
+export const ITEM_ID_2129 = 2129;
+export const ITEM_ID_2130 = 2130;
+export const ITEM_ID_2131 = 2131;
+export const ITEM_ID_2132 = 2132;
+export const ITEM_ID_LIEN_SHOES = 2133;
+export const ITEM_ID_FROID_SHOES = 2134;
+export const ITEM_ID_SOL_SHOES = 2135;
+export const ITEM_ID_CHALEUR_SHOES = 2136;
+export const ITEM_ID_LEVAIN_SHOES = 2137;
+export const ITEM_ID_POISON_SHOES = 2138;
+export const ITEM_ID_LUMIERE_SHOES = 2139;
+export const ITEM_ID_SOMBRE_SHOES = 2140;
+export const ITEM_ID_ESPRIT_SHOES = 2141;
+export const ITEM_ID_LAMORT_SHOES = 2142;
+export const ITEM_ID_2143 = 2143;
+export const ITEM_ID_2144 = 2144;
+export const ITEM_ID_2145 = 2145;
+export const ITEM_ID_2146 = 2146;
+export const ITEM_ID_2147 = 2147;
+export const ITEM_ID_2148 = 2148;
+export const ITEM_ID_2149 = 2149;
+export const ITEM_ID_2150 = 2150;
+export const ITEM_ID_2151 = 2151;
+export const ITEM_ID_2152 = 2152;
+export const ITEM_SET_ID_LIEN_SHOES_LIEN_MANT = 2153;
+export const ITEM_SET_ID_FROID_SHOES_FROID_MANT = 2154;
+export const ITEM_SET_ID_SOL_SHOES_SOL_MANT = 2155;
+export const ITEM_SET_ID_CHALEUR_SHOES_CHALEUR_MANT = 2156;
+export const ITEM_SET_ID_LEVAIN_SHOES_LEVAIN_MANT = 2157;
+export const ITEM_SET_ID_POISON_SHOES_POISON_MANT = 2158;
+export const ITEM_SET_ID_LUMIERE_SHOES_LUMIERE_MANT = 2159;
+export const ITEM_SET_ID_SOMBRE_SHOES_SOMBRE_MANT = 2160;
+export const ITEM_SET_ID_ESPRIT_SHOES_ESPRIT_MANT = 2161;
+export const ITEM_SET_ID_LAMORT_SHOES_LAMORT_MANT = 2162;
+export const ITEM_ID_2163 = 2163;
+export const ITEM_ID_2164 = 2164;
+export const ITEM_ID_2165 = 2165;
+export const ITEM_ID_MANEKI_MOCHIHANA_CASTTIME_REDCTION = 2166;
+export const ITEM_ID_2167 = 2167;
+export const ITEM_ID_2168 = 2168;
+export const ITEM_ID_2169 = 2169;
+export const ITEM_ID_2170 = 2170;
+export const ITEM_ID_2171 = 2171;
+export const ITEM_ID_2172 = 2172;
+export const ITEM_ID_2173 = 2173;
+export const ITEM_ID_2174 = 2174;
+export const ITEM_ID_2175 = 2175;
+export const ITEM_ID_2176 = 2176;
+export const ITEM_ID_2177 = 2177;
+export const ITEM_ID_2178 = 2178;
+export const ITEM_ID_2179 = 2179;
+export const ITEM_ID_FURUKU_PINKIRONO_ARE = 2180;
+export const ITEM_ID_2181 = 2181;
+export const ITEM_SET_ID_FURUKU_PINKIRONO_ARE_SANDAL = 2182;
+export const ITEM_ID_KIROI_SCARF = 2183;
+export const ITEM_ID_2184 = 2184;
+export const ITEM_ID_2185 = 2185;
+export const ITEM_ID_TORIKAINO_YOBIKO = 2186;
+export const ITEM_ID_TORIKAINO_KAGITSUME = 2187;
+export const ITEM_ID_TORIKAINO_YUMIKAKE = 2188;
+export const ITEM_ID_2189 = 2189;
+export const ITEM_ID_2190 = 2190;
+export const ITEM_SET_ID_TORIKAINO_KAGITSUME_TORIKAINO_YUMIKAKE = 2191;
+export const ITEM_ID_2192 = 2192;
+export const ITEM_ID_2193 = 2193;
+export const ITEM_ID_2194 = 2194;
+export const ITEM_ID_NOBLE_CROSS = 2195;
+export const ITEM_ID_AKAI_LANTHANUM = 2196;
+export const ITEM_ID_2197 = 2197;
+export const ITEM_ID_2198 = 2198;
+export const ITEM_ID_2199 = 2199;
+export const ITEM_ID_AKURYONO_ITONO_TEBUKURO = 2200;
+export const ITEM_ID_MIZUMIZUSHI_BARA = 2201;
+export const ITEM_ID_CELINENO_RIBBON = 2202;
+export const ITEM_ID_2203 = 2203;
+export const ITEM_ID_2204 = 2204;
+export const ITEM_ID_2205 = 2205;
+export const ITEM_ID_2206 = 2206;
+export const ITEM_ID_2207 = 2207;
+export const ITEM_ID_2208 = 2208;
+export const ITEM_ID_2209 = 2209;
+export const ITEM_ID_2210 = 2210;
+export const ITEM_ID_2211 = 2211;
+export const ITEM_ID_NATURAL_CLOTH = 2212;
+export const ITEM_ID_2213 = 2213;
+export const ITEM_ID_SHEPHARD_CLOTH = 2214;
+export const ITEM_ID_VERMIN_CLOTH = 2215;
+export const ITEM_ID_AGRICULTURAL_CLOTH = 2216;
+export const ITEM_ID_ORCA_CLOTH = 2217;
+export const ITEM_ID_2218 = 2218;
+export const ITEM_ID_2219 = 2219;
+export const ITEM_ID_VICIOUS_CLOTH = 2220;
+export const ITEM_ID_DRAGON_CLOTH = 2221;
+export const ITEM_ID_2222 = 2222;
+export const ITEM_ID_2223 = 2223;
+export const ITEM_ID_2224 = 2224;
+export const ITEM_ID_2225 = 2225;
+export const ITEM_ID_2226 = 2226;
+export const ITEM_ID_2227 = 2227;
+export const ITEM_ID_2228 = 2228;
+export const ITEM_ID_2229 = 2229;
+export const ITEM_ID_2230 = 2230;
+export const ITEM_ID_PLATINUM_RING = 2231;
+export const ITEM_SET_ID_PLATINUM_RING_WEDDING_GOODS = 2232;
+export const ITEM_ID_2233 = 2233;
+export const ITEM_ID_2234 = 2234;
+export const ITEM_SET_ID_FURUBITA_TATENASHINO_YOROI_REFINE = 2235;
+export const ITEM_ID_2236 = 2236;
+export const ITEM_ID_TATENASHINO_YOROI = 2237;
+export const ITEM_SET_ID_TATENASHINO_YOROI_CORNUTUS = 2238;
+export const ITEM_SET_ID_TATENASHINO_YOROI_RSX_0806 = 2239;
+export const ITEM_SET_ID_TATENASHINO_YOROI_TATENASHINO_KABUTO = 2240;
+export const ITEM_ID_2241 = 2241;
+export const ITEM_ID_GAMBLER_SEAL = 2242;
+export const ITEM_ID_2243 = 2243;
+export const ITEM_ID_MEDICAL_BOOTS = 2244;
+export const ITEM_SET_ID_MEDICAL_BOOTS_KAIFUKUNO_HIKARI = 2245;
+export const ITEM_ID_2246 = 2246;
+export const ITEM_ID_ANTIMAGIC_SUIT = 2247;
+export const ITEM_ID_2248 = 2248;
+export const ITEM_ID_2249 = 2249;
+export const ITEM_ID_GEFFEN_MAGIC_ROBE = 2250;
+export const ITEM_ID_2251 = 2251;
+export const ITEM_ID_2252 = 2252;
+export const ITEM_ID_2253 = 2253;
+export const ITEM_ID_2254 = 2254;
+export const ITEM_ID_2255 = 2255;
+export const ITEM_ID_2256 = 2256;
+export const ITEM_ID_PROTECT_FEATHER = 2257;
+export const ITEM_SET_ID_PROTECT_FEATHER_HANENO_BERET = 2258;
+export const ITEM_ID_2259 = 2259;
+export const ITEM_ID_2260 = 2260;
+export const ITEM_ID_2261 = 2261;
+export const ITEM_ID_2262 = 2262;
+export const ITEM_ID_2263 = 2263;
+export const ITEM_ID_2264 = 2264;
+export const ITEM_ID_2265 = 2265;
+export const ITEM_ID_2266 = 2266;
+export const ITEM_ID_2267 = 2267;
+export const ITEM_ID_2268 = 2268;
+export const ITEM_ID_2269 = 2269;
+export const ITEM_ID_2270 = 2270;
+export const ITEM_ID_2271 = 2271;
+export const ITEM_ID_2272 = 2272;
+export const ITEM_ID_2273 = 2273;
+export const ITEM_ID_2274 = 2274;
+export const ITEM_ID_2275 = 2275;
+export const ITEM_ID_2276 = 2276;
+export const ITEM_ID_2277 = 2277;
+export const ITEM_ID_2278 = 2278;
+export const ITEM_ID_2279 = 2279;
+export const ITEM_ID_FUYUSURU_KENZYONO_ISHI = 2280;
+export const ITEM_SET_ID_FUYUSURU_KENZYONO_ISHI_ATAMANOSE_FIRIL = 2281;
+export const ITEM_SET_ID_FUYUSURU_KENZYONO_ISHI_AMISTRL_CAP = 2282;
+export const ITEM_SET_ID_FUYUSURU_KENZYONO_ISHI_TARE_LEAF = 2283;
+export const ITEM_SET_ID_FUYUSURU_KENZYONO_ISHI_BANIRMIRT_BO = 2284;
+export const ITEM_ID_2285 = 2285;
+export const ITEM_ID_2286 = 2286;
+export const ITEM_ID_2287 = 2287;
+export const ITEM_ID_2288 = 2288;
+export const ITEM_ID_ZYOO_SUCARABANO_KABUTO = 2289;
+export const ITEM_ID_2290 = 2290;
+export const ITEM_ID_2291 = 2291;
+export const ITEM_ID_2292 = 2292;
+export const ITEM_ID_2293 = 2293;
+export const ITEM_ID_2294 = 2294;
+export const ITEM_ID_2295 = 2295;
+export const ITEM_ID_ICE_VON_FREEZINGER = 2296;
+export const ITEM_ID_SANSO_BOMBE = 2297;
+export const ITEM_ID_2298 = 2298;
+export const ITEM_ID_2299 = 2299;
+export const ITEM_ID_2300 = 2300;
+export const ITEM_ID_2301 = 2301;
+export const ITEM_ID_2302 = 2302;
+export const ITEM_ID_2303 = 2303;
+export const ITEM_ID_2304 = 2304;
+export const ITEM_ID_2305 = 2305;
+export const ITEM_ID_2306 = 2306;
+export const ITEM_ID_2307 = 2307;
+export const ITEM_ID_2308 = 2308;
+export const ITEM_ID_2309 = 2309;
+export const ITEM_ID_2310 = 2310;
+export const ITEM_ID_2311 = 2311;
+export const ITEM_ID_2312 = 2312;
+export const ITEM_ID_2313 = 2313;
+export const ITEM_ID_2314 = 2314;
+export const ITEM_ID_2315 = 2315;
+export const ITEM_ID_2316 = 2316;
+export const ITEM_ID_HOSHITAMAGO_BADGE = 2317;
+export const ITEM_SET_ID_HOSHITAMAGO_BADGE_ACADEMY_BADGE = 2318;
+export const ITEM_ID_2319 = 2319;
+export const ITEM_ID_2320 = 2320;
+export const ITEM_ID_2321 = 2321;
+export const ITEM_ID_LAFINE_SHIELD = 2322;
+export const ITEM_ID_LAFINE_SHIELD_CASTTIME_REDUCTION = 2323;
+export const ITEM_ID_2324 = 2324;
+export const ITEM_ID_2325 = 2325;
+export const ITEM_ID_2326 = 2326;
+export const ITEM_ID_2327 = 2327;
+export const ITEM_ID_2328 = 2328;
+export const ITEM_ID_2329 = 2329;
+export const ITEM_ID_2330 = 2330;
+export const ITEM_ID_2331 = 2331;
+export const ITEM_ID_2332 = 2332;
+export const ITEM_ID_2333 = 2333;
+export const ITEM_ID_GIGANT_HELM = 2334;
+export const ITEM_ID_2335 = 2335;
+export const ITEM_ID_2336 = 2336;
+export const ITEM_SET_ID_GIGANT_RANCE_GIGANT_HELM = 2337;
+export const ITEM_ID_SURVIVAL_CIRCLET = 2338;
+export const ITEM_ID_2339 = 2339;
+export const ITEM_ID_ZYARYUNO_YOROI = 2340;
+export const ITEM_ID_2341 = 2341;
+export const ITEM_ID_2342 = 2342;
+export const ITEM_ID_2343 = 2343;
+export const ITEM_ID_2344 = 2344;
+export const ITEM_ID_SHINSHI_FUKU = 2345;
+export const ITEM_ID_2346 = 2346;
+export const ITEM_ID_2347 = 2347;
+export const ITEM_ID_2348 = 2348;
+export const ITEM_ID_2349 = 2349;
+export const ITEM_ID_2350 = 2350;
+export const ITEM_ID_2351 = 2351;
+export const ITEM_ID_2352 = 2352;
+export const ITEM_ID_2353 = 2353;
+export const ITEM_ID_2354 = 2354;
+export const ITEM_ID_2355 = 2355;
+export const ITEM_ID_2356 = 2356;
+export const ITEM_ID_2357 = 2357;
+export const ITEM_ID_2358 = 2358;
+export const ITEM_ID_2359 = 2359;
+export const ITEM_ID_YUSHANO_PLATE = 2360;
+export const ITEM_ID_YUSHANO_HIDDEN_CLOTH = 2361;
+export const ITEM_ID_YUSHANO_JUDGEMENT_ROBE = 2362;
+export const ITEM_ID_YUSHANO_TARGET_SUIT = 2363;
+export const ITEM_ID_YUSHANO_MAGIC_COAT = 2364;
+export const ITEM_ID_YUSHANO_TRADE_MAIL = 2365;
+export const ITEM_ID_YUSHANO_NEPENTES_BOOTS = 2366;
+export const ITEM_ID_YUSHANO_GINKOGAWA_BOOTS = 2367;
+export const ITEM_ID_YUSHANO_UNGORIANT_BOOTS = 2368;
+export const ITEM_ID_2369 = 2369;
+export const ITEM_ID_2370 = 2370;
+export const ITEM_ID_2371 = 2371;
+export const ITEM_ID_2372 = 2372;
+export const ITEM_ID_2373 = 2373;
+export const ITEM_ID_2374 = 2374;
+export const ITEM_ID_GIGANT_BOW = 2375;
+export const ITEM_ID_ARASHINO_YUMI = 2376;
+export const ITEM_ID_2377 = 2377;
+export const ITEM_ID_2378 = 2378;
+export const ITEM_ID_2379 = 2379;
+export const ITEM_ID_2380 = 2380;
+export const ITEM_ID_2381 = 2381;
+export const ITEM_ID_2382 = 2382;
+export const ITEM_ID_2383 = 2383;
+export const ITEM_ID_2384 = 2384;
+export const ITEM_ID_2385 = 2385;
+export const ITEM_ID_2386 = 2386;
+export const ITEM_ID_2387 = 2387;
+export const ITEM_ID_2388 = 2388;
+export const ITEM_ID_2389 = 2389;
+export const ITEM_ID_2390 = 2390;
+export const ITEM_ID_2391 = 2391;
+export const ITEM_ID_2392 = 2392;
+export const ITEM_ID_2393 = 2393;
+export const ITEM_ID_MAGICAL_FEATHER = 2394;
+export const ITEM_ID_2395 = 2395;
+export const ITEM_ID_RAKUENNO_TORIKAGO = 2396;
+export const ITEM_ID_2397 = 2397;
+export const ITEM_ID_RAKUENNO_TORIKAGO_EXSIONNO_HANE = 2398;
+export const ITEM_ID_2399 = 2399;
+export const ITEM_ID_2400 = 2400;
+export const ITEM_ID_2401 = 2401;
+export const ITEM_ID_2402 = 2402;
+export const ITEM_ID_2403 = 2403;
+export const ITEM_ID_2404 = 2404;
+export const ITEM_ID_2405 = 2405;
+export const ITEM_ID_2406 = 2406;
+export const ITEM_ID_2407 = 2407;
+export const ITEM_ID_2408 = 2408;
+export const ITEM_ID_2409 = 2409;
+export const ITEM_ID_2410 = 2410;
+export const ITEM_SET_ID_RUISENO_AKAIKUTSU_MORDEN_CARD = 2411;
+export const ITEM_ID_2412 = 2412;
+export const ITEM_ID_2413 = 2413;
+export const ITEM_ID_2414 = 2414;
+export const ITEM_ID_2415 = 2415;
+export const ITEM_ID_2416 = 2416;
+export const ITEM_ID_2417 = 2417;
+export const ITEM_ID_2418 = 2418;
+export const ITEM_ID_2419 = 2419;
+export const ITEM_ID_2420 = 2420;
+export const ITEM_ID_2421 = 2421;
+export const ITEM_ID_2422 = 2422;
+export const ITEM_ID_2423 = 2423;
+export const ITEM_ID_2424 = 2424;
+export const ITEM_ID_2425 = 2425;
+export const ITEM_ID_ONIMARU = 2426;
+export const ITEM_ID_METEOR_STRIKE = 2427;
+export const ITEM_ID_SHADOW_STUFF = 2428;
+export const ITEM_ID_AEON_STUFF = 2429;
+export const ITEM_ID_HORAGAI = 2430;
+export const ITEM_ID_2431 = 2431;
+export const ITEM_ID_2432 = 2432;
+export const ITEM_ID_2433 = 2433;
+export const ITEM_ID_2434 = 2434;
+export const ITEM_ID_2435 = 2435;
+export const ITEM_ID_2436 = 2436;
+export const ITEM_ID_TOZANGUTSU = 2437;
+export const ITEM_ID_FURUBITA_SANDAL = 2438;
+export const ITEM_SET_ID_FURUBITA_SANDAL_DRAINCARD = 2439;
+export const ITEM_ID_APPLAUSE_SANDAL = 2440;
+export const ITEM_SET_ID_APPLAUSE_SANDAL_CROWN_CASTTIME_REDUCTION = 2441;
+export const ITEM_SET_ID_APPLAUSE_SANDAL_TIARA_CASTTIME_REDUCTION = 2442;
+export const ITEM_ID_2443 = 2443;
+export const ITEM_ID_2444 = 2444;
+export const ITEM_ID_2445 = 2445;
+export const ITEM_ID_2446 = 2446;
+export const ITEM_ID_2447 = 2447;
+export const ITEM_ID_2448 = 2448;
+export const ITEM_ID_2449 = 2449;
+export const ITEM_ID_2450 = 2450;
+export const ITEM_SET_ID_HIGHLEVEL_ZYUKIHE = 2451;
+export const ITEM_SET_ID_HIGHLEVEL_KUMIHO = 2452;
+export const ITEM_SET_ID_HIGHLEVEL_ORCBABY = 2453;
+export const ITEM_SET_ID_HIGHLEVEL_STING = 2454;
+export const ITEM_SET_ID_HIGHLEVEL_APOCALYPSE = 2455;
+export const ITEM_ID_TORNADE_AXE = 2456;
+export const ITEM_ID_2457 = 2457;
+export const ITEM_ID_2458 = 2458;
+export const ITEM_ID_2459 = 2459;
+export const ITEM_ID_2460 = 2460;
+export const ITEM_ID_2461 = 2461;
+export const ITEM_ID_RIOTCHIP = 2462;
+export const ITEM_ID_EXELION_SUIT = 2463;
+export const ITEM_ID_EXELION_WING = 2464;
+export const ITEM_ID_EXELION_WING_AT_LV130 = 2465;
+export const ITEM_ID_2466 = 2466;
+export const ITEM_ID_2467 = 2467;
+export const ITEM_ID_2468 = 2468;
+export const ITEM_ID_2469 = 2469;
+export const ITEM_ID_2470 = 2470;
+export const ITEM_ID_2471 = 2471;
+export const ITEM_ID_2472 = 2472;
+export const ITEM_ID_2473 = 2473;
+export const ITEM_ID_2474 = 2474;
+export const ITEM_ID_2475 = 2475;
+export const ITEM_ID_2476 = 2476;
+export const ITEM_ID_2477 = 2477;
+export const ITEM_ID_2478 = 2478;
+export const ITEM_ID_2479 = 2479;
+export const ITEM_ID_2480 = 2480;
+export const ITEM_ID_2481 = 2481;
+export const ITEM_ID_2482 = 2482;
+export const ITEM_ID_2483 = 2483;
+export const ITEM_ID_2484 = 2484;
+export const ITEM_ID_2485 = 2485;
+export const ITEM_ID_2486 = 2486;
+export const ITEM_ID_2487 = 2487;
+export const ITEM_ID_GURENNO_STOLE = 2488;
+export const ITEM_SET_ID_GURENNO_STOLE_NOROWARETA_ROYAL_KNIGHT = 2489;
+export const ITEM_ID_2490 = 2490;
+export const ITEM_ID_ISHO_BEGINNER_BO = 2491;
+export const ITEM_ID_2492 = 2492;
+export const ITEM_ID_2493 = 2493;
+export const ITEM_ID_2494 = 2494;
+export const ITEM_SET_ID_IMPERIARL_RING_IMPERIAL_FEATHER = 2495;
+export const ITEM_ID_2496 = 2496;
+export const ITEM_ID_HIYOKOCHAN_RENTAL = 2497;
+export const ITEM_ID_SABITA_ARM = 2498;
+export const ITEM_ID_CARDYUINO_MIMI = 2499;
+export const ITEM_ID_2500 = 2500;
+export const ITEM_SET_ID_CARDYUINO_MIMI_RAFINE_SHIELD = 2501;
+export const ITEM_SET_ID_CARDYUINO_MIMI_RAFINE_SHIELD_HIBAM = 2502;
+export const ITEM_ID_2503 = 2503;
+export const ITEM_ID_2504 = 2504;
+export const ITEM_ID_2505 = 2505;
+export const ITEM_ID_2506 = 2506;
+export const ITEM_ID_2507 = 2507;
+export const ITEM_ID_2508 = 2508;
+export const ITEM_ID_2509 = 2509;
+export const ITEM_ID_2510 = 2510;
+export const ITEM_ID_2511 = 2511;
+export const ITEM_ID_2512 = 2512;
+export const ITEM_ID_SORATOBU_GARAPAGO = 2513;
+export const ITEM_ID_2514 = 2514;
+export const ITEM_ID_2515 = 2515;
+export const ITEM_ID_2516 = 2516;
+export const ITEM_ID_2517 = 2517;
+export const ITEM_ID_2518 = 2518;
+export const ITEM_ID_SEISHOKUSHANO_KANGOBO = 2519;
+export const ITEM_ID_2520 = 2520;
+export const ITEM_ID_RUNE_HELM = 2521;
+export const ITEM_ID_2522 = 2522;
+export const ITEM_ID_2523 = 2523;
+export const ITEM_ID_2524 = 2524;
+export const ITEM_ID_2525 = 2525;
+export const ITEM_ID_SARANO_ROBE = 2526;
+export const ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_SARANO_ROBE = 2527;
+export const ITEM_ID_KAKUSEI_ROBE = 2528;
+export const ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_KAKUSEI_ROBE = 2529;
+export const ITEM_ID_2530 = 2530;
+export const ITEM_ID_HEAL_PIERCED = 2531;
+export const ITEM_ID_TELEPORT_PIERCED = 2532;
+export const ITEM_ID_SKTOM = 2533;
+export const ITEM_ID_ULTIMATE_MODE_CHANGER = 2534;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_PEORTH_BROOCH = 2535;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_PEORTH_PLATE = 2536;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_PEORTH_MANT = 2537;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_PEORTH_GREEVE = 2538;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_PEORTH_ARTIFACT = 2539;
+export const ITEM_ID_2540 = 2540;
+export const ITEM_ID_2541 = 2541;
+export const ITEM_ID_KUROHANO_MANT_AVOIDANCE_OPTION = 2542;
+export const ITEM_ID_2543 = 2543;
+export const ITEM_ID_2544 = 2544;
+export const ITEM_ID_2545 = 2545;
+export const ITEM_ID_2546 = 2546;
+export const ITEM_ID_2547 = 2547;
+export const ITEM_ID_2548 = 2548;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_CRYMSON_ARTIFACT = 2549;
+export const ITEM_ID_2550 = 2550;
+export const ITEM_ID_2551 = 2551;
+export const ITEM_ID_2552 = 2552;
+export const ITEM_ID_2553 = 2553;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_AQUA_ARTIFACT = 2554;
+export const ITEM_ID_2555 = 2555;
+export const ITEM_ID_2556 = 2556;
+export const ITEM_ID_2557 = 2557;
+export const ITEM_ID_2558 = 2558;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_GOLDENROD_ARTIFACT = 2559;
+export const ITEM_ID_2560 = 2560;
+export const ITEM_ID_2561 = 2561;
+export const ITEM_ID_2562 = 2562;
+export const ITEM_ID_2563 = 2563;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_FOREST_ARTIFACT = 2564;
+export const ITEM_ID_2565 = 2565;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_NABUNO_CLOTH = 2566;
+export const ITEM_SET_ID_ULTIMATE_MODE_CHANGER_NABUNO_HOOD = 2567;
+export const ITEM_ID_2568 = 2568;
+export const ITEM_ID_2569 = 2569;
+export const ITEM_ID_KIZOKUNO_KAMEN = 2570;
+export const ITEM_ID_VALKYRIE_HAMMER = 2571;
+export const ITEM_ID_REQUIEM_DAGGER = 2572;
+export const ITEM_ID_REQUIEM_SWORD = 2573;
+export const ITEM_ID_REQUIEM_CLAYMORE = 2574;
+export const ITEM_ID_REQUIEM_SPEAR = 2575;
+export const ITEM_ID_REQUIEM_LANCE = 2576;
+export const ITEM_ID_REQUIEM_TWOHANDAXE = 2577;
+export const ITEM_ID_REQUIEM_SMASHER = 2578;
+export const ITEM_ID_REQUIEM_ARCWAND = 2579;
+export const ITEM_ID_REQUIEM_WIZARDSTUFF = 2580;
+export const ITEM_ID_REQUIEM_GREATBOW = 2581;
+export const ITEM_ID_REQUIEM_KATAR = 2582;
+export const ITEM_ID_REQUIEM_KNUCKLE = 2583;
+export const ITEM_ID_REQUIEM_VIOLIN = 2584;
+export const ITEM_ID_REQUIEM_BLADEWHIP = 2585;
+export const ITEM_ID_REQUIEM_SUIT = 2586;
+export const ITEM_SET_ID_REQUIEM_SUIT = 2587;
+export const ITEM_ID_REQUIEM_ROBE = 2588;
+export const ITEM_SET_ID_REQUIEM_ROBE = 2589;
+export const ITEM_ID_REQUIEM_SHIELD = 2590;
+export const ITEM_ID_REQUIEM_MANT = 2591;
+export const ITEM_ID_REQUIEM_BOOTS = 2592;
+export const ITEM_ID_SENSHISHANO_MANT = 2593;
+export const ITEM_ID_FURUBITA_BONECIRCRET = 2594;
+export const ITEM_SET_ID_FURUBITA_BONECIRCRET_MANT = 2595;
+export const ITEM_ID_FURUBITA_BALLERINA = 2596;
+export const ITEM_SET_ID_FURUBITA_BALLERINA_MANT = 2597;
+export const ITEM_ID_FURUBITA_KAZENO_SASAYAKI = 2598;
+export const ITEM_SET_ID_FURUBITA_KAZENO_SASAYAKI_MANT = 2599;
+export const ITEM_ID_FURUBITA_BLAZINGSOUL = 2600;
+export const ITEM_SET_ID_FURUBITA_BLAZINGSOUL_MANT = 2601;
+export const ITEM_ID_FURUBITA_MARYOKUSEKI = 2602;
+export const ITEM_SET_ID_FURUBITA_MARYOKUSEKI_MANT = 2603;
+export const ITEM_ID_FURUBITA_MIDASS = 2604;
+export const ITEM_SET_ID_FURUBITA_MIDASS_MANT = 2605;
+export const ITEM_ID_FURUBITA_MINSTRELSONG = 2606;
+export const ITEM_SET_ID_FURUBITA_MINSTRELSONG_MANT = 2607;
+export const ITEM_ID_FURUBITA_SHADOWCROWN = 2608;
+export const ITEM_SET_ID_FURUBITA_SHADOWCROWN_MANT = 2609;
+export const ITEM_ID_FURUBITA_DRIVERBAND_KIRO = 2610;
+export const ITEM_SET_ID_FURUBITA_DRIVERBAND_MANT = 2611;
+export const ITEM_ID_FURUBITA_MITRA = 2612;
+export const ITEM_SET_ID_FURUBITA_MITRA_MANT = 2613;
+export const ITEM_ID_FURUBITA_RUNECIRCRET = 2614;
+export const ITEM_SET_ID_FURUBITA_RUNECIRCRET_MANT = 2615;
+export const ITEM_ID_FURUBITA_MEISAIUSAGI = 2616;
+export const ITEM_SET_ID_FURUBITA_MEISAIUSAGI_MANT = 2617;
+export const ITEM_ID_FURUBITA_SHUGONOKANNMURI = 2618;
+export const ITEM_SET_ID_FURUBITA_SHUGONOKANNMURI_MANT = 2619;
+export const ITEM_ID_SEIEISHUGOKISHINO_YUBIWA = 2620;
+export const ITEM_ID_AMISTL_RUCK = 2621;
+export const ITEM_ID_GLASTHEIMNO_BOKANSHA = 2622;
+export const ITEM_ID_SEIREIONO_YUBIWA = 2623;
+export const ITEM_ID_USUDUKIYONO_BOSHI = 2624;
+export const ITEM_ID_DOKUSTIANO_TIARA = 2625;
+export const ITEM_ID_GENNEINO_KOKUIN = 2626;
+export const ITEM_ID_TENGUNO_MAKIMONO = 2627;
+export const ITEM_SET_ID_TENGUNO_MAKIMONO_KARASUTENGU = 2628;
+export const ITEM_ID_SAPPHIRE_LIST = 2629;
+export const ITEM_ID_EMERALDEARRING = 2630;
+export const ITEM_ID_ESLANNO_SHIRT = 2631;
+export const ITEM_SET_ID_ESLANNO_SHIRT_BRIEF = 2632;
+export const ITEM_SET_ID_ESLANNO_SHIRT_DEVILRING = 2633;
+export const ITEM_ID_LASEROF_EAGLE = 2634;
+export const ITEM_ID_MAHOSEKINO_ONKE = 2635;
+export const ITEM_ID_MAD_HATTER = 2636;
+export const ITEM_ID_WILD_POLIN_RIDER = 2637;
+export const ITEM_ID_WALHALLA_IDOL = 2638;
+export const ITEM_ID_GEMINIS58NO_ME = 2639;
+export const ITEM_ID_GENSONO_TOWEL = 2640;
+export const ITEM_SET_ID_GENSONO_TOWEL_MOERU_YUMI = 2641;
+export const ITEM_SET_ID_GENSONO_TOWEL_HYOTENNO_YUMI = 2642;
+export const ITEM_SET_ID_GENSONO_TOWEL_DAICHINO_YUMI = 2643;
+export const ITEM_SET_ID_GENSONO_TOWEL_HAYATENO_YUMI = 2644;
+export const ITEM_ID_STINGNO_SILKRIBBON = 2645;
+export const ITEM_ID_ARKUIENNO_NECKLACE = 2646;
+export const ITEM_ID_RED_BABY_DRAGON = 2647;
+export const ITEM_ID_SHIKKOSHANO_MANT = 2648;
+export const ITEM_SET_ID_RIOTCHIP_A_TOLERANCE = 2649;
+export const ITEM_SET_ID_RIOTCHIP_A_HIT = 2650;
+export const ITEM_SET_ID_RIOTCHIP_A_FLEE = 2651;
+export const ITEM_SET_ID_RIOTCHIP_A_MDEF = 2652;
+export const ITEM_SET_ID_RIOTCHIP_S_ATK = 2653;
+export const ITEM_SET_ID_RIOTCHIP_S_MATK = 2653;
+export const ITEM_SET_ID_RIOTCHIP_S_AVOID = 2653;
+export const ITEM_SET_ID_RIOTCHIP_S_MAXHP = 2653;
+export const ITEM_SET_ID_RIOTCHIP_S_QUICK = 2653;
+export const ITEM_SET_ID_RIOTCHIP_S_CRI = 2653;
+export const ITEM_ID_KIRINNO_TSUBASA = 2654;
+export const ITEM_ID_ROSARIONO_KUBIKAZARI = 2655;
+export const ITEM_SET_ID_ROSARIONO_KUBIKAZARI_CROCE_STUFF = 2656;
+export const ITEM_SET_ID_ROSARIONO_KUBIKAZARI_SEISHOKUSHANO_KANGOBO = 2657;
+export const ITEM_ID_CHOSISAINO_YUBIWA = 2658;
+export const ITEM_ID_CHOSISAINO_YUBIWA_DAISHIKYO_1 = 2659;
+export const ITEM_ID_CHOSISAINO_YUBIWA_DAISHIKYO_2 = 2660;
+export const ITEM_ID_CHOSISAINO_YUBIWA_DAISEIDO_1 = 2661;
+export const ITEM_ID_CHOSISAINO_YUBIWA_CHIYU_1 = 2662;
+export const ITEM_ID_EXCELION_LEG = 2663;
+export const ITEM_ID_POROROCA_SHOES = 2664;
+export const ITEM_SET_ID_POROROCA_SHOES_LACRYMA_STICK = 2665;
+export const ITEM_ID_SHIKENKAN_HAIRBAND = 2666;
+export const ITEM_ID_CARDYUINO_HOI = 2667;
+export const ITEM_SET_ID_CARDYUINO_HOI_ANGELRING = 2668;
+export const ITEM_SET_ID_CARDYUINO_HOI_LAFINE_STUFF = 2669;
+export const ITEM_ID_RJCNECKLESS_2015 = 2670;
+export const ITEM_ID_KUWAETA_ICHIGO = 2671;
+export const ITEM_ID_AOKI_YAKOSEKI = 2672;
+export const ITEM_SET_ID_AOKI_YAKOSEKI_SENEI_1 = 2673;
+export const ITEM_SET_ID_AOKI_YAKOSEKI_SENEI_2 = 2674;
+export const ITEM_ID_WAKUWAKU_MANT = 2675;
+export const ITEM_SET_ID_WAKUWAKU_MANT_WAKUWAKU = 2676;
+export const ITEM_ID_VALKYRIE_KNIFE = 2677;
+export const ITEM_ID_KASUKANA_HOMURA = 2678;
+export const ITEM_ID_ZIYUNO_HOMURA = 2679;
+export const ITEM_ID_HEAVENSFEATHER_AND_HELLSFIRE = 2680;
+export const ITEM_ID_ARTEAALETH = 2681;
+export const ITEM_ID_DEATHFIRE = 2682;
+export const ITEM_ID_ROLLING_THUNDER = 2683;
+export const ITEM_ID_PEACE_BREAKER = 2684;
+export const ITEM_ID_COLOR_SCOPE = 2685;
+export const ITEM_ID_RAG203 = 2686;
+export const ITEM_ID_EXODUS_JOKER_XIII = 2687;
+export const ITEM_ID_MINNYMAY = 2688;
+export const ITEM_ID_TEMPEST = 2689;
+export const ITEM_ID_END_OF_HORIZON = 2690;
+export const ITEM_ID_BLUE_SOUTHERNCROSS = 2691;
+export const ITEM_ID_FUTSUNOMITAMA = 2692;
+export const ITEM_ID_NIKO = 2693;
+export const ITEM_ID_REIGENNO_SUZU = 2694;
+export const ITEM_ID_KENTOSHINO_GLOVE = 2695;
+export const ITEM_SET_ID_KENTOSHINO_GLOVE_TOSHI_1 = 2696;
+export const ITEM_SET_ID_KENTOSHINO_GLOVE_TOSHI_2 = 2697;
+export const ITEM_ID_THANATOSNO_KANASHIMI_KAMEN = 2698;
+export const ITEM_ID_YOICHINO_KATAKAE = 2699;
+export const ITEM_ID_GLORIOUS_EARRING = 2700;
+export const ITEM_SET_ID_GLORIOUS_EARRING_GLORIOUS_BROACH = 2701;
+export const ITEM_ID_GLORIOUS_BROACH = 2702;
+export const ITEM_ID_DATENSHINO_TSUBASA = 2703;
+export const ITEM_ID_SHADOW_RING = 2704;
+export const ITEM_ID_IMUKENO_OSODE = 2705;
+export const ITEM_SET_ID_IMUKENO_OSODE_HORN_CARD = 2706;
+export const ITEM_ID_TSUKINO_GANTAI = 2707;
+export const ITEM_ID_OSHABERI_OUMU = 2708;
+export const ITEM_SET_ID_ENERGY_SHUGORYU_ZYARYUNO_YOROI = 2709;
+export const ITEM_ID_POWERED_ARM = 2710;
+export const ITEM_ID_POWERED_MAIL = 2711;
+export const ITEM_ID_POWERED_TANK = 2712;
+export const ITEM_ID_POWERED_BOOTS = 2713;
+export const ITEM_SET_ID_POWERED_SET = 2714;
+export const ITEM_ID_GUARDIAN_BARREL = 2715;
+export const ITEM_ID_GUARDIAN_UNIT = 2716;
+export const ITEM_ID_GUARDIAN_ENGINE = 2717;
+export const ITEM_ID_GUARDIAN_BOOSTER = 2718;
+export const ITEM_SET_ID_GUARDIAN_SET = 2719;
+export const ITEM_SET_ID_YUSHANOIKARI_ORCISH_AXE_ORCISH_SWORD = 2720;
+export const ITEM_SET_ID_MAHITSUZINO_HOKO_CRESCENT_CIZER = 2721;
+export const ITEM_SET_ID_MAHITSUZINO_HOKO_TEGRYONG = 2722;
+export const ITEM_ID_ZINRAI_KEN = 2723;
+export const ITEM_ID_ZINRAI_YARI = 2724;
+export const ITEM_ID_ZINRAI_TSUCHI = 2725;
+export const ITEM_ID_ZINRAI_YUMI = 2726;
+export const ITEM_ID_ZINRAI_TSUE = 2727;
+export const ITEM_ID_ZINRAI_ZYU = 2728;
+export const ITEM_ID_MUSO_KEN = 2729;
+export const ITEM_ID_MUSO_YARI = 2730;
+export const ITEM_ID_MUSO_TSUCHI = 2731;
+export const ITEM_ID_MUSO_YUMI = 2732;
+export const ITEM_ID_MUSO_TSUE = 2733;
+export const ITEM_ID_MUSO_ZYU = 2734;
+export const ITEM_ID_TATSUZINNO_TSUCHI_S2 = 2735;
+export const ITEM_ID_TATSUZINNO_ONO_S2 = 2736;
+export const ITEM_ID_EXCALIBUR_S0 = 2737;
+export const ITEM_ID_TEGRYONG_S2 = 2738;
+export const ITEM_SET_ID_MAHITSUZINO_HOKO_TEGRYONG_S2 = 2739;
+export const ITEM_ID_CLEAVER_S0 = 2740;
+export const ITEM_ID_EXSIONNO_HANE_S2 = 2741;
+export const ITEM_ID_BIO_PROTECTOR = 2742;
+export const ITEM_SET_ID_BIO_PROTECTOR_PIPE_TABACCO = 2743;
+export const ITEM_SET_ID_BIO_PROTECTOR_KIKAI_SHOKUBUTSU_BO = 2744;
+export const ITEM_SET_ID_BIO_PROTECTOR_KIKAI_SHOKUBUTSU_BO_PIPE_TABACCO = 2745;
+export const ITEM_ID_LOLANO_KUSARITEKKYU = 2746;
+export const ITEM_SET_ID_LOLANO_KUSARITEKKYU_CHINURARETA_TEKKYU = 2747;
+export const ITEM_ID_EIKOWO_TATAESHI_OKEN = 2748;
+export const ITEM_SET_ID_EIKOWO_TATAESHI_OKEN_HAMETSUWO_MATOISHI_GOKEN = 2749;
+export const ITEM_ID_HAMETSUWO_MATOISHI_GOKEN = 2750;
+export const ITEM_ID_KOONO_SOZIN = 2751;
+export const ITEM_ID_SOHIONNO_HAGOROMO = 2752;
+export const ITEM_ID_RUDONO_ROLLPAPER = 2753;
+export const ITEM_ID_KOONO_OKAN = 2754;
+export const ITEM_ID_UNICORNNO_KABUTO = 2755;
+export const ITEM_ID_SHINOBINO_HIDENSHO = 2756;
+export const ITEM_ID_TARE_REBELLION = 2757;
+export const ITEM_ID_AVENGER_CLAYMORE = 2758;
+export const ITEM_ID_AVENGER_LANCE = 2759;
+export const ITEM_ID_AVENGER_TWOHAND_AXE = 2760;
+export const ITEM_ID_AVENGER_BLOODYROAR = 2761;
+export const ITEM_ID_AVENGER_JAMADHAR = 2762;
+export const ITEM_ID_AVENGER_HUNTERBOW = 2763;
+export const ITEM_ID_AVENGER_WIZARDSTUFF = 2764;
+export const ITEM_ID_AVENGER_HANDGUN = 2765;
+export const ITEM_ID_AVENGER_RIFLE = 2766;
+export const ITEM_ID_AVENGER_GATLINGGUN = 2767;
+export const ITEM_ID_AVENGER_SHOTGUN = 2768;
+export const ITEM_ID_AVENGER_GRENADEGUN = 2769;
+export const ITEM_ID_AVENGER_FUMASHURIKEN = 2770;
+export const ITEM_ID_RAKUENNO_TORIKAGO_EXSIONNO_HANE_S2 = 2771;
+export const ITEM_ID_SHITENSHINO_HANAKANMURI = 2772;
+export const ITEM_ID_SURVIVAL_ORB = 2773;
+export const ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_ROD_DEX = 2774;
+export const ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_ROD_INT = 2775;
+export const ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_CIRCLET = 2776;
+export const ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_MANT = 2777;
+export const ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_ROD_DEX_SURVIVAL_MANT = 2778;
+export const ITEM_SET_ID_SURVIVAL_ORB_SURVIVAL_ROD_INT_SURVIVAL_MANT = 2779;
+export const ITEM_ID_GIGANT_BOOTS = 2780;
+export const ITEM_SET_ID_GIGANT_BOOTS_GIGANT_AXE = 2781;
+export const ITEM_SET_ID_GIGANT_BOOTS_GIGANT_BOW = 2782;
+export const ITEM_SET_ID_GIGANT_BOOTS_GIGANT_LANCE = 2783;
+export const ITEM_SET_ID_GIGANT_BOOTS_GIGANT_SHIELD = 2784;
+export const ITEM_ID_RISUMIMI_HOODBO = 2785;
+export const ITEM_ID_DATENSHISAINO_ANKOUGAITO = 2786;
+export const ITEM_ID_EIYU_MANT = 2787;
+export const ITEM_SET_ID_EIYU_MANT_DEVILRING_CARD = 2788;
+export const ITEM_ID_MAGICAL_RING = 2789;
+export const ITEM_ID_HIKOSEN_SUIT = 2790;
+export const ITEM_ID_HIKOSEN_MANT = 2791;
+export const ITEM_ID_HIKOSEN_BOOTS = 2792;
+export const ITEM_SET_ID_HIKOSEN_SUIT_HIKOSEN_MANT_HIKOSEN_BOOTS = 2793;
+export const ITEM_ID_PELLROCKNO_SUIT = 2794;
+export const ITEM_ID_PELLROCKNO_MANT = 2795;
+export const ITEM_ID_PELLROCKNO_BOOTS = 2796;
+export const ITEM_SET_ID_PELLROCKNO_SUIT_PELLROCKNO_MANT_PELLROCKNO_BOOTS = 2797;
+export const ITEM_ID_PELLROCKNO_BOSHI = 2798;
+export const ITEM_SET_ID_PELLROCKNO_BOSHI_HIKOSEN_SET = 2799;
+export const ITEM_SET_ID_PELLROCKNO_BOSHI_PELLROCKNO_SET = 2800;
+export const ITEM_ID_EXPLOSION_GUM = 2801;
+export const ITEM_ID_KORYUNO_TENYOKU = 2802;
+export const ITEM_ID_SAVE_THE_KING = 2803;
+export const ITEM_ID_ELVIRA_PENDANT = 2804;
+export const ITEM_ID_YOMANO_ME = 2805;
+export const ITEM_ID_RAIN_BO = 2806;
+export const ITEM_SET_ID_RAIN_BO_CHIENOONO_YUBIWA = 2807;
+export const ITEM_SET_ID_RAIN_BO_PITMAN_CARD = 2808;
+export const ITEM_SET_ID_RAIN_BO_HILLWIND_CARD = 2809;
+export const ITEM_SET_ID_RAIN_BO_RAUREL_VINDER_CARD = 2810;
+export const ITEM_SET_ID_RAIN_BO_RED_PHEROS_CARD = 2811;
+export const ITEM_ID_SABAKINO_KUTSU = 2812;
+export const ITEM_SET_ID_SABAKINO_KUTSU_HOLY_STICK = 2813;
+export const ITEM_ID_DAISHINKANNO_TEBUKURO = 2814;
+export const ITEM_SET_ID_DAISHINKANNO_TEBUKURO_MARYOKU_1 = 2815;
+export const ITEM_SET_ID_DAISHINKANNO_TEBUKURO_MARYOKU_2 = 2816;
+export const ITEM_ID_NEKORYOTEKEN_TACHIUO = 2817;
+export const ITEM_ID_NEKOKATAR_TSUNA = 2818;
+export const ITEM_ID_NEKORYOTETSUE_KAZIKI = 2819;
+export const ITEM_ID_NEKORYOTEONO_KUROMAGURO = 2820;
+export const ITEM_ID_NEKOYUMI_KANI = 2821;
+export const ITEM_ID_NEKOTANKEN_AZI = 2822;
+export const ITEM_ID_NYANGAMERSNO_AKASHI = 2823;
+export const ITEM_ID_MIZUMIZUSHI_DAIDAI = 2824;
+export const ITEM_SET_ID_MIZUMIZUSHI_DAIDAI_DAIDAI_BO = 2825;
+export const ITEM_ID_STAHL_VON_KAISER_61 = 2826;
+export const ITEM_ID_MAZYUNO_MAIL = 2827;
+export const ITEM_ID_MAZYUNO_MANT = 2828;
+export const ITEM_ID_MAZYUNO_BOOTS = 2829;
+export const ITEM_SET_ID_MAZYUNO_MAIL_MAZYUNO_MANT_MAZYUNO_BOOTS = 2830;
+export const ITEM_ID_GAIA_SHIELD = 2831;
+export const ITEM_ID_ENRYUNO_YOROI = 2832;
+export const ITEM_ID_FAIRLEAFNO_GIRIKO = 2833;
+export const ITEM_SET_ID_FAIRLEAFNO_GIRIKO_MEIKYU_1 = 2834;
+export const ITEM_SET_ID_FAIRLEAFNO_GIRIKO_MEIKYU_2 = 2835;
+export const ITEM_ID_CHIKARANO_ZIKU_BOOTS_S1 = 2836;
+export const ITEM_ID_CHIRYOKUNO_ZIKU_BOOTS_S1 = 2837;
+export const ITEM_ID_SHUNBINNO_ZIKU_BOOTS_S1 = 2838;
+export const ITEM_ID_TAIRYOKUNO_ZIKU_BOOTS_S1 = 2839;
+export const ITEM_ID_GIKONO_ZIKU_BOOTS_S1 = 2840;
+export const ITEM_ID_KOUNNO_ZIKU_BOOTS_S1 = 2841;
+export const ITEM_ID_IPPEKI_KEN = 2842;
+export const ITEM_ID_IPPEKI_YARI = 2843;
+export const ITEM_ID_IPPEKI_TSUCHI = 2844;
+export const ITEM_ID_IPPEKI_YUMI = 2845;
+export const ITEM_ID_IPPEKI_TSUE = 2846;
+export const ITEM_ID_IPPEKI_ZYU = 2847;
+export const ITEM_SET_ID_KYOZINHEBINO_KAWA_ZIKU_BOOTS_S1 = 2848;
+export const ITEM_ID_HANGYAKUSHANO_SCARF = 2849;
+export const ITEM_ID_ZYONINNO_KOSHIOBI = 2850;
+export const ITEM_ID_FUTTOSURU_KONTONNO_TATE = 2851;
+export const ITEM_SET_ID_FUTTOSURU_KONTONNO_TATE_KAGAYAKU_HENSHIKAKUTAMENTAI = 2852;
+export const ITEM_ID_ZYUNPAKUNA_MARCHING_HAT = 2853;
+export const ITEM_ID_ROKINO_ASSASIN_MASK = 2854;
+export const ITEM_ID_SHINMA_BAPHOMETNO_TSUNO = 2855;
+export const ITEM_SET_ID_SHINMA_BAPHOMETNO_TSUNO_BLOODY_CROSS = 2856;
+export const ITEM_ID_MATAGINO_KENNATA = 2857;
+export const ITEM_SET_ID_MATAGINO_KENNATA_EIRI_1 = 2858;
+export const ITEM_SET_ID_MATAGINO_KENNATA_EIRI_2 = 2859;
+export const ITEM_ID_TOZOKUNO_SUSUME_DAIIKKAN = 2860;
+export const ITEM_ID_AGEL_FEATHER = 2861;
+export const ITEM_ID_EINHERJERNO_YOROI = 2862;
+export const ITEM_SET_ID_EINHERJERNO_YOROI_EVIL_DRUID_CARD = 2863;
+export const ITEM_SET_ID_EINHERJERNO_YOROI_SEINSHISHANO_MANT = 2864;
+export const ITEM_ID_GUARDIAN_PROCESSOR = 2865;
+export const ITEM_SET_ID_GUARDIAN_PROCESSOR_PILEBUNKER = 2866;
+export const ITEM_SET_ID_GUARDIAN_PROCESSOR_GUARDIAN_UNIT = 2867;
+export const ITEM_SET_ID_GUARDIAN_PROCESSOR_GUARDIAN_ENGINE = 2868;
+export const ITEM_SET_ID_GUARDIAN_PROCESSOR_GUARDIAN_BOOSTER = 2869;
+export const ITEM_SET_ID_GUARDIAN_PROCESSOR_GUARDIAN_BARREL = 2870;
+export const ITEM_ID_ELDERNO_MITAMA = 2871;
+export const ITEM_SET_ID_ELDERNO_MITAMA_KISONSARETA_KOSHO_CARD = 2872;
+export const ITEM_ID_SHIRYOMAZYUTSUSHINO_NITTOBO = 2873;
+export const ITEM_ID_PILEBUNKER_S = 2874;
+export const ITEM_ID_PILEBUNKER_P = 2875;
+export const ITEM_ID_PILEBUNKER_T = 2876;
+export const ITEM_ID_DARK_HAND = 2877;
+export const ITEM_ID_MAZYONO_SAISHIBO = 2878;
+export const ITEM_ID_TOKINO_ROGOKU = 2879;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_ROBE = 2880;
+export const ITEM_SET_ID_TOKIMAZYUTSUSHINO_ROBE_ZIKU_BOOTS_S1 = 2881;
+export const ITEM_SET_ID_TOKIMAZYUTSUSHINO_ROBE_ZIKU_BOOTS = 2882;
+export const ITEM_ID_CHOETSUSHANO_ROBE = 2883;
+export const ITEM_SET_ID_CHOETSUSHANO_ROBE_NYDHOGNO_KAGE_CARD = 2884;
+export const ITEM_SET_ID_CHOETSUSHANO_ROBE_ZIKU_BOOTS_S1 = 2885;
+export const ITEM_SET_ID_CHOETSUSHANO_ROBE_ZIKU_BOOTS = 2886;
+export const ITEM_ID_KONGOSEKINO_TATE = 2887;
+export const ITEM_SET_ID_KONGOSEKINO_TATE_EIKONO_AKASHI = 2888;
+export const ITEM_ID_ZYOKAMACHINO_CHIZU = 2889;
+export const ITEM_ID_KAGAYAKU_SEISUI = 2890;
+export const ITEM_ID_EIKONO_AKASHI = 2891;
+export const ITEM_ID_ZYANENNO_DAGGER = 2892;
+export const ITEM_ID_ZYANENNO_SAVOR = 2893;
+export const ITEM_ID_ZYANENNO_TWOHAND_SWORD = 2894;
+export const ITEM_ID_ZYANENNO_SPEAR = 2895;
+export const ITEM_ID_ZYANENNO_LANCE = 2896;
+export const ITEM_ID_ZYANENNO_TWOHAND_AXE = 2897;
+export const ITEM_ID_ZYANENNO_MACE = 2898;
+export const ITEM_ID_ZYANENNO_ROD = 2899;
+export const ITEM_ID_ZYANENNO_STUFF = 2900;
+export const ITEM_ID_ZYANENNO_BOW = 2901;
+export const ITEM_ID_ZYANENNO_KATAR = 2902;
+export const ITEM_ID_ZYANENNO_BOOK = 2903;
+export const ITEM_ID_ZYANENNO_FIST = 2904;
+export const ITEM_ID_ZYANENNO_VIOLIN = 2905;
+export const ITEM_ID_ZYANENNO_WIRE = 2906;
+export const ITEM_ID_ZYANENNO_FUMASHURIKEN = 2907;
+export const ITEM_ID_ZYANENNO_HANDGUN = 2908;
+export const ITEM_ID_LINDY_HOP = 2909;
+export const ITEM_ID_SHISHANO_SPOON = 2910;
+export const ITEM_ID_HIMAWARI_SHONEN = 2911;
+export const ITEM_ID_JULIET_DE_RACHEL = 2912;
+export const ITEM_ID_KIRINNO_TSUNO = 2913;
+export const ITEM_SET_ID_KIRINNO_TSUNO_KOGEKISOKUDO_1 = 2914;
+export const ITEM_SET_ID_KIRINNO_TSUNO_KOGEKISOKUDO_2 = 2915;
+export const ITEM_ID_BOTONO_SCARF = 2916;
+export const ITEM_SET_ID_BOTONO_SCARF_GLASS = 2917;
+export const ITEM_SET_ID_BOTONO_SCARF_SUNGLASS = 2918;
+export const ITEM_ID_LINDWURMNO_KAWA = 2919;
+export const ITEM_ID_KERAUNOS = 2920;
+export const ITEM_ID_KATARINA_FON_BLOOD_60SEI = 2921;
+export const ITEM_ID_KUCHIBUE = 2922;
+export const ITEM_ID_BARREL_HELM = 2923;
+export const ITEM_ID_VIRGO_CROWN = 2924;
+export const ITEM_SET_ID_VIRGO_CROWN_VIRGO = 2925;
+export const ITEM_ID_LEO_DIADEM = 2926;
+export const ITEM_SET_ID_LEO_DIADEM_LEO = 2927;
+export const ITEM_ID_HONOIKAZUCHINOOOKAMI_KUTSU = 2928;
+export const ITEM_SET_ID_HONOIKAZUCHINOOOKAMI_KUTSU_WORUYAFA = 2929;
+export const ITEM_ID_NEKKYOSHINTONO_NECKLACE = 2930;
+export const ITEM_ID_OSUWARI_KYOKO_SHIFUKU = 2931;
+export const ITEM_SET_ID_OSUWARI_KYOKO_SHIFUKU_NEKKYOSHINTONO_NECKLACE = 2932;
+export const ITEM_SET_ID_OSUWARI_KYOKO_SHIFUKU_KIEL_D01 = 2933;
+export const ITEM_ID_FUYUSURU_KORI = 2934;
+export const ITEM_ID_KOGATA_TESATSUKI = 2935;
+export const ITEM_ID_KAHRITZBARGKISHIDANNO_YOROI = 2936;
+export const ITEM_ID_YUSHANO_KUTSU = 2937;
+export const ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI = 2938;
+export const ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_TSUCHI_S2 = 2939;
+export const ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_KEN = 2940;
+export const ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_ONO = 2941;
+export const ITEM_SET_ID_YUSHANO_KUTSU_TATSUZINNO_ONO_S2 = 2942;
+export const ITEM_ID_MAZINNO_YUBIWA = 2943;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_WANRYOKU_1 = 2944;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_WANRYOKU_2 = 2945;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_WANRYOKU_3 = 2946;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_CHIRYOKU_1 = 2947;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_CHIRYOKU_2 = 2948;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_CHIRYOKU_3 = 2949;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_ZINSOKU_1 = 2950;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_ZINSOKU_2 = 2951;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_ZINSOKU_3 = 2952;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_TAIRYOKU_1 = 2953;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_TAIRYOKU_2 = 2954;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_TAIRYOKU_3 = 2955;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_SHUCHU_1 = 2956;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_SHUCHU_2 = 2957;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_SHUCHU_3 = 2958;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_KOUN_1 = 2959;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_KOUN_2 = 2960;
+export const ITEM_SET_ID_MAZINNO_YUBIWA_MAZINNO_KOUN_3 = 2961;
+export const ITEM_ID_GOFUSEKI = 2962;
+export const ITEM_SET_ID_GOFUSEKI_GERADRIA = 2963;
+export const ITEM_SET_ID_GOFUSEKI_PEORTH_PLATE = 2964;
+export const ITEM_SET_ID_GOFUSEKI_PEORTH_MANT = 2965;
+export const ITEM_SET_ID_GOFUSEKI_PEORTH_GREEVE = 2966;
+export const ITEM_SET_ID_GOFUSEKI_PEORTH_BROOCH = 2967;
+export const ITEM_SET_ID_GOFUSEKI_PEORTH_SET = 2968;
+export const ITEM_ID_GWIBERNO_KAWA = 2969;
+export const ITEM_ID_ENSANO_UDEWA = 2970;
+export const ITEM_ID_MAZYUTSUSHINO_GLOVE = 2971;
+export const ITEM_ID_MARAN_KAIZOKUDANBO = 2972;
+export const ITEM_ID_KAIRYUNO_YOROI = 2973;
+export const ITEM_ID_DIVA_DAGGER = 2974;
+export const ITEM_SET_ID_DIVA_DAGGER_MEIKYUNO_BAPHOMET = 2975;
+export const ITEM_ID_DIVA_BLADE = 2976;
+export const ITEM_SET_ID_DIVA_BLADE_MEIKYUNO_BAPHOMET = 2977;
+export const ITEM_ID_DIVA_CRAYMORE = 2978;
+export const ITEM_SET_ID_DIVA_CRAYMORE_MEIKYUNO_BAPHOMET = 2979;
+export const ITEM_ID_DIVA_SPEAR = 2980;
+export const ITEM_SET_ID_DIVA_SPEAR_MEIKYUNO_BAPHOMET = 2981;
+export const ITEM_ID_DIVA_RANCE = 2982;
+export const ITEM_SET_ID_DIVA_RANCE_MEIKYUNO_BAPHOMET = 2983;
+export const ITEM_ID_DIVA_AXE = 2984;
+export const ITEM_SET_ID_DIVA_AXE_MEIKYUNO_BAPHOMET = 2985;
+export const ITEM_ID_DIVA_TWOHAND_AXE = 2986;
+export const ITEM_SET_ID_DIVA_TWOHAND_AXE_MEIKYUNO_BAPHOMET = 2987;
+export const ITEM_ID_DIVA_MACE = 2988;
+export const ITEM_SET_ID_DIVA_MACE_MEIKYUNO_BAPHOMET = 2989;
+export const ITEM_ID_DIVA_WAND = 2990;
+export const ITEM_SET_ID_DIVA_WAND_MEIKYUNO_BAPHOMET = 2991;
+export const ITEM_ID_DIVA_STUFF = 2992;
+export const ITEM_SET_ID_DIVA_STUFF_MEIKYUNO_BAPHOMET = 2993;
+export const ITEM_ID_DIVA_WING = 2994;
+export const ITEM_SET_ID_DIVA_WING_MEIKYUNO_BAPHOMET = 2995;
+export const ITEM_ID_DIVA_KATAR = 2996;
+export const ITEM_SET_ID_DIVA_KATAR_MEIKYUNO_BAPHOMET = 2997;
+export const ITEM_ID_DIVA_BOOK = 2998;
+export const ITEM_SET_ID_DIVA_BOOK_MEIKYUNO_BAPHOMET = 2999;
+export const ITEM_ID_DIVA_CRAW = 3000;
+export const ITEM_SET_ID_DIVA_CRAW_MEIKYUNO_BAPHOMET = 3001;
+export const ITEM_ID_DIVA_VIOLIN = 3002;
+export const ITEM_SET_ID_DIVA_VIOLIN_MEIKYUNO_BAPHOMET = 3003;
+export const ITEM_ID_DIVA_BLADEWHIP = 3004;
+export const ITEM_SET_ID_DIVA_BLADEWHIP_MEIKYUNO_BAPHOMET = 3005;
+export const ITEM_ID_DIVA_FUMA_SHURIKEN = 3006;
+export const ITEM_SET_ID_DIVA_FUMA_SHURIKEN_MEIKYUNO_BAPHOMET = 3007;
+export const ITEM_ID_DIVA_HANDGUN = 3008;
+export const ITEM_SET_ID_DIVA_HANDGUN_MEIKYUNO_BAPHOMET = 3009;
+export const ITEM_ID_DIVA_RIFLE = 3010;
+export const ITEM_SET_ID_DIVA_RIFLE_MEIKYUNO_BAPHOMET = 3011;
+export const ITEM_ID_DIVA_GATLINGGUN = 3012;
+export const ITEM_SET_ID_DIVA_GATLINGGUN_MEIKYUNO_BAPHOMET = 3013;
+export const ITEM_ID_DIVA_SHOTGUN = 3014;
+export const ITEM_SET_ID_DIVA_SHOTGUN_MEIKYUNO_BAPHOMET = 3015;
+export const ITEM_ID_DIVA_GRENADEGUN = 3016;
+export const ITEM_SET_ID_DIVA_GRENADEGUN_MEIKYUNO_BAPHOMET = 3017;
+export const ITEM_ID_DIVA_ROBE = 3018;
+export const ITEM_ID_DIVA_MANT = 3019;
+export const ITEM_ID_DIVA_SHOES = 3020;
+export const ITEM_SET_ID_DIVA_SHOES_DIVA_ROBE_DIVA_MANT = 3021;
+export const ITEM_ID_MIRRORAGE_DAGGER = 3022;
+export const ITEM_SET_ID_MIRRORAGE_DAGGER_MEIKYUNO_DRACULA = 3023;
+export const ITEM_ID_MIRRORAGE_BLADE = 3024;
+export const ITEM_SET_ID_MIRRORAGE_BLADE_MEIKYUNO_DRACULA = 3025;
+export const ITEM_ID_MIRRORAGE_CRAYMORE = 3026;
+export const ITEM_SET_ID_MIRRORAGE_CRAYMORE_MEIKYUNO_DRACULA = 3027;
+export const ITEM_ID_MIRRORAGE_SPEAR = 3028;
+export const ITEM_SET_ID_MIRRORAGE_SPEAR_MEIKYUNO_DRACULA = 3029;
+export const ITEM_ID_MIRRORAGE_RANCE = 3030;
+export const ITEM_SET_ID_MIRRORAGE_RANCE_MEIKYUNO_DRACULA = 3031;
+export const ITEM_ID_MIRRORAGE_AXE = 3032;
+export const ITEM_SET_ID_MIRRORAGE_AXE_MEIKYUNO_DRACULA = 3033;
+export const ITEM_ID_MIRRORAGE_TWOHAND_AXE = 3034;
+export const ITEM_SET_ID_MIRRORAGE_TWOHAND_AXE_MEIKYUNO_DRACULA = 3035;
+export const ITEM_ID_MIRRORAGE_MACE = 3036;
+export const ITEM_SET_ID_MIRRORAGE_MACE_MEIKYUNO_DRACULA = 3037;
+export const ITEM_ID_MIRRORAGE_WAND = 3038;
+export const ITEM_SET_ID_MIRRORAGE_WAND_MEIKYUNO_DRACULA = 3039;
+export const ITEM_ID_MIRRORAGE_STUFF = 3040;
+export const ITEM_SET_ID_MIRRORAGE_STUFF_MEIKYUNO_DRACULA = 3041;
+export const ITEM_ID_MIRRORAGE_WING = 3042;
+export const ITEM_SET_ID_MIRRORAGE_WING_MEIKYUNO_DRACULA = 3043;
+export const ITEM_ID_MIRRORAGE_KATAR = 3044;
+export const ITEM_SET_ID_MIRRORAGE_KATAR_MEIKYUNO_DRACULA = 3045;
+export const ITEM_ID_MIRRORAGE_BOOK = 3046;
+export const ITEM_SET_ID_MIRRORAGE_BOOK_MEIKYUNO_DRACULA = 3047;
+export const ITEM_ID_MIRRORAGE_CRAW = 3048;
+export const ITEM_SET_ID_MIRRORAGE_CRAW_MEIKYUNO_DRACULA = 3049;
+export const ITEM_ID_MIRRORAGE_VIOLIN = 3050;
+export const ITEM_SET_ID_MIRRORAGE_VIOLIN_MEIKYUNO_DRACULA = 3051;
+export const ITEM_ID_MIRRORAGE_BLADEWHIP = 3052;
+export const ITEM_SET_ID_MIRRORAGE_BLADEWHIP_MEIKYUNO_DRACULA = 3053;
+export const ITEM_ID_MIRRORAGE_FUMA_SHURIKEN = 3054;
+export const ITEM_SET_ID_MIRRORAGE_FUMA_SHURIKEN_MEIKYUNO_DRACULA = 3055;
+export const ITEM_ID_MIRRORAGE_HANDGUN = 3056;
+export const ITEM_SET_ID_MIRRORAGE_HANDGUN_MEIKYUNO_DRACULA = 3057;
+export const ITEM_ID_MIRRORAGE_RIFLE = 3058;
+export const ITEM_SET_ID_MIRRORAGE_RIFLE_MEIKYUNO_DRACULA = 3059;
+export const ITEM_ID_MIRRORAGE_GATLINGGUN = 3060;
+export const ITEM_SET_ID_MIRRORAGE_GATLINGGUN_MEIKYUNO_DRACULA = 3061;
+export const ITEM_ID_MIRRORAGE_SHOTGUN = 3062;
+export const ITEM_SET_ID_MIRRORAGE_SHOTGUN_MEIKYUNO_DRACULA = 3063;
+export const ITEM_ID_MIRRORAGE_GRENADEGUN = 3064;
+export const ITEM_SET_ID_MIRRORAGE_GRENADEGUN_MEIKYUNO_DRACULA = 3065;
+export const ITEM_ID_MIRRORAGE_ROBE = 3066;
+export const ITEM_ID_MIRRORAGE_MANT = 3067;
+export const ITEM_ID_MIRRORAGE_SHOES = 3068;
+export const ITEM_SET_ID_MIRRORAGE_SHOES_MIRRORAGE_ROBE_MIRRORAGE_MANT = 3069;
+export const ITEM_ID_CELINENO_BROACH = 3070;
+export const ITEM_SET_ID_CELINENO_BROACH_CELINENO_RIBBON = 3071;
+export const ITEM_SET_ID_CELINENO_BROACH_MIZUMIZUSHI_BARA = 3072;
+export const ITEM_SET_ID_CELINENO_BROACH_AKURYONO_ITONO_TEBUKURO = 3073;
+export const ITEM_ID_ANEMOS_SHIELD = 3074;
+export const ITEM_ID_MARRACONO_KAWA = 3075;
+export const ITEM_ID_ZIKU_MANT = 3076;
+export const ITEM_SET_ID_ZIKU_MANT_CHIKARANO_ZIKU_BOOTS = 3077;
+export const ITEM_SET_ID_ZIKU_MANT_SHUNBINNO_ZIKU_BOOTS = 3078;
+export const ITEM_SET_ID_ZIKU_MANT_TAIRYOKUNO_ZIKU_BOOTS = 3079;
+export const ITEM_SET_ID_ZIKU_MANT_CHIRYOKUNO_ZIKU_BOOTS = 3080;
+export const ITEM_SET_ID_ZIKU_MANT_GIKONO_ZIKU_BOOTS = 3081;
+export const ITEM_SET_ID_ZIKU_MANT_KOUNNO_ZIKU_BOOTS = 3082;
+export const ITEM_SET_ID_ZIKU_MANT_CHIKARANO_ZIKU_BOOTS_S1 = 3083;
+export const ITEM_SET_ID_ZIKU_MANT_SHUNBINNO_ZIKU_BOOTS_S1 = 3084;
+export const ITEM_SET_ID_ZIKU_MANT_TAIRYOKUNO_ZIKU_BOOTS_S1 = 3085;
+export const ITEM_SET_ID_ZIKU_MANT_CHIRYOKUNO_ZIKU_BOOTS_S1 = 3086;
+export const ITEM_SET_ID_ZIKU_MANT_GIKONO_ZIKU_BOOTS_S1 = 3087;
+export const ITEM_SET_ID_ZIKU_MANT_KOUNNO_ZIKU_BOOTS_S1 = 3088;
+export const ITEM_ID_TARE_CHUNI_PENGUIN = 3089;
+export const ITEM_ID_TARE_SHINSHUKUZIZAI_HAND = 3090;
+export const ITEM_ID_SHUGOKISHINO_KUBIKAZARI = 3091;
+export const ITEM_SET_ID_SHUGOKISHINO_KUBIKAZARI_IMPERIAL_FEATHER = 3092;
+export const ITEM_ID_SHIKKOUSHANO_SHOES = 3093;
+export const ITEM_ID_BRUNHILDNO_DIADEM = 3094;
+export const ITEM_ID_SHINENNO_DRESS = 3095;
+export const ITEM_ID_AKUMASUHAISHANO_KUTSU = 3096;
+export const ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO = 3097;
+export const ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO_KODAIZYUNO_TSUE = 3098;
+export const ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_BOSOSHITA_MARYOKU = 3099;
+export const ITEM_ID_SEINARU_HAKUI = 3100;
+export const ITEM_SET_ID_SEINARU_HAKUI_ARGIOPE = 3101;
+export const ITEM_ID_RYORAN_KEN = 3102;
+export const ITEM_ID_RYORAN_YARI = 3103;
+export const ITEM_ID_RYORAN_TSUCHI = 3104;
+export const ITEM_ID_RYORAN_YUMI = 3105;
+export const ITEM_ID_RYORAN_TSUE = 3106;
+export const ITEM_ID_RYORAN_ZYU = 3107;
+export const ITEM_ID_KYOZINNO_KAGO = 3108;
+export const ITEM_SET_ID_KYOZINNO_KAGO_GIGANT_AXE = 3109;
+export const ITEM_SET_ID_KYOZINNO_KAGO_GIGANT_BOW = 3110;
+export const ITEM_SET_ID_KYOZINNO_KAGO_GIGANT_LANCE = 3111;
+export const ITEM_ID_AEGIR_RING = 3112;
+export const ITEM_SET_ID_AEGIR_RING_AEGIR_HELM = 3113;
+export const ITEM_SET_ID_AEGIR_RING_AEGIR_ARMOR = 3114;
+export const ITEM_SET_ID_AEGIR_RING_AEGIR_MANT = 3115;
+export const ITEM_SET_ID_AEGIR_RING_AEGIR_SHOES = 3116;
+export const ITEM_SET_ID_AEGIR_RING_AEGIR_FULLSET = 3117;
+export const ITEM_SET_ID_AEGIR_RING_KRAKEN_CARD = 3118;
+export const ITEM_ID_NIZIIRONO_TSUBASA = 3119;
+export const ITEM_ID_GARDEN_OF_EDEN = 3120;
+export const ITEM_SET_ID_GARDEN_OF_EDEN_CATHERINE_KARON_MVP_CARD = 3121;
+export const ITEM_ID_GEMINIS58NO_ME_AKA = 3122;
+export const ITEM_ID_OPEN_AIR_HEADPHONE = 3123;
+export const ITEM_ID_MEDIC_CAPE = 3124;
+export const ITEM_ID_DRAKE_COAT = 3125;
+export const ITEM_ID_ENRAIMAZYONO_OTSUE = 3126;
+export const ITEM_ID_KAMIKURAINO_RYUSO = 3127;
+export const ITEM_ID_SHINENNO_ONO_YUBIWA = 3128;
+export const ITEM_ID_MAZYUNO_YUBIWA = 3129;
+export const ITEM_SET_ID_MAZYUNO_YUBIWA_MAZYUNO_MAIL = 3130;
+export const ITEM_SET_ID_MAZYUNO_YUBIWA_MAZYUNO_MANT = 3131;
+export const ITEM_SET_ID_MAZYUNO_YUBIWA_MAZYUNO_BOOTS = 3132;
+export const ITEM_ID_SOHIONNO_KODACHI = 3133;
+export const ITEM_SET_ID_SOHIONNO_KODACHI_SOHIONNO_HAGOROMO = 3134;
+export const ITEM_ID_KOREIZYUTSUSHINO_GAITO = 3135;
+export const ITEM_SET_ID_KOREIZYUTSUSHINO_GAITO_ENRAIMAZYONO_OTSUE = 3136;
+export const ITEM_ID_RUDONO_KUROI_HANE = 3137;
+export const ITEM_SET_ID_RUDONO_KUROI_HANE_RUDONO_ROLLPAPER = 3138;
+export const ITEM_ID_KODAIRYUNO_HOKAN = 3139;
+export const ITEM_ID_KINGS_GUARD = 3140;
+export const ITEM_SET_ID_KINGS_GUARD_SAVE_THE_KING = 3141;
+export const ITEM_ID_LOLANO_PLATEMAIL = 3142;
+export const ITEM_SET_ID_LOLANO_PLATEMAIL_LOLANO_KUSARITEKKYU = 3143;
+export const ITEM_ID_ELVIRA_BOOTS = 3144;
+export const ITEM_SET_ID_ELVIRA_BOOTS_ELVIRA_PENDANT = 3145;
+export const ITEM_ID_KAZISHINO_TEKKO = 3146;
+export const ITEM_ID_ZIRKFREEDNO_KABUTO = 3147;
+export const ITEM_ID_FURIONI_WING = 3148;
+export const ITEM_SET_ID_FURIONI_WING_FURIONI_CARD = 3149;
+export const ITEM_ID_ANGELING_SUITS = 3150;
+export const ITEM_ID_GHOSTRING_SUITS = 3151;
+export const ITEM_ID_CHEMICAL_GLOVE = 3152;
+export const ITEM_ID_KOFUKUNO_TATE = 3153;
+export const ITEM_SET_ID_KOFUKUNO_TATE_ARNORDY_CARD = 3154;
+export const ITEM_SET_ID_KOFUKUNO_TATE_ANUBIS_CARD = 3155;
+export const ITEM_SET_ID_KOFUKUNO_TATE_ORC_WARRIOR_CARD = 3156;
+export const ITEM_SET_ID_KOFUKUNO_TATE_CARITZBURG_CARD = 3157;
+export const ITEM_SET_ID_KOFUKUNO_TATE_SKY_PTITE_CARD = 3158;
+export const ITEM_SET_ID_KOFUKUNO_TATE_TARAFROG_CARD = 3159;
+export const ITEM_SET_ID_KOFUKUNO_TATE_BIGFOOT_CARD = 3160;
+export const ITEM_SET_ID_KOFUKUNO_TATE_BEARDOLL_CARD = 3161;
+export const ITEM_SET_ID_KOFUKUNO_TATE_PHENOMENA_CARD = 3162;
+export const ITEM_SET_ID_KOFUKUNO_TATE_RAFLECIA_CARD = 3163;
+export const ITEM_ID_ZINBAORI = 3164;
+export const ITEM_ID_SWORD_WING = 3165;
+export const ITEM_ID_NIEVE_CRAYMORE = 3166;
+export const ITEM_ID_NIEVE_GRAVE = 3167;
+export const ITEM_ID_NIEVE_ZYAMADAHAR = 3168;
+export const ITEM_ID_NIEVE_WIZARD_STUFF = 3169;
+export const ITEM_ID_NIEVE_ARCWAND = 3170;
+export const ITEM_ID_NIEVE_HOLYSTICK = 3171;
+export const ITEM_ID_NIEVE_DIVINE_CROSS = 3172;
+export const ITEM_ID_NIEVE_GUILLOTINE = 3173;
+export const ITEM_ID_NIEVE_BASTER = 3174;
+export const ITEM_ID_NIEVE_FUMA_SHURIKEN = 3175;
+export const ITEM_ID_NIEVE_THIEF_BOW = 3176;
+export const ITEM_ID_NIEVE_HUNTER_BOW = 3177;
+export const ITEM_ID_NIEVE_CROSS_BOW = 3178;
+export const ITEM_ID_NIEVE_RIFLE = 3179;
+export const ITEM_ID_SHAKUNETSUNO_KEN = 3180;
+export const ITEM_ID_NARAKUNO_KEN = 3181;
+export const ITEM_ID_ZYOKANO_KEN = 3182;
+export const ITEM_ID_POISON_SPEAR = 3183;
+export const ITEM_ID_OBIZYONO_ANKI = 3184;
+export const ITEM_ID_SOGEKISHUNO_TEBUKURO = 3185;
+export const ITEM_ID_DIVID_SHIELD = 3186;
+export const ITEM_SET_ID_DIVID_SHIELD_SHUGEKISHANO_ROBE = 3187;
+export const ITEM_SET_ID_DIVID_SHIELD_MASSHOSHANO_ROBE = 3188;
+export const ITEM_ID_YSF01_PLATE = 3189;
+export const ITEM_SET_ID_YSF01_PLATE_FULLSET = 3190;
+export const ITEM_ID_YSF01_MANT = 3191;
+export const ITEM_ID_YSF01_GREEVE = 3192;
+export const ITEM_ID_SHUGEKISHANO_ROBE = 3193;
+export const ITEM_ID_MASSHOSHANO_ROBE = 3194;
+export const ITEM_SET_ID_MASSHOSHANO_ROBE_ENTVAIEN_CARD = 3195;
+export const ITEM_ID_SNIPING_VEIL = 3196;
+export const ITEM_SET_ID_SNIPING_VEIL_IMUKENO_OSODE = 3197;
+export const ITEM_SET_ID_SNIPING_VEIL_HORN_CARD = 3198;
+export const ITEM_ID_KYOWAKOKUNO_BOSHI = 3199;
+export const ITEM_ID_FUSHOHENO_HOTAI = 3200;
+export const ITEM_ID_KONGOSEKINO_KUTSU = 3201;
+export const ITEM_ID_KYODAIZYUNO_WAKABA = 3202;
+export const ITEM_SET_ID_KYODAIZYUNO_WAKABA_CARDYUINO_MIMI = 3203;
+export const ITEM_SET_ID_KYODAIZYUNO_WAKABA_TENDORIRURION_CARD = 3204;
+export const ITEM_ID_MENBRITZ_MANT = 3205;
+export const ITEM_SET_ID_MENBRITZ_MANT_MENBRITZ_CARD = 3206;
+export const ITEM_ID_TENGUNO_GETA = 3207;
+export const ITEM_ID_GODS_SWORD = 3208;
+export const ITEM_SET_ID_GODS_SWORD_ONRYOBUSHI_CARD = 3209;
+export const ITEM_ID_GODS_HELM = 3210;
+export const ITEM_ID_TAUROS_CROWN = 3211;
+export const ITEM_SET_ID_TAUROS_CROWN_TAUROS = 3212;
+export const ITEM_ID_CANCER_DIADEM = 3213;
+export const ITEM_SET_ID_CANCER_DIADEM_CANCER = 3214;
+export const ITEM_ID_GODS_ARMOR = 3215;
+export const ITEM_ID_GODS_SHIELD = 3216;
+export const ITEM_ID_GODS_GUNTLET = 3217;
+export const ITEM_ID_KUWAETA_HEARTNO_ACE = 3218;
+export const ITEM_SET_ID_KUWAETA_HEARTNO_ACE_GAMBLER_SEAL = 3219;
+export const ITEM_ID_EXELION_SHIELD = 3220;
+export const ITEM_ID_IMPERIAL_GLOVE = 3221;
+export const ITEM_SET_ID_IMPERIAL_GLOVE_IMPERIAL_FEATHER = 3222;
+export const ITEM_ID_KIRINO_YOTO = 3223;
+export const ITEM_ID_MOENTO_HAKUMANO_YUBIWA = 3224;
+export const ITEM_ID_WILL_O_WISP = 3225;
+export const ITEM_ID_KINKINO_MADOSHO = 3226;
+export const ITEM_ID_EIYUNO_YUBIWA = 3227;
+export const ITEM_SET_ID_EIYUNO_YUBIWA_TATSUZINNO_TSUCHI_YUSHANO_KUTSU = 3228;
+export const ITEM_SET_ID_EIYUNO_YUBIWA_TATSUZINNO_TSUCHI_S2_YUSHANO_KUTSU = 3229;
+export const ITEM_SET_ID_EIYUNO_YUBIWA_TATSUZINNO_KEN_YUSHANO_KUTSU = 3230;
+export const ITEM_SET_ID_EIYUNO_YUBIWA_TATSUZINNO_ONO_YUSHANO_KUTSU = 3231;
+export const ITEM_SET_ID_EIYUNO_YUBIWA_TATSUZINNO_ONO_S2_YUSHANO_KUTSU = 3232;
+export const ITEM_ID_TAIKYOKUNO_GOFU = 3233;
+export const ITEM_SET_ID_TAIKYOKUNO_GOFU_SHAKUNETSUNO_KEN = 3234;
+export const ITEM_SET_ID_TAIKYOKUNO_GOFU_ZYOKANO_KEN = 3235;
+export const ITEM_SET_ID_TAIKYOKUNO_GOFU_NARAKUNO_KEN = 3236;
+export const ITEM_SET_ID_TAIKYOKUNO_GOFU_SHAKUNETSUNO_KEN_DIVID_SHIELD = 3237;
+export const ITEM_SET_ID_TAIKYOKUNO_GOFU_ZYOKANO_KEN_DIVID_SHIELD = 3238;
+export const ITEM_SET_ID_TAIKYOKUNO_GOFU_NARAKUNO_KEN_DIVID_SHIELD = 3239;
+export const ITEM_ID_SURVIVAL_SHOES = 3240;
+export const ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_ROD_DEX_S1 = 3241;
+export const ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_ROD_INT_S1 = 3242;
+export const ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_CIRCLET = 3243;
+export const ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_MANT = 3244;
+export const ITEM_SET_ID_SURVIVAL_SHOES_SURVIVAL_ORB = 3245;
+export const ITEM_ID_AMANOZYAKUNO_KIMEN = 3246;
+export const ITEM_ID_IKUSAOTOMENO_SHIZUKU = 3247;
+export const ITEM_ID_HAIHANENO_BOOTS = 3248;
+export const ITEM_SET_ID_HAIHANENO_BOOTS_KUROHANO_SUITS = 3249;
+export const ITEM_SET_ID_HAIHANENO_BOOTS_SHIRAHANO_SUITS = 3250;
+export const ITEM_ID_ANSONINO_FUKU = 3251;
+export const ITEM_SET_ID_ANSONINO_FUKU_ANSONI_CARD = 3252;
+export const ITEM_ID_MONOKAGE = 3253;
+export const ITEM_ID_KOINNO_TSURUHASHI = 3254;
+export const ITEM_ID_KIGENNO_SHO = 3255;
+export const ITEM_ID_ZIKEIDANNO_YUMI = 3256;
+export const ITEM_ID_DAISHIZENNO_GUITAR = 3257;
+export const ITEM_ID_DAISHIZENNO_ROPE = 3258;
+export const ITEM_ID_FUMASHURIKEN_HANAFUBUKI = 3259;
+export const ITEM_ID_ZIKEIDANNNO_BADGE = 3260;
+export const ITEM_ID_DAISHIZENNNO_NECKLACE = 3261;
+export const ITEM_ID_EIKONO_ROCKRIDGE_BADGE = 3262;
+export const ITEM_ID_MEIYONO_ROCKRIDGE_BADGE = 3263;
+export const ITEM_SET_ID_EIKONO_ROCKRIDGE_BADGE_MEIYONO_ROCKRIDGE_BADGE = 3264;
+export const ITEM_ID_ZIKEIDANNNO_SUITS = 3265;
+export const ITEM_ID_SEIREINO_ROBE = 3266;
+export const ITEM_ID_YOZINBONO_SUITS = 3267;
+export const ITEM_ID_KOINNNO_VEST = 3268;
+export const ITEM_ID_DAISHIZENNNO_SUITS = 3269;
+export const ITEM_ID_SEIREINO_MANT = 3270;
+export const ITEM_ID_YOZINBONO_SCARF = 3271;
+export const ITEM_ID_KOINNNO_RUCKSACK = 3272;
+export const ITEM_ID_GREATER_DRACLE_HORN = 3273;
+export const ITEM_SET_ID_GREATER_DRACLE_HORN_HUNTERFLY_CARD = 3274;
+export const ITEM_ID_NIEVE_VALLETTA = 3275;
+export const ITEM_SET_ID_NIEVE_VALLETTA_NIEVE_ARMS = 3276;
+export const ITEM_ID_ROYAL_MANT = 3277;
+export const ITEM_ID_FAIRLY_CLOTH = 3278;
+export const ITEM_SET_ID_FAIRLY_CLOTH_JACK_CARD = 3279;
+export const ITEM_SET_ID_FAIRLY_CLOTH_DUSTYNESS_CARD = 3280;
+export const ITEM_SET_ID_FAIRLY_CLOTH_HORD_CARD = 3281;
+export const ITEM_SET_ID_FAIRLY_CLOTH_MARTH_CARD = 3282;
+export const ITEM_SET_ID_FAIRLY_CLOTH_CHOCO_CARD = 3283;
+export const ITEM_ID_SCARABA_HIGHHEEL = 3284;
+export const ITEM_SET_ID_SCARABA_HIGHHEEL_ELVEN_BOW = 3285;
+export const ITEM_SET_ID_SCARABA_HIGHHEEL_CARGA_MACE = 3286;
+export const ITEM_SET_ID_SCARABA_HIGHHEEL_DULLGER = 3287;
+export const ITEM_SET_ID_SCARABA_HIGHHEEL_LAFINE_STUFF = 3288;
+export const ITEM_ID_GEMINI_CROWN = 3289;
+export const ITEM_SET_ID_GEMINI_CROWN_GEMINI = 3290;
+export const ITEM_ID_SAGITTARIUS_DIADEM = 3291;
+export const ITEM_SET_ID_SAGITTARIUS_DIADEM_SAGITTARIUS = 3292;
+export const ITEM_ID_NAMONAKI_KENNSHINO_BOOTS = 3293;
+export const ITEM_SET_ID_NAMONAKI_KENNSHINO_BOOTS_IGNISEM_CENIA_MVP = 3294;
+export const ITEM_ID_SHITENSHINO_UMO = 3295;
+export const ITEM_SET_ID_SHITENSHINO_UMO_SHITENSHINO_HANAKANMURI = 3296;
+export const ITEM_ID_EMERALD_RING = 3297;
+export const ITEM_ID_SOIGANO_SHO = 3298;
+export const ITEM_SET_ID_SOIGANO_SHO_ARMAIA_DUNZE_CARD = 3299;
+export const ITEM_SET_ID_SOIGANO_SHO_VIRUS_CARD = 3300;
+export const ITEM_SET_ID_SOIGANO_SHO_ORC_ARCHER_CARD = 3301;
+export const ITEM_SET_ID_SOIGANO_SHO_GREEN_IGUANA_CARD = 3302;
+export const ITEM_SET_ID_SOIGANO_SHO_SIKKOSURUMONO_CARD = 3303;
+export const ITEM_SET_ID_SOIGANO_SHO_STEM_WORM_CARD = 3304;
+export const ITEM_SET_ID_SOIGANO_SHO_TENZYA_SENNIN_CARD = 3305;
+export const ITEM_SET_ID_SOIGANO_SHO_DRAGONNO_TAMAGO_CARD = 3306;
+export const ITEM_SET_ID_SOIGANO_SHO_WRAITH_CARD = 3307;
+export const ITEM_SET_ID_SOIGANO_SHO_RAYDRIC_ARCHER_CARD = 3308;
+export const ITEM_ID_VERUS_CORE = 3309;
+export const ITEM_ID_AKUMANO_TE = 3310;
+export const ITEM_ID_HITSUKISHINZI = 3311;
+export const ITEM_ID_ZYUNREISHANO_KUTSU = 3312;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_YUBIWA = 3313;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_YUBIWA_OWASHINO_GANKO = 3314;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_YUBIWA_KUMANO_CHIKARA = 3315;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_YUBIWA_KOUUNNA_HI = 3316;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_YUBIWA_KOGAI = 3317;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_YUBIWA_KOSOKU = 3318;
+export const ITEM_ID_TOKIMAZYUTSUSHINO_YUBIWA_BOSOSHITA_MARYOKU = 3319;
+export const ITEM_ID_GOOGLE_HAT = 3320;
+export const ITEM_ID_KUROITOODOSHI_DOMARU = 3321;
+export const ITEM_ID_TAURUS_HAT = 3322;
+export const ITEM_ID_FUSHICHONO_KANMURI = 3323;
+export const ITEM_ID_OMOCHANO_YUBIWA = 3324;
+export const ITEM_SET_ID_OMOCHANO_YUBIWA_METEOR_STRIKE = 3325;
+export const ITEM_ID_SHINMENO_NEKOZYARASHI = 3326;
+export const ITEM_ID_SHOSHINSHAYO_NEKOZYARASHI = 3327;
+export const ITEM_ID_NEKOZYARASHINO_MOKEI = 3328;
+export const ITEM_ID_SENSAINA_NEKOZYARASHINO_MOKEI = 3329;
+export const ITEM_ID_OKINA_NEKOZYARASHINO_MOKEI = 3330;
+export const ITEM_ID_SEIKONA_NEKOZYARASHINO_MOKEI = 3331;
+export const ITEM_ID_KIROI_NEKOZYARASHINO_MOKEI = 3332;
+export const ITEM_ID_NAGAI_KAIFUKUNO_NEKOZYARASHI = 3333;
+export const ITEM_ID_HOUFUNA_KAIFUKUNO_NEKOZYARASHI = 3334;
+export const ITEM_ID_TONBOGA_TOMATTA_NEKOZYARASHI = 3335;
+export const ITEM_ID_TONBOGA_TOMATTA_MYOUNARU_NEKOZYARASHI = 3336;
+export const ITEM_ID_TONBOGA_TOMATTA_SHINMYOUNA_NEKOZYARASHI = 3337;
+export const ITEM_ID_TONBOGA_TOMATTA_MARYOKUNO_NEKOZYARASHI = 3338;
+export const ITEM_ID_TONBOGA_TOMATTA_KIROI_NEKOZYARASHI = 3339;
+export const ITEM_ID_DIVA_FOXTAIL = 3340;
+export const ITEM_SET_ID_DIVA_FOXTAIL_MEIKYUNO_BAPHOMET = 3341;
+export const ITEM_ID_MIRRORAGE_FOXTAIL = 3342;
+export const ITEM_SET_ID_MIRRORAGE_FOXTAIL_MEIKYUNO_DRACULA = 3343;
+export const ITEM_ID_SHINSENNA_KUSANO_NECKLACE = 3344;
+export const ITEM_ID_KAWAII_KUSANO_NECKLACE = 3345;
+export const ITEM_ID_MARYOKUNO_KUSANO_NECKLACE = 3346;
+export const ITEM_ID_AZINO_OMAMORI = 3347;
+export const ITEM_ID_KOKYU_AZINO_OMAMORI = 3348;
+export const ITEM_ID_TOKUSEN_AZINO_OMAMORI = 3349;
+export const ITEM_ID_HANO_OMAMORI = 3350;
+export const ITEM_ID_KOKYU_HANO_OMAMORI = 3351;
+export const ITEM_ID_TOKUSEN_HANO_OMAMORI = 3352;
+export const ITEM_ID_USAGINO_OMAMORI = 3353;
+export const ITEM_ID_KOKYU_USAGINO_OMAMORI = 3354;
+export const ITEM_ID_TOKUSEN_USAGINO_OMAMORI = 3355;
+export const ITEM_ID_HIKARUEDANO_OMAMORI = 3356;
+export const ITEM_ID_SHINSENNA_MAGURONO_OMAMORI = 3357;
+export const ITEM_ID_POCCHARI_MIMIZUNO_OMAMORI = 3358;
+export const ITEM_ID_NEKOZYARASHINO_YUBIWA = 3359;
+export const ITEM_ID_FARFARE_ZIKEIDANBO = 3360;
+export const ITEM_ID_DAKITSUKI_NEKO = 3361;
+export const ITEM_ID_DAKITSUKI_SYAMNEKO = 3362;
+export const ITEM_ID_PEPARONI_PIZZA = 3363;
+export const ITEM_ID_KUWAETA_NINZIN = 3364;
+export const ITEM_ID_STRAWBERRY_HAT = 3365;
+export const ITEM_ID_AORINGOBO = 3366;
+export const ITEM_ID_DORAM_SHIELD = 3367;
+export const ITEM_ID_SHIROI_TSHIRTS = 3368;
+export const ITEM_ID_SHIROI_LEAF_TSHIRTS = 3369;
+export const ITEM_ID_DORAM_SUITS = 3370;
+export const ITEM_ID_KOKYU_DORAM_SUITS = 3371;
+export const ITEM_ID_TOKUSEN_DORAM_SUITS = 3372;
+export const ITEM_ID_DORAM_CAPE = 3373;
+export const ITEM_ID_KOKYU_DORAM_CAPE = 3374;
+export const ITEM_ID_TOKUSEN_DORAM_CAPE = 3375;
+export const ITEM_ID_KINO_SLIPPERS = 3376;
+export const ITEM_ID_RED_BOOTS = 3377;
+export const ITEM_ID_DORAM_SHOES = 3378;
+export const ITEM_ID_KOKYU_DORAM_SHOES = 3379;
+export const ITEM_ID_TOKUSEN_DORAM_SHOES = 3380;
+export const ITEM_SET_ID_DORAM_ARMOR_SET = 3381;
+export const ITEM_SET_ID_KOKYU_DORAM_ARMOR_SET = 3382;
+export const ITEM_SET_ID_TOKUSEN_DORAM_ARMOR_SET = 3383;
+export const ITEM_ID_BLUTO_DUMASCUS = 3384;
+export const ITEM_ID_BLUTO_SPEAR = 3385;
+export const ITEM_ID_BLUTO_CLEAVER = 3386;
+export const ITEM_ID_BLUTO_MORNINGSTAR = 3387;
+export const ITEM_ID_BLUTO_ARCWAND = 3388;
+export const ITEM_ID_BLUTO_HANDGUN = 3389;
+export const ITEM_ID_BLUTO_RIFLE = 3390;
+export const ITEM_ID_BLUTO_GATLINGGUN = 3391;
+export const ITEM_ID_BLUTO_SHOTGUN = 3392;
+export const ITEM_ID_BLUTO_GRENADEGUN = 3393;
+export const ITEM_ID_BLUTO_HUNTER_BOW = 3394;
+export const ITEM_ID_BLUTO_GUITAR = 3395;
+export const ITEM_ID_BLUTO_RARIET = 3396;
+export const ITEM_ID_BLUTO_FUMASHURIKEN = 3397;
+export const ITEM_ID_BLUTO_KATAR = 3398;
+export const ITEM_SET_ID_RIOTCHIP_Z_KNOCKBACK = 3399;
+export const ITEM_SET_ID_RIOTCHIP_Z_IMMORTAL = 3400;
+export const ITEM_SET_ID_RIOTCHIP_Z_KILLGAIN = 3401;
+export const ITEM_SET_ID_RIOTCHIP_Z_REINCARNATION = 3402;
+export const ITEM_SET_ID_RIOTCHIP_Z_NODISPELL = 3403;
+export const ITEM_SET_ID_RIOTCHIP_Z_CLAIRVOYANCE = 3404;
+export const ITEM_SET_ID_RIOTCHIP_Z_CASTFIXED = 3405;
+export const ITEM_ID_DAISHIZENNO_DRESS = 3406;
+export const ITEM_ID_POWERED_CHIP = 3407;
+export const ITEM_ID_KAIMAZYUNO_UROKO = 3408;
+export const ITEM_SET_ID_KAIMAZYUNO_UROKO_TODO = 3409;
+export const ITEM_ID_KABOCHA_HEAD = 3410;
+export const ITEM_ID_SERPENTARIUS_CROWN = 3411;
+export const ITEM_SET_ID_SERPENTARIUS_CROWN_SERPENTARIUS = 3412;
+export const ITEM_ID_AQUARIUS_DIADEM = 3413;
+export const ITEM_SET_ID_AQUARIUS_DIADEM_AQUARIUS = 3414;
+export const ITEM_ID_FURUBITA_GESSHOKUNO_SOUSHOKU = 3415;
+export const ITEM_ID_GESSHOKUNO_SOUSHOKU = 3416;
+export const ITEM_SET_ID_GESSHOKUNO_SOUSHOKU_HATI_CARD = 3417;
+export const ITEM_ID_ACCELERATOR_CHIP = 3418;
+export const ITEM_SET_ID_ACCELERATOR_CHIP_RIOT_CHIP = 3419;
+export const ITEM_ID_FUSHINO_GUNDAN_NINSHIKIHYO = 3420;
+export const ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_JULIET_DE_RACHEL = 3421;
+export const ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_HIMAWARI_SHONEN = 3422;
+export const ITEM_SET_ID_FUSHINO_GUNDAN_NINSHIKIHYO_LINDY_HOP = 3423;
+export const ITEM_ID_ZIKKEN_SEITAI_GOATGATA_CAP = 3424;
+export const ITEM_ID_BURST_FLAME = 3425;
+export const ITEM_ID_BRAVE_SUIT = 3426;
+export const ITEM_SET_ID_BRAVE_SUIT_TAOGUNKA_CARD = 3427;
+export const ITEM_ID_BRAVE_MUFFLER = 3428;
+export const ITEM_ID_BRAVE_SHOES = 3429;
+export const ITEM_SET_ID_BRAVE_SET = 3430;
+export const ITEM_ID_GOYUMUSONO_MONBOSHI = 3431;
+export const ITEM_ID_FUYUSURU_TAIKYOKUDAMA = 3432;
+export const ITEM_ID_PROTECT_CLOTH = 3433;
+export const ITEM_SET_ID_PROTECT_CLOTH_PROTECT_FEATHER = 3434;
+export const ITEM_ID_RENGOGUN_SHIREKANNNO_MANT = 3435;
+export const ITEM_SET_ID_RENGOGUN_SHIREKANNNO_MANT_YUSHANO_UNGORIANT_BOOTS = 3436;
+export const ITEM_SET_ID_RENGOGUN_SHIREKANNNO_MANT_YUSHANO_GINKOGAWA_BOOTS = 3437;
+export const ITEM_SET_ID_RENGOGUN_SHIREKANNNO_MANT_YUSHANO_NEPENTES_BOOTS = 3438;
+export const ITEM_ID_BOOSTER_SHOES = 3439;
+export const ITEM_ID_PRONTERA_GUNYO_TEBUKURO = 3440;
+export const ITEM_ID_NIZIIRONO_SCARF = 3441;
+export const ITEM_ID_KODAI_MORROCNO_SHAWL = 3442;
+export const ITEM_SET_ID_KODAI_MORROCNO_SHAWL_OSIRIS_CARD = 3443;
+export const ITEM_ID_CHOSADANNO_BOSHI = 3444;
+export const ITEM_ID_ABYSS_DAGGER = 3445;
+export const ITEM_SET_ID_ABYSS_DAGGER_MEIKYUNO_DOPPELGANGER = 3446;
+export const ITEM_ID_ABYSS_BLADE = 3447;
+export const ITEM_SET_ID_ABYSS_BLADE_MEIKYUNO_DOPPELGANGER = 3448;
+export const ITEM_ID_ABYSS_CRAYMORE = 3449;
+export const ITEM_SET_ID_ABYSS_CRAYMORE_MEIKYUNO_DOPPELGANGER = 3450;
+export const ITEM_ID_ABYSS_SPEAR = 3451;
+export const ITEM_SET_ID_ABYSS_SPEAR_MEIKYUNO_DOPPELGANGER = 3452;
+export const ITEM_ID_ABYSS_RANCE = 3453;
+export const ITEM_SET_ID_ABYSS_RANCE_MEIKYUNO_DOPPELGANGER = 3454;
+export const ITEM_ID_ABYSS_AXE = 3455;
+export const ITEM_SET_ID_ABYSS_AXE_MEIKYUNO_DOPPELGANGER = 3456;
+export const ITEM_ID_ABYSS_TWOHAND_AXE = 3457;
+export const ITEM_SET_ID_ABYSS_TWOHAND_AXE_MEIKYUNO_DOPPELGANGER = 3458;
+export const ITEM_ID_ABYSS_MACE = 3459;
+export const ITEM_SET_ID_ABYSS_MACE_MEIKYUNO_DOPPELGANGER = 3460;
+export const ITEM_ID_ABYSS_WAND = 3461;
+export const ITEM_SET_ID_ABYSS_WAND_MEIKYUNO_DOPPELGANGER = 3462;
+export const ITEM_ID_ABYSS_STUFF = 3463;
+export const ITEM_SET_ID_ABYSS_STUFF_MEIKYUNO_DOPPELGANGER = 3464;
+export const ITEM_ID_ABYSS_WING = 3465;
+export const ITEM_SET_ID_ABYSS_WING_MEIKYUNO_DOPPELGANGER = 3466;
+export const ITEM_ID_ABYSS_KATAR = 3467;
+export const ITEM_SET_ID_ABYSS_KATAR_MEIKYUNO_DOPPELGANGER = 3468;
+export const ITEM_ID_ABYSS_BOOK = 3469;
+export const ITEM_SET_ID_ABYSS_BOOK_MEIKYUNO_DOPPELGANGER = 3470;
+export const ITEM_ID_ABYSS_CRAW = 3471;
+export const ITEM_SET_ID_ABYSS_CRAW_MEIKYUNO_DOPPELGANGER = 3472;
+export const ITEM_ID_ABYSS_VIOLIN = 3473;
+export const ITEM_SET_ID_ABYSS_VIOLIN_MEIKYUNO_DOPPELGANGER = 3474;
+export const ITEM_ID_ABYSS_BLADEWHIP = 3475;
+export const ITEM_SET_ID_ABYSS_BLADEWHIP_MEIKYUNO_DOPPELGANGER = 3476;
+export const ITEM_ID_ABYSS_FUMA_SHURIKEN = 3477;
+export const ITEM_SET_ID_ABYSS_FUMA_SHURIKEN_MEIKYUNO_DOPPELGANGER = 3478;
+export const ITEM_ID_ABYSS_HANDGUN = 3479;
+export const ITEM_SET_ID_ABYSS_HANDGUN_MEIKYUNO_DOPPELGANGER = 3480;
+export const ITEM_ID_ABYSS_RIFLE = 3481;
+export const ITEM_SET_ID_ABYSS_RIFLE_MEIKYUNO_DOPPELGANGER = 3482;
+export const ITEM_ID_ABYSS_GATLINGGUN = 3483;
+export const ITEM_SET_ID_ABYSS_GATLINGGUN_MEIKYUNO_DOPPELGANGER = 3484;
+export const ITEM_ID_ABYSS_SHOTGUN = 3485;
+export const ITEM_SET_ID_ABYSS_SHOTGUN_MEIKYUNO_DOPPELGANGER = 3486;
+export const ITEM_ID_ABYSS_GRENADEGUN = 3487;
+export const ITEM_SET_ID_ABYSS_GRENADEGUN_MEIKYUNO_DOPPELGANGER = 3488;
+export const ITEM_ID_ABYSS_FOXTAIL = 3489;
+export const ITEM_SET_ID_ABYSS_FOXTAIL_MEIKYUNO_DOPPELGANGER = 3490;
+export const ITEM_ID_ABYSS_SHIELD = 3491;
+export const ITEM_ID_ILLUSION_KANGOBO = 3492;
+export const ITEM_ID_ILLUSION_MEISHASHUNO_RINGO = 3493;
+export const ITEM_ID_ILLUSION_MUFFLER = 3494;
+export const ITEM_SET_ID_ILLUSION_MUFFLER_IMUKENO_OSODE = 3495;
+export const ITEM_SET_ID_ILLUSION_MUFFLER_HORN_CARD = 3496;
+export const ITEM_ID_ILLUSION_SHOES = 3497;
+export const ITEM_SET_ID_ILLUSION_SHOES_ILLUSION_MUFFLER = 3498;
+export const ITEM_ID_ILLUSION_KAMINO_SHISHA = 3499;
+export const ITEM_ID_ILLUSION_SURVIVAL_MANT = 3500;
+export const ITEM_ID_ILLUSION_CAP = 3501;
+export const ITEM_ID_ILLUSION_YOKAINO_YARI = 3502;
+export const ITEM_ID_ILLUSION_FUMASHURIKEN_RANSETSU = 3503;
+export const ITEM_ID_ILLUSION_GEKKOKEN = 3504;
+export const ITEM_ID_ILLUSION_LONG_MACE = 3505;
+export const ITEM_ID_ILLUSION_STUFF_OF_OLDE = 3506;
+export const ITEM_ID_ILLUSION_RENGEKINO_TSUME = 3507;
+export const ITEM_ID_STICK_CANDY_ROD = 3508;
+export const ITEM_ID_TRAVELER_SHOES = 3509;
+export const ITEM_ID_NERO_SHIELD = 3510;
+export const ITEM_ID_ILLUSION_EYES = 3511;
+export const ITEM_ID_STUFF_OF_PUFFY = 3512;
+export const ITEM_SET_ID_STUFF_OF_PUFFY_IMP_CARD = 3513;
+export const ITEM_SET_ID_STUFF_OF_PUFFY_SIROMA_CARD = 3514;
+export const ITEM_SET_ID_STUFF_OF_PUFFY_ELVIRA_CARD = 3515;
+export const ITEM_ID_LIBRA_CROWN = 3516;
+export const ITEM_SET_ID_LIBRA_CROWN_LIBRA = 3517;
+export const ITEM_ID_SCORPIO_DIADEM = 3518;
+export const ITEM_SET_ID_SCORPIO_DIADEM_SCORPIO = 3519;
+export const ITEM_ID_STAR_FISH_SUITS = 3520;
+export const ITEM_ID_TOKUSHUKANNKYO_KATSUDOYO_BOOTS = 3521;
+export const ITEM_SET_ID_TOKUSHUKANNKYO_KATSUDOYO_BOOTS_DARKLORD_CARD = 3522;
+export const ITEM_ID_ILLUSION_MOKUSHIROKU = 3523;
+export const ITEM_ID_ILLUSION_WIZARD_STUFF = 3524;
+export const ITEM_ID_ILLUSION_BARISTA = 3525;
+export const ITEM_ID_ILLUSION_URAGIRIMONO = 3526;
+export const ITEM_ID_ILLUSION_DEATH_KNIFE = 3527;
+export const ITEM_ID_ILLUSION_MUKASHINO_RYOSHUNO_MANT = 3528;
+export const ITEM_ID_ILLUSION_GAIKOTSUNO_YUBIWA = 3529;
+export const ITEM_ID_ILLUSION_RING = 3530;
+export const ITEM_ID_KYUKETSUKINO_SHIMOBE = 3531;
+export const ITEM_SET_ID_KYUKETSUKINO_SHIMOBE_IKARINO_DRACULA_CARD = 3532;
+export const ITEM_ID_YUSHANO_BROACH = 3533;
+export const ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_JUDGEMENT_ROBE = 3534;
+export const ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_TRADE_MAIL = 3535;
+export const ITEM_SET_ID_YUSHANO_BROACH_YUSHANO_PLATE = 3536;
+export const ITEM_ID_WORK_CAP = 3537;
+export const ITEM_ID_SESAINO_HAGOROMO = 3538;
+export const ITEM_SET_ID_SESAINO_HAGOROMO_BARSLY_CARD = 3539;
+export const ITEM_ID_FROZVITNIRNO_KUSARI = 3540;
+export const ITEM_SET_ID_FROZVITNIRNO_KUSARI_VANARGANDNO_KABUTO = 3541;
+export const ITEM_ID_BLACK_FEATHER = 3542;
+export const ITEM_ID_ENMAZYUNO_HANE = 3543;
+export const ITEM_SET_ID_ENMAZYUNO_HANE_MASTERING_CARD = 3544;
+export const ITEM_ID_KONGOSEKINO_MANT = 3545;
+export const ITEM_SET_ID_KONGOSEKINO_MANT_KONGOSEKINO_KUTSU = 3546;
+export const ITEM_ID_ILLUSION_MUKEKEN = 3547;
+export const ITEM_ID_ILLUSION_IRON_DRIVER = 3548;
+export const ITEM_ID_ILLUSION_POLE_AXE = 3549;
+export const ITEM_ID_ILLUSION_WAR_AXE = 3550;
+export const ITEM_ID_ILLUSION_FUMASHURIKEN_FUCHO = 3551;
+export const ITEM_ID_ILLUSION_SOSHOKUYO_HANA = 3552;
+export const ITEM_ID_MUSONO_YUBIWA = 3553;
+export const ITEM_SET_ID_MUSONO_YUBIWA_MUSO_SET = 3554;
+export const ITEM_SET_ID_MUSONO_YUBIWA_TENCHI_SET = 3555;
+export const ITEM_ID_IMPERIAL_BOOTS = 3556;
+export const ITEM_ID_SEREONO_HOKAN = 3557;
+export const ITEM_ID_OKYU_MINI_MELON = 3558;
+export const ITEM_ID_FUYUSURU_ZIOIA = 3559;
+export const ITEM_ID_FLAME_BIRD = 3560;
+export const ITEM_ID_KINGS_MAIL = 3561;
+export const ITEM_SET_ID_KINGS_MAIL_SAVE_THE_KING = 3562;
+export const ITEM_SET_ID_KINGS_MAIL_KINGS_GUARD = 3563;
+export const ITEM_ID_KORE_ZYUTSUSHINO_DRESS = 3564;
+export const ITEM_SET_ID_KORE_ZYUTSUSHINO_DRESS_KORE_ZYUTSUSHINO_GAITO = 3565;
+export const ITEM_SET_ID_KORE_ZYUTSUSHINO_DRESS_ENRAI_MAZYONO_OTSUE = 3566;
+export const ITEM_SET_ID_KORE_ZYUTSUSHINO_DRESS_CERIA_ARDE_MVP_CARD = 3567;
+export const ITEM_ID_GRADENIETZ = 3568;
+export const ITEM_ID_HIRONO_ASAME = 3569;
+export const ITEM_ID_DWARFNO_HIGE = 3570;
+export const ITEM_SET_ID_DWARFNO_HIGE_TSUKINO_GANTAI = 3571;
+export const ITEM_ID_FUSHIGINA_HATO = 3572;
+export const ITEM_SET_ID_FUSHIGINA_HATO_WALHALLA_IDOL = 3573;
+export const ITEM_ID_FAFNIR_SCALE = 3574;
+export const ITEM_ID_RADOONNO_KAWA = 3575;
+export const ITEM_ID_MOKOMOKO_OSAKANA_SHOES = 3576;
+export const ITEM_ID_FURUBITA_HAKENTAINO_YUBIWA = 3577;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_KAZENO_SASAYAKI = 3578;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_SHADOWCROWN = 3579;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_SHUGONOKANMURI = 3580;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_DRIVERBAND = 3581;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_BALLERINA = 3582;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_BLAZINGSOUL = 3583;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_BONECIRCRET = 3584;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_MARYOKUSEKI = 3585;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_MIDAS = 3586;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_MITRA = 3587;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_MINSTRELSONG = 3588;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_MEISAIUSAGI = 3589;
+export const ITEM_SET_ID_FURUBITA_HAKENTAINO_YUBIWA_FURUBITA_RUNECIRCRET = 3590;
+export const ITEM_ID_GUNSE = 3591;
+export const ITEM_ID_ARIES_DIADEM = 3592;
+export const ITEM_SET_ID_ARIES_DIADEM_ARIES = 3593;
+export const ITEM_ID_CAPRICORN_CROWN = 3594;
+export const ITEM_SET_ID_CAPRICORN_CROWN_CAPRICORN = 3595;
+export const ITEM_ID_PISCES_CROWN = 3596;
+export const ITEM_SET_ID_PISCES_CROWN_PISCES = 3597;
+export const ITEM_ID_HOSHINO_GANTAI = 3598;
+export const ITEM_SET_ID_HOSHINO_GANTAI_ORC_HERO_CARD = 3599;
+export const ITEM_ID_FUSHOHENO_GANTAI = 3600;
+export const ITEM_SET_ID_FUSHOHENO_GANTAI_SEIREN_VIENSER_MVP = 3601;
+export const ITEM_ID_HOROW_SHOES = 3602;
+export const ITEM_SET_ID_HOROW_SHOES_VERSEVV_CARD = 3603;
+export const ITEM_ID_FULL_FORCE = 3604;
+export const ITEM_SET_ID_FULL_FORCE_DOPPELGANGER_CARD = 3605;
+export const ITEM_ID_SHIRONO_KISHIDANNO_YOROI = 3606;
+export const ITEM_ID_VESPER_HEAD_GEAR = 3607;
+export const ITEM_SET_ID_VESPER_HEAD_GEAR_VESPER_CARD = 3608;
+export const ITEM_SET_ID_VESPER_HEAD_GEAR_VERSEVV_CARD = 3609;
+export const ITEM_ID_LITTLE_GARDEN = 3610;
+export const ITEM_ID_ENRAIMAZYONO_KUBIKAZARI = 3611;
+export const ITEM_ID_BUKYO_KUTSU = 3612;
+export const ITEM_SET_ID_BUKYO_KUTSU_SWORD = 3613;
+export const ITEM_ID_SHUKIOKU_SOCHI = 3614;
+export const ITEM_SET_ID_SHUKIOKU_SOCHI_VESPER_HEAD_GEAR = 3615;
+export const ITEM_ID_CHINURARETA_NINGYONO_DRESS = 3616;
+export const ITEM_SET_ID_CHINURARETA_NINGYONO_DRESS_AKURYONO_ITONO_TEBUKURO = 3617;
+export const ITEM_SET_ID_CHINURARETA_NINGYONO_DRESS_CELINENO_RIBBON = 3618;
+export const ITEM_ID_NAMONAKI_ANSATSUSHANO_MUFFLER = 3619;
+export const ITEM_ID_AUTHORITY_SANDAL = 3620;
+export const ITEM_ID_SHISHIKYUNO_MACE = 3621;
+export const ITEM_ID_SHISHIKYUNO_CROWN = 3622;
+export const ITEM_ID_SHISHIKYUNO_MAIL = 3623;
+export const ITEM_ID_SHISHIKYUNO_SHOES = 3624;
+export const ITEM_ID_SHISHIKYUNO_MANT = 3625;
+export const ITEM_SET_ID_SHISHIKYU_SET = 3626;
+export const ITEM_ID_SHISHIKYUNO_RING = 3627;
+export const ITEM_ID_HEAVENLY_ORDER = 3628;
+export const ITEM_SET_ID_HEAVENLY_ORDER_ABYSS_ARMS = 3629;
+export const ITEM_ID_JEJECAP = 3630;
+export const ITEM_ID_TUPOONNO_KAWA = 3631;
+export const ITEM_ID_EIKONO_AKASHI_S1 = 3632;
+export const ITEM_SET_ID_KONGOSEKINO_TATE_EIKONO_AKASHI_S1 = 3633;
+export const ITEM_ID_ILLUSION_COUNTER_DAGGER = 3634;
+export const ITEM_ID_ILLUSION_SURVIVAL_STUFF = 3635;
+export const ITEM_SET_ID_ILLUSION_SURVIVAL_STUFF_ILLUSION_SURVIVAL_MANT = 3636;
+export const ITEM_ID_ILLUSION_GATE_KEEPER_DD = 3637;
+export const ITEM_ID_ILLUSION_NEKKETSU_HACHIMAKI = 3638;
+export const ITEM_SET_ID_ILLUSION_NEKKETSU_HACHIMAKI_ILLUSION_RENGEKINO_TSUME = 3639;
+export const ITEM_ID_ILLUSION_BOOTS = 3640;
+export const ITEM_ID_KYOKAIKYUNO_AXE = 3641;
+export const ITEM_ID_KYOKAIKYUNO_CROWN = 3642;
+export const ITEM_ID_KYOKAIKYUNO_MAIL = 3643;
+export const ITEM_ID_KYOKAIKYUNO_SHOES = 3644;
+export const ITEM_ID_KYOKAIKYUNO_MANT = 3645;
+export const ITEM_SET_ID_KYOKAIKYU_SET = 3646;
+export const ITEM_ID_KYOKAIKYUNO_RING = 3647;
+export const ITEM_ID_NIZIIRONO_MUFFLER = 3648;
+export const ITEM_ID_RING_OF_JUPITER = 3649;
+export const ITEM_ID_BLACK_VEIL = 3650;
+export const ITEM_ID_MURASAKIITOODOSHI_DOMARU = 3651;
+export const ITEM_ID_NIZIIRONO_NEKOZYARASHI = 3652;
+export const ITEM_SET_ID_NIZIIRONO_NEKOZYARASHI_RAIN_BO = 3653;
+export const ITEM_SET_ID_NIZIIRONO_NEKOZYARASHI_BLOODY_KNIGHT_CARD = 3654;
+export const ITEM_SET_ID_NIZIIRONO_NEKOZYARASHI_STORM_KNIGHT_CARD = 3655;
+export const ITEM_ID_KUWAETA_SHAMENEKO = 3656;
+export const ITEM_ID_TENBINKYUNO_KRASNAYA = 3657;
+export const ITEM_ID_TENBINKYUNO_DIADEM = 3658;
+export const ITEM_ID_TENBINKYUNO_MAIL = 3659;
+export const ITEM_ID_TENBINKYUNO_SHOES = 3660;
+export const ITEM_ID_TENBINKYUNO_MANT = 3661;
+export const ITEM_SET_ID_TENBINKYU_SET = 3662;
+export const ITEM_ID_TENBINKYUNO_RING = 3663;
+export const ITEM_ID_RASEN_FUMANO_HOZYU = 3664;
+export const ITEM_ID_SEISHANO_KANMURI = 3665;
+export const ITEM_ID_FOTIA_SHIELD = 3666;
+export const ITEM_ID_ILLUSION_HUNTER_BOW = 3667;
+export const ITEM_ID_ILLUSION_TABLET = 3668;
+export const ITEM_ID_ILLUSION_GOIBHNIUNO_KABUTO = 3669;
+export const ITEM_ID_ILLUSION_GOIBHNIUNO_YOROI = 3670;
+export const ITEM_ID_ILLUSION_GOIBHNIUNO_KATAKAZARI = 3671;
+export const ITEM_ID_ILLUSION_GOIBHNIUNO_GUNKA = 3672;
+export const ITEM_SET_ID_ILLUSION_GOIBHNIU_SET = 3673;
+export const ITEM_ID_TENKATSUKYUNO_KATAR = 3674;
+export const ITEM_ID_TENKATSUKYUNO_CROWN = 3675;
+export const ITEM_ID_TENKATSUKYUNO_MAIL = 3676;
+export const ITEM_ID_TENKATSUKYUNO_SHOES = 3677;
+export const ITEM_ID_TENKATSUKYUNO_MANT = 3678;
+export const ITEM_SET_ID_TENKATSUKYU_SET = 3679;
+export const ITEM_ID_TENKATSUKYUNO_RING = 3680;
+export const ITEM_ID_SHIELD_RING = 3681;
+export const ITEM_ID_HYOGOKUNO_DRESS = 3682;
+export const ITEM_ID_SHIROITOODOSHI_DOMARU = 3683;
+export const ITEM_ID_FURUBITA_HAKIMONO = 3684;
+export const ITEM_ID_KURAMITSUHANOKAMI_KUTSU = 3685;
+export const ITEM_SET_ID_KURAMITSUHANOKAMI_KUTSU_BOSOSHITA_MARYOKU = 3686;
+export const ITEM_ID_FURUBITA_HAGOROMO = 3687;
+export const ITEM_ID_OKAMINOKAMINO_HAKOROMO = 3688;
+export const ITEM_SET_ID_OKAMINOKAMINO_HAKOROMO_KTULLANUX = 3689;
+export const ITEM_ID_KINGYUKYUNO_SWORD = 3690;
+export const ITEM_ID_KINGYUKYUNO_DIADEM = 3691;
+export const ITEM_ID_KINGYUKYUNO_MAIL = 3692;
+export const ITEM_ID_KINGYUKYUNO_SHOES = 3693;
+export const ITEM_ID_KINGYUKYUNO_MANT = 3694;
+export const ITEM_SET_ID_KINGYUKYU_SET = 3695;
+export const ITEM_ID_KINGYUKYUNO_RING = 3696;
+export const ITEM_ID_TOZOKUNO_SUSUME_DAINIKAN = 3697;
+export const ITEM_ID_KOREZYUTSUSHINO_TEKAGAMI = 3698;
+export const ITEM_SET_ID_KOREZYUTSUSHINO_TEKAGAMI_DRESS = 3699;
+export const ITEM_SET_ID_KOREZYUTSUSHINO_TEKAGAMI_GAITO = 3700;
+export const ITEM_ID_DIAVOLOS_WING = 3701;
+export const ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ARMOR = 3702;
+export const ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ROBE = 3703;
+export const ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_MANT = 3704;
+export const ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_BOOTS = 3705;
+export const ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_RING = 3706;
+export const ITEM_ID_STUFF_OF_MIRACLE = 3707;
+export const ITEM_ID_GRAVITATION_STUFF = 3708;
+export const ITEM_ID_SUHAINO_TSUE = 3709;
+export const ITEM_ID_VORARE = 3710;
+export const ITEM_ID_BERNA = 3711;
+export const ITEM_ID_RIPPER_CROSS = 3712;
+export const ITEM_ID_AGUED_FIRO = 3713;
+export const ITEM_ID_MAXY_SPANA = 3714;
+export const ITEM_ID_RAPID_FIRE = 3715;
+export const ITEM_ID_SHARP_STAR = 3716;
+export const ITEM_ID_AIMING_BOW = 3717;
+export const ITEM_ID_FALCEN_SHOOTER = 3718;
+export const ITEM_ID_WIND_GAIL = 3719;
+export const ITEM_ID_GOLDEN_RENCH = 3720;
+export const ITEM_ID_MORYU_TOKO = 3721;
+export const ITEM_ID_TOSHINNO_BANTAGE = 3722;
+export const ITEM_ID_CRYMSON_ROSE_STICK = 3723;
+export const ITEM_ID_PSYCHIC_SPEAR_ROD = 3724;
+export const ITEM_ID_DUST_GRAVE = 3725;
+export const ITEM_ID_POENITENTIA = 3726;
+export const ITEM_ID_HEART_WHIP = 3727;
+export const ITEM_ID_SCARLET_RIBBON = 3728;
+export const ITEM_ID_VOLTYGENE = 3729;
+export const ITEM_ID_JUDGEMENT_SLASHER = 3730;
+export const ITEM_ID_REPENT_SLASHER = 3731;
+export const ITEM_ID_SHARK_KNIFE = 3732;
+export const ITEM_ID_PLATINUM_DUGGER = 3733;
+export const ITEM_ID_ARGIAN_BLANCO = 3734;
+export const ITEM_ID_HARBEST = 3735;
+export const ITEM_ID_FORT_RAGE = 3736;
+export const ITEM_ID_BLACK_CIRCLE = 3737;
+export const ITEM_ID_ATNTIC_CHERO = 3738;
+export const ITEM_ID_FALTEZAN = 3739;
+export const ITEM_ID_ESTAR = 3740;
+export const ITEM_ID_ENGINE_PILE_VANKER = 3741;
+export const ITEM_ID_COOL_RANT_INJECTION = 3742;
+export const ITEM_ID_GENE_ROD = 3743;
+export const ITEM_ID_RUCIS_FRAIL = 3744;
+export const ITEM_ID_KOYOSUI = 3745;
+export const ITEM_ID_PIONYMAMMYNO_HOOD = 3746;
+export const ITEM_ID_SNOWFLIPNO_HOOD = 3747;
+export const ITEM_ID_SEKAIZYUNO_HOKORINO_HOOD = 3748;
+export const ITEM_ID_PISHARI_HARBNO_HOOD = 3749;
+export const ITEM_ID_GINNO_KEGAWANO_SHOES = 3750;
+export const ITEM_ID_CARNIUM_RING = 3751;
+export const ITEM_ID_CARNIUM_EARRING = 3752;
+export const ITEM_SET_ID_CARNIUM_RING_CARNIUM_EARRING = 3753;
+export const ITEM_ID_REMENO_MAJESTIC_GOAT = 3754;
+export const ITEM_ID_KUWAETA_CHOCO_STICK = 3755;
+export const ITEM_SET_ID_KUWAETA_CHOCO_STICK_CARNIUM_RING = 3756;
+export const ITEM_SET_ID_KUWAETA_CHOCO_STICK_CARNIUM_EARRING = 3757;
+export const ITEM_ID_HOBINKYUNO_STUFF = 3758;
+export const ITEM_ID_HOBINKYUNO_CROWN = 3759;
+export const ITEM_ID_HOBINKYUNO_MAIL = 3760;
+export const ITEM_ID_HOBINKYUNO_SHOES = 3761;
+export const ITEM_ID_HOBINKYUNO_MANT = 3762;
+export const ITEM_SET_ID_HOBINKYU_SET = 3763;
+export const ITEM_ID_HOBINKYUNO_RING = 3764;
+export const ITEM_ID_PHANTOM_OF_MASKARADE = 3765;
+export const ITEM_SET_ID_PHANTOM_OF_MASKARADE_MAKENSHI_THANATOSNO_SHINENTAI_CARD = 3766;
+export const ITEM_ID_HAKKEINO_FUZYU = 3767;
+export const ITEM_ID_CITRUS_RIBBON = 3768;
+export const ITEM_ID_SPIRITUAL_CLOTH = 3769;
+export const ITEM_SET_ID_SPIRITUAL_CLOTH_ECLIPSE_CARD = 3770;
+export const ITEM_SET_ID_SPIRITUAL_CLOTH_ORC_ZOMBIE_CARD = 3771;
+export const ITEM_SET_ID_SPIRITUAL_CLOTH_MARIONETTE_CARD = 3772;
+export const ITEM_SET_ID_SPIRITUAL_CLOTH_MIST_CARD = 3773;
+export const ITEM_ID_FRONTIER_BOOTS = 3774;
+export const ITEM_SET_ID_FRONTIER_BOOTS_KIGENNO_SHO = 3775;
+export const ITEM_SET_ID_FRONTIER_BOOTS_KOINNO_TSURUHASHI = 3776;
+export const ITEM_SET_ID_FRONTIER_BOOTS_ZIKEDANNO_YUMI = 3777;
+export const ITEM_SET_ID_FRONTIER_BOOTS_DAISHIZENNO_GUITAR = 3778;
+export const ITEM_SET_ID_FRONTIER_BOOTS_DAISHIZENNO_ROPE = 3779;
+export const ITEM_SET_ID_FRONTIER_BOOTS_MONOKAGE = 3780;
+export const ITEM_SET_ID_FRONTIER_BOOTS_FUMASHURIKEN_HANAFUBUKI = 3781;
+export const ITEM_ID_FUWAFUWA_TANPOPO_SHOES = 3782;
+export const ITEM_ID_SNIPING_SHOES = 3783;
+export const ITEM_ID_EUROPA_ROBE = 3784;
+export const ITEM_SET_ID_EUROPA_ROBE_POWERFULL_AMDARAIS_CARD = 3785;
+export const ITEM_ID_MAKATSUKYUNO_THIEF_BOW = 3786;
+export const ITEM_ID_MAKATSUKYUNO_DIADEM = 3787;
+export const ITEM_ID_MAKATSUKYUNO_MAIL = 3788;
+export const ITEM_ID_MAKATSUKYUNO_SHOES = 3789;
+export const ITEM_ID_MAKATSUKYUNO_MANT = 3790;
+export const ITEM_SET_ID_MAKATSUKYU_SET = 3791;
+export const ITEM_ID_MAKATSUKYUNO_RING = 3792;
+export const ITEM_ID_KUGUTSUNO_UDEWA = 3793;
+export const ITEM_SET_ID_KUGUTSUNO_UDEWA_DARK_HAND = 3794;
+export const ITEM_ID_AKKI_RASETSUNO_YUBIWA = 3795;
+export const ITEM_ID_AZI_DAHAKANO_KAWA = 3796;
+export const ITEM_ID_ACCELERATOR_WING = 3797;
+export const ITEM_ID_SUIRYUSHINNO_UROKO = 3798;
+export const ITEM_SET_ID_SUIRYUSHINNO_UROKO_IKEINO_COELACANTH = 3799;
+export const ITEM_ID_DEMONISH_SWORD = 3800;
+export const ITEM_SET_ID_DEMONISH_SWORD_ONRYOBUSHI_CARD = 3801;
+export const ITEM_ID_DEMONISH_HELM = 3802;
+export const ITEM_ID_DEMONISH_ARMOR = 3803;
+export const ITEM_ID_DEMONISH_SHIELD = 3804;
+export const ITEM_ID_DEMONISH_GUNTLET = 3805;
+export const ITEM_ID_ZINRAINO_YUBIWA = 3806;
+export const ITEM_SET_ID_ZINRAINO_YUBIWA_ZINRAI_SET = 3807;
+export const ITEM_SET_ID_ZINRAINO_YUBIWA_SHIPPU_SET = 3808;
+export const ITEM_ID_GOMEIKO = 3809;
+export const ITEM_SET_ID_GOMEIKO_GUNSE = 3810;
+export const ITEM_ID_SHOZYOKYUNO_DEVINE_CROSS = 3811;
+export const ITEM_ID_SHOZYOKYUNO_DIADEM = 3812;
+export const ITEM_ID_SHOZYOKYUNO_MAIL = 3813;
+export const ITEM_ID_SHOZYOKYUNO_SHOES = 3814;
+export const ITEM_ID_SHOZYOKYUNO_MANT = 3815;
+export const ITEM_SET_ID_SHOZYOKYU_SET = 3816;
+export const ITEM_ID_SHOZYOKYUNO_RING = 3817;
+export const ITEM_ID_PRETTY_URIBO_SHOES = 3818;
+export const ITEM_ID_GEFFENIA_KORINO_MADOGU = 3819;
+export const ITEM_SET_ID_GEFFENIA_KORINO_MADOGU_SHINRINO_KAIHO = 3820;
+export const ITEM_ID_JAGUAR_NOTE = 3821;
+export const ITEM_ID_ARABIAN_MANT = 3822;
+export const ITEM_SET_ID_ARABIAN_MANT_EFREET_CARD = 3823;
+export const ITEM_ID_BEAM_CRAYMORE_OS = 3824;
+export const ITEM_ID_CANNON_RAPIER_OS = 3825;
+export const ITEM_ID_BOOSTER_LANCE_OS = 3826;
+export const ITEM_ID_KOKUSHOKU_OS = 3827;
+export const ITEM_ID_MOISURA_OS = 3828;
+export const ITEM_ID_BLASTY_OS = 3829;
+export const ITEM_ID_RUTIS_STICK_OS = 3830;
+export const ITEM_ID_ELECTRIC_FOX_OS = 3831;
+export const ITEM_ID_BURNING_KNUCKLE_OS = 3832;
+export const ITEM_ID_SUFEAL_HOLE_OS = 3833;
+export const ITEM_ID_ULTIO_OS = 3834;
+export const ITEM_ID_VIRTUAL_BOW_OS = 3835;
+export const ITEM_ID_MH_P89_OS = 3836;
+export const ITEM_ID_AC_B44_OS = 3837;
+export const ITEM_ID_CIRCUIT_BOARD_OS = 3838;
+export const ITEM_SET_ID_CIRCUIT_BOARD_OS_IMP_CARD = 3839;
+export const ITEM_SET_ID_CIRCUIT_BOARD_OS_SIROMA_CARD = 3840;
+export const ITEM_SET_ID_CIRCUIT_BOARD_OS_ELVIRA_CARD = 3841;
+export const ITEM_ID_HR_S55_OS = 3842;
+export const ITEM_ID_ILUSION_SUIT_1 = 3843;
+export const ITEM_ID_ILUSION_SUIT_2 = 3844;
+export const ITEM_ID_ILUSION_WING_1 = 3845;
+export const ITEM_SET_ID_ILUSION_WING_1_SUIT_1 = 3846;
+export const ITEM_ID_ILUSION_WING_2 = 3847;
+export const ITEM_SET_ID_ILUSION_WING_2_SUIT_2 = 3848;
+export const ITEM_ID_ILUSION_LEG_1 = 3849;
+export const ITEM_ID_ILUSION_LEG_2 = 3850;
+export const ITEM_ID_ILUSION_CHIP_ALPHA_1 = 3851;
+export const ITEM_ID_ILUSION_CHIP_ALPHA_2 = 3852;
+export const ITEM_ID_ILUSION_CHIP_BETA_1 = 3853;
+export const ITEM_ID_ILUSION_CHIP_BETA_2 = 3854;
+export const ITEM_SET_ID_RIDEWORD_BO_G_DRAIN_HP = 3855;
+export const ITEM_SET_ID_VANARGANDNO_KABUTO_G_DRAIN_HP = 3856;
+export const ITEM_SET_ID_RIDEWORD_BO_G_DRAIN_SP = 3857;
+export const ITEM_SET_ID_VANARGANDNO_KABUTO_G_DRAIN_SP = 3858;
+export const ITEM_SET_ID_SKIN_OF_SHADOW_G_DRAIN_SP = 3859;
+export const ITEM_SET_ID_OSUWARI_KYOKO_SHIFUKU_R48_85_BESTIA_CARD = 3860;
+export const ITEM_ID_HAKUYOKYUNO_SPEAR = 3861;
+export const ITEM_ID_HAKUYOKYUNO_CROWN = 3862;
+export const ITEM_ID_HAKUYOKYUNO_MAIL = 3863;
+export const ITEM_ID_HAKUYOKYUNO_SHIELD = 3864;
+export const ITEM_ID_HAKUYOKYUNO_SHOES = 3865;
+export const ITEM_ID_HAKUYOKYUNO_MANT = 3866;
+export const ITEM_SET_ID_HAKUYOKYU_SET = 3867;
+export const ITEM_ID_HAKUYOKYUNO_RING = 3868;
+export const ITEM_ID_PETALNO_SHIPPO = 3869;
+export const ITEM_SET_ID_PETALNO_SHIPPO_RISUMIMI_HOOD_BO = 3870;
+export const ITEM_ID_FUCHOWANO_SHINENTAI_SHOES = 3871;
+export const ITEM_SET_ID_FUCHOWANO_SHINENTAI_SHOES_WIND_GAIL = 3872;
+export const ITEM_SET_ID_FUCHOWANO_SHINENTAI_SHOES_SHARP_STAR = 3873;
+export const ITEM_SET_ID_FUCHOWANO_SHINENTAI_SHOES_FALCEN_SHOOTER = 3874;
+export const ITEM_SET_ID_FUCHOWANO_SHINENTAI_SHOES_OWASHINO_GANKO = 3875;
+export const ITEM_ID_AWL_BARRONNO_MANT = 3876;
+export const ITEM_SET_ID_AWL_BARRONNO_MANT_EXCUTIONER_CARD = 3877;
+export const ITEM_SET_ID_AWL_BARRONNO_MANT_ORGE_TOOTH_CARD = 3878;
+export const ITEM_SET_ID_AWL_BARRONNO_MANT_MISTILTINE_CARD = 3879;
+export const ITEM_ID_SOZIKYUNO_VIOLIN = 3880;
+export const ITEM_ID_SOZIKYUNO_DIADEM = 3881;
+export const ITEM_ID_SOZIKYUNO_MAIL = 3882;
+export const ITEM_ID_SOZIKYUNO_SHOES = 3883;
+export const ITEM_ID_SOZIKYUNO_MANT = 3884;
+export const ITEM_SET_ID_SOZIKYU_SET = 3885;
+export const ITEM_ID_SOZIKYUNO_RING = 3886;
+export const ITEM_ID_SOZIKYUNO_ROPE = 3887;
+export const ITEM_ID_ILLUSION_TEGRYONG = 3888;
+export const ITEM_SET_ID_ILLUSION_TEGRYONG_MAHITSUZINO_HOKO = 3889;
+export const ITEM_ID_ILLUSION_BOCHER = 3890;
+export const ITEM_ID_ILLUSION_GOLD_LUX = 3891;
+export const ITEM_ID_ILLUSION_BASERALD = 3892;
+export const ITEM_ID_ILLUSION_MORFEUSNO_ZUKIN = 3893;
+export const ITEM_ID_ILLUSION_MORFEUSNO_SHAWL = 3894;
+export const ITEM_ID_ILLUSION_MORFEUSNO_YUBIWA = 3895;
+export const ITEM_ID_ILLUSION_MORFEUSNO_UDEWA = 3896;
+export const ITEM_SET_ID_ILLUSION_MORFEUS_SET = 3897;
+export const ITEM_ID_HAITOKUNO_SHINENTAI_SHOES = 3898;
+export const ITEM_SET_ID_HAITOKUNO_SHINENTAI_SHOES_VORARE = 3899;
+export const ITEM_SET_ID_HAITOKUNO_SHINENTAI_SHOES_ESTAR = 3900;
+export const ITEM_SET_ID_HAITOKUNO_SHINENTAI_SHOES_FALTEZAN = 3901;
+export const ITEM_SET_ID_HAITOKUNO_SHINENTAI_SHOES_BERNA = 3902;
+export const ITEM_SET_ID_HAITOKUNO_SHINENTAI_SHOES_KUMNO_CHIKARA = 3903;
+export const ITEM_ID_ILLUSION_MILITARY_BOOTS = 3904;
+export const ITEM_SET_ID_ILLUSION_MILITARY_BOOTS_ILLUSION_WAR_AXE = 3905;
+export const ITEM_ID_MAGICAL_CLOTH = 3906;
+export const ITEM_SET_ID_MAGICAL_CLOTH_SORCERER_CERIA_CARD = 3907;
+export const ITEM_ID_SOGYOKYUNO_STUFF_OF_SOUL = 3908;
+export const ITEM_ID_SOGYOKYUNO_DIADEM = 3909;
+export const ITEM_ID_SOGYOKYUNO_MAIL = 3910;
+export const ITEM_ID_SOGYOKYUNO_SHOES = 3911;
+export const ITEM_ID_SOGYOKYUNO_MANT = 3912;
+export const ITEM_SET_ID_SOGYOKYU_SET = 3913;
+export const ITEM_ID_SOGYOKYUNO_RING = 3914;
+export const ITEM_ID_GUARDIAN_OF_SOUL = 3915;
+export const ITEM_ID_DARK_RING = 3916;
+export const ITEM_ID_CHIKAKU_ZOFUKU_RING = 3917;
+export const ITEM_SET_ID_CHIKAKU_ZOFUKU_RING_SHINRINO_KAIHO = 3918;
+export const ITEM_ID_FEATHER_SHIELD = 3919;
+export const ITEM_ID_ZINBAKYUNO_HUNTER_BOW = 3920;
+export const ITEM_ID_ZINBAKYUNO_CROWN = 3921;
+export const ITEM_ID_ZINBAKYUNO_MAIL = 3922;
+export const ITEM_ID_ZINBAKYUNO_SHOES = 3923;
+export const ITEM_ID_ZINBAKYUNO_MANT = 3924;
+export const ITEM_SET_ID_ZINBAKYU_SET = 3925;
+export const ITEM_ID_ZINBAKYUNO_RING = 3926;
+export const ITEM_ID_RYUGOROSHINO_CHOKEN = 3927;
+export const ITEM_SET_ID_RYUGOROSHINO_CHOKEN_RANDGRIS_CARD = 3928;
+export const ITEM_ID_ORCLORDNO_YOROI = 3929;
+export const ITEM_SET_ID_ORCLORDNO_YOROI_ORCLORD_CARD = 3930;
+export const ITEM_ID_KAKUSE_HONOIKAZUCHINOOOKAMI_KUTSU = 3931;
+export const ITEM_SET_ID_KAKUSE_HONOIKAZUCHINOOOKAMI_KUTSU_WORUYAFA_CARD = 3932;
+export const ITEM_SET_ID_KAKUSE_HONOIKAZUCHINOOOKAMI_KUTSU_FUINSARETA_WORUYAFA_CARD = 3933;
+export const ITEM_SET_ID_HONOIKAZUCHINOOOKAMI_KUTSU_FUINSARETA_WORUYAFA_CARD = 3934;
+export const ITEM_ID_RUNAWAY_ACCELERATOR = 3935;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_ATK = 3936;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_DEF = 3937;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_HPR = 3938;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_MATK = 3939;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_MAXHP = 3940;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_MAXSP = 3941;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_MDEF = 3942;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_SPR = 3943;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_G_DRAINHP = 3944;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_G_DRAINSP = 3945;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_G_LIFE = 3946;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_G_SOUL = 3947;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_ATTRIBUTE = 3948;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_CAST_FIXED = 3949;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_CAST_STAT = 3950;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_DELAY = 3951;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_FATAL = 3952;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_HEAL = 3953;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_PLAYER = 3954;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_SHOOTER = 3955;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_SPEED = 3956;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_X_FATAL_FLASH = 3957;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_X_FIRING_SHOT = 3958;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_X_LUCKY_STRIKE = 3959;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_X_OVER_POWER = 3960;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_X_SPELL_BUSTER = 3961;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_X_UNLIMIT_VITAL = 3962;
+export const ITEM_ID_SOLOMONNO_PENDANT = 3963;
+export const ITEM_SET_ID_SOLOMONNO_PENDANT_ZOFUKU = 3964;
+export const ITEM_ID_PANAGIANO_OKURIMONO = 3965;
+export const ITEM_SET_ID_PANAGIANO_OKURIMONO_DAISHIKYO_1 = 3966;
+export const ITEM_SET_ID_PANAGIANO_OKURIMONO_DAISHIKYO_2 = 3967;
+export const ITEM_SET_ID_PANAGIANO_OKURIMONO_DAISEIDO_1 = 3968;
+export const ITEM_SET_ID_PANAGIANO_OKURIMONO_CHIYU_1 = 3969;
+export const ITEM_ID_FALANCS = 3970;
+export const ITEM_ID_SCROLL_STOLE = 3971;
+export const ITEM_ID_RING_OF_VENUS = 3972;
+export const ITEM_ID_AKAHEBINO_DRESS = 3973;
+export const ITEM_ID_KUROMUZYO_BO = 3974;
+export const ITEM_SET_ID_KUROMUZYO_BO_KAKUSEI_ROBE = 3975;
+export const ITEM_ID_GOYUMUSONO_TSURANUKI = 3976;
+export const ITEM_SET_ID_GOYUMUSONO_TSURANUKI_GOYUMUSONO_MONBOSHI = 3977;
+export const ITEM_ID_ZYASPER_CIRCLET = 3978;
+export const ITEM_ID_CHIMAZYUNO_HIFU = 3979;
+export const ITEM_SET_ID_CHIMAZYUNO_HIFU_BOCAL_CARD = 3980;
+export const ITEM_ID_KETTONO_RYU_BOSHI = 3981;
+export const ITEM_ID_SEVEN_ELEVEN_HEADPHONE = 3982;
+export const ITEM_ID_OSHITSU_KISHINO_DAIKEN = 3983;
+export const ITEM_ID_OSHITSU_KISHINO_YARI = 3984;
+export const ITEM_ID_AOI_HONONO_TSUE = 3985;
+export const ITEM_SET_ID_AOI_HONONO_TSUE_ABYSS_GHOST_CARD = 3986;
+export const ITEM_ID_GOKANO_TSUE = 3987;
+export const ITEM_ID_HYOKAKUNO_TSUE = 3988;
+export const ITEM_ID_SHUZINNO_NIKKICHO = 3989;
+export const ITEM_ID_RAVA_LEATHER_ROBE = 3990;
+export const ITEM_ID_RAVA_LEATHER_SUIT = 3991;
+export const ITEM_ID_RAVA_LEATHER_ARMOR = 3992;
+export const ITEM_ID_RAVA_LEATHER_HOOD = 3993;
+export const ITEM_ID_RAVA_LEATHER_MUFFLER = 3994;
+export const ITEM_ID_RAVA_LEATHER_MANT = 3995;
+export const ITEM_ID_RAVA_LEATHER_SANDAL = 3996;
+export const ITEM_SET_ID_RAVA_LEATHER_ROBE_SET = 3997;
+export const ITEM_ID_RAVA_LEATHER_SHOES = 3998;
+export const ITEM_SET_ID_RAVA_LEATHER_SUIT_SET = 3999;
+export const ITEM_ID_RAVA_LEATHER_BOOTS = 4000;
+export const ITEM_SET_ID_RAVA_LEATHER_ARMOR_SET = 4001;
+export const ITEM_ID_SHINRA_BANSHONO_YUBIWA = 4002;
+export const ITEM_SET_ID_SHINRA_BANSHONO_YUBIWA_GOKETSU = 4003;
+export const ITEM_SET_ID_SHINRA_BANSHONO_YUBIWA_SHINO_YOKUDO = 4004;
+export const ITEM_SET_ID_SHINRA_BANSHONO_YUBIWA_SHINRINO_KAIHO = 4005;
+export const ITEM_SET_ID_SHINRA_BANSHONO_YUBIWA_HAO = 4006;
+export const ITEM_ID_BOINO_MUFFLER = 4007;
+export const ITEM_SET_ID_BOINO_MUFFLER_ARASHINO_YUMI = 4008;
+export const ITEM_SET_ID_BOINO_MUFFLER_SCARABA_HIGHHEEL_ELVEN_BOW = 4009;
+export const ITEM_ID_ILUSION_SHIELD_1 = 4010;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_POWER_BOOST = 4011;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_MAGIC_BOOST = 4012;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_ASSAULT = 4013;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_T_ELECTRICITY = 4014;
+export const ITEM_ID_LOVEDAD_BANDANNA = 4015;
+export const ITEM_ID_METAL_STICK = 4016;
+export const ITEM_ID_HYOEN_AKUSHINNO_HAGAMA = 4017;
+export const ITEM_ID_OZYANO_YUBIWA = 4018;
+export const ITEM_ID_OZYANO_MAIL = 4019;
+export const ITEM_ID_OZYANO_MANT = 4020;
+export const ITEM_ID_OZYANO_BOOTS = 4021;
+export const ITEM_SET_ID_OZYANO_MAIL_OZYANO_MANT_OZYANO_BOOTS = 4022;
+export const ITEM_SET_ID_OZYANO_YUBIWA_OZYANO_MAIL = 4023;
+export const ITEM_SET_ID_OZYANO_YUBIWA_OZYANO_MANT = 4024;
+export const ITEM_SET_ID_OZYANO_YUBIWA_OZYANO_BOOTS = 4025;
+export const ITEM_ID_HANRYU_OZYONO_YUBIWA = 4026;
+export const ITEM_ID_MELONPAN_HAT = 4027;
+export const ITEM_ID_GOTHIC_SKULL_RIBBON = 4028;
+export const ITEM_ID_GOLDEN_VIOLET = 4029;
+export const ITEM_ID_FOX_HAIR = 4030;
+export const ITEM_ID_EIKONO_MIHATA_AKA = 4031;
+export const ITEM_ID_TAKANO_MENO_KUBIKAZARI = 4032;
+export const ITEM_SET_ID_TAKANO_MENO_KUBIKAZARI_OWASHINO_GANKO = 4033;
+export const ITEM_ID_TSUIGEKISHANO_SHOES = 4034;
+export const ITEM_ID_SEISHIN_KAKUCHO_RING = 4035;
+export const ITEM_SET_ID_SEISHIN_KAKUCHO_RING_SHINRINO_KAIHO = 4036;
+export const ITEM_ID_PIKAPIKA_NYANNYAN_CROWN = 4037;
+export const ITEM_ID_YOCHIYOCHI_URIBO_SUTAI = 4038;
+export const ITEM_ID_GENMETSUNO_SHINENTAI_SHOES = 4039;
+export const ITEM_SET_ID_GENMETSUNO_SHINENTAI_SHOES_GRAVITATION_STUFF = 4040;
+export const ITEM_SET_ID_GENMETSUNO_SHINENTAI_SHOES_PSYCHIC_SPEAR_ROD = 4041;
+export const ITEM_SET_ID_GENMETSUNO_SHINENTAI_SHOES_STUFF_OF_MIRACLE = 4042;
+export const ITEM_SET_ID_GENMETSUNO_SHINENTAI_SHOES_BOSOSHITA_MARYOKU = 4043;
+export const ITEM_ID_SHINPANNO_TENBIN = 4044;
+export const ITEM_SET_ID_SHINPANNO_TENBIN_SHINRINO_KAIHO = 4045;
+export const ITEM_ID_CHAPUCHAPU_NYANPU_HAT = 4046;
+export const ITEM_ID_SHIRONO_KISHIDANNO_NEKOZYARASHI = 4047;
+export const ITEM_ID_SHIKENKAN_BOOTS = 4048;
+export const ITEM_ID_MUKIRYOKUNO_SHINENTAI_SHOES = 4049;
+export const ITEM_SET_ID_MUKIRYOKUNO_SHINENTAI_SHOES_KOYOSUI = 4050;
+export const ITEM_SET_ID_MUKIRYOKUNO_SHINENTAI_SHOES_TOSHINNO_BANTAGE = 4051;
+export const ITEM_SET_ID_MUKIRYOKUNO_SHINENTAI_SHOES_MORYU_TOKO = 4052;
+export const ITEM_SET_ID_MUKIRYOKUNO_SHINENTAI_SHOES_KUMANO_CHIKARA = 4053;
+export const ITEM_ID_RAINBOW_STAR = 4054;
+export const ITEM_ID_YOGANNO_MANT = 4055;
+export const ITEM_ID_KOKUO_SCHMIDTNO_SEIFUKU = 4056;
+export const ITEM_ID_KOKUO_SCHMIDTNO_MANT = 4057;
+export const ITEM_SET_ID_KOKUO_SCHMIDTNO_SEIFUKU_MANT = 4058;
+export const ITEM_ID_KOKUO_SCHMIDTNO_KYOGO_KISHO = 4059;
+export const ITEM_ID_KOKUO_SCHMIDTNO_SHINREKI_KISHO = 4060;
+export const ITEM_ID_KOKUO_SCHMIDTNO_HAKUUN_KISHO = 4061;
+export const ITEM_ID_KOKUO_SCHMIDTNO_GOTAI_KISHO = 4062;
+export const ITEM_ID_KOKUO_SCHMIDTNO_SENKO_KISHO = 4063;
+export const ITEM_ID_KOKUO_SCHMIDTNO_TENKYU_KISHO = 4064;
+export const ITEM_ID_KAKUSEI_OKAMINOKAMINO_HAKOROMO = 4065;
+export const ITEM_SET_ID_KAKUSEI_OKAMINOKAMINO_HAKOROMO_KTULLANUX = 4066;
+export const ITEM_SET_ID_KAKUSEI_OKAMINOKAMINO_HAKOROMO_FUINSARETA_KTULLANUX = 4067;
+export const ITEM_SET_ID_OKAMINOKAMINO_HAKOROMO_FUINSARETA_KTULLANUX = 4068;
+export const ITEM_ID_FAFNIR_BREATH = 4069;
+export const ITEM_ID_TSUIGEKISHANO_RING = 4070;
+export const ITEM_SET_ID_TSUIGEKISHANO_RING_KOSOKU = 4071;
+export const ITEM_ID_YUZYUFUDANNO_SHINENTAI_SHOES = 4072;
+export const ITEM_SET_ID_YUZYUFUDANNO_SHINENTAI_SHOES_MAGICAL_SET = 4073;
+export const ITEM_SET_ID_YUZYUFUDANNO_SHINENTAI_SHOES_PHYSICAL_SET = 4074;
+export const ITEM_SET_ID_YUZYUFUDANNO_SHINENTAI_SHOES_OWASHINO_GANKO = 4075;
+export const ITEM_SET_ID_YUZYUFUDANNO_SHINENTAI_SHOES_BOSOSHITA_MARYOKU = 4076;
+export const ITEM_ID_FROZEN_SCALE_SHAWL = 4077;
+export const ITEM_ID_RING_OF_PAZUZU = 4078;
+export const ITEM_SET_ID_RING_OF_PAZUZU_SHINRINO_KAIHO = 4079;
+export const ITEM_ID_GOMANNO_SHINENTAI_SHOES = 4080;
+export const ITEM_SET_ID_GOMANNO_SHINENTAI_SHOES_ARGIAN_BLANCO = 4081;
+export const ITEM_SET_ID_GOMANNO_SHINENTAI_SHOES_FORT_RAGE = 4082;
+export const ITEM_SET_ID_GOMANNO_SHINENTAI_SHOES_HARBEST = 4083;
+export const ITEM_SET_ID_GOMANNO_SHINENTAI_SHOES_KUMANO_CHIKARA = 4084;
+export const ITEM_ID_IKUSAOTOMENO_HANEMIMI = 4085;
+export const ITEM_ID_METAL_DEATH_ADDER = 4086;
+export const ITEM_ID_METAL_KING_COBRA = 4087;
+export const ITEM_ID_METAL_DIAMOND_BACK = 4088;
+export const ITEM_ID_METAL_ANACONDA = 4089;
+export const ITEM_ID_METAL_PYSON = 4090;
+export const ITEM_ID_FUSHICHONO_NEKOZYARASHI = 4091;
+export const ITEM_SET_ID_FUSHICHONO_NEKOZYARASHI_FLAME_BIRD = 4092;
+export const ITEM_SET_ID_FUSHICHONO_NEKOZYARASHI_MUTANT_DRAGON_CARD = 4093;
+export const ITEM_SET_ID_FUSHICHONO_NEKOZYARASHI_BOITATA_CARD = 4094;
+export const ITEM_ID_BOKOKUNO_OSHAKU = 4095;
+export const ITEM_ID_SEIZYANO_MOKUSHIROKU = 4096;
+export const ITEM_ID_KUWAETA_SENKO_HANABI = 4097;
+export const ITEM_ID_MAKARINO_TATE = 4098;
+export const ITEM_SET_ID_MAKARINO_TATE_ALICE_CARD = 4099;
+export const ITEM_SET_ID_MAKARINO_TATE_GASTER_CARD = 4100;
+export const ITEM_SET_ID_MAKARINO_TATE_OLDOR_CARD_SET = 4101;
+export const ITEM_ID_SABAKUNO_ANSATSUSHA = 4102;
+export const ITEM_ID_GATE_OF_NEZAR_WORLD = 4103;
+export const ITEM_SET_ID_GATE_OF_NEZAR_WORLD_FENRIR_CARD = 4104;
+export const ITEM_ID_REIZOKUNO_KUBIWA = 4105;
+export const ITEM_ID_GOYUMUSONO_KACCHU = 4106;
+export const ITEM_SET_ID_GOYUMUSONO_KACCHU_TSURANUKI = 4107;
+export const ITEM_SET_ID_GOYUMUSONO_KACCHU_MONBOSHI = 4108;
+export const ITEM_ID_PEEP_TOE_SANDAL = 4109;
+export const ITEM_ID_COL_CORE_HEADPHONE = 4110;
+export const ITEM_SET_ID_COL_CORE_HEADPHONE_OS_ARMS = 4111;
+export const ITEM_ID_DEUS_EX_MACHINA = 4112;
+export const ITEM_SET_ID_SAMAYOUMONONO_HAORI_KASA_PET = 4113;
+export const ITEM_SET_ID_GERHERT_VON_DEVILCH_PET = 4114;
+export const ITEM_SET_ID_MAKCIMILIAN_VON_BEBE_PET = 4115;
+export const ITEM_SET_ID_ELNST_VON_VOLF_PET = 4116;
+export const ITEM_SET_ID_ICE_VON_FREEZINGER_PET = 4117;
+export const ITEM_SET_ID_STAHL_VON_KAISER_61_PET = 4118;
+export const ITEM_SET_ID_DEVILCH_HEADPHONE_PET = 4119;
+export const ITEM_SET_ID_MIZUMIZUSHI_DAIDAI_PET = 4120;
+export const ITEM_SET_ID_TSUKIUSAGINO_BOSHI_PET = 4121;
+export const ITEM_ID_TENMA_GEDONO_GAITO = 4122;
+export const ITEM_ID_RUNE_GREEVE = 4123;
+export const ITEM_ID_SAISENO_SHINENTAI_SHOES = 4124;
+export const ITEM_SET_ID_SAISENO_SHINENTAI_SHOES_AGUED_FIRO = 4125;
+export const ITEM_SET_ID_SAISENO_SHINENTAI_SHOES_JUDGEMENT_SLASHER = 4126;
+export const ITEM_SET_ID_SAISENO_SHINENTAI_SHOES_RIPPER_CROSS = 4127;
+export const ITEM_SET_ID_SAISENO_SHINENTAI_SHOES_REPENT_SLASHER = 4128;
+export const ITEM_SET_ID_SAISENO_SHINENTAI_SHOES_KUMANO_CHIKARA = 4129;
+export const ITEM_ID_POLLUX_BOOK = 4130;
+export const ITEM_ID_POLLUX_CROWN = 4131;
+export const ITEM_ID_POLLUX_ROBE = 4132;
+export const ITEM_ID_POLLUX_SHOES = 4133;
+export const ITEM_ID_POLLUX_MANT = 4134;
+export const ITEM_SET_ID_POLLUX_SET = 4135;
+export const ITEM_ID_POLLUX_RING = 4136;
+export const ITEM_ID_PROCYON_DAGGER = 4137;
+export const ITEM_ID_PROCYON_CROWN = 4138;
+export const ITEM_ID_PROCYON_ROBE = 4139;
+export const ITEM_ID_PROCYON_SHOES = 4140;
+export const ITEM_ID_PROCYON_MANT = 4141;
+export const ITEM_SET_ID_PROCYON_SET = 4142;
+export const ITEM_ID_PROCYON_RING = 4143;
+export const ITEM_ID_CHUNG_EAHNO_REI = 4144;
+export const ITEM_ID_KAKUSE_TOKUSHU_KANKYO_KATSUDOYO_BOOTS = 4145;
+export const ITEM_SET_ID_KAKUSE_TOKUSHU_KANKYO_KATSUDOYO_BOOTS_DARKLORD_CARD = 4146;
+export const ITEM_SET_ID_KAKUSE_TOKUSHU_KANKYO_KATSUDOYO_BOOTS_FUINSARETA_DARKLORD_CARD = 4147;
+export const ITEM_SET_ID_KAKUSE_TOKUSHU_KANKYO_KATSUDOYO_BOOTS_BOSOSHITA_MARYOKU = 4148;
+export const ITEM_SET_ID_TOKUSHU_KANKYO_KATSUDOYO_BOOTS_FUINSARETA_DARKLORD_CARD = 4149;
+export const ITEM_ID_FUTAGONO_TWIN_RIBBON = 4150;
+export const ITEM_ID_MAMARAGAN = 4151;
+export const ITEM_SET_ID_MAMARAGAN_BOSOSHITA_MARYOKU = 4152;
+export const ITEM_ID_KAGAKUSHANO_MANT = 4153;
+export const ITEM_ID_HYPOCRISIES_EDGE = 4154;
+export const ITEM_ID_AVARITIA_METAL = 4155;
+export const ITEM_ID_LUXURIA_PIERCE = 4156;
+export const ITEM_ID_PRIDE_STONE = 4157;
+export const ITEM_ID_WRATH_WHEEL = 4158;
+export const ITEM_ID_SUPERBIA_STRING = 4159;
+export const ITEM_ID_GULARUSION = 4160;
+export const ITEM_ID_PIGRITIA_RHYTHM = 4161;
+export const ITEM_ID_LUST_POINTER = 4162;
+export const ITEM_ID_LUST_SHUTTER = 4163;
+export const ITEM_ID_LUST_CRASHER = 4164;
+export const ITEM_ID_LUST_BOOM = 4165;
+export const ITEM_ID_HYPOCRISY_MACHINE = 4166;
+export const ITEM_ID_INVIDIA_BANDLE = 4167;
+export const ITEM_ID_WRATH_LECK = 4168;
+export const ITEM_ID_GULATIEES = 4169;
+export const ITEM_ID_PRIDE_STEAL = 4170;
+export const ITEM_ID_GLUTTONY_STICK = 4171;
+export const ITEM_ID_SLOTH_TEXT = 4172;
+export const ITEM_ID_SLOTH_BIBLE = 4173;
+export const ITEM_ID_GREED_WAND = 4174;
+export const ITEM_ID_ADICTION_PLANTS = 4175;
+export const ITEM_ID_IRA_FIST = 4176;
+export const ITEM_ID_PIGRITIA_WAVE = 4177;
+export const ITEM_ID_PIGRITIA_SPARK = 4178;
+export const ITEM_ID_ENVY_BLANT = 4179;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_A_REFLECT = 4180;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_A_SP_COST = 4181;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_STR = 4182;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_AGI = 4183;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_VIT = 4184;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_INT = 4185;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_DEX = 4186;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_B_LUK = 4187;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_E_DARKNESS = 4188;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_E_POISON = 4189;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_E_SAINT = 4190;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_E_UNDEAD = 4191;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_G_CRI = 4192;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_G_GUIDED = 4193;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_P_CONFUSE = 4194;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_P_CURSE = 4195;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_P_FEAR = 4196;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_P_IGNITION = 4197;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_P_PETRIFACTION = 4198;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_P_SILENCE = 4199;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_P_SLEEP = 4200;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_BOSS = 4201;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_NORMAL = 4202;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_S_FATAL_FLASH = 4203;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_S_FIRING_SHOT = 4204;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_S_LUCKY_STRIKE = 4205;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_S_OVER_POWER = 4206;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_S_SPELL_BUSTER = 4207;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_S_UNLIMIT_VITAL = 4208;
+export const ITEM_ID_AUTOMATIC_SUIT_1 = 4209;
+export const ITEM_ID_AUTOMATIC_SUIT_2 = 4210;
+export const ITEM_ID_AUTOMATIC_WING_1 = 4211;
+export const ITEM_ID_AUTOMATIC_WING_2 = 4212;
+export const ITEM_ID_AUTOMATIC_LEG_1 = 4213;
+export const ITEM_ID_AUTOMATIC_LEG_2 = 4214;
+export const ITEM_ID_AUTOMATIC_CHIP_ALPHA_1 = 4215;
+export const ITEM_ID_AUTOMATIC_CHIP_ALPHA_2 = 4216;
+export const ITEM_ID_AUTOMATIC_CHIP_BETA_1 = 4217;
+export const ITEM_ID_AUTOMATIC_CHIP_BETA_2 = 4218;
+export const ITEM_ID_SCALL_RING = 4219;
+export const ITEM_SET_ID_SCALL_RING_SHINRINO_KAIHO = 4220;
+export const ITEM_ID_HAURVATAT = 4221;
+export const ITEM_SET_ID_HAURVATAT_SPECIAL_STR = 4222;
+export const ITEM_SET_ID_HAURVATAT_SPECIAL_AGI = 4223;
+export const ITEM_SET_ID_HAURVATAT_SPECIAL_VIT = 4224;
+export const ITEM_SET_ID_HAURVATAT_SPECIAL_INT = 4225;
+export const ITEM_SET_ID_HAURVATAT_SPECIAL_DEX = 4226;
+export const ITEM_SET_ID_HAURVATAT_SPECIAL_LUK = 4227;
+export const ITEM_ID_MIKAWASHINO_CAPE = 4228;
+export const ITEM_ID_FUYUSURU_ARTIFACT = 4229;
+export const ITEM_SET_ID_ENCHANT_SATSUINO_ONNEN_SEITAI_MVP_DISEFFECT = 4230;
+export const ITEM_ID_FAIRY_OF_EDEN = 4231;
+export const ITEM_SET_ID_FAIRY_OF_EDEN_GARDEN_OF_EDEN = 4232;
+export const ITEM_SET_ID_FAIRY_OF_EDEN_SHINRINO_KAIHO = 4233;
+export const ITEM_SET_ID_FAIRY_OF_EDEN_SHINRINO_MAHOTSUKAI = 4234;
+export const ITEM_ID_WANDER_EGG_BASKET = 4235;
+export const ITEM_SET_ID_WANDER_EGG_BASKET_STATUS_ALL_10 = 4236;
+export const ITEM_SET_ID_WANDER_EGG_BASKET_SIZE_ALL_10 = 4237;
+export const ITEM_SET_ID_WANDER_EGG_BASKET_DEF_150 = 4238;
+export const ITEM_ID_IMPERIAL_GLORY = 4239;
+export const ITEM_ID_CRYSTAL_BLADE_NECKLACE = 4240;
+export const ITEM_SET_ID_CRYSTAL_BLADE_NECKLACE_KYOGEKI = 4241;
+export const ITEM_ID_OSHARENA_SILENT_SHOES = 4242;
+export const ITEM_ID_TWIN_BLAZE = 4243;
+export const ITEM_ID_EIKONO_MIHATA_AO = 4244;
+export const ITEM_ID_KAITEI_SHINDENNO_ZAIHO = 4245;
+export const ITEM_SET_ID_KAITEI_SHINDENNO_ZAIHO_BOSOSHITA_MARYOKU = 4246;
+export const ITEM_ID_POWERED_WING = 4247;
+export const ITEM_ID_FUSHICHONO_RING = 4248;
+export const ITEM_SET_ID_FUSHICHONO_RING_KUMANO_CHIKARA = 4249;
+export const ITEM_SET_ID_FUSHICHONO_RING_KUMANO_CHIKARA_IMPERIAL_ACCESSORY = 4250;
+export const ITEM_ID_KUCHITA_GARDEN_KNIFE = 4251;
+export const ITEM_SET_ID_DAKITSUKI_SYAMNEKO_SENZAI_KAIHO_SUMMONER = 4252;
+export const ITEM_ID_SHITSUBONO_SHINENTAI_SHOES = 4253;
+export const ITEM_SET_ID_SHITSUBONO_SHINENTAI_SHOES_CRYMSON_ROSE_STICK = 4254;
+export const ITEM_SET_ID_SHITSUBONO_SHINENTAI_SHOES_SUHAINO_TSUE = 4255;
+export const ITEM_SET_ID_SHITSUBONO_SHINENTAI_SHOES_DUST_GRAVE = 4256;
+export const ITEM_SET_ID_SHITSUBONO_SHINENTAI_SHOES_POENITENTIA = 4257;
+export const ITEM_SET_ID_SHITSUBONO_SHINENTAI_SHOES_BOSOSHITA_MARYOKU = 4258;
+export const ITEM_ID_BOSONO_SHINENTAI_SHOES = 4259;
+export const ITEM_SET_ID_BOSONO_SHINENTAI_SHOES_ENGINE_PILE_VANKER = 4260;
+export const ITEM_SET_ID_BOSONO_SHINENTAI_SHOES_GOLDEN_RENCH = 4261;
+export const ITEM_SET_ID_BOSONO_SHINENTAI_SHOES_MAXY_SPANA = 4262;
+export const ITEM_SET_ID_BOSONO_SHINENTAI_SHOES_KUMANO_CHIKARA = 4263;
+export const ITEM_ID_ERYMANTHNO_KAWA = 4264;
+export const ITEM_ID_ANULUS_IRA = 4265;
+export const ITEM_SET_ID_ANULUS_IRA_HAO = 4266;
+export const ITEM_ID_NOBLESSE_ANIMAL_ROBE = 4267;
+export const ITEM_ID_IMPERIAL_ANIMAL_ROBE = 4268;
+export const ITEM_ID_GRACE_ANIMAL_ROBE = 4269;
+export const ITEM_ID_NOBLESSE_GATLING_SUIT = 4270;
+export const ITEM_ID_IMPERIAL_GATLING_SUIT = 4271;
+export const ITEM_ID_GRACE_GATLING_SUIT = 4272;
+export const ITEM_ID_NOBLESSE_CRUCIFORM_SUIT = 4273;
+export const ITEM_ID_IMPERIAL_CRUCIFORM_SUIT = 4274;
+export const ITEM_ID_GRACE_CRUCIFORM_SUIT = 4275;
+export const ITEM_ID_AZATOI_KEROKERO_KAPPA = 4276;
+export const ITEM_ID_PARADISE_LOST = 4277;
+export const ITEM_ID_ZYASPER_RING = 4278;
+export const ITEM_SET_ID_ZYASPER_RING_KUMANO_CHIKARA = 4279;
+export const ITEM_ID_FURUBITA_WHITE_LILIUM_ROBE = 4280;
+export const ITEM_ID_WHITE_LILIUM_ROBE = 4281;
+export const ITEM_SET_ID_WHITE_LILIUM_ROBE_AMENHOTEP = 4282;
+export const ITEM_ID_KAKUSE_WHITE_LILIUM_ROBE = 4283;
+export const ITEM_SET_ID_KAKUSE_WHITE_LILIUM_ROBE_AMENHOTEP = 4284;
+export const ITEM_ID_TAIKYOKUNO_MIMIKAZARI_KIIRO = 4285;
+export const ITEM_ID_SUHAINO_YUBIWA = 4286;
+export const ITEM_SET_ID_SUHAINO_YUBIWA_SHINRINO_KAIHO = 4287;
+export const ITEM_ID_GLOTONERIA = 4288;
+export const ITEM_ID_ILUSION_SHIELD_2 = 4289;
+export const ITEM_SET_ID_RUNAWAY_ACCELERATOR_Q_RANGE = 4290;
+export const ITEM_SET_ID_Q_RANGE_YOZINBONO_SCARF = 4291;
+export const ITEM_SET_ID_Q_RANGE_SHIKKOSHANO_MANT = 4292;
+export const ITEM_SET_ID_Q_RANGE_YOICHINO_KATAKAE = 4293;
+export const ITEM_SET_ID_Q_RANGE_ILLUSION_MUFFLER = 4294;
+export const ITEM_SET_ID_Q_RANGE_SNIPING_VEIL = 4295;
+export const ITEM_ID_AUTOMATIC_SHIELD_1 = 4296;
+export const ITEM_ID_AUTOMATIC_SHIELD_2 = 4297;
+export const ITEM_ID_ALPHA_CORE = 4298;
+export const ITEM_SET_ID_ALPHA_CORE_SHINRA_BANSHO = 4299;
+export const ITEM_ID_GUARDIAN_KNIGHTS_CRYMORE = 4300;
+export const ITEM_ID_GUARDIAN_KNIGHTS_SPEAR = 4301;
+export const ITEM_ID_GUARDIAN_KNIGHTS_AXE = 4302;
+export const ITEM_ID_ROYAL_CLERIC_STUFF = 4303;
+export const ITEM_ID_ROYAL_MAGICIAN_WAND = 4304;
+export const ITEM_ID_ROYAL_FOXTAIL = 4305;
+export const ITEM_ID_ROYAL_KATAR = 4306;
+export const ITEM_ID_ROYAL_MAGICIAN_DAGGER = 4307;
+export const ITEM_ID_ROYAL_KNUCKLE = 4308;
+export const ITEM_ID_GUARDIAN_ALCHEMIC_STUFF = 4309;
+export const ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW = 4310;
+export const ITEM_ID_ROYAL_WHIP = 4311;
+export const ITEM_ID_ROYAL_CELLO = 4312;
+export const ITEM_ID_ROYAL_SAGE_BOOK = 4313;
+export const ITEM_ID_TATSUINUNO_UDEWA = 4314;
+export const ITEM_SET_ID_TATSUINUNO_UDEWA_GOKETSU = 4315;
+export const ITEM_ID_SANGAKU_HELMET = 4316;
+export const ITEM_ID_SEIGINO_KANMURI = 4317;
+export const ITEM_ID_SHIROKISHINO_MANT = 4318;
+export const ITEM_ID_NOBLESSE_MAGMA_SUIT = 4319;
+export const ITEM_ID_IMPERIAL_MAGMA_SUIT = 4320;
+export const ITEM_ID_GRACE_MAGMA_SUIT = 4321;
+export const ITEM_ID_NOBLESSE_TENCHI_SUIT = 4322;
+export const ITEM_ID_IMPERIAL_TENCHI_SUIT = 4323;
+export const ITEM_ID_GRACE_TENCHI_SUIT = 4324;
+export const ITEM_ID_NOBLESSE_ARTIS_SUIT = 4325;
+export const ITEM_ID_IMPERIAL_ARTIS_SUIT = 4326;
+export const ITEM_ID_GRACE_ARTIS_SUIT = 4327;
+export const ITEM_ID_NOBLESSE_MENUS_SUIT = 4328;
+export const ITEM_ID_IMPERIAL_MENUS_SUIT = 4329;
+export const ITEM_ID_GRACE_MENUS_SUIT = 4330;
+export const ITEM_ID_NOBLESSE_HOLY_ROBE = 4331;
+export const ITEM_ID_IMPERIAL_HOLY_ROBE = 4332;
+export const ITEM_ID_GRACE_HOLY_ROBE = 4333;
+export const ITEM_ID_KYOZYUNO_MINIGLASS = 4334;
+export const ITEM_ID_BUKUBUKU_HUNTING_GOOGLE = 4335;
+export const ITEM_ID_METAL_PICK = 4336;
+export const ITEM_SET_ID_METAL_PICK_SHINRINO_KAIHO = 4337;
+export const ITEM_ID_SAITANNO_HOKAN = 4338;
+export const ITEM_SET_ID_SAITANNO_HOKAN_LAFINE_SHIELD = 4339;
+export const ITEM_ID_KAKUSE_KONO_HOKAN = 4340;
+export const ITEM_ID_KAKUSE_MAZYUNO_MAIL = 4341;
+export const ITEM_ID_KAKUSE_MAZYUNO_BOOTS = 4342;
+export const ITEM_ID_KAKUSE_MAZYUNO_MANT = 4343;
+export const ITEM_SET_ID_KAKUSE_MAZYUNO_ARMORS = 4344;
+export const ITEM_ID_KAKUSE_SHINENNO_ONO_YUBIWA = 4345;
+export const ITEM_SET_ID_KAKUSE_SHINENNO_ONO_YUBIWA_KOO_GLOZA = 4346;
+export const ITEM_SET_ID_KAKUSE_SHINENNO_ONO_YUBIWA_SHINSONO_KOO_GLOZA = 4347;
+export const ITEM_SET_ID_KAKUSE_SHINENNO_ONO_YUBIWA_KOO_GLOZA_OWASHINO_GANKO = 4348;
+export const ITEM_ID_KAKUSE_MAZYUNO_YUBIWA = 4349;
+export const ITEM_SET_ID_MAZYUNO_YUBIWA_KAKUSE_MAZYUNO_MAIL = 4350;
+export const ITEM_SET_ID_MAZYUNO_YUBIWA_KAKUSE_MAZYUNO_MANT = 4351;
+export const ITEM_SET_ID_MAZYUNO_YUBIWA_KAKUSE_MAZYUNO_BOOTS = 4352;
+export const ITEM_ID_KAKUSE_KONO_SOZIN = 4353;
+export const ITEM_ID_SAITANNO_ASAME = 4354;
+export const ITEM_ID_KAKUSE_EIKOWO_TATAESHI_OKEN = 4355;
+export const ITEM_ID_KAKUSE_HAMETSUWO_MATOISHI_GOKEN = 4356;
+export const ITEM_SET_ID_KAKUSE_EIKOWO_TATAESHI_OKEN_KAKUSE_HAMETSUWO_MATOISHI_GOKEN = 4357;
+export const ITEM_ID_MAKARINO_KUTSU = 4358;
+export const ITEM_ID_GOYUMUSONO_MIKOSHI = 4359;
+export const ITEM_SET_ID_GOYUMUSONO_MIKOSHI_GOYUMUSONO_MONBOSHI = 4360;
+export const ITEM_SET_ID_GOYUMUSONO_MIKOSHI_GOYUMUSONO_TSURANUKI = 4361;
+export const ITEM_SET_ID_GOYUMUSONO_MIKOSHI_GOYUMUSONO_KACCHU = 4362;
+export const ITEM_SET_ID_GOYUMUSONO_MIKOSHI_GOKETSU = 4363;
+export const ITEM_ID_OMEGA_CORE = 4364;
+export const ITEM_SET_ID_OMEGA_CORE_SHINRA_BANSHO = 4365;
+export const ITEM_ID_LORD_OF_ROYALS = 4366;
+export const ITEM_ID_DEMONS_FAMILIA = 4367;
+export const ITEM_SET_ID_DEMONS_FAMILIA_TAIZAI_ARMS = 4368;
+export const ITEM_ID_NOBLESSE_RAINSTORM_SUIT = 4369;
+export const ITEM_ID_IMPERIAL_RAINSTORM_SUIT = 4370;
+export const ITEM_ID_GRACE_RAINSTORM_SUIT = 4371;
+export const ITEM_SET_ID_GRACE_RAINSTORM_SUIT_ARASHINO_YUMI = 4372;
+export const ITEM_SET_ID_GRACE_RAINSTORM_SUIT_ELVEN_BOW_SCARABA_HIGHHEEL = 4373;
+export const ITEM_SET_ID_GRACE_RAINSTORM_SUIT_BOINO_MUFFLER = 4374;
+export const ITEM_ID_NOBLESSE_PSYCHIC_ROBE = 4375;
+export const ITEM_ID_IMPERIAL_PSYCHIC_ROBE = 4376;
+export const ITEM_ID_GRACE_PSYCHIC_ROBE = 4377;
+export const ITEM_SET_ID_GRACE_PSYCHIC_ROBE_FURUBITA_KAZENO_SASAYAKI = 4378;
+export const ITEM_ID_NOBLESSE_SCULL_ROBE = 4379;
+export const ITEM_ID_IMPERIAL_SCULL_ROBE = 4380;
+export const ITEM_ID_GRACE_SCULL_ROBE = 4381;
+export const ITEM_ID_RING_OF_CERYNEIA = 4382;
+export const ITEM_SET_ID_RING_OF_CERYNEIA_GOKETSU = 4383;
+export const ITEM_ID_PARACELSUS_GLOVE = 4384;
+export const ITEM_SET_ID_PARACELSUS_GLOVE_HAO = 4385;
+export const ITEM_ID_NORTHERN_CROSS = 4386;
+export const ITEM_ID_ILLUSION_SHINO_INDOSHA = 4387;
+export const ITEM_ID_ILLUSION_ZEPHYROS = 4388;
+export const ITEM_ID_ILLUSION_BRYIONAK = 4389;
+export const ITEM_ID_ILLUSION_TSUMETAI_TSURARANO_KATAR = 4390;
+export const ITEM_ID_ILLUSION_ELECHI_GUITAR = 4391;
+export const ITEM_ID_ILLUSION_DENKI_UNAGI = 4392;
+export const ITEM_ID_ILLUSION_MORRIGANNO_HELM = 4393;
+export const ITEM_ID_ILLUSION_SHAPINIHA_UMINO_SAKEBI = 4394;
+export const ITEM_ID_ILLUSION_SAINT_ROBE = 4395;
+export const ITEM_ID_ILLUSION_MAIL = 4396;
+export const ITEM_ID_ILLUSION_MORRIGANNO_MANT = 4397;
+export const ITEM_ID_ILLUSION_MORRIGANNO_BELT = 4398;
+export const ITEM_ID_ILLUSION_MORRIGANNO_PENDANT = 4399;
+export const ITEM_SET_ID_ILLUSION_MORRIGAN_SET = 4400;
+export const ITEM_ID_PREMIUM_MELON_HEADPHONE = 4401;
+export const ITEM_SET_ID_PREMIUM_MELON_HEADPHONE_ARCANA = 4402;
+export const ITEM_ID_KIGURUMI_BEARDOLL = 4403;
+export const ITEM_ID_MELON_DAGGER = 4404;
+export const ITEM_ID_MELON_BLADE = 4405;
+export const ITEM_ID_MELON_CRAYMORE = 4406;
+export const ITEM_ID_MELON_SPEAR = 4407;
+export const ITEM_ID_MELON_RANCE = 4408;
+export const ITEM_ID_MELON_AXE = 4409;
+export const ITEM_ID_MELON_TWOHAND_AXE = 4410;
+export const ITEM_ID_MELON_MACE = 4411;
+export const ITEM_ID_MELON_WAND = 4412;
+export const ITEM_ID_MELON_STUFF = 4413;
+export const ITEM_ID_MELON_WING = 4414;
+export const ITEM_ID_MELON_KATAR = 4415;
+export const ITEM_ID_MELON_BOOK = 4416;
+export const ITEM_ID_MELON_CRAW = 4417;
+export const ITEM_ID_MELON_VIOLIN = 4418;
+export const ITEM_ID_MELON_WHIP = 4419;
+export const ITEM_ID_MELON_FUMA_SHURIKEN = 4420;
+export const ITEM_ID_MELON_HANDGUN = 4421;
+export const ITEM_ID_MELON_RIFLE = 4422;
+export const ITEM_ID_MELON_GATLINGGUN = 4423;
+export const ITEM_ID_MELON_SHOTGUN = 4424;
+export const ITEM_ID_MELON_GRENADEGUN = 4425;
+export const ITEM_ID_MELON_FOXTAIL = 4426;
+export const ITEM_ID_KIRAKIRA_NYANNYAN_CHOKER = 4427;
+export const ITEM_SET_ID_KIRAKIRA_NYANNYAN_CHOKER_BOSOSHITA_MARYOKU = 4428;
+export const ITEM_ID_OKEANOSNO_KAGO = 4429;
+export const ITEM_SET_ID_OKEANOSNO_KAGO_SHIPPU = 4430;
+export const ITEM_ID_ANTIQUE_GATLINGGUN = 4431;
+export const ITEM_ID_NOBLESSE_CONFIDENCIAL_MAIL = 4432;
+export const ITEM_ID_IMPERIAL_CONFIDENCIAL_MAIL = 4433;
+export const ITEM_ID_GRACE_CONFIDENCIAL_MAIL = 4434;
+export const ITEM_ID_NOBLESSE_PUNISHMENT_ROBE = 4435;
+export const ITEM_ID_IMPERIAL_PUNISHMENT_ROBE = 4436;
+export const ITEM_ID_GRACE_PUNISHMENT_ROBE = 4437;
+export const ITEM_ID_NOBLESSE_CULTIVATION_COAT = 4438;
+export const ITEM_ID_IMPERIAL_CULTIVATION_COAT = 4439;
+export const ITEM_ID_GRACE_CULTIVATION_COAT = 4440;
+export const ITEM_SET_ID_GRACE_CULTIVATION_COAT_FURUBITA_MIDASSNO_SASAYAKI = 4441;
+export const ITEM_SET_ID_GRACE_CULTIVATION_COAT_JEJECAP = 4442;
+export const ITEM_ID_ANCIENT_MEGALIS_MANT = 4443;
+export const ITEM_ID_POWERED_INCOME = 4444;
+export const ITEM_ID_AVARECO = 4445;
+export const ITEM_ID_FAFNIR_HELM = 4446;
+export const ITEM_ID_AKAI_NEKOMIMI_MAZYO_BOSHI = 4447;
+export const ITEM_ID_NIRONO_RIBBON = 4448;
+export const ITEM_ID_SHUKUSEINO_KUTSU = 4449;
+export const ITEM_ID_MADOSHINO_KIOKU = 4450;
+export const ITEM_ID_SHIELD_OF_PHOENIX = 4451;
+export const ITEM_ID_KAIKYONO_SAKURA = 4452;
+export const ITEM_ID_WOLF_OFFICER_HAT = 4453;
+export const ITEM_ID_SPUNTA_MAINYU = 4454;
+export const ITEM_ID_MOFUMOFU_LOVELY_FOX = 4455;
+export const ITEM_ID_RIKUTO_SANRYAKU = 4456;
+export const ITEM_ID_KAKUSE_FULL_FORCE = 4457;
+export const ITEM_SET_ID_KAKUSE_FULL_FORCE_DOPPELGANGER_CARD = 4458;
+export const ITEM_SET_ID_KAKUSE_FULL_FORCE_FUINSARETA_DOPPELGANGER_CARD = 4459;
+export const ITEM_SET_ID_FULL_FORCE_FUINSARETA_DOPPELGANGER_CARD = 4460;
+export const ITEM_ID_KAKUSE_ORCLORDNO_YOROI = 4461;
+export const ITEM_SET_ID_KAKUSE_ORCLORDNO_YOROI_ORCLORD_CARD = 4462;
+export const ITEM_SET_ID_KAKUSE_ORCLORDNO_YOROI_FUINSARETA_ORCLORD_CARD = 4463;
+export const ITEM_ID_YAGIGENO_MUFFLER = 4464;
+export const ITEM_ID_KAKUSE_HOROW_SHOES = 4465;
+export const ITEM_SET_ID_KAKUSE_HOROW_SHOES_VERSEVV_CARD = 4466;
+export const ITEM_SET_ID_KAKUSE_HOROW_SHOES_FUINSARETA_VERSEVV_CARD = 4467;
+export const ITEM_SET_ID_KAKUSE_HOROW_SHOES_VERSEVV_CARD_FUINSARETA_VERSEVV_CARD = 4468;
+export const ITEM_SET_ID_HOROW_SHOES_FUINSARETA_VERSEVV_CARD = 4469;
+export const ITEM_SET_ID_HOROW_SHOES_VERSEVV_CARD_FUINSARETA_VERSEVV_CARD = 4470;
+export const ITEM_SET_ID_FURIONI_WING_FUINSARETA_FURIONI_CARD = 4471;
+export const ITEM_SET_ID_ZYOO_SUCARABANO_KABUTO_FUINSARETA_ZYOO_SUCARAB = 4472;
+export const ITEM_SET_ID_PHANTOM_OF_MASKARADE_FUINSARETA_MAKENSHI_THANATOSNO_SHINENTAI_CARD = 4473;
+export const ITEM_SET_ID_HOSHINO_GANTAI_FUINSARETA_ORC_HERO_CARD = 4474;
+export const ITEM_SET_ID_ZYOO_SUCARABANO_KABUTO_FUINSARETA_ZYOTE_SUCARAB = 4475;
+export const ITEM_SET_ID_MAHOSEKINO_ONKE_FUINSARETA_MISTRESS = 4476;
+export const ITEM_SET_ID_ORCLORDNO_YOROI_FUINSARETA_ORCLORD_CARD = 4477;
+export const ITEM_SET_ID_WHITE_LILIUM_ROBE_FUINSARETA_AMENHOTEP = 4478;
+export const ITEM_SET_ID_KAKUSE_WHITE_LILIUM_ROBE_FUINSARETA_AMENHOTEP = 4479;
+export const ITEM_SET_ID_NAMONAKI_KENNSHINO_BOOTS_FUINSARETA_IGNISEM_CENIA_MVP = 4480;
+export const ITEM_SET_ID_ARABIAN_MANT_FUINSARETA_EFREET_CARD = 4481;
+export const ITEM_SET_ID_VESPER_HEAD_GEAR_FUINSARETA_VERSEVV_CARD = 4482;
+export const ITEM_SET_ID_KODAI_MORROCNO_SHAWL_FUINSARETA_OSIRIS_CARD = 4483;
+export const ITEM_SET_ID_KYUKETSUKINO_SHIMOBE_FUINSARETA_IKARINO_DRACULA_CARD = 4484;
+export const ITEM_ID_FACE_OF_YGGDRASILL = 4485;
+export const ITEM_ID_AKURYONO_UMEKIGOE = 4486;
+export const ITEM_SET_ID_AKURYONO_UMEKIGOE_OCHITA_DAISHINKAN_HIBAMU = 4487;
+export const ITEM_SET_ID_AKURYONO_UMEKIGOE_OCHITA_DAISHINKAN_HIBAMU_HOZYONO_MEGAMI = 4488;
+export const ITEM_SET_ID_AKURYONO_UMEKIGOE_FUINSARETA_OCHITA_DAISHINKAN_HIBAMU = 4489;
+export const ITEM_SET_ID_AKURYONO_UMEKIGOE_FUINSARETA_OCHITA_DAISHINKAN_HIBAMU_HOZYONO_MEGAMI = 4490;
+export const ITEM_SET_ID_AKURYONO_UMEKIGOE_BOSOSHITA_MARYOKU = 4491;
+export const ITEM_ID_AEGIS_SYSTEM = 4492;
+export const ITEM_ID_GUARDIAN_HELM = 4493;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_SEIFUKU = 4494;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_MANT = 4495;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_KYOGO_KISHO = 4496;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_GOTAI_KISHO = 4497;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_SHINREKI_KISHO = 4498;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_SENKO_KISHO = 4499;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_TENKYU_KISHO = 4500;
+export const ITEM_SET_ID_GUARDIAN_HELM_KOKUO_SCHMIDTNO_HAKUUN_KISHO = 4501;
+export const ITEM_ID_EINHERJERNO_GAITO = 4502;
+export const ITEM_ID_PARACELSUS_COAT = 4503;
+export const ITEM_ID_MILITARY_GLOVE = 4504;
+export const ITEM_SET_ID_MILITARY_GLOVE_HAO = 4505;
+export const ITEM_ID_SEKAIWO_MUSHIBAMU_ZYUSO = 4506;
+export const ITEM_SET_ID_MAHOSEKINO_ONKE_MISTRESS = 4507;
+export const ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE = 4508;
+export const ITEM_ID_ALPHA_CORE_CARD_ENCHANTABLE = 4509;
+export const ITEM_ID_KAIRYOGATA_POWERED_SUIT = 4510;
+export const ITEM_ID_ONRYO_KAIINO_MIMI = 4511;
+export const ITEM_SET_ID_ONRYO_KAIINO_MIMI_AKUMANO_TE = 4512;
+export const ITEM_ID_MOKOFUWA_SHARK_PAJAMA = 4513;
+export const ITEM_ID_TRAVELER_RING = 4514;
+export const ITEM_SET_ID_TRAVELER_RING_GOKETSU = 4515;
+export const ITEM_ID_DARK_TRIAD = 4516;
+export const ITEM_ID_FURUBITA_MESAI_SCARF = 4517;
+export const ITEM_ID_NOBLESSE_OBLIGE = 4518;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_OKENO_EIKO = 4519;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_ARTIS_SUIT = 4520;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_ANIMAL_ROBE = 4521;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_GATLING_SUIT = 4522;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_CULTIVATION_COAT = 4523;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_CRUCIFORM_SUIT = 4524;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_CONFIDENCIAL_MAIL = 4525;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_PSYCHIC_ROBE = 4526;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_SCULL_ROBE = 4527;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_TENCHI_SUIT = 4528;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_PUNISHMENT_ROBE = 4529;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_HOLY_ROBE = 4530;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_MAGMA_SUIT = 4531;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_MENUS_SUIT = 4532;
+export const ITEM_SET_ID_NOBLESSE_OBLIGE_GRACE_RAINSTORM_SUIT = 4533;
+export const ITEM_ID_KAGAYAKU_HAKUGINNO_YARI = 4534;
+export const ITEM_ID_SHINKAI_SEIBUTSUNO_MANT = 4535;
+export const ITEM_ID_HAKOBORESHITA_KODACHI = 4536;
+export const ITEM_ID_SHINREINO_KODACHI = 4537;
+export const ITEM_ID_OKINA_TEKKYU = 4538;
+export const ITEM_ID_KISHINNO_TEKKYU = 4539;
+export const ITEM_ID_FURUI_SANNSA_YARI = 4540;
+export const ITEM_ID_AKAKI_MOSHONO_YARI = 4541;
+export const ITEM_ID_KAREKINO_TSUE = 4542;
+export const ITEM_ID_GOSHINBOKUNO_TSUE = 4543;
+export const ITEM_ID_SABITA_SHOZYU = 4544;
+export const ITEM_ID_AR_89I = 4545;
+export const ITEM_ID_SABITA_SHOTGUN = 4546;
+export const ITEM_ID_M_3700 = 4547;
+export const ITEM_ID_GENZYUNO_MIMI = 4548;
+export const ITEM_ID_MEMENTO_MORI = 4549;
+export const ITEM_SET_ID_MEMENTO_MORI_EIYUNO_GAIKA = 4550;
+export const ITEM_ID_GUARDIAN_CLOTH = 4551;
+export const ITEM_ID_ILLUSION_EXCALIBUR = 4552;
+export const ITEM_ID_ILLUSION_GERADRIA = 4553;
+export const ITEM_ID_ILLUSION_DOOM_SLAYER = 4554;
+export const ITEM_ID_ILLUSION_IBARANO_TSUE = 4555;
+export const ITEM_ID_ILLUSION_STUFF_OF_TEAR = 4556;
+export const ITEM_ID_ILLUSION_ANCIENT_DUGGER = 4557;
+export const ITEM_ID_ILLUSION_SPRINT_MAIL = 4558;
+export const ITEM_ID_ILLUSION_GUARD = 4559;
+export const ITEM_ID_ILLUSION_SILVER_GUARD = 4560;
+export const ITEM_ID_ILLUSION_SPRINT_SHOES = 4561;
+export const ITEM_SET_ID_ILLUSION_SPRINT_SHOES_MAIL = 4562;
+export const ITEM_ID_ILLUSION_SPRINT_RING = 4563;
+export const ITEM_SET_ID_ILLUSION_SPRINT_RING_MAIL = 4564;
+export const ITEM_SET_ID_ILLUSION_SPRINT_RING_SHOES = 4565;
+export const ITEM_ID_ILLUSION_SPRINT_GLOVE = 4566;
+export const ITEM_SET_ID_ILLUSION_SPRINT_GLOVE_MAIL = 4567;
+export const ITEM_SET_ID_ILLUSION_SPRINT_GLOVE_SHOES = 4568;
+export const ITEM_SET_ID_ILLUSION_SPRINT_GLOVE_RING = 4569;
+export const ITEM_ID_ASMODEUSNO_TSUBASA = 4570;
+export const ITEM_SET_ID_ASMODEUSNO_TSUBASA_ZYASPER_CIRCLET = 4571;
+export const ITEM_ID_GORGONNO_HANAKANMURI = 4572;
+export const ITEM_SET_ID_GORGONNO_HANAKANMURI_AEGIS_SYSTEM = 4573;
+export const ITEM_ID_ARAMAZDNO_TENKE = 4574;
+export const ITEM_SET_ID_ARAMAZDNO_TENKE_KIGENNO_O = 4575;
+export const ITEM_ID_TWIN_HEAD_DRAGON_MAIL = 4576;
+export const ITEM_ID_POKAPOKA_TANPOPO_CAPE = 4577;
+export const ITEM_ID_LEGACY_OF_WISE_ONE = 4578;
+export const ITEM_ID_MAGIC_CELESTIAL_GLOBE = 4579;
+export const ITEM_SET_ID_MAGIC_CELESTIAL_GLOBE_ZODIAC = 4580;
+export const ITEM_ID_YESTERDAY_ONCE_MORE = 4581;
+export const ITEM_SET_ID_YESTERDAY_ONCE_MORE_KIGENNO_O = 4582;
+export const ITEM_ID_CHROM_METAL_PLATE = 4583;
+export const ITEM_ID_TENMANO_KUTSU = 4584;
+export const ITEM_ID_VALKYRIE_CURSE_BRIGHT = 4585;
+export const ITEM_SET_ID_VALKYRIE_CURSE_BRIGHT_EIYUNO_GAIKA = 4586;
+export const ITEM_SET_ID_VALKYRIE_CURSE_BRIGHT_YAKUSAINO_MASHO = 4587;
+export const ITEM_ID_KISHINNO_MEIYU = 4588;
+export const ITEM_ID_REQUIESCAT_IN_PACE = 4589;
+export const ITEM_SET_ID_REQUIESCAT_IN_PACE_SATSUINO_ONNEN = 4590;
+export const ITEM_ID_TYRANT_OF_ERATH = 4591;
+export const ITEM_ID_IKOKUNO_DENTO_BOSHI = 4592;
+export const ITEM_SET_ID_IKOKUNO_DENTO_BOSHI_PEKUSOZIN = 4593;
+export const ITEM_SET_ID_IKOKUNO_DENTO_BOSHI_FUINSARTA_PEKUSOZIN = 4594;
+export const ITEM_ID_FURUBITA_SHIHAISHANO_ROBE = 4595;
+export const ITEM_ID_SHIHAISHANO_ROBE = 4596;
+export const ITEM_SET_ID_SHIHAISHANO_ROBE_TAOGUNKA = 4597;
+export const ITEM_SET_ID_SHIHAISHANO_ROBE_FUINSARETA_TAOGUNKA = 4598;
+export const ITEM_ID_KAKUSE_SHIHAISHANO_ROBE = 4599;
+export const ITEM_SET_ID_KAKUSE_SHIHAISHANO_ROBE_TAOGUNKA = 4600;
+export const ITEM_SET_ID_KAKUSE_SHIHAISHANO_ROBE_FUINSARETA_TAOGUNKA = 4601;
+export const ITEM_SET_ID_TATENASHINO_YOROI_FUINSARETA_RSX_0806 = 4602;
+export const ITEM_SET_ID_APPLAUSE_SANDAL_FUINSARETA_AMON_RA = 4603;
+export const ITEM_SET_ID_VESPER_HEAD_GEAR_FUINSARETA_VESPER = 4604;
+export const ITEM_SET_ID_GODS_SWORD_FUINSARETA_ONRYO_BUSHI = 4605;
+export const ITEM_SET_ID_DEMONISH_SWORD_FUINSARETA_ONRYO_BUSHI = 4606;
+export const ITEM_SET_ID_OSUWARI_KYOKO_SHIFUKU_FUINSARETA_KIEL_D_01 = 4607;
+export const ITEM_SET_ID_NIZIIRONO_NEKOZYARASHI_FUINSARETA_STORM_KNIGHT = 4608;
+export const ITEM_SET_ID_BRAVE_SUIT_FUINSARETA_TAOGUNKA_CARD = 4609;
+export const ITEM_SET_ID_GESSHOKUNO_SOUSHOKU_FUINSARETA_HATI = 4610;
+export const ITEM_SET_ID_FUSHICHONO_NEKOZYARASHI_FUINSARETA_BOITATA = 4611;
+export const ITEM_ID_YUMEMIRU_AKA_HITSUZI = 4612;
+export const ITEM_ID_END_OF_THE_WORLD = 4613;
+export const ITEM_ID_TOTONO_SHO = 4614;
+export const ITEM_ID_QUEEN_MELON_HEADPHONE = 4615;
+export const ITEM_ID_PRINCESS_MELON_HEADPHONE = 4616;
+export const ITEM_ID_XMAS_RING_SILVER = 4617;
+export const ITEM_ID_DRIVER_BAND_KIRO = 4618;
+export const ITEM_ID_FURUBITA_DRIVERBAND_AKA = 4619;
+export const ITEM_ID_FOUR_OF_A_KIND = 4620;
+export const ITEM_ID_HANGYAKUNO_KAICHU_DOKEI = 4621;
+export const ITEM_ID_KODAINO_OSHAKU = 4622;
+export const ITEM_ID_GEFION_SHIELD = 4623;
+export const ITEM_ID_CRAW_SWORD = 4624;
+export const ITEM_ID_SAFETY_SAVOR = 4625;
+export const ITEM_ID_BLOCKING_SPEAR = 4626;
+export const ITEM_ID_SAW_AXE = 4627;
+export const ITEM_ID_DETECT_STUFF = 4628;
+export const ITEM_ID_WELDING_WAND = 4629;
+export const ITEM_ID_SAFETY_FOXTAIL = 4630;
+export const ITEM_ID_NAT_BREAKER = 4631;
+export const ITEM_ID_KINZOKU_TANCHIKI_MK_47 = 4632;
+export const ITEM_ID_HOSEKI_TANCHIKI_MK_47 = 4633;
+export const ITEM_ID_SAFETY_KNUCKLE = 4634;
+export const ITEM_ID_RUBBER_HAMMER = 4635;
+export const ITEM_ID_BOLT_SHOOTER = 4636;
+export const ITEM_ID_SAFETY_WHIP = 4637;
+export const ITEM_ID_SAFETY_LUTE = 4638;
+export const ITEM_ID_SAFETY_MANUAL = 4639;
+export const ITEM_ID_GRINDER_FUMA_SHURIKEN = 4640;
+export const ITEM_ID_BOLT_REVOLVER = 4641;
+export const ITEM_ID_DRAGON_SCALE_PLATE = 4642;
+export const ITEM_ID_DRAGON_SCALE_HOOD = 4643;
+export const ITEM_ID_DRAGON_SCALE_BOOTS = 4644;
+export const ITEM_SET_ID_DRAGON_SCALE_ARMORS = 4645;
+export const ITEM_ID_SHISAINO_ROBE = 4646;
+export const ITEM_ID_SHISAINO_MANT = 4647;
+export const ITEM_ID_SHISAINO_BOOTS = 4648;
+export const ITEM_SET_ID_SHISAI_ARMORS = 4649;
+export const ITEM_ID_ELEMENTAL_POSSESSION = 4650;
+export const ITEM_ID_DIA_DE_MUERTOS = 4651;
+export const ITEM_ID_HARVEST_FESTIVAL = 4652;
+export const ITEM_SET_ID_HARVEST_FESTIVAL_HOZYONO_MEGAMI = 4653;
+export const ITEM_ID_TRIANGLE_DISASTER = 4654;
+export const ITEM_ID_ZIMBEZAME_FLOAT = 4655;
+export const ITEM_ID_TRANSCENDENCE_RING = 4656;
+export const ITEM_ID_BRILLIANT_AQUAMARINE_RING = 4657;
+export const ITEM_ID_BRILLIANT_AMETHYST_RING = 4658;
+export const ITEM_ID_BRILLIANT_EMERALD_RING = 4659;
+export const ITEM_ID_BRILLIANT_SAPPHIRE_RING = 4660;
+export const ITEM_ID_BRILLIANT_ZIRCON_RING = 4661;
+export const ITEM_ID_BRILLIANT_RUBY_RING = 4662;
+export const ITEM_ID_SINFUL_AMETHYST_RING = 4663;
+export const ITEM_ID_SINFUL_EMERALD_RING = 4664;
+export const ITEM_ID_SINFUL_OPAL_RING = 4665;
+export const ITEM_ID_SINFUL_SAPPHIRE_RING = 4666;
+export const ITEM_ID_SINFUL_TOPAZ_RING = 4667;
+export const ITEM_ID_SINFUL_RUBY_RING = 4668;
+export const ITEM_SET_ID_SINFUL_RUBY_RING_ZYASPER_RING = 4669;
+export const ITEM_ID_BRILLIANT_AQUAMARINE_NECKLACE = 4670;
+export const ITEM_ID_BRILLIANT_AMETHYST_NECKLACE = 4671;
+export const ITEM_ID_BRILLIANT_ZIRCON_NECKLACE = 4672;
+export const ITEM_ID_SINFUL_AMETHYST_NECKLACE = 4673;
+export const ITEM_ID_SINFUL_EMERALD_NECKLACE = 4674;
+export const ITEM_ID_SINFUL_OPAL_NECKLACE = 4675;
+export const ITEM_ID_SINFUL_TOPAZ_NECKLACE = 4676;
+export const ITEM_ID_SINFUL_RUBY_NECKLACE = 4677;
+export const ITEM_ID_KOKI = 4678;
+export const ITEM_ID_BLACK_MITHRIL_GUARD = 4679;
+export const ITEM_ID_RAISING_TEMPEST = 4680;
+export const ITEM_ID_SYMBOL_OF_EDEN = 4681;
+export const ITEM_SET_ID_SYMBOL_OF_EDEN_GARDEN_OF_EDEN = 4682;
+export const ITEM_SET_ID_SYMBOL_OF_EDEN_FAIRY_OF_EDEN = 4683;
+export const ITEM_SET_ID_SYMBOL_OF_EDEN_SHINRINO_KAIHO = 4684;
+export const ITEM_ID_STARLY_SKY_TWIN_PRIME = 4685;
+export const ITEM_SET_ID_STARLY_SKY_TWIN_PRIME_OKENO_EIKO = 4686;
+export const ITEM_ID_LITTLE_ABYSS_DRAGON = 4687;
+export const ITEM_SET_ID_LITTLE_ABYSS_DRAGON_KYOKUGENNO_MARYOKU = 4688;
+export const ITEM_ID_EIS_SPINNE = 4689;
+export const ITEM_SET_ID_EIS_SPINNE_HYOKETSU_TAISE = 4690;
+export const ITEM_SET_ID_EIS_SPINNE_REITO_TAISE = 4691;
+export const ITEM_SET_ID_EIS_SPINNE_BRINARANEA = 4692;
+export const ITEM_ID_MYSTERY_WING = 4693;
+export const ITEM_ID_ASSAULT_SUIT = 4694;
+export const ITEM_ID_DEATH_BRINGER = 4695;
+export const ITEM_ID_AMURTAT = 4696;
+export const ITEM_SET_ID_AMURTAT_SPECIAL_STR = 4697;
+export const ITEM_SET_ID_AMURTAT_SPECIAL_AGI = 4698;
+export const ITEM_SET_ID_AMURTAT_SPECIAL_VIT = 4699;
+export const ITEM_SET_ID_AMURTAT_SPECIAL_INT = 4700;
+export const ITEM_SET_ID_AMURTAT_SPECIAL_DEX = 4701;
+export const ITEM_SET_ID_AMURTAT_SPECIAL_LUK = 4702;
+export const ITEM_ID_BOOK_OF_SOURCERERY = 4703;
+export const ITEM_ID_OKANWO_TSUKETA_CINNAMONNO_RUCK = 4704;
+export const ITEM_ID_20TH_ANNIVERSARY_COTTON_SHIRTS = 4705;
+export const ITEM_ID_LOUD_PARK = 4706;
+export const ITEM_ID_SACRED_LAPEL = 4707;
+export const ITEM_ID_PLATINUM_ARBITRATOR = 4708;
+export const ITEM_ID_RELAPSE_KATAR = 4709;
+export const ITEM_ID_RELAPSE_AXE = 4710;
+export const ITEM_ID_RELAPSE_CROSS = 4711;
+export const ITEM_ID_RELAPSE_DAGGER = 4712;
+export const ITEM_ID_RELAPSE_BLADE = 4713;
+export const ITEM_ID_SCRAP_BOW = 4714;
+export const ITEM_ID_SCRAP_FIST = 4715;
+export const ITEM_ID_SCRAP_LUTE = 4716;
+export const ITEM_ID_SCRAP_WHIP = 4717;
+export const ITEM_ID_SUNADOKENO_NECKLACE = 4718;
+export const ITEM_ID_GRAY_WOLF_SUITS = 4719;
+export const ITEM_ID_GRAY_WOLF_ROBE = 4720;
+export const ITEM_ID_GRAY_WOLF_SHOES = 4721;
+export const ITEM_ID_GRAY_WOLF_BOOTS = 4722;
+export const ITEM_ID_GRAY_WOLF_MUFFLER = 4723;
+export const ITEM_SET_ID_GRAY_WOLF_MAGICAL_SET = 4724;
+export const ITEM_ID_GRAY_WOLF_MANT = 4725;
+export const ITEM_SET_ID_GRAY_WOLF_PHYSICAL_SET = 4726;
+export const ITEM_ID_GRAY_WOLF_EARING = 4727;
+export const ITEM_ID_GRAY_WOLF_RING = 4728;
+export const ITEM_ID_GRAY_WOLF_NECKLACE = 4729;
+export const ITEM_SET_ID_GRAY_WOLF_MAGICAL_ACCESSORY_SET = 4730;
+export const ITEM_ID_GRAY_WOLF_PENDANT = 4731;
+export const ITEM_SET_ID_GRAY_WOLF_PHYSICAL_ACCESSORY_SET = 4732;
+export const ITEM_ID_ADULTER_FIDES_KATAR = 4733;
+export const ITEM_ID_VIVATUS_FIDES_KATAR = 4734;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_KATAR = 4735;
+export const ITEM_ID_ADULTER_FIDES_AXE = 4736;
+export const ITEM_ID_VIVATUS_FIDES_AXE = 4737;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_AXE = 4738;
+export const ITEM_ID_ADULTER_FIDES_RAPIER = 4739;
+export const ITEM_ID_VIVATUS_FIDES_RAPIER = 4740;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_RAPIER = 4741;
+export const ITEM_ID_ADULTER_FIDES_WAND = 4742;
+export const ITEM_ID_VIVATUS_FIDES_WAND = 4743;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_WAND = 4744;
+export const ITEM_ID_ADULTER_FIDES_GUARDIAN_SPEAR = 4745;
+export const ITEM_ID_VIVATUS_FIDES_GUARDIAN_SPEAR = 4746;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_GUARDIAN_SPEAR = 4747;
+export const ITEM_ID_ADULTER_FIDES_VIOLIN = 4748;
+export const ITEM_ID_VIVATUS_FIDES_VIOLIN = 4749;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_VIOLIN = 4750;
+export const ITEM_ID_ADULTER_FIDES_KNUCKLE = 4751;
+export const ITEM_ID_VIVATUS_FIDES_KNUCKLE = 4752;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_KNUCKLE = 4753;
+export const ITEM_ID_ADULTER_FIDES_MAGIC_BOOK = 4754;
+export const ITEM_ID_VIVATUS_FIDES_MAGIC_BOOK = 4755;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_MAGIC_BOOK = 4756;
+export const ITEM_ID_ADULTER_FIDES_CHAIN_ROPE = 4757;
+export const ITEM_ID_VIVATUS_FIDES_CHAIN_ROPE = 4758;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_CHAIN_ROPE = 4759;
+export const ITEM_ID_ADULTER_FIDES_CROSS_BOW = 4760;
+export const ITEM_ID_VIVATUS_FIDES_CROSS_BOW = 4761;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_CROSS_BOW = 4762;
+export const ITEM_ID_ADULTER_FIDES_BALLISTA = 4763;
+export const ITEM_ID_VIVATUS_FIDES_BALLISTA = 4764;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_BALLISTA = 4765;
+export const ITEM_ID_ADULTER_FIDES_TWO_HAND_STUFF = 4766;
+export const ITEM_ID_VIVATUS_FIDES_TWO_HAND_STUFF = 4767;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_TWO_HAND_STUFF = 4768;
+export const ITEM_ID_ADULTER_FIDES_LANCE = 4769;
+export const ITEM_ID_VIVATUS_FIDES_LANCE = 4770;
+export const ITEM_SET_ID_HOZYONO_MEGAMI_VIVATUS_FIDES_LANCE = 4771;
+export const ITEM_ID_ALTERNATE_CLIP = 4772;
+export const ITEM_SET_ID_ALTERNATE_CLIP_MEIKYUNO_MEIKYUNO_VERSEVV = 4773;
+export const ITEM_ID_FIFTH_ELEMENT = 4774;
+export const ITEM_ID_YOMANO_SASAYAKI = 4775;
+export const ITEM_ID_SUKIKYONO_YUHIWA = 4776;
+export const ITEM_ID_RING_OF_SILVER_CRAW = 4777;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_TOKUSEN_DORAM_SUITS = 4778;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_TOKUSEN_DORAM_CAPE = 4779;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_TOKUSEN_DORAM_SHOES = 4780;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_DAKITSUKI_SYAMNEKO = 4781;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_SHINSENNA_KUSANO_NECKLACE = 4782;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_KAWAII_KUSANO_NECKLACE = 4783;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_MARYOKUNO_KUSANO_NECKLACE = 4784;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_HIKARUEDANO_OMAMORI = 4785;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_SHINSENNA_MAGURONO_OMAMORI = 4786;
+export const ITEM_SET_ID_ENCHANT_ZODIAC_POCCHARI_MIMIZUNO_OMAMORI = 4787;
+export const ITEM_ID_CLOCK_WISE = 4788;
+export const ITEM_ID_Y_S_F_RING = 4789;
+export const ITEM_ID_SANCTUS = 4790;
+export const ITEM_ID_WILD_BEAST = 4791;
+export const ITEM_SET_ID_WILD_BEAST_GRAY_WOLF_SUITS_SET = 4792;
+export const ITEM_SET_ID_WILD_BEAST_GRAY_WOLF_ROBE_SET = 4793;
+export const ITEM_SET_ID_WILD_BEAST_GRAY_WOLF_PENDANT = 4794;
+export const ITEM_SET_ID_WILD_BEAST_GRAY_WOLF_RING = 4795;
+export const ITEM_SET_ID_WILD_BEAST_GRAY_WOLF_EARING = 4796;
+export const ITEM_SET_ID_WILD_BEAST_GRAY_WOLF_NECKLACE = 4797;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_STR_7 = 4798;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_AGI_7 = 4799;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_VIT_7 = 4800;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_INT_7 = 4801;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_DEX_7 = 4802;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_LUK_7 = 4803;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_POW_3 = 4804;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_STA_3 = 4805;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_WIS_3 = 4806;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_SPL_3 = 4807;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_CON_3 = 4808;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_CRT_3 = 4809;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_DEF_300 = 4810;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_MDEF_30 = 4811;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_LUCKY_25 = 4812;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_ASPD_10 = 4813;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_CAST_TIME_15 = 4814;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_DELAY_TIME_15 = 4815;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_PHYSICAL_DAMAGE_20 = 4816;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_MAGICAL_DAMAGE_20 = 4817;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_IGNORE_DEF_50 = 4818;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_IGNORE_MDEF_50 = 4819;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_UNINTERRUPTABLE = 4820;
+export const ITEM_SET_ID_WILD_BEAST_WOLF_ORB_CAST_FIXED_50 = 4821;
+export const ITEM_ID_DOROYOGORETA_FUZINO_MAKEN = 4822;
+export const ITEM_ID_FUZINO_MAKEN = 4823;
+export const ITEM_ID_KURUTTA_UNMEINO_YARI = 4824;
+export const ITEM_ID_UNMEINO_YARI = 4825;
+export const ITEM_ID_OBOROGENA_GEKKANO_YUMI = 4826;
+export const ITEM_ID_GEKKANO_YUMI = 4827;
+export const ITEM_ID_MINASOKONI_SHIZUNDA_SERENO_VIOLIN = 4828;
+export const ITEM_ID_SERENO_VIOLIN = 4829;
+export const ITEM_ID_HAKOBORESHITA_ZYABARAKEN = 4830;
+export const ITEM_ID_ZYABARAKEN = 4831;
+export const ITEM_ID_DRAGON_SCALE_SHAWL = 4832;
+export const ITEM_ID_MEMORIAL_CLOTH = 4833;
+export const ITEM_SET_ID_MEMORIAL_CLOTH_GREED_EISHO_100 = 4834;
+export const ITEM_ID_DRAGON_CIRCLET = 4835;
+export const ITEM_ID_TWO_TONE_CAP = 4836;
+export const ITEM_ID_ILLEGAL_CHIP = 4837;
+export const ITEM_SET_ID_ILLEGAL_CHIP_CHISHIKINO_TANKYUSHA = 4838;
+export const ITEM_ID_MICHINARU_CHIKARANO_BOOTS = 4839;
+export const ITEM_SET_ID_MICHINARU_BOOTS_EIYUNO_GAIKA = 4840;
+export const ITEM_ID_MICHINARU_SHUCHUNO_BOOTS = 4841;
+export const ITEM_ID_MICHINARU_TAIRYOKUNO_BOOTS = 4842;
+export const ITEM_ID_MICHINARU_MARYOKUNO_BOOTS = 4843;
+export const ITEM_ID_MICHINARU_SOMENO_BOOTS = 4844;
+export const ITEM_ID_MICHINARU_SOZONO_BOOTS = 4845;
+export const ITEM_ID_FORTIFIED_CRAYMORE = 4846;
+export const ITEM_ID_FORTIFIED_STUFF = 4847;
+export const ITEM_ID_FORTIFIED_SPEAR = 4848;
+export const ITEM_ID_FORTIFIED_MANUAL = 4849;
+export const ITEM_ID_ANTI_CONJUROR_SUIT = 4850;
+export const ITEM_ID_MAGIC_PROTECTOR_ROBE = 4851;
+export const ITEM_ID_MAGIC_ABSORBER = 4852;
+export const ITEM_ID_DAIHYAKKAZITEN_KANZENBAN = 4853;
+export const ITEM_ID_FORCE_CONDENSER = 4854;
+export const ITEM_SET_ID_FORCE_CONDENSER_ANTI_CONJUROR_SUIT = 4855;
+export const ITEM_SET_ID_FORCE_CONDENSER_MAGIC_PROTECTOR_ROBE = 4856;
+export const ITEM_ID_MENTAL_CONDENSER = 4857;
+export const ITEM_SET_ID_MENTAL_CONDENSER_ANTI_CONJUROR_SUIT = 4858;
+export const ITEM_SET_ID_MENTAL_CONDENSER_MAGIC_PROTECTOR_ROBE = 4859;
+export const ITEM_ID_DEMENSION_LINKAGE_STONE = 4860;
+export const ITEM_ID_RISUMIMI_HOOD_BO_ALBINO = 4861;
+export const ITEM_ID_SOSESEKINO_AMULET = 4862;
+export const ITEM_SET_ID_SOSESEKINO_AMULET_YUENNARU_TENZYONO_MIYAKO = 4863;
+export const ITEM_ID_LORD_OF_ELEMENTAL = 4864;
+export const ITEM_ID_ARROW_NONE = 4865;
+export const ITEM_ID_ARROW_YA = 4866;
+export const ITEM_ID_ARROW_TETSUNO_YA = 4867;
+export const ITEM_ID_ARROW_KOTETSUNO_YA = 4868;
+export const ITEM_ID_ARROW_ORIDEOKONNO_YA = 4869;
+export const ITEM_ID_ARROW_KARYUDONO_YA = 4870;
+export const ITEM_ID_ARROW_ELFNO_YA = 4871;
+export const ITEM_ID_ARROW_SUISHONO_YA = 4872;
+export const ITEM_ID_ARROW_GANSEKINO_YA = 4873;
+export const ITEM_ID_ARROW_HONOONO_YA = 4874;
+export const ITEM_ID_ARROW_KAZENO_YA = 4875;
+export const ITEM_ID_ARROW_SABITA_YA = 4876;
+export const ITEM_ID_ARROW_GINNO_YA = 4877;
+export const ITEM_ID_ARROW_HAMAYA = 4878;
+export const ITEM_ID_ARROW_SEINARU_YA = 4879;
+export const ITEM_ID_ARROW_KAGEYA = 4880;
+export const ITEM_ID_ARROW_MUKEINO_YA = 4881;
+export const ITEM_ID_ARROW_ZOKUSE_ZIDO_YA_ATK30 = 4882;
+export const ITEM_ID_ARROW_SURUDOI_YA = 4883;
+export const ITEM_ID_ARROW_CURSE_ARROW = 4884;
+export const ITEM_ID_ARROW_SILENCE_ARROW = 4885;
+export const ITEM_ID_ARROW_SLEEP_ARROW = 4886;
+export const ITEM_ID_ARROW_FLASH_ARROW = 4887;
+export const ITEM_ID_ARROW_KORINO_YA = 4888;
+export const ITEM_ID_ARROW_DOKUYA = 4889;
+export const ITEM_ID_ARROW_ATK1NO_YA = 4890;
+export const ITEM_ID_BULLET_BULLET = 4891;
+export const ITEM_ID_BULLET_BLOOD_BULLET_C = 4892;
+export const ITEM_ID_BULLET_AP_BULLET = 4893;
+export const ITEM_ID_BULLET_ICE_BULLET = 4894;
+export const ITEM_ID_BULLET_FREEZING_BULLET = 4895;
+export const ITEM_ID_BULLET_MAGICAL_STONE_BULLET = 4896;
+export const ITEM_ID_BULLET_FLARE_BULLET = 4897;
+export const ITEM_ID_BULLET_BLAZE_BULLET = 4898;
+export const ITEM_ID_BULLET_LIGHTNING_BULLET = 4899;
+export const ITEM_ID_BULLET_ELECTRIC_BULLET = 4900;
+export const ITEM_ID_BULLET_POISON_BULLET = 4901;
+export const ITEM_ID_BULLET_SILVER_BULLET_C = 4902;
+export const ITEM_ID_BULLET_SUNCTFIED_BULLET = 4903;
+export const ITEM_ID_BULLET_BLIND_BULLET = 4904;
+export const ITEM_ID_BULLET_NONE = 4905;
+export const ITEM_ID_ISHO_NONE = 4906;
+export const ITEM_ID_CHIC_PIONY = 4907;
+export const ITEM_ID_YAMANEKO_KNIT_BO_SHIRO = 4908;
+export const ITEM_ID_URUNO_UDEWA = 4909;
+export const ITEM_SET_ID_URUNO_UDEWA_GOKETSU = 4910;
+export const ITEM_ID_SHADOW_ALTERNATE_ARMOR = 4911;
+export const ITEM_ID_SHADOW_ALTERNATE_WEAPON = 4912;
+export const ITEM_ID_SHADOW_ALTERNATE_SHIELD = 4913;
+export const ITEM_ID_SHADOW_ALTERNATE_SHOES = 4914;
+export const ITEM_ID_SHADOW_ALTERNATE_EARRING = 4915;
+export const ITEM_ID_SHADOW_ALTERNATE_PENDANT = 4916;
+export const ITEM_ID_TENKA_MUTEKINO_MONBOSHI = 4917;
+export const ITEM_ID_SHIROKI_KAHRITZBARG_KISHIDANNO_HELM = 4918;
+export const ITEM_ID_MAGIC_COMPRESSION = 4919;
+export const ITEM_ID_PRANA_BOOTS = 4920;
+export const ITEM_ID_FURUBITA_SHINPOSHANO_ROBE = 4921;
+export const ITEM_ID_SHINPOSHANO_ROBE = 4922;
+export const ITEM_SET_ID_SHINPOSHANO_ROBE_GROOM_UNDERNIGHT = 4923;
+export const ITEM_SET_ID_SHINPOSHANO_ROBE_FUINSARETA_GROOM_UNDERNIGHT = 4924;
+export const ITEM_ID_KAKUSE_SHINPOSHANO_ROBE = 4925;
+export const ITEM_SET_ID_KAKUSE_SHINPOSHANO_ROBE_GROOM_UNDERNIGHT = 4926;
+export const ITEM_SET_ID_KAKUSE_SHINPOSHANO_ROBE_FUINSARETA_GROOM_UNDERNIGHT = 4927;
+export const ITEM_SET_ID_KAKUSE_SHINPOSHANO_ROBE_HOZYONO_MEGAMI = 4928;
+export const ITEM_ID_AMAZING_GRACE = 4929;
+export const ITEM_ID_LIGHTNING_SAVAGE = 4930;
+export const ITEM_SET_ID_LIGHTNING_SAVAGE_YAKUSAINO_MASHO = 4931;
+export const ITEM_ID_MAGIC_BARRIER_CLOTH = 4932;
+export const ITEM_SET_ID_MAGIC_BARRIER_CLOTH_ANTI_CONJUROR_SUIT = 4933;
+export const ITEM_SET_ID_MAGIC_BARRIER_CLOTH_MAGIC_PROTECTOR_ROBE = 4934;
+export const ITEM_SET_ID_MAGIC_BARRIER_CLOTH_EIYUNO_GAIKA = 4935;
+export const ITEM_ID_GOYUMUSONO_KOTE = 4936;
+export const ITEM_SET_ID_GOYUMUSONO_KOTE_GOYUMUSONO_MONBOSHI = 4937;
+export const ITEM_SET_ID_GOYUMUSONO_KOTE_GOYUMUSONO_TSURANUKI = 4938;
+export const ITEM_SET_ID_GOYUMUSONO_KOTE_GOYUMUSONO_KACCHU = 4939;
+export const ITEM_SET_ID_GOYUMUSONO_KOTE_GOYUMUSONO_MIKOSHI = 4940;
+export const ITEM_SET_ID_GOYUMUSONO_KOTE_GOKETSU = 4941;
+export const ITEM_ID_CONCECRATE_FADES_AUREOLA = 4942;
+export const ITEM_SET_ID_CONCECRATE_FADES_AUREOLA_HOZYONO_MEGAMI = 4943;
+export const ITEM_ID_DVINE_PHONENIXX = 4944;
+export const ITEM_SET_ID_DVINE_PHONENIXX_IKYONO_TOKATSUSHA = 4945;
+export const ITEM_SET_ID_DVINE_PHONENIXX_CHISHIKINO_TANKYUSHA = 4946;
+export const ITEM_ID_MAJESTY_OF_YGGDRASILL = 4947;
+export const ITEM_SET_ID_MAJESTY_OF_YGGDRASILL_FATIH_OF_YGGDRASILL = 4948;
+export const ITEM_ID_WONDERER_GRYM_REAPER = 4949;
+export const ITEM_SET_ID_WONDERER_GRYM_REAPER_ZOFUKUSARETA_ENBO = 4950;
+export const ITEM_ID_SHIDEN_ISSEN = 4951;
+export const ITEM_ID_KETAISHIKI_SUPPORT_SYSTEM = 4952;
+export const ITEM_ID_ESTABLISH = 4953;
+export const ITEM_ID_GRACEA_SWORD = 4954;
+export const ITEM_ID_GRACEA_SPEAR = 4955;
+export const ITEM_ID_GRACEA_AXE = 4956;
+export const ITEM_ID_GRACEA_WAND = 4957;
+export const ITEM_ID_GRACEA_KATAR = 4958;
+export const ITEM_ID_GRACEA_KNIFE = 4959;
+export const ITEM_ID_GRACEA_KNUCLE = 4960;
+export const ITEM_ID_GRACEA_MACE = 4961;
+export const ITEM_ID_GRACEA_BOW = 4962;
+export const ITEM_ID_GRACEA_WHIP = 4963;
+export const ITEM_ID_GRACEA_VIOLIN = 4964;
+export const ITEM_ID_GRACEA_BOOK = 4965;
+export const ITEM_SET_ID_IKYONO_TOKATSUSHA_GRACEA_ARMS = 4966;
+export const ITEM_ID_SEKKANO_MAIL = 4967;
+export const ITEM_ID_SEKKANO_ROBE = 4968;
+export const ITEM_ID_SEKKANO_MANT = 4969;
+export const ITEM_ID_SEKKANO_MUFFLER = 4970;
+export const ITEM_ID_SEKKANO_BOOTS = 4971;
+export const ITEM_SET_ID_SETSUKA_ARMORS_PHYSICAL = 4972;
+export const ITEM_ID_SEKKANO_SHOES = 4973;
+export const ITEM_SET_ID_SETSUKA_ARMORS_MAGICAL = 4974;
+export const ITEM_ID_SEKKANO_RING = 4975;
+export const ITEM_ID_SEKKANO_EARRING = 4976;
+export const ITEM_ID_SEKKANO_PENDANT = 4977;
+export const ITEM_SET_ID_SETSUKA_ACCESSARIES_PHYSICAL = 4978;
+export const ITEM_ID_SEKKANO_NECKLACE = 4979;
+export const ITEM_SET_ID_SETSUKA_ACCESSARIES_MAGICAL = 4980;
+export const ITEM_ID_ALTAIR_HAT = 4981;
+export const ITEM_ID_STRIPE_RIBBON_HAT = 4982;
+export const ITEM_ID_INTO_THE_ABYSS = 4983;
+export const ITEM_ID_KING_MELON_HEADPHONE = 4984;
+export const ITEM_ID_HERO_CLOTH = 4985;
+export const ITEM_ID_ARASHINO_YUBIWA = 4986;
+export const ITEM_ID_CHEMICAL_RESISTANT_GLOVE = 4987;
+export const ITEM_ID_PETALNO_SHIPPO_ALBINO = 4988;
+export const ITEM_ID_ITANSHINMONKANNO_VAIL = 4989;
+export const ITEM_ID_SPUNTA_ARLMATI = 4990;
+export const ITEM_ID_ELEMENTAL_JEWEL = 4991;
+export const ITEM_ID_SETONO_ONCHO = 4992;
+export const ITEM_SET_ID_SETONO_ONCHO_IKYONO_TOKATSUSHA = 4993;
+export const ITEM_ID_RINRIN_NYAN_KABERU = 5051;
+export const ITEM_ID_WANDER_EGG_BASKET_MISTRESS_SET = 5091;
+export const ITEM_ID_GUARDIAN_KNIGHTS_ARCHER_BOW_T1 = 5136;
+export const ITEM_ID_TOTONO_SHO_T1 = 5142;
+export const ITEM_ID_GATE_OF_NEZAR_WORLD_T1 = 5151;
+export const ITEM_ID_FAIRY_OF_EDEN_T1 = 5157;
+export const ITEM_ID_TWIN_HEAD_DRAGON_BOOTS = 5189;
+export const ITEM_ID_GLACIES_ARANEA = 5226;
+export const ITEM_ID_DISCARDED_CAPE = 5233;
+export const ITEM_ID_GLUTTONY_CROWN_INQUISITOR = 5435;
+export const ITEM_ID_GLUTTONY_CROWN_BIOLO = 5446;
+export const ITEM_ID_GLUTTONY_CROWN_HYPER_NOVICE = 5447;
+export const ITEM_ID_DISTORTED_MAGIC_HOOD = 5451;
+export const ITEM_ID_CIRCLET_OF_TIME_INQUISITOR = 5194;
+export const ITEM_ID_CIRCLET_OF_TIME_HYPERNOVICE = 5206;
+export const ITEM_ID_CELESTIAL_DIADEM = 5457;
+export const ITEM_ID_MAGIA_VITA = 5488;
+export const ITEM_ID_BURNING_FISH_CLOAK = 5531;
+export const ITEM_ID_GLUTTONOUS_ORLEANS_UNIFORM = 5425;
+export const ITEM_ID_OZ_MAGMA_HOOD = 5572;
+export const ITEM_ID_TURTLE_FOX_TAIL = 5644;
+export const ITEM_ID_AURORA_CURTAIN_ROBE = 5660;
+export const ITEM_ID_ANGELIC_HEALM_BIOLO = 5709;
+export const ITEM_ID_ANGELIC_HEALM_INQUISITOR = 5717;
+export const ITEM_ID_ANGELIC_HEALM_HYPERNOVICE = 5735;
+export const ITEM_ID_ABANDONED_CLOAK = 5775;
+
+export const ItemObjNew = [
+	[0,0,0,0,1,0,0,0,"素手","ア","0",0],
+	[1,1,0,17,1,43,40,0,"ナイフ","ナイフ","0",0],
+	[2,1,0,30,1,43,50,0,"カッター","カツター","0",0],
+	[3,1,0,43,1,43,60,0,"マインゴーシュ","マインゴ","0",0],
+	[4,1,0,59,2,32,50,12,"ダーク","タアク","0",0],
+	[5,1,0,73,2,32,60,12,"ダガー","タガア","0",0],
+	[6,1,0,87,2,32,70,12,"スティレット","ステイレ","0",0],
+	[7,1,1,64,3,0,120,70,"ゼニーナイフ","ゼニイナ","敵を倒した時、一定確率で1～100のゼニーを入手",0],
+	[8,1,1,64,3,20,80,65,"ポイズンナイフ","ホイズン","0",20,5,130,30,0],
+	[9,1,1,105,823,32,70,24,"グラディウス","クラテイ","0",0],
+	[10,1,1,118,3,21,80,24,"ダマスカス","タマスカ","0",194,1,0],
+	[11,1,1,50,4,0,70,36,"月光剣","ケツコウ","敵攻撃時、SP3回復",16,10,0],
+	[12,1,1,90,4,0,50,24,"フォーチュンソード","フオオチ","0",6,5,11,20,0],
+	[13,1,108,140,834,10,60,36,"アサシンダガー","アサシン","0",20,7,12,2,15,20,16,15,0],
+	[14,1,1,140,834,10,80,36,"スクサマッド","スクサマ","0",42,10,44,10,194,1,0],
+	[15,1,1,180,834,0,80,36,"オーガトゥース","オオカト","0",9,10,11,5,24,2,0],
+	[16,2,0,25,1,43,50,2,"ソード","ソオト","0",0],
+	[17,2,0,39,1,43,60,2,"ファルシオン","フアルシ","0",0],
+	[18,2,0,53,1,43,70,2,"ブレイド","フレイト","0",0],
+	[19,2,0,70,2,32,50,14,"レイピア","レイヒア","0",0],
+	[20,2,0,85,2,32,70,14,"シミター","シミタア","0",0],
+	[21,2,1,100,2,32,90,14,"環頭太刀","カントウ","0",0],
+	[22,2,1,75,3,0,140,48,"刺身包丁","サシミホ","水棲種族を倒した時に40%の確率で【さしみ】をドロップ",20,4,0],
+	[23,2,0,90,3,40,80,5,"オーキッシュソード","オオキツ","0",194,1,0],
+	[24,2,1,104,3,0,220,68,"ジュエルソード","シユエル","敵を倒した時、宝石類を低確率で入手",0],
+	[25,2,1,140,3,0,250,74,"ガイアソード","カイアソ","敵を倒した時、鉱石類を低確率で入手",0],
+	[26,2,1,115,3,32,100,27,"サーベル","サアヘル","0",0],
+	[27,2,1,120,3,21,90,27,"海東剣","カイトウ","0",88,95,4,3,0],
+	[28,2,113,125,3,0,135,75,"ホーリーアヴェンジャー","ホオリイ","0",20,6,88,160,3,2,0],
+	[29,2,1,130,3,21,120,27,"ツルギ","ツルキ","0",0],
+	[30,2,61,150,3,20,150,27,"フランベルジェ","フランヘ","0",0],
+	[31,2,1,85,834,0,120,40,"太陽剣","タイヨウ","攻撃時、ダメージの1%のHPを回復<BR>10秒ごとにSP15を消費する",20,3,0],
+	[32,2,1,100,4,30,60,40,"アイスファルシオン","アイスフ","0",20,1,88,108,220,1,221,1,0],
+	[33,2,1,100,4,30,50,40,"ファイアーブランド","フアイア","0",20,3,88,108,220,2,221,2,0],
+	[34,2,1,150,834,10,30,40,"カトラス","カトラス","0",1,2,18,1,220,3,0],
+	[35,2,1,170,4,30,100,40,"ミステルテイン","ミステイ","物理攻撃命中時、一定確率で敵を石化状態にする<BR>(レッドジェムストーン不用)",20,7,48,15,5,3,221,3,0],
+	[36,2,1,200,4,0,100,40,"テイルフィング","テイルフ","装備中10秒ごとにHP35を消費する",20,7,0],
+	[37,3,0,60,1,43,100,4,"カタナ","カタナ","0",0],
+	[38,3,0,90,2,32,130,18,"スレイヤー","スレイヤ","0",0],
+	[39,3,0,115,2,32,160,18,"バスタードソード","ハスタア","0",0],
+	[40,3,0,140,3,21,200,33,"ブロードソード","フロオド","0",18,5,0],
+	[41,3,0,160,3,21,220,33,"ツーハンドソード","ツウハン","0",0],
+	[42,3,61,180,3,20,250,33,"クレイモア","クレイモ","0",0],
+	[43,3,0,155,4,10,220,48,"エクスキューショナー","エクスキ","0",37,20,57,-10,187,1,20,7,0],
+	[44,3,0,155,834,20,100,48,"村正","ムラマサ","攻撃時、特定の確率で状態異常【呪い】を受ける",10,30,12,8,0],
+	[45,3,0,175,4,0,200,48,"カッツバルゲル","カツツハ","0",3,10,18,10,0],
+	[46,3,0,200,834,20,220,48,"ツヴァイハンダー","ツウアイ","0",194,1,0],
+	[47,3,0,200,4,0,100,48,"正宗","マサムネ","0",1,-5,9,30,101,2,24,3,0],
+	[48,4,0,28,1,43,70,4,"ジャベリン","シヤヘリ","0",0],
+	[49,4,0,44,1,43,85,4,"スピアー","スヒアア","0",0],
+	[50,4,0,60,1,43,100,4,"パイク","ハイク","0",0],
+	[51,4,0,160,833,1,380,71,"ポールアクス","ホオルア","0",1,1,4,2,5,1,0],
+	[52,4,0,120,834,20,50,4,"グングニール","クンクニ","0",8,30,20,4,86,25,0],
+	[53,5,0,84,2,32,100,18,"ギザルム","キサルム","0",0],
+	[54,5,0,104,2,32,120,18,"グレイヴ","クレイウ","0",0],
+	[55,5,0,124,2,21,200,18,"パルチザン","ハルチサ","0",0],
+	[56,5,0,150,3,32,120,33,"トライデント","トライテ","0",0],
+	[57,5,0,165,3,21,250,33,"ハルバード","ハルハア","0",0],
+	[58,5,0,185,3,0,250,33,"ランス","ランス","0",0],
+	[59,5,0,170,824,30,200,48,"ゼピュロス","セヒユロ","0",20,4,221,4,136,2,0],
+	[60,5,0,180,834,10,250,48,"クレセントサイダー","クレセン","0",8,10,10,30,0],
+	[61,6,90,38,1,43,80,3,"アックス","アツクス","0",0],
+	[62,6,90,75,3,40,150,3,"オーキッシュアックス","オオキツ","0",0],
+	[63,6,66,140,823,31,420,76,"ウォーアクス","ウオオア","0",5,2,6,2,0],
+	[64,7,1,80,1,43,150,3,"バトルアックス","ハトルア","0",0],
+	[65,7,1,120,2,32,200,16,"ハンマー","ハンマア","0",0],
+	[66,7,1,155,3,21,220,30,"バスター","ハスタア","0",0],
+	[67,7,1,185,3,21,250,30,"ツーハンドアックス","ツウハン","0",0],
+	[68,7,0,170,834,0,400,44,"ブラッドアックス","フラツト","装備中 移動速度上昇",1,10,0],
+	[69,7,0,180,4,0,230,44,"ライトエプシロン","ライトエ","0",20,6,36,3,220,4,0],
+	[70,7,0,187,834,0,180,44,"グレイトアックス","クレイト","メマーナイトで攻撃時、相手を５セルノックバックさせる",131,15,0],
+	[71,8,0,23,1,43,70,2,"クラブ","クラブ","0",0],
+	[72,8,0,37,1,43,80,2,"メイス","メイス","0",0],
+	[73,8,0,54,2,32,100,14,"スマッシャー","スマツシ","0",0],
+	[74,8,1,69,2,32,90,14,"フレイル","フレイル","0",0],
+	[75,8,1,84,2,32,80,14,"チェイン","チエイン","0",0],
+	[76,8,1,110,3,21,150,27,"モーニングスター","モオニン","0",0],
+	[77,8,53,115,3,0,250,55,"スパナ","スハナ","攻撃時、特定確率で敵を【毒/氷化/スタン/暗闇】にする",0],
+	[78,8,1,130,3,10,120,27,"ソードメイス","ソオトメ","0",0],
+	[79,8,53,140,3,20,200,27,"スタナー","スタナア","0",131,10,0],
+	[80,8,63,155,3,0,300,78,"アイアンドライバー","アイアン","射程２セル(ロングメイスは３セル)",0],
+	[81,8,53,110,100004,21,80,40,"ゴールデンメイス","コオルテ","0",49,10,194,1,0],
+	[82,8,53,135,4,0,80,40,"ロングメイス","ロンクメ","攻撃範囲3セル",78,10,0],
+	[83,8,53,140,834,10,150,40,"グランドクロス","クラント","不死種族を攻撃時、SP1を回復<BR>不死種族を倒した時、SP3を回復",20,6,221,5,0],
+	[84,8,179,350,4,0,600,95,"ミョルニール","ミヨルニ","近接物理攻撃時、一定確率で武器が覚醒し、10秒間スプラッシュダメージ。",1,20,5,50,12,10,221,113,0],
+	[85,9,94,15,1,43,40,0,"ロッド","ロツト","0",88,30,0],
+	[86,9,94,25,2,32,40,12,"ワンド","ワント","0",4,1,88,45,0],
+	[87,9,77,40,2,32,40,12,"スタッフ","スタツフ","0",4,2,88,70,0],
+	[88,9,55,25,833,0,140,73,"スタッフオブソウル","スタツフ","0",4,5,2,2,88,200,195,1,0],
+	[89,9,77,40,833,20,70,24,"骸骨の杖","カイコツ","0",4,4,20,9,88,110,0],
+	[90,9,77,60,3,21,40,24,"アークワンド","アアクワ","0",4,3,88,95,0],
+	[91,9,77,75,3,0,70,24,"神官の杖","シンカン","0",4,3,88,105,0],
+	[92,9,55,120,4,0,240,90,"ウィザードスタッフ","ウイサア","0",4,6,5,2,88,200,195,1,0],
+	[93,9,77,130,3,0,70,24,"マイトスタッフ","マイトス","攻撃ごとにSP2を消費",1,10,88,100,0],
+	[94,10,0,15,1,43,50,4,"ボウ","ホウ","0",0],
+	[95,10,0,29,1,43,60,4,"コンポジットボウ","コンホシ","0",0],
+	[96,10,0,50,2,32,100,18,"グレイトボウ","クレイト","0",0],
+	[97,10,0,65,2,32,90,18,"クロスボウ","クロスホ","0",0],
+	[98,10,0,90,833,21,100,33,"アーバレスト","アアハレ","0",5,2,0],
+	[99,10,80,95,833,1,200,65,"連弩","レント","射程+6",0],
+	[100,10,0,100,833,21,110,33,"角弓","ツノユミ","0",0],
+	[101,10,110,125,3,10,110,33,"ハンターボウ","ハンタア","この武器を装備して狩人の矢で攻撃時、遠距離物理ダメージ+50%。",0],
+	[102,10,102,75,4,0,50,48,"盗賊の弓","トウソク","射程+6",0],
+	[103,10,64,145,4,10,350,77,"バリスタ","ハリスタ","0",0],
+	[104,10,76,150,834,0,120,48,"ルドラの弓","ルトラノ","[オリデオコンの矢]と共に装備時、追加で遠距離物理攻撃で与えるダメージ + 50%",4,5,150,50,153,50,154,50,156,50,157,50,220,5,220,6,0],
+	[105,11,0,125,2,32,80,18,"ジュル","シユル","0",0],
+	[106,11,0,105,3,30,120,55,"疾風のカタール","ハヤテノ","0",20,4,135,5,0],
+	[107,11,0,105,3,30,120,55,"尖っているいばらのカタール","トカツテ","0",20,2,134,5,0],
+	[108,11,0,105,3,30,120,55,"爆炎のカタール","ハクエン","0",20,3,136,5,0],
+	[109,11,0,105,3,30,120,55,"冷たい氷柱のカタール","ツメタイ","0",20,1,132,5,0],
+	[110,11,0,148,3,21,120,33,"カタール","カタアル","0",5,1,0],
+	[111,11,0,150,3,20,170,65,"デスナイフ","テスナイ","0",20,9,0],
+	[112,11,0,165,3,10,150,33,"ジャマダハル","シヤマタ","0",0],
+	[113,11,0,140,834,10,150,75,"裏切り者","ウラキリ","0",37,50,18,3,9,5,11,2,0],
+	[114,12,0,85,2,3,60,14,"ブック","フツク","0",0],
+	[115,12,0,90,3,30,75,27,"乾いてる風の書","カワイテ","0",20,4,0],
+	[116,12,0,90,3,30,75,27,"荒れ狂う波の書","アレクル","0",20,1,0],
+	[117,12,0,90,3,30,75,27,"燃える太陽の書","モエルタ","0",20,3,0],
+	[118,12,0,90,3,30,75,27,"裂けた大地の書","サケタタ","0",20,2,0],
+	[119,12,0,115,3,2,100,27,"バイブル","ハイフル","0",4,2,0],
+	[120,12,0,125,3,1,80,27,"タブレット","タフレツ","0",0],
+	[121,12,0,60,4,1,30,40,"少女の日記","シヨウシ","ボンゴンに与えるダメージ150%増加",1275,150,0],
+	[122,12,0,120,4,30,80,40,"黙示録","モクシロ","※iROでは聖属性攻撃で受けるダメージ+5%っぽい。日本が誤字？",20,7,41,7,42,7,43,7,44,7,336,-5,0],
+	[123,13,0,30,1,43,40,0,"バグナウ","ハクナウ","0",0],
+	[124,13,0,50,2,32,45,12,"ナックルダスター","ナツクル","0",0],
+	[125,13,0,65,2,32,45,12,"ホラ","ホラ","0",0],
+	[126,13,0,86,3,21,50,24,"クロー","クロオ","0",1,2,0],
+	[127,13,0,97,3,21,50,24,"フィンガー","フインカ","0",0],
+	[128,13,0,115,3,10,65,24,"フィスト","フイスト","0",0],
+	[129,14,0,50,1,43,70,2,"バイオリン","ハイオリ","0",0],
+	[130,14,0,90,2,32,40,14,"マンドリン","マントリ","0",0],
+	[131,14,0,105,2,32,50,14,"リュート","リユウト","0",0],
+	[132,14,0,114,3,21,90,27,"ハープ","ハアフ","0",4,2,0],
+	[133,14,0,126,3,21,130,27,"ゴムンゴ","コムンコ","0",0],
+	[134,14,0,142,3,10,90,27,"ギター","キタア","0",0],
+	[135,15,0,45,1,43,40,3,"ロープ","ロオフ","0",0],
+	[136,15,0,80,2,32,30,16,"ライン","ライン","0",0],
+	[137,15,0,95,2,32,100,16,"ワイヤー","ワイヤア","0",0],
+	[138,15,0,105,3,21,70,30,"テイル","テイル","0",6,3,0],
+	[139,15,0,120,3,21,70,30,"ホイップ","ホイツフ","0",0],
+	[140,15,0,135,3,10,90,30,"ランテ","ランテ","0",0],
+	[141,15,0,135,4,0,70,44,"シュメティ","シユメテ","0",10,5,9,10,11,2,0],
+	[142,50,0,0,0,0,0,0,"頭上段 装備なし","ア","0",0],
+	[143,50,0,0,0,0,70,0,"あれ","アレ","0",57,10,193,1,0],
+	[144,50,0,0,0,10,10,0,"ヴェール","ウエエル","0",19,5,0],
+	[145,50,1,0,50,0,15,14,"シニョンキャップ","シニヨン","0",0],
+	[146,50,0,0,0,0,10,0,"ハートのヘアピン","ハアトノ","0",0],
+	[147,50,1,0,0,0,10,0,"ファッションサングラス","フアツシ","0",0],
+	[148,50,0,2,0,0,10,0,"ヘアバンド","ヘアハン","0",193,1,0],
+	[149,50,0,0,0,0,15,0,"ろうそく","ロウソク","0",0],
+	[150,50,0,0,0,0,10,0,"魂のリング","タマシイ","0",66,15,193,1,0],
+	[151,50,0,0,50,0,10,0,"三日月のヘアピン","ミカツキ","0",0],
+	[152,50,0,0,50,0,10,0,"装飾用花","ソウシヨ","0",53,10,193,1,0],
+	[153,50,1,0,0,0,50,0,"電球のヘアバンド","テンキユ","0",0],
+	[154,50,56,0,0,0,100,0,"風呂敷包み","フロシキ","0",0],
+	[155,50,1,0,0,0,10,0,"亡者のヘアバンド","モウシヤ","0",2,2,68,10,0],
+	[156,50,1,1,0,0,20,30,"名射手のりんご","メイシヤ","0",5,3,0],
+	[157,50,1,1,50,0,80,0,"おしゃれな帽子","オシヤレ","0",0],
+	[158,50,0,2,0,0,100,0,"ケーキ帽","ケエキホ","0",0],
+	[159,50,1,3,0,0,30,50,"コック帽","コツクホ","0",5,1,0],
+	[160,50,0,2,0,0,10,0,"サンタのぼうし","サンタノ","0",19,1,6,1,0],
+	[161,50,0,1,0,0,10,0,"スターダスト","スタアタ","0",0],
+	[162,50,55,2,0,0,30,0,"とんがり帽子","トンカリ","0",4,2,14,150,0],
+	[163,50,1,3,50,0,10,0,"ピエロの帽子","ヒエロノ","0",19,5,6,2,0],
+	[164,50,0,2,0,0,10,0,"プロペラ","フロヘラ","0",0],
+	[165,50,0,1,0,10,10,0,"リボン","リホン","0",19,3,0],
+	[166,50,1,2,0,0,10,0,"リボンのヘアバンド","リホンノ","0",14,20,193,1,0],
+	[167,50,0,1,0,0,10,0,"演劇の小道具","エンケキ","0",193,1,0],
+	[168,50,1,1,50,0,10,0,"仮初めの恋","カリソメ","0",193,1,0],
+	[169,50,0,1,0,0,15,0,"縞のバンダナ","シマノハ","0",193,1,0],
+	[170,50,1,2,0,0,25,10,"十字架のヘアバンド","シユウシ","0",0],
+	[171,50,0,2,0,0,15,0,"青いバンダナ","アオイハ","0",0],
+	[172,50,0,2,0,0,10,0,"葬式用の帽子","ソウシキ","0",193,1,0],
+	[173,50,0,2,50,10,10,0,"装飾用ひまわり","ソウシヨ","※[1]のみヒドゥンスロットエンチャント可能。",54,10,193,1,0],
+	[174,50,0,1,0,0,40,0,"停止表示板","テイシヒ","0",0],
+	[175,50,1,1,0,0,10,0,"頭眼鏡","アタマメ","0",193,1,0],
+	[176,50,0,2,0,0,10,0,"頭巾","スキン","0",0],
+	[177,50,0,2,0,0,10,0,"導火線","トウカセ","0",193,1,0],
+	[178,50,0,3,50,0,10,0,"ウサギのヘアバンド","ウサキノ","0",6,2,0],
+	[179,50,0,2,0,10,20,0,"ハット","ハツト","0",0],
+	[180,50,0,4,0,0,10,0,"バンダナ","ハンタナ","0",0],
+	[181,50,1,3,50,0,70,38,"ポリン帽","ホリンホ","0",0],
+	[182,50,0,4,50,0,10,0,"花のヘアバンド","ハナノヘ","0",0],
+	[183,50,1,3,50,10,10,0,"学生帽","カクセイ","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[184,50,53,4,50,0,10,0,"看護帽","カンコホ","0",4,1,0],
+	[185,50,1,4,50,0,80,64,"子悪魔帽","コアクマ","※色が(赤)(白)(灰)のもある。同性能。全てヒドゥンスロットエンチャントも可能。",1,1,4,1,0],
+	[186,50,0,4,0,0,10,0,"真っ白いツノ","マツシロ","0",0],
+	[187,50,1,3,0,10,20,0,"大きなリボン","オオキナ","0",19,3,0],
+	[188,50,1,4,50,0,10,0,"天使のヘアバンド","テンシノ","0",2,1,6,1,19,3,56,3,0],
+	[189,50,0,3,0,0,10,0,"猫耳のヘアバンド","ネコミミ","0",0],
+	[190,50,0,3,0,0,10,0,"緑の觸角","ミトリノ","0",193,1,0],
+	[191,50,0,5,0,0,10,0,"アンテナ","アンテナ","0",0],
+	[192,50,0,5,0,0,10,0,"インディアンのヘアバンド","インテイ","0",0],
+	[193,50,1,5,0,0,40,0,"ウェスタングレイス","ウエスタ","0",0],
+	[194,50,1,5,50,0,40,0,"オールドスターロマンス","オオルト","0",0],
+	[195,50,0,5,0,0,50,0,"カプラのヘアバンド","カフラノ","0",19,3,0],
+	[196,50,1,5,0,0,30,0,"コロネット","コロネツ","0",4,1,0],
+	[197,50,77,6,50,10,30,0,"サークレット","サアクレ","※[1]のみヒドゥンスロットエンチャント可能。",19,3,0],
+	[198,50,77,6,0,0,50,50,"シルクハット","シルクハ","0",2,1,5,1,14,50,0],
+	[199,50,1,5,50,0,40,0,"スイートジェントル","スイイト","0",0],
+	[200,50,1,6,0,0,90,20,"スポア帽","スポアホ","0",0],
+	[201,50,1,6,50,0,90,50,"たぬき帽","タヌキホ","0",0],
+	[202,50,1,6,50,0,80,40,"パンダ帽","ハンタホ","0",0],
+	[203,50,1,6,0,0,20,0,"ヘッドフォン","ヘツトフ","0",153,10,0],
+	[204,50,1,7,0,0,20,55,"ロードサークレット","ロオトサ","0",1,1,4,1,6,1,19,4,0],
+	[205,50,1,6,50,0,10,0,"悪魔のヘアバンド","アクマノ","0",1,1,19,2,58,3,0],
+	[206,50,1,5,0,0,10,0,"医者のヘアバンド","イシヤノ","0",4,1,0],
+	[207,50,1,4,50,10,10,0,"海賊の頭巾","カイソク","※[1]のみヒドゥンスロットエンチャント可能。",1,1,0],
+	[208,50,1,5,0,10,20,0,"学者帽","カクシヤ","0",0],
+	[209,50,0,4,50,0,30,0,"笠","カサ","0",2,1,0],
+	[210,50,1,5,50,10,30,0,"丸いぼうし","マルイホ","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[211,50,1,7,50,0,50,0,"工事帽","コウシホ","0",19,3,0],
+	[212,50,0,4,0,0,20,0,"耳当て","ミミアテ","0",153,10,0],
+	[213,50,0,6,0,0,20,0,"装飾用卵殻","ソウシヨ","0",193,1,0],
+	[214,50,55,7,0,0,30,0,"ウィザードハット","ウイサア","0",14,100,0],
+	[215,50,56,8,50,0,120,38,"お金を失った者の心","オカネヲ","※[1]は全職業装備可能。[0]はマーチャント系専用",4,1,5,1,0],
+	[216,50,75,7,0,10,40,0,"キャップ","キヤツフ","0",0],
+	[217,50,1,7,0,0,40,45,"クラウン","クラウン","0",4,2,0],
+	[218,50,72,9,0,0,60,60,"ジュエルクラウン","シユエル","0",4,2,6,1,19,3,0],
+	[219,50,72,8,0,10,50,0,"ジュエルヘルム","シユエル","0",19,3,0],
+	[220,50,1,7,0,0,40,45,"ティアラ","テイアラ","0",4,2,0],
+	[221,50,53,8,50,10,10,0,"ビレタ","ヒレタ","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[222,50,72,8,50,0,40,0,"プロンテラ軍帽","フロンテ","0",0],
+	[223,50,0,8,0,0,40,19,"まだら卵殻","マタラタ","0",193,1,0],
+	[224,50,54,8,0,0,30,0,"羽毛帽子","ウモウホ","0",2,1,0],
+	[225,50,78,9,0,0,150,55,"鉱山ヘルメット","コウサン","0",5,2,0],
+	[226,50,1,8,0,0,50,0,"鹿の角","シカノツ","0",0],
+	[227,50,0,8,0,0,15,5,"木の実","キノミ","0",193,1,0],
+	[228,50,79,4,1,10,240,0,"太陽神の兜","タイヨウ","0",1,3,4,2,0],
+	[229,50,72,9,50,10,50,0,"オーク族のヘルム","オオクソ","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[230,50,1,10,50,10,50,0,"コルセア","コルセア","※[1]のみヒドゥンスロットエンチャント可能。",3,1,0],
+	[231,50,86,9,50,10,80,0,"マジェスティックゴート","マシエス","0",1,1,0],
+	[232,50,0,10,0,0,30,30,"神秘の木の実","シンヒノ","0",193,1,0],
+	[233,50,53,10,50,10,10,0,"聖職者の帽子","セイシヨ","※[1]のみヒドゥンスロットエンチャント可能。",19,3,0],
+	[234,50,79,10,0,0,160,74,"天使の兜","テンシノ","0",2,1,6,1,19,3,0],
+	[235,50,1,5,100000,10,90,40,"ゴールデンヘッドギア","コオルテ","0",0],
+	[236,50,75,5,51,10,30,0,"ゴーグル","コオクル","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[237,50,0,5,3,10,30,0,"ボンゴン帽","ホンコン","0",193,1,0],
+	[238,50,0,5,3,10,30,0,"ムナック帽","ムナツク","0",51,10,193,1,0],
+	[239,50,51,5,2,10,300,65,"スフィンクス帽","スフイン","0",1,2,193,1,0],
+	[240,50,85,12,50,10,100,50,"シャープヘッドギア","シヤアフ","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[241,50,51,13,50,10,60,0,"ヘルム","ヘルム","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[242,50,70,15,50,10,80,70,"ボーンヘルム","ホオンヘ","※[1]のみヒドゥンスロットエンチャント可能。",67,-15,0],
+	[243,51,0,0,0,0,0,0,"頭中段 装備なし","ア","0",0],
+	[244,51,0,0,0,10,10,0,"グラス","クラス","0",0],
+	[245,51,0,0,0,10,10,0,"サングラス","サンクラ","0",154,5,0],
+	[246,51,0,0,0,0,10,0,"ダイバーゴーグル","タイハア","0",0],
+	[247,51,0,0,0,0,10,0,"ほお紅","ホオヘニ","0",0],
+	[248,51,0,0,0,0,10,0,"眼帯","カンタイ","0",0],
+	[249,51,1,0,0,0,10,0,"義賊の眼帯","キソクノ","0",0],
+	[250,51,1,0,0,0,10,0,"蝶の仮面","チヨウノ","0",37,3,0],
+	[251,51,0,0,0,0,10,0,"片目眼鏡","カタメメ","0",0],
+	[252,51,1,0,0,0,10,0,"目隠し","メカクシ","0",154,100,0],
+	[253,51,1,0,0,0,10,70,"妖精の耳","ヨウセイ","0",0],
+	[254,51,0,1,0,0,10,0,"スピングラス","スヒンク","0",154,15,0],
+	[255,51,1,1,0,0,10,0,"ハートファンデーション","ハアトフ","0",0],
+	[256,51,1,2,0,0,20,20,"ファントムマスク","フアント","0",0],
+	[257,51,1,2,0,0,10,0,"ミニグラス","ミニクラ","0",0],
+	[258,51,0,2,0,0,10,0,"高級サングラス","コウキユ","0",154,10,0],
+	[259,51,54,2,0,0,10,50,"望遠鏡","ホウエン","0",5,1,0],
+	[260,51,0,2,0,0,10,0,"睨む目","ニラムメ","0",0],
+	[261,51,1,1,4,0,10,0,"ガスマスク","カスマス","0",150,30,0],
+	[262,51,1,1,4,0,10,0,"ゴブリン族の仮面","コフリン","0",0],
+	[263,51,1,1,4,0,10,0,"スクラッチマスク","スクラツ","0",0],
+	[264,51,0,1,4,0,10,0,"スマイルマスク","スマイル","0",0],
+	[265,51,51,5,0,0,30,65,"えらヘルム","エラヘル","0",0],
+	[266,51,1,2,4,0,20,0,"オペラ仮面","オヘラカ","0",0],
+	[267,51,56,2,4,0,30,50,"溶接マスク","ヨウセツ","0",63,10,0],
+	[268,52,0,0,0,0,0,0,"頭下段 装備なし","ア","0",0],
+	[269,52,1,0,0,0,10,0,"タバコ","タハコ","0",54,3,0],
+	[270,52,0,0,0,0,10,0,"デモ用のマスク","テモヨウ","0",156,15,0],
+	[271,52,1,0,0,0,10,0,"パイプタバコ","ハイフタ","0",54,3,0],
+	[272,52,0,0,0,0,10,0,"ピエロの鼻","ヒエロノ","0",0],
+	[273,52,0,0,0,0,10,0,"マスク","マスク","0",156,10,0],
+	[274,52,1,0,0,0,10,0,"花びら","ハナヒラ","0",53,3,0],
+	[275,52,1,0,0,0,20,0,"酸素マスク","サンソマ","0",150,20,0],
+	[276,52,1,0,0,0,10,0,"草の葉","クサノハ","0",53,3,0],
+	[277,52,0,0,0,0,10,0,"白ひげ","シロヒケ","0",0],
+	[278,52,51,4,0,0,30,50,"アイアンケイン","アイアン","0",0],
+	[279,60,0,0,0,0,0,0,"鎧 装備なし","ア","0",0],
+	[280,60,1,10,0,10,50,0,"ウェディングドレス","ウエテイ","0",19,15,0],
+	[281,60,0,10,0,10,10,0,"コットンシャツ","コツトン","0",0],
+	[282,60,0,15,0,10,20,0,"レザージャケット","レサアシ","0",0],
+	[283,60,0,20,0,10,30,0,"アドベンチャースーツ","アトヘン","0",0],
+	[284,60,71,20,50,10,40,0,"シルクローブ","シルクロ","0",19,10,0],
+	[285,60,70,25,0,10,100,0,"ウドゥンメイル","ウトウン","0",0],
+	[286,60,55,23,50,10,70,0,"シルバーローブ","シルハア","0",0],
+	[287,60,53,24,50,10,40,0,"スケーピューラ","スケエヒ","※[1]のみヒドゥンスロットエンチャント可能。",0],
+	[288,60,0,22,0,10,10,0,"ブリーフ","フリイフ","0",0],
+	[289,60,1,37,50,10,60,0,"メントル","メントル","0",0],
+	[290,60,50,32,0,1,50,10,"初心者用胸当て","シヨシン","0",0],
+	[291,60,1,40,50,1,30,0,"フォーマルスーツ","フオオマ","0",0],
+	[292,60,55,40,50,10,60,50,"マジックコート","マシツク","※[0]のみヒドゥンスロットエンチャント可能。",19,5,4,1,0],
+	[293,60,1,42,50,10,120,0,"ロングコート","ロンクコ","0",0],
+	[294,60,52,40,50,10,10,0,"シーフクロース","シイフク","0",2,1,0],
+	[295,60,73,50,50,10,60,0,"セイントローブ","セイント","0",19,5,0],
+	[296,60,54,27,50,10,50,45,"タイツ","タイツ","0",5,1,0],
+	[297,60,1,30,50,1,230,30,"ミンクのコート","ミンクノ","0",0],
+	[298,60,72,35,0,10,280,0,"アーマー","アアマア","0",0],
+	[299,60,53,57,50,10,170,60,"ホーリーローブ","ホオリイ","0",19,5,56,15,67,10,0],
+	[300,60,52,58,50,10,150,50,"忍者スーツ","ニンシヤ","※[0]のみヒドゥンスロットエンチャント可能。",2,1,19,3,0],
+	[301,60,72,55,50,10,330,0,"メイル","メイル","0",0],
+	[302,60,56,59,50,1,250,70,"ロードクロース","ロオトク","0",4,1,19,5,0],
+	[303,60,51,70,50,10,450,40,"プレート","フレエト","0",0],
+	[304,60,113,79,50,10,550,70,"フルプレート","フルフレ","0",0],
+	[305,61,0,0,0,0,0,0,"盾 装備なし","ア","0",0],
+	[306,61,0,20,0,10,30,0,"ガード","カアト","0",0],
+	[307,61,55,25,0,10,100,0,"メモライズブック","メモライ","0",19,2,4,1,0],
+	[308,61,74,40,0,10,60,0,"バックラー","ハツクラ","0",0],
+	[309,61,87,45,0,10,100,0,"ミラーシールド","ミラアシ","0",19,5,0],
+	[310,61,51,60,0,10,130,0,"シールド","シイルト","0",0],
+	[311,62,0,0,0,0,0,0,"肩にかけるもの 装備なし","ア","0",0],
+	[312,62,0,4,0,10,20,0,"フード","フウト","0",0],
+	[313,62,1,4,0,10,50,0,"ぼろマント","ホロマン","0",19,10,0],
+	[314,62,1,8,0,10,40,0,"マフラー","マフラア","0",0],
+	[315,62,1,9,0,10,60,40,"昔の領主のマント","ムカシノ","0",2,1,0],
+	[316,62,84,13,0,10,60,0,"マント","マント","0",0],
+	[317,63,0,0,0,0,0,0,"靴 装備なし","ア","0",0],
+	[318,63,1,5,0,10,10,0,"ガラスの靴","カラスノ","0",19,10,6,5,0],
+	[319,63,0,40,0,0,350,94,"スレイプニール","スレイフ","無限移動ヘイスト。",4,25,15,20,16,20,19,10,76,25,193,1,194,1,0],
+	[320,63,0,5,0,10,20,0,"サンダル","サンタル","0",0],
+	[321,63,1,10,0,10,40,0,"シューズ","シユウス","0",0],
+	[322,63,1,10,0,10,60,0,"ハイヒール","ハイヒイ","0",19,5,0],
+	[323,63,0,18,0,0,300,0,"足鎖","アシクサ","スケルプリズナーから受けるダメージ20%減少<BR>ゾンビプリズナーから受けるダメージ20%減少",3147,20,3171,20,0],
+	[324,63,83,16,0,10,60,0,"ブーツ","フウツ","0",0],
+	[325,63,61,27,0,10,75,65,"グリーブ","クリイフ","0",0],
+	[326,64,0,0,0,0,0,0,"アクセサリ 装備なし","ア","0",0],
+	[327,64,1,0,0,0,10,20,"イヤリング","イヤリン","0",4,2,0],
+	[328,64,1,0,0,1,10,90,"イヤリング[1]","イヤリン","0",4,1,0],
+	[329,64,0,0,0,1,5,0,"クリップ","クリツフ","0",14,10,0],
+	[330,64,1,0,0,10,5,40,"クリティカルリング","クリテイ","0",10,5,0],
+	[331,64,1,0,0,0,10,20,"グローブ","クロオフ","0",5,2,0],
+	[332,64,1,0,0,1,10,90,"グローブ[1]","クロオフ","0",5,1,0],
+	[333,64,1,0,0,0,10,50,"デュラハンアイ","テユラハ","0",56,4,51,4,150,100,0],
+	[334,64,1,0,0,0,10,20,"ネックレス","ネツクレ","0",3,2,0],
+	[335,64,1,0,0,1,10,90,"ネックレス[1]","ネツクレ","0",3,1,0],
+	[336,64,50,0,0,1,20,0,"ノービスアミュレット","ノオヒス","0",0],
+	[337,64,1,0,0,0,10,20,"ブローチ","フロオチ","0",2,2,0],
+	[338,64,1,0,0,1,10,90,"ブローチ[1]","フロオチ","0",2,1,0],
+	[339,64,0,0,0,1,120,25,"ベルト","ヘルト","0",0],
+	[340,64,1,0,0,0,10,20,"リング","リンク","0",1,2,0],
+	[341,64,1,0,0,1,10,90,"リング[1]","リンク1","0",1,1,0],
+	[342,64,1,0,0,0,10,20,"ロザリー","ロサリイ","0",19,5,6,2,0],
+	[343,64,1,0,0,1,10,90,"ロザリオ[1]","ロサリオ","0",19,3,6,1,0],
+	[344,64,54,0,0,10,10,65,"弓用の指貫","ユミヨウ","0",25,3,0],
+	[345,64,1,1,0,0,10,35,"マーターの首輪","マアタア","0",2,1,0],
+	[346,64,1,1,0,0,10,35,"神官の手袋","シンカン","0",4,1,0],
+	[347,64,0,1,0,0,150,94,"ブリーシンガメン","フリイシ","0",1,6,2,6,3,6,5,6,4,10,6,10,19,5,91,6,0],
+	[348,64,0,2,0,0,800,94,"メギンギョルド","メキンキ","自分のBaseレベルが5上がる毎にStrが1ずつ増加。<BR>純粋なStrが120以上の時、ボスモンスターに与える物理ダメージ+10%。",1,40,19,7,0],
+	[349,64,1,5,0,0,10,40,"セイフティリング","セイフテ","0",19,5,0],
+	[350,50,1,2,50,0,10,75,"ミストレスの王冠","ミストレ","0",4,2,14,100,0],
+	[351,50,0,2,50,0,20,45,"赤いリボン","アカイリ","0",19,10,0],
+	[352,50,1,2,0,0,20,0,"インディアンの鉢巻き","インテイ","0",5,1,0],
+	[353,50,1,2,50,0,30,0,"狐のお面","キツネノ","0",2,1,6,1,0],
+	[354,50,0,1,0,0,10,0,"X字ヘアピン","ハツシヘ","0",0],
+	[355,50,0,3,50,0,50,0,"たれ猫","タレネコ","0",19,15,153,30,0],
+	[356,50,0,1,0,0,10,0,"チューリップヘアピン","チユウリ","0",0],
+	[357,50,1,3,50,0,10,0,"熱血鉢巻き","ネツケツ","0",1,2,0],
+	[358,50,0,1,0,0,10,0,"花のかんざし","ハナノカ","0",0],
+	[359,50,1,1,0,0,10,0,"絆創膏","ハンソウ","0",0],
+	[360,50,0,1,0,0,10,0,"変身木の葉","ヘンシン","0",0],
+	[361,50,1,2,0,0,50,0,"やる気のないタヌキ","ヤルキノ","0",155,20,0],
+	[362,51,0,2,0,0,10,45,"ツインリボン","ツインリ","0",0],
+	[363,50,0,4,0,0,50,50,"青い魚","アオイサ","0",35,10,0],
+	[364,51,1,2,4,0,10,0,"アラームの仮面","アラアム","0",154,50,0],
+	[365,50,1,2,51,0,20,35,"大きな金の鈴","オオキナ","0",0],
+	[366,50,0,3,0,0,10,0,"キノコヘアバンド","キノコヘ","0",0],
+	[367,50,0,4,50,0,20,45,"黒い猫耳","クロイネ","0",0],
+	[368,50,1,5,0,0,70,0,"姿勢矯正帽","シセイキ","0",5,2,0],
+	[369,50,0,3,0,0,35,0,"毛糸の帽子","ケイトノ","0",6,1,0],
+	[370,50,0,4,0,0,30,0,"パーティー帽","ハアテイ","0",6,1,0],
+	[371,50,0,6,50,0,80,50,"くま帽子","クマホウ","0",0],
+	[372,50,0,6,0,0,20,50,"麦わら帽子","ムキワラ","0",2,1,0],
+	[373,50,0,6,50,0,80,0,"ラッコ帽","ラツコホ","0",3,1,0],
+	[374,50,1,7,50,0,80,70,"インキュバスの角","インキユ","0",2,1,19,10,0],
+	[375,50,0,8,50,0,50,0,"カウボーイハット","カウホオ","0",0],
+	[376,50,0,8,0,0,40,45,"古代女王の髪飾り","コタイシ","0",0],
+	[377,50,1,7,50,0,80,70,"サキュバスの角","サキユハ","0",4,1,19,10,0],
+	[378,50,1,8,0,0,35,0,"ソンブレロ","ソンフレ","0",2,1,0],
+	[379,50,1,5,0,0,90,55,"オークヒーローの兜","オオクヒ","0",1,2,3,1,0],
+	[380,50,81,5,1,0,30,65,"修道女のヴェール","シユウト","0",0],
+	[381,51,0,3,0,0,10,70,"悪魔の羽耳","アクマノ","0",1,1,0],
+	[382,51,0,1,4,0,10,0,"ゴブリン三男の仮面","コフリン","0",0],
+	[383,51,0,1,4,0,10,0,"ゴブリン四男の仮面","コフリン","0",0],
+	[384,51,0,1,4,0,10,0,"ゴブリン五男の仮面","コフリン","0",0],
+	[385,51,0,3,0,0,10,70,"天使の羽耳","テンシノ","0",1,1,0],
+	[386,51,0,2,4,0,10,0,"ゴブリンリーダーの仮面","コフリン","0",0],
+	[387,1,1,75,4,0,50,36,"包丁","ホウチヨ","動物種族を倒した時に50%の確率で【にく】をドロップ",10,30,0],
+	[388,1,1,80,4,0,60,36,"錐","キリ","0",23,1,0],
+	[389,1,1,84,4,0,40,0,"プリンセスナイフ","フリンセ","0",7,1,0],
+	[390,1,1,70,4,30,100,36,"ソードブレイカー","ソオトフ","0",140,5,0],
+	[391,1,1,70,4,30,100,36,"メイルブレイカー","メイルフ","0",142,5,0],
+	[392,1,1,80,4,0,40,36,"ウィーダーナイフ","ウイイタ","0",183,1,33,15,53,15,0],
+	[393,1,1,80,4,0,40,36,"コンバットナイフ","コンハツ","0",57,10,56,-10,187,1,0],
+	[394,1,1,90,4,0,70,36,"エキサーサイズ","エキサア","0",56,5,57,-10,186,1,0],
+	[395,1,1,70,834,0,50,36,"バゼラルド","ハセラル","0",20,3,88,115,4,5,0],
+	[396,1,119,110,4,0,70,36,"アゾート","アソオト","ある確率で敵を他のモンスターに変える",0],
+	[397,1,55,55,4,0,40,85,"カースダガー","カアスタ","攻撃時、一定確率で対象に呪いをかける",0],
+	[398,1,55,140,834,10,50,55,"カウンターダガー","カウンタ","0",10,90,0],
+	[399,2,1,120,4,0,50,40,"ネイガン","ネイカン","25%の確率でダブルアタックを発動",37,5,0],
+	[400,2,1,115,4,0,70,40,"エッジ","エツシ","攻撃時、低確率で相手を即死にする",133,3,0],
+	[401,2,1,140,4,0,70,40,"シザーズソード","シサアス","0",33,25,183,1,0],
+	[402,2,1,150,4,0,120,40,"エクスキャリバー[3]","エクスキ","0",20,6,88,126,4,5,6,10,5,-1,0],
+	[403,2,1,150,4,20,90,40,"別雲剣","ヘツウン","0",7,2,26,50,79,-10,0],
+	[404,2,1,140,4,0,90,40,"無形剣","ムケイケ","攻撃時、3%の確率で相手のSPを30%消費させる<BR>攻撃時、1のSPを消費する",20,8,194,1,0],
+	[405,3,1,150,834,20,130,48,"ドラゴンスレイヤー","トラコン","0",39,15,189,1,0],
+	[406,3,1,160,834,20,160,48,"シュバイチェルサーベル","シユハイ","0",18,1,20,4,221,6,0],
+	[407,999,1,250,4,0,100,48,"バルムン","ハルムン","0",4,20,6,20,0],
+	[408,4,1,145,4,30,70,48,"ゲラドリア","ケラトリ","0",20,2,13,800,14,-50,0],
+	[409,4,1,100,834,0,85,48,"串","クシ","0",40,25,22,1,0],
+	[410,4,1,95,4,0,100,48,"テュングレティー","テユンク","攻撃ごとにSP1を回復<BR>敵を倒した時にSP5を回復",0],
+	[411,5,1,183,4,0,100,48,"ビルギザルム","ヒルキサ","0",32,10,37,5,0],
+	[412,5,1,180,824,30,250,48,"ロンギヌスの槍","ロンキヌ","0",20,7,37,10,38,10,0],
+	[413,5,1,190,4,0,300,48,"ブリューナク","フリユウ","0",20,6,220,7,221,7,0],
+	[414,5,1,200,824,30,350,48,"ヘルファイア","ヘルフア","※ゲーム内説明文は8年間程ATK195と誤表記でしたが、2014年に修正",20,3,1,3,221,8,0],
+	[415,6,179,140,4,0,12,44,"クリーヴァー[3]","クリイウ","動物種族を倒した時に30%の確率で【にく】をドロップ。",57,5,0],
+	[416,7,1,120,4,0,230,44,"サバス","サハス","悪魔種族を攻撃時、0.5%の確率で相手を即死にする",20,7,111,50,0],
+	[417,7,1,120,4,0,250,44,"スローター","スロオタ","動物種族を攻撃時、0.4%の確率で相手を即死にする",20,2,182,1,0],
+	[418,7,1,165,4,0,250,44,"トマホーク","トマホオ","0",20,4,220,8,0],
+	[419,7,1,215,4,0,300,44,"ギロチン","キロチン","物理攻撃時、0.3%の確率で人間形を即死にする<BR>人間形モンスターに攻撃命中時、SP + 2<BR>近接物理攻撃で人間形モンスターを倒した時、SP + 20",0],
+	[420,8,53,85,834,20,70,40,"スパイク","スハイク","0",10,40,24,3,0],
+	[421,8,53,145,4,0,100,40,"スラッシュ","スラツシ","不死属性を攻撃時、低確率で相手を即死にする",49,15,121,5,0],
+	[422,8,53,165,4,20,90,40,"カドリール","カトリイ","0",49,10,42,10,37,10,0],
+	[423,13,1,110,834,0,45,46,"カイザーナックル","カイサア","0",20,4,49,5,41,10,42,10,43,10,44,10,0],
+	[424,13,1,120,834,10,36,46,"ベルセルク","ヘルセル","0",12,12,0],
+	[425,15,1,100,4,0,40,44,"ラリエット","ラリエツ","0",5,5,2,1,0],
+	[426,15,1,115,4,0,30,44,"ラプチャーローズ","ラフチヤ","0",20,5,130,50,0],
+	[427,60,70,25,50,0,220,45,"クレイトス大地の裂け目","クレイト","0",198,2,0],
+	[428,60,70,25,50,0,220,45,"ルシウス火山の激しさ","ルシウス","0",198,3,0],
+	[429,60,70,25,50,0,220,45,"シャピニハ海の叫び","シヤヒニ","0",198,1,0],
+	[430,60,70,25,50,0,220,45,"エベシ嵐のうねり","エヘシア","0",198,4,0],
+	[431,60,65,40,0,10,110,75,"キャスティングローブ","キヤステ","0",19,4,73,-3,0],
+	[432,60,1,58,50,1,250,60,"グリッタリングクロース","クリツタ","0",19,5,134,3,0],
+	[433,61,113,120,0,10,160,83,"神の使者","カミノシ","0",3,3,4,2,19,3,194,1,0],
+	[434,61,113,110,0,0,140,68,"ホーリーガード","ホオリイ","0",3,2,19,2,0],
+	[435,63,51,22,0,0,35,30,"安全靴","アンセン","0",193,1,0],
+	[436,62,55,10,0,0,55,75,"サバイバルマント","サハイハ","0",3,10,19,5,0],
+	[437,64,0,0,0,0,10,0,"花の指輪","ハナノユ","0",0],
+	[438,64,0,0,0,10,10,0,"骸骨の指輪","カイコツ","(不死耐性1%はスロットあり版のみ)",51,1,0],
+	[439,64,0,0,0,0,10,0,"銀の指輪","キンノユ","0",0],
+	[440,64,0,0,0,0,10,0,"金の指輪","キンノユ","0",0],
+	[441,64,0,0,0,0,10,0,"ダイヤの指輪","タイヤノ","0",0],
+	[442,64,52,0,0,0,10,70,"盗賊の指輪","トウソク","素Strが90以上の場合、HIT+10、FLEE+10<BR>素Agiが90以上の場合、Atk+10、Cri+10",0],
+	[443,999,999,2,0,0,35,45,"▲悪魔の羽","アクマノ","0",0],
+	[444,999,999,30,0,0,10,0,"ロードカホの角","ロオトカ","0",0],
+	[445,52,81,1,0,0,10,70,"アサシンマスク","アサシン","0",0],
+	[446,64,0,0,0,0,1,0,"アニバーサリーリング","アニハア","※これらのステータスUP効果はアニバーサリー期間(主に12月)のみ。",217,3,0],
+	[447,50,0,2,0,0,30,0,"ネコミミキャップ","ネコミミ","0",6,2,19,10,52,5,0],
+	[448,50,0,0,0,0,30,0,"アニバーサリーハット","アニハア","※これらのステータスUP効果はアニバーサリー期間(主に12月)のみ。<BR>※サクライJ時、説明文はDEF3のままだった。",7,2,13,2,14,2,0],
+	[449,64,0,0,0,0,10,0,"クリスマスリング(金)","クリスマ","0",6,1,0],
+	[450,50,0,2,1,0,40,50,"タイガーマスク","タイカア","0",1,3,13,100,193,1,0],
+	[451,14,0,110,4,0,180,70,"エレキギター","エレキキ","0",20,4,2,1,4,2,220,9,221,9,0],
+	[452,51,0,0,0,0,10,0,"真理の目隠し","シンリノ","0",0],
+	[453,50,81,5,1,1,30,65,"修道女のヴェール[1]","シユウト","0",14,100,0],
+	[454,64,0,0,0,0,0,0,"The Sign","ササイン","0",80,5,89,5,0],
+	[455,50,0,3,50,0,30,30,"マジックアイズ","マシツク","0",19,5,73,-10,0],
+	[456,50,0,0,50,0,20,10,"ハイビスカス","ハイヒス","0",19,5,4,1,5,1,193,1,0],
+	[457,50,0,5,3,1,100,30,"カブキマスク","カフキマ","0",156,30,0],
+	[458,50,0,2,50,1,40,10,"かわいいリボン","カワイイ","0",56,5,51,5,0],
+	[459,50,0,1,0,1,50,30,"たれ人形","タレニン","0",1,1,37,10,193,1,0],
+	[460,50,0,8,1,0,300,50,"三日月の兜","ミカツキ","0",3,1,57,5,0],
+	[461,1,0,39,1,0,60,0,"キンドリングダガー","キントリ","0",20,3,0],
+	[462,1,0,39,1,0,60,0,"漁師の短剣","リヨウシ","0",20,1,0],
+	[463,1,0,39,1,0,60,0,"ナツメの短剣","ナツメノ","0",20,4,0],
+	[464,1,0,39,1,0,60,0,"黒曜石の短剣","コクヨウ","0",20,2,0],
+	[465,1,50,110,3,21,70,55,"チンクエディア","チンクエ","0",0],
+	[466,1,52,80,3,21,70,55,"コワード","コワアト","0",18,5,0],
+	[467,1,0,110,4,20,90,60,"ドラゴンキラー","トラコン","0",189,1,129,10,0],
+	[468,1,0,148,4,10,70,70,"ギンヌンガガップ","キンヌン","攻撃時、0.5%の確率で自分が状態異常【暗黒】になる",20,7,134,5,0],
+	[469,2,50,100,3,21,80,30,"タウンソード","タウンソ","0",0],
+	[470,2,50,140,824,31,100,45,"スターダストブレイド","スタアタ","0",131,5,194,1,0],
+	[471,5,0,160,4,20,200,60,"ゲイボルグ","ケイホル","0",189,1,26,10,0],
+	[472,6,72,115,832,0,150,14,"ウィンドホーク","ウイント","0",20,4,12,5,0],
+	[473,9,50,70,833,21,50,30,"催眠術師の杖","サイミン","0",88,120,4,1,0],
+	[474,9,77,50,833,0,100,24,"サバイバルロッド(DEX)[0]","サハイハ","0",88,120,5,2,13,300,0],
+	[475,9,77,50,833,1,100,24,"サバイバルロッド(DEX)[1]","サハイハ","0",88,120,5,3,13,400,0],
+	[476,9,77,50,833,0,100,24,"サバイバルロッド(INT)[0]","サハイハ","0",88,120,4,2,13,300,0],
+	[477,9,77,50,833,1,100,24,"サバイバルロッド(INT)[1]","サハイハ","0",88,120,4,3,13,400,0],
+	[478,9,55,60,834,0,50,40,"スタッフオブウィング","スタツフ","0",20,4,88,115,73,-5,0],
+	[479,10,0,100,4,0,120,60,"ドラゴンウィング","トラコン","竜種族を倒した時3%の確率でオリデオコンの矢をdrop",189,1,0],
+	[480,11,0,90,1,4,80,0,"バリアスジュル","ハリアス","攻撃時、低確率で自分が状態異常【出血】にかかる",0],
+	[481,11,0,115,3,0,120,55,"ロキの爪","ロキノツ","0",138,3,0],
+	[482,11,0,151,4,20,125,70,"アンホーリータッチ","アンホオ","0",20,7,10,-1,133,2,194,1,0],
+	[483,11,0,120,4,0,100,75,"ブラッディロア","フラツテ","HP/SPが自動回復しない<BR>BaseLVとAGIの合計値FLEE低下",187,1,0],
+	[484,12,0,100,833,2,110,60,"賢者の日記","ケンシヤ","素のStrが50以上なら攻撃速度 + 5%<BR>素のIntが70以上ならMatk + 5%",88,120,0],
+	[485,12,0,140,4,1,150,55,"分厚い本","フアツイ","0",1,3,5,2,0],
+	[486,12,0,130,4,20,70,70,"ドラゴンの遺産","トラコン","竜種族を倒した時SP+10回復",189,1,4,3,0],
+	[487,13,0,152,834,1,55,70,"ガルムの爪","カルムノ","0",20,7,15,-2,138,2,0],
+	[488,14,0,110,3,0,90,27,"燃える情熱のギター","モエルシ","0",20,3,0],
+	[489,14,0,110,3,0,90,27,"孤独なソロのギター","コトクナ","0",20,1,0],
+	[490,14,0,110,3,0,90,27,"柔らかなそよ風のギター","ヤワラカ","0",20,4,0],
+	[491,14,0,110,3,0,90,27,"広大な大地のギター","コウタイ","0",20,2,0],
+	[492,14,0,150,4,20,120,65,"琵琶","ヒワ","0",5199,10,5292,10,0],
+	[493,15,0,110,3,0,90,30,"紅炎の鞭","クレンノ","0",20,3,0],
+	[494,15,0,110,3,0,90,30,"氷剣の鞭","ヒヨウケ","0",20,1,0],
+	[495,999,999,110,3,0,90,30,"風の鞭","カセノム","0",20,4,0],
+	[496,15,0,110,3,0,90,30,"大地の鞭","タイチノ","0",20,2,0],
+	[497,15,0,120,3,0,40,30,"なわとび","ナワトヒ","0",10,20,0],
+	[498,15,0,140,4,0,120,30,"ブレイドホイップ","フレイト","0",0],
+	[499,15,0,150,4,20,110,65,"女王の鞭","シヨオウ","0",5207,10,5292,10,0],
+	[500,50,0,3,50,0,10,0,"子犬のヘアバンド","コイヌノ","0",0],
+	[501,50,0,4,0,0,40,0,"赤いボンネット","アカイホ","0",0],
+	[502,50,0,4,0,0,50,55,"ガラパゴ帽","カラハコ","モンスターを倒した時、低確率でアンティペイメントをdrop",0],
+	[503,50,0,5,50,0,50,0,"ファッション防寒帽","フアツシ","0",152,10,0],
+	[504,50,50,8,50,10,40,40,"スーパーノービス帽","スウハア","※[1]のみヒドゥンスロットエンチャント可能。",7,1,0],
+	[505,50,0,6,0,10,30,0,"やわらかい帽子","ヤワラカ","0",0],
+	[506,50,0,6,0,1,35,0,"名探偵帽","メイタン","0",0],
+	[507,50,0,3,0,0,20,0,"バナナの皮","ハナナノ","0",221,10,0],
+	[508,50,0,0,0,0,10,0,"ミスティックローズ","ミステイ","0",53,2,0],
+	[509,50,1,3,1,0,40,70,"ジルタスの仮面","シルタス","0",37,5,57,5,0],
+	[510,61,50,20,0,0,1,0,"初心者用ガード","シヨシン","0",193,1,0],
+	[511,61,50,20,0,1,100,30,"ノービスシールド","ノオヒス","0",61,20,62,20,63,20,64,20,65,20,66,20,67,20,68,20,69,20,0],
+	[512,62,50,4,0,0,1,0,"初心者用フード","シヨシン","0",193,1,0],
+	[513,62,50,7,0,1,50,40,"ノービスマント","ノオヒス","0",60,10,0],
+	[514,62,72,25,0,1,80,80,"ポールドロン","ホオルト","0",0],
+	[515,63,50,5,0,0,1,0,"初心者用ビーチサンダル","シヨシン","0",193,1,0],
+	[516,63,50,8,0,1,50,40,"ノービスシューズ","ノオヒス","0",15,5,0],
+	[517,64,0,0,0,0,10,40,"呪われた幸運の女神のブローチ","ノロワレ","攻撃時、0.5%の確率で自分に呪いがかかる",10,6,0],
+	[518,60,50,25,0,0,1,0,"初心者用忍者スーツ","シヨシン","0",193,1,0],
+	[519,50,50,6,0,0,1,0,"初心者用偽卵殻","シヨシン","0",193,1,0],
+	[520,1,50,45,1,0,1,0,"初心者用マインゴーシュ","シヨシン","0",193,1,0],
+	[521,10,110,100,3,2,200,30,"ルナボウ","ルナホウ","DEF+2<BR>精錬値6～8の時はさらにDEF+3(合計+5)<BR>精錬値9以上の時はDEF+5(合計+7)",0],
+	[522,62,1,18,0,1,50,80,"天女の羽衣","テンニヨ","0",0],
+	[523,64,0,0,0,1,10,0,"ナイルローズ","ナイルロ","0",13,10,0],
+	[524,64,82,1,0,10,10,0,"ヴェスパーコア1","ウエスハ","0",4,2,16,5,19,3,0],
+	[525,64,82,1,0,10,10,0,"ヴェスパーコア2","ウエスハ","0",1,3,17,10,19,3,0],
+	[526,64,82,1,0,10,10,0,"ヴェスパーコア3","ウエスハ","0",2,3,9,5,19,3,0],
+	[527,64,82,1,0,10,10,0,"ヴェスパーコア4","ウエスハ","0",5,3,8,10,19,3,0],
+	[528,50,0,2,0,1,10,10,"月桂樹の冠","ケツケイ","0",6,3,154,5,153,5,0],
+	[529,50,0,4,0,0,50,30,"お座りイヌ","オスワリ","素AGIが77以上の場合、発動率が3%になる",2,1,193,1,221,11,0],
+	[530,50,72,3,1,1,200,50,"暗黒の兜","アンコク","0",1,2,0],
+	[531,50,0,6,0,1,20,30,"乙女のツインリボン","オトメノ","0",14,30,19,3,76,5,0],
+	[532,50,0,2,0,0,50,30,"装飾用ジオグラファー","ソウシヨ","0",4,1,193,1,221,12,0],
+	[533,50,0,4,0,0,50,10,"鳥の巣","トリノス","0",2,1,5,1,151,10,0],
+	[534,60,1001,55,0,1,280,0,"ヴァルキリーアーマー","ウアルキ","マジシャン、アーチャー、アコライト系が装備時、沈黙耐性+50%。<BR>ソードマン、マーチャント、シーフ系が装備時、スタン耐性+50%。",7,1,194,1,0],
+	[535,62,1001,10,0,1,50,0,"ヴァルキリーマント","ウアルキ","マジシャン、アーチャー、アコライト系が装備時、完全回避 + 5。精錬値の 2倍、完全回避増加。<BR>ソードマン、マーチャント、シーフ系が装備時、物理攻撃の5%を反射する。精錬値の 2倍、反射ダメージ増加。",194,1,0],
+	[536,63,1001,13,0,1,50,0,"ヴァルキリーシューズ","ウアルキ","マジシャン、アーチャー、アコライト系が装備時、自分の ベースレベルの 5倍程度 MHP増加。<BR>ソードマン、マーチャント、シーフ系が装備時、自分の ジョブレベルの 2倍程度 MSP増加。",194,1,0],
+	[537,61,58,50,0,10,15,20,"手甲","テツコウ","0",0],
+	[538,61,58,45,0,10,15,50,"手甲改","テツコウ","0",19,5,0],
+	[539,1,58,50,1,32,60,12,"阿修羅","アシユラ","0",88,50,0],
+	[540,1,58,70,2,10,40,35,"十手","シユツテ","近接物理攻撃時、低い確率で敵の武器を破壊する",88,126,0],
+	[541,1,58,95,2,21,70,24,"村雨","ムラサメ","0",20,1,88,121,117,10,0],
+	[542,1,58,120,3,10,80,42,"白刃","シラハ","0",88,157,4,2,221,13,0],
+	[543,1,58,150,3,0,60,65,"黒麟","クロキリ","近接物理攻撃時、低い確率で敵に呪い",20,7,88,135,0],
+	[544,1,58,125,834,0,90,70,"鎌鼬","カマイタ","攻撃射程2",20,4,88,162,12,3,10,3,0],
+	[545,16,58,50,4,43,250,42,"風魔手裏剣・大車輪","フウマシユリケンタイシヤリン","近接物理攻撃時、低い確率で敵に出血",0],
+	[546,16,58,185,4,0,150,55,"風魔手裏剣・烈火","フウマシユリケンレツカ","0",20,3,5,-2,221,14,0],
+	[547,16,58,150,4,0,300,65,"風魔手裏剣・風鳥","フウマシユリケンフウチヨウ","0",20,4,2,-1,5,-2,0],
+	[548,17,59,30,1,21,40,10,"シックスシューター","シツクス","0",8,-10,0],
+	[549,17,59,45,832,21,45,35,"クリムゾンボルト","クリムソ","0",8,-10,0],
+	[550,17,59,70,832,21,50,55,"ガリスン","カリスン","0",8,-10,0],
+	[551,17,59,20,3,0,50,12,"ゴールドルクス","コオルト","攻撃時、低確率でフリップザコインがオートスペルで発動する。<BR>オートスペルで発動するフリップザコインのレベルは、使用者が習得しているスキルレベルに順じる。",8,-10,0],
+	[552,18,59,50,1,3,50,0,"ブランチ","フランチ","0",0],
+	[553,18,59,120,2,21,70,24,"サイクロン","サイクロ","0",8,10,10,10,0],
+	[554,18,59,150,2,1,75,56,"ダスク","タスク","0",8,10,10,10,0],
+	[555,19,59,135,1,1,90,14,"ローリングストーン","ロオリン","スプラッシュダメージ",0],
+	[556,19,59,180,2,1,90,35,"ブラックローズ","フラツク","スプラッシュダメージ",0],
+	[557,19,59,210,832,0,100,55,"ゲートキーパー","ケエトキ","スプラッシュダメージ",0],
+	[558,20,59,50,832,1,230,55,"ドリフター","トリフタ","0",0],
+	[559,20,59,75,833,10,250,68,"ブッチャー","フツチヤ","0",112,10,0],
+	[560,21,59,220,832,10,120,52,"デストロイヤー","テストロ","0",0],
+	[561,21,59,280,832,1,125,65,"インフェルノ","インフエ","0",0],
+	[562,50,0,4,1,1,20,10,"音符のヘッドフォン","オンフノ","0",151,10,152,10,0],
+	[563,50,0,4,0,0,50,50,"伝説の吟遊詩人の帽子","テンセツ","0",4,1,5,1,0],
+	[564,50,0,3,0,0,20,0,"パンプキンハット","ハンフキ","0",56,5,0],
+	[565,50,0,3,50,1,20,20,"ドレスハット","トレスハ","0",19,7,0],
+	[566,50,0,6,50,1,100,30,"サテライトヘアバンド","サテライ","0",13,50,14,10,220,10,0],
+	[567,50,0,3,1,0,20,0,"月夜花帽","ウオルヤ","0",5,1,221,15,0],
+	[568,50,0,4,0,0,20,0,"バニーヘアバンド","ハニイヘ","0",19,3,2,2,0],
+	[569,50,0,3,0,0,30,10,"天使の忘れもの","テンシノ","0",12,3,73,-3,2,1,4,1,0],
+	[570,50,0,2,0,0,10,10,"ひよこちゃん","ヒヨコチ","ダブルアタックLv2が発動（全ての武器）。<BR>ただし、ダブルアタックLv3以上を習得している場合、 習得Lvのダブルアタックが発動する。",6,2,13,50,14,50,52,3,57,3,193,1,0],
+	[571,51,0,1,0,0,10,10,"赤いメガネ","アカイメ","0",19,5,0],
+	[572,50,0,6,0,0,10,70,"ペコペコのヘアバンド","ヘコヘコ","移動速度向上。<BR>※スキル「速度増加」と同じ速さになります。",12,-10,73,25,0],
+	[573,50,0,4,0,1,30,30,"風車のかんざし","カサクル","0",2,2,193,1,0],
+	[574,50,0,8,0,0,60,30,"魔法のやかん","マホウノ","(ジェムストーン不要)",221,16,221,17,0],
+	[575,1,58,120,1,0,60,0,"阿修羅R","アシユラ","0",88,98,193,1,0],
+	[576,3,0,190,4,0,220,0,"エクスキューショナーR","エクスキ","0",20,7,187,1,37,20,57,-10,193,1,0],
+	[577,1,55,209,4,0,55,0,"カウンターダガーR","カウンタ","0",10,90,193,1,0],
+	[578,2,1,185,4,0,90,0,"カトラスR","カトラス","0",1,2,18,1,193,1,220,3,0],
+	[579,1,1,85,4,0,70,0,"月光剣R","ケツコウ","攻撃命中時、毎回3のSPを回復する。",16,10,193,1,0],
+	[580,12,0,135,3,0,110,0,"賢者の日記R","ケンシヤ","0",88,140,12,5,193,1,0],
+	[581,8,53,150,3,0,250,0,"スパナR","スハナア","スタン, 暗黒, 毒, 氷化の中の一つをランダムで打撃対象に付与する",193,1,0],
+	[582,2,1,120,4,0,120,0,"太陽剣R","タイヨウ","攻撃時、毎回与えたダメージの1%をHPに吸収する。装備者は、10秒当たり15のSPを消費する。",20,3,193,1,0],
+	[583,7,1,200,4,0,250,0,"トマホークR","トマホオ","0",20,4,193,1,220,8,0],
+	[584,4,0,195,3,0,480,0,"ポールアクスR","ホオルア","0",1,1,4,2,5,1,193,1,0],
+	[585,7,1,215,4,0,230,0,"ライトエプシロンR","ライトエ","0",20,6,1,10,36,3,193,1,220,4,0],
+	[586,10,76,185,4,0,120,0,"ルドラの弓R","ルトラノ","0",20,6,4,5,193,1,220,5,220,6,0],
+	[587,50,0,10,0,0,10,0,"ウサギのヘアバンドR","ウサキノ","0",19,5,57,10,193,1,0],
+	[588,52,1,1,0,0,10,0,"鋼鉄の花びらR","コウテツ","0",193,1,221,18,0],
+	[589,50,1,10,0,0,80,0,"マジェスティックゴートR","マシエス","0",1,1,193,1,0],
+	[590,50,1,12,0,0,20,0,"名射手のりんごR","メイシヤ","0",5,4,193,1,0],
+	[591,51,1,2,0,0,10,0,"妖精の耳R","ヨウセイ","0",4,1,0],
+	[592,64,1,0,0,0,10,0,"イヤリングR","イヤリン","0",4,3,0],
+	[593,64,1,0,0,0,10,0,"クリティカルリングR","クリテイ","0",10,7,0],
+	[594,64,1,0,0,0,10,0,"グローブR","クロオフ","0",5,4,0],
+	[595,64,1,8,0,0,10,0,"セイフティリングR","セイフテ","0",19,8,0],
+	[596,64,1,0,0,0,10,0,"ネックレスR","ネツクレ","0",3,4,0],
+	[597,64,1,0,0,0,10,0,"ブローチR","フロオチ","0",2,4,0],
+	[598,64,1,0,0,0,10,0,"リングR","リンクア","0",1,4,0],
+	[599,64,1,0,0,0,10,0,"ロザリオR","ロサリオ","0",19,5,6,4,0],
+	[600,50,0,4,0,1,20,10,"聖なるマーチングハット","セイナル","0",19,2,1,2,221,19,0],
+	[601,50,0,2,0,1,20,30,"避暑地の帽子","ヒシヨチ","0",193,1,3,1,0],
+	[602,50,0,0,0,1,20,30,"睡蓮の冠","スイレン","0",193,1,19,3,2,1,5,1,75,5,76,3,0],
+	[603,60,1,25,50,1,220,45,"クレイトス大地の裂け目[1]","クレイト","0",198,2,0],
+	[604,60,1,25,50,1,220,45,"ルシウス火山の激しさ[1]","ルシウス","0",198,3,0],
+	[605,60,1,25,50,1,220,45,"シャピニハ海の叫び[1]","シヤヒニ","0",198,1,0],
+	[606,60,1,25,50,1,220,45,"エベシ嵐のうねり[1]","エヘシア","0",198,4,0],
+	[607,1,1,70,834,1,60,36,"錐[1]","キリ1","0",23,1,0],
+	[608,50,1,7,0,1,40,45,"クラウン[1]","クラウン","0",4,1,0],
+	[609,50,1,7,0,1,40,45,"ティアラ[1]","テイアラ","0",4,1,0],
+	[610,1,1001,120,4,3,50,55,"メス","メス","攻撃時、一定確率で出血",0],
+	[611,1,1001,130,4,1,70,55,"トゥースブレイド","トウウス","攻撃時、一定確率で自分を中心に 5*5セル範囲中のすべての敵のキャスティング時間を 20% 増加させる<BR>精錬値が9以上の場合、高確率で 11*11セル範囲中のすべての敵のキャスティング時間を 40% 増加させる",0],
+	[612,2,1001,130,4,1,150,55,"白金のショーテル","シロカネ","0",10,50,0],
+	[613,2,1001,125,834,2,80,55,"シンブレイド","シンフレ","攻撃時、一定確率で呪い状態付加",12,10,0],
+	[614,3,1001,200,4,1,350,55,"アトロスの凶器","アトロス","STRが 80 以上の場合、一定確率で鎧を破壊する",10,10,0],
+	[615,3,1001,160,4,2,220,55,"クルーエルソード","クルウエ","攻撃時、 一定確率で出血及びオートスペル速度減少 Lv1発動",0],
+	[616,4,1001,150,834,1,100,65,"ロングホーン","ロンクホ","攻撃時、一定確率で敵に出血<BR>解毒スキル使用可能",20,6,194,1,0],
+	[617,4,1001,140,4,31,90,65,"バトルフック","ハトルフ","0",37,20,131,5,220,11,0],
+	[618,4,1001,180,834,1,420,60,"ハンティングスピア","ハンテイ","動物型モンスターを倒したとき 一定確率で肉ドロップ。",182,1,221,20,0],
+	[619,5,1,170,4,10,200,75,"妖怪の槍","ヨウカイ","敵を倒したとき HP 50 回復<BR>攻撃時、一定確率で自分に混乱をかける",31,20,36,20,47,20,51,10,56,10,67,10,0],
+	[620,5,61,120,834,0,100,65,"アルシェピース","アルシエ","0",22,10,37,10,221,21,0],
+	[621,7,1,10,834,10,600,80,"ドゥームスレイヤー","トウウム","--------<BR>素STR95以上の時 ATK + 340。<BR>更に、攻撃時モンスターにスタンをかける確率30% 増加<BR>鎧を破壊する確率が発生する。",12,-40,102,-100,0],
+	[622,7,1001,200,833,2,250,70,"バルディッシュ","ハルテイ","0",191,13,192,15,0],
+	[623,7,1001,175,834,1,200,70,"ハートブレイカー","ハアトフ","精錬値によってさらにクリティカル確率増加(1につきCri+1)<BR>ホワイトスミス、 クリエイターが装備時、攻撃時一定確率でオートスペルハンマーフォールLv3発動。",10,20,12,5,0],
+	[624,7,1001,332,4,1,350,80,"ハリケーンフューリー","ハリケエ","精錬値によって中型モンスターから受けるダメージ減少<BR>精錬値によってASPD増加(1につき攻撃速度+1%)<BR>(パルスストライクLv5：自分を中心に 15*15セルの敵をダメージとともに ７セルノックバック。<BR>無属性の500%ダメージ。状態異常や属性付与は乗る。発動率約2%)",191,10,221,22,0],
+	[625,999,1,4,4,1,44,44,"ホルグレンの精錬ハンマー","ホルクレ","敵を攻撃時、低確率で対象の武器や防具を破壊する<BR>ホワイトスミスカードとともに装着時、高い確率で対象の装備を破壊して、低い確率で自分の装備が破壊される",0],
+	[626,10,76,95,3,1,140,55,"燃える弓","モエルユ","火の矢装着時、遠距離物理攻撃ダメージ 25% 増加",63,10,0],
+	[627,10,76,100,3,1,140,55,"氷点の弓","ヒヨウテ","水晶の矢装着時、遠距離物理攻撃ダメージ 25% 増加<BR>一定確率で対象を凍結させる",0],
+	[628,10,76,105,3,1,140,55,"大地の弓","タイチノ","岩石の矢装着時、遠距離物理攻撃ダメージ 25% 増加<BR>攻撃対象に一定確率で暗黒をかける。<BR>(説明文は[暗黒]だが2008年11月時点では[石化]効果がでる)",0],
+	[629,10,76,95,3,1,140,55,"疾風の弓","ハヤテノ","風矢装着時、遠距離物理攻撃ダメージ 25% 増加<BR>INTが 40 以上の場合、高確率でオートスペル 風刃 LV5 発動。<BR>※一行目のオートスペル風刃Lv5の発動も風矢装着時のみ。",221,23,0],
+	[630,10,76,120,3,10,160,65,"オークアーチャーの弓","オオクア","モンスターを倒したとき時、一定確率で鋼鉄の矢をドロップ<BR>鋼鉄の矢装着時、遠距離物理攻撃ダメージ 50% 増加",0],
+	[631,11,122,160,834,1,145,55,"野獣の爪","ヤシユウ","一定確率で相手に致命的な傷を与え、ヒール・サンクチュアリ・ポーションピッチャーの回復量が 20%減少する。<BR>さらに一部の回復アイテムを使用時の回復量も 20% 減少する<BR>精錬値が9以上の時、回復量減少率が 40%に増加する",0],
+	[632,11,122,140,834,20,150,55,"インバーススケイル","インハア","攻撃時、一定確率で自分を中心に 5*5セル範囲中のすべての敵に特定の状態異常を付与する",20,6,0],
+	[633,11,122,110,834,1,140,55,"ドリルカタール","トリルカ","一定確率で相手の武装を強制解除させる",8,30,0],
+	[634,11,122,120,4,32,170,55,"ブラッディティアーズ","フラツテ","攻撃時、一定確率で自分を中心に 5*5セルの全ての敵を出血状態にする<BR>精錬値9以上の場合、 11*11セルの全ての敵を出血状態にする",0],
+	[635,13,0,80,3,3,65,75,"マグマフィスト","マクマフ","0",221,24,0],
+	[636,13,0,80,3,3,65,75,"アイシクルフィスト","アイシク","0",221,25,0],
+	[637,13,0,80,3,3,65,75,"エレクトリックフィスト","エレクト","0",221,26,0],
+	[638,13,0,80,3,3,65,75,"サイズミックフィスト","サイスミ","0",221,27,0],
+	[639,13,0,30,3,4,50,60,"連撃の爪","レンケキ","0",5187,15,5188,15,5189,20,0],
+	[640,12,0,110,833,2,200,70,"大百科事典","タイヒヤ","純粋Luk数値によってクリティカル率増加。(素LUK5毎にCRI+1)",88,100,4,3,5,2,10,20,194,1,0],
+	[641,12,0,137,834,2,100,85,"死神の名簿","シニカミ","物理攻撃時、人間形モンスターを一定確率で瀕死状態にする(コーマ)<BR>精錬値が高くなる程、追加で攻撃速度が増加。<BR>セージ系が装備した場合、物理攻撃時、<BR>一定確率で画面全体の敵に一定ダメージを与え呪い状態にする(ヘルジャッジメントLv5)",88,100,1,3,4,3,6,-20,194,1,0],
+	[642,9,1001,60,3,2,80,70,"スタッフオブカーシング","スタツフ","物理攻撃を受けた時、低確率で画面内すべての敵に呪いをかける。<BR>精錬値によって呪いをかける確率が高くなる。<BR>精錬値が 9 以上の時、追加で Matk + 3%, MSP + 300",88,170,4,1,5,1,20,9,0],
+	[643,51,1,0,0,0,10,0,"闇の目隠し","ヤミノメ","0",154,100,151,2,0],
+	[644,9,53,10,3,20,40,55,"治癒の杖","チユノツ","精錬値によって自分が使う[ヒール]、[サンクチュアリ]、[ポ－ションピッチャー]、<BR>[ハイネスヒール]、[コルセオヒール]スキルの回復量が増加する。<BR>(精錬毎に+1.5%で小数点以下切捨て。+1で1%増加、+5で7%増加、+10で15%増加)<BR>(攻撃用ヒールの威力は上がるが攻撃用サンクチュアリには効果がない)",88,105,20,6,0],
+	[645,9,1001,80,3,20,50,70,"スタッフオブピアーシング","スタツフ","魔法攻撃時、MDEFの 10%を無視してダメージを与える<BR>精錬値によって、無視するMDEFが増加する。",88,145,4,4,0],
+	[646,9,125,130,834,1,250,80,"スタッフオブディストラクション","スタツフ","魔法力増幅のキャスティング時間が 50% 減少。<BR>精錬値 2に付き MATK 1% 増加<BR>精錬値1に毎にスキル使用時の消費SP+2%。<BR>精錬値によって物理攻撃を受けた時、 一定確率でユピテルサンダーLv5発動。",88,280,4,3,2,10,195,1,0],
+	[647,9,63,120,834,10,150,70,"ディバインクロス","テイハイ","0",195,1,88,210,20,6,5,4,51,15,56,15,0],
+	[648,14,130,130,3,1,150,70,"ベースギター","ヘエスキ","敵を倒したとき SP 3 回復<BR>物理攻撃を受けた時、一定確立でヘブンズドライブLv3発動。<BR>打撃時、一定確率で自分を中心に 5x5セル範囲のすべての敵に混乱をかける",0],
+	[649,14,130,10,4,0,180,70,"憑神のギター","ツキカミ","(着用時、攻撃速度が 190になる。ただしASPD-装備をした場合不明)<BR>5秒ごとに 50の HPを失う<BR>Dexが素Dexぶん減少する",12,100,75,-100,0],
+	[650,15,0,110,3,0,70,30,"電気線","テンキセ","0",20,4,0],
+	[651,15,131,100,4,2,200,70,"電気ウナギ","テンキウ","※発動するアローバルカンのスキルレベルは精錬値にしたがって変更される。<BR>※+0→未発動、+1→Lv1、+10→Lv10と思われる。",20,4,2,2,4,2,221,28,221,123,0],
+	[652,15,131,110,4,1,150,70,"海の魔女の足","ウミノマ","敵を倒したとき SP 5 回復<BR>攻撃時、一定確率で自分を中心に 5x5セル範囲中のすべての敵に沈黙をかける",221,29,0],
+	[653,15,131,185,834,0,130,70,"ニンジンの鞭","ニンシン","攻撃時、一定確率で自分自身に速度増加を使う<BR>使用する速度増加のレベルは精錬値にしたがって変更される",0],
+	[654,17,0,68,3,2,58,70,"荒野の用心棒","コウヤノ","Agi の数値によって Hit 及びASPD増加<BR>(計算式素Agi10につきHit+1,素Agi14につきAspd+1.0%)<BR>(※素Agiを上げて14の倍数にしてもゲーム内ステータスウィンドウのASPDの値は<BR>クライアントを再起動しないと更新されないらしい)",0],
+	[655,18,0,150,3,10,100,70,"ロングバレル","ロンクハ","0",10,20,12,-3,221,30,0],
+	[656,18,0,170,833,10,70,70,"ジャングルカービン","シヤンク","装備時、使用者の純粋 DEX値の 1/3 程度の命中率が減少する。",8,10,10,4,12,10,0],
+	[657,18,0,138,833,2,77,70,"レバーアクションライフル","レバアア","0",8,20,10,50,12,-5,0],
+	[658,19,0,200,834,0,130,70,"ゲートキーパーDD","ケエトキ","スプラッシュダメージ。<BR>全ての精錬値に従って DEF が増加する。",5,1,221,31,0],
+	[659,19,0,80,833,21,70,70,"THUNDER-P","サンタア","スプラッシュダメージ",8,-5,12,20,0],
+	[660,16,0,112,833,2,155,70,"風魔手裏剣・明浄","フウマシユリケンミヨウシヨウ","0",5396,30,0],
+	[661,50,1,9,0,10,100,65,"マグニキャップ","マクニキ","0",1,2,0],
+	[662,50,1,6,0,1,50,65,"ウルキャップ","ウルキヤ","0",5,2,2,1,0],
+	[663,50,1,6,0,0,30,65,"フリッグのサークレット","フリツク","0",19,10,4,2,14,50,0],
+	[664,50,50,6,0,1,30,50,"天使の口づけ","テンシノ","0",76,3,0],
+	[665,50,1,3,0,0,20,33,"モルフェウスの頭巾","モルフエ","0",4,2,0],
+	[666,50,1,8,0,10,50,61,"モリガンのヘルム","モリカン","0",6,2,17,3,0],
+	[667,50,1,10,0,10,50,54,"ゴヴニュの兜","コウニユ","0",19,3,3,3,0],
+	[668,50,1,1,0,1,40,30,"マリオネット人形","マリオネ","0",1,1,0],
+	[669,50,1,1,0,1,60,1,"羽のベレー","ハネノヘ","0",19,1,57,10,0],
+	[670,50,1001,10,0,1,100,0,"ヴァルキリーヘルム","ウアルキ","0",19,5,0],
+	[671,50,0,0,0,0,70,0,"ベレー","ヘレエ","0",57,10,193,1,0],
+	[672,50,0,6,0,1,40,60,"使道の帽子","シトウノ","テコン系キャラクターが装備時、AGI + 1, HP回復力 + 3%",0],
+	[673,50,0,6,0,1,40,60,"アヤム","アヤム","テコン系キャラクターが装備時、INT + 1, SP回復力 + 3%",0],
+	[674,64,0,0,0,0,10,0,"ホーリーオルゴール","ホオリイ","ホーリーナイト使用可能。<BR>2008年12月29日午前10時になると、上記効果は消滅する。",0],
+	[675,50,0,4,1,1,50,40,"花嫁の仮面","ハナヨメ","テコン系キャラクターが装備時、LUK + 2, クリティカル + 5",0],
+	[676,50,0,5,1,1,50,40,"獅子の仮面","シシノカ","テコン系キャラクターが装備時、DEX + 2, ATKが精錬値の 2倍増加<BR>モンスター攻撃時、低確率でスタンをかける",0],
+	[677,51,0,0,0,0,10,0,"モザイク","モサイク","0",19,1,8,-5,153,5,0],
+	[678,51,0,2,4,0,10,30,"老人の仮面","ロウシン","テコン系キャラクターが装備時、LUK + 1, 完全回避 + 2",0],
+	[679,50,0,3,0,0,10,0,"たれうさぎ","タレウサ","0",5,1,9,2,0],
+	[680,50,0,10,0,0,80,50,"龍の骸骨","リユウノ","0",59,5,0],
+	[681,50,0,1,0,0,50,30,"ラーメン","ラアメン","0",5,4,4,-1,0],
+	[682,50,0,0,3,0,10,10,"ウィスパーマスク","ウイスハ","0",2,3,68,-10,193,1,0],
+	[683,60,50,25,0,1,60,40,"天使の加護","テンシノ","0",19,20,0],
+	[684,60,1,53,0,1,250,65,"オーディンの祝福","オオテイ","0",0],
+	[685,60,1,58,0,0,350,54,"ゴヴニュの鎧","コウニユ","0",3,2,15,10,0],
+	[686,60,1070,85,50,1,300,55,"メテオプレート","メテオフ","0",151,30,152,30,0],
+	[687,60,1001,15,50,1,30,55,"オルレアンの制服","オルレア","",73,15,380,1,0],
+	[688,60,1001,50,0,1,150,55,"ディバインローブ","テイハイ","0",153,5,156,5,151,5,155,5,159,5,0],
+	[689,60,124,42,1470,1,75,50,"スナイピングスーツ","スナイピ","Lukでさらにクリティカル率増加(素Luk10につきCri+1)",19,5,10,6,74,23,0],
+	[690,61,50,30,0,1,40,20,"天使の守護","テンシノ","0",56,5,0],
+	[691,61,1,45,0,1,150,65,"ストーンバックラー","ストオン","0",192,5,0],
+	[692,61,1,80,1410,1,50,65,"ヴァルキリーシールド","ウアルキ","0",19,5,61,20,63,20,67,20,69,20,0],
+	[693,61,1001,95,0,0,120,68,"プラチナシールド","フラチナ","魔法攻撃を受けた時、 一定確率で2秒間、攻撃魔法を40%の確率で反射する",19,5,191,15,192,15,51,10,0],
+	[694,61,1001,75,0,1,100,55,"オルレアンサーバー","オルレア","5%の確率で魔法反射",19,2,0],
+	[695,61,1001,85,0,1,100,55,"ソーンシールド","ソオンシ","0",19,2,0],
+	[696,61,1072,90,0,1,250,75,"ストロングシールド","ストロン","(説明文は[物理及び魔法攻撃耐性-20%]だが、2008年11月時点では毒属性と不死属性の-耐性がない)",381,1,60,-20,61,-20,62,-20,63,-20,64,-20,66,-20,67,-20,68,-20,0],
+	[697,62,55,12,0,1,30,85,"ウィングオブイーグル","ウインク","0",0],
+	[698,62,50,6,0,1,40,20,"天使の温もり","テンシノ","0",75,5,0],
+	[699,62,0,5,0,10,15,0,"ランニングシャツ","ランニン","0",19,1,0],
+	[700,62,1,8,0,10,60,33,"モルフェウスのショール","モルフエ","0",19,3,16,10,0],
+	[701,62,1,9,0,0,60,61,"モリガンのマント","モリカン","0",6,2,11,8,0],
+	[702,62,1,11,0,10,70,54,"ゴヴニュの肩飾り","コウニユ","0",78,10,19,2,3,1,0],
+	[703,62,1,8,0,0,40,65,"ファルコンローブ","フアルコ","0",9,15,11,5,0],
+	[704,62,1,13,0,0,60,65,"ヴァーリのマント","ウアアリ","0",60,15,0],
+	[705,62,1001,16,0,1,60,48,"ドラゴンブレス","トラコン","0",59,15,0],
+	[706,62,1001,11,0,1,50,55,"ウールスカーフ","ウウルス","0",19,4,0],
+	[707,62,1001,13,0,10,50,55,"ライダーバッジ","ライタア","0",2,2,0],
+	[708,62,1072,13,0,1,70,70,"ウルフヘジン","ウルフヘ","物理攻撃を受けた時、一定確率で 2秒間受ける物理ダメージが 20% 減少、MDEFが 20% 減少",0],
+	[709,62,1089,8,0,1,40,70,"ミスリルマジックマント","ミスリル","魔法攻撃を受けた時、 一定確率で2秒間受ける魔法ダメージ20%減少 DEF20%減少",19,3,0],
+	[710,63,50,8,0,1,30,25,"天使の再来","テンシノ","0",13,100,0],
+	[711,63,1,13,0,10,70,54,"ゴヴニュの軍靴","コウニユ","0",19,3,15,5,16,5,0],
+	[712,63,1,12,0,10,50,65,"フレイシューズ","フレイシ","赤、紅、黄、白ポーション効果20%向上",2,2,0],
+	[713,63,1,13,0,10,65,65,"ヴィダルのブーツ","ウイタル","0",15,9,16,9,0],
+	[714,63,77,7,0,1,20,40,"高級サンダル","コウキユ","0",19,10,0],
+	[715,63,1001,13,0,0,50,85,"バリアントシューズ","ハリアン","精錬値によって MHP / MSP 減少<BR>精錬値によってDEFが追加で増加(精錬値÷2。少数切捨て)",15,20,16,20,0],
+	[716,63,1001,13,0,1,30,55,"タイダルシューズ","タイタル","0",61,5,0],
+	[717,63,1001,16,0,10,50,55,"黒革のブーツ","クロカワ","精錬値+9以上の時、Agi+2",2,1,0],
+	[718,63,1001,0,390,10,200,75,"シャドウウォーカー","シヤトウ","魔法攻撃に当たった場合、一定確率でオートスペル：クローキングLv3使用<BR>クローキングを 4レベル以上習得している場合、習得したレベルで発動する",19,10,0],
+	[719,64,1,0,0,10,10,33,"モルフェウスの指輪","モルフエ","0",4,1,16,5,0],
+	[720,64,1,0,0,10,10,33,"モルフェウスの腕輪","モルフエ","0",4,1,16,5,0],
+	[721,64,1,0,0,10,20,61,"モリガンのベルト","モリカン","0",17,5,10,3,0],
+	[722,64,1,0,0,10,20,61,"モリガンのペンダント","モリカン","0",1,2,10,3,0],
+	[723,999,1,0,0,0,10,90,"サクリファイスリング","サクリフ","0",0],
+	[724,64,52,1,0,10,30,30,"忍の腰帯","シノヒノ","0",1,1,2,1,19,1,0],
+	[725,64,1,0,0,0,400,0,"血塗られた鉄球","チヌラレ","0",0],
+	[726,64,72,1,0,0,100,0,"ハイパーモードチェンジャー","ハイハア","0",13,50,0],
+	[727,64,0,0,0,0,10,0,"スピリチュアルリング","スヒリチ","0",4,2,5,1,0],
+	[728,64,82,0,0,0,10,0,"リングオブフレームロード","リンクオ","0",1,2,3,1,17,15,63,10,221,32,221,33,221,34,221,35,221,36,0],
+	[729,64,82,2,0,0,10,0,"リングオブレゾナンス","リンクオ","0",2,2,3,1,19,2,221,37,221,38,221,39,221,40,221,41,0],
+	[730,64,0,0,0,0,10,0,"下級精霊の指輪","カキユウ","0",7,1,0],
+	[731,64,1051,0,0,0,10,60,"封印の赤い絹","フウイン","妖怪の槍とともに着用時、自分に混乱のかかる確率が減少する。",0],
+	[732,64,1001,0,0,1,10,90,"オルレアンの手袋","オルレア","0",5,2,89,3,0],
+	[733,64,1001,0,0,1,10,90,"野牛の角","ヤキユウ","0",2,2,0],
+	[734,64,1001,0,0,1,15,50,"エキスパートリング","エキスハ","0",74,5,102,-5,0],
+	[735,64,1,1,0,0,20,0,"カプラリング","カフラリ","0",19,1,1,1,2,1,4,1,6,1,0],
+	[736,100,0,0,0,0,0,0,"セットなし","0","0",0],
+	[737,100,0,0,0,0,0,0,"0","0","杖の精錬値によってMATKが %単位で増加<BR>マントの精錬値 *3程度無属性に対する耐性追加",13,300,89,-5,0],
+	[738,100,0,0,0,0,0,0,"0","0","0",212,5,9,10,0],
+	[739,100,0,0,0,0,0,0,"0","0","0",13,300,102,20,0],
+	[740,100,0,0,0,0,0,0,"0","0","0",17,50,0],
+	[741,100,0,0,0,0,0,0,"0","0","0",13,150,18,5,0],
+	[742,100,0,0,0,0,0,0,"0","0","剣士系が装備時さらにDEF+6",211,2,18,5,19,5,0],
+	[743,100,0,0,0,0,0,0,"0","0","0",212,3,15,5,16,5,0],
+	[744,100,0,0,0,0,0,0,"0","0","0",213,5,75,10,76,10,0],
+	[745,100,0,0,0,0,0,0,"0","0","0",213,5,15,15,16,5,18,5,19,15,61,10,62,10,63,10,64,10,0],
+	[746,100,0,0,0,0,0,0,"0","0","0",211,2,216,9,17,18,10,13,11,13,0],
+	[747,100,0,0,0,0,0,0,"0","0","",380,1,214,5,19,11,16,20,73,25,0],
+	[748,100,0,0,0,0,0,0,"0","0","物理攻撃を受けた場合低確率で自分に[アスムプティオ]Lv 1スキルを使用する",13,900,14,100,0],
+	[749,100,0,0,0,0,0,0,"0","0","0",217,1,0],
+	[750,100,0,0,0,0,0,0,"0","0","武器の精錬値によって詠唱速度%で減少",89,6,215,2,0],
+	[751,100,0,0,0,0,0,0,"0","0","0",76,9,5104,30,93,50,0],
+	[752,100,0,0,0,0,0,0,"0","0","0",73,-10,0],
+	[753,100,0,0,0,0,0,0,"0","0","0",12,10,71,5,0],
+	[754,100,0,0,0,0,0,0,"0","0","0",15,10,75,5,0],
+	[755,100,0,0,0,0,0,0,"0","0","0",39,5,0],
+	[756,100,0,0,0,0,0,0,"0","0","0",9,10,0],
+	[757,100,0,0,0,0,0,0,"0","0","0",215,2,89,10,51,10,56,10,0],
+	[758,50,0,0,0,0,100,30,"バニルミルトの帽子","ハニルミ","(物理攻撃時、低確率でボルト系スキルLv1が発動する)",19,5,193,1,194,1,221,103,221,104,221,105,0],
+	[759,50,53,3,0,0,15,0,"羊帽子","ヒツシホ","0",193,1,71,5,0],
+	[760,50,0,0,0,0,80,75,"セール表示板","セエルヒ","0",1,1,2,1,6,1,0],
+	[761,50,0,2,0,0,30,0,"とんがり帽子（黄）","トンカリ","0",6,2,10,5,0],
+	[762,60,0,120,0,0,40,94,"ブリュンヒルデ","フリユン","BaseLvの20倍、MHP増加<BR>baseLvの5倍、MSP増加",381,1,19,10,80,10,89,10,193,1,194,1,0],
+	[763,100,0,0,0,0,0,0,"0","0","移動速度増加",0],
+	[764,100,0,0,0,0,0,0,"0","0","[フリッグのサークレット]の精錬値が1上がる度に追加でDef - 1 , Mdef + 1<BR>[ヴァルキリーシールド]の精錬値が1上がる度に追加でDef - 1 , Mdef + 1。",18,2,19,5,0],
+	[765,100,0,0,0,0,0,0,"0","0","DEXが 70以上の場合消費SP 10%減少",0],
+	[766,100,0,0,0,0,0,0,"0","0","自分に混乱のかかる確率が減少する",0],
+	[767,100,0,0,0,0,0,0,"0","0","物理攻撃を受けた時、一定確率で自分にオートスペル[アスムプティオ]Lv2発動。",0],
+	[768,100,0,0,0,0,0,0,"0","0","0",221,42,221,43,221,44,221,45,221,46,0],
+	[769,64,0,1,0,1,10,0,"クイールペンリング","クイイル","0",19,1,0],
+	[770,100,0,0,0,0,0,0,"クイール＋スモブックペン","0","BaseLvの3倍、MHPが増加。JobLvの数値分、MSPが増加。",60,3,0],
+	[771,999,0,0,0,1,0,0,"初心者用アドベンチャースーツ","シヨシン","0",193,1,0],
+	[772,1,52,110,4,1,65,24,"ラクマ","ラクマ","物理攻撃時、低確率で敵にスタン効果。※R化で武器のMATK+X%系は杖と同じタイプに変更されたが、これだけ表記が昔のまま。",89,5,102,5,0],
+	[773,52,0,0,0,0,10,0,"真っ赤な杯","マツカナ","モンスターを倒した時、一定確率でマステラ酒をドロップする。",0],
+	[774,52,0,0,0,0,5,0,"こんがりトースト","コンカリ","0",0],
+	[775,52,0,0,0,0,5,0,"赤ちゃんのおしゃぶり","アカチヤ","0",0],
+	[776,52,0,0,0,0,5,0,"怒った口","オコツタ","0",0],
+	[777,64,0,0,0,0,90,75,"命中のガントレット","メイチユ","0",1,1,8,15,0],
+	[778,64,56,0,0,0,70,50,"おしゃれヒップバッグ","オシヤレ","0",1,2,0],
+	[779,50,0,2,0,0,30,0,"とんがり帽子（青）","トンカリ","0",2,2,9,5,0],
+	[780,50,1,2,0,0,60,30,"ひまわりのヘアピン","ヒマワリ","0",2,2,10,5,193,1,0],
+	[781,63,1,9,0,1,30,30,"ウサギスリッパ","ウサキス","0",19,3,6,3,0],
+	[782,50,0,2,0,0,30,0,"とんがり帽子（白）","トンカリ","0",1,2,8,5,0],
+	[783,50,0,8,0,0,50,30,"キャプテンハット","キヤフテ","0",61,5,0],
+	[784,50,0,6,0,0,50,0,"象帽子","ソウホウ","0",3,1,0],
+	[785,50,0,6,0,0,35,20,"デビルリング帽","テヒルリ","精錬値6以上の場合、精錬値が1上がる度にCriが1ずつ増加する",1,1,10,3,58,-20,0],
+	[786,50,0,4,0,0,40,55,"巣立ちを迎えた鳥の巣","スタチヲ","0",2,2,52,10,0],
+	[787,50,0,5,50,1,20,0,"野球帽","ヤキユウ","0",0],
+	[788,50,0,5,0,0,10,0,"シルバーティアラ","シルハア","0",4,2,0],
+	[789,50,0,2,0,0,30,20,"たれ九尾狐","タレクミ","0",2,1,5,1,221,47,0],
+	[790,50,0,0,50,1,40,10,"アフロかつら","アフロカ","0",60,1,221,48,0],
+	[791,50,0,2,1,1,80,0,"耳あて帽","ミミアテ","0",152,10,0],
+	[792,50,51,8,1,0,120,75,"クローズヘルメット","クロオス","0",3,3,15,3,0],
+	[793,51,1,0,0,0,20,75,"サイクロプスアイ","サイクロ","0",14,50,0],
+	[794,52,1,0,0,0,10,0,"白い花びら","シロイハ","0",53,3,0],
+	[795,60,63,45,0,1,250,70,"恩寵の法衣","オンチヨ","0",19,5,154,80,0],
+	[796,62,1,13,0,0,70,75,"スケルトンマント","スケルト","0",1,2,2,-4,3,-3,4,-3,5,2,6,2,0],
+	[797,64,53,0,0,0,50,60,"退魔の指輪","タイマノ","0",126,5,121,5,0],
+	[798,64,1,0,0,0,30,60,"名射手のグローブ","メイシヤ","0",5,1,8,5,10,5,0],
+	[799,1,52,100,4,0,80,55,"ホーリーダガー","ホオリイ","0",20,6,36,5,5,1,0],
+	[800,64,52,0,0,0,20,60,"月光の指輪","ケツコウ","0",10,3,12,3,0],
+	[801,64,1,0,0,0,20,75,"スカーフベルト","スカアフ","0",5,2,4,1,0],
+	[802,50,0,6,0,0,50,0,"シャークハット","シヤアク","0",19,1,1,1,2,2,41,5,331,10,0],
+	[803,50,0,4,0,0,20,45,"ヒュッケの黒い猫耳","ヒユツケ","0",24,2,9,10,10,3,70,10,0],
+	[804,50,0,7,0,0,50,30,"船長の帽子","センチヨ","0",25,3,0],
+	[805,51,0,2,0,0,10,70,"ペコペコの羽耳","ヘコヘコ","0",19,2,2,1,0],
+	[806,52,0,0,0,0,10,60,"ギャングスカーフ","キヤンク","ローグ系装備時、ギャングスターパラダイスLv1使用可能",17,5,0],
+	[807,52,0,0,0,0,20,60,"忍の巻物","シノヒノ","0",89,1,0],
+	[808,60,0,5,0,0,100,1,"天使のドレス","テンシノ","0",6,4,193,1,0],
+	[809,50,0,2,0,1,20,20,"たれリーフ","タレリイ","精錬するとDEFの代わりにMDEFが増加する。",4,1,0],
+	[810,50,0,5,0,0,70,38,"エンジェリング帽","エンシタ","0",6,2,19,2,193,1,0],
+	[811,50,0,4,0,0,70,10,"ギルドメンバー募集帽","キルトメ","0",0],
+	[812,50,0,4,0,0,70,10,"パーティーメンバー募集帽","ハアテイ","0",0],
+	[813,50,0,5,0,0,70,0,"エンジェリングヘアピン","エンシサ","0",9,5,0],
+	[814,100,0,0,0,0,0,0,"0","0","0",214,2,216,2,0],
+	[815,50,0,1,0,1,50,0,"クラシックハット","クラシツ","0",1,1,27,5,28,5,29,5,0],
+	[816,1,122,130,2,42,60,70,"砂漠の夕暮れ","サハクノ","0",0],
+	[817,1,122,50,2,4,60,70,"砂漠の風","サハクノ","0",0],
+	[818,100,0,0,0,0,0,0,"0","0","物理攻撃命中時、一定確率で7秒間、攻撃速度 + 100%",14,20,8,10,15,5,29,30,0],
+	[819,3,0,200,4,2,120,50,"ブラッディイート","フラツテ","物理攻撃時、低確率で5秒間 CRI+100、ATK+50<BR>モンスターを倒した時HP100ずつ回復",20,8,0],
+	[820,8,53,120,4,20,90,60,"ネメシス","ネメシス","精錬値によってシグナムクルシスのスキルレベルが増加して発動<BR>物理攻撃時、低確率で20秒間ATK+50",20,6,36,10,47,10,221,49,0],
+	[821,10,124,135,4,31,30,70,"イクシオンの羽[3]","イクシオ","物理攻撃時、低確率で7秒間攻撃速度 7%増加。精錬値によって発動率増加",0],
+	[822,12,0,60,833,2,30,60,"魔法の定石","マホウノ","0",88,160,4,3,76,5,0],
+	[823,12,0,30,3,2,70,70,"古代の魔法","コタイノ","0",88,140,0],
+	[824,100,0,0,0,0,0,0,"0","0","0",214,4,19,8,16,10,0],
+	[825,9,55,30,833,0,50,50,"リリースオブウィッシュ","リリイス","魔法攻撃時、低確率でHPとSPが一定量回復",88,125,4,3,95,5,0],
+	[826,50,0,0,0,0,50,0,"耳あてニット帽","ミミアテ","0",4,2,0],
+	[827,50,1,3,0,1,30,40,"ライドワード帽","ライトワ","物理攻撃時、5%の確率で相手に与えたダメージの8%をHPとして吸収する。<BR>物理攻撃時、1%の確率で相手に与えたダメージの4%をSPとして吸収する。<BR>装備時、5秒毎にHP-10。",0],
+	[828,50,82,5,3,1,25,0,"ダークバシリウム","タアクハ","精錬値1につき以上の耐性が2%ずつ追加増加",159,20,152,20,151,20,0],
+	[829,60,1089,57,50,1,30,60,"ディアボロスローブ","テイアホ","0",14,150,19,5,74,10,91,6,0],
+	[830,60,1072,79,50,1,60,60,"ディアボロスアーマー","テイアホ","(ゲーム内説明文ではMDEF+5が書かれていない)",19,5,1,2,5,1,13,150,151,5,159,5,0],
+	[831,61,63,80,0,10,60,50,"駆魔の聖書","クマノセ","0",4,1,75,3,76,3,0],
+	[832,61,113,130,0,1,200,80,"クロスシールド","クロスシ","0",1,1,5324,30,5159,30,5384,30,102,-10,0],
+	[833,61,55,18,0,1,100,70,"魔力の書 第一巻","マリヨク","攻撃を受けた時、一定確率で敵にスタンをかける",4,2,19,3,0],
+	[834,62,1,7,0,1,25,60,"スキンオブベントス","スキンオ","0",9,10,13,200,19,2,0],
+	[835,62,1079,15,0,1,25,0,"ディアボロスマント","テイアホ","魔王モロクに与える物理ダメージ+10%<BR>傷ついた魔王モロクに与える物理ダメージ+10%",13,100,60,5,1495,10,1496,10,0],
+	[836,63,1079,15,2070,1,25,0,"ディアボロスブーツ","テイアホ","BaseLVの10倍、MaxHP増加",0],
+	[837,64,65,0,0,1,10,80,"司書の手袋","シシヨノ","0",14,20,0],
+	[838,64,55,0,0,10,20,80,"銀の懐中時計","キンノカ","0",0],
+	[839,64,54,0,0,1,20,65,"ルナティックブローチ","ルナテイ","0",0],
+	[840,64,70,0,0,0,70,50,"アイアンリスト","アイアン","0",5006,6,5065,6,0],
+	[841,64,124,0,0,10,10,70,"イカロスの羽","イカロス","0",5,3,14,50,0],
+	[842,64,124,0,0,10,20,70,"名射手のスカーフ","メイシヤ","0",5,3,14,50,0],
+	[843,64,1,0,0,1,5,80,"呪われた手","ノロワレ","0",8,10,75,20,221,134,0],
+	[844,64,1079,0,0,1,5,0,"ディアボロスリング","テイアホ","魔王モロクに与える物理ダメージ+10%<BR>傷ついた魔王モロクに与える物理ダメージ+10%。<BR>(ゲーム内説明文には凍結耐性+15%は書いていないが実際にはある模様)",13,100,14,100,91,5,1495,10,1496,10,152,15,0],
+	[845,64,1,0,0,1,5,80,"コンチネンタルガードの印章","コンチネ","0",12,3,13,50,0],
+	[846,64,1,0,0,1,5,80,"ルーン文字の呪文石","ルウンモ","0",73,-1,14,50,0],
+	[847,64,1,0,0,1,5,80,"死のブローチ","シノフロ","0",10,5,0],
+	[848,64,0,0,0,1,10,0,"スモールブックペンダント","スモオル","0",51,2,56,2,57,1,55,1,52,1,0],
+	[849,50,0,5,0,1,80,0,"バルーンハット","ハルウン","精錬値が高くなるほど、詠唱時間が%単位で短縮。",0],
+	[850,50,1,6,0,1,25,50,"ハンティングキャップ","ハンテイ","0",6,1,32,10,0],
+	[851,50,0,4,0,0,70,10,"ボーイフレンド募集帽","ホオイフ","0",0],
+	[852,50,0,4,0,0,70,10,"ガールフレンド募集帽","カアルフ","0",0],
+	[853,10,124,70,823,3,90,70,"ダブルバウンド","タフルハ","※発動確率は、実際はLv10ではなく習得しているLv。",221,124,0],
+	[854,100,0,0,0,0,0,0,"0","0","0",80,3,89,3,0],
+	[855,100,0,0,0,0,0,0,"トーナメント盾系set","0","ロードナイトの場合、攻撃速度 5% 減少",80,4,18,2,0],
+	[856,100,0,0,0,0,0,0,"0","0","0",5104,20,221,50,0],
+	[857,100,0,0,0,0,0,0,"0","0","0",15,6,0],
+	[858,100,0,0,0,0,0,0,"0","0","0",214,5,13,700,12,5,0],
+	[859,100,0,0,0,0,0,0,"0","0","ファルケンブリッツの精錬値が10の場合、[シャープシューティング]の詠唱時間-50％。",0],
+	[860,100,0,0,0,0,0,0,"0","0","0",89,7,75,15,76,15,0],
+	[861,100,0,0,0,0,0,0,"0","0","0",215,1,14,50,76,10,0],
+	[862,100,0,0,0,0,0,0,"0","0","0",102,25,0],
+	[863,9,63,50,4,1,50,70,"ホーリーステッキ","ホオリイ","0",20,6,88,140,7037,25,7387,25,7102,25,7104,25,0],
+	[864,50,0,0,0,0,10,0,"落ち葉","オチハ","0",13,40,14,40,0],
+	[865,50,0,6,0,0,60,20,"三段ポリン帽","サンタン","物理攻撃時、一定確率でグリードが発動する。",6,3,193,1,0],
+	[866,50,0,5,0,0,10,0,"ゴールドティアラ","コオルト","0",4,2,0],
+	[867,50,0,0,0,0,10,0,"金の魂のリング","キンノタ","0",6,1,66,5,193,1,0],
+	[868,50,0,2,0,1,10,20,"ヴァルキリーフェザーバンド","ウアルキ","0",4,1,221,102,0],
+	[869,50,1,3,0,0,30,20,"ソウルレスウィング","ソウルレ","0",19,2,0],
+	[870,50,0,4,0,1,10,0,"サンタポリン帽","サンタホ","0",19,2,47,3,67,3,193,2,0],
+	[871,50,0,5,0,1,20,0,"小さな鈴のリボン","チイサナ","0",3,1,220,12,0],
+	[872,50,0,2,1,0,200,0,"鳳凰の冠","ホウオウ","0",4,1,19,2,151,10,0],
+	[873,51,0,2,4,0,20,0,"ぺろりんマスク","ヘロリン","0",0],
+	[874,51,0,0,0,0,10,0,"丸い瞳","マルイヒ","0",0],
+	[875,50,0,0,0,0,30,0,"コッポラ","コツホラ","0",0],
+	[876,50,1,2,0,0,10,20,"黄色の頭巾","キイロノ","0",3,2,6,2,78,10,0],
+	[877,50,0,0,0,0,20,0,"愛の実","アイノミ","0",0],
+	[878,64,1,0,0,0,15,75,"アンクレット","アンクレ","0",3,3,75,10,0],
+	[879,64,1,0,0,0,10,75,"ボディーピアス","ホテイヒ","0",5,3,6,1,19,2,0],
+	[880,51,0,0,0,0,20,30,"女神の仮面","メカミノ","0",80,2,89,2,0],
+	[881,50,0,5,0,0,20,0,"アカデミー新入生帽子","アカテミ","トレード不可",13,80,14,10,0],
+	[882,50,0,5,0,1,20,0,"アカデミー第一修了帽子","アカテミ","トレード不可",14,30,0],
+	[883,64,0,0,0,0,10,0,"アカデミーバッジ","アカテミ","BaseLv79以下の時、MHP+400,MSP+200<BR>トレード不可(倉庫は可能)",0],
+	[884,50,0,1,0,1,20,30,"カプラの猫耳ヘアバンド","カフラノ","物理攻撃を受けた時、一定確率で自分が様々な状態異常になる。",19,5,0],
+	[885,50,0,2,50,1,10,45,"ブルーリボン","フルウリ","0",221,101,0],
+	[886,50,0,2,0,0,20,80,"頭乗りフィーリル","アタマノ","0",193,1,71,1,0],
+	[887,51,0,2,0,0,20,70,"黒縁メガネ","クロフチ","0",19,2,4,1,0],
+	[888,51,0,2,0,0,20,70,"いたずらな妖精","イタスラ","0",11,3,0],
+	[889,52,0,0,0,0,20,30,"くわえた魚","クワエサ","おいしい魚の回復率+25%<BR>モンスターを倒した時、低確率でおいしい魚をドロップ",0],
+	[890,50,0,1,0,1,50,60,"たれテーリング人形","タレテエ","0",193,1,2,2,57,5,0],
+	[891,50,0,1,0,1,50,60,"たれディフォルテー人形","タレテイ","0",193,1,1,2,57,5,0],
+	[892,50,0,1,0,1,50,60,"たれソリン人形","タレソリ","0",193,1,5,2,57,5,0],
+	[893,50,0,1,0,1,50,60,"たれＷ人形","タレタフ","0",193,1,6,2,57,5,0],
+	[894,50,1,2,0,0,10,20,"黄色のリボン","キイロノ","0",3,2,6,2,78,10,0],
+	[895,50,0,4,0,0,70,10,"友達募集帽","トモタチ","0",0],
+	[896,50,0,3,0,0,30,0,"飛び跳ねポリン","トヒハネ","0",6,1,193,1,194,1,0],
+	[897,999,0,120,3,0,0,80,"暗殺者のダマスカス(勇猛)","アンサツ","忍者/ローグ/チェイサーが装備時、MATK + 90",194,1,1,1,2,1,37,75,307,20,0],
+	[898,999,0,120,3,0,0,80,"暗殺者のダマスカス(特攻)","アンサツ","攻撃時、一定確率で武器が覚醒し 6秒間発勁効果",194,1,1,1,2,1,37,75,0],
+	[899,999,0,115,3,0,0,80,"グラディエーターのブレイド(特攻)","クラテイ","0",194,1,1,1,5,1,37,75,307,20,0],
+	[900,999,0,115,3,0,0,80,"グラディエーターのブレイド(勇猛)","クラテイ","0",194,1,1,1,5,1,37,75,88,74,0],
+	[901,999,0,200,3,0,0,80,"突撃隊長のカッツバルケル(特攻)","トツケキ","0",194,1,1,2,37,55,307,20,0],
+	[902,999,0,200,3,0,0,80,"突撃隊長のカッツバルケル(勇猛)","トツケキ","0",194,1,10,20,37,55,70,20,0],
+	[903,999,0,60,3,0,0,80,"突撃隊長のスピアー","トツケキ","クルセイダー、パラディンが装備時、追加で攻撃速度 20% 増加",194,1,1,2,37,95,307,20,0],
+	[904,999,0,160,3,0,0,80,"突撃隊長のランス","トツケキ","0",194,1,1,2,37,25,187,1,0],
+	[905,999,1,200,3,0,0,80,"狂戦士のバトルアックス(特攻)","キヨウセ","0",194,1,1,3,37,55,307,20,0],
+	[906,999,1,200,3,0,0,80,"狂戦士のバトルアックス(勇猛)","キヨウセ","攻撃時、一定確率で武器が覚醒し 3秒間対象者の鎧を 100% で破壊",194,1,1,3,37,55,0],
+	[907,999,0,105,3,0,0,80,"闘士のモーニングスター(特攻)","トウシノ","0",194,1,1,1,5,1,37,75,307,20,0],
+	[908,999,0,105,3,0,0,80,"闘士のモーニングスター(勇猛)","トウシノ","攻撃時、一定確率で武器が覚醒し 6秒間 50% 確率で敵にスタンをかける",194,1,1,1,5,1,37,75,0],
+	[909,999,0,130,3,0,0,80,"虐殺のカタール(勇猛)","キヤクサ","0",194,1,1,1,5,1,6,1,37,70,307,20,0],
+	[910,999,0,130,3,0,0,80,"虐殺のカタール(特攻)","キヤクサ","0",194,1,1,1,5,1,6,1,37,70,70,20,12,5,0],
+	[911,999,0,90,3,0,0,80,"孫子兵法(勇猛)","ソンシヘ","0",194,1,1,1,4,2,88,125,37,75,307,20,0],
+	[912,999,0,90,3,0,0,80,"孫子兵法(特攻)","ソンシヘ","0",194,1,1,1,4,2,88,125,37,75,317,25,0],
+	[913,999,0,100,3,0,0,80,"バトルクロスボウ(特攻)","ハトルク","0",194,1,5,2,37,55,307,20,0],
+	[914,999,0,100,3,0,0,80,"バトルクロスボウ(勇猛)","ハトルク","0",194,1,5,2,4,10,37,55,0],
+	[915,999,0,30,3,0,0,80,"闘士のバトルフィスト(特攻)","トウシノ","0",194,1,1,2,4,1,37,95,307,20,0],
+	[916,999,0,30,3,0,0,80,"闘士のバトルフィスト(勇猛)","トウシノ","攻撃時、一定確率で武器が覚醒し 6秒間[阿修羅覇凰拳]のキャスティング時間 100% 減少",194,1,1,2,4,1,37,95,7197,25,7321,25,0],
+	[917,999,77,70,3,0,0,80,"ウォーロックの魔法杖","ウオオロ","魔法攻撃時、5% の確率でスタン効果追加",194,1,88,125,4,4,5,3,317,25,0],
+	[918,999,77,70,3,0,0,80,"ウォーロックの戦闘杖","ウオオロ","魔法攻撃時、5% の確率でスタン効果追加",194,1,88,125,4,3,5,3,177,15,0],
+	[919,999,77,70,3,0,0,80,"強い回復の杖","ツヨイカ","10秒ごとに SP5 回復。(計算機未導入)",194,1,88,125,91,14,0],
+	[920,999,77,70,3,0,0,80,"早い回復の杖","ハヤイカ","10秒ごとに SP5 回復。(計算機未導入)",194,1,88,125,4,3,5,2,74,15,0],
+	[921,999,0,50,3,0,0,80,"戦場のギター(特攻)","センシヨ","0",194,1,5,2,37,95,307,20,0],
+	[922,999,0,50,3,0,0,80,"戦場のギター(勇猛)","センシヨ","0",194,1,5,2,37,95,5292,20,0],
+	[923,999,0,50,3,0,0,80,"バトルラリエット(特攻)","ハトルラ","0",194,1,5,2,37,95,307,20,0],
+	[924,999,0,50,3,0,0,80,"バトルラリエット(勇猛)","ハトルラ","0",194,1,5,2,37,95,5292,20,0],
+	[925,999,0,70,3,0,0,80,"ソルジャーハンドガン","ソルシヤ","攻撃時、一定確率で武器が覚醒し 3秒間攻撃速度 100% 増加。",194,1,5,2,8,-10,37,55,307,20,0],
+	[926,999,0,50,3,0,0,80,"ソルジャーライフル","ソルシヤ","0",194,1,5,2,8,10,10,10,37,75,307,20,7430,25,0],
+	[927,999,0,80,3,0,0,80,"ソルジャーガトリングガン","ソルシヤ","攻撃時、一定確率で武器が覚醒し 6秒間 ATK 80 増加。反動で毎秒 HP120 消失",194,1,5,2,37,35,307,20,0],
+	[928,999,0,100,3,0,0,80,"ソルジャーショットガン","ソルシヤ","スプラッシュ攻撃<BR>攻撃時、一定確率で武器が覚醒し 6秒間 ATK 100 増加。反動で毎秒 HP100 消失",194,1,5,2,37,55,307,20,0],
+	[929,999,0,300,3,0,0,80,"ソルジャーグレネードガン","ソルシヤ","攻撃時、一定確率で武器が覚醒し 9秒間 ATK 300 増加。反動で毎秒 HP120 消失",194,1,5,2,37,35,307,20,0],
+	[930,999,0,55,3,0,0,80,"戦闘風魔手裏剣(勇猛)","セントウ","0",194,1,1,2,5,1,37,95,307,20,0],
+	[931,999,0,55,3,0,0,80,"戦闘風魔手裏剣(特攻)","セントウ","攻撃時、一定確率で武器が覚醒し 10秒間[風魔手裏剣投げ]と[一閃]の攻撃力 100% 増加",194,1,1,2,5,1,37,95,0],
+	[932,2,1001,150,300004,3,150,75,"蒼炎のツインエッジ","ソウエン","物理攻撃時、一定確率で 5秒間一般モンスターの防御力を無視する<BR>※ランダムエンチャントによる属性の設定は、いずれ対応予定です。<BR>　現在は、属性付与欄を使用してください。",20,1,220,13,0],
+	[933,2,1001,160,300004,3,150,75,"紅炎のツインエッジ","コウエン","物理攻撃時、一定確率で 5秒間一般モンスターの防御力を無視する<BR>※ランダムエンチャントによる属性の設定は、いずれ対応予定です。<BR>　現在は、属性付与欄を使用してください。",20,3,220,14,0],
+	[934,3,1000,250,4,2,200,90,"テグリョン(旧)","テクリヨ","精錬値が 9以上の場合、スキル使用時の消費SP及びディレイ 20% 減少<BR>ロードナイト・パラディンがJobLevelが70の場合、物理攻撃時、低確率で 10秒間 ATK + 50<BR>ルーンナイト・ロイヤルガードがJobLevelが50以上の場合、物理攻撃時、低確率で 10秒間 ATK + 50",11,10,0],
+	[935,3,1000,275,834,2,220,80,"バイオレットフィアー","ハイオレ","物理攻撃時、一定確率で 5秒間一般モンスターの防御力を無視する",221,51,221,52,0],
+	[936,9,1001,60,834,10,70,75,"茨の杖","イハラノ","精錬値によって相手の魔法防御力の一部を無視する(推定計算式：+1につき除算MDEF-1%)<BR>精錬値によってスキルの後ディレイが減少する(精錬+1につきディレイ-1.5%)",20,7,88,160,4,3,5,3,0],
+	[937,1,128,120,3,3,70,70,"追跡者の短剣","ツイセキ","バックスタブ使用時、一定確率でバッシュ Lv10が発動。",1,1,2,2,5,1,5169,20,0],
+	[938,1,1001,130,823,32,70,50,"アイボリーナイフ","アイホリ","攻撃時、一定確率(3%)で敵に出血あるいは致命的な傷 Lv1効果を付与。",2,2,12,3,0],
+	[939,2,1001,105,823,3,120,70,"エレメンタルソード","エレメン","物理あるいは特定攻撃時、一定確率でボルト系魔法追加攻撃",1,2,4,4,5,1,88,95,40,10,0],
+	[940,3,1001,200,834,2,200,70,"死の引導者","シノイン","物理攻撃時、一定確率で自分と敵に特定状態異常がかかる。<BR>物理攻撃時、一定確率で自分を中心に半径 11 * 11セルの中の全てのモンスターに<BR>100%のダメージを与えながら準ダメージの 100% 程度HPを回復する。<BR>精錬値が 9以上の場合、15 * 15 セルの中の全てのモンスターに<BR>200%のダメージを与えながらHPを回復する。",1,5,2,2,11,20,0],
+	[941,5,1001,160,3,1,100,50,"アイボリーランス","アイホリ","攻撃時、一定確率で敵に出血あるいは致命的な傷 Lv1効果を付与。",2,2,12,3,220,15,0],
+	[942,5,121,150,834,1,560,70,"カルド","カルト","精錬値によってDEFが追加で増加(精錬+2につきDEF+1)",12,-10,0],
+	[943,5,1001,112,2,4,70,50,"バトルフォーク","ハトルフ","0",0],
+	[944,8,1053,110,823,3,70,50,"ルナカリゴ","ルナカリ","純粋 STRが 77 以上の場合、攻撃速度 + 4%、物理攻撃時 15% 確率でスタンをかける。<BR>動物形、植物形、魚類形モンスターを倒した時、5%確率で料理をドロップ。",0],
+	[945,10,124,105,834,2,100,60,"ネペンテスボウ","ネヘンテ","ダブルストレイフィング使用時、一定確率でチャージアローがオートスペルで発動",0],
+	[946,10,1054,125,4,1,125,80,"カーズドライヤ","カアスト","遠距離物理攻撃時、4%の確率で敵に呪いをかける。",6,-2,0],
+	[947,13,129,95,823,3,60,60,"ホーンオブヒルスリオン","ホオンオ","近接攻撃時、敵に一定確率で致命的な傷 Lv1効果を付与。<BR>猛虎硬爬山使用時、一定確率で発勁 Lv1が発動。<BR>物理攻撃時、一定確率で気功がオートスペルで発動。",0],
+	[948,9,1001,80,4,0,50,70,"イレイサー","イレイサ","魔法攻撃時、一定確率で自分を中心に半径 11 * 11セルの中の全ての敵の SPを 20% 消去。<BR>精錬値が 10の場合、19 * 19セルの中の全ての敵の SPを 60% 消去。",88,170,4,3,5,2,76,8,0],
+	[949,14,130,110,823,3,70,70,"チェロ","チエロ","ミュージカルストライクに2セル、アローバルカンに 3セルノックバック効果が追加される",2,2,5,3,0],
+	[950,14,130,120,834,2,100,60,"ハープオブネペンテス","ハアフオ","ミュージカルストライク使用時、一定確率で対象にスタン効果",4,2,0],
+	[951,15,131,120,834,2,100,60,"ネペンテスの鞭","ネヘンテ","矢撃ち使用時、一定確率で対象に凍氷効果。<BR>精錬値が 9以上の場合、もっと高い確率で凍氷効果。",4,2,0],
+	[952,15,131,110,3,3,70,70,"錘の鞭","オモリノ","矢撃ちに 2セル、アローバルカンに 3セルノックバック効果が追加される",2,2,5,3,0],
+	[953,50,0,10,780,10,85,0,"大型マジェスティックゴート","オオカタ","JOB レベルに対する一定の割合で ATK 増加(計算式：JobLV÷3.5)",37,12,0],
+	[954,50,1070,10,0,1,120,85,"ボーンヘッド","ホオンヘ","0",1,2,19,5,151,5,158,5,0],
+	[955,50,82,5,0,1,30,85,"マンドラゴラキャップ","マントラ","0",3,3,193,1,221,100,0],
+	[956,50,0,5,0,1,10,0,"輝く電球のヘアバンド","カカヤク","0",67,10,220,16,0],
+	[957,62,0,40,0,0,40,94,"アスプリカ","アスフリ","すべての属性の物理攻撃に対する耐性 30%<BR>(対人では魔法と一部特殊なスキルには効果がないらしいです。<BR>耐性計算式は一般的な属性耐性と加算。無属性耐性もあり。2009年11月メモ<BR>R化で、対NPCの魔法は軽減できなくなったようです。<BR>それと物理攻撃であっても、モンスター固有スキル?は軽減できない可能性があるようです)",9,30,19,5,193,1,194,1,220,17,0],
+	[958,999,86,57,0,1,0,80,"突撃隊長のプレート","トツケキ","0",13,150,19,2,57,2,0],
+	[959,999,56,50,0,1,0,80,"精鋭工兵の鎧","セイエイ","0",13,150,19,2,57,2,0],
+	[960,999,52,41,0,1,0,80,"暗殺者のローブ","アンサツ","0",13,150,19,2,57,2,0],
+	[961,999,55,36,0,1,0,80,"ウォーロックの戦闘ローブ","ウオオロ","0",13,150,19,2,57,2,0],
+	[962,999,53,25,0,1,0,80,"衛生兵のローブ","エイセイ","0",13,150,19,2,57,2,0],
+	[963,999,54,35,0,1,0,80,"精鋭軍兵のスーツ","セイエイ","0",13,150,19,2,57,2,0],
+	[964,999,59,25,0,1,0,80,"精鋭射手のスーツ","セイエイ","0",13,150,19,2,57,2,0],
+	[965,999,91,20,0,1,0,80,"司令官のマント","シレイカ","0",13,50,19,1,57,1,0],
+	[966,999,89,28,0,1,0,80,"指揮官のマント","シキカン","0",13,50,19,1,57,1,0],
+	[967,999,59,20,0,1,0,80,"保安官のマント","ホアンカ","0",13,50,19,1,57,1,0],
+	[968,999,91,15,0,1,0,80,"戦闘グリーブ","セントウ","0",13,100,19,1,57,1,0],
+	[969,999,89,9,0,1,0,80,"軍靴","クンクツ","0",13,100,19,1,57,1,0],
+	[970,999,59,9,0,1,0,80,"戦闘ブーツ","セントウ","0",13,100,19,1,57,1,0],
+	[971,100,0,0,0,0,0,0,"突撃体長+戦闘グリ+司令官マント","0","人間形モンスター以外から受けるダメージ 3倍増加<BR>受ける[ヒール]と一部回復アイテムの性能 10% 増加<BR>物理攻撃を受けた時、一定確率で10秒にわたって6000のHPを回復",213,3,15,12,0],
+	[972,100,0,0,0,0,0,0,"精鋭工兵+戦闘グリ+司令官マント","0","人間形モンスター以外から受けるダメージ 3倍増加<BR>[ヒール]と[ポーションピッチャー]のHP回復量 10% 増加",211,3,15,12,194,1,5065,20,0],
+	[973,100,0,0,0,0,0,0,"暗殺者+戦闘グリ+司令官マント","0","人間形モンスター以外から受けるダメージ 3倍増加<BR>物理攻撃を受けた時、一定確率で10秒にわたって3000のHPを回復",212,3,15,12,12,5,10,5,0],
+	[974,100,0,0,0,0,0,0,"ウォロク+軍靴+指揮官マント","0","人間形モンスター以外から受けるダメージ 3倍増加<BR>物理攻撃を受けた時、一定確率で10秒間、鎧に念属性を付与",214,3,15,12,151,20,0],
+	[975,100,0,0,0,0,0,0,"衛生兵+軍靴+指揮官マント","0","人間形モンスター以外から受けるダメージ 3倍増加<BR>物理攻撃を受けた時、一定確率で10秒間、鎧に念属性を付与",214,3,15,12,7037,50,7387,50,91,6,0],
+	[976,100,0,0,0,0,0,0,"精鋭軍兵+軍靴+指揮官マント","0","人間形モンスター以外から受けるダメージ 3倍増加",215,3,15,12,78,10,74,25,0],
+	[977,100,0,0,0,0,0,0,"精鋭射手+戦闘ブーツ+保安官マント","0","人間形モンスター以外から受けるダメージ 3倍増加",215,3,15,12,78,10,74,25,0],
+	[978,999,87,1,0,0,0,70,"武功勲章(剣士系)","フコウク","近接物理攻撃時、低確率で敵にスタンをかける",80,5,89,5,8,10,13,500,14,50,0],
+	[979,999,52,1,0,0,0,70,"武功勲章(シーフ系)","フコウク","近接物理攻撃時、低確率で敵に毒をかける",80,5,89,5,9,10,13,300,14,80,0],
+	[980,999,53,1,0,0,0,70,"武功勲章(聖系)","フコウク","近接物理攻撃時、低確率で敵に沈黙をかける",80,5,89,5,19,6,13,600,0],
+	[981,999,55,1,0,0,0,70,"武功勲章(魔系)","フコウク","近接物理攻撃時、低確率で敵に石化をかける",80,5,89,5,19,6,13,600,0],
+	[982,999,54,1,0,0,0,70,"武功勲章(弓系)","フコウク","近接物理攻撃時、低確率で敵に暗黒をかける",80,5,89,5,10,10,13,300,14,80,0],
+	[983,999,56,1,0,0,0,70,"武功勲章(商人系)","フコウク","近接物理攻撃時、低確率で敵に呪いをかける",80,5,89,5,12,10,13,500,14,50,0],
+	[984,999,59,1,0,0,0,70,"保安官バッジ","ホアンカ","遠距離物理攻撃時、一定確率で暗黒をかける",80,5,89,5,10,10,13,300,14,80,0],
+	[985,62,1001,16,100000,1,50,70,"焔のマント","ホノオノ","0",15,5,89,1,19,2,43,2,0],
+	[986,60,1079,55,50,0,170,70,"カメレオンアーマー","カメレオ","ベースレベルの一定数値程度HPとSPが増加。(Lv1につきHP7、SP0.5)<BR>魔法攻撃を受けた時、一定確率で鎧の能力が発動時、2秒間全ての魔法にかからない。<BR>ソードマン系、マーチャント系、シーフ系キャラクターが装備時、DEF + 3<BR>マジシャン系、アーチャー系、アコライト系キャラクターが装備時、MDEF + 5",0],
+	[987,60,1079,20,50,1,100,0,"スプリントメイル","スフリン","アイテムによる回復効果+3%",3,1,75,5,92,3,0],
+	[988,60,122,36,50,1,30,70,"カンドゥラ","カントウ","0",2,1,9,5,12,2,0],
+	[989,60,1079,45,50,1,100,0,"ナーガの鱗鎧","ナアカノ","一定確率で物理攻撃時、10秒間 ATK + 20 効果発動",19,2,0],
+	[990,60,1054,38,50,1,40,75,"改良型タイツ","カイリヨ","0",19,2,11,3,0],
+	[991,60,1051,75,50,1,350,82,"ライフリンク","ライフリ","0",3,2,19,5,75,50,0],
+	[992,61,1051,105,0,1,100,50,"トーナメントシールド","トオナメ","0",80,1,0],
+	[993,61,1079,35,0,1,50,0,"ナーガの鱗盾","ナアカノ","物理ダメージを受けた時、一定確率で物理ダメージを 5秒間反射。<BR>ダメージ反射率は盾の精錬値 1当たり3%ずつ増加",19,3,0],
+	[994,61,128,52,0,1,80,70,"シャドウガード","シヤトウ","0",0],
+	[995,100,0,0,0,0,0,0,"シャドウガード+ウォーカー","0","敵を攻撃した際高い確率で暗黒をかける。<BR>また攻撃を受けた時、10秒間 FLEE + 20 増加する確率が生ずる。",0],
+	[996,62,1079,14,0,1,50,0,"テンドリルリオンの皮","テントリ","0",62,5,61,5,52,5,53,5,0],
+	[997,62,123,10,0,1,50,70,"ムシカ","ムシカ","近接物理攻撃を受けた時、一定確率で自分にヒール Lv1を使用。<BR>もっと高いレベルを習得している場合、習得したレベルで発動",19,3,0],
+	[998,63,1079,10,0,1,30,0,"スプリントシューズ","スフリン","0",2,1,76,5,0],
+	[999,100,0,0,0,0,0,0,"スプリントセット","0","0",15,7,16,7,73,-3,74,15,0],
+	[1000,64,1079,0,0,0,10,70,"エンジェリックリング","エンシエ","ヒール、ポーションピッチャー、サンクチュアリ使用時、一定確率で指輪の能力が発動時、<BR>3秒間ヒール、ポーションピッチャー、サンクチュアリのHP回復効果が 20%増加する。",4,2,5,1,19,2,0],
+	[1001,64,1079,0,0,0,10,0,"スプリントリング","スフリン","0",73,-10,74,-5,0],
+	[1002,64,1079,0,0,1,20,0,"キュートな花飾り","キユウト","0",19,2,14,25,0],
+	[1003,64,122,1,0,0,10,80,"冷静な心","レイセイ","0",2,3,0],
+	[1004,100,0,0,0,0,0,0,"盗賊＋冷情","0","0",28,8,12,3,0],
+	[1005,64,128,1,0,0,10,80,"ブラックキャット","フラツク","0",5,3,0],
+	[1006,100,0,0,0,0,0,0,"盗賊＋黒猫","0","0",29,8,8,3,73,-3,0],
+	[1007,64,1054,0,0,10,20,84,"カーズドスター","カアスト","装備時、10秒当たりHP 50消費。装備解除時、HP 300 消費。<BR>遠距離物理攻撃時、2%の確率で敵に呪いをかける",5,2,6,-1,19,3,0],
+	[1008,100,0,0,0,0,0,0,"カーズドライヤ＋スター","0","呪いをかける確率 2% 追加",17,25,0],
+	[1009,64,1079,1,0,1,12,90,"リネングローブ","リネンク","0",2,2,5,1,19,1,0],
+	[1010,100,0,0,0,0,0,0,"改良タイツ＋リネング","0","0",11,5,0],
+	[1011,50,0,2,0,0,150,60,"電波アンテナ","テンハア","0",19,2,220,18,0],
+	[1012,50,0,0,0,0,100,30,"こっこちゃん","コツコチ","物理攻撃時に低確率で[ラウドボイス]発動",12,-10,193,1,0],
+	[1013,50,0,3,0,1,10,0,"ファンタ オレンジ缶","フアンタ","0",0],
+	[1014,50,0,3,0,1,10,0,"ファンタ グレープ缶","フアンタ","0",0],
+	[1015,50,0,3,0,1,10,0,"コカ・コーラ缶","コカコオ","0",0],
+	[1016,50,0,3,0,1,10,0,"からだ巡茶帽","カラタメ","0",6,1,0],
+	[1017,50,0,3,0,1,10,0,"紅茶花伝帽","コウチヤ","0",2,1,0],
+	[1018,50,0,2,0,1,10,0,"コカ・コーラ帽","コカコオ","0",1,1,0],
+	[1019,50,0,0,50,1,10,10,"ハッピーアフロかつら","ハツヒイ","0",60,1,221,48,0],
+	[1020,50,0,2,0,0,10,50,"アンブレラハット","アンフレ","0",61,3,0],
+	[1021,50,0,4,0,0,30,10,"たれ慰める者","タレナク","0",5,3,221,53,0],
+	[1022,50,0,6,3,0,20,0,"パン袋","ハンフク","0",13,100,57,4,131,4,193,1,0],
+	[1023,51,0,1,4,0,10,50,"オーディンマスク","オオテイ","0",37,6,8,-10,0],
+	[1024,50,0,3,0,0,20,0,"パンプキンハット2007","ハンフキ","全ての基本ステータス+3<BR>悪魔耐性+5%<BR>(上記の効果は2007年ハロウィン期間のみ)",0],
+	[1025,52,0,0,0,0,10,0,"トナカイの鼻","トナカイ","状態異常[暗黒]に対する耐性+30%<br>モンスターを倒した時、一定確率で菓子包みをドロップする<br>(上記効果はイベント期間のみ)",0],
+	[1026,52,0,0,0,0,10,0,"サンタのひげ","サンタノ","0",0],
+	[1027,50,0,1,0,1,50,60,"たれグラリス人形","タレクラ","0",193,1,4,2,57,5,0],
+	[1028,50,0,1,0,1,50,60,"たれビニット人形","タレヒニ","0",193,1,3,2,57,5,0],
+	[1029,50,0,1,3,0,80,10,"パグダヤ","ハクタヤ","精錬値が 6以上の場合、精錬値が 1上がるたびにMatkが 1%増加する。",5,2,89,3,0],
+	[1030,64,0,0,0,0,10,1,"アウドムラの恩恵","アウトム","全てのモンスターから受けるダメージ5%増加",103,5,0],
+	[1031,50,0,10,1,0,20,0,"勝利の翼","シヨウリ","0",19,10,193,1,194,1,0],
+	[1032,50,0,5,0,0,40,0,"カルメンミランダの帽子","カルメン","物理攻撃を受けた時、一定確率で[魅惑のウィンク]発動",19,3,0],
+	[1033,50,0,0,50,1,10,10,"マーヴェラスアフロかつら","マアウエ","0",60,1,221,48,0],
+	[1034,50,0,10,0,0,200,50,"ドラグーンヘルム","トラクウ","物理攻撃時、一定確率で自分を中心にした5 × 5 セルの<BR>範囲内にいる全ての敵に特定の状態異常効果を与える。",39,20,0],
+	[1035,50,0,4,0,1,10,30,"風の道標","カセノミ","0",2,2,220,23,0],
+	[1036,50,0,5,0,1,80,1,"パレード帽","ハレエト","精錬値が6以上の場合、精錬値が1上がる度にスキルディレイが％単位で短縮",19,2,74,5,0],
+	[1037,51,0,2,0,0,10,50,"ダークネスアイズ","タアクネ","0",5,1,154,100,0],
+	[1038,51,0,2,0,0,80,50,"レギンレイヴの翼","レキンレ","0",61,3,63,3,67,3,69,3,0],
+	[1039,50,0,5,3,1,10,10,"ヒェグン帽","ヒエクン","0",19,3,56,10,193,1,0],
+	[1040,50,0,0,0,0,30,0,"兎耳帽子","ウサキミ","0",2,3,221,99,0],
+	[1041,9,77,40,4,31,50,50,"ジェントルマンの杖","シエント","0",88,125,5,1,0],
+	[1042,100,0,0,0,0,0,0,"ジェントル＋シルクハット","0","杖の精錬値によって魔法攻撃力増加",215,2,214,2,76,5,0],
+	[1043,50,0,4,3,1,80,30,"暗黒のフード","アンコク","0",154,100,153,7,0],
+	[1044,50,0,4,0,0,10,24,"スカーフ","スカアフ","0",19,2,9,5,0],
+	[1045,50,0,0,50,1,10,10,"シャイニーアフロかつら","シヤイニ","0",60,1,221,48,0],
+	[1046,50,0,3,0,0,20,0,"パンプキンハット2008","ハンフキ","全ての基本ステータス+2<BR>カボチャの回復量増加<BR>悪魔形へ与えるダメージ+3%<BR>(上記の効果は2008年ハロウィン期間のみ)",0],
+	[1047,50,1,4,0,0,70,38,"ポポリン帽","ホホリン","0",0],
+	[1048,50,0,6,0,0,50,0,"ティラヤボネット","テイラヤ","0",3,2,0],
+	[1049,52,0,1,0,0,10,0,"甘いキャンディ","アマイキ","0",0],
+	[1050,50,0,5,3,0,300,80,"ダークナイトマスク","タアクナ","0",1,3,0],
+	[1051,64,0,1,0,0,50,80,"ダークナイトベルト","タアクナ","0",1,2,0],
+	[1052,64,0,1,0,0,50,80,"ダークナイトグローブ","タアクナ","0",17,5,0],
+	[1053,100,0,0,0,0,0,0,"ダークナイトセット","0","0",89,10,214,5,58,10,0],
+	[1054,50,0,6,0,1,100,30,"ヴィゾフニルの羽飾り","ウイソフ","0",221,98,0],
+	[1055,50,0,2,0,0,30,30,"シャーマンの髪飾り","シヤアマ","0",13,50,19,3,60,5,0],
+	[1056,64,0,0,0,0,10,30,"シャーマンリング","シヤアマ","0",13,50,76,3,0],
+	[1057,64,0,0,0,0,10,30,"シャーマンイヤリング","シヤアマ","0",4,2,0],
+	[1058,100,0,0,0,0,0,0,"シャーマンセット","0","",13,300,73,15,89,5,380,1,0],
+	[1059,50,0,1,0,0,50,0,"ポリンケーキ帽","ホリンケ","0",6,2,0],
+	[1060,50,0,1,0,0,10,0,"かわいいサンタ帽","カワイイ","0",19,1,6,1,0],
+	[1061,10,64,120,4,1,170,70,"吟遊詩人の弓","キンユウ","0",4,2,76,10,0],
+	[1062,50,0,4,0,0,10,0,"ルイーゼのサンタ帽","ルイイセ","物理攻撃時、低確率でブレッシングLv10・ヒールLv3を自分に発動。<BR>モンスターを倒した時、低確率でクリスマスボックスをドロップする。<BR>LUK+1、MDEF+1以外の効果は、クリスマス期間終了と共に消滅する。<BR>(計算機では計算用に～耐性+5%は残してあります)",6,1,19,1,57,5,56,5,58,5,0],
+	[1063,50,0,2,0,0,40,0,"魚帽子","サカナホ","0",221,97,0],
+	[1064,50,0,3,1,1,10,1,"ダイアデム","タイアテ","0",4,1,89,3,16,3,73,-3,91,3,0],
+	[1065,50,0,2,0,0,30,20,"ヨーヨー帽","ヨオヨオ","0",220,22,0],
+	[1066,50,0,2,0,1,10,0,"大きなハイビスカス","オオキナ","0",19,15,0],
+	[1067,50,0,5,1,0,80,30,"グランペコのヘアバンド","クランヘ","(オークロード、オークヒーローは除く)",1,2,15,-10,83,15,0],
+	[1068,50,0,9,0,1,100,70,"深淵の兜","シンエン","0",77,10,79,-10,0],
+	[1069,50,0,6,0,1,50,40,"大空の帽子","オオソラ","精錬値が 5以上の場合、精錬値が 1上がるたびにLUKが 1増加する。",6,2,19,5,0],
+	[1070,50,0,4,0,1,10,0,"カナダドライ サクラミスト帽","カナタト","0",5,1,0],
+	[1071,50,0,4,0,1,10,0,"紅茶花伝 桜 ミルクティー帽","コウチヤ","0",3,1,0],
+	[1072,50,0,4,0,1,10,0,"ファンタ ゼロレモン缶","フアンタ","0",0],
+	[1073,50,0,0,50,1,10,10,"ファンタスティックアフロかつら","フアンタ","0",60,1,221,48,0],
+	[1074,50,0,8,0,1,40,0,"クルーザー帽","クルウサ","0",80,3,1,1,102,-10,0],
+	[1075,50,0,4,0,1,10,0,"一 茶花帽","ハシメチ","0",13,80,14,20,0],
+	[1076,1,0,120,4,0,0,80,"グロリアスダマスカス","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力15%無視。<BR>近接物理攻撃時、一定確率でオートスペル「レックスディビーナ」Lv 1発動。<BR>[虐殺]Lv1<BR>精錬値が9以上の時<BR>スキル[サプライズアタック] 使用時、一定確率で 5 * 5 範囲に出血効果。",37,40,194,1,0],
+	[1077,2,0,130,4,0,0,80,"グロリアスフランベルジェ","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。ASPD + 10%。<BR>精錬値が9以上の時<BR>スキル[バッシュ]使用時、一定確率でオートスペル [致命的な傷]Lv 2発動。",37,40,194,1,0],
+	[1078,2,0,130,4,0,0,80,"グロリアスレイピア","クロリア","(精錬値 - 5) INT増加。<BR>精錬値が5以上の時<BR>SP消費量-5%。<BR>精錬値が7以上の時<BR>Int+2。SP消費量-5%。<BR>精錬値が9以上の時、Int+3。",4,6,88,80,194,1,0],
+	[1079,2,70,130,4,0,0,80,"グロリアスホーリーアヴェンジャー","クロリア","(精錬値 - 5) INT増加。<BR>精錬値が5以上の時<BR>SP消費量-5%。<BR>精錬値が7以上の時<BR>Int+2。SP消費量-5%。<BR>精錬値が9以上の時<BR>Int+5。スキル[プレッシャー]使用時、オートスペル [レックスエーテルナ]Lv 1発動。<BR>精錬値が10以上の時、Int+3。",4,6,88,80,194,1,0],
+	[1080,3,0,220,4,0,0,80,"グロリアスクレイモア","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv2。<BR>精錬値が9以上の時<BR>近接物理攻撃時、 一定確率でオートスペル [コンセントレイション]Lv 1発動。<BR> [コンセントレイション]Lv 1 以上を習得している場合、習得レベルでスキル発動。<BR>近接物理攻撃時、一定確率でオートスペル [オーラブレイド]Lv 1発動。<BR> [オーラブレイド]Lv 1以上を習得している場合、習得レベルでスキル発動。",37,40,194,1,0],
+	[1081,4,0,130,4,0,0,80,"グロリアススピア","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力10%無視。<BR>ASPD + 5%。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>ナイト系列のキャラクターがスキル[ピアース] 使用時、一定確率でオートスペル [致命的な傷]Lv 2発動。<BR>クルセイダー系列のキャラクターが物理攻撃時、一定確率でオートスペル [プレッシャー]Lv 5発動。 ASPD + 5%。",37,40,194,1,0],
+	[1082,5,0,220,4,0,0,80,"グロリアスランス","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力20%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>クルセイダー系列のキャラクターが近接物理攻撃時、一定確率でオートスペル [プレッシャー]発動。<BR>ナイト系列のキャラクターがスキル[ピアース]使用時、一定確率でオートスペル [致命的な傷]Lv2発動。",37,40,194,1,0],
+	[1083,9,77,70,4,0,0,80,"グロリアスウィザードスタッフ","クロリア","武器の精錬値が1上がる毎にMatkが%で増加。<BR>精錬値が5以上の時<BR>人間形モンスターに5%の追加魔法ダメージ。<BR>人間形モンスターの魔法防御力 10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに5%の追加魔法ダメージ。<BR>人間形モンスターの魔法防御力 15%無視。[破滅]Lv1<BR>精錬値が9以上の時<BR>スキル [ロードオブヴァーミリオン]Lv 10、 [メテオストーム]Lv 10、 [ストームガスト]Lv 10使用時、<BR>一定確率で自分にオートスペル [セイフティウォール]Lv 10発動。",195,1,88,210,177,15,194,1,0],
+	[1084,9,77,70,4,0,0,80,"グロリアスアークワンド","クロリア","精錬値が5以上の時<BR>人間形モンスターの魔法防御力 10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターの魔法防御力 20%無視。<BR>精錬値が9以上の時<BR>Matk + 5%。キャスティングタイム - 5%。スキルディレイ - 5%。",88,135,177,15,194,1,0],
+	[1085,9,77,70,4,0,0,80,"グロリアス治癒の杖","クロリア","精錬値が5以上の時、スキルディレイ -5%。<BR>精錬値が7以上の時<BR>スキルディレイ-5%。[ヒール]系、[サンクチュアリ]の回復量 + 5%。 [祝福]Lv 1。<BR>精錬値が9以上の時<BR>スキル[ヒール]使用時、一定確率でオートスペル [ヒール]Lv 10発動。<BR>精錬値が10以上の時、[ヒール]系、[サンクチュアリ]の回復量 + 10%。",88,135,95,14,194,1,0],
+	[1086,8,0,130,4,0,0,80,"グロリアスモーニングスター","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。ASPD+5%。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>物理攻撃時、一定確率で敵をスタン状態にする。 ASPD + 5%。",37,40,194,1,0],
+	[1087,7,0,220,4,0,0,80,"グロリアスツーハンドアックス","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。ASPD+5%。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力20%無視。<BR>近接物理攻撃時、一定確率でオートスペル [致命的な傷]発動。<BR>[虐殺]Lv2。<BR>精錬値が9以上の時<BR>近接物理攻撃時に発動する [致命的な傷]の発動確率上昇。<BR>スキル [メマーナイト]使用時、一定確率でオートスペル [致命的な傷]Lv 2発動。<BR>スキル [カートターミネーション] 使用時、一定確率でオートスペル [致命的な傷]Lv 2発動。",37,40,194,1,0],
+	[1088,6,179,130,4,0,0,80,"グロリアスクリーヴァー","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。ASPD+5%。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>ASPD + 5%。近接物理攻撃時、一定確率でオートスペル [致命的な傷]Lv 1発動。<BR>スキル [メマーナイト]使用時、一定確率でオートスペル [致命的な傷]Lv2発動。",37,40,194,1,0],
+	[1089,10,0,100,4,0,0,80,"グロリアスハンターボウ","クロリア","武器の精錬値 * 2%分、クリティカルダメージ増加。<BR>精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+5%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>スキル [ダブルストレイフィング]のダメージ + 20%。",37,40,194,1,0],
+	[1090,11,0,140,4,0,0,80,"グロリアスブラッディロア","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>近接物理攻撃時、一定確率で武器が覚醒し、 3秒間 ASPD + 100%。",37,40,194,1,0],
+	[1091,11,0,140,4,0,0,80,"グロリアスジャマダハル","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>クリティカル攻撃で与えるダメージ+10%。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>クリティカル攻撃で与えるダメージ + 10%。<BR>人間形モンスターに Critical + 5。[虐殺]Lv1。<BR>精錬値が9以上の時<BR>近接物理攻撃時、一定確率で武器が覚醒し、 3秒間 ASPD + 100%。",37,40,194,1,0],
+	[1092,14,0,50,4,0,0,80,"グロリアスギター","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>スキル[アローバルカン] 使用時、一定確率でオートスペル [運命のタロットカード] Lv 5発動。",37,40,194,1,0],
+	[1093,15,0,50,4,0,0,80,"グロリアスラリエット","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>スキル[アローバルカン] 使用時、一定確率でオートスペル [運命のタロットカード] Lv 5発動。",37,40,194,1,0],
+	[1094,12,0,90,4,0,0,80,"グロリアスタブレット","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+25%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力20%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>近接物理攻撃時、一定確率で武器が覚醒し、 3秒間 ATK200 増加。",88,115,37,40,194,1,0],
+	[1095,12,0,90,4,0,0,80,"グロリアス黙示録","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+25%。<BR>人間形モンスターの魔法防御力 10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの魔法防御力 20%無視。<BR>精錬値が9以上の時<BR>Matk + 5%。キャスティングタイム - 5%。スキルディレイ - 5%。",88,115,37,40,194,1,0],
+	[1096,13,0,30,4,0,0,80,"グロリアスクロー","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力20%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>近接物理攻撃時、一定確率で [発勁]Lv 5発動。<BR>近接物理攻撃時、一定確率で [速度減少]Lv 1発動。",37,40,194,1,0],
+	[1097,13,0,30,4,0,0,80,"グロリアスフィスト","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力15%無視。<BR>[虐殺]Lv1。<BR>精錬値が9以上の時<BR>[爆裂波動]使用時、オートスペル [練気功]発動。<BR>[阿修羅覇凰拳]のキャスティングタイム - 100%。",37,40,194,1,0],
+	[1098,16,0,55,4,0,0,80,"グロリアス風魔手裏剣","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+30%。<BR>人間形モンスターの防御力15%無視。<BR>近接物理攻撃時、一定確率で武器が覚醒し、 10秒間 [一閃]、 [風魔手裏剣投げ]のダメージ + 100%。 [虐殺]Lv 2。<BR>精錬値が9以上の時<BR>スキル[一閃]使用時、自分にオートスペル [ヒール]Lv 10発動。<BR>スキル [風魔手裏剣投げ]使用時、一定確率でオートスペル [致命的な傷]Lv 2発動。",88,90,37,40,194,1,0],
+	[1099,17,0,80,4,0,0,80,"グロリアスハンドガン","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+5%。<BR>人間形モンスターの防御力15%無視。[虐殺]Lv 1。<BR>精錬値が9以上の時<BR>スキル[ラピッドシャワー] 使用時、オートスペル [フリップザコイン]Lv 1発動。<BR>スキル[ラピッドシャワー]のダメージが武器の精錬値 x 2%増加。",37,40,194,1,0],
+	[1100,18,0,90,4,0,0,80,"グロリアスライフル","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力5%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+20%。<BR>人間形モンスターの防御力15%無視。<BR>[トリプルアクション]のダメージ + 30%。[虐殺]Lv 1。<BR>精錬値が9以上の時<BR>スキル[トラッキング]のダメージが武器の精錬値 x 3%増加。",37,40,194,1,9007430,25,0],
+	[1101,20,0,90,4,0,0,80,"グロリアスガトリングガン","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+5%。<BR>人間形モンスターの防御力15%無視。<BR>[トリプルアクション]のダメージ + 30%。[虐殺]Lv 1。<BR>精錬値が9以上の時<BR>武器の精錬値分、%で物理攻撃で与えるダメージが増加。",37,20,194,1,0],
+	[1102,19,0,110,4,0,0,80,"グロリアスショットガン","クロリア","スプラッシュ攻撃。<BR>精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+15%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+5%。<BR>人間形モンスターの防御力15%無視。<BR>[トリプルアクション]のダメージ + 30%。[虐殺]Lv 1。<BR>精錬値が9以上の時<BR>スキル[スプレッドアタック]のダメージが武器の精錬値 x 2%増加。<BR>スキル[スプレッドアタック] 使用時、一定確率で敵をスタン状態にする。",37,40,194,1,0],
+	[1103,21,0,330,4,0,0,80,"グロリアスグレネードガン","クロリア","精錬値が5以上の時<BR>人間形モンスターに与える物理ダメージ+10%。<BR>人間形モンスターの防御力10%無視。<BR>精錬値が7以上の時<BR>人間形モンスターに与える物理ダメージ+5%。<BR>人間形モンスターの防御力15%無視。<BR>[トリプルアクション]のダメージ + 30%。[虐殺]Lv 1。<BR>精錬値が9以上の時<BR>スキル[グラウンドドリフト]のダメージが武器の精錬値 x 2%増加。<BR>物理攻撃時、一定確率で武器が覚醒し、 20秒間 ASPD + 20%。",37,20,194,1,0],
+	[1104,60,1,10,0,0,0,81,"グロリアススーツ","クロリア","精錬値が7以上の時、<BR>MaxHP + 10%。人間形モンスターから受けるダメージ - 2%。",15,10,57,5,0],
+	[1105,60,1,10,0,0,0,61,"グロリアス量産型スーツ","クロリア","精錬値が7以上の時、<BR>MaxHP + 200。SP回復力 + 10%",13,400,0],
+	[1106,60,1,10,0,0,0,1,"グロリアス普及用スーツ","クロリア","精錬値が7以上の時、<BR>MaxHP + 300。",13,200,0],
+	[1107,63,1,0,0,0,0,81,"グロリアスシューズ","クロリア","精錬値が7以上の時、<BR>MaxHP + 5%。<BR>人間形モンスターから受けるダメージ - 3%。<BR>物理攻撃を受けた時、一定確率でオートスペル [速度増加]Lv 1発動。",15,5,57,2,0],
+	[1108,63,1,0,0,0,0,61,"グロリアス量産型シューズ","クロリア","精錬値が7以上の時、<BR>MaxHP + 7%。MaxSP + 7%",15,3,16,3,0],
+	[1109,63,1,10,0,0,0,1,"グロリアス普及用シューズ","クロリア","精錬値が7以上の時、<BR>MaxHP + 5%。",15,2,0],
+	[1110,62,1,3,0,0,0,81,"グロリアスマフラー","クロリア","精錬値が7以上の時、<BR>MaxHP + 3%。人間形モンスターから受けるダメージ - 3%。",15,2,57,2,0],
+	[1111,64,1,0,0,0,0,81,"グロリアスリング","クロリア","※公式HPのリンクシステムのページではASPD+5%と<BR>※[ポーションピッチャー]の回復量 + 5%がありません。<BR>※ゲーム内説明文には書いてあるようです。<BR>※実際装備してもASPDが上がる模様です。計算機でも効果あります。",13,300,61,10,62,10,63,10,64,10,12,5,73,-3,91,5,0],
+	[1112,64,1,0,0,0,0,61,"グロリアス量産型リング","クロリア","0",7,2,0],
+	[1113,64,1,0,0,0,0,1,"グロリアス普及用リング","クロリア","0",7,1,0],
+	[1114,100,0,0,0,0,0,0,"グロリアス服靴肩セット","0","0",80,5,89,5,91,3,152,100,0],
+	[1115,100,0,0,0,0,0,0,"グロリング+戦場アクセ","0","0",80,5,89,3,91,5,0],
+	[1116,999,0,0,0,0,10,0,"ノービスフィギュア","ノオヒス","ノービス系キャラクターが装備時、追加で MHP + 30",13,70,0],
+	[1117,999,0,0,0,0,10,0,"ソードマンフィギュア","ソオトマ","ソードマン系キャラクターが装備時、追加で DEF + 2",3,1,0],
+	[1118,999,0,0,0,0,10,0,"アコライトフィギュア","アコライ","アコライト系キャラクターが装備時、追加で SP + 50",4,1,0],
+	[1119,999,0,0,0,0,10,0,"マジシャンフィギュア","マシシヤ","マジシャン系キャラクターが装備時、追加でSP回復力 + 5%",4,1,0],
+	[1120,999,0,0,0,0,10,0,"アーチャーフィギュア","アアチヤ","アーチャー系キャラクターが装備時、追加で ATK + 10",5,1,0],
+	[1121,999,0,0,0,0,10,0,"シーフフィギュア","シイフフ","シーフ系キャラクターが装備時、追加で ASPD + 3%",2,1,0],
+	[1122,999,0,0,0,0,10,0,"マーチャントフィギュア","マアチヤ","マーチャント系キャラクターが装備時、追加で CRI + 5",1,1,0],
+	[1123,50,0,4,0,0,50,60,"黒蛇王の帽子","コクタオ","魔法攻撃時、一定確率で 5秒間キャスティングタイム - 50%、FLEE + 30。",4,2,2,2,5,-2,0],
+	[1124,999,0,3,0,1,100,0,"▲めだまやき","メタマヤ","0",220,41,151,5,193,1,0],
+	[1125,999,0,1,0,1,20,0,"▲王冠オウム","オウカン","0",156,100,4,1,221,107,193,1,0],
+	[1126,50,0,0,0,0,10,0,"紅白帽","コウハク","人間型モンスターを倒した時、低確率でおもちをドロップする",0],
+	[1127,50,0,8,0,0,50,30,"かにニッパのヘアピン","カニニツ","魚貝型モンスターを倒した時、低確率でクリスタルブルーをドロップする",221,104,0],
+	[1128,50,0,4,0,0,70,10,"お知らせ看板","オシラセ","0",0],
+	[1129,50,0,4,0,0,30,30,"ノーブルハット","ノオフル","物理攻撃時、低確率でオートスペル[アドレナリンラッシュ]Lv1発動",1,2,0],
+	[1130,50,0,6,0,1,80,80,"皇帝の月桂冠","コウテイ","0",7,1,0],
+	[1131,999,79,0,1,0,75,75,"▲ライオンマスク","ライオン","物理攻撃を受けた時、一定確率で沈黙をかける",19,1,0],
+	[1132,51,0,1,4,0,10,70,"白狐の仮面","ヒヤツコ","※サクライJで「タイガー」と「ぺろりん」の間にあったので読み仮名は「びゃっこ」らしい。",2,1,11,2,0],
+	[1133,52,0,0,0,0,10,30,"海賊の短剣","カイソク","0",71,1,0],
+	[1134,999,0,50,1,3,0,0,"初心者用カッター","シヨシン","0",193,1,0],
+	[1135,999,0,63,1,3,0,0,"初心者用マインゴーシュ[3]","シヨシン","0",193,1,0],
+	[1136,999,0,59,1,3,0,2,"初心者用ファルシオン","シヨシン","0",193,1,0],
+	[1137,999,0,57,1,3,0,2,"初心者用メイス","シヨシン","0",193,1,0],
+	[1138,999,1,100,1,3,0,3,"初心者用バトルアックス","シヨシン","0",193,1,0],
+	[1139,999,0,49,1,3,0,4,"初心者用コンポジットボウ","シヨシン","0",193,1,0],
+	[1140,999,0,15,1,3,0,0,"初心者用ロッド","シヨシン","0",88,32,193,1,0],
+	[1141,999,0,0,0,0,20,0,"▲釣り人のマフラー","ツリヒト","釣り詠唱時間 - 2秒。",0],
+	[1142,999,0,0,0,0,25,0,"▲釣り長靴","ツリナカ","釣り詠唱持続時間 2秒減少。",0],
+	[1143,999,0,0,0,0,10,0,"▲釣り餌","ツリエサ","釣り詠唱時間 - 1秒。",0],
+	[1144,51,0,0,4,0,30,50,"タイガーフェイス","タイカア","0",32,5,0],
+	[1145,50,0,2,0,0,100,10,"ヘルモーズキャップ","ヘルモオ","0",12,10,17,-20,89,-10,0],
+	[1146,50,0,1,0,1,20,0,"花のカチューシャ","ハナノカ","精練値が + 1される毎にアーススパイク、ヘヴンズドライブのダメージ1％増加。",5132,15,5133,15,7132,25,7133,25,0],
+	[1147,51,0,0,0,0,10,70,"イフリートの耳","イフリイ","0",19,3,1,1,63,5,61,-5,5051,2,5125,2,5122,2,5006,2,5070,2,5007,2,0],
+	[1148,52,0,0,0,0,10,50,"真紅の薔薇","シンクノ","モンスターを倒した時、一定確率でしおれないバラをドロップ。",6,1,0],
+	[1149,50,0,6,0,0,300,75,"角兜","ツノカフ","",381,1,13,100,264,-30,0],
+	[1150,50,0,0,0,1,50,0,"ニューカウボーイハット","ニユウカ","0",17,15,9,-5,0],
+	[1151,50,0,2,0,1,75,45,"クアティハット","クアテイ","0",193,1,2,3,0],
+	[1152,50,0,6,0,0,25,1,"聖火冠","セイカカ","0",193,1,63,20,220,34,0],
+	[1153,50,0,3,0,0,20,1,"風車帽子","カサクル","※サクライJの「か」の店に置いてあったので、読み仮名は「ふうしゃ」でなく「かざぐるま」らしい。",15,5,16,5,0],
+	[1154,50,0,0,1,1,10,45,"真実の愛","シンシツ","0",193,1,19,10,73,-10,102,5,0],
+	[1155,50,0,1,0,0,80,1,"ウサギの魔術帽子","ウサキノ","0",4,1,14,50,221,109,221,110,221,111,221,89,0],
+	[1156,1,1052,110,822,3,50,50,"クリーク","クリイク","バックスタブ使用時、高確率(10%?)で出血。",5169,15,0],
+	[1157,1,1052,135,833,2,5,50,"ヴァイナ","ウアイナ","サプライズアタック使用時、高確率(10%?)で毒をかける。<BR>近接物理攻撃時、低確率で5秒間ATK10%増加。",0],
+	[1158,2,1070,170,823,31,150,50,"ルーベル","ルウヘル","近接物理攻撃時、低確率(0.5%?)で15秒間、バッシュ/ボウリングバッシュの攻撃力20%増加状態になる。",0],
+	[1159,3,51,180,4,31,200,80,"達人の剣","タツシン","バッシュマスター時、バッシュの攻撃力50%増加。<BR>ボウリングバッシュマスター時、ボウリングバッシュの攻撃力50%増加。",1,1,5,1,0],
+	[1160,3,1051,200,822,3,380,50,"クラスナヤ","クラスナ","STRが95以上の場合、ATK+20。",0],
+	[1161,8,53,160,3,2,180,80,"達人の槌[3]","タツシン","ディバインプロテクションLv1ごとに[ヒール]系と[サンクチュアリ]の回復量1%増加。<BR>メイス修練Lv1ごとにCRI+2。",199,23,199,89,4,1,6,1,0],
+	[1162,8,1001,130,3,2,50,50,"エルデ","エルテ","0",14,50,5244,20,5248,20,91,10,0],
+	[1163,8,1001,130,3,2,50,50,"赤いスクエアバッグ","アカイス","モンスターを倒した時、一定確率で一部のポーション系アイテムをドロップする。<BR>※赤、紅、黄、白、青。<BR>STRが90以上の場合、近接物理攻撃時スタン確率+5%。",13,200,5244,20,5248,20,0],
+	[1164,6,1070,140,833,2,150,50,"ベチェルアックス","ヘチエル","LUKが90以上である場合ATK+20。<BR>DEXが90以上である場合CRI+5。<BR>LUKとDEXがどちらも90以上である場合、追加でメマーナイトの攻撃力+15%。",0],
+	[1165,7,56,250,3,2,300,80,"達人の斧[3]","タツシン","ハンマーフォール使用時、 5% の確率でオートスペル[マグナムブレイクLv3] 発動。<BR>短剣製作マスター時 ATK +10<BR>剣製作マスター時 ATK +10<BR>両手剣製作マスター時 ATK +10<BR>ナックル製作マスター時 ATK +10<BR>槍製作マスター時 ATK +10<BR>斧製作マスター時 ATK +10<BR>メイス製作マスター時 ATK +10",199,139,199,140,199,141,199,142,199,143,199,144,199,145,3,2,0],
+	[1166,7,126,210,4,20,270,75,"ブラディウムハンマー","フラテイ","ハンマーフォール使用時、スタン確率+5%。<BR>ハンマーフォール使用時、精錬値+1につきスタン確率+2%。",0],
+	[1167,7,1070,330,833,1,400,50,"ギガントアックス","キカント","純粋なSTRが95以上の場合、HIT+10、攻撃速度+3%",5326,15,0],
+	[1168,9,77,100,4,0,10,70,"古代樹の杖","コタイシ","精錬値+6以上の時、精錬値1につきINT+1。<BR>精錬値+6以上の時、MHP-200/MSP-100。(+10でも-200と-100)",88,155,4,4,0],
+	[1169,9,1055,30,3,2,50,50,"ラクリマスティック","ラクリマ","製錬値 +1につき MDEF + 1、ストームガストのダメージが+1%。<BR>精錬値+10のとき、追加でストームガストのキャスティング時間-8%。",88,180,4,4,0],
+	[1170,9,1053,30,833,1,50,50,"クローチェスタッフ","クロウチ","ヒール使用時、低確率で自分に[ブレッシング]発動。<BR>(自分が習得しているレベルで発動)",20,6,88,175,4,4,0],
+	[1171,9,1055,30,4,20,50,50,"スタッフオブオルド","スタツフ","ドラゴノロジーマスター時、INT+3、SP消費量15%減少。",199,234,88,170,4,2,5,1,0],
+	[1172,9,1055,30,4,0,100,50,"クロノス","クロノス","精錬値+2につきINT+1、MHP+50。<BR>魔法攻撃時、低確率で5秒間MATK+12%、SP消費量20%増加状態になる。",195,1,88,240,4,3,13,300,0],
+	[1173,9,1053,30,833,1,100,50,"スタッフオブティアー","スタツフ","ヒール使用時、低確率でSP200回復。<BR>精錬値+2につきMATK+1%。",195,1,20,6,88,220,4,6,3,2,0],
+	[1174,10,124,100,833,2,100,50,"ファルケンブリッツ","フアルケ","0",5272,10,5040,10,5044,10,0],
+	[1175,11,122,120,833,2,120,50,"クリシュナ","クリシユ","※[ソニックブロー]を習得している場合、自分が習得しているレベルで発動する。",5084,10,221,125,0],
+	[1176,11,122,130,833,2,100,50,"チャクラム","チヤクラ","カタール修練をマスター時、ATK+10、メテオアサルトの攻撃力+20%。<BR>※2009年韓国ではATK+10がHIT+10に変更されたようです。",199,81,0],
+	[1177,50,1,5,770,10,90,55,"大型オークヒーローの兜","オオカタ","全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない。<BR>(武器のサイズ補正が100%で計算。つまり杖には意味が無い)",1,2,3,1,0],
+	[1178,50,0,0,0,1,20,0,"肉球のヘアピン","ニクキユ","0",9,5,11,3,0],
+	[1179,50,0,1,0,0,10,0,"グリーンヘアバンド","クリイン","染色版は[グリーン][レッド]「ブルー][ホワイト]の４色。",14,20,193,1,0],
+	[1180,50,0,1,0,0,20,0,"フラワーヴェール","フラワア","0",6,3,19,2,0],
+	[1181,999,0,2,0,1,20,0,"▲天女の花","テンニヨ","0",4,1,19,1,54,5,0],
+	[1182,999,0,6,0,1,10,70,"▲ネクタイ","ネクタイ","0",3,1,0],
+	[1183,999,0,3,0,1,60,70,"▲赤ちゃん天使の像","アカチヤ","物理攻撃を受けた時、一定確率で自分にリカバリーLv1が発動する。",19,2,0],
+	[1184,999,0,0,0,0,10,0,"▲赤いくし","アカイク","0",10,6,0],
+	[1185,999,0,6,0,0,50,70,"▲カエル帽子","カエルホ","0",19,1,34,12,174,12,0],
+	[1186,999,0,0,3,1,30,0,"▲一人遊びの箱(A)","ヒトリア","グラフィティLv1使用可能",0],
+	[1187,999,0,0,3,1,30,0,"▲一人遊びの箱(B)","ヒトリア","グラフィティLv1使用可能",0],
+	[1188,999,0,0,0,0,10,0,"▲口にくわえたスティックキャンディ","クチニク","0",14,5,0],
+	[1189,60,1001,20,0,1,50,0,"ドラゴンベスト","トラコン","0",19,3,0],
+	[1190,60,1072,60,0,1,100,1,"ボーンプレート","ホオンフ","攻撃を受けたとき、 一定の確率(1%?)で自分周辺の 5×5セルにいる対象に出血を発生させる。",1,1,19,3,307,10,302,10,0],
+	[1191,61,1079,98,0,1,180,65,"ブラディウムシールド","フラテイ","0",13,500,5159,60,5384,60,2,-1,0],
+	[1192,62,1001,14,0,1,100,0,"ドラゴンのマント","トラコン","0",2,1,19,5,0],
+	[1193,62,1001,25,3620,1,40,90,"スキンオブシャドウ","スキンオ","レベル / 3 + (製錬値×10)の MSP 増加。<BR>1%の確率で敵に与えたダメージの 1%を SPとして吸収。",19,3,264,7,0],
+	[1194,63,1001,16,0,10,50,60,"セフィロトシューズ","セフイロ","10秒ごとに HP 30 回復。<BR>アイテムによる回復効果+5%",15,10,75,5,3,2,19,3,92,5,0],
+	[1195,64,0,0,0,0,10,0,"知恵の王の指輪","チエノオ","0",13,50,14,20,0],
+	[1196,64,0,0,0,1,10,70,"リングオブアイズ","リンクオ","0",10,2,14,25,0],
+	[1197,64,1001,0,0,1,20,75,"水玉ブローチ","ミスタマ","0",61,5,15,1,19,2,0],
+	[1198,64,0,0,880,1,20,1,"ブラディウムイヤリング","フラテイ","0",4,1,5,1,100,5,0],
+	[1199,64,0,0,880,1,20,1,"ブラディウムリング","フラテイ","0",1,1,3,1,17,5,0],
+	[1200,64,0,0,880,1,20,1,"ブラディウムブローチ","フラテイ","純粋AGIが120以上の場合CRI + 4。",2,1,9,4,0],
+	[1201,999,0,0,0,0,25,0,"▲小さな釣り台","チイサナ","釣り詠唱時間3秒減少。",0],
+	[1202,100,0,0,0,0,0,0,"▲ほお紅&ネクタイ","0","0",12,3,73,-3,8,-5,102,5,0],
+	[1203,100,0,0,0,0,0,0,"ドラゴンベスト&マント","0","0",212,5,9,15,0],
+	[1204,50,0,6,0,1,10,10,"ネクロマンサーの頭巾","ネクロマ","0",193,1,221,112,0],
+	[1205,50,0,5,1,0,60,20,"さすらい狼の帽子","サスライ","0",193,1,3,5,9,10,0],
+	[1206,50,1,4,0,1,50,30,"かえる王子の帽子","カエルオ","0",193,1,2,1,0],
+	[1207,51,0,0,4,0,30,50,"ジャガーフェイス","シヤアカ","0",43,5,0],
+	[1208,50,0,3,0,1,50,70,"ダークネスヘルム","タアクネ","0",0],
+	[1209,100,0,0,0,0,0,0,"ダーク+天使の羽耳","0","0",211,1,12,2,0],
+	[1210,100,0,0,0,0,0,0,"ダーク+悪魔の羽耳","0","0",211,1,80,5,0],
+	[1211,100,0,0,0,0,0,0,"ダーク+ペコペコの羽耳","0","0",212,1,9,3,0],
+	[1212,100,0,0,0,0,0,0,"ダーク+黒縁メガネ","0","0",214,1,89,2,0],
+	[1213,100,0,0,0,0,0,0,"ダーク+ダークネスアイズ","0","0",215,1,25,3,0],
+	[1214,50,0,2,0,1,20,10,"真っ赤なマーチングハット","マツカナ","物理攻撃時、一定確率で[アスペルシオ]Lv2発動。",1,2,0],
+	[1215,50,0,7,0,1,100,50,"スクーターヘルメット","スクウタ","0",194,1,0],
+	[1216,52,0,0,0,0,10,30,"船長のパイプ","センチヨ","0",0],
+	[1217,100,0,0,0,0,0,0,"船長の帽子+パイプ","0","船長の帽子の精錬値分、遠距離物理攻撃が、%で増加。",0],
+	[1218,50,0,2,0,0,30,0,"月ウサギの帽子","ツキウサ","キューペット[モチリン]を連れているとき、更にスタンに対する耐性+10%。<BR>また、モチリンの親密度が[きわめて親しい]場合、<BR>無形モンスターを倒した時、低確率で[おもち]をドロップ。",2,3,5,1,151,15,0],
+	[1219,50,0,5,1,1,100,30,"サマンバイア","サマンハ","0",76,8,0],
+	[1220,50,0,2,0,0,30,1,"ルナティック帽子","ルナテイ","動物形モンスターを倒した時、一定確率で「虹色ニンジン」をドロップ。",19,2,6,5,11,5,0],
+	[1221,51,0,1,4,0,10,0,"キューブマスク","キユウフ","物理攻撃時、一定確率でオートスペル[パンボイス]発動。",0],
+	[1222,50,0,1,0,0,40,30,"グリフォン帽子","クリフオ","物理攻撃時、一定確率で[ライトニングローダーLv1]が発動する。",0],
+	[1223,50,0,4,0,0,10,1,"レディータニー人形","レテイイ","バナナの回復力 + 100%。<BR>モンスターを倒した時、高確率でバナナをドロップ。<BR>近接物理攻撃を受けた時、低確率でテレポート Lv1発動。",193,1,194,1,0],
+	[1224,50,0,0,1,1,40,1,"ウサギの耳当て","ウサキノ","0",80,4,89,4,0],
+	[1225,50,0,0,0,1,50,60,"たれリリア人形","タレリリ","0",13,500,57,5,193,1,0],
+	[1226,50,0,0,0,1,50,60,"たれドロシー人形","タレトロ","0",14,80,57,5,193,1,0],
+	[1227,50,0,0,0,1,30,70,"たれモロクの現身（人間型）","タレモロ","近接物理攻撃、魔法攻撃でモンスターを倒した時、SP + 2。<BR>物理攻撃を受けた時、一定確率で「致命的な傷」Lv2発動。",193,1,0],
+	[1228,50,0,3,0,1,60,50,"サザンクロス","ササンク","精錬値が 6以上の時、精錬値が1上がる毎にボスモンスターの魔法防御力を無視する効果が増加。",4,1,297,5,0],
+	[1229,50,0,2,0,1,10,30,"憂郷のサクラ","ユウキヨ","",73,35,380,1,0],
+	[1230,50,0,3,0,0,100,10,"ぶたさん貯金箱","フタサン","モンスターを倒した時、一定確率でZenyを取得。",193,1,74,-10,0],
+	[1231,52,0,0,0,0,10,10,"ポリンの手紙","ホリンノ","モンスターを倒した時、一定確率で[まだ熟してないリンゴ]をドロップ。",33,5,0],
+	[1232,50,0,1,0,0,10,0,"レッドヘアバンド","レツトヘ","染色版は[グリーン][レッド]「ブルー][ホワイト]の４色。",14,20,193,1,0],
+	[1233,50,0,1,0,0,10,0,"ブルーヘアバンド","フルウヘ","染色版は[グリーン][レッド]「ブルー][ホワイト]の４色。",14,20,193,1,0],
+	[1234,50,0,1,0,0,10,0,"ホワイトヘアバンド","ホワイト","染色版は[グリーン][レッド]「ブルー][ホワイト]の４色。",14,20,193,1,0],
+	[1235,50,0,2,0,1,60,50,"フリストの帽子","フリスト","0",47,10,0],
+	[1236,2,1,170,4,3,120,50,"フリストの剣","フリスト","0",0],
+	[1237,100,0,0,0,0,0,0,"フリスト帽子＋剣","0","0",37,4,8,10,0],
+	[1238,100,0,0,0,0,0,0,"フリスト剣+オーディン祝福","0","0",5076,5,14,50,0],
+	[1239,50,0,1,0,0,40,1,"インプ帽子","インフホ","物理攻撃時、一定確率で[フレイムランチャー]Lv1が発動する。",0],
+	[1240,50,1,4,0,0,60,18,"ビール帽子","ヒイルホ","モンスターを倒した時、一定確率で「焼きキノコ」、<BR>「焼きソーセージ」、「焼きトウモロコシ」をドロップ。",0],
+	[1241,50,0,2,0,1,20,10,"エンジニアキャップ","エンシニ","0",30,10,0],
+	[1242,50,0,1,0,0,40,1,"スリーパー帽子","スリイハ","物理攻撃時、一定確率で「サイズミックウェポンLv1」が発動する。",0],
+	[1243,50,0,1,0,0,40,1,"サボテン帽子","サホテン","植物形モンスターを倒した時、一定確率で「サボテンの針」をドロップ。",193,1,0],
+	[1244,50,0,6,0,0,25,1,"アイスクリーム帽子","アイスク","精錬値が8以上の時、水属性攻撃に対する耐性がさらに+5%される。",194,1,220,42,61,15,0],
+	[1245,50,0,6,0,1,10,40,"たれエドガ","タレエト","0",193,1,220,43,15,-3,102,-10,0],
+	[1246,50,0,3,0,0,70,1,"レッドベレー","レツトヘ","0",193,1,37,5,57,5,0],
+	[1247,50,0,1,0,1,50,1,"ノアの帽子","ノアノホ","アコライト系が装備時、[ホーリーライト]の攻撃力+5%。<BR>精錬値7以上の時、追加で[ホーリーライト]の攻撃力+5%。",19,3,76,3,0],
+	[1248,50,0,3,0,0,30,0,"怪盗アニバーサリー帽","カイトウ","物理攻撃時、一定確率で[スティール]Lv1発動。",2,1,0],
+	[1249,100,0,0,0,0,0,0,"怪盗＋片目眼鏡","0","[スティール]Lv1の発動率が増加。",0],
+	[1250,51,0,0,0,0,10,10,"ホークアイ","ホオクア","0",8,10,0],
+	[1251,61,0,1,0,1,50,10,"トイシールド","トイシイ","精錬値 + 6以上の時、更に完全回避が追加で+ 3。<BR>BaseLv79以下の時、Flee + 5、無属性攻撃で受けるダメージ - 5%。",11,2,0],
+	[1252,63,0,1,0,1,30,10,"トレーニングシューズ","トレエニ","0",15,2,16,2,75,5,76,5,0],
+	[1253,100,0,0,0,0,0,0,"トレーニング+ランニング+ブリーフ","0","0",211,2,0],
+	[1254,50,0,2,0,1,10,30,"白睡蓮の冠","シロスイ","ココナッツの回復量 25% 増加。<BR>※入手時にレイブオルマイC/リーフキャットC/ドリアードC/ジャイアントホーネットCの<BR>４種類のカードのどれかが強制的にスロットに打ち込まれる。",19,3,0],
+	[1255,50,0,7,3,0,40,1,"カードボードボックス","カアトホ","物理攻撃時、一定確率で相手に呪いを付与。",193,1,0],
+	[1256,50,0,4,0,0,10,0,"バレンタイン帽","ハレンタ","0",0],
+	[1257,64,0,0,0,0,0,0,"賛成派の証","サンセイ","モンスターを倒した時、一定確率でチョコレート、<BR>ホワイトチョコ、チョコレートドリンクをドロップする。<BR>※効果はイベント期間のみ。",0],
+	[1258,100,0,0,0,0,0,0,"0","0","物理攻撃時に一定確率で[ホーリークロス]Lv5発動。<BR>さらに結婚している場合、物理攻撃を受けた時、<BR>一定確率で[エンジェラス]Lv3発動。<BR>※これらの効果は2010年3月23日まで。<BR>※ただし計算機ではMaxSP+150の効果は計算できるよう残しておきます。",14,150,0],
+	[1259,64,0,0,0,0,0,0,"反対派の証","ハンタイ","モンスターを倒した時、一定確率でチョコレート、<BR>ホワイトチョコ、チョコレートドリンクをドロップする。<BR>※効果はイベント期間のみ。",0],
+	[1260,100,0,0,0,0,0,0,"0","0","全ての武器でダブルアタックLv2が使用可能。<BR>ダブルアタックLv3以上を習得している場合、<BR>全ての武器で習得Lvのダブルアタックが使用可能となる。<BR>さらに結婚していない場合、物理攻撃を受けた時、<BR>一定確率で[シグナムクルシス]Lv5発動。<BR>※これらの効果は2010年3月23日まで。<BR>※ただし計算機ではMaxHP+300とダブルアタックの効果は計算できるよう残しておきます。",13,300,0],
+	[1261,50,0,1,3,1,30,10,"ラブラビットフード","ラフラヒ","物理攻撃時、一定確率でオートスペル[グロリア]Lv3発動。<BR>純粋なAgiが80以上の場合、追加で発動確率がさらに上昇。",193,1,0],
+	[1262,50,0,6,0,0,20,30,"たれリーフキャット","タレリイ","モンスターを倒した時、一定確率で「猫眼石」をドロップ。",193,1,0],
+	[1263,100,0,0,0,0,0,0,"＋くわえた魚","0","「おいしい魚」の回復量+25%。<BR>モンスターを倒した時、「おいしい魚」をドロップする確率が上昇する。",0],
+	[1264,50,0,0,0,0,50,1,"燃える太陽","モエルタ","0",193,1,7051,5,5051,5,7052,5,5052,5,5053,3,5125,3,102,-5,0],
+	[1265,50,0,5,0,1,10,30,"ノルンの羽帽子","ノルンノ","0",19,3,14,30,49,10,0],
+	[1266,64,0,0,3230,10,10,45,"ヒュッケの黒い尻尾","ヒユツケ","0",12,3,10,7,0],
+	[1267,100,0,0,0,0,0,0,"+ヒュッケの黒い猫耳","0","「ヒュッケの黒い猫耳」の精錬値が+7以上の場合、Critical+5",70,10,0],
+	[1268,50,0,1,0,1,50,30,"マジェスティックデビルホーン","マシエス","0",37,10,0],
+	[1269,50,0,0,0,1,10,10,"漆黒のリボン","シツコク","0",19,5,60,5,78,5,0],
+	[1270,50,0,4,0,0,50,50,"アミストルキャップ","アミスト","物理攻撃を受けた時、一定確率で2秒間受ける全ての物理ダメージを20%減少し、2秒間MDEFが20%減少する。",3,5,0],
+	[1271,52,0,1,0,0,30,50,"サムライマスク","サムライ","0",80,1,0],
+	[1272,50,0,0,0,0,10,0,"だいだい帽","タイタイ","モンスターを倒した時、一定確率で[オレンジ]をドロップ。<BR>キューペットモチリンを連れていて、かつ親密度が「親しい」以上の場合、<BR>物理攻撃時に一定確率で[キリエエレイソン]Lv1発動。",193,1,194,1,6,3,0],
+	[1273,50,0,0,1,0,50,0,"彷徨う者の笠","サマヨウ","精錬値が5以上の時、追加でFlee+5。<BR>精錬値が7以上の時、追加でFlee+2、AGI+2。",9,3,0],
+	[1274,50,0,2,0,0,80,30,"リムーバの帽子","リムウハ","無形モンスターを倒した時、一定確率で<BR>「空きビン」、「ディトリミン」、「カルボーディル」をドロップ。",193,1,19,1,0],
+	[1275,50,0,0,1,1,50,45,"聖母の慈愛","セイホノ","物理攻撃時、一定確率で敵に「ブレッシングLv1」を使用する。",51,-5,56,-5,0],
+	[1276,51,0,3,4,0,10,30,"タナトスの憎悪仮面","タナトス","0",3,1,0],
+	[1277,50,0,1,0,1,80,1,"桜花冠","サクラハ","0",19,3,14,25,0],
+	[1278,100,0,0,0,0,0,0,"+花びら","0","「桜花冠」の精錬値が7以上の時、<BR>精錬値が1上がる毎にMaxSP+1%。",214,1,0],
+	[1279,100,0,0,0,0,0,0,"+白い花びら","0","「桜花冠」の精錬値が5以上の時、<BR>精錬値が1上がる毎にスキルディレイ-1%。",215,1,0],
+	[1280,100,0,0,0,0,0,0,"+草の葉","0","「桜花冠」の精錬値が3以上の時、<BR>精錬値が1上がる毎にSP消費量-1%。",211,1,0],
+	[1281,50,0,0,3,0,80,70,"アヌビスの帽子","アヌヒス","MDEF - 50%。<BR>物理・魔法攻撃を受けた時、一定確率で自分を中心として<BR>11*11セル範囲の全ての敵を石化状態にする。",193,1,24,2,0],
+	[1282,52,0,0,0,0,10,1,"チューインガム","チュウイ","近接・遠距離物理攻撃時、一定確率で敵をスタン状態にする。",0],
+	[1283,8,151,450,833,0,350,90,"パイルバンカー","ハイルハ","0",0],
+	[1284,60,146,95,0,1,0,99,"ルーンプレート","ルウンフ","キャラクター間トレード不可(倉庫も×)",193,1,194,1,0],
+	[1285,60,0,42,0,1,40,22,"プエンテローブ","フエンテ","固定キャスティング時間 -3%",91,5,0],
+	[1286,60,1001,58,0,1,280,22,"クレールスーツ","クレエル","0",0],
+	[1287,60,2051,93,0,1,450,100,"漆黒の鎧","シツコク","0",0],
+	[1288,61,146,70,0,1,0,99,"エナジールーンガード","エナシイ","キャラクター間トレード不可(倉庫も×)",16,2,0],
+	[1289,61,151,60,0,0,200,90,"火炎放射器","カエンホ","0",193,1,0],
+	[1290,61,0,60,0,1,30,22,"シルバーガード","シルハア","0",0],
+	[1291,61,1001,90,0,1,60,22,"ラウンドバックラー","ラウント","0",0],
+	[1292,61,2051,130,0,1,130,100,"ローザシールド","ロオサシ","0",0],
+	[1293,64,151,0,0,1,10,90,"加速装置","カソクソ","0",2,2,0],
+	[1294,64,151,0,0,1,200,90,"ホバーリングブースター","ホハアリ","0",2,1,0],
+	[1295,64,151,0,0,1,100,90,"自爆装置","シハクソ","0",0],
+	[1296,64,151,0,0,1,50,90,"シェイプシフター","シエイフ","0",4,3,0],
+	[1297,64,151,0,0,1,250,90,"冷却装置","レイキヤ","0",5,1,0],
+	[1298,64,151,0,0,1,600,90,"磁場フィールド発生装置","シハフイ","0",5,1,0],
+	[1299,64,151,3,0,1,800,90,"バリアー発生装置","ハリアア","0",5,1,0],
+	[1300,64,151,0,0,1,40,90,"リペアキット","リヘアキ","0",0],
+	[1301,64,151,0,0,1,100,90,"光学迷彩発生装置","コウカク","0",2,3,0],
+	[1302,64,151,0,0,0,250,90,"高級冷却装置","コウキユ","0",5,1,0],
+	[1303,999,151,0,0,0,250,90,"特殊冷却装置","トクシユ","物理・魔法ダメージを受けた時、低確率でフロストノヴァLv3発動(?)",5,1,0],
+	[1304,64,146,0,0,1,0,90,"魔力石の指輪","マリヨク","0",1,2,0],
+	[1305,64,2000,0,0,0,0,90,"熟していないリンゴの指輪","シユクシ","キャラクター間トレード不可(倉庫も×)<BR>JobLvが上がるほどステータスボーナスが低下する。<BR>※JobLvが5の倍数の時毎にALLステータス-1。",7,6,0],
+	[1306,999,55,0,0,0,20,90,"魔力を秘めた石","マリヨク","0",0],
+	[1307,999,2063,0,0,0,10,90,"くたびれた天使の意思","クタヒレ","スコグル(2)から受けるダメージ-50%。<BR>プルス(2)から受けるダメージ-50%。",0],
+	[1308,50,146,12,0,1,10,100,"ルーンサークレット","ルウンサ","純粋な STRが 120以上の場合、ATK + 10、MATK + 5。",1,1,4,1,19,5,0],
+	[1309,51,147,6,4,0,10,100,"沈黙の執行者","チンモク","純粋な AGIが 120以上の場合、ATK + 10、完全回避 + 5。",2,1,19,5,0],
+	[1310,50,148,12,0,1,10,100,"ミトラ","ミトラ","純粋な INTが 120以上の場合、MATK + 10。",4,1,3,1,19,5,95,5,0],
+	[1311,50,149,12,1,1,10,100,"スナイパーゴーグル","スナイハ","純粋な AGIが 120以上の場合、遠距離物理攻撃力 +4%、攻撃速度 + 1。",5,1,2,1,19,5,0],
+	[1312,50,150,12,0,1,10,100,"魔力石の帽子","マリヨク","純粋な DEXが 120以上の場合、MATK + 10、変動キャスティング時間 2% 短縮。",4,1,5,1,19,5,0],
+	[1313,50,151,12,0,1,10,100,"ドライバーバンド(赤)","トライハ","純粋な STRが 120以上の場合、ATK + 10, CRI + 3。",1,1,5,1,19,5,0],
+	[1314,50,152,17,1,1,10,100,"シュミッツのヘルム","シユミツ","純粋な INTが 120以上の場合、MATK + 10、DEF + 5。",4,1,3,2,19,5,0],
+	[1315,50,153,12,0,1,10,100,"シャドウクラウン","シヤトウ","純粋な AGIが 120以上の場合、ATK + 10, FLEE + 3。",4,1,2,1,19,5,0],
+	[1316,50,154,12,0,1,10,100,"ブレイジングソウル","フレイシ","純粋な STRが 120以上の場合、ATK + 10, HIT + 3。",1,1,3,1,19,5,0],
+	[1317,50,155,12,0,1,10,100,"ミンストレルソングの帽子","ミンスト","",4,1,6,1,19,5,25,5,23643,10,23644,10,0],
+	[1318,50,156,12,0,1,10,100,"バレリーナの髪飾り","ハレリイ","",4,1,6,1,19,5,25,5,23648,10,23647,10,0],
+	[1319,50,157,12,0,1,10,100,"風のささやき","カセノサ","純粋な INTが 120以上の場合、 MATK + 10、FLEE + 3。",4,1,5,1,19,5,94,5,0],
+	[1320,50,158,12,0,1,10,100,"ミダスのささやき","ミタスノ","純粋な STRが 120以上の場合、ATK + 5、攻撃速度 + 1。",1,1,5,1,19,5,0],
+	[1321,50,0,1,0,0,50,30,"天下一品ラーメン","テンカイ","0",193,1,5,4,4,-1,0],
+	[1322,50,0,4,3,1,70,1,"重装歩兵の兜","シユウソ","0",15,3,0],
+	[1323,100,0,0,0,0,0,0,"+パイクグラディウス","0","0",80,3,0],
+	[1324,100,0,0,0,0,0,0,"+ストロングシールド","0","全ての属性物理攻撃に耐性+5%。",18,2,0],
+	[1325,50,0,0,0,1,30,1,"マクシミリアン・フォン・ベベ29世","マクシミ","",29,15,0],
+	[1326,8,2001,175,833,2,150,100,"カルガメイス","カルカメ","0",0],
+	[1327,10,2054,160,833,1,150,100,"エルヴンボウ","エウウン","この武器を装備してエルフの矢で攻撃時、遠距離物理ダメージ+50%。",5,2,0],
+	[1328,11,147,190,833,1,120,100,"ドゥルガー","トウルカ","0",0],
+	[1329,9,77,30,3,20,50,100,"ラフィネスタッフ","ラフイネ","精錬値 +1につき固定キャスティングが 1%ずつ減少する。<BR>(固定キャスティングの%増減効果は最大の効果のみが適用される)",88,180,0],
+	[1330,50,0,2,0,1,20,20,"真っ赤なドレスハット","マツカナ","精錬値が2上がる度にMdefが1ずつ増加。",19,7,0],
+	[1331,52,0,0,0,0,10,50,"幸運のクローバー","コウウン","0",6,1,14,20,0],
+	[1332,50,0,5,1,1,50,30,"たれワイルドローズ","タレワイ","0",15,-10,12,3,0],
+	[1333,100,0,0,0,0,0,0,"＋くわえた魚","0","近接物理攻撃時、一定確率で[グリード]が発動。",0],
+	[1334,61,0,0,0,0,10,1,"殺虫剤","サツチユ","0",34,10,0],
+	[1335,50,0,0,0,0,10,1,"蚊取線香","カトリセ","0",54,10,0],
+	[1336,100,0,0,0,0,0,0,"0","0","物理ダメージを受けた時、一定確率で敵を暗闇、呪い、スタン状態にする。<BR>※このセット効果はイベント期間限定。",0],
+	[1337,1,153,142,3,1,60,102,"ブラックウィング","フラツク","精錬値+6から、精錬するごとにこのスキルの攻撃力が 2% 追加で増加、<BR>さらにMATK + 3ずつ増加。",5606,30,0],
+	[1338,100,0,0,0,0,0,0,"+黒猫","0","マスカレード：エナベーション/グルーミー使用時、 SP 消費が 20 減少する。",8,5,100,5,0],
+	[1339,3,2051,280,833,20,340,100,"アルカブリンガー","アルカフ","精錬値+2につき攻撃速度+1ずつ増加。",0],
+	[1340,3,2051,280,3,0,40,110,"クロムメタルツーハンドソード","クロムメ","0",194,1,2,3,15,-10,0],
+	[1341,4,152,180,3,1,180,102,"インペリアルスピア","インヘリ","これらのスキルの攻撃力は 精錬値+2ごとに 3%ずつ追加で増加する。",88,40,5569,20,5570,20,0],
+	[1342,100,0,0,0,0,0,0,"+インペガード","0","0",5583,10,5162,10,0],
+	[1343,8,158,15,3,1,100,102,"赤いエーテルバッグ","アカイエ","これらのスキルの攻撃力は 精錬値+6から精錬値につき 2% ずつ追加で増加。",88,100,5732,20,5737,20,0],
+	[1344,10,2054,75,3,0,170,105,"ミスティックボウ","ミステイ","※この武器のMATK+100は、杖のようなMATK計算式でなく固定で+100です。",100,100,4,4,21642,-10,0],
+	[1345,14,155,170,833,1,80,102,"グリーンホイッスル","クリイン","安らぎの子守歌/風車に向かって突撃を使用時、変動キャスティング時間 2秒減少。<BR>精錬値+6からは、精錬値ごとにこれらのスキルの SP消費量が 4ずつ減少する。",88,50,0],
+	[1346,15,156,170,833,1,80,102,"ステムウィップ","ステムウ","安らぎの子守歌/スイングダンスを使用時、変動キャスティング時間 2秒減少。<BR>精錬値+6からは、精錬値ごとにこれらのスキルの SP消費量が 4ずつ減少する。",88,50,0],
+	[1347,50,0,0,0,1,10,10,"ハートのリボンのヘアバンド","ハアトノ","0",4,2,0],
+	[1348,61,152,120,0,1,250,102,"インペリアルガード","インヘリ","精錬値+6からは精錬するごとにこのスキルの攻撃力が 2%ずつ追加で増加する。",19,5,5572,20,0],
+	[1349,62,0,16,20,0,0,75,"野生の尻尾","ヤセイノ","キャラクター間トレード不可(倉庫も×)",193,1,0],
+	[1350,63,0,12,20,0,0,75,"野生のブーツ","ヤセイノ","キャラクター間トレード不可(倉庫も×)",193,1,0],
+	[1351,64,0,0,30,0,0,75,"猛獣の鈴","モウシユ","キャラクター間トレード不可(倉庫も×)",14,50,0],
+	[1352,64,0,0,30,0,0,80,"エルディカスティスの光","エルテイ","[エルディカスティスへの帰還]Lv1使用可能<BR>キャラクター間トレード不可(倉庫とカートも×)",0],
+	[1353,50,0,6,0,0,100,10,"RWC2010記念帽子","アアルタ","黄ポーションの回復量100%増加。<BR>白ポーションの回復量100%増加。<BR>上記特殊効果は2010年10月5日に消滅。",10,10,80,3,89,3,6,5,191,10,0],
+	[1354,50,0,8,0,1,100,10,"たれパーメットタートル","タレハア","[パーメットタートル]、[フリーズタートル]、[ソリッドタートル]、<BR>[ヒートタートル]、[アサルトタートル]、[タートルジェネラル]に物理攻撃で与えるダメージ+20%。",1006,20,1168,20,1176,20,1220,20,1234,20,1255,20,0],
+	[1355,51,0,0,4,0,10,30,"タナトスの絶望仮面","タナトス","0",6,-5,9,4,0],
+	[1356,52,0,1,0,0,20,30,"ウンバラの魂","ウンハラ","[にく]の回復力+25%。<BR>モンスターを倒した時、一定確率で[にく]をドロップ。",3,1,0],
+	[1357,50,0,3,0,0,20,0,"パンプキンハット2010","ハンフキ","カボチャの回復量が大幅に増加する。<BR>モンスターを倒した時、低確率でカボチャパイをドロップする。<BR>※仮面系とのセット効果は計算機に必要なものだけ記載。<BR>オペラ化面：FLEE+20。<BR>ガスマスク：毒属性に物理与ダメージ+10%。<BR>アラーム仮面：無形にに物理与ダメージ+10%。<BR>キューブマスク：悪魔に物理与ダメージ+10%。<BR>ゴブリン三男仮面：動物に物理与ダメージ+10%。<BR>オーディンマスク：人型に物理与ダメージ+10%。(+4%かも? 計算機では+10%)<BR>※全ての効果はイベント期間のみと思われる。",217,4,0],
+	[1358,50,0,1,0,1,50,10,"リトルフェザーハット","リトルフ","鋭い矢を装備時、追加でクリティカル攻撃で与えるダメージ+5%、<BR>精錬値が7以上の場合、さらに追加でクリティカル攻撃で与えるダメージ+5%。<BR>※精錬値7以上の追加効果は鋭い矢装備時のみ。<BR>※短剣等でも鋭い矢を装備できれば両方効果がある。",5,2,70,10,0],
+	[1359,50,0,10,1,1,50,10,"博愛の守護","ハクアイ","精錬値が7以上の場合[ヒール][ハイネスヒール][コルセオヒール]<BR>[サンクチュアリ][ポーションピッチャー]を使用した時の効果が追加で3%増加する。",92,5,91,2,0],
+	[1360,51,0,3,0,0,30,1,"あくまのささやき","アクマノ","悪魔形モンスターを倒した時、一定確率で「聖水」をドロップする。<BR>天使形モンスターを倒した時、一定確率で「呪われた水」をドロップする。",19,3,56,1,58,1,0],
+	[1361,50,0,5,0,1,40,10,"スカルキャップ","スカルキ","精錬値が5以上の場合、追加でMatk+3%。<BR>精錬値が7以上の場合、さらに追加でMatk+3%。",89,2,0],
+	[1362,51,0,3,4,0,100,10,"悪鬼の仮面","アツキノ","2秒毎にSP-1。",12,1,0],
+	[1363,50,0,3,0,1,10,50,"ミツバチの帽子","ミツハシ","昆虫形モンスターを倒した時一定確率で「ハチ蜜」をドロップ。",19,3,34,5,174,5,54,5,0],
+	[1364,50,0,5,1,1,100,20,"派手なファントムマスク","ハテナフ","精錬値が 1上がる度にMAXHP + 100。",1,1,80,5,74,1,5065,20,0],
+	[1365,62,0,4,0,1,300,70,"カタパルトショルダー","カタハル","0",193,1,17,15,0],
+	[1366,50,0,0,0,0,50,30,"スーパーセル","スウハア","[ライトニングボルトLv5]、[サンダーストームLv5]以上取得している場合、取得しているLVで発動する。<BR>[ライトニングボルト]、[サンダーストーム]の取得LVが高い程、<BR>[ライトニングボルト]、[サンダーストーム]の発動確率が上昇する。",193,1,221,114,221,115,0],
+	[1367,64,0,0,0,1,10,1,"ECO×ROカードスリーブ","エコロカ","ECOとROのアニバーサリーを記念して作られたカードスリーブ。<BR>「タイニー帽」と共に装備時、「タイニー」に変身。<BR>好きなカードを入れよう。",6,1,3,1,0],
+	[1368,50,0,3,0,1,20,20,"蝶のヘアピン","チヨウノ","植物形モンスターを倒した時一定確率で「イジドル」をドロップ。",19,3,33,5,173,5,53,5,0],
+	[1369,64,0,0,0,1,10,10,"水牛の角","スイキユ","0",101,1,0],
+	[1370,100,0,0,0,0,0,0,"0","0","0",101,1,0],
+	[1371,50,0,0,0,0,30,1,"タイニー帽","タイニイ","キューペット[タイニー]を連れている場合、リンゴの回復量+100%。<BR>「ECO×ROカードスリーブ」と共に装備時、「タイニー」に変身。--------<BR>2010年11月30日(火)～2010年12月28日の期間内のみ、<BR>キューペットタイニーを連れている場合、<BR>追加で近接物理攻撃でモンスターを倒した時、HPが50回復。<BR>親密度が「親しい」以上の場合、<BR>近接物理攻撃でモンスターを倒した時、SPが10回復。",4,1,2,1,0],
+	[1372,50,0,0,0,0,10,1,"キャンパスフェスティバル","キヤンハ","2010年12月21日10時まで[テレポート]Lv1、[速度増加]Lv4使用可能。",0],
+	[1373,52,0,0,0,0,10,1,"お口の恋人ガム","オクチノ","モンスターを倒した時、一定確率で、キャンディ、<BR>スティックキャンディ、アーモンドチョコレートをドロップ。<BR>キャンディとスティックキャンディを食べた時のHP回復量50%増加。",0],
+	[1374,100,0,0,0,0,0,0,"博愛+治癒","0","治癒の杖[0]の精錬値 1毎に追加で<BR>[ヒール]、[サンクチュアリ]、[ハイネスヒール]、[コルセオヒール]、[ポーションピッチャー]を使用した時の効果、1％増加。",0],
+	[1375,100,0,0,0,0,0,0,"博愛+ホーリー","0","ホーリーステッキ[1]の精錬値1毎に追加で<BR>[ヒール]、[サンクチュアリ]、[ハイネスヒール]、[コルセオヒール]、[ポーションピッチャー]を使用した時の効果、3％増加。",0],
+	[1376,100,0,0,0,0,0,0,"あくま+ハート","0","0",58,9,0],
+	[1377,100,0,0,0,0,0,0,"あくま+三日月","0","0",56,9,0],
+	[1378,100,0,0,0,0,0,0,"スカル+妖精","0","0",102,3,0],
+	[1379,100,0,0,0,0,0,0,"スカル+骸骨or茨","0","杖の精錬値 1毎に追加でMatk+10。<BR>杖の精錬値が10の場合、詠唱時間-10％。",0],
+	[1380,100,0,0,0,0,0,0,"悪鬼+インキュorサキュ","0","2秒毎にSP-3。",12,9,101,1,0],
+	[1381,50,0,0,0,1,120,10,"見習い天使の祝福","ミナライ","--------<BR>以下、イベント期間限定。<BR>※物理ダメージを受けた時、一定の確率で、自分に[ブレッシング]Lv5発動。<BR>※モンスターを倒した時、一定の確率で[ビュッシュ・ド・ノエル]、[クリスマスボックス]をドロップ。",193,1,194,1,6,2,0],
+	[1382,64,0,0,0,1,10,10,"オルレアンネックレス","オルレア","0",5,2,100,20,0],
+	[1383,100,0,0,0,0,0,0,"+手袋","0","0",100,20,0],
+	[1384,100,0,0,0,0,0,0,"+制服","0","0",73,-15,0],
+	[1385,100,0,0,0,0,0,0,"+サーバ","0","[オルレアンサーバー]の精錬値が高くなる程、MATKが増加。<BR>(精錬+1につきMATK+2)",0],
+	[1386,50,0,3,0,1,20,10,"スティング帽子","ステイン","無形モンスターを倒した時一定確率で「ガンパウダー」をドロップ。",30,5,170,5,50,5,0],
+	[1387,60,0,5,0,1,150,50,"囚人の服","シユウシ","囚人の服の精錬値が高くなる程、Hit、Fleeが増加。(精錬1につき各+1らしい)",0],
+	[1388,100,0,0,0,0,0,0,"0","0","足鎖の精錬値が高くなる程、Atkが増加。(精錬1につきATK+1らしい)",17,5,0],
+	[1389,50,0,3,0,1,20,10,"龍将軍の兜","リユウシ","竜形モンスターを倒した時、一定確率で「宝箱」をドロップ。",19,3,39,5,179,5,59,5,0],
+	[1390,50,0,8,0,0,100,1,"天海老帽","アマエヒ","お寿司、おさしみを食べた時のHP回復量100%増加。<BR>※期間限定効果：モンスターを倒した時、一定確率でエビをドロップ。",193,1,194,1,0],
+	[1391,61,0,50,0,1,130,65,"ラモールシールド","ラモオル","※検証者さんにより、不死種族耐性でなく不死属性モンスター耐性でほぼ確定。",339,5,57,-5,0],
+	[1392,50,0,3,0,1,20,10,"ひきがえるの帽子","ヒキカエ","魚貝形モンスターを倒したとき、一定確率で「雷管」をドロップ。",19,3,35,5,175,5,55,5,0],
+	[1393,51,0,1,4,0,70,50,"鬼神の仮面","キシンノ","物理攻撃を受けた時、一定確率で、自分が沈黙状態になる。",38,5,178,5,0],
+	[1394,64,0,0,0,1,100,1,"通学バック","ツウカク","--------<BR>BaseLv79以下の時、HP＋200、SP＋100。",12,3,73,-3,0],
+	[1395,100,0,0,0,0,0,0,"+アカデミバッジ","0","※この効果はBaseLV80以上でも効果がある。",12,3,73,-3,0],
+	[1396,62,0,8,0,1,70,1,"魔法のストール","マホウノ","精錬値+6以上の時、MaxSP+3%。",19,3,16,3,102,5,0],
+	[1397,62,0,5,0,1,10,50,"聖なるケープ","セイナル","0",19,5,51,5,56,5,0],
+	[1398,1,1,107,43,1,70,30,"クリス","クリス","一定確率で敵に与えたダメージの10%をHPとして吸収する。<BR>※武器カード欄右側二つがクリス用のエンチャントになっています。",88,70,0],
+	[1399,60,1,2,0,1,50,1,"ティドゥン","テイトウ","0",19,10,264,5,152,15,151,15,0],
+	[1400,50,0,1,0,0,10,1,"ジャティ族の聖冠","シヤテイ","0",32,5,33,5,52,5,53,5,0],
+	[1401,50,0,2,0,1,50,30,"ホワイトフェザー","ホワイト","精錬値が5の時、追加でHit-10、MaxHP+10%。<BR>精錬値が7の時、さらに追加でHit-3、MaxHP+3%。<BR>精錬値が9の時、さらに追加でHit-3、MaxHP+3%。",8,20,15,-10,0],
+	[1402,50,0,10,1,1,100,70,"ロードオブデスの兜","ロオトオ","精錬値が5以上の時、精錬値が 1上がる度に追加で物理攻撃時、ボスモンスターへのダメージ + 1%。",19,5,26,10,79,-5,0],
+	[1403,63,0,5,0,10,10,1,"ルーンブーツ","ルウンフ","純粋なStr値が90以上の時、Atk + 10、<BR>純粋なInt値が90以上の時、Matk + 3%。<BR>純粋なStr値が120以上の時、追加でAtk + 10、<BR>純粋なInt値が120以上の時、追加でMatk + 2%。",0],
+	[1404,50,0,10,3,0,50,20,"ヴンダーカンマー","ウンタア","物理攻撃時、一定確率で様々なスキルがオートスペルで発動。<BR>(発動スキル：ソニックブローLv1?、シールドチャージLv5?、ニューマ、<BR>キリエエレイソンLv?、爆裂波動Lv3、グランドクロスLv?、集中力向上Lv5、<BR>クァグマイア、気功、メテオアサルトLv5?)<BR>※攻撃スキルの正確なLvか素手ダメージを投稿頂ければ、Lvを確定してAS欄に追加予定。",193,1,19,10,0],
+	[1405,51,0,0,0,0,10,50,"太極の耳飾り","タイキヨ","",5188,10,5187,5,5189,5,21188,10,21189,10,0],
+	[1406,50,0,0,1,1,30,50,"ハートウイングヘアバンド","ハアトウ","0",74,5,102,5,0],
+	[1407,64,0,0,3240,1,10,60,"忍耐の指輪","ニンタイ","0",13,300,57,3,0],
+	[1408,100,0,0,0,0,0,0,"ホワイトフェザ＋パイプ","0","「ホワイトフェザー」の精錬値が7の時、追加でHit+1、MaxHP+2%。<BR>「ホワイトフェザー」の精錬値が9の時、さらに追加でHit+1、MaxHP+2%。",0],
+	[1409,100,0,0,0,0,0,0,"ロード兜+深淵C","0","「ロードオブデスの兜」の精錬値6以上の時、精錬値が1上がる度に一般モンスターから受けるダメージ-1%。",26,5,0],
+	[1410,100,0,0,0,0,0,0,"ルーン靴+コンチ","0","「ルーンブーツ」の精錬値が1上がる度にAtk+1。",0],
+	[1411,100,0,0,0,0,0,0,"ルーン靴+ルーン文字","0","「ルーンブーツ」の精錬値が 2上がる度にMatk+1%、詠唱時間-1%。",0],
+	[1412,100,0,0,0,0,0,0,"ルーン靴+しのブローチ","0","「ルーンブーツ」の精錬値が 2上がる度にCri+1。",0],
+	[1413,100,0,0,0,0,0,0,"ヴンダー+下級精","0","追加でオートスペル[ウェポンパーフェクション]Lv2が発動。",0],
+	[1414,100,0,0,0,0,0,0,"太極+熱血","0","「熱血鉢巻き」の精錬値が7の時、全てのスキル使用時の消費SP-1%。<BR>「熱血鉢巻き」の精錬値が9の時、さらに追加で全てのスキル使用時の消費SP-1%。",5187,5,5189,5,5289,3,5290,3,102,-10,0],
+	[1415,51,0,3,0,0,10,50,"ファフニールスキン","フアフニ","※ゲーム内説明文は[HPが自動回復しない]ですが、実際はHP自然回復力-100%。<BR>※なのでスカイデリータCと同時に装備するとHPがじょじょに減っていく。",10,3,75,-100,0],
+	[1416,52,0,2,0,0,30,50,"ファフニールマスク","フアフニ","0",6,1,10,2,0],
+	[1417,100,0,0,0,0,0,0,"ファフセット","0","0",70,3,0],
+	[1418,50,0,3,0,1,20,10,"アークエンジェリング帽","アアクエ","天使形モンスターを倒した時、一定確率で[陽光の箱]をドロップ。",19,3,38,5,178,5,58,5,0],
+	[1419,61,0,50,0,1,130,65,"シャレールシールド","シヤレエ","0",333,5,56,-5,0],
+	[1420,50,0,3,0,0,10,10,"ハミングバード","ハミンク","ターゲッティング魔法を一定確率で反射。",193,1,19,6,0],
+	[1421,62,0,8,0,1,50,1,"彷徨う者の羽織","サマヨウ","0",11,1,0],
+	[1422,100,0,0,0,0,0,0,"+傘","0","[彷徨う者の羽織]の精錬値が5以上の時ダブルアタックLv1が全ての武器で使用可能。<BR>[彷徨う者の羽織]の精錬値が7以上の時ダブルアタックLv5が全ての武器で使用可能。<BR>習得しているダブルアタックのLvが効果を上回った場合<BR>習得Lvのダブルアタックが全ての武器で使用可能。",0],
+	[1423,50,0,0,0,0,100,10,"神仙丹の実","シンセン","0",193,1,123,5,53,-10,0],
+	[1424,51,0,0,0,0,20,10,"二四式ボルト","ニヨンシ","0",171,4,51,5,0],
+	[1425,61,0,50,0,1,130,65,"フロワシールド","フロワシ","0",331,5,52,-5,0],
+	[1426,64,0,1,0,0,20,10,"スピカのネックレス","スヒカノ","0",19,1,61,5,0],
+	[1427,64,0,1,0,0,20,10,"サビクのグローブ","サヒクノ","0",19,1,63,5,0],
+	[1428,64,0,1,0,0,20,10,"アルナとアイリの腕輪","アルナト","0",19,1,62,5,0],
+	[1429,64,0,1,0,0,20,10,"アルゴルのバッジ","アルコル","0",19,1,64,5,0],
+	[1430,64,0,1,0,0,20,10,"ルファクの指輪","ルフアク","倉庫移動のみ可能。",19,1,13,100,14,50,0],
+	[1431,50,0,5,0,1,100,50,"ギャラクシーサークレット","キヤラク","精錬値+1毎にMaxHP+10、MaxSP+10。<BR>精錬値+2毎に火・水・風・地属性攻撃で受けるダメージ-1%。",19,5,0],
+	[1432,50,0,0,0,0,10,50,"たれ猫クルー","タレネコ","0",193,1,47,10,36,10,336,-10,58,-10,0],
+	[1433,50,0,0,0,0,100,10,"やわらか羊の帽子","ヤワラカ","0",193,1,122,5,52,-10,0],
+	[1434,50,0,3,0,1,20,10,"駆魔のヘアバンド","クマノヘ","悪魔形モンスターを倒した時、一定確率で[呪われた印]をドロップ。",19,3,36,5,176,5,56,5,0],
+	[1435,61,0,50,0,1,130,65,"ソンブルシールド","ソンフル","0",337,5,51,-5,0],
+	[1436,64,0,0,0,1,5,80,"呪われた心臓","ノロワレ","物理攻撃時、一定確率で敵を呪い状態にする。",0],
+	[1437,52,0,0,0,0,20,50,"愛しさの欠片","イトシサ","",102,-15,380,1,0],
+	[1438,100,0,0,0,0,0,0,"0","0","固定詠唱時間-10%。",0],
+	[1439,50,0,3,0,1,20,10,"ダークエイジ","タアクエ","物理攻撃時、一定確率で武器に闇属性を付与する。",19,3,336,-10,58,-10,0],
+	[1440,64,0,0,0,1,10,1,"光の指輪","ヒカリノ","0",80,1,0],
+	[1441,64,0,0,0,1,10,1,"闇の指輪","ヤミノユ","0",89,1,0],
+	[1442,100,0,0,0,0,0,0,"0","0","0",80,4,89,4,0],
+	[1443,61,0,50,0,1,130,65,"ソルシールド","ソルシイ","0",332,5,55,-5,0],
+	[1444,50,0,3,0,1,20,10,"骸骨のコサージュ","カイコツ","人間形モンスターを倒した時、一定確率で「止まらない心臓」をドロップ。",37,5,177,5,57,5,0],
+	[1445,64,0,0,0,0,100,1,"超強いオラオラ","チヨウツ","0",174,6,0],
+	[1446,100,0,0,0,0,0,0,"0","0","[殺虫剤]の精錬値が8以上であれば、<BR>追加で魔法攻撃時、昆虫形モンスターへのダメージ+4%、<BR>昆虫形から受けるダメージ-20%。",54,10,0],
+	[1447,50,0,4,0,1,10,30,"スイカ帽子","スイカホ","下記特殊効果は2011年8月30日定期メンテナンス終了時に消滅する。<BR>公認ネットカフェから接続している場合、全てのモンスターを倒した時、獲得する経験値+3%。<BR>※この+3%効果は計算機に反映されていません。",193,1,3,1,6,1,0],
+	[1448,100,0,0,0,0,0,0,"0","0","ATK+30。<BR>このセット効果は2011年8月30日定期メンテナンス終了時に消滅する。",0],
+	[1449,100,0,0,0,0,0,0,"0","0","MATK+30。<BR>このセット効果は2011年8月30日定期メンテナンス終了時に消滅する。",0],
+	[1450,50,0,0,0,1,30,1,"エルンスト・フォン・ヴォルフ11世","エルンス","",27,15,0],
+	[1451,50,0,2,0,1,10,30,"豪華なミニクラウン","コウカナ","固定詠唱時間 - 3%。<BR>精錬値 5以上の時、追加でMatk + 1%。<BR>精錬値 7以上の時、追加でMatk + 2%。",19,5,4,1,89,3,91,3,102,3,0],
+	[1452,61,0,50,0,1,130,65,"プワゾンシールド","フワソン","0",335,5,53,-5,0],
+	[1453,51,0,0,0,0,20,10,"3Dメガネ","スリイテ","0",170,4,50,5,0],
+	[1454,51,0,0,0,0,10,1,"黒い悪魔の仮面","クロイア","0",15,1,16,1,0],
+	[1455,61,0,55,0,1,100,70,"イミューンシールド","イミユン","精錬値が6以上の時、精錬値が1上がる度に追加で無属性攻撃に対する耐性+1%。",60,5,61,-5,62,-5,63,-5,64,-5,65,-5,66,-5,67,-5,68,-5,69,-5,0],
+	[1456,50,0,0,0,1,5,1,"聖なるクリスマスツリー","セイナル","0",193,1,19,20,0],
+	[1457,64,0,5,0,0,10,30,"RWC2011ネックレス","アアルタ","「アイスクリーム」の回復量+25%。<BR>※上記特殊効果は2011年10月18日(火)<BR>定期メンテナンス開始時に消滅します。",19,5,89,5,12,5,28,5,191,3,0],
+	[1458,50,1,0,0,1,10,20,"酒豪のネクタイ","シユコウ","0",74,3,0],
+	[1459,100,0,0,0,0,0,0,"+ほお紅","0","10秒毎にHP-10、SP-5。<BR>「酒豪のネクタイ」の精錬値が7以上の時、追加でスキルディレイ-4%。<BR>「酒豪のネクタイ」の精錬値が9以上の時、追加でスキルディレイ-5%。",19,5,0],
+	[1460,51,0,0,4,0,30,50,"ファルコンマスク","フアルコ","0",41,5,0],
+	[1461,50,0,8,0,1,80,40,"イグニスキャップ","イクニス","物理攻撃時、一定確率で7秒間、一般モンスターの物理防御力を無視。",17,10,0],
+	[1462,100,0,0,0,0,0,0,"+イフ耳","0","「イグニスキャップ」の精錬値が2上がる度に攻撃速度+1%。",0],
+	[1463,50,0,10,3500,1,150,80,"ヴァナルガンドの兜","ウアナル","物理攻撃時、一定確率で相手に与えたダメージの1%をHP、SPとして吸収する。<BR>精錬値が5以上の時、追加でHPの吸収量+2%。<BR>精錬値が7以上の時、さらに追加でHPの吸収量+2%、SPの吸収量+1%、HPの吸収確率増加。<BR>精錬値が8以上の時、さらに追加でHP、SPの吸収確率増加。<BR>精錬値が9以上の時、さらに追加でHPの吸収量+3%、SPの吸収量+2%、HP、SPの吸収確率増加。",0],
+	[1464,50,0,8,0,1,20,30,"デビルチヘッドフォン","テヒルチ","",19,4,151,30,0],
+	[1465,50,0,10,3,1,20,20,"秘密結社の頭巾","ヒミツケ","0",193,1,19,5,13,500,153,100,0],
+	[1466,51,0,0,0,0,10,50,"とんぼの片眼鏡","トンホノ","物理攻撃時、一定確率で「スティール」Lv1発動。",2,2,0],
+	[1467,64,0,3,0,1,100,70,"幸運のガントレット","コウウン","モンスターを倒した時、一定確率で「損傷したダイヤモンド」<BR>「ダイヤモンド２カラット」「ダイヤモンド３カラット」をドロップ",19,3,0],
+	[1468,51,0,1,4,0,10,1,"ルードマスク","ルウトマ","物理攻撃命中時、一定確率でオートスペル[ラウドボイス]Lv1発動。",0],
+	[1469,60,0,50,0,1,60,50,"純白のエプロン","シユンハ","精錬値が5以上の時、精錬値が2上がる度に[ヒール]系、<BR>[サンクチュアリ][ポーションピッチャー]を使用した時の回復量が増加。--------<BR>精錬値が2上がる度に[ヒール]系[サンクチュアリ][ポーションピッチャー]を受けた時の回復量が増加。",91,2,0],
+	[1470,61,0,50,0,1,130,65,"リュミエールシールド","リユミエ","0",336,5,59,-5,0],
+	[1471,51,0,1,4,0,10,30,"ティアドロップ","テイアト","0",89,3,91,1,0],
+	[1472,100,0,0,0,0,0,0,"0","0","タナトスタワーの1Fから6Fに、瞬時に移動できる。",0],
+	[1473,1,1001,107,4,0,60,120,"エンシェントダガー","エンシエ","物理・魔法攻撃時、一定確率で自分に呪いがかかる。",88,120,14,100,76,5,0],
+	[1474,2,1070,180,3,0,220,110,"クロムメタルソード","クロムメ","0",194,1,2,1,15,-5,0],
+	[1475,9,157,40,3,1,50,102,"メンタルスティック","メンタル","[サイキックウェーブ]を使用した時のSP消費量+60。<BR>精錬値+6以上の時、精錬値が1上がる毎にMaxHP-2%、[サイキックウェーブ]で与えるダメージ+2%。<BR>装備解除時、SP -100。",88,170,9662,3000,0],
+	[1476,13,154,142,3,1,50,102,"覇王乱舞","ハオウラ","精錬値+6以上の時、精錬値が1上がる毎に追加でSP消費量-1%。",5610,20,5611,20,102,-5,0],
+	[1477,15,156,100,834,0,100,110,"ローズバイン","ロオスハ","物理攻撃命中時、一定確率でオートスペル[セイレーンの声] Lv1 発動。",88,130,4,2,0],
+	[1478,62,0,10,60,0,40,100,"ロキのマフラー","ロキノマ","[ソウルブレイカー]で与えるダメージ+5%(未実装。計算機も)",193,1,2,1,5460,5,0],
+	[1479,63,156,15,0,1,30,105,"ダンスシューズ","タンスシ","",2,1,12,2,23648,32,0],
+	[1480,64,0,0,60,0,0,70,"守護者のペンダント","シユコシ","[守護者の呼びかけ]Lv1使用可能<BR>(装備して、該当スキルを使用すると、瞬時に「モーラ」に帰還できる)",0],
+	[1481,64,2000,1,0,1,10,125,"フレイムグローブ","フレイム","0",19,2,4,1,61,-30,343,10,341,-20,221,128,221,139,0],
+	[1482,64,2000,2,0,0,20,110,"テレキネシスオーブ","テレキネ","[ソウルエクスパンション][サイキックウェーブ]を使用した時のSP消費量+50。",19,1,4,3,14,30,5518,10,5662,10,0],
+	[1483,50,0,7,0,1,30,20,"魔女の帽子","マシヨノ","精錬値が7以上の時、追加で詠唱時間 -5%。",19,5,73,-5,0],
+	[1484,50,0,1,0,1,50,1,"サイドキャップ","サイトキ","0",5,1,27,5,28,5,29,5,0],
+	[1485,51,0,1,0,0,50,80,"天馬の羽耳","テンマノ","BaseLvが80以上の時、攻撃速度+1%。<BR>BaseLvが100以上の時、追加で攻撃速度+1%。<BR>BaseLvが150以上の時、さらに追加で攻撃速度+1%。",0],
+	[1486,61,0,80,0,1,50,65,"黒の書","クロノシ","物理攻撃を受けた時、一定確率で自分を中心として<BR>5x5セル範囲内の全ての敵を特定の状態異常にする。<BR>精錬値が7以上の時、発動率と範囲が増加。<BR>精錬値が9以上の時、さらに発動率と範囲が増加。",19,5,0],
+	[1487,60,0,10,60,0,1,1,"モーラの服","モオラノ","0",0],
+	[1488,50,0,3,0,0,10,1,"フィッシュヘアピン","フイツシ","0",55,1,0],
+	[1489,64,0,0,0,1,30,1,"キシリトールガム","キシリト","モンスターを倒した時、一定確率で、キャンディ、<BR>スティックキャンディ、アーモンドチョコレートをドロップ。",0],
+	[1490,100,0,0,0,0,0,0,"0","0","キャンディとスティックキャンディを食べた時のHP回復量25%増加。",0],
+	[1491,52,0,0,0,0,10,1,"聖なるサンタのひげ","セイナル","0",47,2,0],
+	[1492,61,0,50,0,1,130,65,"エスプリシールド","エスフリ","0",338,5,58,-5,0],
+	[1493,60,1001,40,0,1,100,55,"ライダースーツ","ライタア","[ライダースーツ]の精錬値が2上がる毎にAgi+1。",2,1,0],
+	[1494,100,0,0,0,0,0,0,"0","0","0",212,2,9,5,0],
+	[1495,50,0,6,0,0,30,0,"アニバーサリー帽","アニハア","[テレポートLv2]が使えるようになる。<BR>※これらの効果はアニバーサリー期間(主に12月)のみ。",217,3,0],
+	[1496,50,0,0,70,10,30,0,"たれ教皇","タレキヨ","※エンチャントが付くとカードスロットは[0]扱いに。",193,1,194,1,19,1,76,2,0],
+	[1497,100,0,0,0,0,0,0,"0","0","0",76,3,0],
+	[1498,50,0,5,0,1,50,50,"たれドモヴォイ","タレトモ","0",193,1,19,5,15,2,57,5,0],
+	[1499,62,0,3,0,1,10,50,"ドンドモヴォイのマント","トントモ","[クローキング]Lv1使用可能。",57,-5,0],
+	[1500,100,0,0,0,0,0,0,"0","0","0",15,3,57,10,0],
+	[1501,51,0,0,0,0,40,50,"フルングニルの魔眼","フルンク","0",1,1,80,1,0],
+	[1502,50,0,0,0,0,100,10,"スターダストヘアバンド","スタアタ","0",193,1,120,5,50,-10,0],
+	[1503,64,0,0,0,1,240,10,"大盗賊の手鎖","タイトウ","0",17,5,0],
+	[1504,100,0,0,0,0,0,0,"0","0","0",17,10,0],
+	[1505,100,0,0,0,0,0,0,"0","0","[囚人の服]の精錬値が1上がる度に、追加でAtk+2。",0],
+	[1506,100,0,0,0,0,0,0,"0","0","[足鎖]の精錬値が1上がる度に、追加でAtk+1。",0],
+	[1507,100,0,0,0,0,0,0,"0","0","0",17,10,0],
+	[1508,62,0,20,0,1,70,65,"フロワマント","フロワマ","0",331,5,52,-5,0],
+	[1509,100,0,0,0,0,0,0,"0","0","[フロワマント]の精錬値が1上がる度に追加で動物形モンスターから受けるダメージ-1%。<BR>[フロワシールド]の精錬値が1上がる度に水属性モンスターに与えるダメージ+1%。",0],
+	[1510,62,0,20,0,1,70,65,"エスプリマント","エスフリ","0",338,5,58,-5,0],
+	[1511,100,0,0,0,0,0,0,"0","0","[エスフリマント]の精錬値が1上がる度に追加で天使形モンスターから受けるダメージ-1%。<BR>[エスフリシールド]の精錬値が1上がる度に念属性モンスターに与えるダメージ+1%。",0],
+	[1512,62,0,20,0,1,70,65,"シャレールマント","シヤレエ","0",333,5,56,-5,0],
+	[1513,100,0,0,0,0,0,0,"0","0","[シャレールマント]の精錬値が1上がる度に追加で悪魔形モンスターから受けるダメージ-1%。<BR>[シャレールシールド]の精錬値が1上がる度に火属性モンスターに与えるダメージ+1%。",0],
+	[1514,62,0,20,0,1,70,65,"ソルマント","ソルマン","0",332,5,55,-5,0],
+	[1515,100,0,0,0,0,0,0,"0","0","[ソルマント]の精錬値が1上がる度に追加で魚類形モンスターから受けるダメージ-1%。<BR>[ソルシールド]の精錬値が1上がる度に地属性モンスターに与えるダメージ+1%。",0],
+	[1516,62,0,20,0,1,70,65,"ソンブルマント","ソンフル","0",337,5,51,-5,0],
+	[1517,100,0,0,0,0,0,0,"0","0","[ソンブルマント]の精錬値が1上がる度に追加で不死形モンスターから受けるダメージ-1%。<BR>[ソンブルシールド]の精錬値が1上がる度に闇属性モンスターに与えるダメージ+1%。",0],
+	[1518,62,0,20,0,1,70,65,"プワゾンマント","フワソン","0",335,5,53,-5,0],
+	[1519,100,0,0,0,0,0,0,"0","0","[プワゾンマント]の精錬値が1上がる度に追加で植物形モンスターから受けるダメージ-1%。<BR>[プワゾンシールド]の精錬値が1上がる度に毒属性モンスターに与えるダメージ+1%。",0],
+	[1520,62,0,20,0,1,70,65,"ラモールマント","ラモオル","0",339,5,57,-5,0],
+	[1521,100,0,0,0,0,0,0,"0","0","[ラモールマント]の精錬値が1上がる度に追加で人間形モンスターから受けるダメージ-1%。<BR>[ラモールシールド]の精錬値が1上がる度に不死属性モンスターに与えるダメージ+1%。",0],
+	[1522,62,0,20,0,1,70,65,"リュミエールマント","リユミエ","0",336,5,59,-5,0],
+	[1523,100,0,0,0,0,0,0,"0","0","[リュミエールマント]の精錬値が1上がる度に追加で竜族形モンスターから受けるダメージ-1%。<BR>[リュミエールシールド]の精錬値が1上がる度に聖属性モンスターに与えるダメージ+1%。",0],
+	[1524,64,0,0,0,0,30,1,"百戦錬磨のお守り","ヒヤクセ","純粋なStrが60以上の時、追加でStr+2。<BR>純粋なStrが80以上の時、さらに追加でStr+1、Atk+5。<BR>純粋なStrが100以上の時、さらに追加でAtk+5、Hit+2。<BR>純粋なStrが120以上の時、さらに追加でAtk+5、Hit+3。<BR>※特殊効果は2012年12月25日（火）定期メンテナンス終了時に消滅予定。",19,2,0],
+	[1525,64,0,0,0,0,30,1,"先手必勝のお守り","センテヒ","純粋なAgiが60以上の時、追加でAgi+2。<BR>純粋なAgiが80以上の時、さらに追加でAgi+1、Flee+4。純粋なAgiが100以上の時、さらに追加でFlee+1、攻撃速度+2%。<BR>純粋なAgiが120以上の時、さらに追加で攻撃速度+2%。<BR>※特殊効果は2012年12月25日（火）定期メンテナンス終了時に消滅予定。",19,2,0],
+	[1526,64,0,0,0,0,30,1,"無病息災のお守り","ムヒヨウ","純粋なVitが60以上の時、追加でVit+2。<BR>純粋なVitが80以上の時、さらに追加でVit+1、MaxHP+50。<BR>純粋なVitが100以上の時、さらに追加でMaxHP+150、完全回避+1。<BR>純粋なVitが120以上の時、さらに追加でMaxHP+100、完全回避+3。<BR>※特殊効果は2012年12月25日（火）定期メンテナンス終了時に消滅予定。",19,2,0],
+	[1527,64,0,0,0,0,30,1,"百発百中のお守り","ヒヤツハ","純粋なDexが60以上の時、追加でDex+2。<BR>純粋なDexが80以上の時、さらに追加でDex+1、詠唱時間-1%。<BR>純粋なDexが100以上の時、さらに追加で詠唱時間-2%、遠距離物理攻撃で与えるダメージ+1%。<BR>純粋なDexが120以上の時、さらに追加で遠距離物理攻撃で与えるダメージ+2%。<BR>※特殊効果は2012年12月25日（火）定期メンテナンス終了時に消滅予定。",19,2,0],
+	[1528,64,0,0,0,0,30,1,"博学多才のお守り","ハクカク","純粋なIntが60以上の時、追加でInt+2。<BR>純粋なIntが80以上の時、さらに追加でInt+1、Matk+5。<BR>純粋なIntが100以上の時、さらに追加でMatk+5、スキルディレイ-1%。<BR>純粋なIntが120以上の時、さらに追加でMatk+5、スキルディレイ-2%。<BR>※特殊効果は2012年12月25日（火）定期メンテナンス終了時に消滅予定。",19,2,0],
+	[1529,64,0,0,0,0,30,1,"商売繁盛のお守り","シヨウハ","純粋なLukが60以上の時、追加でLuk+2。<BR>純粋なLukが80以上の時、さらに追加でLuk+1、Dex+1。<BR>純粋なLukが100以上の時、さらに追加でDex+1、Int+1。<BR>純粋なLukが120以上の時、さらに追加でLuk+1、Dex+1、Int+3。<BR>※特殊効果は2012年12月25日（火）定期メンテナンス終了時に消滅予定。",19,2,0],
+	[1530,100,0,0,0,0,0,0,"0","0","モンスターを倒した時、一定確率で[ビュッシュ・ド・ノエル]をドロップ。",19,3,0],
+	[1531,62,0,0,0,1,10,1,"風呂敷マント","フロシキ","精錬値が6以上の時、追加でFlee+2、無属性攻撃で受けるダメージ-2%。<BR>精錬値が8以上の時、追加でFlee+3、無属性攻撃で受けるダメージ-3%。",9,10,0],
+	[1532,60,0,1,0,1,30,1,"空色のスモック","ソライロ","0",80,2,89,2,0],
+	[1533,100,0,0,0,0,0,0,"0","0","BaseLv79以下の時、「ヒール」、アイテムによるHP回復効果+5%。",80,3,89,3,0],
+	[1534,9,150,30,274,2,90,100,"ゴールデンロッドスタッフ","コオルテ","0",20,4,195,1,88,230,4,3,5126,12,0],
+	[1535,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、風属性魔法攻撃で与えるダメージ+10%。<BR>地属性魔法攻撃で与えるダメージ-15%。<BR>地属性攻撃に対する耐性-25%。",344,20,342,-15,64,15,62,-25,0],
+	[1536,9,150,30,154,1,90,130,"ゴールデンロッドスタッフⅡ","コオルテ","0",20,4,195,1,88,270,4,5,5126,30,0],
+	[1537,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフⅡ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、風属性魔法攻撃で与えるダメージ+10%。<BR>地属性魔法攻撃で与えるダメージ-20%。<BR>地属性攻撃に対する耐性-20%。",344,40,342,-40,64,15,62,-30,0],
+	[1538,60,150,40,140,0,50,100,"ゴールデンロッドローブ","コオルテ","純粋なIntが120以上の時、追加でInt+1。",198,4,4,1,19,10,9127,3000,0],
+	[1539,63,150,12,140,0,50,100,"ゴールデンロッドシューズ","コオルテ","0",19,2,13,500,64,10,0],
+	[1540,64,150,2,110,0,20,100,"ゴールデンロッドオーブ","コオルテ","0",19,2,4,1,64,10,221,127,0],
+	[1541,9,150,30,274,2,90,100,"アクアスタッフ","アクアス","0",20,1,195,1,88,230,4,3,5054,10,5055,10,0],
+	[1542,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、水属性魔法攻撃で与えるダメージ+10%。<BR>風属性魔法攻撃で与えるダメージ-15%。<BR>風属性攻撃に対する耐性-25%。",341,20,344,-15,61,15,64,-25,0],
+	[1543,9,150,30,154,1,90,130,"アクアスタッフⅡ","アクアス","0",20,1,195,1,88,270,4,5,5054,30,5055,30,0],
+	[1544,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフⅡ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、水属性魔法攻撃で与えるダメージ+10%。<BR>風属性魔法攻撃で与えるダメージ-20%。<BR>風属性攻撃に対する耐性-20%。",341,40,344,-40,61,15,64,-30,0],
+	[1545,60,150,40,140,0,50,100,"アクアローブ","アクアロ","純粋なIntが120以上の時、追加でInt+1。",198,1,4,1,19,10,9131,3000,0],
+	[1546,63,150,12,140,0,50,100,"アクアシューズ","アクアシ","0",19,2,13,500,61,10,0],
+	[1547,64,150,2,110,0,20,100,"アクアオーブ","アクアオ","0",19,2,4,1,61,10,221,126,0],
+	[1548,9,150,30,274,2,90,100,"クリムゾンスタッフ","クリムソ","0",20,3,195,1,88,230,4,3,5051,10,5052,10,0],
+	[1549,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、火属性魔法攻撃で与えるダメージ+10%。<BR>水属性魔法攻撃で与えるダメージ-15%。<BR>水属性攻撃に対する耐性-25%。",343,20,341,-15,63,15,61,-25,0],
+	[1550,9,150,30,154,1,90,130,"クリムゾンスタッフⅡ","クリムソ","0",20,3,195,1,88,270,4,5,5051,30,5052,30,0],
+	[1551,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフⅡ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、火属性魔法攻撃で与えるダメージ+10%。<BR>水属性魔法攻撃で与えるダメージ-20%。<BR>水属性攻撃に対する耐性-20%。",343,40,341,-40,63,15,61,-30,0],
+	[1552,60,150,40,140,0,50,100,"クリムゾンローブ","クリムソ","純粋なIntが120以上の時、追加でInt+1。",198,3,4,1,19,10,9125,3000,0],
+	[1553,63,150,12,140,0,50,100,"クリムゾンシューズ","クリムソ","0",19,2,13,500,63,10,0],
+	[1554,64,150,2,110,0,20,100,"クリムゾンオーブ","クリムソ","[サイト]の効果が持続中に、物理・魔法攻撃を受けた時、一定確率で[サイトラッシャー]Lv3発動。",19,2,4,1,63,10,0],
+	[1555,9,150,30,274,2,90,100,"フォレストスタッフ","フオレス","0",20,2,195,1,88,230,4,3,5132,10,5133,10,0],
+	[1556,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、地属性魔法攻撃で与えるダメージ+10%。<BR>火属性魔法攻撃で与えるダメージ-15%。<BR>火属性攻撃に対する耐性-25%。",342,20,343,-15,62,15,63,-25,0],
+	[1557,9,150,30,154,1,90,130,"フォレストスタッフⅡ","フオレス","0",20,2,195,1,88,270,4,5,5132,30,5133,30,0],
+	[1558,100,0,0,0,0,0,0,"0","0","セットの内[～スタッフⅡ][～ローブ][～シューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、地属性魔法攻撃で与えるダメージ+10%。<BR>火属性魔法攻撃で与えるダメージ-20%。<BR>火属性攻撃に対する耐性-20%。",342,40,343,-40,62,15,63,-30,0],
+	[1559,60,150,40,140,0,50,100,"フォレストローブ","フオレス","純粋なIntが120以上の時、追加でInt+1。",198,2,4,1,19,10,9133,3000,0],
+	[1560,63,150,12,140,0,50,100,"フォレストシューズ","フオレス","0",19,2,13,500,62,10,0],
+	[1561,64,150,2,110,0,20,100,"フォレストオーブ","フオレス","物理・魔法攻撃を受けた時、一定確率で[クァグマイア]Lv3発動。",19,2,4,1,62,10,0],
+	[1562,9,148,30,283,2,50,100,"慈愛の杖","シアイノ","0",20,6,88,160,4,2,91,10,0],
+	[1563,100,0,0,0,0,0,0,"0","0","[ヒール]を使用した時のSP消費量+20<BR>[慈愛の杖][慈愛のローブ][慈愛の靴][慈愛のショール]の精錬値が全て7以上の場合、<BR>さらに追加で、「ヒール」を使用した時のSP消費量+10<BR>[ヒール][サンクチュアリ][ポーションピッチャー]<BR>[ハイネスヒール][コルセオヒール]を使用した時の回復量が+10%",91,20,7490,100,7485,100,7486,100,0],
+	[1564,9,148,30,204,1,50,130,"慈愛の杖Ⅱ","シアイノ","0",20,6,88,180,4,4,91,20,0],
+	[1565,100,0,0,0,0,0,0,"0","0","[ヒール]を使用した時のSP消費量+40<BR>[慈愛の杖II][慈愛のローブ][慈愛の靴][慈愛のショール]の精錬値が全て7以上の場合、<BR>さらに追加で、「ヒール」を使用した時のSP消費量+10<BR>[ヒール][サンクチュアリ][ポーションピッチャー]<BR>[ハイネスヒール][コルセオヒール]を使用した時の回復量が+10%",91,40,7490,100,7485,100,7486,100,19490,1000,19485,1000,19486,1000,0],
+	[1566,60,148,22,200,0,30,100,"慈愛のローブ","シアイノ","[クレメンティア]を使用した時のSP消費量-50。",198,6,4,1,19,10,0],
+	[1567,62,148,12,200,0,40,100,"慈愛のショール","シアイノ","物理・魔法攻撃を受けた時、一定確率で[レノヴァティオ]Lv1発動",11,5,0],
+	[1568,63,148,12,200,0,30,100,"慈愛の靴","シアイノ","人間型以外から受けるダメージ+10%",13,500,57,10,0],
+	[1569,8,148,140,293,2,120,100,"審判のメイス","シンハン","物理攻撃時、一定確率で7秒間、悪魔形モンスターに与える物理ダメージ+20%<BR>魔法攻撃時、一定確率で7秒間、悪魔形モンスターに与える魔法ダメージ+20%",20,6,88,180,1,1,4,1,0],
+	[1570,100,0,0,0,0,0,0,"0","0","[アドラムス]を使用した時のSP消費量+30<BR>[審判のメイス][審判のローブ][審判の靴][審判のショール]の精錬値が全て7以上の場合、<BR>さらに追加で、不死属性モンスターへの物理攻撃・魔法攻撃で与えるダメージ+5%<BR>[アドラムス]で与えるダメージ+100%",49,10,359,10,5478,50,0],
+	[1571,8,148,170,214,1,120,130,"審判のメイスⅡ","シンハン","物理攻撃時、一定確率で7秒間、悪魔形モンスターに与える物理ダメージ+40%<BR>魔法攻撃時、一定確率で7秒間、悪魔形モンスターに与える魔法ダメージ+40%",20,6,88,180,1,2,4,2,0],
+	[1572,100,0,0,0,0,0,0,"0","0","[アドラムス]を使用した時のSP消費量+30<BR>[審判のメイスⅡ][審判のローブ][審判の靴][審判のショール]の精錬値が全て7以上の場合、<BR>さらに追加で、不死属性モンスターへの物理攻撃・魔法攻撃で与えるダメージ+15%<BR>[アドラムス]で与えるダメージ+50%",49,15,359,15,5478,150,7037,50,7387,50,7102,50,7104,50,7476,50,7478,50,0],
+	[1573,60,148,22,210,0,30,100,"審判のローブ","シンハン","悪魔・不死型以外の耐性-10%。",198,7,1,1,4,1,19,10,51,10,56,10,0],
+	[1574,62,148,12,210,0,40,100,"審判のショール","シンハン","物理・魔法攻撃を受けた時、一定確率で[オラティオ]Lv2発動<BR>[オラティオ]Lv3以上を習得している場合、習得レベルで発動",9,5,0],
+	[1575,63,148,12,210,0,30,100,"審判の靴","シンハン","[ジュデックス]を使用した時のSP消費量+40",14,150,5476,30,0],
+	[1576,61,148,10,140,1,50,110,"約束の聖書 第一巻","ヤクソク","[オーディンの力]Lv1使用可能。<BR>(オーディンの力Lv1：指定したキャラクターに下記の効果を与える。<BR>Atk+70、Matk+70、Def-20、Mdef-20、持続時間60秒)",19,2,0],
+	[1577,64,148,0,220,0,0,110,"治癒の光","チユノヒ","0",3,2,91,2,0],
+	[1578,64,148,0,240,0,0,110,"大聖堂の証","タイセイ","0",4,2,91,2,0],
+	[1579,64,148,0,230,0,0,110,"大司教の指輪","タイシキ","0",5,2,91,2,0],
+	[1580,60,146,110,100,0,300,100,"ウルズプレート","ウルスフ","精錬値が1上がる毎にMaxHP+1%",19,10,50,5,57,5,0],
+	[1581,100,0,0,0,0,0,0,"0","0","[ウルズプレート][ウルズマント][ウルズグリーブ]の精錬値が全て7以上の場合、<BR>さらに追加で、MaxHP+5%、無属性攻撃に対する耐性+5%<BR>[ハンドレッドスピア]で与えるダメージ+50%",15,10,60,5,5442,50,102,-10,0],
+	[1582,62,146,20,90,0,60,100,"ウルズマント","ウルスマ","0",15,2,60,10,0],
+	[1583,63,146,32,80,1,90,100,"ウルズグリーブ","ウルスク","精錬値が8以上の時、精錬値が1上がる毎にMaxHP+1%",14,40,0],
+	[1584,64,146,4,110,1,20,100,"ウルズブローチ","ウルスフ","",15,2,23259,5,23442,5,0],
+	[1585,60,146,110,130,0,300,100,"ペオースプレート","ヘオオス","0",19,10,17,20,9,17,0],
+	[1586,100,0,0,0,0,0,0,"0","0","[コンセントレイション]使用時に5秒間Aspd+2<BR>[ペオースプレート][ペオースマント][ペオースグリーブ]の精錬値が全て7以上の場合、<BR>さらに追加で、物理攻撃で与えるダメージ+5%<BR>[コンセントレイション]使用時に10秒間Aspd+2（5秒間から10秒間に延長）",80,10,5440,100,5443,100,0],
+	[1587,62,146,16,90,0,100,100,"ペオースマント","ヘオオス","0",9,10,10,10,0],
+	[1588,63,146,32,120,1,90,100,"ペオースグリーブ","ヘオオス","精錬値が8以上の時、精錬値が1上がる毎にAgi+1",14,40,0],
+	[1589,64,146,3,110,1,20,100,"ペオースブローチ","ヘオオス","0",14,20,17,15,0],
+	[1590,60,147,45,180,1,10,100,"サバフのクロース","サハフノ","(メテオアサルト習得時はそのLVで発動)",6,3,221,121,0],
+	[1591,100,0,0,0,0,0,0,"0","0","[サバフのクロース][サバフのフード][サバフのシューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、Cri+8<BR>クリティカル攻撃で与えるダメージ+15%",10,7,9,10,70,15,5460,20,102,-10,0],
+	[1592,62,147,13,90,0,10,100,"サバフのフード","サハフノ","精錬値が1上がる毎にクリティカル攻撃で与えるダメージ+1%",9,12,0],
+	[1593,63,147,18,190,1,40,100,"サバフのシューズ","サハフノ","0",14,30,6,3,0],
+	[1594,64,147,0,110,0,10,100,"サバフのリング","サハフノ","",10,3,23461,5,0],
+	[1595,60,147,45,250,1,10,100,"ナブのクロース","ナフノク","0",1,2,4,2,0],
+	[1596,100,0,0,0,0,0,0,"0","0","(ソウルブレイカー習得時は習得Lvで発動)<BR>純粋なSTRが120の時Atk+30。<BR>[ナブのクロース][ナブのフード][ナブのシューズ]の精錬値が全て7以上の場合、<BR>さらに追加で、物理攻撃で与えるダメージ+5%、Matk+5%",80,5,89,5,10,-20,221,122,0],
+	[1597,62,147,13,90,0,10,100,"ナブのフード","ナフノフ","精錬値が1上がる毎にAtk+2、Flee+2",0],
+	[1598,63,147,18,260,1,40,100,"ナブのシューズ","ナフノシ","0",4,2,9,3,0],
+	[1599,64,147,0,110,0,10,100,"ナブのリング","ナフノリ","0",17,10,100,20,0],
+	[1600,60,149,45,180,1,10,100,"白羽のスーツ","シラハノ","精錬値が1上がる毎にFlee+1、 遠距離物理攻撃で与えるダメージ+2%",0],
+	[1601,100,0,0,0,0,0,0,"0","0","(Lv4以上習得時は習得Lvで発動)<BR>[白羽のスーツ][白羽のマント][白羽のブーツ]の精錬値が全て7以上の場合、<BR>さらに追加で、Aspd+1、<BR>遠距離物理攻撃で与えるダメージ+15%<BR>[アローストーム]で与えるダメージ+10%",25,15,5498,10,101,1,221,120,0],
+	[1602,62,149,15,90,0,20,100,"白羽のマント","シラハノ","物理攻撃時、一定確率で7秒間Flee+20",2,2,9,10,0],
+	[1603,63,149,18,190,1,40,100,"白羽のブーツ","シラハノ","",2,2,23497,10,0],
+	[1604,64,149,0,110,0,10,100,"白羽のブローチ","シラハノ","0",5,2,25,3,0],
+	[1605,60,149,45,160,1,10,100,"黒羽のスーツ","クロハノ","精錬値が1上がる毎にAtk+3",4,2,0],
+	[1606,100,0,0,0,0,0,0,"0","0","[黒羽のスーツ][黒羽のマント][黒羽のブーツ]の精錬値が全て7以上の場合、<BR>さらに追加で、MaxHP+5%<BR>完全回避+5<BR>[クラスターボム]で与えるダメージ+10%<BR>遠距離物理攻撃で与えるダメージ-10%",15,10,11,5,5505,20,25,-20,101,-7,0],
+	[1607,62,149,15,90,0,20,100,"黒羽のマント","クロハノ","精錬値が7以上の時、精錬値が1上がる毎に完全回避+1",4,2,0],
+	[1608,63,149,18,170,1,40,100,"黒羽のブーツ","クロハノ","0",4,2,16,5,0],
+	[1609,64,149,0,110,0,10,100,"黒羽のブローチ","クロハノ","0",4,2,11,3,0],
+	[1610,64,1079,0,0,1,10,1,"スプリントグローブ","スフリン","0",73,-1,74,1,0],
+	[1611,100,0,0,0,0,0,0,"0","0","0",73,-4,74,4,0],
+	[1612,100,0,0,0,0,0,0,"0","0","[スプリントシューズ]の精錬値が7以上の時追加でMaxHP+2%",16,3,0],
+	[1613,100,0,0,0,0,0,0,"0","0","[スプリントメイル]の精錬値が7以上の時追加でMaxSP+2%",15,3,0],
+	[1614,100,0,0,0,0,0,0,"0","0","0",73,-5,74,5,0],
+	[1615,50,0,1,0,0,10,1,"スウィートバレンタイン帽","スウイイ","モンスターを倒した時、一定確率でチョコレートやチョコレート作成に必要な材料をドロップする。<BR>上記特殊効果は2012年2月28日メンテナンスまで。",0],
+	[1616,1,1,80,4,0,20,60,"ラグズナイフ","ラクスナ","精錬値7以上の時、追加で水属性攻撃で受けるダメージ-3%<BR>精錬値7以上の時、精錬値が1上がる度に追加でMaxHP+1%",20,1,2,2,61,2,63,-5,15,-2,0],
+	[1617,1,1,80,4,0,20,60,"エイワズナイフ","エイワス","精錬値7以上の時、追加で地属性攻撃で受けるダメージ-3%<BR>精錬値7以上の時、精錬値が1上がる度に追加でMaxHP+1%",20,2,2,2,62,2,64,-5,15,-2,0],
+	[1618,1,1,80,4,0,20,60,"カノナイフ","カノナイ","精錬値7以上の時、追加で火属性攻撃で受けるダメージ-3%<BR>精錬値7以上の時、精錬値が1上がる度に追加でMaxHP+1%",20,3,2,2,63,2,61,-5,15,-2,0],
+	[1619,1,1,80,4,0,20,60,"ハガラズナイフ","ハカラス","精錬値7以上の時、追加で風属性攻撃で受けるダメージ-3%<BR>精錬値7以上の時、精錬値が1上がる度に追加でMaxHP+1%",20,4,2,2,64,2,62,-5,15,-2,0],
+	[1620,999,1,80,4,0,20,60,"上の類似品?","0","0",0],
+	[1621,999,1,80,4,0,20,60,"上の類似品?","0","0",0],
+	[1622,999,1,80,4,0,20,60,"上の類似品?","0","0",0],
+	[1623,999,1,80,4,0,20,60,"上の類似品?","0","0",0],
+	[1624,999,1,80,4,0,20,60,"上の類似品?","0","0",0],
+	[1625,999,1,80,4,0,20,60,"上の類似品?","0","0",0],
+	[1626,51,0,0,0,0,30,30,"マジカルブースター","マシカル","0",89,3,0],
+	[1627,100,0,0,0,0,0,0,"0","0","魔法攻撃時ボスモンスターへのダメージ+2%。<BR>[サザンクロス]の精錬値が5以上の時、追加で魔法攻撃時ボスモンスターへのダメージ+3%。一般モンスターから受けるダメージ+5%。<BR>[サザンクロス]の精錬値が7以上の時、追加で魔法攻撃時ボスモンスターへのダメージ+4%。一般モンスターから受けるダメージ+5%。",0],
+	[1628,100,0,0,0,0,0,0,"0","0","「スタッフオブピアーシング」の精錬値が1上がる度に追加で、Matk+15。<BR>「スタッフオブピアーシング」の精錬値が10の時、追加でMatk+50、詠唱時間-10%。",0],
+	[1629,100,0,0,0,0,0,0,"0","0","[催眠術師の杖]の精錬値が1上がる度に追加で、Matk+20。<BR>[催眠術師の杖]の精錬値が10の時、追加でMatk+50、スキルディレイ-10%。",0],
+	[1630,62,0,10,0,1,50,50,"真紅のポンチョ","シンクノ","0",19,5,70,3,0],
+	[1631,100,0,0,0,0,0,0,"0","0","[真紅のポンチョ]の精錬値が5以上の時、追加でクリティカル攻撃で与えるダメージ+3%。<BR>[真紅のポンチョ]の精錬値が7以上の時、追加でクリティカル攻撃で与えるダメージ+4%。",70,5,10,10,0],
+	[1632,50,0,7,0,1,50,33,"うさ耳ニット帽","ウサミミ","純粋なLukが55以上の時、追加でHP回復力、SP回復力+30%。",75,20,76,20,0],
+	[1633,50,0,3,0,1,50,30,"オーラクォーツの冠","オオラク","モンスターを倒した時、一定確率で[フレイムハート][ミスティックフローズン][ラフウィンド][グレイトネイチャ]をドロップ。",0],
+	[1634,50,0,5,3,1,70,88,"スカイメット","スカイメ","精錬値が5以上の時、追加で遠距離物理攻撃で与えるダメージ+3%。<BR>精錬値が7以上の時、追加で遠距離物理攻撃で与えるダメージ+5%。 ",19,5,194,1,25,2,0],
+	[1635,51,0,1,0,0,50,80,"イドゥンの羽耳","イトウン","BaseLv100以上の時、追加でMaxHP + 1%<BR>BaseLv150以上の時、さらに追加でMaxHP + 1%",15,1,0],
+	[1636,51,0,2,4,0,10,80,"ロキの仮面","ロキノカ","0",19,2,58,3,56,-3,154,100,0],
+	[1637,64,0,5,0,1,10,10,"回復の指輪","カイフク","一部の回復アイテムによるHP回復量+5%。",3,1,13,250,75,10,92,5,0],
+	[1638,50,0,0,0,1,30,50,"たれタナトスの苦悩","タレタナ","0",193,1,194,1,220,45,102,-20,0],
+	[1639,61,0,150,0,1,200,90,"ロードオブデスの盾","ロオトオ","0",26,2,79,-10,0],
+	[1640,100,0,0,0,0,0,0,"0","0","[ロードオブデスの兜]の精錬値が7以上の時、追加で物理攻撃時、ボスモンスターへのダメージ+5%。",26,5,0],
+	[1641,5,0,190,824,3,380,105,"オンディーヌの槍","オンテイ","精錬値が1上がる度にMaxHP+1%。",20,1,0],
+	[1642,6,92,180,4,32,180,105,"ドフレの斧","トフレノ","0",220,8,0],
+	[1643,10,2076,80,834,1,150,105,"王家の弓","オウケノ","[カースアロー]と共に装備時、物理攻撃で与えるダメージ+50%。<BR>さらに、[デビアスカード]と共に装備時、精錬値が1上がる度に、追加で物理攻撃時、人間形モンスターへのダメージ+2%。<BR><BR>[スリープアロー]と共に装備時、物理攻撃で与えるダメージ+50%。<BR>さらに、[デビアスカード]と共に装備時、精錬値が1上がる度に、追加で物理攻撃時、動物形モンスターへのダメージ+2%。<BR><BR>[サイレンスアロー]と共に装備時、物理攻撃で与えるダメージ+50%。<BR>さらに、[デビアスカード]と共に装備時、精錬値が1上がる度に、追加で物理攻撃時、昆虫形モンスターへのダメージ+2%。<BR><BR>[フラッシュアロー]と共に装備時、物理攻撃で与えるダメージ+50%。<BR>さらに、[デビアスカード]と共に装備時、精錬値が1上がる度に、追加で物理攻撃時、植物形モンスターへのダメージ+2%。<BR><BR>※オークアーチャーの弓＋鋼鉄の矢などと違い[遠距離物理]でなく、[物理攻撃]であり近距離攻撃スキルにも効果がある。",0],
+	[1644,13,0,140,4,2,40,105,"閃光の爪","センコウ","精錬値が1上がる度に攻撃速度+1%、物理攻撃時、中型モンスターに与えるダメージ+1%。",101,1,0],
+	[1645,50,0,10,0,1,80,110,"エーギルヘルム","エエキル","0",19,5,194,1,0],
+	[1646,60,0,55,0,1,260,110,"エーギルアーマー","エエキル","マジシャン系、アーチャー系、アコライト系職業が装備すると、沈黙に対する耐性+50%。<BR>ソードマン系、マーチャント系、シーフ系職業が装備すると、スタンに対する耐性+50%。",7,1,194,1,0],
+	[1647,62,0,10,0,1,30,110,"エーギルマント","エエキル","マジシャン系、アーチャー系、アコライト系職業が装備すると、完全回避+5。精錬値が1上がる度に完全回避+2。<BR>ソードマン系、マーチャント系、シーフ系職業が装備すると、近接物理攻撃の5%を反射する。精錬値が1上がる度にダメージ反射+2%。",0],
+	[1648,63,0,13,0,1,30,110,"エーギルシューズ","エエキル","マジシャン系、アーチャー系、アコライト系職業が装備すると、BaseLvの5倍、MaxHPが増加。<BR>ソードマン系、マーチャント系、シーフ系職業が装備すると、JobLvの2倍、MaxSPが増加。",0],
+	[1649,100,0,0,0,0,0,0,"0","0","0",217,1,61,20,0],
+	[1650,100,0,0,0,0,0,0,"0","0","0",41,10,0],
+	[1651,100,0,0,0,0,0,0,"0","0","0",41,10,0],
+	[1652,100,0,0,0,0,0,0,"0","0","0",41,10,0],
+	[1653,1,1,140,4,3,70,105,"蛸引包丁","タコヒキ","精錬値が 1上がる度にHit+1。",0],
+	[1654,100,0,0,0,0,0,0,"0","0","0",41,8,0],
+	[1655,100,0,0,0,0,0,0,"0","0","0",41,8,0],
+	[1656,100,0,0,0,0,0,0,"0","0","0",41,8,0],
+	[1657,100,0,0,0,0,0,0,"0","0","0",41,16,0],
+	[1658,2,0,165,4,32,200,105,"マジカルブレード","マシカル","近接物理攻撃時、一定確率で同時に複数の魔法攻撃が発動する。<BR>精錬値が2上がる度に、追加で発動する魔法攻撃の種類が増加する。<BR>※+0SS、+2ES、+4CB、+6FB、+8LB、全てLv3。<BR>+10でストーンカース追加。そしてSSからLBまでの魔法がLv5になる。",88,110,0],
+	[1659,100,0,0,0,0,0,0,"0","0","マジカルブレードの魔法攻撃の発動率が上昇する(未実装)。",0],
+	[1660,100,0,0,0,0,0,0,"0","0","マジカルブレードの魔法攻撃の発動率が上昇する(未実装)。",0],
+	[1661,11,147,110,834,2,270,105,"戦慄のカタール","センリツ","精錬値が1上がる度にCri+1。",0],
+	[1662,100,0,0,0,0,0,0,"0","0","0",70,5,0],
+	[1663,100,0,0,0,0,0,0,"0","0","0",70,5,0],
+	[1664,12,95,10,824,32,150,105,"蛇蝎大全集","タカツタ","精錬値が1上がる度にAtk+3、Matk+3。",88,110,0],
+	[1665,100,0,0,0,0,0,0,"0","0","0",12,5,0],
+	[1666,100,0,0,0,0,0,0,"0","0","0",12,5,0],
+	[1667,100,0,0,0,0,0,0,"0","0","0",101,1,0],
+	[1668,50,0,13,0,1,30,10,"セドラ帽","セトラホ","「お寿司」、「おさしみ」のHP回復量+50%。<BR>精錬値7以上の時、追加で「お寿司」、「おさしみ」のHP回復量+100%。",55,5,0],
+	[1669,100,0,0,0,0,0,0,"0","0","追加で「お寿司」、「おさしみ」のHP回復量+50%。",0],
+	[1670,8,0,88,821,3,70,1,"肉球クラブ","ニクキユ","近接物理攻撃時、一定確率で敵を魅惑状態にする。 ",32,15,0],
+	[1671,64,0,5,0,1,10,1,"猫の手グローブ","ネコノテ","0",2,1,3,1,5,1,6,1,0],
+	[1672,64,0,0,0,0,0,1,"RJC2012EXPネックレス","アアルシ","※ドロップ・交換ウィンドウ・倉庫・カート・NPC売却等一切の移動が行えません。<BR>※上記特殊効果と移動制限は2012年6月5日（火）定期メンテナンスにて全て消滅します。",103,10,0],
+	[1673,64,0,0,0,0,0,1,"RJC2012ステータスネックレス","アアルシ","※ドロップ・交換ウィンドウ・倉庫・カート・NPC売却等一切の移動が行えません。<BR>※上記特殊効果と移動制限は2012年6月5日（火）定期メンテナンスにて全て消滅します。",217,5,8,5,0],
+	[1674,64,0,0,0,0,0,1,"RJC2012スペルネックレス","アアルシ","※ドロップ・交換ウィンドウ・倉庫・カート・NPC売却等一切の移動が行えません。<BR>※上記特殊効果と移動制限は2012年6月5日（火）定期メンテナンスにて全て消滅します。",73,-20,380,1,0],
+	[1675,50,0,6,0,1,64,64,"マスキプラーのヘアピン","マスキフ","0",19,4,14,64,34,10,0],
+	[1676,52,0,1,0,0,10,1,"くわえたハンカチ","クワエハ","0",57,3,0],
+	[1677,50,0,10,0,0,10,1,"白い学生帽","シロイカ","物理攻撃命中時、一定確率でオートスペル「ウェポンパーフェクション」Lv1発動<BR>精錬値が5以上の時、精錬値が1上がる度に「ウェポンパーフェクション」Lv1の発動率が上昇する",0],
+	[1678,50,0,0,0,0,50,30,"エンジェルステアーズ","エンシナ","[ファイアーボルト]Lv5、[ファイアーボール]Lv5以上習得している場合、習得しているLvで発動する。<BR>[ファイアーボルト]、[ファイアーボール]の習得Lvが高い程、発動確率が上昇する。 ",221,117,221,118,0],
+	[1679,50,0,10,3,1,50,70,"スカルフード","スカルフ","近接物理攻撃時、一定確率で敵をスタン、呪い、沈黙、毒、出血状態にする。",193,1,19,2,0],
+	[1680,50,0,0,0,0,100,1,"幸福の帽子","コウフク","0",193,1,103,3,0],
+	[1681,50,0,6,0,1,40,50,"柴犬帽(黒)","シハイヌ","0",32,10,0],
+	[1682,64,0,0,0,1,30,50,"忠節の首輪","チユウセ","0",2,2,52,3,0],
+	[1683,100,0,0,0,0,0,0,"0","0","物理攻撃命中時または物理攻撃を受けた時、一定確率で5秒間モンスター[アトロス]に変身。<BR>[柴犬帽(黒)]の精錬値が1上がる度に追加でモンスター[アトロス]に変身する確率が上昇。<BR>モンスター[アトロス]に変身時、Atk+30、1秒毎にSP-5。<BR>[柴犬帽(黒)]の精錬値が1上がる度に追加でAtk+30。",0],
+	[1684,52,0,0,0,0,10,80,"長い舌","ナカイシ","0",89,2,73,-3,0],
+	[1685,61,2051,130,310,1,280,100,"ギガントシールド","キカント","精錬値が9以上の時、追加で大型モンスターから受けるダメージ-5%",192,5,0],
+	[1686,61,150,30,310,1,100,100,"ゲフェニア 水の古書","ケフエニ","純粋なIntが120以上の時、Matk+10。MaxHP+800",4,1,19,2,0],
+	[1687,100,0,0,0,0,0,0,"+ラクリマ","0","精錬値が1上がる度に、[ストームガスト][フロストミスティ][ジャックフロスト]の詠唱時間-4%<BR>※説明文に記述はないが精錬値はゲフェニア水の古文書の精錬値と思われる。",0],
+	[1688,61,148,20,310,1,50,140,"約束の聖書 第二巻","ヤクソク","[オーディンの力]Lv2使用可能。<BR>([オーディンの力Lv2]効果：ATK+100、MATK+100、DEF-40、MDEF-40、60秒)",19,5,91,5,0],
+	[1689,62,150,1,310,0,40,130,"サルベージケープ","サルヘエ","[空蝉]Lv1使用可能。<BR>装備解除時、SP-1200。",102,-100,19402,-30000,0],
+	[1690,64,147,3,310,1,40,100,"暗殺者の手甲","アンサツ","0",14,20,10,3,0],
+	[1691,100,0,0,0,0,0,0,"+クリシュナ","0","0",17,50,9,-30,5083,50,5388,50,0],
+	[1692,100,0,0,0,0,0,0,"+チャクラム","0","0",10,4,70,40,15,-10,0],
+	[1693,60,158,66,310,1,66,100,"オペレーションコート","オヘレエ","0",5,1,14,30,0],
+	[1694,100,0,0,0,0,0,0,"+メス","0","人間形モンスター、動物形モンスターを倒した時、一定確率で[止まらない心臓][アルコール]をドロップ。<BR>精錬値が1上がる度に追加で上記の[止まらない心臓][アルコール]がドロップする確率が上昇する。<BR>※説明文に記述はないが精錬値はオペレーションコートの精錬値と思われる。",0],
+	[1695,50,2000,7,310,1,40,100,"古代の金装飾","コタイノ","BaseLv150以上の時、ALL Status+2。<BR>ソードマン系、マーチャント系、シーフ系が装備時、Atk+8%。<BR>マジシャン系、アコライト系が装備時Matk+8%。<BR>[ヒール][サンクチュアリ][ポーションピッチャー][ハイネスヒール]<BR>[コルセオヒール]を使用した時の回復量+7%。<BR>アーチャー系が装備時、Dex+3。<BR>遠距離攻撃で与えるダメージ+10%。",0],
+	[1696,4,152,180,304,1,160,100,"キャノンスピア","キヤノン","精錬値が1上がる度に[キャノンスピア]で与えるダメージ+3%。",14,-100,5569,10,0],
+	[1697,12,157,100,304,2,100,100,"冷気の魔法書","レイキノ","精錬値が1上がる度に[コールドボルト][ダイヤモンドダスト]で与えるダメージ+3%。<BR>精錬値が1上がる度に[コールドボルト][ダイヤモンドダスト]の消費SP+5。",20,1,88,160,5,1,194,1,0],
+	[1698,9,148,30,304,1,40,110,"回復の光","カイフク","精錬値が1上がる度に[ヒール][サンクチュアリ][ポーションピッチャー][ハイネスヒール]<BR>[コルセオヒール]を使用した時の回復量+6%。<BR>精錬値が1上がる度に[ヒール]の消費SP+10。<BR>精錬値が1上がる度に[コルセオヒール]の消費SP+12。<BR>精錬値が1上がる度に[ハイネスヒール]の消費SP+14。",20,6,88,160,0],
+	[1699,1,2072,160,304,0,50,110,"アズールネイル","アスウル","近接物理攻撃時、一定確率で敵を凍結状態にする。<BR>精錬値が2以上の時、精錬値が1上がる度に追加で敵を凍結状態にする確率が上昇する。",20,4,88,80,0],
+	[1700,1,2072,160,304,0,50,110,"スカーレットネイル","スカアレ","近接物理攻撃時、一定確率で敵を石化状態にする。<BR>精錬値が2以上の時、精錬値が1上がる度に追加で敵を石化状態にする確率が上昇する。",20,3,88,80,0],
+	[1701,8,2053,170,304,0,150,100,"ブラッディクロス","フラツテ","精錬値が1上がる度に、追加で、オートスペル[ヘルインフェルノ]Lv1の発動確率が上昇する。",20,7,221,119,0],
+	[1702,11,147,170,303,1,120,100,"エージェントカタール","エエシエ","純粋なLuk2毎にHit+1。",0],
+	[1703,11,147,200,304,1,150,140,"ギロチンカタール","キロチン","0",5,2,9,-30,37,50,5460,30,0],
+	[1704,7,1070,250,304,1,190,95,"イグニスステイル","イクニス","近接物理攻撃時、一定確率で敵を発火状態にする。<BR>近接物理攻撃時、一定確率で自分が発火状態になる。",20,3,0],
+	[1705,7,1070,250,304,1,190,95,"エンドセクション","エントセ","近接物理攻撃時、一定確率で敵を冷凍状態にする。<BR>近接物理攻撃時、一定確率で自分が冷凍状態になる。",20,1,0],
+	[1706,5,146,20,304,0,2000,140,"ギガントランス","キカント","装備解除時、SP-600。<BR>純粋なStrが120以上の時Atk+300。",101,-10,19259,-20000,0],
+	[1707,10,153,150,304,2,110,100,"カタパルト","カタハル","精錬値が1上がる度に[トライアングルショット]で与えるダメージ+2%。<BR>精錬値が1上がる度に[トライアングルショット]の消費SP+2。",0],
+	[1708,10,149,160,304,2,90,110,"大型クロスボウ","オオカタ","精錬値が1上がる度に[アローストーム]で与えるダメージ+5%。<BR>精錬値が1上がる度に[アローストーム]の消費SP+5。<BR>純粋なAgiが120以上の時、Aspd+1。",0],
+	[1709,10,2054,150,303,2,150,120,"クリーパーボウ","クリイハ","物理攻撃命中時、一定確率で、オートスペル[スパイダーウェブ]Lv1発動。",5,1,0],
+	[1710,51,0,0,0,0,20,10,"フォティアの仮面","フオテイ","0",343,4,0],
+	[1711,52,0,0,0,0,15,10,"くわえたディスク","クワエテ","0",8,5,12,-1,0],
+	[1712,52,0,0,0,0,30,40,"ブラッドサッカー","フラツト","物理攻撃時、一定確率で相手に与えたダメージの5%をHPとして吸収する。<BR>※ゲーム内説明文は-100%でなく[HPとSPが自然回復しない]",75,-100,76,-100,0],
+	[1713,52,0,0,0,0,10,1,"ラッキークローバー","ラツキイ","0",11,2,0],
+	[1714,64,0,0,0,1,10,70,"魔王の翼","マオウノ","0",9,5,0],
+	[1715,100,0,0,0,0,0,0,"0","0","[スキンオブベントス]の精錬値が7以上の時、完全回避+2。",0],
+	[1716,51,0,0,0,0,20,50,"ウッドゴブリンの鼻","ウツトコ","モンスターを倒した時、一定確率で「食人植物の花」「食人植物の根」をドロップ。<BR>植物形モンスターを倒した時、一定確率で「トゲの実」をドロップ。",0],
+	[1717,60,1001,55,0,1,280,1,"ヴァルキリーローブ","ウアルキ","マジシャン、アーチャー、アコライト系が装備時、沈黙耐性+50%。<BR>ソードマン、マーチャント、シーフ系が装備時、スタン耐性+50%。",7,1,194,1,0],
+	[1718,62,1001,10,0,1,50,1,"ヴァルキリーケープ","ウアルキ","マジシャン、アーチャー、アコライト系が装備時、完全回避 + 5。精錬値の 2倍、完全回避増加。<BR>ソードマン、マーチャント、シーフ系が装備時、物理攻撃の5%を反射する。精錬値の 2倍、反射ダメージ増加。",194,1,0],
+	[1719,51,0,0,0,0,10,1,"スキューバーマスク","スキユウ","0",35,2,175,2,61,3,0],
+	[1720,51,0,0,0,0,10,1,"蝶の翅耳","チヨウノ","0",5,2,0],
+	[1721,62,1001,16,0,1,50,70,"絶無のマント","セツムノ","0",19,2,15,5,89,1,40,2,0],
+	[1722,62,1001,16,0,1,50,70,"激流のマント","ケキリユ","0",19,2,15,5,89,1,41,2,0],
+	[1723,62,1001,16,0,1,50,70,"激震のマント","ケキシン","0",19,2,15,5,89,1,42,2,0],
+	[1724,999,1001,16,0,1,50,70,"類似品?","0","0",0],
+	[1725,62,1001,16,0,1,50,70,"暴風のマント","ホウフウ","0",19,2,15,5,89,1,44,2,0],
+	[1726,62,1001,16,0,1,50,70,"猛毒のマント","モウトク","0",19,2,15,5,89,1,45,2,0],
+	[1727,62,1001,16,0,1,50,70,"光芒のマント","コウホウ","0",19,2,15,5,89,1,46,2,0],
+	[1728,62,1001,16,0,1,50,70,"宵闇のマント","ヨイヤミ","0",19,2,15,5,89,1,47,2,0],
+	[1729,62,1001,16,0,1,50,70,"怨念のマント","オンネン","0",19,2,15,5,89,1,48,2,0],
+	[1730,62,1001,16,0,1,50,70,"沈丁のマント","シンチヨ","0",19,2,15,5,89,1,49,2,0],
+	[1731,63,0,10,0,0,30,30,"機工士の靴","キコウシ","精錬値が1上がる度に追加で無形モンスターを倒した時、獲得する経験値+1%",120,5,0],
+	[1732,63,0,10,0,0,30,30,"墓守の靴","ハカモリ","精錬値が1上がる度に追加で不死形モンスターを倒した時、獲得する経験値+1%",121,5,0],
+	[1733,63,0,10,0,0,30,30,"狩人の靴","カリユウ","精錬値が1上がる度に追加で動物形モンスターを倒した時、獲得する経験値+1%",122,5,0],
+	[1734,63,0,10,0,0,30,30,"庭師の靴","ニワシノ","精錬値が1上がる度に追加で植物形モンスターを倒した時、獲得する経験値+1%",123,5,0],
+	[1735,63,0,10,0,0,30,30,"昆虫採集家の靴","コンチユ","精錬値が1上がる度に追加で昆虫形モンスターを倒した時、獲得する経験値+1%",124,5,0],
+	[1736,63,0,10,0,0,30,30,"漁師の靴","リヨウシ","精錬値が1上がる度に追加で魚貝形モンスターを倒した時、獲得する経験値+1%",125,5,0],
+	[1737,63,0,10,0,0,30,30,"退魔の靴","タイマノ","精錬値が1上がる度に追加で悪魔形モンスターを倒した時、獲得する経験値+1%",126,5,0],
+	[1738,63,0,10,0,0,30,30,"暗殺者の靴","アンサツ","精錬値が1上がる度に追加で人間形モンスターを倒した時、獲得する経験値+1%",127,5,0],
+	[1739,63,0,10,0,0,30,30,"堕天使の靴","タテンシ","精錬値が1上がる度に追加で天使形モンスターを倒した時、獲得する経験値+1%",128,5,0],
+	[1740,63,0,10,0,0,30,30,"屠竜の靴","トリユウ","精錬値が1上がる度に追加で竜形モンスターを倒した時、獲得する経験値+1%",129,5,0],
+	[1741,61,0,90,0,0,350,50,"バンカーシールド","ハンカア","精錬値が5以上の時、精錬値が1上がる度に追加で物理攻撃で与えるダメージ+1%",80,4,12,-5,0],
+	[1742,1,1,110,834,1,50,30,"クリスナーガ","クリスナ","精錬値が5以上の時、追加でMatk+30<BR>精錬値が7以上の時、追加でMatk+40<BR>精錬値が9以上の時、追加でMatk+50",88,50,0],
+	[1743,60,0,5,0,1,100,1,"幸福の服","コウフク","精錬値が1上がる度にLuk+1",0],
+	[1744,12,0,90,834,2,40,27,"雷神の系譜","ライシン","精錬値が1上がる度に「ライトニングボルト」で与えるダメージ+1%",20,4,88,130,4,3,5056,5,0],
+	[1745,999,0,3,0,0,10,1,"ウサギのヘアバンド(桃)","ウサキノ","0",6,2,0],
+	[1746,50,0,0,0,0,30,1,"ラルフ・フォン・ツィーゲ666世","ラルフフ","物理攻撃命中時、一定確率でオートスペル「アドレナリンラッシュ」Lv2発動。<BR>オートスペル「アドレナリンラッシュ」は全ての武器で発動する。<BR>キューペットバフォメットJrを連れているとき、「アドレナリンラッシュ」Lv2の発動率が上昇する。<BR>バフォメットJrの親密度が「きわめて親しい」場合、追加で「アドレナリンラッシュ」Lv2の発動率が上昇する。",0],
+	[1747,64,0,0,0,1,50,30,"ニュートラルリング","ニユウト","0",40,5,0],
+	[1748,61,0,40,0,0,40,1,"カラサック","カラサツ","精錬値が3上がる度にボスモンスターから受けるダメージ-1%。",0],
+	[1749,61,0,40,0,1,40,1,"バヤニ・カラサック","ハヤニカ","精錬値が3上がる度にボスモンスターから受けるダメージ-1%。",0],
+	[1750,63,0,10,0,0,60,1,"ビョンウンゴブーツ","ヒヨンウ","精錬値が1上がる度にMdef+1。",0],
+	[1751,63,0,10,0,1,60,1,"バヤニ・ビョンウンゴブーツ","ハヤニヒ","精錬値が1上がる度にMdef+1。",0],
+	[1752,62,0,8,0,0,20,1,"ブワヤのフードマント","フワヤノ","※ゲーム内説明文によると耐性は物理のみ。<BR>精錬値が3上がる度に[ヒール][サンクチュアリ][ポーションピッチャー]<BR>[ハイネスヒール][コルセオヒール]を受けた時のHP回復量+1%。<BR>一部の回復アイテムによるHP回復量+1%。",331,10,332,10,333,10,334,10,0],
+	[1753,62,0,8,0,1,20,1,"バヤニ・ブワヤのフードマント","ハヤニフ","※ゲーム内説明文によると耐性は物理のみ。<BR>精錬値が3上がる度に[ヒール][サンクチュアリ][ポーションピッチャー]<BR>[ハイネスヒール][コルセオヒール]を受けた時のHP回復量+1%。<BR>一部の回復アイテムによるHP回復量+1%。",331,10,332,10,333,10,334,10,0],
+	[1754,60,0,55,0,0,50,1,"バコナワの鱗鎧","ハコナワ","精錬値が2上がる度にボスモンスターから受けるダメージ-1%。",7,1,0],
+	[1755,60,0,55,0,1,50,1,"バヤニ・バコナワの鱗鎧","フワヤハ","精錬値が2上がる度にボスモンスターから受けるダメージ-1%。",7,2,0],
+	[1756,100,0,0,0,0,0,0,"0","0","ブギスギス、マナナンガル、マンククーラム、ティクバラン、チャナック、ワクワク、<BR>ジェジェリン、働きブワヤ、ブワヤの影、ビョンウンゴ、ブワヤ、バコナワから受けるダメージ-30%。",15,20,16,10,3628,30,3630,30,3631,30,3632,30,3633,30,3634,30,3635,30,3636,30,3639,30,3640,30,3642,30,3644,30,0],
+	[1757,64,0,0,200000,0,10,1,"ブワヤの守護タトゥー","フワヤノ","0",89,7,73,-7,0],
+	[1758,64,0,0,200000,0,10,1,"バコナワの守護タトゥー","ハコナワ","0",12,10,80,7,0],
+	[1759,64,0,0,200000,0,10,1,"ビョンウンゴの守護タトゥー","ヒヨンウ","一部の回復アイテムによるHP回復量+7%。",91,4,92,7,0],
+	[1760,50,0,5,0,1,30,50,"薔薇の花冠","ハラノハ","[スペルブレイカー]Lv1使用可能。<BR>精錬値が6以上の時、精錬値が1上がる度にスキル使用時の消費SP-10%。",19,10,102,-50,0],
+	[1761,51,0,0,0,0,20,10,"アネモスの仮面","アネモス","0",344,4,0],
+	[1762,52,0,0,0,0,15,1,"くわえたえんぴつ","クワエエ","BaseLv100以上の時、追加で物理攻撃時、ボスモンスターへ与えるダメージ+1%",26,1,0],
+	[1763,51,0,5,4,0,20,50,"ゴールテンダーマスク","コオルテ","0",37,8,0],
+	[1764,51,0,0,0,0,20,30,"スターライトスコープ","スタアラ","BaseLv100以上の時、追加で遠距離物理攻撃で与えるダメージ+1%<BR>BaseLv150以上の時、追加で遠距離物理攻撃で与えるダメージ+1%",5,1,25,1,0],
+	[1765,12,0,90,4,1,40,24,"運命の書","ウンメイ","精錬値が7以上の時、追加で完全回避+5",88,90,6,5,11,15,0],
+	[1766,1,0,50,4,1,50,50,"フクロウの短剣","フクロウ","精錬値が1上がる度に追加でInt+1、Luk+1",0],
+	[1767,62,0,16,0,1,10,50,"暗殺者のマフラー","アンサツ","精錬値が6以上の時、精錬値が1上がる度にAgi+2",0],
+	[1768,63,0,15,0,1,30,50,"賢者の靴","ケンシヤ","精錬値が6以上の時、精錬値が1上がる度にInt+1、MaxHP-1%",0],
+	[1769,60,0,35,0,1,30,1,"ネクタルスーツ","ネクタル","精錬値が2上がる度に追加でMaxHP+1%、MaxSP+1%",19,5,3,3,0],
+	[1770,50,0,6,0,1,90,20,"ポイズンスポア帽","ホイスン","植物形モンスターを倒した時、一定確率で「きのこの胞子」「毒キノコの胞子」をドロップする<BR>精錬値が2上がる度に「きのこの胞子」「毒キノコの胞子」のドロップする確率が上昇する",0],
+	[1771,50,0,8,0,1,40,50,"エルダーデビルホーン","エルタア","精錬値が7以上の時、追加で魔法攻撃時、人間形モンスターへのダメージ+5%",4,2,177,5,0],
+	[1772,50,0,5,1,1,50,80,"聖なるクロブーク","セイナル","0",193,1,194,1,19,5,56,10,91,3,0],
+	[1773,51,0,0,0,0,10,30,"ニューウェイブサングラス","ニユウウ","0",74,10,0],
+	[1774,60,0,55,0,1,50,70,"青龍の鎧","セイリユ","0",198,1,41,10,19,5,0],
+	[1775,60,0,55,0,1,50,70,"白虎の鎧","ヒヤツコ","0",198,2,42,10,19,5,0],
+	[1776,60,0,55,0,1,50,70,"朱雀の鎧","スサクノ","0",198,3,43,10,19,5,0],
+	[1777,60,0,55,0,1,50,70,"玄武の鎧","ケンフノ","0",198,4,44,10,19,5,0],
+	[1778,60,0,55,0,1,50,70,"蠱毒の鎧","コトクノ","0",198,5,19,5,45,10,0],
+	[1779,60,0,55,0,1,50,70,"麒麟の鎧","キリンノ","0",198,6,0],
+	[1780,60,0,55,0,1,50,70,"蚩尤の鎧","シユウノ","0",198,7,19,5,0],
+	[1781,999,0,55,0,1,50,70,"類似品?","0","0",0],
+	[1782,999,0,55,0,1,50,70,"類似品?","0","0",0],
+	[1783,51,0,0,0,0,10,30,"炎の羽耳","ホノオノ","0",221,135,0],
+	[1784,12,0,90,834,2,40,27,"氷神の系譜","ヒヨウシ","精錬値が1上がる度に追加で[コールドボルト]で与えるダメージ+1%",20,1,88,130,4,3,5054,5,0],
+	[1785,50,0,10,0,1,30,50,"ヴァルキリーサークレット","ウアルキ","0",19,3,1,1,47,10,36,10,0],
+	[1786,100,0,0,0,0,0,0,"0","0","物理攻撃命中時、一定確率で5秒間、モンスター[ランドグリス]に変身<BR>[ヴァルキリーサークレット]の精錬値が1上がる度に追加でモンスター[ランドグリス]に変身する確率が上昇<BR>モンスター[ランドグリス]に変身時、全ての攻撃が9セルの範囲攻撃になる。Hit-10、1秒毎にHP-30",0],
+	[1787,50,0,0,0,1,50,10,"ローズキャスケット","ロオスキ","純粋なDexが100以上の時、追加でスキル使用時の消費SP-5%<BR>純粋なDexが120以上の時、追加でスキル使用時の消費SP-5%",102,5,0],
+	[1788,100,0,0,0,0,0,0,"0","0","0",102,5,0],
+	[1789,50,0,5,1400,1,30,10,"茨のヘアバンド","イハラノ","精錬値が5以上の時、精錬値が1上がる度に追加で魔法攻撃時、火・水・風・地属性モンスターへのダメージ+5%",4,1,5,1,351,5,352,5,353,5,354,5,0],
+	[1790,100,0,0,0,0,0,0,"0","0","[茨の杖]の精錬値が1上がる度に追加でMatk+10",0],
+	[1791,51,0,0,0,0,50,70,"インペリアルフェザー","インヘリ","純粋なAgiが108以上の時、追加でAspd+1、攻撃速度+1%",12,1,64,5,0],
+	[1792,100,0,0,0,0,0,0,"0","0","0",5569,20,5570,20,5572,20,0],
+	[1793,51,0,0,4,0,49,49,"破産者の仮面","ハサンシ","攻撃命中時、一定確率でHP、SP回復",0],
+	[1794,100,0,0,0,0,0,0,"0","0","[お金を失った者の心]の精錬値が1上がる度に無属性攻撃で受けるダメージ-1%、MaxHP+100",0],
+	[1795,51,0,0,0,0,10,1,"たれ妖精の耳","タレヨウ","スキル[モンスター情報]使用可能。",19,3,0],
+	[1796,51,0,2,0,0,5,20,"ハートの眼帯","ハアトノ","0",57,2,0],
+	[1797,63,0,20,0,1,50,70,"イミューンブーツ","イミユウ","無属性を除く全ての属性攻撃で受けるダメージ+3%<BR>精錬値が6以上の時、精錬値が1上がる度に追加で無属性攻撃で受けるダメージ-1%",60,3,0],
+	[1798,50,0,6,0,0,25,1,"疾風の髪飾り","ハヤテノ","精錬値が8以上の時、追加で風属性攻撃で受けるダメージ-5%",4,2,220,47,64,15,0],
+	[1799,52,0,0,0,0,10,10,"冷たい空気","ツメタイ","物理攻撃を受けた時、一定確率でモンスターを凍結状態にする<BR>BaseLvが高いほど凍結状態にする確率が上昇する",152,5,0],
+	[1800,51,0,0,0,0,10,30,"氷の羽耳","コオリノ","0",221,136,0],
+	[1801,3,0,170,834,2,100,50,"小烏丸","コカラス","精錬値が1上がる度に、クリティカル攻撃で与えるダメージ+2%<BR>物理攻撃命中時、一定確率で自分にオートスペル「致命的な傷」Lv1発動",0],
+	[1802,13,0,100,4,2,60,50,"スパルタカス","スハルタ","精錬値が1上がる度に、物理攻撃で与えるダメージ+1%<BR>精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",194,1,0],
+	[1803,12,0,90,834,2,40,27,"炎神の系譜","エンシン","精錬値が1上がる度に追加で[ファイアーボルト]で与えるダメージ+1%",20,3,88,130,4,3,5051,5,0],
+	[1804,50,0,8,0,1,40,50,"カバ帽子","カハホウ","精錬値が5以上の時、精錬値が1上がる度に、オートスペル「ウォーターボール」Lv3の発動率が上昇する",221,137,0],
+	[1805,50,0,8,0,1,40,1,"ホワイトスネイク","ホワイト","物理攻撃命中時、一定確率で敵を毒状態にする<BR>精錬値が6以上の時、精錬値が1上がる度に敵を毒状態にする確率が上昇する",0],
+	[1806,50,0,5,0,1,10,1,"エルダークラウン","エルタア","植物形モンスターを倒した時、一定確率で「エルダーの枝」をドロップ<BR>精錬値が6以上の時、「エルダーの枝」のドロップ確率が上昇する<BR>精錬値が9以上の時、「エルダーの枝」のドロップ確率が更に上昇する",19,5,4,2,0],
+	[1807,50,0,0,0,0,100,10,"飢えた大魚","ウエタタ","0",125,5,55,-10,193,1,0],
+	[1808,64,0,0,0,0,10,1,"10周年記念バッジ","シユツシ","JobLvの10倍、MaxHPが増加<BR>[衣装] 10周年記念ポリン帽と共に装備時、All Status+10<BR>上記特殊効果は2012年12月18日定期メンテナンス終了時に全て消滅する<BR>※衣装欄がないのでこれ装備すると強制的に+10するようになってます",0],
+	[1809,50,0,10,0,0,10,10,"キングポリン帽","キンクホ","下記特殊効果は2012年12月18日定期メンテナンス終了時に全て消滅する<BR>[サンタポリンカード]と共に装備時、物理攻撃時、<BR>小型・中型・大型モンスターへのダメージ + 15%<BR>[ポリンカード]と共に装備時、全ての属性攻撃で受けるダメージ - 5%<BR>[ポポリンカード]と共に装備時、モンスターを倒した時、<BR>一定確率で宝石系アイテムをドロップ",19,10,0],
+	[1810,50,0,3,0,1,20,10,"BOSS帽子","ホスホウ","精錬値が5以上の時、精錬値が1上がる度に追加でMaxHP + 1%、MaxSP - 2%<BR>精錬値が10の時、追加でMaxHP + 4%、MaxSP ? 3%",15,5,0],
+	[1811,64,0,0,0,1,30,1,"パイの実の箱","ハイノミ","モンスターを倒した時、一定確率で[パイの実]をドロップ。",0],
+	[1812,63,0,10,0,0,50,50,"真紅の脚絆","シンクノ","精錬値が7以上の時、追加でCri+3、クリティカル攻撃で与えるダメージ+3%",10,2,70,2,0],
+	[1813,62,0,7,0,1,50,30,"狩人のマント","カリユウ","精錬値が6以上の時、追加で精錬値が1上がる度にHit+1",8,1,0],
+	[1814,50,0,8,1,1,30,50,"獅子王の兜","シシオウ","「ラウドボイス」Lv1使用可能<BR>精錬値が7以上の時、追加で動物形モンスターから受けるダメージ-5%",1,4,52,5,0],
+	[1815,50,0,10,0,1,50,1,"ジョリーロジャー","シヨリイ","精錬値が7以上の時、追加で物理攻撃時、水属性モンスターへのダメージ+3%<BR>精錬値が9以上の時、追加で水属性攻撃で受けるダメージ-3%",3,1,41,2,61,2,0],
+	[1816,50,0,8,50,1,120,38,"お金を失った者の心[1]","オカネヲ","※[1]は全職業装備可能。[0]はマーチャント系専用",4,1,5,1,0],
+	[1817,50,0,8,0,1,10,1,"園児の帽子","エンシノ","精錬値が6以上の時、追加で火属性攻撃で受けるダメージ-5%。",13,500,63,5,0],
+	[1818,63,0,3,0,1,10,1,"希望の上履き","キホウノ","精錬値が6以上の時、追加でMaxHP+5%、MaxSP+5%。",15,5,16,5,0],
+	[1819,100,0,0,0,0,0,0,"0","0","一部の回復アイテムによるHP回復量+5%。<BR>BaseLv79以下の時、移動速度増加。 ",92,5,0],
+	[1820,64,0,0,0,1,10,50,"ギュゲスの指輪","キユケス","[ハイディング]Lv1使用可能",100,30,4,3,19,5,0],
+	[1821,13,0,100,833,1,150,50,"アイアンネイル","アイアン","--------------------<BR>精錬値が2上がる度に攻撃速度+1%<BR>--------------------<BR>「連打掌」Lv5習得時、追加でAtk+20<BR>「猛龍拳」Lv5習得時、追加でAtk+20<BR>「伏虎拳」Lv5習得時、追加でAtk+20<BR>「連柱崩撃」Lv10習得時、追加でAtk+40<BR>※この各コンボLvマスターによるAtk部分はサイズ補正を受けない(実測頂きました)",199,188,199,189,199,289,199,290,22,10,194,1,12,-5,0],
+	[1822,51,0,2,4,0,50,70,"暗殺者の仮面","アンサツ","0",10,5,0],
+	[1823,9,53,10,834,1,50,36,"セイフティロッド","セイフテ","物理攻撃を受けた時、一定確率で自分に「ヒール」Lv1使用<BR>「ヒール」Lv2以上習得している場合、習得しているLvで発動する。<BR>精錬値が6以上の時、精錬値が1上がる度に人間形モンスターから受けるダメージ-1%",88,120,4,2,57,5,0],
+	[1824,1,0,100,3,0,0,40,"攻城戦TEナイフ","コウシヨ","近接物理攻撃命中時、一定確率で敵を沈黙状態にする。",88,100,193,1,240,1,241,40,0],
+	[1825,2,0,120,3,0,0,40,"攻城戦TEソード","コウシヨ","近接物理攻撃命中時、一定確率で敵を毒状態にする。",88,100,193,1,240,1,241,40,0],
+	[1826,3,0,150,3,0,0,40,"攻城戦TEツーハンドソード","コウシヨ","近接物理攻撃命中時、一定確率で敵を出血状態にする。",193,1,240,1,241,40,0],
+	[1827,4,0,100,3,0,0,40,"攻城戦TEパイク","コウシヨ","近接物理攻撃命中時、一定確率で敵を呪い状態にする。",193,1,240,1,241,40,0],
+	[1828,5,0,150,3,0,0,40,"攻城戦TEランス","コウシヨ","近接物理攻撃命中時、一定確率で敵を暗黒状態にする。",193,1,240,1,241,40,0],
+	[1829,6,0,100,3,0,0,40,"攻城戦TEアックス","コウシヨ","近接物理攻撃命中時、一定確率で敵を凍結状態にする。",193,1,240,1,241,40,0],
+	[1830,7,0,150,3,0,0,40,"攻城戦TEツーハンドアックス","コウシヨ","近接物理攻撃命中時、一定確率で敵をスタン状態にする。",193,1,240,1,241,40,0],
+	[1831,8,0,120,3,0,0,40,"攻城戦TEメイス","コウシヨ","近接物理攻撃命中時、一定確率で敵を凍結状態にする。",193,1,240,1,241,40,248,5,0],
+	[1832,9,0,50,3,0,0,40,"攻城戦TEスタッフ","コウシス","魔法攻撃命中時、一定確率で敵を暗黒状態にする。",88,100,193,1,240,1,242,10,248,5,0],
+	[1833,9,0,50,3,0,0,40,"攻城戦TEツーハンドスタッフ","コウシツ","魔法攻撃命中時、一定確率で敵をスタン状態にする。",195,1,88,130,193,1,240,1,242,20,248,5,0],
+	[1834,10,0,120,3,0,0,40,"攻城戦TE弓","コウシヨ","遠距離物理攻撃命中時、一定確率で敵を呪い状態にする。",193,1,240,1,241,40,0],
+	[1835,11,0,120,3,0,0,40,"攻城戦TEカタール","コウシヨ","近接物理攻撃命中時、一定確率で敵を出血状態にする。",193,1,240,1,241,40,0],
+	[1836,12,0,120,3,0,0,40,"攻城戦TE本","コウシヨ","近接物理攻撃命中時、一定確率で敵を暗黒状態にする。",193,1,240,1,241,40,242,5,248,5,0],
+	[1837,13,0,150,3,0,0,40,"攻城戦TEフィスト","コウシヨ","近接物理攻撃命中時、一定確率で敵を凍結状態にする。",193,1,240,1,241,40,0],
+	[1838,14,0,100,3,0,0,40,"攻城戦TEギター","コウシヨ","近接物理攻撃命中時、一定確率で敵を毒状態にする。",193,1,240,1,241,40,0],
+	[1839,15,0,100,3,0,0,40,"攻城戦TEロープ","コウシヨ","近接物理攻撃命中時、一定確率で敵を暗黒状態にする。",193,1,240,1,241,40,0],
+	[1840,16,0,80,3,0,0,40,"攻城戦TE風魔手裏剣","コウシヨ","近接物理攻撃命中時、一定確率で敵を出血状態にする。",88,100,193,1,240,1,241,40,0],
+	[1841,17,0,60,3,0,0,40,"攻城戦TE拳銃","コウシヨ","遠距離物理攻撃命中時、一定確率で敵を呪い状態にする。",193,1,240,1,241,40,0],
+	[1842,18,0,80,3,0,0,40,"攻城戦TEライフル","コウシヨ","遠距離物理攻撃命中時、一定確率で敵を沈黙状態にする。",193,1,240,1,241,40,0],
+	[1843,20,0,100,3,0,0,40,"攻城戦TEガトリングガン","コウシヨ","遠距離物理攻撃命中時、一定確率で敵をスタン状態にする。",193,1,240,1,241,40,0],
+	[1844,19,0,100,3,0,0,40,"攻城戦TEショットガン","コウシヨ","遠距離物理攻撃命中時、一定確率で敵を毒状態にする。",193,1,240,1,241,40,0],
+	[1845,21,0,100,3,0,0,40,"攻城戦TEグレネードガン","コウシヨ","遠距離物理攻撃命中時、一定確率で敵を暗黒状態にする。",193,1,240,1,241,40,0],
+	[1846,50,0,5,0,0,0,40,"攻城戦TEキャップ","コウシキ","0",19,5,193,1,240,1,244,5,245,5,241,10,242,10,249,25,0],
+	[1847,50,70,10,0,0,0,40,"攻城戦TEボーンヘルム","コウシホ","0",193,1,240,1,244,10,241,20,249,25,0],
+	[1848,50,94,5,0,0,0,40,"攻城戦TEマジックアイズ","コウシマ","0",19,5,193,1,240,1,245,10,242,20,249,25,0],
+	[1849,62,0,5,0,0,0,40,"攻城戦TEマフラー","コウシフ","0",19,5,193,1,240,1,241,5,242,5,249,25,0],
+	[1850,62,70,10,0,0,0,40,"攻城戦TEマント","コウシン","0",193,1,240,1,241,10,249,25,0],
+	[1851,62,94,5,0,0,0,40,"攻城戦TEマジックマント","コウシシ","0",19,5,193,1,240,1,242,10,249,25,0],
+	[1852,61,0,15,0,0,0,40,"攻城戦TEバックラー","コウシハ","0",19,15,193,1,240,1,246,100,247,100,243,15,0],
+	[1853,61,70,25,0,0,0,40,"攻城戦TEシールド","コウシシ","0",19,5,193,1,240,1,246,200,243,20,0],
+	[1854,61,94,5,0,0,0,40,"攻城戦TEマジックガード","コウシマ","0",19,25,193,1,240,1,247,200,243,10,0],
+	[1855,60,0,15,0,0,0,40,"攻城戦TEロングコート","コウシロ","0",19,15,193,1,240,1,246,250,247,250,243,10,249,25,0],
+	[1856,60,70,25,0,0,0,40,"攻城戦TEメイル","コウシメ","0",19,5,193,1,240,1,246,450,247,50,243,15,249,25,0],
+	[1857,60,94,5,0,0,0,40,"攻城戦TEマジックコート","コウシマ","0",19,25,193,1,240,1,246,200,247,300,243,5,249,25,0],
+	[1858,63,0,5,0,0,0,40,"攻城戦TEシューズ","コウシシ","0",19,5,193,1,240,1,246,150,247,150,241,5,242,5,249,25,0],
+	[1859,63,70,10,0,0,0,40,"攻城戦TEブーツ","コウシフ","0",193,1,240,1,246,200,247,100,241,10,249,25,0],
+	[1860,63,94,5,0,0,0,40,"攻城戦TEマジックサンダル","コウシマ","0",19,5,193,1,240,1,246,100,247,200,242,5,249,25,0],
+	[1861,64,0,0,0,0,0,40,"攻城戦TE守護の指輪","コウシシ","0",240,1,246,100,243,5,0],
+	[1862,64,0,0,0,0,0,40,"攻城戦TE怒りの指輪","コウシイ","0",240,1,241,5,242,5,0],
+	[1863,64,0,0,0,0,0,40,"攻城戦TE反抗の指輪","コウシハ","0",19,5,240,1,243,5,0],
+	[1864,52,0,0,0,0,10,1,"シュガードーナツ","シユカア","一部の回復アイテムによるHP回復量+1%",13,100,92,1,0],
+	[1865,64,0,0,320,1,20,1,"RWC2012記念リング","アアルタ","0",80,1,0],
+	[1866,64,0,0,330,1,20,1,"RWC2012記念ペンダント","アアルタ","0",89,1,0],
+	[1867,100,0,0,0,0,0,0,"0","0","0",80,4,89,4,0],
+	[1868,999,0,0,0,1,50,30,"類似品","0","0",40,5,0],
+	[1869,999,0,0,0,1,50,30,"類似品","0","0",41,5,0],
+	[1870,64,0,0,0,1,50,30,"アースリング","アアスリ","0",42,5,0],
+	[1871,999,0,0,0,1,50,30,"類似品","0","0",43,5,0],
+	[1872,999,0,0,0,1,50,30,"類似品","0","0",44,5,0],
+	[1873,999,0,0,0,1,50,30,"類似品","0","0",45,5,0],
+	[1874,999,0,0,0,1,50,30,"類似品","0","0",46,5,0],
+	[1875,999,0,0,0,1,50,30,"類似品","0","0",47,5,0],
+	[1876,999,0,0,0,1,50,30,"類似品","0","0",48,5,0],
+	[1877,999,0,0,0,1,50,30,"類似品","0","0",49,5,0],
+	[1878,9,65,200,4,0,300,90,"ヨルムンガンド","ヨルムン","魔法攻撃命中時、一定確率で敵を毒状態にする。<BR>物理攻撃を受けた時、一定確率で敵を猛毒状態にする。",195,1,88,280,20,5,4,20,193,1,194,1,0],
+	[1879,61,0,100,0,0,150,90,"ヘルヴォル","ヘルウオ","全てのモンスターから受けるダメージ-30%。<BR>※計算機では全種族耐性+30%にしていますが、<BR>※全サイズ耐性や、通常モンスター耐性+30%+ボス耐性+30%の可能性もあります。",193,1,194,1,0],
+	[1880,64,0,0,0,0,10,1,"ブルークヴァシルリング","フルウク","「スノーフリップ」Lv1使用可能。<BR>※スノーフリップ･･･発火、出血、深い睡眠、睡眠を治療する。",14,30,0],
+	[1881,64,0,0,0,0,10,1,"レッドクヴァシルリング","レツトク","「ピオニーマミー」Lv1使用可能。<BR>※ピオニーマミー･･･凍結、冷凍、氷結を治療する。",14,30,0],
+	[1882,64,0,0,0,0,10,1,"グリーンクヴァシルリング","クリイン","「ぴしゃりハーブ」Lv1使用可能。<BR>※ぴしゃりハーブ･･･スタン、恐怖、混乱、幻覚を治療する。",13,100,0],
+	[1883,64,0,0,0,0,10,1,"ブラウンクヴァシルリング","フラウン","「世界樹のほこり」Lv1使用可能。<BR>※世界樹のほこり･･･石化、暗黒、呪い、毒、速度減少 、リバースオーキッシュを治療する。",13,100,0],
+	[1884,62,0,0,0,1,10,30,"ピアメットのリボン","ヒアメツ","0",4,1,5,1,100,10,0],
+	[1885,61,0,40,0,1,10,30,"マッドバニー","マツトハ","0",19,6,5,1,264,5,0],
+	[1886,100,0,0,0,0,0,0,"0","0","[マッドバニー]の精錬値が 7以上の時、精錬値が 1上がる度に追加で 全ての属性攻撃で 受けるダメージ -2%<BR>魔法攻撃命中時、一定確率で10秒間、モンスター[ピアメット]に変身。<BR>[ピアメットのリボン]の精錬値が1上がる度に追加でモンスター[ピアメット]に変身する確率が上昇。<BR>モンスター「ピアメット」に変身時、1秒毎にHP-30。<BR>モンスター[ピアメット]に変身時、[ピアメットのリボン]の精錬値が3上がる度に追加でMatk+5。",0],
+	[1887,52,0,1,0,0,10,1,"チョコドーナツ","チヨコト","一部の回復アイテムによるHP回復量+1%",13,200,19,1,92,1,0],
+	[1888,50,0,30,0,1,100,50,"剣聖の王冠","ケンセイ","BaseLv50以上の時、Atk+5、BaseLv100以上の時、追加でAtk+10、BaseLv150以上の時、追加でAtk+15。<BR>[剣修練]Lv10習得時、Hit+10。<BR>[両手剣修練]Lv10習得時、スキル使用時の消費SP-5%。<BR>[槍修練]Lv10習得時、スキルディレイ-10%。<BR>[斧修練]Lv10習得時、詠唱時間-15%。<BR>[カタール修練]Lv10習得時、クリティカル攻撃で与えるダメージ+20%。<BR>[メイス修練]Lv10習得時、攻撃速度+10%。",199,3,199,720,199,4,199,69,199,241,199,540,199,81,199,89,194,1,0],
+	[1889,50,0,15,0,1,50,70,"オウルデュークのシルクハット","オウルテ","魔法攻撃時、一定確率で自分にオートスペル[魔法力増幅]Lv2発動。<BR>[オウルデュークのシルクハット]の精錬値が6以上の時、精錬値が1上がる度に[魔法力増幅]Lv2の発動確率が上昇。",4,1,2,1,0],
+	[1890,100,0,0,0,0,0,0,"0","0","追加でオウルデュークのシルクハットの[魔法力増幅]Lv2の発動確率が上昇。",0],
+	[1891,52,0,0,0,0,30,48,"ヴァジュラ","ウアシユ","0",5,1,25,2,0],
+	[1892,64,0,0,0,1,10,50,"強欲のブローチ","コウヨク","物理・魔法攻撃でモンスターを倒した時、SP+2。<BR>装備時、5秒毎にHP-10。 ",0],
+	[1893,64,0,0,3230,1,10,30,"セーフリームニルの手袋","セエフリ","※実際の表記は[全てのモンスターから受けるダメージ+5%]<BR>※内部では全種族耐性や属性モンスター耐性などの可能性あり。未検証。",103,5,79,-5,77,-5,0],
+	[1894,63,0,10,0,1,10,1,"エレメンタルブーツ","エレメン","精錬値が6以上の時、精錬値が1上がる度に追加で、<BR>[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]<BR>の詠唱時間 - 1%、与えるダメージ + 1%",5051,3,7051,3,5054,3,7054,3,5056,3,7056,3,5132,3,7132,3,0],
+	[1895,50,0,2,0,1,20,10,"邪悪なマーチングハット","シヤアク","物理攻撃命中時、一定確率で自分にオートスペル[エンチャントポイズン]Lv3発動。",1,2,0],
+	[1896,51,0,0,0,0,30,30,"バロールの魔眼","ハロウル","0",74,5,102,-5,0],
+	[1897,50,0,0,0,1,10,1,"子猫のヘッドドレス","コネコノ","精錬値が+7以上の時、追加でスキルディレイ-5%。<BR>精錬値が+9以上の時、追加でスキルディレイ-3%。",74,5,0],
+	[1898,50,0,15,0,1,100,50,"近衛兵の帽子","コノエヘ","精錬値が6以上の時、精錬値が1上がる度に、<BR>追加で遠距離攻撃で受けるダメージ-1%。",78,5,60,5,194,1,0],
+	[1899,51,0,0,0,0,20,10,"六四式眼鏡","ロクヨン","0",174,4,54,5,0],
+	[1900,12,0,90,834,2,40,27,"地神の系譜","チシンノ","精錬値が1上がる度に追加で[アーススパイク][ヘブンズドライブ]で与えるダメージ+1%。",20,2,88,130,4,3,5132,5,5133,5,0],
+	[1901,60,0,30,0,1,50,50,"ハンターメイル","ハンタア","精錬値が6以上の時、精錬値が1上がる度に、追加で動物形モンスターに与える物理＆魔法ダメージ+1%。",32,3,172,3,0],
+	[1902,62,0,0,0,1,30,30,"水竜の外套","スイリユ","精錬値が7以上の時、追加で水属性魔法攻撃で与えるダメージ+3%。",15,5,341,2,344,-10,0],
+	[1903,62,0,0,0,1,30,30,"地竜の外套","チリユウ","精錬値が7以上の時、追加で地属性魔法攻撃で与えるダメージ+3%。",15,5,342,2,343,-10,0],
+	[1904,62,0,0,0,1,30,30,"火竜の外套","カリユウ","精錬値が7以上の時、追加で火属性魔法攻撃で与えるダメージ+3%。",15,5,343,2,341,-10,0],
+	[1905,62,0,0,0,1,30,30,"風竜の外套","フウリユ","精錬値が7以上の時、追加で風属性魔法攻撃で与えるダメージ+3%。",15,5,344,2,342,-10,0],
+	[1906,2,0,60,1,0,50,1,"儀式用の剣","キシキヨ","0",20,6,193,1,194,1,0],
+	[1907,1,1,35,1,0,50,1,"金細工の短剣","キンサイ","0",88,25,193,1,194,1,0],
+	[1908,9,150,100,1,1,100,150,"スタッフオブゲフェン","スタツフ","0",195,1,88,300,4,20,0],
+	[1909,3,2051,330,1,1,250,150,"重厚な大剣","シユウコ","0",1,20,0],
+	[1910,64,1,3,0,1,10,60,"銀細工のブレスレット","キンサイ","[スペルブレイカー]Lv5使用可能。",19,3,7,1,0],
+	[1911,60,87,120,0,1,300,150,"精巧な鎧","セイコウ","0",19,25,0],
+	[1912,50,0,0,0,1,10,50,"たれペクソジン","タレヘク","0",4,1,102,-15,91,15,194,1,0],
+	[1913,60,0,57,0,1,170,60,"エクソシストローブ","エクソシ","精錬値が3上がる度に不死形モンスターから受けるダメージ-5%。<BR>----------<BR>アコライト系職業が装備時、追加で不死属性攻撃で受けるダメージ-10%。",19,5,0],
+	[1914,61,0,80,0,1,50,65,"スヴェル","スウエル","精錬値が3上がる度に追加でMaxHP+1%、水属性攻撃で受けるダメージ-5%。",19,5,61,10,0],
+	[1915,50,0,6,0,0,25,1,"大地母神の花飾り","タイチホ","精錬値が8以上の時、追加で地属性攻撃で受けるダメージ-5%。",3,2,220,38,62,15,0],
+	[1916,63,0,20,0,0,60,10,"時空ブーツ","シクウフ","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10。",13,300,14,30,0],
+	[1917,63,2000,25,340,10,60,99,"力の時空ブーツ","チカラノ","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、Atk+7。<BR>純粋なStrが120以上の時、追加でAtk+50。",13,300,14,30,0],
+	[1918,63,2000,20,340,10,60,99,"知力の時空ブーツ","チリヨク","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、Matk+10。<BR>純粋なIntが120以上の時、追加でMatk+60。",19,5,13,300,14,30,0],
+	[1919,63,2000,25,340,10,60,99,"俊敏の時空ブーツ","シユンヒ","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、攻撃速度+3%。<BR>純粋なAgiが120以上の時、追加でAspd+1。",13,300,14,30,0],
+	[1920,63,2000,25,340,10,60,99,"体力の時空ブーツ","タイリヨ","精錬値が3上がる度に、追加でMaxHP+300、MaxSP+10。<BR>純粋なVITが120以上の時、追加でMaxHP+8%。",13,300,14,30,0],
+	[1921,63,2000,25,340,10,60,99,"技巧の時空ブーツ","キコウノ","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、Dex+3。<BR>純粋なDexが120以上の時、追加で遠距離物理攻撃で与えるダメージ+5%。",13,300,14,30,0],
+	[1922,63,2000,20,340,10,60,99,"幸運の時空ブーツ","コウウン","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、クリティカル攻撃で与えるダメージ+2%。<BR>純粋なLukが120以上の時、追加でクリティカル攻撃で与えるダメージ+30%。",19,5,13,300,14,30,0],
+	[1923,51,0,0,0,0,10,10,"海神の守護","ワタツミ","0",61,5,0],
+	[1924,64,0,0,0,1,10,60,"精神力の指輪","セイシン","0",14,50,57,1,0],
+	[1925,51,0,0,0,0,20,10,"ギの仮面","キノカメ","0",342,4,0],
+	[1926,51,0,0,0,0,20,10,"ネロの仮面","ネロノカ","0",341,4,0],
+	[1927,50,0,16,0,1,50,70,"世界樹の帽子","セカイシ","一部の回復アイテムによるHP回復量+5%<BR>精錬値が7以上の時、追加で[ヒール][ハイネスヒール][コルセオヒール]<BR>[サンクチュアリ][ポーションピッチャー]を使用した時のHP回復量+10%。",19,2,91,5,92,5,0],
+	[1928,64,0,0,0,1,10,70,"世界樹の指輪","セカイシ","0",13,200,14,100,8,3,0],
+	[1929,100,0,0,0,0,0,0,"0","0","0",264,3,91,5,0],
+	[1930,60,0,30,0,1,50,50,"エンジニアメイル","エンシニ","精錬値が6以上の時、精錬値が1上がる度に、追加で無形モンスターに与える物理＆魔法ダメージ+1%。",30,3,170,3,0],
+	[1931,60,0,30,0,1,50,50,"エクスシアメイル","エクスシ","精錬値が6以上の時、精錬値が1上がる度に、追加で不死形モンスターに与える物理＆魔法ダメージ+1%。",31,3,171,3,0],
+	[1932,999,0,30,0,1,50,50,"ハンターメイル","ハンタア","精錬値が6以上の時、精錬値が1上がる度に、追加で動物形モンスターに与える物理＆魔法ダメージ+1%。",32,3,172,3,0],
+	[1933,60,0,30,0,1,50,50,"ボタニーメイル","ホタニイ","精錬値が6以上の時、精錬値が1上がる度に、追加で植物形モンスターに与える物理＆魔法ダメージ+1%。",33,3,173,3,0],
+	[1934,60,0,30,0,1,50,50,"エントモロジストメイル","エントモ","精錬値が6以上の時、精錬値が1上がる度に、追加で昆虫形モンスターに与える物理＆魔法ダメージ+1%。",34,3,174,3,0],
+	[1935,60,0,30,0,1,50,50,"フィッシャーマンメイル","フイツシ","精錬値が6以上の時、精錬値が1上がる度に、追加で魚貝形モンスターに与える物理＆魔法ダメージ+1%。",35,3,175,3,0],
+	[1936,60,0,30,0,1,50,50,"ファザーメイル","フアサア","精錬値が6以上の時、精錬値が1上がる度に、追加で悪魔形モンスターに与える物理＆魔法ダメージ+1%。",36,3,176,3,0],
+	[1937,60,0,30,0,1,50,50,"ミリタリーメイル","ミリタリ","精錬値が6以上の時、精錬値が1上がる度に、追加で人間形モンスターに与える物理＆魔法ダメージ+1%。",37,3,177,3,0],
+	[1938,60,0,30,0,1,50,50,"エグリゴリメイル","エクリコ","精錬値が6以上の時、精錬値が1上がる度に、追加で天使形モンスターに与える物理＆魔法ダメージ+1%。",38,3,178,3,0],
+	[1939,60,0,30,0,1,50,50,"ドラゴンメイル","トラコン","精錬値が6以上の時、精錬値が1上がる度に、追加で竜形モンスターに与える物理＆魔法ダメージ+1%。",39,3,179,3,0],
+	[1940,51,0,1,0,0,20,10,"フィーリルの羽耳","フイイリ","0",34,5,54,5,0],
+	[1941,52,0,0,0,0,30,30,"紅桜","ヘニサク","0",5125,3,5527,3,102,-5,0],
+	[1942,50,0,3,0,1,30,1,"眠り猫","ネムリネ","精錬値が6以上の時、追加で魚貝形モンスターから受けるダメージ-5%。",55,5,0],
+	[1943,50,0,15,0,1,100,70,"楯無の兜","タテナシ","精錬値が6以上の時、精錬値が1上がる度に追加で無属性攻撃で受けるダメージ -1%<BR>精錬値が6以上の時、近接物理攻撃を受けた時、<BR>一定確率で自分にオートスペル[パリイング]Lv1が発動。オートスペル[パリイング]は全ての武器で発動する。<BR>精錬値が7以上の時、精錬値が1上がる度にオートスペル[パリイング]Lv1の発動確率が上昇する。",194,1,60,5,196,-5,0],
+	[1944,64,0,0,350,0,5,100,"エスランの首飾り","エスラン","0",19,10,0],
+	[1945,64,0,0,0,0,1,90,"妖精の羽","ヨウセイ","[エクラージュへの帰還]Lv1使用可能",0],
+	[1946,64,0,0,0,10,10,100,"力のグローブ","チカラノ","純粋なStrが10上がる度に、Atk+1。<BR>純粋なStrが110以上の時、追加で物理攻撃で与えるダメージ+1%。",13,100,14,20,0],
+	[1947,64,0,0,0,10,10,100,"知力のグローブ","チリヨク","純粋なIntが10上がる度に、Matk+1。<BR>純粋なIntが110以上の時、追加でMatk+1%。",13,100,14,20,0],
+	[1948,64,0,0,0,10,10,100,"敏捷のグローブ","ヒンシヨ","純粋なAgiが10上がる度に、Flee+1。<BR>純粋なAgiが110以上の時、追加で完全回避+1。",13,100,14,20,0],
+	[1949,64,0,0,0,10,10,100,"体力のグローブ","タイリヨ","純粋なVitが10上がる度に、MaxHP+50。<BR>純粋なVitが110以上の時、追加でMaxHP+1%。",13,100,14,20,0],
+	[1950,64,0,0,0,10,10,100,"器用さのグローブ","キヨウサ","純粋なDexが10上がる度に、Hit+1。<BR>純粋なDexが110以上の時、追加で遠距離物理攻撃で与えるダメージ+1%。",13,100,14,20,0],
+	[1951,64,0,0,0,10,10,100,"幸運のグローブ","コウウン","純粋なLukが10上がる度に、Cri+1。<BR>純粋なLukが110以上の時、追加でクリティカル攻撃で与えるダメージ+1%。",13,100,14,20,0],
+	[1952,63,0,15,0,1,30,50,"タラリア","タラリア","0",19,5,2,2,101,1,0],
+	[1953,51,0,1,0,0,20,10,"ウイングフレームサングラス","ウインク","0",30,5,50,5,0],
+	[1954,50,0,3,0,1,30,1,"たれエリセル","タレエリ","精錬値が6以上の時、追加で無形モンスターから受けるダメージ-5%。",50,5,0],
+	[1955,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1956,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1957,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1958,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1959,999,0,3,0,1,30,1,"眠り猫","ネムリネ","精錬値が6以上の時、追加で魚貝形モンスターから受けるダメージ-5%。",55,5,0],
+	[1960,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1961,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1962,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1963,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1964,999,0,3,0,1,30,1,"類似品?","0","0",0],
+	[1965,61,0,50,0,1,60,65,"アキレウスシールド","アキレウ","精錬値が6以上の時、精錬値が1上がる度に追加で遠距離物理攻撃で受けるダメージ-1%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で魔法攻撃で受けるダメージ-1%。 ",19,5,78,5,196,5,0],
+	[1966,50,0,0,0,0,100,10,"蝶のツインバレッタ","チヨウナ","0",124,5,54,-10,193,1,0],
+	[1967,52,0,0,0,0,30,30,"凍土の薔薇","トウトノ","0",5131,3,5520,3,102,-5,0],
+	[1968,64,0,0,0,0,10,30,"水の結晶石","ミスノケ","近接物理攻撃命中時、一定確率でオートスペル[デリュージ]Lv1発動。",0],
+	[1969,50,0,15,0,1,30,50,"男の勲章","オトコノ","近接物理攻撃命中時、一定確率でオートスペル[プロボック]Lv5発動。<BR>精錬値が6以上の時、精錬値が1上がる度に[プロボック]の発動Lvが上昇。<BR>[サングラス]と共に装備時、オートスペル[プロボック]の発動率が上昇。<BR>[タバコ]と共に装備時、オートスペル[プロボック]の発動率が上昇。",0],
+	[1970,50,0,5,0,0,10,1,"ドゥネイールの兜","トウネイ","0",7,1,19,5,57,2,52,2,0],
+	[1971,50,0,0,0,0,10,1,"テンドリルリオン帽","テントリ","0",220,48,57,10,0],
+	[1972,52,0,0,0,0,30,60,"イクトゥスのロザリオ","イクトウ","0",91,3,0],
+	[1973,100,0,0,0,0,0,0,"0","0","0",91,2,73,-15,0],
+	[1974,62,0,30,0,1,50,80,"忠臣の頭巾","チユウシ","",381,1,1,2,15,10,264,-20,0],
+	[1975,52,0,0,0,0,30,30,"風神の扇","フウシン","0",5530,3,5127,3,102,-5,0],
+	[1976,50,0,0,0,1,30,1,"ゲルハルト・フォン・デビルチ83世","ケルハル","純粋なIntが99以上の時、追加でMatk+2%<BR>純粋なIntが120以上の時、追加でMatk+3%<BR>キューペットデビルチを連れているとき、追加でスキルディレイ-2%<BR>デビルチの親密度が[きわめて親しい]場合、追加でスキルディレイ-3%",4,1,5,1,89,5,193,1,0],
+	[1977,50,0,3,0,1,10,10,"水夫の帽子","スイフノ","精錬値が+7以上の時、追加で魔法攻撃時、火属性モンスターに与えるダメージ+10%<BR>精錬値が+9以上の時、追加で魔法攻撃時、火属性モンスターに与えるダメージ+15%",353,5,333,-15,0],
+	[1978,50,0,10,0,1,10,10,"海軍士官帽","カイクン","精錬値が+7以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+10%<BR>精錬値が+9以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+5%",43,5,333,-15,0],
+	[1979,1,58,130,3,0,70,99,"紅","クレナイ","0",4,3,0],
+	[1980,1,68,120,363,1,60,110,"羅刹剣","ラセツケ","0",88,100,4,3,0],
+	[1981,1,68,50,364,1,60,100,"三日月","ミカツキ","0",88,120,102,5,73,-5,0],
+	[1982,16,58,170,3,0,150,99,"風魔手裏剣・影","フウマシユリケンカケ","0",1,3,0],
+	[1983,16,68,150,363,2,150,110,"風魔手裏剣・乱華","フウマシユリケンランカ","0",88,50,5770,20,0],
+	[1984,16,68,200,364,0,150,110,"風魔手裏剣・乱雪","フウマシユリケンランセツ","物理攻撃命中時、一定確率で氷閃石を1個消費して敵にオートスペル[氷柱落し]Lv1発動。<BR>習得している[氷柱落し]がLv2以上の場合、習得Lvの[氷柱落し]が発動する。",20,1,0],
+	[1985,16,68,200,364,0,150,110,"風魔手裏剣・雷雨","フウマシユリケンライウ","物理攻撃命中時、一定確率で風鈴石を1個消費して敵にオートスペル[雷撃砕]Lv1発動。<BR>習得している[雷撃砕]がLv2以上の場合、習得Lvの[雷撃砕]が発動する。",20,4,0],
+	[1986,61,68,45,0,1,20,100,"キツネ紋様の手甲","キツネモ","0",9,5,0],
+	[1987,100,0,0,0,0,0,0,"0","0","0",212,2,0],
+	[1988,61,68,70,360,1,25,100,"狼紋様の手甲","オオカミ","物理攻撃命中時、一定確率で5秒間、Atk+100、Flee-50。",0],
+	[1989,100,0,0,0,0,0,0,"0","0","0",211,2,80,10,0],
+	[1990,61,68,45,360,1,25,100,"三日月紋様の手甲","ミカツキ","精錬値が1上がる度に、スキルディレイ-2%。",0],
+	[1991,100,0,0,0,0,0,0,"0","0","0",9,10,11,10,0],
+	[1992,60,68,70,360,10,120,100,"特殊忍者スーツ","トクシユ","精錬値が3上がる度に、追加でAgi+1。",2,1,0],
+	[1993,60,68,90,360,1,180,100,"円鱗の鎧","エンリン","0",15,15,16,-30,0],
+	[1994,60,68,60,360,1,150,100,"霧中闇影","ムチユウ","物理攻撃を受けた時、一定確率で自分にオートスペル[幻術-影武者-]Lv1発動。",2,1,0],
+	[1995,999,0,10,0,1,30,70,"類似品?","0","0",60,10,60,-10,0],
+	[1996,62,0,10,0,1,30,70,"マントオブミスティックフローズン","マントミ","物理攻撃を受けた時、一定確率で敵を凍結状態にする。<BR>精錬値が6以上の時、精錬値が1上がる度に敵を凍結状態にする確率が上昇する。",61,10,64,-10,0],
+	[1997,62,0,10,0,1,30,70,"マントオブグレイトネイチャ","マントク","物理攻撃を受けた時、一定確率で自分を中心に5x5セルの敵を石化状態にする。<BR>精錬値が5以上の時、精錬値が1上がる度に敵を石化状態にする確率が上昇。 ",62,10,63,-10,0],
+	[1998,62,0,10,0,1,30,70,"マントオブフレイムハート","マントフ","精錬値が1上がる度に、追加で反射するダメージ+2%",63,10,61,-10,71,10,0],
+	[1999,62,0,10,0,1,30,70,"マントオブラフウィンド","マントラ","精錬値が1上がる度に、追加で遠距離物理攻撃で受けるダメージ-1%。",64,10,62,-10,78,5,0],
+	[2000,999,0,10,0,1,30,70,"類似品?","0","0",65,10,66,-10,0],
+	[2001,999,0,10,0,1,30,70,"類似品?","0","0",66,10,67,-10,0],
+	[2002,999,0,10,0,1,30,70,"類似品?","0","0",67,10,66,-10,0],
+	[2003,999,0,10,0,1,30,70,"類似品?","0","0",68,10,68,-10,0],
+	[2004,999,0,10,0,1,30,70,"類似品?","0","0",69,10,66,-10,0],
+	[2005,999,0,1,0,0,20,10,"ウイングフレームサングラス","ウインク","0",30,5,50,5,0],
+	[2006,51,0,1,0,0,20,10,"黒血の目隠し","クロチノ","0",31,5,51,5,0],
+	[2007,51,0,1,0,0,20,10,"ハンターグラス","ハンタア","0",32,5,52,5,0],
+	[2008,51,0,1,0,0,20,10,"ポリンサングラス","ホリンサ","0",33,5,53,5,0],
+	[2009,999,0,1,0,0,20,10,"類似品?","0","0",34,5,54,5,0],
+	[2010,51,0,1,0,0,20,10,"怪魚のエラ","カイキヨ","0",35,5,55,5,0],
+	[2011,51,0,1,0,0,20,10,"退魔のグラス","タイマノ","0",36,5,56,5,0],
+	[2012,999,0,1,0,0,20,10,"類似品?","0","0",37,5,57,5,0],
+	[2013,51,0,1,0,0,20,10,"堕天使の祝福","タテンシ","0",38,5,58,5,0],
+	[2014,51,0,1,0,0,20,10,"竜騎士の眼帯","リユウキ","0",39,5,59,5,0],
+	[2015,52,0,0,0,0,30,30,"猫じゃらし","ネコシヤ","0",5133,3,5531,3,102,-5,0],
+	[2016,52,0,0,0,0,30,30,"商魂のソロバン","シヨウコ","[オーバーチャージ]Lv5使用可能",4,1,0],
+	[2017,50,0,15,0,1,80,30,"ホワイトラビットボンネット","ホワイト","物理・魔法攻撃命中時、一定確率でオートスペル[速度増加]Lv1発動。<BR>物理・魔法攻撃命中時、一定確率でオートスペル[レックスエーテルナ]Lv1発動。<BR>精錬値が3上がる度にオートスペル[レックスエーテルナ]Lv1の発動確率増加。",0],
+	[2018,100,0,0,0,0,0,0,"0","0","0",27,5,0],
+	[2019,100,0,0,0,0,0,0,"0","0","0",28,5,0],
+	[2020,100,0,0,0,0,0,0,"0","0","0",29,5,0],
+	[2021,100,0,0,0,0,0,0,"0","0","追加で魔法攻撃命中時、一定確率で自分にオートスペル[魔法力増幅]Lv4発動。",0],
+	[2022,100,0,0,0,0,0,0,"0","0","追加で魔法攻撃命中時、一定確率で自分にオートスペル[魔法力増幅]Lv6発動。",0],
+	[2023,100,0,0,0,0,0,0,"0","0","追加で[ジェントルマンの杖]の精錬値が1上がる度にオートスペル[魔法力増幅]の発動率が上昇する。<BR>[ジェントルマンの杖]の精錬値が10の時、詠唱時間-20%。",0],
+	[2024,100,0,0,0,0,0,0,"0","0","[ルドラの弓]の 精錬値が7以上の時、 遠距離物理攻撃で 与えるダメージ + 5%。",25,3,0],
+	[2025,100,0,0,0,0,0,0,"0","0","0",14,150,214,-3,76,-20,0],
+	[2026,100,0,0,0,0,0,0,"0","0","0",13,1000,213,-3,75,-20,0],
+	[2027,100,0,0,0,0,0,0,"0","0","0",214,4,213,4,75,30,76,30,0],
+	[2028,100,0,0,0,0,0,0,"0","0","0",120,5,50,-10,0],
+	[2029,100,0,0,0,0,0,0,"0","0","0",121,5,51,-10,0],
+	[2030,100,0,0,0,0,0,0,"0","0","0",122,5,52,-10,0],
+	[2031,100,0,0,0,0,0,0,"0","0","0",123,5,53,-10,0],
+	[2032,100,0,0,0,0,0,0,"0","0","0",124,5,54,-10,0],
+	[2033,100,0,0,0,0,0,0,"0","0","0",125,5,55,-10,0],
+	[2034,100,0,0,0,0,0,0,"0","0","0",126,5,56,-10,0],
+	[2035,100,0,0,0,0,0,0,"0","0","0",127,5,57,-10,0],
+	[2036,100,0,0,0,0,0,0,"0","0","0",128,5,58,-10,0],
+	[2037,100,0,0,0,0,0,0,"0","0","0",129,5,59,-10,0],
+	[2038,100,0,0,0,0,0,0,"0","0","0",103,5,263,-10,0],
+	[2039,16,0,120,824,30,100,36,"風魔手裏剣・炎月","フウマシユリケンエンケツ","精錬値が1上がる度に、追加でMatk+5。<BR>精錬値が7以上の時、追加でMatk+20。<BR>精錬値が10の時、追加でMatk+30。",20,3,88,25,0],
+	[2040,16,0,120,824,30,100,36,"風魔手裏剣・雷月","フウマシユリケンライケツ","精錬値が1上がる度に、追加でMatk+5。<BR>精錬値が7以上の時、追加でMatk+20。<BR>精錬値が10の時、追加でMatk+30。",20,4,88,25,0],
+	[2041,16,0,120,824,30,100,36,"風魔手裏剣・氷月","フウマシユリケンヒヨウケツ","精錬値が1上がる度に、追加でMatk+5。<BR>精錬値が7以上の時、追加でMatk+20。<BR>精錬値が10の時、追加でMatk+30。",20,1,88,25,0],
+	[2042,52,58,1,0,0,10,70,"児雷也のキセル","シライヤ","",7408,10,5409,20,23407,5,0],
+	[2043,52,58,1,0,0,10,70,"大蛇丸のマスク","オロチマ","",7411,10,5412,20,23410,5,0],
+	[2044,52,58,1,0,0,10,70,"綱手の忍術書","ツナテノ","",7414,10,5415,20,23413,5,0],
+	[2045,62,58,10,0,1,100,60,"灼熱の上衣","シヤクネ","習得している[紅炎華]がLv2以上の場合、習得Lvの[紅炎華]が発動する。",221,140,0],
+	[2046,100,0,0,0,0,0,0,"0","0","[灼熱の上衣]の精錬値が5以上の時、オートスペル[紅炎華]の発動確率が上昇する。<BR>[灼熱の上衣]の精錬値が7以上の時、オートスペル[紅炎華]の発動確率が上昇する。<BR>[灼熱の上衣]の精錬値が10の時、オートスペル[紅炎華]の発動確率が上昇する。",100,50,0],
+	[2047,62,58,10,0,1,100,60,"烈風の上衣","レツフウ","習得している[風刃]がLv2以上の場合、習得Lvの[風刃]が発動する。",221,141,0],
+	[2048,100,0,0,0,0,0,0,"0","0","[烈風の上衣]の精錬値が5以上の時、オートスペル[風刃]の発動確率が上昇する。<BR>[烈風の上衣]の精錬値が7以上の時、オートスペル[風刃]の発動確率が上昇する。<BR>[烈風の上衣]の精錬値が10の時、オートスペル[風刃]の発動確率が上昇する。",100,50,0],
+	[2049,62,58,10,0,1,100,60,"極寒の上衣","コツカン","習得している[氷閃槍]がLv2以上の場合、習得Lvの[氷閃槍]が発動する。",221,142,0],
+	[2050,100,0,0,0,0,0,0,"0","0","[極寒の上衣]の精錬値が5以上の時、オートスペル[氷閃槍]の発動確率が上昇する。<BR>[極寒の上衣]の精錬値が7以上の時、オートスペル[氷閃槍]の発動確率が上昇する。<BR>[極寒の上衣]の精錬値が10の時、オートスペル[氷閃槍]の発動確率が上昇する。",100,50,0],
+	[2051,64,58,3,0,0,60,75,"忍の小刀弥","シノヒノ","0",19,1,3,1,6,1,0],
+	[2052,100,0,0,0,0,0,0,"0","0","",14,100,5401,50,23401,3,0],
+	[2053,100,0,0,0,0,0,0,"0","0","",13,300,23401,3,0],
+	[2054,64,58,3,0,0,60,75,"風魔の宝珠","フウマノ","0",19,1,4,1,5,1,0],
+	[2055,100,0,0,0,0,0,0,"0","0","",14,100,5396,30,23396,5,0],
+	[2056,100,0,0,0,0,0,0,"0","0","",13,300,23396,5,0],
+	[2057,62,0,25,0,1,100,50,"機械人形用増幅装置・改","キカイニ","精錬値が+6以上の時、追加で精錬値が1上がる度にMaxHP+1%、MaxSP+1%。",1,1,4,1,15,5,16,5,0],
+	[2058,100,0,0,0,0,0,0,"0","0","[エリオット]カードの効果が2倍になる。",0],
+	[2059,60,0,10,0,1,100,50,"機械人形用加速装置・改","キカイニ","精錬値が+6以上の時、追加で精錬値が1上がる度にAspd+1%、MaxHP-1%。",12,3,15,-5,0],
+	[2060,100,0,0,0,0,0,0,"0","0","0",12,2,15,5,0],
+	[2061,60,0,8,0,1,80,10,"薔薇のローブ","ハラノロ","0",19,5,4,1,353,2,351,2,354,2,352,2,0],
+	[2062,100,0,0,0,0,0,0,"0","0","0",353,3,0],
+	[2063,100,0,0,0,0,0,0,"0","0","0",351,3,0],
+	[2064,100,0,0,0,0,0,0,"0","0","0",354,3,0],
+	[2065,100,0,0,0,0,0,0,"0","0","0",352,3,0],
+	[2066,52,0,0,4060,0,30,30,"奇跡の青薔薇","キセキノ","物理攻撃命中時、一定確率でオートスペル[アスペルシオ]Lv1発動。",6,1,0],
+	[2067,52,0,0,0,0,30,30,"エールホイッスル","エエルホ","物理・魔法攻撃を受けた時、一定確率でオートスペル[マグニフィカート]Lv1発動。",1,1,0],
+	[2068,64,0,0,3240,1,10,90,"輝く偏四角多面体","カカヤク","0",66,10,0],
+	[2069,50,0,0,0,1,100,90,"大いなる水のニットキャップ","オオイナ","物理・魔法攻撃を受けたとき、一定確率で、敵を冷凍状態にする。<BR>物理・魔法攻撃を受けたとき、一定確率で、SP-30。",194,1,61,5,64,-5,0],
+	[2070,50,0,0,0,1,100,90,"無形なる地のシルクハット","ムケイナ","物理・魔法攻撃を受けたとき、一定確率で、敵を深い眠り状態にする。<BR>物理・魔法攻撃を受けたとき、一定確率で、SP-30。",194,1,62,5,63,-5,0],
+	[2071,50,0,0,0,1,100,90,"生ける炎のテンガロンハット","イケルホ","物理・魔法攻撃を受けたとき、一定確率で、敵を発火状態にする。<BR>物理・魔法攻撃を受けたとき、一定確率で、SP-30。",194,1,63,5,61,-5,0],
+	[2072,50,0,0,0,1,100,90,"名状しがたき風のハンチングキャップ","メイシヨ","物理・魔法攻撃を受けたとき、一定確率で、敵を恐怖状態にする。<BR>物理・魔法攻撃を受けたとき、一定確率で、SP-30。",194,1,64,5,62,-5,0],
+	[2073,100,0,0,0,0,0,0,"0","0","[大いなる水のニットキャップ]の精錬値が7以上のとき、人間形モンスターから受けるダメージ-5%。",57,5,73,-15,0],
+	[2074,100,0,0,0,0,0,0,"0","0","[ホワイトスリムポーション]の回復量+10%。<BR>[無形なる地のシルクハット]の精錬値が7以上のとき、人間形モンスターから受けるダメージ-5%。",57,5,15,5,0],
+	[2075,100,0,0,0,0,0,0,"0","0","[生ける炎のテンガロンハット]の精錬値が7以上のとき、人間形モンスターから受けるダメージ-5%。",57,5,80,9,89,9,0],
+	[2076,100,0,0,0,0,0,0,"0","0","魔法攻撃で受けるダメージ-5%<BR>[名状しがたき風のハンチングキャップ]の精錬値が7以上のとき、人間形モンスターから受けるダメージ-5%。",57,5,78,5,0],
+	[2077,64,0,0,0,0,10,1,"踏破の指輪","トウハノ","※地面に捨てたり、取引やカートへの移動はできません。",0],
+	[2078,64,0,0,0,0,10,1,"制覇の指輪","セイハノ","※地面に捨てたり、取引やカートへの移動はできません。",0],
+	[2079,100,0,0,0,0,0,0,"0","0","この特殊効果は、2015年3月3日定期メンテナンス以降、全て消滅する。",17,70,100,60,0],
+	[2080,100,0,0,0,0,0,0,"0","0","この特殊効果は、2015年3月3日定期メンテナンス以降、全て消滅する。",17,70,100,60,8,20,0],
+	[2081,50,0,0,0,1,10,1,"めだまやき","メタマヤ","[フラッシャー]Lv1使用可能。<BR>物理攻撃命中時、一定確率で敵をスタン状態にする。<BR>BaseLv100以上の時、追加でスタン状態にする確率が上昇する。",193,1,0],
+	[2082,50,0,10,0,1,50,45,"機械植物帽","キカイシ","精錬値が2上がる度に追加で[スポアエクスプロージョン]で与えるダメージ+5%。",19,7,5,2,5736,5,0],
+	[2083,100,0,0,0,0,0,0,"0","0","0",74,5,0],
+	[2084,100,0,0,0,0,0,0,"0","0","0",73,-10,0],
+	[2085,50,0,4,3580,1,40,50,"狐耳鈴リボン","キツネミ","物理攻撃命中時、一定確率で5秒間モンスター[月夜花]に変身。<BR>精錬値が1上がる度に追加でモンスター[月夜花]に変身する確率が上昇。--------<BR>モンスター[月夜花]に変身時、Cri+100、遠距離物理攻撃で与えるダメージ+5%。<BR>モンスター[月夜花]に変身時、[狐耳鈴リボン]の精錬値が6以上の時、<BR>精錬値が1上がる度に追加で遠距離物理攻撃で与えるダメージ+1%。",2,2,12,10,0],
+	[2086,50,0,0,0,1,1,10,"…いる","イルアア","移動速度増加。<BR>物理・魔法攻撃を受けた時、一定確率で自分に恐怖・呪いがかかる。",11,8,193,1,194,1,0],
+	[2087,51,0,0,0,0,10,1,"メモリーオブラバーズ","メモリイ","0",19,7,15,2,0],
+	[2088,100,0,0,0,0,0,0,"0","0","0",214,8,16,5,0],
+	[2089,100,0,0,0,0,0,0,"0","0","0",211,7,17,20,0],
+	[2090,100,0,0,0,0,0,0,"0","0","0",212,7,9,15,0],
+	[2091,100,0,0,0,0,0,0,"0","0","0",215,7,8,10,0],
+	[2092,50,0,1,0,1,30,70,"天体サークル","テンタイ","[メテオストーム]、[クリムゾンロック]で受けるダメージ-20%。<BR>[コメット]で受けるダメージ-5%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で[メテオストーム]、[クリムゾンロック]で受けるダメージ-2%。<BR>精錬値が3上がる度に追加で[メテオストーム]、[クリムゾンロック]で与えるダメージ+5%。",4,1,0],
+	[2093,61,0,2,0,1,30,30,"ソロモンの魔導書","ソロモン","純粋なIntが120以上の時、追加でMatk+25。",19,5,4,2,100,5,0],
+	[2094,100,0,0,0,0,0,0,"0","0","0",102,5,0],
+	[2095,61,0,70,0,1,30,70,"ローズオブエデン","ロオスオ","0",91,10,0],
+	[2096,100,0,0,0,0,0,0,"0","0","0",91,10,0],
+	[2097,64,0,0,0,1,5,10,"オペレーショングローブ","オヘレエ","0",12,1,17,10,9,-10,0],
+	[2098,100,0,0,0,0,0,0,"0","0","0",12,4,17,20,0],
+	[2099,100,0,0,0,0,0,0,"0","0","人間形・動物形モンスターを倒した時、<BR>[止まらない心臓]、[アルコール]がドロップする確率が上昇。 ",0],
+	[2100,64,1,0,0,1,5,80,"栄光の手","エイコウ","0",8,10,0],
+	[2101,100,0,0,0,0,0,0,"0","0","0",8,10,0],
+	[2102,50,0,5,0,1,30,30,"ネコミミベレー","ネコミミ","[おいしい魚]の回復量+75%。",0],
+	[2103,100,0,0,0,0,0,0,"0","0","追加で物理攻撃命中時、一定確率で5秒間、モンスター[ワイルドローズ]に変身。<BR>[ネコミミベレー]の精錬値が1上がる度に追加でモンスター[ワイルドローズ]に変身する確率が上昇する。<BR>モンスター[ワイルドローズ]に変身時、All Status+8。",0],
+	[2104,62,0,30,0,0,50,70,"イミューンマント","イミユウ","精錬値が6以上の時、追加で精錬値が1上がる度に無属性攻撃で受けるダメージ-1%。",60,25,61,-10,62,-10,63,-10,64,-10,65,-10,66,-10,67,-10,68,-10,69,-10,0],
+	[2105,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2106,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2107,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2108,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2109,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2110,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2111,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2112,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2113,999,0,0,0,0,0,0,"類似品","0","0",0],
+	[2114,50,0,0,0,0,100,10,"ハーデスヘルム","ハアテス","0",121,5,51,-10,193,1,0],
+	[2115,64,0,0,0,1,10,50,"暗殺者の絶望","アンサツ","0",101,1,0],
+	[2116,100,0,0,0,0,0,0,"0","0","0",37,10,0],
+	[2117,100,0,0,0,0,0,0,"0","0","[暗殺者の靴]の精錬値が1上がる度に追加で物理攻撃時、人間形モンスターに与えるダメージ+1%。 ",0],
+	[2118,61,0,100,0,1,50,60,"堕天使の盾","タテンシ","魔法攻撃命中時、一定確率で5秒間、スキルディレイ-10%。<BR>精錬値が7以上の時、精錬値が1上がる度に追加で魔法攻撃命中時、一定確率で5秒間、スキルディレイ-5%。 ",0],
+	[2119,52,0,0,0,0,5,80,"シェービングフォーム","シエエヒ","物理攻撃を受けた時、一定確率でオートスペル[クァグマイア]Lv1発動。",158,30,0],
+	[2120,50,0,3,0,1,20,10,"ベレーBOSS帽子","ヘレエホ","精錬値が6以上の時、精錬値が1上がる度に追加で小・中・大型モンスターから受けるダメージ-1%<BR>精錬値が10の時、追加で小・中・大型モンスターから受けるダメージ-5%",190,5,191,5,192,5,0],
+	[2121,100,0,0,0,0,0,0,"0","0","[ベレーBOSS帽子]の精錬値が7以上の時、追加で完全回避+1<BR>[ベレーBOSS帽子]の精錬値が9以上の時、追加で完全回避+1<BR>[ベレーBOSS帽子]の精錬値が10の時、追加で完全回避+3",11,5,0],
+	[2122,100,0,0,0,0,0,0,"0","0","[BOSS帽子]の精錬値が7以上の時、追加でHP自然回復量+25%、SP自然回復量+25%<BR>[BOSS帽子]の精錬値が9以上の時、追加でHP自然回復量+25%、SP自然回復量+25%<BR>[BOSS帽子]の精錬値が10の時、追加でHP自然回復量+25%、SP自然回復量+25%",75,25,76,25,0],
+	[2123,1,0,110,3,1,50,24,"フェイスワームの足","フエイス","物理攻撃命中時、一定確率で5秒間、モンスター[フェイスワーム]に変身。",20,5,88,50,0],
+	[2124,1,0,180,300004,2,50,100,"女王フェイスワームの足","シヨオウ","物理攻撃命中時、一定確率で5秒間、モンスター[女王フェイスワーム]に変身。<BR>モンスター[女王フェイスワーム]に変身時、<BR>物理攻撃命中時、一定確率で自分を中心にオートスペル[アースクエイク]Lv1発動。<BR>※ランダムエンチャントによる属性の設定は、いずれ対応予定です。<BR>　現在は、属性付与欄を使用してください。",88,120,4,3,0],
+	[2125,62,0,38,370,10,40,1,"巨神蛇の皮","キヨシン","0",19,10,0],
+	[2126,100,0,0,0,0,0,0,"0","0","0",15,15,16,5,0],
+	[2127,64,0,0,0,1,100,70,"ディバイングローブ","テイハイ","物理攻撃命中時、一定確率でオートスペル[ターンアンデッド]Lv1発動。",0],
+	[2128,100,0,0,0,0,0,0,"0","0","習得している[ターンアンデッド]がLv2以上の場合、習得Lvの[ターンアンデッド]が発動。<BR>[ディバインクロス]の精錬値が5以上の時、精錬値が1上がる度に[ターンアンデッド]の発動率が上昇。 ",0],
+	[2129,50,0,3,0,1,20,20,"道士の装飾","トウシノ","不死形モンスターを倒した時、一定確率で[クスクス笑う箱]をドロップ。",19,3,31,5,171,5,51,5,0],
+	[2130,61,0,50,0,1,130,65,"ルヴァンシールド","ルウアン","0",334,5,54,-5,0],
+	[2131,62,0,20,0,1,70,65,"ルヴァンマント","ルウアン","0",334,5,54,-5,0],
+	[2132,100,0,0,0,0,0,0,"0","0","[ルヴァンマント]の精錬値が1上がる度に追加で昆虫形モンスターから受けるダメージ-1%。<BR>[ルヴァンシールド]の精錬値が1上がる度に追加で物理攻撃時、風属性モンスターに与えるダメージ+1%。 ",0],
+	[2133,63,0,12,0,1,25,90,"リアンシューズ","リアンシ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,60,5,0],
+	[2134,63,0,12,0,1,25,90,"フロワシューズ","フロワシ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,61,5,0],
+	[2135,63,0,12,0,1,25,90,"ソルシューズ","ソルシユ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,62,5,0],
+	[2136,63,0,12,0,1,25,90,"シャレールシューズ","シヤレエ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,63,5,0],
+	[2137,63,0,12,0,1,25,90,"ルヴァンシューズ","ルウアン","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,64,5,0],
+	[2138,63,0,12,0,1,25,90,"プワゾンシューズ","フワソン","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,65,5,0],
+	[2139,63,0,12,0,1,25,90,"リュミエールシューズ","リユミエ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,66,5,0],
+	[2140,63,0,12,0,1,25,90,"ソンブルシューズ","ソンフル","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,67,5,0],
+	[2141,63,0,12,0,1,25,90,"エスプリシューズ","エスフリ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,68,5,0],
+	[2142,63,0,12,0,1,25,90,"ラモールシューズ","ラモオル","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,3,69,5,0],
+	[2143,100,0,0,0,0,0,0,"0","0","[リアンシールド]の精錬値が1上がる度に追加で無属性攻撃で受けるダメージ-1%。",330,5,0],
+	[2144,100,0,0,0,0,0,0,"0","0","[フロワシールド]の精錬値が1上がる度に追加で水属性攻撃で受けるダメージ-2%。",331,5,0],
+	[2145,100,0,0,0,0,0,0,"0","0","[ソルシールド]の精錬値が1上がる度に追加で地属性攻撃で受けるダメージ-2%。",332,5,0],
+	[2146,100,0,0,0,0,0,0,"0","0","[シャレールシールド]の精錬値が1上がる度に追加で火属性攻撃で受けるダメージ-2%。",333,5,0],
+	[2147,100,0,0,0,0,0,0,"0","0","[ルヴァンシールド]の精錬値が1上がる度に追加で風属性攻撃で受けるダメージ-2%。",334,5,0],
+	[2148,100,0,0,0,0,0,0,"0","0","[プワゾンシールド]の精錬値が1上がる度に追加で毒属性攻撃で受けるダメージ-2%。",335,5,0],
+	[2149,100,0,0,0,0,0,0,"0","0","[リュミエールシールド]の精錬値が1上がる度に追加で聖属性攻撃で受けるダメージ-2%。",336,5,0],
+	[2150,100,0,0,0,0,0,0,"0","0","[ソンブルシールド]の精錬値が1上がる度に追加で闇属性攻撃で受けるダメージ-2%。",337,5,0],
+	[2151,100,0,0,0,0,0,0,"0","0","[エスプリシールド]の精錬値が1上がる度に追加で念属性攻撃で受けるダメージ-2%。",338,5,0],
+	[2152,100,0,0,0,0,0,0,"0","0","[ラモールシールド]の精錬値が1上がる度に追加で不死属性攻撃で受けるダメージ-2%。",339,5,0],
+	[2153,100,0,0,0,0,0,0,"0","0","[リアンマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",40,5,0],
+	[2154,100,0,0,0,0,0,0,"0","0","[フロワマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",41,5,0],
+	[2155,100,0,0,0,0,0,0,"0","0","[ソルマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",42,5,0],
+	[2156,100,0,0,0,0,0,0,"0","0","[シャレールマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",43,5,0],
+	[2157,100,0,0,0,0,0,0,"0","0","[ルヴァンマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",44,5,0],
+	[2158,100,0,0,0,0,0,0,"0","0","[プワゾンマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",45,5,0],
+	[2159,100,0,0,0,0,0,0,"0","0","[リュミエールマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",46,5,0],
+	[2160,100,0,0,0,0,0,0,"0","0","[ソンブルマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",47,5,0],
+	[2161,100,0,0,0,0,0,0,"0","0","[エスプリマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",48,5,0],
+	[2162,100,0,0,0,0,0,0,"0","0","[ラモールマント]の精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",49,5,0],
+	[2163,50,0,0,0,1,18,15,"まねき餅花","マネキモ","0",8,5,11,3,0],
+	[2164,100,0,0,0,0,0,0,"0","0","[まねき餅花]の精錬値が1上がる度に追加で攻撃速度+1%。",0],
+	[2165,100,0,0,0,0,0,0,"0","0","[まねき餅花]の精錬値が1上がる度に追加でHP自然回復量+4%、SP自然回復量+4%。",0],
+	[2166,100,0,0,0,0,0,0,"0","0","[まねき餅花]の精錬値が1上がる度に追加で詠唱時間 - 2%、[ファイアーウォール]で与えるダメージ + 5%。",0],
+	[2167,3,146,210,834,2,220,110,"ヘタイロイの剣","ヘタイロ","",23075,2,23255,25,0],
+	[2168,100,0,0,0,0,0,0,"0","0","0",190,15,191,15,192,15,0],
+	[2169,15,156,80,834,1,120,105,"有刺鉄線","ユウシテ","攻撃命中時、SP-3。",23,1,0],
+	[2170,60,147,56,0,1,90,105,"ヒュッケの服","ヒユツケ","物理攻撃命中時、一定確率でオートスペル「魅惑のウィンク」Lv1発動。<BR>精錬値が5以上の時、追加でクリティカル攻撃で与えるダメージ+4%、<BR>精錬値が7以上の時、追加でクリティカル攻撃で与えるダメージ+6%。",19,5,0],
+	[2171,100,0,0,0,0,0,0,"0","0","[ドゥルガー]の精錬値が7以上の時、物理攻撃命中時、一定確率で3秒間、一般モンスターの防御力を無視。 ",0],
+	[2172,3,146,200,834,2,220,110,"魔導剣","マトウケ","0",88,150,0],
+	[2173,100,0,0,0,0,0,0,"0","0","[魔導剣]の精錬値が1上がる度に、[ソウルストライク]Lv5の発動率が上昇。",221,143,0],
+	[2174,100,0,0,0,0,0,0,"0","0","[魔導剣]の精錬値が1上がる度に、[アーススパイク]Lv5の発動率が上昇。",221,144,0],
+	[2175,100,0,0,0,0,0,0,"0","0","[魔導剣]の精錬値が1上がる度に、[ライトニングボルト]Lv5の発動率が上昇。",221,145,0],
+	[2176,100,0,0,0,0,0,0,"0","0","[魔導剣]の精錬値が1上がる度に、[コールドボルト]Lv5の発動率が上昇。",221,146,0],
+	[2177,100,0,0,0,0,0,0,"0","0","[魔導剣]の精錬値が1上がる度に、[ファイアーボルト]Lv5の発動率が上昇。 ",221,147,0],
+	[2178,12,148,30,3,2,50,110,"悪魔祓いの書","アクマハ","純粋なIntが高いほど[マグヌスエクソシズム]で与えるダメージが増加。<BR>ただし。与えるダメージに影響する純粋なIntは最大120まで。<BR>精錬値が1以上の時、物理攻撃を受けた時、一定確率で一定時間敵の魔法防御力を無視。<BR>精錬値が1上がる度に敵の魔法防御力を無視する時間が延長。",20,6,88,170,4,2,5,2,92,10,5104,30,194,1,0],
+	[2179,100,0,0,0,0,0,0,"0","0","0",7104,25,0],
+	[2180,50,0,0,0,1,120,1,"古くピンク色のあれ","フルクヒ","--------------------<BR>※計算機ではプレイヤーに対する効果はヒドラCやタラCと倍率加算していますが、実際は不明。<BR>※情報や実測あれば募集中。<BR>※計算機では比較用に、今は人型モンスターでも効果があります(今後調整予定)<BR>--------------------",193,1,194,1,243,13,0],
+	[2181,100,0,0,0,0,0,0,"0","0","物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を凍結状態にする",152,100,0],
+	[2182,100,0,0,0,0,0,0,"0","0","[サンダル]の精錬値が1上がる度に追加でMaxHP + 2% , MaxSP + 2%",15,4,16,4,0],
+	[2183,52,0,0,0,0,10,90,"黄色いスカーフ","キイロイ","0",78,3,0],
+	[2184,100,0,0,0,0,0,0,"0","0","頭上段装備の精錬値が5以上の時、追加で遠距離物理攻撃で受けるダメージ-3%。<BR>頭上段装備の精錬値が7以上の時、追加で遠距離物理攻撃で受けるダメージ-4%。",0],
+	[2185,100,0,0,0,0,0,0,"0","0","0",78,-10,0],
+	[2186,52,110,0,0,0,10,75,"鳥狩の呼子","トカリノ","物理攻撃命中時、一定確率でオートスペル[ブリッツビート]が習得Lvで発動。<BR>[ブリッツビート]の習得Lvが高い程、発動率が上昇。<BR>純粋なLukが高い程、[ブリッツビート]の発動率が上昇。<BR>ただし、発動率に影響する純粋なLukは最大120まで。<BR>※発動率：(1＋純粋なLuk×0.04)×ブリッツビート習得Lv(%)<BR>※オートスペルですが弓の場合でも発動率は半減しないようです。",0],
+	[2187,64,110,5,0,1,10,80,"鳥狩の鉤爪","トカリノ","[スチールクロウ]の習得Lvが1上がる度に、追加で[ブリッツビート]で与えるダメージ+10%。",199,119,5,1,0],
+	[2188,64,124,5,0,1,10,85,"鳥狩の弓懸","トカリハ","0",5,1,102,5,0],
+	[2189,100,0,0,0,0,0,0,"0","0","0",5118,100,0],
+	[2190,100,0,0,0,0,0,0,"0","0","0",5271,50,0],
+	[2191,100,0,0,0,0,0,0,"0","0","[ビーストベイン]の習得Lvが1上がる度に、追加でスキル使用時の消費SP-2%。",199,116,0],
+	[2192,100,0,0,0,0,0,0,"0","0","0",5118,200,0],
+	[2193,50,0,0,0,0,100,10,"バフォメットホーン","ハフオメ","0",126,5,56,-10,193,1,0],
+	[2194,2,0,120,383,3,50,80,"古い洋傘","フルイヨ","精錬値が1上がる度に追加でMatk+10。",88,80,220,49,0],
+	[2195,8,1053,195,3484,1,150,40,"ノーブルクロス","ノオフル","不死形モンスターに攻撃命中時、SP+1。<BR>近接物理攻撃で不死形モンスターを倒した時、SP+12。",20,6,88,150,221,148,0],
+	[2196,64,0,0,420,1,20,100,"赤いランタン","アカイラ","モンスターを倒した時、一定確率で「アルコール」「ディトリミン」「カルボーディル」をドロップ。",14,-300,220,16,0],
+	[2197,64,0,0,420,1,10,110,"傷ついた心","キスツイ","0",14,200,0],
+	[2198,64,0,0,420,1,10,110,"優しい心","ヤサシイ","10秒毎にHP+300。",13,500,0],
+	[2199,100,0,0,0,0,0,0,"0","0","0",221,149,221,150,221,151,221,152,0],
+	[2200,64,0,0,420,1,10,110,"悪霊の糸の手袋","アクリヨ","0",13,500,14,250,221,149,221,150,221,151,221,152,0],
+	[2201,50,0,0,400,1,20,1,"瑞々しいバラ","ミスミス","精錬値が1上がる度に追加でMatk+5。<BR>魔法攻撃でモンスターを倒した時、HP+100。<BR>5秒毎にHP-50。",100,20,0],
+	[2202,50,0,0,410,1,20,1,"セリーヌのリボン","セリイヌ","精錬値が1上がる度に追加でMatk+7。<BR>魔法攻撃でモンスターを倒した時、HP+200。<BR>5秒毎にHP-50。",5,3,100,40,0],
+	[2203,61,0,50,0,1,130,65,"リアンシールド","リアンシ","0",330,5,50,-5,0],
+	[2204,62,0,20,0,1,70,65,"リアンマント","リアンマ","0",330,5,50,-5,0],
+	[2205,100,0,0,0,0,0,0,"0","0","[リアンマント]の精錬値が1上がる度に追加で無形モンスターから受けるダメージ-1%。<BR>[リアンシールド]の精錬値が1上がる度に追加で物理攻撃時、無属性モンスターに与えるダメージ+1%。",0],
+	[2206,50,0,7,0,1,50,15,"ホワイトチョコクマ帽","ホワイト","一部の回復アイテムによるHP回復量+3%",9,5,92,3,0],
+	[2207,100,0,0,0,0,0,0,"0","0","[ホワイトチョコクマ帽]の精錬値が1上がる度に追加で[赤ポーション]、[紅ポーション]<BR>[黄ポーション]、[初心者用ポーション]使用時、HP回復量+10%。",0],
+	[2208,100,0,0,0,0,0,0,"0","0","[ホワイトチョコクマ帽]の精錬値が1上がる度に追加でスキル使用時の消費SP-2%。",0],
+	[2209,100,0,0,0,0,0,0,"0","0","[ホワイトチョコクマ帽]の精錬値が1上がる度に追加で無属性攻撃で受けるダメージ-1%。",0],
+	[2210,100,0,0,0,0,0,0,"0","0","物理攻撃を受けた時、一定確率で敵を凍結状態にする。<BR>[ホワイトチョコクマ帽]の精錬値が2上がる度に敵を凍結状態にする確率が上昇。",0],
+	[2211,50,0,0,0,0,50,30,"クラウドバースト","クラウト","[コールドボルト]Lv5、[フロストダイバー]Lv5以上習得している場合、習得しているLvで発動する。<BR>[コールドボルト]、[フロストダイバー]の習得Lvが高い程、発動率が上昇。",193,1,221,146,221,153,0],
+	[2212,60,0,30,0,1,120,70,"ナチュラルクロース","ナチユラ","精錬値が1上がる度に追加でMDEF + 1。無形モンスターから受けるダメージ - 1%",19,5,50,5,0],
+	[2213,999,0,30,0,1,120,70,"類似品","0","精錬値が1上がる度に追加でMDEF + 1。不死形モンスターから受けるダメージ - 1%",19,5,51,5,0],
+	[2214,60,0,30,0,1,120,70,"シェファードクロース","シエフア","精錬値が1上がる度に追加でMDEF + 1。動物形モンスターから受けるダメージ - 1%",19,5,52,5,0],
+	[2215,60,0,30,0,1,120,70,"ヴァーミンクロース","ウアアミ","精錬値が1上がる度に追加でMDEF + 1。植物形モンスターから受けるダメージ - 1%",19,5,53,5,0],
+	[2216,60,0,30,0,1,120,70,"アグリカルチュラルクロース","アクリカ","精錬値が1上がる度に追加でMDEF + 1。昆虫形モンスターから受けるダメージ - 1%",19,5,54,5,0],
+	[2217,60,0,30,0,1,120,70,"オルカクロース","オルカク","精錬値が1上がる度に追加でMDEF + 1。魚貝形モンスターから受けるダメージ - 1%",19,5,55,5,0],
+	[2218,999,0,30,0,1,120,70,"類似品","0","精錬値が1上がる度に追加でMDEF + 1。悪魔形モンスターから受けるダメージ - 1%",19,5,56,5,0],
+	[2219,999,0,30,0,1,120,70,"類似品","0","精錬値が1上がる度に追加でMDEF + 1。人間形モンスターから受けるダメージ - 1%",19,5,57,5,0],
+	[2220,60,0,30,0,1,120,70,"ヴィシャスクロース","ウイシヤ","精錬値が1上がる度に追加でMDEF + 1。天使形モンスターから受けるダメージ - 1%",19,5,58,5,0],
+	[2221,60,0,30,0,1,120,70,"ドラゴンクロース","トラコン","精錬値が1上がる度に追加でMDEF + 1。竜形モンスターから受けるダメージ - 1%",19,5,59,5,0],
+	[2222,61,0,140,0,1,180,100,"ホワイトゴールドシールド","ホワイト","魔法攻撃を受けた時、一定確率で2秒間、受けた攻撃魔法を20%の確率で反射。",194,1,0],
+	[2223,60,0,37,870,1,100,100,"プロンテラ軍の軍服","フロンテ","精錬値が6以上の時、追加でプレイヤーから受けるダメージ-2%。<BR>精錬値が8以上の時、追加でプレイヤーから受けるダメージ-3%。<BR>この装備は倉庫への移動・NPCへの売却 のみ可能です。",0],
+	[2224,60,0,37,870,1,100,100,"プロンテラ軍団長の軍服","フロント","精錬値が6以上の時、追加でプレイヤーから受けるダメージ-2%。<BR>精錬値が8以上の時、追加でプレイヤーから受けるダメージ-3%。<BR>この装備は倉庫への移動・NPCへの売却 のみ可能です。",194,1,0],
+	[2225,100,0,0,0,0,0,0,"0","0","0",15,30,243,2,264,5,78,10,0],
+	[2226,100,0,0,0,0,0,0,"0","0","0",152,100,0],
+	[2227,62,0,13,870,1,100,100,"プロンテラ軍のタスキ","フロンテ","精錬値が6以上の時、追加でプレイヤーから受けるダメージ-2%。<BR>精錬値が8以上の時、追加でプレイヤーから受けるダメージ-3%。<BR>この装備は倉庫への移動・NPCへの売却 のみ可能です。",0],
+	[2228,62,0,13,870,1,100,100,"プロンテラ軍団長のタスキ","フロント","精錬値が6以上の時、追加でプレイヤーから受けるダメージ-2%。<BR>精錬値が8以上の時、追加でプレイヤーから受けるダメージ-3%。<BR>この装備は倉庫への移動・NPCへの売却 のみ可能です。",0],
+	[2229,63,0,16,870,1,100,100,"プロンテラ軍の軍靴","フロンテ","精錬値が6以上の時、追加でプレイヤーから受けるダメージ-2%。<BR>精錬値が8以上の時、追加でプレイヤーから受けるダメージ-3%。<BR>この装備は倉庫への移動・NPCへの売却 のみ可能です。",0],
+	[2230,63,0,16,870,1,100,100,"プロンテラ軍団長の軍靴","フロント","精錬値が6以上の時、追加でプレイヤーから受けるダメージ-2%。<BR>精錬値が8以上の時、追加でプレイヤーから受けるダメージ-3%。<BR>この装備は倉庫への移動・NPCへの売却 のみ可能です。",0],
+	[2231,64,0,0,0,1,20,36,"プラチナリング","フラチナ","0",19,3,6,2,0],
+	[2232,100,0,0,0,0,0,0,"0","0","[ヴェール]の精錬値が1上がる度にMdef + 1<BR>[ガラスの靴]の精錬値が1上がる度にMdef + 1<BR>[ウェディングドレス]の精錬値が1上がる度にMdef + 1",19,3,0],
+	[2233,50,0,0,0,0,100,10,"ベビードラゴン","ヘヒイト","0",129,5,59,-10,193,1,0],
+	[2234,60,0,0,0,1,60,1,"古びた楯無の鎧","フルヒタ","0",13,100,0],
+	[2235,100,0,0,0,0,0,0,"0","0","[古びた楯無の鎧]の精錬値が5の時、鎧に地属性を付与する。<BR>精錬値が6の時、鎧に水属性を付与する。<BR>精錬値が7の時、鎧に風属性を付与する。<BR>精錬値が8の時、鎧に火属性を付与する。<BR>精錬値が9の時、鎧に闇属性を付与する。<BR>精錬値が10の時、鎧に聖属性を付与する。",0],
+	[2236,100,0,0,0,0,0,0,"0","0","[古びた楯無の鎧]の精錬値が2上がる度に追加で[シールドチェーン][サクリファイス]で与えるダメージ+5%。",0],
+	[2237,60,0,120,2250,1,60,99,"楯無の鎧","タテナシ","精錬値が1上がる度に追加でVit+1。",194,1,0],
+	[2238,100,0,0,0,0,0,0,"0","0","0",213,15,0],
+	[2239,100,0,0,0,0,0,0,"0","0","[楯無の鎧]の精錬値が1上がる度に追加でVit+5、MaxHP+5%。",0],
+	[2240,100,0,0,0,0,0,0,"0","0","[楯無の兜]の精錬値が1上がる度に追加でDef+15。<BR>[楯無の鎧]の精錬値が1上がる度に追加でDef+15。",0],
+	[2241,61,0,80,0,1,280,90,"アイアンシールド","アイアン","精錬値が8以上の時、追加で攻撃速度-3%",194,1,8000381,1,0],
+	[2242,51,0,0,2260,0,50,70,"ギャンブラーシール","キヤンフ","[アローストーム]、[羅刹破凰撃]で受けるダメージ-10%。<BR>純粋なLukが10上がる度に追加でCri+1、Atk+2、Matk+2。<BR>純粋なLukが108以上の時、追加でCri+5、クリティカル攻撃で与えるダメージ+10%。<BR>純粋なLukが120以上の時、追加でCri+10、クリティカル攻撃で与えるダメージ+17%。[アローストーム]、[羅刹破凰撃]で受けるダメージ-30%。<BR>純粋なDexが10上がる度に追加でクリティカル攻撃で与えるダメージ-2%。",10,3,70,3,0],
+	[2243,50,0,0,0,1,100,50,"山茶花の髪飾り","ササンカ","物理攻撃時、一定確率でオートスペル[ニューマ]Lv1発動。<BR>精錬値が1上がる度にオートスペル[ニューマ]Lv1の発動率が上昇。",19,20,0],
+	[2244,63,0,10,0,0,30,10,"メディカルブーツ","メテイカ","精錬値が1上がる度に追加で[コルセオヒール]使用時の消費SP-5。<BR>精錬値が2上がる度に追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量+2%。",91,10,0],
+	[2245,100,0,0,0,0,0,0,"0","0","[回復の光]の精錬値が1上がる度に追加で<BR>[ヒール]使用時の消費SP-6。[コルセオヒール]使用時の消費SP-10。[ハイネスヒール]使用時の消費SP-14。",0],
+	[2246,100,0,0,0,0,0,0,"0","0","[博愛の守護]の精錬値が2上がる度に追加で<BR>[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量+3%。",0],
+	[2247,60,0,50,0,1,150,99,"アンティマジックスーツ","アンテイ","精錬値が7以上の時、追加でMdef+5。<BR>精錬値が9以上の時、追加でMaxHP+2%。",19,10,15,5,0],
+	[2248,100,0,0,0,0,0,0,"0","0","0",12,5,0],
+	[2249,100,0,0,0,0,0,0,"0","0","0",74,5,57,5,0],
+	[2250,60,0,40,0,1,100,99,"ゲフェンマジックローブ","ケフエン","精錬値が7以上の時、追加でスキル使用時、消費SP-5%。<BR>精錬値が9以上の時、追加で詠唱時間-5%。",102,10,73,15,380,1,0],
+	[2251,100,0,0,0,0,0,0,"0","0","0",73,-5,0],
+	[2252,61,0,50,0,1,100,99,"マジックリフレクター","マシツク","ターゲッティング魔法を一定確率で反射。<BR>精錬値が7以上の時、ターゲッティング魔法を反射する確率が上昇。<BR>精錬値が9以上の時、ターゲッティング魔法を反射する確率が上昇。 ",19,10,0],
+	[2253,61,95,50,0,1,20,99,"大百科事典改訂版","タイヒヤ","精錬値が7以上の時、追加でCri+2。<BR>精錬値が9以上の時、追加でMatk+5。",4,3,5,2,10,3,100,5,0],
+	[2254,100,0,0,0,0,0,0,"0","0","[大百科事典]の精錬値が1上がる度に追加で攻撃速度+1%。 ",0],
+	[2255,64,0,0,0,1,10,90,"身体強化リング","シンタイ","0",80,5,0],
+	[2256,64,0,0,0,1,10,90,"魔力増幅リング","マリヨク","0",89,5,0],
+	[2257,51,0,0,1820,10,50,70,"プロテクトフェザー","フロテク","純粋なVitが108以上の時、追加でプレイヤーから受けるダメージ-3%。攻撃速度-5%。<BR>純粋なVitが120以上の時、追加でMdef+3。MaxHP+3%。",19,2,243,2,12,-5,0],
+	[2258,100,0,0,0,0,0,0,"0","0","[羽のベレー]の精錬値が7以上の時、追加で攻撃速度+5%。精錬値が9以上の時、追加でMaxHP+5%。",12,5,0],
+	[2259,51,0,0,0,0,20,40,"悪魔の下僕","アクマノ","[ポーションピッチャー]Lv3使用可能。",0],
+	[2260,999,0,3,0,1,20,10,"類似品","0","0",19,3,30,5,170,5,50,5,0],
+	[2261,999,0,3,0,1,20,10,"類似品","0","0",19,3,31,5,171,5,51,5,0],
+	[2262,50,0,3,0,1,20,10,"イヌ耳帽子","イヌミミ","動物形モンスターを倒した時、一定確率で[光の粒]をドロップ。",19,3,32,5,172,5,52,5,0],
+	[2263,999,0,3,0,1,20,10,"類似品","0","0",19,3,33,5,173,5,53,5,0],
+	[2264,999,0,3,0,1,20,10,"類似品","0","0",19,3,34,5,174,5,54,5,0],
+	[2265,999,0,3,0,1,20,10,"類似品","0","0",19,3,35,5,175,5,55,5,0],
+	[2266,999,0,3,0,1,20,10,"類似品","0","0",19,3,36,5,176,5,56,5,0],
+	[2267,999,0,3,0,1,20,10,"類似品","0","0",19,3,37,5,177,5,57,5,0],
+	[2268,999,0,3,0,1,20,10,"類似品","0","0",19,3,38,5,178,5,58,5,0],
+	[2269,999,0,3,0,1,20,10,"類似品","0","0",19,3,39,5,179,5,59,5,0],
+	[2270,999,0,0,0,0,20,10,"類似品","0","0",170,4,50,5,0],
+	[2271,999,0,0,0,0,20,10,"類似品","0","0",171,4,51,5,0],
+	[2272,51,0,0,0,0,20,10,"一零式冷たい目","イチセロ","0",172,4,52,5,0],
+	[2273,51,0,0,0,0,20,10,"九三式流血翅","キユウサ","0",173,4,53,5,0],
+	[2274,999,0,0,0,0,20,10,"類似品","0","0",174,4,54,5,0],
+	[2275,51,0,1,0,0,20,10,"三零七式スキュート","サンセロ","0",175,4,55,5,0],
+	[2276,51,0,0,0,0,20,10,"六六六式魔族の耳","ロクロク","0",176,4,56,5,0],
+	[2277,999,0,0,0,0,20,10,"類似品","0","0",177,4,57,5,0],
+	[2278,51,0,0,0,0,20,10,"一零四式虹の羽飾り","イチセロ","0",178,4,58,5,0],
+	[2279,51,0,0,0,0,20,10,"八式煉獄の翼","ハチシキ","0",179,4,59,5,0],
+	[2280,51,0,0,0,0,10,10,"浮遊する賢者の石","フユウス","0",154,100,0],
+	[2281,100,0,0,0,0,0,0,"0","0","物理攻撃命中時、一定確率で7秒間、Aspd+2、[ダブルアタック]Lv10が全ての武器で使用可能。",101,1,71,4,0],
+	[2282,100,0,0,0,0,0,0,"0","0","[アミストルキャップ]の精錬値が1上がる度に追加でMaxHP + 1%、[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]を受けた時のHP回復量+2%。<BR>物理攻撃を受けた時、一定確率で7秒間、精錬値によってDef増加。<BR>※Def増加量不明につき計算機未対応。",0],
+	[2283,100,0,0,0,0,0,0,"0","0","[たれリーフ]の精錬値が1上がる度に追加でMaxSP+1%、SP自然回復量+1%。<BR>物理攻撃命中時、一定確率で7秒間、攻撃命中時、SP+3。",0],
+	[2284,100,0,0,0,0,0,0,"0","0","[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]、[ダブルキャスティング]<BR>をLv2以上習得している場合、習得しているLvで発動。<BR>装備解除時、SP-200。",5051,50,5054,50,5056,50,5132,50,221,155,221,156,0],
+	[2285,64,0,0,430,1,10,1,"RJC2014缶バッジ","アアルシ","[レッドスリムポーション]、[イエロースリムポーション]、<BR>[ホワイトスリムポーション]使用時、HP回復量 + 10%",0],
+	[2286,50,0,0,0,0,100,10,"天使の導き","テンシノ","0",128,5,58,-10,193,1,0],
+	[2287,64,0,3,0,1,20,50,"クリティカルアンクレット","クリテイ","0",19,3,10,5,0],
+	[2288,100,0,0,0,0,0,0,"0","0","[真紅のポンチョ]の精錬値が5以上の時、追加でクリティカル攻撃で与えるダメージ+3%。<BR>[真紅のポンチョ]の精錬値が7以上の時、追加でクリティカル攻撃で与えるダメージ+4%。",10,10,70,5,0],
+	[2289,50,0,0,2,1,150,70,"女王スカラバの兜","シヨオウ","物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を混乱状態にする。<BR>精錬値が1上がる度に発動率が上昇。<BR>精錬値が1上がる度に追加で昆虫形モンスターから受けるダメージ-1%。",104,-50,105,-50,0],
+	[2290,100,0,0,0,0,0,0,"0","0","物理・魔法攻撃命中時、一定確率で、自分を中心に11x11セルの敵に特定の状態異常効果を与える。<BR>[女王スカラバの兜]の精錬値が1上がる度に発動率が上昇。",0],
+	[2291,100,0,0,0,0,0,0,"0","0","物理攻撃時[アトラススカラバ][コーカサススカラバ][ヘラクレススカラバ][レギウススカラバ]<BR>[一角スカラバ][剛角スカラバ][鹿角スカラバ][双角スカラバ]<BR>[女王スカラバ][女帝スカラバ]に与えるダメージ+30%。",1565,30,1566,30,1567,30,1568,30,1569,30,1570,30,1571,30,1572,30,1573,30,1574,30,0],
+	[2292,100,0,0,0,0,0,0,"0","0","0",54,10,157,100,0],
+	[2293,63,0,25,0,1,100,70,"ソーンシューズ","ソオンシ","精錬値が2上がる度に追加で近接物理攻撃で受けたダメージの1%を反射。",0],
+	[2294,100,0,0,0,0,0,0,"0","0","[ソーンシールド]の精錬値が3上がる度に追加で攻撃速度+6%。",0],
+	[2295,100,0,0,0,0,0,0,"0","0","純粋なAgiが120以上の時、追加でAspd+1。 ",0],
+	[2296,50,0,0,0,1,30,1,"アイス・フォン・フリージンガー69世","アイスフ","",193,1,26,15,0],
+	[2297,62,0,0,0,1,50,50,"酸素ボンベ","サンソホ","精錬値が3上がる度に追加でAtk + 5",0],
+	[2298,100,0,0,0,0,0,0,"0","0","BaseLvが高い程、攻撃速度が増加。<BR>※BaseLv20毎に+1%",0],
+	[2299,100,0,0,0,0,0,0,"0","0","BaseLvが高い程、[ファイアーウォール]で与えるダメージが増加。<BR>※BaseLv2毎に+1%",0],
+	[2300,50,0,5,0,1,30,20,"演劇用の発条鍵","エンケキ","近接物理攻撃で無形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000050,5,7000050,5,0],
+	[2301,50,0,5,0,1,30,20,"天女の花","テンニヨ","近接物理攻撃で不死形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000051,5,7000051,5,0],
+	[2302,50,0,5,0,1,30,20,"ボイタタ帽","ホイタタ","近接物理攻撃で動物形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000052,5,7000052,5,0],
+	[2303,50,0,5,0,1,30,20,"しだれ桜のかんざし","シタレサ","近接物理攻撃で植物形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000053,5,7000053,5,0],
+	[2304,50,0,5,0,1,30,20,"食蟲花のヘアピン","シヨクチ","近接物理攻撃で昆虫形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000054,5,7000054,5,0],
+	[2305,50,0,5,0,1,30,20,"オットー帽","オツトオ","近接物理攻撃で魚貝形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000055,5,7000055,5,0],
+	[2306,50,0,5,0,1,30,20,"ドケビ帽","トケヒホ","近接物理攻撃で悪魔形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000056,2,7000056,3,0],
+	[2307,50,0,5,0,1,30,20,"盗賊の頭巾","トウソク","近接物理攻撃で人間形モンスターを倒した時、SP+5。(プレイヤーには発動しない)<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000108,5,7000108,5,0],
+	[2308,50,0,5,0,1,30,20,"エンジェリングニット帽","エンシカ","近接物理攻撃で天使形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000058,5,7000058,5,0],
+	[2309,50,0,5,0,1,30,20,"飛行帽","ヒコウホ","近接物理攻撃で竜形モンスターを倒した時、SP+5。<BR>近接物理攻撃でモンスターを倒した時、HP+100。",19,5,5000059,5,7000059,5,0],
+	[2310,100,0,0,0,0,0,0,"0","0","0",102,5,0],
+	[2311,64,0,0,440,0,5,1,"水ドロップ","ミストロ","0",41,2,341,2,61,1,0],
+	[2312,64,0,0,450,0,5,1,"木ドロップ","キトロツ","0",42,2,342,2,62,1,0],
+	[2313,64,0,0,460,0,5,1,"火ドロップ","ヒトロツ","0",43,2,343,2,63,1,0],
+	[2314,64,0,0,470,0,5,1,"光ドロップ","ヒカリト","0",46,2,346,2,66,1,0],
+	[2315,64,0,0,480,0,5,1,"闇ドロップ","ヤミトロ","0",47,2,347,2,67,1,0],
+	[2316,64,0,0,490,0,5,1,"回復ドロップ","カイフク","0",91,2,92,2,0],
+	[2317,64,0,0,0,0,10,1,"星タマゴバッジ","ホシタマ","※地面に捨てたり、取引やカートへの移動はできません。",13,200,14,50,0],
+	[2318,100,0,0,0,0,0,0,"0","0","BaseLv79以下の時、追加でMaxHP + 200 、 MaxSP + 150。<BR>BaseLv80以上の時、追加でMaxHP + 600 、 MaxSP + 50。",0],
+	[2319,100,0,0,0,0,0,0,"0","0","0",13,200,14,150,0],
+	[2320,100,0,0,0,0,0,0,"0","0","0",13,-200,14,-150,0],
+	[2321,50,0,0,0,0,100,10,"冒険家の帽子","ホウケン","0",127,5,57,-10,193,1,0],
+	[2322,61,0,25,0,1,100,100,"ラフィネシールド","ラフイネ","精錬値が7以上の時、追加でMatk + 20",19,10,0],
+	[2323,100,0,0,0,0,0,0,"0","0","[ラフィネシールド]の精錬値が9以上の時、[ラフィネスタッフ]の精錬値が1上がる度に追加でMatk + 15<BR>[ラフィネスタッフ]の精錬値が10の時、追加でMatk + 50、詠唱時間 - 10%",0],
+	[2324,52,0,0,0,0,10,1,"チャームオブラフウィンド","チヤアエ","モンスターを倒した時、一定確率で[ウィンドオブヴェルデュール]をドロップ。",41,2,0],
+	[2325,52,0,0,0,0,10,1,"チャームオブフレイムハート","チヤアイ","モンスターを倒した時、一定確率で[レッドブラッド]をドロップ。",42,2,0],
+	[2326,52,0,0,0,0,10,1,"チャームオブミスティックフローズン","チヤアウ","モンスターを倒した時、一定確率で[クリスタルブルー]をドロップ。",43,2,0],
+	[2327,52,0,0,0,0,10,1,"チャームオブグレイトネイチャ","チヤアア","モンスターを倒した時、一定確率で[イエローライブ]をドロップ。",44,2,0],
+	[2328,100,0,0,0,0,0,0,"0","0","[シャピニハ海の叫び]の精錬値が5以上の時、<BR>精錬値が1上がる度に追加で物理攻撃時、水属性モンスターに与えるダメージ+1%。",41,2,0],
+	[2329,100,0,0,0,0,0,0,"0","0","[クレイトス大地の裂け目]の精錬値が5以上の時、<BR>精錬値が1上がる度に追加で物理攻撃時、地属性モンスターに与えるダメージ+1%。",42,2,0],
+	[2330,100,0,0,0,0,0,0,"0","0","[ルシウス火山の激しさ]の精錬値が5以上の時、<BR>精錬値が1上がる度に追加で物理攻撃時、火属性モンスターに与えるダメージ+1%。",43,2,0],
+	[2331,100,0,0,0,0,0,0,"0","0","[エベシ嵐のうねり]の精錬値が5以上の時、<BR>精錬値が1上がる度に追加で物理攻撃時、風属性モンスターに与えるダメージ+1%。",44,2,0],
+	[2332,50,0,10,0,1,50,50,"精霊の王冠","セイレイ","BaseLv99以下の時、[精霊の王冠]の精錬値が2上がる度に追加でDex+1。<BR>BaseLv100以上の時、[精霊の王冠]の精錬値が1上がる度に追加でDex+1。",5,3,25,4,0],
+	[2333,100,0,0,0,0,0,0,"0","0","0",25,45,0],
+	[2334,50,0,10,0,1,50,50,"ギガントヘルム","キカント","BaseLv99以下の時、[ギガントヘルム]の精錬値が2上がる度に追加でStr+1。<BR>BaseLv100以上の時、[ギガントヘルム]の精錬値が1上がる度に追加でStr+1。",1,3,80,4,0],
+	[2335,100,0,0,0,0,0,0,"0","0","[ギガントアックス]の精錬値が1上がる度に追加で[カートターミネーション]で与えるダメージ+5%。",5326,15,0],
+	[2336,100,0,0,0,0,0,0,"0","0","[ギガントシールド]の精錬値が1上がる度に追加で大型モンスターから受けるダメージ-2%。",192,5,0],
+	[2337,100,0,0,0,0,0,0,"0","0","スキル[ジョイントビート]使用時、一定確率でオートスペル[スパイラルピアース]Lv1発動。<BR>[スパイラルピアース]の習得Lvが2以上の場合、習得Lvで発動。<BR>「ジョイントビート」の習得Lvが高い程、オートスペル[スパイラルピアース]の発動率が上昇。<BR>[ギガントランス]の精錬値が1上がる度に追加で[スパイラルピアース]で与えるダメージ+5%。",223,185,0],
+	[2338,50,0,10,0,1,50,50,"サバイバルサークレット","サハイハ","BaseLv99以下の時、[サバイバルサークレット]の精錬値が2上がる度に追加でInt+1。<BR>BaseLv100以上の時、[サバイバルサークレット]の精錬値が1上がる度に追加でInt+1。",4,3,89,4,0],
+	[2339,100,0,0,0,0,0,0,"0","0","[サバイバルロッド[1]]の精錬値が1上がる度に追加でMatk+10。<BR>[サバイバルロッド[1]]の精錬値が10の時、魔法攻撃命中時、一定確率で5秒間、詠唱時間-50%。",0],
+	[2340,60,0,60,0,1,400,99,"邪竜の鎧","シヤリユ","精錬値が8以上の時、物理攻撃命中時、<BR>一定確率で敵に与えたダメージの3%をHPとして吸収、一定確率で敵に与えたダメージの2%をSPとして吸収。<BR>精錬値が9以上の時、追加でHP・SPの吸収量 + 1%。吸収する確率が上昇。<BR>精錬値が10の時、追加でHP・SPの吸収量 + 2%、吸収する確率が上昇。",0],
+	[2341,100,0,0,0,0,0,0,"0","0","[ライドワード帽]のHP・SP吸収効果が発動しない。",0],
+	[2342,100,0,0,0,0,0,0,"0","0","[ヴァナルガンドの兜]のHP・SP吸収効果が発動しない",0],
+	[2343,100,0,0,0,0,0,0,"0","0","[スキンオブシャドウ]のSP吸収効果が発動しない",0],
+	[2344,9,55,120,834,2,50,80,"ソードスティック","ソオトス","0",88,150,12,10,0],
+	[2345,60,1,40,0,0,30,80,"紳士服","シンシフ","[紳士服]の精錬値が7以上の時、追加で攻撃速度+2%、スキルディレイ-2%、詠唱時間-2%。",12,3,74,3,73,-3,0],
+	[2346,100,0,0,0,0,0,0,"0","0","[ソードスティック]の精錬値が1上がる度に追加でスキルディレイ-1%。",74,10,0],
+	[2347,64,0,1,0,1,10,90,"ヴェスパーギア1","ウエスハ","0",19,3,89,5,0],
+	[2348,100,0,0,0,0,0,0,"0","0","BaseLvが20上がる度にInt+1。",16,5,0],
+	[2349,64,0,1,0,1,10,90,"ヴェスパーギア2","ウエスハ","0",19,3,80,5,0],
+	[2350,100,0,0,0,0,0,0,"0","0","BaseLvが20上がる度にStr+1。",15,5,0],
+	[2351,64,0,1,0,1,10,90,"ヴェスパーギア3","ウエスハ","0",19,3,9,10,0],
+	[2352,100,0,0,0,0,0,0,"0","0","BaseLvが20上がる度にAgi+1。",12,5,0],
+	[2353,64,0,1,0,1,10,90,"ヴェスパーギア4","ウエスハ","0",19,3,8,10,0],
+	[2354,100,0,0,0,0,0,0,"0","0","BaseLvが20上がる度にDex+1。",73,-5,0],
+	[2355,60,0,45,0,1,50,80,"元素の服","ケンソノ","精錬値が7以上の時、鎧が絶対に壊れない。<BR>精錬値が8以上の時、追加で遠距離物理攻撃で与えるダメージ+2%。<BR>精錬値が9以上の時、追加で遠距離物理攻撃で与えるダメージ+3%。",25,2,0],
+	[2356,100,0,0,0,0,0,0,"0","炎の矢","遠距離物理攻撃で与えるダメージ+20%<BR>火属性攻撃で受けるダメージ+10%。<BR>[燃える弓]の精錬値が10の時、追加でAspd+1。",0],
+	[2357,100,0,0,0,0,0,0,"0","水晶の矢","遠距離物理攻撃で与えるダメージ+20%<BR>[氷点の弓]の敵を凍結状態にする効果が発動しない。<BR>[氷点の弓]の精錬値が10の時、追加でAspd+1。",0],
+	[2358,100,0,0,0,0,0,0,"0","岩石の矢","遠距離物理攻撃で与えるダメージ+20%<BR>[大地の弓]、[岩石の矢]の敵を石化状態にする効果が発動しない。<BR>[大地の弓]の精錬値が10の時、追加でAspd+1。",0],
+	[2359,100,0,0,0,0,0,0,"0","風の矢","遠距離物理攻撃で与えるダメージ+20%<BR>オートスペル[風刃]が発動しない。<BR>[疾風の弓]の精錬値が10の時、追加でAspd+1。 ",0],
+	[2360,60,2051,120,600000,1,400,160,"勇者のプレート","ユウシヤ","物理攻撃命中時、一定確率で自分にオートスペル[ヒール]Lv10発動。<BR>精錬値が1上がる度にオートスペル[ヒール]Lv10、[ストームガスト]Lv10の発動率が上昇。<BR>※ランダムエンチャントによる防御属性の設定は、いずれ対応予定です。",19,5,17,10,100,10,8,10,9,10,15,5,16,5,5570,10,5452,10,221,159,0],
+	[2361,60,2052,70,600000,1,20,160,"勇者のヒドゥンクロース","ユウシヤ","物理攻撃命中時、一定確率で10秒間、Cri+20、Flee+20。物理・魔法攻撃で与えるダメージ+10%。<BR>精錬値が1上がる度に発動率が上昇。<BR>※ランダムエンチャントによる防御属性の設定は、いずれ対応予定です。",15,5,16,5,5606,10,5608,10,5460,10,5475,10,0],
+	[2362,60,2053,77,600000,1,50,160,"勇者のジャッジメントローブ","ユウシヤ","物理攻撃命中時、一定確率で自分にオートスペル[キリエエレイソン]Lv10発動。<BR>精錬値が1上がる度にオートスペル[キリエエレイソン]Lv10の発動率が上昇。<BR>魔法攻撃命中時、一定確率で敵にオートスペル[レックスエーテルナ]Lv1発動。<BR>精錬値が1上がる度にオートスペル[レックスエーテルナ]Lv1の発動率が上昇。<BR>※ランダムエンチャントによる防御属性の設定は、いずれ対応予定です。",17,10,100,10,8,10,9,10,15,5,16,5,5609,10,5610,10,5611,10,5476,10,5478,10,0],
+	[2363,60,2054,60,600000,1,20,160,"勇者のターゲットスーツ","ユウシヤ","精錬値が1上がる度にオートスペル[ダブルストレイフィング]Lv10の発動率が上昇。<BR>オートスペル[ダブルストレイフィング]発動時、矢を1個消費。<BR>物理攻撃命中時、一定確率でオートスペル[集中力向上]Lv10発動。<BR>精錬値が1上がる度にオートスペル[集中力向上]Lv10の発動率が上昇。<BR>※ランダムエンチャントによる防御属性の設定は、いずれ対応予定です。",7,1,101,1,15,5,16,5,25,3,221,160,0],
+	[2364,60,2055,50,600000,1,80,160,"勇者のマジックコート","ユウシヤ","精錬値が奇数の場合のみ、詠唱時間+20%。詠唱が中断されない。<BR>精錬値が偶数の場合のみ、精錬値が2上がる度に追加でMdef+1。詠唱時間-1%。<BR>※ランダムエンチャントによる防御属性の設定は、いずれ対応予定です。",100,10,9,10,15,5,16,5,5527,10,5662,10,0],
+	[2365,60,2056,100,600000,1,100,160,"勇者のトレードメイル","ユウシヤ","純粋なStrが90以上の時、精錬値が2上がる度に追加でStr+1。<BR>純粋なIntが90以上の時、精錬値が2上がる度に追加でInt+1。<BR>純粋なVitが90以上の時、精錬値が2上がる度に追加でVit+1。<BR>純粋なAgiが90以上の時、精錬値が2上がる度に追加でAgi+1。<BR>純粋なDexが90以上の時、精錬値が2上がる度に追加でDex+1。<BR>純粋なLukが90以上の時、精錬値が2上がる度に追加でLuk+1。<BR>近接物理攻撃命中時、一定確率で敵をスタン・毒・沈黙・呪い状態にする。<BR>精錬値が1上がる度に敵をスタン・毒・沈黙・呪い状態にする確率が上昇。<BR>※ランダムエンチャントによる防御属性の設定は、いずれ対応予定です。",19,5,17,10,100,10,15,5,16,5,0],
+	[2366,63,0,10,400000,1,30,160,"勇者のネペンテスブーツ","ユウシネ","精錬値が8以上の時、追加で詠唱時間-5%。精錬値が9以上の時、精錬値が1上がる度に追加で詠唱時間-1%。",73,-10,0],
+	[2367,63,0,15,400000,1,30,160,"勇者の銀狐革ブーツ","ユウシキ","精錬値が8以上の時、精錬値が1上がる度に追加で遠距離物理攻撃で与えるダメージ+1%。",25,5,0],
+	[2368,63,0,10,400000,1,30,160,"勇者のウンゴリアントブーツ","ユウシウ","精錬値が8以上の時、精錬値が1上がる度に追加でスキル使用時の消費SP-1%。",102,5,0],
+	[2369,64,0,0,500,0,20,140,"勇者の指輪","ユウシヤ","0",0],
+	[2370,14,155,180,833,2,25,130,"コントラバス","コントラ","0",88,120,0],
+	[2371,14,155,160,834,2,100,130,"ニュオーズのウクレレ","ニユオオ","[風車に向かって突撃]使用時、消費SP-20。",0],
+	[2372,100,0,0,0,0,0,0,"0","0","[アローバルカン]使用時、消費SP+50。",5292,200,0],
+	[2373,15,156,150,833,2,30,130,"新体操リボン","シンタイ","0",88,120,12,20,0],
+	[2374,15,156,160,834,2,100,130,"アイグの花飾りマイク","アイクノ","[月明かりのセレナーデ]使用時、消費SP-20。",0],
+	[2375,10,149,195,4,1,300,130,"ギガントボウ","キカント","0",8,-50,12,-15,25,40,0],
+	[2376,10,2054,160,4,1,150,130,"嵐の弓","アラシノ","",25,30,19642,2000,19753,2000,23642,-15,23753,-15,219,2835,0],
+	[2377,64,155,0,0,1,10,130,"ニュオーズの翼リング","ニユオオ","0",73,-25,0],
+	[2378,64,156,0,0,1,10,130,"アイグの花飾りブレスレット","アイクノ","0",73,-25,0],
+	[2379,64,2000,0,0,0,10,130,"ペンダントオブハーモニー","ヘンタハ","物理攻撃命中時、一定確率で自分にオートスペル[レノヴァティオ]Lv1発動。<BR>物理攻撃を受けた時、一定確率で自分を中心にオートスペル[サンクチュアリ]Lv3発動。",1,-5,89,6,75,50,76,50,66,5,0],
+	[2380,64,2000,0,0,0,10,130,"ペンダントオブカオス","ヘンタカ","物理攻撃命中時、一定確率で敵を混乱状態にする。<BR>物理攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を混乱状態にする。",4,-5,80,6,157,100,67,5,0],
+	[2381,100,0,0,0,0,0,0,"0","0","魔法攻撃を受けた時、一定確率でオートスペル[メイルストーム]Lv1発動。 ",217,5,0],
+	[2382,64,2000,0,200000,1,10,130,"ペンダントオブメイルストーム","ヘンタメ","魔法攻撃を受けた時、一定確率でオートスペル[メイルストーム]Lv1発動。 ",7,1,80,6,89,6,0],
+	[2383,60,2000,20,0,1,150,130,"凍てついたプレート","イテツイ","0",198,1,0],
+	[2384,60,2000,20,0,1,150,130,"ハードプレート","ハアトフ","0",198,2,0],
+	[2385,999,0,0,0,0,0,0,"0","0","0",0],
+	[2386,999,0,0,0,0,0,0,"0","0","0",0],
+	[2387,999,0,0,0,0,0,0,"0","0","0",0],
+	[2388,999,0,0,0,0,0,0,"0","0","0",0],
+	[2389,999,0,0,0,0,0,0,"0","0","0",0],
+	[2390,999,0,0,0,0,0,0,"0","0","0",0],
+	[2391,999,0,0,0,0,0,0,"0","0","0",0],
+	[2392,52,0,0,0,0,10,1,"棘のスカーフ","トケノス","0",156,100,73,10,0],
+	[2393,50,0,8,0,1,88,60,"タコ帽子","タコホウ","[おいしい魚]のHP回復量+50%、[おさしみ][お寿司]のHP回復量+125%。<BR>精錬値が5以上の時、追加で[おいしい魚]のHP回復量+50%、[おさしみ][お寿司]のHP回復量+125%。<BR>精錬値が6以上の時、追加で[おいしい魚]のHP回復量+50%、[おさしみ][お寿司]のHP回復量+125%。<BR>精錬値が7以上の時、追加で[おいしい魚]のHP回復量+50%、[おさしみ][お寿司]のHP回復量+125%。",19,8,194,1,0],
+	[2394,50,0,5,1430,1,30,10,"マジカルフェザー","マシカル","精錬値が5以上の時、精錬値が1上がる度に追加で魔法攻撃時、聖・闇・念・毒・不死属性モンスターに与えるダメージ+5%。<BR>[イムポシティオマヌス]の習得Lvが1上がる度に[ホーリーライト]で与えるダメージが増加、[ホーリーライト]の消費SP+15。<BR>[デーモンべイン]の習得Lvが1上がる度にオートスペル[ホーリーライト]の発動率が上昇。<BR>[応急手当]使用時、10秒間、モンスター[ナサリン]に変身。アコライト（男）の時、[ナサリン]に変身時、追加で変身呪文を唱える。<BR>※[イムポシティオマヌス]習得による[ホーリーライト]のダメージ上昇量はLv1につき+80%",199,1,221,161,356,5,357,5,358,5,355,5,359,5,0],
+	[2395,51,0,0,1860,10,30,80,"鴉天狗の面","カラステ","純粋なStrが108以上の時、追加で物理攻撃で与えるダメージ+1%、遠距離物理攻撃で与えるダメージ+2%。<BR>純粋なStrが120以上の時、追加で物理攻撃で与えるダメージ+2%、遠距離物理攻撃で与えるダメージ+3%。",80,1,25,2,0],
+	[2396,50,0,6,0,1,80,40,"楽園の鳥かご","ラクエン","レンジャーが装備時、精錬値が1上がる度に追加で[ブリッツビート]で与えるダメージ+5%。",6,5,10,5,11,5,0],
+	[2397,100,0,0,0,0,0,0,"0","0","物理攻撃命中時、一定確率でオートスペル[グロリア]Lv5発動。",0],
+	[2398,100,0,0,0,0,0,0,"0","0","レンジャーが装備時、[イクシオンの羽]の精錬値が1上がる度に追加で[ブリッツビート]で与えるダメージ+5%。",0],
+	[2399,50,0,0,0,1,50,30,"ニブルヘイムバニーハット","ニフルヘ","物理・魔法攻撃時、ニブルヘイムのモンスターに与えるダメージ+5%。<BR>精錬値が5以上の時、追加でニブルヘイムのモンスターに与えるダメージ+5%。<BR>精錬値が7以上の時、追加でニブルヘイムのモンスターに与えるダメージ+10%。<BR>精錬値が9以上の時、追加でニブルヘイムのモンスターに与えるダメージ+20%。<BR>---------------------<BR>物理・魔法攻撃を受けた時、一定確率で自分を中心に11x11セルの敵を呪い状態にする。精錬値が1上がる度に発動率が上昇。<BR>[ニブルヘイムへの帰還]Lv1使用可能。",0],
+	[2400,52,0,0,0,0,10,10,"ハッピーバルーン","ハツヒイ","モンスターを倒した時、一定確率で[プレゼントボックス]をドロップ。",19,5,0],
+	[2401,100,0,0,0,0,0,0,"0","0","純粋なLukが77以上の時、モンスターを倒した時、一定確率で[ハッピーボックス]をドロップ。",0],
+	[2402,62,0,0,0,0,10,1,"冒険者のリュック","ホウケン","[プロンテラへの帰還]Lv1使用可能<BR>ノービス、転生ノービス、1次職、2次職、転生1次職、特殊1次職が装備時、[速度増加]Lv1使用可能<BR>キャラクターの背中にグラフィックが反映される",0],
+	[2403,50,0,0,510,1,10,1,"ニーズヘッグ&ロキ帽","ニイスヘ","0",0],
+	[2404,62,0,18,520,10,20,1,"大天使の翼","タイテン","キャラクターの背中にグラフィックが反映される",0],
+	[2405,64,0,0,0,1,10,100,"呪われた幸運のクローバー","ノロワラ","近接物理攻撃命中時、一定確率で自分が呪い状態になる。",6,2,11,3,0],
+	[2406,100,0,0,0,0,0,0,"0","0","[クローキング]Lv1使用可能。 ",0],
+	[2407,63,0,0,0,1,40,12,"ルイーゼの赤い靴","ルイイセ","[初心者用ポーション]使用時、HP回復量+100%。<BR>[ルイーゼの赤い靴]の精錬値が1上がる度に追加でHP自然回復量+10%。",75,50,0],
+	[2408,100,0,0,0,0,0,0,"0","0","物理・魔法攻撃を受けた時、一定確率で10秒間、Def+200、Mdef+20。",0],
+	[2409,100,0,0,0,0,0,0,"0","0","物理・魔法攻撃を受けた時、一定確率で11秒間、2秒毎にHP+50、SP+10。",0],
+	[2410,100,0,0,0,0,0,0,"0","0","[初心者用ポーション]使用時、HP回復量+100%。<BR>モンスターを倒した時、一定確率で、[初心者用ポーション]をドロップ。",0],
+	[2411,100,0,0,0,0,0,0,"0","0","[ルイーゼの赤い靴]の精錬値が6以上の時、追加で[カートレボリューション]の消費SP-4。",0],
+	[2412,60,0,20,0,1,30,80,"海女の服","アマノフ","モンスターを倒した時、一定確率で、[おいしい魚]をドロップ。<BR>[海女の服]の精錬値が1上がる度に追加で[おいしい魚]のドロップ確率が上昇。<BR>[海女の服]の精錬値が7以上の時、追加で近接物理攻撃でモンスターを倒した時、HP+100。HP自然回復量-100%。",0],
+	[2413,50,0,15,3520,1,50,100,"オウルヴァイカウントのシルクハット","オウルウ","精錬値が1上がる度に追加でMatk+7。<BR>精錬値が5以上の時、追加で魔法攻撃命中時、一定確率で30秒間、攻撃速度+5%。<BR>精錬値が7以上の時、追加で攻撃速度+10%。<BR>精錬値が9以上の時、追加で攻撃速度+40%。 ",4,2,12,10,0],
+	[2414,62,0,40,3610,1,40,100,"アンドフリームニルのマント","アントフ","精錬値が5以上の時、追加で純粋なAgiが10上がる度に攻撃速度+1%。<BR>精錬値が7以上の時、追加で純粋なAgiが10上がる度に攻撃速度+1%。",101,1,0],
+	[2415,100,0,0,0,0,0,0,"0","0","[チェネレカード]の効果が発動しない。 ",0],
+	[2416,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2417,52,0,0,0,0,30,30,"くわえたえんぴつ（青）","クワエエ","物理攻撃命中時、一定確率で60秒間、武器に水属性を付与する。",1,1,0],
+	[2418,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2419,52,0,0,0,0,30,30,"くわえたえんぴつ（赤）","クワエエ","物理攻撃命中時、一定確率で60秒間、武器に火属性を付与する。",1,1,0],
+	[2420,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2421,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2422,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2423,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2424,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2425,999,0,0,0,0,30,30,"類似品","0","0",0],
+	[2426,3,146,75,4,2,420,130,"鬼丸","オニマル","純粋なStrが1上がる度に追加でAtk+1。ただし、Atk増加に影響する純粋なStrは最大120まで。<BR>純粋なStrが95以上の時、追加でAtk+40。純粋なStrが108以上の時、追加でAtk+80。純粋なStrが120以上の時、追加でAtk+160。<BR>精錬値が7以上の時、追加で物理攻撃命中時、一定確率で自分を中心に11x11セルの敵を呪い状態にする。絶対に壊れない。<BR>精錬値が9以上の時、追加で[バーサーク]使用時、[オーバートラストマックス]Lv5発動。[オーバートラストマックス]発動時、5,000Zeny消費。<BR>※計算機では精錬+9以上で[バーサーク]を使用すると[オーバートラストマックス]分のATK増加が反映されます。",0],
+	[2427,8,120,1,834,2,2000,110,"メテオストライク","メテオス","純粋なStrが108以上の時、追加でスキル使用時の消費SP-20%。純粋なStrが120以上の時、追加でスキル使用時の消費SP-30%。<BR>[メテオストライク]の精錬値が1上がる度に追加でAtk+10。<BR>[斧修練]の習得Lvが1上がる度に追加でAtk+7、Hit+5。<BR>[武器研究]の習得Lvが1上がる度に追加でAtk+10。<BR>[鉄拳]の習得Lvが1上がる度に追加でAtk+30。<BR>[プッシュカート]Lv10習得時、追加で[カートレボリューション]Lv1使用可能。<BR>[剣修練]Lv1習得時、追加で[ボウリングバッシュ]Lv1使用可能。[剣修練]の習得Lvが2以上の場合、習得Lvの[ボウリングバッシュ]使用可能。",199,241,199,148,199,183,0],
+	[2428,9,150,0,3474,2,30,90,"シャドウスタッフ","シヤトウ","（1）[ヘルインフェルノ]Lv5習得時、追加で[ヘルインフェルノ]で与えるダメージ+100%。<BR>　　 [シャドウスタッフ]の精錬値が1上がる度に追加で[ヘルインフェルノ]で与えるダメージ+10%。敵のMdef5%無視。<BR>（2）[シャドウスタッフ]の精錬値が1以上の時、追加で[ヘルインフェルノ]使用時、一定確率で5秒間、<BR>　　 [ヘルインフェルノ]の詠唱時間-30%。[シャドウスタッフ]の精錬値が1上がる度に発動率が上昇。",199,528,88,130,0],
+	[2429,9,150,180,834,2,250,110,"アイオーンスタッフ","アイオオ","[アイオーンスタッフ]の精錬値が3上がる度に追加で敵のMdef8%無視。<BR>[フリージングスペル]の習得Lvが1上がる度に追加で[リーディングスペルブック]の詠唱時間-1秒。<BR>[リリース]Lv2習得時、追加で[サモンファイアーボール]、[サモンウォーターボール]、[サモンストーン]、[サモンボールライトニング]の詠唱時間-1秒。<BR>[リリース]使用時、1秒間、[ラディウス]の習得Lvが1上がる度に追加で魔法攻撃で与えるダメージ+8%。[魔法力増幅]の習得Lvが1上がる度に追加でMatk+24。",199,539,199,537,199,524,199,276,88,24,195,1,20,8,23538,24,0],
+	[2430,14,155,125,834,1,60,130,"法螺貝","ホラカイ","（1）[法螺貝]の精錬値が1上がる度に追加でInt+1、Dex+1。<BR>（2）[法螺貝]の精錬値が5以上の時、追加で[振動残響]で与えるダメージ+10%、[振動残響]の詠唱時間-10%。<BR>（3）[法螺貝]の精錬値が7以上の時、追加で[振動残響]で与えるダメージ+20%、[振動残響]の詠唱時間-20%。<BR>（4）[法螺貝]の精錬値が9以上の時、追加で[振動残響]で与えるダメージ+40%、[振動残響]の詠唱時間-40%。",0],
+	[2431,3,51,225,3,0,200,70,"退魔神の両手剣","タイマシ","(1)精錬値が5以上の時、物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 40%、受けるダメージ - 10%。<BR>(2)精錬値が7以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 60%、受けるダメージ - 20%。<BR>(3)精錬値が9以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 80%、受けるダメージ ? 40%。",0],
+	[2432,11,0,120,3,0,120,70,"退魔神のカタール","タイマシ","(1)精錬値が5以上の時、物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 40%、受けるダメージ - 10%。<BR>(2)精錬値が7以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 60%、受けるダメージ - 20%。<BR>(3)精錬値が9以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 80%、受けるダメージ ? 40%。",0],
+	[2433,9,94,30,3,0,80,70,"退魔神の杖","タイマシ","(1)精錬値が5以上の時、物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 40%、受けるダメージ - 10%。<BR>(2)精錬値が7以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 60%、受けるダメージ - 20%。<BR>(3)精錬値が9以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 80%、受けるダメージ ? 40%。",88,155,195,1,0],
+	[2434,7,0,125,3,0,135,70,"退魔神のハンマー","タイマシ","(1)精錬値が5以上の時、物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 40%、受けるダメージ - 10%。<BR>(2)精錬値が7以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 60%、受けるダメージ - 20%。<BR>(3)精錬値が9以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 80%、受けるダメージ ? 40%。",0],
+	[2435,10,76,115,3,0,135,70,"退魔神の弓","タイマシ","(1)精錬値が5以上の時、物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 40%、受けるダメージ - 10%。<BR>(2)精錬値が7以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 60%、受けるダメージ - 20%。<BR>(3)精錬値が9以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 80%、受けるダメージ ? 40%。",0],
+	[2436,1,0,120,3,0,90,70,"退魔神の短剣","タイマシ","(1)精錬値が5以上の時、物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 20%、受けるダメージ - 5%。<BR>(2)精錬値が7以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 30%、受けるダメージ - 10%。<BR>(3)精錬値が9以上の時、追加で物理攻撃・魔法攻撃時、魔王モロク系モンスターに与えるダメージ + 40%、受けるダメージ ? 20%。",0],
+	[2437,63,0,10,0,1,50,100,"登山靴","トサンク","[登山靴]の精錬値が3上がる度に追加でMaxHP+3%、MaxSP+3%。<BR>[登山靴]の精錬値が10の時、追加で移動速度増加。",19,10,15,4,16,4,0],
+	[2438,63,0,0,0,1,20,1,"古びたサンダル","フルヒタ","0",14,50,0],
+	[2439,100,0,0,0,0,0,0,"0","0","[古びたサンダル]の精錬値が3上がる度に追加でAtk+10、Matk+10。モンスターを倒した時、HP+30、SP+3。<BR>※このセット効果は、古びたサンダル一つで該当カードの種類だけ効果がある。<BR>※例)[ギグ]C+[三葉虫]Cなら2種類扱いで、精錬+3ならAtk+20/Matk+20/HP60回復/SP6回復。<BR>※情報元は2015年4月16日のRO公式blog<BR><red>※[ギグ]カード2枚など、同じカードだと1種類分なのでセット効果は1回分しか得られない。と検証頂きました。</red><BR>※[ギグ]カード+[三葉虫]カードなど、別のカードを挿しましょう。",0],
+	[2440,63,0,7,3690,1,20,99,"アプローズサンダル","アフロオ","[アプローズサンダル]の精錬値が1上がる度に追加でスキルディレイ-2%。",19,10,0],
+	[2441,100,0,0,0,0,0,0,"0","0","[クラウン]、[アプローズサンダル]の精錬値合計が2上がる度に<BR>追加で物理攻撃で与えるダメージ+1%、詠唱時間-1%。",73,-10,0],
+	[2442,100,0,0,0,0,0,0,"0","0","[ティアラ]、[アプローズサンダル]の精錬値合計が2上がる度に<BR>追加で魔法攻撃で与えるダメージ+1%、詠唱時間-1%。",73,-10,0],
+	[2443,100,0,0,0,0,0,0,"0","0","オートスペル[キリエエレイソン]Lv10が発動しない。<BR>[アプローズサンダル]の精錬値が1上がる度に追加でAll Status+3。",73,-10,0],
+	[2444,62,0,18,560,0,20,1,"熾天使の翼","シテンシ","0",0],
+	[2445,64,0,0,570,1,10,120,"剛腕のグローブ","コウワン","0",1,2,80,5,0],
+	[2446,64,0,0,570,1,10,120,"俊敏のグローブ","シユンヒ","0",2,2,12,5,0],
+	[2447,64,0,0,570,1,10,120,"耐久のグローブ","タイキユ","0",3,2,15,5,0],
+	[2448,64,0,0,570,1,10,120,"知性のグローブ","チセイノ","0",4,2,89,5,0],
+	[2449,64,0,0,570,1,10,120,"機敏のグローブ","キヒンノ","0",5,2,73,-5,0],
+	[2450,64,0,0,570,1,10,120,"強運のグローブ","キヨウウ","0",6,2,11,5,0],
+	[2451,100,0,0,0,0,0,0,"0","0","靴の精錬値が9以上の時、追加でStr+8、MaxHP+5%、MaxSP+5%。",0],
+	[2452,100,0,0,0,0,0,0,"0","0","肩にかける物の精錬値が9以上の時、追加でAgi+8、無属性攻撃で受けるダメージ-20%。",0],
+	[2453,100,0,0,0,0,0,0,"0","0","肩にかける物の精錬値が9以上の時、追加でDex+10、Flee+5、無属性攻撃で受けるダメージ-5%。",0],
+	[2454,100,0,0,0,0,0,0,"0","0","盾の精錬値が9以上の時、追加でLuk+10、小・中・大型モンスターから受けるダメージ-20%。",0],
+	[2455,100,0,0,0,0,0,0,"0","0","鎧の精錬値が9以上の時、追加でVit+8、絶対に凍結状態にならない。",0],
+	[2456,7,2070,320,4,1,400,100,"トルネードアックス","トルネエ","[トルネードアックス]の精錬値が1上がる度に追加で中型モンスターから受けるダメージ-1%。攻撃速度+1%。",20,4,191,10,19541,1000,0],
+	[2457,3,146,200,2,3,350,100,"ギロチンブレード","キロチン","(1)人間形モンスターに攻撃命中時、SP+1。<BR>(2)近接物理攻撃で人間形モンスターを倒した時SP+1。<BR>(3)[ギロチンブレード]の精錬値が7以上の時、<BR>精錬値が1上がる度に追加で近接物理攻撃で人間形モンスターを倒した時SP+1。<BR>(4)[ギロチンブレード]の精錬値が10の時、追加で人間形モンスターの防御力を無視。<BR>人間形モンスターに攻撃命中時、SP+1。近接物理攻撃で人間形モンスターを倒した時SP+10。",0],
+	[2458,64,0,0,200000,1,10,100,"破損したチップ(緑)","ハソンミ","0",80,5,74,5,0],
+	[2459,100,0,0,0,0,0,0,"0","0","0",74,15,0],
+	[2460,64,0,0,200000,1,10,100,"破損したチップ(赤)","ハソンア","0",89,5,73,-10,0],
+	[2461,100,0,0,0,0,0,0,"0","0","0",73,-20,0],
+	[2462,50,0,0,3560,1,30,100,"ライオットチップ","ライオツ","固定詠唱時間-50%。<BR>[ライオットチップ]の精錬値が1上がる度に追加で物理・魔法攻撃で与えるダメージ+1%。",0],
+	[2463,60,0,100,580,0,100,100,"エクセリオンスーツ","エクセリ","[エクセリオンスーツ]の精錬値が3上がる度に追加でMaxHP+4%。<BR>BaseLv130以上の時、追加でVit+4。",3,6,0],
+	[2464,62,0,40,590,0,90,100,"エクセリオンウィング","エクセリ","[エクセリオンウィング]の精錬値が1上がる度に追加でFlee+2。<BR>BaseLv130以上の時、追加で完全回避+2 。",11,8,0],
+	[2465,100,0,0,0,0,0,0,"0","0","BaseLv130以上の時、追加でスキルディレイ-10%。完全回避+6。",74,10,0],
+	[2466,100,0,0,0,0,0,0,"0","0","0",43,10,0],
+	[2467,100,0,0,0,0,0,0,"0","0","0",41,10,0],
+	[2468,100,0,0,0,0,0,0,"0","0","0",42,10,0],
+	[2469,100,0,0,0,0,0,0,"0","0","0",44,10,0],
+	[2470,100,0,0,0,0,0,0,"0","0","0",63,25,0],
+	[2471,100,0,0,0,0,0,0,"0","0","0",61,25,0],
+	[2472,100,0,0,0,0,0,0,"0","0","0",62,25,0],
+	[2473,100,0,0,0,0,0,0,"0","0","0",64,25,0],
+	[2474,100,0,0,0,0,0,0,"0","0","追加で5秒毎にHP+1500。",0],
+	[2475,100,0,0,0,0,0,0,"0","0","追加で5秒毎にSP+25。",0],
+	[2476,100,0,0,0,0,0,0,"0","0","0",75,350,0],
+	[2477,100,0,0,0,0,0,0,"0","0","0",76,50,0],
+	[2478,100,0,0,0,0,0,0,"0","0","0",80,3,0],
+	[2479,100,0,0,0,0,0,0,"0","0","0",89,3,0],
+	[2480,100,0,0,0,0,0,0,"0","0","0",18,500,0],
+	[2481,100,0,0,0,0,0,0,"0","0","0",11,2,0],
+	[2482,100,0,0,0,0,0,0,"0","0","0",17,15,0],
+	[2483,100,0,0,0,0,0,0,"0","0","0",100,15,0],
+	[2484,100,0,0,0,0,0,0,"0","0","0",13,7500,0],
+	[2485,100,0,0,0,0,0,0,"0","0","0",14,150,0],
+	[2486,100,0,0,0,0,0,0,"0","0","0",13,1000,0],
+	[2487,100,0,0,0,0,0,0,"0","0","0",101,1,0],
+	[2488,62,0,8,0,1,70,1,"紅蓮のストール","クレンノ","[紅蓮のストール]の精錬値が3上がる度に追加でスキル使用時の消費SP-2%。<BR>[紅蓮のストール]の精錬値が10の時、追加で近接物理攻撃でモンスターを倒した時、SP+20。",19,3,16,10,102,1,0],
+	[2489,100,0,0,0,0,0,0,"0","0","[紅蓮のストール]の精錬値が10の時、[呪われたロイヤルナイトカード]のMaxSP減少およびSP吸収効果が発動しない。",0],
+	[2490,50,0,2,0,1,50,30,"フェイスワームの卵殻","フエイスワアムノタマコカラ","物理・魔法攻撃時、フェイスワーム系モンスターに与えるダメージ+5%、フェイスワーム系モンスターから受けるダメージ-5%。<BR>[フェイスワームの卵殻]の精錬値が5以上の時、追加でフェイスワーム系モンスターに与えるダメージ+10%、フェイスワーム系モンスターから受けるダメージ-10%。<BR>[フェイスワームの卵殻]の精錬値が7以上の時、追加でフェイスワーム系モンスターに与えるダメージ+15%、フェイスワーム系モンスターから受けるダメージ-15%。<BR>[フェイスワームの卵殻]の精錬値が9以上の時、追加でフェイスワーム系モンスターに与えるダメージ+20%、フェイスワーム系モンスターから受けるダメージ-20%。",8,20,0],
+	[2491,92,0,0,0,0,0,1,"[衣装]ビギナー帽","ヒキナア","[初心者用ポーション]使用時、HP回復量 + 50%。<BR>[応急手当]使用時、冒険者アカデミーに移動することができる<BR>――――――<BR>BaseLvが10上がる度に追加で<BR>Hit - 3、詠唱時間 + 1%、MaxHP - 100、MaxSP - 20<BR>[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、<BR>[コルセオヒール]を受けた時のHP回復量 + 10%<BR>一部の回復アイテムによるHP回復量 + 10%<BR>[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、<BR>[コルセオヒール]使用時、HP回復量 - 10%<BR>――――――<BR>BaseLv99以上の時、上記特殊効果が発動しない。<BR>――――――<BR>[衣装] ビギナー帽の効果は、攻城戦・新攻城戦・攻城戦TEの砦内では発揮されず、解除されます。<BR>――――――<BR>[衣装] ビギナー帽は、あらゆる取引、移動ができません。",8,30,13,1000,14,200,73,-10,91,150,0],
+	[2492,64,0,3,3230,1,50,50,"インペリアルリング","インヘリ","",1,1,4,1,15,3,16,3,0],
+	[2493,100,0,0,0,0,0,0,"0","0","[インペリアルスピア]の精錬値が2上がる度に追加で<BR>[キャノンスピア]、[バニシングポイント]で与えるダメージ+7%。",0],
+	[2494,100,0,0,0,0,0,0,"0","0","[インペリアルガード]の精錬値が6以上の時、<BR>[インペリアルガード]の精錬値が1上がる度に追加で[シールドプレス]で与えるダメージ+8%。",0],
+	[2495,100,0,0,0,0,0,0,"0","0","BaseLvが1上がる度に追加で[グランドクロス]で与えるダメージ+1%<BR>BaseLvが30上がる度に追加で[レイオブジェネシス]で与えるダメージ+1%<BR>※このセットでのレイオブジェネシスの振れ幅のないダメージの実測募集中。現在はずれてる可能性あり。",9162,2000,23583,10,0],
+	[2496,100,0,0,0,0,0,0,"0","0","",23572,5,23569,10,23570,15,23162,30,0],
+	[2497,50,0,0,0,0,0,1,"[レンタル] ひよこちゃん","ヒヨコチ","ダブルアタックLv2が発動（全ての武器）。<BR>ただし、ダブルアタックLv3以上を習得している場合、 習得Lvのダブルアタックが発動する。",193,1,194,1,0],
+	[2498,8,2001,150,100004,3,200,100,"錆びたアーム","サヒタア","[錆びたアーム]の精錬値が7以上の時、追加でHit+15",20,5,8,5,0],
+	[2499,51,0,0,0,0,30,70,"カルデュイの耳","カルテユ","純粋なDexが10上がる度に追加でMatk+2。<BR>純粋なDexが108以上の時、追加でMatk+60、詠唱時間-10%。<BR>純粋なDexが120以上の時、追加でMatk+100、詠唱時間-5%。",0],
+	[2500,100,0,0,0,0,0,0,"0","0","本・片手杖・両手杖の精錬値が1上がる度に追加で魔法攻撃でプレイヤーに与えるダメージ+2%。",0],
+	[2501,100,0,0,0,0,0,0,"0","0","[ラフィネシールド]の精錬値が7以上の時、追加で[コメット]の再使用待機時間-20秒。<BR>精錬値が9以上の時、[コメット]の再使用待機時間-40秒。",0],
+	[2502,100,0,0,0,0,0,0,"0","0","[コメット]の再使用待機時間減少効果が発動しない。",0],
+	[2503,63,0,12,0,1,50,90,"トラペゾヘドロンシューズ","トラヘソ","[トラペゾヘドロンシューズ]の精錬値が5以上の時、追加で物理・魔法攻撃時、火・水・風・地・無属性モンスターに与えるダメージ+5%。<BR>[トラペゾヘドロンシューズ]の精錬値が7以上の時、追加で物理・魔法攻撃時、火・水・風・地・無属性モンスターに与えるダメージ+10%。",63,5,61,5,64,5,62,5,60,5,0],
+	[2504,61,0,80,0,1,50,90,"生ける炎の盾","イケルホ","[生ける炎の盾]の精錬値が5以上の時、追加でAspd+1。<BR>[生ける炎の盾]の精錬値が7以上の時、追加でAspd+1。",19,5,63,25,0],
+	[2505,61,0,80,0,1,50,90,"大いなる水の盾","オオイナ","[大いなる水の盾]の精錬値が5以上の時、追加でAspd+1。<BR>[大いなる水の盾]の精錬値が7以上の時、追加でAspd+1。",19,5,61,25,0],
+	[2506,61,0,80,0,1,50,90,"名状しがたき風の盾","メイシヨ","[名状しがたき風の盾]の精錬値が5以上の時、追加でAspd+1。<BR>[名状しがたき風の盾]の精錬値が7以上の時、追加でAspd+1。",19,5,64,25,0],
+	[2507,61,0,80,0,1,50,90,"無形なる地の盾","ムケイナ","[無形なる地の盾]の精錬値が5以上の時、追加でAspd+1。<BR>[無形なる地の盾]の精錬値が7以上の時、追加でAspd+1。",19,5,62,25,0],
+	[2508,100,0,0,0,0,0,0,"0","0","0",25,10,0],
+	[2509,100,0,0,0,0,0,0,"0","0","0",74,10,0],
+	[2510,100,0,0,0,0,0,0,"0","0","追加で移動速度増加。 ",0],
+	[2511,100,0,0,0,0,0,0,"0","0","0",16,10,102,10,0],
+	[2512,50,0,7,3540,1,40,100,"クイーン・アンズ・リベンジ","クイイン","[クイーン・アンズ・リベンジ]の精錬値が5以上の時、追加で物理攻撃で与えるダメージ+2%。<BR>[クイーン・アンズ・リベンジ]の精錬値が7以上の時、追加で物理攻撃で与えるダメージ+3%。<BR>[クイーン・アンズ・リベンジ]の精錬値が9以上の時、追加で物理攻撃で与えるダメージ+4%。全てのモンスターに対し、<BR>サイズによる武器ダメージのペナルティが発生しない。",1,5,80,7,0],
+	[2513,52,0,0,0,0,50,110,"空飛ぶガラパゴ","ソラトフ","物理攻撃命中時、一定確率でオートスペル[ブリッツビート]が習得Lvで発動。<BR>[ブリッツビート]の習得Lvが高い程、発動率が上昇。<BR>純粋なLukが高い程、[ブリッツビート]の発動率が上昇。<BR>ただし、発動率に影響する純粋なLukは最大120まで。<BR>※発動確率と仕様は[鳥狩の呼子]と同じにしてあります。<BR>[スチールクロウ]の習得Lvが1上がる度に追加で「ブリッツビート」で与えるダメージ+40%。",199,119,2,1,0],
+	[2514,100,0,0,0,0,0,0,"0","0","[ニンジンジュース]、[バナナジュース]、[リンゴジュース]の回復量+1000%。",0],
+	[2515,100,0,0,0,0,0,0,"0","0","弓の場合で、かつ精錬値が10の場合、追加でAspd+1。",12,3,101,1,80,-5,0],
+	[2516,100,0,0,0,0,0,0,"0","0","0",264,10,0],
+	[2517,100,0,0,0,0,0,0,"0","0","アーチャー系が装備時、追加でクリティカル攻撃で与えるダメージ+15%。",214,1,70,5,0],
+	[2518,100,0,0,0,0,0,0,"0","0","0",5118,-200,0],
+	[2519,50,0,10,0,1,50,50,"聖職者の看護帽","セイシヨ","[聖職者の看護帽」の精錬値が5以上の時、追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量+6%。<BR>[聖職者の看護帽」の精錬値が7以上の時、追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量+9%。<BR>[聖職者の看護帽」の精錬値が9以上の時、追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量+12%。",91,3,380,1,0],
+	[2520,100,0,0,0,0,0,0,"0","0","[クローチェスタッフ]の精錬値が1上がる度に追加で[ヒール]、[サンクチュアリ]、<BR>[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量+4%。",0],
+	[2521,50,0,15,600,1,300,50,"ルーンヘルム","ルウンヘ","BaseLv99以下の時、[ルーンヘルム]の精錬値が2上がる度に追加でVit+1。<BR>BaseLv100以上の時、[ルーンヘルム]の精錬値が1上がる度に追加でVit+1。<BR>ルーンナイトがルーンストーンスキルを発動時、<BR>追加でルーンストーンスキルの効果が強化されるまたは自分自身に対して様々な効果が付与される。<BR><href=\"http://ragnarokonline.gungho.jp/store/summer-package2015.html\">公式サイト(効果詳細)</href><BR>※計算機で反映される[ルーンヘルム]装備中の効果は以下です。<BR>※ミレニアムシールド選択：与ダメージ低下<BR>※ジャイアントグローズ選択：Str+30、Int-30<BR>※ファイティングスピリット選択：Atk+10、攻撃速度+10%<BR>※ストーンハードスキン選択：近接物理反射10%<BR>※ストームブラスト選択：威力+30%。精錬+6でさらに+20%。精錬+8でさらに+20%",3,3,15,4,0],
+	[2522,52,0,3,0,0,10,70,"おもちゃの注射器","オモチヤ","[レッドスリムポーション]、[イエロースリムポーション]、<BR>[ホワイトスリムポーション]の回復量 + 150%",19,3,0],
+	[2523,51,0,0,0,0,20,70,"古代妖精の耳","コタイヨ","0",19,10,6,10,11,2,0],
+	[2524,51,0,0,0,0,20,70,"英雄のマスク","エイユウ","0",19,10,3,10,71,1,0],
+	[2525,64,0,0,3230,1,10,20,"破戒僧の数珠","ハカイソ","BaseLvが15上がる度に追加で[双龍脚]で与えるダメージ+2%。<BR>BaseLvが20上がる度に追加で[修羅身弾]で与えるダメージ+2%。<BR>BaseLvが30上がる度に追加で[天羅地網]で与えるダメージ+2%。",10,5,12,5,23293,5,0],
+	[2526,60,1,35,0,1,80,100,"サラのローブ","サラノロ","魔法攻撃命中時、一定確率で10秒間、[サラのローブ]の精錬値が1上がる度に追加でMatk+8。",0],
+	[2527,100,0,0,0,0,0,0,"0","0","[サラのローブ]の精錬値が7以上の時、追加で詠唱時間-10%、固定詠唱時間-50%。",5000380,1,19,10,74,10,0],
+	[2528,60,1,35,3600,1,80,100,"覚醒ローブ","カクセイ","[覚醒ローブ]の精錬値が1上がる度に追加でMatk+15。闇属性魔法攻撃で与えるダメージ+2%。",19,10,74,10,380,1,0],
+	[2529,100,0,0,0,0,0,0,"0","0","固定詠唱時間-50%。",73,-10,0],
+	[2530,100,0,0,0,0,0,0,"0","0","0",152,100,0],
+	[2531,64,1,0,710,0,10,100,"ヒールピアス","ヒイルヒ","[ヒール]Lv1使用可能。",0],
+	[2532,64,1,0,710,0,10,100,"テレポートピアス","テレホオ","[テレポート]Lv1使用可能。",0],
+	[2533,61,0,1,0,1,50,10,"スクトゥム","スクトウ","[スクトゥム]の精錬値が3上がる度に追加で完全回避+2。<BR>[スクトゥム]の精錬値が10の時、追加でMaxHP+10%、MaxSP+10%。",9,5,11,1,0],
+	[2534,64,0,0,0,1,20,100,"アルティメットモードチェンジャー","アルテイ","0",14,20,0],
+	[2535,100,0,0,0,0,0,0,"0","0","0",14,20,17,15,0],
+	[2536,100,0,0,0,0,0,0,"0","0","[ペオースプレート]の精錬値が1上がる度に追加でMaxHP+1%。<BR>[ペオースプレート]の精錬値が7以上の時、<BR>追加で[ウィンドカッター]の消費SP-15。[イグニッションブレイク]の消費SP-25。",0],
+	[2537,100,0,0,0,0,0,0,"0","0","[ペオースマント]の精錬値が2上がる度に追加で[ウィンドカッター]で与えるダメージ+50%。",0],
+	[2538,100,0,0,0,0,0,0,"0","0","[ウィンドカッター]の詠唱時間-50%。<BR>[ペオースグリーブ]の精錬値が7以上の時、追加で[ウィンドカッター]の詠唱時間-50%。",0],
+	[2539,100,0,0,0,0,0,0,"0","0","(1)[オーラブレイド]使用時、5秒間、スキルディレイ-70%。<BR>(2)[ペオースグリーブ]、[ペオースプレート]、[ペオースマント]の精錬値が7以上の時、<BR>かつ[オーラブレイド]使用時、10秒間、スキルディレイ-70%。<BR>(3)[ペオースグリーブ]、[ペオースプレート]、[ペオースマント]の精錬値が7以上の時、<BR>追加で[ウィンドカッター]で与えるダメージ+100%。",0],
+	[2540,100,0,0,0,0,0,0,"0","0","0",214,2,11,3,0],
+	[2541,100,0,0,0,0,0,0,"0","0","[黒羽のスーツ]の精錬値が1上がる度に追加で物理攻撃で与えるダメージ+2%。",0],
+	[2542,100,0,0,0,0,0,0,"0","0","[黒羽のマント]の精錬値が1上がる度に追加で完全回避+3。",0],
+	[2543,100,0,0,0,0,0,0,"0","0","[黒羽のブーツ]の精錬値が1上がる度に追加でVit+1。",0],
+	[2544,100,0,0,0,0,0,0,"0","0","[クラスターボム]で与えるダメージ +(純粋なInt×2)%。<BR>[黒羽のスーツ]、[黒羽のブーツ]、[黒羽のマント]の精錬値が7以上の時、<BR>追加で[クラスターボム]で与えるダメージ+(純粋なInt×2)%。移動速度増加。",0],
+	[2545,100,0,0,0,0,0,0,"0","0","0",343,10,0],
+	[2546,100,0,0,0,0,0,0,"0","0","[クリムゾンローブ]の精錬値が1上がる度に追加で[サモンファイアーボール]で与えるダメージ+2%。",0],
+	[2547,100,0,0,0,0,0,0,"0","0","0",13,1000,0],
+	[2548,100,0,0,0,0,0,0,"0","0","[クリムゾンシューズ]の精錬値が1上がる度に追加で火属性攻撃で受けるダメージ-1%。",0],
+	[2549,100,0,0,0,0,0,0,"0","0","[魔法力増幅]使用時、追加で10秒間、[メテオストーム]で与えるダメージ+(BaseLv×1)%。<BR>[魔法力増幅]使用時、追加で10秒間、スキル[メテオストーム]の再使用待機時間+0.2秒。",0],
+	[2550,100,0,0,0,0,0,0,"0","0","0",341,10,0],
+	[2551,100,0,0,0,0,0,0,"0","0","[アクアローブ]の精錬値が1上がる度に追加で[サモンウォーターボール]で与えるダメージ+2%。",0],
+	[2552,100,0,0,0,0,0,0,"0","0","0",13,1000,0],
+	[2553,100,0,0,0,0,0,0,"0","0","[アクアシューズ]の精錬値が1上がる度に追加で水属性攻撃で受けるダメージ-1%。",0],
+	[2554,100,0,0,0,0,0,0,"0","0","[魔法力増幅]使用時、追加で10秒間、[ストームガスト]で与えるダメージ+(BaseLv×1.5)%。<BR>[魔法力増幅]使用時、追加で10秒間、[ストームガスト]の再使用待機時間+5秒。",0],
+	[2555,100,0,0,0,0,0,0,"0","0","0",344,10,0],
+	[2556,100,0,0,0,0,0,0,"0","0","[ゴールデンロッドローブ]の精錬値が1上がる度に追加で[サモンボールライトニング]で与えるダメージ+2%。",0],
+	[2557,100,0,0,0,0,0,0,"0","0","0",13,1000,0],
+	[2558,100,0,0,0,0,0,0,"0","0","[ゴールデンロッドシューズ]の精錬値が1上がる度に追加で風属性攻撃で受けるダメージ-1%。",0],
+	[2559,100,0,0,0,0,0,0,"0","0","[魔法力増幅]使用時、追加で10秒間、[ロードオブヴァーミリオン]で与えるダメージ+(BaseLv×2)%。<BR>[魔法力増幅]使用時、追加で10秒間、[ロードオブヴァーミリオン]の再使用待機時間+5秒。",0],
+	[2560,100,0,0,0,0,0,0,"0","0","0",342,10,0],
+	[2561,100,0,0,0,0,0,0,"0","0","[フォレストローブ]の精錬値が1上がる度に追加でスキル[サモンストーン]で与えるダメージ+2%。",0],
+	[2562,100,0,0,0,0,0,0,"0","0","0",13,1000,0],
+	[2563,100,0,0,0,0,0,0,"0","0","[フォレストシューズ]の精錬値が1上がる度に追加で地属性攻撃で受けるダメージ-1%。",0],
+	[2564,100,0,0,0,0,0,0,"0","0","[魔法力増幅]使用時、追加で10秒間、[ヘヴンズドライブ]で与えるダメージ+(BaseLv×2.5)%。<BR>[魔法力増幅]使用時、追加で10秒間、[ヘヴンズドライブ]の再使用待機時間+0.2秒。",0],
+	[2565,100,0,0,0,0,0,0,"0","0","0",17,10,100,20,0],
+	[2566,100,0,0,0,0,0,0,"0","0","[ナブのクロース]の精錬値が7以上の時、追加でFlee+15、[ポイズンスモーク]の詠唱時間-1秒。",9,15,9467,1000,0],
+	[2567,100,0,0,0,0,0,0,"0","0","",23468,20,0],
+	[2568,100,0,0,0,0,0,0,"0","0","[ナブのシューズ]の精錬値が3上がる度に追加でスキルディレイ-10%。",0],
+	[2569,100,0,0,0,0,0,0,"0","0","[カウンタースラッシュ]で与えるダメージ+（BaseLv×1）%。<BR>[ナブのクロース]、[ナブのシューズ]、[ナブのフード]の精錬値が7以上の時、<BR>追加で[カウンタースラッシュ]で与えるダメージ+（BaseLv×1）%。",19469,-2000,0],
+	[2570,51,0,0,0,0,20,30,"貴族の仮面","キソクノ","BaseLv100以上の時、追加で攻撃速度+1%、MaxHP+1%。<BR>BaseLv150以上の時、追加で攻撃速度+1%、MaxHP+1%。<BR>BaseLvが1上がる度に追加で「サクリファイス」で与えるダメージ+2%。 ",12,1,15,1,9163,2000,9283,2000,0],
+	[2571,8,0,50,4,4,10,70,"ヴァルキリーハンマー","ウアルキ","ノービス系が装備時、追加でAtk+150、Matk+200、Hit+10、MaxHP+500、MaxSP+400、スキル使用時の消費SP-5%。<BR>ノービス系が装備時、「ヴァルキリーハンマー」の精錬値が1上がる度に追加でVit+1、MaxHP+200、完全回避+1、攻撃速度+1%。<BR>ノービス系が装備時、「ヴァルキリーハンマー」の精錬値が2上がる度に追加で詠唱時間-1%。<BR>ソードマン系が装備時、追加でMaxHP+500、MaxSP+100。<BR>ソードマン系が装備時、「ヴァルキリーハンマー」の精錬値が1上がる度に追加でVit+1。<BR>プリースト系が装備時、追加でAtk+50、Matk+100。<BR>プリースト系が装備時、「ヴァルキリーハンマー」の精錬値が1上がる度に追加で攻撃速度+1%。<BR>モンク系が装備時、追加でMaxSP+200、スキル使用時の消費SP-5%。<BR>モンク系が装備時、「ヴァルキリーハンマー」の精錬値が1上がる度に追加で完全回避+1。<BR>マーチャント系が装備時、追加でAtk+100、Hit+10。<BR>マーチャント系が装備時、「ヴァルキリーハンマー」の精錬値が2上がる度に追加で詠唱時間-1%。 ",88,50,194,1,0],
+	[2572,1,0,100,2724,0,40,100,"レクイエムダガー","レクイエ","物理・魔法攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+20%。<BR>「レクイエムダガー」の精錬値が5以上の時、追加で物理・魔法攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理・魔法攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+15%。",88,100,194,1,0],
+	[2573,2,0,150,2724,0,70,100,"レクイエムソード","レクイエ","物理・魔法攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+40%。<BR>「レクイエムソード」の精錬値が5以上の時、追加で物理・魔法攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理・魔法攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+15%。",88,160,194,1,0],
+	[2574,3,0,220,2724,0,150,100,"レクイエムクレイモア","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>「レクイエムクレイモア」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+30%。「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。",194,1,0],
+	[2575,4,0,130,2724,0,100,100,"レクイエムスピア","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「レクイエムスピア」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。",194,1,0],
+	[2576,5,0,220,2724,0,150,100,"レクイエムランス","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>「レクイエムランス」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+30%。「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。",194,1,0],
+	[2577,7,0,200,2724,0,150,100,"レクイエムツーハンドアックス","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>「レクイエムツーハンドアックス」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+30%。「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。",194,1,0],
+	[2578,8,0,180,2724,0,300,100,"レクイエムスマッシャー","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「レクイエムスマッシャー」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。",194,1,0],
+	[2579,9,94,80,2724,0,50,100,"レクイエムアークワンド","レクイエ","魔法攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「レクイエムアークワンド」の精錬値が5以上の時、追加で魔法攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で魔法攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。",88,145,194,1,0],
+	[2580,9,150,100,2724,0,100,100,"レクイエムウィザードスタッフ","レクイエ","魔法攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>「レクイエムウィザードスタッフ」の精錬値が5以上の時、追加で魔法攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で魔法攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。敵のMdef10%無視。",88,230,194,1,195,1,0],
+	[2581,10,0,100,2724,0,90,100,"レクイエムグレイトボウ","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>「レクイエムグレイトボウ」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。",194,1,0],
+	[2582,11,0,140,2724,0,80,100,"レクイエムカタール","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>「レクイエムカタール」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。「生体工学研究所」に出現するモンスターから受けるダメージ-5%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。",194,1,0],
+	[2583,13,0,150,2724,0,50,100,"レクイエムナックル","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「レクイエムナックル」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。",88,100,194,1,0],
+	[2584,14,0,160,2724,0,50,100,"レクイエムバイオリン","レクイエ","物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+40%。<BR>「レクイエムバイオリン」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」に出現するモンスターに与えるダメージ+15%。<BR>「レクイエムバイオリン」の精錬値が7以上の時、追加で「アローバルカン」で与えるダメージ+200%。",88,120,194,1,0],
+	[2585,15,156,160,2724,0,50,100,"レクイエムブレイドウィップ","レクイエ","物理攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+40%。<BR>「レクイエムブレイドウィップ」の精錬値が5以上の時、追加で物理攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が6以上の時、精錬値が1上がる度に追加で物理攻撃時、「生体工学研究所」、「戦死者の墓」に出現するモンスターに与えるダメージ+15%。<BR>「レクイエムブレイドウィップ」の精錬値が7以上の時、追加で「アローバルカン」で与えるダメージ+200%。",88,120,194,1,0],
+	[2586,60,0,10,2730,0,220,100,"レクイエムスーツ","レクイエ","「生体工学研究所」に出現するモンスターから受けるダメージ-3%。<BR>「レクイエムスーツ」の精錬値が6以上の時、追加でMaxHP+10%。「生体工学研究所」に出現するモンスターから受けるダメージ-2%。<BR>精錬値が8以上の時、追加で「生体工学研究所」に出現するモンスターから受けるダメージ-2%。",15,10,198,3,194,1,0],
+	[2587,100,0,0,0,0,0,0,0,0,"絶対に凍結状態にならない。「ハイディング」Lv1使用可能。「サイト」Lv1使用可能。",0],
+	[2588,60,0,10,2730,0,220,100,"レクイエムローブ","レクイエ","「生体工学研究所」に出現するモンスターから受けるダメージ-3%。<BR>「レクイエムローブ」の精錬値が6以上の時、追加でMaxHP+10%。「生体工学研究所」に出現するモンスターから受けるダメージ-2%。<BR>精錬値が8以上の時、追加で「生体工学研究所」に出現するモンスターから受けるダメージ-2%。",15,10,198,4,194,1,0],
+	[2589,100,0,0,0,0,0,0,0,0,"絶対に凍結状態にならない。「ハイディング」Lv1使用可能。「サイト」Lv1使用可能。",0],
+	[2590,61,0,80,2740,0,50,100,"レクイエムシールド","レクイエ","「生体工学研究所」に出現するモンスターから受けるダメージ-10%。<BR>「レクイエムシールド」の精錬値が6以上の時、追加で「生体工学研究所」に出現するモンスターから受けるダメージ-7%。<BR>精錬値が8以上の時、追加で「生体工学研究所」に出現するモンスターから受けるダメージ-7%。",19,5,63,20,61,20,67,20,69,20,194,1,0],
+	[2591,62,0,25,2750,0,40,100,"レクイエムマント","レクイエ","「生体工学研究所」に出現するモンスターから受けるダメージ-3%。<BR>「レクイエムマント」の精錬値が6以上の時、追加でMaxHP+3%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。<BR>精錬値が8以上の時、追加で「生体工学研究所」に出現するモンスターから受けるダメージ-1%。",15,2,194,1,0],
+	[2592,63,0,25,2760,0,60,100,"レクイエムブーツ","レクイエ","「生体工学研究所」に出現するモンスターから受けるダメージ-3%。<BR>「レクイエムブーツ」の精錬値が6以上の時、追加でMaxHP+5%。「生体工学研究所」に出現するモンスターから受けるダメージ-1%。精錬値が8以上の時、追加で「生体工学研究所」に出現するモンスターから受けるダメージ-1%。",15,5,194,1,0],
+	[2593,62,0,15,2710,10,60,100,"戦死者のマント","センシシ","「戦死者のマント」の精錬値が2上がる度に追加で人間形モンスターから受けるダメージ-1%。<BR>純粋なStrが130の時、追加で物理攻撃で与えるダメージ+5%。<BR>純粋なAgiが130の時、追加でAspd+1。<BR>純粋なVitが130の時、追加でDef+300。<BR>純粋なIntが130の時、追加で魔法攻撃で与えるダメージ+5%。<BR>純粋なDexが130の時、追加で遠距離物理攻撃で与えるダメージ+5%。<BR>純粋なLukが130の時、追加でクリティカル攻撃で与えるダメージ+5%。",19,3,194,1,0],
+	[2594,50,147,12,700,0,0,100,"古びたボーンサークレット","フルヒタ","「古びたボーンサークレット」の精錬値が1上がる度に追加でスキルディレイ-1%。<BR>「古びたボーンサークレット」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「クロスインパクト」、「ダークイリュージョン」で与えるダメージ+20%。<BR>「古びたボーンサークレット」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「クロスインパクト」、「ダークイリュージョン」で与えるダメージ+15%。<BR>「戦死者のマント」と共に装備時、追加でMaxHP+20%。「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",57,5,5460,10,5461,10,194,1,10019473,60000,0],
+	[2595,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2596,50,156,12,700,0,0,100,"古びたバレリーナの髪飾り","フルヒタ","「ダンスの練習」習得時、「楽器の練習」が習得Lvで発動。<BR>「古びたバレリーナの髪飾り」の精錬値が1上がる度に追加で全ての基本ステータス+1。<BR>「古びたバレリーナの髪飾り」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「振動残響」で与えるダメージ+30%。「幸運のキス」習得時、楽器・鞭装備時、「ブラギの詩」が習得Lvで使用可能。<BR>「古びたバレリーナの髪飾り」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「振動残響」で与えるダメージ+20%。「メランコリー」使用時、敵を中心に11x11セルの敵を石化状態にする。<BR>「古びたバレリーナの髪飾り」の精錬値が10の時、追加で物理攻撃命中時、一定確率で5秒間、「シビアレインストーム」で与えるダメージ+100%。",57,5,5639,10,194,1,0],
+	[2597,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2598,50,157,12,700,0,0,100,"古びた風のささやき","フルヒタ","「古びた風のささやき」の精錬値が1上がる度に追加でMaxHP+1%。<BR>「古びた風のささやき」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。<BR>「古びた風のささやき」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。<BR>「古びた風のささやき」の精錬値が10の時、追加で物理・魔法攻撃を受けた時、一定確率で11秒間、1秒毎にHP+5000。",57,5,194,1,19665,2000,7019661,3000,9007672,100,9011672,100,0],
+	[2599,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2600,50,154,12,700,0,0,100,"古びたブレイジングソウル","フルヒタ","「古びたブレイジングソウル」の精錬値が1上がる度に追加でMdef+1。<BR>「古びたブレイジングソウル」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「雷光弾」で与えるダメージ+30%。<BR>「古びたブレイジングソウル」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「雷光弾」で与えるダメージ+20%。<BR>「古びたブレイジングソウル」の精錬値が10の時、追加で物理攻撃命中時、一定確率で5秒間、詠唱時間-100%。「雷光弾」使用時、「練気功」Lv1発動。",57,5,5623,10,194,1,0],
+	[2601,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2602,50,150,12,700,0,0,100,"古びた魔力石の帽子","フルヒタ","「古びた魔力石の帽子」の精錬値が1上がる度に追加で固定詠唱時間-7%。<BR>「古びた魔力石の帽子」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「クリムゾンロック」で与えるダメージ+30%。「コメット」で与えるダメージ+15%。<BR>「古びた魔力石の帽子」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「クリムゾンロック」で与えるダメージ+20%。「コメット」で与えるダメージ+10%。",57,5,5527,10,5529,5,10019529,30000,194,1,0],
+	[2603,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2604,50,158,12,700,0,0,100,"古びたミダスのささやき","フルヒタ","「古びたミダスのささやき」の精錬値が1上がる度に追加でAtk+7、Matk+7。<BR>「古びたミダスのささやき」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。<BR>「古びたミダスのささやき」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。<BR>「古びたミダスのささやき」の精錬値が10の時、追加で「レッドスリムポーション」、「イエロースリムポーション」、「ホワイトスリムポーション」のHP回復量+200%。",57,5,194,1,0],
+	[2605,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2606,50,155,12,700,0,0,100,"古びたミンストレルソングの帽子","フルヒタ","「楽器の練習」習得時、「ダンスの練習」が習得Lvで発動。<BR>「古びたミンストレルソングの帽子」の精錬値が1上がる度に追加で全ての基本ステータス+1。<BR>「古びたミンストレルソングの帽子」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「振動残響」で与えるダメージ+30%。「ブラギの詩」習得時、楽器・鞭装備時、「幸運のキス」が習得Lvで使用可能。<BR>「古びたミンストレルソングの帽子」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「振動残響」で与えるダメージ+20%。「メランコリー」使用時、敵を中心に11x11セルの敵を混乱状態にする。<BR>「古びたミンストレルソングの帽子」の精錬値が10の時、追加で物理攻撃命中時、一定確率で5秒間、「シビアレインストーム」で与えるダメージ+100%。",57,5,5639,10,194,1,0],
+	[2607,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2608,50,153,12,700,0,0,100,"古びたシャドウクラウン","フルヒタ","「古びたシャドウクラウン」の精錬値が1上がる度に追加でDex+2。<BR>「古びたシャドウクラウン」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。移動速度増加。<BR>「古びたシャドウクラウン」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。絶対に混乱状態にならない。<BR>「古びたシャドウクラウン」の精錬値が10の時、追加で物理攻撃命中時、一定確率で5秒間、Dex+100。",57,5,194,1,23608,4,7023608,4,9023608,4,0],
+	[2609,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2610,50,151,12,700,0,0,100,"古びたドライバーバンド(黄)","フルヒタ","「古びたドライバーバンド(黄)」の精錬値が1上がる度に追加でスキル使用時の消費SP-2%。<BR>「古びたドライバーバンド(黄)」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「コールドスローワー」、「フレイムスローワー」で与えるダメージ+30%。<BR>「古びたドライバーバンド(黄)」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「コールドスローワー」、「フレイムスローワー」で与えるダメージ+20%。<BR>「古びたドライバーバンド(黄)」の精錬値が10の時、追加でスキル使用時、「魔導ギア燃料」を消費しない。",57,5,5552,10,5553,10,194,1,0],
+	[2611,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2612,50,148,12,700,0,0,100,"古びたミトラ","フルヒタ","「古びたミトラ」の精錬値が1上がる度に追加で闇・不死属性モンスターから受けるダメージ-1%。<BR>「古びたミトラ」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「オーディンの力」Lv2使用可能。<BR>「古びたミトラ」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。<BR>「古びたミトラ」の精錬値が10の時、追加で物理・魔法攻撃を受けた時、一定確率で5秒間、スキルディレイ-100%。",57,5,194,1,19491,1000,9007489,100,9019489,1000,0],
+	[2613,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2614,50,146,12,700,0,0,100,"古びたルーンサークレット","フルヒタ","「古びたルーンサークレット」の精錬値が1上がる度に追加で攻撃速度+1%。<BR>「古びたルーンサークレット」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「ウィンドカッター」で与えるダメージ+200%。「ストームブラスト」で与えるダメージ+50%。<BR>「古びたルーンサークレット」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「ウィンドカッター」で与えるダメージ+150%。「ストームブラスト」で与えるダメージ+30%。",57,5,5443,50,5452,20,10019452,7000,194,1,0],
+	[2615,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2616,50,149,12,700,0,0,100,"古びた迷彩ウサギフード","フルヒタ","「古びた迷彩ウサギフード」の精錬値が1上がる度に追加でHit+2。<BR>「古びた迷彩ウサギフード」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。物理攻撃命中時、一定確率でオートスペル「ウォーグバイト」が習得Lvで発動。<BR>「古びた迷彩ウサギフード」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。物理攻撃命中時、一定確率でオートスペル「ウォーグストライク」が習得Lvで発動。「ウォーグストライク」の習得Lvが高い程発動率が上昇。純粋なLukが高い程「ウォーグストライク」の発動率が上昇。ただし、発動率に影響する純粋なLukは最大120まで。<BR>「古びた迷彩ウサギフード」の精錬値が10の時、追加で相手の防御力が高いほど与えるダメージが増加。",57,5,194,1,23513,10,0],
+	[2617,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2618,50,152,12,700,0,0,100,"古びた守護の冠","フルヒタ","「古びた守護の冠」の精錬値が1上がる度に追加でDef+30。<BR>「古びた守護の冠」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「キャノンスピア」、「バニシングポイント」で与えるダメージ+20%。<BR>「古びた守護の冠」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「キャノンスピア」、「バニシングポイント」で与えるダメージ+15%。<BR>「古びた守護の冠」の精錬値が10の時、追加で物理攻撃を受けた時、一定確率で5秒間、近接物理攻撃で受けたダメージの100%を反射。",57,5,5569,10,5570,10,194,1,0],
+	[2619,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の純粋なステータスで上がる効果が2倍になる。",15,20,0],
+	[2620,64,0,3,0,1,50,90,"精鋭守護騎士の指輪","セイエイ","「グラストヘイムへの帰還」Lv1使用可能。",19,3,15,5,73,-4,0],
+	[2621,62,0,18,790,1,20,1,"アミストルリュック","アミスト","",194,1,0],
+	[2622,52,0,0,0,0,10,80,"グラストヘイムの傍観者","グラスト","",80,2,74,5,0],
+	[2623,64,0,0,3230,1,20,50,"精霊王の指輪","セイレイ","BaseLvが8上がる度に追加で「アースグレイヴ」、「ダイヤモンドダスト」で与えるダメージ+1%。",3,5,74,5,9669,1500,7668,50,11668,50,19668,15000,19666,2000,19667,2000,19669,500,0],
+	[2624,50,0,2,0,1,50,30,"薄月夜の帽子","ウスツキ","物理・魔法攻撃時、タナトス系モンスターに与えるダメージ+5%、タナトス系モンスターから受けるダメージ-5%。<BR>「薄月夜の帽子」の精錬値が5以上の時、追加で物理・魔法攻撃時、タナトス系モンスターに与えるダメージ+10%、タナトス系モンスターから受けるダメージ-10%。<BR>「薄月夜の帽子」の精錬値が7以上の時、追加で物理・魔法攻撃時、タナトス系モンスターに与えるダメージ+15%、タナトス系モンスターから受けるダメージ-15%。<BR>「薄月夜の帽子」の精錬値が9以上の時、追加で物理・魔法攻撃時、タナトス系モンスターに与えるダメージ+20%、タナトス系モンスターから受けるダメージ-20%。<BR>「タナトスタワーへの帰還」Lv1使用可能。<BR>「薄月夜の帽子」の精錬値が5以上の時、フィゲルフィールド 01にいるNPC「リュンヌ」に話すとタナトスタワー内部に転送できる。精錬値が1上がる度に選択できる階層が増える。<BR>「薄月夜の帽子」の精錬値が10の時、タナトスタワー最上部に移動時、「赤魔力石」、「黄魔力石」、「青魔力石」、「緑魔力石」、「黒魔力石」を消費しない。「魔剣士タナトスの思念体」召喚時、「苦悩の欠片」、「悲しみの欠片」、「憎悪の欠片」、「絶望の欠片」を消費しない。",9,20,0],
+	[2625,50,0,5,0,1,50,30,"ドゥクス・ティアのティアラ","トウクス","「ドゥクス・ティアのティアラ」の精錬値が5以上の時、精錬値が1上がる度に追加でスキル使用時の消費SP-3%。",19,10,102,10,194,1,0],
+	[2626,64,0,0,620,0,5,1,"幻影の刻印","ケンエイ","",0],
+	[2627,52,0,0,4060,0,30,40,"天狗の巻物","テンクノ","物理攻撃命中時、一定確率で敵に与えたダメージの5%をHPとして吸収。",0],
+	[2628,100,0,0,0,0,0,0,0,0,"追加で物理攻撃で与えるダメージ+1%、遠距離物理攻撃で与えるダメージ+1%。<BR>純粋なStrが108以上の時、追加で物理攻撃で与えるダメージ+2%、遠距離物理攻撃で与えるダメージ+1%。<BR>純粋なStrが120以上の時、追加で物理攻撃で与えるダメージ+3%、遠距離物理攻撃で与えるダメージ+1%。",0],
+	[2629,64,0,3,3230,1,50,50,"サファイアリスト","サフアイ","BaseLvが4上がる度に追加で「アシッドデモンストレーション」の詠唱時間-1%。<BR>BaseLvが20上がる度に追加で「スポアエクスプロージョン」で与えるダメージ+5%。<BR>「スリムポーションピッチャー」の習得Lvが2上がる度に追加でInt+1、Dex+1、Luk+1、Matk+20。",199,874,4,5,5,5,6,5,0],
+	[2630,64,0,3,3230,1,50,50,"エメラルドイヤリング","エメラル","BaseLvが1上がる度に追加で「アローバルカン」、「ミュージカルストライク」、「矢撃ち」で与えるダメージ+1%。<BR>BaseLvが5上がる度に追加で「メタリックサウンド」で与えるダメージ+2%、「メタリックサウンド」の詠唱時間-1%。<BR>「レッスン」の習得Lvが2上がる度に追加でAgi+1、Int+1、Dex+1、Matk+20。",199,631,2,5,4,5,5,5,0],
+	[2631,62,0,0,0,1,15,1,"エスランのシャツ","エスラン","「エスランのシャツ」の精錬値が7以上の時、追加でMaxHP+4%。<BR>精錬値が8以上の時、追加でMaxHP+6%。<BR>精錬値が9以上の時、追加でMaxHP+8%",19,10,15,2,10000381,1,0],
+	[2632,100,0,0,0,0,0,0,0,0,"",214,15,15,5,16,5,7000380,1,0],
+	[2633,100,0,0,0,0,0,0,0,0,0,61,50,62,50,63,50,64,50,65,50,66,50,67,50,68,50,69,50,0],
+	[2634,50,0,5,0,1,40,100,"レーザーオブイーグル","レエサア","物理攻撃命中時、一定確率で5秒間、モンスター「セシル=ディモン」に変身。<BR>モンスター「セシル=ディモン」に変身時、スキルディレイ-100%、物理攻撃命中時、一定確率でオートスペル「トゥルーサイト」Lv2発動。<BR>「トゥルーサイト」Lv3以上を習得している場合、習得レベルで発動。<BR>遠距離物理攻撃命中時、一定確率でオートスペル「レックスエーテルナ」Lv1発動。<BR>「レーザーオブイーグル」の精錬値が1上がる度にモンスター「セシル=ディモン」に変身する確率が上昇。 ",5,2,25,10,0],
+	[2635,50,0,15,3,1,300,60,"魔法石の恩恵","マホウセ","ジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる。<BR>純粋なIntが1上がる度に追加でMatk+1。<BR>「魔法石の恩恵」の精錬値が5以上の時、追加でスキル使用時の消費SP-25%、魔法攻撃で与えるダメージ+3%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+3%。<BR>「魔法石の恩恵」の精錬値が7以上の時、追加でスキル使用時の消費SP-25%、魔法攻撃で与えるダメージ+5%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+5%。<BR>「魔法石の恩恵」の精錬値が9以上の時、追加でスキル使用時の消費SP-25%、 魔法攻撃で与えるダメージ+7%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+7%。",194,1,102,-100,0],
+	[2636,50,0,12,2,1,80,60,"マッドハッター","マツトハ","「クリティカルスラッシュ」で受けるダメージ-20%。<BR>「マッドハッター」の精錬値が1上がる度に追加で闇属性攻撃で受けるダメージ-5%。<BR>「マッドハッター」の精錬値が5以上の時、追加で「クリティカルスラッシュ」で受けるダメージ-30%。<BR>「マッドハッター」の精錬値が7以上の時、追加で「クリティカルスラッシュ」で受けるダメージ-50%。<BR>装備した職業によって、様々な状態異常に対する耐性を発揮。<BR>「マッドハッター」の精錬値が5以上の時と7以上の時、追加で状態異常に対する耐性が上昇。 ",194,1,0],
+	[2637,50,0,9,0,1,100,30,"ワイルドポリンライダー","ワイルトホリンライタア","装備した職業によって、モンスターを倒した時に、一定確率でアイテムをドロップ。",0],
+	[2638,51,0,2,0,10,30,70,"ヴァルハラアイドル","ウアルハ","物理攻撃命中時、一定確率で自分にオートスペル「セイフティウォール」Lv10発動。 ",14,50,0],
+	[2639,51,0,0,0,0,10,100,"ジェミニ-S58の目（青）","シエミニ","「サイキックウェーブ」、「レイオブジェネシス」、「Mサイキックウェーブ」、「Mレイオブジェネシス」で受けるダメージ-30%。<BR>純粋なAgiが90以上の時、追加でスタン・沈黙に対する耐性+30%。 ",151,10,156,10,0],
+	[2640,62,0,13,0,1,40,100,"元素のタオル","ケンソノ","「元素のタオル」の精錬値が8以上の時、追加で遠距離物理攻撃で与えるダメージ+2%。<BR>「元素のタオル」の精錬値が9以上の時、追加で遠距離物理攻撃で与えるダメージ+3%。",25,2,7023498,20,7023642,60,0],
+	[2641,100,0,0,0,0,0,0,0,"炎の矢","「燃える弓」の精錬値が1上がる度に追加で「アローストーム」、「シビアレインストーム」で与えるダメージ+5%。「燃える弓」の精錬値が10の時、追加でAspd+1。",0],
+	[2642,100,0,0,0,0,0,0,0,"水晶の矢","「氷点の弓」の精錬値が1上がる度に追加で「アローストーム」、「シビアレインストーム」で与えるダメージ+5%。「氷点の弓」の精錬値が10の時、追加でAspd+1。",0],
+	[2643,100,0,0,0,0,0,0,0,"岩石の矢","「大地の弓」の精錬値が1上がる度に追加で「アローストーム」、「シビアレインストーム」で与えるダメージ+5%。「大地の弓」の精錬値が10の時、追加でAspd+1。",0],
+	[2644,100,0,0,0,0,0,0,0,"風の矢","「疾風の弓」の精錬値が1上がる度に追加で「アローストーム」、「シビアレインストーム」で与えるダメージ+5%。「疾風の弓」の精錬値が10の時、追加でAspd+1。",0],
+	[2645,50,0,15,0,1,30,70,"スティングのシルクリボン","ステイン","「スティングのシルクリボン」の精錬値が5以上の時、追加で小・中・大型モンスターから受けるダメージ-2%。<BR>「スティングのシルクリボン」の精錬値が7以上の時、追加で小・中・大型モンスターから受けるダメージ-3%。<BR>「真紅の薔薇」と共に装備時、追加で小・中・大型モンスターから受けるダメージ-5%。<BR>「スティングカード」と共に装備時、追加で小・中・大型モンスターから受けるダメージ-10%。",194,1,62,20,0],
+	[2646,64,0,0,3230,1,10,20,"アルクイエンのネックレス","アルクイ","BaseLvが1上がる度に追加で「カートレボリューション」で与えるダメージ+1%。<BR>BaseLvが3上がる度に追加で「アックストルネード」で与えるダメージ+1%。<BR>BaseLvが5上がる度に追加で「パワースイング」で与えるダメージ+1%。<BR>モンスターを倒した時、一定確率で「キャンディ」、「スティックキャンディ」、「チョコレートドリンク」をドロップ。<BR>「キャンディ」、「スティックキャンディ」のHP回復量+100%。<BR>「お口の恋人ガム」と共に装備時、「お口の恋人ガム」の効果が発動しない。",23543,2,0],
+	[2647,50,0,0,1490,1,70,90,"レッドベビードラゴン","レツトヘ","「レッドベビードラゴン」の精錬値が6以上の時、追加で「ウォータードラゴンブレス」、「ファイアードラゴンブレス」で与えるダメージ+15%。<BR>「レッドベビードラゴン」の精錬値が8以上の時、追加で「ウォータードラゴンブレス」、「ファイアードラゴンブレス」で与えるダメージ+15%。",15,5,16,5,5794,15,5447,15,0],
+	[2648,62,0,18,3120,1,30,100,"執行者のマント","シツコウ","「クロスインパクト」Lv5を習得している場合、追加で「クロスインパクト」で与えるダメージ+5%。<BR>「グリムトゥース」Lv5を習得している場合、追加で「グリムトゥース」で与えるダメージ+50%。<BR>「ソウルブレイカー」Lv10を習得している場合、追加で「ソウルブレイカー」で与えるダメージ+50%。<BR>「執行者のマント」の精錬値が7以上の時、追加でスキルディレイ-3%。BaseLvが1上がる度に「グリムトゥース」で与えるダメージ+1%。BaseLvが3上がる度に「ソウルブレイカー」で与えるダメージ+1%。BaseLvが30上がる度に「クロスインパクト」で与えるダメージ+1%。<BR>「執行者のマント」の精錬値が9以上の時、追加でMaxSP+5%、スキルディレイ-3%。<BR>ギロチンクロスが装備時、MaxHP+15%、遠距離物理攻撃で受けるダメージ-20%。「執行者のマント」の精錬値が7以上の時、追加でMaxHP+5%、遠距離物理攻撃で受けるダメージ-15%。<BR>ギロチンクロスが装備時、「射向の大袖」と共に装備時、追加で遠距離物理攻撃で受けるダメージ+35%。<BR>ギロチンクロスが装備時、「ホルンカード」と共に装備時、追加で遠距離物理攻撃で受けるダメージ+35%。 ",199,460,199,84,199,263,19,10,74,5,0],
+	[2649,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が1上がる度に追加で人間・無形モンスターから受けるダメージ-1%。",0],
+	[2650,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が3上がる度に追加でHit+5。",0],
+	[2651,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が3上がる度に追加でFlee+5。",0],
+	[2652,100,0,0,0,0,0,0,0,0,0,19,20,0],
+	[2653,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加で攻撃速度+1%。",0],
+	[2654,62,0,18,790,1,20,1,"麒麟の翼","キリンノ",0,0],
+	[2655,52,0,0,0,0,30,60,"ロザリオの首飾り","ロサリオ","",11,2,91,3,0],
+	[2656,100,0,0,0,0,0,0,0,0,"「クローチェスタッフ」の精錬値が1上がる度に追加で完全回避+2。",0],
+	[2657,100,0,0,0,0,0,0,0,0,"聖職者の看護帽」の精錬値が1上がる度に追加で完全回避+1、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。",0],
+	[2658,64,0,0,3230,1,40,90,"長司祭の指輪","チヨウシ","",6,2,11,5,102,5,91,15,92,15,0],
+	[2659,100,0,0,0,0,0,0,0,0,0,216,2,11,5,102,5,91,3,7489,100,0],
+	[2660,100,0,0,0,0,0,0,0,0,"",216,2,11,5,102,5,91,3,19489,1000,0],
+	[2661,100,0,0,0,0,0,0,0,0,"",216,2,11,5,102,5,91,3,7481,100,23481,20,0],
+	[2662,100,0,0,0,0,0,0,0,0,"",216,2,11,5,102,5,91,3,19482,10000,23482,100,0],
+	[2663,63,0,13,650,0,50,100,"エクセリオンレッグ","エクセリ","BaseLv130以上の時、追加でMaxHP+4%、MaxSP+4%。<BR>「エクセリオンレッグ」の精錬値が3上がる度に追加でMaxHP+3%、MaxSP+3%。 ",15,5,16,5,0],
+	[2664,63,0,15,3140,10,50,100,"ポロロッカシューズ","ホロロカ","「デリュージ」Lv5使用可能。<BR>「ポロロッカシューズ」の精錬値が5以上の時、追加でMaxHP+7%、MaxSP+7%、魔法攻撃で与えるダメージ+3%、水属性魔法攻撃で与えるダメージ+3%。<BR>「ポロロッカシューズ」の精錬値が7以上の時、追加でMaxHP+10%、MaxSP+10%、魔法攻撃で与えるダメージ+5%、水属性魔法攻撃で与えるダメージ+5%。",19,15,15,3,16,3,89,2,341,2,0],
+	[2665,100,0,0,0,0,0,0,0,0,"「ウォーターボール」の習得Lvが1上がる度に追加で「ウォーターボール」で与えるダメージ+30%。<BR>「フロストノヴァ」の習得Lvが1上がる度に追加で敵のMdef5%無視。<BR>「ラクリマスティック」の精錬値が1上がる度に追加で「ウォーターボール」で与えるダメージ+20%、水属性魔法攻撃で与えるダメージ+4%。",199,128,199,130,0],
+	[2666,50,0,12,0,1,30,90,"試験管ヘアバンド","シケンカ","「試験管ヘアバンド」の精錬値が6以上の時、追加で「カートキャノン」で与えるダメージ+20%、「カートトルネード」で与えるダメージ+10%。<BR>「試験管ヘアバンド」の精錬値が8以上の時、追加で「カートキャノン」で与えるダメージ+30%、「カートトルネード」で与えるダメージ+20%。",1,5,4,5,5723,10,23723,30,7723,100,5722,5,23722,5,0],
+	[2667,60,0,60,0,1,80,90,"カルデュイの法衣","カルテユ","「カルデュイの法衣」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-2%。<BR>「カルデュイの法衣」の精錬値が8以上の時、追加で人間形モンスターから受けるダメージ-2%、絶対に壊れない。<BR>「カルデュイの法衣」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。",19,5,100,10,57,1,0],
+	[2668,100,0,0,0,0,0,0,0,0,"「カルデュイの法衣」の精錬値が9以上の時、絶対に凍結状態にならない。",0],
+	[2669,100,0,0,0,0,0,0,0,0,"「ラフィネスタッフ」の精錬値が1上がる度に追加でMatk+3、<BR>「カルデュイの法衣」の精錬値が7以上の時、「ラフィネスタッフ」の精錬値が1上がる度に追加でMatk+5、<BR>「カルデュイの法衣」の精錬値が8以上の時、「ラフィネスタッフ」の精錬値が1上がる度に追加でMatk+7。",0],
+	[2670,64,0,0,670,1,10,1,"RJCネックレス","アアルシ","",14,10,0],
+	[2671,52,0,0,0,0,10,80,"くわえたイチゴ","クワエタイチコ","BaseLv99以下の時、MaxHP+200。<BR>BaseLv100以上の時、MaxHP+2000。",3,2,78,5,71,5,0],
+	[2672,64,0,0,3230,1,40,90,"蒼き夜光石","アオキヤコウセキ","「サイト」Lv1使用可能。<BR>純粋なLukが100以上の時、追加でCri+10、クリティカル攻撃で与えるダメージ+10%。",2,2,10,5,12,5,70,2,0],
+	[2673,100,0,0,0,0,0,0,0,0,0,70,10,0],
+	[2674,100,0,0,0,0,0,0,0,0,0,70,10,0],
+	[2675,62,0,40,0,1,40,100,"ワクワクマント","ワクワクマント","「ワクワクマント」の精錬値が5以上の時、純粋なStrが10上がる度に追加でAtk+2。<BR>「ワクワクマント」の精錬値が7以上の時、純粋なStrが10上がる度に追加でAtk+3。",80,5,0],
+	[2676,100,0,0,0,0,0,0,0,0,"純粋なStrが10上がる度に追加でAtk-5。 ",0],
+	[2677,1,0,50,4,4,10,70,"ヴァルキリーナイフ","ウアルキリイナイフ","ノービス系が装備時、追加でAtk+100、Matk+150、MaxHP+300、MaxSP+300、スキル使用時の消費SP-5%、絶対に壊れない。<BR>ノービス系が装備時、「ヴァルキリーナイフ」の精錬値が1上がる度に追加でMatk+15、Int+2、Dex+2、Cri+7、攻撃速度+10%、MaxHP+200、MaxSP+20、クリティカル攻撃で与えるダメージ+1%。<BR>ノービス系が装備時、「ヴァルキリーナイフ」の精錬値が1上がる度に追加で純粋なDexが10上がる度にDex-1。<BR>ノービス系が装備時、「ヴァルキリーナイフ」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-10%<BR>マジシャン系が装備時、「ヴァルキリーナイフ」の精錬値が1上がる度に追加でMaxHP+200、MaxSP+20。<BR>マジシャン系が装備時、「ヴァルキリーナイフ」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-10%。<BR>ハンター系が装備時、追加でMaxHP+200、スキル使用時の消費SP-5%。<BR>ハンター系が装備時、「ヴァルキリーナイフ」の精錬値が1上がる度に追加でInt+2、Dex+2。<BR>バード系、ダンサー系が装備時、追加でAtk+100、絶対に壊れない。<BR>バード系、ダンサー系が装備時、「ヴァルキリーナイフ」の精錬値が1上がる度に追加で攻撃速度+10%。<BR>バード系、ダンサー系が装備時、「ヴァルキリーナイフ」の精錬値が1上がる度に追加で純粋なDexが10上がる度にDex-1。<BR>シーフ系が装備時、追加でMatk+150、MaxSP+100。<BR>シーフ系が装備時、「ヴァルキリーナイフ」の精錬値が1上がる度に追加でクリティカル攻撃で与えるダメージ+1%。",88,50,0],
+	[2678,17,0,0,1,0,10,1,"かすかな焔","カスカナホムラ",0,193,1,194,1,0],
+	[2679,17,0,100,3,2,0,1,"自由の焔","シユウノホムラ",0,193,1,194,1,0],
+	[2680,17,0,70,834,2,35,100,"ヘブンズフェザー＆ヘルズファイア","ヘフンスフエサア",0,8,-10,38,20,36,20,0],
+	[2681,17,0,65,834,2,40,100,"アルテアアレス","アルテアアレス","物理攻撃命中時、一定確率で敵をスタン状態にする。",8,-10,0],
+	[2682,19,0,180,824,3,300,100,"デスファイア","テスフアイア","スプラッシュダメージ。<BR>物理攻撃命中時、一定確率で自分を中心にオートスペル「ヘルジャッジメント」Lv3発動。<BR>純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。",0],
+	[2683,19,0,140,824,3,245,100,"ローリングサンダー","ロオリンクサンタア","スプラッシュダメージ。<BR>物理攻撃命中時、一定確率で敵にオートスペル「サンダーストーム」が「ローリングサンダー」の精錬値と同じLvで発動。<BR>純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。",88,130,0],
+	[2684,19,0,150,824,3,240,100,"ピースブレイカー","ヒイスフレイカア","スプラッシュダメージ。<BR>物理攻撃命中時、一定確率で敵の鎧を破壊する。<BR>純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。",0],
+	[2685,18,0,170,834,2,85,100,"カラースコープ","カラアスコオフ","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。",290,70,0],
+	[2686,18,0,160,834,2,80,100,"RAG203","アアルエイシイニイマルサン","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。",8,10,10,10,0],
+	[2687,18,0,200,834,1,60,100,"エクソダスジョーカーXIII","エクソタスシヨオカアサアテイン","「エクソダスジョーカーXIII」の精錬値が2以上の時、物理攻撃命中時、一定確率で敵にオートスペル「ソウルブレイカー」Lv1発動。<BR>「エクソダスジョーカーXIII」の精錬値が2上がる度に、追加でオートスペル「ソウルブレイカー」の発動率と発動Lvが上昇。<BR>純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。",0],
+	[2688,20,0,110,834,2,260,100,"ミニーメイ","ミニーメイ","物理攻撃で敵を倒した時、SP+3。<BR>純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。",0],
+	[2689,20,0,120,834,2,250,100,"テンペスト","テンヘスト","純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。",64,10,0],
+	[2690,21,0,220,824,3,125,100,"エンド・オブ・ホライゾン","エントオフホライソン","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。",8,30,0],
+	[2691,21,0,210,824,3,140,100,"ブルーサザンクロス","フルウササンクロス","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。",301,100,306,100,0],
+	[2692,1,0,120,3474,2,100,150,"布都御魂","フツノミタマ","「布都御魂」の精錬値が1上がる度に追加で「黄泉返し」で与えるダメージ+2%。",37,50,88,160,19767,1000,0],
+	[2693,14,155,50,2,3,70,90,"二胡","ニコ","「循環する自然の音」使用時、60秒間、1秒毎にSP+4。<BR>「二胡」の精錬値が10の時、追加で絶対に壊れない。",0],
+	[2694,15,156,45,2,3,70,90,"霊幻の鈴","レイケンノスス","「循環する自然の音」使用時、60秒間、1秒毎にSP+4。<BR>「霊幻の鈴」の精錬値が10の時、追加で絶対に壊れない。",0],
+	[2695,64,0,0,3230,1,40,90,"拳闘士のグローブ","ケントウシノクロオフ","「気奪」Lv1使用可能。<BR>純粋なStrが100以上の時、追加で物理攻撃で与えるダメージ+5%。",1,2,14,100,80,2,0],
+	[2696,100,0,0,0,0,0,0,0,0,0,14,100,261,5,0],
+	[2697,100,0,0,0,0,0,0,0,0,0,14,100,261,5,0],
+	[2698,51,0,6,4,0,20,100,"タナトスの悲しみ仮面","タナトスノカナシミカメン",0,19,6,7,1,57,5,243,1,63,5,61,5,64,5,62,5,0],
+	[2699,62,0,18,3120,1,30,100,"与一の肩掛け","ヨイチノカタカケ","「エイムドボルト」Lv10習得時、追加で「エイムドボルト」で与えるダメージ+5%。<BR>「シャープシューティング」Lv5習得時、追加で「シャープシューティング」で与えるダメージ+60%。<BR>「ブリッツビート」Lv5習得時、追加で「ブリッツビート」で与えるダメージ+15%。<BR>「与一の肩掛け」の精錬値が7以上の時、追加で攻撃速度+3%。BaseLvが3上がる度に追加で「シャープシューティング」で与えるダメージ+1%。BaseLvが5上がる度に追加で「ブリッツビート」で与えるダメージ+1%。BaseLvが30上がる度に追加で「エイムドボルト」で与えるダメージ+1%。<BR>「与一の肩掛け」の精錬値が9以上の時、追加で攻撃速度+3%、MaxSP+5%。<BR>レンジャーが装備時、MaxHP+15%、遠距離物理攻撃で受けるダメージ-20%。「与一の肩掛け」の精錬値が7以上の時、追加でMaxHP+5%、遠距離物理攻撃で受けるダメージ-15%。<BR>レンジャーが装備時、「射向の大袖」と共に装備時、追加で遠距離物理攻撃で受けるダメージ+35%。<BR>レンジャーが装備時、「ホルンカード」と共に装備時、追加で遠距離物理攻撃で受けるダメージ+35%。",199,497,199,272,199,118,19,10,12,5,0],
+	[2700,64,0,0,0,1,0,81,"グロリアスイヤリング","クロリアスイヤリンク",0,100,20,73,-5,57,1,0],
+	[2701,100,0,0,0,0,0,0,0,0,0,57,2,0],
+	[2702,64,0,0,0,1,0,81,"グロリアスブローチ","クロリアスフロオチ",0,17,20,12,5,57,1,0],
+	[2703,62,0,18,690,10,20,1,"堕天使の翼","タテンシノツハサ",0,0],
+	[2704,64,0,0,3230,1,10,20,"シャドウリング","シヤトウリンク","物理攻撃命中時、一定確率でオートスペル「スティールコイン」Lv1発動。「スティールコイン」の習得Lvが2以上の場合、習得Lvで発動。<BR>「サプライズアタック」習得時、物理攻撃命中時、一定確率で敵をスタン状態にする。「サプライズアタック」の習得Lvが1上がる度に敵をスタン状態にする確率が上昇。<BR>BaseLvが1上がる度に追加で「バックスタブ」で与えるダメージ+2%。<BR>「エスケープ」使用時、20秒間、BaseLvが3上がる度に追加で「トライアングルショット」で与えるダメージ+1%。",0],
+	[2705,61,0,80,0,1,80,100,"射向の大袖","イムケノオオソテ","「射向の大袖」の精錬値が5以上の時、追加で遠距離物理攻撃で受けるダメージ-5%。<BR>「射向の大袖」の精錬値が7以上の時、追加で遠距離物理攻撃で受けるダメージ-10%。<BR>「射向の大袖」の精錬値が9以上の時、追加で遠距離物理攻撃で受けるダメージ-15%。",78,5,0],
+	[2706,100,0,0,0,0,0,0,0,0,0,78,-35,0],
+	[2707,51,0,0,0,1,10,10,"月の眼帯","ツキノカンタイ",0,61,5,0],
+	[2708,52,0,0,0,0,10,80,"おしゃべりオウム","オシヤヘリオウム","BaseLvが50上がる度に追加で魔法攻撃で与えるダメージ+1%。<BR>純粋なIntが30上がる度に追加で詠唱時間-1%。 ",0],
+	[2709,100,0,0,0,0,0,0,0,0,"「エナジー<守護竜>」のSP吸収効果が発動しない。",0],
+	[2710,64,151,0,760,1,10,100,"パワードアーム","ハワアトアアム","",23552,5,23553,5,0],
+	[2711,60,151,100,720,0,200,100,"パワードメイル","ハワアトメイル","「パワードメイル」の精錬値が5以上の時、精錬値が1上がる度に追加で遠距離物理攻撃で与えるダメージ+2%。",25,3,0],
+	[2712,62,151,20,750,1,50,100,"パワードタンク","ハワアトタンク","",23554,10,60,5,0],
+	[2713,63,151,25,740,0,100,100,"パワードブーツ","ハワアトフウツ","",23553,5,23552,5,23554,10,0],
+	[2714,100,0,0,0,0,0,0,0,0,"「アームズキャノン」、「コールドスローワー」、「フレイムスローワー」で与えるダメージ+50%。<BR>ダメージを受けた時、一定確率で7秒間、スキルディレイ-30%。<BR>「パワードタンク」、「パワードブーツ」、「パワードメイル」の精錬値が7以上の時、追加で「アームズキャノン」、「コールドスローワー」、「フレイムスローワー」で与えるダメージ+50%。<BR>スキル使用時「魔導ギア燃料」を消費しない。",0],
+	[2715,64,151,0,760,1,50,100,"ガーディアンバレル","カアテイアンハレル",0,2,2,5,5,0],
+	[2716,60,151,100,730,0,200,100,"ガーディアンユニット","カアテイアンユニツト","「ガーディアンユニット」の精錬値が1上がる度に追加でVit+1。",194,1,23560,90,0],
+	[2717,62,151,25,750,1,150,100,"ガーディアンエンジン","カアテイアンエンシン","",15,2,23561,50,19561,1000,0],
+	[2718,63,151,25,740,0,100,100,"ガーディアンブースター","カアテイアンフウスタア","「ガーディアンブースター」の精錬値が8以上の時、精錬値が1上がる度に追加で攻撃速度+1%。",8,10,12,5,0],
+	[2719,100,0,0,0,0,0,0,0,0,"「ガーディアンエンジン」、「ガーディアンブースター」、「ガーディアンユニット」の精錬値が7以上の時、追加で聖属性攻撃で受けるダメージ-10%。<BR>「バルカンアーム」、「ブーストナックル」で与えるダメージ+50%。<BR>「パイルバンカー」使用時、敵に「ディスペル」Lv5発動。「パイルバンカー」の再使用待機時間+3秒。",7551,100,7549,100,152,100,0],
+	[2720,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率でオートスペル「ソウルブレイカー」が習得レベルで発動。<BR>「オーキッシュアックス」、「オーキッシュソード」の精錬値合計が2上がる度に追加でAtk+15、攻撃速度+5%。<BR>精錬合計が20の時、追加で絶対にスタン状態にならない。",223,171,0],
+	[2721,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率でオートスペル「ホーリークロス」が習得レベルで発動。<BR>「クレセントサイダー」の精錬値が1上がる度に追加でAtk+15、攻撃速度+5%。<BR>精錬値が10の時、追加で全ての攻撃が9セルの範囲攻撃になる。",223,172,0],
+	[2722,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率でオートスペル「スパイラルピアース」が習得レベルで発動。<BR>「テグリョン」の精錬値が1上がる度に追加でAtk+15、攻撃速度+5%。<BR>精錬値が10の時、追加で全ての攻撃が9セルの範囲攻撃になる。",223,173,0],
+	[2723,1,0,150,803,3,100,50,"迅雷剣","シンライケン","「迅雷剣」の精錬値が7以上の時、追加で物理攻撃時、魚貝形へのダメージ+10%。<BR>「迅雷剣」の精錬値が9以上の時、追加で物理攻撃時、魚貝形へのダメージ+15%。<BR>「迅雷剣」の精錬値が7以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+10%。<BR>「迅雷剣」の精錬値が9以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+15%。 ",20,4,0],
+	[2724,4,0,140,803,3,200,50,"迅雷槍","シンライヤリ","「迅雷槍」の精錬値が7以上の時、追加で物理攻撃時、魚貝形へのダメージ+10%。<BR>「迅雷槍」の精錬値が9以上の時、追加で物理攻撃時、魚貝形へのダメージ+15%。<BR>「迅雷槍」の精錬値が7以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+10%。<BR>「迅雷槍」の精錬値が9以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+15%。 ",20,4,0],
+	[2725,8,0,130,803,3,200,50,"迅雷鎚","シンライツチ","「迅雷鎚」の精錬値が7以上の時、追加で物理攻撃時、魚貝形へのダメージ+10%。<BR>「迅雷鎚」の精錬値が9以上の時、追加で物理攻撃時、魚貝形へのダメージ+15%。<BR>「迅雷鎚」の精錬値が7以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+10%。<BR>「迅雷鎚」の精錬値が9以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+15%。 ",20,4,194,1,0],
+	[2726,10,0,120,803,2,150,50,"迅雷弓","シンライユミ","「迅雷弓」装備時、180分間、矢に風属性を付与。（※属性付与の設定をご利用ください）<BR>「迅雷弓」の精錬値が7以上の時、追加で物理攻撃時、魚貝形へのダメージ+10%。<BR>「迅雷弓」の精錬値が9以上の時、追加で物理攻撃時、魚貝形へのダメージ+15%。<BR>「迅雷弓」の精錬値が7以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+10%。<BR>「迅雷弓」の精錬値が9以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、魚貝形へのダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、水属性モンスターに与えるダメージ+15%。 ",20,4,0],
+	[2727,9,94,160,803,2,100,50,"迅雷杖","シンライツエ","「迅雷杖」の精錬値が7以上の時、追加で魔法攻撃時、魚貝形へのダメージ+10%。<BR>「迅雷杖」の精錬値が9以上の時、追加で魔法攻撃時、魚貝形へのダメージ+15%。<BR>「迅雷杖」の精錬値が7以上の時、追加で魔法攻撃時、水属性モンスターに与えるダメージ+10%。<BR>「迅雷杖」の精錬値が9以上の時、追加で魔法攻撃時、水属性モンスターに与えるダメージ+15%。 ",20,4,194,1,88,145,0],
+	[2728,17,0,60,803,2,100,50,"迅雷銃","シンライジュウ","「迅雷銃」装備時、180分間、弾に風属性を付与。（※属性付与の設定をご利用ください）<BR>「迅雷銃」の精錬値が7以上の時、追加で物理攻撃時、魚貝形へのダメージ+10%。<BR>「迅雷銃」の精錬値が9以上の時、追加で物理攻撃時、魚貝形へのダメージ+15%。<BR>「迅雷銃」の精錬値が7以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+10%。<BR>「迅雷銃」の精錬値が9以上の時、追加で物理攻撃時、水属性モンスターに与えるダメージ+15%。 ",20,4,0],
+	[2729,1,0,150,813,3,100,50,"無双剣","ムソウケン","「無双剣」の精錬値が7以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+10%。<BR>「無双剣」の精錬値が9以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+15%。<BR>「無双剣」の精錬値が7以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+10%。<BR>「無双剣」の精錬値が9以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+15%。",20,2,0],
+	[2730,4,0,140,813,3,200,50,"無双槍","ムソウヤリ","「無双槍」の精錬値が7以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+10%。<BR>「無双槍」の精錬値が9以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+15%。<BR>「無双槍」の精錬値が7以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+10%。<BR>「無双槍」の精錬値が9以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+15%。",20,2,0],
+	[2731,8,0,130,813,3,200,50,"無双鎚","ムソウツチ","「無双鎚」の精錬値が7以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+10%。<BR>「無双鎚」の精錬値が9以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+15%。<BR>「無双鎚」の精錬値が7以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+10%。<BR>「無双鎚」の精錬値が9以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+15%。",20,2,194,1,0],
+	[2732,10,0,120,813,2,150,50,"無双弓","ムソウユミ","「無双弓」装備時、180分間、矢に地属性を付与。（※属性付与の設定をご利用ください）<BR>「無双弓」の精錬値が7以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+10%。<BR>「無双弓」の精錬値が9以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+15%。<BR>「無双弓」の精錬値が7以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+10%。<BR>「無双弓」の精錬値が9以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+15%。",20,2,0],
+	[2733,9,94,160,813,2,100,50,"無双杖","ムソウツエ","「無双杖」の精錬値が7以上の時、追加で魔法攻撃時、動物・植物形モンスターに与えるダメージ+10%。<BR>「無双杖」の精錬値が9以上の時、追加で魔法攻撃時、動物・植物形モンスターに与えるダメージ+15%。<BR>「無双杖」の精錬値が7以上の時、追加で魔法攻撃時、風・地属性モンスターに与えるダメージ+10%。<BR>「無双杖」の精錬値が9以上の時、追加で魔法攻撃時、風・地属性モンスターに与えるダメージ+15%。",20,2,194,1,88,145,0],
+	[2734,17,0,60,813,2,100,50,"無双銃","ムソウジュウ","「無双銃」装備時、180分間、弾に地属性を付与。（※属性付与の設定をご利用ください）<BR>「無双銃」の精錬値が7以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+10%。<BR>「無双銃」の精錬値が9以上の時、追加で物理攻撃時、動物・植物形モンスターに与えるダメージ+15%。<BR>「無双銃」の精錬値が7以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+10%。<BR>「無双銃」の精錬値が9以上の時、追加で物理攻撃時、風・地属性モンスターに与えるダメージ+15%。",20,2,0],
+	[2735,8,53,160,833,2,180,80,"達人の槌[2]","タツシン","ディバインプロテクションLv1ごとに[ヒール]系と[サンクチュアリ]の回復量1%増加。<BR>メイス修練Lv1ごとにCRI+2。",199,23,199,89,4,1,6,1,0],
+	[2736,7,56,250,833,2,300,80,"達人の斧[2]","タツシン","ハンマーフォール使用時、 5% の確率でオートスペル[マグナムブレイクLv3] 発動。<BR>短剣製作マスター時 ATK +10<BR>剣製作マスター時 ATK +10<BR>両手剣製作マスター時 ATK +10<BR>ナックル製作マスター時 ATK +10<BR>槍製作マスター時 ATK +10<BR>斧製作マスター時 ATK +10<BR>メイス製作マスター時 ATK +10",199,139,199,140,199,141,199,142,199,143,199,144,199,145,3,2,0],
+	[2737,2,1,150,834,0,120,40,"エクスキャリバー[0]","エクスキ","0",20,6,88,126,4,5,6,10,5,-1,0],
+	[2738,3,1000,250,834,2,200,90,"テグリョン[2]","テクリヨ","精錬値が 9以上の場合、スキル使用時の消費SP及びディレイ 20% 減少<BR>ロードナイト・パラディンがJobLevelが70の場合、物理攻撃時、低確率で 10秒間 ATK + 50<BR>ルーンナイト・ロイヤルガードがJobLevelが50以上の場合、物理攻撃時、低確率で 10秒間 ATK + 50",11,10,0],
+	[2722,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率でオートスペル「スパイラルピアース」が習得レベルで発動。<BR>「テグリョン」の精錬値が1上がる度に追加でAtk+15、攻撃速度+5%。<BR>精錬値が10の時、追加で全ての攻撃が9セルの範囲攻撃になる。",223,173,0],
+	[2740,6,179,140,834,0,12,44,"クリーヴァー[0]","クリイウ","動物種族を倒した時に30%の確率で【にく】をドロップ。",57,5,0],
+	[2741,10,124,135,834,31,30,70,"イクシオンの羽[1]","イクシオ","物理攻撃時、低確率で7秒間攻撃速度 7%増加。精錬値によって発動率増加",0],
+	[2742,51,0,3,0,0,50,50,"バイオプロテクター","ハイオフロテクタア",0,8,10,73,-5,86,5,0],
+	[2743,100,0,0,0,0,0,0,0,0,0,74,5,0],
+	[2744,100,0,0,0,0,0,0,0,0,"機械植物帽」の精錬値が1上がる度に追加で「スポアエクスプロージョン」で与えるダメージ+5%。",0],
+	[2745,100,0,0,0,0,0,0,0,0,"",23736,20,0],
+	[2746,8,179,170,1064,3,150,130,"ローラの鎖鉄球","ロオラノクサリテツキユウ",0,20,3,0],
+	[2747,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で5秒間、敵のDef100%無視。<BR>「ローラの鎖鉄球」の精錬値が5以上の時、精錬値が1上がる度に追加で敵のDefを無視する時間が1秒延長。",0],
+	[2748,1,1,120,1064,3,60,130,"栄光を讃えし王剣","エイコウヲタタエシオウケン",0,20,6,12,5,0],
+	[2749,100,0,0,0,0,0,0,0,0,0,12,5,5460,10,0],
+	[2750,1,1,120,1064,3,60,130,"破滅を纏いし業剣","ハメツヲマトイシコウケン",0,20,7,5460,10,0],
+	[2751,11,0,150,1064,3,280,130,"古王の双刃","コオウノソウシン","「古王の双刃」の精錬値が1上がる度に追加で「クロスインパクト」で与えるダメージ+3%。「クロスリッパースラッシャー」で与えるダメージ+2%。「ローリングカッター」で与えるダメージ+1%。<BR>「古王の双刃」の精錬値が7以上の時、追加で攻撃速度+5%。<BR>「古王の双刃」の精錬値が9以上の時、追加で攻撃速度+5%。<BR>「古王の双刃」の精錬値が10の時、追加で敵の防御力が高いほど与えるダメージが増加。",0],
+	[2752,62,0,20,1120,1,60,130,"ソヒョンの羽衣","ソヒヨンノハコロモ","「ソヒョンの羽衣」の精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+1%。",19,10,91,5,0],
+	[2753,61,77,0,1100,1,1,130,"ルドのロールペーパー","ルトノロオルヘエハア","「ルドのロールペーパー」の精錬値が1上がる度に追加で聖属性攻撃で受けるダメージ-2%。<BR>魔法攻撃命中時、一定確率で3秒間、聖属性魔法攻撃で与えるダメージ+10%。<BR>「ルドのロールペーパー」の精錬値が5以上の時、精錬値が1上がる度に追加で聖属性魔法攻撃で与えるダメージが増加する効果時間が1秒延長。",66,20,0],
+	[2754,50,0,20,1070,1,50,130,"古王の王冠","コオウノオウカン","「古王の王冠」の精錬値が6以上の時、精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+1%。<BR>魔法攻撃命中時、一定確率で敵を恐怖状態にする。<BR>「古王の王冠」の精錬値が5以上の時、敵を恐怖状態にする確率が上昇。精錬値が2上がる度に敵を恐怖状態にする確率が上昇。",19,15,89,5,0],
+	[2755,50,0,16,1210,1,60,60,"ユニコーンの兜","ユニコオンノカフト","「フェイス」Lv1以上を習得している場合、習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ+2%。<BR>「ユニコーンの兜」の精錬値が7以上の時、精練値と同じLvの「グランドクロス」使用可能。<BR>「ユニコーンの兜」の精錬値が8以上の時、追加で聖・闇属性攻撃で受けるダメージ-5%。 ",199,156,19,10,66,15,67,15,222,50,0],
+	[2756,64,68,0,0,1,10,100,"忍の秘伝書","シノヒノヒテンシヨ","影狼装備時、「幻術 -分身-」習得時、「クローキング」、「トンネルドライブ」が習得Lvで使用可能。<BR>朧装備時、「撒菱」で攻撃命中時に、一定確率で敵を毒、呪い状態にする。",2,5,15,5,80,5,89,5,0],
+	[2757,50,0,1,840,1,50,1,"たれリベリオン","タレリヘリオン",0,25,10,0],
+	[2758,3,0,220,4,0,0,100,"アヴェンジャークレイモア","アウエンシヤアクレイモア","精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+25%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+20%<BR>人間形モンスターから受けるダメージ-10%<BR>「虐殺」Lv2。<BR>精錬値が9以上の時<BR>物理攻撃命中時、一定確率で5秒間、スキルディレイ-100%。",194,1,37,45,57,10,0],
+	[2759,5,0,220,4,0,0,100,"アヴェンジャーランス","アウエンシヤアランス","精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+30%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+30%<BR>人間形モンスターから受けるダメージ-10%<BR>「虐殺」Lv1。<BR>精錬値が9以上の時<BR>「バニシングポイント」、「ハンドレッドスピア」で与えるダメージ+20%。",194,1,37,40,57,10,0],
+	[2760,7,0,220,4,0,0,100,"アヴェンジャーツーハンドアックス","アウエンシヤアツウハントアツクス","精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+20%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+15%<BR>人間形モンスターから受けるダメージ-10%<BR>「虐殺」Lv2。<BR>精錬値が9以上の時<BR>「アックストルネード」、「パワースイング」で与えるダメージ+20%。",194,1,37,40,57,10,0],
+	[2761,11,0,140,4,0,0,100,"アヴェンジャーブラッディロア","アウエンシヤアフラツテイロア","精錬値が5以上の時<BR>攻撃速度+5%<BR>物理攻撃時、人間形モンスターに与えるダメージ+20%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>攻撃速度+5%<BR>物理攻撃時、人間形モンスターに与えるダメージ+15%<BR>人間形モンスターから受けるダメージ-10%<BR>「虐殺」Lv1。<BR>精錬値が9以上の時<BR>物理攻撃命中時、一定確率で5秒間、Atk+100。",194,1,37,40,57,10,0],
+	[2762,11,0,140,4,0,0,100,"アヴェンジャージャマダハル","アウエンシヤアシヤマタハル","精錬値が5以上の時<BR>完全回避+5<BR>クリティカル攻撃で与えるダメージ+20%<BR>物理攻撃時、人間形モンスターに与えるダメージ+15%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>完全回避+5<BR>クリティカル攻撃で与えるダメージ+20%<BR>物理攻撃時、人間形モンスターに与えるダメージ+10%<BR>人間形モンスターから受けるダメージ-10%<BR>「虐殺」Lv1。<BR>精錬値が9以上の時<BR>物理攻撃命中時、一定確率で5秒間、クリティカル攻撃で与えるダメージ+20%。",194,1,11,10,37,30,57,10,0],
+	[2763,10,0,170,4,0,0,100,"アヴェンジャーハンターボウ","アウエンシヤアハンタアホウ","精錬値が1上がる度に追加でクリティカル攻撃で与えるダメージ+2%。<BR>精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+20%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+20%<BR>人間形モンスターから受けるダメージ-10%<BR>「虐殺」Lv1。<BR>精錬値が9以上の時<BR>「アローストーム」、「シビアレインストーム」で与えるダメージ+20%。",194,1,37,30,57,10,0],
+	[2764,9,77,70,4,0,0,100,"アヴェンジャーウィザードスタッフ","アウエンシヤアウイサアトスタツフ","精錬値が1上がる度に追加で人間形モンスターのMdef5%無視。<BR>精錬値が5以上の時<BR>魔法攻撃時、人間形モンスターに与えるダメージ+10%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>魔法攻撃時、人間形モンスターに与えるダメージ+10%<BR>人間形モンスターから受けるダメージ-10%、「破滅」Lv1。<BR>精錬値が9以上の時<BR>「コメット」で与えるダメージ+20%。",194,1,195,1,88,210,177,25,57,10,0],
+	[2765,17,0,80,4,0,0,100,"アヴェンジャーハンドガン","アウエンシヤアハントカン","精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+20%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+20%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が9以上の時<BR>「フリップザコイン」使用時、「リッチズコイン」Lv1発動。",194,1,37,20,57,10,0],
+	[2766,18,0,120,4,0,0,100,"アヴェンジャーライフル","アウエンシヤアライフル","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。<BR>精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+35%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+35%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が9以上の時<BR>「ピアーシングショット」使用時、「クリムゾンマーカー」Lv1発動。",194,1,37,35,57,10,0],
+	[2767,20,0,120,4,0,0,100,"アヴェンジャーガトリングガン","アウエンシヤアカトリンクカン","純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。<BR>精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+25%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+25%<BR>人間形モンスターから受けるダメージ-10%。",194,1,37,25,57,10,9019836,20000,0],
+	[2768,19,0,200,4,0,0,100,"アヴェンジャーショットガン","アウエンシヤアシヨツトカン","純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。<BR>精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+45%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+45%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が9以上の時<BR>Hit+100。",194,1,37,45,57,10,0],
+	[2769,21,0,250,4,0,0,100,"アヴェンジャーグレネードガン","アウエンシヤアクレネエトカン","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。<BR>精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+30%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+30%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が9以上の時<BR>物理攻撃命中時、一定確率で5秒間、攻撃速度+20%。",194,1,37,30,57,10,0],
+	[2770,16,0,55,4,0,0,100,"アヴェンジャー風魔手裏剣","アウエンシヤアフウマシユリケン","精錬値が5以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+30%<BR>人間形モンスターから受けるダメージ-10%。<BR>精錬値が7以上の時<BR>物理攻撃時、人間形モンスターに与えるダメージ+30%<BR>人間形モンスターから受けるダメージ-10%<BR>「虐殺」Lv2。<BR>精錬値が9以上の時<BR>スキル「風魔手裏剣-乱華-」で与えるダメージ+20%。",194,1,88,90,37,40,57,10,0],
+	[2398,100,0,0,0,0,0,0,"0","0","レンジャーが装備時、[イクシオンの羽]の精錬値が1上がる度に追加で[ブリッツビート]で与えるダメージ+5%。",0],
+	[2772,51,0,1,0,0,30,70,"熾天使の花冠","シテンシノハナカンムリ","純粋なIntが8上がる度に追加でAtk + 5<BR>[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量 + 1%<BR>詠唱時間 + 1%<BR>純粋なIntが108以上の時、追加でAtk + 50<BR>[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量 + 5%<BR>詠唱時間 + 4%<BR>純粋なIntが120以上の時、追加でAtk + 125<BR>[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量 + 10%<BR>詠唱時間 + 6%",1,2,0],
+	[2773,52,0,1,0,0,30,70,"サバイバルオーブ","サハイハルオオフ","[ハイディング]Lv1使用可能 ",80,2,89,2,73,-3,0],
+	[2774,100,0,0,0,0,0,0,0,0,"[サバイバルロッド[1]]の精錬値が1上がる度に追加でMatk + 10<BR>[サバイバルロッド[1]]の精錬値が10の時、BaseLv99以下の時、追加で詠唱時間 - 3%<BR>[アースストレイン]、[チェーンライトニング]で与えるダメージ + 15%<BR>[ヘヴンズドライブ]、[ユピテルサンダー]で与えるダメージ + 70%<BR>BaseLv100以上の時、追加で詠唱時間 - 9%<BR>[アースストレイン]、[チェーンライトニング]で与えるダメージ + 45%<BR>[ヘヴンズドライブ]、[ユピテルサンダー]で与えるダメージ + 210% ",0],
+	[2774,100,0,0,0,0,0,0,0,0,"[サバイバルロッド[1]]の精錬値が1上がる度に追加でMatk + 10<BR>[サバイバルロッド[1]]の精錬値が10の時、BaseLv99以下の時、追加で詠唱時間 - 3%<BR>[アースストレイン]、[チェーンライトニング]で与えるダメージ + 15%<BR>[ヘヴンズドライブ]、[ユピテルサンダー]で与えるダメージ + 70%<BR>BaseLv100以上の時、追加で詠唱時間 - 9%<BR>[アースストレイン]、[チェーンライトニング]で与えるダメージ + 45%<BR>[ヘヴンズドライブ]、[ユピテルサンダー]で与えるダメージ + 210% ",0],
+	[2776,100,0,0,0,0,0,0,0,0,"[サバイバルサークレット]の精錬値が7以上の時、追加でVit + 4<BR>人間形モンスターから受けるダメージ - 4%<BR>詠唱時間 - 6%<BR>[サバイバルサークレット]の精錬値が9以上の時、追加でVit + 4<BR>人間形モンスターから受けるダメージ - 4%<BR>詠唱時間 - 6%",213,4,57,4,73,-6,344,20,342,20,0],
+	[2777,100,0,0,0,0,0,0,0,0,"固定詠唱時間 - 50%<BR>[サバイバルマント]の精錬値が5以上の時、追加で人間形モンスターから受けるダメージ - 2%<BR>[サバイバルマント]の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ - 2% ",57,1,0],
+	[2778,100,0,0,0,0,0,0,0,0,"[サバイバルロッド[1]]の精錬値が5以上の時、追加で魔法攻撃で与えるダメージ + 2%<BR>[サバイバルロッド[1]]の精錬値が7以上の時、追加で魔法攻撃で与えるダメージ + 2% ",89,1,0],
+	[2778,100,0,0,0,0,0,0,0,0,"[サバイバルロッド[1]]の精錬値が5以上の時、追加で魔法攻撃で与えるダメージ + 2%<BR>[サバイバルロッド[1]]の精錬値が7以上の時、追加で魔法攻撃で与えるダメージ + 2% ",89,1,0],
+	[2780,63,0,13,1800,1,50,85,"ギガントブーツ","キカントフウツ","[ギガントブーツ]の精錬値が5以上の時、追加でMaxHP + 4% , MaxSP + 4%<BR>人間形モンスターから受けるダメージ - 2%<BR>[ギガントブーツ]の精錬値が7以上の時、追加でMaxHP + 4% , MaxSP + 4%<BR>人間形モンスターから受けるダメージ - 2% ",15,2,16,2,57,1,0],
+	[2781,100,0,0,0,0,0,0,0,0,"[ギガントブーツ]の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ - 30%<BR>[ギガントアックス]の精錬値が7以上、[ギガントブーツ]の精錬値が7以上の時、追加で[カートターミネーション]で与えるダメージ + 8%<BR>ボスモンスターに与えるダメージ + 20%<BR>[ギガントアックス]の精錬値が9以上、[ギガントブーツ]の精錬値が7以上の時、追加で[カートターミネーション]で与えるダメージ + 12%<BR>ボスモンスターに与えるダメージ + 30% ",0],
+	[2782,100,0,0,0,0,0,0,0,0,"[ギガントブーツ]の精錬値が7以上の時、純粋なStrが10上がる度に追加で遠距離物理攻撃で与えるダメージ + 3%<BR>[ギガントボウ]の精錬値が7以上、[ギガントブーツ]の精錬値が7以上の時、追加で[アローストーム]、[エイムドボルト]で与えるダメージ + 20%<BR>ボスモンスターに与えるダメージ + 20%<BR>[ギガントボウ]の精錬値が9以上、[ギガントブーツ]の精錬値が7以上の時、追加で[アローストーム]、[エイムドボルト]で与えるダメージ + 30%<BR>ボスモンスターに与えるダメージ + 30% ",0],
+	[2783,100,0,0,0,0,0,0,0,0,"[スパイラルピアース]使用時[ソニックウェーブ]が習得Lvで発動<BR>[ギガントランス]の精錬値が7以上の時、追加で[スパイラルピアース]、[ソニックウェーブ]で与えるダメージ + 20%<BR>ボスモンスターから受けるダメージ - 20%<BR>[ギガントランス]の精錬値が9以上の時、追加で[スパイラルピアース]、[ソニックウェーブ]で与えるダメージ + 30%<BR>ボスモンスターから受けるダメージ - 30%",57,40,223,186,0],
+	[2784,100,0,0,0,0,0,0,0,0,"[ギガントシールド]の精錬値が7以上の時、追加で大型モンスターから受けるダメージ - 2%<BR>ボスモンスターから受けるダメージ - 2%<BR>[ギガントシールド]の精錬値が9以上の時、追加で大型モンスターから受けるダメージ - 3%<BR>ボスモンスターから受けるダメージ - 3% ",381,1,0],
+	[2785,50,0,10,3570,1,20,100,"リス耳フード帽","リスミミフウトホウ","遠距離物理攻撃時、Cri + 5<BR><BR>精錬値が5以上の時<BR>Aspd + 1<BR>クリティカル攻撃で与えるダメージ + 2%<BR>全ての種族のDef 20%無視<BR>遠距離物理攻撃時、Cri + 10<BR><BR>精錬値が7以上の時<BR>Aspd + 1<BR>クリティカル攻撃で与えるダメージ + 6%<BR>全ての種族のDef 30%無視<BR>遠距離物理攻撃時、Cri + 15<BR><BR>精錬値が9以上の時<BR>追加でAspd + 1<BR>クリティカル攻撃で与えるダメージ + 12%<BR>全ての種族のDef 40%無視<BR>遠距離物理攻撃時、Cri + 20<BR>物理攻撃命中時、一定確率で5秒間、クリティカル攻撃で与えるダメージ + 100% ",101,1,70,10,293,10,0],
+	[2786,62,0,18,3670,1,30,90,"堕天司祭の闇光外套","タテンシサイノアンコウカイトウ","[堕天司祭の闇光外套]の精錬値が7以上の時、追加で聖・闇属性攻撃で受けるダメージ - 20%<BR>無属性魔法攻撃で与えるダメージ + 10%<BR>[堕天司祭の闇光外套]の精錬値が9以上の時、追加で聖・闇属性攻撃で受けるダメージ - 10%<BR>詠唱時間 - 5%<BR>[フェイス]の習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ + 3%",199,156,19,10,4,5,5,5,15,10,340,5,0],
+	[2787,62,0,0,0,1,10,10,"英雄マント","エイユウマント","「英雄マント」の精錬値が3上がる度に追加でFlee+3、無属性攻撃で受けるダメージ-3%。<BR>「英雄マント」の精錬値が10の時、追加でFlee+20、無属性攻撃で受けるダメージ-20%。",9,1,60,1,0],
+	[2788,100,0,0,0,0,0,0,0,0,0,60,-50,0],
+	[2789,64,0,0,3230,1,10,20,"マジカルリング","マシカルリンク","BaseLvが5上がる度に追加で「ファイアーボルト」、「コールドボルト」、「ライトニングボルト」、「アーススパイク」で与えるダメージ+1%。",343,5,341,5,344,5,342,5,0],
+	[2790,60,0,0,0,0,100,50,"飛行船スーツ","ヒコウセンスウツ",0,19,10,13,500,0],
+	[2791,62,0,100,0,0,100,50,"飛行船マント","ヒコウセンマント",0,13,300,0],
+	[2792,63,0,0,0,0,100,50,"飛行船ブーツ","ヒコウセンフウツ",0,13,200,14,20,0],
+	[2793,100,0,0,0,0,0,0,0,0,"「飛行船スーツ」、「飛行船ブーツ」、「飛行船マント」の精錬値合計が15以上の時、追加でMaxHP+1000、MaxSP+30。<BR>精錬値合計が20以上の時、追加でMaxHP+1500、MaxSP+100。<BR>精錬値合計が25以上の時、追加でMaxHP+2000、MaxSP+200。",18,200,19,20,13,500,14,50,0],
+	[2794,60,0,0,0,1,100,50,"ペルロックのスーツ","ヘルロツクノスウツ",0,19,10,13,500,0],
+	[2795,62,0,100,0,1,100,50,"ペルロックのマント","ヘルロツクノマント",0,13,300,0],
+	[2796,63,0,0,0,1,100,50,"ペルロックのブーツ","ヘルロツクノフウツ",0,13,200,14,20,0],
+	[2797,100,0,0,0,0,0,0,0,0,"「ペルロックのスーツ」、「ペルロックのブーツ」、「ペルロックのマント」の精錬値合計が15以上の時、追加でMaxHP+1000、MaxSP+30。<BR>精錬値合計が20以上の時、追加でMaxHP+1500、MaxSP+100。<BR>精錬値合計が25以上の時、追加でMaxHP+2000、MaxSP+200。",18,200,19,20,13,500,14,50,0],
+	[2798,50,59,0,0,1,100,50,"ペルロックの帽子","ヘルロツクノホウシ",0,13,200,14,20,0],
+	[2799,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収、一定確率で敵に与えたダメージの2%をSPとして吸収。",0],
+	[2800,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの3%をHPとして吸収、一定確率で敵に与えたダメージの2%をSPとして吸収。",0],
+	[2801,52,0,0,1090,0,10,1,"エクスプロージョンガム","エクスフロオシヨンカム",0,155,100,73,10,0],
+	[2802,51,0,7,1080,0,10,50,"皇竜の天翼","コウリユウノテンヨク","ソードマン系が装備時、中型モンスターから受けるダメージ-3%。大型モンスターから受けるダメージ-5%。<BR>マジシャン系が装備時、全ての属性攻撃で受けるダメージ-5%。<BR>アーチャー系が装備時、遠距離物理攻撃で受けるダメージ-10%。「黄色いスカーフ」と共に装備時、「皇竜の天翼」の効果が発動しない。<BR>アコライト系が装備時、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+10%。<BR>シーフ系が装備時、Flee+10、完全回避+3。<BR>マーチャント系が装備時、一般モンスターから受けるダメージ-3%。ボスモンスターから受けるダメージ-5%。<BR>ノービス系、テコンキッド系、忍者系、ガンスリンガーが装備時、MaxHP+1000、MaxSP+100。",0],
+	[2803,2,152,170,1064,3,60,100,"セイヴザキング","セイウサキンク","「ライディング」を未習得の場合、以下の効果を得る。<BR>全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない。<BR>「スピアクイッケン」の習得レベルが1上がる度に追加でFlee+2、Cri+3、攻撃速度+3%。<BR>「セイヴザキング」の精錬値が1上がる度に追加で「グランドクロス」、「バッシュ」、「ホーリークロス」で与えるダメージ+20%。<BR>「セイヴザキング」の精錬値が6以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+40%。<BR>「セイヴザキング」の精錬値が6以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+15%。一部の回復アイテムによるHP回復量+15%。<BR>「セイヴザキング」の精錬値が8以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+40%。<BR>「セイヴザキング」の精錬値が8以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+15%。一部の回復アイテムによるHP回復量+15%。 ",199,78,199,166,88,130,20,8,0],
+	[2804,64,0,0,1140,1,20,130,"エルヴィラペンダント","エルウイラヘンタント",0,80,5,89,5,64,5,0],
+	[2805,51,0,0,1080,0,10,60,"妖魔の眼","ヨウマノメ",0,11,2,243,3,0],
+	[2806,50,0,10,0,1,20,80,"レインボウ","レインホウ","[レインボウ]の精錬値が1上がる度に追加でMatk + 10 ",19,10,2,3,0],
+	[2807,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵にオートスペル[ウォーターボール]Lv4発動<BR>[レインボウ]の精錬値が5以上の時、[レインボウ]の精錬値が1上がる度に追加でオートスペル[ウォーターボール]の発動率と発動Lvが上昇",223,174,0],
+	[2808,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵にオートスペル[アーススパイク]Lv4、敵を中心にオートスペル[ヘヴンズドライブ]Lv4発動<BR>[レインボウ]の精錬値が5以上の時、[レインボウ]の精錬値が1上がる度に追加でオートスペル[アーススパイク]、[ヘヴンズドライブ]の発動率と発動Lvが上昇",223,175,223,176,0],
+	[2809,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵にオートスペル[ライトニングボルト]Lv4、敵を中心にオートスペル[サンダーストーム]Lv4発動<BR>[レインボウ]の精錬値が5以上の時、[レインボウ]の精錬値が1上がる度に追加でオートスペル[ライトニングボルト]、[サンダーストーム]の発動率と発動Lvが上昇",223,177,223,178,0],
+	[2810,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵にオートスペル[コールドボルト]Lv4、自分を中心にオートスペル[フロストノヴァ]Lv4発動<BR>[レインボウ]の精錬値が5以上の時、[レインボウ]の精錬値が1上がる度に追加でオートスペル[コールドボルト]、[フロストノヴァ]の発動率と発動Lvが上昇",223,179,223,180,0],
+	[2811,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵にオートスペル[ファイアーボール]Lv4、[ファイアーボルト]Lv4発動<BR>[レインボウ]の精錬値が5以上の時、[レインボウ]の精錬値が1上がる度に追加でオートスペル[ファイアーボール]、[ファイアーボルト]の発動率と発動Lvが上昇",223,181,223,182,0],
+	[2812,63,0,15,3140,10,50,100,"裁きの靴","サハキノクツ","[裁きの靴]の精錬値が5以上の時、追加でMaxHP + 7% , MaxSP + 7%<BR>魔法攻撃で与えるダメージ + 3%<BR>聖属性魔法攻撃で与えるダメージ + 3%<BR>[裁きの靴]の精錬値が7以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>魔法攻撃で与えるダメージ + 5%<BR>聖属性魔法攻撃で与えるダメージ + 5%",19,15,15,3,16,3,89,2,346,2,5476,30,0],
+	[2813,100,0,0,0,0,0,0,0,0,"[オラティオ]の習得Lvが1上がる度に追加で[アドラムス]、[ジュデックス]の詠唱時間 - 5%<BR>[クリアランス]、[ラウダアグヌス]、[ラウダラムス]の習得Lvが1上がる度に追加で[アドラムス]で与えるダメージ + 10%<BR>[ホーリーステッキ]の精錬値が7以上の時、追加で魔法攻撃時、不死・悪魔形モンスターに与えるダメージ + 30%<BR>闇・不死属性モンスターに与えるダメージ + 30%<BR>[ホーリーステッキ]の精錬値が9以上の時、追加で[アドラムス]で与えるダメージ + 20%<BR>魔法攻撃時、不死・悪魔形モンスターに与えるダメージ + 20%<BR>闇・不死属性モンスターに与えるダメージ + 20%",199,484,199,490,199,485,199,486,0],
+	[2814,64,0,0,3230,1,40,90,"大神官の手袋","タイシンカンノテフクロ","純粋なIntが110以上の時、追加で魔法攻撃で与えるダメージ + 5%",4,2,89,2,102,5,220,4,0],
+	[2815,100,0,0,0,0,0,0,0,0,0,73,-5,266,5,0],
+	[2816,100,0,0,0,0,0,0,0,0,0,73,-5,266,5,0],
+	[2817,3,61,225,833,0,200,40,"猫両手剣・太刀魚","ネコリヨウテケンタチウオ","物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターに与えるダメージ+50%。<BR>メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターから受けるダメージ-30%。",193,1,0],
+	[2818,11,108,120,833,0,120,40,"猫カタール・ツナ","ネコカタアルツナ","物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターに与えるダメージ+50%。<BR>メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターから受けるダメージ-30%。",193,1,0],
+	[2819,9,94,30,833,0,80,40,"猫両手杖・旗魚","ネコリヨウテツエカジキ","物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターに与えるダメージ+50%。<BR>メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターから受けるダメージ-30%。",193,1,88,155,0],
+	[2820,7,0,125,833,0,135,40,"猫両手斧・黒鮪","ネコリヨウテオノクロマクロ","物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターに与えるダメージ+50%。<BR>メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターから受けるダメージ-30%。",193,1,0],
+	[2821,10,0,115,833,0,135,40,"猫弓・蟹","ネコユミカニ","物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターに与えるダメージ+50%。<BR>メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターから受けるダメージ-30%。",193,1,0],
+	[2822,1,0,120,833,0,90,40,"猫短剣・鯵","ネコタンケンアシ","物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターに与えるダメージ+25%。<BR>メモリアルダンジョン「地下排水路」、「暴屈王の洞窟」に出現するモンスターから受けるダメージ-15%。",193,1,0],
+	[2823,64,0,0,0,0,0,1,"ニャンゲーマーズの証","ニヤンケエマアスノアカシ",0,0],
+	[2824,52,0,1,0,0,11,11,"瑞々しいだいだい","ミスミスシイタイタイ","5秒毎にHP+50、SP+1",19,1,0],
+	[2825,100,0,0,0,0,0,0,0,0,"モンスターを倒した時、一定確率で「オレンジ」をドロップ。",0],
+	[2826,50,0,0,0,1,30,1,"シュタール・フォン・カイザー61世","シユタアルフオンカイサアロクシユウイツセイ","",77,10,0],
+	[2827,60,0,60,1110,1,100,130,"魔呪のメイル","マシユノメイル","精錬値が7以上の時、絶対に壊れない<BR>MaxHP + 5%、MaxSP + 5%",264,5,80,10,89,10,0],
+	[2828,62,0,16,1120,1,100,130,"魔呪のマント","マシユノマント","精錬値が7以上の時、水・風属性で受けるダメージ - 30%、10秒毎に、HP+2000、SP+100。",264,5,78,10,0],
+	[2829,63,0,20,1130,1,100,130,"魔呪のブーツ","マシユノフウツ","精錬値が7以上の時、詠唱時間 - 10%、攻撃速度 + 10%、ディレイ - 10%",264,5,15,10,16,10,0],
+	[2830,100,0,0,0,0,0,0,0,0,0,264,5,78,5,13,6666,14,666,0],
+	[2831,61,0,150,0,1,200,90,"ガイアシールド","カイアシイルト","精錬値が6以上の時、<BR>追加で地属性攻撃で受けるダメージ - 15%<BR>物理・魔法攻撃時、地属性モンスターに与えるダメージ + 10%<BR>精錬値が8以上の時、<BR>純粋なStrが90以上の時、追加でAtk + 50<BR>純粋なAgiが90以上の時、追加で攻撃速度 + 5%<BR>純粋なVitが90以上の時、追加で[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]を受けた時のHP回復量 + 10%、一部の回復アイテムによるHP回復量 + 10%<BR>純粋なIntが90以上の時、追加でMatk + 30<BR>純粋なDexが90以上の時、追加で詠唱時間 - 5%<BR>純粋なLukが90以上の時、追加でクリティカル攻撃で与えるダメージ + 5%",19,10,62,10,42,5,352,5,194,1,0],
+	[2832,60,0,100,0,1,40,90,"炎竜の鎧","エンリユウノヨロイ","精錬値が7以上の時、追加でHit + 10、物理攻撃時、ボスモンスターに与えるダメージ + 10%<BR>精錬値が9以上の時、追加でHit + 10、物理攻撃時、ボスモンスターに与えるダメージ + 10% ",7,1,8,10,0],
+	[2833,64,0,0,3230,1,40,90,"フェアリーフのギリ粉","フエアリイフノキリコ","純粋なDexが100以上の時、追加で遠距離物理攻撃で与えるダメージ + 5%",5,2,25,2,74,5,220,21,0],
+	[2834,100,0,0,0,0,0,0,0,0,0,25,5,74,5,0],
+	[2835,100,0,0,0,0,0,0,0,0,0,25,5,74,5,0],
+	[2836,63,2000,25,860,10,60,99,"力の時空ブーツ[1]","チカラノ","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、Atk+7。<BR>純粋なStrが120以上の時、追加でAtk+50。",13,300,14,30,0],
+	[2837,63,2000,20,860,10,60,99,"知力の時空ブーツ[1]","チリヨク","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、Matk+10。<BR>純粋なIntが120以上の時、追加でMatk+60。",19,5,13,300,14,30,0],
+	[2838,63,2000,25,860,10,60,99,"俊敏の時空ブーツ[1]","シユンヒ","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、攻撃速度+3%。<BR>純粋なAgiが120以上の時、追加でAspd+1。",13,300,14,30,0],
+	[2839,63,2000,25,860,10,60,99,"体力の時空ブーツ[1]","タイリヨ","精錬値が3上がる度に、追加でMaxHP+300、MaxSP+10。<BR>純粋なVITが120以上の時、追加でMaxHP+8%。",13,300,14,30,0],
+	[2840,63,2000,25,860,10,60,99,"技巧の時空ブーツ[1]","キコウノ","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、Dex+3。<BR>純粋なDexが120以上の時、追加で遠距離物理攻撃で与えるダメージ+5%。",13,300,14,30,0],
+	[2841,63,2000,20,860,10,60,99,"幸運の時空ブーツ[1]","コウウン","精錬値が3上がる度に、追加でMaxHP+100、MaxSP+10、クリティカル攻撃で与えるダメージ+2%。<BR>純粋なLukが120以上の時、追加でクリティカル攻撃で与えるダメージ+30%。",19,5,13,300,14,30,0],
+	[2842,1,0,150,893,3,100,50,"一碧剣","イツヘキケン","「一碧剣」の精錬値が7以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+10%。<BR>「一碧剣」の精錬値が9以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+15%。<BR>「一碧剣」の精錬値が7以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+10%。<BR>「一碧剣」の精錬値が9以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+15%。",20,1,0],
+	[2843,4,0,140,893,3,200,50,"一碧槍","イツヘキヤリ","「一碧槍」の精錬値が7以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+10%。<BR>「一碧槍」の精錬値が9以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+15%。<BR>「一碧槍」の精錬値が7以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+10%。<BR>「一碧槍」の精錬値が9以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+15%。",20,1,0],
+	[2844,8,0,130,893,3,200,50,"一碧鎚","イツヘキツチ","「一碧鎚」の精錬値が7以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+10%。<BR>「一碧鎚」の精錬値が9以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+15%。<BR>「一碧鎚」の精錬値が7以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+10%。<BR>「一碧鎚」の精錬値が9以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+15%。",20,1,194,1,0],
+	[2845,10,0,120,893,2,150,50,"一碧弓","イツヘキユミ","「一碧弓」装備時、180分間、矢に水地属性を付与。（※属性付与の設定をご利用ください）<BR>「一碧弓」の精錬値が7以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+10%。<BR>「一碧弓」の精錬値が9以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+15%。<BR>「一碧弓」の精錬値が7以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+10%。<BR>「一碧弓」の精錬値が9以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、火属性モンスターに与えるダメージ+15%。",20,1,0],
+	[2846,9,94,160,893,2,100,50,"一碧杖","イツヘキツエ","「一碧杖」の精錬値が7以上の時、追加で魔法攻撃時、無・悪魔形モンスターに与えるダメージ+10%。<BR>「一碧杖」の精錬値が9以上の時、追加で魔法攻撃時、無・悪魔形モンスターに与えるダメージ+15%。<BR>「一碧杖」の精錬値が7以上の時、追加で魔法攻撃時、火属性モンスターに与えるダメージ+10%。<BR>「一碧杖」の精錬値が9以上の時、追加で魔法攻撃時、火属性モンスターに与えるダメージ+15%。",20,1,194,1,88,145,0],
+	[2847,17,0,60,893,2,100,50,"一碧銃","イツヘキジュウ","「一碧銃」装備時、180分間、弾に水属性を付与。（※属性付与の設定をご利用ください）<BR>「一碧銃」の精錬値が7以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+10%。<BR>「一碧銃」の精錬値が9以上の時、追加で物理攻撃時、無・悪魔形モンスターに与えるダメージ+15%。<BR>「一碧銃」の精錬値が7以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+10%。<BR>「一碧銃」の精錬値が9以上の時、追加で物理攻撃時、火属性モンスターに与えるダメージ+15%。",20,1,0],
+	[2848,100,0,0,0,0,0,0,0,0,0,15,15,16,5,0],
+	[2849,64,0,0,3230,1,40,100,"反逆者のスカーフ","ハンキヤクシヤノスカアフ","「エターナルチェーン」の習得Lvが1上がる度に追加で「クイックドローショット」で与えるダメージ+5%。<BR>「シャッターストーム」の習得Lvが1上がる度に追加で「シャッターストーム」で与えるダメージ+10%、「シャッターストーム」の再使用待機時間-0.1秒。<BR>「シャッターストーム」の習得Lvが1上がる度に追加で「ヒートバレル」の再使用待機時間-4秒。<BR>「ドラゴンテイル」の習得Lvが1上がる度に追加でクリティカル攻撃で与えるダメージ+3%。<BR>「ドラゴンテイル」の習得Lvが1以上の場合、「クリムゾンマーカー」使用時、50秒間、追加で物理攻撃命中時、一定確率で敵にオートスペル「ドラゴンテイル」が習得Lvで発動。「ドラゴンテイル」の習得Lvが1上がる度にオートスペル「ドラゴンテイル」の発動率が上昇。<BR>「ファイアーレイン」の習得Lvが1上がる度に追加でスキルディレイ-2%。<BR>「ファイアーレイン」の習得Lvが1上がる度に追加で「ファイアーレイン」の消費SP-4、「ファイアーレイン」で与えるダメージ+5%。<BR>「マススパイラル」の習得Lvが1上がる度に追加で攻撃速度+2%。<BR>「マススパイラル」の習得Lvが1上がる度に追加で「マススパイラル」の消費SP-2、「マススパイラル」で与えるダメージ+5%。",199,826,199,824,199,834,199,828,199,825,80,5,73,-10,223,183,23830,5,0],
+	[2850,64,0,0,3230,1,10,100,"上忍の腰帯","シヨウニンノコシオヒ","「紅炎華」の習得Lvが1上がる度に追加で「龍炎陣」で与えるダメージ+10%。<BR>「氷閃槍」の習得Lvが1上がる度に追加で「氷柱落し」で与えるダメージ+20%。<BR>「風刃」の習得Lvが1上がる度に追加で「朔風」で与えるダメージ+10%。<BR>「幻術-驚愕-」、「幻術-幻惑」、「幻術-呪殺-」の習得Lvが1上がる度に追加で魔法攻撃時、闇属性モンスターに与えるダメージ+4%。",199,407,199,410,199,413,199,775,199,777,199,776,12,5,89,5,74,5,0],
+	[2851,61,0,80,0,1,50,90,"沸騰する混沌の盾","フツトウスルコントンノタテ","「沸騰する混沌の盾」の精錬値が5以上の時、追加でAspd+1。<BR>「沸騰する混沌の盾」の精錬値が7以上の時、追加でAspd+1。",19,5,67,25,0],
+	[2852,100,0,0,0,0,0,0,0,0,0,51,4,56,4,57,3,0],
+	[2853,50,0,0,0,1,30,60,"純白なマーチングハット","シユンハクナマアチンクハツト","物理攻撃命中時、一定確率で60秒間、武器に念属性を付与する。<BR>「純白なマーチングハット」の精錬値が1上がる度に武器に念属性を付与する確率が上昇。",1,2,0],
+	[2854,52,108,0,0,0,10,95,"ロキのアサシンマスク","ロキノアサシンマスク","物理攻撃命中時、一定確率で5秒間、「ロキ」に変身。「ロキ」に変身時、Agi+10、Atk+10。",5083,5,5264,10,0],
+	[2855,50,0,10,0,1,80,100,"神魔バフォメットの角","シンマハフオメツトノツノ","精錬値が1上がる度に追加で「グレイアムライト」、「ミリアムライト」で与えるダメージ+10%。",17,50,100,50,12,10,8007492,100,8011492,100,0],
+	[2856,100,0,0,0,0,0,0,0,0,"追加で物理・魔法攻撃命中時、一定確率でオートスペル「ダーククロス」が「デュプレライト」の習得レベルで発動。<BR>「ブラッディクロス」の精錬値が1上がる度に追加でAtk+15、Matk+15、「ダーククロス」で与えるダメージ+10%。<BR>「ブラッディクロス」の精錬値が10の時、追加で「ダーククロス」で与えるダメージ+100%。<BR>追加で物理攻撃命中時、一定確率で5秒間モンスター「ヴェルゼブブ」に変身。<BR>モンスター「ヴェルゼブブ」に変身時、物理攻撃命中時、一定確率で自分を中心にオートスペル「ヴァンパイアギフト」Lv3発動。",223,184,225,230,0],
+	[2857,64,0,0,3230,1,40,90,"マタギの剣鉈","マタキノケンナタ","「ハイディング」Lv1使用可能。<BR>純粋なLukが100以上の時、追加でHit+5、遠距離物理攻撃時、Cri+10。",6,2,8,10,72,5,0],
+	[2858,100,0,0,0,0,0,0,0,0,0,8,15,72,10,0],
+	[2859,100,0,0,0,0,0,0,0,0,0,8,15,72,10,0],
+	[2860,64,0,0,3230,1,10,100,"盗賊のすすめ 第一巻","トウソクノススメタイイツカン","「グラフィティ」習得時、追加でStr+5、Agi+5、Int+5。<BR>「マスカレード：アンラッキー」Lv3習得時、「バーサーク」Lv1使用可能。<BR>「マスカレード：イグノアランス」Lv3習得時、「オーバートラストマックス」Lv5使用可能。<BR>「マスカレード：ウィークネス」Lv3習得時、「魔法力増幅」Lv5使用可能。<BR>「マスカレード：エナベーション」Lv3習得時、「ウィンドウォーク」Lv5使用可能。<BR>「マスカレード：グルーミー」Lv3習得時、「アスムプティオ」Lv5使用可能。<BR>「マスカレード：レイジネス」Lv3習得時、「メテオアサルト」Lv5使用可能。",199,177,199,594,199,591,199,593,199,589,199,590,199,592,1,5,2,5,4,5,222,51,0],
+	[2861,62,0,28,560,1,20,1,"エンジェルフェザー","エンシエルフエサア",0,0],
+	[2862,60,0,60,0,1,80,90,"アインヘリヤルの鎧","アインヘリヤルノヨロイ","「アインヘリヤルの鎧」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-2%。<BR>「アインヘリヤルの鎧」の精錬値が8以上の時、追加で人間形モンスターから受けるダメージ-2%、絶対に壊れない。<BR>「アインヘリヤルの鎧」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。",19,5,17,10,57,1,0],
+	[2863,100,0,0,0,0,0,0,0,0,"「アインヘリヤルの鎧」の精錬値が9以上の時、絶対に呪い状態にならない。",0],
+	[2864,100,0,0,0,0,0,0,0,0,"「戦死者のマント」の精錬値が1上がる度に追加でAtk+3。<BR>「戦死者のマント」の精錬値が7以上の時、純粋なStrが10上がる度に追加でAtk+5。<BR>「戦死者のマント」の精錬値が8以上の時、純粋なStrが10上がる度に追加でAtk+7。",0],
+	[2865,50,0,0,0,0,30,100,"ガーディアンプロセッサ","カアテイアンフロセツサ","精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-2%。",57,10,0],
+	[2866,100,0,0,0,0,0,0,0,0,"「パイルバンカー」の精錬値が7以上の時、追加で攻撃速度+10%、「バルカンアーム」で与えるダメージ+50%、「ブーストナックル」で与えるダメージ+30%。<BR>「パイルバンカー」の精錬値が9以上の時、追加で攻撃速度+10%、「バルカンアーム」で与えるダメージ+50%、「ブーストナックル」で与えるダメージ+30%。<BR>「パイルバンカー」の精錬値が10の時、追加でスキル「パイルバンカー」の再使用待機時間-1秒。",0],
+	[2867,100,0,0,0,0,0,0,0,0,"「ガーディアンユニット」の精錬値が7以上の時、追加でMaxHP+10%、人間形モンスターから受けるダメージ-2%。<BR>「ガーディアンユニット」の精錬値が9以上の時、追加でMaxHP+10%、人間形モンスターから受けるダメージ-2%。",57,3,0],
+	[2868,100,0,0,0,0,0,0,0,0,"「ガーディアンエンジン」の精錬値が7以上の時、追加で聖・闇属性攻撃で受けるダメージ-15%、人間形モンスターから受けるダメージ-1%。<BR>「ガーディアンエンジン」の精錬値が9以上の時、追加で聖・闇属性攻撃で受けるダメージ-15%、人間形モンスターから受けるダメージ-1%。",57,3,0],
+	[2869,100,0,0,0,0,0,0,0,0,"「ガーディアンブースター」の精錬値が7以上の時、追加で攻撃速度+5%、人間形モンスターから受けるダメージ-1%。<BR>「ガーディアンブースター」の精錬値が9以上の時、追加で攻撃速度+5%、人間形モンスターから受けるダメージ-1%。",57,3,0],
+	[2870,100,0,0,0,0,0,0,0,0,0,217,1,57,2,0],
+	[2871,62,0,40,0,1,40,100,"エルダーの御霊","エルタアノミタマ","精錬値が5以上の時、純粋なIntが60上がる度に追加でMatk+5。<BR>精錬値が7以上の時、純粋なIntが10上がる度に追加でMatk+5。",4,5,0],
+	[2872,100,0,0,0,0,0,0,0,0,"純粋なIntが10上がる度に追加でMatk-5。",0],
+	[2873,50,0,10,0,1,50,10,"死霊魔術師のニット帽","シリヨウマシユツシノニツトホウ","モンスターを倒した時、SP+5。<BR>精錬値が7以上の時、追加でMdef+5、物理・魔法攻撃時、不死形モンスターに与えるダメージ+10%、不死形モンスターから受けるダメージ-3%、モンスターを倒した時、SP+10。<BR>精錬値が9以上の時、追加でMdef+5、物理・魔法攻撃時、不死形モンスターに与えるダメージ+10%、不死形モンスターから受けるダメージ-5%、モンスターを倒した時、SP+10。",19,10,31,5,171,5,51,2,0],
+	[2874,8,151,50,4,3,350,130,"パイルバンカーS","ハイルハンカアエス","物理攻撃命中時、一定確率で敵を氷結状態にする。<BR>精錬値が7以上の時、精錬値が1上がる度に追加で物理攻撃命中時、敵を氷結状態にする確率が上昇。<BR>スキル「パイルバンカー」使用時、敵を凍結状態にする。",20,1,19550,-5000,0],
+	[2875,8,151,50,4,3,350,130,"パイルバンカーP","ハイルハンカアヒイ","物理攻撃命中時、一定確率で敵を呪い状態にする。<BR>精錬値が7以上の時、精錬値が1上がる度に追加で物理攻撃命中時、敵を呪い状態にする確率が上昇。<BR>スキル「パイルバンカー」使用時、敵を石化状態にする。",20,2,19550,-5000,0],
+	[2876,8,151,50,3474,3,350,130,"パイルバンカーT","ハイルハンカアテイ","精錬値が7以上の時、追加で必中攻撃+30%。<BR>「ブーストナックル」使用時、一定確率で1秒間、物理攻撃命中時、一定確率で敵を麻痺状態にする。",20,4,86,20,0],
+	[2877,50,0,0,3550,1,80,100,"ダークハンド","タアクハント","精錬値が1上がる度に追加で物理・魔法攻撃で与えるダメージ+1%。",7,10,102,20,57,5,0],
+	[2878,50,0,5,500000,0,60,100,"魔女の祭祀帽","マシヨノサイシホウ","精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+1%。<BR>精錬値が2上がる度に追加で闇属性魔法攻撃で与えるダメージ+3%。",19,20,4,6,0],
+	[2879,52,0,0,0,0,10,100,"刻の牢獄","トキノロウコク",0,5662,10,5518,10,0],
+	[2880,60,1,35,0,1,80,100,"時魔術師のローブ","トキマシユツシノロオフ","魔法攻撃命中時、一定確率で10秒間、「時魔術師のローブ」の精錬値が1上がる度に追加でInt+3。",100,30,73,-5,0],
+	[2881,100,0,0,0,0,0,0,0,0,0,15,20,0],
+	[2882,100,0,0,0,0,0,0,0,0,0,15,20,0],
+	[2883,60,1,35,3600,1,80,100,"超越者のローブ","チヨウエツシヤノロオフ","精錬値が1上がる度に追加でInt+3。<BR>精錬値が1上がる度に追加で念属性魔法攻撃で与えるダメージ+2%。",100,60,73,-5,380,1,0],
+	[2884,100,0,0,0,0,0,0,0,0,"魔法攻撃でモンスターを倒した時、HP+200、SP+20。",152,100,0],
+	[2885,100,0,0,0,0,0,0,0,0,0,15,20,0],
+	[2886,100,0,0,0,0,0,0,0,0,0,15,20,0],
+	[2887,61,0,50,900,0,100,100,"金剛石の盾","コンコウセキノタテ","BaseLv150以上の時、追加でDef+100。<BR>精錬値が3上がる度に追加でDef+20。",0],
+	[2888,100,0,0,0,0,0,0,0,0,0,11,10,0],
+	[2889,64,0,0,910,10,10,150,"城下町の地図","シヨウカマチノチス",0,80,2,12,3,0],
+	[2890,64,0,0,910,10,10,150,"輝く聖水","カカヤクセイスイ",0,89,2,73,-5,0],
+	[2891,64,0,0,910,0,10,100,"栄光の証[0]","エイコウノアカシ０","BaseLv150以上の時、追加で全ての基本ステータス+1。<BR>BaseLv150以上の時、物理・魔法攻撃で与えるダメージ+2%。",7,1,80,2,89,2,0],
+	[2892,1,0,100,100004,0,20,100,"邪念のダガー","シヤネンノタカア","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2893,2,70,105,100004,0,60,100,"邪念のセイバー","シヤネンノセイハア","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2894,3,51,210,100004,0,110,100,"邪念のツーハンドソード","シヤネンノツウハントソオト","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2895,4,51,110,100004,0,70,100,"邪念のスピア","シヤネンノスヒア","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2896,5,51,150,100004,0,120,100,"邪念のランス","シヤネンノランス","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2897,7,179,250,100004,0,110,100,"邪念のツーハンドアックス","シヤネンノツウハントアツクス","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2898,8,0,105,100004,0,50,100,"邪念のメイス","シヤネンノメイス","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2899,9,94,40,100004,0,30,100,"邪念のロッド","シヤネンノロツト","精錬値が1上がる度に追加でMatkが上昇。",88,100,0],
+	[2900,9,94,100,100004,0,100,100,"邪念のスタッフ","シヤネンノスタツフ","精錬値が1上がる度に追加でMatkが上昇。",195,1,88,200,0],
+	[2901,10,0,100,100004,0,40,100,"邪念のボウ","シヤネンノホウ","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2902,11,0,110,100004,0,80,100,"邪念のカタール","シヤネンノカタアル","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2903,12,0,90,100004,0,60,100,"邪念のブック","シヤネンノフツク","精錬値が1上がる度に追加でMatkが上昇。",88,100,0],
+	[2904,13,0,80,100004,0,40,100,"邪念のフィスト","シヤネンノフイスト","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2905,14,0,100,100004,0,25,100,"邪念のバイオリン","シヤネンノハイオリン","精錬値が1上がる度に追加でMatkが上昇。",88,100,0],
+	[2906,15,0,100,100004,0,25,100,"邪念のワイヤー","シヤネンノワイヤア","精錬値が1上がる度に追加でMatkが上昇。",88,100,0],
+	[2907,16,0,110,100004,0,60,100,"邪念の風魔手裏剣","シヤネンノフウマシユリケン","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2908,17,0,40,100004,0,35,100,"邪念のハンドガン","シヤネンノハントカン","精錬値が1上がる度に追加でAtkが上昇。",0],
+	[2909,3,51,300,4,1,900,150,"リンディーホップ","リンテイイホツフ","射程距離3<BR>精錬値が7以上の時、追加で物理攻撃で与えるダメージ+25%。<BR>精錬値が9以上の時、追加で物理攻撃で与えるダメージ+25%。<BR>精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない。",194,1,0],
+	[2910,8,0,170,4,2,30,100,"死者のスプーン","シシヤノスフウン","攻撃命中時、SP+1。<BR>精錬値が7以上の時、追加で攻撃命中時、SP+1。",0],
+	[2911,9,150,40,4,1,90,150,"ひまわり少年","ヒマワリシヨウネン","「サイトラッシャー」Lv10習得時、追加で火属性魔法攻撃で与えるダメージ+20%。<BR>「サイトラッシャー」Lv10習得時、「ひまわり少年」の精錬値が1上がる度に追加で火属性魔法攻撃で与えるダメージ+3%。<BR>「サイトラッシャー」Lv10習得時、「ひまわり少年」の精錬値が1上がる度に追加で敵のMdef5%無視。<BR>「メテオストーム」使用時、一定確率で5秒間、「メテオストーム」で与えるダメージ+60%、「ひまわり少年」の精錬値が1上がる度に発動率が上昇。",195,1,199,124,88,210,0],
+	[2912,11,0,130,3474,2,120,150,"ジュリエットディレイチェル","シユリエツトテイレイチエル","物理攻撃命中時、一定確率で10秒間、Atk+50。「ジュリエットディレイチェル」の精錬値が1上がる度に発動率が上昇。",20,6,31,10,49,10,0],
+	[2913,64,0,3,3240,1,50,50,"麒麟の角","キリンノツノ","[速度増加]Lv6使用可能<BR>純粋なAgiが100以上の時、 追加で攻撃速度 + 5%",2,2,12,2,52,1,55,1,57,1,51,2,56,2,0],
+	[2914,100,0,0,0,0,0,0,0,0,0,101,1,52,1,55,1,57,1,51,1,56,1,0],
+	[2915,100,0,0,0,0,0,0,0,0,0,101,1,52,1,55,1,57,1,51,1,56,1,0],
+	[2916,52,0,0,4060,0,10,100,"暴徒のスカーフ","ホウトノスカアフ","[スペルブレイカー]Lv2使用可能 ",0],
+	[2917,100,0,0,0,0,0,0,0,0,"純粋なStrとLukの合計が80上がる度に追加でCri + 5、物理攻撃で与えるダメージ + 6%、クリティカル攻撃で与えるダメージ + 10%<BR>純粋なIntとDexの合計が80上がる度に追加でMatk + 120、詠唱時間 - 3%、[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量 + 10%<BR>純粋なAgiとVitの合計が80上がる度に追加で攻撃速度 + 5%、MaxHP + 5%、プレイヤーから受けるダメージ - 2%",243,2,0],
+	[2918,100,0,0,0,0,0,0,0,0,"純粋なStrとLukの合計が80上がる度に追加でCri + 5、物理攻撃で与えるダメージ + 6%、クリティカル攻撃で与えるダメージ + 10%<BR>純粋なIntとDexの合計が80上がる度に追加でMatk + 120、詠唱時間 - 3%、[ヒール]、[サンクチュアリ]、[ポーションピッチャー]、[ハイネスヒール]、[コルセオヒール]使用時、HP回復量 + 10%<BR>純粋なAgiとVitの合計が80上がる度に追加で攻撃速度 + 5%、MaxHP + 5%、プレイヤーから受けるダメージ - 2%",243,2,0],
+	[2919,62,0,15,0,1,60,100,"リンドブルムの皮","リントフルムノカワ","[リンドブルムの皮]の精錬値が7以上の時、追加で[ハイディング]Lv1使用可能<BR>[リンドブルムの皮]の精錬値が8以上の時、純粋なAgiとVitの合計が20上がる度に追加でMaxHP + 1%、詠唱時間 - 2%<BR>[リンドブルムの皮]の精錬値が9以上の時、追加で[クローキング]Lv1使用可能 ",19,10,2,5,3,5,63,5,61,5,57,5,59,5,0],
+	[2920,64,0,0,3230,1,10,100,"ケラウノス","ケラウノス","BaseLvが15上がる度に追加で[雷光弾]の詠唱時間 - 5%<BR>BaseLvが20上がる度に追加で[羅刹破凰撃]の詠唱時間 - 3% ",12,5,15,5,80,5,5623,5,19629,3000,0],
+	[2921,50,0,0,0,1,30,1,"カタリナ・フォン・ブラッド60世","カタリナフオンフラツトロクシユウセイ","モンスターを倒した時、HP+500、SP+50。<BR>キューペット「サキュバス」を連れている時、追加で5秒毎にHP+500、SP+20。<BR>「サキュバス」の親密度が「きわめて親しい」場合、追加で5秒毎にHP+500、SP+20。<BR>装備解除時、HP-5000、SP-500。",0],
+	[2922,52,59,0,0,0,10,10,"口笛","クチブエ","敵を倒した時、HP+30、SP+3。",17,10,100,10,0],
+	[2923,50,0,59,1213,1,42,60,"バレルヘルム","ハレルヘルム","「バレルヘルム」の精錬値が7以上の時、追加でDef+100、「オートガード」Lv1使用可能。<BR>「バレルヘルム」の精錬値が8以上の時、追加で人間形モンスターから受けるダメージ-10%。<BR>「バレルヘルム」の精錬値が8以上の時、「バレルヘルム」の精錬値が1上がる度に「オートガード」の使用可能Lvが上昇。<BR>スーパーノービス系が装備時、「バレルヘルム」の精錬値が8以上の時、追加で「金剛」Lv5使用可能。<BR>装備解除時、「オートガード」、「金剛」を解除する。",3,5,75,-10,0],
+	[2924,50,0,7,0,1,40,80,"ヴァルゴクラウン","ウアルコクラウン",0,89,7,91,10,0],
+	[2925,100,0,0,0,0,0,0,0,0,0,15,4,16,4,76,50,0],
+	[2926,50,0,7,0,1,40,80,"レオダイアデム","レオタイアテム",0,80,6,102,5,0],
+	[2927,100,0,0,0,0,0,0,0,0,0,212,8,12,5,0],
+	[2928,63,0,18,0,1,100,99,"火雷大神靴","ホノイカヅチノオオカミクツ","精錬値が1上がる度に追加でMatk+5、詠唱時間-1%、地・念・無・不死属性モンスターに魔法攻撃で与えるダメージ+2%。",0],
+	[2929,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、「火雷大神靴」の精錬値が1上がる度に追加でMdef+5、Matk+5。<BR>BaseLv100以上の時、「火雷大神靴」の精錬値が1上がる度に追加でMdef+10、Matk+15。",220,58,0],
+	[2930,64,0,0,920,1,20,100,"熱狂信徒のネックレス","ネツキヨウシントノネツクレス",0,0],
+	[2931,50,0,5,3530,1,40,100,"お座り教皇(私服)","オスワリキヨウコウシフク","精錬値が7以上の時、追加でスキルディレイ-10%。<BR>精錬値が9以上の時、追加でスキルディレイ-10%。",4,2,74,10,0],
+	[2932,100,0,0,0,0,0,0,0,0,0,74,15,0],
+	[2933,100,0,0,0,0,0,0,0,0,0,74,-30,0],
+	[2934,52,0,0,970,0,10,90,"浮遊する氷","フユウスルコオリ","「アイスクリーム」の回復量+100%。",0],
+	[2935,51,0,0,960,0,10,90,"小型偵察機","コカタテイサツキ","「オーバーチャージ」Lv9使用可能。<BR>「アムダライス」を倒した時、「凝縮した魔血」をドロップ。<BR>「魔眼のアムダライス」を倒した時、「時間の結晶」をドロップ。<BR>「fff・ジターバグ」を倒した時、「ジターバグの牙」をドロップ。<BR>「死神アンク」、「絶望の神モロク」、「魔神の巨影」、「モルス・ネクロマンサー」を倒した時、「魔神モロク遠征褒賞箱」をドロップ。<BR>「S・J・アーネストウルフ」、「ビジョウ」を倒した時、「王家貢献の証」をドロップ。",0],
+	[2936,60,0,45,950,1,10,100,"カーリッツバーグ騎士団の鎧","カアリツツハアクキシタンノヨロイ","",57,1,100025,2,10000000000100012n,1,10000000010000086n,25,10000000010000194n,1,0],
+	[2937,63,0,12,940,1,10,85,"勇者の靴","ユウシヤノクツ",0,15,3,16,3,57,3,0],
+	[2938,100,0,0,0,0,0,0,0,0,"「デュプレライト」の習得Lvが1上がる度に追加で攻撃速度+1%。<BR>「メイス修練」の習得Lvが1上がる度に追加で不死・悪魔・人間形モンスターへのDef10%無視、不死・悪魔・人間形モンスターにCri+5。",199,492,199,89,0],
+	[2939,100,0,0,0,0,0,0,0,0,"「デュプレライト」の習得Lvが1上がる度に追加で攻撃速度+1%。<BR>「メイス修練」の習得Lvが1上がる度に追加で不死・悪魔・人間形モンスターへのDef10%無視、不死・悪魔・人間形モンスターにCri+5。",199,492,199,89,0],
+	[2940,100,0,0,0,0,0,0,0,0,"「エンチャントブレイド」の習得Lvが1上がる度に追加で「バッシュ」、「ボウリングバッシュ」で与えるダメージ+10%。<BR>「オーラブレイド」の習得Lvが1上がる度に追加で「バッシュ」、「ボウリングバッシュ」で与えるダメージ+10%。",199,439,199,254,0],
+	[2941,100,0,0,0,0,0,0,0,0,"「短剣製作」Lv3習得時、追加でAtk+10。 <BR>「剣製作」Lv3習得時、追加でAtk+10。 <BR>「両手剣製作」Lv3習得時、追加でAtk+10。 <BR>「ナックル製作」Lv3習得時、追加でAtk+10。 <BR>「槍製作」Lv3習得時、追加でAtk+10。 <BR>「斧製作」Lv3習得時、追加でAtk+10。 <BR>「メイス製作」Lv3習得時、追加でAtk+10。 <BR>「火と大地の研究」の習得Lvが1上がる度に追加で「アックストルネード」の再使用待機時間-0.2秒。",199,139,199,140,199,141,199,142,199,143,199,144,199,145,199,544,0],
+	[2942,100,0,0,0,0,0,0,0,0,"「短剣製作」Lv3習得時、追加でAtk+10。 <BR>「剣製作」Lv3習得時、追加でAtk+10。 <BR>「両手剣製作」Lv3習得時、追加でAtk+10。 <BR>「ナックル製作」Lv3習得時、追加でAtk+10。 <BR>「槍製作」Lv3習得時、追加でAtk+10。 <BR>「斧製作」Lv3習得時、追加でAtk+10。 <BR>「メイス製作」Lv3習得時、追加でAtk+10。 <BR>「火と大地の研究」の習得Lvが1上がる度に追加で「アックストルネード」の再使用待機時間-0.2秒。",199,139,199,140,199,141,199,142,199,143,199,144,199,145,199,544,0],
+	[2943,64,0,0,3230,1,50,100,"魔神の指輪","マシンノユヒワ",0,80,5,89,5,0],
+	[2944,100,0,0,0,0,0,0,0,0,0,80,5,0],
+	[2945,100,0,0,0,0,0,0,0,0,0,80,5,0],
+	[2946,100,0,0,0,0,0,0,0,0,0,80,5,0],
+	[2947,100,0,0,0,0,0,0,0,0,0,89,5,0],
+	[2948,100,0,0,0,0,0,0,0,0,0,89,5,0],
+	[2949,100,0,0,0,0,0,0,0,0,0,89,5,0],
+	[2950,100,0,0,0,0,0,0,0,0,0,12,5,0],
+	[2951,100,0,0,0,0,0,0,0,0,0,12,5,0],
+	[2952,100,0,0,0,0,0,0,0,0,0,12,5,0],
+	[2953,100,0,0,0,0,0,0,0,0,0,15,5,0],
+	[2954,100,0,0,0,0,0,0,0,0,0,15,5,0],
+	[2955,100,0,0,0,0,0,0,0,0,0,15,5,0],
+	[2956,100,0,0,0,0,0,0,0,0,0,73,-5,0],
+	[2957,100,0,0,0,0,0,0,0,0,0,73,-5,0],
+	[2958,100,0,0,0,0,0,0,0,0,0,73,-5,0],
+	[2959,100,0,0,0,0,0,0,0,0,0,70,5,0],
+	[2960,100,0,0,0,0,0,0,0,0,0,70,5,0],
+	[2961,100,0,0,0,0,0,0,0,0,0,70,5,0],
+	[2962,64,0,0,3240,1,50,90,"業風石","コウフウセキ",0,12,5,16,5,80,5,0],
+	[2963,100,0,0,0,0,0,0,0,0,"「ゲラドリア」の精錬値が7以上の時、追加で「ウィンドカッター」で与えるダメージ+30%、物理攻撃時、昆虫・魚貝形モンスターに与えるダメージ+30%、物理攻撃時、水・風属性モンスターに与えるダメージ+30%、物理攻撃時、ボスモンスターに与えるダメージ+30%。<BR>「ゲラドリア」の精錬値が9以上の時、追加で「ウィンドカッター」で与えるダメージ+20%、物理攻撃時、昆虫・魚貝形モンスターに与えるダメージ+20%、物理攻撃時、水・風属性モンスターに与えるダメージ+20%、物理攻撃時、ボスモンスターに与えるダメージ+20%。<BR>「ゲラドリア」の精錬値が10の時、追加で「ウィンドカッター」の詠唱時間-50%。",0],
+	[2964,100,0,0,0,0,0,0,0,0,"「ペオースプレート」の精錬値が7以上の時、追加でMaxHP+15%、人間形モンスターから受けるダメージ-2%。<BR>「ペオースプレート」の精錬値が9以上の時、追加でMaxHP+15%、人間形モンスターから受けるダメージ-2%。",57,3,152,100,0],
+	[2965,100,0,0,0,0,0,0,0,0,"「ペオースマント」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-1%、遠距離物理攻撃で受けるダメージ-10%。<BR>「ペオースマント」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-1%、遠距離物理攻撃で受けるダメージ-10%。",57,3,23443,18,0],
+	[2966,100,0,0,0,0,0,0,0,0,"「ペオースグリーブ」の精錬値が7以上の時、追加で攻撃速度+10%、人間形モンスターから受けるダメージ-1%。<BR>「ペオースグリーブ」の精錬値が9以上の時、追加で攻撃速度+10%、人間形モンスターから受けるダメージ-1%。",57,3,7443,50,0],
+	[2967,100,0,0,0,0,0,0,0,0,0,12,5,16,5,80,5,57,4,0],
+	[2968,100,0,0,0,0,0,0,0,0,"「オーラブレイド」使用時、10秒間、スキルディレイ-70%。",0],
+	[2969,62,0,15,0,1,60,100,"グウィバーの皮","クウイハアノカワ","精錬値が7以上の時、追加で物理攻撃でモンスターを倒した時、SP+10。<BR>精錬値が8以上の時、純粋なIntとDexの合計が20上がる度に追加でAtk+5、スキルディレイ-1%。<BR>精錬値が9以上の時、追加で物理攻撃でモンスターを倒した時、SP+10。 ",19,10,4,5,5,5,51,5,56,5,67,5,69,5,0],
+	[2970,64,0,0,0,0,0,60,"怨嗟の腕輪","エンサノウデワ","",0],
+	[2971,64,0,0,3230,1,50,80,"魔術師のグローブ","マシユツシノクロオフ",0,343,5,341,5,344,5,342,5,340,5,73,-10,298,50,0],
+	[2972,50,0,2,0,1,50,40,"マラン海賊団帽","マランカイソクタンホウ","物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴窟王の洞窟」に出現するモンスターに与えるダメージ+15%。<BR>メモリアルダンジョン「地下排水路」、「暴窟王の洞窟」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴窟王の洞窟」に出現するモンスターに与えるダメージ+15%。<BR>精錬値が7以上の時、追加で「地下排水路」、メモリアルダンジョン「暴窟王の洞窟」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が8以上の時、追加で風属性攻撃で受けるダメージ-15%。<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、メモリアルダンジョン「地下排水路」、「暴窟王の洞窟」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が9以上の時、追加でメモリアルダンジョン「地下排水路」、「暴窟王の洞窟」に出現するモンスターから受けるダメージ-20%。 ",64,10,0],
+	[2973,60,0,100,0,1,40,90,"海竜の鎧","カイリユウノヨロイ","精錬値が7以上の時、追加でスキル使用時の消費SP-5%、詠唱時間-5%、魔法攻撃時、ボスモンスターに与えるダメージ+10%。<BR>精錬値が9以上の時、追加でスキル使用時の消費SP-5%、詠唱時間-5%、魔法攻撃時、ボスモンスターに与えるダメージ+10%。",7,1,102,10,0],
+	[2974,1,0,120,100004,1,60,150,"ディーヴァダガー","テイウアタカア","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,120,0],
+	[2975,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2976,2,70,150,100004,1,120,150,"ディーヴァブレイド","テイウアフレイト","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,130,0],
+	[2977,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2978,3,0,280,100004,1,340,150,"ディーヴァクレイモア","テイウアクレイモア","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,230,0],
+	[2979,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2980,4,0,150,100004,1,180,150,"ディーヴァスピア","テイウアスヒア","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,110,0],
+	[2981,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2982,5,0,200,100004,1,350,150,"ディーヴァランス","テイウアランス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,230,0],
+	[2983,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2984,6,90,180,100004,1,180,150,"ディーヴァアックス","テイウアアツクス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,110,0],
+	[2985,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2986,7,0,320,100004,1,400,150,"ディーヴァツーハンドアックス","テイウアツウハントアツクス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,200,0],
+	[2987,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2988,8,0,150,100004,1,150,150,"ディーヴァメイス","テイウアメイス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,110,0],
+	[2989,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2990,9,77,60,100004,1,30,150,"ディーヴァワンド","テイウアワント","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+4%。",88,180,0],
+	[2991,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2992,9,94,120,100004,1,240,150,"ディーヴァスタッフ","テイウアスタツフ","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+4%。<BR>※両手杖ですが、基本ASPDは片手杖と同等のようです。",88,270,195,1,0],
+	[2993,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2994,10,0,160,100004,1,90,150,"ディーヴァウィング","テイウアウインク","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,170,0],
+	[2995,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2996,11,0,150,100004,1,280,150,"ディーヴァカタール","テイウアカタアル","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,250,0],
+	[2997,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[2998,12,0,120,100004,1,80,150,"ディーヴァブック","テイウアフツク","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+4%。",88,140,0],
+	[2999,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3000,13,0,140,100004,1,40,150,"ディーヴァクロー","テイウアクロウ","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,100,0],
+	[3001,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3002,14,0,180,100004,1,25,150,"ディーヴァバイオリン","テイウアハイオリン","精錬値が7以上の時、追加でアローバルカンで与えるダメージ+150%。<BR>精錬値が9以上の時、追加でアローバルカンで与えるダメージ+50%。",88,120,0],
+	[3003,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3004,15,0,150,100004,1,50,150,"ディーヴァブレイドウィップ","テイウアフレイトウイツフ","精錬値が7以上の時、追加でアローバルカンで与えるダメージ+150%。<BR>精錬値が9以上の時、追加でアローバルカンで与えるダメージ+50%。",88,120,0],
+	[3005,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3006,16,0,150,100004,1,150,150,"ディーヴァ風魔手裏剣","テイウアフウマシユリケン","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,160,0],
+	[3007,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3008,17,0,70,100004,1,35,150,"ディーヴァハンドガン","テイウアハントカン","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",0],
+	[3009,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3010,18,0,170,100004,1,85,150,"ディーヴァライフル","テイウアライフル","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",0],
+	[3011,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3012,20,0,120,100004,1,250,150,"ディーヴァガトリングガン","テイウアカトリンクカン","純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",0],
+	[3013,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3014,19,0,180,100004,1,300,150,"ディーヴァショットガン","テイウアシヨツトカン","純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",0],
+	[3015,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3016,21,0,210,100004,1,140,150,"ディーヴァグレネードガン","テイウアクレイネイトカン","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",0],
+	[3017,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3018,60,0,80,100000,1,100,150,"ディーヴァローブ","テイウアロオフ","精錬値が7以上の時、追加でHP自然回復力+10%。<BR>精錬値が9以上の時、追加でHP自然回復力+20%。",0],
+	[3019,62,0,15,100000,1,60,150,"ディーヴァマント","テイウアマント","精錬値が7以上の時、追加でMaxHP+5%。<BR>精錬値が9以上の時、追加でMaxHP+10%。",0],
+	[3020,63,0,10,100000,1,60,150,"ディーヴァシューズ","テイウアシユウス","精錬値が7以上の時、追加でMaxHP+1000。<BR>精錬値が9以上の時、追加でMaxHP+2000。",0],
+	[3021,100,0,0,0,0,0,0,0,0,0,15,10,16,10,0],
+	[3022,1,0,120,100004,1,60,150,"ミラージュダガー","ミラアシユタカア","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,120,197,5,0],
+	[3023,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3024,2,70,150,100004,1,120,150,"ミラージュブレイド","ミラアシユフレイト","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,130,197,5,0],
+	[3025,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3026,3,0,280,100004,1,340,150,"ミラージュクレイモア","ミラアシユクレイモア","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,230,197,5,0],
+	[3027,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3028,4,0,150,100004,1,180,150,"ミラージュスピア","ミラアシユスヒア","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,110,197,5,0],
+	[3029,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3030,5,0,200,100004,1,350,150,"ミラージュランス","ミラアシユランス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,230,197,5,0],
+	[3031,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3032,6,90,180,100004,1,180,150,"ミラージュアックス","ミラアシユアツクス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,110,197,5,0],
+	[3033,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3034,7,0,320,100004,1,400,150,"ミラージュツーハンドアックス","ミラアシユツウハントアツクス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,200,197,5,0],
+	[3035,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3036,8,0,150,100004,1,150,150,"ミラージュメイス","ミラアシユメイス","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,110,197,5,0],
+	[3037,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3038,9,77,60,100004,1,30,150,"ミラージュワンド","ミラアシユワント","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+4%。",88,180,197,5,0],
+	[3039,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3040,9,94,120,100004,1,240,150,"ミラージュスタッフ","ミラアシユスタツフ","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+4%。",195,1,88,270,195,1,197,5,0],
+	[3041,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3042,10,0,160,100004,1,90,150,"ミラージュウィング","ミラアシユウインク","「ワシの目」の習得Lvが1上がる度に追加で必中攻撃+2。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",199,39,88,170,0],
+	[3043,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3044,11,0,150,100004,1,280,150,"ミラージュカタール","ミラアシユカタアル","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,250,197,5,0],
+	[3045,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3046,12,0,120,100004,1,80,150,"ミラージュブック","ミラアシユフツク","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+4%。",88,140,197,5,0],
+	[3047,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3048,13,0,140,100004,1,40,150,"ミラージュクロー","ミラアシユクロウ","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,100,197,5,0],
+	[3049,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3050,14,0,180,100004,1,25,150,"ミラージュバイオリン","ミラアシユウアイオリン","精錬値が7以上の時、追加でアローバルカンで与えるダメージ+150%。<BR>精錬値が9以上の時、追加でアローバルカンで与えるダメージ+50%。",88,120,197,5,0],
+	[3051,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3052,15,0,150,100004,1,50,150,"ミラージュブレイドウィップ","ミラアシユフレイトウイツフ","精錬値が7以上の時、追加でアローバルカンで与えるダメージ+150%。<BR>精錬値が9以上の時、追加でアローバルカンで与えるダメージ+50%。",88,120,197,5,0],
+	[3053,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3054,16,0,150,100004,1,150,150,"ミラージュ風魔手裏剣","ミラアシユフウマシユリケン","精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",88,160,197,5,0],
+	[3055,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3056,17,0,70,100004,1,35,150,"ミラージュハンドガン","ミラアシユハントカン","「スネークアイ」の習得Lvが1上がる度に追加で必中攻撃+2。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",199,426,0],
+	[3057,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3058,18,0,170,100004,1,85,150,"ミラージュライフル","ミラアシユライフル","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。<BR>「スネークアイ」の習得Lvが1上がる度に追加で必中攻撃+2。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",199,426,0],
+	[3059,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3060,20,0,120,100004,1,250,150,"ミラージュガトリングガン","ミラアシユカトリンクカン","純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。<BR>「スネークアイ」の習得Lvが1上がる度に追加で必中攻撃+2。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",199,426,0],
+	[3061,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3062,19,0,180,100004,1,300,150,"ミラージュショットガン","ミラアシユシヨツトカン","純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。<BR>「スネークアイ」の習得Lvが1上がる度に追加で必中攻撃+2。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",199,426,0],
+	[3063,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3064,21,0,210,100004,1,140,150,"ミラージュグレネードガン","ミラアシユクレイネエトカン","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。<BR>「スネークアイ」の習得Lvが1上がる度に追加で必中攻撃+2。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5。",199,426,0],
+	[3065,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3066,60,0,80,100000,1,100,150,"ミラージュローブ","ミラアシユロオフ","精錬値が7以上の時、追加でSP自然回復力+10%。<BR>精錬値が9以上の時、追加でSP自然回復力+20%。",0],
+	[3067,62,0,15,100000,1,60,150,"ミラージュマント","ミラアシユマント","精錬値が7以上の時、追加でMaxSP+5%。<BR>精錬値が9以上の時、追加でMaxSP+10%。",0],
+	[3068,63,0,10,100000,1,60,150,"ミラージュシューズ","ミラアシユシユウス","精錬値が7以上の時、追加でMaxSP+100。<BR>精錬値が9以上の時、追加でMaxSP+200。",0],
+	[3069,100,0,0,0,0,0,0,0,0,0,15,10,16,10,0],
+	[3070,64,0,0,3230,1,50,100,"セリーヌのブローチ","セリイヌノフロオチ",0,101,1,13,500,14,250,89,5,73,-10,0],
+	[3071,100,0,0,0,1,0,0,0,0,"追加で固定詠唱-50%。<BR>「セリーヌのリボン」の精錬値が1上がる度に追加で全ての基本ステータス+1。<BR>「セリーヌのリボン」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-10%。<BR>「セリーヌのリボン」の精錬値が7以上の時、追加で魔法攻撃時、ボスモンスターに与えるダメージ+20%。<BR>「セリーヌのリボン」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。<BR>「セリーヌのリボン」の精錬値が9以上の時、追加で魔法攻撃時、ボスモンスターに与えるダメージ+20%。",96,10,0],
+	[3072,100,0,0,0,1,0,0,0,0,"追加で固定詠唱-50%。<BR>「瑞々しいバラ」の精錬値が1上がる度に追加で全ての基本ステータス+1。<BR>「瑞々しいバラ」の精錬値が7以上の時、追加で魔法攻撃時、ボスモンスターに与えるダメージ+20%。",0],
+	[3073,100,0,0,0,1,0,0,0,0,0,17,50,100,50,101,2,221,189,221,190,221,191,221,192,0],
+	[3074,61,0,150,0,1,350,90,"アネモスシールド","アネモスシイルト","精錬値が6以上の時、追加で風属性攻撃で受けるダメージ-15%、物理・魔法攻撃時、風属性モンスターに与えるダメージ+10%。<BR>精錬値が8以上の時、純粋なStrが90以上の時、追加でAtk+50。<BR>精錬値が8以上の時、純粋なAgiが90以上の時、追加で攻撃速度+5%。<BR>精錬値が8以上の時、純粋なVitが90以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+10%、一部の回復アイテムによるHP回復量+10%。<BR>精錬値が8以上の時、純粋なIntが90以上の時、追加でMatk+30。<BR>精錬値が8以上の時、純粋なDexが90以上の時、追加で詠唱時間-5%。<BR>精錬値が8以上の時、純粋なLukが90以上の時、追加でクリティカル攻撃で与えるダメージ+5%。 ",19,15,64,10,44,5,354,5,0],
+	[3075,62,0,15,0,1,60,100,"マラクの皮","マラクノカワ","精錬値が7以上の時、追加でクリティカル攻撃で与えるダメージ+5%。<BR>精錬値が8以上の時、純粋なStrとLukの合計が20上がる度に追加でCri+1、攻撃速度+1%。<BR>精錬値が9以上の時、追加でクリティカル攻撃で与えるダメージ+5%",19,10,1,5,6,5,50,5,58,5,66,5,68,5,0],
+	[3076,62,0,38,980,1,40,100,"時空マント","シクウマント",0,19,10,57,5,0],
+	[3077,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,17,30,0],
+	[3078,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,12,5,0],
+	[3079,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,92,10,0],
+	[3080,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,100,30,0],
+	[3081,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,25,5,0],
+	[3082,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,70,5,0],
+	[3083,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,17,30,0],
+	[3084,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,12,5,0],
+	[3085,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,92,10,0],
+	[3086,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,100,30,0],
+	[3087,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,25,5,0],
+	[3088,100,0,0,0,1,0,0,0,0,0,19,10,15,15,57,5,70,5,0],
+	[3089,50,0,12,990,0,12,1,"たれチュウニペンギン","タレチユウニヘンキン",0,13,700,14,200,190,5,191,5,192,5,92,5,0],
+	[3090,2,50,100,4,3,60,90,"伸縮自在ハンド","シンシユクシサイハント","物理攻撃命中時、一定確率で敵にオートスペル「スティール」Lv1発動。「スティール」の習得Lvが2以上の場合、習得Lvで発動。<BR>「伸縮自在ハンド」の精錬値が2以上の時、「伸縮自在ハンド」の精錬値が1上がる度に追加でオートスペル「スティール」の発動率が上昇。<BR>BaseLv100以上の時、「伸縮自在ハンド」の精錬値が7以上の時、追加で「サプライズアタック」Lv5使用可能。<BR>BaseLv100以上の時、「伸縮自在ハンド」の精錬値が9以上の時、追加で「バックスタブ」Lv10使用可能。",220,52,220,53,0],
+	[3091,52,0,0,4060,0,30,80,"守護騎士の首飾り","シユコキシノクヒカサリ",0,101,1,0],
+	[3092,100,0,0,0,0,0,0,0,0,"純粋なAgiが108以上の時、追加でAtk+60、攻撃速度+5%、プレイヤーから受けるダメージ-2%。<BR>純粋なAgiが120以上の時、追加でAtk+80、攻撃速度+7%、プレイヤーから受けるダメージ-4%。 ",17,40,12,3,243,2,154,100,156,100,0],
+	[3093,63,0,12,3140,10,40,100,"執行者のシューズ","シツコウシヤノシユウス","「マキシマイズパワー」Lv1使用可能。<BR>精錬値が5以上の時、追加でMaxHP+7%、MaxSP+7%、BaseLvが1上がる度に「メテオアサルト」で与えるダメージ+1%。<BR>精錬値が7以上の時、追加でMaxHP+10%、MaxSP+10%、BaseLvが1上がる度に「メテオアサルト」で与えるダメージ+1%。<BR>「ポイズンリアクト」の習得Lvが1上がる度に追加で「メテオアサルト」で与えるダメージ+30%。<BR>「ウェポンブロッキング」の習得Lvが1上がる度に追加で「ハルシネーションウォーク」の再使用待機時間-5秒。<BR>「ウェポンブロッキング」の習得Lvが1上がる度に追加で「メテオアサルト」の詠唱時間-7%。<BR>「ウェポンクラッシュ」の習得Lvが1上がる度に追加で物理攻撃で与えるダメージ+4%。<BR>「ウェポンクラッシュ」の習得Lvが1上がる度に追加で「メテオアサルト」の詠唱時間-7%。<BR>「カウンタースラッシュ」の習得Lvが1上がる度に追加で全ての種族のDef20%無視。<BR>「カウンタースラッシュ」の習得Lvが1上がる度に追加で「メテオアサルト」の詠唱時間-7%。",199,86,199,468,199,470,199,469,15,3,16,3,23264,8,0],
+	[3094,50,0,0,0,1,30,100,"ブリュンヒルデのダイアデム","フリユンヒルテノタイアテム","精錬値が6以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+15%。<BR>精錬値が8以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+15%",26,10,8000381,1,0],
+	[3095,60,0,120,2240,0,40,90,"深淵のドレス","シンエンノトレス","精錬値が5以上の時、追加で物理・魔法攻撃時、不死・悪魔形モンスターに与えるダメージ+10%、闇・不死属性モンスターに与えるダメージ+10%。<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、不死・悪魔形モンスターに与えるダメージ+15%、闇・不死属性モンスターに与えるダメージ+15%。<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、不死・悪魔形モンスターに与えるダメージ+15%、闇・不死属性モンスターに与えるダメージ+15%。 ",198,7,381,1,0],
+	[3096,63,0,15,3150,10,50,100,"悪魔崇拝者の靴","アクマスウハイシヤノクツ","精錬値が5以上の時、追加でMaxHP+7%、MaxSP+7%、魔法攻撃で与えるダメージ+3%、火・無属性魔法攻撃で与えるダメージ+3%。<BR>精錬値が7以上の時、追加でMaxHP+10%、MaxSP+10%、魔法攻撃で与えるダメージ+5%、火・無属性魔法攻撃で与えるダメージ+5%。",19,15,15,3,16,3,89,2,340,2,343,2,0],
+	[3097,100,0,0,0,0,0,0,0,0,"固定詠唱時間-50%<BR>「フェイス」の習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ+2%。<BR>「堕天司祭の闇光外套」の精錬値が7以上の時、追加で火・闇・無属性魔法攻撃で与えるダメージ+10%。<BR>「堕天司祭の闇光外套」の精錬値が9以上の時、追加で火・闇・無属性魔法攻撃で与えるダメージ+10%。",199,156,57,10,66,30,67,30,0],
+	[3098,100,0,0,0,0,0,0,0,0,"「ファイアーピラー」の習得Lvが1上がる度に追加で火属性魔法攻撃で与えるダメージ+4%、「グラビテーションフィールド」の習得Lvが1上がる度に追加で無属性魔法攻撃で与えるダメージ+6%。<BR>「古代樹の杖」の精錬値が7以上の時、追加で魔法攻撃時、人間形モンスターに与えるダメージ+20%、「ヘルインフェルノ」で与えるダメージ+100%。<BR>「古代樹の杖」の精錬値が9以上の時、追加で魔法攻撃時、人間形モンスターに与えるダメージ+20%、「ヘルインフェルノ」で与えるダメージ+100%。",199,122,199,325,57,10,0],
+	[3099,100,0,0,0,0,0,0,0,0,0,343,-50,347,-50,340,-50,0],
+	[3100,60,0,50,0,1,100,100,"聖なる白衣","セイナルハクイ","精錬値が7以上の時、追加でDef+50、絶対に壊れない。<BR>精錬値が7以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+4%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+2%、一部の回復アイテムによるHP回復量+2%。<BR>精錬値が8以上の時、追加でDef+100、人間形モンスターから受けるダメージ-7%。<BR>精錬値が8以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+6%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+3%、一部の回復アイテムによるHP回復量+3%。<BR>精錬値が9以上の時、追加でDef+150、石化に対する耐性+50%。<BR>精錬値が9以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+8%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+4%、一部の回復アイテムによるHP回復量+4%。",19,10,74,10,91,2,92,1,0],
+	[3101,100,0,0,0,0,0,0,0,0,"「聖なる白衣」の精錬値が9以上の時、絶対に凍結状態にならない。",0],
+	[3102,1,0,150,1003,3,100,50,"猟乱剣","リヨウランケン","「猟乱剣」の精錬値が7以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+10%。<BR>「猟乱剣」の精錬値が9以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+15%。<BR>「猟乱剣」の精錬値が7以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+10%。<BR>「猟乱剣」の精錬値が9以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+15%。 ",20,3,0],
+	[3103,4,0,140,1003,3,200,50,"猟乱槍","リヨウランヤリ","「猟乱槍」の精錬値が7以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+10%。<BR>「猟乱槍」の精錬値が9以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+15%。<BR>「猟乱槍」の精錬値が7以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+10%。<BR>「猟乱槍」の精錬値が9以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+15%。 ",20,3,0],
+	[3104,8,0,130,1003,3,200,50,"猟乱鎚","リヨウランツチ","「猟乱鎚」の精錬値が7以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+10%。<BR>「猟乱鎚」の精錬値が9以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+15%。<BR>「猟乱鎚」の精錬値が7以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+10%。<BR>「猟乱鎚」の精錬値が9以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+15%。 ",20,3,194,1,0],
+	[3105,10,0,120,1003,2,150,50,"猟乱弓","リヨウランユミ","「猟乱弓」装備時、180分間、矢に火属性を付与。（※属性付与の設定をご利用ください）<BR>「猟乱弓」の精錬値が7以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+10%。<BR>「猟乱弓」の精錬値が9以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+15%。<BR>「猟乱弓」の精錬値が7以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+10%。<BR>「猟乱弓」の精錬値が9以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+15%。<BR>「矢」と共に装備時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+15%。 ",20,3,0],
+	[3106,9,94,160,1003,2,100,50,"猟乱杖","リヨウランツエ","「猟乱杖」の精錬値が7以上の時、追加で魔法攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+10%。<BR>「猟乱杖」の精錬値が9以上の時、追加で魔法攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+15%。<BR>「猟乱杖」の精錬値が7以上の時、追加で魔法攻撃時、水・地属性モンスターに与えるダメージ+10%。<BR>「猟乱杖」の精錬値が9以上の時、追加で魔法攻撃時、水・地属性モンスターに与えるダメージ+15%。 ",20,3,194,1,88,145,0],
+	[3107,17,0,60,1003,2,100,50,"猟乱銃","リヨウランジュウ","「猟乱銃」装備時、180分間、弾に火属性を付与。（※属性付与の設定をご利用ください）<BR>「猟乱銃」の精錬値が7以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+10%。<BR>「猟乱銃」の精錬値が9以上の時、追加で物理攻撃時、昆虫・人間形（プレイヤー除く）へのダメージ+15%。<BR>「猟乱銃」の精錬値が7以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+10%。<BR>「猟乱銃」の精錬値が9以上の時、追加で物理攻撃時、水・地属性モンスターに与えるダメージ+15%。 ",20,3,0],
+	[3108,64,0,0,3240,1,50,1,"巨人の加護","キヨシンノカコ","純粋なStrが120以上の時、追加でAtk+50、MaxHP+5%、MaxSP+5%。",80,5,0],
+	[3109,100,0,0,0,0,0,0,0,0,"「ギガントアックス」の精錬値が7以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+5%、「カートターミネーション」で与えるダメージ+5%。<BR>「ギガントアックス」の精錬値が9以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+10%、「カートターミネーション」で与えるダメージ+10%。",57,3,0],
+	[3110,100,0,0,0,0,0,0,0,0,"純粋なStrが10上がる度に追加で遠距離物理攻撃で与えるダメージ+2%。<BR>「ギガントボウ」の精錬値が7以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+5%、「アローストーム」、「エイムドボルト」で与えるダメージ+5%。<BR>「ギガントボウ」の精錬値が9以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+10%、「アローストーム」、「エイムドボルト」で与えるダメージ+10%。",0],
+	[3111,100,0,0,0,0,0,0,0,0,"「ギガントランス」の精錬値が7以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+5%、「スパイラルピアース」、「ソニックウェーブ」で与えるダメージ+5%。<BR>「ギガントランス」の精錬値が9以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+10%、「スパイラルピアース」、「ソニックウェーブ」で与えるダメージ+10%。 ",57,3,0],
+	[3112,64,0,0,3230,1,50,100,"エーギルリング","エエキルリンク",0,19,5,7,1,80,5,89,5,61,10,0],
+	[3113,100,0,0,0,0,0,0,0,0,"「エーギルヘルム」の精錬値が7以上の時、追加で物理・魔法攻撃で与えるダメージ+5%、全ての基本ステータス+5。",217,5,80,5,89,5,0],
+	[3114,100,0,0,0,0,0,0,0,0,"「エーギルアーマー」の精錬値が7以上の時、追加でスタン・沈黙に対する耐性+25%。",151,25,156,25,0],
+	[3115,100,0,0,0,0,0,0,0,0,"「エーギルマント」の精錬値が7以上の時、追加で火・水属性攻撃で受けるダメージ-25%。",63,25,61,25,0],
+	[3116,100,0,0,0,0,0,0,0,0,"「エーギルシューズ」の精錬値が7以上の時、追加でMaxHP+10%、MaxSP+10%。",15,10,16,10,0],
+	[3117,100,0,0,0,0,0,0,0,0,0,11,30,61,15,152,100,0],
+	[3118,100,0,0,0,0,0,0,0,0,"「トンネルドライブ」Lv1使用可能。<BR>「ハイディング」や「クローキング」をしているモンスターが見える。",19,15,9,100,15,15,0],
+	[3119,50,0,2,0,1,50,30,"虹色の翼","ニシイロノツハサ","物理・魔法攻撃時、「アルデバラン時計塔」、「捻じれた時間の時計塔」に出現するモンスターに与えるダメージ+15%。<BR>「アルデバラン時計塔」、「捻じれた時間の時計塔」に出現するモンスターから受けるダメージ-15%。<BR>「アルデバラン時計塔」、「捻じれた時間の時計塔」に出現するモンスターを倒した時、一定確率で「魔女の星の砂」をドロップ。<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、「アルデバラン時計塔」、「捻じれた時間の時計塔」に出現するモンスターに与えるダメージ+15%。<BR>精錬値が7以上の時、追加で「アルデバラン時計塔」、「捻じれた時間の時計塔」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が8以上の時、追加で絶対に石化状態にならない。<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、「アルデバラン時計塔」、「捻じれた時間の時計塔」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が9以上の時、追加で「アルデバラン時計塔」、「捻じれた時間の時計塔」に出現するモンスターから受けるダメージ-20%。<BR>「虹色の翼」を装備時、国境都市アルデバランにいるNPC「リチェルカ」に話すと「アルデバラン時計塔」、「捻じれた時間の時計塔」への転送を受けることができる。",0],
+	[3120,50,0,5,1010,1,40,100,"ガーデンオブエデン","カアテンオフエテン","",4,5,5,5,270,10,295,20,7000270,15,7000298,30,9000073,-15,9000298,50,10000000000100074n,2,10000000010000019n,100,0],
+	[3121,100,0,0,0,0,0,0,0,0,"装備解除時、「テレキネシスインテンス」を解除する。",73,-100,19798,120000,0],
+	[3122,51,0,0,1020,0,10,100,"ジェミニ-S58の目(赤)","シエミニエスコシユウハチノメアカ","純粋なVitが90以上の時、追加で石化・睡眠に対する耐性+40%。",159,10,155,10,0],
+	[3123,52,0,0,1030,0,10,90,"オープンエアヘッドフォン","オオフンエアヘツトフオン","モンスターを倒した時、SP+5。",74,5,102,5,0],
+	[3124,62,0,12,3660,1,60,10,"メディックケープ","メテイツクケエフ","モンスターを倒した時、HP+100、SP+10。<BR>動物・魚貝形モンスターを倒した時、一定確率で「RBマッスル15mg」をドロップ。<BR>無・竜形モンスターを倒した時、一定確率で「抗毒血清」をドロップ。<BR>植物・昆虫形モンスターを倒した時、一定確率で「戦闘薬」をドロップ。<BR>悪魔・人間形モンスターを倒した時、一定確率で「速度変化ポーション(UP)」をドロップ。<BR>不死・天使形モンスターを倒した時、一定確率で「毒薬の瓶」をドロップ。<BR>メディックケープ」の精錬値が7以上の時、追加で上記効果によるドロップ確率が上昇。<BR>「メディックケープ」の精錬値が9以上の時、追加で上記効果によるドロップ確率が上昇。",0],
+	[3125,60,0,60,1050,1,120,100,"ドレイクコート","トレイクコオト","精錬値が7以上の時、追加でMaxHP+1000、MaxSP+100、物理攻撃で与えるダメージ+3%。<BR>精錬値が9以上の時、追加でMaxHP+1500、MaxSP+150、物理攻撃で与えるダメージ+4%、全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない。",19,10,13,500,14,50,80,3,0],
+	[3126,9,157,200,1154,1,270,130,"炎雷魔女の大杖","エンライマシヨノオオツエ","「ファイアーウォーク」の習得Lvが1上がる度に追加で火属性魔法攻撃で与えるダメージ+10%。<BR>「エレクトリックウォーク」の習得Lvが1上がる度に追加で風属性魔法攻撃で与えるダメージ+10%。<BR>精錬値が1上がる度に追加で火・風属性魔法攻撃で与えるダメージ+5%、敵のMdef5%無視。<BR>精錬値が1上がる度に追加で「ファイアーウォーク」、「エレクトリックウォーク」で与えるダメージ+30%。<BR>精錬値が7以上の時、追加で「ファイアーウォーク」で攻撃命中時に、敵を呪い状態にする。<BR>精錬値が7以上の時、追加で「エレクトリックウォーク」で攻撃命中時に、敵を沈黙状態にする。<BR>精錬値が9以上の時、追加で「ファイアーウォーク」、「エレクトリックウォーク」で与えるダメージ+100%。<BR>精錬値が10の時、追加で固定詠唱時間-70%。",199,658,199,659,195,1,88,350,4,5,5,10,73,-30,0],
+	[3127,4,0,360,1154,1,380,130,"神喰らいの龍槍","カミクライノリユウソウ","物理攻撃命中時、敵に与えたダメージの1%をHPとして吸収<BR>精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 2%、攻撃速度 + 2%、スキルディレイ - 1%<BR>精錬値が7以上の時、追加で物理攻撃命中時、敵に与えたダメージの2%をHPとして吸収<BR>精錬値が9以上の時、追加で物理攻撃命中時、敵に与えたダメージの3%をHPとして吸収<BR>精錬値が10の時、追加で固定詠唱時間 - 70%",88,280,1,3,5,5,5794,50,5447,50,0],
+	[3128,64,0,0,1140,1,10,130,"深淵の王の指輪","シンエンノオウノユヒワ","近接物理攻撃でモンスターを倒した時、HP+300。<BR>BaseLvが3上がる度に追加で「クロスリッパースラッシャー」で与えるダメージ+1%。<BR>BaseLvが10上がる度に追加で「ローリングカッター」で与えるダメージ+1%。",1,2,2,1,80,6,0],
+	[3129,64,0,150,1140,1,10,130,"魔呪の指輪","マシユノユヒワ",0,19,15,7,1,80,6,89,6,0],
+	[3130,100,0,0,0,0,0,0,0,0,0,80,10,89,10,0],
+	[3131,100,0,0,0,0,0,0,0,0,0,61,30,64,30,0],
+	[3132,100,0,0,0,0,0,0,0,0,0,73,-10,12,10,74,10,0],
+	[3133,64,0,0,1140,1,20,130,"ソヒョンの小太刀","ソヒヨンノコタチ",0,100,50,91,10,0],
+	[3134,100,0,0,0,0,0,0,0,0,"「ソヒョンの羽衣」の精錬値が1上がる度に追加でMatk+5、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+2%。",0],
+	[3135,62,0,16,1170,1,100,130,"降霊術士の外套","コウレイシユツシノカイトウ","精錬値が1上がる度に追加で火・風属性攻撃で受けるダメージ-5%。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+5%、詠唱時間-5%。<BR>精錬値が9以上の時、追加で魔法攻撃で与えるダメージ+5%、詠唱時間-5%。<BR>精錬値が10の時、追加でインデュア状態になる。",0],
+	[3136,100,0,0,0,0,0,0,0,0,0,89,5,63,20,64,20,0],
+	[3137,62,77,6,1120,1,60,130,"ルドの黒い羽","ルトノクロイハネ","精錬値が2上がる度に追加で魔法攻撃で与えるダメージ+3%。",101,1,0],
+	[3138,100,0,0,0,0,0,0,0,0,"「ルドのロールペーパー」の精錬値が1上がる度に追加で聖属性攻撃で受けるダメージ-3%。",0],
+	[3139,50,0,0,1160,1,10,130,"古代龍の宝冠","コタイリユウノホウカン","精錬値が1上がる度に追加で、恐怖に対する耐性 + 10%、魔法攻撃で与えるダメージ + 1%、詠唱時間 - 1%<BR>精錬値が7以上の時、追加で[サイキックウェーブ]で与えるダメージ + 15%<BR>精錬値が9以上の時、追加で[サイキックウェーブ]で与えるダメージ + 15%<BR>精錬値が10の時、純粋なIntとDexの合計が10上がる度に追加でInt + 1 , Dex + 1、ソーサラーが装備時、[ガンバンテイン]Lv1使用可能",19,15,7019662,1000,9019662,1000,219,2830,0],
+	[3140,61,152,150,1100,1,250,130,"キングスガード","キンクスカアト","精錬値が7以上の時、追加で物理・魔法攻撃時、不死形モンスターに与えるダメージ+15%、闇属性モンスターに与えるダメージ+15%。<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、不死形モンスターに与えるダメージ+15%、闇属性モンスターに与えるダメージ+15%。",19,10,0],
+	[3141,100,0,0,0,0,0,0,0,0,"「キングスガード」の精錬値が1上がる度に追加で「グランドクロス」、「バッシュ」、「ホーリークロス」で与えるダメージ+20%。",0],
+	[3142,60,0,100,1110,1,120,130,"ローラのプレートメイル","ロオラノフレイトメイル","精錬値が1上がる度に追加でVit+1、Def+20。<BR>精錬値が7以上の時、追加で近接物理攻撃で受けたダメージの5%を反射、絶対に壊れない。<BR>精錬値が9以上の時、追加で近接物理攻撃で受けたダメージの5%を反射。",71,5,0],
+	[3143,100,0,0,0,0,0,0,0,0,"「ローラの鎖鉄球」の精錬値が1上がる度に追加でAtk+10。",0],
+	[3144,63,0,13,1130,1,70,130,"エルヴィラブーツ","エルウイラフウツ","精錬値が1上がる度に追加で「ライトニングボルト」で与えるダメージ+3%。",80,5,89,5,64,10,0],
+	[3145,100,0,0,0,0,0,0,0,0,0,80,10,89,10,64,20,0],
+	[3146,64,0,0,3230,1,50,80,"鍛冶師の手甲","カシシノテツコウ",0,26,5,74,10,293,50,0],
+	[3147,50,0,0,0,1,50,100,"ジークフリードの兜","シイクフリイトノカフト","精錬値が6以上の時、追加で完全回避+5、ボスモンスターから受けるダメージ-5%。<BR>精錬値が8以上の時、追加で完全回避+5、ボスモンスターから受けるダメージ-10%",77,5,8000381,1,0],
+	[3148,62,0,10,0,1,30,100,"フリオニウィング","フリオニウインク","精錬値が7以上の時、追加でHit+20。<BR>精錬値が8以上の時、追加でHit+30。<BR>精錬値が9以上の時、追加でHit+40。<BR>精錬値が10の時、追加でHit+100。",8,10,15,10,0],
+	[3149,100,0,0,0,0,0,0,0,0,0,86,50,159,100,0],
+	[3150,60,50,77,4,1,40,90,"エンジェリングスーツ","エンシエリンクスウツ","BaseLv100以上の時、BaseLvが1上がる度に追加でHP+30、SP+5。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+10%。<BR>精錬値が8以上の時、追加で「ウェポンパーフェクション」Lv5使用可能。<BR>精錬値が9以上の時、追加で鎧に聖属性を付与する。",19,20,13,1000,14,100,0],
+	[3151,60,50,77,4,1,40,90,"ゴーストリングスーツ","コオストリンクスウツ","BaseLv100以上の時、BaseLvが1上がる度に追加でHP+30、SP+5。<BR>精錬値が7以上の時、追加で物理攻撃で与えるダメージ+10%。<BR>精錬値が8以上の時、追加で「アドレナリンラッシュ」Lv5使用可能。<BR>精錬値が9以上の時、追加で鎧に念属性を付与する。",19,20,13,1000,14,100,0],
+	[3152,64,0,0,3230,1,10,20,"ケミカルグローブ","ケミカルクロオフ","「赤ポーション」、「紅ポーション」、「黄ポーション」、「白ポーション」のHP回復量+100%。<BR>「カート改造」の習得Lvが1上がる度に追加でAtk+15、攻撃速度+1%、MaxHP+2%、「カートトルネード」の消費SP-1。<BR>BaseLvが1上がる度に追加で「カートレボリューション」で与えるダメージ+1%。<BR>BaseLvが20上がる度に追加で「カートキャノン」で与えるダメージ+2%。<BR>BaseLvが30上がる度に追加で「カートトルネード」で与えるダメージ+2%。 ",199,721,8,20,12,5,0],
+	[3153,61,0,150,0,1,350,90,"幸福の盾","コウフクノタテ",0,0],
+	[3154,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",123,5,0],
+	[3155,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",128,5,0],
+	[3156,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",122,5,0],
+	[3157,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",126,5,0],
+	[3158,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",129,5,0],
+	[3159,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",127,5,0],
+	[3160,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",124,5,0],
+	[3161,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",121,5,0],
+	[3162,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",120,5,0],
+	[3163,100,0,0,0,0,0,0,0,0,"「幸福の盾」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「幸福の盾」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",125,5,0],
+	[3164,62,0,10,0,1,30,70,"陣羽織","シンハオリ","「ダブルアタック」Lv3が全ての武器で使用可能。「ダブルアタック」の習得Lvが4以上の場合、全ての武器で習得Lvの「ダブルアタック」使用可能。<BR>「三段掌」Lv3が素手と全ての武器で使用可能。「三段掌」の習得Lvが4以上の場合、素手と全ての武器で習得Lvの「三段掌」使用可能。<BR>精錬値が7以上の時、追加でFlee+10、攻撃速度+3%。<BR>精錬値が7以上の時、追加で「ダブルアタック」Lv5が全ての武器で使用可能。「ダブルアタック」の習得Lvが6以上の場合、全ての武器で習得Lvの「ダブルアタック」使用可能。<BR>精錬値が7以上の時、追加で「三段掌」Lv5が素手と全ての武器で使用可能。「三段掌」の習得Lvが6以上の場合、素手と全ての武器で習得Lvの「三段掌」使用可能。<BR>精錬値が9以上の時、追加でFlee+10、攻撃速度+3%。<BR>精錬値が9以上の時、追加で「ダブルアタック」Lv10が全ての武器で使用可能。<BR>精錬値が9以上の時、追加で「三段掌」Lv10が素手と全ての武器で使用可能。",9,10,12,3,0],
+	[3165,62,0,18,790,1,20,1,"ソードウィング","ソオトウインク",0,0],
+	[3166,3,146,150,101184,1,340,170,"ニーヴクレイモア","ニイウクレイモア","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,130,0],
+	[3167,5,152,150,101184,1,350,170,"ニーヴグレイヴ","ニイウクレイウ","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,110,0],
+	[3168,11,147,150,101184,1,280,170,"ニーヴジャマダハル","ニイウシヤマタハル","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,250,0],
+	[3169,9,150,60,101184,1,120,170,"ニーヴウィザードスタッフ","ニイウウイサアトスタツフ","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,180,195,1,0],
+	[3170,9,157,80,101184,1,120,170,"ニーヴアークワンド","ニイウアアクワント","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,160,195,1,0],
+	[3171,9,148,120,101184,1,100,170,"ニーヴホーリーステッキ","ニイウホオリイステツキ","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,170,195,1,0],
+	[3172,9,154,150,101184,1,150,170,"ニーヴディバインクロス","ニイウテイハインクロス","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,110,195,1,0],
+	[3173,7,151,180,101184,1,400,170,"ニーヴギロチン","ニイウキロチン","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,110,0],
+	[3174,7,158,180,101184,1,350,170,"ニーヴバスター","ニイウハスタア","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,110,0],
+	[3175,16,58,150,101184,1,35,170,"ニーヴ風魔手裏剣","ニイウフウマシユリケン","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,160,0],
+	[3176,10,153,170,101184,1,90,170,"ニーヴシーフボウ","ニイウシイフホウ","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,180,0],
+	[3177,10,149,160,101184,1,90,170,"ニーヴハンターボウ","ニイウハンタアホウ","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,170,0],
+	[3178,10,191,180,101184,1,90,170,"ニーヴクロスボウ","ニイウクロスホウ","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",88,170,0],
+	[3179,18,59,170,101184,1,85,170,"ニーヴライフル","ニイウライフル","BaseLvが175の時、物理攻撃で与えるダメージ+5%、魔法攻撃で与えるダメージ+5%。",0],
+	[3180,2,0,180,3474,3,150,120,"灼熱の剣","シヤクネツノケン","物理攻撃命中時、一定確率で5秒間、一般モンスターのDef100%無視。<BR>精錬値が1上がる度に追加でオートスペル「クリムゾンロック」の発動率が上昇。<BR>BaseLvが5上がる度に追加でオートスペル「クリムゾンロック」の発動率が上昇。",20,3,88,160,221,193,0],
+	[3181,2,0,180,4,3,150,120,"奈落の剣","ナラクノケン","物理攻撃命中時、一定確率で5秒間、一般モンスターのDef100%無視。<BR>精錬値が1上がる度に追加でオートスペル「ヘルインフェルノ」の発動率が上昇。<BR>BaseLvが5上がる度に追加でオートスペル「ヘルインフェルノ」の発動率が上昇。",20,7,88,160,221,194,0],
+	[3182,2,0,180,4,3,150,120,"浄化の剣","シヨウカノケン","物理攻撃命中時、一定確率で5秒間、一般モンスターのDef100%無視。<BR>精錬値が1上がる度に追加でオートスペル「ジュデックス」の発動率が上昇。<BR>BaseLvが5上がる度に追加でオートスペル「ジュデックス」の発動率が上昇。",20,6,88,160,221,195,0],
+	[3183,4,0,250,3474,1,180,130,"ポイズンスピア","ホイスンスヒア","精錬値が1上がる度に追加で物理攻撃時、火・風・地属性モンスターに与えるダメージ+8%。",88,100,23,1,0],
+	[3184,64,0,0,910,10,10,150,"帯状の暗器","オヒシヨウノアンキ",0,10,5,70,2,0],
+	[3185,64,0,0,910,10,10,150,"狙撃手の手袋","ソケキシユノテフクロ",0,25,2,74,5,0],
+	[3186,61,0,80,1410,1,50,65,"デイヴィッドシールド","テイウイツトシイルト","「フェイス」の習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ+2%。",199,156,19,5,64,20,62,20,66,20,68,20,65,20,0],
+	[3187,100,0,0,0,0,0,0,0,0,0,73,-15,89,10,0],
+	[3188,100,0,0,0,0,0,0,0,0,0,73,-15,89,10,0],
+	[3189,60,146,180,1380,1,60,170,"Y.S.F.0.1プレート","ワイエスエフセロワンフレエト","精錬値が9以上の時、追加で物理攻撃で与えるダメージ+15%。",19,20,194,1,15,15,7019442,1000,0],
+	[3190,100,0,0,0,0,0,0,0,0,"「Y.S.F.0.1プレート」、「Y.S.F.0.1マント」、「Y.S.F.0.1グリーブ」の精錬値が7以上の時、追加でスキルディレイ-20%、「スパイラルピアース」で与えるダメージ+100%、「スピアブーメラン」で与えるダメージ+200%、「ハンドレッドスピア」で与えるダメージ+100%。<BR>「Y.S.F.0.1プレート」、「Y.S.F.0.1マント」、「Y.S.F.0.1グリーブ」の精錬値が9以上の時、追加でスキルディレイ-20%、「スパイラルピアース」で与えるダメージ+100%、「スピアブーメラン」で与えるダメージ+200%、「ハンドレッドスピア」で与えるダメージ+100%。",74,10,5259,50,5072,100,5442,50,0],
+	[3191,62,146,15,1370,1,60,170,"Y.S.F.0.1マント","ワイエスエフセロワンマント","精錬値が9以上の時、追加で攻撃速度+15%。",19,10,15,15,7023259,5,0],
+	[3192,63,146,15,1390,1,50,170,"Y.S.F.0.1グリーブ","ワイエスエフセロワンクリイフ","精錬値が9以上の時、追加でMaxSP+15%。",19,15,15,15,7023442,20,0],
+	[3193,60,0,35,0,1,80,100,"襲撃者のローブ","シユウケキシヤノロオフ","魔法攻撃命中時、一定確率で10秒間、「襲撃者のローブ」の精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+1%。",19,10,0],
+	[3194,60,0,35,3600,1,80,100,"抹消者のローブ","マツシヨウシヤノロオフ","固定詠唱時間-50%。<BR>精錬値が1上がる度に追加で魔法攻撃で与えるダメージ+2%、火属性魔法攻撃で与えるダメージ+2%。",19,10,380,1,0],
+	[3195,100,0,0,0,0,0,0,0,0,0,5125,50,152,100,0],
+	[3196,62,59,18,1830,1,30,130,"スナイピングベール","スナイヒンクヘエル","「アンチマテリアルブラスト」Lv5習得時、追加で「アンチマテリアルブラスト」の再使用待機時間-2秒。<BR>「ハンマーオブゴッド」Lv5習得時、追加で「ハンマーオブゴッド」の再使用待機時間-10秒。<BR>「マススパイラル」Lv5習得時、追加で「マススパイラル」の詠唱時間-2秒。<BR>精錬値が7以上の時、追加でMaxHP+5%、遠距離物理攻撃で与えるダメージ+3%、遠距離物理攻撃で受けるダメージ-15%。<BR>精錬値が7以上の時、BaseLvが3上がる度に追加で「マススパイラル」で与えるダメージ+1%、BaseLvが4上がる度に追加で「アンチマテリアルブラスト」で与えるダメージ+3%、BaseLvが5上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+6%。<BR>精錬値が9以上の時、追加でMaxSP+5%、遠距離物理攻撃で与えるダメージ+3%。",199,832,199,839,199,825,19,10,12,10,15,15,25,10,78,20,0],
+	[3197,100,0,0,0,0,0,0,0,0,0,78,-35,0],
+	[3198,100,0,0,0,0,0,0,0,0,0,78,-35,0],
+	[3199,50,0,5,0,1,40,130,"共和国の帽子","キヨウワコクノホウシ","精錬値が3上がる度に追加で遠距離物理攻撃で与えるダメージ+4%。",19,15,5,3,8,30,25,8,0],
+	[3200,50,0,5,3590,1,40,170,"負傷兵の包帯","フシヨウヘイノホウタイ","精錬値が3上がる度に追加で遠距離物理攻撃で受けるダメージ-2%、人間形モンスターから受けるダメージ-2%。",19,5,3,3,78,6,57,6,0],
+	[3201,63,0,15,1190,1,50,100,"金剛石の靴","コンコウセキノクツ","精錬値が3上がる度に追加でMaxHP+3%、MaxSP+3%。",19,15,15,5,16,5,57,5,0],
+	[3202,52,0,0,4060,0,30,80,"巨大樹の若葉","キヨタイシユノワカハ",0,73,-5,0],
+	[3203,100,0,0,0,0,0,0,0,0,"純粋なDexが108以上の時、追加でMatk + 20詠唱時間 - 3%プレイヤーから受けるダメージ - 2%<BR>純粋なDexが120以上の時、追加でMatk + 30詠唱時間 - 5%プレイヤーから受けるダメージ - 4%",100,10,73,-2,243,2,0],
+	[3204,100,0,0,0,0,0,0,0,0,"本・片手杖・両手杖の 精錬値が1上がる度に追加で魔法攻撃時、プレイヤーに与えるダメージ + 2%",0],
+	[3205,62,0,40,0,1,40,100,"メンブリッツマント","メンフリツツマント","精錬値が5以上の時、純粋なDexが60上がる度に追加で遠距離物理攻撃で与えるダメージ + 1%<BR>精錬値が7以上の時、純粋なDexが10上がる度に追加で遠距離物理攻撃で与えるダメージ + 1%",17,30,0],
+	[3206,100,0,0,0,0,0,0,0,0,"純粋なDexが10上がる度に追加で遠距離物理攻撃で与えるダメージ - 1% ",0],
+	[3207,63,0,12,3150,10,40,100,"天狗の下駄","テンクノケタ","[キャストキャンセル]Lv1使用可能<BR>精錬値が5以上の時、追加でMaxHP + 7% , MaxSP + 7%<BR>精錬値が7以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>[点穴 -快-]の習得Lvが1上がる度に追加でMaxHP + 2%<BR>[点穴 -活-]の習得Lvが1上がる度に追加でDef + 30人間形モンスターから受けるダメージ - 1%<BR>[点穴 -球-]の習得Lvが1上がる度に追加で[気功]、[金剛]、[練気功]の詠唱時間 - 10%<BR>[点穴 -反-]の習得Lvが1上がる度に追加で攻撃速度 + 2%<BR>[点穴 -黙-]の習得Lvが1上がる度に追加で物理攻撃で与えるダメージ + 4%",199,625,199,628,199,626,199,627,199,624,19,10,15,3,16,3,5023190,5,7023190,5,0],
+	[3208,2,0,150,1204,1,130,100,"ゴッズソード","コツスソオト","物理攻撃命中時、一定確率で敵にオートスペル「ソウルブレイカー」Lv3発動。「ソウルブレイカー」の習得Lvが4以上の場合、習得Lvで発動。<BR>精錬値が1上がる度に追加でオートスペル「ソウルブレイカー」の発動率が上昇。<BR>精錬値が8以上の時、追加で「ソウルブレイカー」Lv3使用可能。",194,1,2,5,10,50,11,20,31,30,36,30,223,171,220,54,0],
+	[3209,100,0,0,0,0,0,0,0,0,"「ソウルブレイカー」使用時、一定確率で3秒間、完全回避 + 100。",12,10,80,20,0],
+	[3210,50,0,30,1210,1,100,99,"ゴッズヘルム","コツスヘルム","精錬値が1上がる度に追加でMaxHP+1%。<BR>精錬値が1上がる度に追加で火・水属性攻撃で受けるダメージ-2%。<BR>精錬値が8以上の時、追加で「フロストノヴァ」Lv5使用可能。<BR>精錬値が10の時、追加で魔法攻撃を受けた時、一定確率でオートスペル「ランドプロテクター」Lv1発動。",19,15,15,5,63,5,61,5,224,55,0],
+	[3211,50,0,7,0,1,40,80,"タウロスクラウン","タウロスクラウン",0,12,5,80,6,0],
+	[3212,100,0,0,0,0,0,0,0,0,"「ミルク」の回復量+300%。<BR>攻撃命中時、SP+2。",213,1,214,1,0],
+	[3213,50,0,7,0,1,40,80,"キャンサーダイアデム","キヤンサアタイアテム",0,11,5,80,6,0],
+	[3214,100,0,0,0,0,0,0,0,0,"物理攻撃でモンスターを倒した時、HP+50、SP+3。",15,10,16,10,0],
+	[3215,60,0,100,1220,1,100,99,"ゴッズアーマー","コツスアアマア","近接物理攻撃で不死形モンスターを倒した時、SP+5。<BR>「ゴッズアーマー」の精錬値が1上がる度に追加で不死形モンスターから受けるダメージ-1%。<BR>精錬値が1上がる度に追加で近接物理攻撃で不死形モンスターを倒した時、SP+2。<BR>精錬値が1上がる度に追加で闇属性攻撃で受けるダメージ-2%。<BR>精錬値が8以上の時、追加で絶対に壊れない。<BR>精錬値が8以上の時、追加で「オートガード」Lv3使用可能",51,5,67,15,10000381,1,0],
+	[3216,61,0,150,1230,1,120,99,"ゴッズシールド","コツスシイルト","精錬値が1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+1%。<BR>精錬値が8以上の時、追加で「ヒール」Lv5使用可能。<BR>精錬値が10の時、追加で絶対に出血・石化状態にならない。",91,10,220,7,0],
+	[3217,64,0,2,1240,1,80,100,"ゴッズガントレット","コツスカントレツト","",19,5,12,5,80,5,89,5,73,-5,74,5,220,56,0],
+	[3218,52,0,0,4060,0,30,80,"くわえたハートのエース","クワエタハアトノエエス","",70,5,0],
+	[3219,100,0,0,0,0,30,80,0,0,"「クリティカルスラッシュ」で受けるダメージ-100%。<BR>純粋なDexが10上がる度に追加でクリティカル攻撃で与えるダメージ+2%。<BR>純粋なLukが108以上の時、追加でAspd+1、クリティカル攻撃で与えるダメージ+2%、プレイヤーから受けるダメージ-2%。<BR>純粋なLukが120以上の時、追加でAspd+2、クリティカル攻撃で与えるダメージ+4%、プレイヤーから受けるダメージ-4%、通常攻撃がスプラッシュダメージになる。",101,1,70,2,243,2,0],
+	[3220,61,0,95,1250,1,120,100,"エクセリオンシールド","エクセリオンシイルト","BaseLv130以上の時、追加でMaxHP+5%、MaxSP+5%。<BR>精錬値が3上がる度に追加でAtk+30、Matk+30。",19,5,15,5,16,5,0],
+	[3221,64,0,0,3230,1,40,100,"インペリアルグローブ","インヘリアルクロオフ","",80,5,73,-10,380,1,0],
+	[3222,100,0,0,0,0,30,80,0,0,"「オーバーブランド」、「キャノンスピア」の習得Lvが1上がる度に追加で遠距離物理攻撃で与えるダメージ+2%。",199,579,199,569,5579,20,5569,30,19579,2000,0],
+	[3223,1,1,120,1064,3,60,130,"霧の妖刀","キリノヨウトウ","「霧の妖刀」の精錬値が7以上の時、追加でFlee+20。<BR>「霧の妖刀」の精錬値が9以上の時、追加でFlee+20。",20,8,9,10,19768,1000,19767,1000,0],
+	[3224,64,0,0,1260,1,10,130,"猛炎と白魔の指輪","モウエントハクマノユヒワ","アクセサリー(1)に装備時、MaxSP + 15%、スキルディレイ - 15%、[ウォータードラゴンブレス]の再使用待機時間 - 0.5秒<BR>アクセサリー(2)に装備時、MaxHP + 15%、詠唱時間 - 15%、[ファイアードラゴンブレス]の再使用待機時間 - 0.5秒",0],
+	[3225,52,0,0,1090,0,10,1,"ウィルオウィスプ","ウイルオウイスフ","",157,100,73,10,0],
+	[3226,61,157,20,1270,1,50,130,"禁忌の魔導書","キンキノマトウシヨ","「サモンアグニ」の習得Lvが1上がる度に追加でInt+3、火属性攻撃で受けるダメージ-10%。<BR>「サモンアクア」の習得Lvが1上がる度に追加でDex+3、水属性攻撃で受けるダメージ-10%。<BR>「サモンベントス」の習得Lvが1上がる度に追加でAgi+3、風属性攻撃で受けるダメージ-10%。<BR>「サモンテラ」の習得Lvが1上がる度に追加でVit+3、地属性攻撃で受けるダメージ-10%。<BR>「エレメンタルシンパシー」の習得Lvが1上がる度に追加でMaxHP+2%、MaxSP+2%。<BR>「禁忌の魔導書」の精錬値が7以上の時、追加でDef+100、Mdef+5、ホワイトインプリズンに対する耐性+50%。<BR>「禁忌の魔導書」の精錬値が9以上の時、追加でDef+200、Mdef+10、絶対にホワイトインプリズン状態にならない。",199,671,199,672,199,673,199,674,199,678,19,5,0],
+	[3227,64,0,0,3230,1,10,100,"英雄の指輪","エイユウノユヒワ","純粋なStrが120以上の時、追加でAtk+50、MaxHP+5%、MaxSP+5%。",12,10,0],
+	[3228,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で敵にオートスペル「ホーリークロス」が「デュプレライト」の習得Lvで発動。<BR>追加で物理攻撃命中時、一定確率で5秒間、物理攻撃命中時、一定確率で自分を中心にオートスペル「ヘルジャッジメント」Lv3発動、モンスター「堕ちた大神官ヒバム」に変身。<BR>「達人の槌」の精錬値が7以上の時、追加で物理・魔法攻撃で与えるダメージ+5%、「ホーリークロス」で与えるダメージ+50%。<BR>「達人の槌」の精錬値が9以上の時、追加で物理・魔法攻撃で与えるダメージ+15%、「ホーリークロス」で与えるダメージ+100%。",111,50,116,50,117,50,223,172,223,168,0],
+	[3229,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で敵にオートスペル「ホーリークロス」が「デュプレライト」の習得Lvで発動。<BR>追加で物理攻撃命中時、一定確率で5秒間、物理攻撃命中時、一定確率で自分を中心にオートスペル「ヘルジャッジメント」Lv3発動、モンスター「堕ちた大神官ヒバム」に変身。<BR>「達人の槌」の精錬値が7以上の時、追加で物理・魔法攻撃で与えるダメージ+5%、「ホーリークロス」で与えるダメージ+50%。<BR>「達人の槌」の精錬値が9以上の時、追加で物理・魔法攻撃で与えるダメージ+15%、「ホーリークロス」で与えるダメージ+100%。",111,50,116,50,117,50,223,172,223,168,0],
+	[3230,100,0,0,0,0,0,0,0,0,"「達人の剣」の精錬値が7以上の時、追加で「バッシュ」、「ボウリングバッシュ」で与えるダメージ+100%。<BR>「達人の剣」の精錬値が9以上の時、追加で「バッシュ」、「ボウリングバッシュ」で与えるダメージ+200%。",23006,5,23076,10,0],
+	[3231,100,0,0,0,0,0,0,0,0,"モンスターを倒した時、一定確率で「マステラの実」をドロップ。<BR>「達人の斧」の精錬値が7以上の時、追加で「アックストルネード」で与えるダメージ+20%。<BR>「達人の斧」の精錬値が9以上の時、追加で「アックストルネード」で与えるダメージ+40%。 ",19541,500,0],
+	[3232,100,0,0,0,0,0,0,0,0,"モンスターを倒した時、一定確率で「マステラの実」をドロップ。<BR>「達人の斧」の精錬値が7以上の時、追加で「アックストルネード」で与えるダメージ+20%。<BR>「達人の斧」の精錬値が9以上の時、追加で「アックストルネード」で与えるダメージ+40%。 ",19541,500,0],
+	[3233,64,0,0,3230,1,20,50,"太極の護符","タイキヨクノコフ","",8,20,12,5,89,5,0],
+	[3234,100,0,0,0,0,0,0,0,0,"",5527,10,0],
+	[3235,100,0,0,0,0,0,0,0,0,"",5476,50,0],
+	[3236,100,0,0,0,0,0,0,0,0,"",5528,100,0],
+	[3237,100,0,0,0,0,0,0,0,0,"「灼熱の剣」の精錬値が1上がる度に追加でHit+5、攻撃速度+4%、「クリムゾンロック」で与えるダメージ+1%。",0],
+	[3238,100,0,0,0,0,0,0,0,0,"「浄化の剣」の精錬値が1上がる度に追加でHit+5、攻撃速度+4%、「ジュデックス」で与えるダメージ+5%。",0],
+	[3239,100,0,0,0,0,0,0,0,0,"「奈落の剣」の精錬値が1上がる度に追加でHit+5、攻撃速度+4%、「ヘルインフェルノ」で与えるダメージ+10%。 ",0],
+	[3240,63,0,15,3150,10,50,100,"サバイバルシューズ","サハイハルシユウス","精錬値が5以上の時、追加でMaxHP+7%、MaxSP+7%、魔法攻撃で与えるダメージ+3%、風・地属性魔法攻撃で与えるダメージ+3%。<BR>精錬値が7以上の時、追加でMaxHP+10%、MaxSP+10%、魔法攻撃で与えるダメージ+5%、風・地属性魔法攻撃で与えるダメージ+5%。",19,15,15,3,16,3,89,2,57,5,344,2,342,2,0],
+	[3241,100,0,0,0,0,0,0,0,0,"「サバイバルロッド[1]」の精錬値が10の時、追加で魔法攻撃時、人間形モンスターに与えるダメージ+20%、無属性魔法攻撃で与えるダメージ+80%、「アースストレイン」の再使用待機時間-2.4秒、「チェーンライトニング」の再使用待機時間-1秒、魔法攻撃命中時、一定確率で5秒間、「チェーンライトニング」で与えるダメージ+100%。",57,10,298,50,0],
+	[3242,100,0,0,0,0,0,0,0,0,"「サバイバルロッド[1]」の精錬値が10の時、追加で魔法攻撃時、人間形モンスターに与えるダメージ+20%、無属性魔法攻撃で与えるダメージ+80%、「アースストレイン」の再使用待機時間-2.4秒、「チェーンライトニング」の再使用待機時間-1秒、魔法攻撃命中時、一定確率で5秒間、「チェーンライトニング」で与えるダメージ+100%。",57,10,298,50,0],
+	[3243,100,0,0,0,0,0,0,0,0,"「サバイバルサークレット」の精錬値が7以上の時、追加で風・地属性魔法攻撃で与えるダメージ+10%。<BR>「サバイバルサークレット」の精錬値が9以上の時、追加で風・地属性魔法攻撃で与えるダメージ+10%。",89,10,0],
+	[3244,100,0,0,0,0,0,0,0,0,"「サバイバルマント」の精錬値が7以上の時、追加で風・地属性攻撃で受けるダメージ-15%。<BR>「サバイバルマント」の精錬値が9以上の時、追加で風・地属性攻撃で受けるダメージ-15%。",89,10,0],
+	[3245,100,0,0,0,0,0,0,0,0,"",213,5,214,5,57,3,0],
+	[3246,66,0,0,3230,1,60,80,"天邪鬼の鬼面","アマノシヤクノキメン","純粋なStrが18上がる度に追加でInt+3、全ての種族のMdef15%無視。<BR>純粋なAgiが18上がる度に追加でLuk+3、完全回避+1。<BR>純粋なVitが18上がる度に追加でDex+3、詠唱時間-1%。<BR>純粋なIntが18上がる度に追加でStr+3、スキルディレイ-1%。<BR>純粋なDexが18上がる度に追加でVit+3、MaxHP+1%。<BR>純粋なLukが18上がる度に追加でAgi+3、全ての種族のDef15%無視。 ",0],
+	[3247,64,0,0,3230,1,30,100,"戦乙女の雫","イクサオトメノシスク","BaseLvが2上がる度に追加で「マグヌスエクソシズム」で与えるダメージ+3%。<BR>「イムポシティオマヌス」の習得Lvが1上がる度に追加で魔法攻撃時、小・中・大型モンスターに与えるダメージ+3%。<BR>「イムポシティオマヌス」Lv5習得時、「オーディンの力」Lv2使用可能。",199,90,73,-10,74,5,76,50,7484,50,11484,100,0],
+	[3248,63,0,15,3150,10,50,100,"灰羽のブーツ","ハイハネノフウツ","「ハイディング」Lv1使用可能。<BR>精錬値が5以上の時、追加でMaxHP+7%、MaxSP+7%、遠距離物理攻撃で与えるダメージ+3%、クリティカル攻撃で与えるダメージ+3%。<BR>精錬値が7以上の時、追加でMaxHP+10%、MaxSP+10%、遠距離物理攻撃で与えるダメージ+5%、クリティカル攻撃で与えるダメージ+5%。",19,15,15,3,16,3,25,2,70,2,0],
+	[3249,100,0,0,0,0,0,0,0,0,"移動速度増加、モンスターを倒した時、HP+500、純粋なIntが20上がる度に追加で「クラスターボム」で与えるダメージ+30%。<BR>「黒羽のスーツ」の精錬値が7以上の時、追加で完全回避+6、人間形モンスターから受けるダメージ-8%、「エイムドボルト」で与えるダメージ+20%、「クラスターボム」で与えるダメージ+400%。<BR>「黒羽のスーツ」の精錬値が9以上の時、追加で完全回避+3、人間形モンスターから受けるダメージ-4%、「エイムドボルト」で与えるダメージ+10%、「クラスターボム」で与えるダメージ+200%。",23509,30,0],
+	[3250,100,0,0,0,0,0,0,0,0,"移動速度増加、純粋なLukが20上がる度に追加でクリティカル攻撃で与えるダメージ+4%。<BR>「白羽のスーツ」の精錬値が7以上の時、追加で攻撃速度+8%、人間形モンスターから受けるダメージ-8%、「シャープシューティング」で与えるダメージ+50%、「ブリッツビート」で与えるダメージ+40%。<BR>「白羽のスーツ」の精錬値が9以上の時、追加で攻撃速度+4%、人間形モンスターから受けるダメージ-4%、「シャープシューティング」で与えるダメージ+25%、「ブリッツビート」で与えるダメージ+20%。",0],
+	[3251,60,0,50,0,1,40,100,"アンソニの服","アンソニノフク","精錬値が7以上の時、追加でMdef+5、完全回避+1、絶対に壊れない。<BR>精錬値が8以上の時、追加でMdef+10、完全回避+1、人間形モンスターから受けるダメージ-7%。<BR>精錬値が9以上の時、追加でMdef+15、完全回避+1、「クリティカルスラッシュ」で受けるダメージ-100%。",73,-10,0],
+	[3252,100,0,0,0,0,0,0,0,0,"「テレポート」Lv1使用可能、「アンソニカード」の効果によるオートスペル「テレポート」が発動しない。<BR>「アンソニの服」の精錬値が7以上の時、追加で絶対に凍結しない",18,250,60,5,61,5,62,5,63,5,64,5,65,5,66,5,67,5,68,5,69,5,9000381,1,0],
+	[3253,1,68,100,1284,3,80,130,"物影","モノカケ","BaseLvが1上がる度に追加で「影斬り」で与えるダメージ+1%、「霞斬り」で与えるダメージ+3%。<BR>「霞斬り」の習得レベルが1上がる度に追加でFlee+5、Cri+5。",199,400,0],
+	[3254,7,179,300,1284,3,400,130,"鉱員のつるはし","コウインノツルハシ","精錬値が1上がる度に追加でVit+1、Atk+10。",19811,3000,9019541,1000,0],
+	[3255,12,95,180,3494,3,80,130,"起源の書","キケンノシヨ","精錬値が7以上の時、追加で火・水・風・地・無属性魔法攻撃で与えるダメージ+15%。<BR>精錬値が9以上の時、追加で火・水・風・地・無属性魔法攻撃で与えるダメージ+20%。",88,150,343,10,341,10,344,10,342,10,340,10,9662,3000,0],
+	[3256,10,76,140,1284,3,100,130,"自警団の弓","シケイタンノユミ","純粋なIntが10上がる度に追加でAgi+1、攻撃速度+1%。<BR>精錬値が9以上の時、追加でFlee+50。",71,5,88,170,0],
+	[3257,14,155,140,1284,3,100,130,"大自然のギター","タイシセンノキタア","精錬値が1上がる度に追加でVit+1、MaxHP+1%。<BR>精錬値が7以上の時、追加で「アローバルカン」で与えるダメージ+150%、人間形モンスターから受けるダメージ-5%。<BR>精錬値が9以上の時、追加で「アローバルカン」で与えるダメージ+50%、人間形モンスターから受けるダメージ-5%。",88,120,0],
+	[3258,15,156,140,1284,3,100,130,"大自然のロープ","タイシセンノロオフ","精錬値が1上がる度に追加でVit+1、MaxHP+1%。<BR>精錬値が7以上の時、追加で「アローバルカン」で与えるダメージ+150%、人間形モンスターから受けるダメージ-5%。<BR>精錬値が9以上の時、追加で「アローバルカン」で与えるダメージ+50%、人間形モンスターから受けるダメージ-5%。",88,120,0],
+	[3259,16,68,250,3494,3,200,130,"風魔手裏剣・花吹雪","フウマシユリケンハナフフキ","精錬値が1上がる度に追加で攻撃速度+1%。<BR>精錬値が9以上の時、追加で物理攻撃でモンスターを倒した時、SP+20。",88,180,20,6,0],
+	[3260,64,0,2,1310,1,20,130,"自警団のバッジ","シケイタンノハツシ","",71,5,100,30,0],
+	[3261,64,0,2,1310,1,20,130,"大自然のネックレス","タイシセンノネツクレス","モンスターを倒した時、HP+50、SP+5。",0],
+	[3262,65,0,0,0,1,10,100,"栄光のロックリッジバッジ","エイコウノロツクリツシハツシ","5秒毎にHP+50、SP+5。",80,6,89,6,0],
+	[3263,66,0,0,0,1,10,100,"名誉のロックリッジバッジ","メイヨノロツクリツシハツシ","5秒毎にHP+50、SP+5。",73,-10,74,5,0],
+	[3264,100,0,0,0,0,0,0,0,0,"5秒毎にHP+100、SP+10。",80,6,89,6,73,-10,74,5,0],
+	[3265,60,0,50,1290,1,50,130,"自警団のスーツ","シケイタンノスウツ","精錬値が1上がる度に追加でMatk+10、Mdef+1。<BR>精錬値が7以上の時、追加でMatk+20、Mdef+5。<BR>精錬値が9以上の時、追加でMatk+30、Mdef+5。",71,5,0],
+	[3266,60,0,40,1290,1,50,130,"精霊のローブ","セイレイノロオフ","「サイキックウェーブ」の詠唱時間-2秒。<BR>精錬値が7以上の時、追加で火・水・風・地・無属性魔法攻撃で与えるダメージ+5%、「サイキックウェーブ」の詠唱時間-2秒。<BR>精錬値が9以上の時、追加で火・水・風・地・無属性魔法攻撃で与えるダメージ+5%、「サイキックウェーブ」の詠唱時間-2秒、「サイキックウェーブ」で与えるダメージ+10%。",343,5,341,5,344,5,342,5,340,5,0],
+	[3267,60,0,50,1290,1,50,130,"用心棒のスーツ","ヨウシンホウノスウツ","精錬値が7以上の時、追加でスキルディレイ-5%、スキル使用時の消費SP-5%。<BR>精錬値が9以上の時、追加でスキルディレイ-5%、スキル使用時の消費SP-5%。",1,2,102,10,0],
+	[3268,60,0,80,1290,1,150,130,"鉱員のベスト","コウインノヘスト","精錬値が7以上の時、追加で物理攻撃時、風属性モンスターに与えるダメージ+10%。<BR>精錬値が9以上の時、追加で物理攻撃時、風属性モンスターに与えるダメージ+15%。",44,5,0],
+	[3269,60,0,50,1290,1,50,130,"大自然のスーツ","タイシセンノスウツ","5秒毎にHP+1500、SP+15。<BR>モンスターを倒した時、HP+50、SP+5。<BR>精錬値が7以上の時、追加でモンスターを倒した時、HP+50、SP+5。<BR>精錬値が9以上の時、追加でモンスターを倒した時、HP+100、SP+10。",0],
+	[3270,62,0,12,1300,1,50,130,"精霊のマント","セイレイノマント","精錬値が1上がる度に追加で「サイキックウェーブ」で与えるダメージ+3%。",63,5,61,5,64,5,62,5,60,5,0],
+	[3271,62,0,18,1300,1,30,130,"用心棒のスカーフ","ヨウシンホウノスカアフ","「術式-解放-」Lv1を習得している場合、追加で「術式-解放-」で与えるダメージ+40%。<BR>「風魔手裏剣投げ」Lv5を習得している場合、追加で「風魔手裏剣投げ」で与えるダメージ+50%。<BR>「風魔手裏剣-乱華-」Lv5を習得している場合、追加で「風魔手裏剣-乱華-」で与えるダメージ+30%。<BR>精錬値が7以上の時、追加でFlee+20、BaseLvが1上がる度に「風魔手裏剣投げ」で与えるダメージ+1%、BaseLvが2上がる度に「術式-解放-」で与えるダメージ+3%、BaseLvが3上がる度に「風魔手裏剣-乱華-」で与えるダメージ+1%。<BR>精錬値が9以上の時、追加でFlee+20、MaxSP+5%。<BR>影狼、朧が装備時、MaxHP+15%、遠距離物理攻撃で受けるダメージ-20%。<BR>影狼、朧が装備時、精錬値が7以上の時、追加でMaxHP+5%、遠距離物理攻撃で受けるダメージ-15%。<BR>影狼、朧が装備時、「射向の大袖」と共に装備時、追加で遠距離物理攻撃で受けるダメージ+35%。<BR>影狼、朧が装備時、「ホルンカード」と共に装備時、追加で遠距離物理攻撃で受けるダメージ+35%。 ",199,783,199,396,199,770,19,10,9,10,0],
+	[3272,62,0,16,1300,1,60,130,"鉱員のリュック","コウインノリユツク","精錬値が1上がる度に追加で「マグマイラプション」で与えるダメージ+10%。",12,7,63,30,62,30,0],
+	[3273,50,0,10,1320,1,80,100,"グレータードラクルホーン","クレエタアトラクルホオン","物理攻撃命中時、一定確率で敵に与えたダメージの10%をHPとして吸収。<BR>「ラウドボイス」Lv1使用可能。<BR>精錬値が7以上の時、追加でHPの吸収量+15%、HPの吸収確率が上昇。<BR>精錬値が9以上の時、追加でHPの吸収量+15%、HPの吸収確率が上昇。",15,10,80,6,7000080,5,9000080,5,10000000000100015n,2,10000000010000080n,40,0],
+	[3274,100,0,0,0,0,0,0,0,0,"「グレータードラクルホーン」のHP吸収効果が発動しない。",0],
+	[3275,51,0,5,1330,10,10,100,"ニーヴバレッタ","ニイウハレツタ","BaseLvが25上がる度に追加でMdef+1、MaxHP+1%、MaxSP+1%。",19,3,0],
+	[3276,100,0,0,0,0,0,0,0,0,"「ニーヴ武器」の精錬値が1上がる度に追加でAtk+20､Matk+20。<BR>純粋なStrが10上がる度に追加で物理攻撃で与えるダメージ+1%。<BR>純粋なAgiが10上がる度に追加で攻撃速度+1%。<BR>純粋なVitが10上がる度に追加でMaxHP+1%。<BR>純粋なIntが10上がる度に追加でMatk+20。<BR>純粋なDexが10上がる度に追加で詠唱時間-1%。<BR>純粋なLukが10上がる度に追加でCri+1。",0],
+	[3277,52,0,0,1340,0,10,90,"ロイヤルマント","ロイヤルマント","",19,5,60,5,61,5,62,5,63,5,64,5,65,5,66,5,67,5,68,5,69,5,0],
+	[3278,62,0,12,3650,1,90,100,"フェアリークロース","フエアリイクロオス","精錬値が5以上の時、追加で完全回避+10、Def+50､Mdef+5。<BR>精錬値が7以上の時、追加で完全回避+10、Def+50､Mdef+5。",19,10,11,8,57,5,0],
+	[3279,100,0,0,0,0,0,0,0,0,"",63,45,0],
+	[3280,100,0,0,0,0,0,0,0,0,"",64,45,0],
+	[3281,100,0,0,0,0,0,0,0,0,"",62,45,0],
+	[3282,100,0,0,0,0,0,0,0,0,"",61,45,0],
+	[3283,100,0,0,0,0,0,0,0,0,"",11,-5,0],
+	[3284,63,0,12,1360,1,70,85,"スカラバハイヒール","スカラハハイヒイル","精錬値が5以上の時、追加でMaxHP+4%､MaxSP+4%。<BR>精錬値が7以上の時、追加でMaxHP+4%､MaxSP+4%。",19,5,15,2,16,2,0],
+	[3285,100,0,0,0,0,0,0,0,0,"「スカラバハイヒール」の精錬値が7以上の時、追加で「シビアレインストーム」の再使用待機時間-2秒。<BR>「スカラバハイヒール」の精錬値が7以上、「エルヴンボウ」の精錬値が8以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+20%、「シビアレインストーム」で与えるダメージ+8%。<BR>「スカラバハイヒール」の精錬値が7以上、「エルヴンボウ」の精錬値が10の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+30%、「シビアレインストーム」で与えるダメージ+12%。",219,2835,0],
+	[3286,100,0,0,0,0,0,0,0,0,"「カルガメイス」の精錬値が7以上の時、追加でMaxSP+400、物理攻撃時、ボスモンスターに与えるダメージ+20%。<BR>「カルガメイス」の精錬値が9以上の時、追加でMaxSP+600、物理攻撃時、ボスモンスターに与えるダメージ+30%。",380,1,0],
+	[3287,100,0,0,0,0,0,0,0,0,"「ドゥルガー」の精錬値が7以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+20%、「ローリングカッター」で与えるダメージ+8%。<BR>「ドゥルガー」の精錬値が9以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ+30%、「ローリングカッター」で与えるダメージ+12%。",292,100,0],
+	[3288,100,0,0,0,0,0,0,0,0,"「スカラバハイヒール」の精錬値が7以上の時、追加で詠唱時間-20%。<BR>「スカラバハイヒール」の精錬値が7以上、「ラフィネスタッフ」の精錬値が8以上の時、追加で魔法攻撃時、ボスモンスターに与えるダメージ+30%、全ての種族のMdef20%無視。<BR>「スカラバハイヒール」の精錬値が7以上、「ラフィネスタッフ」の精錬値が10の時、追加で魔法攻撃時、ボスモンスターに与えるダメージ+40%、全ての種族のMdef30%無視。",0],
+	[3289,50,0,7,0,1,40,80,"ジェミニクラウン","シエミニクラウン","",80,6,89,6,76,20,0],
+	[3290,100,0,0,0,0,0,0,0,0,"",80,3,89,3,217,10,0],
+	[3291,50,0,7,0,1,40,80,"サジタリウスダイアデム","サシタリウスタイアテム","",80,6,8,20,0],
+	[3292,100,0,0,0,0,0,0,0,0,"物理攻撃でモンスターを倒した時、SP+5。",74,20,0],
+	[3293,63,0,18,2700,1,100,99,"名も無き剣士のブーツ","ナモナキケンシノフウツ","精錬値が1上がる度に追加でAtk+5、攻撃速度+1%、MaxHP+2%、MaxSP+2%。",26,15,0],
+	[3294,100,0,0,0,0,0,0,0,0,"10秒毎に、HP+5000、SP+100。<BR>BaseLv99以下の時、「名も無き剣士のブーツ」の精錬値が1上がる度に追加でStr+3、Flee+5。<BR>BaseLv100以上の時、「名も無き剣士のブーツ」の精錬値が1上がる度に追加でStr+10、Flee+15。",220,57,0],
+	[3295,52,0,0,4060,0,30,80,"熾天使の羽毛","シテンシノウモウ","",91,5,0],
+	[3296,100,0,0,0,0,0,0,0,0,"純粋なIntが8上がる度に追加で詠唱時間-1%。<BR>純粋なIntが108以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+10%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+10%、一部の回復アイテムによるHP回復量+10%。<BR>純粋なIntが108以上の時、追加で詠唱時間-4%、プレイヤーから受けるダメージ-2%。<BR>純粋なIntが120以上の時、追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+15%、「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」を受けた時のHP回復量+15%、一部の回復アイテムによるHP回復量+15%。<BR>純粋なIntが120以上の時、追加で詠唱時間-6%、プレイヤーから受けるダメージ-4%。",91,5,92,5,7481,100,243,2,157,100,158,100,0],
+	[3297,64,0,0,3230,1,30,100,"エメラルドリング","エメラルトリンク","BaseLvが1上がる度に追加で「アローシャワー」、「ダブルストレイフィング」で与えるダメージ+1%。<BR>BaseLvが10上がる度に追加で「シビアレインストーム」で与えるダメージ+2%。<BR>「ダブルストレイフィング」の習得Lvが2上がる度に追加でAgi+1、Vit+1、Dex+1、Atk+20。",199,40,2,5,3,5,5,5,23634,18,0],
+	[3298,50,0,0,0,1,100,90,"ソイガの書","ソイカノシヨ","",0],
+	[3299,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",125,5,0],
+	[3300,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",124,5,0],
+	[3301,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",127,5,0],
+	[3302,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",120,5,0],
+	[3303,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",128,5,0],
+	[3304,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",122,5,0],
+	[3305,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",123,5,0],
+	[3306,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",129,5,0],
+	[3307,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",121,5,0],
+	[3308,100,0,0,0,0,0,0,0,0,"「ソイガの書」の精錬値が6以上の時、追加で上記セット効果で獲得する経験値+5%。<BR>「ソイガの書」の精錬値が8以上の時、追加で上記セット効果で獲得する経験値+5%。",126,5,0],
+	[3309,64,0,0,3230,1,50,80,"ウェルスコア","ウエルスコア","",12,10,262,5,86,20,0],
+	[3310,50,0,18,2370,0,100,100,"悪魔の手","アクマノテ","精錬値が7以上の時、追加で攻撃速度+5%、「獅子吼」で与えるダメージ+30%。<BR>精錬値が9以上の時、追加で攻撃速度+5%、「獅子吼」で与えるダメージ+50%。<BR>精錬値が10の時、追加で全ての種族のDef100%無視。<BR>「雷光弾」Lv5習得時、追加で「気功」、「金剛」、「獅子吼」、「練気功」の詠唱時間-50%。<BR>「地雷震」Lv5習得時、追加で「獅子吼」の再使用待機時間-9.5秒。<BR>「爆気散弾」Lv5習得時、追加で物理攻撃時、ボスモンスターに与えるダメージ+50%。",19,15,199,623,199,611,199,612,12,10,5622,20,11622,100,219,2864,380,1,0],
+	[3311,12,95,180,3,4,50,100,"日月神示","ヒツキシンシ","物理攻撃命中時、一定確率で敵を中心にオートスペル「メテオストーム」Lv3発動。<BR>精錬値が1上がる度に追加で攻撃速度+1%、MaxHP+200、MaxSP+50。<BR>精錬値が8以上の時、追加で物理攻撃命中時、一定確率で敵を中心にオートスペル「メテオストーム」Lv4発動、オートスペル「メテオストーム」の発動率が上昇。<BR>精錬値が10の時、追加で物理攻撃命中時、一定確率で敵を中心にオートスペル「メテオストーム」Lv5発動、オートスペル「メテオストーム」の発動率が上昇。",88,170,223,196,223,197,223,198,0],
+	[3312,63,0,15,3150,10,50,100,"巡礼者の靴","シユンレイシヤノクツ","「カントキャンディダス」の習得Lvが1上がる度に追加で攻撃速度+4%。<BR>「サクラメント」の習得Lvが1上がる度に追加でDef+50、プレイヤーから受けるダメージ-2%。<BR>「ハイネスヒール」の習得Lvが1上がる度に追加で「ヒール」、「サンクチュアリ」、「ポーションピッチャー」、「ハイネスヒール」、「コルセオヒール」使用時、HP回復量+5%。<BR>「プラエファティオ」の習得Lvが1上がる度に追加でスキルディレイ-6%。<BR>精錬値が5以上の時、追加でMaxHP+7%、MaxSP+7%、スキル使用時の消費SP-3%。<BR>精錬値が7以上の時、追加でMaxHP+10%、MaxSP+10%、スキル使用時の消費SP-5%。",199,480,199,494,199,489,199,483,19,15,15,3,16,3,19483,1000,0],
+	[3313,64,0,0,3230,1,50,100,"時魔術師の指輪","トキマシユツシノユヒワ","",17,50,100,50,15,10,16,10,0],
+	[3314,100,0,0,0,0,0,0,0,0,"",215,40,8,50,0],
+	[3315,100,0,0,0,0,0,0,0,0,"",211,40,15,10,0],
+	[3316,100,0,0,0,0,0,0,0,0,"",216,40,70,30,0],
+	[3317,100,0,0,0,0,0,0,0,0,"",19,40,73,-20,0],
+	[3318,100,0,0,0,0,0,0,0,0,"",9,40,74,30,0],
+	[3319,100,0,0,0,0,0,0,0,0,"",214,40,16,10,0],
+	[3320,50,0,2,0,1,50,40,"ゴーグルハット","コオクルハツト","物理・魔法攻撃時、メモリアルダンジョン「ハートハンター軍事基地」に出現するモンスターに与えるダメージ+15%。<BR>メモリアルダンジョン「ハートハンター軍事基地」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、メモリアルダンジョン「ハートハンター軍事基地」に出現するモンスターに与えるダメージ+15%。<BR>精錬値が7以上の時、追加でメモリアルダンジョン「ハートハンター軍事基地」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が8以上の時、追加で毒属性攻撃で受けるダメージ-15%。<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、メモリアルダンジョン「ハートハンター軍事基地」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が9以上の時、追加でメモリアルダンジョン「ハートハンター軍事基地」に出現するモンスターから受けるダメージ-20%。",65,10,0],
+	[3321,60,0,60,0,1,80,100,"黒糸威胴丸","クロイトオトシトオマル","精錬値が7以上の時、追加でAtk+20、全ての種族のDef20%無視。<BR>精錬値が8以上の時、追加でAtk+20、全ての種族のDef20%無視、絶対に壊れない。<BR>精錬値が9以上の時、追加でAtk+30、全ての種族のDef20%無視。",17,10,293,10,0],
+	[3322,50,0,2,0,1,50,130,"タウラスハット","タウラスハツト","物理・魔法攻撃時、「ロックリッジ」に出現するモンスターに与えるダメージ+15%。<BR>「ロックリッジ」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、「ロックリッジ」に出現するモンスターに与えるダメージ+15%。<BR>精錬値が7以上の時、追加で「ロックリッジ」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が8以上の時、追加で風属性攻撃で受けるダメージ-15%。<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、「ロックリッジ」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が9以上の時、追加で「ロックリッジ」に出現するモンスターから受けるダメージ-20%。 ",64,10,0],
+	[3323,50,0,18,2420,0,100,100,"不死鳥の冠","フシチヨウノカンムリ","「キングスグレイス」Lv5習得時、追加で「インスピレーション」の詠唱時間-2秒、「インスピレーション」の再使用待機時間-10秒。<BR>「ムーンスラッシャー」Lv5習得時、追加で「オーバーブランド」の詠唱時間-1秒。<BR>「フォースオブバンガード」Lv5習得時、追加でMaxHP+10%、MaxSP+10%、Def+150、Mdef+15。<BR>精錬値が7以上の時、追加で詠唱時間-5%、「オーバーブランド」で与えるダメージ+15%。<BR>精錬値が9以上の時、追加で詠唱時間-5%、「オーバーブランド」で与えるダメージ+25%。<BR>精錬値が10の時、追加で全ての種族のDef100%無視。 ",19,15,199,892,199,582,199,575,15,10,73,-10,5579,10,11579,100,219,2805,0],
+	[3324,64,0,0,3230,1,50,100,"おもちゃの指輪","オモチヤノユヒワ","「ハンマーフォール」Lv5使用可能。<BR>BaseLvが1上がる度に追加で「バッシュ」で与えるダメージ+1%。<BR>BaseLvが5上がる度に追加で「ボウリングバッシュ」で与えるダメージ+3%。<BR>「剣修練」の習得Lvが2上がる度に追加でStr+1、Agi+1、Vit+1、Atk+10。",199,3,199,720,1,5,2,5,3,5,0],
+	[3325,100,0,0,0,0,0,0,0,0,"",17,100,5076,50,0],
+	[3326,9,201,30,1,0,0,1,"新芽の猫じゃらし","シンメノネコシヤラシ","",193,1,0],
+	[3327,9,201,80,1,0,30,1,"初心者用猫じゃらし","シヨシンシヤヨウネコシヤラシ","",88,100,8,10,14,50,0],
+	[3328,9,201,120,2,1,30,1,"猫じゃらしの模型","ネコシヤラシノモケイ","精錬値が1上がる度に追加でAtk+2。<BR>精錬値が7以上の時、追加でAtk+15。<BR>精錬値が8以上の時、追加でAtk+30、詠唱時間-5%。",0],
+	[3329,9,201,160,3,1,40,100,"繊細な猫じゃらしの模型","センサイナネコシヤラシノモケイ","精錬値が1上がる度に追加でAtk+5。<BR>精錬値が7以上の時、追加で物理攻撃で与えるダメージ+5%。<BR>精錬値が8以上の時、追加で物理攻撃で与えるダメージ+10%、詠唱時間-10%。",0],
+	[3330,9,201,130,3,1,40,100,"大きな猫じゃらしの模型","オオキナネコシヤラシノモケイ","精錬値が1上がる度に追加でAtk+4。<BR>精錬値が7以上の時、追加でAtk+30。<BR>精錬値が8以上の時、追加でAtk+40、詠唱時間-5%。",0],
+	[3331,9,201,180,4,1,40,100,"精巧な猫じゃらしの模型","セイコウナネコシヤラシノモケイ","精錬値が1上がる度に追加でAtk+6、Dex+1。<BR>精錬値が7以上の時、追加で物理攻撃で与えるダメージ+20%。<BR>精錬値が8以上の時、追加で物理攻撃で与えるダメージ+40%、詠唱時間-10%、スキルディレイ-10%。",0],
+	[3332,9,201,180,4,0,0,100,"黄色い猫じゃらしの模型","キイロイネコシヤラシノモケイ","精錬値が1上がる度に追加で遠距離物理攻撃で与えるダメージ+3%。<BR>精錬値が7以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+30%。",241,40,0],
+	[3333,9,201,80,2,1,40,1,"長い回復の猫じゃらし","ナカイカイフクノネコシヤラシ","精錬値が1上がる度に追加でヒール系スキル使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加でヒール系スキル使用時、HP回復量+10%。<BR>精錬値が8以上の時、追加で詠唱時間-10%、ヒール系スキル使用時、HP回復量+15%。",88,110,0],
+	[3334,9,201,130,4,1,40,100,"豊富な回復の猫じゃらし","ホウフナカイフクノネコシヤラシ","精錬値が1上がる度に追加でヒール系スキル使用時、HP回復量+5%。<BR>精錬値が7以上の時、追加でヒール系スキル使用時、HP回復量+20%。<BR>精錬値が8以上の時、追加で詠唱時間-10%、スキルディレイ-10%、ヒール系スキル使用時、HP回復量+30%。",88,175,0],
+	[3335,9,201,60,2,1,30,1,"トンボがとまった猫じゃらし","トンホカトマツタネコシヤラシ","精錬値が1上がる度に追加でMatk+2。<BR>精錬値が7以上の時、追加でMatk+15。<BR>精錬値が8以上の時、追加でMatk+30、詠唱時間-5%。",88,120,0],
+	[3336,9,201,80,3,1,40,100,"トンボがとまった妙なる猫じゃらし","トンホカトマツタミヨウナルネコシヤラシ","精錬値が1上がる度に追加でMatk+4。<BR>精錬値が7以上の時、追加でMatk+30。<BR>精錬値が8以上の時、追加でMatk+40、詠唱時間-5%。",88,140,0],
+	[3337,9,201,110,3,1,40,100,"トンボがとまった神妙な猫じゃらし","トンホカトマツタシンミヨウナネコシヤラシ","精錬値が1上がる度に追加でMatk+5。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+5%。<BR>精錬値が8以上の時、追加で魔法攻撃で与えるダメージ+10%、詠唱時間-10%。",88,165,0],
+	[3338,9,201,120,4,1,40,100,"トンボがとまった魔力の猫じゃらし","トンホカトマツタマリヨクノネコシヤラシ","精錬値が1上がる度に追加でMatk+6、Int+1。<BR>精錬値が7以上の時、追加で魔法攻撃で与えるダメージ+10%。<BR>精錬値が8以上の時、追加で魔法攻撃で与えるダメージ+20%、詠唱時間-10%、スキルディレイ-10%。",88,180,0],
+	[3339,9,201,120,4,0,0,100,"トンボがとまった黄色い猫じゃらし","トンホカトマツタキイロイネコシヤラシ","精錬値が1上がる度に追加でヒール系スキル使用時、HP回復量+10%。<BR>精錬値が7以上の時、追加で魔法攻撃時、プレイヤーに与えるダメージ+15%。<BR>精錬値が8以上の時、追加で魔法攻撃時、プレイヤーに与えるダメージ+20%。",88,180,242,25,0],
+	[3340,9,201,150,100004,1,40,150,"ディーヴァフォックステイル","テイイウアフオツクステイル","精錬値が1上がる度に追加でヒール系スキル使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5、魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5、魔法攻撃で与えるダメージ+4%。",88,180,0],
+	[3341,100,0,0,0,0,0,0,0,0,"通常攻撃がスプラッシュダメージになる。",80,10,0],
+	[3342,9,201,150,100004,1,40,150,"ミラージュフォックステイル","ミラアシユフオツクステイル","「ソウルアタック」Lv1習得時、追加で必中攻撃+20。<BR>精錬値が1上がる度に追加でヒール系スキル使用時、HP回復量+2%。<BR>精錬値が7以上の時、追加でAtk+30、Hit+5、魔法攻撃で与えるダメージ+4%。<BR>精錬値が9以上の時、追加でAtk+30、Hit+5、魔法攻撃で与えるダメージ+4%。",199,909,88,180,0],
+	[3343,100,0,0,0,0,0,0,0,0,"追加で物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収。",0],
+	[3344,64,201,0,3220,1,10,100,"新鮮な草のネックレス","シンセンナクサノネツクレス","アニマル系スキルの習得Lvの合計が5上がる度に追加で攻撃速度+1%、MaxHP+1%、MaxSP+1%、物理攻撃で与えるダメージ+2%。",199,930,199,931,199,932,199,933,199,936,199,937,199,938,12,5,80,5,0],
+	[3345,64,201,0,3220,1,10,100,"可愛い草のネックレス","カワイイクサノネツクレス","シーフード系スキルの習得Lvの合計が5上がる度に追加でMaxHP+2%、MaxSP+2%、SP自然回復量+10%、ヒール系スキル使用時、HP回復量+4%。",199,910,199,911,199,912,199,913,199,916,199,917,199,918,11,5,102,5,76,10,91,5,0],
+	[3346,64,201,0,3220,1,10,100,"魔力の草のネックレス","マリヨクノクサノネツクレス","プラント系スキルの習得Lvの合計が5上がる度に追加でMaxHP+1%、MaxSP+1%、詠唱時間-1%、魔法攻撃で与えるダメージ+2%。",199,920,199,921,199,922,199,923,199,926,199,927,199,928,73,-5,89,5,0],
+	[3347,64,201,0,0,1,10,1,"アジのお守り","アシノオマモリ","「ブレッシング」Lv3使用可能。",73,-5,74,5,220,4,91,10,0],
+	[3348,64,201,0,0,1,10,1,"高級アジのお守り","コウキユウアシノオマモリ","「ブレッシング」Lv5使用可能。",73,-10,74,10,220,7,91,20,0],
+	[3349,64,201,0,3220,1,10,100,"特選アジのお守り","トクセンアシノオマモリ","「ブレッシング」Lv10使用可能。<BR>BaseLvが10上がる度に追加でヒール系スキル使用時、HP回復量+2%。",73,-15,74,15,102,5,220,58,0],
+	[3350,64,201,0,0,1,10,1,"葉のお守り","ハノオマモリ","",89,5,73,-5,74,5,5922,5,7922,10,0],
+	[3351,64,201,0,0,1,10,1,"高級葉のお守り","コウキユウハノオマモリ","",89,5,73,-10,74,10,5922,10,7922,20,0],
+	[3352,64,201,0,3220,1,10,100,"特選葉のお守り","トクセンハノオマモリ","BaseLvが10上がる度に追加で「イヌハッカメテオ」で与えるダメージ+1%、「イヌハッカメテオ」の詠唱時間-3%。",89,10,73,-15,74,15,0],
+	[3353,64,201,0,0,1,10,1,"ウサギのお守り","ウサキノオマモリ","",80,5,73,-5,74,5,5933,5,7933,10,0],
+	[3354,64,201,0,0,1,10,1,"高級ウサギのお守り","コウキユウウサキノオマモリ","",80,5,73,-10,74,10,5933,10,7933,20,0],
+	[3355,64,201,0,3220,1,10,100,"特選ウサギのお守り","トクセンウサキノオマモリ","BaseLvが10上がる度に追加で「キャロットビート」で与えるダメージ+1%、「キャロットビート」の詠唱時間-3%。",80,10,73,-15,74,15,0],
+	[3356,64,201,0,3220,1,10,100,"光る枝のお守り","ヒカルエタノオマモリ","",89,10,12,10,7920,50,23920,10,0],
+	[3357,64,201,0,3220,1,10,100,"新鮮なマグロのお守り","シンセンナマクロノオマモリ","",11,5,220,58,91,20,23912,20,23913,20,0],
+	[3358,64,201,0,3220,1,10,100,"ぽっちゃりミミズのお守り","ホツチヤリミミスノオマモリ","",80,10,12,10,7930,50,23930,10,0],
+	[3359,64,201,0,0,0,10,1,"猫じゃらしの指輪","ネコシヤラシノユヒワ","「初心者用ポーション」の回復量+100%。",80,5,89,5,91,5,380,1,0],
+	[3360,50,201,10,0,0,10,1,"ファルファーレ自警団帽","フアルフアアレシケイタンホウ","モンスターを倒した時、HP+500、SP+50。<BR>5秒毎にHP+250、SP+30。",13,1000,14,200,0],
+	[3361,50,201,12,0,1,10,1,"抱きつきネコ","タキツキネコ","モンスターを倒した時、HP+100、SP+10。<BR>「グリード」Lv1使用可能。<BR>精錬値が1上がる度に追加でモンスターを倒した時、HP+50、SP+5。",19,5,0],
+	[3362,50,201,12,3060,1,0,1,"抱きつきシャムネコ","タキツキシヤムネコ","「グリード」Lv1使用可能。<BR>精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%、プレイヤーから受けるダメージ-1%、固定詠唱時間-7%。<BR>精錬値が8以上の時、追加でスキルディレイ-100%。<BR>精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、全ての基本ステータス+30。",19,15,15,5,16,5,12,10,243,3,0],
+	[3363,50,0,2,0,1,50,100,"ペパロニピッツァ","ヘハロニヒツツア","物理・魔法攻撃時、「龍の巣」に出現するモンスターに与えるダメージ+20%。<BR>「龍の巣」に出現するモンスターから受けるダメージ-20%。<BR>「ペパロニピッツァ」の精錬値が7以上の時、追加で物理・魔法攻撃時、「龍の巣」に出現するモンスターに与えるダメージ+30%、「龍の巣」に出現するモンスターから受けるダメージ-30%。",155,100,0],
+	[3364,52,0,0,0,0,10,100,"くわえたニンジン","クワエタニンシン","「ニンジン」の回復量+1200%。",5933,15,0],
+	[3365,50,0,2,0,1,50,100,"ストロベリーハット","ストロヘリイハツト","精錬値が1上がる度に追加でAtk+5、Matk+5",17,30,100,30,7000381,1,0],
+	[3366,50,0,2,0,1,50,100,"青リンゴ帽","アオリンコホウ","精錬値が1上がる度に追加でスキルディレイ-2%",73,-10,7000380,1,0],
+	[3367,61,201,120,0,0,10,1,"ドラムシールド","トラムシイルト","精錬値が8以上の時、追加で小・中・大型モンスターから受けるダメージ-10%。",19,5,190,15,191,15,192,15,0],
+	[3368,60,201,25,0,0,10,1,"白いTシャツ","シロイテイシヤツ","",13,100,14,100,0],
+	[3369,60,201,40,0,0,10,1,"白いリーフTシャツ","シロイリイフテイシヤツ","",13,100,14,100,23903,10,0],
+	[3370,60,201,80,0,1,10,1,"ドラムスーツ","トラムスウツ","精錬値が1上がる度に追加でAtk+5、Matk+5。",19,5,15,5,16,5,0],
+	[3371,60,201,100,0,1,10,1,"高級ドラムスーツ","コウキユウトラムスウツ","精錬値が1上がる度に追加でAtk+10、Matk+10。<BR>精錬値が7以上の時、追加で攻撃速度+5%。<BR>精錬値が8以上の時、追加でスキルディレイ-5%。<BR>精錬値が9以上の時、追加で完全回避+5。",19,5,15,10,16,10,0],
+	[3372,60,201,120,3090,1,10,100,"特選ドラムスーツ","トクセントラムスウツ","精錬値が1上がる度に追加でAtk+15、Matk+15。<BR>精錬値が7以上の時、追加で攻撃速度+10%。<BR>精錬値が8以上の時、追加でスキルディレイ-10%。<BR>精錬値が9以上の時、追加で完全回避+5",243,7,19,5,15,15,16,15,7906,50,9007906,50,0],
+	[3373,62,201,20,0,1,10,1,"ドラムケープ","トラムケエフ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。",19,5,17,20,100,20,0],
+	[3374,62,201,25,0,1,10,1,"高級ドラムケープ","コウキユウトラムケエフ","精錬値が1上がる度に追加でMaxHP+1%、MaxSP+1%。<BR>精錬値が7以上の時、追加で攻撃速度+5%。<BR>精錬値が8以上の時、追加で詠唱時間-5%。<BR>精錬値が9以上の時、追加で完全回避+15。",19,5,17,30,100,30,0],
+	[3375,62,201,30,3100,1,10,100,"特選ドラムケープ","トクセントラムケエフ","精錬値が1上がる度に追加でMaxHP+2%、MaxSP+2%。<BR>精錬値が7以上の時、追加で攻撃速度+15%。<BR>精錬値が8以上の時、追加で詠唱時間-10%。<BR>精錬値が9以上の時、追加で完全回避+20。",19,5,243,5,17,50,100,50,0],
+	[3376,63,201,10,0,0,10,1,"木のスリッパ","キノスリツハ","",13,100,14,100,0],
+	[3377,63,201,20,0,0,10,1,"レッドブーツ","レツトフウツ","",13,100,14,100,23905,10,0],
+	[3378,63,201,20,0,1,10,1,"ドラムシューズ","トラムシユウス","精錬値が1上がる度に追加でAtk+5、Matk+5。",19,5,15,10,16,10,0],
+	[3379,63,201,25,0,1,10,1,"高級ドラムシューズ","コウキユウトラムシユウス","精錬値が1上がる度に追加でAtk+10、Matk+10。<BR>精錬値が7以上の時、追加で攻撃速度+5%。<BR>精錬値が8以上の時、追加で詠唱時間-10%。<BR>精錬値が9以上の時、追加で完全回避+5。",19,5,15,15,16,15,0],
+	[3380,63,201,30,3110,1,10,100,"特選ドラムシューズ","トクセントラムシユウス","精錬値が1上がる度に追加でAtk+15、Matk+15。<BR>精錬値が7以上の時、追加で攻撃速度+10%。<BR>精錬値が8以上の時、追加で詠唱時間-15%。<BR>精錬値が9以上の時、追加で完全回避+5",243,5,19,5,15,20,16,20,7907,50,9007907,50,0],
+	[3381,100,0,0,0,0,0,0,0,0,"移動速度増加、5秒毎にHP+500、SP+5。",0],
+	[3382,100,0,0,0,0,0,0,0,0,"移動速度増加、5秒毎にHP+1000、SP+10。",0],
+	[3383,100,0,0,0,0,0,0,0,0,"移動速度増加、5秒毎にHP+1500、SP+15。",0],
+	[3384,1,0,120,4,0,0,100,"ブルートダマスカス","フルウトタマスカス","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,60,0],
+	[3385,4,51,150,4,0,0,100,"ブルートスピア","フルウトスヒア","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,80,0],
+	[3386,6,179,150,4,0,0,100,"ブルートクリーヴァー","フルウトクリイウアア","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,60,0],
+	[3387,8,0,150,4,0,0,100,"ブルートモーニングスター","フルウトモオニンクスタア","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,60,0],
+	[3388,9,77,60,4,0,0,100,"ブルートアークワンド","フルウトアアクワント","精錬値が1上がる度に追加で全ての種族のMdef5%無視。<BR>精錬値が8以上の時、追加で魔法攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が9以上の時、追加で魔法攻撃時、プレイヤーに与えるダメージ+10%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",88,180,194,1,242,25,0],
+	[3389,17,59,70,4,0,0,100,"ブルートハンドガン","フルウトハントカン","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,50,243,30,0],
+	[3390,18,59,170,4,0,0,100,"ブルートライフル","フルウトライフル","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。<BR>精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,60,243,30,0],
+	[3391,20,59,120,4,0,0,100,"ブルートガトリングガン","フルウトカトリンクカン","純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。<BR>精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,50,243,30,0],
+	[3392,19,59,180,4,0,0,100,"ブルートショットガン","フルウトシヨツトカン","スプラッシュダメージ。<BR>純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。<BR>精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,80,243,30,0],
+	[3393,21,59,210,4,0,0,100,"ブルートグレネードガン","フルウトクレネエトカン","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。<BR>精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,50,243,30,0],
+	[3394,10,76,160,4,0,0,100,"ブルートハンターボウ","フルウトハンタアホウ","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,50,243,30,0],
+	[3395,14,116,150,4,0,0,100,"ブルートギター","フルウトキタア","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,80,0],
+	[3396,15,117,150,4,0,0,100,"ブルートラリエット","フルウトラリエツト","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,80,0],
+	[3397,16,58,150,4,0,0,100,"ブルート風魔手裏剣","フルウトフウマシユリケン","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,88,160,241,95,243,30,0],
+	[3398,11,108,150,4,0,0,100,"ブルートカタール","フルウトカタアル","精錬値が1上がる度に追加で全ての種族のDef5%無視。<BR>精錬値が8以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+35%。<BR>精錬値が9以上の時、追加で物理攻撃時、プレイヤーに与えるダメージ+20%。<BR>精錬値が10の時、追加でMaxHP+15%、MaxSP+15%。",194,1,241,60,243,30,0],
+	[3399,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加でMaxHP+1%。",0],
+	[3400,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加でMaxHP+1%。",0],
+	[3401,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加でMaxHP+1%。",0],
+	[3402,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加でMaxHP+1%。",0],
+	[3403,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加でMaxHP+1%。",0],
+	[3404,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加でMaxHP+1%。",0],
+	[3405,100,0,0,0,0,0,0,0,0,"「ライオットチップ」の精錬値が2上がる度に追加でMaxHP+1%。",0],
+	[3406,60,0,120,2240,0,40,90,"大自然のドレス","タイシセンノトレス","",381,1,198,2,-1,1,5000037,10,5000032,10,5000272,10,5000044,10,5000042,10,5000177,10,5000172,10,5000273,10,5000354,10,5000352,10,-1,1,7000037,15,7000032,15,7000272,15,7000044,15,7000042,15,7000177,15,7000172,15,7000273,15,7000354,15,7000352,15,-1,1,9000037,15,9000032,15,9000272,15,9000044,15,9000042,15,9000177,15,9000172,15,9000273,15,9000354,15,9000352,15,-1,1,0],
+	[3407,64,0,0,3700,1,10,100,"パワードチップ","ハワアトチツフ","「アームズキャノン」Lv3習得時、追加でスキルディレイ-30%。<BR>「ニュートラルバリアー」Lv3習得時、追加で「アームズキャノン」、「コールドスローワー」、「フレイムスローワー」の詠唱時間-50%。<BR>「パイルバンカー」Lv3習得時、追加でStr+5、Vit+5、Dex+5、Atk+100。<BR>「火と大地の研究」Lv5習得時、追加でスキル使用時、「魔導ギア燃料」を消費しない。 ",199,554,199,566,199,550,199,544,1,5,3,5,5,5,80,5,0],
+	[3408,62,0,18,0,1,20,100,"海魔獣の鱗","カイマシユウノウロコ","",19,5,41,15,351,15,243,5,100012,1,100041,1,100351,1,10000061,100,0],
+	[3409,100,0,0,0,0,0,0,0,0,"",19,10,15,10,60,20,0],
+	[3410,50,0,10,100003,1,31,1,"カボチャヘッド","カホチヤヘツト","",0],
+	[3411,50,0,7,0,1,40,80,"サーペンタリウスクラウン","サアヘンタリウスクラウン","",80,6,89,6,153,100,0],
+	[3412,100,0,0,0,0,0,0,0,0,"",217,10,73,-10,74,20,0],
+	[3413,50,0,7,0,1,40,80,"アクエリアスダイアデム","アクエリアスタイアテム","",89,7,73,-5,0],
+	[3414,100,0,0,0,0,0,0,0,0,"",96,20,0],
+	[3415,60,0,0,0,1,60,1,"古びた月食の装束","フルヒタケツシヨクノシヨウソク","",15,5,16,5,100074,1,0],
+	[3416,60,0,120,1580,1,60,99,"月食の装束","ケツシヨクノシヨウソク","精錬値が7以上の時、追加で固定詠唱時間-50%。<BR>精錬値が9以上の時、追加で固定詠唱時間-20%。",194,1,19,10,15,15,16,15,100074,1,0],
+	[3417,100,0,0,0,0,0,0,0,0,"物理攻撃を受けた時、一定確率で敵を凍結状態にする。",152,100,100041,5,0],
+	[3418,64,0,0,3230,1,10,100,"アクセラレータチップ","アクセラレエタチツフ","",12,5,80,5,89,5,0],
+	[3419,100,0,0,0,0,0,0,0,0,"",12,10,80,10,89,10,293,30,298,30,0],
+	[3420,64,0,0,3230,1,10,100,"不死の軍団認識票","フシノクンタンニンシキヒヨウ","",17,50,100,50,51,4,0],
+	[3421,100,0,0,0,0,0,0,0,0,"「ジュリエットディレイチェル」の精錬値が1上がる度に追加で物理攻撃で与えるダメージ+5%。<BR>「ジュリエットディレイチェル」の精錬値が9以上の時、追加で「ローリングカッター」使用時、一定確率でオートスペル「オラティオ」Lv10発動。",0],
+	[3422,100,0,0,0,0,0,0,0,0,"「ひまわり少年」の精錬値が1上がる度に追加でInt+2、「クリムゾンロック」で与えるダメージ+1%。<BR>「ひまわり少年」の精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、火属性魔法攻撃で与えるダメージ+50%、魔法攻撃でモンスターを倒した時、HP+500。",0],
+	[3423,100,0,0,0,0,0,0,0,0,"「リンディーホップ」の精錬値が1上がる度に追加でクリティカル攻撃で与えるダメージ+3%。<BR>「リンディーホップ」の精錬値が9以上の時、追加でCri+50、物理攻撃時、ボスモンスターに与えるダメージ+25%。",0],
+	[3424,50,0,2,0,1,50,40,"実験成体ゴート型キャップ","シツケンセイタイコオトカタキヤツフ","物理・魔法攻撃時、「ヴェルナー研究所」、メモリアルダンジョン「ヴェルナー研究所中央室」に出現するモンスターに与えるダメージ+15%。<BR>「ヴェルナー研究所」、メモリアルダンジョン「ヴェルナー研究所中央室」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、「ヴェルナー研究所」、メモリアルダンジョン「ヴェルナー研究所中央室」に出現するモンスターに与えるダメージ+15%。<BR>精錬値が7以上の時、追加で「ヴェルナー研究所」、メモリアルダンジョン「ヴェルナー研究所中央室」に出現するモンスターから受けるダメージ-15%。<BR>精錬値が8以上の時、追加で地属性攻撃で受けるダメージ-15%。<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、「ヴェルナー研究所」、メモリアルダンジョン「ヴェルナー研究所中央室」に出現するモンスターに与えるダメージ+20%。<BR>精錬値が9以上の時、追加で「ヴェルナー研究所」、メモリアルダンジョン「ヴェルナー研究所中央室」に出現するモンスターから受けるダメージ-20%。",62,10,0],
+	[3425,50,0,0,0,1,80,165,"バーストフレイム","ハアストフレイム","",63,20,243,3,100243,1,7000079,5,0],
+	[3426,60,0,60,1500,1,100,165,"ブレイブスーツ","フレイフスウツ","",152,50,100015,4,0],
+	[3427,100,0,0,0,0,0,0,0,0,"",15,-100,0],
+	[3428,62,0,16,1510,1,100,165,"ブレイブマフラー","フレイフマフラア","",152,25,100092,4,0],
+	[3429,63,0,16,1520,1,100,165,"ブレイブシューズ","フレイフシユウス","",152,25,100013,100,100014,10,100241,2,100242,2,0],
+	[3430,100,0,0,0,0,0,0,0,0,"絶対に恐怖・ホワイトインプリズン状態にならない。自分に対して使用した[ホワイトインプリズン]にはこの効果は発動しない。<BR>「エルヴィラキャンディ」使用時、マスカレード:イグノアランスの状態異常を回復する。",241,50,242,50,0],
+	[3431,50,0,5,1530,1,40,100,"剛勇無双の紋帽子","コウユウムソウノモンホウシ","",2,5,5,5,12,10,25,5,86,10,100008,2,100074,2,7000025,10,7000086,20,9000025,10,9000086,20,10000000000100086n,2,10000000010000086n,30,10000000010000228n,1,0],
+	[3432,51,0,0,1550,0,20,100,"浮遊する太極玉","フユウスルタイキヨクタマ","",100,35,96,2,5000000100,70,5000000096,3,23000000100,140,23000000096,5,0],
+	[3433,52,0,0,1560,0,30,90,"プロテクトクロース","フロテクトクロオス","",19,5,15,5,0],
+	[3434,100,0,0,0,0,0,0,0,0,"",18,50,19,5,213,5,12,5,243,3,9000000018,50,9000000019,5,9000000213,5,9000000012,5,15000000018,100,15000000019,10,15000000213,10,0],
+	[3435,62,0,20,3680,1,30,100,"連合軍司令官のマント","レンコウクンシレイカンノマント","",19,10,17,10,100,10,15,3,16,3,243,5,5000017,20,5000100,20,5000015,7,5000016,7,7000017,30,7000100,30,7000015,10,7000016,10,0],
+	[3436,100,0,0,0,0,0,0,0,0,"",213,10,216,10,102,10,91,20,243,5,0],
+	[3437,100,0,0,0,0,0,0,0,0,"",211,10,215,10,74,20,243,5,0],
+	[3438,100,0,0,0,0,0,0,0,0,"",212,10,214,10,73,-10,243,5,0],
+	[3439,63,0,30,1540,1,80,100,"ブースターシューズ","フウスタアシユウス","",19,10,15,10,16,10,243,5,19007000017,90,20007000101,2,21007000015,12,22007000100,120,23007000025,10,24007000070,20,19009000017,90,20009000101,2,21009000015,12,22009000100,120,23009000025,10,24009000070,20,0],
+	[3440,64,0,0,3240,1,10,100,"プロンテラ軍用手袋","フロンテラクンヨウテフクロ","",19,5,3,5,12,5,243,3,63,5,61,5,64,5,62,5,0],
+	[3441,62,0,12,3130,0,30,100,"虹色のスカーフ","ニシイロノスカアフ","[ウォーグライダー]Lv3習得時、追加で[アンリミット]の再使用待機時間 - 180秒<BR>[カモフラージュ]Lv5習得時、追加でスキルディレイ - 10%[アローストーム]の再使用待機時間 - 0.2秒<BR>[エイムドボルト]の習得Lvが1上がる度に追加で遠距離物理攻撃で与えるダメージ + 2%[アローストーム]で与えるダメージ + 1%<BR>装備解除時、[アンリミット]を解除する<BR>[炎の矢]と共に装備時、追加で火属性攻撃で受けるダメージ - 75%<BR>[水晶の矢]と共に装備時、追加で水属性攻撃で受けるダメージ - 75%<BR>[風の矢]と共に装備時、追加で風属性攻撃で受けるダメージ - 75%<BR>[岩石の矢]と共に装備時、追加で地属性攻撃で受けるダメージ - 75%",199,515,199,496,199,497,15,2,16,2,243,5,25,2,5000015,3,5000016,3,5000025,3,7000015,5,7000016,5,7000025,5,0],
+	[3442,62,0,10,0,1,30,100,"古代モロクのショール","コタイモロクノシヨオル","",9,10,15,5,7000009,20,8000009,30,9000009,40,10000011,25,0],
+	[3443,100,0,0,0,0,0,0,0,0,"",15,15,63,50,67,100,153,100,0],
+	[3444,50,0,10,0,1,30,100,"調査団の帽子","チヨウサタンノホウシ","精錬値が1上がる度、追加で「Mセルフディストラクション」で受けるダメージ-10%",190,5,191,5,192,5,6000190,5,6000191,5,6000192,5,9000190,5,9000191,5,9000192,5,0],
+	[3445,1,0,120,100004,1,60,165,"アビスダガー","アヒスタカア","",88,120,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3446,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3447,2,70,150,100004,1,120,165,"アビスブレイド","アヒスフレイト","",88,130,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3448,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3449,3,0,280,100004,1,340,165,"アビスクレイモア","アヒスクレイモア","",88,230,243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3450,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3451,4,0,150,100004,1,180,165,"アビススピア","アヒススヒア","",88,110,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3452,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3453,5,0,200,100004,1,350,165,"アビスランス","アヒスランス","",88,230,243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3454,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3455,6,90,180,100004,1,180,165,"アビスアックス","アヒスアツクス","",88,110,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3456,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3457,7,0,320,100004,1,400,165,"アビスツーハンドアックス","アヒスツウハントアツクス","",88,200,243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3458,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3459,8,0,150,100004,1,150,165,"アビスメイス","アヒスメイス","",88,110,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3460,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3461,9,77,60,100004,1,30,165,"アビスワンド","アヒスワント","",88,180,100091,2,7000089,5,7000243,5,9000089,5,9000243,5,0],
+	[3462,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3463,9,94,120,100004,1,240,165,"アビススタッフ","アヒススタツフ","",88,270,195,1,243,30,100091,2,7000089,5,7000243,5,9000089,5,9000243,5,0],
+	[3464,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3465,10,0,160,100004,1,90,165,"アビスウィング","アヒスウインク","",88,170,243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3466,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3467,11,0,150,100004,1,280,165,"アビスカタール","アヒスカタアル","",88,250,243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3468,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3469,12,0,120,100004,1,80,165,"アビスブック","アヒスフツク","",88,140,100091,2,7000089,5,7000243,5,9000089,5,9000243,5,0],
+	[3470,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3471,13,0,140,100004,1,40,165,"アビスクロー","アヒスクロウ","",88,100,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3472,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3473,14,0,180,100004,1,25,165,"アビスバイオリン","アヒスウアイオリン","",88,120,7005292,150,7000243,5,9005292,50,9000243,5,0],
+	[3474,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3475,15,0,150,100004,1,50,165,"アビスブレイドウィップ","アヒスフレイトウイツフ","",88,120,7005292,150,7000243,5,9005292,50,9000243,5,0],
+	[3476,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3477,16,0,150,100004,1,150,165,"アビス風魔手裏剣","アヒスフウマシユリケン","",88,160,243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3478,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3479,17,0,70,100004,1,35,165,"アビスハンドガン","アヒスハントカン","",243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3480,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3481,18,0,170,100004,1,85,165,"アビスライフル","アヒスライフル","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。<BR>",243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3482,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3483,20,0,120,100004,1,250,165,"アビスガトリングガン","アヒスカトリンクカン","純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。<BR>",243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3484,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3485,19,0,180,100004,1,300,165,"アビスショットガン","アヒスシヨツトカン","純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。<BR>",243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3486,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3487,21,0,210,100004,1,140,165,"アビスグレネードガン","アヒスクレイネエトカン","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。<BR>",243,30,7000080,5,7000243,5,9000080,5,9000243,5,0],
+	[3488,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3489,9,201,150,100004,1,40,165,"アビスフォックステイル","アヒスフオツクステイル","",88,180,100091,2,7000080,5,7000089,5,7000243,5,9000080,5,9000089,5,9000243,5,0],
+	[3490,100,0,0,0,0,0,0,0,0,"",12,10,80,10,0],
+	[3491,61,0,150,100000,0,120,165,"アビスシールド","アヒスシイルト","精錬値が6以上の時、追加で恐怖に対する耐性 + 50%<BR>精錬値が8以上の時、追加で恐怖に対する耐性 + 50%",194,1,6000243,20,8000243,10,0],
+	[3492,50,0,4,1600,1,10,150,"イリュージョン看護帽","イリユウシヨンカンコホウ","BaseLvが170以上の時、追加でヒール系スキル使用時、HP回復量 + 10%",4,1,91,10,0],
+	[3493,50,0,1,1600,1,20,150,"イリュージョン名射手のりんご","イリユウシヨンメイシヤシユノリンコ","BaseLvが170以上の時、追加で[ダブルストレイフィング]で与えるダメージ + 70%",5,3,5040,70,0],
+	[3494,62,0,8,1620,1,40,150,"イリュージョンマフラー","イリユウシヨンマフラア","BaseLvが170以上の時、追加でAtk + 20 , Matk + 20 , 遠距離物理攻撃で受けるダメージ - 15%",17,20,100,20,78,10,0],
+	[3495,100,0,0,0,0,0,0,0,0,"",78,-35,0],
+	[3496,100,0,0,0,0,0,0,0,0,"",78,-35,0],
+	[3497,63,0,10,1630,1,40,150,"イリュージョンシューズ","イリユウシヨンシユウス","BaseLvが170以上の時、Atk + 50 , Matk + 50 , MaxHP + 10% , MaxSP + 10%",17,50,100,50,15,10,16,10,0],
+	[3498,100,0,0,0,0,0,0,0,0,"",15,10,16,10,80,5,89,5,0],
+	[3499,61,152,120,1610,1,400,150,"イリュージョン神の使者","イリユウシヨンカミノシシヤ","BaseLvが170以上の時、追加で[シールドチェーン]、[シールドブーメラン]で与えるダメージ + 15%",194,1,19,3,3,3,4,2,5324,15,5159,15,0],
+	[3500,62,55,10,1620,1,55,150,"イリュージョンサバイバルマント","イリユウシヨンサハイハルマント","",19,5,3,10,1000000000000380,1,0], 
+	[3501,50,0,7,1600,1,40,150,"イリュージョンキャップ","イリユウシヨンキヤツフ","BaseLvが170以上の時、追加でDef + 150",0],
+	[3502,5,0,240,1594,1,200,150,"イリュージョン妖怪の槍","イリユウシヨンヨウカイノヤリ","近接物理攻撃でモンスターを倒した時、HP + 50<BR>物理攻撃命中時、一定確率で自分を混乱状態にする<BR>BaseLvが170以上の時、追加で不死・悪魔形モンスターから受けるダメージ - 20%",47,10,36,10,67,10,51,10,56,10,0],
+	[3503,16,0,200,1594,1,150,150,"イリュージョン風魔手裏剣・乱雪","イリユウシヨンフウマシユリケンランセツ","近接物理攻撃命中時、一定確率で氷閃石を1個消費して自分を中心にオートスペル[氷柱落し]Lv1発動習得<BR>Lvが2以上の場合、習得Lvで発動<BR>BaseLvが170以上の時、追加でオートスペル[氷柱落し]の発動率が上昇",20,1,88,150,0],
+	[3504,1,1,50,1594,1,70,150,"イリュージョン月光剣","イリユウシヨンケツコウケン","攻撃命中時、SP + 3<BR>BaseLvが170以上の時、追加で攻撃命中時、SP + 1",88,180,16,10,0],
+	[3505,8,0,135,1594,1,80,150,"イリュージョンロングメイス","イリユウシヨンロンクメイス","射程距離 3<BR>BaseLvが170以上の時、追加でプレイヤーから受けるダメージ - 10%",88,120,78,10,0],
+	[3506,9,55,30,1594,1,50,150,"イリュージョンスタッフオブオルド","イリユウシヨンスタツフオフオルト","[ドラゴノロジー]Lv5習得時、追加でInt + 3、スキル使用時の消費SP - 15%<BR>BaseLvが170以上の時、追加で魔法攻撃命中時、一定確率で11秒間、1秒毎にHP + 100 , SP + 100",199,234,88,170,4,2,5,1,0],
+	[3507,13,0,100,1594,1,50,150,"イリュージョン連撃の爪","イリユウシヨンレンケキノツメ","[號砲]Lv10習得時、追加でAtk + 50、必中攻撃 + 10%<BR>[双龍脚]Lv10習得時、追加でAtk + 50、必中攻撃 + 10%<BR>[大纏崩捶]Lv5習得時、追加でAtk + 50<BR>[天羅地網]Lv5習得時、追加でAtk + 50<BR>BaseLvが170以上の時、追加で[閃光連撃]使用時、4秒間、Atk + 120",199,615,199,609,199,614,199,610,0],
+	[3508,9,55,10,1594,1,20,150,"スティックキャンディロッド","ステイツクキヤンテイロツト","[スティックキャンディ]のHP回復量 + 100%<BR>BaseLvが170以上の時、追加で絶対に混乱状態にならない",88,140,4,2,11,20,0],
+	[3509,63,0,15,3140,10,50,100,"トラベラーシューズ","トラヘラアシユウス","[スイングダンス]の習得Lvが1上がる度に追加で全ての基本ステータス + 1<BR>[ハーモナイズ]の習得Lvが1上がる度に追加で攻撃速度 + 4%<BR>[フリッグの歌]の習得Lvが1上がる度に追加でMaxHP + 2%<BR>[メランコリー]の習得Lvが1上がる度に追加で[メタリックサウンド]で与えるダメージ + 10%、[メタリックサウンド]の詠唱時間 - 10%<BR>[安らぎの子守唄]Lv1習得時、追加で魔法攻撃命中時、一定確率で敵を睡眠状態にする<BR>[安らぎの子守唄]の習得Lvが1上がる度に追加で敵を睡眠状態にする確率が上昇 ",199,648,199,645,199,894,199,635,199,632,19,15,15,3,16,3,89,2,340,2,5000015,7,5000016,7,5000089,3,5000340,3,7000015,10,7000016,10,7000089,5,7000340,5,0],
+	[3510,61,0,80,0,1,50,90,"ネロシールド","ネロシイルト","",19,5,194,1,61,10,41,5,351,5,6000061,15,6000041,10,6000351,10,1008000017,50,2008000012,5,3008000092,10,4008000100,30,5008000073,-5,6008000070,5,0],
+	[3511,51,0,2,4040,10,50,100,"イリュージョンアイズ","イリユウシヨンアイス","[イリュージョンドーピング]Lv5習得時、追加で[ディスペル]Lv5使用可能<BR>[ハウリングマンドラゴラ]Lv5習得時、追加で固定詠唱時間 - 70% ",199,896,199,735,15,10,16,10,243,5,154,100,0],
+	[3512,9,95,70,1654,1,30,100,"スタッフオブパフィ","スタツフオフハフイ","[スペルフィスト]Lv5習得時、追加で[スタッフオブパフィ]の精錬値が1上がる度に追加で[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]で与えるダメージ + 3%<BR>[スタッフオブパフィ]の精錬値が10の時、追加で[ダブルアタック]Lv3使用可能",199,660,197,5,88,150,0],
+	[3513,100,0,0,0,0,0,0,0,0,"",13051,-10000,0],
+	[3514,100,0,0,0,0,0,0,0,0,"",13054,-10000,0],
+	[3515,100,0,0,0,0,0,0,0,0,"",13056,-10000,0],
+	[3516,50,0,7,0,1,40,80,"リーブラクラウン","リイフラクラウン","",7,5,80,6,0],
+	[3517,100,0,0,0,0,0,0,0,0,"",15,10,26,20,0],
+	[3518,50,0,7,0,1,40,80,"スコーピオダイアデム","スコオヒオタイアテム","",80,6,74,5,0],
+	[3519,100,0,0,0,0,0,0,0,0,"",211,7,74,20,0],
+	[3520,60,0,30,1660,1,50,100,"スターフィッシュスーツ","スタアフイツシユスウツ","精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で敵を沈黙状態にする",30,5,170,5,50,5,100007,1,100030,1,100170,1,100050,1,8000220,60,8000061,15,0],
+	[3521,63,0,15,1670,1,100,99,"特殊環境活動用ブーツ","トクシユカンキヨウカツトウヨウフウツ","",96,15,100100,5,100015,2,100016,2,100074,1,10000004,15,0],
+	[3522,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、精錬値が1以上の時、物理攻撃を受けた時、一定確率で15秒間、精錬値が1上がる度に追加で火属性魔法攻撃で与えるダメージ + 5%<BR>BaseLv100以上の時、精錬値が1以上の時、物理攻撃を受けた時、一定確率で15秒間、精錬値が1上がる度に追加で火属性魔法攻撃で与えるダメージ + 10%",220,61,0],
+	[3523,12,0,170,1594,1,80,150,"イリュージョン黙示録","イリユウシヨンモクシロク","[SP回復力向上]の習得Lvが1上がる度に、追加でオートスペル[ヘルインフェルノ]の発動率が上昇<BR>BaseLvが170以上の時、精錬値が1上がる度に追加で[ヘルインフェルノ]で与えるダメージ + 20%",20,7,221,194,0],
+	[3524,9,55,150,1594,1,240,150,"イリュージョンウィザードスタッフ","イリユウシヨンウイサアトスタツフ","BaseLvが170以上の時、追加で[ストームガスト]、[メテオストーム]、[ロードオブヴァーミリオン]使用時、一定確率で自分にオートスペル[セイフティウォール]が[イリュージョンウィザードスタッフ]の精錬値と同じLvで発動",195,1,88,250,4,6,5,2,100343,3,100341,3,100344,3,100342,3,0],
+	[3525,10,54,200,1594,1,350,150,"イリュージョンバリスタ","イリユウシヨンハリスタ","BaseLvが170以上の時、追加でスキルディレイ - 20%",25,50,0],
+	[3526,11,0,140,1594,1,150,150,"イリュージョン裏切り者","イリユウシヨンウラキリモノ","BaseLvが170以上の時、追加で絶対に睡眠状態にならない",9,50,11,20,37,50,0],
+	[3527,11,0,150,1594,1,170,150,"イリュージョンデスナイフ","イリユウシヨンテスナイフ","BaseLvが170以上の時、追加で必中攻撃 + 10%",20,9,86,10,0],
+	[3528,62,1,18,1620,1,60,150,"イリュージョン昔の領主のマント","イリユウシヨンムカシノリヨウシユノマント","BaseLvが170以上の時、追加で物理攻撃命中時、一定確率で自分を中心にオートスペル[ヘルジャッジメント]Lv5発動<BR>精錬値が1上がる度に追加で[ヘルジャッジメント]の発動率が上昇",2,2,223,138,0],
+	[3529,65,0,0,1640,1,10,150,"イリュージョン骸骨の指輪","イリユウシヨンカイコツノユヒワ","BaseLvが170以上の時、追加でMatk + 30",4,3,100,30,0],
+	[3530,65,0,0,1640,1,10,150,"イリュージョンリング","イリユウシヨンリンク","BaseLvが170以上の時、追加でAtk + 30",1,3,17,30,0],
+	[3531,65,0,1,1640,1,10,150,"吸血鬼のしもべ","キユウケツキノシモヘ","モンスターを倒した時、HP + 50 , SP + 5<BR>BaseLvが170以上の時、追加で物理・魔法攻撃で与えるダメージ + 10%",0],
+	[3532,100,0,0,0,0,0,0,0,0,"",12,15,0],
+	[3533,64,0,0,3230,1,40,100,"勇者のブローチ","ユウシヤノフロオチ","3次職ソードマン系が装備時、追加でMaxHP + 10%、物理攻撃時、全ての種族のモンスターに与えるダメージ + 5%<BR>3次職アコライト系が装備時、追加で攻撃速度 + 10%、物理・魔法攻撃時、全ての種族のモンスターに与えるダメージ + 5%<BR>3次職マーチャント系が装備時、追加でスキル使用時の消費SP - 10%、物理攻撃時、全ての種族のモンスターに与えるダメージ + 5%",80,5,89,5,0],
+	[3534,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、自分にオートスペル[キリエエレイソン]が発動しない<BR>[勇者のジャッジメントローブ]の精錬値が1上がる度に追加で[アドラムス]、[ジュデックス]、[地雷震]、[双龍脚]、[天羅地網]で与えるダメージ + 5%",0],
+	[3535,100,0,0,0,0,0,0,0,0,"精錬値が1上がる度に追加で全ての基本ステータス+2<BR>近接物理攻撃命中時、一定確率で敵をスタン・毒・沈黙・呪い状態にする<BR>精錬値が1上がる度に追加で敵をスタン・毒・沈黙・呪い状態にする確率が上昇",0],
+	[3536,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、自分にオートスペル[ヒール]が発動しない<BR>物理攻撃命中時、敵を中心にオートスペル[ストームガスト]が発動しない<BR>[勇者のプレート]の精錬値が1上がる度に追加で[ストームブラスト]、[バニシングポイント]で与えるダメージ + 5%",0],
+	[3537,50,0,18,2440,0,100,100,"ワークキャップ","ワアクキヤツフ","[グリード]の詠唱時間 - 100%<BR>[FAW マジックデコイ]Lv5習得時、追加で物理攻撃時、ボスモンスターに与えるダメージ + 50%<BR>[アックスブーメラン]Lv5習得時、追加でAtk + 100<BR>[マグマイラプション]Lv5習得時、追加でモンスターを倒した時、一定確率で[ダイヤモンド３カラット]をドロップ",199,546,199,542,199,811,19,15,3,10,5541,20,7005541,30,9005541,50,10000293,100,0],
+	[3538,60,0,0,0,1,40,100,"聖祭の羽衣","セイサイノハコロモ","",15,5,74,10,91,5,7000015,5,7000091,5,8000015,5,8000091,10,8000102,10,8000155,100,9000015,5,9000091,10,0],
+	[3539,100,0,0,0,0,0,0,0,0,"",152,100,0],
+	[3540,64,0,0,3230,1,30,100,"フローズヴィトニルの鎖","フロオスウイトニルノクサリ","",12,5,74,5,220,17,0],
+	[3541,100,0,0,0,0,0,0,0,0,"[ヴァナルガンドの兜]の精錬値が6以上の時、追加で攻撃速度 + 5%、スキルディレイ - 5%、物理攻撃で与えるダメージ + 5%、全ての種族のDef 25%無視<BR>[ヴァナルガンドの兜]の精錬値が8以上の時、追加で攻撃速度 + 10%、スキルディレイ - 10%、物理攻撃で与えるダメージ + 5%、全ての種族のDef 25%無視",0],
+	[3542,50,0,18,2430,0,100,100,"ブラックフェザー","フラツクフエサア","モンスターを倒した時、SP + 50<BR>[インビジビリティ]Lv5習得時、追加で物理攻撃時、ボスモンスターに与えるダメージ + 50%<BR>[メイルストーム]Lv3習得時、追加で[ティオアプチャギ]Lv7使用可能<BR>[リプロデュース]Lv10習得時、追加でスキル使用時の消費SP - 30%",199,599,199,605,199,595,19,15,5,10,5603,10,7000008,30,7005603,15,9000008,20,9005603,25,10000293,100,0],
+	[3543,62,0,18,0,1,20,100,"炎魔獣の羽","エンマシユウノハネ","",19,5,43,15,353,15,243,5,100012,1,100043,1,100353,1,10000063,100,0],
+	[3544,100,0,0,0,0,0,0,0,0,"",19,10,9,20,60,20,0],
+	[3545,62,0,15,1680,1,50,100,"金剛石のマント","コンコウセキノマント","",19,15,15,5,16,5,57,5,300015,3,300016,3,0],
+	[3546,100,0,0,0,0,0,0,0,0,"",60,10,274,10,159,100,0],
+	[3547,2,1,180,1594,1,90,150,"イリュージョン無形剣","イリユウシヨンムケイケン","攻撃命中時、SP + 3。<br>BaseLvが170以上の時、追加で攻撃命中時、SP + 3",20,8,0],
+	[3548,8,53,210,1594,1,200,150,"イリュージョンアイアンドライバー","イリユウシヨンアイアントライハア","BaseLvが170以上の時、精錬値が1上がる度に追加でオートスペル[パワースイング]の発動率が上昇",221,199,0],
+	[3549,4,51,190,1594,1,380,150,"イリュージョンポールアクス","イリユウシヨンホオルアクス","BaseLvが170以上の時、精錬値が1上がる度に追加で[スパイラルピアース]で与えるダメージ + 15%",1,3,4,2,5,2,105259,10,0],
+	[3550,6,56,180,1594,1,420,150,"イリュージョンウォーアクス","イリユウシヨンウオオアクス","BaseLvが170以上の時、精錬値が1上がる度に追加で[アックスブーメラン]で与えるダメージ + 10%",1,2,5,2,6,2,243,10,5542,100,0],
+	[3551,16,58,250,1594,1,150,150,"イリュージョン風魔手裏剣・風鳥","イリユウシヨンフウマシユリケンフウチヨウ","BaseLvが170以上の時、追加でスキルディレイ - 20%",5,2,74,20,0],
+	[3552,50,0,0,1600,1,10,150,"イリュージョン装飾用花","イリユウシヨンソウシヨクヨウハナ","BaseLvが170以上の時、追加で植物形モンスターのDef・Mdef 50%無視",303,50,313,50,0],
+	[3553,64,0,0,3230,1,30,100,"無双の指輪","ムソウノユヒワ","",80,5,89,5,44,10,42,10,354,10,352,10,64,5,62,5,0],
+	[3554,100,0,0,0,0,0,0,0,0,"",32,20,33,20,44,20,42,20,172,20,173,20,354,20,352,20,0],
+	[3555,100,0,0,0,0,0,0,0,0,"",32,15,33,15,44,15,42,15,172,15,173,15,354,15,352,15,0],
+	[3556,63,0,12,3140,10,40,100,"インペリアルブーツ","インヘリアルフウツ","[インスピレーション]Lv5習得時、追加で[シールドスペル]の再使用待機時間 - 2秒<BR>[キャノンスピア]の習得Lvが1上がる度に追加で[バニシングポイント]で与えるダメージ + 10%<BR>[ディボーション]の習得Lvが1上がる度に追加で物理攻撃で与えるダメージ + 4%<BR>[ピンポイントアタック]の習得Lvが1上がる度に追加で全ての種族のDef 20%無視",199,587,199,569,199,163,199,574,19,10,15,3,16,3,220,62,5000015,7,5000016,7,5000025,5,7000015,10,7000016,10,7000025,5,0],
+	[3557,50,0,12,2410,0,60,100,"精霊王の宝冠","セイレイオウノホウカン","[ウォーマー]Lv5習得時、追加で[アースグレイブ]、[ヴェラチュールスピアー]、[ダイヤモンドダスト]の再使用待機時間 - 1秒<BR>[エレメンタルシールド]Lv5習得時、追加で魔法攻撃時、ボスモンスターに与えるダメージ + 25%<BR>[エレメンタルシンパシー]の習得Lvが1上がる度に追加で詠唱時間 - 6%<BR>精錬値が1上がる度に追加で固定詠唱時間 - 7%",199,668,199,895,199,678,19,15,74,10,5666,10,5667,10,7000074,5,7005666,15,7005667,15,9000074,5,9005666,25,9005667,25,10000298,100,0],
+	[3558,50,0,10,1070,1,50,10,"王級ミニメロン","オウキユウミニメロン","<BR>モンスターを倒した時、SP + 5<BR>精錬値が1上がる度に追加で物理・魔法攻撃時、[メロリン]に与えるダメージ + 20%<BR>精錬値が7以上の時、追加でモンスターを倒した時、SP + 10<BR>精錬値が9以上の時、追加でモンスターを倒した時、SP + 10",19,10,33,5,173,5,53,2,7000019,5,7000033,10,7000173,10,7000053,3,9000019,5,9000033,10,9000173,10,9000053,3,0],
+	[3559,52,0,0,1690,0,30,130,"浮遊するジオイア","フユウスルシオイア","絶対に恐怖状態にならない",30,20,170,20,0],
+	[3560,50,0,6,1160,0,30,130,"フレイムバード","フレイムハアト","精錬値が8以上の時、追加で精錬値と同じLvの[ファイアーウォール]使用可能",63,20,100063,3,222,63,0],
+	[3561,60,152,180,1110,1,150,130,"キングスメイル","キンクスメイル","",19,10,198,6,51,15,56,15,6000015,5,6000091,10,6000092,10,8000015,5,8000091,10,8000092,10,0],
+	[3562,100,0,0,0,0,0,0,0,0,"[キングスメイル]の精錬値が1上がる度に追加で[グランドクロス]、[バッシュ]、[ホーリークロス]で与えるダメージ + 20%",0],
+	[3563,100,0,0,0,0,0,0,0,0,"[キングスメイル]の精錬値が1上がる度に追加で闇属性攻撃で受けるダメージ - 5%",0],
+	[3564,60,0,35,1700,1,80,130,"降霊術士のドレス","コウレイシユツシノトレス","",19,10,297,50,100100,15,100344,2,0],
+	[3565,100,0,0,0,0,0,0,0,0,"[降霊術士の外套]の精錬値が1上がる度に追加で、魔法攻撃で与えるダメージ + 2%、詠唱時間 - 2%",0],
+	[3566,100,0,0,0,0,0,0,0,0,"[速度増加]Lv1使用可能<BR>[炎雷魔女の大杖]の精錬値が1上がる度に追加で、[エレクトリックウォーク]、[ファイアーウォーク]で与えるダメージ + 30%、魔法攻撃でモンスターを倒した時、HP + 50<BR>[炎雷魔女の大杖]の精錬値が7以上の時、追加で精錬値と同じLvの[速度増加]使用可能",222,62,0],
+	[3567,100,0,0,0,0,0,0,0,0,"魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[ランドプロテクター]が発動しない",152,100,7662,100,0],
+	[3568,2,0,180,1154,1,150,130,"クラデニェッツ","クラテニエツツ","精錬値が1上がる度に追加でオートスペル[サイキックウェーブ]の発動率が上昇<BR>精錬値が10の時、追加で固定詠唱時間 - 70%",88,160,221,200,0],
+	[3569,1,1,30,1154,1,30,130,"緋色のアセイミー","ヒイロノアセイミイ","[メテオストーム]Lv1使用可能<BR>[アブラカタブラ]Lv1習得時、追加で魔法攻撃命中時、敵を10秒間、[跳躍阻害]状態にする<BR>精錬値が7以上の時、追加で精錬値と同じLvの[メテオストーム]使用可能",20,9,88,180,224,91,100343,3,5000015,10,5000016,10,5000078,5,9000015,10,9000016,10,9000078,5,0],
+	[3570,52,0,0,1090,0,10,1,"ドワーフのひげ","トワアフノヒケ","",57,2,61,5,0],
+	[3571,100,0,0,0,0,0,0,0,0,"",41,50,0],
+	[3572,52,0,0,1090,0,10,100,"不思議なハト","フシキナハト","",7,1,74,5,0],
+	[3573,100,0,0,0,0,0,0,0,0,"オートスペル[セイフティウォール]の発動確率が上昇<BR>純粋なStrが18上がる度に、魔法攻撃で与えるダメージ + 5%、敵のMdef 5%無視<BR>純粋なLukが18上がる度に、Atk + 25、敵のDef 5%無視",0],
+	[3574,60,0,120,0,0,150,100,"ファフニールスケイル","フアフニイルスケイル","[ファイアードラゴンブレス]の習得Lvが1上がる度に、追加で遠距離物理攻撃で与えるダメージ + 2%<BR>[ウォータードラゴンブレス]の習得Lvが1上がる度に、追加でスキルディレイ - 2%",199,447,199,794,19,15,15,10,16,10,5447,50,5794,50,5000015,20,5000016,20,5000074,5,7000015,20,7000016,20,7000074,5,0],
+	[3575,62,0,15,0,1,60,100,"ラドゥーンの皮","ラトウウンノカワ","精錬値が7以上の時、追加で物理攻撃でモンスターを倒した時、SP + 10<BR>精錬値が8以上の時、純粋なAgiとVitの合計が20上がる度に、追加でAtk + 15 , Hit + 5<BR>精錬値が9以上の時、追加で物理攻撃でモンスターを倒した時、SP + 10",19,10,2,5,3,5,52,5,57,5,274,5,64,5,62,5,0],
+	[3576,63,0,12,3140,10,10,100,"もこもこお魚シューズ","モコモコオサカナシユウス","[海の魂]Lv1習得時、追加で[グルーミング]使用時、30秒間、絶対に睡眠・スタン石化状態にならない<BR>[グルーミング]Lv5習得時、追加で固定詠唱時間 - 50%、絶対にノックバックしない<BR>[エビパーティー]の習得Lvが1上がる度に、追加でシーフード系スキルの詠唱時間 - 10%<BR>[のどを鳴らす]の習得Lvが1上がる度に、追加でヒール系スキル使用時、HP回復量 + 10%",199,919,199,916,199,918,199,917,19,10,15,3,16,3,5000015,7,5000016,7,5000074,10,7000015,10,7000016,10,7000074,10,0],
+	[3577,64,0,0,1710,0,0,100,"古びた派遣隊の指輪","フルヒタハケンタイノユヒワ","",19,10,243,3,0],
+	[3578,100,0,0,0,0,0,0,0,0,"[トランプル]Lv3使用可能",0],
+	[3579,100,0,0,0,0,0,0,0,0,"",5608,70,0],
+	[3580,100,0,0,0,0,0,0,0,0,"",5569,70,0],
+	[3581,100,0,0,0,0,0,0,0,0,"",5553,70,5552,70,0],
+	[3582,100,0,0,0,0,0,0,0,0,"",151,100,0],
+	[3583,100,0,0,0,0,0,0,0,0,"",5623,70,0],
+	[3584,100,0,0,0,0,0,0,0,0,"[カウンタースラッシュ]使用時、10秒間 Str + 200",0],
+	[3585,100,0,0,0,0,0,0,0,0,"",100,100,19527,500,0],
+	[3586,100,0,0,0,0,0,0,0,0,"",7735,100,0],
+	[3587,100,0,0,0,0,0,0,0,0,"",15,50,0],
+	[3588,100,0,0,0,0,0,0,0,0,"",152,100,0],
+	[3589,100,0,0,0,0,0,0,0,0,"",10,70,70,70,0],
+	[3590,100,0,0,0,0,0,0,0,0,"",11452,100,0],
+	[3591,52,0,0,1720,0,30,40,"群星","クンセイ","ブラックスミス系が装備時、「グリード」の詠唱時間-100%。<BR>ブラックスミス系が装備時、物理攻撃でモンスターを倒した時、SP+5。",220,65,0],
+	[3592,50,0,200,0,1,40,80,"アリエスダイアデム","アリエスタイアテム","",80,6,0],
+	[3593,100,0,0,0,0,0,0,0,0,"",12,10,25,10,0],
+	[3594,50,0,7,0,1,40,80,"カプリコーンクラウン","カフリコオンクラウン","",9,20,80,6,89,6,0],
+	[3595,100,0,0,0,0,0,0,0,0,"モンスターを倒した時、SP + 20",215,8,0],
+	[3596,50,0,7,0,1,40,80,"パイシーズクラウン","ハイシイスクラウン","固定詠唱時間 - 50%",89,7,0],
+	[3597,100,0,0,0,0,0,0,0,0,"",89,5,73,-20,0],
+	[3598,51,0,200,3820,10,30,99,"星の眼帯","ホシノカンタイ","",3,3,19,10,151,30,0],
+	[3599,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、純粋なVitが10上がる度に追加でAtk + 10、Matk + 10、純粋なLukが10上がる度に追加でVit + 1、Luk + 1<BR>BaseLv100以上の時、純粋なVitが10上がる度に追加でAtk + 30、Matk + 30、純粋なLukが10上がる度に追加でVit + 3、Luk + 3",0],
+	[3600,51,0,0,3830,10,30,99,"負傷兵の眼帯","フシヨウヘイノカンタイ","",2,10,12,15,15,15,0],
+	[3601,100,0,0,0,0,0,0,0,0,"移動速度増加<BR>物理攻撃命中時、一定確率で自身が[バーサーク]状態の時、5秒間Atk + 1000<BR>[セイレン=ウィンザー](ロードナイト)に変身",0],
+	[3602,63,0,15,2080,1,50,99,"ホロウシューズ","ホロウシユウス","",19,5,100100,5,100074,1,100351,2,100357,2,100358,2,100359,2,0],
+	[3603,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[ホロウシューズ]の精錬値が1上がる度に追加でMatk + 5、詠唱時間 - 2%<BR>BaseLv100以上の時、[ホロウシューズ]の精錬値が1上がる度に追加でMatk + 15、詠唱時間 - 7%",220,66,171,30,176,30,357,30,359,30,0],
+	[3604,3,51,300,3474,1,220,99,"フルフォース","フルフオオス","精錬値が1上がる度に追加でAtkが上昇",194,1,12,10,0],
+	[3605,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[フルフォース]の精錬値が1上がる度に追加で攻撃速度 + 2%、物理攻撃で与えるダメージ + 4%<BR>BaseLv100以上の時、[フルフォース]の精錬値が1上がる度に追加で攻撃速度 + 5%、物理攻撃で与えるダメージ + 10%",220,67,0],
+	[3606,60,0,40,1750,1,40,100,"白の騎士団の鎧","シロノキシタンノヨロイ","精錬値が10の時、追加でインデュア状態になる",194,1,243,1,74,5,100074,2,10000000000100018n,30,10000000000100019n,3,10000000010000086n,25,10000000010000152n,100,0],
+	[3607,50,0,8,3510,1,40,100,"ヴェスパーヘッドギア","ウエスハアヘツトキア","",5,2,73,-10,7000073,-10,9000073,-10,0],
+	[3608,100,0,0,0,0,0,0,0,0,"",297,70,346,30,340,30,0],
+	[3609,100,0,0,0,0,0,0,0,0,"",73,30,0],
+	[3610,51,0,0,1780,0,10,100,"リトルガーデン","リトルカアテン","",17,40,70,5,6000000017,60,6000000070,10,24000000017,80,24000000070,20,0],
+	[3611,52,0,0,1760,0,10,70,"炎雷魔女の首飾り","エンライマシヨノクヒカサリ","移動速度増加",74,5,0],
+	[3612,63,0,0,1790,1,10,100,"武侠靴","フキヨウクツ","",105527,3,105476,3,105528,3,0],
+	[3613,100,0,0,0,0,0,0,0,0,"[武侠靴]の精錬値が1上がる度に追加でMatk + 25、Cri + 5",15,10,16,10,0],
+	[3614,64,0,0,1740,1,10,100,"主記憶装置","シユキオクソウチ","",4,3,5,3,0],
+	[3615,100,0,0,0,0,0,0,0,0,"",73,-20,0],
+	[3616,60,0,40,0,1,50,90,"血塗られた人形のドレス","チヌラレタニンキヨウノトレス","",19,5,5,3,100,10,243,7,7000012,10,7000074,10,8000194,1,0],
+	[3617,100,0,0,0,0,0,0,0,0,"",17,50,100,50,101,1,221,201,221,202,221,203,0],
+	[3618,100,0,0,0,0,0,0,0,0,"[血塗られた人形のドレス]の精錬値が1上がる度に追加でMatk + 20、全ての基本ステータス + 1<BR>[セリーヌのリボン]の精錬値が7以上の時、追加で魔法攻撃時、ボスモンスターに与えるダメージ + 15%<BR>[セリーヌのリボン]の精錬値が9以上の時、追加で魔法攻撃時、ボスモンスターに与えるダメージ + 15%",0],
+	[3619,62,0,10,2860,1,10,100,"名も無き暗殺者のマフラー","ナモナキアンサツシヤノマフラア","精錬値が7以上の時、追加で物理攻撃でモンスターを倒した時、SP + 5<BR>精錬値が8以上の時、追加で移動速度増加<BR>精錬値が9以上の時、追加で物理攻撃でモンスターを倒した時、SP + 5",19,5,15,3,16,3,243,5,7000015,7,7000016,7,7000101,1,9000015,10,9000016,10,9000101,1,10000220,28,0],
+	[3620,63,0,10,3140,0,50,100,"オーソリティーサンダル","オオソリテイイサンタル","",19,10,217,10,293,50,298,50,7000217,10,9000217,10,0],
+	[3621,8,0,10,2874,1,40,1,"獅子宮のメイス","シシキユウノメイス","BaseLvが1上がる度に追加でAtk + 1",17,50,73,-10,5500000000012,10,5500000000073,-5,5500000000080,50,5500007000293,50,5500009000293,50,0],
+	[3622,50,0,12,2900,0,10,1,"獅子宮のクラウン","シシキユウノクラウン","修羅が装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>修羅が装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,1,10,17,50,8,20,261,10,5500000007293,50,5500008000007,10,0],
+	[3623,60,0,100,3020,1,100,1,"獅子宮のメイル","シシキユウノメイル","",194,1,19,5,17,50,9,20,13,1000,5500000000017,80,5500000000015,10,5500000000016,10,5500008000381,1,0],
+	[3624,63,0,25,3040,0,40,1,"獅子宮のシューズ","シシキユウノシユウス","10秒毎にHP + 250<BR>修羅が装備時、精錬値が8以上の時、追加で10秒毎にSP + 50",19,5,17,50,15,10,16,10,5500000000017,80,5500000000015,10,5500000000016,10,5500000007293,50,0],
+	[3625,62,0,25,3030,0,30,1,"獅子宮のマント","シシキユウノマント","",19,5,17,20,15,10,16,10,60,20,5500000000380,1,5500000000017,30,5500000000015,10,5500000000016,10,5500008000012,20,0],
+	[3626,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,152,100,0],
+	[3627,64,0,0,3220,0,10,1,"獅子宮のリング","シシキユウノリンク","",14,100,80,5,12,5,23610,2,19629,1500,5500000000012,5,5500000000080,5,5500000005610,50,219,2868,0],
+	[3628,51,0,0,0,10,0,100,"ヘヴンリーオーダー","ヘウンリイオオタア","純粋なStrが18上がる度に、追加でHit + 2、MaxHP + 2%<BR>純粋なAgiが18上がる度に、追加でFlee + 2、スキルディレイ - 2%<BR>純粋なVitが18上がる度に、追加でMdef + 2、詠唱時間 - 2%<BR>純粋なIntが18上がる度に、追加でMaxSP + 2%、スキル使用時の消費SP - 2%<BR>純粋なDexが18上がる度に、追加でCri + 2、攻撃速度 + 2%<BR>純粋なLukが18上がる度に、追加でAtk + 15 , Matk + 15、Def + 20",220,69,0],
+	[3629,100,0,0,0,0,0,0,0,0,"",243,3,262,15,269,15,0],
+	[3630,50,0,18,2380,0,100,100,"ジェジェキャップ","シエシエキャツフ","[ファイアーエクスパンション]Lv5習得時、追加で物理攻撃時、ボスモンスターに与えるダメージ + 50%<BR>[ハウリングオブマンドラゴラ]Lv5習得時、追加でスキルディレイ - 25%[クレイジーウィード]の再使用待機時間 - 4.5秒<BR>[クレイジーウィード]の習得Lvが1上がる度に追加でスキルディレイ - 6%",199,738,199,735,199,732,19,15,74,15,7328,50,7732,50,7875,50,5328,10,5732,10,7005328,15,7005732,15,9005328,25,9005732,25,10000293,100,219,3392,380,1,0],
+	[3631,62,0,15,0,1,60,100,"テュポーンの皮","テユホオンノカワ","精錬値が7以上の時、追加で魔法攻撃でモンスターを倒した時、SP + 10<BR>精錬値が8以上の時、純粋なAgiとVitの合計が20上がる度に追加でMatk + 15 , Def + 20<BR>精錬値が9以上の時、追加で魔法攻撃でモンスターを倒した時、SP + 10",19,10,2,5,3,5,55,5,57,5,60,5,65,5,0],
+	[3632,64,0,0,910,1,10,150,"栄光の証[1]","エイコウノアカシ１","",7,2,80,4,89,4,0],
+	[3633,100,0,0,0,0,0,0,0,0,0,11,10,0],
+	[3634,1,1,140,1874,1,55,150,"イリュージョンカウンターダガー","イリユウシヨンカウンタアタカア","BaseLvが170以上の時、追加でクリティカル攻撃で与えるダメージ + 10%",10,90,0],
+	[3635,9,55,100,1874,1,120,150,"イリュージョンサバイバルスタッフ","イリユウシヨンサハイハルスタツフ","BaseLvが170以上の時、追加で小・中・大型モンスターから受けるダメージ - 10%",195,1,88,240,4,3,5,3,13,2000,190,20,191,20,192,20,0],
+	[3636,100,0,0,0,0,0,0,0,0,"[イリュージョンサバイバルマント]の精錬値が1上がる度に追加でMaxHP + 1000<BR>[イリュージョンサバイバルスタッフ]の精錬値が1上がる度に追加で魔法攻撃で与えるダメージ + 3%",89,10,63,40,61,40,64,40,62,40,0],
+	[3637,19,0,240,1874,1,130,150,"イリュージョンゲートキーパーDD","イリユウシヨンケエトキイハアテイテイ","スプラッシュダメージ<BR>純粋なStrが10上がる度に追加で[スラッグショット]で与えるダメージ + 7%<BR>純粋なStrが110以上の時、追加で[スラッグショット]で与えるダメージ + 30%<BR>BaseLvが170以上の時、追加で物理攻撃命中時、一定確率で敵にオートスペル[シャッターストーム]Lv3発動<BR>[シャッターストーム]の習得Lvが4以上の場合、習得Lvで発動<BR>精錬値が1上がる度に追加でオートスペル[シャッターストーム]の発動率が上昇",5,5,50,30,100018,50,7000290,50,9000290,50,223,204,0],
+	[3638,50,0,3,1880,1,10,150,"イリュージョン熱血鉢巻き","イリユウシヨンネツケツハチマキ","BaseLvが170以上の時、精錬値が1上がる度に追加で[天羅地網]で与えるダメージ + 5%",1,3,17,50,12,10,0],
+	[3639,100,0,0,0,0,0,0,0,0,"[號砲]、[双龍脚]、[大纏崩捶]、[天羅地網]の習得Lvの合計が6上がる度に追加で物理攻撃で与えるダメージ + 10%、必中攻撃 + 5%<BR>[イリュージョン熱血鉢巻き]の精錬値が1上がる度に追加でボスモンスターのDef 10%無視",199,615,199,609,199,614,199,610,0],
+	[3640,63,0,16,1890,1,40,150,"イリュージョンブーツ","イリユウシヨンフウツ","BaseLvが170以上の時、Atk + 50 , Matk + 50 , MaxHP + 10% , MaxSP + 10%",17,50,100,50,15,10,16,10,0],
+	[3641,6,90,10,2874,1,70,1,"巨蟹宮のアックス","キヨカイキユウノアツクス","BaseLvが1上がる度に追加でAtk + 1<BR>メカニックが装備時、攻撃命中時、SP + 2",17,80,12,10,5200000000080,50,5200000019541,1000,5200007000293,50,5200009000293,50,0],
+	[3642,50,0,12,2880,0,10,1,"巨蟹宮のクラウン","キヨカイキユウノクラウン","メカニックが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>メカニックが装備時、一定確率で[しおれないバラ]をドロップ",194,1,19,15,1,10,17,50,8,20,261,10,5200008000007,10,0],
+	[3643,60,0,100,3020,1,100,1,"巨蟹宮のメイル","キヨカイキユウノメイル","メカニックが装備時、精錬値が8以上の時、追加で[クリティカルスラッシュ]で受けるダメージ - 100%",194,1,19,5,17,50,9,20,13,1000,5200000000017,80,5200000000015,10,5200000000016,10,0],
+	[3644,63,0,25,3040,0,40,1,"巨蟹宮のシューズ","キヨカイキユウノシユウス","10秒毎にHP + 250",19,5,17,50,15,10,16,10,5200000000017,80,5200000000012,10,5200000000015,10,5200000000016,10,5200008000063,20,5200008000061,20,5200008000064,20,5200008000062,20,0],
+	[3645,62,0,25,3030,0,30,1,"巨蟹宮のマント","キヨカイキユウノマント","",19,5,17,20,15,10,16,10,60,20,5200000000380,1,5200000000017,30,5200000000015,10,5200000000016,10,5200008000381,1,0],
+	[3646,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,152,100,0],
+	[3647,64,0,0,3220,0,10,1,"巨蟹宮のリング","キヨカイキユウノリンク","モンスターを倒した時、一定確率で[ダイヤモンド２カラット]、[ダイヤモンド３カラット]をドロップ",3,5,12,5,14,100,80,5,9542,1500,5200000000012,5,5200000000080,5,5200000005541,50,5200000005542,50,0],
+	[3648,62,0,12,3130,0,30,100,"虹色のマフラー","ニシイロノマフラア","[フリッグの歌]Lv5習得時、追加で攻撃速度 + 10%[メタリックサウンド]の再使用待機時間 - 0.2秒<BR>[メランコリー]の習得Lvが1上がる度に追加で魔法攻撃で与えるダメージ + 4%[メタリックサウンド]で与えるダメージ + 4%<BR>[安らぎの子守唄]Lv5習得時、追加で[ヒール]Lv10使用可能、魔法攻撃でモンスターを倒した時、HP + 200 , SP + 20<BR>[炎の矢]と共に装備時、追加で火属性攻撃で受けるダメージ - 75%<BR>[水晶の矢]と共に装備時、追加で水属性攻撃で受けるダメージ - 75%<BR>[風の矢]と共に装備時、追加で風属性攻撃で受けるダメージ - 75%<BR>[岩石の矢]と共に装備時、追加で地属性攻撃で受けるダメージ - 75%",199,894,199,635,199,632,15,2,16,2,243,5,89,2,5000015,3,5000016,3,5000089,3,7000015,5,7000016,5,7000089,5,224,58,0],
+	[3649,64,0,2,3240,1,50,100,"リングオブジュピター","リンクオフシユヒタア","アクセサリー(1)に装備時、純粋なLukが10上がる度に追加でAtk + 15 , Matk + 15<BR>アクセサリー(1)に装備時、純粋なLukが125以上の場合、追加で物理・魔法攻撃時、ボスモンスターに与えるダメージ + 15%<BR>アクセサリー(2)に装備時、純粋なVitが10上がる度に追加でMaxHP + 2% , MaxSP + 2%<BR>アクセサリー(2)に装備時、純粋なVitが125以上の場合、追加でDef + 300 , Mdef + 50プレイヤーから受けるダメージ - 3%",220,70,0],
+	[3650,50,0,2,0,1,50,130,"ブラックヴェール","フラツクウエエル","物理・魔法攻撃時、[250ページ]に出現するモンスターに与えるダメージ + 15%<BR>[250ページ]に出現するモンスターから受けるダメージ - 15%<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、[250ページ]に出現するモンスターに与えるダメージ + 15%<BR>精錬値が7以上の時、[250ページ]に出現するモンスターから受けるダメージ - 15%<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、[250ページ]に出現するモンスターに与えるダメージ + 20%<BR>精錬値が9以上の時、[250ページ]に出現するモンスターから受けるダメージ - 20%",8,20,8000008,30,0],
+	[3651,60,0,60,0,1,80,100,"紫糸威胴丸","ムラサキイトオトシトウマル","",17,10,86,5,7000017,20,7000086,5,8000017,20,8000086,10,8000194,1,9000017,30,9000086,10,0],
+	[3652,9,201,110,1064,1,40,100,"虹色の猫じゃらし","ニシイロノネコシヤラシ","",88,160,221,208,221,207,221,206,221,205,100017,10,100100,10,100012,1,0],
+	[3653,100,0,0,0,0,0,0,0,0,"[レインボウ]の精錬値が1上がる度に、追加でAtk + 15 , Matk + 15 , 攻撃速度 + 2%",0],
+	[3654,100,0,0,0,0,0,0,0,0,"[虹色の猫じゃらし]の精錬値が1上がる度に追加で[ヘルインフェルノ]で与えるダメージ + 10%",221,194,0],
+	[3655,100,0,0,0,0,0,0,0,0,"[にゃん魂]Lv1習得時、物理攻撃命中時、一定確率で敵にオートスペル[ダイヤモンドダスト]Lv5発動<BR>[にゃん魂]Lv1習得時、[虹色の猫じゃらし]の精錬値が1上がる度に、追加で[ダイヤモンドダスト]で与えるダメージ + 10%、水属性魔法攻撃で与えるダメージ + 5%",199,908,225,209,0],
+	[3656,52,0,0,1690,0,30,130,"くわえたシャムネコ","クワエタシヤムネコ","",32,20,172,20,158,100,0],
+	[3657,3,0,10,2874,1,350,1,"天秤宮のクラスナヤ","テンヒンキユウノクラスナヤ","BaseLvが1上がる度に追加でAtk + 1",194,1,17,70,12,10,4700000000074,10,4700000000080,50,4700000000025,25,4700000023259,15,4700000000077,50,4700007000293,50,4700009000293,50,0],
+	[3658,50,0,12,2950,0,10,1,"天秤宮のダイアデム","テンヒンキユウノタイアテム","ルーンナイトが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ルーンナイトが装備時、ルーンストーンスキルを発動時、追加でルーンストーンスキルの効果が強化される。または自分自身に対して様々な効果が付与される<BR>ルーンナイトが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,1,10,17,50,74,20,261,10,4700000000077,20,4700008000007,10,0],
+	[3659,60,0,100,3020,1,100,1,"天秤宮のメイル","テンヒンキユウノメイル","",194,1,19,5,17,50,13,1000,74,10,4700000000017,80,4700000000015,10,4700000000016,10,4700008000077,5,0],
+	[3660,63,0,25,3040,0,40,1,"天秤宮のシューズ","テンヒンキユウノシユウス","ルーンナイトが装備時、精錬値が8以上の時、追加で固定詠唱時間 - 50%",19,5,17,50,15,10,16,10,74,10,4700000000017,80,4700000000015,10,4700000000016,10,4700000000077,5,4700000009447,2000,4700000009794,2000,0],
+	[3661,62,0,25,3030,0,30,1,"天秤宮のマント","テンヒンキユウノマント","",19,5,17,20,15,10,16,10,74,5,60,20,4700000000017,30,4700000000015,10,4700000000016,10,4700000000077,5,4700008000025,20,0],
+	[3662,100,0,0,0,0,0,0,0,0,"全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",13,2000,14,200,5259,150,0],
+	[3663,64,0,0,3220,0,10,1,"天秤宮のリング","テンヒンキユウノリンク","",12,5,14,100,80,5,23447,10,23794,10,4700000000015,10,4700000000016,10,4700000000074,10,4700000000080,5,4700000005259,100,4700000007259,50,0],
+	[3664,64,0,0,3700,1,10,100,"螺旋風魔の宝珠","ラセンフウマノホウシユ","[幻術 -影武者-]Lv5習得時、BaseLvが4上がる度に追加で[風魔手裏剣投げ]で与えるダメージ + 2%、[風魔手裏剣 -乱華-]で与えるダメージ + 1%<BR>[幻術 -驚愕-]Lv5習得時、追加で[風魔手裏剣 -乱華-]の消費SP - 10、再使用待機時間 - 0.1秒<BR>[無茶投げ]Lv10習得時、追加で物理攻撃命中時、敵に与えたダメージの1%をHPとして吸収<BR>[明鏡止水]Lv5習得時、追加で攻撃命中時、SP + 2、[十六夜]の再使用待機時間 - 25秒<BR>[黄泉返し]Lv5習得時、追加で[風魔手裏剣 -乱華-]の詠唱時間 - 50%",199,774,199,775,199,772,199,773,199,767,1,5,2,5,3,5,80,5,0],
+	[3665,50,0,12,2400,0,60,100,"聖者の冠","セイシヤノカンムリ","[オラティオ]の習得Lvが1上がる度に追加で[アドラムス]、[ジュデックス]の詠唱時間 - 5%<BR>[クリアランス]Lv5習得時、追加で魔法攻撃時、ボスモンスターに与えるダメージ + 25%<BR>[ラウダアグヌス]、[ラウダラムス]の習得Lvが1上がる度に追加で魔法攻撃時、地・念・無・不死属性モンスターに与えるダメージ + 5%<BR>精錬値が10の時、追加でジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",199,484,199,490,199,485,199,486,19,15,12,10,23478,15,23476,15,5478,20,5476,20,100177,2,7000012,5,7005478,30,7005476,30,9000012,5,9005478,50,9005476,50,0],
+	[3666,61,0,120,0,1,100,90,"フォティアシールド","フオテイアシイルト","",19,10,194,1,63,10,43,5,353,5,6000063,15,6000043,10,6000353,10,1008000017,50,2008000012,5,3008000092,10,4008000100,30,5008000073,-5,6008000070,5,0],
+	[3667,10,149,165,1874,1,150,150,"イリュージョンハンターボウ","イリユウシヨンハンタアホウ","BaseLvが170以上の時、追加で動物形モンスターのDef 50%無視<BR>BaseLvが170以上の時、精錬値が1上がる度に追加で物理攻撃時、動物形モンスターに与えるダメージ + 3%",302,50,0],
+	[3668,12,0,170,1874,1,80,150,"イリュージョンタブレット","イリユウシヨンタフレツト","[SP回復力向上]の習得Lvが1上がる度に追加でオートスペル[ジュデックス]の発動率が上昇<BR>BaseLvが170以上の時、精錬値が1上がる度に追加で[ジュデックス]で与えるダメージ + 10%",88,160,221,195,0],
+	[3669,50,0,12,1600,1,100,150,"イリュージョンゴヴニュの兜","イリユウシヨンコウニユノカフト","BaseLvが170以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>BaseLvが170以上の時、人間形モンスター・ドラム形プレイヤーから受けるダメージ - 10%<BR>BaseLvが170以上の時、精錬値が1上がる度に追加でVit + 3",19,5,15,10,16,10,0],
+	[3670,60,0,60,1900,1,100,150,"イリュージョンゴヴニュの鎧","イリユウシヨンコウニユノヨロイ","BaseLvが170以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>BaseLvが170以上の時、人間形モンスター・ドラム形プレイヤーから受けるダメージ - 7%<BR>BaseLvが170以上の時、精錬値が1上がる度に追加でVit + 3",15,10,16,10,0],
+	[3671,62,0,16,1910,1,100,150,"イリュージョンゴヴニュの肩飾り","イリユウシヨンコウニユノカタカサリ","BaseLvが170以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>BaseLvが170以上の時、人間形モンスター・ドラム形プレイヤーから受けるダメージ - 5%<BR>BaseLvが170以上の時、精錬値が1上がる度に追加でVit + 3",15,10,16,10,0],
+	[3672,63,0,20,1920,1,100,150,"イリュージョンゴヴニュの軍靴","イリユウシヨンコウニユノクンカ","BaseLvが170以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>BaseLvが170以上の時、人間形モンスター・ドラム形プレイヤーから受けるダメージ - 5%<BR>BaseLvが170以上の時、精錬値が1上がる度に追加でVit + 3",15,10,16,10,0],
+	[3673,100,0,0,0,0,0,0,0,0,"",381,1,13,15000,11,20,73,-30,0],
+	[3674,11,0,10,2874,1,100,1,"天蝎宮のカタール","テンカツキユウノカタアル","BaseLvが1上がる度に追加でAtk + 1",194,1,17,100,12,10,4800000000009,50,4800000000080,50,4800000000077,50,4800007000293,50,4800009000293,50,0],
+	[3675,50,0,12,2960,0,10,1,"天蝎宮のクラウン","テンカツキユウノクラウン","ギロチンクロスが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ギロチンクロスが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,1,10,17,50,8,20,261,10,4800000000009,50,4800008000007,10,0],
+	[3676,60,0,100,3020,1,100,1,"天蝎宮のメイル","テンカツキユウノメイル","",194,1,19,5,17,50,9,20,13,1000,4800000000017,80,4800000000015,10,4800000000016,10,4800008000381,1,0],
+	[3677,63,0,25,3040,0,40,1,"天蝎宮のシューズ","テンカツキユウノシユウス","",19,5,17,50,12,10,15,10,16,10,4800000000017,80,4800000000009,50,4800000000015,10,4800000000016,10,4800000005474,500,4800008019461,1500,219,2862,0],
+	[3678,62,0,25,3030,0,30,1,"天蝎宮のマント","テンカツキユウノマント","",19,5,17,20,9,20,15,10,16,10,60,20,4800000000017,30,4800000000015,10,4800000000016,10,4800000023474,2,4800008000012,20,0],
+	[3679,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,63,50,61,50,64,50,62,50,152,100,0],
+	[3680,64,0,0,3220,0,10,1,"天蝎宮のリング","テンカツキユウノリンク","",12,5,14,100,80,5,23020,2,4800000000012,5,4800000000080,5,4800000000086,35,0],
+	[3681,64,0,0,3700,1,40,100,"シールドリング","シイルトリンク","[アースドライブ]Lv5習得時、追加でスキルディレイ - 30%<BR>[インスピレーション]Lv5習得時、追加で[アースドライブ]の再使用待機時間 - 1.5秒<BR>[ディボーション]Lv5習得時、追加でStr + 5 , Int + 5 , Dex + 5 , Atk + 100<BR>[ピンポイントアタック]Lv5習得時、追加で[アースドライブ]の詠唱時間 - 0.5秒、消費SP - 25",199,585,199,587,199,163,199,574,1,5,4,5,5,5,80,5,0],
+	[3682,60,0,120,2240,0,40,90,"氷獄のドレス","ヒヨウコクノトレス","",381,1,198,1,-1,1,5000037,10,5000030,10,5000272,10,5000043,10,5000041,10,5000177,10,5000170,10,5000273,10,5000353,10,5000351,10,-1,1,7000037,15,7000030,15,7000272,15,7000043,15,7000041,15,7000177,15,7000170,15,7000273,15,7000353,15,7000351,15,-1,1,9000037,15,9000030,15,9000272,15,9000043,15,9000041,15,9000177,15,9000170,15,9000273,15,9000353,15,9000351,15,-1,1,0],
+	[3683,60,0,60,0,1,80,100,"白糸威胴丸","シロイトオトシトウマル","",100,10,298,10,7000100,20,7000298,20,8000100,20,8000298,20,8000194,1,9000100,30,9000298,20,0],
+	[3684,63,0,5,1950,0,30,100,"古びた履物","フルヒタハキモノ","",19,10,96,5,100096,1,0],
+	[3685,63,0,15,1930,0,30,100,"闇御津羽神靴","クラミツハノカミクツ","",19,10,96,15,100100,5,100012,1,100347,3,10000347,50,0],
+	[3686,100,0,0,0,0,0,0,0,0,"",214,40,12,10,0],
+	[3687,60,0,0,0,1,90,1,"古びた羽衣","フルヒタハコロモ","",15,5,16,5,300012,1,7000080,3,9000080,3,0],
+	[3688,60,0,90,1940,1,90,99,"淤加美神の羽衣","オカミノカミノハコロモ","",19,10,15,15,16,15,100012,1,7000080,10,9000080,10,0],
+	[3689,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[フロストノヴァ]が発動しない<BR>物理・魔法攻撃を受けた時、一定確率で氷結・冷凍状態を解除し、3秒間水属性攻撃で受けるダメージ - 100%<BR>[淤加美神の羽衣]の精錬値が1上がる度に追加で物理攻撃時、火属性モンスターに与えるダメージ + 5%",152,100,0],
+	[3690,2,0,10,2874,1,100,1,"金牛宮のソード","キンキユウキユウノソオト","BaseLvが1上がる度に追加でAtk + 1<BR>[赤ポーション]、[紅ポーション]、[黄ポーション]、[白ポーション]のHP回復量 + 100%",194,1,17,50,5900000000008,20,5900000000012,10,5900000000080,50,5900007000293,50,5900009000293,50,0],
+	[3691,50,0,12,2890,0,10,1,"金牛宮のダイアデム","キンキユウキユウノタイアテム","ジェネティックが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ジェネティックが装備時、精錬値が8以上の時、5秒毎にHP + 500 , SP + 50",194,1,19,15,1,10,17,50,8,20,261,10,5900000000220,65,5900008000007,10,0],
+	[3692,60,0,100,3020,1,100,1,"金牛宮のメイル","キンキユウキユウノメイル","ジェネティックが装備時、精錬値が8以上の時、追加で[クリティカルスラッシュ]で受けるダメージ - 100%",194,1,19,5,17,50,9,20,13,1000,5900000000017,80,5900000000198,6,0],
+	[3693,63,0,25,3040,0,40,1,"金牛宮のシューズ","キンキユウキユウノシユウス","10秒毎にHP + 250",19,5,17,50,15,10,16,10,5900000000017,80,5900000000012,10,5900000000015,10,5900000000016,10,5900008000063,30,0],
+	[3694,62,0,25,3030,0,30,1,"金牛宮のマント","キンキユウキユウノマント","",19,5,17,20,12,5,15,10,16,10,60,20,5900000000017,30,5900000000015,10,5900000000016,10,5900000000064,70,5900008000012,25,0],
+	[3695,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,5723,200,5722,100,159,100,0],
+	[3696,64,0,0,3220,0,10,1,"金牛宮のリング","キンキユウキユウノリンク","",12,5,14,100,80,5,23722,5,5900000000012,5,5900000000080,5,5900000005723,100,5900000005722,50,0],
+	[3697,64,0,0,3230,1,10,100,"盗賊のすすめ 第二巻","トウソクノススメタイニカン","[グラフィティ]習得時、追加でVit + 5 , Dex + 5Luk + 5<BR>[マスカレード：アンラッキー]Lv3習得時、[ガンバンテイン]Lv1使用可能<BR>[マスカレード：イグノアランス]Lv3習得時、[プレッシャー]Lv5使用可能<BR>[マスカレード：ウィークネス]Lv3習得時、[生命力変換]Lv1使用可能<BR>[マスカレード：エナベーション]Lv3習得時、[ソウルブレイカー]Lv5使用可能<BR>[マスカレード：グルーミー]Lv3習得時、[植物栽培]Lv2使用可能<BR>[マスカレード：レイジネス]Lv3習得時、[トゥルーサイト]Lv5使用可能",199,177,199,594,199,591,199,593,199,589,199,590,199,592,3,5,5,5,6,5,224,81,224,80,0],
+	[3698,61,0,80,1960,1,50,65,"降霊術士の手鏡","コウレイシユツシノテカカミ","[フェイス]の習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ + 2%",19,5,199,156,63,20,64,20,66,20,68,20,0],
+	[3699,100,0,0,0,0,0,0,0,0,"[降霊術士の手鏡]の精錬値が8以上の時、追加で魔法攻撃で与えるダメージ + 5%、ボスモンスターのMdef 25%無視",89,5,297,25,0],
+	[3700,100,0,0,0,0,0,0,0,0,"[降霊術士の手鏡]の精錬値が8以上の時、追加で完全回避 + 20、魔法攻撃で与えるダメージ + 5%、詠唱時間 - 5%",89,5,73,-5,0],
+	[3701,51,0,2,0,1,30,100,"ディアボロスウィング","テイアホロスウインク","物理・魔法攻撃時、メモリアルダンジョン[魔神殿]に出現するモンスターに与えるダメージ + 30%",7,10,0],
+	[3702,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃時、メモリアルダンジョン[魔神殿]に出現するモンスターに与えるダメージ + 20%、メモリアルダンジョン[魔神殿]に出現するモンスターから受けるダメージ - 5%<BR>[ディアボロスアーマー]の精錬値が1上がる度に追加で、Atk + 15、スタン・石化に対する耐性 + 5%",211,8,215,4,13,1350,0],
+	[3703,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃時、メモリアルダンジョン[魔神殿]に出現するモンスターに与えるダメージ + 20%、メモリアルダンジョン[魔神殿]に出現するモンスターから受けるダメージ - 5%<BR>[ディアボロスローブ]の精錬値が1上がる度に追加で、Matk + 15、ヒール系スキル使用時、HP回復量 + 2%",19,25,14,350,74,10,0],
+	[3704,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃時、メモリアルダンジョン[魔神殿]に出現するモンスターに与えるダメージ + 20%、メモリアルダンジョン[魔神殿]に出現するモンスターから受けるダメージ - 5%<BR>[ディアボロスマント]の精錬値が1上がる度に追加で、火・水・風属性攻撃で受けるダメージ - 3%",13,900,78,10,0],
+	[3705,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃時、メモリアルダンジョン[魔神殿]に出現するモンスターに与えるダメージ + 20%、メモリアルダンジョン[魔神殿]に出現するモンスターから受けるダメージ - 5%<BR>BaseLvが1上がる度に追加で、MaxHP + 100<BR>[ディアボロスブーツ]の精錬値が1上がる度に追加で、Atk + 20 , Matk + 20",0],
+	[3706,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃時、メモリアルダンジョン[魔神殿]に出現するモンスターに与えるダメージ + 20%、メモリアルダンジョン[魔神殿]に出現するモンスターから受けるダメージ - 5%",13,2000,14,200,91,15,0],
+	[3707,9,150,120,1974,1,240,100,"スタッフオブミラクル","スタツフオフミラクル","",195,1,88,270,5047,30,0],
+	[3708,9,150,120,1974,1,240,100,"グラビテーションスタッフ","クラヒテエシヨンスタツフ","",195,1,88,270,5325,30,0],
+	[3709,9,148,120,1974,1,240,100,"崇拝の杖","スウハイノツエ","超越段階が1以上の時、精錬値が10の時、追加でジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",195,1,88,270,5478,30,10000000000000077n,40,10000000000105478n,25,0],
+	[3710,3,146,280,1974,1,340,100,"ヴォラーレ","ウオラアレ","",194,1,88,230,5076,30,0],
+	[3711,3,146,280,1974,1,340,100,"ベルーナ","ヘルウナ","",194,1,88,230,5259,30,0],
+	[3712,11,147,150,1974,1,280,100,"リッパークロス","リツハアクロス","超越段階が1以上の時、精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,250,5475,30,10000000000000077n,40,10000000000105474n,25,0],
+	[3713,11,147,150,1974,1,280,100,"アグードフィロ","アクウトフイロ","",194,1,88,250,5083,30,5388,30,0],
+	[3714,7,151,320,1974,1,400,100,"マキシースパナ","マキシイスハナ","",194,1,88,200,5326,30,0],
+	[3715,10,153,160,1974,1,90,100,"ラピッドファイア","ラヒツトフアイア","",194,1,88,170,5608,30,10000000000000077n,40,10000000000105608n,25,10000000010000086n,50,0],
+	[3716,10,149,160,1974,1,90,100,"シャープスター","シヤアフスタア","",194,1,88,170,5272,30,0],
+	[3717,10,149,160,1974,1,90,100,"エイミングボウ","エイミンクホウ","",194,1,88,170,5497,30,10000000000000077n,40,10000000000105497n,2,10000000010000086n,50,0],
+	[3718,10,149,160,1974,1,90,100,"ファルケンシューター","フアルケンシユウタア","",194,1,88,170,5118,30,0],
+	[3719,10,191,160,1974,1,90,100,"ウィンドゲイル","ウイントケイル","",194,1,88,170,5041,30,0],
+	[3720,6,151,180,1974,1,180,100,"ゴールデンレンチ","コオルテンレンチ","",194,1,88,110,5065,30,0],
+	[3721,13,154,140,1974,1,40,100,"猛龍闘甲","モウリユウトウコウ","",194,1,88,100,5290,30,0],
+	[3722,13,154,140,1974,1,40,100,"闘神のバンテージ","トウシンノハンテエシ","",194,1,88,100,5189,30,0],
+	[3723,9,150,60,1974,1,30,100,"クリムゾンローズスティック","クリムソンロオスステイツク","超越段階が1以上の時、精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 200",194,1,88,180,5527,30,10000000000105527n,2,0],
+	[3724,9,157,60,1974,1,30,100,"サイキックスピアロッド","サイキツクスヒアロツト","超越段階が1以上の時、精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 200",194,1,88,180,5662,30,10000000000105662n,5,0],
+	[3725,9,157,60,1974,1,30,100,"ダストグレイブ","タストクレイフ","",194,1,88,180,5132,30,0],
+	[3726,9,148,60,1974,1,30,100,"ポエニテンティア","ホエニテンテイア","",194,1,88,180,5104,30,0],
+	[3727,15,156,150,1974,1,50,100,"ハートウィップ","ハアトウイツフ","",194,1,88,120,5641,30,10000000000105641n,5,10000000010000221n,200,0],
+	[3728,15,156,150,1974,1,50,100,"スカーレットリボン","スカアレツトリホン","",194,1,88,120,5292,30,0],
+	[3729,12,157,120,1974,1,80,100,"ボルティジン","ホルテイシン","",194,1,88,140,5133,30,0],
+	[3730,1,147,120,1974,1,60,100,"ジャッジメントスラッシャー","シヤツシメントスラツシヤア","",194,1,88,120,5264,30,0],
+	[3731,1,147,120,1974,1,60,100,"リペントスラッシャー","リヘントスラツシヤア","",194,1,88,120,5263,30,0],
+	[3732,1,153,120,1974,1,60,100,"シャークナイフ","シヤアクナイフ","",194,1,88,120,5169,30,0],
+	[3733,1,153,120,1974,1,60,100,"プラチナムダガー","フラチナムタカア","",194,1,88,120,5171,30,0],
+	[3734,4,146,150,1974,1,180,100,"アルジャンブランコ","アルシヤンフランコ","",194,1,88,110,5445,30,10000000000105445n,10,10000000010000086n,50,0],
+	[3735,4,152,150,1974,1,180,100,"ハーベスト","ハアヘスト","",194,1,88,110,5324,30,0],
+	[3736,4,152,150,1974,1,180,100,"フォートレイジ","フオオトレイシ","",194,1,88,110,5569,30,10000000000105569n,5,10000000010000086n,50,0],
+	[3737,14,155,180,1974,1,25,100,"ブラックサークル","フラツクサアクル","",194,1,88,120,5641,30,10000000000105641n,5,10000000010000221n,200,0],
+	[3738,14,155,180,1974,1,25,100,"アンティークチェロ","アンテイイクチエロ","",194,1,88,120,5292,30,0],
+	[3739,2,152,150,1974,1,120,100,"ファルテザン","フアルテサン","",194,1,88,130,5162,30,0],
+	[3740,2,158,150,1974,1,120,100,"エスタル","エスタル","",194,1,88,130,5328,30,0],
+	[3741,8,151,150,1974,1,150,100,"エンジンパイルバンカー","エンシンハイルハンカア","超越段階が1以上の時、精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,110,5554,30,10000000000105554n,5,0],
+	[3742,8,158,150,1974,1,150,100,"クールラントインジェクション","クウルラントインシエクシヨン","",194,1,88,110,5244,30,0],
+	[3743,8,158,150,1974,1,150,100,"ジーンロッド","シインロツト","超越段階が1以上の時、精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,110,5732,30,10000000000105732n,5,0],
+	[3744,8,148,150,1974,1,150,100,"ルシスフレイル","ルシスフレイル","",194,1,88,110,93,30,0],
+	[3745,8,154,150,1974,1,150,100,"光耀錘","コウヨウスイ","超越段階が1以上の時、精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,110,5623,30,10000000000105623n,10,0],
+	[3746,62,0,25,0,0,90,100,"ピオニーマミーのフード","ヒオニイマミイノフウト","",193,1,63,75,61,-75,0],
+	[3747,62,0,25,0,0,90,100,"スノーフリップのフード","スノオフリツフノフウト","",193,1,61,75,64,-75,0],
+	[3748,62,0,25,0,0,90,100,"世界樹のほこりのフード","セカイシユノホコリノフウト","",193,1,64,75,62,-75,0],
+	[3749,62,0,25,0,0,90,100,"ぴしゃりハーブのフード","ヒシヤリハアフノフウト","",193,1,62,75,63,-75,0],
+	[3750,63,0,12,0,0,30,100,"銀の毛皮のシューズ","キンノケカワノシユウス","",17,60,100,60,13,1000,100017,10,100100,10,100018,10,100013,500,0],
+	[3751,65,0,0,0,0,10,100,"カルニウムリング","カルニウムリンク","モンスターを倒した時、HP + 300",13,1000,80,10,89,10,0],
+	[3752,66,0,0,0,0,10,100,"カルニウムイヤリング","カルニウムイヤリンク","モンスターを倒した時、SP + 30",14,200,80,10,89,10,0],
+	[3753,100,0,0,0,0,0,0,0,0,"",8,20,12,15,73,-15,74,15,0],
+	[3754,50,0,10,0,0,10,1,"黎明のマジェスティックゴート","レイメイノマシエステイツクコオト","モンスターを倒した時、HP + 200 , SP + 20<BR>5秒毎にHP + 250 , SP + 30",13,1000,14,200,100017,10,100100,10,100008,2,100012,1,100073,-2,100074,1,380,1,0],
+	[3755,52,0,100,0,0,10,100,"くわえたチョコスティック","クワエタチヨコステイツク","",8,20,0],
+	[3756,100,0,0,0,0,0,0,0,0,"",293,50,298,50,0],
+	[3757,100,0,0,0,0,0,0,0,0,"",293,50,298,50,0],
+	[3758,9,94,0,2874,1,30,1,"宝瓶宮のスタッフ","ホウヒンキユウノスタツフ","BaseLvが1上がる度に追加でMatk + 1",194,1,88,10,100,50,12,10,5100000000012,10,5100000000074,10,5100000000089,25,5100000005528,50,5100000000057,10,5100007000298,50,5100009000298,50,0],
+	[3759,50,0,12,2990,0,10,1,"宝瓶宮のクラウン","ホウヒンキユウノクラウン","ウォーロックが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ウォーロックが装備時、精錬値が8以上の時、5秒毎にHP + 500 , SP + 50",194,1,19,15,4,10,100,50,74,20,266,10,5100008000007,10,0],
+	[3760,60,0,100,3020,1,100,1,"宝瓶宮のメイル","ホウヒンキユウノメイル","",194,1,19,5,100,50,13,1000,74,10,5100000000100,80,5100000000015,10,5100000000016,10,5100000000347,20,5100008007531,100,0],
+	[3761,63,0,25,3040,0,40,1,"宝瓶宮のシューズ","ホウヒンキユウノシユウス","",19,5,100,50,15,10,16,10,74,10,5100000000100,80,5100000000015,10,5100000000016,10,5100000005528,30,5100008019531,2400,0],
+	[3762,62,0,25,3030,0,30,1,"宝瓶宮のマント","ホウヒンキユウノマント","",19,5,100,20,15,10,16,10,74,5,60,20,5100000000100,30,5100000000060,20,5100008000012,20,0],
+	[3763,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,342,40,347,40,57,15,0],
+	[3764,64,0,0,3220,0,10,1,"宝瓶宮のリング","ホウヒンキユウノリンク","",12,5,14,100,89,5,23531,30,5100000000012,5,5100000005531,50,5100000005528,50,5100000019531,300,5100000007528,50,0],
+	[3765,50,0,12,1980,1,50,100,"ファントムオブマスカレード","フアントムオフマスカレイト","",1,5,2,5,261,10,159,50,7000261,15,7000074,20,9000023,1,10000000000100261n,2,10000000010000159n,50,0],
+	[3766,100,0,0,0,0,0,0,0,0,"[ファントムオブマスカレード]の精錬値が1上がる度に追加でAtkが上昇（精錬値の２乗×４）",0],
+	[3767,52,0,0,1990,0,30,70,"八卦の封呪","ハツケイノフウシユ","純粋なIntとDexの合計が50上がる度に追加で攻撃速度 + 2%、魔法攻撃時、小・中・大型モンスターに与えるダメージ + 4%",0],
+	[3768,51,0,5,2000,0,50,90,"シトラスリボン","シトラスリホン","",19,3,26,7,86,20,0],
+	[3769,62,0,12,3640,1,90,100,"スピリチュアルクロース","スヒリチユアルクロオス","",19,10,15,3,16,3,74,5,57,5,274,5,5000015,7,5000016,7,5000074,5,7000015,10,7000016,10,7000074,5,0],
+	[3770,100,0,0,0,0,0,0,0,0,"[フェイス]の習得Lvが1上がる度に追加で聖属性攻撃で受けるダメージ + 5%",66,75,0],
+	[3771,100,0,0,0,0,0,0,0,0,"",69,45,0],
+	[3772,100,0,0,0,0,0,0,0,0,"",68,45,0],
+	[3773,100,0,0,0,0,0,0,0,0,"",65,45,0],
+	[3774,63,0,5,2020,1,50,100,"フロンティアブーツ","フロンテイアフウツ","",17,50,100,50,15,10,16,10,7000017,50,7000100,50,7000015,10,7000016,10,0],
+	[3775,100,0,0,0,0,0,0,0,0,"[フロンティアブーツ]の精錬値が7以上の時、[起源の書]の精錬値が1上がる度に追加で魔法攻撃時、火・水・風・地属性モンスターに与えるダメージ + 3%",74,20,0],
+	[3776,100,0,0,0,0,0,0,0,0,"[フロンティアブーツ]の精錬値が7以上、[鉱員のつるはし]の精錬値が7以上の時、追加でボスモンスターから受けるダメージ - 30%<BR>[フロンティアブーツ]の精錬値が7以上、[鉱員のつるはし]の精錬値が9以上の時、追加でボスモンスターから受けるダメージ - 20%",19541,500,0],
+	[3777,100,0,0,0,0,0,0,0,0,"[フロンティアブーツ]の精錬値が7以上の時、純粋なIntが40上がる度に追加でAgi + 6 , 攻撃速度 + 6%<BR>[フロンティアブーツ]の精錬値が7以上の時、純粋なIntが120以上の時、追加でFlee + 100<BR>[フロンティアブーツ]の精錬値が7以上の時、[シビアレインストーム]、[トライアングルショット]で与えるダメージ + 50%",158,100,155,100,0],
+	[3778,100,0,0,0,0,0,0,0,0,"[フロンティアブーツ]の精錬値が7以上、[大自然のギター]の精錬値が7以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>[フロンティアブーツ]の精錬値が7以上、[大自然のギター]の精錬値が9以上の時、追加で一般モンスターから受けるダメージ - 10%",57,10,274,20,0],
+	[3779,100,0,0,0,0,0,0,0,0,"[フロンティアブーツ]の精錬値が7以上、[大自然のロープ]の精錬値が7以上の時、追加でMaxHP + 10% , MaxSP + 10%<BR>[フロンティアブーツ]の精錬値が7以上、[大自然のロープ]の精錬値が9以上の時、追加で一般モンスターから受けるダメージ - 10%",57,10,274,20,0],
+	[3780,100,0,0,0,0,0,0,0,0,"[フロンティアブーツ]の精錬値が7以上の時、追加で物理攻撃で与えるダメージ + 30%、クリティカル攻撃で与えるダメージ + 30%<BR>[フロンティアブーツ]の精錬値が9以上の時、追加で攻撃速度 + 20%、クリティカル攻撃で与えるダメージ + 20%",23401,10,0],
+	[3781,100,0,0,0,0,0,0,0,0,"[フロンティアブーツ]の精錬値が7以上、[風魔手裏剣・花吹雪]の精錬値が7以上の時、追加でボスモンスターから受けるダメージ - 30%<BR>[フロンティアブーツ]の精錬値が7以上、[風魔手裏剣・花吹雪]の精錬値が9以上の時、追加でボスモンスターから受けるダメージ - 20%",19770,300,0],
+	[3782,63,0,12,3140,0,10,100,"ふわふわタンポポシューズ","フワフワタンホホシユウス","[大地の魂]Lv1、および、[イヌハッカシャワー]Lv5習得時、絶対に呪い状態にならない、[イヌハッカメテオ]の消費SP - 50<BR>[大地の魂]Lv1、および、[イヌハッカメテオ]Lv5習得時、[マタタビランス]で与えるダメージ + 20%<BR>[大地の魂]Lv1、および、[ニャングラス]Lv5習得時、Matk + 50<BR>[大地の魂]Lv1、および、[マタタビランス]Lv5習得時、移動速度増加<BR>[大地の魂]Lv1、および、[マタタビの根っこ]Lv5習得時、Matk + 50<BR>[チャタリング]の習得Lvが1上がる度に追加で攻撃速度 + 5%<BR>[ニャングラス]Lv5習得時、追加で全ての種族のMdef 100%無視<BR>[ミャウミャウ]の習得Lvが1上がる度に追加で[イヌハッカメテオ]で与えるダメージ + 15%",199,929,199,923,199,922,199,928,199,920,199,921,199,926,199,927,19,10,15,3,16,3,5000015,7,5000016,7,5000074,10,7000015,10,7000016,10,7000074,10,0],
+	[3783,63,0,12,3140,0,20,100,"スナイピングシューズ","スナイヒンクシユウス","[アンリミット]の習得Lvが1上がる度に追加でスキルディレイ - 8%<BR>[ウォーグライダー]の習得Lvが1上がる度に追加で物理攻撃時、小・中・大型モンスターに与えるダメージ + 5%<BR>[エイムドボルト]Lv10習得時、追加でクリティカル攻撃で与えるダメージ + 25%、全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない<BR>[エレクトリックショッカー]Lv5習得時、追加で全ての基本ステータス + 10、[カモフラージュ]の消費SP - 20",199,795,199,515,199,497,199,509,19,10,15,3,16,3,5000015,7,5000016,7,5000025,5,7000015,10,7000016,10,7000025,5,220,82,0],
+	[3784,60,0,35,0,1,50,100,"エウロパローブ","エウロハロオフ","精錬値が7以上の時、追加で絶対に壊れない<BR>精錬値が8以上の時、純粋なVitとLukの合計が10上がる度に追加でAtk + 10 , Matk + 10",19,10,3,5,6,5,74,10,7000243,7,9000159,50,0],
+	[3785,100,0,0,0,0,0,0,0,0,"",38,40,39,40,178,40,179,40,159,50,0],
+	[3786,10,80,10,2874,1,50,1,"磨羯宮のシーフボウ","マカツキユウノシイフホウ","BaseLvが1上がる度に追加でAtk + 1 , Matk + 1",194,1,88,10,17,40,100,40,12,10,5400000000011,10,5400000000080,50,5400000000089,25,5400000000077,50,5400007000293,50,5400007000298,50,5400009000293,50,5400009000298,50,0],
+	[3787,50,0,12,3010,0,10,1,"磨羯宮のダイアデム","マカツキユウノタイアテム","シャドウチェイサーが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>シャドウチェイサーが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,5,10,17,50,100,50,8,20,261,10,266,10,5400000000011,10,5400008000007,10,0],
+	[3788,60,0,100,3020,1,100,1,"磨羯宮のメイル","マカツキユウノメイル","",194,1,19,5,17,50,100,50,11,3,13,1000,5400000000017,80,5400000000100,80,5400000000015,10,5400000000016,10,5400008000102,20,0],
+	[3789,63,0,25,3040,0,40,1,"磨羯宮のシューズ","マカツキユウノシユウス","",19,5,17,50,100,50,12,10,15,10,16,10,5400000000017,80,5400000000100,80,5400000000011,5,5400000000015,10,5400000000016,10,5400000005169,700,5400000005608,100,5400008000220,79,0],
+	[3790,62,0,25,3030,0,30,1,"磨羯宮のマント","マカツキユウノマント","",19,5,17,20,100,20,12,10,15,10,16,10,60,20,5400000000017,30,5400000000100,30,5400000000012,10,5400000000015,10,5400000000016,10,5400008000011,30,0],
+	[3791,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,74,40,152,100,0],
+	[3792,64,0,0,3220,0,10,1,"磨羯宮のリング","マカツキユウノリンク","",11,10,14,100,80,5,89,5,23020,2,5400000000012,5,5400000000080,5,5400000000089,5,5400000000074,30,0],
+	[3793,64,0,5,3240,1,40,100,"傀儡の腕輪","カイライノウテワ","",217,10,15,10,0],
+	[3794,100,0,0,0,0,0,0,0,0,"[ダークハンド]の精錬値が6以上の時、追加で必中攻撃 + 15%、スキルディレイ - 5%、全ての種族のDef・Mdef 25%無視<BR>[ダークハンド]の精錬値が8以上の時、追加で必中攻撃 + 15%、スキルディレイ - 10%、全ての種族のDef・Mdef 25%無視",57,3,0],
+	[3795,64,0,0,3230,1,10,100,"悪鬼羅刹の指輪","アツキラセツノユヒワ","[地雷震]Lv5習得時、追加で[獅子吼]の消費SP - 35、[修羅身弾]の消費SP - 4<BR>[爆気散弾]Lv5習得時、追加で[獅子吼]で与えるダメージ + 30%、[修羅身弾]で与えるダメージ + 100%<BR>[雷光弾]Lv5習得時、追加で攻撃速度 + 10%、必中攻撃 + 15%",199,611,199,612,199,623,80,5,19629,3000,0],
+	[3796,62,0,15,0,1,60,100,"アジダハーカの皮","アシタハアカノカワ","精錬値が8以上の時、純粋なVitとLukの合計が20上がる度に、追加で攻撃速度 + 2%、詠唱時間 - 2%",19,10,3,5,6,5,52,5,53,5,77,5,7000156,50,9000156,50,0],
+	[3797,62,0,18,2030,1,30,99,"アクセルウィング","アクセルウインク","",7,10,30,30,170,30,159,50,0],
+	[3798,60,0,35,2040,1,80,100,"水龍神の鱗","スイリユウシンノウロコ","",19,10,12,10,100089,2,100341,2,380,1,0],
+	[3799,100,0,0,0,0,0,0,0,0,"",152,100,5131,200,7131,100,0],
+	[3800,2,0,150,2054,1,130,100,"デモニッシュソード","テモニツシユソオト","物理攻撃命中時、一定確率で敵にオートスペル「ソウルブレイカー」Lv3発動。「ソウルブレイカー」の習得Lvが4以上の場合、習得Lvで発動。<BR>精錬値が1上がる度に追加でオートスペル「ソウルブレイカー」の発動率が上昇。<BR>精錬値が8以上の時、追加で「ソウルブレイカー」Lv5使用可能。<BR>精錬値が8以上の時、全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",194,1,2,20,10,50,11,20,31,50,36,50,225,171,224,80,0],
+	[3801,100,0,0,0,0,0,0,0,0,"「ソウルブレイカー」使用時、3秒間、完全回避 + 100。",12,10,80,20,0],
+	[3802,50,0,30,2590,1,100,99,"デモニッシュヘルム","テモニツシユヘルム","精錬値が8以上の時、追加で「フロストノヴァ」Lv5使用可能。<BR>精錬値が10の時、追加で魔法攻撃を受けた時、一定確率でオートスペル「ランドプロテクター」Lv1発動。",19,15,15,10,63,10,61,10,100015,1,100063,3,100061,3,8000019,15,10000019,30,224,83,0],
+	[3803,60,0,100,2610,1,100,99,"デモニッシュアーマー","テモニツシユアアマア","物理攻撃でモンスターを倒した時、SP+5。<BR>精錬値が1上がる度に追加で物理攻撃でモンスターを倒した時、SP+2。<BR>精錬値が8以上の時、追加で絶対に壊れない。<BR>精錬値が8以上の時、追加で「オートガード」Lv5使用可能。<BR>精錬値が10の時、[セルフディストラクション][Mセルフディストラクション]で受けるダメージ - 80%",51,5,67,20,100051,1,100067,3,10000381,1,0],
+	[3804,61,0,150,2600,1,120,99,"デモニッシュシールド","テモニツシユシイルト","",91,15,100091,2,8000074,10,8000220,58,10000074,10,10000158,100,10000159,100,0],
+	[3805,64,0,2,2060,1,80,100,"デモニッシュガントレット","テモニツシユカントレツト","",19,15,12,5,80,5,89,5,73,-5,74,10,220,84,0],
+	[3806,64,0,0,2630,1,30,100,"迅雷の指輪","シンライノユヒワ","",80,5,89,5,41,10,351,10,61,5,0],
+	[3807,100,0,0,0,0,0,0,0,0,"",35,20,41,20,175,20,351,20,0],
+	[3808,100,0,0,0,0,0,0,0,0,"",35,15,41,15,175,15,351,15,0],
+	[3809,51,0,0,2090,0,30,100,"轟鳴鼓","コウメイコ","",80,2,26,2,1000000080,3,1000000026,3,19000000080,5,19000000026,5,0],
+	[3810,100,0,0,0,0,0,0,0,0,"",293,50,0],
+	[3811,9,53,0,2874,1,100,1,"処女宮のディバインクロス","シヨシヨキユウノテイハインクロス","BaseLvが1上がる度に追加でMatk + 1<BR>アークビショップが装備時、[オーディンの力]Lv2使用可能",194,1,88,10,195,1,100,50,12,10,4900000000089,25,4900000000077,50,4900000000091,30,4900007000298,50,4900009000298,50,0],
+	[3812,50,0,12,2910,0,10,1,"処女宮のダイアデム","シヨシヨキユウノタイアテム","アークビショップが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>アークビショップが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,4,10,100,50,266,10,5037,400,5387,400,4900000000096,25,4900000000077,20,4900008000007,10,0],
+	[3813,60,0,100,3020,1,100,1,"処女宮のメイル","シヨシヨキユウノメイル","",194,1,19,5,100,50,13,1000,74,10,4900000000100,80,4900000000015,10,4900000000016,10,4900008000077,5,0],
+	[3814,63,0,25,3040,0,40,1,"処女宮のシューズ","シヨシヨキユウノシユウス","アークビショップが装備時、精錬値が8以上の時、追加で魔法攻撃命中時、一定確率で自分にオートスペル[セイフティウォール]Lv3発動。[セイフティウォール]の習得Lvが4以上の場合、習得Lvで発動",19,5,100,50,12,10,15,10,16,10,4900000000100,80,4900000000015,10,4900000000016,10,4900000000346,20,4900000005476,100,0],
+	[3815,62,0,25,3030,0,30,1,"処女宮のマント","シヨシヨキユウノマント","",19,5,100,20,15,10,16,10,74,5,60,20,4900000000100,30,4900000000077,5,4900000000380,1,4900008000012,20,0],
+	[3816,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,60,20,61,20,62,20,63,20,64,20,65,20,66,20,67,20,68,20,69,20,152,100,0],
+	[3817,64,0,0,3220,0,10,1,"処女宮のリング","シヨシヨキユウノリンク","魔法攻撃命中時、一定確率で敵をスタン状態にする",12,5,14,100,89,5,4900000000012,5,4900000000089,5,4900000007476,50,0],
+	[3818,63,0,12,3140,10,10,100,"ぷりちーウリボウシューズ","フリチイウリホウシユウス","[生命の魂]Lv1習得時、追加でAtk + 100。物理攻撃命中時、一定確率で15秒間、[猪突猛進]状態になる。<BR>[警戒]の習得Lvが1上がる度に追加で攻撃速度 + 5%<BR>[群れの力]Lv5習得時、追加で必中攻撃 + 50%、スキルディレイ - 50%<BR>[サベージの魂]の習得Lvが1上がる度に追加でアニマル系スキルの詠唱時間 - 10%",199,939,199,936,199,937,199,938,19,10,15,3,16,3,5000015,7,5000016,7,5000074,10,7000015,10,7000016,10,7000074,10,0],
+	[3819,64,0,2,3700,1,50,100,"ゲフェニア 氷の魔道具","ケフエニアコオリノマトウク","BaseLvが3上がる度に追加で[ストームガスト]で与えるダメージ + 2%<BR>[コメット]Lv5習得時、追加で[ジャックフロスト]の消費SP - 35、[ジャックフロスト]の固定詠唱時間 - 100%<BR>[ジャックフロスト]Lv5習得時、追加で[コメット]で与えるダメージ + 50%、[コメット]の消費SP - 100<BR>[ステイシス]Lv5習得時、追加で[フロストミスティ]、[ジャックフロスト]で与えるダメージ + 50%<BR>[リコグナイズドスペル]Lv5習得時、追加でスキルディレイ - 30%",199,529,199,520,199,525,199,522,19,10,97,10,98,10,99,10,0],
+	[3820,100,0,0,0,0,0,0,0,0,"ウォーロックが装備時、ジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",0],
+	[3821,63,0,12,3140,10,40,100,"ジャガーノート","シヤカアノオト","[フォーリンエンジェル]Lv1習得時、追加で攻撃速度 + 20%、[ファイアーダンス]の消費SP - 20<BR>[アンチマテリアルブラスト]Lv5習得時、追加で全ての種族のDef 100%無視、[ハンマーオブゴッド]使用時、[リッチズコイン]Lv1発動<BR>[バニシングバスター]の習得Lvが1上がる度に追加で[バニシングバスター]の固定詠唱時間 - 20%、[バニシングバスター]で与えるダメージ + 60%<BR>[ファイアーレイン]の習得Lvが1上がる度に追加で物理攻撃で与えるダメージ + 4%、[ファイアーレイン]で与えるダメージ + 50%<BR>[ハウリングマイン]の習得Lvが1上がる度に追加でスキルディレイ - 8%、[ハウリングマイン]で与えるダメージ + 40%",199,823,199,832,199,831,199,828,199,827,19,10,15,3,16,3,220,85,19822,3000,5000015,7,5000016,7,7000015,10,7000016,10,219,2849,0],
+	[3822,62,0,10,0,1,30,100,"アラビアンマント","アラヒアンマント","",15,10,70,5,7000010,5,7000070,5,8000010,10,8000070,20,9000010,20,9000070,30,10000010,30,10000070,50,0],
+	[3823,100,0,0,0,0,0,0,0,0,"[クリティカルスラッシュ]で受けるダメージ - 100%",63,100,0],
+	[3824,3,146,280,100004,0,340,150,"ビームクレイモア-OS","ヒイムクレイモアオオス","[ウィンドカッター]使用時、一定確率で自分にオートスペル[セイフティウォール]Lv10発動",88,230,80,60,7000080,25,9000080,25,10007443,100,0],
+	[3825,2,0,150,100004,0,120,150,"キャノンレイピア-OS","キヤノンレイヒアオオス","",88,130,80,20,89,20,221,193,221,194,220,61,7000080,10,7000089,10,9000080,10,9000089,10,10000101,3,0],
+	[3826,4,152,150,100004,0,180,150,"ブースターランス-OS","フウスタアランスオオス","[バニシングポイント]使用時、一定確率で3秒間、必中攻撃 + 50<BR>精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収",88,110,80,60,7000080,25,9000080,25,0],
+	[3827,1,68,150,100004,0,120,150,"黒色-OS","コクシヨクオオス","精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",88,120,80,60,19766,300,7000080,25,9000080,25,0],
+	[3828,11,147,150,100004,0,280,150,"モイスラ-OS","モイスラオオス","BaseLvが1上がる度に追加でクリティカル攻撃で与えるダメージ + 1%",88,250,11,40,80,60,7000080,25,9000080,25,10000010,50,0],
+	[3829,7,151,320,100004,0,400,150,"ブラスティ-OS","フラステイオオス","[パワースイング]使用時、一定確率で自分を中心にオートスペル[アックストルネード]Lv1発動。[アックストルネード]Lv2以上を習得している場合、習得レベルで発動",88,200,80,60,7000080,25,9000080,25,10000220,86,0],
+	[3830,9,150,60,100004,0,30,150,"ルティルススティック-OS","ルテイルスステイツクオオス","BaseLvが1上がる度に追加で[ヘルインフェルノ]で与えるダメージ + 1%",88,180,89,20,7000089,10,9000089,10,10000298,100,0],
+	[3831,9,201,150,100004,0,40,150,"エレクトリックフォックス-OS","エレクトリツクフオツクスオオス","",88,180,80,20,89,20,221,211,100017,10,100100,10,100012,1,7000080,10,7000089,10,9000080,10,9000089,10,10000344,50,0],
+	[3832,13,154,140,100004,0,40,150,"バーニングナックル-OS","ハアニンクナツクルオオス","精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",88,100,80,60,19610,200,7000080,25,9000080,25,0],
+	[3833,8,158,150,100004,0,150,150,"サフィールホール-OS","サフイイルホオルオオス","",88,110,80,60,19722,200,7000080,25,9000080,25,10000293,100,0],
+	[3834,8,148,150,100004,0,150,150,"ウルティオ-OS","ウルテイオオオス","BaseLvが1上がる度に追加で[グレイアムライト]、[ミリアムライト]で与えるダメージ + 7%",88,110,80,20,89,20,7000080,10,7000089,10,9000080,10,9000089,10,10000220,87,0],
+	[3835,10,149,160,100004,0,90,150,"バーチャルボウ-OS","ハアチヤルホウオオス","BaseLvが1上がる度に追加で[クラスターボム]で与えるダメージ + 4%<BR>物理攻撃でモンスターを倒した時、HP + 500 , SP + 50<BR>5秒毎にHP + 1500 , SP + 15",88,170,80,60,7000080,25,9000080,25,10000011,40,0],
+	[3836,10,191,160,100004,0,90,150,"MH-P89-OS","エムエイチヒイハチキユウオオス","BaseLvが2上がる度に追加で[振動残響]で与えるダメージ + 1%",88,170,80,20,89,20,7000080,10,7000089,10,9000080,10,9000089,10,10000340,50,0],
+	[3837,10,153,160,100004,0,90,150,"AC-B44-OS","エイシイヒイヨンヨンオオス","精錬値が10の時、追加で装備解除時、[インビジビリティ]を解除する",88,170,80,20,89,20,221,200,221,211,7000080,10,7000089,10,9000080,10,9000089,10,10019599,60000,0],
+	[3838,12,157,120,100004,0,80,150,"サーキットボード-OS","サアキツトホオトオス","BaseLvが1上がる度に追加で[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]で与えるダメージ + 1%<BR>精錬値が10の時、追加で[ダブルアタック]Lv10使用可能",88,140,89,20,7000089,10,9000089,10,0],
+	[3839,100,0,0,0,0,0,0,0,0,"",13051,-10000,0],
+	[3840,100,0,0,0,0,0,0,0,0,"",13054,-10000,0],
+	[3841,100,0,0,0,0,0,0,0,0,"",13056,-10000,0],
+	[3842,18,69,170,100004,0,85,150,"HR-S55-OS","エイチアアルエスコオコオオオス","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。",80,60,9825,2000,7000080,25,9000080,25,10000023,1,0],
+	[3843,60,0,150,2100,0,120,150,"イルシオンスーツI","イルシオンスウツ１","BaseLv170以上の時、追加でAgi + 2 , Vit + 2 , Luk + 2",2,3,3,3,6,3,300015,4,0],
+	[3844,60,0,80,2100,0,40,150,"イルシオンスーツII","イルシオンスウツ２","BaseLv170以上の時、追加でStr + 2 , Int + 2 , Dex + 2",1,3,4,3,5,3,300015,4,0],
+	[3845,62,0,60,2110,0,100,150,"イルシオンウィングI","イルシオンウインク１","BaseLv170以上の時、追加で無属性攻撃で受けるダメージ - 5%",60,15,100015,2,0],
+	[3846,100,0,0,0,0,0,0,0,0,"BaseLv170以上の時、追加で詠唱時間 - 10%、無属性攻撃で受けるダメージ - 5%",73,-10,0],
+	[3847,62,0,25,2110,0,30,150,"イルシオンウィングII","イルシオンウインク２","BaseLv170以上の時、追加で無属性攻撃で受けるダメージ - 5%",60,15,100016,2,0],
+	[3848,100,0,0,0,0,0,0,0,0,"BaseLv170以上の時、追加でスキルディレイ - 10%、無属性攻撃で受けるダメージ - 5%",74,10,0],
+	[3849,63,0,20,2120,0,60,150,"イルシオンレッグI","イルシオンレツク１","BaseLv170以上の時、追加でMaxHP + 5% , MaxSP + 5%",15,10,16,10,300018,100,300019,10,0],
+	[3850,63,0,8,2120,0,20,150,"イルシオンレッグII","イルシオンレツク２","BaseLv170以上の時、追加でMaxHP + 5% , MaxSP + 5%",15,10,16,10,300017,30,300100,30,0],
+	[3851,64,0,0,2130,0,10,150,"イルシオンチップα-I","イルシオンチツフアルフア１","",80,5,89,5,74,10,0],
+	[3852,64,0,0,2130,0,10,150,"イルシオンチップα-II","イルシオンチツフアルフア２","",293,30,298,30,74,10,0],
+	[3853,64,0,0,2130,0,10,150,"イルシオンチップβ-I","イルシオンチツフヘエタ１","",80,5,89,5,73,-10,0],
+	[3854,64,0,0,2130,0,10,150,"イルシオンチップβ-II","イルシオンチツフヘエタ２","",293,30,298,30,73,-10,0],
+	[3855,100,0,0,0,0,0,0,0,0,"[ライドワード帽]のHP吸収効果が発動しない",0],
+	[3856,100,0,0,0,0,0,0,0,0,"[ヴァナルガンドの兜]のHP吸収効果が発動しない",0],
+	[3857,100,0,0,0,0,0,0,0,0,"[ライドワード帽]のSP吸収効果が発動しない",0],
+	[3858,100,0,0,0,0,0,0,0,0,"[ヴァナルガンドの兜]のSP吸収効果が発動しない",0],
+	[3859,100,0,0,0,0,0,0,0,0,"[スキンオブシャドウ]のSP吸収効果が発動しない",0],
+	[3860,100,0,0,0,0,0,0,0,0,"",74,-30,0],
+	[3861,4,51,10,2874,1,100,1,"白羊宮のスピアー","ハクヨウキユウノスヒアア","BaseLvが1上がる度に追加でAtk + 1",194,1,17,50,12,10,5300000000074,10,5300000000080,50,5300000023324,25,5300000000077,10,5300007000293,50,5300009000293,50,0],
+	[3862,50,0,12,2970,0,10,1,"白羊宮のクラウン","ハクヨウキユウノクラウン","ロイヤルガードが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ロイヤルガードが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,1,10,17,50,74,20,261,10,5300000000013,5000,5300000000077,20,5300000007577,100,5300008000007,10,0],
+	[3863,60,0,100,3020,1,100,1,"白羊宮のメイル","ハクヨウキユウノメイル","",194,1,19,5,17,50,13,1000,74,10,5300000000017,80,5300000000015,10,5300000000016,10,5300008000077,5,0],
+	[3864,61,0,170,3050,0,400,1,"白羊宮のシールド","ハクヨウキユウノシイルト","",194,1,19,30,77,40,5300000000018,150,5300000000013,1000,5300008000063,20,5300008000064,20,5300008000065,20,0],
+	[3865,63,0,25,3040,0,40,1,"白羊宮のシューズ","ハクヨウキユウノシユウス","",19,5,17,50,15,10,16,10,74,10,5300000000017,80,5300000000015,10,5300000000016,10,5300000000077,5,5300000009163,1000,5300008019577,2000,0],
+	[3866,62,0,25,3030,0,30,1,"白羊宮のマント","ハクヨウキユウノマント","",19,5,17,20,15,10,16,10,74,5,60,20,5300000000017,30,5300000000015,10,5300000000016,10,5300000000077,5,5300008000025,20,0],
+	[3867,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,5324,150,25,30,86,50,0],
+	[3868,64,0,0,3220,0,10,1,"白羊宮のリング","ハクヨウキユウノリンク","",12,5,14,100,80,5,23577,20,5300000000015,10,5300000000016,10,5300000000074,10,5300000000080,5,5300000005324,100,5300000007324,50,0],
+	[3869,64,0,3,3230,1,10,100,"ペタルの尻尾","ヘタルノシツホ","",101,1,26,5,70,5,72,5,0],
+	[3870,100,0,0,0,0,0,0,0,0,"[リス耳フード帽]の精錬値が6以上の時、追加でAspd + 1<BR>[リス耳フード帽]の精錬値が6以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ + 10%<BR>[リス耳フード帽]の精錬値が6以上の時、追加でクリティカル攻撃で与えるダメージ + 10%<BR>[リス耳フード帽]の精錬値が6以上の時、追加で遠距離物理攻撃時、Cri + 10<BR>[リス耳フード帽]の精錬値が8以上の時、追加でAspd + 1<BR>[リス耳フード帽]の精錬値が8以上の時、追加で物理攻撃時、ボスモンスターに与えるダメージ + 15%<BR>[リス耳フード帽]の精錬値が8以上の時、追加でクリティカル攻撃で与えるダメージ + 15%<BR>[リス耳フード帽]の精錬値が8以上の時、追加で遠距離物理攻撃時、Cri + 15",0],
+	[3871,63,0,12,2770,10,20,100,"不調和の思念体シューズ","フチヨウワノシネンタイシユウス","",19,10,15,20,16,20,7000009,50,7000293,50,9000009,50,9000293,50,0],
+	[3872,100,0,0,0,0,0,0,0,0,"BaseLvが1上がる度に追加で[アローシャワー]で与えるダメージ + 4%<BR>BaseLvが2上がる度に追加で[シビアレインストーム]で与えるダメージ + 1%",0],
+	[3873,100,0,0,0,0,0,0,0,0,"BaseLvが1上がる度に追加で[シャープシューティング]で与えるダメージ + 1%、[ダブルストレイフィング]で与えるダメージ + 2%",0],
+	[3874,100,0,0,0,0,0,0,0,0,"BaseLvが1上がる度に追加で[ブリッツビート]で与えるダメージ + 2%<BR>BaseLvが2上がる度に追加で[ウォーグストライク]で与えるダメージ + 1%",0],
+	[3875,100,0,0,0,0,0,0,0,0,"",215,40,74,20,0],
+	[3876,62,0,5,0,1,10,100,"オウルバロンのマント","オウルハロンノマント","精錬値が7以上の時、追加で物理・魔法攻撃命中時、一定確率で30秒間、攻撃速度 + 10%<BR>精錬値が9以上の時、追加で物理・魔法攻撃命中時、一定確率で30秒間、攻撃速度 + 10%<BR>精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で30秒間、攻撃速度 + 20%",19,5,4,2,12,10,100017,6,100100,6,10000220,67,0],
+	[3877,100,0,0,0,0,0,0,0,0,"[オウルバロンのマント]の精錬値が8以上の時、追加で物理・魔法攻撃時、大型モンスターに与えるダメージ + 25%",192,5,0],
+	[3878,100,0,0,0,0,0,0,0,0,"[オウルバロンのマント]の精錬値が8以上の時、追加で物理・魔法攻撃時、中型モンスターに与えるダメージ + 25%",191,5,0],
+	[3879,100,0,0,0,0,0,0,0,0,"[オウルバロンのマント]の精錬値が8以上の時、追加で物理・魔法攻撃時、小型モンスターに与えるダメージ + 25%",190,5,0],
+	[3880,14,116,10,2874,1,50,1,"双児宮のバイオリン","ソウシキユウノハイオリン","BaseLvが1上がる度に追加でAtk + 1 , Matk + 1",194,1,88,10,17,40,100,40,74,10,5600000000080,50,5600000000089,25,5600000005292,200,5600007000293,50,5600007000298,50,5600009000293,50,5600009000298,50,0],
+	[3881,50,0,12,2940,0,10,1,"双児宮のダイアデム","ソウシキユウノタイアテム","ミンストレル、ワンダラーが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ミンストレル、ワンダラーが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,4,10,5,10,17,50,100,50,74,20,261,10,266,10,5600000000155,100,5600000000156,100,5600008000007,10,5700000000155,100,5700000000156,100,5700008000007,10,0],
+	[3882,60,0,100,3020,1,100,1,"双児宮のメイル","ソウシキユウノメイル","",194,1,19,5,17,50,100,50,13,1000,74,10,5600000000017,80,5600000000100,80,5600000000015,10,5600000000016,10,5600008000080,30,5600008000089,30,5700000000017,80,5700000000100,80,5700000000015,10,5700000000016,10,5700008000080,30,5700008000089,30,0],
+	[3883,63,0,25,3040,0,40,1,"双児宮のシューズ","ソウシキユウノシユウス","",19,5,17,50,100,50,15,10,16,10,74,10,5600000000017,80,5600000000100,80,5600000000015,10,5600000000016,10,5600000005639,100,5600008007639,100,5700000000017,80,5700000000100,80,5700000000015,10,5700000000016,10,5700000005639,100,5700008007639,100,0],
+	[3884,62,0,25,3030,0,30,1,"双児宮のマント","ソウシキユウノマント","",19,5,17,20,100,20,15,10,16,10,74,5,60,20,5600000000017,30,5600000000100,30,5600000000015,10,5600000000016,10,5600000000074,5,5600008000025,20,5700000000017,30,5700000000100,30,5700000000015,10,5700000000016,10,5700000000074,5,5700008000025,20,0],
+	[3885,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,5292,200,63,50,61,50,64,50,62,50,0],
+	[3886,64,0,0,3220,0,10,1,"双児宮のリング","ソウシキユウノリンク","",8,50,14,100,74,5,80,5,89,5,5600000000074,5,5600000000080,5,5600000000089,5,5600000005292,300,5600000007292,50,5700000000074,5,5700000000080,5,5700000000089,5,5700000005292,300,5700000007292,50,0],
+	[3887,15,117,10,2874,1,50,1,"双児宮のロープ","ソウシキユウノロオフ","BaseLvが1上がる度に追加でAtk + 1 , Matk + 1",194,1,88,10,17,40,100,40,74,10,5700000000080,50,5700000000089,25,5700000005292,200,5700007000293,50,5700007000298,50,5700009000293,50,5700009000298,50,0],
+	[3888,3,0,280,1874,1,340,150,"イリュージョンテグリョン","イリユウシヨンテクリヨン","",88,230,11,20,105259,10,1000000000105259,15,9000102,20,9000074,20,0],
+	[3889,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率でオートスペル「スパイラルピアース」が習得レベルで発動。<BR>[イリュージョンテグリョン]の精錬値が1上がる度に追加でAtk + 15 , 攻撃速度 + 5%<BR>[イリュージョンテグリョン]の精錬値が10の時、追加で通常攻撃がスプラッシュダメージになる",225,173,0],
+	[3890,20,0,120,1874,1,250,150,"イリュージョンブッチャー","イリユウシヨンフツチヤア","純粋なAgiが10上がる度に追加で[ラウンドトリップ]で与えるダメージ + 7%<BR>純粋なAgiが110以上の時、追加で[ラウンドトリップ]で与えるダメージ + 30%",5,5,11,20,100017,10,1000000000000011,20,0],
+	[3891,17,0,70,1874,1,35,150,"イリュージョンゴールドルクス","イリユウシヨンコオルトルクス","",5,5,8,50,100025,3,1000000000000074,20,0],
+	[3892,1,1,120,1874,1,50,150,"イリュージョンバゼラルド","イリユウシヨンハセラルト","BaseLvが170以上の時、追加で物理攻撃命中時、一定確率で敵にオートスペル[ファイアーボール]Lv10発動",88,120,12,10,100004,2,225,181,1000000000100004,3,0],
+	[3893,50,0,15,2140,1,20,150,"イリュージョンモルフェウスの頭巾","イリユウシヨンモルフエウスノスキン","",1000000000000018,150,1000000000000080,10,1000000000000089,10,1000000000100004,3,16,20,0],
+	[3894,62,0,8,2150,1,60,150,"イリュージョンモルフェウスのショール","イリユウシヨンモルフエウスノシヨオル","",16,20,1000000000000018,150,1000000000000080,10,1000000000000089,10,1000000000100004,3,0],
+	[3895,64,0,0,2160,1,10,150,"イリュージョンモルフェウスの指輪","イリユウシヨンモルフエウスノユヒワ","",4,5,16,5,80,5,1000000000000004,5,1000000000000018,100,0],
+	[3896,64,0,0,2160,1,10,150,"イリュージョンモルフェウスの腕輪","イリユウシヨンモルフエウスノウテワ","",4,5,16,5,89,5,1000000000000004,5,1000000000000018,100,0],
+	[3897,100,0,0,0,0,0,0,0,0,"",214,10,80,30,89,30,380,1,0],
+	[3898,63,0,12,2770,10,20,100,"背徳の思念体シューズ","ハイトクノシネンタイシユウス","",19,10,15,20,16,20,7000009,50,7000293,50,9000009,50,9000293,50,0],
+	[3899,100,0,0,0,0,0,0,0,0,"",10000000005006,2,10000000005076,2,0],
+	[3900,100,0,0,0,0,0,0,0,0,"",10000000005066,3,30000000005328,1,0],
+	[3901,100,0,0,0,0,0,0,0,0,"",10000000005161,3,10000000005162,2,0],
+	[3902,100,0,0,0,0,0,0,0,0,"",10000000005443,2,10000000005259,2,0],
+	[3903,100,0,0,0,0,0,0,0,0,"",211,40,15,40,0],
+	[3904,63,0,12,3140,10,40,100,"イリュージョンミリタリーブーツ","イリユウシヨンミリタリイフウツ","[FAW マジックデコイ]Lv5習得時、追加で攻撃速度 + 10%、BaseLvが1上がる度に追加でMaxHP + 150<BR>[アックスブーメラン]の習得Lvが1上がる度に追加で[アックストルネード]で与えるダメージ + 30%、[アックスブーメラン]で与えるダメージ + 20%<BR>[マグマイラプション]の習得Lvが1上がる度に追加で全ての種族のDef 20%無視",199,546,199,542,199,811,19,10,15,3,16,3,220,21,5000017,50,5000015,7,5000016,7,7000017,50,7000015,10,7000016,10,0],
+	[3905,100,0,0,0,0,0,0,0,0,"",26,70,77,15,0],
+	[3906,60,0,45,0,1,10,100,"マジカルクロース","マシカルクロオス","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]で与えるダメージ + 100%",343,5,341,5,344,5,342,5,7000012,10,7000343,2,7000341,2,7000344,2,7000342,2,8000343,3,8000341,3,8000344,3,8000342,3,8000194,1,9000343,5,9000341,5,9000344,5,9000342,5,0],
+	[3907,100,0,0,0,0,0,0,0,0,"",89,5,298,50,0],
+	[3908,9,94,0,2874,1,30,1,"双魚宮のスタッフオブソウル","ソウキヨキユウノスタツフオフソウル","BaseLvが1上がる度に追加でMatk + 1",194,1,88,10,195,1,100,50,74,10,5800000000012,10,5800000000089,25,5800000005051,100,5800000005054,100,5800000005056,100,5800000005132,100,5800000000063,10,5800000000061,10,5800000000064,10,5800000000062,10,5800000000077,40,5800007000298,50,5800009000298,50,0],
+	[3909,50,0,12,2930,0,10,1,"双魚宮のダイアデム","ソウキヨキユウノタイアテム","ソーサラーが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ソーサラーが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,4,10,100,50,74,20,266,10,5800000007662,100,5800008000007,10,0],
+	[3910,60,0,100,3020,1,100,1,"双魚宮のメイル","ソウキヨキユウノメイル","",194,1,19,5,100,50,12,10,13,1000,5800000000100,80,5800000000015,10,5800000000016,10,5800000000074,10,5800008000343,15,5800008000341,15,5800008000344,15,5800008000342,15,5800008000340,15,0],
+	[3911,63,0,25,3040,0,40,1,"双魚宮のシューズ","ソウキヨキユウノシユウス","",19,5,100,50,15,10,16,10,74,10,5800000000100,80,5800000000015,10,5800000000016,10,5800000005662,70,5800008000063,20,5800008000061,20,5800008000064,20,5800008000062,20,0],
+	[3912,62,0,25,3030,0,30,1,"双魚宮のマント","ソウキヨキユウノマント","",19,5,100,20,15,10,16,10,74,5,60,20,5800000000100,30,5800000000063,20,5800000000061,20,5800000000064,20,5800000000062,20,5800008000012,20,0],
+	[3913,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,5051,50,5054,50,5056,50,5132,50,63,20,61,20,64,20,62,20,152,100,0],
+	[3914,64,0,0,3220,0,10,1,"双魚宮のリング","ソウキヨキユウノリンク","",14,100,74,5,89,5,23051,5,23054,5,23056,5,5800000000012,10,5800000000074,5,5800000005051,50,5800000005054,50,5800000005056,50,5800000007051,50,5800000007054,50,5800000007056,50,0],
+	[3915,62,0,25,2170,0,30,100,"ガーディアンオブソウル","カアテイアンオフソウル","純粋なStrとLukの合計が18上がる度に追加でAtk + 15、スキルディレイ - 1%、闇・不死属性攻撃で受けるダメージ - 7%<BR>純粋なAgiとVitの合計が18上がる度に追加で攻撃速度 + 2%、MaxHP + 2%、火・水属性攻撃で受けるダメージ - 7%<BR>純粋なIntとDexの合計が18上がる度に追加でMatk + 15、詠唱時間 - 1%、風・地属性攻撃で受けるダメージ - 7%",19,10,220,94,243,5,66,-7,68,-7,10000000000100015n,2,10000000000100016n,2,10000000010000159n,100,0],
+	[3916,64,0,0,3700,1,10,100,"ダークリング","タアクリンク","[クロスインパクト]Lv5習得時、追加でスキルディレイ - 30%<BR>[ダーククロー]Lv5習得時、追加で[ダーククロー]の再使用待機時間 - 25秒<BR>[ウェポンクラッシュ]の習得Lvが1上がる度に追加でStr + 1 , Agi + 1 , Dex + 1 , Atk + 40<BR>[クローキングエクシード]Lv5習得時、追加でMaxSP + 15% , Aspd + 2",199,460,199,797,199,470,199,471,1,5,2,5,5,5,80,5,0],
+	[3917,64,0,0,3700,1,10,100,"知覚増幅リング","チカクソウフクリンク","[クラウドキル]Lv5習得時、追加で詠唱時間 - 15%、魔法攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[サイキックウェーブ]Lv5習得時、追加でスキルディレイ - 30%<BR>[ストライキング]Lv5習得時、追加で火・水・風・地・無属性魔法攻撃で与えるダメージ + 10%<BR>[バキュームエクストリーム]Lv5習得時、追加で[サイキックウェーブ]の消費SP - 20、[サイキックウェーブ]の再使用待機時間 - 1秒",199,663,199,662,199,665,199,661,19,15,4,7,97,10,98,10,99,10,50000000005662,1,0],
+	[3918,100,0,0,0,0,0,0,0,0,"",5800000000298,100,0],
+	[3919,61,0,150,2180,1,40,90,"フェザーシールド","フエサアシイルト","",12,4,74,4,7000012,4,7000074,4,8000017,50,8000100,50,9000012,4,9000074,4,0],
+	[3920,10,54,10,2874,1,150,1,"人馬宮のハンターボウ","シンハキユウノハンタアホウ","BaseLvが1上がる度に追加でAtk + 1",194,1,17,70,12,10,5000000000074,10,5000000000080,50,5000000000025,25,5000000000077,50,5000007000293,50,5000009000293,50,0],
+	[3921,50,0,12,2920,0,10,1,"人馬宮のクラウン","シンハキユウノクラウン","レンジャーが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>レンジャーが装備時、精錬値が8以上の時、追加で5秒毎にHP + 500 , SP + 50",194,1,19,15,5,10,17,50,74,20,261,10,5000000007498,100,5000008000007,10,0],
+	[3922,60,0,100,3020,1,100,1,"人馬宮のメイル","シンハキユウノメイル","",194,1,19,5,17,50,13,1000,74,10,5000000000017,80,5000000000015,10,5000000000016,10,5000008000086,20,0],
+	[3923,63,0,25,3040,0,40,1,"人馬宮のシューズ","シンハキユウノシユウス","",19,5,17,50,15,10,16,10,74,10,5000000000017,80,5000000000015,10,5000000000016,10,5000000000074,10,5000000000063,15,5000000000061,15,5000000000064,15,5000000000062,15,5000008000025,30,0],
+	[3924,62,0,25,3030,0,30,1,"人馬宮のマント","シンハキユウノマント","",19,5,17,20,15,10,16,10,74,5,60,20,5000000000017,30,5000000000015,10,5000000000016,10,5000000000025,30,5000008000086,20,0],
+	[3925,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,74,10,77,15,23498,20,0],
+	[3926,64,0,0,3220,0,10,1,"人馬宮のリング","シンハキユウノリンク","物理攻撃でモンスターを倒した時、SP + 10<BR>レンジャーが装備時、攻撃命中時、SP + 3",12,5,14,100,80,5,5000000000015,10,5000000000016,10,5000000000074,10,5000000000080,5,5000000005498,30,0],
+	[3927,2,0,200,4,1,175,99,"竜殺しの長剣","リユウコロシノチヨウケン","BaseLv99以下の時、精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 3%、聖属性魔法攻撃で与えるダメージ + 2%<BR>BaseLv100以上の時、精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 10%、聖属性魔法攻撃で与えるダメージ + 5%",194,1,88,150,20,6,197,3,1,10,4,10,0],
+	[3928,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、聖属性魔法攻撃で与えるダメージ + 15%、スタン・沈黙に対する耐性 + 20%<BR>BaseLv100以上の時、聖属性魔法攻撃で与えるダメージ + 50%、スタン・沈黙に対する耐性 + 50%",220,95,0],
+	[3929,60,0,90,0,1,90,99,"オークロードの鎧","オオクロオトノヨロイ","",194,1,19,10,74,10,100071,1,7000080,10,9000080,10,0],
+	[3930,100,0,0,0,0,0,0,0,0,"インデュア状態になる<BR>BaseLv99以下の時、[オークロードの鎧]の精錬値が1上がる度に追加で，物理攻撃時、闇属性モンスターに与えるダメージ + 3%<BR>BaseLv100以上の時、[オークロードの鎧]の精錬値が1上がる度に追加で，物理攻撃時、闇属性モンスターに与えるダメージ + 10%",152,100,0],
+	[3931,63,0,18,3690,1,100,99,"覚醒火雷大神靴","カクセイホノイカツチノオオカミクツ","",96,15,100100,5,100073,-2,100352,2,100358,2,100350,2,100359,2,0],
+	[3932,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[覚醒火雷大神靴]の精錬値が1上がる度に追加で、Int + 3 , Mdef + 5<BR>BaseLv100以上の時、[覚醒火雷大神靴]の精錬値が1上がる度に追加で、Int + 10 , Mdef + 10",220,58,0],
+	[3933,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[覚醒火雷大神靴]の精錬値が1上がる度に追加で、Matk + 5 , Mdef + 5<BR>BaseLv100以上の時、[覚醒火雷大神靴]の精錬値が1上がる度に追加で、Matk + 15 , Mdef + 10",220,58,0],
+	[3934,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[火雷大神靴]の精錬値が1上がる度に追加で、Matk + 3 , Mdef + 3<BR>BaseLv100以上の時、[火雷大神靴]の精錬値が1上がる度に追加で、Matk + 10 , Mdef + 6",220,7,0],
+	[3935,50,0,20,2190,1,175,100,"ランナウェー・アクセラレータ","ランナウエエアクセラレエタア","5秒毎にHP + 250 , SP + 30",79,10,77,10,100080,1,100089,1,7000293,25,7000298,25,7000079,5,7000077,5,9000293,25,9000298,25,9000079,5,9000077,5,0],
+	[3936,100,0,0,0,0,0,0,0,0,"",17,15,0],
+	[3937,100,0,0,0,0,0,0,0,0,"",18,500,0],
+	[3938,100,0,0,0,0,0,0,0,0,"",75,350,0],
+	[3939,100,0,0,0,0,0,0,0,0,"",100,15,0],
+	[3940,100,0,0,0,0,0,0,0,0,"",13,7500,0],
+	[3941,100,0,0,0,0,0,0,0,0,"",14,150,0],
+	[3942,100,0,0,0,0,0,0,0,0,"",19,20,0],
+	[3943,100,0,0,0,0,0,0,0,0,"",76,50,0],
+	[3944,100,0,0,0,0,0,0,0,0,"鎧が絶対に壊れない",0],
+	[3945,100,0,0,0,0,0,0,0,0,"鎧が絶対に壊れない",0],
+	[3946,100,0,0,0,0,0,0,0,0,"5秒毎にHP + 1500",0],
+	[3947,100,0,0,0,0,0,0,0,0,"5秒毎にSP + 25",0],
+	[3948,100,0,0,0,0,0,0,0,0,"",262,5,269,5,0],
+	[3949,100,0,0,0,0,0,0,0,0,"移動速度増加",0],
+	[3950,100,0,0,0,0,0,0,0,0,"",213,10,0],
+	[3951,100,0,0,0,0,0,0,0,0,"",211,10,0],
+	[3952,100,0,0,0,0,0,0,0,0,"",216,10,0],
+	[3953,100,0,0,0,0,0,0,0,0,"",214,10,0],
+	[3954,100,0,0,0,0,0,0,0,0,"[ランナウェー・アクセラレータ]の精錬値が1上がる度に追加で、プレイヤーから受けるダメージ - 1%",243,3,0],
+	[3955,100,0,0,0,0,0,0,0,0,"",215,10,0],
+	[3956,100,0,0,0,0,0,0,0,0,"",212,10,0],
+	[3957,100,0,0,0,0,0,0,0,0,"",74,20,0],
+	[3958,100,0,0,0,0,0,0,0,0,"",86,20,0],
+	[3959,100,0,0,0,0,0,0,0,0,"",11,20,0],
+	[3960,100,0,0,0,0,0,0,0,0,"",15,20,0],
+	[3961,100,0,0,0,0,0,0,0,0,"",16,20,0],
+	[3962,100,0,0,0,0,0,0,0,0,"",73,-20,0],
+	[3963,66,0,0,2200,10,50,100,"ソロモンのペンダント","ソロモンノヘンタント","[魔法力増幅]使用時、10秒間、火・水・風・聖・無属性魔法攻撃で与えるダメージ + 30%",4,5,5,5,89,10,220,97,0],
+	[3964,100,0,0,0,0,0,0,0,0,"ノービス系、マジシャン系、アコライト系、サモナーが装備時、追加で魔法攻撃時、全ての種族のモンスターに与えるダメージ + 10%、全ての種族のMdef 70%無視",0],
+	[3965,50,0,0,2210,1,20,100,"パナギアの贈り物","ハナキアノオクリモノ","",194,1,3,5,4,5,91,10,151,50,7000074,20,7000091,10,9000091,20,10000102,20,10000000000100091n,4,10000000010000151n,50,0],
+	[3966,100,0,0,0,0,0,0,0,0,"",73,-10,91,5,0],
+	[3967,100,0,0,0,0,0,0,0,0,"",73,-10,91,5,0],
+	[3968,100,0,0,0,0,0,0,0,0,"",102,10,91,10,0],
+	[3969,100,0,0,0,0,0,0,0,0,"",74,10,91,20,0],
+	[3970,51,0,50,2220,0,80,100,"ファランクス","フアランクス","5秒毎にHP + 60 , SP + 6<BR>純粋なVitが90以上の時、追加で、5秒毎にHP + 90 , SP + 9<BR>純粋なVitが125以上の時、追加で、5秒毎にHP + 150 , SP + 15",19,3,263,1,3000000263,1,21000000263,3,0],
+	[3971,62,0,12,3630,1,60,100,"スクロールストール","スクロオルストオル","物理・魔法攻撃時、[女王フェイスワーム]、[T_W_O]、[ナハトズィーガー]、[パワフルアムダライス]、[バコナワ]、[ビョンウンゴ]、[f・ジターバグ]、[ブワヤ]、[魔神の使徒・アハト]、[魔神の使徒・シナイム]に与えるダメージ + 30%<BR>[パワフルアムダライス]を倒した時、一定確率で[ヘルムスクロールI]をドロップ<BR>[女王フェイスワーム]、[ナハトズィーガー]を倒した時、一定確率で[ウェポンスクロールI]をドロップ<BR>[魔神の使徒・アハト]を倒した時、一定確率で[メイルスクロールI]をドロップ<BR>[魔神の使徒・シナイム]を倒した時、一定確率で[シューズスクロールI]をドロップ<BR>[T_W_O]、[バコナワの宝箱]、[忌み木のビョンウンゴ]、[f・ジターバグ]、[ブワヤ]を倒した時、一定確率で[アクセサリースクロールI]をドロップ<BR>[スクロールストール]の精錬値が7以上の時、追加で上記効果によるドロップ確率が上昇<BR>[スクロールストール]の精錬値が9以上の時、追加で上記効果によるドロップ確率が上昇",0],
+	[3972,64,0,2,3700,1,50,100,"リングオブヴィーナス","リンクオフウイイナス","アクセサリー(1)に装備時、純粋なDexが10上がる度に、追加で遠距離物理攻撃で与えるダメージ + 1%、スタンに対する耐性 + 3%<BR>アクセサリー(1)に装備時、純粋なDexが125以上の時、追加で固定詠唱時間 - 70%、火・水・風・地属性攻撃で受けるダメージ - 5%<BR>アクセサリー(2)に装備時、純粋なAgiが10上がる度に、追加で物理・魔法攻撃で与えるダメージ + 1%<BR>アクセサリー(2)に装備時、純粋なAgiが125以上の時、追加で移動速度増加、スキルディレイ - 25%",0],
+	[3973,60,0,120,2240,0,40,90,"赤蛇のドレス","アカヘヒノトレス","",381,1,198,6,-1,1,5000033,10,5000034,10,5000046,10,5000045,10,5000173,10,5000174,10,5000356,10,5000355,10,-1,1,7000033,15,7000034,15,7000046,15,7000045,15,7000173,15,7000174,15,7000356,15,7000355,15,-1,1,9000033,15,9000034,15,9000046,15,9000045,15,9000173,15,9000174,15,9000356,15,9000355,15,-1,1,0],
+	[3974,50,0,15,0,1,50,100,"黒無常帽","クロムシヨウホウ","",19,5,12,10,89,5,7000089,2,7000073,-10,8000089,3,8000347,5,9000089,5,9000298,50,0],
+	[3975,100,0,0,0,0,0,0,0,0,"[覚醒ローブ]の精錬値が1上がる度に追加で、Matk + 7、攻撃速度 + 1%",220,74,0],
+	[3976,63,0,18,3140,0,40,100,"剛勇無双の貫","コウユウムソウノツラヌキ","",19,10,74,30,86,10,7000086,20,9000086,20,0],
+	[3977,100,0,0,0,0,0,0,0,0,"",25,25,0],
+	[3978,50,0,18,2390,0,100,100,"ジャスパーサークレット","シヤスハアサアクレツト","ルーンナイトがルーンストーンスキルを発動時、追加でルーンストーンスキルの効果が強化される。または自分自身に対して様々な効果が付与される。<BR>[ジャスパーサークレット]を装備時、攻城戦・新攻城戦・攻城戦TEの砦内・PvP・ターボトラックでは[ベルカナストーン]の追加効果は発揮されず、解除されます<BR>[イグニッションブレイク]Lv5習得時、追加で物理攻撃時、ボスモンスターに与えるダメージ + 50%<BR>[デスバウンド]の習得Lvが1上がる度に、追加で全ての種族のDef 10%無視<BR>[ソニックウェーブ]Lv5習得時、追加で[イグニッションブレイク]の再使用待機時間 - 2.5秒<BR>装備解除時、ルーンストーンスキルの効果を解除する",199,445,199,441,199,440,19,15,12,10,5445,20,5440,20,7000012,5,7005445,30,7005440,30,9000012,5,9005445,50,9005440,50,10000086,50,219,2815,0],
+	[3979,62,0,18,0,1,20,100,"地魔獣の皮膚","チマシユウノヒフ","",19,5,42,15,352,15,243,5,100012,1,100042,1,100352,1,10000062,100,0],
+	[3980,100,0,0,0,0,0,0,0,0,"",19,10,15,10,60,20,0],
+	[3981,50,0,2,0,1,50,130,"決闘の龍帽子","ケツトウノリユウホウシ","物理・魔法攻撃時、メモリアルダンジョン[オース二次捜索]に出現するモンスターに与えるダメージ + 15%<BR>メモリアルダンジョン[オース二次捜索]に出現するモンスターから受けるダメージ - 15%<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、メモリアルダンジョン[オース二次捜索]に出現するモンスターに与えるダメージ + 15%<BR>精錬値が7以上の時、追加でメモリアルダンジョン[オース二次捜索]に出現するモンスターから受けるダメージ - 15%<BR>精錬値が9以上の時、追加で物理・魔法攻撃時、メモリアルダンジョン[オース二次捜索]に出現するモンスターに与えるダメージ + 20%<BR>精錬値が9以上の時、追加でメモリアルダンジョン[オース二次捜索]に出現するモンスターから受けるダメージ - 20%<BR>精錬値が10の時、追加で[ミグエル]に与えるダメージ + 100%",63,10,8000063,15,10000381,1,0],
+	[3982,51,0,7,2270,10,20,100,"セブン-イレブンヘッドホン","セフンイレフンヘツトホン","モンスターを倒した時、HP + 150 , SP + 15<BR>BaseLvが1上がる度に追加でAtk + 1 , Matk + 1",19,11,0],
+	[3983,3,0,280,900004,1,340,175,"王室騎士の大剣","オウシツキシノタイケン","",80,60,5440,50,23440,20,7000080,25,9000080,25,10005440,50,0],
+	[3984,5,0,360,900004,1,320,175,"王室騎士の槍","オウシツキシノヤリ","",293,50,100080,15,0],
+	[3985,9,65,60,900004,2,60,175,"青い炎の杖","アオイホノオノツエ","",195,1,88,260,20,8,243,40,89,60,9532,5000,7005532,50,9005532,50,0],
+	[3986,100,0,0,0,0,0,0,0,0,"[魔法力増幅]の詠唱時間 - 50%",0],
+	[3987,9,65,30,800004,3,30,175,"業火の杖","コウカノツエ","",88,130,20,3,9532,5000,100343,3,0],
+	[3988,9,65,30,800004,3,30,175,"氷角の杖","ヒヨウカクノツエ","",88,130,20,1,9532,5000,100341,3,0],
+	[3989,12,0,160,800004,1,50,175,"囚人の日記帳","シユウシンノニツキチヨウ","",88,150,20,9,23,1,100040,8,100045,8,100047,8,100350,8,100355,8,100357,8,0],
+	[3990,60,0,100,700000,1,100,170,"ラーヴァレザーローブ","ラアウアレサアロオフ","",194,1,100212,3,8000077,5,0],
+	[3991,60,0,100,700000,1,100,170,"ラーヴァレザースーツ","ラアウアレサアスウツ","",194,1,100215,3,8000077,5,0],
+	[3992,60,0,100,700000,1,100,170,"ラーヴァレザーアーマー","ラアウアレサアアアマア","",194,1,100211,3,8000077,5,0],
+	[3993,62,0,25,700000,1,30,170,"ラーヴァレザーフード","ラアウアレサアフウト","",100212,3,8000077,5,0],
+	[3994,62,0,25,700000,1,30,170,"ラーヴァレザーマフラー","ラアウアレサアマフラア","",100215,3,8000077,5,0],
+	[3995,62,0,25,700000,1,30,170,"ラーヴァレザーマント","ラアウアレサアマント","",100211,3,8000077,5,0],
+	[3996,63,0,25,700000,1,40,170,"ラーヴァレザーサンダル","ラアウアレサアサンタル","",100212,3,8000077,5,0],
+	[3997,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,74,40,0],
+	[3998,63,0,25,700000,1,40,170,"ラーヴァレザーシューズ","ラアウアレサアシユウス","",100215,3,8000077,5,0],
+	[3999,100,0,0,0,0,0,0,0,0,"全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",13,2000,14,200,0],
+	[4000,63,0,25,700000,1,40,170,"ラーヴァレザーブーツ","ラアウアレサアフウツ","",100211,3,8000077,5,0],
+	[4001,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,293,50,298,50,0],
+	[4002,64,0,0,3700,1,50,100,"森羅万象の指輪","シンラハンシヨウノユヒワ","モンスターを倒した時、HP + 200 , SP + 20",80,10,89,10,0],
+	[4003,100,0,0,0,0,0,0,0,0,"",74,15,25,25,0],
+	[4004,100,0,0,0,0,0,0,0,0,"全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",212,40,0],
+	[4005,100,0,0,0,0,0,0,0,0,"固定詠唱時間 - 70%",344,50,346,50,340,50,0],
+	[4006,100,0,0,0,0,0,0,0,0,"",12,15,86,35,0],
+	[4007,62,0,12,3130,0,30,100,"暴威のマフラー","ホウイノマフラア","[エンドレスハミングボイス]Lv5習得時、追加で攻撃命中時、SP + 2、必中攻撃 + 20%<BR>[フリッグの歌]の習得Lvが1上がる度に追加で、遠距離物理攻撃で与えるダメージ + 4%、[シビアレインストーム]で与えるダメージ + 2%<BR>[メランコリー]Lv5習得時、追加でスキルディレイ - 10%、[シビアレインストーム]の再使用待機時間 - 2秒<BR>[炎の矢]と共に装備時、追加で火属性攻撃で受けるダメージ - 75%<BR>[水晶の矢]と共に装備時、追加で水属性攻撃で受けるダメージ - 75%<BR>[風の矢]と共に装備時、追加で風属性攻撃で受けるダメージ - 75%<BR>[岩石の矢]と共に装備時、追加で地属性攻撃で受けるダメージ - 75%",199,656,199,894,199,635,15,2,16,2,243,5,25,2,5000015,3,5000016,3,5000025,3,7000015,5,7000016,5,7000025,5,219,2835,0],
+	[4008,100,0,0,0,0,0,0,0,0,"[メランコリー]Lv5習得時、[シビアレインストーム]の再使用待機時間 + 2秒",0],
+	[4009,100,0,0,0,0,0,0,0,0,"[スカラバハイヒール]の精錬値が7以上の時、[メランコリー]Lv5習得時、[シビアレインストーム]の再使用待機時間 + 2秒",0],
+	[4010,61,0,95,2280,1,120,100,"イルシオンシールドI","イルシオンシイルト１","BaseLv170以上の時、追加で無属性攻撃で受けるダメージ - 5%",15,10,16,10,300018,50,300019,5,0],
+	[4011,100,0,0,0,0,0,0,0,0,"[ランナウェー・アクセラレータ]の精錬値が1上がる度に追加で、Atk + 10",0],
+	[4012,100,0,0,0,0,0,0,0,0,"[ランナウェー・アクセラレータ]の精錬値が1上がる度に追加で、Matk + 10",0],
+	[4013,100,0,0,0,0,0,0,0,0,"[ランナウェー・アクセラレータ]の精錬値が1上がる度に追加で、Cri + 3",0],
+	[4014,100,0,0,0,0,0,0,0,0,"[ランナウェー・アクセラレータ]の精錬値が1上がる度に追加で、風属性魔法攻撃で与えるダメージ + 3%",0],
+	[4015,50,0,120,0,1,100,100,"ラブダッドバンダナ","ラフタツトハンタナ","",19,10,11,4,78,4,7000011,3,7000078,3,8000011,3,8000078,3,9000063,15,9000061,15,9000064,15,9000062,15,0],
+	[4016,4,0,180,2294,1,250,130,"メタルスティック","メタルステイツク","BaseLvが1上がる度に追加で、[バニシングポイント]で与えるダメージ + 2%<BR>精錬値が9以上の時、BaseLvが1上がる度に追加で、[バニシングポイント]で与えるダメージ + 1%",194,1,3,3,7000012,10,7023570,15,7000037,15,7000272,15,10000037,30,10000272,30,0],
+	[4017,6,56,360,2294,1,400,130,"氷炎悪神の刃鎌","ヒヨウエンアクシンノハカマ","BaseLvが1上がる度に追加で、[メマーナイト]で与えるダメージ + 10%<BR>物理攻撃命中時、敵に与えたダメージの1%をHPとして吸収<BR>精錬値が7以上の時、追加で物理攻撃命中時、敵に与えたダメージの1%をHPとして吸収<BR>精錬値が9以上の時、追加で物理攻撃命中時、敵に与えたダメージの2%をHPとして吸収<BR>発火に対する耐性 + 50%<BR>精錬値が7以上の時、追加で発火に対する耐性 + 25%<BR>精錬値が9以上の時、追加で発火に対する耐性 + 25%<BR>精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",194,1,88,290,197,3,1,3,4,5,152,50,100015,2,100080,2,100086,2,7000152,25,9000152,25,0],
+	[4018,64,0,150,2340,1,10,130,"王者の指輪","オウシヤノユヒワ","",19,15,7,1,80,6,89,6,79,3,0],
+	[4019,60,0,60,2310,1,100,130,"王者のメイル","オウシヤノメイル","",264,5,80,10,89,10,79,7,7000086,25,7000340,20,7000194,1,0],
+	[4020,62,0,16,2320,1,100,130,"王者のマント","オウシヤノマント","精錬値が7以上の時、追加で10秒毎に HP + 2000 , SP + 100",264,5,79,5,78,10,7000063,30,7000062,30,0],
+	[4021,63,0,20,2330,1,100,130,"王者のブーツ","オウシヤノフウツ","",15,10,16,10,264,5,79,5,7000007,10,7000086,20,7000381,1,0],
+	[4022,100,0,0,0,0,0,0,0,0,"BaseLvが1上がる度に追加で MaxHP + 50 , MaxSP + 5",264,5,78,5,0],
+	[4023,100,0,0,0,0,0,0,0,0,0,80,10,89,10,0],
+	[4024,100,0,0,0,0,0,0,0,0,0,63,30,62,30,0],
+	[4025,100,0,0,0,0,0,0,0,0,0,217,10,18,150,19,15,86,20,0],
+	[4026,66,0,0,2340,1,10,130,"半龍王女の指輪","ハンリユウオウシヨノユヒワ","BaseLvが1上がる度に追加で、[テトラボルテックス]で与えるダメージ + 1%<BR>絶対にホワイトインプリズン状態にならない（自分に対して使用した[ホワイトインプリズン]にはこの効果は発動しない）",7,15,12,15,0],
+	[4027,50,0,12,1070,0,60,100,"メロンパンハット","メロンハンハツト","BaseLvが1上がる度に追加で、[復刻メロンパン]のHP回復量 + 5%<BR>精錬値が7以上の時、追加で一部の回復アイテムによるHP回復量 + 10%<BR>精錬値が9以上の時、追加で一部の回復アイテムによるHP回復量 + 10%",62,5,100062,2,7000078,10,7000092,10,9000015,15,9000016,15,9000092,10,0],
+	[4028,50,0,0,1070,1,30,100,"ゴシックスカルリボン","コシツクスカルリホン","",96,10,6000096,15,8000096,15,8000381,1,0],
+	[4029,50,0,10,2300,0,100,130,"ゴールデンバイオレット","コオルテンハイオレツト","",7,10,293,50,298,50,7000007,20,9000293,50,9000298,50,0],
+	[4030,52,0,0,1690,0,30,130,"フォックスヘア","フオツクスヘア","",36,20,176,20,154,100,0],
+	[4031,62,0,18,2450,1,30,100,"栄光の御旗(赤)","エイコウノミハタアカ","",74,10,43,30,353,30,333,5,0],
+	[4032,65,0,1,2460,0,10,150,"鷹の眼の首飾り","タカノメノクヒカサリ","",25,15,0],
+	[4033,100,0,0,0,0,0,0,0,0,"",12,10,74,15,0],
+	[4034,63,0,12,3140,10,40,100,"追撃者のシューズ","ツイケキシヤノシユウス","[エスケープ]の習得Lvが1上がる度に追加で、全ての種族のDef 20%無視<BR>[剣修練]の習得Lvが1上がる度に追加で、[フェイタルメナス]で与えるダメージ + 10%<BR>[フェイタルメナス]の習得Lvが1上がる度に追加で、物理攻撃で与えるダメージ + 2%<BR>[フェイントボム]Lv10習得時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない<BR>[エスケープ]、[フェイタルメナス]、[フェイントボム]の習得Lvが1上がる度に追加で、Flee + 4",199,893,199,3,199,720,199,606,199,603,19,10,15,3,16,3,220,17,23606,18,5000012,5,5000015,7,5000016,7,7000012,5,7000015,10,7000016,10,0],
+	[4035,64,0,0,3700,1,10,100,"精神拡張リング","セイシンカクチヨウリンク","[ステイシス]Lv5習得時、追加で闇・念・無属性魔法攻撃で与えるダメージ + 10%<BR>[テレキネシスインテンス]Lv5習得時、追加で[テレキネシスインテンス]の再使用待機時間 - 75秒<BR>[ヘルインフェルノ]Lv5習得時、追加で攻撃速度 + 15%、魔法攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[リコグナイズドスペル]Lv5習得時、追加でスキルディレイ - 30%<BR>装備解除時、[テレキネシスインテンス]を解除する",199,525,199,798,199,528,199,522,19,15,4,7,97,10,98,10,99,10,70000000005518,1,0],
+	[4036,100,0,0,0,0,0,0,0,0,"",5100000000298,100,0],
+	[4037,50,0,18,3080,0,100,100,"ぴかぴかニャンニャンクラウン","ヒカヒカニヤンニヤンクラウン","[大地の魂]Lv1習得時、[イヌハッカシャワー]、[イヌハッカメテオ]、[ニャングラス]、[マタタビランス]、[マタタビの根っこ]の習得Lvが1上がる度に追加で、[イヌハッカメテオ]、[マタタビランス]の詠唱時間 - 4%<BR>[チャタリング]の習得Lvが1上がる度に追加で、攻撃速度 + 3%<BR>[ニャングラス]Lv5習得時、追加でスキルディレイ - 20%<BR>[ミャウミャウ]Lv5習得時、追加で魔法攻撃時、ボスモンスターに与えるダメージ + 25%<BR>精錬値が1上がる度に追加でモンスターを倒した時、HP + 30 , SP + 3<BR>精錬値が10の時、追加で魔法攻撃命中時、一定確率で20秒間、スキル使用時の消費SP - 100%",199,929,199,923,199,922,199,928,199,920,199,921,199,926,199,927,19,15,74,10,5922,10,5920,10,7007906,50,7007907,50,7005922,15,7005920,15,9007906,50,9007907,50,9005922,25,9005920,25,0],
+	[4038,62,0,12,3130,10,10,100,"よちよちウリボウスタイ","ヨチヨチウリホウスタイ","アニマル系スキルの詠唱時間 - 10%<BR>精錬値が5以上の時、追加でアニマル系スキルの詠唱時間 - 20%<BR>精錬値が7以上の時、追加でアニマル系スキルの詠唱時間 - 20%<BR>[警戒]の習得Lvが1上がる度に追加で、攻撃速度 + 2%<BR>[群れの力]の習得Lvが1上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 2%、必中攻撃 + 4%<BR>[サベージの魂]の習得Lvが1上がる度に追加で、アニマル系スキルで与えるダメージ + 15%<BR>[生命の魂]Lv1習得時、追加で、[キャロットビート]の再使用待機時間 - 0.2秒",199,936,199,937,199,938,199,939,15,5,243,5,5000015,5,7000015,10,219,2825,0],
+	[4039,63,0,12,2770,10,20,100,"幻滅の思念体シューズ","ケンメツノシネンタイシユウス","",19,10,7000015,10,7000298,50,9000015,10,9000298,50,0],
+	[4040,100,0,0,0,0,0,0,0,0,"",10000000005325,4,10000000005529,1,0],
+	[4041,100,0,0,0,0,0,0,0,0,"",10000000005663,2,50000000005662,2,0],
+	[4042,100,0,0,0,0,0,0,0,0,"",10000000005047,4,30000000005518,1,0],
+	[4043,100,0,0,0,0,0,0,0,0,"",214,40,16,40,0],
+	[4044,64,0,10,3700,1,10,100,"審判の天秤","シンハンノテンヒン","[インスピレーション]Lv5習得時、追加で[レイオブジェネシス]の詠唱時間 - 50%、消費SP - 20<BR>[ディボーション]Lv5習得時、追加で魔法攻撃時、ボスモンスターに与えるダメージ + 15%<BR>[へスペルスリット]Lv5習得時、追加でスキルディレイ - 30%",199,587,199,163,199,586,19,5,4,7,50000000005583,1,0],
+	[4045,100,0,0,0,0,0,0,0,0,"ロイヤルガードが装備時、追加で魔法攻撃命中時、3秒間、[レイオブジェネシス]使用時、自分にオートスペル[ハイネスヒール]Lv3発動",0],
+	[4046,50,0,18,3070,0,100,100,"ちゃぷちゃぷニャンプーハット","チヤフチヤフニヤンフウハツト","[海の魂]Lv1習得時、[ニューマ]Lv1使用可能<BR>[エビパーティー]Lv5習得時、追加でMaxHP + 30% , MaxSP + 30%<BR>[グルーミング]Lv5習得時、追加で絶対に混乱・沈黙状態にならない<BR>[のどを鳴らす]の習得Lvが1上がる度に、追加でヒール系スキル使用時、HP回復量 + 20%<BR>精錬値が10の時、追加で[マグロシールド]使用時、3秒間、完全回避 + 100",199,919,199,918,199,916,199,917,19,15,194,1,15,20,16,20,100018,50,7000074,10,7007906,50,7007907,50,7000077,10,9000074,10,9007906,50,9007907,50,9000077,10,0],
+	[4047,9,201,360,3884,1,40,100,"白の騎士団の猫じゃらし","シロノキシタンノネコシヤラシ","",88,160,194,1,74,20,100012,2,10050000000005933n,1,10050000000005938n,1,10000000010000017n,150,10000000010000068n,10,0],
+	[4048,63,0,12,3140,10,40,100,"試験管ブーツ","シケンカンフウツ","[カートブースト]の習得Lvが1上がる度に追加で、Hit + 20 , 攻撃速度 + 4%<BR>[スペシャルファーマシー]Lv10習得時、追加で全ての種族のDef 100%無視<BR>[クレイジーウィード]の習得Lvが1上がる度に追加で、[カートトルネード]で与えるダメージ + 10%<BR>[ファイアーエクスパンション]の習得Lvが1上がる度に追加で、物理攻撃で与えるダメージ + 4%",199,281,199,724,199,727,199,732,199,738,19,10,15,3,16,3,5000015,7,5000016,7,5007723,50,20000005005723,1,7000015,10,7000016,10,7007723,50,20000007005723,1,0],
+	[4049,63,0,12,2770,10,20,100,"無気力の思念体シューズ","ムキリヨクノシネンタイシユウス","",19,10,15,20,16,20,7000293,50,9000293,50,10000000005187,5,10000000005188,10,10000000005189,10,0],
+	[4050,100,0,0,0,0,0,0,0,0,"",50000000005197,1,50000000005321,1,30000000005623,1,0],
+	[4051,100,0,0,0,0,0,0,0,0,"",10000000005609,3,10000000005189,5,0],
+	[4052,100,0,0,0,0,0,0,0,0,"",10000000005289,16,10000000005290,8,0],
+	[4053,100,0,0,0,0,0,0,0,0,"",211,40,12,15,0],
+	[4054,51,0,2,4040,10,30,100,"レインボースター","レインホウスタア","[トラップ研究]Lv10習得時、追加で必中攻撃 + 30%<BR>[アンリミット]Lv5習得時、追加で固定詠唱時間 - 70%",199,500,199,795,27,10,28,10,29,10,243,5,156,100,0],
+	[4055,62,0,25,3120,1,30,100,"溶岩のマント","ヨウカンノマント","[FAW マジックデコイ]Lv5習得時、追加で必中攻撃 + 50%<BR>[アックスブーメラン]の習得Lvが1上がる度に追加で、[アックストルネード]、[パワースイング]で与えるダメージ + 20%<BR>[マグマイラプション]Lv5習得時、追加で火・地属性攻撃で受けるダメージ - 50%",199,546,199,542,199,811,19,5,15,2,16,2,27,5,28,5,29,5,77,5,5000015,3,5000016,3,5000012,5,7000015,5,7000016,5,7000012,5,0],
+	[4056,60,0,150,2490,1,90,130,"国王シュミッツの制服","コクオウシユミツツノセイフク","",194,1,74,10,0],
+	[4057,62,0,70,2500,1,60,130,"国王シュミッツのマント","コクオウシユミツツノマント","",74,10,0],
+	[4058,100,0,0,0,0,0,0,0,0,"[国王シュミッツの制服]、[国王シュミッツのマント]の精錬値が6以上の時、追加でスキルディレイ - 20%<BR>[国王シュミッツの制服]、[国王シュミッツのマント]の精錬値が8以上の時、追加でスキルディレイ - 20%",0],
+	[4059,64,0,10,2480,1,20,130,"国王シュミッツの強剛記章","コクオウシユミツツノキヨウコウキシヨウ","",80,10,0],
+	[4060,64,0,10,2480,1,20,130,"国王シュミッツの新暦記章","コクオウシユミツツノシンレキキシヨウ","",89,10,0],
+	[4061,64,0,10,2480,1,20,130,"国王シュミッツの白雲記章","コクオウシユミツツノハクウンキシヨウ","",70,10,0],
+	[4062,64,0,10,2480,1,20,130,"国王シュミッツの剛体記章","コクオウシユミツツノコウタイキシヨウ","",73,-10,0],
+	[4063,64,0,10,2480,1,20,130,"国王シュミッツの閃光記章","コクオウシユミツツノセンコウキシヨウ","",12,10,0],
+	[4064,64,0,10,2480,1,20,130,"国王シュミッツの天弓記章","コクオウシユミツツノテンキユウキシヨウ","",25,10,0],
+	[4065,60,0,90,2510,1,90,99,"覚醒淤加美神の羽衣","カクセイオカミノカミノハコロモ","",19,10,194,1,15,15,16,15,12,10,7000027,20,7000028,20,7000029,20,9000027,20,9000028,20,9000029,20,0],
+	[4066,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃を受けた時、一定確率で氷結・冷凍状態を解除し、3秒間、水属性攻撃で受けるダメージ - 100%<BR>物理・魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[フロストノヴァ]が発動しない<BR>[覚醒淤加美神の羽衣]の精錬値が1上がる度に追加で、物理攻撃時、火属性モンスターに与えるダメージ + 8%",152,100,0],
+	[4067,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃を受けた時、一定確率で氷結・冷凍状態を解除し、3秒間、水属性攻撃で受けるダメージ - 100%<BR>物理・魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[フロストノヴァ]が発動しない<BR>[覚醒淤加美神の羽衣]の精錬値が1上がる度に追加で、物理攻撃時、火属性モンスターに与えるダメージ + 5%",152,100,0],
+	[4068,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃を受けた時、一定確率で氷結・冷凍状態を解除し、3秒間、水属性攻撃で受けるダメージ - 100%<BR>物理・魔法攻撃を受けた時、一定確率で自分を中心にオートスペル[フロストノヴァ]が発動しない<BR>[淤加美神の羽衣]の精錬値が1上がる度に追加で、物理攻撃時、火属性モンスターに与えるダメージ + 3%",152,100,0],
+	[4069,62,0,12,3130,1,10,100,"ファフニールブレス","フアフニイルフレス","[ドラゴントレーニング]Lv5習得時、追加でMaxHP + 20% , MaxSP + 20%<BR>[ドラゴンハウリング]の習得Lvが1上がる度に追加で、[ウォータードラゴンブレス]、[ファイアードラゴンブレス]で与えるダメージ + 20%<BR>[ウォータードラゴンブレス]Lv10習得時、追加で[デリュージ]Lv5使用可能<BR>[ファイアードラゴンブレス]Lv10習得時、追加で[ボルケーノ]Lv5使用可能",199,446,199,448,199,447,199,794,12,3,63,10,61,10,243,5,7000012,5,7000025,10,7000063,20,7000061,20,9000012,7,9000025,10,9000063,20,9000061,20,224,99,224,61,0],
+	[4070,64,0,0,3700,1,40,100,"追撃者のリング","ツイケキシヤノリンク","BaseLvが3上がる度に追加で[フェイタルメナス]で与えるダメージ + 1%<BR>[エスケープ]Lv5習得時、追加で[エスケープ]の再使用待機時間 - 0.5秒<BR>[フェイタルメナス]Lv10習得時、追加でスキルディレイ - 30%<BR>[フェイントボム]Lv10習得時、追加で攻撃命中時、SP + 3",199,893,199,606,199,603,1,7,80,10,0],
+	[4071,100,0,0,0,0,0,0,0,0,"",212,40,27,10,28,10,29,10,0],
+	[4072,63,0,12,2770,10,20,100,"優柔不断の思念体シューズ","ユウシユウフタンノシネンタイシユウス","",19,10,15,20,16,20,7000214,15,7000215,15,7000293,50,7000298,50,9000214,15,9000215,15,9000293,50,9000298,50,0],
+	[4073,100,0,0,0,0,0,0,0,0,"",221,200,50000000005641,3,0],
+	[4074,100,0,0,0,0,0,0,0,0,"",10000000005292,2,30000000005642,2,30000000005753,2,0],
+	[4075,100,0,0,0,0,0,0,0,0,"",215,15,86,25,0],
+	[4076,100,0,0,0,0,0,0,0,0,"",214,15,340,15,0],
+	[4077,62,0,50,3760,0,40,100,"フローズンスケイルショール","フロオスンスケイルシヨオル","物理・魔法攻撃時、[フローズンメモリー]に出現するモンスターに与えるダメージ + 30%<BR>[フローズンメモリー]に出現するモンスターから受けるダメージ - 60%<BR>[フローズンスケイルショール]はNPC売却・倉庫への移動のみ可能です",19,5,61,75,0],
+	[4078,64,0,0,3700,1,10,100,"リングオブパズズ","リンクオフハスス","[チェーンライトニング]Lv5習得時、追加で[チェーンライトニング]の消費SP - 35、[チェーンライトニング]の再使用待機時間 - 0.5秒<BR>[ドレインライフ]Lv5習得時、追加で詠唱時間 - 15%、魔法攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[ラディウス]Lv3習得時、追加で火・風・無属性魔法攻撃で与えるダメージ + 10%<BR>[リコグナイズドスペル]Lv5習得時、追加でスキルディレイ - 30%",199,530,199,526,199,524,199,522,19,15,4,7,97,10,98,10,99,10,30000000005527,1,30000000005530,1,10000000005127,6,0],
+	[4079,100,0,0,0,0,0,0,0,0,"",5100000023527,50,5100000019527,2000,0],
+	[4080,63,0,12,2770,10,20,100,"傲慢の思念体シューズ","コウマンノシネンタイシユウス","",19,10,15,20,16,20,7000018,150,7000019,15,7000293,50,9000018,150,9000019,15,9000293,50,0],
+	[4081,100,0,0,0,0,0,0,0,0,"",20000000005445,1,10000000005070,8,0],
+	[4082,100,0,0,0,0,0,0,0,0,"",50000000005569,4,10000000005574,2,0],
+	[4083,100,0,0,0,0,0,0,0,0,"",20000000005579,1,10000000005324,1,0],
+	[4084,100,0,0,0,0,0,0,0,0,"",211,40,15,40,0],
+	[4085,51,0,2,4040,10,30,100,"戦乙女の羽耳","イクサオトメノハネミミ","[アドラムス]Lv10習得時、追加でジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる<BR>[プラエファティオ]Lv10習得時、追加でスキルディレイ - 15%",199,478,199,483,15,10,16,10,97,10,98,10,99,10,157,100,0],
+	[4086,17,0,70,2294,1,35,130,"メタルデスアダー","メタルテスアタア","[ファイアーダンス]使用時、一定確率で3秒間、完全回避 + 100<BR>精錬値が9以上の時、追加で発動率が上昇<BR>精錬値が10の時、追加で発動率が上昇",194,1,3,3,243,30,25,50,0],
+	[4087,18,0,170,2294,1,85,130,"メタルキングコブラ","メタルキンクコフラ","純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。",194,1,3,3,243,30,25,50,19832,5000,111832,10,0],
+	[4088,20,0,120,2294,1,250,130,"メタルダイヤモンドバック","メタルタイヤモントハツク","純粋なAgiが10上がる度に追加で[ラウンドトリップ]で与えるダメージ + 7%<BR>純粋なAgiが110以上の時、追加で[ラウンドトリップ]で与えるダメージ + 30%",194,1,3,3,243,30,25,50,105835,30,0],
+	[4089,19,0,180,2294,1,300,130,"メタルアナコンダ","メタルアナコンタ","スプラッシュダメージ<BR>純粋なStrが10上がる度に追加で[スラッグショット]で与えるダメージ + 7%<BR>純粋なStrが110以上の時、追加で[スラッグショット]で与えるダメージ + 30%",194,1,3,3,243,30,25,50,19824,2000,105824,15,0],
+	[4090,21,0,210,2294,1,140,130,"メタルパイソン","メタルハイソン","純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。<BR>",194,1,3,3,243,30,25,50,19834,4500,107834,10,219,3402,0],
+	[4091,9,201,110,1064,1,40,100,"不死鳥の猫じゃらし","フシチヨウノネコシヤラシ","",88,160,63,5,100017,10,100100,10,100012,1,0],
+	[4092,100,0,0,0,0,0,0,0,0,"[フレイムバード]の精錬値が1上がる度に追加でAtk + 15 , Matk + 15 , 全ての種族のMdef 10%無視",0],
+	[4093,100,0,0,0,0,0,0,0,0,"[不死鳥の猫じゃらし]の精錬値が1上がる度に、追加で[メテオストーム]で与えるダメージ + 10%",221,198,0],
+	[4094,100,0,0,0,0,0,0,0,0,"[にゃん魂]Lv1習得時、物理攻撃命中時、一定確率で敵にオートスペル[クリムゾンロック]Lv5発動<BR>[にゃん魂]Lv1習得時、[不死鳥の猫じゃらし]の精錬値が1上がる度に、追加で[クリムゾンロック]で与えるダメージ + 10%、火属性魔法攻撃で与えるダメージ + 5%",199,908,225,216,0],
+	[4095,8,63,200,2294,1,290,130,"亡国の王笏","ホウコクノオウシヤク","[グランドクロス]Lv1使用可能<BR>精錬値が7以上の時、追加で精錬値と同じLvの[グランドクロス]使用可能",88,360,4,3,5,5,224,50,100346,10,5000015,10,5000016,10,5000078,5,9000015,10,9000016,10,9000078,5,10000220,87,0],
+	[4096,61,0,20,1270,1,50,130,"聖者の黙示録","セイシヤノモクシロク","精錬値が1上がる度に追加で、オートスペル[レイオブジェネシス]の発動率が上昇",89,5,221,217,7000089,5,9000089,5,0],
+	[4097,52,0,0,1690,0,30,130,"くわえた線香花火","クワエタセンコウハナヒ","",31,20,171,20,150,100,0],
+	[4098,61,0,170,2520,1,120,130,"魔狩りの盾","マカリノタテ","",19,15,79,10,77,10,4700000000079,10,4700000000077,10,4700007000079,10,4700007000077,10,4700009000079,10,4700009000077,10,0],
+	[4099,100,0,0,0,0,0,0,0,0,"",218,4098,0],
+	[4100,100,0,0,0,0,0,0,0,0,"",218,4098,0],
+	[4101,100,0,0,0,0,0,0,0,0,"",218,4098,0],
+	[4102,50,0,18,2300,1,100,130,"砂漠の暗殺者","サハクノアンサツシヤ","ギロチンクロスが装備時、物理攻撃命中時、一定確率で敵を5秒間[オブリビオンカース]状態にする<BR>ギロチンクロスが装備時、精錬値が7以上の時、追加で[オブリビオンカース]状態にする確率が上昇<BR>ギロチンクロスが装備時、精錬値が9以上の時、追加で[オブリビオンカース]状態にする確率が上昇",19,15,74,15,4800007000261,10,4800009000261,15,4800010000085,50,0],
+	[4103,50,0,10,2530,1,50,100,"ゲートオブネザーワールド","ケエトオフネサアワアルト","精錬値が7以上の時、追加で固定詠唱時間 - 50%<BR>精錬値が9以上の時、追加で固定詠唱時間 - 20%<br>超越段階が1以上の時、精錬値が1上がる度に追加で攻撃命中時、SP + 1<br>超越段階が1以上の時、精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%",19,10,2,5,4,5,262,10,269,10,7000262,15,7000269,15,9000012,15,0],
+	[4104,100,0,0,0,0,0,0,0,0,"",214,30,215,30,11532,100,0],
+	[4105,52,0,0,2540,0,30,70,"隷属の首輪","レイソクノクヒワ","純粋なStrとLukの合計が50上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 4%、必中攻撃 + 5%",0],
+	[4106,60,0,120,2550,1,100,100,"剛勇無双の甲胄","コウユウムソウノカツチユウ","",19,10,243,7,100086,5,0],
+	[4107,100,0,0,0,0,0,0,0,0,"全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",0],
+	[4108,100,0,0,0,0,0,0,0,0,"",217,15,0],
+	[4109,63,0,10,2560,1,30,100,"ピープトゥサンダル","ヒイフトウサンタル","",103,5,10000000000017,1,10000000000100,1,7000103,5,9000103,5,0],
+	[4110,51,0,5,1000000,10,10,100,"コル・コアヘッドフォン","コルコアヘツトフオン","",19,3,74,10,0],
+	[4111,100,0,0,0,0,0,0,0,0,"",17,200,100,200,0],
+	[4112,9,77,280,3844,3,200,100,"デウス・エクス・マキナ","テウスエクスマキナ","精錬値が7以上の時、追加で精錬値と同じLvの[ブレッシング]使用可能<BR>精錬値が10の時、追加で固定詠唱時間 - 70%",88,180,243,10,220,102,100015,2,100016,2,100074,1,100089,6,5000078,5,9000078,5,0],
+	[4113,100,0,0,0,0,0,0,0,0,"[彷徨う者の笠]、[彷徨う者の羽織]の精錬値が 7以上の時、Aspd + 1",12,3,0],
+	[4114,100,0,0,0,0,0,0,0,0,"",74,2,9000000000000074,3,0],
+	[4115,100,0,0,0,0,0,0,0,0,"",29,5,9000000000000029,5,0],
+	[4116,100,0,0,0,0,0,0,0,0,"",27,5,9000000000000027,5,0],
+	[4117,100,0,0,0,0,0,0,0,0,"",26,10,9000000000000026,15,0],
+	[4118,100,0,0,0,0,0,0,0,0,"",77,5,9000000000000077,5,9000000000000381,1,0],
+	[4119,100,0,0,0,0,0,0,0,0,"マジシャン系、アーチャー系、アコライト系が装備すると、追加でスタンに対する耐性 + 5%<BR>デビルチの親密度が[きわめて親しい]場合、マジシャン系、アーチャー系、アコライト系が装備すると、さらに追加でスタンに対する耐性 + 15%",0],
+	[4120,100,0,0,0,0,0,0,0,0,"",8000000000000033,5,0],
+	[4121,100,0,0,0,0,0,0,0,0,"モチリンの親密度が[きわめて親しい]場合、無形モンスターを倒した時、一定確率で[おもち]をドロップ",151,10,0],
+	[4122,62,0,25,3130,1,30,100,"天魔外道の外套","テンマケトウノカイトウ","[地雷震]Lv5習得時、追加で[獅子吼]の再使用待機時間 - 0.2秒<BR>[爆気散弾]の習得Lvが1上がる度に、追加で[獅子吼]で与えるダメージ + 15%<BR>[雷光弾]の習得Lvが1上がる度に、追加で必中攻撃 + 4%",199,611,199,612,199,623,19,5,15,2,16,2,27,5,28,5,29,5,243,5,5000015,3,5000016,3,5000073,-5,7000015,5,7000016,5,7000073,-5,219,2864,0],
+	[4123,63,0,12,3140,10,40,100,"ルーングリーブ","ルウンクリイフ","移動速度増加<BR>[ウォータードラゴンブレス]、[ファイアードラゴンブレス]の習得Lvの合計が2上がる度に追加で、全ての基本ステータス + 3<BR>[ドラゴントレーニング]Lv5習得時、追加で[ハンドレッドスピア]の再使用待機時間 - 1秒<BR>[ドラゴンハウリング]の習得Lvが1上がる度に追加で、[スパイラルピアース]、[ハンドレッドスピア]で与えるダメージ + 40%<BR>[ファントムスラスト]Lv5習得時、追加で固定詠唱時間 - 50%",199,794,199,447,199,446,199,448,199,444,19,10,15,3,16,3,5000015,7,5000016,7,5000074,10,7000015,10,7000016,10,7000074,10,0],
+	[4124,63,0,12,2770,10,20,100,"再生の思念体シューズ","サイセイノシネンタイシユウス","",19,10,15,20,16,20,7264,100,7000012,10,7000074,15,9000012,10,9000074,15,219,2862,0],
+	[4125,100,0,0,0,0,0,0,0,0,"",10000000005084,20,10000000005083,2,10000000005388,2,0],
+	[4126,100,0,0,0,0,0,0,0,0,"",10000000005264,6,30000000005460,1,0],
+	[4127,100,0,0,0,0,0,0,0,0,"",10000000005475,1,30000000005474,10,0],
+	[4128,100,0,0,0,0,0,0,0,0,"",10000000005017,12,10000000005263,1,0],
+	[4129,100,0,0,0,0,0,0,0,0,"全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",9,100,0],
+	[4130,12,0,10,2874,1,50,1,"ポルックスブック","ホルツクスフツク","星帝が装備時、攻撃命中時、SP + 2<BR>星帝が装備時、物理攻撃命中時、一定確率で3秒間、Atk + 150",194,1,17,50,12,10,10000000000017,1,6500000000080,50,6500000000077,10,6500007000293,50,6500009000293,50,0],
+	[4131,50,0,12,3000,0,10,1,"ポルックスクラウン","ホルツクスクラウン","星帝が装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>星帝が装備時、精錬値が8以上の時、追加で、5秒毎にHP + 500 , SP + 50",194,1,19,15,1,10,17,50,12,10,261,10,6500000000077,20,6500008000007,10,0],
+	[4132,60,0,100,3020,1,100,1,"ポルックスローブ","ホルツクスロオフ","",194,1,19,5,17,50,12,10,13,1000,6500000000017,80,6500000000015,10,6500000000016,10,6500008000077,5,0],
+	[4133,63,0,25,3040,0,40,1,"ポルックスシューズ","ホルツクスシユウス","星帝が装備時、攻撃命中時、SP + 2<BR>星帝が装備時、精錬値が8以上の時、追加で、固定詠唱時間 - 60%",19,5,17,50,12,10,15,10,16,10,6500000000017,80,6500000000015,10,6500000000016,10,6500000000077,5,16500008005339,5,16500008005305,5,0],
+	[4134,62,0,25,3030,0,30,1,"ポルックスマント","ホルツクスマント","",19,5,17,20,12,10,15,10,16,10,60,20,6500000000017,30,6500000000015,10,6500000000016,10,6500000000077,5,6500008000085,20,0],
+	[4135,100,0,0,0,0,0,0,0,0,"全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",13,2000,14,200,86,30,0],
+	[4136,64,0,0,2570,0,10,1,"ポルックスリング","ホルツクスリンク","星帝が装備時、[太陽の温もり]、[月の温もり]、[星の温もり]で与えるダメージ + 100%",7,5,12,5,14,100,80,5,6500000000080,5,6500000000086,35,0],
+	[4137,1,0,0,2874,1,50,1,"プロキオンダガー","フロキオンタカア","",194,1,88,10,100,50,73,-10,10000000000100,1,6600000000012,10,6600000000089,25,6600000000077,10,6600000000347,25,6600007000298,50,6600009000298,50,0],
+	[4138,50,0,12,2980,0,10,1,"プロキオンクラウン","フロキオンクラウン","ソウルリーパーが装備時、モンスターを倒した時、HP + 500 , SP + 50<BR>ソウルリーパーが装備時、精錬値が8以上の時、追加で、5秒毎にHP + 500 , SP + 50",194,1,19,15,4,10,100,50,73,-10,266,10,6600000000077,20,6600008000007,10,0],
+	[4139,60,0,100,3020,1,100,1,"プロキオンローブ","フロキオンロオフ","",194,1,19,5,100,50,13,1000,73,-10,6600000000100,80,6600000000015,10,6600000000016,10,6600008000381,1,0],
+	[4140,63,0,25,3040,0,40,1,"プロキオンシューズ","フロキオンシユウス","ソウルリーパーが装備時、精錬値が8以上の時、追加で、固定詠唱時間 - 60%",19,5,100,50,15,10,16,10,73,-10,6600000000100,80,6600000000015,10,6600000000016,10,6600000000347,30,6600008000380,1,0],
+	[4141,62,0,25,3030,0,30,1,"プロキオンマント","フロキオンマント","",19,5,100,20,15,10,16,10,73,-10,60,20,6600000000100,30,6600000000060,20,6600008000012,20,0],
+	[4142,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,63,50,61,50,64,50,62,50,152,100,0],
+	[4143,64,0,0,2580,0,10,1,"プロキオンリング","フロキオンリンク","",12,5,14,100,89,5,6600000000012,5,6600000000089,5,6600000000073,-25,0],
+	[4144,52,0,0,0,0,10,1,"チュンイーの霊","チユンイイノレイ","テコンキッド系が装備時、移動速度増加<BR>テコンキッド系が装備時、全てのモンスターを倒した時獲得する経験値 + 5%",17,30,100,30,0],
+	[4145,63,0,15,2620,1,100,99,"覚醒特殊環境活動用ブーツ","カクセイトクシユカンキヨウカツトウヨウフウツ","",100,50,12,15,15,20,16,20,89,15,0],
+	[4146,100,0,0,0,0,0,0,0,0,"物理攻撃を受けた時、一定確率で敵を中心にオートスペル[メテオストーム]が発動しない<BR>BaseLv99以下の時、[覚醒特殊環境活動用ブーツ]の精錬値が1上がる度に追加で、火・闇・無属性魔法攻撃で与えるダメージ + 3%<BR>BaseLv100以上の時、[覚醒特殊環境活動用ブーツ]の精錬値が1上がる度に追加で、火・闇・無属性魔法攻撃で与えるダメージ + 8%",220,91,0],
+	[4147,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[覚醒特殊環境活動用ブーツ]の精錬値が1以上の時、物理攻撃を受けた時、一定確率で15秒間、[覚醒特殊環境活動用ブーツ]の精錬値が1上がる度に追加で、火属性魔法攻撃で与えるダメージ + 5%<BR>BaseLv100以上の時、[覚醒特殊環境活動用ブーツ]の精錬値が1以上の時、物理攻撃を受けた時、一定確率で15秒間、[特殊環境活動用ブーツ]の精錬値が1上がる度に追加で、火属性魔法攻撃で与えるダメージ + 10%",220,104,0],
+	[4148,100,0,0,0,0,0,0,0,0,"攻撃命中時、SP + 5",74,70,0],
+	[4149,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[特殊環境活動用ブーツ]の精錬値が1以上の時、物理攻撃を受けた時、一定確率で15秒間、[特殊環境活動用ブーツ]の精錬値が1上がる度に追加で、火属性魔法攻撃で与えるダメージ + 2%<BR>BaseLv100以上の時、[特殊環境活動用ブーツ]の精錬値が1以上の時、物理攻撃を受けた時、一定確率で15秒間、[特殊環境活動用ブーツ]の精錬値が1上がる度に追加で、火属性魔法攻撃で与えるダメージ + 5%",220,104,0],
+	[4150,51,0,2,4040,10,30,100,"双子のツインリボン","フタコノツインリホン","[楽器の練習]習得時、[ダンスの練習]が習得Lvで発動<BR>[ダンスの練習]習得時、[楽器の練習]が習得Lvで発動<BR>[エンドレスハミングボイス]Lv5習得時、追加で必中攻撃 + 30%<BR>[メランコリー]Lv5習得時、追加で[ブラギの詩]習得時、楽器・鞭装備時、[幸運のキス]が習得Lvで使用可能<BR>[メランコリー]Lv5習得時、追加で[幸運のキス]習得時、楽器・鞭装備時、[ブラギの詩]が習得Lvで使用可能",199,198,199,206,199,656,199,635,199,204,199,212,27,10,28,10,29,10,243,5,155,100,0],
+	[4151,63,0,15,2640,0,30,100,"ママラガン","ママラカン","",19,10,96,15,220,84,19669,1000,100015,2,100016,2,100009,5,100344,3,10000344,50,0],
+	[4152,100,0,0,0,0,0,0,0,0,"",214,40,74,40,0],
+	[4153,62,0,25,3130,1,30,100,"科学者のマント","カカクシヤノマント","[クレイジーウィード]の習得Lvが1上がる度に追加で、MaxHP + 1500<BR>[ファイアーエクスパンション]の習得Lvが1上がる度に追加で、[スポアエクスプロージョン]で与えるダメージ + 20%<BR>[ハウリングオブマンドラゴラ]Lv5習得時、追加で必中攻撃 + 50%<BR>[ヘルズプラント]Lv5習得時、追加で、[スポアエクスプロージョン]の詠唱時間 - 100%",199,732,199,738,199,735,199,734,19,5,11,5,63,10,64,10,243,5,7000011,8,7000025,10,7000063,20,7000064,20,9000011,12,9000025,10,9000063,20,9000064,20,0],
+	[4154,3,146,280,1100004,0,340,165,"ヒポクリシースエッジ","ヒホクリシイスエツシ","[エンチャントブレイド]の習得Lvが1上がる度に追加で、オートスペルの発動率が上昇",88,230,194,1,80,60,89,60,79,40,77,40,7000221,215,9000221,200,10000221,219,0],
+	[4155,11,147,150,1100004,0,280,165,"アワリティアメタル","アワリテイアメタル","精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",88,250,194,1,80,110,79,40,77,40,7019461,2000,9019461,2000,0],
+	[4156,5,146,200,1100004,0,350,165,"ルクスリアピアース","ルクスリアヒアアス","",88,230,194,1,80,110,79,40,77,40,20000007005442,1,20000009005442,1,10000086,50,0],
+	[4157,9,150,120,1100004,0,240,165,"プライドストーン","フライトストオン","",88,270,194,1,195,1,89,60,79,40,77,40,7007519,100,9007520,100,10000341,50,0],
+	[4158,16,58,150,1100004,0,150,165,"ワースホイール","ワアスホイイル","精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",88,160,194,1,80,110,79,40,77,40,7019770,300,9005770,50,0],
+	[4159,10,149,160,1100004,0,90,165,"スペルピアストリング","スヘルヒアストリンク","",88,170,194,1,80,110,79,40,77,40,7005498,30,9005497,30,10000086,50,0],
+	[4160,10,153,160,1100004,0,90,165,"グラルション","クラルシヨン","精錬値が9以上の時、追加で[トライアングルショット]使用時、一定確率で5秒間、[アンリミット]Lv5状態になる<BR>精錬値が10の時、追加で物理攻撃命中時、一定確率で5秒間、Agi + 100<BR>装備解除時、[アンリミット]を解除する",88,170,194,1,80,110,79,40,77,40,10000007005608,1,0],
+	[4161,10,191,160,1100004,0,90,165,"ピグリティアリズム","ヒクリテイアリスム","",88,170,194,1,80,60,89,60,79,40,77,40,7000221,215,9000221,200,10000298,100,0],
+	[4162,18,59,170,1100004,0,85,165,"ラストポインター","ラストホインタア","純粋なIntが10上がる度に追加で、[ハンマーオブゴッド]で与えるダメージ + 7%<BR>純粋なIntが110以上の時、追加で、[ハンマーオブゴッド]で与えるダメージ + 30%",194,1,80,110,79,40,77,40,7007832,100,9023839,30,10000086,50,0],
+	[4163,19,59,180,1100004,0,300,165,"ラストシャッター","ラストシヤツタア","純粋なStrが10上がる度に、追加で、[スラッグショット]で与えるダメージ + 7%<BR>純粋なStrが110以上の時、追加で、[スラッグショット]で与えるダメージ + 30%",194,1,80,110,79,40,77,40,7023824,20,9023831,50,10000086,50,0],
+	[4164,20,59,120,1100004,0,250,165,"ラストクラッシャー","ラストクラツシヤア","純粋なAgiが10上がる度に、追加で、[ラウンドトリップ]で与えるダメージ + 7%<BR>純粋なAgiが110以上の時、追加で、[ラウンドトリップ]で与えるダメージ + 30%",194,1,80,110,79,40,77,40,7023828,25,9023835,10,10000086,50,0],
+	[4165,21,59,210,1100004,0,140,165,"ラストブーム","ラストフウム","純粋なLukが10上がる度に、追加で、[ドラゴンテイル]で与えるダメージ + 7%<BR>純粋なLukが110以上の時、追加で、[ドラゴンテイル]で与えるダメージ + 30%",194,1,80,110,79,40,77,40,7007827,100,9007834,100,10000086,50,0],
+	[4166,2,120,150,1100004,0,120,165,"ヒポクリシーマシン","ヒホクリシイマシン","",88,130,194,1,80,60,89,60,220,106,7000221,211,9000221,215,10000298,100,0],
+	[4167,2,158,150,1100004,0,120,165,"インウィディアバンドル","インウイテイアハントル","精錬値が10の時、追加で[カートキャノン]使用時、一定確率で3秒間、完全回避 + 100",88,130,194,1,80,110,7005723,50,9005723,50,0],
+	[4168,1,58,120,1100004,0,60,165,"ラースレック","ラアスレツク","精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",88,120,194,1,80,110,20000007005769,1,20000009005769,1,0],
+	[4169,1,153,120,1100004,0,60,165,"グラティース","クラテイイス","",88,120,194,1,80,110,7007603,100,9005603,50,10000086,50,0],
+	[4170,6,151,180,1100004,0,180,165,"プライドスチール","フライトスチイル","",88,110,194,1,80,110,7019541,1000,9019541,500,10000026,50,0],
+	[4171,4,152,150,1100004,0,180,165,"グラトニースティック","クラトニイステイツク","精錬値が10の時、追加で相手の防御力が高いほど与えるダメージが増加",88,110,194,1,80,110,7019572,1000,9019572,1000,0],
+	[4172,12,142,120,1100004,0,80,165,"スローステキスト","スロオステキスト","精錬値が7以上の時、追加で[太陽の温もり]、[月の温もり]、[星の温もり]で与えるダメージ + 50%<BR>精錬値が9以上の時、追加で[太陽の温もり]、[月の温もり]、[星の温もり]で与えるダメージ + 50%<BR>精錬値が10の時、追加で相手の防御力が高いほど与えるダメージが増加",88,140,194,1,80,110,0],
+	[4173,12,157,120,1100004,0,80,165,"スロースバイブル","スロオスハイフル","",88,140,194,1,89,60,7019666,4000,9019667,4000,10013666,1000,10013667,1000,0],
+	[4174,9,143,60,1100004,0,30,165,"グリードワンド","クリイトワント","",88,180,194,1,89,60,7005968,50,9005969,50,10000298,100,0],
+	[4175,9,201,150,1100004,0,40,165,"アディクションプランツ","アテイクシヨンフランツ","",88,180,194,1,80,110,10000007005903,3,10000009005905,3,10000012,20,10000074,20,0],
+	[4176,13,154,140,1100004,0,40,165,"イラフィースト","イラフイイスト","精錬値が10の時、追加で全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",88,100,194,1,80,110,7019612,9000,10000009005612,1,219,2870,0],
+	[4177,14,155,180,1100004,0,25,165,"ピグリティアウェーブ","ヒクリテイアウエエフ","",88,120,194,1,80,110,10000007005292,1,10000007005199,1,10000009005292,1,10000009005199,1,10000217,20,0],
+	[4178,15,156,150,1100004,0,25,165,"ピグリティアスパーク","ヒクリテイアスハアク","",88,120,194,1,80,110,10000007005292,1,10000007005207,1,10000009005292,1,10000009005207,1,10000217,20,0],
+	[4179,8,148,150,1100004,0,150,165,"エンヴィーブラント","エンウイイフラント","",88,110,194,1,80,60,89,60,7000221,215,9000221,200,10000220,87,0],
+	[4180,100,0,0,0,0,0,0,0,0,"",71,10,0],
+	[4181,100,0,0,0,0,0,0,0,0,"",102,20,0],
+	[4182,100,0,0,0,0,0,0,0,0,"",211,6,0],
+	[4183,100,0,0,0,0,0,0,0,0,"",212,6,0],
+	[4184,100,0,0,0,0,0,0,0,0,"",213,6,0],
+	[4185,100,0,0,0,0,0,0,0,0,"",214,6,0],
+	[4186,100,0,0,0,0,0,0,0,0,"",215,6,0],
+	[4187,100,0,0,0,0,0,0,0,0,"",216,6,0],
+	[4188,100,0,0,0,0,0,0,0,0,"",47,10,357,10,0],
+	[4189,100,0,0,0,0,0,0,0,0,"",45,10,355,10,0],
+	[4190,100,0,0,0,0,0,0,0,0,"",46,10,356,10,0],
+	[4191,100,0,0,0,0,0,0,0,0,"",49,10,359,10,0],
+	[4192,100,0,0,0,0,0,0,0,0,"",10,20,0],
+	[4193,100,0,0,0,0,0,0,0,0,"",86,20,0],
+	[4194,100,0,0,0,0,0,0,0,0,"",13,1000,0],
+	[4195,100,0,0,0,0,0,0,0,0,"",13,1000,0],
+	[4196,100,0,0,0,0,0,0,0,0,"",13,1000,0],
+	[4197,100,0,0,0,0,0,0,0,0,"",13,1000,0],
+	[4198,100,0,0,0,0,0,0,0,0,"",13,1000,0],
+	[4199,100,0,0,0,0,0,0,0,0,"",13,1000,0],
+	[4200,100,0,0,0,0,0,0,0,0,"",13,1000,0],
+	[4201,100,0,0,0,0,0,0,0,0,"",26,10,96,10,0],
+	[4202,100,0,0,0,0,0,0,0,0,"",267,10,268,10,0],
+	[4203,100,0,0,0,0,0,0,0,0,"",74,20,0],
+	[4204,100,0,0,0,0,0,0,0,0,"",86,20,0],
+	[4205,100,0,0,0,0,0,0,0,0,"",11,10,0],
+	[4206,100,0,0,0,0,0,0,0,0,"",15,20,0],
+	[4207,100,0,0,0,0,0,0,0,0,"",16,20,0],
+	[4208,100,0,0,0,0,0,0,0,0,"",73,-20,0],
+	[4209,60,0,150,2650,0,120,165,"オートマティックスーツI","オオトマテイツクスウツ１","",293,25,298,25,4000000000000293,25,4000000000000298,25,100015,6,0],
+	[4210,60,0,80,2650,0,40,165,"オートマティックスーツII","オオトマテイツクスウツ２","",86,15,4000000000000086,15,100015,6,0],
+	[4211,62,0,60,2660,0,100,165,"オートマティックウィングI","オオトマテイツクウインク１","",15,15,16,15,4000000000000015,15,4000000000000016,15,100011,2,0],
+	[4212,62,0,25,2660,0,30,165,"オートマティックウィングII","オオトマテイツクウインク２","",15,15,16,15,4000000000000015,15,4000000000000016,15,100060,5,0],
+	[4213,63,0,20,2670,0,60,165,"オートマティックレッグI","オオトマテイツクレツク１","",15,15,16,15,4000000000000015,15,4000000000000016,15,100293,10,100298,10,0],
+	[4214,63,0,8,2670,0,20,165,"オートマティックレッグII","オオトマテイツクレツク２","",15,15,16,15,4000000000000015,15,4000000000000016,15,100086,5,0],
+	[4215,64,0,0,2680,0,10,165,"オートマティックチップα-I","オオトマテイツクチツフアルフア１","",80,10,89,10,74,15,0],
+	[4216,64,0,0,2680,0,10,165,"オートマティックチップα-II","オオトマテイツクチツフアルフア２","",74,15,293,50,298,50,0],
+	[4217,64,0,0,2680,0,10,165,"オートマティックチップβ-I","オオトマテイツクチツフヘエタ１","",80,10,89,10,73,-15,0],
+	[4218,64,0,0,2680,0,10,165,"オートマティックチップβ-II","オオトマテイツクチツフヘエタ２","",73,-15,293,50,298,50,0],
+	[4219,64,0,0,3700,1,10,100,"スカルリング","スカルリンク","[魂の蓄積]Lv5習得時、追加で攻撃速度 + 15%、魔法攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[ソウルエナジー研究]Lv5習得時、追加でスキルディレイ - 30%<BR>[魂の収穫]Lv5習得時、追加で火・風・聖・闇・念属性魔法攻撃で与えるダメージ + 10%<BR>[死霊憑依]Lv5習得時、追加で[死霊爆発]の消費SP - 25、[死霊爆発]の再使用待機時間 - 0.5秒",199,971,199,975,199,972,199,976,19,15,4,7,97,10,98,10,99,10,70000000005977,1,0],
+	[4220,100,0,0,0,0,0,0,0,0,"",6600000000220,63,6600000000298,100,0],
+	[4221,61,0,100,2690,0,60,100,"ハルワタート","ハルワタアト","",194,1,19,10,190,30,191,30,192,30,60,10,10000000000100015n,3,10000000000100016n,3,10000000010000217n,20,10000000010000060n,5,0],
+	[4222,100,0,0,0,0,0,0,0,0,"",80,15,0],
+	[4223,100,0,0,0,0,0,0,0,0,"",12,15,0],
+	[4224,100,0,0,0,0,0,0,0,0,"",15,15,16,15,0],
+	[4225,100,0,0,0,0,0,0,0,0,"",89,15,0],
+	[4226,100,0,0,0,0,0,0,0,0,"",25,15,0],
+	[4227,100,0,0,0,0,0,0,0,0,"",74,15,0],
+	[4228,62,0,25,3130,0,30,100,"身かわしのケープ","ミカワシノケエフ","[サクラメント]の習得Lvが1上がる度に追加で、Flee + 10 , 完全回避 + 5<BR>[プラエファティオ]Lv10習得時、追加で無属性攻撃で受けるダメージ - 50%、[レノヴァティオ]の固定詠唱時間 - 100%<BR>[ハイネスヒール]Lv5習得時、追加で水・念属性攻撃で受けるダメージ - 75%",199,494,199,483,199,489,19,5,15,2,16,2,74,5,57,5,274,5,5000015,3,5000016,3,5000074,5,7000015,5,7000016,5,7000074,5,0],
+	[4229,51,0,10,2270,10,20,100,"浮遊するアーティファクト","フユウスルアアテイフアクト","モンスターを倒した時、HP + 150 , SP + 15<BR>BaseLvが1上がる度に追加でAtk + 1 , Matk + 1",19,5,0],
+	[4230,100,0,0,0,0,0,0,0,0,"",219,1828,219,1829,219,1830,219,1831,219,1832,219,1833,219,1834,219,1835,219,1836,219,1837,219,1838,219,1839,219,1840,0],
+	[4231,62,0,40,2780,1,40,100,"フェアリーオブエデン","フエアリイオフエテン","精錬値が8以上の時、追加で[エナジーコート]Lv1習得時、Def + 300 , Mdef + 15<BR>装備解除時、[エナジーコート]を解除する",199,58,79,5,77,5,243,5,100012,1,100089,2,6000217,10,6000381,1,8000220,132,10000000000100068n,2,10000000010000214n,25,0],
+	[4232,100,0,0,0,0,0,0,0,0,"移動速度増加",15,50,0],
+	[4233,100,0,0,0,0,0,0,0,0,"",12,10,74,25,0],
+	[4234,100,0,0,0,0,0,0,0,0,"ウォーロックが装備時、[サイトラッシャー]使用時、自分にオートスペル[サイト]Lv1発動<BR>[ハイディング]や[クローキング]をしているモンスターが見える",214,40,15100000005124,6,0],
+	[4235,51,0,0,2800,10,0,100,"ワンダーエッグバスケット","ワンタアエツクハスケツト","",12,10,0],
+	[4236,100,0,0,0,0,0,0,0,0,"",17,200,100,200,217,10,0],			// Atk+200, Matk+200, 全ステータス+10
+	[4237,100,0,0,0,0,0,0,0,0,"",17,200,100,200,260,10,265,10,0],	// Atk+200, Matk+200, 全サイズ物理+10, 全サイズ魔法+10
+	[4238,100,0,0,0,0,0,0,0,0,"",17,200,100,200,18,150,19,15,0],	// Atk+200, Matk+200, Def+150, Mdef+15
+	[4239,52,0,0,2810,0,30,70,"インペリアルグローリー","インヘリアルクロオリイ","純粋なAgiとVitの合計が50上がる度に追加で、Mdef + 4、スキルディレイ - 3%",0],
+	[4240,66,0,0,2820,10,50,100,"クリスタルブレイドネックレス","クリスタルフレイトネツクレス","[オーラブレイド]使用時、10秒間、物理攻撃時、全ての属性のモンスターに与えるダメージ + 15%",1,5,5,5,80,10,220,133,0],
+	[4241,100,0,0,0,0,0,0,0,0,"ノービス系、ソードマン系、アーチャー系、アコライト系、マーチャント系、テコンキッド系、ガンスリンガー系、サモナーが装備時、追加で物理攻撃時、全ての種族のモンスターに与えるダメージ + 10%、必中攻撃 + 30%",0],
+	[4242,63,0,25,2790,1,60,100,"お洒落なサイレントシューズ","オシヤレナサイレントシユウス","モンスターを倒した時、HP + 150 , SP + 15",262,10,269,10,7000262,10,7000269,10,7000220,65,9000262,10,9000269,10,0],
+	[4243,52,0,0,2830,0,10,70,"ツインブレイズ","ツインフレイス","",12,5,71,5,0],
+	[4244,62,0,18,2840,1,30,100,"栄光の御旗(青)","エイコウノミハタアオ","",74,10,41,30,351,30,331,5,0],
+	[4245,65,0,1,2850,0,10,150,"海底神殿の財宝","カイテイシンテンノサイホウ","※計算機の仕組みの都合上、世界樹の花エンチャントのカード効果エンチャントを行う場合は、名前に（カードエンチャ用）がついている装備を選択してください。",89,15,0],
+	[4246,100,0,0,0,0,0,0,0,0,"",217,10,73,-15,0],
+	[4247,62,0,12,3130,1,10,100,"パワードウィング","ハワアトウインク","[アームズキャノン]Lv5習得時、追加でスキルディレイ - 20%<BR>[ニュートラルバリアー]Lv3習得時、追加でボスモンスターから受けるダメージ - 5%、物理攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[パイルバンカー]の習得Lvが1上がる度に追加で[アームズキャノン]、[コールドスローワー]、[フレイムスローワー]で与えるダメージ + 25%<BR>[火と大地の研究]Lv5習得時、追加で絶対にノックバックしない",199,554,199,566,199,550,199,544,15,3,243,5,63,10,64,10,7000015,5,7000026,10,7000063,20,7000064,20,9000015,7,9000026,10,9000063,20,9000064,20,0],
+	[4248,64,0,0,3240,1,40,100,"不死鳥のリング","フシチヨウノリンク","[インスピレーション]Lv5習得時、追加で詠唱時間 - 30%<BR>[キングスグレイス]Lv5習得時、追加でMaxHP + 15% , MaxSP + 15% , プレイヤーから受けるダメージ - 3%<BR>[フォースオブバンガード]Lv5習得時、追加で攻撃速度 + 10%、物理攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[ムーンスラッシャー]Lv5習得時、追加で物理攻撃時、ボスモンスターに与えるダメージ + 15%",199,587,199,892,199,575,199,582,3,7,27,10,28,10,29,10,30000000005579,1,10000000005324,1,0],
+	[4249,100,0,0,0,0,0,0,0,0,"",5300000023579,15,5300000019579,2000,0],
+	[4250,100,0,0,0,0,0,0,0,0,"",5300000019579,-2000,0],
+	[4251,1,143,100,3884,1,40,100,"朽ちたガーデンナイフ","クチタカアテンナイフ","精錬値と同じLvの[セイフティウォール]使用可能",88,200,224,134,100012,2,10050000000005968n,1,10050000000005969n,1,10050000000005977n,1,10000000010000100n,150,10000000010000068n,10,0],
+	[4252,100,0,0,0,0,0,0,0,0,"",243,-12,0],
+	[4253,63,0,12,2770,10,20,100,"失望の思念体シューズ","シツホウノシネンタイシユウス","",19,10,15,20,16,20,7000171,15,7000176,15,7000357,15,7000359,15,9000171,15,9000176,15,9000357,15,9000359,15,0],
+	[4254,100,0,0,0,0,0,0,0,0,"",50000000005527,2,50000000005530,2,0],
+	[4255,100,0,0,0,0,0,0,0,0,"",221,220,30000000005478,1,0],
+	[4256,100,0,0,0,0,0,0,0,0,"",10000000005132,10,10000000005133,5,0],
+	[4257,100,0,0,0,0,0,0,0,0,"",10000000005104,1,10000000005037,20,10000000005387,20,0],
+	[4258,100,0,0,0,0,0,0,0,0,"",214,40,73,-15,0],
+	[4259,63,0,12,2770,10,20,100,"暴走の思念体シューズ","ホウソウノシネンタイシユウス","",19,10,15,20,16,20,7000012,10,7000102,4,9000012,10,9000102,4,0],
+	[4260,100,0,0,0,0,0,0,0,0,"",40000000005554,1,10000000005553,1,10000000005552,1,0],
+	[4261,100,0,0,0,0,0,0,0,0,"",10000000005066,5,10000000005065,10,0],
+	[4262,100,0,0,0,0,0,0,0,0,"",10000000005326,5,10000000005811,10,0],
+	[4263,100,0,0,0,0,0,0,0,0,"",15,20,74,40,0],
+	[4264,62,0,12,3130,1,30,100,"エリュマントスの皮","エリユマントスノカワ","[ウォーグライダー]Lv3習得時、追加で火属性攻撃で受けるダメージ - 100%、念属性攻撃で受けるダメージ - 30%<BR>[エイムドボルト]の習得Lvが1上がる度に追加で、必中攻撃 + 2%、[アローストーム]で与えるダメージ + 1%<BR>[カモフラージュ]Lv5習得時、追加で、[アローストーム]の再使用待機時間 - 0.3秒<BR>精錬値が7以上の時、追加で物理攻撃でモンスターを倒した時、SP + 10<BR>精錬値が9以上の時、追加で物理攻撃でモンスターを倒した時、SP + 10",199,515,199,497,199,496,15,5,243,5,7000015,5,7000027,10,7000028,10,7000029,10,9000015,10,9000027,10,9000028,10,9000029,10,0],
+	[4265,64,0,0,3230,1,10,100,"アーヌルス イラ","アアヌルスイラ","[修羅身弾]Lv10習得時、追加で、遠距離物理攻撃で与えるダメージ + 10%<BR>[閃電歩]Lv5習得時、追加で、必中攻撃 + 30%<BR>[潜龍昇天]Lv10習得時、追加で、[練気功]、[雷光弾]の詠唱時間 - 50%<BR>[点穴 -反-]Lv5習得時、追加で、スキルディレイ - 15%、物理攻撃でモンスターを倒した時、HP + 100 , SP + 10",199,613,199,620,199,621,199,627,1,7,80,10,50000000005623,1,50000000005612,2,0],
+	[4266,100,0,0,0,0,0,0,0,0,"",5500000023612,130,5500000019612,500,219,2870,0],	// 覇王 + アーヌルス
+	[4267,60,0,0,0,1,90,100,"ノブレスアニマルローブ","ノフレスアニマルロオフ","",300012,1,7000080,3,9000080,3,0],
+	[4268,60,201,120,3160,1,10,100,"インペリアルアニマルローブ","インヘリアルアニマルロオフ","[生命の魂]Lv1習得時、追加で[警戒]使用時、15秒間、物理攻撃時、全ての属性のモンスターに与えるダメージ + 20%、[猪突猛進]状態になる<BR>[警戒]の習得Lvが1上がる度に追加で、[タロウの傷]の固定詠唱時間 - 20%、[タロウの傷]の再使用待機時間 - 1秒<BR>[群れの力]の習得Lvが1上がる度に追加で、物理攻撃で与えるダメージ + 4%、必中攻撃 + 3%<BR>[サベージの魂]Lv5習得時、追加で、BaseLvが3上がる毎にMaxHP + 50、Atk + 1",199,939,199,936,199,937,199,938,194,1,100012,1,219,3404,0],
+	[4269,60,201,120,3160,1,10,100,"グレースアニマルローブ","クレエスアニマルロオフ","[生命の魂]Lv1習得時、追加で[警戒]使用時、15秒間、物理攻撃時、全ての属性のモンスターに与えるダメージ + 50%、[猪突猛進]状態になる<BR>[警戒]の習得Lvが1上がる度に追加で、[タロウの傷]の固定詠唱時間 - 20%、[タロウの傷]の再使用待機時間 - 2.5秒<BR>[群れの力]の習得Lvが1上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 7%、必中攻撃 + 5%<BR>[サベージの魂]Lv5習得時、追加で、BaseLvが1上がる毎にMaxHP + 50、Atk + 1",199,939,199,936,199,937,199,938,194,1,12,10,220,137,10000025,20,219,3404,0],
+	[4270,60,0,0,0,1,90,100,"ノブレスガトリングスーツ","ノフレスカトリンクスウツ","",300079,1,7000080,3,9000080,3,0],
+	[4271,60,59,120,3160,1,40,100,"インペリアルガトリングスーツ","インヘリアルカトリンクスウツ","[ヒートバレル]の習得Lvが1上がる度に追加で、[ファイアーレイン]で与えるダメージ + 20%<BR>[プラチナムアルター]の習得Lvが1上がる度に追加で、物理攻撃で与えるダメージ + 4%、必中攻撃 + 3%<BR>[エターナルチェーン]Lv10習得時、追加で、Dex + 10、絶対にノックバックしない<BR>[ファイアーレイン]Lv5習得時、追加でスキル使用時の消費SP - 10%、[バニシングバスター]で受けるダメージ - 30%",199,836,199,841,199,826,199,828,194,1,19,5,300079,2,0],
+	[4272,60,59,120,3160,1,40,100,"グレースガトリングスーツ","クレエスカトリンクスウツ","[ヒートバレル]の習得Lvが1上がる度に追加で、[ファイアーレイン]で与えるダメージ + 50%<BR>[プラチナムアルター]の習得Lvが1上がる度に追加で、物理攻撃で与えるダメージ + 7%、必中攻撃 + 5%<BR>[エターナルチェーン]Lv10習得時、追加で、Dex + 30、絶対にノックバックしない<BR>[ファイアーレイン]Lv5習得時、追加でスキル使用時の消費SP - 20%、[バニシングバスター]で受けるダメージ - 100%",199,836,199,841,199,826,199,828,194,1,19,5,79,7,220,138,10000025,20,219,2849,0],
+	[4273,60,0,0,0,1,90,100,"ノブレスクルシフォームスーツ","ノフレスクルシフオオムスウツ","",300012,1,7000080,3,9000080,3,0],
+	[4274,60,58,90,3160,1,70,100,"インペリアルクルシフォームスーツ","インヘリアルクルシフオオムスウツ","[十文字斬り]の習得Lvが5上がる度に追加で、[十文字斬り]で与えるダメージ + 15%、[十文字斬り]の再使用待機時間 - 0.1秒<BR>[八方苦無]の習得Lvが1上がる度に追加で、物理攻撃で与えるダメージ + 4%、必中攻撃 + 3%<BR>[明鏡止水]Lv5習得時、追加でAtk + 50<BR>[無茶投げ]Lv10習得時、追加で、全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",199,766,199,769,199,773,199,772,194,1,19,15,100012,1,0],
+	[4275,60,58,90,3160,1,70,100,"グレースクルシフォームスーツ","クレエスクルシフオオムスウツ","[十文字斬り]の習得Lvが2上がる度に追加で、[十文字斬り]で与えるダメージ + 15%、[十文字斬り]の再使用待機時間 - 0.1秒<BR>[八方苦無]の習得Lvが1上がる度に追加で、遠距離物理攻撃で与えるダメージ + 12%、必中攻撃 + 5%<BR>[明鏡止水]Lv5習得時、追加でAtk + 150<BR>[ハイディング]や[クローキング]をしているモンスターが見える<BR>[無茶投げ]Lv10習得時、追加で、全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",199,766,199,769,199,773,199,772,194,1,19,15,12,10,220,43,10000025,20,0],
+	[4276,60,0,120,3170,1,10,100,"あざといケロケロカッパ","アサトイケロケロカツハ","[大地の魂]Lv1習得時、追加で[クァグマイア]Lv5使用可能<BR>[チャタリング]Lv5習得時、追加で攻撃速度 + 10%<BR>[ニャングラス]の習得Lvが1上がる度に追加で、魔法攻撃時、全ての種族のモンスターに与えるダメージ + 8%<BR>[ミャウミャウ]の習得Lvが1上がる度に追加で、[イヌハッカメテオ]で与えるダメージ + 10%",199,929,199,926,199,928,199,927,194,1,15,10,16,10,5000018,150,5000019,15,7000018,150,7000019,15,10000013,5000,10000340,15,0],
+	[4277,65,0,0,3180,1,10,100,"パラダイスロスト","ハラタイスロスト","",12,10,80,10,89,10,0],
+	[4278,64,0,0,3700,1,40,100,"ジャスパーリング","シヤスハアリンク","[イグニッションブレイク]Lv5習得時、追加でMaxHP + 15%<BR>[ウィンドカッター]Lv5習得時、追加で、物理攻撃時、ボスモンスターに与えるダメージ + 15%<BR>[ソニックウェーブ]Lv10習得時、追加で、攻撃速度 + 10%、物理攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[デスバウンド]Lv10習得時、追加で、必中攻撃 + 15%",199,445,199,443,199,440,199,441,1,7,80,10,30000000005445,1,30000000005440,1,0],
+	[4279,100,0,0,0,0,0,0,0,0,"",4700000019445,200,0],
+	[4280,60,0,0,0,1,90,100,"古びたホワイトリリーローブ","フルヒタホワイトリリイロオフ","",15,5,16,5,300074,1,7000089,3,9000089,3,0],
+	[4281,60,0,40,3190,1,90,100,"ホワイトリリーローブ","ホワイトリリイロオフ","",194,1,19,15,15,15,16,15,100074,1,7000089,10,9000089,10,0],
+	[4282,100,0,0,0,0,0,0,0,0,"",346,15,152,100,220,78,0],
+	[4283,60,0,40,3950,1,90,100,"覚醒ホワイトリリーローブ","カクセイホワイトリリイロオフ","",194,1,19,15,15,15,16,15,74,10,7000097,20,7000098,20,7000099,20,9000097,20,9000098,20,9000099,20,0],
+	[4284,100,0,0,0,0,0,0,0,0,"[覚醒ホワイトリリーローブ]の精錬値と同じLvの[ジュデックス]使用可能",346,50,152,100,224,139,0],
+	[4285,51,0,2,4040,10,50,100,"太極の耳飾り(黄)","タイキヨクノミミカサリキイロ","[月の光]Lv5習得時、追加で固定詠唱時間 - 70%<BR>[満月脚]Lv10習得時、追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 15%、物理攻撃でモンスターを倒した時、HP + 150 , SP + 15",199,956,199,955,15,10,16,10,243,5,156,100,0],
+	[4286,64,0,0,3700,1,10,100,"崇拝の指輪","スウハイノユヒワ","[クリアランス]Lv5習得時、追加で、風・聖・無属性魔法攻撃で与えるダメージ + 10%<BR>[オラティオ]Lv10習得時、追加で、[オラティオ]の固定詠唱時間 - 100%、ヒール系スキル使用時、HP回復量 + 30%、スキル使用時の消費SP - 10%<BR>[アドラムス]Lv10習得時、追加で、攻撃速度 + 15%、魔法攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[オフェルトリウム]Lv5習得時、追加で、詠唱時間 - 30%",199,490,199,484,199,478,199,796,19,15,4,7,97,10,98,10,99,10,30000000005478,1,30000000005476,1,0],
+	[4287,100,0,0,0,0,0,0,0,0,"",4900000000298,100,0],
+	[4288,62,0,12,3130,1,10,100,"グロトネリーア","クロトネリイア","[オートシャドウスペル]の習得Lvが1上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 1%、必中攻撃 + 2%<BR>[トライアングルショット]Lv10習得時、追加で、風・地属性攻撃で受けるダメージ - 50%<BR>[フェイントボム]Lv10習得時、追加で、物理攻撃でモンスターを倒した時、HP + 100 , SP + 10、攻撃命中時、SP + 2<BR>[メイルストーム]の習得Lvが1上がる度に追加で、[トライアングルショット]で与えるダメージ + 50%、[フェイントボム]で与えるダメージ + 15%",199,596,199,608,199,603,199,605,15,3,243,5,7000015,5,7000002,10,7000005,10,9000015,7,9000002,10,9000005,10,0],
+	[4289,61,0,60,2280,1,40,100,"イルシオンシールドII","イルシオンシイルト２","",15,10,16,10,1000000000000060,5,300017,15,300100,15,0],
+	[4290,100,0,0,0,0,0,0,0,0,"",25,10,0],
+	[4291,100,0,0,0,0,0,0,0,0,"",6000000000078,-35,6100000000078,-35,0],
+	[4292,100,0,0,0,0,0,0,0,0,"",4800000000078,-35,0],
+	[4293,100,0,0,0,0,0,0,0,0,"",5000000000078,-35,0],
+	[4294,100,0,0,0,0,0,0,0,0,"",78,-35,0],
+	[4295,100,0,0,0,0,0,0,0,0,"",78,-35,0],
+	[4296,61,0,95,3200,1,120,100,"オートマティックシールドI","オオトマテイツクシイルト１","",15,15,16,15,4000000000000015,15,4000000000000016,15,100293,5,100298,5,10000293,50,10000298,50,0],
+	[4297,61,0,60,3200,1,40,100,"オートマティックシールドII","オオトマテイツクシイルト２","",15,15,16,15,4000000000000015,15,4000000000000016,15,100086,3,10000086,30,0],
+	[4298,66,0,0,3210,0,150,150,"アルファコア","アルフアコア","※計算機の仕組みの都合上、世界樹の花エンチャントのカード効果エンチャントを行う場合は、名前に（カードエンチャ用）がついている装備を選択してください。",220,121,220,117,220,119,220,120,0],
+	[4299,100,0,0,0,0,0,0,0,0,"",217,10,12,10,0],
+	[4300,3,146,280,2474,1,340,185,"ガーディアンナイツクレイモア","カアテイアンナイツクレイモア","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,230,194,1,10000007005445,1,9019445,100,10010000000005440n,1,10000000000000077n,40,10000000000000079n,40,10000000010000017n,250,10000000010000068n,25,0],
+	[4301,4,152,150,2474,1,180,185,"ガーディアンナイツスピア","カアテイアンナイツスヒア","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,110,194,1,7011579,100,20000009005579,1,10030000000005585n,1,10000000010000017n,150,10000000010000068n,10,0],
+	[4302,6,151,180,2474,1,180,185,"ガーディアンナイツアックス","カアテイアンナイツアツクス","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,110,194,1,20000007005543,1,20000009005541,1,10000000000019811n,3000,10020000000005542n,1,10000000010000017n,150,10000000010000068n,10,0],
+	[4303,9,148,60,2474,1,30,185,"ロイヤルクレリックスタッフ","ロイヤルクレリツクスタツフ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,180,194,1,20000007005478,1,20000009005476,1,10000000000011483n,100,10000000000011488n,100,10000000000000091n,60,10000000010000100n,150,10000000010000068n,10,0],
+	[4304,9,150,60,2474,1,30,185,"ロイヤルマジシャンワンド","ロイヤルマシシヤンワント","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,180,194,1,10000007005529,1,30000009005532,1,10050000000005527n,1,10050000000005518n,1,10000000010000100n,150,10000000010000068n,10,0],
+	[4305,9,201,150,2474,1,40,185,"ロイヤルフォックステイル","ロイヤルフオツクステイル","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、追加で[かみつく]、[ひっかく]使用時、[うずくまる]Lv1発動",88,180,194,1,10000007005903,3,10000007005905,3,10050000000005922n,1,10050000000005920n,1,10000000010000100n,150,10000000010000068n,10,0],
+	[4306,11,147,150,2474,1,280,185,"ロイヤルカタール","ロイヤルカタアル","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,250,194,1,10000007005474,1,9019474,200,10000000000000077n,40,10000000000000079n,40,10020000000005474n,1,10000000010000017n,250,10000000010000068n,25,0],
+	[4307,1,153,120,2474,1,60,185,"ロイヤルマジシャンダガー","ロイヤルマシシヤンタカア","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,120,194,1,20000007005603,1,20000009005606,1,10000000000019797n,30000,10000000010000017n,150,10000000010000068n,10,0],
+	[4308,13,154,140,2474,1,40,185,"ロイヤルナックル","ロイヤルナツクル","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,100,194,1,10000007005610,1,10000009005622,1,10000000000011622n,100,10000000010000017n,150,10000000010000068n,10,0],
+	[4309,8,158,150,2474,1,150,185,"ガーディアンアルケミックスタッフ","カアテイアンアルケミツクスタツフ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,110,194,1,7019722,200,10000009005722,1,10020000000005723n,1,10020000000005736n,1,10000000010000017n,150,10000000010000068n,10,0],
+	[4310,10,149,160,2474,1,90,185,"ガーディアンナイツアーチャーボウ","カアテイアンナイツアアチヤアホウ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、[トラップ研究]の習得Lvが1上がる度に追加で、Int + 3 , Dex + 3",199,500,88,170,194,1,10000007005505,4,10000000000000077n,40,10000000000000079n,40,10100000000005498n,1,10100000000005497n,1,10000000010000017n,250,10000000010000068n,25,0],
+	[4311,15,156,150,2474,1,50,185,"ロイヤルウィップ","ロイヤルウイツフ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、追加で[振動残響]使用時、一定確率で3秒間、完全回避 + 100",88,120,194,1,10000007005639,1,10030000000005641n,1,10000000010000100n,150,10000000010000068n,10,0],
+	[4312,14,155,180,2474,1,25,185,"ロイヤルチェロ","ロイヤルチエロ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、追加で[振動残響]使用時、一定確率で3秒間、完全回避 + 100",88,120,194,1,10000007005639,1,10030000000005641n,1,10000000010000100n,150,10000000010000068n,10,0],
+	[4313,12,157,120,2474,1,80,185,"ロイヤルセージブック","ロイヤルセエシフツク","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,140,194,1,30000007005666,1,30000007005667,1,30000009005662,1,10030000000005669n,1,10000000010000100n,150,10000000010000068n,10,0],
+	[4314,64,0,0,3700,1,40,100,"辰戌の腕輪","タツイヌノウテワ","[修羅身弾]Lv10習得時、追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 10%<BR>[潜龍昇天]の習得Lvが1上がる度に追加で、MaxHP + 2% , MaxSP + 2%<BR>[点穴 -反-]の習得Lvが1上がる度に追加で、Agi + 4 , Flee + 10",199,613,199,621,199,627,2,7,80,10,219,2868,10000000005610,2,0],
+	[4315,100,0,0,0,0,0,0,0,0,"修羅が装備時、[天羅地網]使用時、3秒間、完全回避 + 100",5500000019610,200,0],
+	[4316,50,0,10,3250,1,50,100,"山岳ヘルメット","サンカクヘルメツト","[FAW シルバースナイパー]Lv5習得時、追加で、必中攻撃 + 50%、スキルディレイ - 10%<BR>[アックスブーメラン]Lv5習得時、追加で、スキルディレイ - 10%、[アックストルネード]の再使用待機時間 - 0.5秒<BR>[マグマイラプション]Lv5習得時、追加で、物理攻撃命中時、一定確率で10秒間、純粋なVitが1上がる度に[パワースイング]で与えるダメージ + 1%",199,545,199,542,199,811,19,10,74,10,5541,15,5543,15,100063,3,100062,3,7005541,25,7005543,25,9005541,35,9005543,35,0],
+	[4317,50,0,10,3250,1,50,100,"正義の冠","セイキノカンムリ","[インスピレーション]Lv5習得時、追加で、スキルディレイ - 15%、[インスピレーション]の再使用待機時間 - 10秒<BR>[ディボーション]Lv5習得時、追加で、MaxHP + 15%、攻撃速度 + 10%<BR>[へスペルスリット]Lv5習得時、追加で、[プレッシャー]使用時、一定確率で、敵を中心にオートスペル[レイオブジェネシス]が習得Lvで発動",199,587,199,163,199,586,19,10,74,10,89,25,225,221,100018,30,7000091,15,7005583,15,9000091,35,9005583,35,219,2805,0],
+	[4318,62,0,50,0,0,40,175,"白騎士のマント","シロキシノマント","物理・魔法攻撃時、[グラストヘイムアビス]に出現するモンスターに与えるダメージ + 10%<BR>精錬値が5以上の時、追加で物理・魔法攻撃時、[グラストヘイムアビス]に出現するモンスターに与えるダメージ + 15%<BR>精錬値が7以上の時、追加で物理・魔法攻撃時、[グラストヘイムアビス]に出現するモンスターに与えるダメージ + 15%",19,5,61,75,7000011,25,7000060,20,8000381,1,0],
+	[4319,60,0,0,0,1,90,100,"ノブレスマグマスーツ","ノフレスマクマスウツ","",300074,1,7000080,3,9000080,3,0],
+	[4320,60,151,100,3260,1,100,100,"インペリアルマグマスーツ","インヘリアルマクマスウツ","[FAW シルバースナイパー]Lv5習得時、追加で[グリード]の詠唱時間 - 100%、物理攻撃でモンスターを倒した時、HP + 50 , SP + 5<BR>[FAW マジックデコイ]Lv5習得時、追加でモンスターを倒した時、一定確率で[ダイヤモンド１カラット]をドロップ<BR>[アックスブーメラン]の習得Lvが1上がる度に追加で、Atk + 10、[アックストルネード]の再使用待機時間 - 0.1秒<BR>[マグマイラプション]の習得Lvが1上がる度に追加で、近接物理攻撃で与えるダメージ + 3%、必中攻撃 + 3%",199,545,199,546,199,542,199,811,194,1,19,10,100074,1,0],
+	[4321,60,151,100,3260,1,100,100,"グレースマグマスーツ","クレエスマクマスウツ","[カートブースト]Lv3使用可能（※Lv3なのでジェネティックスキルの方だと思いますが、確認はできていません）<BR>[FAW シルバースナイパー]Lv5習得時、追加で[グリード]の詠唱時間 - 100%、物理攻撃でモンスターを倒した時、HP + 200 , SP + 20<BR>[FAW マジックデコイ]Lv5習得時、追加でモンスターを倒した時、一定確率で[ダイヤモンド３カラット]をドロップ<BR>[アックスブーメラン]の習得Lvが1上がる度に追加で、Atk + 30、[アックストルネード]の再使用待機時間 - 0.3秒<BR>[マグマイラプション]の習得Lvが1上がる度に追加で、近接物理攻撃で与えるダメージ + 6%、必中攻撃 + 5%",199,545,199,546,199,542,199,811,194,1,19,10,74,10,224,140,10000210,20,0],
+	[4322,60,0,0,0,1,90,100,"ノブレス天地スーツ","ノフレステンチスウツ","",300073,-1,7000080,3,9000080,3,0],
+	[4323,60,154,120,3260,1,40,100,"インペリアル天地スーツ","インヘリアルテンチスウツ","[修羅身弾]の習得Lvが2上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 4%、必中攻撃 + 3%<BR>[潜龍昇天]Lv10習得時、追加で、絶対にノックバックしない、BaseLvが3上がる度に、MaxHP + 50<BR>[点穴 -反-]の習得Lvが1上がる度に追加で、Atk + 10、攻撃速度 + 1%",199,613,199,621,199,627,194,1,100073,-1,0],
+	[4324,60,154,120,3260,1,40,100,"グレース天地スーツ","クレエステンチスウツ","[修羅身弾]の習得Lvが2上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 7%、必中攻撃 + 5%<BR>[潜龍昇天]Lv10習得時、追加で、絶対にノックバックしない、BaseLvが1上がる度に、MaxHP + 50<BR>[点穴 -快-]Lv5習得時、追加で[点穴 -快-]使用時、HP・SPを10%回復する、[精神衝撃]、[致命的な傷]、[スローキャスト]、[氷結]状態を解除する<BR>[点穴 -反-]の習得Lvが1上がる度に追加で、Atk + 30、攻撃速度 + 2%",199,613,199,621,199,625,199,627,194,1,73,-10,220,141,10000210,20,0],
+	[4325,60,0,0,0,1,90,100,"ノブレスアーティススーツ","ノフレスアアテイススウツ","",300012,1,7000080,3,9000080,3,0],
+	[4326,60,120,50,3260,1,10,100,"インペリアルアーティススーツ","インヘリアルアアテイススウツ","[斧修練]Lv10習得時、追加で、BaseLvが3上がる毎に[ボウリングバッシュ]で与えるダメージ + 2%<BR>[剣修練]Lv10習得時、追加で、精錬値と同じLvの[ボウリングバッシュ]使用可能<BR>[武器研究]の習得Lvが1上がる度に追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 2%、必中攻撃 + 1%<BR>[ブレイクスルー]Lv5習得時、追加で[天使さま助けて]の再使用待機時間 - 60秒",199,241,199,3,199,148,199,944,194,1,19,5,100012,1,224,142,0],
+	[4327,60,120,50,3260,1,10,100,"グレースアーティススーツ","クレエスアアテイススウツ","[斧修練]Lv10習得時、追加で、BaseLvが1上がる毎に、[ボウリングバッシュ]で与えるダメージ + 2%<BR>[剣修練]Lv10習得時、追加で、精錬値と同じLvの[ボウリングバッシュ]使用可能<BR>[武器研究]の習得Lvが1上がる度に追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 4%、必中攻撃 + 2%<BR>[ブレイクスルー]Lv5習得時、追加で、[天使さま助けて]の再使用待機時間 - 180秒",199,241,199,3,199,148,199,944,194,1,19,5,12,10,220,143,224,142,10000210,20,0],
+	[4328,60,0,0,0,1,90,100,"ノブレスメナススーツ","ノフレスメナススウツ","",300012,1,7000080,3,9000080,3,0],
+	[4329,60,153,80,3260,1,70,100,"インペリアルメナススーツ","インヘリアルメナススウツ","[エスケープ]の習得Lvが1上がる度に追加で、Atk + 10、Flee + 5<BR>[剣修練]の習得Lvが2上がる度に追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 4%、必中攻撃 + 3%<BR>[フェイントボム]Lv10習得時、追加で、Dex + 10、MaxHP + 5%",199,893,199,3,199,603,194,1,100012,1,0],
+	[4330,60,153,80,3260,1,70,100,"グレースメナススーツ","クレエスメナススウツ","[エスケープ]の習得Lvが1上がる度に追加で、Atk + 30、Flee + 10<BR>[剣修練]の習得Lvが2上がる度に追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 7%、必中攻撃 + 5%<BR>[フェイタルメナス]Lv10習得時、追加で、[フェイントボム]使用時、3秒間、必中攻撃 + 50%、物理攻撃時、全ての属性のモンスターに与えるダメージ + 15%<BR>[フェイントボム]Lv10習得時、追加で、Dex + 30、MaxHP + 15%",199,893,199,3,199,606,199,603,194,1,12,10,220,100,10000210,20,0],
+	[4331,60,0,0,0,1,90,100,"ノブレスホーリーローブ","ノフレスホオリイロオフ","",300051,1,300056,1,7000077,1,9000077,1,0],
+	[4332,60,148,100,3260,1,80,100,"インペリアルホーリーローブ","インヘリアルホオリイロオフ","[オフェルトリウム]Lv5習得時、追加で、BaseLvが3上がる毎に、Def + 1、MaxHP + 50<BR>[サクラメント]Lv5習得時、追加で、ボスモンスターから受けるダメージ - 2%、絶対にノックバックしない<BR>[ハイネスヒール]Lv5習得時、追加で、凍結に対する耐性 + 50%<BR>[プラエファティオ]Lv10習得時、追加で、[気功]Lv3使用可能",199,796,199,494,199,489,199,483,194,1,19,5,100051,1,100056,1,224,144,0],
+	[4333,60,148,100,3260,1,80,100,"グレースホーリーローブ","クレエスホオリイロオフ","[オフェルトリウム]Lv5習得時、追加で、BaseLvが1上がる毎にDef + 1、MaxHP + 50<BR>[サクラメント]Lv5習得時、追加で、ボスモンスターから受けるダメージ - 5%、絶対にノックバックしない<BR>[ハイネスヒール]Lv5習得時、追加で、絶対に凍結状態にならない<BR>[プラエファティオ]Lv10習得時、追加で、[金剛]Lv1使用可能、[金剛]の詠唱時間 - 100%、精練値が3上がる度に、[金剛]の使用可能Lvが1上昇<BR>装備解除時、[金剛]を解除する",199,796,199,494,199,489,199,483,194,1,19,5,51,15,56,15,220,145,224,146,10000264,5,0],
+	[4334,51,0,2,4050,10,10,100,"教授のミニグラス","キヨウシユノミニクラス","[サイキックウェーブ]Lv5習得時、追加で、[サイキックウェーブ]の固定詠唱時間 - 100%、[アースグレイヴ]、[ダイヤモンドダスト]の再使用待機時間 - 4秒<BR>[バキュームエクストリーム]Lv5習得時、追加で、スキルディレイ - 15%",199,662,199,661,97,10,98,10,99,10,243,5,155,100,0],
+	[4335,51,0,0,4040,10,10,100,"ぶくぶくハンティングゴーグル","フクフクハンテインクコオクル","[海の魂]Lv1習得時、追加で、[セイフティウォール]Lv10使用可能<BR>[グルーミング]Lv5習得時、追加で、固定詠唱時間 - 70%",199,919,199,916,15,15,243,5,91,25,0],
+	[4336,64,0,0,3700,1,10,100,"メタルピック","メタルヒツク","[不確定要素の言語]Lv5習得時、追加で、無属性魔法攻撃で与えるダメージ + 10%<BR>[フリッグの歌]Lv5習得時、追加で、全ての種族のMdef 50%無視<BR>[安らぎの子守唄]Lv5習得時、追加で、攻撃速度 + 10%、魔法攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[メランコリー]Lv5習得時、追加で、魔法攻撃時、一般・ボスモンスターに与えるダメージ + 10%",199,634,199,894,199,632,199,635,4,7,97,10,98,10,99,10,30000000005641,1,0],
+	[4337,100,0,0,0,0,0,0,0,0,"",5600000019641,200,5700000019641,200,0],
+	[4338,50,0,12,2300,1,60,130,"再誕の宝冠","サイタンノホウカン","精錬値が10の時、純粋なIntとDexの合計が10上がる度に追加で、無属性魔法攻撃で与えるダメージ + 1%<BR>精錬値が10の時、ウォーロックが装備時、[スパイダーウェブ]Lv1使用可能",19,15,100159,10,100074,3,7000269,15,7019529,40000,9000269,15,9019529,45000,0],
+	[4339,100,0,0,0,0,0,0,0,0,"[再誕の宝冠]の[コメット]の再使用待機時間減少効果が発動しない",0],
+	[4340,50,0,20,3280,1,50,130,"覚醒古王の王冠","カクセイコオウノホウカン","",19,15,63,10,61,10,64,10,62,10,7000015,10,7000016,10,7000078,10,7000092,10,9000015,15,9000016,15,9000078,2,9000092,15,0],
+	[4341,60,0,60,3290,1,100,130,"覚醒魔呪のメイル","カクセイマシユノメイル","精錬値が7以上の時、追加で、[スペルブレイカー]Lv1使用可能",194,1,264,5,100015,3,224,123,0],
+	[4342,63,0,20,3310,1,100,130,"覚醒魔呪のブーツ","カクセイマシユノフウツ","精錬値が7以上の時、追加で、[ハイディング]や[クローキング]をしているモンスターが見える",264,5,100015,3,0],
+	[4343,62,0,16,3300,1,100,130,"覚醒魔呪のマント","カクセイマシユノマント","精錬値が7以上の時、追加で、[ヘヴンズドライブ]Lv3使用可能",264,5,100015,3,78,10,224,94,0],
+	[4344,100,0,0,0,0,0,0,0,0,"",264,5,78,5,10000000000013,66,10000000000014,6,0],
+	[4345,66,0,0,3320,1,10,130,"覚醒深淵の王の指輪","カクセイシンエンノオウノユヒワ","",10000000000013,50,10000000000014,5,0],
+	[4346,100,0,0,0,0,0,0,0,0,"靴の精錬値が1上がる度に、追加で、Str + 10 , Vit + 3",0],
+	[4347,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、敵に与えたダメージの2%をHPとして吸収",10000000000017,1,0],
+	[4348,100,0,0,0,0,0,0,0,0,"",218,4346,0],
+	[4349,64,0,150,3320,1,10,130,"覚醒魔呪の指輪","カクセイマシユノユヒワ","",19,15,7,1,80,6,89,6,63,5,61,5,64,5,62,5,0],
+	[4350,100,0,0,0,0,0,0,0,0,"",15,30,0],
+	[4351,100,0,0,0,0,0,0,0,0,"",64,75,68,25,0],
+	[4352,100,0,0,0,0,0,0,0,0,"",73,-70,74,70,0],
+	[4353,11,147,240,3274,1,120,130,"覚醒古王の双刃","カクセイコウノソウシン","",243,30,10000000005460,1,10000000005475,1,10000000005474,1,10000007005460,1,10000007005475,1,10000007005474,1,10000009005460,1,10000009005475,1,10000009005474,1,10000023,1,10019474,200,0],
+	[4354,1,1,30,2294,1,30,130,"再誕のアセイミー","サイタンノアセイミイ","[ストームガスト]Lv1使用可能<BR>[ハウリングオブマンドラゴラ]Lv5習得時、追加で、攻撃命中時、敵のMaxSPの10%にあたるSPを減少<BR>精錬値が7以上の時、追加で、精錬値と同じLvの[ストームガスト]使用可能",199,735,88,180,20,8,224,148,100341,3,5000015,10,5000016,10,5000078,5,9000015,10,9000016,10,9000078,5,0],
+	[4355,1,1,120,3274,1,60,130,"覚醒栄光を讃えし王剣","カクセイエイコウヲタタエシオウケン","精錬値が9以上の時、追加で、全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",20,6,100027,6,100028,6,100029,6,0],
+	[4356,1,1,120,3274,1,60,130,"覚醒破滅を纏いし業剣","カクセイハメツヲマトイシコウケン","",20,7,100262,6,9019797,30000,0],
+	[4357,100,0,0,0,0,0,0,0,0,"",86,100,243,20,0],
+	[4358,63,0,40,3330,1,100,100,"魔狩りの靴","マカリノクツ","",19,15,80,10,79,5,77,5,100015,4,7000080,15,9000080,15,9000023,1,10000000000100217n,2,10000000010000074n,40,10000000010000080n,30,0],
+	[4359,62,0,60,3340,1,60,100,"剛勇無双の神輿","コウユウムソウノミコシ","精錬値が8以上の時、追加で、[集中力向上]Lv10習得時、Atk + 50 , Flee + 50<BR>装備解除時、[集中力向上]を解除する",199,42,79,5,77,5,243,5,100074,1,100080,2,6000012,10,6000086,25,8000220,149,10000000000100086n,2,10000000010000086n,30,10000000010000228n,1,0],
+	[4360,100,0,0,0,0,0,0,0,0,"攻撃命中時、SP + 5",25,25,0],
+	[4361,100,0,0,0,0,0,0,0,0,"[剛勇無双の貫]の精錬値が3上がる度に追加で、全ての基本ステータス + 10",0],
+	[4362,100,0,0,0,0,0,0,0,0,"[剛勇無双の甲胄]の精錬値が3上がる度に追加で、MaxHP + 20%、遠距離物理攻撃で受けるダメージ - 5%",0],
+	[4363,100,0,0,0,0,0,0,0,0,"",85,30,86,25,0],
+	[4364,65,0,1,3350,10,50,100,"オメガコア","オメカコア","",12,10,80,10,0],
+	[4365,100,0,0,0,0,0,0,0,0,"",217,10,74,30,0],
+	[4366,52,0,0,3360,0,10,100,"ロードオブロイヤルズ","ロオトオフロイヤルス","純粋なStrとIntの合計が50上がる度に追加で、物理・魔法攻撃時、小・中・大型モンスターに与えるダメージ + 4%",0],
+	[4367,51,0,2,1200000,10,20,100,"デモンズファミリア","テモンスフアミリア","",217,10,0],
+	[4368,100,0,0,0,0,0,0,0,0,"",17,200,100,200,0],
+	[4369,60,0,0,0,1,90,100,"ノブレスレインストームスーツ","ノフレスレインストオムスウツ","",300074,1,7000080,3,9000080,3,0],
+	[4370,60,191,120,3370,1,40,100,"インペリアルレインストームスーツ","インヘリアルレインストオムスウツ","[エンドレスハミングボイス]の習得Lvが1上がる度に、追加で、Atk + 10 , Flee + 3<BR>[シビアレインストーム]Lv5習得時、追加で、Dex + 10、MaxHP + 5%<BR>[フリッグの歌]の習得Lvが1上がる度に追加で、遠距離物理攻撃で与えるダメージ + 4%、必中攻撃 + 3%",199,656,199,642,199,894,194,1,19,5,100074,1,0],
+	[4371,60,191,120,3370,1,40,100,"グレースレインストームスーツ","クレエスレインストオムスウツ","[エンドレスハミングボイス]の習得Lvが1上がる度に、追加で、Atk + 30 , Flee + 10<BR>[シビアレインストーム]Lv5習得時、追加で、Dex + 30、MaxHP + 15%<BR>[フリッグの歌]の習得Lvが1上がる度に追加で、遠距離物理攻撃で与えるダメージ + 12%、必中攻撃 + 5%<BR>[メランコリー]Lv5習得時、追加で、[シビアレインストーム]の、再使用待機時間 - 2秒",199,656,199,642,199,894,199,635,194,1,19,5,74,10,220,151,10000086,25,219,2835,0],
+	[4372,100,0,0,0,0,0,0,0,0,"[グレースレインストームスーツ]の[シビアレインストーム]の再使用待機時間減少効果が発動しない",0],
+	[4373,100,0,0,0,0,0,0,0,0,"[グレースレインストームスーツ]の[シビアレインストーム]の再使用待機時間減少効果が発動しない",0],
+	[4374,100,0,0,0,0,0,0,0,0,"[グレースレインストームスーツ]の[シビアレインストーム]の再使用待機時間減少効果が発動しない",0],
+	[4375,60,0,0,0,1,90,100,"ノブレスサイキックローブ","ノフレスサイキツクロオフ","",300074,1,7000089,3,9000089,3,0],
+	[4376,60,157,50,3370,1,100,100,"インペリアルサイキックローブ","インヘリアルサイキツクロオフ","[クラウドキル]Lv5習得時、追加で、詠唱時間 - 5%、魔法攻撃でモンスターを倒した時、HP + 50 , SP + 5<BR>[ストライキング]の習得Lvが1上がる度に追加で、魔法攻撃時、小・中・大型モンスターに与えるダメージ + 4%<BR>[バキュームエクストリーム]Lv5習得時、BaseLvが3上がる度に追加で、Matk + 1、MaxHP + 50",199,663,199,665,199,661,194,1,19,15,100074,1,0],
+	[4377,60,157,50,3370,1,100,100,"グレースサイキックローブ","クレエスサイキツクロオフ","[クラウドキル]Lv5習得時、追加で、詠唱時間 - 15%、魔法攻撃でモンスターを倒した時、HP + 200 , SP + 20<BR>[サイキックウェーブ]Lv5習得時、追加で、[バキュームエクストリーム]の再使用待機時間 - 3秒<BR>[ストライキング]の習得Lvが1上がる度に追加で、魔法攻撃時、小・中・大型モンスターに与えるダメージ + 7%<BR>[バキュームエクストリーム]Lv5習得時、BaseLvが1上がる度に追加で、Matk + 1、MaxHP + 50",199,663,199,662,199,665,199,661,194,1,19,15,74,10,220,152,10000341,20,10000340,20,0],
+	[4378,100,0,0,0,0,0,0,0,0,"[古びた風のささやき]の精錬値が7以上の時、[グレースサイキックローブ]の[バキュームエクストリーム]の再使用待機時間減少効果が発動しない",0],
+	[4379,60,0,0,0,1,90,100,"ノブレススカルローブ","ノフレススカルロオフ","",300012,1,7000089,3,9000089,3,0],
+	[4380,60,143,100,3370,1,100,100,"インペリアルスカルローブ","インヘリアルスカルロオフ","[エスフ]Lv10習得時、追加で、精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 3%(計算機未対応)<BR>[死霊爆発]の習得Lvが2上がる度に追加で、魔法攻撃時、小・中・大型モンスターに与えるダメージ + 4%<BR>[魂の収穫]Lv5習得時、追加で[エルヴィラキャンディ]使用時、[マスカレード:イグノアランス]状態を回復する<BR>[死霊憑依]Lv5習得時、追加で、Int + 10、MaxHP + 5%",199,969,199,977,199,972,199,976,194,1,19,10,100012,1,0],
+	[4381,60,143,100,3370,1,100,100,"グレーススカルローブ","クレエススカルロオフ","[エスフ]Lv10習得時、追加で、精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>[死霊爆発]の習得Lvが2上がる度に追加で、魔法攻撃時、小・中・大型モンスターに与えるダメージ + 7%<BR>[魂の収穫]Lv5習得時、追加で、[エルヴィラキャンディ]使用時、[マスカレード:イグノアランス]状態を回復する<BR>[死霊憑依]Lv5習得時、追加で、Int + 30、MaxHP + 15%",199,969,199,977,199,972,199,976,194,1,19,10,12,10,220,153,10000347,20,10000340,20,0],
+	[4382,64,0,0,3700,1,10,100,"リングオブケリュネイア","リンクオフケリユネイア","[ウォーグライダー]Lv3習得時、追加で、攻撃命中時、SP + 3、スキルディレイ - 20%<BR>[エイムドボルト]Lv10習得時、追加で、物理攻撃時、ボスモンスターに与えるダメージ + 15%<BR>[カモフラージュ]Lv5習得時、追加で、[アンリミット]の再使用待機時間 - 45秒<BR>[レンジャーメイン]Lv10習得時、追加で、必中攻撃 + 15%<BR>装備解除時、[アンリミット]を解除する",199,515,199,497,199,496,199,495,5,7,80,10,100000000005498,1,100000000005497,1,0],
+	[4383,100,0,0,0,0,0,0,0,0,"",5000000019497,250,5000000000228,1,0],
+	[4384,64,0,0,3230,1,10,100,"パラケルススグローブ","パラケルススクロオフ","[カートブースト]Lv5習得時、追加で、攻撃速度 + 10%、MaxHP + 15%<BR>[クレイジーウィード]Lv10習得時、追加で、攻撃命中時、SP + 3<BR>[ファイアーエクスパンション]Lv5習得時、追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 10%",199,724,199,732,199,738,1,7,80,10,20000000005723,1,20000000005722,1,0],
+	[4385,100,0,0,0,0,0,0,0,0,"ジェネティックが装備時、インデュア状態になる<BR>ジェネティックが装備時、[カートトルネード]使用時、3秒間、必中攻撃 + 100%",0],
+	[4386,50,0,10,3250,1,50,100,"ノーザンクロス","ノオサンクロス","精錬値が1上がる度に追加で、魔法攻撃でモンスターを倒した時、HP + 30 , SP + 3<BR>[ステイシス]Lv5習得時、追加で、魔法攻撃命中時、一定確率で30秒間、移動速度増加<BR>[テレキネシスインテンス]Lv5習得時、追加で、Def + 150 , Mdef + 15、[ドレインライフ]の再使用待機時間 - 2秒<BR>[リコグナイズドスペル]Lv5習得時、追加で、ボスモンスターから受けるダメージ - 20%",199,525,199,798,199,522,19,10,12,10,89,25,7000213,7,7000214,7,7005526,75,9000213,18,9000214,18,9005526,175,0],
+	[4387,3,51,280,3384,1,340,150,"イリュージョン死の引導者","イリユウシヨンシノイントウシヤ","",88,230,20,7,194,1,197,3,80,110,77,40,79,40,1000000007000228,1,1000000009000221,230,1000000010005991,666,0],
+	[4388,5,51,200,3384,1,350,150,"イリュージョンゼピュロス","イリユウシヨンセヒユロス","",88,230,20,4,80,60,89,60,77,40,79,40,1000000007000221,211,1000000009000221,200,0],
+	[4389,5,51,200,3384,1,350,150,"イリュージョンブリューナク","イリユウシヨンフリユウナク","BaseLvが170以上の時、精錬値が9以上の時、追加で、BaseLvが1上がる度に追加で、オートスペル[ソウルエクスパンション]の発動率が上昇",88,230,20,6,80,60,89,60,77,40,79,40,220,58,1000000007000221,222,1000000009000221,223,0],
+	[4390,11,147,150,3384,1,280,150,"イリュージョン冷たい氷柱のカタール","イリユウシヨンツメタイツララノカタアル","",88,250,20,1,80,110,77,40,79,40,1000000007000381,1,1000000009000152,100,0],
+	[4391,14,155,140,3384,1,100,150,"イリュージョンエレキギター","イリユウシヨンエレキキタア","[サンダーストーム]Lv1使用可能<BR>BaseLvが170以上の時、精錬値が7以上の時、追加で、精錬値と同じLvの[サンダーストーム]使用可能",88,120,20,4,80,60,89,60,224,154,1000000007000078,5,1000000009000078,5,0],
+	[4392,15,156,140,3384,1,100,150,"イリュージョン電気ウナギ","イリユウシヨンテンキウナキ","[サンダーストーム]Lv1使用可能<BR>BaseLvが170以上の時、精錬値が7以上の時、追加で、精錬値と同じLvの[サンダーストーム]使用可能",88,120,20,4,80,60,89,60,224,154,1000000007000078,5,1000000009000078,5,0],
+	[4393,50,0,12,3390,1,100,150,"イリュージョンモリガンのヘルム","イリユウシヨンモリカンノヘルム","",19,5,9,10,1000000000000009,10,1000000000000015,10,1000000000100006,3,0],
+	[4394,60,0,25,3400,1,220,150,"イリュージョンシャピニハ海の叫び","イリユウシヨンシヤヒニハウミノサケヒ","",198,1,305,50,315,50,1000000000000305,50,1000000000000315,50,0],
+	[4395,60,0,50,3400,1,60,150,"イリュージョンセイントローブ","イリユウシヨンセイントロオフ","",19,5,89,10,1000000000000089,10,0],
+	[4396,60,0,55,3400,1,220,150,"イリュージョンメイル","イリユウシヨンメイル","",80,10,1000000000000080,10,0],
+	[4397,62,0,9,3410,1,60,150,"イリュージョンモリガンのマント","イリユウシヨンモリカンノマント","",9,20,1000000000000009,20,1000000000000015,10,1000000000100006,3,0],
+	[4398,65,0,0,3420,1,20,150,"イリュージョンモリガンのベルト","イリユウシヨンモリカンノヘルト","",2,5,9,5,15,5,1000000000000002,5,1000000000000009,5,0],
+	[4399,66,0,0,3420,1,20,150,"イリュージョンモリガンのペンダント","イリユウシヨンモリカンノヘンタント","",6,5,9,5,15,5,1000000000000006,5,1000000000000009,5,0],
+	[4400,100,0,0,0,0,0,0,0,0,"インデュア状態になる",9,100,11,50,57,23,0],
+	[4401,51,0,6,3440,10,20,100,"プレミアメロンヘッドフォン","フレミアメロンヘツトフオン","",217,10,243,5,0],
+	[4402,100,0,0,0,0,0,0,0,0,"",10000000000017,1,10000000000100,1,0],
+	[4403,62,0,50,3760,0,40,100,"着ぐるみベアドール","キクルミヘアトオル","物理・魔法攻撃時、[ネジリアン帝国]に出現するモンスターに与えるダメージ + 30%<BR>[ネジリアン帝国]に出現するモンスターから受けるダメージ - 60%",19,5,60,30,0],
+	[4404,1,0,120,3434,1,60,100,"メロンダガー","メロンタカア","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,120,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4405,2,70,150,3434,1,120,100,"メロンブレイド","メロンフレイト","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,130,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4406,3,0,280,3434,1,340,100,"メロンクレイモア","メロンクレイモア","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,230,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4407,4,0,150,3434,1,180,100,"メロンスピア","メロンスヒア","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,110,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4408,5,0,200,3434,1,350,100,"メロンランス","メロンランス","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,230,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4409,6,90,180,3434,1,180,100,"メロンアックス","メロンアツクス","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,110,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4410,7,0,320,3434,1,400,100,"メロンツーハンドアックス","メロンツウハントアツクス","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,200,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4411,8,0,150,3434,1,150,100,"メロンメイス","メロンメイス","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,110,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4412,9,77,60,3434,1,30,100,"メロンワンド","メロンワント","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,180,100080,10,100089,5,100091,6,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4413,9,94,120,3434,1,240,100,"メロンスタッフ","メロンスタツフ","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,270,195,1,100080,10,100089,5,100091,6,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4414,10,0,160,3434,1,90,100,"メロンウィング","メロンウインク","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,170,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4415,11,0,150,3434,1,280,100,"メロンカタール","メロンカタアル","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,250,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4416,12,0,120,3434,1,80,100,"メロンブック","メロンフツク","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,140,100080,10,100089,5,100091,6,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4417,13,0,140,3434,1,40,100,"メロンクロー","メロンクロウ","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,100,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4418,14,0,180,3434,1,25,100,"メロンバイオリン","メロンハイオリン","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,120,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4419,15,0,150,3434,1,50,100,"メロンウィップ","メロンウイツフ","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,120,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4420,16,0,150,3434,1,150,100,"メロン風魔手裏剣","メロンフウマシユリケン","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,160,100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4421,17,0,70,3434,1,35,100,"メロンハンドガン","メロンハントカン","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4422,18,0,170,3434,1,85,100,"メロンライフル","メロンライフル","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100<BR>純粋なIntが10上がる度に追加で「ハンマーオブゴッド」で与えるダメージ+7%。<BR>純粋なIntが110以上の時、追加で「ハンマーオブゴッド」で与えるダメージ+30%。",100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4423,20,0,120,3434,1,250,100,"メロンガトリングガン","メロンカトリンクカン","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100<BR>純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。",100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4424,19,0,180,3434,1,300,100,"メロンショットガン","メロンシヨツトカン","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100<BR>純粋なStrが10上がる度に追加で「スラッグショット」で与えるダメージ+7%。<BR>純粋なStrが110以上の時、追加で「スラッグショット」で与えるダメージ+30%。",100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4425,21,0,210,3434,1,140,100,"メロングレネードガン","メロンクレイネイトカン","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100<BR>純粋なLukが10上がる度に追加で「ドラゴンテイル」で与えるダメージ+7%。<BR>純粋なLukが110以上の時、追加で「ドラゴンテイル」で与えるダメージ+30%。",100080,10,100089,5,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,50,10000000010000016n,50,10000000000000077n,40,0],
+	[4426,9,201,150,3434,1,40,100,"メロンフォックステイル","メロンフオツクステイル","物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%、1秒毎にSP + 100",88,180,100080,10,100089,5,100091,6,7000293,50,7000298,50,9000293,50,9000298,50,10000000000100260n,6,10000000000100265n,6,10000000010000015n,15,10000000010000016n,15,0],
+	[4427,64,0,0,3700,1,10,100,"きらきらニャンニャンチョーカー","キラキラニヤンニヤンチヨオカア","[大地の魂]Lv1習得時、プラント系スキルの習得Lvの合計が1上がる度に追加で、[マタタビランス]で与えるダメージ + 1%、Mdef + 1<BR>[チャタリング]Lv5習得時、追加で、MaxHP + 15%、魔法攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[ニャングラス]Lv5習得時、追加で、[マタタビランス]の消費SP - 10、スタンに対する耐性 + 50%<BR>[ミャウミャウ]Lv5習得時、追加で、火・水・風・地・念属性魔法攻撃で与えるダメージ + 10%",199,929,199,926,199,928,199,927,19,15,4,7,97,10,98,10,99,10,70000000005920,1,0],
+	[4428,100,0,0,0,0,0,0,0,0,"",381,1,6400000000220,63,0],
+	[4429,60,0,150,3450,1,100,90,"オケアノスの加護","オケアノスノカコ","精錬値が7以上の時、追加で、[ハイディング]や[クローキング]をしているモンスターが見える、この効果は攻城戦TEでは発動しない",19,15,194,1,12,10,35,40,37,40,272,40,41,40,48,40,175,40,177,40,273,40,351,40,358,40,100061,2,5000243,7,5000018,300,5000019,30,0],
+	[4430,100,0,0,0,0,0,0,0,0,"[疾風]の発動確率が上昇",152,100,0],
+	[4431,20,0,180,3884,1,300,100,"アンティークガトリングガン","アンテイイクカトリンクカン","純粋なAgiが10上がる度に追加で「ラウンドトリップ」で与えるダメージ+7%。<BR>純粋なAgiが110以上の時、追加で「ラウンドトリップ」で与えるダメージ+30%。",88,120,10000000005833,5,119836,8000,10000000000000077n,40,10000000000000079n,40,10020000000005828n,1,10020000000005835n,1,10000000010000017n,250,10000000010000068n,25,0],
+	[4432,60,0,0,0,1,90,100,"ノブレスコンフィデンシャルメイル","ノフレスコンフイテンシヤルメイル","",300079,1,7000080,3,9000080,3,0],
+	[4433,60,146,120,3460,1,150,100,"インペリアルコンフィデンシャルメイル","インヘリアルコンフイテンシヤルメイル","[イグニッションブレイク]Lv5習得時、追加で、MaxHP + 15%<BR>[ウィンドカッター]の習得Lvが1上がる度に追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 4%、必中攻撃 + 3%<BR>[ソニックウェーブ]の習得Lvが3上がる度に追加で、Atk + 15、攻撃速度 + 1%<BR>[デスバウンド]Lv10習得時、BaseLvが3上がる度に追加で、[ソニックウェーブ]で与えるダメージ + 1%",199,445,199,443,199,440,199,441,194,1,19,15,300079,2,0],
+	[4434,60,146,120,3460,1,150,100,"グレースコンフィデンシャルメイル","クレエスコンフイテンシヤルメイル","[イグニッションブレイク]Lv5習得時、追加で、MaxHP + 50%、[ソニックウェーブ]の再使用待機時間 - 0.2秒<BR>[ウィンドカッター]の習得Lvが1上がる度に追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 7%、必中攻撃 + 5%<BR>[ソニックウェーブ]の習得Lvが1上がる度に追加で、Atk + 15、攻撃速度 + 1%<BR>[デスバウンド]Lv10習得時、BaseLvが1上がる度に追加で、[ソニックウェーブ]で与えるダメージ + 1%",199,445,199,443,199,440,199,441,194,1,19,15,79,7,220,156,10000086,25,0],
+	[4435,60,0,0,0,1,90,100,"ノブレスパニッシュメントローブ","ノフレスハニツシユメントロオフ","",300074,1,7000089,3,9000089,3,0],
+	[4436,60,150,60,3460,1,60,100,"インペリアルパニッシュメントローブ","インヘリアルハニツシユメントロオフ","[ドレインライフ]Lv5習得時、BaseLvが6上がる度に追加で、[クリムゾンロック]で与えるダメージ + 1%<BR>[ラディウス]Lv3習得時、BaseLvが3上がる度に追加で、Matk + 1、MaxHP + 50<BR>[リコグナイズドスペル]の習得Lvが1上がる度に追加で、魔法攻撃時、全ての種族のモンスターに与えるダメージ + 5%",199,526,199,524,199,522,194,1,19,5,100074,1,0],
+	[4437,60,150,60,3460,1,60,100,"グレースパニッシュメントローブ","クレエスハニツシユメントロオフ","[コメット]Lv5習得時、追加で、[クリムゾンロック]の固定詠唱時間 - 100%、魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%<BR>[ドレインライフ]Lv5習得時、BaseLvが2上がる度に追加で、[クリムゾンロック]で与えるダメージ + 1%<BR>[ラディウス]Lv3習得時、BaseLvが1上がる度に追加で、Matk + 1、MaxHP + 50<BR>[リコグナイズドスペル]の習得Lvが1上がる度に追加で、魔法攻撃時、全ての種族のモンスターに与えるダメージ + 14%",199,529,199,526,199,524,199,522,194,1,19,5,74,10,220,157,10000343,20,10000348,20,219,2827,0],
+	[4438,60,0,0,0,1,90,100,"ノブレスカルティベイションコート","ノフレスカルテイヘイシヨンコオト","",300074,1,7000080,3,9000080,3,0],
+	[4439,60,158,130,3460,1,150,100,"インペリアルカルティベイションコート","インヘリアルカルテイヘイシヨンコオト","[イリュージョンドーピング]Lv5習得時、追加で、一般モンスターから受けるダメージ - 2%、BaseLvが3上がる度に、MaxHP + 50<BR>[ファイアーエクスパンション]の習得Lvが1上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 4%、必中攻撃 + 3%",199,896,199,738,194,1,100074,1,0],
+	[4440,60,158,130,3460,1,150,100,"グレースカルティベイションコート","クレエスカルテイヘイシヨンコオト","[イリュージョンドーピング]Lv5習得時、追加で、一般モンスターから受けるダメージ - 7%、BaseLvが1上がる度に、MaxHP + 50<BR>[クレイジーウィード]Lv10習得時、追加で、[ハウリングオブマンドラゴラ]の再使用待機時間 - 12秒、<BR>[ハウリングオブマンドラゴラ]Lv5習得時、追加で、スキルディレイ - 15%、[クレイジーウィード]の再使用待機時間 - 4.5秒<BR>[ファイアーエクスパンション]の習得Lvが1上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 7%、必中攻撃 + 5%",199,896,199,732,199,735,199,738,194,1,74,10,220,158,10000264,5,219,3392,0],
+	[4441,100,0,0,0,0,0,0,0,0,"[クレイジーウィード]Lv10習得時、追加で、[古びたミダスのささやき]の[ハウリングオブマンドラゴラ]の再使用待機時間減少効果が発動しない",199,732,0],
+	[4442,100,0,0,0,0,0,0,0,0,"[ハウリングオブマンドラゴラ]Lv5習得時、追加で、[ジェジェキャップ]の[クレイジーウィード]の再使用待機時間減少効果が発動しない",199,735,0],
+	[4443,62,0,50,3760,0,40,100,"エンシェントメガリスマント","エンシエントメカリスマント","物理・魔法攻撃時、[幻想の北洞窟ルワンダ]に出現するモンスターに与えるダメージ + 30%<BR>[幻想の北洞窟ルワンダ]に出現するモンスターから受けるダメージ - 60%",19,5,63,50,62,50,0],
+	[4444,51,0,0,4050,10,10,100,"パワードインカム","ハワアトインカム","[ニュートラルバリアー]Lv3習得時、追加で、スキルディレイ - 15%<BR>[火と大地の研究]Lv5習得時、追加で、[アームズキャノン]の詠唱時間 - 100%、スキル使用時、[魔導ギア燃料]を消費しない",199,566,199,544,27,10,28,10,29,10,243,5,154,100,0],
+	[4445,62,0,12,3130,1,10,100,"アヴァレーツォ","アウアレエツオ","精錬値が7以上の時、追加で、物理攻撃でモンスターを倒した時、SP + 10<BR>精錬値が9以上の時、追加で、物理攻撃でモンスターを倒した時、SP + 10<BR>[クロスインパクト]の習得Lvが1上がる度に追加で、[カウンタースラッシュ]で与えるダメージ + 6%、[クロスインパクト]で与えるダメージ + 30%<BR>[クロスインパクト]Lv5習得時、追加で、[ダークイリュージョン]の再使用待機時間 - 4秒、[ハルシネーションウォーク]の再使用待機時間 - 20秒<BR>[ハルシネーションウォーク]Lv5習得時、追加で、水属性攻撃で受けるダメージ - 100%、聖属性攻撃で受けるダメージ - 30%",199,460,199,473,15,5,243,5,7000015,5,7000027,10,7000028,10,7000029,10,9000015,10,9000027,10,9000028,10,9000029,10,0],
+	[4446,50,0,10,3250,1,50,100,"ファフニールヘルム","フアフニイルヘルム","ルーンナイトがルーンストーンスキルを発動時、追加で、ルーンストーンスキルの効果が強化されるまたは自分自身に対して様々な効果が付与される<BR>[ファフニールヘルム]を装備時、攻城戦・新攻城戦・攻城戦TEの砦内・PvP・ターボトラックでは、[ベルカナストーン]の追加効果は発揮されず、解除されます<BR>[ウォータードラゴンブレス]、[ファイアードラゴンブレス]Lv10習得時、追加で、遠距離物理攻撃で与えるダメージ + 50%、[ウォータードラゴンブレス]、[ファイアードラゴンブレス]の固定詠唱時間 - 0.2秒<BR>[ドラゴントレーニング]Lv5習得時、追加で、MaxHP + 25% , MaxSP + 25% , スキルディレイ - 20%<BR>[ドラゴンハウリング]Lv5習得時、追加で、一般・ボスモンスターから受けるダメージ - 20%<BR>装備解除時、ルーンストーンスキルの効果を解除する",19,10,199,794,199,447,199,446,199,448,74,10,5794,30,5447,30,100063,3,100061,3,7005794,50,7005447,50,9005794,70,9005447,70,0],
+	[4447,50,0,10,3250,1,50,100,"赤い猫耳魔女帽子","アカイネコミミマシヨホウシ","[クラウドキル]Lv5習得時、追加で、[ダイヤモンドダスト]の再使用待機時間 - 1秒<BR>[サイキックウェーブ]Lv5習得時、追加で、スキルディレイ - 20%<BR>[ストライキング]Lv5習得時、追加で、火・水・風・地・無属性魔法攻撃で与えるダメージ + 25%<BR>[バキュームエクストリーム]Lv5習得時、追加で、[サイキックウェーブ]の再使用待機時間 - 2秒",199,663,199,662,199,665,199,661,19,10,74,10,5662,15,5667,15,100004,3,7005662,20,7005667,20,9005662,30,9005667,30,219,2830,0],
+	[4448,51,0,2,4040,10,10,100,"丹色のリボン","ニイロノリホン","[エスフ]Lv10習得時、追加で、[エスパ]、[エスフ]の固定詠唱時間 - 100%<BR>[魂の連結]Lv7習得時、追加で、Aspd + 2",199,969,199,974,97,10,98,10,99,10,57,5,157,100,0],
+	[4449,63,0,15,3140,10,50,100,"粛清の靴","シユクセイノクツ","[オラティオ]Lv10習得時、追加で、詠唱時間 - 50%、スキルディレイ - 50%<BR>[クリアランス]Lv5習得時、追加で、魔法攻撃時、全ての属性のモンスターに与えるダメージ + 25%<BR>[クリアランス]Lv5習得時、追加で、[オフェルトリウム]使用時、15秒間、BaseLvが1上がる度に、[ジュデックス]で与えるダメージ + 1%<BR>[ラウダアグヌス]、[ラウダラムス]の習得Lvが1上がる度に追加で、Mdef + 10、ヒール系スキル使用時、HP回復量 + 8%",199,484,199,490,199,485,199,486,19,15,15,3,16,3,19489,1000,5000015,7,5000016,7,5000074,10,7000015,10,7000016,10,7000074,10,0],
+	[4450,9,150,60,3884,1,30,100,"魔導師の記憶","マトウシノキオク","",88,180,194,1,10000000005519,1,10000000005520,1,100012,2,10030000000005530n,1,10000000010000100n,150,10000000010000068n,10,0],
+	[4451,61,0,170,3710,1,400,100,"シールドオブフェニックス","シイルトオフフエニツクス","精錬値が7以上の時、追加で、戦闘不能から復活時、HP・SPを100%回復する",19,30,194,1,210,15,100015,3,100016,3,5000092,20,0],
+	[4452,50,0,10,3250,1,50,100,"懐郷のサクラ","カイキヨウノサクラ","[月の光]Lv5習得時、追加で、[朔月脚]Lv7習得時、物理攻撃命中時、一定確率で30秒間、移動速度増加<BR>[月の光]Lv5習得時、追加で、[月の構え]Lv3習得時、Flee + 50<BR>[月の光]Lv5習得時、追加で、[満月脚]Lv10習得時、物理攻撃命中時、敵に与えたダメージの2%をHPとして吸収",199,956,199,954,199,953,199,955,19,10,15,10,26,25,100086,3,7005954,15,7005955,15,9005954,35,9005955,35,0],
+	[4453,50,0,10,3250,1,50,100,"ウルフオフィサーハット","ウルフオフイサアハツト","[ウォーグライダー]Lv3習得時、追加で、スキルディレイ - 20%<BR>[エイムドボルト]Lv10習得時、追加で、ボスモンスターから受けるダメージ - 20%、攻撃速度 + 15%<BR>[カモフラージュ]Lv5習得時、追加で、[アローストーム]の再使用待機時間 - 0.2秒<BR>[レンジャーメイン]Lv10習得時、追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 25%<BR>装備解除時、[アンリミット]を解除する",199,515,199,497,199,496,199,495,19,10,74,10,5498,15,100005,3,7005498,20,9019795,150000,0],
+	[4454,61,0,100,3720,1,60,90,"スプンタマンユ","スフンタマンユ","",19,10,57,5,58,5,10000000000100015n,3,10000000000100016n,3,10000000010000060n,10,0],
+	[4455,51,0,2,4040,10,10,100,"もふもふラブリーフォックス","モフモフラフリイフオツクス","[警戒]の習得Lvが1上がる度に追加で、Vit + 5<BR>[生命の魂]Lv1習得時、追加で、[うずくまる]、[ニャンジャンプ]の詠唱時間 - 100%、[タロウの傷]使用時、15秒間、[猪突猛進]状態になる",199,936,199,939,27,10,28,10,29,10,243,5,157,100,0],
+	[4456,12,142,120,3884,1,80,100,"六韜三略","リクトウサンリヤク","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>※現状、ステータス+10の効果は、集中力向上の計算に『含まれない』扱いにしています。<BR>　実際のゲーム内で含まれているようでしたら、ご連絡ください。",88,140,194,1,217,10,10100000000005951n,1,10100000000005955n,1,10100000000005959n,1,10000000010000017n,150,10000000010000068n,10,0],
+	[4457,3,51,300,3734,1,220,99,"覚醒フルフォース","カクセイフルフオオス","移動速度増加<BR>精錬値が1上がる度に追加でAtkが上昇<BR>※Atk上昇は、フルフォースと同じ計算式にしていますが、ゲーム内では未確認です。<BR>　実際の値とずれていましたら、お知らせください。<br>　Atk上昇量＝（精練値の２倍）の２乗",194,1,197,3,79,40,77,40,0],
+	[4458,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[覚醒フルフォース]の精錬値が1上がる度に追加で、攻撃速度 + 2%、物理攻撃時、全ての属性のモンスターに与えるダメージ + 4%<BR>BaseLv100以上の時、[覚醒フルフォース]の精錬値が1上がる度に追加で、攻撃速度 + 5%、物理攻撃時、全ての属性のモンスターに与えるダメージ + 10%",221,224,0],
+	[4459,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[覚醒フルフォース]の精錬値が1上がる度に追加で、攻撃速度 + 2%、物理攻撃で与えるダメージ + 4%<BR>BaseLv100以上の時、[覚醒フルフォース]の精錬値が1上がる度に追加で、攻撃速度 + 5%、物理攻撃で与えるダメージ + 10%",220,67,0],
+	[4460,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[フルフォース]の精錬値が1上がる度に追加で、攻撃速度 + 1%、物理攻撃で与えるダメージ + 2%<BR>BaseLv100以上の時、[フルフォース]の精錬値が1上がる度に追加で、攻撃速度 + 2%、物理攻撃で与えるダメージ + 4%",0],
+	[4461,60,0,90,3740,1,90,99,"覚醒オークロードの鎧","カクセイオオクロオトノヨロイ","",194,1,19,10,74,10,71,10,7000027,20,7000028,20,7000029,20,9000027,20,9000028,20,9000029,20,0],
+	[4462,100,0,0,0,0,0,0,0,0,"インデュア状態になる<BR>BaseLv99以下の時、[覚醒オークロードの鎧]の精錬値が1上がる度に追加で、物理攻撃時、闇属性モンスターに与えるダメージ + 5%<BR>BaseLv100以上の時、[覚醒オークロードの鎧]の精錬値が1上がる度に追加で、物理攻撃時、闇属性モンスターに与えるダメージ + 13%",152,100,0],
+	[4463,100,0,0,0,0,0,0,0,0,"インデュア状態になる<BR>BaseLv99以下の時、[覚醒オークロードの鎧]の精錬値が1上がる度に追加で、物理攻撃時、闇属性モンスターに与えるダメージ + 3%<BR>BaseLv100以上の時、[覚醒オークロードの鎧]の精錬値が1上がる度に追加で、物理攻撃時、闇属性モンスターに与えるダメージ + 10%",152,100,0],
+	[4464,62,0,50,3760,0,40,100,"山羊毛のマフラー","ヤキケノマフラア","物理・魔法攻撃時、[歪んだ迷宮の森]に出現するモンスターに与えるダメージ + 30%<BR>[歪んだ迷宮の森]に出現するモンスターから受けるダメージ - 60%",19,5,62,50,65,50,0],
+	[4465,63,0,15,3750,1,50,99,"覚醒ホロウシューズ","カクセイホロウシユウス","",19,5,100,50,74,10,100269,1,0],
+	[4466,100,0,0,0,0,0,0,0,0,"魔法攻撃命中時、一定確率で30秒間、[カアヒ]Lv7状態になる<BR>BaseLv99以下の時、<BR>[覚醒ホロウシューズ]の精錬値が1上がる度に追加で、Matk + 5、詠唱時間 - 2%<BR>BaseLv100以上の時、[覚醒ホロウシューズ]の精錬値が1上がる度に追加で、Matk + 15、詠唱時間 - 7%",600000269,1,42000000269,25,0],
+	[4467,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[覚醒ホロウシューズ]の精錬値が1上がる度に追加でMatk + 5、詠唱時間 - 2%<BR>BaseLv100以上の時、[覚醒ホロウシューズ]の精錬値が1上がる度に追加でMatk + 15、詠唱時間 - 7%",220,66,171,30,176,30,357,30,359,30,0],
+	[4468,100,0,0,0,0,0,0,0,0,"",218,4467,0],
+	[4469,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[ホロウシューズ]の精錬値が1上がる度に追加で、Matk + 2、詠唱時間 - 1%<BR>BaseLv100以上の時、[ホロウシューズ]の精錬値が1上がる度に追加で、Matk + 5、詠唱時間 - 2%",171,10,176,10,357,10,359,10,0],
+	[4470,100,0,0,0,0,0,0,0,0,"",218,4469,0],
+	[4471,100,0,0,0,0,0,0,0,0,0,86,15,159,30,0],
+	[4472,100,0,0,0,0,0,0,"0","0","",1565,10,1566,10,1567,10,1568,10,1569,10,1570,10,1571,10,1572,10,1573,10,1574,10,0],
+	[4473,100,0,0,0,0,0,0,0,0,"[ファントムオブマスカレード]の精錬値が1上がる度に追加でAtkが上昇（精錬値の２乗×２）",0],
+	[4474,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、純粋なVitが10上がる度に追加で、Atk + 3 , Matk + 3、純粋なLukが20上がる度に追加で、Vit + 1 , Luk + 1<BR>BaseLv100以上の時、純粋なVitが10上がる度に追加で、Atk + 10 , Matk + 10、純粋なLukが10上がる度に追加で、Vit + 1 , Luk + 1",0],
+	[4475,100,0,0,0,0,0,0,"0","0","",157,100,0],
+	[4476,100,0,0,0,0,0,0,"0","0","[ローヤルゼリー]使用時、HP・SPを15%回復する",89,10,91,10,0],
+	[4477,100,0,0,0,0,0,0,0,0,"BaseLv99以下の時、[オークロードの鎧]の精錬値が1上がる度に追加で、物理攻撃時、闇属性モンスターに与えるダメージ + 1%<BR>BaseLv100以上の時、[オークロードの鎧]の精錬値が1上がる度に追加で、物理攻撃時、闇属性モンスターに与えるダメージ + 3%",152,100,0],
+	[4478,100,0,0,0,0,0,0,0,0,"",346,5,152,100,220,161,0],
+	[4479,100,0,0,0,0,0,0,0,0,"[覚醒ホワイトリリーローブ]の精錬値と同じLvの[ジュデックス]使用可能",346,15,152,100,224,139,0],
+	[4480,100,0,0,0,0,0,0,0,0,"10秒毎に、HP + 1500 , SP + 30<BR>BaseLv99以下の時、[名も無き剣士のブーツ]の精錬値が1上がる度に追加で、Str + 1 , Flee + 2<BR>BaseLv100以上の時、[名も無き剣士のブーツ]の精錬値が1上がる度に追加で、Str + 4 , Flee + 5",0],
+	[4481,100,0,0,0,0,0,0,0,0,"[クリティカルスラッシュ]で受けるダメージ - 30%",63,30,0],
+	[4482,100,0,0,0,0,0,0,0,0,"",73,10,0],
+	[4483,100,0,0,0,0,0,0,0,0,"",15,5,63,15,67,30,153,30,0],
+	[4484,100,0,0,0,0,0,0,0,0,"",12,5,0],
+	[4485,50,0,10,3770,1,50,100,"フェイスオブイグドラシル","フエイスオフイクトラシル","※全ての基本ステータス+3は、集中力向上等の計算に含まれます。（2022/05/25実測）",19,10,7,3,79,20,77,20,260,10,265,10,7000260,15,7000265,15,7000074,20,9000260,15,9000265,15,9000243,13,10000000000100217n,1,10000000010000074n,30,0],
+	[4486,63,0,15,3780,1,50,90,"悪霊のうめき声","アクリヨウノウメキコエ","",19,15,89,15,79,5,77,5,100015,4,7000347,20,7000340,20,9000089,25,0],
+	[4487,100,0,0,0,0,0,0,0,0,"",89,10,177,50,178,50,0],
+	[4488,100,0,0,0,0,0,0,0,0,"",273,50,0],
+	[4489,100,0,0,0,0,0,0,0,0,"",177,20,178,20,0],
+	[4490,100,0,0,0,0,0,0,0,0,"",273,20,0],
+	[4491,100,0,0,0,0,0,0,0,0,"",214,40,74,40,0],
+	[4492,62,0,100,3790,0,100,100,"イージスシステム","イイシスシステム","精錬値が9以上の時、追加で、[クローキング]Lv3使用可能、[クローキング]Lv3以上を習得している場合、Flee + 100",199,82,19,10,79,5,77,5,60,20,7000380,1,7000015,20,7000016,20,9000224,28,0],
+	[4493,51,0,2,3800,10,30,100,"ガーディアンヘルム","カアテイアンヘルム","",27,10,28,10,29,10,97,10,98,10,99,10,108,5,0],
+	[4494,100,0,0,0,0,0,0,0,0,"[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]のいずれかを使用時、[マスカレード:イグノアランス]状態を回復する",217,10,57,7,274,7,152,100,0],
+	[4495,100,0,0,0,0,0,0,0,0,"",381,1,217,10,15,20,16,20,57,5,274,5,61,100,0],
+	[4496,100,0,0,0,0,0,0,0,0,"",217,10,80,15,57,3,274,3,0],
+	[4497,100,0,0,0,0,0,0,0,0,"",217,10,15,15,16,15,73,-10,57,3,274,3,0],
+	[4498,100,0,0,0,0,0,0,0,0,"",217,10,89,15,57,3,274,3,0],
+	[4499,100,0,0,0,0,0,0,0,0,"",217,10,15,15,16,15,12,10,57,3,274,3,0],
+	[4500,100,0,0,0,0,0,0,0,0,"",217,10,25,15,57,3,274,3,0],
+	[4501,100,0,0,0,0,0,0,0,0,"",217,10,70,15,57,3,274,3,0],
+	[4502,52,0,0,3810,0,10,90,"アインヘリヤルの外套","アインヘリヤルノカイトウ","5秒毎に、HP + 150 , SP + 15",15,10,16,10,0],
+	[4503,60,0,100,3170,1,100,100,"パラケルススコート","パラケルススコオト","[カートブースト]Lv5習得時、追加で、BaseLvが1上がる度に、MaxHP + 50<BR>[クレイジーウィード]の習得Lvが1上がる度に追加で、物理攻撃時、全ての種族のモンスターに与えるダメージ + 7%<BR>[ファイアーエクスパンション]Lv5習得時、BaseLvが1上がる度に追加で、[カートキャノン]で与えるダメージ + 2%、[カートトルネード]で与えるダメージ + 1%",199,724,199,732,199,738,15,10,16,10,5000018,150,5000019,15,7000018,150,7000019,15,10000194,1,10000210,15,10000025,15,0],
+	[4504,64,0,0,3700,1,10,100,"ミリタリーグローブ","ミリタリイクロオフ","[FAW シルバースナイパー]Lv5習得時、追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 10%<BR>[FAW マジックデコイ]Lv5習得時、追加で、モンスターを倒した時、一定確率で[ダイヤモンド２カラット]、[ダイヤモンド３カラット]をドロップ<BR>[アックスブーメラン]Lv5習得時、追加で、攻撃速度 + 10%、物理攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[マグマイラプション]Lv5習得時、追加で、スキルディレイ - 30%",199,545,199,546,199,542,199,811,3,7,27,10,28,10,29,10,20000000005541,1,20000000005542,1,20000000005543,1,0],
+	[4505,100,0,0,0,0,0,0,0,0,"",5200000000025,25,5200000009542,3000,0],
+	[4506,52,0,0,3850,0,10,100,"世界を蝕む呪詛","セカイヲムシハムシユソ","",37,20,272,20,177,20,273,20,153,100,0],
+	[4507,100,0,0,0,0,0,0,0,0,"「ローヤルゼリー」使用時、HP・SPを15%回復する。 ",102,50,89,10,91,10,0],
+	[4508,65,0,1,3860,0,10,150,"海底神殿の財宝（カードエンチャ用）","カイテイシンテンノサイホウ２","※計算機の仕組みの都合上、世界樹の花エンチャントのカード効果エンチャントを行う場合は、こちらの装備を選択してください。<BR>※ランダム付与されるモンスターカードの種類は未確定なので、アクセサリーに装着できるカードすべてから選択できるようにしています。",89,15,0],
+	[4509,66,0,0,3870,0,150,150,"アルファコア（カードエンチャ用）","アルフアコア２","※計算機の仕組みの都合上、世界樹の花エンチャントのカード効果エンチャントを行う場合は、こちらの装備を選択してください。<BR>※ランダム付与されるモンスターカードの種類は未確定なので、アクセサリーに装着できるカードすべてから選択できるようにしています。",220,121,220,117,220,119,220,120,0],
+	[4510,60,0,120,3170,1,100,100,"改良型パワードスーツ","カイリヨウカタハワアトスウツ","[アームズキャノン]Lv5習得時、追加で、BaseLvが1上がる度にAtk + 1<BR>[ニュートラルバリアー]Lv3習得時、追加で、遠距離物理攻撃で与えるダメージ + 70%<BR>[パイルバンカー]の習得Lvが1上がる度に追加で、スキルディレイ - 10%",199,554,199,566,199,550,15,10,16,10,5005554,50,5005553,50,5005552,50,7005554,50,7005553,50,7005552,50,10000194,1,10000025,15,0],
+	[4511,51,0,2,4040,10,30,100,"怨霊怪異の耳","オンリヨウカイイノミミ","[地雷震]Lv5習得時、追加で、[獅子吼]の固定詠唱時間 - 100%、[獅子吼]の再使用待機時間 - 9.5秒<BR>[雷光弾]Lv5習得時、追加で、攻撃速度 + 15%",199,611,199,623,27,10,28,10,29,10,243,5,219,2864,380,1,0],
+	[4512,100,0,0,0,0,0,0,0,0,"[地雷震]Lv5習得時、[悪魔の手]の[獅子吼]の再使用待機時間減少効果が発動しない",0],
+	[4513,60,0,100,3170,1,10,100,"もこふわシャークパジャマ","モコフワシヤアクハシヤマ","[海の魂]Lv1習得時、追加で、近接物理・魔法攻撃を受けた時、一定確率で自分にオートスペル[マグロシールド]が習得Lvで発動<BR>[エビパーティー]の習得Lvが1上がる度に追加で、シーフード系スキルの詠唱時間 - 10%<BR>[グルーミング]の習得Lvが1上がる度に追加で、MaxHP + 10%<BR>[のどを鳴らす]Lv5習得時、追加で、ボスモンスターから受けるダメージ - 5%",199,919,199,918,199,916,199,917,194,1,19,15,91,10,5000011,5,5000091,10,7000011,5,7000091,10,10000018,300,10000108,7,0],
+	[4514,64,0,0,3700,1,30,100,"トラベラーリング","トラヘラアリンク","[エンドレスハミングボイス]Lv5習得時、追加で、物理攻撃でモンスターを倒した時、HP + 100 , SP + 10<BR>[シビアレインストーム]Lv5習得時、追加で、物理攻撃時、ボスモンスターに与えるダメージ + 15%<BR>[フリッグの歌]Lv5習得時、追加で、MaxHP + 25%<BR>[メランコリー]Lv5習得時、追加で、必中攻撃 + 15%",199,656,199,642,199,894,199,635,2,7,80,10,30000000005642,1,30000000005753,1,0],
+	[4515,100,0,0,0,0,0,0,0,0,"ミンストレル、ワンダラーが装備時、追加で、[シビアレインストーム]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる<BR>装備解除時、[アンリミット]を解除する",5600000000228,1,5700000000228,1,0],
+	[4516,60,0,100,3170,1,100,100,"ダークトライアド","タアクトライアト","[メイルストーム]の習得Lvが1上がる度に追加で、Agi + 10 , Atk + 50<BR>[トライアングルショット]の習得Lvが1上がる度に、追加で、物理攻撃時、全ての種族のモンスターに与えるダメージ + 7%<BR>[オートシャドウスペル]Lv10習得時、追加で、[トライアングルショット]使用時、一定確率で5秒間、[アンリミット]Lv5状態になる<BR>[オートシャドウスペル]Lv10習得時、追加で、装備解除時、[アンリミット]を解除する",199,605,199,608,199,596,15,10,16,10,5000086,25,7000086,25,10000194,1,10000215,30,0],
+	[4517,52,0,0,3890,0,10,100,"古びた迷彩スカーフ","フルヒタメイサイスカアフ","",100000000000027,1,100000000000028,1,100000000000029,1,100000000000097,1,100000000000098,1,100000000000099,1,0],
+	[4518,65,0,0,3900,1,10,100,"ノブレスオブリージュ","ノフレスオフリイシユ","",12,10,80,10,89,10,0],
+	[4519,100,0,0,0,0,0,0,0,0,"[王家の栄光]の[リフレッシュ]状態になる確率が上昇",262,15,269,15,0],
+	[4520,100,0,0,0,0,0,0,0,0,"物理攻撃命中時、一定確率で敵に[グレースアーティススーツ]の精錬値と同じLvの、オートスペル[ボウリングバッシュ]発動",19946,60000,225,164,0],
+	[4521,100,0,0,0,0,0,0,0,0,"",19936,45000,19933,100,219,2825,0],	// グレースアニマル + ノブレス
+	[4522,100,0,0,0,0,0,0,0,0,"",19835,200,10000000005835,3,219,2859,0],	// グレースガトリング + ノブレス
+	[4523,100,0,0,0,0,0,0,0,0,"",13735,500,19735,4000,0],	// グレースカルティ + ノブレス
+	[4524,100,0,0,0,0,0,0,0,0,"",19768,1000,10000000005768,1,10000000005769,4,219,3400,0],	// グレースクルシ + ノブレス
+	[4525,100,0,0,0,0,0,0,0,0,"",19445,100,20000000005445,1,20000000005440,1,0],
+	[4526,100,0,0,0,0,0,0,0,0,"",19662,1000,11667,100,30000000005662,1,30000000005667,1,0],
+	[4527,100,0,0,0,0,0,0,0,0,"",19977,500,20000000005968,1,20000000005969,1,20000000005977,1,219,2819,219,2866,219,3398,0],	// グレーススカル + ノブレス
+	[4528,100,0,0,0,0,0,0,0,0,"[時間のサークレット(インクイジター)]の[潜龍昇天]の再使用待機時間減少効果が発動しない<br>[暴食のクラウン(インクイジター)]の[潜龍昇天]の再使用待機時間減少効果が発動しない",19621,25000,10000000005613,2,10000000005610,2,219,2868,219,3394,0],	// グレース天地 + ノブレス
+	[4529,100,0,0,0,0,0,0,0,0,"装備解除時、[テレキネシスインテンス]を解除する",19798,120000,30000000005527,1,30000000005518,1,219,2839,0],	// グレースパニッシュ + ノブレス
+	[4530,100,0,0,0,0,0,0,0,0,"",220,176,108,10,0],
+	[4531,100,0,0,0,0,0,0,0,0,"",19541,500,10000000005541,1,10000000005542,1,219,2811,219,2813,0],	// グレースマグマ + ノブレスオブリージュ
+	[4532,100,0,0,0,0,0,0,0,0,"",19893,1500,20000000005606,1,0],
+	[4533,100,0,0,0,0,0,0,0,0,"装備解除時、[アンリミット]を解除する",220,177,20000000005642,1,20000000005753,1,0],
+	[4534,4,152,110,3884,1,180,100,"輝く白銀の槍","カカヤクハクキンノヤリ","超越段階が1以上の時、追加で魔法攻撃命中時、3秒間、[レイオブジェネシス]使用時、自分にオートスペル[ハイネスヒール]Lv3発動",88,180,194,1,20000000005583,1,100074,2,10000000010000100n,150,10000000010000068n,10,0],
+	[4535,62,0,50,3760,0,40,100,"深海生物のマント","シンカイセイフツノマント","物理・魔法攻撃時、[紫色の深海洞窟 上層]、[紫色の深海洞窟 下層]に出現するモンスターに与えるダメージ + 30%<BR>[紫色の深海洞窟 上層]、[紫色の深海洞窟 下層]に出現するモンスターから受けるダメージ - 60%",19,5,63,50,61,50,0],
+	[4536,1,68,80,4,1,60,100,"刃こぼれした小太刀","ハコホレシタコタチ","",194,1,88,120,100089,5,0],
+	[4537,1,68,120,3924,1,60,100,"心霊の小太刀","シンレイノコタチ","",194,1,88,180,243,10,20000000005407,1,20000000005410,1,20000000005413,1,100097,5,100098,5,100099,5,7005408,100,7005414,100,9005409,100,9005412,100,9005415,100,0],
+	[4538,8,56,150,4,1,400,100,"大きな鉄球","オオキナテツキユウ","",194,1,100080,10,0],
+	[4539,8,56,350,3914,1,400,100,"鬼神の鉄球","キシンノテツキユウ","物理攻撃命中時、一定確率で30秒間、[エナジーコート]Lv1状態になる<BR>装備解除時、[エナジーコート]を解除する",194,1,243,10,100027,10,100028,10,100029,10,7000217,10,9000217,10,0],
+	[4540,4,51,100,4,1,180,100,"古い三叉槍","フルイサンサヤリ","",194,1,100080,10,0],
+	[4541,4,51,150,3914,1,180,100,"赤き猛将の槍","アカキモウシヨウノヤリ","",194,1,243,10,7442,100,100027,10,100028,10,100029,10,7005442,100,9000023,1,0],
+	[4542,9,148,60,4,1,10,100,"枯れ木の杖","カレキノツエ","",194,1,88,160,100091,2,0],
+	[4543,9,148,100,3934,1,10,100,"御神木の杖","コシンホクノツエ","",194,1,88,180,11,20,243,10,100091,6,7000217,10,9000217,10,0],
+	[4544,18,59,110,4,1,85,100,"錆びた小銃","サヒタシヨウシユウ","純粋なIntが10上がる度に、追加で、[ハンマーオブゴッド]で与えるダメージ + 7%<BR>純粋なIntが110以上の時、追加で、[ハンマーオブゴッド]で与えるダメージ + 30%",194,1,100080,10,0],
+	[4545,18,59,170,3944,1,85,100,"AR-89","エイアアルハチキユウ","[マススパイラル]で攻撃命中時に、敵を恐怖状態にする<BR>純粋なIntが10上がる度に、追加で、[ハンマーオブゴッド]で与えるダメージ + 7%<BR>純粋なIntが110以上の時、追加で、[ハンマーオブゴッド]で与えるダメージ + 30%",194,1,243,40,100027,10,100028,10,100029,10,7005825,100,9011832,100,0],
+	[4546,19,59,110,4,1,300,100,"錆びたショットガン","サヒタシヨツトカン","スプラッシュダメージ<BR>純粋なStrが10上がる度に、追加で、[スラッグショット]で与えるダメージ + 7%<BR>純粋なStrが110以上の時、追加で、[スラッグショット]で与えるダメージ + 30%",194,1,100080,10,0],
+	[4547,19,59,180,3944,1,300,100,"M-3700","エムサンナナセロセロ","スプラッシュダメージ<BR>[バニシングバスター]使用時、一定確率で敵にオートスペル[クリティカルウーンズ]Lv2発動<BR>純粋なStrが10上がる度に、追加で、[スラッグショット]で与えるダメージ + 7%<BR>純粋なStrが110以上の時、追加で、[スラッグショット]で与えるダメージ + 30%",194,1,243,40,100027,10,100028,10,100029,10,7005831,100,9011831,100,0],
+	[4548,51,0,2,4050,10,10,100,"幻獣の耳","ケンシユウノミミ","[テレキネシスインテンス]Lv5習得時、追加で、[ジャックフロスト]の固定詠唱時間 - 100%、[テレキネシスインテンス]の再使用待機時間 - 80秒<BR>[リコグナイズドスペル]Lv5習得時、追加で、スキルディレイ - 15%<BR>装備解除時、[テレキネシスインテンス]を解除する",199,798,199,522,97,10,98,10,99,10,243,5,155,100,0],
+	[4549,66,0,0,3960,1,10,100,"メメントモリ","メメントモリ","",74,10,80,10,89,10,0],
+	[4550,100,0,0,0,0,0,0,0,0,"",217,10,80,30,89,30,0],
+	[4551,52,0,2,3970,0,10,100,"ガーディアンクロース","カアテイアンクロオス","",19,5,15,15,108,3,0],
+	[4552,2,1,150,3384,1,120,150,"イリュージョンエクスキャリバー","イリユウシヨンエクスキヤリハア","",88,126,20,6,4,5,6,10,5,-1,80,110,89,60,220,137,1000000007005162,100,1000000009005162,100,1000000010000220,50,0],
+	[4553,4,51,145,3384,1,70,150,"イリュージョンゲラドリア","イリユウシヨンケラトリア","",20,2,80,110,1000000007007585,100,1000000009005585,100,1000000010000210,20,0],
+	[4554,7,179,10,3384,1,600,150,"イリュージョンドゥームスレイヤー","イリユウシヨントウウムスレイヤア","BaseLvが170以上の時、精錬値が10の時、追加でインデュア状態になる",194,1,37000000017,500,80,110,79,40,77,40,220,178,1000000007007542,100,1010000009005542,1,0],
+	[4555,9,77,60,3384,1,70,150,"イリュージョン茨の杖","イリユウシヨンイハラノツエ","BaseLvが170以上の時、精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、闇属性魔法攻撃で与えるダメージ + 50%",88,160,194,1,20,7,89,60,220,74,1000000007005528,100,1000000009005528,100,0],
+	[4556,9,77,30,3384,1,30,150,"イリュージョンスタッフオブティアー","イリユウシヨンスタツフオフテイアア","BaseLvが170以上の時、精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、聖属性魔法攻撃で与えるダメージ + 50%",88,180,194,1,20,6,89,60,220,78,1000000007005476,100,1000000009005476,100,0],
+	[4557,1,82,107,3384,1,60,150,"イリュージョンエンシェントダガー","イリユウシヨンエンシエントタカア","BaseLvが170以上の時、精錬値が9以上の時、追加で、魔法攻撃命中時、一定確率で自分に、オートスペル[テレキネシスインテンス]Lv3発動<BR>BaseLvが170以上の時、精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、念属性魔法攻撃で与えるダメージ + 50%",88,120,76,50,80,60,89,60,221,222,1000000007000086,50,0],
+	[4558,60,0,20,3980,1,100,150,"イリュージョンスプリントメイル","イリユウシヨンスフリントメイル","",243,7,1010000000000013,50,1000000000100092,3,0],
+	[4559,61,0,20,4000,1,30,150,"イリュージョンガード","イリユウシヨンカアト","",1000000000000018,150,1000000000000019,15,8000017,50,8000100,50,9000017,50,9000100,50,0],
+	[4560,61,0,60,4000,1,30,150,"イリュージョンシルバーガード","イリユウシヨンシルハアカアト","",1000000000000018,150,1000000000000019,15,8000015,15,8000016,15,9000015,15,9000016,15,0],
+	[4561,63,0,10,3990,1,30,150,"イリュージョンスプリントシューズ","イリユウシヨンスフリントシユウス","",243,10,1010000000000013,50,1000000000100092,3,0],
+	[4562,100,0,0,0,0,0,0,0,0,"",92,50,0],
+	[4563,65,0,0,4010,1,10,150,"イリュージョンスプリントリング","イリユウシヨンスフリントリンク","",243,3,73,-10,74,-5,1000000000000073,-15,1000000000000074,-10,0],
+	[4564,100,0,0,0,0,0,0,0,0,"",15,25,73,-25,0],
+	[4565,100,0,0,0,0,0,0,0,0,"",15,15,73,-50,0],
+	[4566,66,0,0,4010,1,10,150,"イリュージョンスプリントグローブ","イリユウシヨンスフリントクロオフ","",243,3,74,10,73,5,1000000000000074,15,1000000000000073,10,0],
+	[4567,100,0,0,0,0,0,0,0,0,"",15,25,74,25,0],
+	[4568,100,0,0,0,0,0,0,0,0,"",15,15,74,50,0],
+	[4569,100,0,0,0,0,0,0,0,0,"",73,-15,74,15,0],
+	[4570,51,0,2,4050,10,30,100,"アスモデウスの翼","アスモテウスノツハサ","[イグニッションブレイク]Lv5習得時、追加で、[リフレッシュ]の固定詠唱時間 - 100%、[イグニッションブレイク]の、再使用待機時間 - 2.5秒<BR>[ソニックウェーブ]Lv10習得時、追加で、必中攻撃 + 25%",199,445,199,440,260,10,243,5,154,100,219,2815,0],
+	[4571,100,0,0,0,0,0,0,0,0,"[イグニッションブレイク]Lv5習得時、[ジャスパーサークレット]の[イグニッションブレイク]の再使用待機時間減少効果が発動しない",0],
+	[4572,51,0,2,4020,10,30,100,"ゴルゴーンの花冠","コルコオンノハナカンムリ","",15,15,263,5,0],
+	[4573,100,0,0,0,0,0,0,0,0,"移動速度増加",243,5,0],
+	[4574,60,0,150,4030,1,100,90,"アラマズドの天恵","アラマストノテンケイ","",19,15,194,1,12,10,31,40,37,40,272,40,47,40,49,40,171,40,177,40,273,40,357,40,359,40,100068,2,5000018,300,5000019,30,5000243,7,7000381,1,10000000000100030n,4,10000000000100036n,4,10000000000100038n,4,10000000000100039n,4,10000000000100170n,4,10000000000100176n,4,10000000000100178n,4,10000000000100179n,4,10000000010000046n,40,10000000010000040n,40,10000000010000045n,40,10000000010000048n,40,10000000010000356n,40,10000000010000350n,40,10000000010000355n,40,10000000010000358n,40,0],
+	[4575,100,0,0,0,0,0,0,0,0,"",220,156,0],
+	[4576,60,0,100,3170,1,100,100,"ツインヘッド・ドラゴンメイル","ツインヘツトトラコンメイル","精錬値が7以上の時、絶対に壊れない<BR>[ウォータードラゴンブレス]の習得Lvが1上がる度に、追加で、MaxHP + 4% , MaxSP + 4%、[ウォータードラゴンブレス]で与えるダメージ + 10%<BR>[ドラゴントレーニング]の習得Lvが1上がる度に追加で、スキルディレイ - 6%<BR>[ファイアードラゴンブレス]の習得Lvが1上がる度に、追加で、遠距離物理攻撃で与えるダメージ + 7%、[ファイアードラゴンブレス]で与えるダメージ + 10%",199,794,199,446,199,447,15,10,16,10,5000077,5,10000018,300,7000381,1,10005794,50,10005447,50,0],
+	[4577,62,0,12,3130,1,10,100,"ぽかぽかタンポポケープ","ホカホカタンホホケエフ","[大地の魂]Lv1習得時、プラント系スキルの習得Lvの合計が1上がる度に追加で、Int + 1、[マタタビランス]で与えるダメージ + 1%<BR>※スキルの習得Lvは「習得スキル」欄で設定してください。<BR>[チャタリング]の習得Lvが1上がる度に追加で、攻撃命中時、SP + 1<BR>[ニャングラス]の習得Lvが1上がる度に追加で、[イヌハッカメテオ]で与えるダメージ + 10%<BR>[ミャウミャウ]Lv5習得時、追加で、魔法攻撃でモンスターを倒した時、HP + 150 , SP + 15",199,929,199,920,199,921,199,922,199,923,199,926,199,928,199,927,12,5,15,5,243,5,5000012,5,5000015,5,7000012,10,7000015,10,0],
+	[4578,50,0,10,4070,1,50,100,"レガシーオブワイズワン","レカシイオフワイスワン","",19,10,79,20,77,20,262,10,269,10,7000262,15,7000269,15,7000217,10,9000217,10,9000243,13,0],
+	[4579,51,0,2,0,10,10,100,"マジックセレスティアルグローブ","マシツクセレステイアルクロオフ","",10000000000017,1,10000000000100,1,0],
+	[4580,100,0,0,0,0,0,0,0,0,"",217,10,0],
+	[4581,52,0,0,0,0,50,100,"イエスタデイ・ワンス・モア","イエスタテイワンスモア","",19,5,12,10,0],
+	[4582,100,0,0,0,0,0,0,0,0,"",27,15,28,15,29,15,97,15,98,15,99,15,0],
+	[4583,60,0,100,0,1,100,99,"クロムメタルプレート","クロムメタルフレエト","",194,1,12,10,79,5,77,5,243,7,100018,30,100019,3,6000080,15,6000089,15,8000080,15,8000089,15,0],
+	[4584,63,0,25,0,1,60,100,"天馬の靴","テンマノクツ","移動速度増加<BR>精錬値が9以上の時、追加で、物理・魔法攻撃命中時、一定確率で30秒間、移動速度増加",262,15,269,15,7000262,15,7000269,15,0],
+	[4585,62,0,38,0,1,40,100,"ヴァルキリーカースブライト","ウアルキリイカアスフライト","",79,5,77,5,243,5,100015,2,100016,2,100068,7,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,9000023,1,10000000000100068n,1,10000000010000068n,15,10000000010000260n,15,10000000010000265n,15,0],
+	[4586,100,0,0,0,0,0,0,0,0,"",12,20,0],
+	[4587,100,0,0,0,0,0,0,0,0,"",74,25,0],
+	[4588,50,0,10,0,1,50,100,"鬼神の盟友","キシンノメイユウ","[修羅身弾]Lv10習得時、追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 25%<BR>[潜龍昇天]Lv10習得時、追加で、MaxHP + 25%、ボスモンスターから受けるダメージ - 20%<BR>[点穴 -快-]Lv5習得時、追加で、攻撃命中時、SP + 3<BR>[点穴 -反-]Lv5習得時、追加で、全てのモンスターに対し、サイズによる武器ダメージのペナルティが発生しない",199,613,199,621,199,625,199,627,19,10,86,30,5622,50,5613,50,100002,3,7005622,75,7005613,75,9005622,100,9005613,100,219,3394,0],
+	[4589,60,0,150,0,1,100,90,"レクイエスカトインパーケ","レクイエスカトインハアケ","精錬値が7以上の時、追加で、移動速度増加",19,15,194,1,12,10,36,40,37,40,272,40,46,40,40,40,176,40,177,40,273,40,356,40,350,40,100065,2,5000018,300,5000019,30,5000243,7,10000000000100030n,4,10000000000100031n,4,10000000000100038n,4,10000000000100039n,4,10000000000100170n,4,10000000000100171n,4,10000000000100178n,4,10000000000100179n,4,10000000010000047n,40,10000000010000045n,40,10000000010000048n,40,10000000010000049n,40,10000000010000357n,40,10000000010000355n,40,10000000010000358n,40,10000000010000359n,40,0],
+	[4590,100,0,0,0,0,0,0,0,0,"",86,25,0],
+	[4591,52,0,0,0,0,10,100,"タイラントオブアース","タイラントオフアアス","",100000000000027,1,100000000000028,1,100000000000029,1,100000000000097,1,100000000000098,1,100000000000099,1,0],
+	[4592,50,0,12,0,1,60,100,"異国の伝統帽子","イコクノテントウホウシ","",19,15,91,10,79,20,77,20,7000011,10,7000091,15,9000091,15,9000243,13,0],
+	[4593,100,0,0,0,0,0,0,0,0,"[異国の伝統帽子]の精錬値が1上がる度に追加で、ヒール系スキル使用時、HP回復量 + 6%",23481,50,0],
+	[4594,100,0,0,0,0,0,0,0,0,"[異国の伝統帽子]の精錬値が1上がる度に追加で、ヒール系スキル使用時、HP回復量 + 2%",23481,25,0],
+	[4595,60,0,0,0,1,90,1,"古びた支配者のローブ","フルヒタシハイシヤノロオフ","",12,5,300080,5,300089,5,0],
+	[4596,60,0,120,0,1,90,100,"支配者のローブ","シハイシヤノロオフ","",194,1,12,5,62,10,300080,10,300089,10,0],
+	[4597,100,0,0,0,0,0,0,0,0,"物理攻撃を受けた時、一定確率で自分にオートスペル[ストーンスキン]Lv6発動（※計算機未対応）",0],
+	[4598,100,0,0,0,0,0,0,0,0,"物理攻撃を受けた時、一定確率で自分にオートスペル[ストーンスキン]Lv6発動（※計算機未対応）",0],
+	[4599,60,0,120,0,1,90,100,"覚醒支配者のローブ","カクセイシハイシヤノロオフ","精錬値が7以上の時、追加で、[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]のいずれかを使用時、[マスカレード:イグノアランス]状態を回復する",194,1,12,10,27,40,28,40,29,40,97,40,98,40,99,40,100062,2,5000057,7,5000274,7,7000086,25,10000000000119996n,2000,10000000010000079n,5,10000000010000077n,5,10000000010000262n,15,10000000010000269n,15,0],
+	[4600,100,0,0,0,0,0,0,0,0,"[覚醒支配者のローブ]の精錬値が1上がる度に追加で、[ストーンスキン]の再使用待機時間 - 2秒（※計算機未対応）",220,184,0],
+	[4601,100,0,0,0,0,0,0,0,0,"物理攻撃を受けた時、一定確率で自分にオートスペル[ストーンスキン]Lv6発動（※計算機未対応）",0],
+	[4602,100,0,0,0,0,0,0,"0","0","[楯無の鎧]の精錬値が1上がる度に追加でVit+2、MaxHP+2%。",0],
+	[4603,100,0,0,0,0,0,0,"0","0","[封印されたアモンラーカード]の効果によるオートスペル[キリエエレイソン]が発動しない<BR>[アプローズサンダル]の精錬値が1上がる度に追加で、全ての基本ステータス + 1",73,-10,0],
+	[4604,100,0,0,0,0,0,0,0,0,"",297,35,346,15,340,15,0],
+	[4605,100,0,0,0,0,0,0,0,0,"「ソウルブレイカー」使用時、一定確率で3秒間、完全回避 + 30。",12,10,80,20,0],	// 封印された怨霊武士 + ゴッズソード
+	[4606,100,0,0,0,0,0,0,0,0,"「ソウルブレイカー」使用時、3秒間、完全回避 + 30。",12,10,80,20,0],	// 封印された怨霊武士 + デモニッシュソード
+	[4607,100,0,0,0,0,0,0,0,0,0,74,-5,0],
+	[4608,100,0,0,0,0,0,0,0,0,"[にゃん魂]Lv1習得時、物理攻撃命中時、一定確率で敵にオートスペル[ダイヤモンドダスト]Lv5発動<BR>[にゃん魂]Lv1習得時、[虹色の猫じゃらし]の精錬値が1上がる度に追加で、[ダイヤモンドダスト]で与えるダメージ + 3%、水属性魔法攻撃で与えるダメージ + 1%",199,908,225,209,0],
+	[4609,100,0,0,0,0,0,0,0,0,"",15,-30,0],
+	[4610,100,0,0,0,0,0,0,0,0,"[封印されたハティーカード]の敵を凍結状態にする確率が上昇<BR>[月食の装束]の精錬値が1上がる度に追加で、物理攻撃時、水属性モンスターに与えるダメージ + 2%",152,100,0],
+	[4611,100,0,0,0,0,0,0,0,0,"[にゃん魂]Lv1習得時、物理攻撃命中時、一定確率で敵にオートスペル[クリムゾンロック]Lv5発動<BR>[にゃん魂]Lv1習得時、[不死鳥の猫じゃらし]の精錬値が1上がる度に、追加で[クリムゾンロック]で与えるダメージ + 3%、火属性魔法攻撃で与えるダメージ + 2%",199,908,225,216,0],
+	[4612,52,149,0,0,0,10,100,"夢見る赤羊","ユメミルアカヒツシ","[ウォーグライダー]の習得Lvが1上がる度に追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 5%<BR>[カモフラージュ]Lv5習得時、追加で、[アンリミット]の再使用待機時間 - 60秒<BR>装備解除時、[アンリミット]を解除する",199,515,199,496,74,15,0],
+	[4613,63,0,12,0,1,40,100,"エンドオブザワールド","エントオフサワアルト","[クロスインパクト]の習得Lvが1上がる度に追加で、[ハルシネーションウォーク]の再使用待機時間 - 5秒<BR>[クロスリッパースラッシャー]の習得Lvが1上がる度に追加で、物理攻撃で与えるダメージ + 10%<BR>[ハルシネーションウォーク]Lv5習得時、追加で、一般・ボスモンスターから受けるダメージ - 5%<BR>[ローリングカッター]の習得Lvが1上がる度に追加で、[カウンタースラッシュ]で与えるダメージ + 6%、[ローリングカッター]で与えるダメージ + 100%",199,460,199,475,199,473,199,474,19,10,15,3,16,3,243,10,5000015,7,5000016,7,5000074,10,7000015,10,7000016,10,7000074,10,219,2862,0],
+	[4614,12,157,120,4,1,80,100,"トートの書","トオトノシヨ","[ダブルアタック]Lv10使用可能",88,200,194,1,197,3,13051,-10000,13054,-10000,13056,-10000,105051,25,105054,25,105056,25,105132,25,10000000000000221n,233,10000000010000100n,150,10000000010000068n,10,0],
+	[4615,51,0,6,0,10,20,100,"クイーンメロンヘッドフォン","クイインメロンヘツトフオン","",74,10,10000000000017,1,10000000000100,1,0],
+	[4616,51,0,6,0,10,20,100,"プリンセスメロンヘッドフォン","フリンセスメロンヘツトフオン","",12,10,10000000000017,1,10000000000100,1,0],
+	[4617,64,0,0,0,0,10,100,"クリスマスリング(銀)","クリスマスリンクキン","",6,1,0],
+	[4618,50,151,12,0,1,10,100,"ドライバーバンド(黄)","トライハ","純粋な STRが 120以上の場合、ATK + 10, CRI + 3。",1,1,5,1,19,5,0],
+	[4619,50,151,12,700,0,0,100,"古びたドライバーバンド(赤)","フルヒタ","「古びたドライバーバンド(赤)」の精錬値が1上がる度に追加でスキル使用時の消費SP-2%。<BR>「古びたドライバーバンド(赤)」の精錬値が7以上の時、追加で人間形モンスターから受けるダメージ-5%。「コールドスローワー」、「フレイムスローワー」で与えるダメージ+30%。<BR>「古びたドライバーバンド(赤)」の精錬値が9以上の時、追加で人間形モンスターから受けるダメージ-2%。「コールドスローワー」、「フレイムスローワー」で与えるダメージ+20%。<BR>「古びたドライバーバンド(赤)」の精錬値が10の時、追加でスキル使用時、「魔導ギア燃料」を消費しない。",57,5,5552,10,5553,10,194,1,0],
+	[4620,60,0,100,0,1,100,100,"フォー・オブ・ア・カインド","フオオオフアカイント","[コメット]Lv5習得時、追加で、[テトラボルテックス]、[ジャックフロスト]の固定詠唱時間 - 100%<BR>[テトラボルテックス]の習得Lvが1上がる度に追加で、魔法攻撃時、全ての種族のモンスターに与えるダメージ + 7%<BR>[ラディウス]の習得Lvが1上がる度に追加で、Int + 10 , Matk + 50",199,529,199,532,199,524,15,10,16,10,5000019,25,7000019,25,10000194,1,10000343,15,10000341,15,10000344,15,10000342,15,10000340,15,0],
+	[4621,51,0,2,0,10,10,100,"反逆の懐中時計","ハンキヤクノカイチユウトケイ","[フォーリンエンジェル]Lv1習得時、追加で、[アンチマテリアルブラスト]の再使用待機時間 - 5秒、[リッチズコイン]の再使用待機時間 - 3秒<BR>[プラチナムアルター]Lv5習得時、追加で、スキルディレイ - 15%",199,823,199,841,27,10,28,10,29,10,243,5,156,100,0],
+	[4622,8,0,150,4,1,10,100,"古代の王笏","コタイノオウシャク","",88,110,194,1,57,10,274,10,100013,1000,100011,1,5000018,150,5000019,15,7000018,150,7000019,15,0],
+	[4623,61,0,80,0,1,50,100,"ゲフィオンシールド","ケフイオンシイルト","",19,5,63,20,61,20,64,20,62,20,100015,3,100016,3,0],
+	[4624,3,146,280,900004,3,340,175,"クロウソード","クロウソオト","",88,230,80,60,243,40,7000080,25,9000080,25,10005445,150,0],
+	[4625,2,158,150,800004,1,120,175,"セイフティセイバー","セイフテイセイハア","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<BR>精錬値が7以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇<BR>精錬値が9以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇",88,130,80,110,10000015,50,0],
+	[4626,4,152,150,800004,1,150,175,"ブロッキングスピア","フロツキンクスヒア","[キリエエレイソン]Lv1使用可能<BR>精錬値が7以上の時、追加で、精錬値と同じLvの[キリエエレイソン]使用可能",88,110,80,110,9007098,100,10000018,300,0],
+	[4627,7,151,320,900004,3,400,175,"ソーアックス","ソオアツクス","",88,200,80,60,243,40,7000080,25,9000080,25,10005541,100,0],
+	[4628,9,150,120,900004,3,240,175,"ディテクトスタッフ","テイテクトスタツフ","精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、地属性魔法攻撃で与えるダメージ + 50%",195,1,88,270,89,60,243,40,9531,2000,7005531,50,9005531,50,0],
+	[4629,9,143,60,800004,1,30,175,"ウェルディングワンド","ウエルテインクワント","精錬値が10の時、追加で、魔法攻撃でモンスターを倒した時、HP + 200 , SP + 20",88,180,89,60,7000343,25,9000343,25,0],
+	[4630,9,201,150,800004,1,40,175,"セイフティフォックステイル","セイフテイフオツクステイル","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<BR>精錬値が7以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇<BR>精錬値が9以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇",88,180,80,110,10000015,50,0],
+	[4631,11,147,150,900004,3,280,175,"ナットブレイカー","ナツトフレイカア","",88,250,80,60,243,40,7000080,25,9000080,25,10005474,150,0],
+	[4632,1,157,120,800004,1,60,175,"金属探知機Mk47","キンソクタンチキエムケイ４７","モンスターを倒した時、一定確率で鉱石系アイテムをドロップする",88,120,89,60,7011674,100,9000342,50,10000214,50,0],
+	[4633,1,153,120,800004,1,60,175,"宝石探知機Mk47","ホウセキタンチキエムケイ４７","モンスターを倒した時、一定確率で宝石系アイテムをドロップする<BR>精錬値が7以上の時、追加で、物理攻撃命中時、一定確率で敵を中心に、オートスペル[アースストレイン]Lv3発動<BR>精錬値が9以上の時、追加で、オートスペル[アースストレイン]の発動率が上昇",88,120,89,60,7000225,231,10000293,100,10000298,100,0],
+	[4634,13,154,140,800004,1,40,175,"セイフティナックル","セイフテイナツクル","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<BR>精錬値が7以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇<BR>精錬値が9以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇",88,100,80,110,10000015,50,0],
+	[4635,8,148,150,800004,1,150,175,"ラヴァーハンマー","ラウアアハンマア","[パワースイング]Lv3使用可能<BR>精錬値が7以上の時、追加で、精錬値と同じLvの[パワースイング]使用可能<BR>精錬値が10の時、追加で、[パワースイング]使用時、一定確率で敵を中心に、オートスペル[マグマイラプション]Lv5発動",88,110,80,110,224,186,10000009005543,1,10000225,232,0],
+	[4636,10,149,160,900004,3,90,175,"ボルトシューター","ホルトシユウタア","",88,170,80,60,243,40,7000080,25,9000080,25,10005497,30,0],
+	[4637,15,156,150,800004,1,50,175,"セイフティウィップ","セイフテイウイツフ","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<BR>精錬値が7以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇<BR>精錬値が9以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇",88,120,80,110,10000015,50,0],
+	[4638,14,155,180,800004,1,25,175,"セイフティリュート","セイフテイリユウト","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<BR>精錬値が7以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇<BR>精錬値が9以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇",88,120,80,110,10000015,50,0],
+	[4639,12,142,120,800004,1,80,175,"セイフティマニュアル","セイフテイマニユアル","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<BR>精錬値が7以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇<BR>精錬値が9以上の時、追加で、[キリエエレイソン]Lv10状態になる確率が上昇",194,1,88,140,80,110,10000015,50,0],
+	[4640,16,58,150,900004,3,150,175,"グラインダー風魔手裏剣","クラインタアフウマシユリケン","",194,1,88,160,80,60,243,40,7000080,25,9000080,25,10005770,50,0],
+	[4641,17,59,70,900004,3,35,175,"ボルトリボルバー","ホルトリホルハア","",80,60,243,40,7000080,25,9000080,25,10005830,50,0],
+	[4642,60,0,100,700000,1,100,170,"ドラゴンスケイルプレート","トラコンスケイルフレエト","",198,9,39000000080,40,100080,3,8000077,5,0],
+	[4643,62,0,25,700000,1,30,170,"ドラゴンスケイルフード","トラコンスケイルフウト","",39000000085,20,100080,3,8000077,5,0],
+	[4644,63,0,25,700000,1,40,170,"ドラゴンスケイルブーツ","トラコンスケイルフウツ","",39000000080,40,100080,3,8000077,5,0],
+	[4645,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,86,50,0],
+	[4646,60,0,100,700000,1,100,170,"司祭のローブ","シサイノロオフ","",198,6,42000000194,1,42000000015,30,100018,20,100019,2,8000077,5,8000108,7,0],
+	[4647,62,0,25,700000,1,30,170,"司祭のマント","シサイノマント","",42000000063,50,42000000061,50,42000000381,1,100018,20,100019,2,8000077,5,8000108,5,0],
+	[4648,63,0,25,700000,1,40,170,"司祭のブーツ","シサイノフウツ","",42000000092,20,10042000000013,50,100018,20,100019,2,8000077,5,8000108,5,0],
+	[4649,100,0,0,0,0,0,0,0,0,"",13,2000,14,200,151,100,0],
+	[4650,60,0,100,0,1,100,100,"エレメンタルポゼッション","エレメンタルホセツシヨン","[ヴェラチュールスピアー]Lv10習得時、追加で、[ヴェラチュールスピアー]の再使用待機時間 - 1秒、[サモンベントス]の再使用待機時間 - 25秒<BR>[サモンアグニ]、[サモンアクア]、[サモンベントス]、[サモンテラ]の習得Lvの合計が、1上がる度に追加で、攻撃速度 + 1%、Matk + 15<BR>[エレメンタルシンパシー]の習得Lvが1上がる度に、追加で、魔法攻撃時、全ての種族のモンスターに与えるダメージ + 14%",199,669,199,671,199,672,199,673,199,674,199,678,15,10,16,10,5000214,15,7000214,15,10000194,1,10000343,15,10000341,15,10000344,15,10000342,15,10000340,15,10000345,15,0],
+	[4651,62,0,12,0,1,30,100,"ディア・デ・ムエルトス","テイアテムエルトス","[死霊憑依]の習得Lvが1上がる度に追加で、闇属性魔法攻撃で与えるダメージ + 5%<BR>[ソウルエナジー研究]の習得Lvが1上がる度に追加で、Int + 5 , MaxSP + 5%<BR>[魂の収穫]の習得Lvが1上がる度に追加で、[エスパ]で与えるダメージ + 5%、[エスフ]で与えるダメージ + 25%<BR>[魂の蓄積]Lv5習得時、追加で、魔法攻撃でモンスターを倒した時、HP + 150 , SP + 15",199,976,199,975,199,972,199,971,15,5,89,5,243,5,7000015,5,7000089,5,9000015,10,9000089,10,0],
+	[4652,66,0,0,0,1,10,100,"ハーベストフェスティバル","ハアヘストフエステイハル","",73,-10,800000013,100,800000018,2,0],
+	[4653,100,0,0,0,0,0,0,0,0,"",19,50,108,3,58,3,0],
+	[4654,10,153,160,4,1,90,100,"トライアングルディザスター","トライアンクルテイサスタア","超越段階が1以上の時、[トライアングルショット]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる<br>装備解除時、[アンリミット]を解除する",88,170,10000000005608,1,100212,3,100215,3,10000000000000077n,40,10000000000000079n,40,10000000010000017n,250,10000000010000068n,25,0],
+	[4655,62,0,0,0,1,40,100,"ジンベエザメフロート","シンヘエサメフロオト","精錬値が7以上の時、追加で、魔法攻撃を受けた時、一定確率で氷結・冷凍状態を解除する",57,5,274,5,300000061,7,100068,3,5000018,300,5000015,30,0],
+	[4656,66,0,0,0,1,10,100,"トランセンデンスリング","トランセンテンスリンク","BaseLv200以上の時、全ての基本ステータス + 15<BR>※無条件のステータス上昇分は、集中力向上の計算に『含まれます』。Lv200以上の時の上昇分は、『含まれません』。（2022/10/18実測）",7,15,0],
+	[4657,66,150,0,0,1,10,200,"ブリリアントアクアマリンリング","フリリアントアクアマリンリンク","装備解除時、[テレキネシスインテンス]を解除する",4,20,15,15,74,15,89,10,243,3,19527,2000,19798,75000,30000000005527,1,30000000005518,1,0],
+	[4658,66,148,0,0,1,10,200,"ブリリアントアメジストリング","フリリアントアメシストリンク","",4,20,15,15,91,15,89,10,243,3,11484,100,11488,100,20000000005478,1,20000000005476,1,0],
+	[4659,66,149,0,0,1,10,200,"ブリリアントエメラルドリング","フリリアントエメラルトリンク","装備解除時、[アンリミット]を解除する",5,20,74,15,80,10,86,15,243,3,19795,45000,50000000005498,1,0],
+	[4660,66,151,0,0,1,10,200,"ブリリアントサファイアリング","フリリアントサフアイアリンク","",1,20,15,15,80,10,86,15,243,3,9542,3000,10000000005541,1,10000000005542,1,0],
+	[4661,66,120,0,0,1,10,200,"ブリリアントジルコンリング","フリリアントシルコンリンク","物理攻撃命中時、一定確率で40秒間、[アスムプティオ]Lv2状態になる",1,20,15,15,80,10,86,15,243,3,10000000005076,1,0],
+	[4662,66,152,0,0,1,10,200,"ブリリアントルビーリング","フリリアントルヒイリンク","",1,20,15,15,80,10,86,15,243,3,19572,2000,10000000005572,1,0],
+	[4663,66,58,0,0,1,10,200,"シンフルアメジストリング","シンフルアメシストリンク","",1,20,6000000000015,15,6000000000080,10,6000000000086,15,6000000000243,3,6000000019770,300,26000000005770,1,0],
+	[4664,66,155,0,0,1,10,200,"シンフルエメラルドリング","シンフルエメラルトリンク","[メタリックサウンド]使用時、一定確率で敵を中心に、オートスペル[サイキックウェーブ]Lv3発動",4,20,12,15,15,15,89,10,243,3,225,200,30000000005662,1,30000000005641,1,0],
+	[4665,66,142,0,0,1,10,200,"シンフルオパールリング","シンフルオハアルリンク","[太陽の温もり]、[月の温もり]、[星の温もり]で与えるダメージ + 100%",1,20,15,15,80,10,86,15,243,3,5951,50,5955,50,5959,50,0],
+	[4666,66,158,0,0,1,10,200,"シンフルサファイアリング","シンフルサフアイアリンク","",1,20,12,15,15,15,80,10,243,3,9723,3000,20000000005723,1,20000000005722,1,0],
+	[4667,66,147,0,0,1,10,200,"シンフルトパーズリング","シンフルトハアスリンク","",1,20,12,15,15,15,80,10,243,3,19797,25000,10000000005474,1,0],
+	[4668,66,146,0,0,1,10,200,"シンフルルビーリング","シンフルルヒイリンク","",1,20,15,15,80,10,86,15,243,3,19445,200,20000000005445,1,20000000005440,1,0],
+	[4669,100,0,0,0,0,0,0,0,0,"[シンフルルビーリング]の[イグニッションブレイク]の再使用待機時間減少効果が発動しない",0],
+	[4670,66,157,0,0,1,10,200,"ブリリアントアクアマリンネックレス","フリリアントアクアマリンネツクレス","",4,20,15,15,74,15,89,10,243,3,19669,1000,19662,1000,30000000005662,1,30000000005669,1,0],
+	[4671,66,154,0,0,1,10,200,"ブリリアントアメジストネックレス","フリリアントアメシストネツクレス","",2,20,15,15,80,10,86,15,243,3,19610,200,10000000005610,2,0],
+	[4672,66,201,0,0,1,10,200,"ブリリアントジルコンネックレス","フリリアントシルコンネツクレス","",4,20,12,15,15,15,89,10,243,3,23922,20,30000000005922,1,30000000005920,1,0],
+	[4673,66,58,0,0,1,10,200,"シンフルアメジストネックレス","シンフルアメシストネツクレス","",1,20,6100000000015,15,6100000000080,10,6100000000086,15,6100000000243,3,6100000019770,300,26100000005770,1,0],
+	[4674,66,156,0,0,1,10,200,"シンフルエメラルドネックレス","シンフルエメラルトネツクレス","[メタリックサウンド]使用時、一定確率で敵を中心に、オートスペル[サイキックウェーブ]Lv3発動",4,20,12,15,15,15,89,10,243,3,225,200,30000000005662,1,30000000005641,1,0],
+	[4675,66,143,0,0,1,10,200,"シンフルオパールネックレス","シンフルオハアルネツクレス","",4,20,15,15,74,15,89,10,243,3,11967,100,19977,500,30000000005968,1,30000000005969,1,30000000005977,1,0],
+	[4676,66,153,0,0,1,10,200,"シンフルトパーズネックレス","シンフルトハアスネツクレス","装備解除時、[アンリミット]を解除する",5,20,12,15,15,15,80,10,243,3,220,177,30000000005608,1,0],
+	[4677,66,59,0,0,1,10,200,"シンフルルビーネックレス","シンフルルヒイネツクレス","[ラウンドトリップ]使用時、3秒間、必中攻撃 + 100%",5,20,12,15,15,15,80,10,243,3,10000000005828,1,10000000005835,1,0],
+	[4678,60,0,100,0,1,100,100,"光輝","コウキ","[修羅身弾]の習得Lvが1上がる度に追加で、物理攻撃時、全ての種族のモンスターに与えるダメージ + 7%<BR>[閃電歩]Lv5習得時、BaseLvが1上がる度に追加で、[雷光弾]で与えるダメージ + 2%<BR>[潜龍昇天]Lv10習得時、追加で、詠唱時間 - 15%、物理攻撃でモンスターを倒した時、HP + 150 , SP + 15",199,613,199,620,199,621,12,10,20000005000017,1,20000007000017,1,10000194,1,10000086,25,0],
+	[4679,61,0,60,0,0,30,100,"ブラックミスリルガード","フラツクミスリルカアト","精錬値が5以上の時、追加で、[フェイス]習得時、追加で、聖属性攻撃で受けるダメージ + 20%",199,156,194,1,79,40,77,40,100015,3,100016,3,5000066,20,5000068,20,7000381,1,10000000000100019n,2,10000000010000066n,5,10000000010000068n,5,0],
+	[4680,52,0,0,0,0,10,100,"レイジングテンペスト","レイシンクテンヘスト","",100000000000027,1,100000000000028,1,100000000000029,1,100000000000097,1,100000000000098,1,100000000000099,1,0],
+	[],
+	[4682,100,0,0,0,0,0,0,0,0,"",79,20,77,20,0],
+	[4683,100,0,0,0,0,0,0,0,0,"",60,10,0],
+	[4684,100,0,0,0,0,0,0,0,0,"",89,15,0],
+	[],
+	[4686,100,0,0,0,0,0,0,0,0,"",15,40,80,30,89,30,0],
+	[4687,51,0,2,0,10,10,100,"リトルアビスドラゴン","リトルアヒストラコン","",10000000000017,1,10000000000100,1,0],
+	[4688,100,0,0,0,0,0,0,0,0,"",67,5,65,5,243,5,0],
+	[4689,52,0,0,0,0,10,100,"エイスシュピンネ","エイスシユヒンネ","",243,3,74,10,0],
+	[4690,100,0,0,0,0,0,0,0,0,"",27,15,28,15,29,15,97,15,98,15,99,15,0],
+	[4691,100,0,0,0,0,0,0,0,0,"",152,100,0],
+	[4692,100,0,0,0,0,0,0,0,0,"",60,20,220,154,0],
+	[4693,62,0,50,0,1,50,100,"ミステリーウィング","ミステリイウインク","純粋な基本ステータスの合計が100上がる度に追加で、物理・魔法攻撃で与えるダメージ + 5%、クリティカル攻撃で与えるダメージ + 5%<BR>純粋な基本ステータスの合計が300以上の時、追加で、MaxHP + 20% , MaxSP + 20%<BR>純粋な基本ステータスの合計が400以上の時、追加で、攻撃速度 + 15%、スキルディレイ - 15%<BR>純粋な基本ステータスの合計が500以上の時、追加で、必中攻撃 + 25%、固定詠唱時間 - 70%<BR>純粋な基本ステータスの合計が600以上の時、追加で、物理・魔法攻撃命中時、一定確率で10秒間、完全回避 + 95<br>超越段階が1以上の時、精錬値が10の時、追加で<br>　一部の回復アイテムによるHP回復量 + 20%",79,5,77,5,243,5,7000018,150,7000019,15,9000018,150,9000019,15,10000000000100217n,1,10000000010000092n,20,0],
+	[4694,60,0,100,0,1,100,100,"アサルトスーツ","アサルトスウツ","[ウォーグライダー]Lv3習得時、BaseLvが1上がる度に追加で、Atk + 1<BR>[カモフラージュ]Lv5習得時、追加で、[アローストーム]の再使用待機時間 - 0.3秒、[エイムドボルト]の固定詠唱時間 - 100%<BR>[レンジャーメイン]の習得Lvが1上がる度に追加で、物理攻撃時、全ての種族のモンスターに与えるダメージ + 7%",199,515,199,496,199,495,15,10,16,10,5000215,15,7000215,15,10000194,1,10000086,25,0],
+	[4695,60,0,100,0,1,100,100,"デスブリンガー","テスフリンカア","[カウンタースラッシュ]の習得Lvが1上がる度に追加で、物理攻撃時、全ての種族のモンスターに与えるダメージ + 7%<BR>[クロスインパクト]の習得Lvが1上がる度に追加で、Flee + 20 , Atk + 50<BR>[ハルシネーションウォーク]Lv5習得時、追加で、[ダーククロー]の再使用待機時間 - 60秒",199,469,199,460,199,473,15,10,16,10,5000085,10,7000085,10,10000194,1,10000086,25,0],
+	[4696,65,0,0,0,1,10,100,"アムルタート","アムルタアト","",243,3,66,10,80,10,89,10,0],
+	[4697,100,0,0,0,0,0,0,0,0,"",80,30,0],
+	[4698,100,0,0,0,0,0,0,0,0,"",12,15,0],
+	[4699,100,0,0,0,0,0,0,0,0,"",15,25,16,25,0],
+	[4700,100,0,0,0,0,0,0,0,0,"",89,30,0],
+	[4701,100,0,0,0,0,0,0,0,0,"",86,25,0],
+	[4702,100,0,0,0,0,0,0,0,0,"",74,30,0],
+	[4703,52,157,0,0,0,10,100,"ブックオブソーサリー","フツクオフソオサリイ","[サイキックウェーブ]の習得Lvが1上がる度に追加で、魔法攻撃時、小・中・大型モンスターに与えるダメージ + 3%<BR>[バキュームエクストリーム]Lv5習得時、追加で、[アースグレイブ]の再使用待機時間 - 1秒、[アースグレイブ]の固定詠唱時間 - 100%",199,662,199,661,12,10,0],
+	[4704,62,0,0,0,0,30,1,"王冠をつけたシナモンのリュック","オウカンヲツケタシナモンノリユツク","精錬値が7以上の時、追加で、物理攻撃命中時、一定確率で敵に与えたダメージの2%をSPとして吸収<BR>[プロンテラへの帰還]Lv1使用可能",60,20,103,10,10000000000017,1,10000000000100,1,10000000000013,20,10000000000014,2,5000066,80,0],
+	[4705,60,0,20,0,0,10,1,"20周年記念コットンシャツ","ニシユウシユウネンキネンコツトンシヤツ","※集中力向上の計算に含まれます。（2022/12/11実測）",7,20,0],
+	[4706,60,0,100,0,1,100,100,"ラウドパーク","ラウトハアク","[フリッグの歌]の習得Lvが1上がる度に追加で、Int + 6 , Matk + 30<BR>[メランコリー]の習得Lvが1上がる度に追加で、魔法攻撃時、全ての種族のモンスターに与えるダメージ + 14%<BR>[安らぎの子守唄]の習得Lvが1上がる度に追加で、スキルディレイ - 6%",199,894,199,635,199,632,15,10,16,10,5005641,50,7005641,50,10000194,1,10000340,15,0],
+	[4707,52,148,0,0,0,10,100,"セイクリッドラペル","セイクリツトラヘル","[オラティオ]Lv10習得時、追加で、[オラティオ]の再使用待機時間 - 1.5秒<BR>[クリアランス]Lv5習得時、追加で、魔法攻撃時、小・中・大型モンスターに与えるダメージ + 15%",199,484,199,490,346,10,0],
+	[4708,60,0,100,0,1,100,100,"プラチナムアビトレイター","フラチナムアヒトレイタア","[インスピレーション]の習得Lvが1上がる度に追加で、MaxHP + 8%<BR>[キャノンスピア]Lv5習得時、追加で、[キャノンスピア]の再使用待機時間 - 1.5秒、<BR>[キャノンスピア]Lv5習得時、追加で、BaseLvが2上がる度に追加で、[キャノンスピア]で与えるダメージ + 1%、[バニシングポイント]で与えるダメージ + 2%<BR>[ピンポイントアタック]の習得Lvが1上がる度に追加で、物理攻撃時、全ての種族のモンスターに与えるダメージ + 14%",199,587,199,569,199,574,15,10,16,10,5000211,15,7000211,15,10000194,1,10000086,25,0],
+	[4709,11,160,150,1400004,2,280,200,"リラプスカタール","リラフスカタアル","",88,250,80,110,7006022,10,7006014,10,9006022,15,9006014,15,10000230,20,0],
+	[4710,7,164,320,1400004,2,400,200,"リラプスアックス","リラフスアツクス","",88,200,194,1,80,110,7006072,10,7006073,10,9006072,15,9006073,15,10000230,20,0],
+	[4711,8,161,150,1300004,2,150,200,"リラプスクロス","リラフスクロス","",88,110,80,110,7006037,10,7006031,10,9006037,15,9006031,15,10000230,20,0],
+	[4712,1,166,120,1300004,2,60,200,"リラプスダガー","リラフスタカア","",88,120,89,60,7006107,10,7006105,10,9006107,15,9006105,15,10000233,20,0],
+	[4713,2,171,150,1300004,2,120,200,"リラプスブレード","リラフスフレエト","",88,130,80,110,7006163,10,7006164,10,9006163,15,9006164,15,10000230,20,0],
+	[4714,10,162,160,1400004,2,90,200,"スクラップボウ","スクラツフホウ","",88,170,80,110,7006046,10,7006043,10,9006046,15,9006043,15,10000234,20,0],
+	[4715,13,167,140,1300004,2,40,200,"スクラップフィスト","スクラツフフイスト","",88,100,80,110,7006122,10,7006119,10,9006122,15,9006119,15,10000230,20,0],
+	[4716,14,168,180,1300004,2,25,200,"スクラップリュート","スクラツフリユウト","",88,120,89,60,7006134,10,7006133,10,9006134,15,9006133,15,10000233,20,0],
+	[4717,15,169,150,1300004,2,50,200,"スクラップホイップ","スクラツフホイツフ","",88,120,89,60,7006134,10,7006133,10,9006134,15,9006133,15,10000233,20,0],
+	[4718,64,192,0,4,0,0,200,"砂時計のネックレス","スナトケイノネツクレス","JobLvが上がるほどステータスボーナスが低下する",236,6,0],
+	[4719,60,192,150,0,0,120,200,"グレイウルフスーツ","クレイウルフスウツ","",198,6,15,30,16,30,100080,4,0],
+	[4720,60,192,80,0,0,40,200,"グレイウルフローブ","クレイウルフロオフ","",198,6,15,30,16,30,100089,4,0],
+	[4721,63,192,8,0,0,20,200,"グレイウルフシューズ","クレイウルフシユウス","",15,30,16,30,100089,4,0],
+	[4722,63,192,20,0,0,60,200,"グレイウルフブーツ","クレイウルフフウツ","",15,30,16,30,100080,4,0],
+	[4723,62,192,25,0,0,30,200,"グレイウルフマフラー","クレイウルフマフラー","",18,150,19,15,68,50,100068,3,0],
+	[4724,100,0,0,0,0,0,0,0,0,"ジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",73,-100,0],
+	[4725,62,192,60,0,0,100,200,"グレイウルフマント","クレイウルフマント","",18,150,19,15,68,50,100068,3,0],
+	[4726,100,0,0,0,0,0,0,0,0,"",10,100,70,50,0],
+	[4727,65,192,0,0,0,10,200,"グレイウルフイヤリング","クレイウルフイヤリンク","",89,15,0],
+	[4728,65,192,0,0,0,10,200,"グレイウルフリング","クレイウルフリンク","",80,15,0],
+	[4729,66,192,0,0,0,10,200,"グレイウルフネックレス","クレイウルフネツクレス","",89,15,0],
+	[4730,100,0,0,0,0,0,0,0,0,"",298,100,0],
+	[4731,66,192,0,0,0,10,200,"グレイウルフペンダント","クレイウルフヘンタント","",80,15,0],
+	[4732,100,0,0,0,0,0,0,0,0,"",293,100,0],
+	[4733,11,160,150,4,1,280,200,"アドゥルテル・フィデス・カタール","アトウルテル　フイテス　カタアル","",88,250,100080,10,0],
+	[4734,11,160,150,4,1,280,200,"ウィワートゥス・フィデス・カタール","ウイワアトウス　フイテス　カタアル","",194,1,88,250,100261,13,10000000000105460n,50,10000000000105475n,50,10000000000105474n,50,10000000010000015n,50,10000000010000066n,25,0],
+	[4735,100,0,0,0,0,0,0,0,0,"",6022,25,6014,25,6020,25,243,40,0],
+	[4736,6,164,180,4,1,180,200,"アドゥルテル・フィデス・アックス","アトウルテル　フイテス　アツクス","",194,1,88,110,100080,10,0],
+	[4737,6,164,180,4,1,180,200,"ウィワートゥス・フィデス・アックス","ウイワアトウス　フイテス　アツクス","",194,1,88,110,100261,13,10000000000105541n,15,10000000000105542n,15,10000000000105543n,15,10000000010000015n,15,10000000010000066n,10,0],
+	[4738,100,0,0,0,0,0,0,0,0,"",6072,25,6242,25,6073,25,243,10,0],	// ウィワートゥス・フィデス・アックス + 豊穣
+	[4739,2,171,150,4,1,120,200,"アドゥルテル・フィデス・レイピア","アトウルテル　フイテス　レイヒア","",88,130,100080,10,0],
+	[4740,2,171,150,4,1,120,200,"ウィワートゥス・フィデス・レイピア","ウイワアトウス　フイテス　レイヒア","",194,1,88,130,100261,13,10000000000105723n,15,10000000000105736n,15,10000000000105722n,30,10000000010000015n,15,10000000010000066n,10,0],
+	[4741,100,0,0,0,0,0,0,0,0,"",6165,25,6163,25,6166,25,6164,25,243,10,0],
+	[4742,9,161,60,4,1,30,200,"アドゥルテル・フィデス・ワンド","アトウルテル　フイテス　ワント","",194,1,88,180,100089,5,0],
+	[4743,9,161,60,4,1,30,200,"ウィワートゥス・フィデス・ワンド","ウイワアトウス　フイテス　ワント","",194,1,88,180,100266,10,10000000000105478n,15,10000000000105476n,15,10000000010000015n,15,10000000010000066n,10,0],
+	[4744,100,0,0,0,0,0,0,0,0,"",6028,25,6033,25,6039,25,6313,25,243,10,0],
+	[4745,4,165,150,4,1,180,200,"アドゥルテル・フィデス・ガーディアンスピア","アトウルテル　フイテス　カアテイアンスヒア","",88,110,100080,10,0],
+	[4746,4,165,150,4,1,180,200,"ウィワートゥス・フィデス・ガーディアンスピア","ウイワアトウス　フイテス　カアテイアンスヒア","",194,1,88,110,100261,13,10000000000105585n,10,10000000000105569n,10,10000000000105570n,30,10000000010000015n,15,10000000010000066n,10,0],
+	[4747,100,0,0,0,0,0,0,0,0,"",6095,25,6092,25,6094,25,6309,25,6310,25,243,10,0],
+	[4748,14,168,180,4,1,25,200,"アドゥルテル・フィデス・バイオリン","アトウルテル　フイテス　ハイオリン","",88,120,100080,10,0],
+	[4749,14,168,180,4,1,25,200,"ウィワートゥス・フィデス・バイオリン","ウイワアトウス　フイテス　ハイオリン","",194,1,88,120,100261,13,10000000000105642n,10,10000000010000015n,15,10000000010000066n,10,0],
+	[4750,100,0,0,0,0,0,0,0,0,"",6132,25,6131,25,243,10,0],
+	[4751,13,167,140,4,1,40,200,"アドゥルテル・フィデス・ナックル","アトウルテル　フイテス　ナツクル","",88,100,100080,10,0],
+	[4752,13,167,140,4,1,40,200,"ウィワートゥス・フィデス・ナックル","ウイワアトウス　フイテス　ナツクル","",194,1,88,100,100261,13,10000000000105622n,30,10000000000105610n,30,10000000000105612n,30,10000000010000015n,15,10000000010000066n,10,0],
+	[4753,100,0,0,0,0,0,0,0,0,"",6113,25,6123,25,6124,25,6302,25,243,10,0],	// ウィワートゥス・フィデス・ナックル + 豊穣
+	[4754,12,170,120,4,1,80,200,"アドゥルテル・フィデス・マジックブック","アトウルテル　フイテス　マシツクフツク","",194,1,88,140,100089,5,0],
+	[4755,12,170,120,4,1,80,200,"ウィワートゥス・フィデス・マジックブック","ウイワアトウス　フイテス　マシツクフツク","",194,1,88,140,100266,10,10000000000105666n,10,10000000000105669n,10,10000000000105662n,10,10000000000105667n,10,10000000010000015n,15,10000000010000066n,10,0],
+	[4756,100,0,0,0,0,0,0,0,0,"",6149,25,6146,25,6147,25,6150,25,6148,25,6157,25,6290,25,243,10,0],	// ウィワートゥス・フィデス・マジックブック + 豊穣
+	[4757,15,169,150,4,1,50,200,"アドゥルテル・フィデス・チェインロープ","アトウルテル　フイテス　チエインロオフ","",88,120,100080,10,0],
+	[4758,15,169,150,4,1,50,200,"ウィワートゥス・フィデス・チェインロープ","ウイワアトウス　フイテス　チエインロオフ","",194,1,88,120,100261,13,10000000000105642n,10,10000000010000015n,15,10000000010000066n,10,0],
+	[4759,100,0,0,0,0,0,0,0,0,"",6132,25,6131,25,243,10,0],
+	[4760,10,166,160,4,1,90,200,"アドゥルテル・フィデス・クロスボウ","アトウルテル　フイテス　クロスホウ","",88,170,100080,10,0],
+	[4761,10,166,160,4,1,90,200,"ウィワートゥス・フィデス・クロスボウ","ウイワアトウス　フイテス　クロスホウ","",194,1,88,170,100261,13,10000000000105608n,30,10000000010000015n,50,10000000010000066n,25,0],
+	[4762,100,0,0,0,0,0,0,0,0,"",6102,25,6109,25,6305,25,6307,25,243,40,0],
+	[4763,10,162,160,4,1,90,200,"アドゥルテル・フィデス・バリスタ","アトウルテル　フイテス　ハリスタ","",88,170,100080,10,0],
+	[4764,10,162,160,4,1,90,200,"ウィワートゥス・フィデス・バリスタ","ウイワアトウス　フイテス　ハリスタ","",194,1,88,170,100261,13,10000000000105498n,5,10000000000105497n,5,10000000010000015n,50,10000000010000066n,25,0],
+	[4765,100,0,0,0,0,0,0,0,0,"",6051,25,6047,25,243,40,0],
+	[4766,9,163,120,4,1,240,200,"アドゥルテル・フィデス・ツーハンドスタッフ","アトウルテル　フイテス　ツウハントスタツフ","",195,1,88,270,100089,5,0],
+	[4767,9,163,120,4,1,240,200,"ウィワートゥス・フィデス・ツーハンドスタッフ","ウイワアトウス　フイテス　ツウハントスタツフ","",195,1,194,1,88,270,100266,10,10000000000105531n,10,10000000000105527n,10,10000000000105518n,10,10000000000105520n,30,10000000000105519n,30,10000000000105528n,30,10000000010000015n,50,10000000010000066n,25,0],
+	[4768,100,0,0,0,0,0,0,0,0,"",6064,25,6069,25,6056,25,6070,25,6063,25,6068,25,6060,25,6067,25,243,40,0],
+	[4769,5,159,200,4,1,2000,200,"アドゥルテル・フィデス・ランス","アトウルテル　フイテス　ランス","",88,230,100080,10,0],
+	[4770,5,159,200,4,1,2000,200,"ウィワートゥス・フィデス・ランス","ウイワアトウス　フイテス　ランス","",194,1,88,230,100261,13,10000000000105445n,25,10000000000105440n,25,10000000010000015n,50,10000000010000066n,25,0],
+	[4771,100,0,0,0,0,0,0,0,0,"",6008,25,6010,25,6009,25,6295,25,243,40,0],
+	[4772,64,192,0,1500000,0,10,200,"オルタネイトクリップ","オルタネイトクリツフ","",16,10,0],
+	[4773,100,0,0,0,0,0,0,0,0,"",236,3,73,-30,0],
+	[4774,63,0,12,0,1,40,100,"フィフスエレメント","フイフスエレメント","[ヴェラチュールスピアー]Lv10習得時、追加で、[ヴェラチュールスピアー]の固定詠唱時間 - 100%、[サモンアクア]の再使用待機時間 - 25秒<BR>[エレメンタルシンパシー]の習得Lvが1上がる度に、追加で、魔法攻撃で与えるダメージ + 10%<BR>[サイキックウェーブ]Lv5習得時、追加で、一般・ボスモンスターから受けるダメージ - 5%<BR>[サモンアグニ]、[サモンアクア]、[サモンベントス]、[サモンテラ]の習得Lvの合計が、1上がる度に追加で、Int + 5 , Mdef + 4",199,669,199,678,199,662,199,671,199,672,199,673,199,674,19,10,15,3,16,3,243,10,5000015,7,5000016,7,5000074,10,7000015,10,7000016,10,7000074,10,0],
+	[4775,50,0,10,0,1,50,100,"妖魔のささやき","ヨウマノササヤキ","[ウェポンクラッシュ]Lv5習得時、追加で、物理攻撃時、全ての属性のモンスターに与えるダメージ + 25%<BR>[ウェポンブロッキング]Lv5習得時、追加で、スキルディレイ - 20%<BR>[カウンタースラッシュ]Lv10習得時、追加で、武器攻撃力 + 25%<BR>[ハルシネーションウォーク]Lv5習得時、追加で、一般・ボスモンスターから受けるダメージ - 20%",199,470,199,468,199,469,199,473,194,1,19,10,12,10,10000000005264,1,100074,3,10000007005263,1,10000007005264,1,10000009005263,1,10000009005264,1,0],
+	[4776,64,192,0,0,1,10,200,"枢機卿の指輪","スウキキヨウノユヒワ","",233,3,91,15,89,10,243,3,11484,100,100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,0],
+	[4777,64,0,0,0,1,10,100,"リングオブシルバークロウ","リンクオフシルハアクロウ","",10,50,80,10,243,3,50000000000070,1,0],
+	[4778,100,0,0,0,0,0,0,0,0,"サモナーが装備時、[特選ドラムスーツ]の精錬値が1上がる度に追加で、物理・魔法攻撃で与えるダメージ + 3%",0],
+	[4779,100,0,0,0,0,0,0,0,0,"サモナーが装備時、[特選ドラムケープ]の精錬値が1上がる度に追加で、アニマル系スキルで与えるダメージ + 5%、プラント系スキルで与えるダメージ + 5%",0],
+	[4780,100,0,0,0,0,0,0,0,0,"サモナーが装備時、[特選ドラムシューズ]の精錬値が1上がる度に追加で、物理・魔法攻撃で与えるダメージ + 3%",0],
+	[4781,100,0,0,0,0,0,0,0,0,"サモナーが装備時、[抱きつきシャムネコ]の精錬値が1上がる度に追加で、ボスモンスターから受けるダメージ - 2%",0],
+	[4782,100,0,0,0,0,0,0,0,0,"サモナーが装備時、アニマル系スキルの詠唱時間 - 50%",6400000000080,15,0],
+	[4783,100,0,0,0,0,0,0,0,0,"サモナーが装備時、シーフード系スキルの詠唱時間 - 50%",6400000000018,150,6400000000019,15,0],
+	[4784,100,0,0,0,0,0,0,0,0,"サモナーが装備時、プラント系スキルの詠唱時間 - 50%",6400000000089,15,0],
+	[4785,100,0,0,0,0,0,0,0,0,"サモナーが装備時、プラント系スキルの詠唱時間 - 50%",6400000000089,15,0],
+	[4786,100,0,0,0,0,0,0,0,0,"サモナーが装備時、シーフード系スキルの詠唱時間 - 50%",6400000000018,150,6400000000019,15,0],
+	[4787,100,0,0,0,0,0,0,0,0,"サモナーが装備時、アニマル系スキルの詠唱時間 - 50%",6400000000080,15,0],
+	[],
+	[4789,66,146,0,0,1,10,100,"Y.S.F.リング","ワイエスエフリンク","",3,20,15,15,25,10,86,15,243,3,19442,1000,20000000005794,1,20000000005447,1,20000000005442,3,0],
+	[4790,52,154,0,0,0,10,100,"サンクトゥス","サンクトウス","[修羅身弾]Lv10習得時、追加で、[爆気散弾]の再使用待機時間 - 0.2秒<BR>[潜龍昇天]Lv10習得時、追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 15%",199,613,199,621,15,15,219,2870,0],
+	[4791,50,192,0,0,1,50,200,"ワイルドビースト","ワイルトヒイスト","",79,20,77,20,100262,3,100269,3,0],
+	[4792,100,0,0,0,0,0,0,0,0,"",68,20,152,100,0],
+	[4793,100,0,0,0,0,0,0,0,0,"",68,20,152,100,0],
+	[4794,100,0,0,0,0,0,0,0,0,"",80,15,0],
+	[4795,100,0,0,0,0,0,0,0,0,"",80,15,0],
+	[4796,100,0,0,0,0,0,0,0,0,"",89,15,0],
+	[4797,100,0,0,0,0,0,0,0,0,"",89,15,0],
+	[4798,100,0,0,0,0,0,0,0,0,"",211,15,0],
+	[4799,100,0,0,0,0,0,0,0,0,"",212,15,0],
+	[4800,100,0,0,0,0,0,0,0,0,"",213,15,0],
+	[4801,100,0,0,0,0,0,0,0,0,"",214,15,0],
+	[4802,100,0,0,0,0,0,0,0,0,"",215,15,0],
+	[4803,100,0,0,0,0,0,0,0,0,"",216,15,0],
+	[4804,100,0,0,0,0,0,0,0,0,"",230,15,0],
+	[4805,100,0,0,0,0,0,0,0,0,"",231,15,0],
+	[4806,100,0,0,0,0,0,0,0,0,"",232,15,0],
+	[4807,100,0,0,0,0,0,0,0,0,"",233,15,0],
+	[4808,100,0,0,0,0,0,0,0,0,"",234,15,0],
+	[4809,100,0,0,0,0,0,0,0,0,"",235,15,0],
+	[4810,100,0,0,0,0,0,0,0,0,"",18,300,0],
+	[4811,100,0,0,0,0,0,0,0,0,"",19,30,0],
+	[4812,100,0,0,0,0,0,0,0,0,"",15,10,16,10,0],
+	[4813,100,0,0,0,0,0,0,0,0,"",12,10,0],
+	[4814,100,0,0,0,0,0,0,0,0,"",73,-15,0],
+	[4815,100,0,0,0,0,0,0,0,0,"",74,15,0],
+	[4816,100,0,0,0,0,0,0,0,0,"",10000000000017,1,0],
+	[4817,100,0,0,0,0,0,0,0,0,"",10000000000100,1,0],
+	[4818,100,0,0,0,0,0,0,0,0,"",293,50,0],
+	[4819,100,0,0,0,0,0,0,0,0,"",298,50,0],
+	[4820,100,0,0,0,0,0,0,0,0,"",15,10,16,10,0],
+	[4821,100,0,0,0,0,0,0,0,0,"固定詠唱時間 - 70%",0],
+	[4822,1,166,120,4,1,60,200,"泥汚れた不治の魔剣","トロヨコレタフシノマケン","",88,120,100089,5,0],
+	[4823,1,166,120,4,1,60,200,"不治の魔剣","フシノマケン","精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、無属性魔法攻撃で与えるダメージ + 50%",88,120,194,1,197,3,243,10,8107,100,8105,100,100097,10,100098,10,100099,10,8006103,25,8006107,25,8006105,25,8006308,25,0],
+	[4824,4,165,150,4,1,180,200,"狂った運命の槍","クルツタウンメイノヤリ","",88,110,100089,5,0],
+	[4825,4,165,150,4,1,180,200,"運命の槍","ウンメイノヤリ","精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、聖属性魔法攻撃で与えるダメージ + 50%",88,110,194,1,243,10,8096,100,8093,100,100097,10,100098,10,100099,10,8006096,25,8006093,25,8006311,25,0],
+	[4826,10,162,160,4,1,90,200,"朧げな月華の弓","オホロケナケツカノユミ","",88,170,100080,10,0],
+	[4827,10,162,160,4,1,90,200,"月華の弓","ケツカノユミ","",88,170,194,1,77,40,243,40,68,20,100027,13,100028,13,100029,13,8006046,25,8006043,25,8006291,25,10000070,50,0],
+	[4828,14,168,180,4,1,25,200,"水底に沈んだ精霊のバイオリン","ミナソコニシスンタセイレイノハイオリン","",88,120,100089,5,0],
+	[4829,14,168,180,4,1,25,200,"精霊のバイオリン","セイレイノハイオリン","精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、無属性魔法攻撃で与えるダメージ + 50%",88,120,194,1,243,10,8133,100,100097,10,100098,10,100099,10,8006134,25,8006133,25,8006298,25,0],
+	[4830,15,169,150,4,1,50,200,"刃こぼれした蛇腹剣","ハコホレシタシヤハラケン","",88,120,100089,5,0],
+	[4831,15,169,150,4,1,50,200,"蛇腹剣","シヤハラケン","精錬値が10の時、追加で、魔法攻撃命中時、一定確率で10秒間、無属性魔法攻撃で与えるダメージ + 50%",88,120,194,1,243,10,8133,100,100097,10,100098,10,100099,10,8006134,25,8006133,25,8006298,25,0],
+	[4832,62,0,50,0,0,40,100,"ドラゴンスケイルショール","トラコンスケイルシヨオル","物理・魔法攻撃時、[アビスレイク地下洞窟 04]に出現するモンスターに与えるダメージ + 30%<BR>[アビスレイク地下洞窟 04]に出現するモンスターから受けるダメージ - 60%",19,5,63,50,68,50,0],
+	[4833,52,0,0,0,0,10,100,"メモリアルクロース","メモリアルクロオス","",13,2000,27,20,28,20,29,20,97,20,98,20,99,20,0],
+	[4834,100,0,0,0,0,0,0,0,0,"移動速度増加<BR>[グリード]Lv1使用可能",0],
+	[],
+	[],
+	[4837,66,0,0,0,1,10,100,"イリーガルチップ","イリイカルチツフ","",12,10,80,10,89,10,0],
+	[4838,100,0,0,0,0,0,0,0,0,"[気功]Lv2使用可能",80,30,89,30,0],
+	[4839,63,192,25,0,1,60,200,"未知なる力のブーツ","ミチナルチカラノフウツ","",15,10,16,10,243,10,7000012,15,43000000250,5,0],
+	[4840,100,0,0,0,0,0,0,0,0,"",217,10,74,25,0],
+	[4841,63,192,25,0,1,60,200,"未知なる集中のブーツ","ミチナルシユウチユウノフウツ","純粋なConが100の時、追加で、遠距離物理攻撃で与えるダメージ + 30%",15,10,16,10,243,10,7000008,50,7000009,50,0],
+	[4842,63,192,25,0,1,60,200,"未知なる体力のブーツ","ミチナルタイリヨクノフウツ","純粋なStaが100の時、追加で、5秒毎にHP + 5%",15,10,16,10,243,10,7000018,300,7000015,30,0],
+	[4843,63,192,20,0,1,60,200,"未知なる魔力のブーツ","ミチナルマリヨクノフウツ","精錬値が7以上の時、追加で、固定詠唱時間 - 70%",19,5,15,10,16,10,243,10,46000000251,5,0],
+	[4844,63,192,25,0,1,60,200,"未知なる聡明のブーツ","ミチナルソウメイノフウツ","純粋なWisが100の時、追加で、5秒毎にSP + 5%",15,10,16,10,243,10,7000019,30,7000016,30,0],
+	[4845,63,192,20,0,1,60,200,"未知なる創造のブーツ","ミチナルソウソウノフウツ","純粋なCrtが100の時、追加で、クリティカル攻撃で与えるダメージ + 30%",19,5,15,10,16,10,243,10,7000010,25,0],
+	[4846,3,159,280,1700004,2,900,200,"フォーティファイドクレイモア","フオオテイフアイトクレイモア","",88,230,80,110,7006008,10,7006010,10,9006008,15,9006010,15,10000230,20,0],
+	[4847,9,163,120,1700004,2,240,200,"フォーティファイドスタッフ","フオオテイフアイトスタツフ","",195,1,88,270,89,60,7006069,10,7006070,10,7006068,10,7006067,10,9006069,15,9006070,15,9006068,15,9006067,15,10000233,20,0],
+	[4848,4,165,150,1600004,2,180,200,"フォーティファイドスピアー","フオオテイフアイトスヒアア","",88,110,80,110,7006095,10,7006092,10,7006094,10,9006095,15,9006092,15,9006094,15,10000230,20,0],
+	[4849,12,170,120,1600004,2,80,200,"フォーティファイドマニュアル","フオオテイフアイトマニユアル","",88,140,89,60,7006149,10,7006146,10,7006147,10,7006150,10,7006148,10,9006149,15,9006146,15,9006147,15,9006150,15,9006148,15,10000233,20,0],
+	[4850,60,0,50,0,1,150,205,"アンティコンジャラースーツ","アンテイコンシヤラアスウツ","",19,10,15,25,243,7,6000019,25,8000019,25,0],
+	[4851,60,0,40,0,1,100,205,"マジックプロテクターローブ","マシツクフロテクタアロオフ","",243,7,6000102,10,8000102,10,380,1,0],
+	[4852,61,0,50,0,1,100,205,"マジックアブソーバー","マシツクアフソオハア","",19,10,6000019,15,8000255,30,0],
+	[4853,61,95,50,0,1,20,205,"大百科事典完全版","タイヒヤツカシテンカンセンハン","物理攻撃命中時、一定確率で自分にオートスペル[セイフティウォール]Lv3発動、[セイフティウォール]の習得Lvが4以上の場合、習得Lvで発動<BR>精錬値が8以上の時、追加で、オートスペル[セイフティウォール]の発動率が上昇",4,7,5,5,6000100,150,0],
+	[4854,65,0,0,0,1,10,205,"フォースコンデンサー","フオオスコンテンサア","",80,15,89,15,243,3,0],
+	[4855,100,0,0,0,0,0,0,0,0,"",12,20,80,25,89,25,0],
+	[4856,100,0,0,0,0,0,0,0,0,"",74,50,80,25,89,25,0],
+	[4857,66,0,0,0,1,10,205,"メンタルコンデンサー","メンタルコンテンサア","",80,15,89,15,243,3,0],
+	[4858,100,0,0,0,0,0,0,0,0,"",74,50,80,25,89,25,0],
+	[4859,100,0,0,0,0,0,0,0,0,"固定詠唱時間 - 70%",80,25,89,25,0],
+	[4860,66,151,0,0,1,10,100,"ディメンションリンケージストーン","テイメンシヨンリンケエシストオン","",1,20,15,15,25,10,86,15,243,3,19566,5000,30000000005554,1,30000000005553,2,30000000005552,2,0],
+	[],
+	[4862,66,0,0,0,1,10,100,"創星石のアミュレット","ソウセイセキノアミユレツト","物理・魔法攻撃命中時、一定確率で自分に発生している[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]の再使用待機時間を解除する",12,15,74,15,86,25,243,3,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,0],
+	[4863,100,0,0,0,0,0,0,0,0,"deprecated",0],
+	[4864,64,192,0,0,1,10,200,"ロードオブエレメンタル","ロオトオフエレメンタル","",233,3,89,10,243,3,220,6,11672,100,11674,100,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,0],
+	[4865,93,0,0,0,0,0,1,"なし","０００なし","",20,0,0],
+	[4866,93,0,0,0,0,0,1,"矢","００１ヤ","",17,25,20,0,0],
+	[4867,93,0,0,0,0,0,1,"鉄の矢","００２テツノヤ","",17,30,20,0,0],
+	[4868,93,0,0,0,0,0,1,"鋼鉄の矢","００３コウテツノヤ","",17,40,20,0,0],
+	[4869,93,0,0,0,0,0,1,"オリデオコンの矢","００４オリテオコンノヤ","",17,50,20,0,0],
+	[4870,93,0,0,0,0,0,1,"狩人の矢","００５カリユウトノヤ","",17,35,20,0,0],
+	[4871,93,0,0,0,0,0,100,"エルフの矢","００６エルフノヤ","",17,45,20,0,0],
+	[4872,93,0,0,0,0,0,1,"水晶の矢","００７スイシヨウノヤ","",17,30,20,1,0],
+	[4873,93,0,0,0,0,0,1,"岩石の矢","００８カンセキノヤ","",17,30,20,2,0],
+	[4874,93,0,0,0,0,0,1,"炎の矢","００９ホノオノヤ","",17,30,20,3,0],
+	[4875,93,0,0,0,0,0,1,"風の矢","０１０カセノヤ","",17,30,20,4,0],
+	[4876,93,0,0,0,0,0,1,"錆びた矢","０１１サヒタヤ","",17,30,20,5,0],
+	[4877,93,0,0,0,0,0,1,"銀の矢","０１２キンノヤ","",17,30,20,6,0],
+	[4878,93,0,0,0,0,0,1,"破魔矢","０１３ハマヤ","",17,50,20,6,0],
+	[4879,93,0,0,0,0,0,1,"聖なる矢","０１４セイナルヤ","",17,50,20,6,0],
+	[4880,93,0,0,0,0,0,1,"影矢","０１５カケヤ","",17,30,20,7,0],
+	[4881,93,0,0,0,0,0,1,"無形の矢","０１６ムケイノヤ","",17,30,20,8,0],
+	[4882,93,0,0,0,0,0,1,"属性自動(Atk30)","０１７ソクセイシトウノヤ","",17,30,20,0,0],
+	[4883,93,0,0,0,0,0,1,"鋭い矢","０１８スルトイヤ","",17,10,20,0,10,20,0],
+	[4884,93,0,0,0,0,0,1,"カースアロー","０１９カアスアロオ","低確率で対象を呪い状態にする",17,1,20,0,0],
+	[4885,93,0,0,0,0,0,1,"サイレンスアロー","０２０サイレンスアロオ","低確率で対象を沈黙状態にする",17,1,20,0,0],
+	[4886,93,0,0,0,0,0,1,"スリープアロー","０２１スリイフアロオ","低確率で対象を睡眠状態にする",17,1,20,0,0],
+	[4887,93,0,0,0,0,0,1,"フラッシュアロー","０２２フラツシユアロオ","低確率で対象を暗黒状態にする",17,1,20,0,0],
+	[4888,93,0,0,0,0,0,1,"氷の矢","０２３コオリノヤ","低確率で対象を氷化状態にする",17,1,20,1,0],
+	[4889,93,0,0,0,0,0,1,"毒矢","０２４トクヤ","低確率で対象を毒状態にする",17,1,20,5,0],
+	[4890,93,0,0,0,0,0,1,"Atk1の矢","０２５アタツク１ノヤ","低確率で対象を毒状態にする",17,1,20,0,0],
+	[4891,94,0,0,0,0,0,1,"バレット","１０１ハレツト","",17,25,20,0,0],
+	[4892,94,0,0,0,0,0,1,"ブラッドバレットC","１０２フラツトハレツトシイ","",17,30,20,0,0],
+	[4893,94,0,0,0,0,0,1,"APバレット","１０３エイヒイハレツト","",17,50,20,0,0],
+	[4894,94,0,0,0,0,0,1,"アイスバレット","１０４アイスハレツト","",17,20,20,1,0],
+	[4895,94,0,0,0,0,0,1,"フリージングバレット","１０５フリイシンクハレツト","",17,40,20,1,0],
+	[4896,94,0,0,0,0,0,1,"マジカルストーンバレット","１０６マシカルストオンハレツト","",17,40,20,2,0],
+	[4897,94,0,0,0,0,0,1,"フレアバレット","１０７フレアハレツト","",17,20,20,3,0],
+	[4898,94,0,0,0,0,0,1,"ブレイズバレット","１０８フレイスハレツト","",17,40,20,3,0],
+	[4899,94,0,0,0,0,0,1,"ライトニングバレット","１０９ライトニンクハレツト","",17,20,20,4,0],
+	[4900,94,0,0,0,0,0,1,"エレクトリックバレット","１１０エレクトリツクハレツト","",17,40,20,4,0],
+	[4901,94,0,0,0,0,0,1,"ポイズンバレット","１１１ホイスンハレツト","",17,20,20,5,0],
+	[4902,94,0,0,0,0,0,1,"シルバーバレットC","１１２シルハアハレツトシイ","",17,15,20,6,0],
+	[4903,94,0,0,0,0,0,1,"サンクタファイドバレット","１１３サンクタフアイトハレツト","",17,40,20,6,0],
+	[4904,94,0,0,0,0,0,1,"ブラインドバレット","１１４フライントハレツト","",17,20,20,7,0],
+	[4905,94,0,0,0,0,0,1,"なし","０００なし","",20,0,0],
+	[4906,92,0,0,0,0,0,1,"(衣装なし)","アアアア","",0],
+	[],
+	[],
+	[4909,64,0,0,0,1,10,100,"ウルの腕輪","ウルノウテワ","装備解除時、[アンリミット]を解除する",243,3,74,15,80,10,0],
+	[4910,100,0,0,0,0,0,0,0,0,"",262,15,19795,45000,0],
+	[4911,77,192,0,1800000,0,0,200,"オルタネイトアーマー","オルタネイトアアマア","",194,1,100013,200,7000013,500,9000013,500,0],
+	[4912,72,192,0,1900000,0,0,200,"オルタネイトウェポン","オルタネイトウエホン","",194,1,100017,10,100100,10,7000017,20,7000100,20,9000017,30,9000100,30,0],
+	[4913,73,192,0,2000000,0,0,200,"オルタネイトシールド","オルタネイトシイルト","",194,1,100018,15,7000018,25,9000018,50,0],
+	[4914,80,192,0,2100000,0,0,200,"オルタネイトシューズ","オルタネイトシユウス","",194,1,100014,20,7000014,50,9000014,50,0],
+	[4915,82,192,0,2200000,0,0,200,"オルタネイトイヤリング","オルタネイトイヤリンク","",194,1,100089,1,7000089,2,9000089,3,0],
+	[4916,83,192,0,2300000,0,0,200,"オルタネイトペンダント","オルタネイトヘンタント","",194,1,100080,1,7000080,2,9000080,3,0],
+	[],
+	[],
+	[4919,62,0,12,0,1,30,100,"マジックコンプレッション","マシツクコンフレツシヨン","[スペルフィスト]Lv10習得時、追加で、物理攻撃命中時、一定確率で自分にオートスペル[セイフティウォール]Lv3発動、[セイフティウォール]の習得Lvが4以上の場合、習得Lvで発動<BR>[エレメンタルシンパシー]の習得Lvが1上がる度に、追加で、Int + 5、スキルディレイ - 5%<BR>[ストライキング]の習得Lvが1上がる度に追加で、[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]で与えるダメージ + 20%<BR>[サイキックウェーブ]Lv5習得時、追加で、物理攻撃命中時、一定確率で敵にオートスペル[ファイアーボルト]、[コールドボルト]、[ライトニングボルト]、[アーススパイク]、[サイキックウェーブ]が習得Lvで発動",199,660,199,678,199,665,199,662,12,5,89,5,79,5,77,5,243,5,7000012,5,7000089,5,9000012,10,9000089,10,225,182,225,179,225,177,225,144,225,234,0],
+	[4920,63,0,50,0,1,100,100,"プラーナブーツ","フラアナフウツ","",19,15,108,5,92,30,100214,3,100215,3,100013,1000,5000018,100,5000015,15,5000243,10,7000018,100,7000015,15,7000079,5,7000077,5,0],
+	[4921,60,0,0,0,1,90,1,"古びた信奉者のローブ","フルヒタシンホウシヤノロオフ","",12,5,300080,5,300089,5,0],
+	[4922,60,0,120,0,1,90,100,"信奉者のローブ","シンホウシヤノロオフ","",194,1,12,5,68,10,300080,10,300089,10,0],
+	[4923,100,0,0,0,0,0,0,0,0,"[信奉者のローブ]の精錬値が1上がる度に追加で、[Mレイオブジェネシス]で受けるダメージ - 5%",0],
+	[4924,100,0,0,0,0,0,0,0,0,"[信奉者のローブ]の精錬値が1上がる度に追加で、[Mレイオブジェネシス]で受けるダメージ - 2%",0],
+	[4925,60,0,120,0,1,90,100,"覚醒信奉者のローブ","カクセイシンホウシヤノロオフ","",194,1,12,10,27,40,28,40,29,40,97,40,98,40,99,40,100068,2,5000079,5,5000077,5,7000086,25,7000018,300,7000019,30,0],
+	[4926,100,0,0,0,0,0,0,0,0,"[覚醒信奉者のローブ]の精錬値が1上がる度に追加で、[Mレイオブジェネシス]で受けるダメージ - 10%",0],
+	[4927,100,0,0,0,0,0,0,0,0,"[覚醒信奉者のローブ]の精錬値が1上がる度に追加で、[Mレイオブジェネシス]で受けるダメージ - 5%",0],
+	[4928,100,0,0,0,0,0,0,0,0,"",27,30,28,30,29,30,97,30,98,30,99,30,0],
+	[4929,60,0,100,0,1,100,100,"アメイジング・グレイス","アメイシンククレイス","[オラティオ]の習得Lvが1上がる度に追加で、Int + 3 , Matk + 15<BR>[クリアランス]の習得Lvが1上がる度に追加で、魔法攻撃時、全ての種族のモンスターに与えるダメージ + 14%<BR>[ラウダアグヌス]、[ラウダラムス]の習得Lvが1上がる度に追加で、ヒール系スキル使用時、HP回復量 + 3%、ヒール系スキルを受けた時のHP回復量 + 3%、一部の回復アイテムによるHP回復量 + 3%",199,484,199,490,199,485,199,486,12,10,5005478,50,5005476,50,7005478,50,7005476,50,10000346,15,10000194,1,0],
+	[4930,51,0,0,0,1,10,100,"ライトニングサベージ","ライトニンクサヘエシ","",10000000000017,1,10000000000100,1,0],
+	[4931,100,0,0,0,0,0,0,0,0,"",26,10,96,10,243,5,0],
+	[4932,62,0,38,0,1,40,200,"マジックバリアークロース","マシツクハリアアクロオス","",12,5,74,5,243,5,6000012,5,6000074,5,8000012,10,8000074,10,0],
+	[4933,100,0,0,0,0,0,0,0,0,"",19,50,15,25,0],
+	[4934,100,0,0,0,0,0,0,0,0,"",91,30,102,10,0],
+	[4935,100,0,0,0,0,0,0,0,0,"",79,5,77,5,68,30,0],
+	[],
+	[4937,100,0,0,0,0,0,0,0,0,"",79,20,77,20,0],
+	[4938,100,0,0,0,0,0,0,0,0,"[剛勇無双の貫]の精錬値が1上がる度に追加で、物理攻撃で与えるダメージ + 4%",0],
+	[4939,100,0,0,0,0,0,0,0,0,"[剛勇無双の甲胄]の精錬値が1上がる度に追加で、遠距離物理攻撃で与えるダメージ + 2%",0],
+	[4940,100,0,0,0,0,0,0,0,0,"",60,10,0],
+	[4941,100,0,0,0,0,0,0,0,0,"",25,15,0],
+	[4942,52,0,0,0,0,10,100,"コンセクレイト・フィデス・オーリーオラ","コンセクレイトフイテスオオリイオラ","",27,15,28,15,29,15,97,15,98,15,99,15,0],
+	[4943,100,0,0,0,0,0,0,0,0,"",243,3,380,1,0],
+	[4944,62,0,38,0,1,40,100,"ディヴァインフィーニクス","テイウアインフイイニクス","精錬値が9以上の時、追加で、物理攻撃命中時、一定確率で敵に与えたダメージの5%をHPとして吸収",79,5,77,5,243,5,100015,2,100016,2,100066,7,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100066n,1,10000000010000066n,15,10000000010000260n,15,10000000010000265n,15,0],
+	[4945,100,0,0,0,0,0,0,0,0,"",74,25,0],
+	[4946,100,0,0,0,0,0,0,0,0,"",12,20,0],
+	[4947,64,0,0,0,10,10,100,"マジェスティオブイグドラシル","マシエステイオフイクトラシル","",7,3,12,10,74,15,27,25,28,25,29,25,97,25,98,25,99,25,243,3,0],
+	[4948,100,0,0,0,0,0,0,0,0,"移動速度増加",217,10,0],
+	[4949,51,0,2,0,10,10,100,"ワンダラーグリムリーパー","ワンタラアクリムリイハア","",27,10,28,10,29,10,97,10,98,10,99,10,0],
+	[4950,100,0,0,0,0,0,0,0,0,"",86,25,243,5,0],
+	[],
+	[4952,52,151,0,0,0,10,100,"携帯式サポートシステム","ケイタイシキサホオトシステム","[ニュートラルバリアー]Lv3習得時、追加で、物理攻撃時、小・中・大型モンスターに与えるダメージ + 15%<BR>[火と大地の研究]Lv5習得時、追加で、スキル使用時、[魔導ギア燃料]を消費しない",199,566,199,544,25,10,0],
+	[4953,64,192,0,0,1,10,200,"エスタブリッシュ","エスタフリツシユ","",233,3,89,10,243,3,11527,100,10000000005127,8,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,0],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[],
+	[4966,100,0,0,0,0,0,0,0,0,"",293,100,298,100,10000000000017,1,10000000000100,1,0],
+	[4967,60,0,150,0,0,120,220,"雪花のメイル","セツカノメイル","",15,30,16,30,100080,4,5000074,15,6000012,10,0],
+	[4968,60,0,80,0,0,40,220,"雪花のローブ","セツカノロオフ","",15,30,16,30,100089,4,5000074,15,6000012,10,0],
+	[4969,62,0,60,0,0,100,220,"雪花のマント","セツカノマント","[フェイス]の習得Lvが1上がる度に追加で、聖属性攻撃で受けるダメージ + 5%",199,156,15,10,16,10,66,50,100066,3,5000074,15,6000012,15,0],
+	[4970,62,0,25,0,0,30,220,"雪花のマフラー","セツカノマフラア","[フェイス]の習得Lvが1上がる度に追加で、聖属性攻撃で受けるダメージ + 5%",199,156,15,10,16,10,66,50,100066,3,5000074,15,6000012,15,0],
+	[4971,63,0,20,0,0,60,220,"雪花のブーツ","セツカノフウツ","",15,30,16,30,100080,4,5000074,35,6000012,10,0],
+	[4972,100,0,0,0,0,0,0,0,0,"",9,250,86,50,0],
+	[4973,63,0,8,0,0,20,220,"雪花のシューズ","セツカノシユウス","",15,30,16,30,100089,4,5000074,35,6000012,10,0],
+	[4974,100,0,0,0,0,0,0,0,0,"固定詠唱時間 - 70%",9,250,0],
+	[4975,65,0,0,0,0,10,220,"雪花のリング","セツカノリンク","",12,10,74,15,80,10,0],
+	[4976,65,0,0,0,0,10,220,"雪花のイヤリング","セツカノイヤリンク","",12,10,74,15,89,10,0],
+	[4977,66,0,0,0,0,10,220,"雪花のペンダント","セツカノヘンタント","",12,10,74,15,80,10,0],
+	[4978,100,0,0,0,0,0,0,0,0,"",293,100,0],
+	[4979,66,0,0,0,0,10,220,"雪花のネックレス","セツカノネツクレス","",12,10,74,15,89,10,0],
+	[4980,100,0,0,0,0,0,0,0,0,"",298,100,0],
+	[],
+	[],
+	[4983,64,192,0,0,1,10,200,"イントゥジアビス","イントウシアヒス","",233,3,89,10,86,25,243,3,220,63,100000000006107,1,100000000006105,1,100000000006308,1,0],
+	[4984,51,0,150,0,10,20,100,"キングメロンヘッドフォン","キンクメロンヘツトフオン","",19,15,15,10,16,10,10000000000017,1,10000000000100,1,0],
+	[4985,52,0,0,0,0,10,100,"ヒーロークロース","ヒイロオクロオス","",100000000000027,1,100000000000028,1,100000000000029,1,100000000000097,1,100000000000098,1,100000000000099,1,0],
+	[4986,66,191,0,0,1,10,100,"嵐の指輪","アラシノユヒワ","装備解除時、[アンリミット]を解除する",5,20,74,15,80,10,86,15,243,3,220,177,20000000005642,1,20000000005753,1,0],
+	[4987,64,192,0,0,1,10,200,"ケミカルレジスタントグローブ","ケミカルレシスタントクロオフ","",230,3,80,10,86,25,243,3,20000000005723,1,20000000005722,1,100000000006165,1,100000000006163,1,100000000006166,1,100000000006164,1,0],
+	[4988,64,192,0,0,1,10,200,"ペタルの尻尾(アルビノ)","ヘタルノシツホアルヒノ","",230,3,10,50,80,10,243,3,11484,100,11488,100,100000000006037,1,100000000006031,1,0],
+	[],
+	[],
+	[4991,64,192,0,0,1,10,200,"エレメンタルジュエル","エレメンタルシユエル","",233,3,89,10,243,3,19669,1000,30000000005669,1,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,0],
+	[4992,60,0,150,0,1,100,90,"セトの恩寵","セトノオンチヨウ","",19,15,194,1,12,10,30,40,37,40,272,40,47,40,40,40,170,40,177,40,273,40,357,40,350,40,100066,2,5000018,300,5000019,30,5000243,7,7000074,15,10000000000100031n,4,10000000000100036n,4,10000000000100038n,4,10000000000100039n,4,10000000000100171n,4,10000000000100176n,4,10000000000100178n,4,10000000000100179n,4,10000000010000046n,40,10000000010000045n,40,10000000010000048n,40,10000000010000049n,40,10000000010000356n,40,10000000010000355n,40,10000000010000358n,40,10000000010000359n,40,0],
+	[4993,100,0,0,0,0,0,0,0,0,"固定詠唱時間 - 70%",0],
+];
+
+/* --- usachoco 追加データ -------------------------- */
+ItemObjNew[4994] = [4994,50,0,10,0,1,50,100,"アウェイキングブルーム","アウエイキンクフルウム","超越段階が1以上の時、精錬値が10以上の時、追加で移動速度増加",19,10,79,20,77,20,243,13,100074,2,7000262,15,7000269,15,7000015,10,7000016,10,9000262,25,9000269,25,9000217,10,10000000000100013n,500,10000000000100014n,50,10000000010000220n,105,0];
+ItemObjNew[4995] = [4995,63,0,30,0,1,80,100,"トゥーサイドダイヤモンドブーツ","トウウサイトタイヤモントフウツ","超越段階が1以上の時、精錬値が10以上の時、物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する",194,1,19,15,79,5,77,5,243,10,100015,4,5000074,15,5000080,15,5000089,15,7000074,25,7000080,25,7000089,25,10000000000100009n,10,10000000010019901n,600000,0];
+ItemObjNew[4996] = [4996,100,0,0,0,0,0,0,0,0,"",217,30,80,30,89,30,0];
+ItemObjNew[4997] = [4997,51,0,2,0,10,10,100,"偽神のイビルアイ","キシンノイヒルアイ","",194,1,10000000000017,1,10000000000100,1,0];
+ItemObjNew[4998] = [4998,100,0,0,0,0,0,0,0,0,"",243,5,66,5,68,5,0];
+ItemObjNew[4999] = [4999,52,0,0,0,0,10,100,"コズミックコネクション","コスミツクコネクシヨン","",194,1,260,15,265,15,0];
+ItemObjNew[5000] = [5000,100,0,0,0,0,0,0,0,0,"",217,10,243,3,380,1,0];
+ItemObjNew[5002] = [5002,100,0,0,0,0,0,0,0,0,"",68,15,261,30,266,30,0];
+ItemObjNew[5003] = [5003,65,192,0,0,1,10,200,"星座の印章","セイサノインシヨウ","",194,1,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,5000000000000236,10,0];
+ItemObjNew[5004] = [5004,65,192,0,0,1,10,200,"星座の印章(力)","セイサノインシヨウチカラ","",194,1,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,43000000086,15,0];
+ItemObjNew[5005] = [5005,65,192,0,0,1,10,200,"星座の印章(体力)","セイサノインシヨウタイリヨク","",194,1,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,44000000018,300,0];
+ItemObjNew[5006] = [5006,65,192,0,0,1,10,200,"星座の印章(創造)","セイサノインシヨウソウソウ","",194,1,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,48000000010,50,0];
+ItemObjNew[5007] = [5007,65,192,0,0,1,10,200,"星座の印章(魔力)","セイサノインシヨウマリヨク","",194,1,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,46000000298,100,0];
+ItemObjNew[5008] = [5008,65,192,0,0,1,10,200,"星座の印章(聡明)","セイサノインシヨウソウメイ","",194,1,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,45000000019,50,0];
+ItemObjNew[5009] = [5009,65,192,0,0,1,10,200,"星座の印章(集中)","セイサノインシヨウシユウチユウ","",194,1,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,47000000074,15,0];
+ItemObjNew[5011] = [5011,100,0,0,0,0,0,0,0,0,"",293,100,298,100,10000000000017,1,10000000000100,1,0];	// 廃止レコード
+ItemObjNew[5013] = [5013,100,0,0,0,0,0,0,0,0,"",293,100,298,100,10000000000017,1,10000000000100,1,0];	// 廃止レコード
+ItemObjNew[5015] = [5015,100,0,0,0,0,0,0,0,0,"",293,100,298,100,10000000000017,1,10000000000100,1,0];	// 廃止レコード
+ItemObjNew[5017] = [5017,100,0,0,0,0,0,0,0,0,"",293,100,298,100,10000000000017,1,10000000000100,1,0];	// 廃止レコード
+ItemObjNew[5018] = [5018,18,175,170,4,1,85,200,"アドゥルテル・フィデス・ライフル","アトウルテルフイテスライフル","",400005839,7,28000005839,30,100080,10,0];
+ItemObjNew[5019] = [5019,8,176,150,4,1,150,200,"アドゥルテル・フィデス・メイス","アトウルテルフイテスメイス","",194,1,100,110,100089,5,0];
+ItemObjNew[5020] = [5020,12,172,120,4,1,80,200,"アドゥルテル・フィデス・スターダストブック","アトウルテルフイテススタアタストフツク","",194,1,100,140,100080,10,0];
+ItemObjNew[5021] = [5021,9,173,60,4,1,30,200,"アドゥルテル・フィデス・ソウルスティック","アトウルテルフイテススタアタストソウルステイツク","",194,1,100,180,100089,5,0];
+ItemObjNew[5022] = [5022,1,174,120,4,1,60,200,"アドゥルテル・フィデス・ダガー","アトウルテルフイテススタアタストタカア","",100,120,100080,10,0];
+ItemObjNew[5023] = [5023,9,177,150,4,1,40,200,"アドゥルテル・フィデス・フォックステイル","アトウルテルフイテスフオツクステイル","",194,1,100,180,100080,10,0];
+ItemObjNew[5024] = [5024,12,172,120,4,1,80,200,"ウィワートゥス・フィデス・スターダストブック","ウイワアトウスフイテススタアタストフツク","",194,1,100,140,100261,13,10000000000105951n,5,10000000000105955n,5,10000000000105959n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5025] = [5025,100,0,0,0,0,0,0,0,0,"",6181,25,6182,25,6183,25,6301,25,243,10,0];
+ItemObjNew[5026] = [5026,100,0,0,0,0,0,0,0,0,"",15,15,77,10,220,156,0];
+ItemObjNew[5027] = [5027,9,173,60,4,1,30,200,"ウィワートゥス・フィデス・ソウルスティック","ウイワアトウスフイテススタアタストソウルステイツク","",194,1,100,180,100266,10,10000000000105968n,5,10000000000105969n,5,10000000000105977n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5028] = [5028,100,0,0,0,0,0,0,0,0,"",6197,25,6198,25,6199,25,6200,25,6201,25,6202,25,243,10,0];
+ItemObjNew[5029] = [5029,100,0,0,0,0,0,0,0,0,"",15,15,77,10,220,156,0];
+ItemObjNew[5032] = [5032,64,192,0,0,1,10,200,"リングオブアルテミス","リンクオフアルテミス","",194,1,234,3,10,50,80,10,243,3,11497,100,100000000006051,1,100000000006047,1,0];
+ItemObjNew[5033] = [5033,60,77,80,0,1,40,220,"ウサギ柄のシャツ","ウサキカラノシヤツ","",16,25,243,7,6000343,10,6000347,10,6000340,10,8000343,10,8000347,10,8000340,10,0];
+ItemObjNew[5034] = [5034,13,167,140,2400004,3,40,220,"プレジションフィスト","プレシシヨンフイスト","",88,100,80,110,7006122,10,7006119,10,9006122,15,9006119,15,10000230,20,0];
+ItemObjNew[5035] = [5035,14,168,180,2400004,3,25,220,"プレジションリュート","プレシシヨンリユウト","",88,120,89,60,7006134,10,7006133,10,9006134,15,9006133,15,10000233,20,0];
+ItemObjNew[5036] = [5036,15,169,150,2400004,3,50,220,"プレジションホイップ","プレシシヨンホイツフ","",88,120,89,60,7006134,10,7006133,10,9006134,15,9006133,15,10000233,20,0];
+ItemObjNew[5037] = [5037,10,162,160,2400004,3,90,220,"プレジションボウ","プレシシヨンホウ","",88,170,77,40,80,110,7006046,10,7006043,10,9006046,15,9006043,15,10000234,20,0];
+ItemObjNew[5038] = [5038,9,173,60,2400004,3,30,220,"ソリッドワンド","ソリツトワント","",194,1,88,180,89,60,7006197,10,7006198,10,7006199,10,7006200,10,7006201,10,7006202,10,9006197,15,9006198,15,9006199,15,9006200,15,9006201,15,9006202,15,10000233,20,0];
+ItemObjNew[5039] = [5039,4,165,150,2400004,3,180,220,"ソリッドスピアー","ソリツトスピアア","",88,110,80,110,7006095,10,7006092,10,7006094,10,9006095,15,9006092,15,9006094,15,10000230,20,0];
+ItemObjNew[5040] = [5040,12,170,120,2400004,3,80,220,"ソリッドマニュアル","ソリツトマニユアル","",194,1,88,140,89,60,7006149,10,7006146,10,7006147,10,7006150,10,7006148,10,9006149,15,9006146,15,9006147,15,9006150,15,9006148,15,10000233,20,0];
+ItemObjNew[5041] = [5041,9,163,120,2400004,3,240,220,"ソリッドスタッフ","ソリツトスタツフ","",195,1,194,1,88,270,89,60,77,40,7006069,10,7006070,10,7006068,10,7006067,10,9006069,15,9006070,15,9006068,15,9006067,15,10000233,20,0];
+ItemObjNew[5042] = [5042,3,159,280,2400004,3,900,220,"ソリッドクレイモア","ソリツトクレイモア","",88,230,80,110,77,40,7006008,10,7006010,10,9006008,15,9006010,15,10000230,20,0];
+ItemObjNew[5043] = [5043,2,171,150,2400004,3,120,220,"ウィキッドブレード","ウイキツトフレエト","",88,130,80,110,7006163,10,7006164,10,9006163,15,9006164,15,10000230,20,0];
+ItemObjNew[5044] = [5044,1,166,120,2400004,3,60,220,"ウィキッドダガー","ウイキツトタカア","",88,120,89,60,7006107,10,7006105,10,9006107,15,9006105,15,10000233,20,0];
+ItemObjNew[5045] = [5045,12,172,120,2400004,3,80,220,"ウィキッドブック","ウイキツトフツク","",194,1,88,140,80,110,7006181,10,7006182,10,7006183,10,9006181,15,9006182,15,9006183,15,10000230,20,0];
+ItemObjNew[5046] = [5046,8,161,150,2400004,3,150,220,"ウィキッドクロス","ウイキツトクロス","",194,1,88,110,80,110,7006037,10,7006031,10,9006037,15,9006031,15,10000230,20,0];
+ItemObjNew[5047] = [5047,11,160,150,2400004,3,280,220,"ウィキッドカタール","ウイキツトカタアル","",88,250,80,110,77,40,7006022,10,7006014,10,9006022,15,9006014,15,10000230,20,0];
+ItemObjNew[5048] = [5048,7,164,320,2400004,3,400,220,"ウィキッドアックス","ウイキツトアツクス","",194,1,88,200,77,40,80,110,7006072,10,7006073,10,9006072,15,9006073,15,10000230,20,0];
+ItemObjNew[5049] = [5049,9,173,60,2400004,2,30,200,"フォーティファイドワンド","フオオテイフアイトワント","",194,1,88,180,89,60,7006197,10,7006198,10,7006199,10,7006200,10,7006201,10,7006202,10,9006197,15,9006198,15,9006199,15,9006200,15,9006201,15,9006202,15,10000233,20,0];
+ItemObjNew[5050] = [5050,12,172,120,2400004,2,80,200,"リラプスブック","リラフスフツク","",194,1,88,140,80,110,7006181,10,7006182,10,7006183,10,9006181,15,9006182,15,9006183,15,10000230,20,0];
+ItemObjNew[5051] = [5051,52,201,0,0,0,10,100,"りんりんニャンカーベル","リンリンニヤンカアヘル","[海の魂]Lv1習得時、[マグロシールド]の固定詠唱時間 - 1秒<br>[のどを鳴らす]の習得Lvが1上がる度に追加でMaxHP + 3%",194,1,91,10,199,919,199,917,0];
+ItemObjNew[5052] = [5052,9,177,150,4,1,40,200,"ウィワートゥス・フィデス・フォックステイル","ウイワアトウスフイテスフオツクステイル","",194,1,88,180,100261,13,10000000000105933n,5,10000000000105938n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5053] = [5053,100,0,0,0,0,0,0,0,0,"",6221,25,6222,25,6223,25,6303,25,243,10,0];
+ItemObjNew[5054] = [5054,100,0,0,0,0,0,0,0,0,"",15,15,10,50,220,156,0];
+ItemObjNew[5055] = [5055,18,175,170,4,1,85,200,"ウィワートゥス・フィデス・ライフル","ウイワアトウスフイテスライフル","",194,1,400005839,7,28000005839,30,100261,13,10000000000105839n,10,10000000000105825n,10,10000000010000015n,50,10000000010000066n,25,0];
+ItemObjNew[5056] = [5056,100,0,0,0,0,0,0,0,0,"",6216,25,6217,25,6296,25,243,40,0];
+ItemObjNew[5057] = [5057,100,0,0,0,0,0,0,0,0,"",15,15,77,50,220,156,0];
+ItemObjNew[5058] = [5058,17,175,70,1400004,2,35,200,"スクラップハンドガン","スクラツフハントカン","",80,110,7006216,10,7006218,10,9006216,15,9006218,15,10000234,20,0];
+ItemObjNew[5059] = [5059,18,175,170,1400004,2,85,200,"スクラップライフル","スクラツフライフル","",80,110,400005839,7,28000005839,30,7006216,10,7006217,10,9006216,15,9006217,15,10000234,20,0];
+ItemObjNew[5060] = [5060,19,175,180,1400004,2,300,200,"スクラップショットガン","スクラツフシヨツトカン","",80,110,100005838,7,25000005838,30,7006219,10,7006220,10,9006219,15,9006220,15,10000234,20,0];
+ItemObjNew[5061] = [5061,20,175,120,1400004,2,250,200,"スクラップガトリング","スクラツフカトリンク","",80,110,200005835,7,26000005835,30,7006219,10,7006218,10,9006219,15,9006218,15,10000234,20,0];
+ItemObjNew[5062] = [5062,21,175,210,1400004,2,140,200,"スクラップグレネード","スクラツフクレネエト","",80,110,600005834,7,30000005834,30,7006217,10,7006220,10,9006217,15,9006220,15,10000234,20,0];
+ItemObjNew[5063] = [5063,17,175,70,2400004,3,35,220,"プレジションハンドガン","フレシシヨンハントカン","",80,110,77,40,7006216,10,7006218,10,9006216,15,9006218,15,10000234,20,0];
+ItemObjNew[5064] = [5064,18,175,170,2400004,3,85,220,"プレジションライフル","フレシシヨンライフル","",80,110,77,40,400005839,7,28000005839,30,7006216,10,7006217,10,9006216,15,9006217,15,10000234,20,0];
+ItemObjNew[5065] = [5065,19,175,180,2400004,3,300,220,"プレジションショットガン","フレシシヨンシヨツトカン","",80,110,77,40,100005838,7,25000005838,30,7006219,10,7006220,10,9006219,15,9006220,15,10000234,20,0];
+ItemObjNew[5066] = [5066,20,175,120,2400004,3,250,220,"プレジションガトリング","フレシシヨンカトリンク","",80,110,77,40,200005835,7,26000005835,30,7006219,10,7006218,10,9006219,15,9006218,15,10000234,20,0];
+ItemObjNew[5067] = [5067,21,175,210,2400004,3,140,220,"プレジショングレネード","フレシシヨンクレネエト","",80,110,77,40,600005834,7,30000005834,30,7006217,10,7006220,10,9006217,15,9006220,15,10000234,20,0];
+ItemObjNew[5068] = [5068,9,177,150,2400004,3,40,220,"ウィキッドフォックステイル","ウイキツトフオツクステイル","",194,1,88,180,80,110,7006221,10,7006222,10,7006223,10,9006221,15,9006222,15,9006223,15,10000230,20,0];
+ItemObjNew[5069] = [5069,9,177,150,2400004,2,40,200,"リラプスフォックステイル","リラフスフオツクステイル","",194,1,88,180,80,110,7006221,10,7006222,10,7006223,10,9006221,15,9006222,15,9006223,15,10000230,20,0];
+ItemObjNew[5070] = [5070,999,171,150,3,1,120,220,"[廃止][★1] グレイシアソード","クレイシアソオト","",88,130,243,10,100080,6,100089,3,100261,7,100266,7,0], 
+ItemObjNew[5071] = [5071,999,51,150,3,1,180,220,"[廃止][★1] グレイシアスピア","クレイシアスヒア","",88,110,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5072] = [5072,999,164,180,3,1,180,220,"[廃止][★1] グレイシアアックス","クレイシアアツクス","",88,110,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5073] = [5073,999,77,60,3,1,30,220,"[廃止][★1] グレイシアワンド","クレイシアワント","",88,180,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5074] = [5074,999,160,150,3,1,280,220,"[廃止][★1] グレイシアカタール","クレイシアカタアル","",88,250,243,40,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5075] = [5075,999,166,120,3,1,60,220,"[廃止][★1] グレイシアナイフ","クレイシアナイフ","",88,120,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5076] = [5076,999,167,140,3,1,40,220,"[廃止][★1] グレイシアナックル","クレイシアナツクル","",88,100,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5077] = [5077,999,161,150,3,1,150,220,"[廃止][★1] グレイシアメイス","クレイシアメイス","",88,110,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5078] = [5078,999,76,160,3,1,90,220,"[廃止][★1] グレイシアボウ","クレイシアホウ","",88,170,243,40,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5079] = [5079,999,169,150,3,1,50,220,"[廃止][★1] グレイシアウィップ","クレイシアウイツフ","",88,120,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5080] = [5080,999,168,180,3,1,25,220,"[廃止][★1] グレイシアバイオリン","クレイシアハイオリン","",88,120,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5081] = [5081,999,95,120,3,1,80,220,"[廃止][★1] グレイシアブック","クレイシアフツク","",88,140,243,10,100080,6,100089,3,100261,7,100266,7,0],
+ItemObjNew[5082] = [5082,999,174,150,3,1,150,220,"[廃止][★1] グレイシア風魔手裏剣","クレイシアフウマシユリケン","",100,160,194,1,243,40,100080,6,100089,3,100261,7,100266,7,0];
+ItemObjNew[5083] = [5083,999,175,70,3,1,35,220,"[廃止][★1] グレイシアハンドガン","クレイシアハントカン","",243,40,100080,6,100089,3,100261,7,100266,7,0];
+ItemObjNew[5084] = [5084,999,176,150,3,1,120,220,"[廃止][★1] グレイシアベーシックソード","クレイシアヘエシツクソオト","",100,130,243,10,100080,6,100089,3,100261,7,100266,7,0];
+ItemObjNew[5085] = [5085,999,177,150,3,1,40,220,"[廃止][★1] グレイシアフォックステイル","クレイシアフオツクステイル","",194,1,100,180,243,10,100080,6,100089,3,100261,7,100266,7,0];
+ItemObjNew[5086] = [5086,64,192,0,0,1,10,200,"五行封神陣","コキヨウホウシンシン","",194,1,233,3,89,10,243,3,19977,500,30000000005977,1,100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006202,1,0];
+ItemObjNew[5087] = [5087,63,192,25,0,1,70,200,"剣禅一如","ケンセンイチニヨ","",19,15,194,1,79,5,77,5,243,10,100015,4,5000074,15,5000080,15,5000089,15,7000074,25,7000080,25,7000089,25,0];
+ItemObjNew[5088] = [5088,100,0,0,0,0,0,0,0,0,"",10,25,70,30,0];
+ItemObjNew[5090] = [5090,100,0,0,0,0,0,0,0,0,"",17,200,100,200,29,10,28,10,27,10,99,10,98,10,97,10,0];	// レッドピタヤ + ワンダーエッグ
+ItemObjNew[5091] = [5091,100,0,0,0,0,0,0,0,0,"",17,200,100,200,217,10,0];								// 「ミストレス + ワンダーエッグ」のセット効果でしたが ID:4236 にまとめたのでこのデータは未使用になりました 
+ItemObjNew[5092] = [5092,100,0,0,0,0,0,0,0,0,"",17,200,100,200,18,150,19,15,0];							// ジャイアントホーネット + ワンダーエッグ
+ItemObjNew[5094] = [5094,9,193,60,4,1,30,220,"魔女のホウキ","マシヨノホウキ","",194,1,88,180,243,10,7125,100,8234,100,100089,10,6005125,10,6006234,10,8005125,15,8006234,15,0];
+ItemObjNew[5095] = [5095,8,176,150,4,1,150,200,"ウィワートゥス・フィデス・メイス","ウイワアトウスフイテスメイス","",194,1,88,110,100266,10,10000000000100013n,1000,10000000000100014n,100,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5096] = [5096,100,0,0,0,0,0,0,0,0,"",6231,25,6232,25,6233,25,243,10,0];	// ウィワートゥス・フィデス・メイス + 豊穣
+ItemObjNew[5097] = [5097,100,0,0,0,0,0,0,0,0,"",15,15,77,10,220,156,0];
+ItemObjNew[5098] = [5098,1,174,120,4,1,60,200,"ウィワートゥス・フィデス・ダガー","ウイワアトウスフイテスタカア","",194,1,88,120,100261,13,10000000000105766n,5,10000000000105768n,5,10000000000105769n,20,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5099] = [5099,100,0,0,0,0,0,0,0,0,"",6227,25,6225,25,6226,25,6228,25,243,10,0];
+ItemObjNew[5100] = [5100,100,0,0,0,0,0,0,0,0,"",15,15,77,10,220,156,0];
+ItemObjNew[5101] = [5101,16,174,150,1400004,2,150,200,"スクラップ風魔手裏剣","スクラツフフウマシユリケン","",194,1,88,160,80,110,7006229,10,7006230,10,9006229,15,9006230,15,10000230,20,0];
+ItemObjNew[5102] = [5102,16,174,150,2400004,3,150,220,"プレジション風魔手裏剣","フレシシヨンフウマシユリケン","",194,1,88,160,80,110,77,40,7006229,10,7006230,10,9006229,15,9006230,15,10000230,20,0];
+ItemObjNew[5103] = [5103,1,176,120,2400004,3,60,220,"ソリッドエッジ","ソリツトエツシ","",88,120,80,110,7006235,10,7006236,10,9006235,15,9006236,15,10000230,20,0];
+ItemObjNew[5104] = [5104,9,176,60,2400004,3,30,220,"ソリッドロッド","ソリツトロツト","",194,1,88,180,89,60,7006231,10,7006232,10,9006231,15,9006232,15,10000233,20,0];
+ItemObjNew[5105] = [5105,1,176,120,2400004,2,60,200,"フォーティファイドエッジ","フオオテイフアイトエツシ","",88,120,80,110,7006235,10,7006236,10,9006235,15,9006236,15,10000230,20,0];
+ItemObjNew[5106] = [5106,9,176,60,2400004,2,30,200,"フォーティファイドロッド","フオオテイフアイトロツト","",194,1,88,180,89,60,7006231,10,7006232,10,9006231,15,9006232,15,10000233,20,0];
+ItemObjNew[5107] = [5107,999,160,150,4,1,280,200,"[廃止][★1] ウィワートゥス・フィデス・カタール","ウイワアトウス　フイテス　カタアル","",194,1,88,250,100261,13,105460,50,105475,50,105474,50,10000015,50,10000066,25,0],
+ItemObjNew[5108] = [5108,999,164,180,4,1,180,200,"[廃止][★1] ウィワートゥス・フィデス・アックス","ウイワアトウス　フイテス　アツクス","",194,1,88,110,100261,13,105541,15,105542,15,105543,15,10000015,15,10000066,10,0],
+ItemObjNew[5109] = [5109,999,171,150,4,1,120,200,"[廃止][★1] ウィワートゥス・フィデス・レイピア","ウイワアトウス　フイテス　レイヒア","",194,1,88,130,100261,13,105723,15,105736,15,105722,30,10000015,15,10000066,10,0],
+ItemObjNew[5110] = [5110,999,161,60,4,1,30,200,"[廃止][★1] ウィワートゥス・フィデス・ワンド","ウイワアトウス　フイテス　ワント","",194,1,88,180,100266,10,105478,15,105476,15,10000015,15,10000066,10,0],
+ItemObjNew[5111] = [5111,999,165,150,4,1,180,200,"[廃止][★1] ウィワートゥス・フィデス・ガーディアンスピア","ウイワアトウス　フイテス　カアテイアンスヒア","",194,1,88,110,100261,13,105585,10,105569,10,105570,30,10000015,15,10000066,10,0],
+ItemObjNew[5112] = [5112,999,168,180,4,1,25,200,"[廃止][★1] ウィワートゥス・フィデス・バイオリン","ウイワアトウス　フイテス　ハイオリン","",194,1,88,120,100261,13,105642,10,10000015,15,10000066,10,0],
+ItemObjNew[5113] = [5113,999,167,140,4,1,40,200,"[廃止][★1] ウィワートゥス・フィデス・ナックル","ウイワアトウス　フイテス　ナツクル","",194,1,88,100,100261,13,105622,30,105610,30,105612,30,10000015,15,10000066,10,0],
+ItemObjNew[5114] = [5114,999,170,120,4,1,80,200,"[廃止][★1] ウィワートゥス・フィデス・マジックブック","ウイワアトウス　フイテス　マシツクフツク","",194,1,88,140,100266,10,105666,10,105669,10,105662,10,105667,10,10000015,15,10000066,10,0],
+ItemObjNew[5115] = [5115,999,169,150,4,1,50,200,"[廃止][★1] ウィワートゥス・フィデス・チェインロープ","ウイワアトウス　フイテス　チエインロオフ","",194,1,88,120,100261,13,105642,10,10000015,15,10000066,10,0],
+ItemObjNew[5116] = [5116,999,166,160,4,1,90,200,"[廃止][★1] ウィワートゥス・フィデス・クロスボウ","ウイワアトウス　フイテス　クロスホウ","",194,1,88,170,100261,13,105608,30,10000015,50,10000066,25,0],
+ItemObjNew[5117] = [5117,999,162,160,4,1,90,200,"[廃止][★1] ウィワートゥス・フィデス・バリスタ","ウイワアトウス　フイテス　ハリスタ","",194,1,88,170,100261,13,105498,5,105497,5,10000015,50,10000066,25,0],
+ItemObjNew[5118] = [5118,999,163,120,4,1,240,200,"[廃止][★1] ウィワートゥス・フィデス・ツーハンドスタッフ","ウイワアトウス　フイテス　ツウハントスタツフ","",195,1,194,1,88,270,100266,10,105531,10,105527,10,105518,10,105520,30,105519,30,105528,30,10000015,50,10000066,25,0],
+ItemObjNew[5119] = [5119,999,159,200,4,1,2000,200,"[廃止][★1] ウィワートゥス・フィデス・ランス","ウイワアトウス　フイテス　ランス","",194,1,88,230,100261,13,105445,25,105440,25,10000015,50,10000066,25,0],
+ItemObjNew[5120] = [5120,999,172,120,4,1,80,200,"[廃止][★1] ウィワートゥス・フィデス・スターダストブック","ウイワアトウスフイテススタアタストフツク","",194,1,100,140,100261,13,105951,5,105955,5,105959,5,10000015,15,10000066,10,0];
+ItemObjNew[5121] = [5121,999,173,60,4,1,30,200,"[廃止][★1] ウィワートゥス・フィデス・ソウルスティック","ウイワアトウスフイテススタアタストソウルステイツク","",194,1,100,180,100266,10,105968,5,105969,5,105977,5,10000015,15,10000066,10,0];
+ItemObjNew[5122] = [5122,999,177,150,4,1,40,200,"[廃止][★1] ウィワートゥス・フィデス・フォックステイル","ウイワアトウスフイテスフオツクステイル","",194,1,100,180,100261,13,105933,5,105938,5,10000015,15,10000066,10,0];
+ItemObjNew[5123] = [5123,999,175,170,4,1,85,200,"[廃止][★1] ウィワートゥス・フィデス・ライフル","ウイワアトウスフイテスライフル","",194,1,400005839,7,28000005839,30,100261,13,105839,10,105825,10,10000015,50,10000066,25,0];
+ItemObjNew[5124] = [5124,999,176,150,4,1,150,200,"[廃止][★1] ウィワートゥス・フィデス・メイス","ウイワアトウスフイテスメイス","",194,1,100,110,100266,10,100013,1000,100014,100,10000015,15,10000066,10,0];
+ItemObjNew[5125] = [5125,999,174,120,4,1,60,200,"[廃止][★1] ウィワートゥス・フィデス・ダガー","ウイワアトウスフイテスタカア","",194,1,100,120,100261,13,105766,5,105768,5,105769,20,10000015,15,10000066,10,0];
+ItemObjNew[5126] = [5126,999,146,280,2474,1,340,185,"[廃止][★1] ガーディアンナイツクレイモア","カアテイアンナイツクレイモア","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,230,194,1,10000007005445,1,9019445,100,10000000005440,1,77,40,10000017,250,10000068,25,0];
+ItemObjNew[5127] = [5127,999,152,150,2474,1,180,185,"[廃止][★1] ガーディアンナイツスピア","カアテイアンナイツスヒア","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,110,194,1,7011579,100,20000009005579,1,30000000005585,1,10000017,150,10000068,10,0];
+ItemObjNew[5128] = [5128,999,151,180,2474,1,180,185,"[廃止][★1] ガーディアンナイツアックス","カアテイアンナイツアツクス","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,110,194,1,20000007005543,1,20000009005541,1,19811,3000,20000000005542,1,10000017,150,10000068,10,0];
+ItemObjNew[5129] = [5129,999,148,60,2474,1,30,185,"[廃止][★1] ロイヤルクレリックスタッフ","ロイヤルクレリツクスタツフ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,180,194,1,20000007005478,1,20000009005476,1,11483,100,11488,100,91,60,10000100,150,10000068,10,0];
+ItemObjNew[5130] = [5130,999,150,60,2474,1,30,185,"[廃止][★1] ロイヤルマジシャンワンド","ロイヤルマシシヤンワント","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,180,194,1,10000007005529,1,30000009005532,1,50000000005527,1,50000000005518,1,10000100,150,10000068,10,0];
+ItemObjNew[5131] = [5131,999,201,150,2474,1,40,185,"[廃止][★1] ロイヤルフォックステイル","ロイヤルフオツクステイル","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、追加で[かみつく]、[ひっかく]使用時、[うずくまる]Lv1発動",88,180,194,1,10000007005903,3,10000007005905,3,50000000005922,1,50000000005920,1,10000100,150,10000068,10,0];
+ItemObjNew[5132] = [5132,999,147,150,2474,1,280,185,"[廃止][★1] ロイヤルカタール","ロイヤルカタアル","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,250,194,1,10000007005474,1,9019474,200,77,40,20000000005474,1,10000017,250,10000068,25,0];
+ItemObjNew[5133] = [5133,999,153,120,2474,1,60,185,"[廃止][★1] ロイヤルマジシャンダガー","ロイヤルマシシヤンタカア","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,120,194,1,20000007005603,1,20000009005606,1,19797,30000,10000017,150,10000068,10,0];
+ItemObjNew[5134] = [5134,999,154,140,2474,1,40,185,"[廃止][★1] ロイヤルナックル","ロイヤルナツクル","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,100,194,1,10000007005610,1,10000009005622,1,11622,100,10000017,150,10000068,10,0];
+ItemObjNew[5135] = [5135,999,158,150,2474,1,150,185,"[廃止][★1] ガーディアンアルケミックスタッフ","カアテイアンアルケミツクスタツフ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,110,194,1,7019722,200,10000009005722,1,20000000005723,1,20000000005736,1,10000017,150,10000068,10,0];
+ItemObjNew[5136] = [5136,999,149,160,2474,1,90,185,"[廃止][★1] ガーディアンナイツアーチャーボウ","カアテイアンナイツアアチヤアホウ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、[トラップ研究]の習得Lvが1上がる度に追加で、Int + 3 , Dex + 3",199,500,88,170,194,1,10000007005505,4,77,40,100000000005498,1,100000000005497,1,10000017,250,10000068,25,0];
+ItemObjNew[5137] = [5137,999,156,150,2474,1,50,185,"[廃止][★1] ロイヤルウィップ","ロイヤルウイツフ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、追加で[振動残響]使用時、一定確率で3秒間、完全回避 + 100",88,120,194,1,10000007005639,1,30000000005641,1,10000100,150,10000068,10,0];
+ItemObjNew[5138] = [5138,999,155,180,2474,1,25,185,"[廃止][★1] ロイヤルチェロ","ロイヤルチエロ","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>精錬値が9以上の時、追加で[振動残響]使用時、一定確率で3秒間、完全回避 + 100",88,120,194,1,10000007005639,1,30000000005641,1,10000100,150,10000068,10,0];
+ItemObjNew[5139] = [5139,999,157,120,2474,1,80,185,"[廃止][★1] ロイヤルセージブック","ロイヤルセエシフツク","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)",88,140,194,1,30000007005666,1,30000007005667,1,30000009005662,1,30000000005669,1,10000100,150,10000068,10,0];
+ItemObjNew[5140] = [5140,999,201,360,3884,1,40,100,"[廃止][★1] 白の騎士団の猫じゃらし","シロノキシタンノネコシヤラシ","",88,160,194,1,74,20,100012,2,50000000005933,1,50000000005938,1,10000017,150,10000068,10,0];
+ItemObjNew[5141] = [5141,999,0,180,3884,1,300,100,"[廃止][★1] アンティークガトリングガン","アンテイイクカトリンクカン","",88,120,10000000005833,5,119836,8000,200005835,7,26000005835,30,77,40,20000000005828,1,20000000005835,1,10000017,250,10000068,25,0];
+ItemObjNew[5142] = [5142,999,157,120,4,1,80,100,"[廃止][★1] トートの書","トオトノシヨ","[ダブルアタック]Lv10使用可能",88,200,194,1,197,3,13051,-10000,13054,-10000,13056,-10000,105051,25,105054,25,105056,25,105132,25,221,233,10000100,150,10000068,10,0];
+ItemObjNew[5143] = [5143,999,152,110,3884,1,180,100,"[廃止][★1] 輝く白銀の槍","カカヤクハクキンノヤリ","魔法攻撃命中時、3秒間、[レイオブジェネシス]使用時、自分にオートスペル[ハイネスヒール]Lv3発動",88,180,194,1,20000000005583,1,100074,2,10000100,150,10000068,10,0];
+ItemObjNew[5144] = [5144,999,153,160,4,1,90,100,"[廃止][★1] トライアングルディザスター","トライアンクルテイサスタア","[トライアングルショット]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる 装備解除時、[アンリミット]を解除する（計算機未対応のため三次職支援設定を使って下さい）",88,170,10000000005608,1,100212,3,100215,3,77,40,10000017,250,10000068,25,0];
+ItemObjNew[5145] = [5145,999,143,100,3884,1,40,100,"[廃止][★1] 朽ちたガーデンナイフ","クチタカアテンナイフ","精錬値と同じLvの[セイフティウォール]使用可能",88,200,224,134,100012,2,50000000005968,1,50000000005969,1,50000000005977,1,10000100,150,10000068,10,0];
+ItemObjNew[5146] = [5146,999,150,60,3884,1,30,100,"[廃止][★1] 魔導師の記憶","マトウシノキオク","",88,180,194,1,10000000005519,1,10000000005520,1,100012,2,30000000005530,1,10000100,150,10000068,10,0];
+ItemObjNew[5147] = [5147,999,142,120,3884,1,80,100,"[廃止][★1] 六韜三略","リクトウサンリヤク","精錬値が1上がる度に追加で、一部のダメージを反射する効果で受けるダメージ - 10%(計算機未対応)<BR>※現状、ステータス+10の効果は、集中力向上の計算に『含まれない』扱いにしています。<BR>　実際のゲーム内で含まれているようでしたら、ご連絡ください。",88,140,194,1,217,10,100000000005951,1,100000000005955,1,100000000005959,1,10000017,150,10000068,10,0];
+ItemObjNew[5148] = [5148,999,0,0,1010,1,40,100,"[廃止][★1] ガーデンオブエデン","カアテンオフエテン","",4,5,5,5,270,10,295,20,7000270,15,7000298,30,9000073,-15,9000298,50,100074,2,10000019,100,0];
+ItemObjNew[5149] = [5149,999,0,5,1530,1,40,100,"[廃止][★1] 剛勇無双の紋帽子","コウユウムソウノモンホウシ","",2,5,5,5,12,10,25,5,86,10,100008,2,100074,2,7000025,10,7000086,20,9000025,10,9000086,20,100086,2,10000086,30,10000228,1,0];
+ItemObjNew[5150] = [5150,999,0,12,1980,1,50,100,"[廃止][★1] ファントムオブマスカレード","フアントムオフマスカレイト","",1,5,2,5,261,10,159,50,7000261,15,7000074,20,9000023,1,100261,2,10000159,50,0];
+ItemObjNew[5151] = [5151,999,0,10,2530,1,50,100,"[廃止][★1] ゲートオブネザーワールド","ケエトオフネサアワアルト","精錬値が7以上の時、追加で固定詠唱時間 - 50%<BR>精錬値が9以上の時、追加で固定詠唱時間 - 20%<br>精錬値が1上がる度に追加で攻撃命中時、SP + 1<br>精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で5秒間、スキル使用時の消費SP - 100%",19,10,2,5,4,5,262,10,269,10,7000262,15,7000269,15,9000012,15,0];
+ItemObjNew[5152] = [5152,999,0,40,3330,1,100,100,"[廃止][★1] 魔狩りの靴","マカリノクツ","",19,15,80,10,79,5,77,5,100015,4,7000080,15,9000080,15,9000023,1,100217,2,10000074,40,10000080,30,0];
+ItemObjNew[5153] = [5153,999,0,45,950,1,10,100,"[廃止][★1] カーリッツバーグ騎士団の鎧","カアリツツハアクキシタンノヨロイ","",57,1,100025,2,100012,1,10000086,25,10000194,1,0];
+ItemObjNew[5154] = [5154,999,0,10,1320,1,80,100,"[廃止][★1] グレータードラクルホーン","クレエタアトラクルホオン","物理攻撃命中時、一定確率で敵に与えたダメージの10%をHPとして吸収。<BR>「ラウドボイス」Lv1使用可能。<BR>精錬値が7以上の時、HPの吸収量+15%、HPの吸収確率が上昇。<BR>精錬値が9以上の時、HPの吸収量+15%、HPの吸収確率が上昇。",15,10,80,6,7000025,5,9000025,5,100015,2,10000080,40,0];
+ItemObjNew[5155] = [5155,999,0,40,1750,1,40,100,"[廃止][★1] 白の騎士団の鎧","シロノキシタンノヨロイ","精錬値が10の時、追加でインデュア状態になる",194,1,243,1,74,5,100074,2,100018,30,100019,3,10000086,25,10000152,100,0];
+ItemObjNew[5156] = [5156,999,0,0,2210,1,20,100,"[廃止][★1] パナギアの贈り物","ハナキアノオクリモノ","",194,1,3,5,4,5,91,10,151,50,7000074,20,7000091,10,9000091,20,10000102,20,100091,4,10000151,50,0];
+ItemObjNew[5157] = [5157,999,0,40,2780,1,40,100,"[廃止][★1] フェアリーオブエデン","フエアリイオフエテン","精錬値が8以上の時、追加で[エナジーコート]Lv1習得時、Def + 300 , Mdef + 15<BR>装備解除時、[エナジーコート]を解除する",199,58,79,5,77,5,243,5,100012,1,100089,2,6000381,1,6000217,10,8000220,132,100068,2,10000214,25,0];
+ItemObjNew[5158] = [5158,999,146,150,1974,1,180,100,"[廃止][★1] アルジャンブランコ","アルシヤンフランコ","",194,1,88,110,5445,30,105445,10,1000086,50,0];
+ItemObjNew[5159] = [5159,999,150,60,1974,1,30,100,"[廃止][★1] クリムゾンローズスティック","クリムソンロオスステイツク","精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 200",194,1,88,180,5527,30,105527,2,0];
+ItemObjNew[5160] = [5160,999,149,160,1974,1,90,100,"[廃止][★1] エイミングボウ","エイミンクホウ","",194,1,88,170,5497,30,77,40,105497,2,1000086,50,0];
+ItemObjNew[5161] = [5161,999,151,150,1974,1,150,100,"[廃止][★1] エンジンパイルバンカー","エンシンハイルハンカア","精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,110,5554,30,105554,5,0];
+ItemObjNew[5162] = [5162,999,147,150,1974,1,280,100,"[廃止][★1] リッパークロス","リツハアクロス","精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,250,5475,30,77,40,105474,25,0];
+ItemObjNew[5163] = [5163,999,148,120,1974,1,240,100,"[廃止][★1] 崇拝の杖","スウハイノツエ","精錬値が10の時、追加でジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",195,1,88,270,5478,30,77,40,105478,25,0];
+ItemObjNew[5164] = [5164,999,152,150,1974,1,180,100,"[廃止][★1] フォートレイジ","フオオトレイシ","",194,1,88,110,5569,30,105569,5,1000086,50,0];
+ItemObjNew[5165] = [5165,999,157,60,1974,1,30,100,"[廃止][★1] サイキックスピアロッド","サイキツクスヒアロツト","精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 200",194,1,88,180,5662,30,105662,5,0];
+ItemObjNew[5166] = [5166,999,155,180,1974,1,25,100,"[廃止][★1] ブラックサークル","フラツクサアクル","",194,1,88,120,5641,30,105641,5,10000221,200,0];
+ItemObjNew[5167] = [5167,999,156,150,1974,1,50,100,"[廃止][★1] ハートウィップ","ハアトウイツフ","",194,1,88,120,5641,30,105641,5,10000221,200,0];
+ItemObjNew[5168] = [5168,999,158,150,1974,1,150,100,"[廃止][★1] ジーンロッド","シインロツト","精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,110,5732,30,105732,5,0];
+ItemObjNew[5169] = [5169,999,153,160,1974,1,90,100,"[廃止][★1] ラピッドファイア","ラヒツトフアイア","",194,1,88,170,5608,30,77,40,105608,25,1000086,50,0];
+ItemObjNew[5170] = [5170,999,154,150,1974,1,150,100,"[廃止][★1] 光耀錘","コウヨウスイ","精錬値が10の時、追加で物理攻撃命中時、一定確率で敵に与えたダメージの15%をHPとして吸収",194,1,88,110,5623,30,105623,10,0];	
+// --- 2024/2/13 ラグ缶 ---
+ItemObjNew[5173] = [5173,51,0,0,0,1,10,100,"ウィズダムコアヘッドフォン","ウイスタムコアヘツトフオン","[知識の探求者]と共に装備時、追加で移動速度増加",194,1,10000000000017,1,10000000000100,1,0];
+ItemObjNew[5174] = [5174,100,0,0,0,0,0,0,0,0,"",243,5,0];
+ItemObjNew[5175] = [5175,64,192,0,0,1,10,200,"天涯極地の腕輪","テンカイキヨクチノウテワ","",194,1,230,3,80,10,86,25,243,3,50000000005958,1,50000000005959,1,100000000006181,1,100000000006182,1,100000000006183,1,100000000006301,1,0];
+// --- 2024ひな祭り
+ItemObjNew[5176] = [5176,1,174,120,4,1,60,200,"鳴り響く小太刀","ナリヒヒクコタチ","精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、闇属性魔法攻撃で与えるダメージ + 50%",88,120,194,1,243,10,8253,100,8254,100,8255,100,8256,100,8257,100,8258,100,100097,10,100098,10,100099,10,8006253,25,8006254,25,8006255,25,8006256,25,8006257,25,8006258,25,0];
+ItemObjNew[5177] = [5177,1,174,120,4,1,60,200,"音を失った小太刀","オトヲウシナツタコタチ","",88,120,100089,5,0];
+ItemObjNew[5178] = [5178,13,167,140,4,1,40,200,"邪悪を焼き払う拳","シヤアクヲヤキハラウコフシ","",88,100,194,1,243,10,100027,13,100028,13,100029,13,8006121,25,8006117,25,10000070,50,0];
+ItemObjNew[5179] = [5179,13,167,140,4,1,40,200,"穢された炎の拳","ケカサレタホノオノコフシ","",88,100,100080,10,0];
+ItemObjNew[5180] = [5180,8,161,150,4,1,150,200,"全てを破壊する槌","スヘテヲハカイスルツチ","",88,110,194,1,243,10,100027,13,100028,13,100029,13,8006037,25,8006031,25,10000070,50,0];
+ItemObjNew[5181] = [5181,8,161,150,4,1,150,200,"意思を失った槌","イシヲウシナツタツチ","",88,110,194,1,100080,10,0];	
+// --- 2024/3/12 ラグ缶 ---
+ItemObjNew[5183] = [5183,64,192,0,0,0,10,200,"決闘者のゴールドコイン","ケツトウシヤノコオルトコイン","",194,1,234,3,80,10,86,25,243,3,19836,40000,100000000006218,1,100000000006219,1,100000000006220,1,100000000006297,1,0];
+ItemObjNew[5184] = [5184,64,192,0,0,1,10,200,"エレクトロンブースター","エレクトロンフウスタア","スキル使用時、[魔導ギア燃料]を消費しない",194,1,230,3,10,50,80,10,243,3,100000000006237,1,100000000006238,1,100000000006294,1,100000000006076,1,0];	
+// --- 2024/04/09 生体アップデート ---
+ItemObjNew[5185] = [5185,52,192,0,0,0,10,200,"思念のオーラ","シネンノオオラ","",243,3,380,1,0];
+ItemObjNew[5186] = [5186,100,0,0,0,0,0,0,0,0,"",260,15,265,15,0];	
+// --- 2024/04/16 ラグ缶 + GHC ---
+ItemObjNew[5189] = [5189,63,0,12,0,1,40,100,"ツインヘッド・ドラゴンブーツ","ツインヘツトトラコンフウツ","[ウォータードラゴンブレス]の習得Lvが1上がる度に追加でMaxHP + 4% , MaxSP + 4% [ウォータードラゴンブレス]で与えるダメージ + 10%<br>[ファイアードラゴンブレス]の習得Lvが1上がる度に追加で遠距離物理攻撃で与えるダメージ + 4% [ファイアードラゴンブレス]で与えるダメージ + 10%<br>[ドラゴンハウリング]Lv5習得時、追加で移動速度増加",194,1,19,10,243,10,79,5,77,5,5000217,15,5000074,10,7000217,15,7000074,10,10000074,20,10005794,50,10005447,50,199,794,199,447,199,448,0];
+ItemObjNew[5190] = [5190,66,192,0,0,0,10,200,"オーバードライブランページ","オオハアトライフランヘエシ","",194,1,12,15,243,3,260,15,265,15,50000000000089,1,50000000000080,1,0];
+ItemObjNew[5191] = [5191,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する",15,15,16,15,0];	
+ItemObjNew[5192] = [5192,50,163,10,0,1,50,200,"時間のサークレット(アークメイジ)","シカンノサアクレツトアアクメイシ","装備解除時、[テレキネシスインテンス]を解除する",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011798,100,7019798,185000,9000217,10,100000009006064,1,100000009006069,1,100000009006056,1,100000009006070,1,100000009006063,1,100000009006068,1,100000009006060,1,100000009006067,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5193] = [5193,50,166,10,0,1,50,200,"時間のサークレット(アビスチェイサー)","シカンノサアクレツトアヒスチエイサア","精錬値が7以上の時、<br>[トライアングルショット]使用時、一定確率で20秒間、[アンリミット]Lv5状態になる<br>装備解除時、[アンリミット]を解除する",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,9000217,10,100000009006102,1,100000009006109,1,100000009006305,1,100000009006307,1,10000234,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5194] = [5194,50,167,10,0,1,50,200,"時間のサークレット(インクイジター)","シカンノサアクレツトインクイシタア","[グレース天地スーツ]、[ノブレスオブリージュ]と共に装備時、追加で[時間のサークレット(インクイジター)]の[潜龍昇天]の再使用待機時間減少効果が発動しない",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019621,25000,9000217,10,100000009006124,1,100000009006113,1,100000009006123,1,100000009006302,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5195] = [5195,50,165,10,0,1,50,200,"時間のサークレット(インペリアルガード)","シカンノサアクレツトインヘリアルカアト","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011587,100,7011580,100,9000217,10,100000009006095,1,100000009006092,1,100000009006094,1,100000009006309,1,100000009006310,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5196] = [5196,50,162,10,0,1,50,200,"時間のサークレット(ウィンドホーク)","シカンノサアクレツトウイントホオク","装備解除時、[アンリミット]を解除する",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011795,100,7019795,240000,9000217,10,100000009006051,1,100000009006047,1,10000234,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5197] = [5197,50,170,10,0,1,50,200,"時間のサークレット(エレメンタルマスター)","シカンノサアクレツトエレメンタルマスタア","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011671,100,7011672,100,7011673,100,7011674,100,9000217,10,100000009006149,1,100000009006146,1,100000009006147,1,100000009006150,1,100000009006148,1,100000009006157,1,100000009006290,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5198] = [5198,50,161,10,0,1,50,200,"時間のサークレット(カーディナル)","シカンノサアクレツトカアテイナル","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019484,1500,7011484,100,9000217,10,100000009006028,1,100000009006033,1,100000009006039,1,100000009006313,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5199] = [5199,50,160,10,0,1,50,200,"時間のサークレット(シャドウクロス)","シカンノサアクレツトシヤトウクロス","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019461,2000,7019797,60000,9000217,10,100000009006013,1,100000009006021,1,100000009006016,1,100000009006020,1,100000009006312,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5200] = [5200,50,177,10,0,1,50,200,"時間のサークレット(スピリットハンドラー)","シカンノサアクレツトスヒリツトハントラア","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011923,100,7011928,100,9000217,10,100000009006247,1,100000009006248,1,100000009006304,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5201] = [5201,50,173,10,0,1,50,200,"時間のサークレット(ソウルアセティック)","シカンノサアクレツトソウルアセテイツク","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011982,100,7011981,100,7011979,100,7011980,100,9000217,10,100000009006197,1,100000009006198,1,100000009006199,1,100000009006200,1,100000009006201,1,100000009006202,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5202] = [5202,50,159,10,0,1,50,200,"時間のサークレット(ドラゴンナイト)","シカンノサアクレツトトラコンナイト","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011453,100,7011457,100,9000217,10,100000009006008,1,100000009006010,1,100000009006009,1,100000009006295,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5203] = [5203,50,194,10,0,1,50,200,"時間のサークレット(トルバドゥール&トルヴェール)","シカンノサアクレツトトルハトウウルトルウエエル","精錬値が7以上の時、<br>[楽器の練習]習得時、[ダンスの練習]が習得Lvで発動<br>[ダンスの練習]習得時、[楽器の練習]が習得Lvで発動<br>[ブラギの詩]習得時、楽器・鞭装備時、[幸運のキス]が習得Lvで使用可能<br>[幸運のキス]習得時、楽器・鞭装備時、[ブラギの詩]が習得Lvで使用可能",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,9000217,10,100000009006132,1,100000009006131,1,10000234,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5204] = [5204,50,175,10,0,1,50,200,"時間のサークレット(ナイトウォッチ)","シカンノサアクレツトナイトウオツチ","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019836,80000,7019822,3000,9000217,10,100000009006216,1,100000009006217,1,100000009006220,1,100000009006296,1,10000234,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5205] = [5205,50,171,10,0,1,50,200,"時間のサークレット(バイオロ)","シカンノサアクレツトハイオロ","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019722,200,7019737,5000,9000217,10,100000009006165,1,100000009006163,1,100000009006166,1,100000009006164,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5206] = [5206,50,176,10,0,1,50,200,"時間のサークレット(ハイパーノービス)","シカンノサアクレツトハイハアノオヒス","[グレースアーティススーツ]と共に装備時、[時間のサークレット(ハイパーノービス)]の[天使さま助けて]の再使用待機時間減少効果が発動しない",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019946,240000,9000217,10,100000009006231,1,100000009006232,1,100000009006233,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5207] = [5207,50,164,10,0,1,50,200,"時間のサークレット(マイスター)","シカンノサアクレツトマイスタア","[ディメンションリンケージストーン]と共に装備時、[時間のサークレット(マイスター)]の[ニュートラルバリアー]の再使用待機時間減少効果が発動しない",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019566,5000,9000217,10,100000009006237,1,100000009006238,1,100000009006294,1,100000009006076,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5208] = [5208,50,172,10,0,1,50,200,"時間のサークレット(天帝)","シカンノサアクレツトテンテイ","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7005317,300,7005318,300,9000217,10,100000009006181,1,100000009006182,1,100000009006183,1,100000009006301,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5209] = [5209,50,174,10,0,1,50,200,"時間のサークレット(蜃気楼&不知火)","シカンノサアクレツトシンキロウシラヌイ","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019778,30000,9000217,10,100000009006227,1,100000009006225,1,100000009006226,1,100000009006228,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+// --- 2024/05/16 ラグ缶 ---
+ItemObjNew[5211] = [5211,52,0,0,0,0,10,100,"ネコミミケープ(青)","ネコミミケエフアオ","",194,1,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5212] = [5212,60,177,100,0,1,100,200,"がおがおタイガーパジャマ","カオカオタイカアハシヤマ","",243,7,100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,100260,7,7000381,1,7000012,10,9000194,1,9019936,45000,10000262,15,0];
+// --- 2024/06/04 サマーパッケ ---
+ItemObjNew[5213] = [5213,51,0,2,0,0,10,100,"インターディメンショナルリフト","インタアテイメンシヨナルリフト","",194,1,10000000000017,1,10000000000100,1,0];
+ItemObjNew[5214] = [5214,100,0,0,0,0,0,0,0,0,"",243,5,65,5,66,5,0];
+ItemObjNew[5216] = [5216,100,0,0,0,0,0,0,0,0,"",260,30,265,30,66,15,0];
+ItemObjNew[5218] = [5218,100,0,0,0,0,0,0,0,0,"",159,50,0];
+ItemObjNew[5219] = [5219,100,0,0,0,0,0,0,0,0,"",159,50,0];
+ItemObjNew[5220] = [5220,52,0,0,0,0,10,100,"クイーンオブカラミティ","クイインオフカラミテイ","",194,1,260,15,265,15,0];
+ItemObjNew[5221] = [5221,100,0,0,0,0,0,0,0,0,"",243,3,380,1,0];	// クイーンオブカラミティ + 厄災 セット効果
+ItemObjNew[5223] = [5223,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",217,30,80,30,89,30,0];
+ItemObjNew[5224] = [5224,100,0,0,0,0,0,0,0,0,"追加で物理・魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 10%",0];	// ガーディアンオブアビス + 極限の魔力
+ItemObjNew[5225] = [5225,100,0,0,0,0,0,0,0,0,"追加で物理・魔法攻撃命中時、一定確率で自分に発生している[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]の再使用待機時間を解除する",0]; // ガーディアンオブアビス + 悠遠なる天上の都
+// --- 2024/06/18 ラグ缶 ---
+ItemObjNew[5226] = [5226,61,0,60,0,0,30,100,"グラキエースアラネア","クラキエエスアラネア","精錬値が5以上の時、追加で移動速度増加<BR>精錬値が7以上の時、固定詠唱時間-70%",194,1,77,40,79,40,243,35,100015,3,100016,3,0];
+ItemObjNew[5227] = [5227,60,177,100,0,1,100,200,"ふかふかフォーンローブ","フカフカフオオンロオフ","",243,7,100000000006247,1,100000000006248,1,100000000006304,1,100265,7,7000012,10,7000381,1,9000194,1,9019923,2500,9019928,2500,10000269,15,0];
+ItemObjNew[5229] = [5229,61,0,95,0,0,120,100,"プロンテラ軍の盾","フロンテラクンノタテ","精錬値が7以上の時、追加で一部の回復アイテムによるHP回復量 + 15%",15,15,16,15,243,35,5000015,15,5000016,15,7000092,15,8000079,20,9000079,20,0];	
+// --- 2024/07/16 ラグ缶 ---
+ItemObjNew[5231] = [5231,60,162,100,0,1,100,200,"リュカントロポス","リユカントロホス","",243,7,100000000006051,1,100000000006047,1,100260,7,7000012,10,7000077,5,7000079,5,9000194,1,9019498,200,10000262,15,0];
+ItemObjNew[5232] = [5232,61,152,170,0,0,400,100,"メサルティム","メサルティム","精錬値が10の時、追加でインデュア状態になる",194,1,19,15,79,40,77,40,100015,3,100016,3,5000068,25,7000065,15,0];	
+// --- 2024/08/06 ブートキャンプ ---
+ItemObjNew[5233] = [5233,62,0,50,0,0,40,100,"ディスカーディドケープ","テイスカアテイトケエフ","物理・魔法攻撃時、[廃棄実験体遊技場ルドゥス4階]に出現するモンスターに与えるダメージ + 30%<BR>[廃棄実験体遊技場ルドゥス4階]に出現するモンスターから受けるダメージ - 60%",194,1,19,5,63,50,68,50,0];
+// --- 2024/08/13 ---
+ItemObjNew[5234] = [5234,52,0,0,0,0,10,100,"ブックオブディストラクション","フツクオフテイストラクシヨン","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5235] = [5235,60,163,100,0,1,100,200,"スペキュレーション","スヘキユレエシヨン","",243,7,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,100265,7,7000012,10,7000077,5,7000079,5,9000194,1,9011527,100,10000269,15,0];
+ItemObjNew[5236] = [5236,60,161,100,0,1,100,200,"着ぐるみペタル(アルビノ)","キクルミヘタルアルヒノ","",243,7,100000000006037,1,100000000006031,1,100260,7,7000012,10,7000077,5,7000079,5,9000194,1,10000009005741,2,10000009005742,2,10000262,15,0];
+// --- 2024/08/28 ---
+ItemObjNew[5237] = [5237,2,165,150, 2500004,1,120,220,"モカダスサスィア","モカタスサスイア","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,130,243,10,66,5,100089,10,7006096,25,7006093,25,7006311,25,10000233,20,0];
+ItemObjNew[5238] = [5238,1,166,120, 2500004,1,60,220,"モカダスタシリパティ","モカタスタシリハテイ","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,120,243,10,66,5,100080,13,7006100,25,7006101,25,7006106,25,7006305,25,7006306,25,10000230,20,0];
+ItemObjNew[5239] = [5239,5,159,200, 2500004,1,350,220,"モカダスファンジラ","モカタスフアンシラ","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,230,243,45,77,40,66,15,100080,13,7006008,25,7006010,25,7006295,25,10000230,20,0];
+ItemObjNew[5240] = [5240,6,164,180, 2500004,1,180,220,"モカダスタバル","モカタスタハル","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,110,243,10,66,5,100080,13,7006237,25,7006238,25,7006294,25,7006076,25,10000230,20,0];
+ItemObjNew[5241] = [5241,9,163,120, 2500004,1,240,220,"モカダスゼドガル","モカタスセトカル","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",195,1,194,1,88,270,243,45,77,40,66,15,100089,10,7006059,25,7006057,25,7006053,25,7006066,25,10000233,20,0];
+ItemObjNew[5242] = [5242,9,173,60,  2500004,1,30,220,"モカダスグロス","モカタスクロス","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,180,243,10,66,5,100089,10,7006195,25,7006196,25,7006202,25,10000233,20,0];
+ItemObjNew[5243] = [5243,9,177,150, 2500004,1,40,220,"モカダスチャメン","モカタスチヤメン","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,180,243,10,66,5,100089,10,7006247,25,7006248,25,7006304,25,10000233,20,0];
+ItemObjNew[5244] = [5244,9,161,60,  2500004,1,30,220,"モカダスバル","モカタスハル","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,180,243,10,66,5,100089,10,7006028,25,7006033,25,7006039,25,7006313,25,10000233,20,0];
+ItemObjNew[5245] = [5245,11,160,150,2500004,1,280,220,"モカダスデスト","モカタステスト","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,250,243,45,77,40,66,15,100080,13,7006022,25,7006014,25,7006020,25,10000230,20,0];
+ItemObjNew[5246] = [5246,1,174,120, 2500004,1,60,220,"モカダスカンザル","モカタスカンサル","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,120,243,10,66,5,100080,13,7006263,25,7006264,25,7006265,25,7006266,25,10000230,20,0];
+ItemObjNew[5247] = [5247,1,174,120, 2500004,1,60,220,"モカダスナザル","モカタスナサル","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,120,243,10,66,5,100080,13,7006227,25,7006225,25,7006226,25,7006228,25,10000230,20,0];
+ItemObjNew[5248] = [5248,13,167,140,2500004,1,40,220,"モカダスメスィト","モカタスメスイト","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,100,243,10,66,5,100080,13,7006120,25,7006118,25,10000230,20,0];
+ItemObjNew[5249] = [5249,8,176,150, 2500004,1,150,220,"モカダスエイサ","モカタスエイサ","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,110,243,10,66,5,100089,10,7006231,25,7006232,25,7006233,25,10000233,20,0];
+ItemObjNew[5250] = [5250,8,171,150, 2500004,1,150,220,"モカダスダワブラント","モカタスタワフラント","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,110,243,10,66,5,100080,13,7006239,25,7006314,25,7006315,25,10000230,20,0];
+ItemObjNew[5251] = [5251,10,162,160,2500004,1,90,220,"モカダスカホ","モカタスカホ","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,170,243,45,77,40,66,15,100080,13,7006051,25,7006047,25,10000234,20,0];
+ItemObjNew[5252] = [5252,15,169,150,2500004,1,50,220,"モカダスシャラク","モカタスシヤラク","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,120,243,10,66,5,100080,13,7006132,25,7006131,25,10000234,20,0];
+ItemObjNew[5253] = [5253,14,168,180,2500004,1,25,220,"モカダスサズ","モカタスサス","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,120,243,10,66,5,100080,13,7006132,25,7006131,25,10000234,20,0];
+ItemObjNew[5254] = [5254,12,172,120,2500004,1,80,220,"モカダスカグァズ","モカタスカクアス","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,140,243,10,66,5,100080,13,7006175,25,7006176,25,7006177,25,7006178,25,7006179,25,7006180,25,7006184,25,7006299,25,7006300,25,10000230,20,0];
+ItemObjNew[5255] = [5255,12,170,120,2500004,1,80,220,"モカダスキテブ","モカタスキテフ","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",194,1,88,140,243,10,66,5,100089,10,7006149,25,7006146,25,7006147,25,7006150,25,7006148,25,7006157,25,7006290,25,10000233,20,0];
+ItemObjNew[5256] = [5256,18,175,170,2500004,1,85,220,"モカダスタパン","モカタスタハン","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",243,45,77,40,66,15,100080,13,7006216,25,7006217,25,7006296,25,10000234,20,0];
+ItemObjNew[5257] = [5257,19,175,180,2500004,1,300,220,"モカダスサカ","モカタスサカ","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",243,45,77,40,66,15,100080,13,7006219,25,7006220,25,7006297,25,10000234,20,0];
+ItemObjNew[5258] = [5258,20,175,120,2500004,1,250,220,"モカダステリン","モカタステリン","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",243,45,77,40,66,15,100080,13,7006219,25,7006218,25,7006297,25,10000234,20,0];
+ItemObjNew[5259] = [5259,21,175,210,2500004,1,140,220,"モカダスナレンザク","モカタスナレンサク","精錬値が9以上の時、追加で物理攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",243,45,77,40,66,15,100080,13,7006217,25,7006220,25,7006297,25,10000234,20,0];	
+//
+ItemObjNew[5260] = [5260,3,159,280,2600004,4,340,220,"フラッシュクロウソード","フラツシユクロウソオト","",88,230,80,60,77,40,7000080,25,9000080,25,10005445,250,0];
+ItemObjNew[5261] = [5261,2,171,150,2600004,2,120,220,"フラッシュセイフティセイバー","フラツシユセイフテイセイハア","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<br>[フラッシュセイフティセイバー]の精錬値が7以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇<br>[フラッシュセイフティセイバー]の精錬値が9以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇",88,130,80,110,10000015,50,0];
+ItemObjNew[5262] = [5262,4,165,150,2600004,2,180,220,"フラッシュブロッキングスピア","フラツシユフロツキンクスヒア","[キリエエレイソン]Lv10使用可能",88,110,80,110,7007098,100,9000018,300,10000015,50,0];
+ItemObjNew[5263] = [5263,7,164,320,2600004,4,400,220,"フラッシュソーアックス","フラツシユソオアツクス","",194,1,88,200,80,60,77,40,7000080,25,9000080,25,10005541,150,0];
+ItemObjNew[5264] = [5264,9,163,120,2600004,4,240,220,"フラッシュディテクトスタッフ","フラツシユテイテクトスタツフ","精錬値が10の時、追加で魔法攻撃命中時、一定確率で10秒間、地属性魔法攻撃で与えるダメージ + 50%",195,1,194,1,88,270,89,60,77,40,9531,4000,7005531,50,9005531,50,0];
+ItemObjNew[5265] = [5265,9,173,60,2600004,2,30,220,"フラッシュウェルディングワンド","フラツシユウエルテインクワント","精錬値が10の時、追加で魔法攻撃でモンスターを倒した時、HP + 500 , SP + 50",194,1,88,180,89,60,7000343,25,9000343,25,0];
+ItemObjNew[5266] = [5266,9,177,150,2600004,2,40,220,"フラッシュセイフティフォックステイル","フラツシユセイフテイフオツクステイル","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<br>精錬値が7以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇<br>精錬値が9以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇",194,1,88,180,80,110,10000015,50,0];
+ItemObjNew[5267] = [5267,11,160,150,2600004,4,280,220,"フラッシュナットブレイカー","フラツシユナツトフレイカア","",88,250,80,60,77,40,7000080,25,9000080,25,10005474,500,0];
+ItemObjNew[5268] = [5268,1,170,120,2600004,2,60,220,"フラッシュ金属探知機Mk47","フラツシユキンソクタンチキエムケイヨンナナ","モンスターを倒した時、一定確率で鉱石系アイテムをドロップする",88,120,89,60,11674,100,7005666,100,9000342,50,10000214,50,0];
+ItemObjNew[5269] = [5269,1,166,120,2600004,2,60,220,"フラッシュ宝石探知機Mk47","フラツシユホウセキタンチキエムケイヨンナナ","モンスターを倒した時、一定確率で宝石系アイテムをドロップする<br>精錬値が7以上の時、追加で物理攻撃命中時、一定確率で敵を中心にオートスペル[アースストレイン]Lv4発動<br>精錬値が9以上の時、追加でオートスペル[アースストレイン]の発動率が上昇",88,120,89,60,10005531,100,0];
+ItemObjNew[5270] = [5270,13,167,140,2600004,2,40,220,"フラッシュセイフティナックル","フラツシユセイフテイナツクル","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<br>精錬値が7以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇<br>精錬値が9以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇",88,100,80,110,10000015,50,0];
+ItemObjNew[5271] = [5271,8,161,150,2600004,2,150,220,"フラッシュラヴァーハンマー","フラツシユラウアアハンマア","精錬値が9以上の時、追加で[パワースイング]使用時、一定確率で敵を中心にオートスペル[マグマイラプション]Lv5発動",194,1,88,110,80,110,220,186,10000007005543,1,10000210,20,0];
+ItemObjNew[5272] = [5272,10,162,160,2600004,4,90,220,"フラッシュボルトシューター","フラツシユホルトシユウタア","",88,170,80,60,77,40,7000080,25,9000080,25,10005497,50,0];
+ItemObjNew[5273] = [5273,15,169,150,2600004,2,50,220,"フラッシュセイフティウィップ","フラツシユセイフテイウイツフ","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<br>精錬値が7以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇<br>精錬値が9以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇",88,120,80,110,10000015,50,0];
+ItemObjNew[5274] = [5274,14,168,180,2600004,2,25,220,"フラッシュセイフティリュート","フラツシユセイフテイリユウト","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<br>精錬値が7以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇<br>精錬値が9以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇",88,120,80,110,10000015,50,0];
+ItemObjNew[5275] = [5275,12,172,120,2600004,2,80,220,"フラッシュセイフティマニュアル","フラツシユセイフテイマニユアル","物理攻撃命中時、一定確率で10秒間、[キリエエレイソン]Lv10状態になる<br>精錬値が7以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇<br>精錬値が9以上の時、追加で[キリエエレイソン]Lv10状態になる確率が上昇",194,1,88,140,80,110,10000015,50,0];
+ItemObjNew[5276] = [5276,16,174,150,2600004,4,150,220,"フラッシュグラインダー風魔手裏剣","フラツシユクラインタアフウマシユリケン","",194,1,88,160,80,60,77,40,7000080,25,9000080,25,10005770,50,0];
+ItemObjNew[5277] = [5277,17,175,70,2600004,4,35,220,"フラッシュボルトリボルバー","フラツシユホルトリホルハア","",80,60,77,40,7000080,25,9000080,25,10005830,50,0];
+// --- 2024/09/17 ---
+ItemObjNew[5278] = [5278,60,173,100,0,1,100,200,"ブーゲンビリア","フウケンヒリア","",243,7,100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006202,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9019977,500,10000269,15,0];
+ItemObjNew[5280] = [5280,64,192,0,0,1,10,200,"パワーマシンアーム","ハワアマシンアアム","",230,3,80,10,86,25,243,3,20000000005541,1,20000000005542,1,20000000005543,1,100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,0];	
+// --- 2024/09/24 ---
+ItemObjNew[5290] = [5290,60,0,150,0,1,120,240,"グレイシアアーマー","クレイシアアアマア","",243,7,100261,4,100266,4,10000000000000079n,5,10000000000000077n,5,10000000000100261n,3,10000000000100266n,3,0];
+ItemObjNew[5291] = [5291,100,0,0,0,0,0,0,0,0,"",12,10,18,300,19,30,0];
+ItemObjNew[5292] = [5292,62,0,60,0,1,100,240,"グレイシアマント","クレイシアマント","",194,1,243,5,100015,2,100016,2,100217,1,10000000000000079n,5,10000000000000077n,5,10000000000100262n,2,10000000000100269n,2,0];
+ItemObjNew[5293] = [5293,100,0,0,0,0,0,0,0,0,"",12,20,74,25,0];
+ItemObjNew[5294] = [5294,63,0,20,0,1,60,240,"グレイシアブーツ","クレイシアフウツ","",194,1,243,10,100015,4,100080,4,100089,4,10000000000000079n,5,10000000000000077n,5,10000000000100217n,3,10000000000100080n,3,10000000000100089n,3,0];
+ItemObjNew[5295] = [5295,100,0,0,0,0,0,0,0,0,"",74,40,0];
+// --- 2024/10/15 --- 
+ItemObjNew[5323] = [5323,60,160,100,0,1,100,200,"ヘイトレッドダークネス","ヘイトレツトタアクネス","",243,7,100000000006013,1,100000000006021,1,100000000006016,1,100000000006020,1,100000000006312,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,30000009005469,1,10000262,15,0];
+ItemObjNew[5324] = [5324,60,170,100,0,1,100,200,"ティルナノーグ","テイルナノオク","",243,7,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9011662,100,10000269,15,0];
+// --- 2024/10/30 ---
+ItemObjNew[5325] = [5325,3,159,280,4,1,340,200,"ポエニテンティア・エンシス","ホエニテンテイアエンシス","",88,230,194,1,100261,13,10000000000105445n,25,10000000000105440n,25,10000000010000015n,50,10000000010000066n,25,0];
+ItemObjNew[5326] = [5326,100,0,0,0,0,0,0,0,0,"",243,40,6008,25,6012,25,0];
+ItemObjNew[5327] = [5327,9,163,120,4,1,240,200,"ポエニテンティア・テルメス","ホエニテンテイアテルメス","",195,1,88,270,194,1,100266,10,10000000000105531n,10,10000000000105527n,10,10000000000105518n,10,10000000000105520n,30,10000000000105519n,30,10000000000105528n,30,10000000010000015n,50,10000000010000066n,25,0];
+ItemObjNew[5328] = [5328,100,0,0,0,0,0,0,0,0,"",243,40,6059,25,6057,25,6053,25,6066,25,0];
+ItemObjNew[5329] = [5329,2,165,150,4,1,120,200,"ポエニテンティア・グラディウス","ホエニテンテイアクラテイウス","",88,130,194,1,100266,10,10000000000105583n,15,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5330] = [5330,100,0,0,0,0,0,0,0,0,"",243,10,6096,25,6093,25,6311,25,0];
+ItemObjNew[5331] = [5331,2,166,150,4,1,120,200,"ポエニテンティア・リグラ","ホエニテンテイアリクラ","",88,130,194,1,100266,10,10000000000105527n,10,10000000000105518n,10,10000000000105528n,30,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5332] = [5332,100,0,0,0,0,0,0,0,0,"",243,10,6103,25,6107,25,6105,25,6308,25,0];
+ItemObjNew[5333] = [5333,2,176,150,4,1,120,200,"ポエニテンティア・オービス","ホエニテンテイアオオヒス","",88,130,194,1,100261,13,10000000000100013n,1000,10000000000100014n,100,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5334] = [5334,100,0,0,0,0,0,0,0,0,"",243,10,6267,25,6268,25,0];
+ItemObjNew[5335] = [5335,1,160,120,4,1,60,200,"ポエニテンティア・ミュークロウ","ホエニテンテイアミユウクロウ","",88,120,194,1,100261,13,10000000000105460n,5,10000000000105469n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5336] = [5336,100,0,0,0,0,0,0,0,0,"",243,10,6013,25,6021,25,6016,25,6020,25,6312,25,0];
+ItemObjNew[5337] = [5337,1,162,120,4,1,60,200,"ポエニテンティア・ディラセロ","ホエニテンテイアテイラセロ","",88,120,194,1,100261,13,10000000000105505n,120,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5338] = [5338,100,0,0,0,0,0,0,0,0,"",243,10,6052,25,6050,25,6049,25,6048,25,0];
+ItemObjNew[5339] = [5339,1,174,120,4,1,60,200,"ポエニテンティア・ヤナ","ホエニテンテイアヤナ","",88,120,194,1,100266,10,10000000000105409n,30,10000000000105412n,30,10000000000105413n,30,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5340] = [5340,100,0,0,0,0,0,0,0,0,"",243,10,6253,25,6254,25,6255,25,6256,25,6257,25,6258,25,0];
+ItemObjNew[5341] = [5341,12,170,120,4,1,80,200,"ポエニテンティア・コーデックス","ホエニテンテイアコオテツクス","射程距離 3",88,140,194,1,100266,10,10000000000105051n,30,10000000000105054n,30,10000000000105056n,30,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5342] = [5342,100,0,0,0,0,0,0,0,0,"",243,10,6149,25,6146,25,6147,25,6150,25,6148,25,6157,25,6290,25,0];
+ItemObjNew[5343] = [5343,12,161,120,4,1,80,200,"ポエニテンティア・リベル","ホエニテンテイアリヘル","",88,140,194,1,100261,13,10000000000105741n,60,10000000000105742n,60,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5344] = [5344,100,0,0,0,0,0,0,0,0,"",243,10,6037,25,6031,25,0];
+ItemObjNew[5345] = [5345,12,172,120,4,1,80,200,"ポエニテンティア・ラディウス","ホエニテンテイアラテイウス","",88,140,194,1,100261,13,10000000000105951n,5,10000000000105955n,5,10000000000105959n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5346] = [5346,100,0,0,0,0,0,0,0,0,"",243,10,6175,25,6176,25,6177,25,6178,25,6179,25,6180,25,6184,25,6299,25,6300,25,0];
+ItemObjNew[5347] = [5347,13,167,140,4,1,40,200,"ポエニテンティア・カエストス","ホエニテンテイアカエストス","",88,100,194,1,100261,13,10000000000105622n,30,10000000000105610n,30,10000000000105612n,30,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5348] = [5348,100,0,0,0,0,0,0,0,0,"",243,10,6121,25,6117,25,6122,25,6119,25,6120,25,6118,25,0];
+ItemObjNew[5349] = [5349,14,168,180,4,1,25,200,"ポエニテンティア・コーダ","ホエニテンテイアコオタ","",88,120,194,1,100266,10,10000000000105641n,10,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5350] = [5350,100,0,0,0,0,0,0,0,0,"",243,10,6134,25,6133,25,6298,25,0];
+ItemObjNew[5351] = [5351,15,169,150,4,1,50,200,"ポエニテンティア・フラジャラム","ホエニテンテイアフラシヤラム","",88,120,194,1,100266,10,10000000000105641n,10,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5352] = [5352,100,0,0,0,0,0,0,0,0,"",243,10,6134,25,6133,25,6298,25,0];
+ItemObjNew[5353] = [5353,6,164,180,4,1,180,200,"ポエニテンティア・クラーヴァ","ホエニテンテイアクラアウア","",88,110,194,1,100261,13,10000000000105554n,10,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5354] = [5354,100,0,0,0,0,0,0,0,0,"",243,10,6237,25,6238,25,6294,25,6076,25,0];
+ItemObjNew[5355] = [5355,8,171,150,4,1,150,200,"ポエニテンティア・ペンドゥルス","ホエニテンテイアヘントウルス","",88,110,194,1,100261,13,10000000000105723n,15,10000000000105736n,15,10000000000105722n,30,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5356] = [5356,100,0,0,0,0,0,0,0,0,"",243,10,6240,25,0];
+ItemObjNew[5357] = [5357,9,173,60,4,1,30,200,"ポエニテンティア・ラムス","ホエニテンテイアラムス","",88,180,194,1,100266,10,10000000000105968n,5,10000000000105969n,5,10000000000105977n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5358] = [5358,100,0,0,0,0,0,0,0,0,"",243,10,6195,25,6196,25,6202,25,0];
+ItemObjNew[5359] = [5359,9,177,150,4,1,40,200,"ポエニテンティア・プランタ","ホエニテンテイアフランタ","",88,180,194,1,100266,10,10000000000105922n,5,10000000000105920n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5360] = [5360,100,0,0,0,0,0,0,0,0,"",243,10,6247,25,6248,25,6304,25,0];
+ItemObjNew[5361] = [5361,20,175,120,4,1,250,200,"ポエニテンティア・ベロチ","ホエニテンテイアヘロチ","",194,1,200005835,7,26000005835,30,100261,13,10000000000105828n,15,10000000000105835n,15,10000000010000015n,50,10000000010000066n,25,0];
+ItemObjNew[5362] = [5362,100,0,0,0,0,0,0,0,0,"",243,40,6219,25,6218,25,6297,25,0];	
+// --- 2024/11/12 ---
+ItemObjNew[5363] = [5363,60,167,100,0,1,100,200,"レディアントピュリファイ","レテイアントヒユリフアイ","",243,7,100000000006113,1,100000000006123,1,100000000006124,1,100000000006302,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,9011622,100,10000262,15,0];
+ItemObjNew[5364] = [5364,60,164,100,0,1,100,200,"ワールドオール","ワアルトオオル","精錬値が9以上の時、追加でスキル使用時、[魔導ギア燃料]を消費しない",243,7,100000000006237,1,100000000006238,1,100000000006294,1,100000000006076,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,10000262,15,0];
+// --- 2024/11/27 ---
+ItemObjNew[5367] = [5367,51,0,0,0,0,10,100,"パーマフロストオブリビオン","ハアマフロストオフリヒオン","",194,1,10000000000017,1,10000000000100,1,0]; 
+ItemObjNew[5368] = [5368,52,0,0,0,0,10,100,"アトクウェ・ポエニテンティア","アトクウエホエニテンテイア","",194,1,260,15,265,15,0];
+ItemObjNew[5369] = [5369,100,0,0,0,0,0,0,0,0,"",243,3,380,1,0];
+ItemObjNew[5371] = [5371,100,0,0,0,0,0,0,0,0,"",70,30,0];
+ItemObjNew[5373] = [5373,100,0,0,0,0,0,0,0,0,"",66,50,68,50,0];
+ItemObjNew[5374] = [5374,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",0];
+ItemObjNew[5375] = [5375,63,0,15,0,1,50,100,"ホロウアグレッサー","ホロウアクレツサア","",19,15,194,1,79,5,77,5,243,10,100217,3,7000074,15,7000080,15,7000089,15,9000074,25,9000080,25,9000089,25,10000260,15,10000265,15,10000023,1,0];
+ItemObjNew[5376] = [5376,100,0,0,0,0,0,0,0,0,"",15,40,80,30,89,30,0];
+ItemObjNew[5377] = [5377,60,0,20,0,0,10,1,"ラグナロクワールドシャツ","ラクナロクワアルトシヤツ","",217,20,0];
+ItemObjNew[5378] = [5378,72,192,0,1900000,0,0,200,"シーズナルウェポン","シイスナルウエホン","",194,1,100076,2,7000076,10,9000076,20,0];
+ItemObjNew[5379] = [5379,73,192,0,2000000,0,0,200,"シーズナルシールド","シイスナルシイルト","",194,1,100076,1,7000076,5,9000076,10,0];
+ItemObjNew[5380] = [5380,77,192,0,1800000,0,0,200,"シーズナルアーマー","シイスナルアアマア","",194,1,100076,1,7000076,5,9000076,10,0];
+ItemObjNew[5381] = [5381,80,192,0,2100000,0,0,200,"シーズナルシューズ","シイスナルシユウス","",194,1,100076,1,7000076,5,9000076,10,0];
+ItemObjNew[5382] = [5382,82,192,0,2200000,0,0,200,"シーズナルイヤリング","シイスナルイヤリンク","",194,1,100076,1,7000076,5,9000076,10,0];
+ItemObjNew[5383] = [5383,83,192,0,2300000,0,0,200,"シーズナルペンダント","シイスナルヘンタント","",194,1,100076,1,7000076,5,9000076,10,0];
+// --- 2024/12/18 ---
+ItemObjNew[5384] = [5384,64,192,0,0,1,10,200,"極意皆伝之巻","コクイカイテンノマキ","",233,3,89,10,243,3,19778,25000,10000000005409,1,10000000005412,1,10000000005413,1,100000000006253,1,100000000006254,1,100000000006255,1,100000000006256,1,100000000006257,1,100000000006258,1,0];
+ItemObjNew[5385] = [5385,60,165,100,0,1,100,200,"シェラタン","シエラタン","",243,7,100000000006096,1,100000000006093,1,100000000006311,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,30000009005583,1,10000269,15,0];
+// --- 2025/01/14 ---
+ItemObjNew[5387] = [5387,62,0,60,0,0,100,100,"ブレッシングオブイグドラシル","フレツシンクオフイクトラシル","",194,1,217,3,79,5,77,5,100015,2,100016,2,100060,5,7000074,25,7000060,15,9000012,20,9000243,5,0];
+ItemObjNew[5388] = [5388,100,0,0,0,0,0,0,0,0,"[ハイディング]や[クローキング]をしているモンスターが見える",217,10,0];
+ItemObjNew[5389] = [5389,100,0,0,0,0,0,0,0,0,"戦闘不能から復活時、HP・SPを100%回復する",217,10,0];
+ItemObjNew[5390] = [5390,64,192,0,0,1,0,200,"レリックランタン","レリツクランタン","",230,3,80,10,86,25,243,3,20000000005723,1,20000000005722,1,100000000006239,1,100000000006314,1,100000000006315,1,0];
+ItemObjNew[5391] = [5391,64,192,0,0,1,10,200,"てちてちにゃんこのもこふわソックス","テチテチニヤンコノモコフワソツクス","",230,3,10,50,80,10,243,3,50000000005933,1,50000000005938,1,100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,0];
+ItemObjNew[5392] = [5392,60,161,100,0,1,100,200,"ストライプホーリーローブ","ストライフホオリイロオフ","",243,7,100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9011483,100,9011488,100,10000269,15,0];
+// --- 2025/01/28 ---
+ItemObjNew[5401] = [5401,100,0,0,0,0,0,0,0,0,"追加で物理・魔法攻撃命中時、一定確率で20秒間、[リフレッシュ]Lv1状態になる",0];
+// --- 2025/02/18 ---
+ItemObjNew[5403] = [5403,60,164,100,0,1,100,200,"パワーマシンスーツ","ハワアマシンスウツ","精錬値が9以上の時、絶対に壊れない",243,7,100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,100260,7,7000012,10,7000079,5,7000077,5,9019541,2000,10000262,15,0];
+ItemObjNew[5404] = [5404,64,192,0,0,1,10,200,"リヴァイアサンオーブ","リウアイアサンオオフ","",230,3,80,10,86,25,243,3,20000000005794,1,20000000005447,1,100000000006241,1,100000000006009,1,0];
+ItemObjNew[5405] = [5405,64,192,0,0,1,10,200,"ドロップオブセブンカラーズ","トロツフオフセフンカラアス","装備解除時、[テレキネシスインテンス]を解除する",233,3,89,10,243,3,19798,75000,50000000005518,1,100000000006059,1,100000000006057,1,100000000006053,1,100000000006066,1,0];	
+// --- 2025/03/11 ---
+ItemObjNew[5406] = [5406,60,0,150,0,1,100,100,"プラーナスーツ","フラアナスウツ","一部の回復アイテムによるHP回復量 + 30%<br>精錬値が9以上の時、追加で<br>　[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]のいずれかを使用時、[マスカレード:イグノアランス]状態を回復する",194,1,19,15,79,5,77,5,108,7,92,30,100015,5,7000018,300,7000019,30,7000243,7,0];
+ItemObjNew[5407] = [5407,64,192,0,0,1,10,200,"白狐のお守り","シロキツネノオマモリ","",230,3,10,50,80,10,243,3,19778,25000,100000000006227,1,100000000006225,1,100000000006226,1,100000000006228,1,0];
+// --- 2025/04/09 ---
+ItemObjNew[5409] = [5409,77,192,0,1800000,0,0,200,"エンペリウムアーマー","エンヘリウムアーマー","",194,1,100013,200,7000013,500,8000013,500,9000013,1000,10000013,1000,0];
+ItemObjNew[5410] = [5410,72,192,0,1900000,0,0,200,"エンペリウムウェポン","エンヘリウムウエホン","",194,1,100017,10,100100,10,7000017,20,7000100,20,8000017,30,8000100,30,9000017,50,9000100,50,10000017,100,10000100,100,0];
+ItemObjNew[5411] = [5411,73,192,0,2000000,0,0,200,"エンペリウムシールド","エンヘリウムシールト","",194,1,100254,1,100255,1,7000254,5,7000255,5,8000254,10,8000255,10,9000254,10,9000255,10,10000254,15,10000255,15,0];
+ItemObjNew[5412] = [5412,80,192,0,2100000,0,0,200,"エンペリウムシューズ","エンヘリウムシユース","精錬値が1上がる度に追加で 一部の回復アイテムによるHP回復量 + 1%<br>精錬値が7以上の時、追加で 一部の回復アイテムによるHP回復量 + 2%<br>精錬値が8以上の時、追加で一部の回復アイテムによるHP回復量 + 3%<br>精錬値が9以上の時、追加で 一部の回復アイテムによるHP回復量 + 5%<br>精錬値が10の時、追加で 一部の回復アイテムによるHP回復量 + 5%",194,1,100092,1,7000092,2,8000092,3,9000092,5,10000092,5,0];
+ItemObjNew[5413] = [5413,82,192,0,2200000,0,0,200,"エンペリウムイヤリング","シヤドウエンヘリウムイヤリング","",194,1,100089,1,7000089,2,8000089,3,9000089,5,10000089,5,0];
+ItemObjNew[5414] = [5414,83,192,0,2300000,0,0,200,"エンペリウムペンダント","シヤドウエンヘリウムヘンタント","",194,1,100080,1,7000080,2,8000080,3,9000080,5,10000080,5,0];
+// --- 2025-04-15 ---
+ItemObjNew[5415] = [5415,52,0,0,0,0,10,100,"ヴァンパイアストール","ウアンハイアストオル","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5416] = [5416,66,192,0,0,1,10,200,"オーバードライブランページエコーズ","オオハアトライフランヘエシエコオス","物理・魔法攻撃命中時、一定確率で自分に発生している[リバウンド]状態を解除する",12,15,243,3,260,15,265,15,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,0];
+ItemObjNew[5417] = [5417,66,192,0,0,0,10,200,"コンセクレイト・フィデス・モニーレ","コンセクレイトフイテスモニイレ","",12,15,243,3,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,0];
+ItemObjNew[5418] = [5418,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で自分に発生している[狂乱]状態を解除する",74,15,0];
+ItemObjNew[5419] = [5419,64,192,0,0,1,10,200,"ぱかぱかにゃんこのぽかぽかソックス","ハカハカニヤンコノホカホコアソツクス","",233,3,89,40,243,3,220,63,50000000005922,1,50000000005920,1,100000000006247,1,100000000006248,1,100000000006304,1,0];
+ItemObjNew[5420] = [5420,61,0,80,0,1,80,100,"イルシオンシールドIII","イルシオンシイルト","",15,10,16,10,1000000000000060,5,300013,500,300014,50,0];
+ItemObjNew[5421] = [5421,61,0,80,0,1,80,100,"オートマティックシールドIII","オオトマテイツクシイルトサン","",15,15,16,15,4000000000000015,15,4000000000000016,15,100026,1,100267,1,100096,1,100268,1,10000267,10,10000268,10,10000026,10,10000096,10,0];
+// --- 2025-04-17 ---
+ItemObjNew[5423] = [5423,100,0,0,0,0,0,0,0,0,"",61,50,65,50,0];
+ItemObjNew[5426] = [5426,9,163,120,4,1,250,250,"暴食のスタッフオブディストラクション","ボウショクノスタッフオブディストラクション","",195,1,194,1,88,270,243,45,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,100266,3,10000000000000077n,40,10030000000005530n,1,10000000000100266n,7,10000000010000074n,30,10000000010000065n,25,0];
+ItemObjNew[5430] = [5430,4,165,150,4,1,420,250,"暴食のハンティングスピア","ボウショクノハンティングスピア","",88,110,243,10,100000000006095,1,100000000006092,1,100000000006094,1,100000000006309,1,100000000006310,1,100261,6,10030000000005585n,1,10000000000100261n,7,10000000010000074n,15,10000000010000065n,10,0];
+ItemObjNew[5431] = [5431,12,170,120,4,1,100,250,"暴食の死神の名簿","ボウショクノシニガミノメイボ","射程距離 3",194,1,88,140,243,10,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,100266,3,10010000000005051n,1,10010000000005054n,1,10010000000005056n,1,10000000000100266n,7,10000000010000074n,15,10000000010000065n,10,0];
+//
+ItemObjNew[5433] = [5433,50,163,10,0,1,50,200,"暴食のクラウン(アークメイジ)","ボウショクノクラウンアークメイジ","装備解除時、[テレキネシスインテンス]を解除する",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011798,100,7019798,185000,9000217,10,100000009006059,1,100000009006057,1,100000009006053,1,100000009006066,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5434] = [5434,50,166,10,0,1,50,200,"暴食のクラウン(アビスチェイサー)","ボウショクノクラウンアビスチェイサー","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011596,100,9000217,10,100000009006103,1,100000009006107,1,100000009006105,1,100000009006308,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5435] = [5435,50,167,10,0,1,50,200,"暴食のクラウン(インクイジター)","ボウショクノクラウンインクイジター","[グレース天地スーツ]と[ノブレスオブリージュ]のセット効果発動時、<br>　[潜龍昇天]の再使用待機時間減少効果が発動しない",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019621,25000,9000217,10,100000009006121,1,100000009006117,1,100000009006122,1,100000009006119,1,100000009006120,1,100000009006118,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5436] = [5436,50,165,10,0,1,50,200,"暴食のクラウン(インペリアルガード)","ボウショクノクラウンインペリアルガード","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011587,100,7011580,100,9000217,10,100000009006096,1,100000009006093,1,100000009006311,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5437] = [5437,50,162,10,0,1,50,200,"暴食のクラウン(ウィンドホーク)","ボウショクノクラウンウィンドホーク","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,19501,2000,19502,2000,19504,2000,19503,2000,9000217,10,100000009006052,1,100000009006050,1,100000009006049,1,100000009006048,1,10000234,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5438] = [5438,50,170,10,0,1,50,200,"暴食のクラウン(エレメンタルマスター)","ボウショクノクラウンエレメンタルマスター","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011671,100,7011672,100,7011673,100,7011674,100,9000217,10,100000009006149,1,100000009006146,1,100000009006147,1,100000009006150,1,100000009006148,1,100000009006157,1,100000009006290,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5439] = [5439,50,161,10,0,1,50,200,"暴食のクラウン(カーディナル)","ボウショクノクラウンカーディナル","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019484,1500,7011484,100,9000217,10,100000009006037,1,100000009006031,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5440] = [5440,50,160,10,0,1,50,200,"暴食のクラウン(シャドウクロス)","ボウショクノクラウンシャドウクロス","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019461,2000,7019797,60000,9000217,10,100000009006022,1,100000009006014,1,100000009006020,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5441] = [5441,50,177,10,0,1,50,200,"暴食のクラウン(スピリットハンドラー)","ボウショクノクラウンスピリットハンドラー","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011932,100,7011937,100,9000217,10,100000009006221,1,100000009006222,1,100000009006223,1,100000009006303,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5442] = [5442,50,173,10,0,1,50,200,"暴食のクラウン(ソウルアセティック)","ボウショクノクラウンソウルアセティック","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011982,100,7011981,100,7011979,100,7011980,100,9000217,10,100000009006195,1,100000009006196,1,100000009006202,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5443] = [5443,50,159,10,0,1,50,200,"暴食のクラウン(ドラゴンナイト)","ボウショクノクラウンドラゴンナイト","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011453,100,7011457,100,9000217,10,100000009006008,1,100000009006012,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5444] = [5444,50,194,10,0,1,50,200,"暴食のクラウン(トルバドゥール&トルヴェール)","ボウショクノクラウントルバドゥールトルヴェール","[楽器の練習]習得時、[ダンスの練習]が習得Lvで発動<br>[ダンスの練習]習得時、[楽器の練習]が習得Lvで発動<br>[ブラギの詩]習得時、楽器・鞭装備時、[幸運のキス]が習得Lvで使用可能<br>[幸運のキス]習得時、楽器・鞭装備時、[ブラギの詩]が習得Lvで使用可能",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,9000217,10,100000009006134,1,100000009006133,1,100000009006298,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5445] = [5445,50,175,10,0,1,50,200,"暴食のクラウン(ナイトウォッチ)","ボウショクノクラウンナイトウォッチ","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019836,80000,7019822,3000,9000217,10,100000009006218,1,100000009006219,1,100000009006220,1,100000009006297,1,10000234,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5446] = [5446,50,171,10,0,1,50,200,"暴食のクラウン(バイオロ)","ボウショクノクラウンバイオロ","[グレースカルティベイションコート]装備時、または[潜在覚醒(クレイジーウィードII)]と[豪傑]のセット効果発動、<br>　[クレイジーウィード]の再使用待機時間減少効果が発動しない",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019732,4500,7019737,5000,9000217,10,100000009006240,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5447] = [5447,50,176,10,0,1,50,200,"暴食のクラウン(ハイパーノービス)","ボウショクノクラウンハイパーノービス","[インペリアルアーティススーツ]または[グレースアーティススーツ]装備時、<br>　[天使さま助けて]の再使用待機時間減少効果が発動しない",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019946,240000,9000217,10,100000009006235,1,100000009006236,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5448] = [5448,50,164,10,0,1,50,200,"暴食のクラウン(マイスター)","ボウショクノクラウンマイスター","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019541,2000,9000217,10,100000009006072,1,100000009006242,1,100000009006073,1,100000009006292,1,100000009006293,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5449] = [5449,50,172,10,0,1,50,200,"暴食のクラウン(天帝)","ボウショクノクラウンテンテイ","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7005317,300,7005318,300,9000217,10,100000009006175,1,100000009006176,1,100000009006177,1,100000009006178,1,100000009006179,1,100000009006180,1,100000009006184,1,100000009006299,1,100000009006300,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5450] = [5450,50,174,10,0,1,50,200,"暴食のクラウン(蜃気楼&不知火)","ボウショクノクラウンシンキロウシラヌイ","",194,1,79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019778,30000,9000217,10,100000009006253,1,100000009006254,1,100000009006255,1,100000009006256,1,100000009006257,1,100000009006258,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+// --- 2025-04-20 ---
+ItemObjNew[5451] = [5451,62,0,50,0,0,40,100,"ディストーテッドマジックフード","テイストオテツトマシツクフウト","物理・魔法攻撃時、[魔力が歪んだ平原]に出現するモンスターに与えるダメージ + 30%<br>[魔力が歪んだ平原]に出現するモンスターから受けるダメージ - 60%",194,1,19,5,63,50,65,50,0];	
+// --- 2025-04-22 ---
+ItemObjNew[5452] = [5452,62,0,50,0,0,65,150,"イルシオンウィングIII","イルシオンウィングスリー","",194,1,60,15,1000000000000060,5,100080,3,100089,3,0];
+ItemObjNew[5453] = [5453,62,0,50,0,0,65,165,"オートマティックウィングIII","オオトマテイツクウインクスリー","",194,1,15,15,16,15,4000000000000015,15,4000000000000016,15,100262,3,100269,3,0];
+// --- 2025-05-13 ---
+ItemObjNew[5455] = [5455,52,162,0,0,0,10,200,"エクリプスマフラー","エクリプスマフラー","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5456] = [5456,64,192,0,0,1,10,200,"白きカーリッツバーグ騎士団の籠手","シロキカアリッツバーグキシダンノコテ","",233,3,89,40,243,3,220,63,30000000005583,1,100000000006096,1,100000000006093,1,100000000006311,1,0];
+// --- 2025-05-27 ---
+ItemObjNew[5462] = [5462,64,192,0,0,10,10,200,"セレスティアルリング","セレスティアルリング","",10,25,12,15,15,15,74,15,80,10,89,10,243,3,0];
+// --- 2025-06-03 ---
+ItemObjNew[5479] = [5479,51,0,2,0,10,10,100,"バリアントデビルズホーン","バリアントデビルズホーン","",10000000000017,1,10000000000100,1,0];
+ItemObjNew[5480] = [5480,100,0,0,0,0,0,0,0,0,"",243,5,66,5,65,5,0];
+ItemObjNew[5481] = [5481,52,0,0,0,0,10,100,"セレスティアルヴァーチャー","セレスティアルヴァーチャー","",260,15,265,15,0];
+ItemObjNew[5482] = [5482,100,0,0,0,0,0,0,0,0,"",243,3,380,1,0];
+ItemObjNew[5483] = [5483,60,0,100,0,1,100,100,"アビスセイバーガーブ","アビスセイバーガーブ","",194,1,79,5,77,5,243,7,100015,5,100016,5,7000012,10,7000260,15,7000265,15,9000260,25,9000265,25,9000059,15,9000108,7,0];
+ItemObjNew[5484] = [5484,100,0,0,0,0,0,0,0,0,"",159,50,0];
+ItemObjNew[5485] = [5485,100,0,0,0,0,0,0,0,0,"",159,50,0];
+ItemObjNew[5486] = [5486,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 10%",0];
+ItemObjNew[5487] = [5487,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で<br>　自分に発生している[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]の再使用待機時間を解除する",260,30,265,30,65,15,0];
+ItemObjNew[5489] = [5489,100,0,0,0,0,0,0,0,0,"",15,40,80,30,89,30,0];
+ItemObjNew[5491] = [5491,100,0,0,0,0,0,0,0,0,"",12,20,0];
+ItemObjNew[5492] = [5492,100,0,0,0,0,0,0,0,0,"",74,25,0];
+ItemObjNew[5493] = [5493,100,0,0,0,0,0,0,0,0,"",260,15,265,15,0];
+// --- 2025-06-16 ---
+ItemObjNew[5494] = [5494,52,163,0,0,0,10,200,"朱のリアリボン","アカノリアリボン","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5495] = [5495,60,159,100,0,1,100,200,"ドラゴンフルプレート","ドラゴンフルプレート","",243,7,100000000006008,1,100000000006010,1,100000000006009,1,100000000006295,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,9019440,200,10000262,15,0];
+ItemObjNew[5496] = [5496,64,192,0,0,1,10,200,"シャドウリチュアル","シャドウリチュアル","",230,3,80,40,243,3,19797,30000,100000000005469,1,100000000006013,1,100000000006021,1,100000000006016,1,100000000006020,1,100000000006312,1,0];	
+// --- 2025-06-19 ---
+ItemObjNew[5497] = [5497,60,192,150,0,1,120,200,"バルムントルーンアーマー(火炎)","バルムントルーンアーマーカエン","",243,7,5000000000000086,25,100261,4,100266,4,7000012,10,9000194,1,0];
+ItemObjNew[5498] = [5498,60,192,150,0,1,120,200,"バルムントルーンアーマー(死屍)","バルムントルーンアーマーシシ","",243,7,5000000000000010,25,100261,4,100266,4,7000012,10,9000194,1,0];
+ItemObjNew[5499] = [5499,60,192,150,0,1,120,200,"バルムントルーンアーマー(草原)","バルムントルーンアーマーソウゲン","",243,7,5000000000000074,15,100261,4,100266,4,7000012,10,9000194,1,0];
+ItemObjNew[5500] = [5500,60,192,150,0,1,120,200,"バルムントルーンアーマー(氷河)","バルムントルーンアーマーヒョウガ","",243,7,5000000000000018,150,5000000000000019,15,100261,4,100266,4,7000012,10,9000194,1,0];
+ItemObjNew[5501] = [5501,63,192,20,0,0,60,200,"バルムントルーングリーブ","バルムントルーングリーブ","",0];
+ItemObjNew[5502] = [5502,63,192,20,0,1,60,200,"バルムントルーンブーツ(火炎)","バルムントルーンブーツカエン","",243,10,5000000000000086,25,100080,4,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5503] = [5503,63,192,20,0,1,60,200,"バルムントルーンブーツ(死屍)","バルムントルーンブーツシシ","",243,10,5000000000000010,25,100080,4,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5504] = [5504,63,192,20,0,1,60,200,"バルムントルーンブーツ(草原)","バルムントルーンブーツソウゲン","",243,10,5000000000000074,15,100080,4,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5505] = [5505,63,192,20,0,1,60,200,"バルムントルーンブーツ(氷河)","バルムントルーンブーツヒョウガ","",243,10,5000000000000018,150,5000000000000019,15,100080,4,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5506] = [5506,62,192,60,0,0,100,200,"バルムントルーンポールドロン","バルムントルーンポールドロン","",0];
+ItemObjNew[5507] = [5507,62,192,60,0,1,100,200,"バルムントルーンマント(火炎)","バルムントルーンマントカエン","",243,5,5000000000000086,25,100015,1,100016,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5508] = [5508,62,192,60,0,1,100,200,"バルムントルーンマント(死屍)","バルムントルーンマントシシ","",243,5,5000000000000010,25,100015,1,100016,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5509] = [5509,62,192,60,0,1,100,200,"バルムントルーンマント(草原)","バルムントルーンマントソウゲン","",243,5,5000000000000074,15,100015,1,100016,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5510] = [5510,62,192,60,0,1,100,200,"バルムントルーンマント(氷河)","バルムントルーンマントヒョウガ","",243,5,5000000000000018,150,5000000000000019,15,100015,1,100016,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5511] = [5511,60,192,150,0,0,120,200,"バルムントルーンメイル","バルムントルーンメイル","",0];
+ItemObjNew[5512] = [5512,65,192,0,0,1,10,200,"バルムントルーンリング(聖殿)","バルムントルーンリングセイデン","",243,3,100000000000080,1,100000000000089,1,5000000000000298,50,0];
+ItemObjNew[5513] = [5513,65,192,0,0,1,10,200,"バルムントルーンリング(猛毒)","バルムントルーンリングモウドク","",243,3,100000000000080,1,100000000000089,1,5000000000000293,50,0];
+ItemObjNew[5514] = [5514,65,192,0,0,1,10,200,"バルムントルーンリング(霊魂)","バルムントルーンリングレイコン","",243,3,100000000000080,1,100000000000089,1,5000000000000012,10,0];
+ItemObjNew[5515] = [5515,64,192,0,0,0,10,200,"バルムントルーンリング","バルムントルーンリング","",0];
+ItemObjNew[5516] = [5516,60,192,150,0,1,120,200,"刻印されたルーンアーマー(火炎)","コクインサレタルーンアーマーカエン","",79,5,77,5,243,7,5000000000000086,50,100261,7,100266,7,7000012,10,9000194,1,0];
+ItemObjNew[5517] = [5517,60,192,150,0,1,120,200,"刻印されたルーンアーマー(死屍)","コクインサレタルーンアーマーシシ","",79,5,77,5,243,7,5000000000000010,50,100261,7,100266,7,7000012,10,9000194,1,0];
+ItemObjNew[5518] = [5518,60,192,150,0,1,120,200,"刻印されたルーンアーマー(草原)","コクインサレタルーンアーマーソウゲン","",79,5,77,5,243,7,5000000000000074,30,100261,7,100266,7,7000012,10,9000194,1,0];
+ItemObjNew[5519] = [5519,60,192,150,0,1,120,200,"刻印されたルーンアーマー(氷河)","コクインサレタルーンアーマーヒョウガ","",79,5,77,5,243,7,5000000000000018,300,5000000000000019,30,100261,7,100266,7,7000012,10,9000194,1,0];
+ItemObjNew[5520] = [5520,63,192,20,0,1,60,200,"刻印されたルーンブーツ(火炎)","コクインサレタルーンブーツカエン","",79,5,77,5,243,10,5000000000000086,50,100217,3,100080,7,100089,7,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5521] = [5521,63,192,20,0,1,60,200,"刻印されたルーンブーツ(死屍)","コクインサレタルーンブーツシシ","",79,5,77,5,243,10,5000000000000010,50,100217,3,100080,7,100089,7,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5522] = [5522,63,192,20,0,1,60,200,"刻印されたルーンブーツ(草原)","コクインサレタルーンブーツソウゲン","",79,5,77,5,243,10,5000000000000074,30,100217,3,100080,7,100089,7,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5523] = [5523,63,192,20,0,1,60,200,"刻印されたルーンブーツ(氷河)","コクインサレタルーンブーツヒョウガ","",79,5,77,5,243,10,5000000000000018,300,5000000000000019,30,100217,3,100080,7,100089,7,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5524] = [5524,62,192,60,0,1,100,200,"刻印されたルーンマント(火炎)","コクインサレタルーンマントカエン","",79,5,77,5,243,5,5000000000000086,50,100217,1,100015,2,100016,2,100262,1,100269,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5525] = [5525,62,192,60,0,1,100,200,"刻印されたルーンマント(死屍)","コクインサレタルーンマントシシ","",79,5,77,5,243,5,5000000000000010,50,100217,1,100015,2,100016,2,100262,1,100269,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5526] = [5526,62,192,60,0,1,100,200,"刻印されたルーンマント(草原)","コクインサレタルーンマントソウゲン","",79,5,77,5,243,5,5000000000000074,30,100217,1,100015,2,100016,2,100262,1,100269,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5527] = [5527,62,192,60,0,1,100,200,"刻印されたルーンマント(氷河)","コクインサレタルーンマントヒョウガ","",79,5,77,5,243,5,5000000000000018,300,5000000000000019,30,100217,1,100015,2,100016,2,100262,1,100269,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5528] = [5528,65,192,0,0,1,10,200,"刻印されたルーンリング(聖殿)","コクインサレタルーンリングセイデン","",243,3,50000000000080,1,50000000000089,1,5000000000000298,100,0];
+ItemObjNew[5529] = [5529,65,192,0,0,1,10,200,"刻印されたルーンリング(猛毒)","コクインサレタルーンリングモウドク","",243,3,50000000000080,1,50000000000089,1,5000000000000293,100,0];
+ItemObjNew[5530] = [5530,65,192,0,0,1,10,200,"刻印されたルーンリング(霊魂)","コクインサレタルーンリングレイコン","",243,3,50000000000080,1,50000000000089,1,5000000000000012,15,0];
+ItemObjNew[5531] = [5531,62,0,50,0,0,40,100,"バーニングフィッシュマント","バーニングフィッシュマント","物理・魔法攻撃時、[大浴場メディタティオ]に出現するモンスターに与えるダメージ + 30%<br>[大浴場メディタティオ]に出現するモンスターから受けるダメージ - 60%",19,5,194,1,63,50,61,50,0];
+// --- 2025-07-15 ---
+ItemObjNew[5532] = [5532,52,177,0,0,0,10,200,"甘えた黒猫","アマエタクロネコ","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5533] = [5533,60,174,100,0,1,100,200,"桜花白魔の紋服","オウカシロマノモンフク","",243,7,100000000006253,1,100000000006254,1,100000000006255,1,100000000006256,1,100000000006257,1,100000000006258,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9019778,30000,10000269,15,0];
+ItemObjNew[5534] = [5534,66,161,0,0,1,10,200,"アポテオシス","アポテオシス","",252,15,12,15,74,15,243,3,11484,100,11488,100,10000000000018,1,10000000000013,50,100000000000019,1,100000000000014,50,0];
+// --- 2025-08-12 ---
+ItemObjNew[5535] = [5535,52,165,0,0,0,10,200,"インペリアルガーディアン","インペリアルガーディアン","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5536] = [5536,52,164,0,0,0,10,200,"オープンエアヘッドフォン(赤)","オープンエアヘッドフォンアカ","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5537] = [5537,60,159,100,0,1,100,200,"リヴァイアサンスケイル","リヴァイアサンスケイル","",243,7,100000000006241,1,100000000006009,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,10000009005794,1,10000009005447,1,10000262,15,0];
+ItemObjNew[5538] = [5538,66,177,0,0,1,10,200,"きらきらさんごのクリアチャーム","キラキラサンゴノクリアチャーム","[にゃん友 -亀設-]Lv1習得時、追加で[ニューマ]Lv1使用可能",254,15,255,15,12,15,74,15,243,3,10000000000018,1,10000000000013,50,100000000000019,1,100000000000014,50,0];
+// --- 2025-09-10 ---
+ItemObjNew[5539] = [5539,52,160,0,0,0,10,200,"エレメス=ガイルのスカーフ(白)","エレメス=ガイルのスカーフ(白)","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5540] = [5540,52,175,0,0,0,10,200,"名誉ある夜警のマント","メイヨアルヤケイノマント","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5541] = [5541,60,171,0,0,1,100,200,"プリマヒヤドゥム","プリマヒヤドゥム","",243,7,100000000006240,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,9019735,16000,10000262,15,0];
+// --- 2025-10-02 ---
+ItemObjNew[5542] = [5542,60,192,150,0,1,120,260,"ゲオルグアーマー","ゲオルグアーマー","",243,7,67,10,100261,4,100266,4,7000012,10,9000194,1,0];
+ItemObjNew[5543] = [5543,62,192,60,0,1,100,260,"ゲオルグマント","ゲオルグマント","",194,1,243,5,67,50,100015,1,100016,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5544] = [5544,63,192,20,0,1,60,260,"ゲオルグブーツ","ゲオルグブーツ","",194,1,243,10,67,10,100080,4,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,0];
+ItemObjNew[5545] = [5545,50,192,10,0,1,50,260,"エグゼキューションサークレット","エグゼキューションサークレット","",194,1,79,20,77,20,243,13,67,5,100262,4,100269,4,7000015,10,7000016,10,7000074,10,7000067,5,9000217,10,9000074,10,9000067,5,0];
+ItemObjNew[5546] = [5546,50,192,10,0,1,50,260,"ジャッジメントサークレット","ジャッジメントサークレット","",194,1,79,20,77,20,243,13,66,5,100262,4,100269,4,7000015,10,7000016,10,7000074,10,7000066,5,9000217,10,9000074,10,9000066,5,0];
+ItemObjNew[5547] = [5547,60,192,150,0,1,120,260,"ヨルスキャールヴアーマー","ヨルスキャールヴアーマー","",79,5,77,5,243,7,67,10,100260,7,100265,7,7000012,10,9000194,1,0];
+ItemObjNew[5548] = [5548,62,192,60,0,1,100,260,"ヨルスキャールヴマント","ヨルスキャールヴマント","",194,1,79,5,77,5,243,5,67,50,100217,1,100015,2,100016,2,100262,1,100269,1,7000074,25,7000262,5,7000269,5,9000012,20,9000262,10,9000269,10,0];
+ItemObjNew[5549] = [5549,63,192,20,0,1,60,260,"ヨルスキャールヴブーツ","ヨルスキャールヴブーツ","",194,1,79,5,77,5,243,10,67,10,100217,3,100080,7,100089,7,7000015,20,7000074,15,9000015,20,9000074,25,0];	
+// --- 2025-10-14 ---
+ItemObjNew[5551] = [5551,100,0,0,0,0,0,0,0,0,"",0];	// blank
+ItemObjNew[5553] = [5553,100,0,0,0,0,0,0,0,0,"",0];	// blank
+ItemObjNew[5554] = [5554,52,177,0,0,0,10,200,"あったかキジトラマフラー","アッタカキジトラマフラー","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5555] = [5555,52,0,0,0,0,10,100,"マジェスティックフォックス","マジェスティックフォックス","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5556] = [5556,100,0,0,0,0,0,0,0,0,"",380,1,221,235,0];
+ItemObjNew[5557] = [5557,60,194,100,0,1,100,200,"テオフィルス","テオフィルス","精錬値が9以上の時、<br>　[シビアレインストーム]使用時、20秒間、[アンリミット]Lv5状態になる<br>　装備解除時、[アンリミット]を解除する",243,7,100000000006132,1,100000000006131,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,10000262,15,0];
+ItemObjNew[5558] = [5558,60,176,100,0,1,100,200,"グロズヌイ","グロズヌイ","",243,7,100000000006231,1,100000000006232,1,100000000006233,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9000220,106,10000269,15,0];
+// --- 2025-11-11 ---
+ItemObjNew[5559] = [5559,51,0,0,0,10,10,100,"アシャワヒシュタ","アシャワヒシュタ","",243,5,66,10,260,10,265,10,10000000000017,1,10000000000100,1,0];
+ItemObjNew[5560] = [5560,52,167,0,0,0,10,200,"心頭滅却マフラー(青)","シントウメッキャクマフラーアオ","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5561] = [5561,52,164,0,0,0,10,200,"ポポリンシャボンパイプ","ポポリンシャボンパイプ","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5562] = [5562,61,0,60,0,0,30,100,"ヴァルキリーカースシールド","ヴァルキリーカースシールド","",194,1,79,40,77,40,100015,3,100016,3,5000067,25,7000060,15,0];
+// --- 2025-11-26 ---
+ItemObjNew[5563] = [5563,51,0,2,0,1,10,100,"セレスティアルインテグリティ","セレスティアルインテグリティ","",10000000000017,1,10000000000100,1,0];
+ItemObjNew[5564] = [5564,100,0,0,0,0,0,0,0,0,"",243,5,66,5,68,5,0];
+ItemObjNew[5565] = [5565,52,0,0,0,0,10,100,"ソリッドステートレコグニション","ソリッドステートレコグニション","",260,15,265,15,0];
+ItemObjNew[5566] = [5566,100,0,0,0,0,0,0,0,0,"",243,3,380,1,0];
+ItemObjNew[5567] = [5567,63,192,20,0,1,60,200,"アーリースカイ・ロイヤルフェイバー","アーリースカイ・ロイヤルフェイバー","",194,1,19,15,79,5,77,5,243,10,100217,3,7000074,15,7000080,15,7000089,15,9000074,25,9000080,25,9000089,25,10000086,25,10000260,15,10000265,15,10000023,1,0];
+ItemObjNew[5568] = [5568,100,0,0,0,0,0,0,0,0,"",15,40,80,30,89,30,0];
+ItemObjNew[5569] = [5569,62,192,38,0,1,40,200,"アルカナム・コルヴス・コラクス","アルカナム・コルヴス・コラクス","精錬値が10の時、物理攻撃命中時、一定確率で敵に与えたダメージの5%をHPとして吸収",194,1,79,5,77,5,243,5,100015,2,100016,2,100230,1,7000074,25,7000262,10,7000269,10,9000012,20,9000262,15,9000269,15,10000260,15,10000265,15,0];
+ItemObjNew[5570] = [5570,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",86,25,0];
+ItemObjNew[5571] = [5571,65,0,0,0,1,10,100,"グローバルライセンス","グローバルライセンス","",12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5572] = [5572,62,0,50,0,0,40,100,"オズマグマフード","オズマグマフード","物理・魔法攻撃時、[オズの迷路 01]、[オズの迷路 02]に出現するモンスターに与えるダメージ + 30%<BR>[オズの迷路 01]、[オズの迷路 02]に出現するモンスターから受けるダメージ - 60%",194,1,19,5,0];
+// --- 2025-11-28 ---
+ItemObjNew[5573] = [5573,15,169,150,4,1,50,200,"セプルクルム・ホノリス・ウィップ","セプルクルムホノリスウィップ","",194,1,88,120,243,10,100266,10,10000000000105641n,10,10000000000105639n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5574] = [5574,100,0,0,0,0,0,0,0,0,"",15,15,77,10,220,28,0];	// 偽りの心臓セット
+ItemObjNew[5575] = [5575,100,0,0,0,0,0,0,0,0,"",100000000006134,1,100000000006133,1,100000000006298,1,0];
+ItemObjNew[5576] = [5576,1,174,120,4,1,60,200,"セプルクルム・ホノリス・オーガー","セプルクルムホノリスオーガー","",194,1,88,120,243,10,100261,13,10000000000105766n,5,10000000000105768n,5,10000000000105769n,20,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5577] = [5577,100,0,0,0,0,0,0,0,0,"",100000000006263,1,100000000006264,1,100000000006265,1,100000000006266,1,0];
+ItemObjNew[5578] = [5578,14,168,180,4,1,25,200,"セプルクルム・ホノリス・ギター","セプルクルムホノリスギター","",194,1,88,120,243,10,100266,10,10000000000105641n,10,10000000000105639n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5579] = [5579,100,0,0,0,0,0,0,0,0,"",100000000006134,1,100000000006133,1,100000000006298,1,0];
+ItemObjNew[5580] = [5580,21,175,210,4,1,140,200,"セプルクルム・ホノリス・グレネードガン","セプルクルムホノリスグレネードガン","",194,1,79,40,77,40,243,45,100261,13,10000000000105834n,10,10000000000105827n,15,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5581] = [5581,100,0,0,0,0,0,0,0,0,"",100000000006217,1,100000000006220,1,100000000006297,1,0];
+ItemObjNew[5582] = [5582,12,172,120,4,1,80,200,"セプルクルム・ホノリス・スターダストブック","セプルクルムホノリススターダストブック","",194,1,88,140,243,10,100261,13,10000000000105951n,5,10000000000105955n,5,10000000000105959n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5583] = [5583,100,0,0,0,0,0,0,0,0,"",100000000006181,1,100000000006182,1,100000000006183,1,100000000006301,1,0];
+ItemObjNew[5584] = [5584,9,161,60,4,1,30,200,"セプルクルム・ホノリス・ステッキ","セプルクルムホノリスステッキ","",194,1,88,180,243,10,100266,10,10000000000105478n,15,10000000000105476n,15,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5585] = [5585,100,0,0,0,0,0,0,0,0,"",100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,0];
+ItemObjNew[5586] = [5586,4,165,150,4,1,180,200,"セプルクルム・ホノリス・スピア","セプルクルムホノリススピア","",194,1,88,110,243,10,100261,13,10000000000105585n,10,10000000000105569n,10,10000000000105570n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5587] = [5587,100,0,0,0,0,0,0,0,0,"",100000000006095,1,100000000006092,1,100000000006094,1,100000000006309,1,100000000006310,1,0];
+ItemObjNew[5588] = [5588,2,171,150,4,1,120,200,"セプルクルム・ホノリス・ソード","セプルクルムホノリスソード","",194,1,88,130,243,10,100261,13,10000000000105723n,15,10000000000105736n,15,10000000000105722n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5589] = [5589,100,0,0,0,0,0,0,0,0,"",100000000006239,1,100000000006314,1,100000000006315,1,0];
+ItemObjNew[5590] = [5590,9,173,60,4,1,30,200,"セプルクルム・ホノリス・ダークワンド","セプルクルムホノリスダークワンド","",194,1,88,180,243,10,100266,10,10000000000105968n,5,10000000000105969n,5,10000000000105977n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5591] = [5591,100,0,0,0,0,0,0,0,0,"",100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006202,1,0];
+ItemObjNew[5592] = [5592,7,164,320,4,1,400,200,"セプルクルム・ホノリス・ツーハンドアックス","セプルクルムホノリスツーハンドアックス","",194,1,88,200,79,40,77,40,243,45,100261,13,10000000000105541n,15,10000000000105542n,15,10000000000105543n,15,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5593] = [5593,100,0,0,0,0,0,0,0,0,"",100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,0];
+ItemObjNew[5594] = [5594,1,160,120,4,1,60,200,"セプルクルム・ホノリス・ナイフ","セプルクルムホノリスナイフ","",194,1,88,120,243,10,100261,13,10000000000105460n,5,10000000000105469n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5595] = [5595,100,0,0,0,0,0,0,0,0,"",100000000006013,1,100000000006021,1,100000000006016,1,100000000006020,1,100000000006312,1,0];
+ItemObjNew[5596] = [5596,10,162,160,4,1,90,200,"セプルクルム・ホノリス・ハンターボウ","セプルクルムホノリスハンターボウ","",194,1,88,170,79,40,77,40,243,45,100261,13,10000000000105498n,5,10000000000105497n,5,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5597] = [5597,100,0,0,0,0,0,0,0,0,"",100000000006046,1,100000000006043,1,100000000006291,1,0];
+ItemObjNew[5598] = [5598,13,167,140,4,1,40,200,"セプルクルム・ホノリス・フィスト","セプルクルムホノリスフィスト","",194,1,88,100,243,10,100261,13,10000000000105622n,30,10000000000105610n,30,10000000000105612n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5599] = [5599,100,0,0,0,0,0,0,0,0,"",100000000006113,1,100000000006123,1,100000000006124,1,100000000006302,1,0];
+ItemObjNew[5600] = [5600,9,177,150,4,1,40,200,"セプルクルム・ホノリス・フォックステイル","セプルクルムホノリスフォックステイル","",194,1,88,180,243,10,100261,13,10000000000105933n,5,10000000000105938n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5601] = [5601,100,0,0,0,0,0,0,0,0,"",15,15,10,50,220,28,0];	// 偽りの心臓セット
+ItemObjNew[5602] = [5602,100,0,0,0,0,0,0,0,0,"",100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,0];
+ItemObjNew[5603] = [5603,2,166,150,4,1,120,200,"セプルクルム・ホノリス・ブレイド","セプルクルムホノリスブレイド","",194,1,88,130,243,10,100266,10,10000000000105527n,10,10000000000105518n,10,10000000000105528n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5604] = [5604,100,0,0,0,0,0,0,0,0,"",100000000006103,1,100000000006107,1,100000000006105,1,100000000006308,1,0];
+ItemObjNew[5605] = [5605,12,170,120,4,1,80,200,"セプルクルム・ホノリス・マジックブック","セプルクルムホノリスマジックブック","",194,1,88,140,243,10,100266,10,10000000000105666n,10,10000000000105669n,10,10000000000105662n,10,10000000000105667n,10,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5606] = [5606,100,0,0,0,0,0,0,0,0,"",100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,0];
+ItemObjNew[5607] = [5607,5,159,200,4,1,2000,200,"セプルクルム・ホノリス・ランス","セプルクルムホノリスランス","",194,1,88,230,79,40,77,40,243,45,100261,13,10000000000105445n,25,10000000000105440n,25,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5608] = [5608,100,0,0,0,0,0,0,0,0,"",100000000006008,1,100000000006010,1,100000000006009,1,100000000006295,1,0];
+ItemObjNew[5609] = [5609,9,163,60,4,1,30,200,"セプルクルム・ホノリス・ロッド","セプルクルムホノリスロッド","",194,1,88,180,243,10,100266,10,10000000000105531n,10,10000000000105527n,10,10000000000105518n,10,10000000000105520n,30,10000000000105519n,30,10000000000105528n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5610] = [5610,100,0,0,0,0,0,0,0,0,"",100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,0];
+ItemObjNew[5611] = [5611,9,176,60,4,1,30,200,"セプルクルム・ホノリス・ワンド","セプルクルムホノリスワンド","",194,1,88,180,243,10,100266,10,10000000000000013n,1000,10000000000000014n,100,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5612] = [5612,100,0,0,0,0,0,0,0,0,"",100000000006231,1,100000000006232,1,100000000006233,1,100000000006234,1,100000000006270,1,100000000006269,1,0];
+// --- 2025-12-16 ---
+ItemObjNew[5613] = [5613,66,0,0,0,1,10,100,"覇王のアミュレット","ハオウノアミュレット","[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]のいずれかを使用時、[オールステータスダウン]状態を回復する",12,15,243,3,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,0];
+ItemObjNew[5614] = [5614,100,0,0,0,0,0,0,0,0,"追加で新毒に対する耐性 + 50%",0];
+ItemObjNew[5615] = [5615,100,0,0,0,0,0,0,0,0,"追加で新毒に対する耐性 + 50%",0];
+ItemObjNew[5616] = [5616,100,0,0,0,0,0,0,0,0,"追加で物理・魔法攻撃命中時、一定確率で10秒間、1秒毎にSP + 10%",0];
+ItemObjNew[5617] = [5617,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で自分に発生している[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]の再使用待機時間を解除する",74,15,0];
+ItemObjNew[5618] = [5618,2,171,150,4,1,120,200,"アスモデルブレイド","アスモデルブレイド","",194,1,88,130,243,10,100000000006165,1,100000000006163,1,100000000006166,1,100000000006164,1,100000000006240,1,100261,13,100266,10,10000000000105723n,15,10000000000105736n,15,10000000000105722n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5619] = [5619,100,0,0,0,0,0,0,0,0,"deprecated",0];
+ItemObjNew[5620] = [5620,100,0,0,0,0,0,0,0,0,"",15,15,77,10,220,63,0];
+ItemObjNew[5621] = [5621,2,176,150,4,1,120,200,"ルキフグスブレイド","ルキフグスブレイド","",194,1,88,130,243,10,100000000006267,1,100000000006268,1,100000000006231,1,100000000006232,1,100000000006233,1,100261,13,100266,10,10000000000100013n,1000,10000000000100014n,100,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5622] = [5622,1,166,120,4,1,60,200,"ハナエルダガー","ハナエルダガー","射程距離 3",194,1,88,120,243,10,100000000006103,1,100000000006107,1,100000000006105,1,100000000006308,1,100261,13,100266,10,10000000000105527n,10,10000000000105518n,10,10000000000105528n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5623] = [5623,6,164,180,4,1,180,200,"ムリエルアックス","ムリエルアックス","",194,1,88,110,243,10,100000000006072,1,100000000006242,1,100000000006073,1,100000000006237,1,100000000006238,1,100000000006294,1,100000000006076,1,100261,13,100266,10,10000000000105541n,15,10000000000105542n,15,10000000000105543n,15,10000000000105554n,10,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5624] = [5624,4,165,150,4,1,180,200,"マルキダエルスピア","マルキダエルスピア","",194,1,88,110,243,10,100000000006095,1,100000000006092,1,100000000006094,1,100000000006309,1,100000000006310,1,100000000006096,1,100000000006093,1,100000000006311,1,100261,13,100266,10,10000000000105585n,10,10000000000105569n,10,10000000000105570n,30,10000000000105583n,15,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5625] = [5625,12,170,120,4,1,80,200,"バキエルブック","バキエルブック","",194,1,88,140,243,10,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,100261,13,100266,10,10000000000105666n,10,10000000000105669n,10,10000000000105662n,10,10000000000105667n,10,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5626] = [5626,12,172,120,4,1,80,200,"サタナキアブック","サタナキアブック","",194,1,88,140,243,10,100000000006175,1,100000000006176,1,100000000006177,1,100000000006178,1,100000000006179,1,100000000006180,1,100000000006184,1,100000000006299,1,100000000006300,1,100000000006181,1,100000000006182,1,100000000006183,1,100000000006301,1,100261,13,100266,10,10000000000105951n,5,10000000000105955n,5,10000000000105959n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5627] = [5627,9,161,60,4,1,30,200,"ハマリエルワンド","ハマリエルワンド","",194,1,88,180,243,10,100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,100261,13,100266,10,10000000000105478n,15,10000000000105476n,15,10000000000105741n,60,10000000000105742n,60,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5628] = [5628,9,173,60,4,1,30,200,"フルーレティワンド","フルーレティワンド","",194,1,88,180,243,10,100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006195,1,100000000006196,1,100000000006202,1,100261,13,100266,10,10000000000105968n,5,10000000000105969n,5,10000000000105977n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5629] = [5629,13,167,140,4,1,40,200,"ウェルキエルクロー","ウェルキエルクロー","",194,1,88,100,243,10,100000000006113,1,100000000006123,1,100000000006124,1,100000000006302,1,100000000006121,1,100000000006117,1,100000000006122,1,100000000006119,1,100000000006120,1,100000000006118,1,100261,13,100266,10,10000000000105622n,30,10000000000105610n,30,10000000000105612n,30,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5630] = [5630,14,168,180,4,1,25,200,"アムブリエルバイオリン","アムブリエルバイオリン","",194,1,88,120,243,10,100000000006132,1,100000000006131,1,100000000006134,1,100000000006133,1,100000000006298,1,100261,13,100266,10,10000000000105642n,10,10000000000105641n,10,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5631] = [5631,15,169,150,4,1,50,200,"アムブリエルブレイドウィップ","アムブリエルブレイドウィップ","",194,1,88,120,243,10,100000000006132,1,100000000006131,1,100000000006134,1,100000000006133,1,100000000006298,1,100261,13,100266,10,10000000000105642n,10,10000000000105641n,10,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5632] = [5632,3,159,280,4,1,2000,200,"ズリエルクレイモア","ズリエルクレイモア","",194,1,88,230,77,40,243,45,100000000006008,1,100000000006010,1,100000000006012,1,100000000006009,1,100261,13,100266,10,10000000000000079n,40,10000000000105445n,25,10000000000105440n,25,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5633] = [5633,11,160,150,4,1,280,200,"バルビエルカタール","バルビエルカタール","",194,1,88,250,77,40,243,45,100000000006022,1,100000000006014,1,100000000006020,1,100261,13,100266,10,10000000000000079n,40,10000000000105460n,50,10000000000105475n,50,10000000000105474n,50,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5634] = [5634,9,163,120,4,1,240,200,"ガムビエルスタッフ","ガムビエルスタッフ","",195,1,194,1,88,270,77,40,243,45,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,100261,13,100266,10,10000000000000079n,40,10000000000105531n,10,10000000000105527n,10,10000000000105518n,10,10000000000105520n,30,10000000000105519n,30,10000000000105528n,30,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5635] = [5635,16,174,150,4,1,150,200,"アガリアレプト風魔手裏剣","アガリアレプトフウマシュリケン","",194,1,88,160,77,40,243,45,100000000006227,1,100000000006225,1,100000000006226,1,100000000006229,1,100000000006230,1,100000000006228,1,100000000006263,1,100000000006264,1,100000000006265,1,100000000006266,1,100000000006253,1,100000000006254,1,100000000006255,1,100000000006256,1,100000000006257,1,100000000006258,1,100261,13,100266,10,10000000000000079n,40,10000000000105766n,5,10000000000105768n,5,10000000000105769n,20,10000000000105409n,30,10000000000105412n,30,10000000000105413n,30,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5636] = [5636,10,162,160,4,1,90,200,"アドナキエルウィング","アドナキエルウィング","",194,1,88,170,77,40,243,45,100000000006051,1,100000000006047,1,100261,13,100266,10,10000000000000079n,40,10000000000105498n,5,10000000000105497n,5,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5637] = [5637,18,175,170,4,1,85,200,"ネビロスライフル","ネビロスライフル","",194,1,400005839,7,28000005839,30,77,40,243,45,100000000006216,1,100000000006217,1,100000000006296,1,100261,13,100266,10,10000000000000079n,40,10000000000105839n,10,10000000000105825n,10,10000000010000015n,50,10000000010000065n,25,0];
+ItemObjNew[5638] = [5638,9,177,150,4,1,40,200,"サタンフォックステイル","サタンフォックステイル","",194,1,88,180,243,10,100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,100000000006247,1,100000000006248,1,100000000006304,1,100261,13,100266,10,10000000000105933n,5,10000000000105938n,5,10000000000105922n,5,10000000000105920n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5639] = [5639,100,0,0,0,0,0,0,0,0,"",10,50,15,15,220,63,0];
+ItemObjNew[5641] = [5641,60,174,100,0,1,100,200,"影走白狐の紋服","エイソウビャッコノモンフク","",243,7,100000000006227,1,100000000006225,1,100000000006226,1,100000000006228,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,9019778,30000,10000262,15,0];
+ItemObjNew[5642] = [5642,52,161,0,0,0,10,200,"天使のバレッタ","テンシノバレッタ","",243,3,100000000000260,1,100000000000265,1,0];
+// --- 2026-01-13 ---
+ItemObjNew[5644] = [5644,9,177,150,4,1,40,200,"タートルフォックステイル","タートルフォックステイル","[にゃん友 -亀設-]Lv1習得時、追加で<br>MaxHP + 15%<br>ボスモンスターから受けるダメージ - 10%<br>[エナジーコート]Lv1使用可能",88,180,194,1,243,10,100091,6,10000000000100018n,30,10000000000100019n,3,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5645] = [5645,52,159,0,0,0,10,200,"ドラコ・エクエス","ドラコ・エクエス","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5646] = [5646,64,192,0,0,1,10,200,"火の聖霊石","火の聖霊石","",230,3,80,40,243,3,11622,100,30000000005622,1,100000000006113,1,100000000006123,1,100000000006124,1,100000000006302,1,0];
+// --- 2026-01-20 ---
+ItemObjNew[5647] = [5647,65,192,0,1500000,1,10,200,"アナザークリップ","アナザークリップ","",16,10,0];
+ItemObjNew[5648] = [5648,100,0,0,0,0,0,0,0,0,"物理攻撃を受けた時、一定確率で敵を中心にオートスペル[メテオストーム]Lv5発動",236,3,0];
+ItemObjNew[5649] = [5649,77,192,0,1800000,0,0,200,"[シャドウ] アナザーアーマー","シャドウアナザーアーマー","",100009,2,7000009,10,9000009,20,0];
+ItemObjNew[5650] = [5650,72,192,0,1900000,0,0,200,"[シャドウ] アナザーウェポン","シャドウアナザーウェポン","",200250,1,200251,1,7000250,1,7000251,1,9000250,2,9000251,2,0];
+ItemObjNew[5651] = [5651,73,192,0,2000000,0,0,200,"[シャドウ] アナザーシールド","シャドウアナザーシールド","",100019,1,7000019,2,9000019,3,0];
+ItemObjNew[5652] = [5652,80,192,0,2100000,0,0,200,"[シャドウ] アナザーシューズ","シャドウアナザーシューズ","",100013,200,7000013,500,9000013,500,0];
+ItemObjNew[5653] = [5653,82,192,0,2200000,0,0,200,"[シャドウ] アナザーイヤリング","シャドウアナザーイヤリング","",100080,1,7000080,2,9000080,3,0];
+ItemObjNew[5654] = [5654,83,192,0,2300000,0,0,200,"[シャドウ] アナザーペンダント","シャドウアナザーペンダント","",100089,1,7000089,2,9000089,3,0];
+ItemObjNew[4990] = [4990,61,0,60,0,0,30,100,"スプンタアールマティ","スフンタアアルマテイ","精錬値が5以上の時、[フェイス]習得時、追加で聖属性攻撃で受けるダメージ + 25%<br>超越段階が1以上の時、精錬値が10の時、追加で[Mレイオブジェネシス]で受けるダメージ - 50%",199,156,194,1,79,40,77,40,100015,3,100016,3,5000066,25,7000060,15,10000000000100019n,2,0];
+ItemObjNew[5366] = [5366,63,0,25,0,1,70,100,"フシャスラワルヤ","フシヤスラワルヤ","精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる<br>超越段階が1以上の時、精錬値が10の時、追加で[Mレイオブジェネシス]で受けるダメージ - 50%",194,1,19,15,79,5,77,5,243,10,80,40,89,40,100217,3,5000015,15,5000074,15,7000015,25,7000074,25,9000080,30,9000089,30,10000260,15,10000265,15,10000000000100019n,3,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5365] = [5365,61,0,60,0,0,30,100,"カースドプリンスガード","カアストフリンスカアト","超越段階が1以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,79,40,77,40,100015,3,100016,3,5000065,25,7000060,15,10000000000100217n,2,0];
+ItemObjNew[4681] = [4681,61,0,60,0,1,40,100,"シンボルオブエデン","シンホルオフエテン","超越段階が1以上の時、精錬値が10の時、追加でジェムストーンを消費する一部のスキルをジェムストーン無しで使用できる",19,15,100015,3,100016,3,6000214,5,6000215,5,8000214,10,8000215,10,10000000000100089n,1,0];
+ItemObjNew[4685] = [4685,63,0,20,0,1,60,100,"スターリースカイ・ツインプライム","スタアリイスカイツインフライム","超越段階が1以上の時、精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",19,15,79,5,77,5,243,10,100074,4,7000217,15,7000080,15,7000089,15,9000217,15,9000080,25,9000089,25,10000000000100012n,1,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5001] = [5001,60,0,100,0,1,100,100,"スクリーミングゴーストパーティ","スクリイミンクコオストパアテイ","",194,1,79,5,77,5,243,7,100017,30,100100,30,7000012,10,7000261,15,7000266,15,9000086,25,9000261,25,9000266,25,10000000000100074n,1,10000000010000015n,50,10000000010000016n,50,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5372] = [5372,62,0,38,0,1,40,100,"ステラ・グラーティア","ステラクラアテイア","",194,1,79,5,77,5,243,5,100217,1,100015,2,100016,2,7000074,25,7000262,10,7000269,10,9000012,20,9000262,15,9000269,15,10000000000100066n,2,10000000000100068n,2,10000000010000260n,15,10000000010000265n,15,10000000010000066n,25,10000000010000068n,25,0];
+ItemObjNew[5222] = [5222,63,0,15,0,1,50,100,"デイブレイク・スターゲイザー","テイフレイクスタアケイサア","",194,1,19,15,79,5,77,5,243,10,100080,4,100089,4,5000015,15,5000074,15,7000015,25,7000074,25,10000000000100293n,10,10000000000100298n,10,10000000010000074n,30,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5370] = [5370,61,0,60,0,1,40,100,"心外無刀","シンカイムトウ","",19,15,100015,3,100016,3,6000080,5,8000080,10,10000000000100070n,1,10000000010000010n,50,0];
+ItemObjNew[4936] = [4936,61,0,60,0,1,40,100,"剛勇無双の籠手","コウユウムソウノコテ","",19,15,100015,3,100016,3,6000212,5,6000215,5,8000212,10,8000215,10,10000000000100085n,1,10000000010000228n,1,0];
+ItemObjNew[5217] = [5217,62,0,38,0,1,40,100,"ガーディアンオブアビス","カアテイアンオフアヒス","",194,1,79,5,77,5,243,5,100015,2,100016,2,100065,7,7000074,25,7000262,10,7000269,10,9000012,20,9000262,15,9000269,15,10000000000100065n,1,10000000010000260n,15,10000000010000265n,15,10000000010000065n,15,0];
+ItemObjNew[5215] = [5215,60,0,100,0,1,100,100,"ウォフマナフ","ウオフマナフ","超越段階が1以上の時、精錬値が10の時、追加で[Mレイオブジェネシス]で受けるダメージ - 50%",194,1,79,5,77,5,243,7,100015,5,100016,5,7000012,10,7000260,15,7000265,15,9000260,25,9000265,25,9000051,15,9000056,15,10000000000100019n,3,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5490] = [5490,62,0,38,0,1,40,100,"グラットンサーベラス","グラットンサーベラス","精錬値が9以上の時、追加で<br>　物理攻撃命中時、一定確率で敵に与えたダメージの5%をSPとして吸収<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,100015,2,100016,2,100067,7,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100067n,1,10000000010000260n,15,10000000010000265n,15,10000000010000067n,15,0];
+ItemObjNew[5488] = [5488,63,0,15,0,1,50,100,"マギアヴィタ","マギアヴィタ","精錬値が10以上の時、固定詠唱時間 - 80%<br>超越段階が1以上の時、精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",19,15,194,1,79,5,77,5,243,10,100217,3,7000074,15,7000080,15,7000089,15,9000074,25,9000080,25,9000089,25,10000260,15,10000265,15,10000000000100015n,1,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5457] = [5457,50,192,10,0,0,50,200,"セレスティアルダイアデム","セレスティアルダイアデム","固定詠唱時間 - 50%<br>超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,15,15,74,15,79,20,77,20,243,13,100080,1,100089,1,7000080,10,7000089,10,9000080,10,9000089,10,10000000000100015n,1,10000000000100016n,1,10000000000100080n,1,10000000000100089n,1,10000000010000217n,10,20000000000100074n,2,20000000010000262n,15,20000000010000269n,15,0];
+ItemObjNew[5458] = [5458,60,196,100,0,0,100,200,"セレスティアルアーマー","セレスティアルアーマー","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,10,25,15,50,86,25,79,5,77,5,243,7,100261,4,100266,4,7000017,100,7000100,100,7000012,10,9000017,100,9000100,100,9000009,50,10000000000100017n,10,10000000000100100n,10,10000000000100261n,3,10000000000100266n,3,10000000010000217n,10,20000000000100015n,2,20000000010000262n,15,20000000010000269n,15,0];
+ItemObjNew[5459] = [5459,60,177,100,0,0,100,200,"セレスティアルスーツ","セレスティアルスーツ","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,10,25,15,50,86,25,243,7,381,1,100261,4,100266,4,7000017,100,7000100,100,7000012,10,9000017,100,9000100,100,9000009,50,10000000000100017n,10,10000000000100100n,10,10000000000100261n,3,10000000000100266n,3,10000000010000217n,10,20000000000100015n,2,20000000010000262n,15,20000000010000269n,15,0];
+ItemObjNew[5461] = [5461,62,192,38,0,0,40,200,"セレスティアルマント","セレスティアルマント","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,10,25,15,15,74,25,86,25,79,5,77,5,243,5,100262,1,100269,1,7000012,10,7000015,10,7000016,10,9000009,50,9000012,10,10000000000100015n,1,10000000000100016n,1,10000000000100262n,1,10000000000100269n,1,10000000010000217n,10,20000000000100060n,2,20000000010000260n,15,20000000010000265n,15,0];
+ItemObjNew[5460] = [5460,63,192,20,0,0,60,200,"セレスティアルブーツ","セレスティアルブーツ","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,19,15,10,25,15,15,74,40,86,25,79,5,77,5,243,10,100080,4,100089,4,7000217,10,7000015,15,9000009,50,9000015,25,10000000000100217n,1,10000000000100080n,3,10000000000100089n,3,10000000010000217n,10,20000000000100015n,2,20000000010000260n,15,20000000010000265n,15,0];
+ItemObjNew[5474] = [5474,7,197,320,4,0,400,200,"セレスティアルツーハンドアックス","セレスティアルツーハンドアックス","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,200,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5550] = [5550,3,199,280,4,0,340,200,"セレスティアルツーハンドソード","セレスティアルツーハンドソード","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,230,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5473] = [5473,11,160,150,4,0,280,200,"セレスティアルカタール","セレスティアルカタール","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,250,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5552] = [5552,20,175,120,4,0,250,200,"セレスティアルガトリングガン","セレスティアルガトリングガン","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5476] = [5476,9,193,120,4,0,240,200,"セレスティアルスタッフ","セレスティアルスタッフ","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",195,1,194,1,88,270,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5475] = [5475,5,199,200,4,0,2000,200,"セレスティアルランス","セレスティアルランス","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,230,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5477] = [5477,10,205,160,4,0,90,200,"セレスティアルボウ","セレスティアルボウ","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,170,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5478] = [5478,18,175,170,4,0,85,200,"セレスティアルライフル","セレスティアルライフル","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5471] = [5471,15,169,150,4,0,50,200,"セレスティアルウィップ","セレスティアルウィップ","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,120,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5465] = [5465,4,199,150,4,0,180,200,"セレスティアルスピア","セレスティアルスピア","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,110,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5463] = [5463,2,197,150,4,0,120,200,"セレスティアルソード","セレスティアルソード","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,130,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5464] = [5464,1,198,120,4,0,60,200,"セレスティアルナイフ","セレスティアルナイフ","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,120,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5470] = [5470,14,168,180,4,0,25,200,"セレスティアルバイオリン","セレスティアルバイオリン","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,120,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5469] = [5469,13,203,140,4,0,40,200,"セレスティアルナックル","セレスティアルナックル","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,100,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5466] = [5466,12,200,120,4,0,80,200,"セレスティアルブック","セレスティアルブック","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,140,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5468] = [5468,9,177,150,4,0,40,200,"セレスティアルフォックステイル","セレスティアルフォックステイル","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,180,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5472] = [5472,8,204,150,4,0,150,200,"セレスティアルメイス","セレスティアルメイス","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,110,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5467] = [5467,9,202,60,4,0,30,200,"セレスティアルワンド","セレスティアルワンド","超越段階が2以上の時、精錬値が10の時、5秒毎にHP + 5% , SP + 5%",194,1,88,180,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5432] = [5432,65,0,0,0,1,10,250,"暴食の野牛の角","ボウショクノヤギュウノツノ","",12,10,243,3,100000000000080,1,100000000000089,1,6000000000000262,25,6000000000000269,25,0];
+ItemObjNew[5424] = [5424,65,0,0,0,1,15,250,"暴食のエキスパートリング","ボウショクノエキスパートリング","",74,10,243,3,100000000000080,1,100000000000089,1,6000000000000262,25,6000000000000269,25,0];
+ItemObjNew[5427] = [5427,65,0,0,0,1,10,250,"暴食のスピリチュアルリング","ボウショクノスピリチュアルリング","",91,15,243,3,100000000000089,1,6000000000000269,25,0];
+ItemObjNew[5429] = [5429,63,0,13,0,1,50,250,"暴食のバリアントシューズ","ボウショクノバリアントシューズ","超越段階が1以上の時、精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,243,10,100080,4,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,10000000000000079n,5,10000000000000077n,5,10000000000100217n,3,10000000000100080n,3,10000000000100089n,3,10000000010000260n,15,10000000010000265n,15,20000000000100073n,-10,20000000010000262n,15,20000000010000269n,15,20000000010000067n,15,0];
+ItemObjNew[5422] = [5422,62,0,11,0,1,50,250,"暴食のウールスカーフ","ボウショクノウールスカーフ","超越段階が1以上の時、精錬値が10の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,243,5,100015,2,100016,2,7000012,10,7000217,10,9000012,10,9000074,25,10000000000000079n,5,10000000000000077n,5,10000000000100262n,3,10000000000100269n,3,20000000000100262n,1,20000000000100269n,1,20000000000100061n,2,20000000000100065n,2,20000000010000260n,15,20000000010000265n,15,20000000010000061n,25,20000000010000065n,25,0];
+ItemObjNew[5428] = [5428,63,0,13,0,1,30,250,"暴食のタイダルシューズ","ボウショクノタイダルシューズ","",194,1,243,10,100080,4,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,10000000000000079n,5,10000000000000077n,5,10000000000100217n,3,10000000000100080n,3,10000000000100089n,3,10000000010000065n,15,10000000010000260n,15,10000000010000265n,15,20000000000100015n,2,20000000010000262n,15,20000000010000269n,15,20000000010000065n,15,0];
+ItemObjNew[5425] = [5425,60,0,15,0,1,30,250,"暴食のオルレアンの制服","ボウショクノオルレアンノセイフク","精錬値が9以上の時、固定詠唱時間 - 70%<br>超越段階が2以上の時、精錬値が10の時、固定詠唱時間 - 80%",243,7,100261,4,100266,4,7000380,1,7000012,10,10000000000000079n,5,10000000000000077n,5,10000000010000065n,15,10000000010000262n,15,10000000010000269n,15,10000000000100261n,3,10000000000100266n,3,20000000000000194n,1,20000000000100017n,30,20000000000100100n,30,20000000010000015n,50,20000000010000016n,50,0];
+ItemObjNew[4981] = [4981,50,192,10,0,1,50,200,"アルタイルハット","アルタイルハツト","",234,3,243,13,79,20,77,20,80,40,100000000006046,1,100000000006043,1,100000000006291,1,100234,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006046n,1,10100000000006043n,1,10100000000006291n,1,10000000000100234n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5031] = [5031,50,192,10,0,1,50,200,"ウォルフライエ","ウオルフライエ","",230,3,243,13,79,20,77,20,80,40,100000000006095,1,100000000006092,1,100000000006094,1,100000000006309,1,100000000006310,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006095n,1,10100000000006092n,1,10100000000006094n,1,10100000000006309n,1,10100000000006310n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4788] = [4788,50,192,10,0,1,50,200,"クロックワイズ","クロツクワイス","",233,3,243,13,79,20,77,20,89,40,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,100233,1,10000298,50,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006064n,1,10100000000006069n,1,10100000000006056n,1,10100000000006070n,1,10100000000006063n,1,10100000000006068n,1,10100000000006060n,1,10100000000006067n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4907] = [4907,50,192,10,0,1,50,200,"シックピオニー","シツクヒオニイ","",230,3,243,13,79,20,77,20,80,40,100000000006013,1,100000000006021,1,100000000006016,1,100000000006020,1,100000000006312,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006013n,1,10100000000006021n,1,10100000000006016n,1,10100000000006020n,1,10100000000006312n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4982] = [4982,50,192,10,0,1,50,200,"ストライプリボンハット","ストライフリホンハツト","",233,3,243,13,79,20,77,20,89,40,100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,100233,1,10000298,50,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006028n,1,10100000000006033n,1,10100000000006039n,1,10100000000006313n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4836] = [4836,50,192,10,0,1,50,200,"ツートンキャップ","ツウトンキヤツフ","",230,3,243,13,79,20,77,20,80,40,100000000006165,1,100000000006163,1,100000000006166,1,100000000006164,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006165n,1,10100000000006163n,1,10100000000006166n,1,10100000000006164n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4835] = [4835,50,192,10,0,1,50,200,"ドラゴンサークレット","トラコンサアクレツト","",230,3,243,13,79,20,77,20,80,40,100000000006008,1,100000000006010,1,100000000006009,1,100000000006295,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006008n,1,10100000000006010n,1,10100000000006009n,1,10100000000006295n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4908] = [4908,50,192,10,0,1,50,200,"ヤマネコニット帽(白)","ヤマネコニツトホウシロ","",230,3,243,13,79,20,77,20,80,40,100000000006100,1,100000000006101,1,100000000006106,1,100000000006305,1,100000000006306,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006100n,1,10100000000006101n,1,10100000000006106n,1,10100000000006305n,1,10100000000006306n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4861] = [4861,50,192,10,0,1,50,200,"リス耳フード帽(アルビノ)","リスミミフウトホウアルヒノ","",230,3,243,13,79,20,77,20,80,40,100000000006037,1,100000000006031,1,100230,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006037n,1,10100000000006031n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4989] = [4989,50,192,10,0,1,50,200,"異端審問官のヴェール","イタンシンモンカンノウエエル","",230,3,243,13,79,20,77,20,80,40,100000000006113,1,100000000006124,1,100000000006123,1,100000000006302,1,100230,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006113n,1,10100000000006123n,1,10100000000006124n,1,10100000000006302n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4951] = [4951,50,192,10,0,1,50,200,"紫電一閃","シテンイツセン","",235,3,243,13,79,20,77,20,80,40,100000000006002,1,100000000006004,1,100000000006005,1,100235,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006002n,1,10100000000006004n,1,10100000000006005n,1,10000000000100235n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5030] = [5030,50,192,10,0,1,50,200,"情熱あふれるラビットリボン","シヨウネツアフレルラヒツトリホン","",234,3,243,13,79,20,77,20,80,40,100000000006132,1,100000000006131,1,100234,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006132n,1,10100000000006131n,1,10000000000100234n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4917] = [4917,50,192,10,0,1,50,200,"天下無敵の紋帽子","テンカムテキノモンホウシ","",234,3,243,13,79,20,77,20,80,40,100000000006051,1,100000000006047,1,100234,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006051n,1,10100000000006047n,1,10000000000100234n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[4918] = [4918,50,192,10,0,1,50,200,"白きカーリッツバーグ騎士団のヘルム","シロキカアリツツハアクキシタンノヘルム","",233,3,243,13,79,20,77,20,89,40,100000000006096,1,100000000006093,1,100000000006311,1,100233,1,10000298,50,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006096n,1,10100000000006093n,1,10100000000006311n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5093] = [5093,50,192,10,0,1,50,200,"イエローキティヘッドフォン","イエロオキテイヘツトフオン","",230,3,243,13,79,20,77,20,80,40,100230,1,100000000006237,1,100000000006238,1,100000000006294,1,100000000006076,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006237n,1,10100000000006238n,1,10100000000006294n,1,10100000000006076n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5089] = [5089,50,192,10,0,1,50,200,"ぷにぷにあんよのスタンプフード","フニフニアンヨノスタンフフウト","",230,3,243,13,79,20,77,20,80,40,100230,1,100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006221n,1,10100000000006222n,1,10100000000006223n,1,10100000000006303n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5171] = [5171,50,192,10,0,1,50,200,"スチームローラー","スチイムロオラア","",234,3,243,13,79,20,77,20,80,40,100000000006216,1,100000000006217,1,100000000006220,1,100000000006296,1,100000000006297,1,100234,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006216n,1,10100000000006217n,1,10100000000006220n,1,10100000000006296n,1,10100000000006297n,1,10000000000100234n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5172] = [5172,50,192,10,0,1,50,200,"白狐耳の笠","シロキツネミミノカサ","",230,3,243,13,79,20,77,20,80,40,100000000006227,1,100000000006225,1,100000000006226,1,100000000006228,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006227n,1,10100000000006225n,1,10100000000006226n,1,10100000000006228n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5182] = [5182,50,192,10,0,1,50,200,"白猫の魔女帽子","シロネコノマシヨホウシ","",233,3,243,13,79,20,77,20,89,40,100000000006247,1,100000000006248,1,100000000006304,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006247n,1,10100000000006248n,1,10100000000006304n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5187] = [5187,50,192,10,0,1,50,200,"霊道冠","レイトウカン","",233,3,243,13,79,20,77,20,89,40,100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006202,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006197n,1,10100000000006198n,1,10100000000006199n,1,10100000000006200n,1,10100000000006201n,1,10100000000006202n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5188] = [5188,50,192,10,0,1,50,200,"ガーデンオブヘヴン","カアテンオフヘウン","",233,3,243,13,79,20,77,20,89,40,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006149n,1,10100000000006146n,1,10100000000006147n,1,10100000000006150n,1,10100000000006148n,1,10100000000006157n,1,10100000000006290n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5210] = [5210,50,192,10,0,1,50,200,"サタニッククラウン","サタニツククラウン","",79,20,77,20,243,13,234,3,80,40,100000000006102,1,100000000006109,1,100000000006305,1,100000000006307,1,100234,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006102n,1,10100000000006109n,1,10100000000006305n,1,10100000000006307n,1,10000000000100234n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5228] = [5228,50,192,10,0,1,50,200,"マーリン柄の丸帽子","マアリンカラノマルホウシ","",230,3,243,13,79,20,77,20,80,40,100000000006235,1,100000000006236,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006235n,1,10100000000006236n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5230] = [5230,50,192,10,0,1,50,200,"マグマイグニスキャップ","マクマイクニスキヤツフ","",230,3,243,13,77,20,79,20,80,40,100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006072n,1,10100000000006242n,1,10100000000006073n,1,10100000000006292n,1,10100000000006293n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5279] = [5279,50,192,10,0,1,50,200,"百花の愛","ヒヤクカノアイ","",230,3,243,13,79,20,77,20,80,40,100000000006022,1,100000000006014,1,100000000006020,1,100230,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006022n,1,10100000000006014n,1,10100000000006020n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5321] = [5321,50,192,10,0,1,50,200,"桜の白魔女帽子","サクラノシロマシヨホウシ","",233,3,243,13,79,20,77,20,89,40,100000000006253,1,100000000006254,1,100000000006255,1,100000000006256,1,100000000006257,1,100000000006258,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006253n,1,10100000000006254n,1,10100000000006255n,1,10100000000006256n,1,10100000000006257n,1,10100000000006258n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5322] = [5322,50,192,10,0,1,50,200,"白い機械植物帽","シロイキカイシヨクフツホウ","",230,3,243,13,79,20,77,20,80,40,100000000006239,1,100000000006314,1,100000000006315,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006239n,1,10100000000006314n,1,10100000000006315n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5386] = [5386,50,192,10,0,1,50,200,"リヴァイアサンヘルム","リウアイアサンヘルム","",230,3,243,13,79,20,77,20,80,40,100000000006241,1,100000000006009,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006241n,1,10100000000006009n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5402] = [5402,50,192,10,0,1,50,200,"機械羽根のブルーヘアバンド","キカキハネノフルウヘアハント","",234,3,243,13,79,20,77,20,80,40,100000000006217,1,100000000006219,1,100000000006220,1,100000000006297,1,100234,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006217n,1,10100000000006219n,1,10100000000006220n,1,10100000000006297n,1,10000000000100234n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5408] = [5408,50,192,10,0,1,50,200,"星魔術師の三角帽","ホシマシユツシノサンカクホウ","",233,3,243,13,79,20,77,20,89,40,100000000006059,1,100000000006057,1,100000000006053,1,100000000006066,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006059n,1,10100000000006057n,1,10100000000006053n,1,10100000000006066n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5454] = [5454,50,192,10,0,1,50,200,"濃紺のイビルドルイド帽","ノウコンノイビルドルイドボウ","",233,3,243,13,79,20,77,20,89,40,100000000006103,1,100000000006107,1,100000000006105,1,100000000006308,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006103n,1,10100000000006107n,1,10100000000006105n,1,10100000000006308n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5640] = [5640,50,192,10,0,1,50,200,"鳩のマジックハット","ハトノマジックハット","",233,3,243,13,79,20,77,20,89,40,100000000006134,1,100000000006133,1,100000000006298,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006134n,1,10100000000006133n,1,10100000000006298n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5643] = [5643,50,192,10,0,1,50,200,"青狐耳鈴リボン","アオキツネミミスズリボン","",233,3,243,13,79,20,77,20,89,40,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,100233,1,10000074,20,10000298,50,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006149n,1,10100000000006146n,1,10100000000006147n,1,10100000000006150n,1,10100000000006148n,1,10100000000006157n,1,10100000000006290n,1,10000000000100233n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5397] = [5397,62,192,38,0,1,40,200,"生命の循環：春","セイメイノシユンカイハル","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,43000000012,20,43000000074,25,100015,2,100016,2,100230,2,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100230n,2,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5398] = [5398,62,192,38,0,1,40,200,"生命の循環：夏","セイメイノシユンカイナツ","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,47000000012,20,47000000074,25,100015,2,100016,2,100234,2,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100234n,2,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5399] = [5399,62,192,38,0,1,40,200,"生命の循環：秋","セイメイノシユンカイアキ","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,46000000012,20,46000000074,25,100015,2,100016,2,100233,2,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100233n,2,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5400] = [5400,62,192,38,0,1,40,200,"生命の循環：冬","セイメイノシユンカイフユ","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,48000000012,20,48000000074,25,100015,2,100016,2,100235,2,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100235n,2,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5393] = [5393,62,192,38,0,1,40,200,"神獣のマント：春","シンシユウノマントハル","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,43000000012,20,43000000074,25,100015,2,100016,2,100230,1,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100230n,1,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5394] = [5394,62,192,38,0,1,40,200,"神獣のマント：夏","シンシユウノマントナツ","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,47000000012,20,47000000074,25,100015,2,100016,2,100234,1,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100234n,1,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5395] = [5395,62,192,38,0,1,40,200,"神獣のマント：秋","シンシユウノマントアキ","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,46000000012,20,46000000074,25,100015,2,100016,2,100233,1,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100233n,1,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5396] = [5396,62,192,38,0,1,40,200,"神獣のマント：冬","シンシユウノマントフユ","精錬値が9以上の時、追加で<br>　物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",194,1,79,5,77,5,243,5,48000000012,20,48000000074,25,100015,2,100016,2,100235,1,7000217,10,7000262,10,7000269,10,9000262,15,9000269,15,10000000000100235n,1,10000000010000015n,15,10000000010000260n,15,10000000010000265n,15,0];
+ItemObjNew[5655] = [5655,99,0,0,0,0,0,0,"","","超越段階が1以上の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",0];	// 生命の循環 + 星座エンチャントのセット
+// --- 2026-02-10 ---
+ItemObjNew[5656] = [5656,52,170,0,0,0,10,200,"ブックオブエレメンタラー","ブックオブエレメンタラー","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5657] = [5657,52,194,0,0,0,10,200,"おしゃべりオカメインコ","オシャベリオカメインコ","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5658] = [5658,64,192,0,0,1,10,200,"朱のリボンチャーム","アカノリボンチャーム","",233,3,12,15,74,15,89,40,243,3,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,0];
+ItemObjNew[5659] = [5659,64,192,0,0,1,10,200,"荒ぶる虎んぷるソックス","アラフルトランフルソックス","",230,3,10,50,12,15,74,15,80,40,243,3,100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,0];
+// --- 2026-03-03 ---
+ItemObjNew[4954] = [4954,2,171,150,3,1,120,220,"グレイシアソード","クレイシアソオト","",88,130,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4959] = [4959,1,195,120,3,1,60,220,"グレイシアナイフ","クレイシアナイフ","",88,120,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4956] = [4956,6,206,180,3,1,180,220,"グレイシアアックス","クレイシアアツクス","",88,110,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4955] = [4955,4,51,150,3,1,180,220,"グレイシアスピア","クレイシアスヒア","",88,110,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4965] = [4965,12,95,120,3,1,80,220,"グレイシアブック","クレイシアフツク","",88,140,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4957] = [4957,9,77,60,3,1,30,220,"グレイシアワンド","クレイシアワント","",88,180,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4960] = [4960,13,167,140,3,1,40,220,"グレイシアナックル","クレイシアナツクル","",88,100,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4964] = [4964,14,168,180,3,1,25,220,"グレイシアバイオリン","クレイシアハイオリン","",88,120,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4963] = [4963,15,169,150,3,1,50,220,"グレイシアウィップ","クレイシアウイツフ","",88,120,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[4961] = [4961,8,161,150,3,1,150,220,"グレイシアメイス","クレイシアメイス","",88,110,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[5016] = [5016,9,177,150,3,1,40,220,"グレイシアフォックステイル","クレイシアフオツクステイル","",194,1,100,180,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[5014] = [5014,2,176,150,3,1,120,220,"グレイシアベーシックソード","クレイシアヘエシツクソオト","",100,130,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[5285] = [5285,1,174,120,3,1,60,220,"グレイシアダガー","クレイシアタカア","",100,120,243,10,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,1,0];
+ItemObjNew[5308] = [5308,2,171,150,4,1,120,220,"ディムグレイシアソード","テイムクレイシアソオト","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,130,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5310] = [5310,1,195,120,4,1,60,220,"ディムグレイシアナイフ","テイムクレイシアナイフ","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,120,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5312] = [5312,6,206,180,4,1,180,220,"ディムグレイシアアックス","テイムクレイシアアツクス","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,88,110,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5313] = [5313,4,51,150,4,1,180,220,"ディムグレイシアスピア","テイムクレイシアスヒア","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,110,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5314] = [5314,12,95,120,4,1,80,220,"ディムグレイシアブック","テイムクレイシアフツク","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,88,140,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5315] = [5315,9,77,60,4,1,30,220,"ディムグレイシアワンド","テイムクレイシアワント","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,88,180,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5317] = [5317,13,167,140,4,1,40,220,"ディムグレイシアナックル","テイムクレイシアナツクル","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5318] = [5318,14,168,180,4,1,25,220,"ディムグレイシアバイオリン","テイムクレイシアハイオリン","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,120,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5319] = [5319,15,169,150,4,1,50,220,"ディムグレイシアウィップ","テイムクレイシアウイツフ","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,120,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5320] = [5320,8,161,150,4,1,150,220,"ディムグレイシアメイス","テイムクレイシアメイス","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,88,110,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5316] = [5316,9,177,150,4,1,40,220,"ディムグレイシアフォックステイル","テイムクレイシアフオツクステイル","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,88,180,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5309] = [5309,2,176,150,4,1,120,220,"ディムグレイシアベーシックソード","テイムクレイシアヘエシツクソオト","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,130,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5311] = [5311,1,174,120,4,1,60,220,"ディムグレイシアダガー","テイムクレイシアタカア","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,120,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000009n,50,10000000010000065n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[4958] = [4958,11,160,150,3,1,280,220,"グレイシアカタール","クレイシアカタアル","",88,250,243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[4962] = [4962,10,76,160,3,1,90,220,"グレイシアボウ","クレイシアホウ","",88,170,243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5010] = [5010,16,174,150,3,1,150,220,"グレイシア風魔手裏剣","クレイシアフウマシユリケン","",100,160,194,1,243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5286] = [5286,3,159,280,3,1,340,220,"グレイシアツーハンドソード","クレイシアツウハントソオト","",100,230,243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5287] = [5287,7,164,320,3,1,400,220,"グレイシアツーハンドアックス","クレイシアツウハントアツクス","",194,1,100,200,243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5288] = [5288,5,159,200,3,1,350,220,"グレイシアランス","クレイシアランス","",100,230,243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5289] = [5289,9,163,120,3,1,240,220,"グレイシアスタッフ","クレイシアスタツフ","",195,1,194,1,100,270,243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5012] = [5012,17,175,70,3,1,35,220,"グレイシアハンドガン","クレイシアハントカン","",243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5281] = [5281,18,175,170,3,1,85,220,"グレイシアライフル","クレイシアライフル","",243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5282] = [5282,19,175,180,3,1,300,220,"グレイシアショットガン","クレイシアシヨツトカン","スプラッシュダメージ",243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5283] = [5283,20,175,120,3,1,250,220,"グレイシアガトリングガン","クレイシアカトリンクカン","",243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5284] = [5284,21,175,210,3,1,140,220,"グレイシアグレネードガン","クレイシアクレネエトカン","",243,40,100080,6,100089,3,10000000000100261n,7,10000000000100266n,7,20000000000100015n,3,0];
+ItemObjNew[5297] = [5297,11,160,150,4,1,280,220,"ディムグレイシアカタール","テイムクレイシアカタアル","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,250,243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5302] = [5302,10,76,160,4,1,90,220,"ディムグレイシアボウ","テイムクレイシアホウ","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,170,243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5301] = [5301,16,174,150,4,1,150,220,"ディムグレイシア風魔手裏剣","テイムクレイシアフウマシユリケン","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,88,160,243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5296] = [5296,3,159,280,4,1,340,220,"ディムグレイシアツーハンドソード","テイムクレイシアツウハントソオト","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,230,243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5298] = [5298,7,164,320,4,1,400,220,"ディムグレイシアツーハンドアックス","テイムクレイシアツウハントアツクス","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",194,1,88,200,243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5299] = [5299,5,159,200,4,1,350,220,"ディムグレイシアランス","テイムクレイシアランス","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",88,230,243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5300] = [5300,9,163,120,4,1,240,220,"ディムグレイシアスタッフ","テイムクレイシアスタツフ","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",195,1,194,1,88,270,243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5303] = [5303,17,175,70,4,1,35,220,"ディムグレイシアハンドガン","テイムクレイシアハントカン","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5304] = [5304,18,175,170,4,1,85,220,"ディムグレイシアライフル","テイムクレイシアライフル","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5305] = [5305,19,175,180,4,1,300,220,"ディムグレイシアショットガン","テイムクレイシアシヨツトカン","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%スプラッシュダメージ",243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5306] = [5306,20,175,120,4,1,250,220,"ディムグレイシアガトリングガン","テイムクレイシアカトリンクカン","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5307] = [5307,21,175,210,4,1,140,220,"ディムグレイシアグレネードガン","テイムクレイシアクレネエトカン","超越段階が2以上の時、精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%",243,40,100261,6,100266,3,10000000000000077n,40,10000000000100261n,7,10000000000100266n,7,10000000010000009n,100,10000000010000065n,25,20000000000000079n,40,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5660] = [5660,62,0,50,0,0,40,100,"オーロラカーテンローブ","オーロラカーテンローブ","物理・魔法攻撃時、[凍て付いた鱗の氷河]に出現するモンスターに与えるダメージ + 30%<br>[凍て付いた鱗の氷河]に出現するモンスターから受けるダメージ - 60%",19,5,61,50,66,50,0];
+// --- 2026-03-10 ---
+ItemObjNew[5661] = [5661,60,192,150,0,1,120,275,"エントワインドマジカルアーマー","エントワインドマジカルアーマー","",79,5,77,5,243,7,86,25,100260,4,7000012,10,9000194,1,10000000000100260n,3,10000000010000262n,15,0];
+ItemObjNew[5662] = [5662,60,192,150,0,1,120,275,"エントワインドマジカルローブ","エントワインドマジカルローブ","",79,5,77,5,243,7,73,-25,100265,4,7000012,10,9000194,1,10000000000100265n,3,10000000010000269n,15,0];
+ItemObjNew[5663] = [5663,63,192,20,0,1,60,275,"エントワインドマジカルブーツ","エントワインドマジカルブーツ","",79,5,77,5,243,10,86,25,100217,3,100080,4,7000015,20,7000074,15,9000015,20,9000074,25,10000000000100080n,3,10000000010000262n,15,0];
+ItemObjNew[5664] = [5664,63,192,20,0,1,60,275,"エントワインドマジカルシューズ","エントワインドマジカルシューズ","",79,5,77,5,243,10,73,-25,100217,3,100089,4,7000015,20,7000074,15,9000015,20,9000074,25,10000000000100089n,3,10000000010000269n,15,0];
+ItemObjNew[5665] = [5665,62,192,60,0,1,100,275,"エントワインドマジカルマント","エントワインドマジカルマント","",79,5,77,5,243,5,86,25,100217,1,100015,2,100016,2,100262,1,7000074,25,7000262,5,9000012,20,9000262,10,10000000000100066n,7,10000000010000262n,15,0];
+ItemObjNew[5666] = [5666,62,192,60,0,1,100,275,"エントワインドマジカルマフラー","エントワインドマジカルマフラー","",79,5,77,5,243,5,73,-25,100217,1,100015,2,100016,2,100269,1,7000074,25,7000269,5,9000012,20,9000269,10,10000000000100066n,7,10000000010000269n,15,0];
+// --- 2026-03-18 ---
+ItemObjNew[5667] = [5667,60,163,100,0,1,100,200,"ジュディス・ラケル","ジュディス・ラケル","",243,7,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9011520,100,10000269,15,0];
+ItemObjNew[5668] = [5668,51,0,0,0,10,10,100,"リーブラオブジャッジメント","リーブラオブジャッジメント","",243,5,86,25,380,1,260,10,265,10,10000000000017,1,10000000000100,1,0];
+ItemObjNew[5669] = [5669,52,174,0,0,0,10,200,"ルインテンペスト","ルインテンペスト","",243,3,100000000000260,1,100000000000265,1,0];
+// --- 2026-04-08 ---
+ItemObjNew[5670] = [5670,1,178,120,2400004,2,60,200,"フォーティファイドウィンガー","フォーティファイドウィンガー","",88,120,89,60,7006369,10,7006393,10,7006375,10,7006381,10,7006386,10,7006376,10,7006370,10,7006382,10,7006377,10,7006371,10,7006383,10,7006391,10,9006369,15,9006393,15,9006375,15,9006381,15,9006386,15,9006376,15,9006370,15,9006382,15,9006377,15,9006371,15,9006383,15,9006391,15,10000233,20,0];
+ItemObjNew[5671] = [5671,1,178,120,2400004,3,60,220,"ソリッドウィンガー","ソリッドウィンガー","",88,120,89,60,7006369,10,7006393,10,7006375,10,7006381,10,7006386,10,7006376,10,7006370,10,7006382,10,7006377,10,7006371,10,7006383,10,7006391,10,9006369,15,9006393,15,9006375,15,9006381,15,9006386,15,9006376,15,9006370,15,9006382,15,9006377,15,9006371,15,9006383,15,9006391,15,10000233,20,0];
+ItemObjNew[5672] = [5672,6,178,180,4,1,180,200,"アスタロトアックス","アスタロトアックス","",88,110,194,1,243,10,100000000006372,1,100000000006378,1,100000000006384,1,100000000006392,1,100000000006387,1,100000000006373,1,100000000006379,1,100000000006385,1,100000000006369,1,100000000006393,1,100000000006375,1,100000000006381,1,100000000006386,1,100000000006376,1,100000000006370,1,100000000006382,1,100000000006377,1,100000000006371,1,100000000006383,1,100000000006391,1,100261,13,100266,10,10000000000106350n,5,10000000000106344n,5,10000000000106356n,5,10000000000106360n,5,10000000000106345n,5,10000000000106351n,5,10000000000106357n,5,10000000000106361n,5,10000000000106347n,5,10000000000106353n,5,10000000000106348n,5,10000000000106354n,5,10000000000106358n,5,10000000000106355n,5,10000000000106359n,5,10000000000106394n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5673] = [5673,6,178,180,4,1,180,200,"アドゥルテル・フィデス・ネイチャーアックス","アドゥルテルフィデスネイチャーアックス","",88,110,194,1,100080,10,0];
+ItemObjNew[5674] = [5674,6,178,180,4,1,180,200,"ウィワートゥス・フィデス・ネイチャーアックス","ウィワートゥスフィデスネイチャーアックス","",88,110,194,1,100261,13,10000000000106350n,5,10000000000106344n,5,10000000000106356n,5,10000000000106360n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5675] = [5675,100,0,0,0,0,0,0,0,0,"",6372,25,6378,25,6384,25,6392,25,6387,25,243,10,0];
+ItemObjNew[5676] = [5676,6,178,180,4,1,180,200,"セプルクルム・ホノリス・アックス","セプルクルムホノリスアックス","",88,110,194,1,243,10,100261,13,10000000000106345n,5,10000000000106351n,5,10000000000106357n,5,10000000000106361n,5,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5677] = [5677,100,0,0,0,0,0,0,0,0,"",100000000006373,1,100000000006379,1,100000000006385,1,0];
+ItemObjNew[5678] = [5678,6,178,180,4,0,180,200,"セレスティアルアックス","セレスティアルアックス","超越段階が2以上の時、精錬値が10以上の時、5秒毎にHP + 5% , SP + 5%",88,110,194,1,73,-100,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5679] = [5679,6,178,180,4,1,180,200,"ポエニテンティア・セキュリス","ポエニテンティアセキュリス","",88,110,194,1,100266,10,10000000000106347n,5,10000000000106353n,5,10000000000106348n,5,10000000000106354n,5,10000000000106358n,5,10000000000106355n,5,10000000000106359n,5,10000000000106394n,5,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5680] = [5680,100,0,0,0,0,0,0,0,0,"",6369,25,6393,25,6375,25,6381,25,6386,25,6376,25,6370,25,6382,25,6377,25,6371,25,6383,25,6391,25,243,10,0];
+ItemObjNew[5681] = [5681,7,134,80,1,0,150,3,"初心者用バトルアックス","ショシンシャヨウバトルアックス","",194,1,0];
+ItemObjNew[5682] = [5682,8,178,150,2500004,1,150,220,"モカダスガルズ","モカダスガルズ","精錬値が9以上の時、追加で魔法攻撃命中時、一定確率で10秒間、1秒毎にHP + 10%",88,110,194,1,243,10,66,5,100089,10,7006369,25,7006393,25,7006375,25,7006381,25,7006386,25,7006376,25,7006370,25,7006382,25,7006377,25,7006371,25,7006383,25,7006391,25,10000233,20,0];
+ItemObjNew[5683] = [5683,50,178,10,0,1,50,200,"暴食のクラウン(アリテア)","ボウショクノクラウンアリテア","",194,1,79,20,77,20,243,13,100262,4,100269,4,7012348,100,7012354,100,7012359,100,7000015,10,7000016,10,9000217,10,100000009006369,1,100000009006393,1,100000009006375,1,100000009006381,1,100000009006386,1,100000009006376,1,100000009006370,1,100000009006382,1,100000009006377,1,100000009006371,1,100000009006383,1,100000009006391,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5684] = [5684,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006369,1,100000000006393,1,100000000006375,1,100000000006381,1,100000000006386,1,100000000006376,1,100000000006370,1,100000000006382,1,100000000006377,1,100000000006371,1,100000000006383,1,100000000006391,1,0];
+ItemObjNew[5685] = [5685,50,178,10,0,1,50,200,"時間のサークレット(アリテア)","ジカンノサークレットアリテア","",194,1,79,20,77,20,243,13,100262,4,100269,4,7012356,100,7000015,10,7000016,10,9000217,10,100000009006372,1,100000009006378,1,100000009006384,1,100000009006392,1,100000009006387,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000066n,10,0];
+ItemObjNew[5686] = [5686,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006372,1,100000000006378,1,100000000006384,1,100000000006392,1,100000000006387,1,0];
+// --- 2026-04-14 ---
+ItemObjNew[5687] = [5687,66,192,0,0,1,10,200,"覚醒創星石のアミュレット","カクセイソウセイセキノアミュレット","物理・魔法攻撃命中時、一定確率で自分に発生している[エルヴィラキャンディ]、[エルヴィラキャンディ(YE)]の再使用待機時間を解除する",12,15,74,15,86,25,380,1,243,3,260,10,265,10,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,50000000019901,10000,0];
+ItemObjNew[5688] = [5688,66,192,0,0,1,10,200,"ディヴィニトゥス・フィデス・モニーレ","ディヴィニトゥスフィデスモニーレ","物理・魔法攻撃命中時、一定確率で自分に発生している[狂乱]状態を回復する",12,15,74,15,86,25,380,1,243,3,260,15,265,15,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,50000000019901,10000,0];
+ItemObjNew[5689] = [5689,66,192,0,0,1,10,200,"セプルクルム・ホノリス・ロザリオ","セプルクルムホノリスロザリオ","物理・魔法攻撃命中時、一定確率で自分に発生している[抗毒血清]、[抗毒血清(YE)]の再使用待機時間を解除する",12,15,74,15,86,25,380,1,243,3,260,15,265,15,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,50000000019901,10000,0];
+ItemObjNew[5690] = [5690,66,192,0,0,1,10,200,"ポエニテンティア・グロリオサ","ポエニテンティアグロリオサ","物理・魔法攻撃命中時、一定確率で自分に発生している[マスカレード:イグノアランス]状態を回復する",12,15,74,15,86,25,380,1,243,3,260,15,265,15,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,50000000019901,10000,0];
+ItemObjNew[5691] = [5691,60,178,100,0,1,100,200,"コールオブテンペスタリー","コールオブテンペスタリー","",243,7,100000000006369,1,100000000006393,1,100000000006375,1,100000000006381,1,100000000006386,1,100000000006376,1,100000000006370,1,100000000006382,1,100000000006377,1,100000000006371,1,100000000006383,1,100000000006391,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9020354,1000,10000269,15,0];
+ItemObjNew[5692] = [5692,60,194,100,0,1,100,200,"ローリングアプローズ","ローリングアプローズ","",243,7,100000000006134,1,100000000006133,1,100000000006298,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9019641,200,10000269,15,0];
+ItemObjNew[5693] = [5693,51,0,0,0,0,10,100,"ナイトメアチェーン","ナイトメアチェーン","",243,5,380,1,298,50,260,10,265,10,10000000000017,1,10000000000100,1,0];
+ItemObjNew[5694] = [5694,6,178,180,4,1,180,200,"エントワインドマジカルアックス","エントワインドマジカルアックス","",194,1,88,110,100261,6,100266,3,7000220,215,9000220,95,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,0];
+ItemObjNew[5695] = [5695,51,0,2,0,10,10,100,"トゥーサイドウィング","トゥーサイドウィング","",10000000000017,1,10000000000100,1,0];
+ItemObjNew[5696] = [5696,100,0,0,0,0,0,0,0,0,"",243,5,66,5,65,5,0];
+ItemObjNew[5697] = [5697,52,0,0,0,0,10,100,"プライモーディアルウェポンズ","プライモーディアルウェポンズ","",243,3,260,15,265,15,0];
+ItemObjNew[5698] = [5698,66,192,0,0,10,10,200,"セレスティアルマグナニミティ","セレスティアルマグナニミティ","",12,15,243,3,10000000000017,1,10000000000100,1,10000000000013,50,10000000000014,5,50000000000080,1,50000000000089,1,0];
+ItemObjNew[5699] = [5699,100,0,0,0,0,0,0,0,0,"",10,25,74,15,86,25,0];
+ItemObjNew[5700] = [5700,62,192,38,0,1,40,200,"マグヌス・ドミヌス","マグヌス・ドミヌス","精錬値が10の時、物理・魔法攻撃命中時、一定確率で10秒間、固定詠唱時間 - 1秒",79,5,77,5,243,5,100015,2,100016,2,100233,1,7000074,25,7000262,10,7000269,10,9000012,20,9000262,15,9000269,15,10000260,15,10000265,15,0];
+ItemObjNew[5701] = [5701,100,0,0,0,0,0,0,0,0,"物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる",298,50,0];
+ItemObjNew[5702] = [5702,63,192,20,0,1,60,200,"ヴェスティギアサーベラス","ヴェスティギアサーベラス","",79,5,77,5,243,10,80,40,89,40,100217,3,5000015,15,5000074,15,7000015,25,7000074,25,9000080,30,9000089,30,10000086,25,10000262,15,10000269,15,10000260,15,10000265,15,0];
+
+ItemObjNew[5703] = [5703,50,159,10,0,1,50,200,"傲慢のエンジェリックヘルム(ドラゴンナイト)","ゴウマンノエンジェリックヘルム(ドラゴンナイト)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011453,100,7011457,100,9000217,10,100000009006241,1,100000009006009,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5704] = [5704,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006241,1,100000000006009,1,0];
+ItemObjNew[5705] = [5705,50,165,10,0,1,50,200,"傲慢のエンジェリックヘルム(インペリアルガード)","ゴウマンノエンジェリックヘルム(インペリアルガード)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011587,100,7011580,100,9000217,10,100000009006095,1,100000009006092,1,100000009006094,1,100000009006309,1,100000009006310,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5706] = [5706,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006095,1,100000000006092,1,100000000006094,1,100000000006309,1,100000000006310,1,0];
+ItemObjNew[5707] = [5707,50,164,10,0,1,50,200,"傲慢のエンジェリックヘルム(マイスター)","ゴウマンノエンジェリックヘルム(マイスター)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019541,2000,9000217,10,100000009006072,1,100000009006242,1,100000009006073,1,100000009006292,1,100000009006293,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5708] = [5708,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,0];
+ItemObjNew[5709] = [5709,50,171,10,0,1,50,200,"傲慢のエンジェリックヘルム(バイオロ)","ゴウマンノエンジェリックヘルム(バイオロ)","[グレースカルティベイションコート]または[潜在覚醒(クレイジーウィードII)]と[豪傑]のセット効果が発動している場合、[クレイジーウィード]の再使用待機時間減少効果が発動しない",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019732,4500,7019737,5000,9000217,10,100000009006239,1,100000009006314,1,100000009006315,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5710] = [5710,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006239,1,100000000006314,1,100000000006315,1,0];
+ItemObjNew[5711] = [5711,50,160,10,0,1,50,200,"傲慢のエンジェリックヘルム(シャドウクロス)","ゴウマンノエンジェリックヘルム(シャドウクロス)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019461,2000,7019797,60000,9000217,10,100000009006013,1,100000009006021,1,100000009006016,1,100000009006020,1,100000009006312,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5712] = [5712,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006013,1,100000000006021,1,100000000006016,1,100000000006020,1,100000000006312,1,0];
+ItemObjNew[5713] = [5713,50,166,10,0,1,50,200,"傲慢のエンジェリックヘルム(アビスチェイサー)","ゴウマンノエンジェリックヘルム(アビスチェイサー)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7007603,100,9000217,10,100000009006100,1,100000009006101,1,100000009006106,1,100000009006305,1,100000009006306,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5714] = [5714,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006100,1,100000000006101,1,100000000006106,1,100000000006305,1,100000000006306,1,0];
+ItemObjNew[5715] = [5715,50,161,10,0,1,50,200,"傲慢のエンジェリックヘルム(カーディナル)","ゴウマンノエンジェリックヘルム(カーディナル)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019484,1500,7011484,100,9000217,10,100000009006028,1,100000009006033,1,100000009006039,1,100000009006313,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5716] = [5716,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006028,1,100000000006033,1,100000000006039,1,100000000006313,1,0];
+ItemObjNew[5717] = [5717,50,167,10,0,1,50,200,"傲慢のエンジェリックヘルム(インクイジター)","ゴウマンノエンジェリックヘルム(インクイジター)","[グレース天地スーツ]と[ノブレスオブリージュ]のセット効果が発動している場合、[潜龍昇天]の再使用待機時間減少効果が発動しない",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019621,25000,9000217,10,100000009006113,1,100000009006123,1,100000009006124,1,100000009006302,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5718] = [5718,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006113,1,100000000006123,1,100000000006124,1,100000000006302,1,0];
+ItemObjNew[5719] = [5719,50,163,10,0,1,50,200,"傲慢のエンジェリックヘルム(アークメイジ)","ゴウマンノエンジェリックヘルム(アークメイジ)","装備解除時、[テレキネシスインテンス]を解除する",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011798,100,7019798,185000,9000217,10,100000009006064,1,100000009006069,1,100000009006056,1,100000009006070,1,100000009006063,1,100000009006068,1,100000009006060,1,100000009006067,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5720] = [5720,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006064,1,100000000006069,1,100000000006056,1,100000000006070,1,100000000006063,1,100000000006068,1,100000000006060,1,100000000006067,1,0];
+ItemObjNew[5721] = [5721,50,170,10,0,1,50,200,"傲慢のエンジェリックヘルム(エレメンタルマスター)","ゴウマンノエンジェリックヘルム(エレメンタルマスター)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011671,100,7011672,100,7011673,100,7011674,100,9000217,10,100000009006149,1,100000009006146,1,100000009006147,1,100000009006150,1,100000009006148,1,100000009006157,1,100000009006290,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5722] = [5722,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006149,1,100000000006146,1,100000000006147,1,100000000006150,1,100000000006148,1,100000000006157,1,100000000006290,1,0];
+ItemObjNew[5723] = [5723,50,162,10,0,1,50,200,"傲慢のエンジェリックヘルム(ウィンドホーク)","ゴウマンノエンジェリックヘルム(ウィンドホーク)","装備解除時、[アンリミット]を解除する",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011795,100,7019795,240000,9000217,10,100000009006046,1,100000009006043,1,100000009006291,1,10000234,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5724] = [5724,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006046,1,100000000006043,1,100000000006291,1,0];
+ItemObjNew[5725] = [5725,50,194,10,0,1,50,200,"傲慢のエンジェリックヘルム(トルバドゥール&トルヴェール)","ゴウマンノエンジェリックヘルム(トルバドゥールアンドトルヴェール)","精錬値が7以上の時<br>[楽器の練習]習得時、[ダンスの練習]が習得Lvで発動<br>[ダンスの練習]習得時、[楽器の練習]が習得Lvで発動<br>[ブラギの詩]習得時、楽器・鞭装備時、[幸運のキス]が習得Lvで使用可能<br>[幸運のキス]習得時、楽器・鞭装備時、[ブラギの詩]が習得Lvで使用可能",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,9000217,10,100000009006134,1,100000009006133,1,100000009006298,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5726] = [5726,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006134,1,100000000006133,1,100000000006298,1,0];
+ItemObjNew[5727] = [5727,50,172,10,0,1,50,200,"傲慢のエンジェリックヘルム(天帝)","ゴウマンノエンジェリックヘルム(テンテイ)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7005317,300,7005318,300,9000217,10,100000009006175,1,100000009006176,1,100000009006177,1,100000009006178,1,100000009006179,1,100000009006180,1,100000009006184,1,100000009006299,1,100000009006300,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5728] = [5728,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006175,1,100000000006176,1,100000000006177,1,100000000006178,1,100000000006179,1,100000000006180,1,100000000006184,1,100000000006299,1,100000000006300,1,0];
+ItemObjNew[5729] = [5729,50,173,10,0,1,50,200,"傲慢のエンジェリックヘルム(ソウルアセティック)","ゴウマンノエンジェリックヘルム(ソウルアセティック)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011982,100,7011981,100,7011979,100,7011980,100,9000217,10,100000009006197,1,100000009006198,1,100000009006199,1,100000009006200,1,100000009006201,1,100000009006202,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5730] = [5730,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006197,1,100000000006198,1,100000000006199,1,100000000006200,1,100000000006201,1,100000000006202,1,0];
+ItemObjNew[5731] = [5731,50,175,10,0,1,50,200,"傲慢のエンジェリックヘルム(ナイトウォッチ)","ゴウマンノエンジェリックヘルム(ナイトウォッチ)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019836,80000,7019822,3000,9000217,10,100000009006217,1,100000009006219,1,100000009006220,1,100000009006297,1,10000234,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5732] = [5732,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006217,1,100000000006219,1,100000000006220,1,100000000006297,1,0];
+ItemObjNew[5733] = [5733,50,174,10,0,1,50,200,"傲慢のエンジェリックヘルム(蜃気楼&不知火)","ゴウマンノエンジェリックヘルム(シンキロウアンドシラヌイ)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019778,30000,9000217,10,100000009006263,1,100000009006264,1,100000009006265,1,100000009006266,1,10000230,20,10000086,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5734] = [5734,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006263,1,100000000006264,1,100000000006265,1,100000000006266,1,0];
+ItemObjNew[5735] = [5735,50,176,10,0,1,50,200,"傲慢のエンジェリックヘルム(ハイパーノービス)","ゴウマンノエンジェリックヘルム(ハイパーノービス)","[インペリアルアーティススーツ]または[グレースアーティススーツ]を装備している場合、[天使さま助けて]の再使用待機時間減少効果が発動しない",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7019946,240000,9000217,10,100000009006231,1,100000009006232,1,100000009006233,1,100000009006234,1,100000009006270,1,100000009006269,1,10000233,20,10000298,50,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5736] = [5736,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006231,1,100000000006232,1,100000000006233,1,100000000006234,1,100000000006270,1,100000000006269,1,0];
+ItemObjNew[5737] = [5737,50,177,10,0,1,50,200,"傲慢のエンジェリックヘルム(スピリットハンドラー)","ゴウマンノエンジェリックヘルム(スピリットハンドラー)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7011932,100,7011937,100,9000217,10,100000009006221,1,100000009006222,1,100000009006223,1,100000009006303,1,10000230,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5738] = [5738,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006221,1,100000000006222,1,100000000006223,1,100000000006303,1,0];
+ItemObjNew[5739] = [5739,50,178,10,0,1,50,200,"傲慢のエンジェリックヘルム(アリテア)","ゴウマンノエンジェリックヘルム(アリテア)","",79,20,77,20,243,13,100262,4,100269,4,7000015,10,7000016,10,7012357,100,9000217,10,100000009006373,1,100000009006379,1,100000009006385,1,10000234,20,10000010,25,10000000000100262n,1,10000000000100269n,1,10000000010000015n,15,10000000010000065n,10,0];
+ItemObjNew[5740] = [5740,100,0,0,0,0,0,0,0,0,"",74,20,220,105,100000000006373,1,100000000006379,1,100000000006385,1,0];
+ItemObjNew[5741] = [5741,65,159,0,0,1,10,200,"覚醒シンフルルビーリング","カクセイシンフルルビーリング","",230,10,12,10,86,25,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5742] = [5742,65,175,0,0,1,10,200,"覚醒シンフルルビーネックレス","カクセイシンフルルビーネックレス","",234,10,12,10,86,25,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5743] = [5743,65,194,0,0,1,10,200,"覚醒シンフルエメラルドリング","カクセイシンフルエメラルドリング","",234,10,12,10,86,25,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5744] = [5744,65,160,0,0,1,10,200,"覚醒シンフルトパーズリング","カクセイシンフルトパーズリング","",230,10,12,10,86,25,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5745] = [5745,65,166,0,0,1,10,200,"覚醒シンフルトパーズネックレス","カクセイシンフルトパーズネックレス","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5746] = [5746,65,174,0,0,1,10,200,"覚醒シンフルアメジストリング","カクセイシンフルアメジストリング","",230,10,12,10,86,25,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5747] = [5747,65,171,0,0,1,10,200,"覚醒シンフルサファイアリング","カクセイシンフルサファイアリング","",230,10,12,10,86,25,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5748] = [5748,65,172,0,0,1,10,200,"覚醒シンフルオパールリング","カクセイシンフルオパールリング","",230,10,10,25,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5749] = [5749,65,173,0,0,1,10,200,"覚醒シンフルオパールネックレス","カクセイシンフルオパールネックレス","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5750] = [5750,65,165,0,0,1,10,200,"覚醒ブリリアントルビーリング","カクセイブリリアントルビーリング","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5751] = [5751,65,161,0,0,1,10,200,"覚醒ブリリアントアメジストリング","カクセイブリリアントアメジストリング","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5752] = [5752,65,167,0,0,1,10,200,"覚醒ブリリアントアメジストネックレス","カクセイブリリアントアメジストネックレス","",230,10,10,25,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5753] = [5753,65,162,0,0,1,10,200,"覚醒ブリリアントエメラルドリング","カクセイブリリアントエメラルドリング","",234,10,10,25,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5754] = [5754,65,178,0,0,1,10,200,"覚醒ブリリアントエメラルドネックレス","カクセイブリリアントエメラルドネックレス","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5755] = [5755,65,176,0,0,1,10,200,"覚醒ブリリアントジルコンリング","カクセイブリリアントジルコンリング","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5756] = [5756,65,177,0,0,1,10,200,"覚醒ブリリアントジルコンネックレス","カクセイブリリアントジルコンネックレス","",230,10,10,25,12,10,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5757] = [5757,65,164,0,0,1,10,200,"覚醒ブリリアントサファイアリング","カクセイブリリアントサファイアリング","",230,10,12,10,86,25,80,10,89,10,243,3,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5758] = [5758,65,163,0,0,1,10,200,"覚醒ブリリアントアクアマリンリング","カクセイブリリアントアクアマリンリング","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5759] = [5759,65,170,0,0,1,10,200,"覚醒ブリリアントアクアマリンネックレス","カクセイブリリアントアクアマリンネックレス","",233,10,12,10,80,10,89,10,243,3,298,50,100000000000262,1,100000000000269,1,0];
+ItemObjNew[5760] = [5760,60,178,100,0,1,100,200,"キングオブウェアウルフ","キングオブウェアウルフ","",243,7,100000000006372,1,100000000006378,1,100000000006384,1,100000000006392,1,100000000006387,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,9020356,500,10000262,15,0];
+ItemObjNew[5761] = [5761,60,163,100,0,1,100,200,"スターシアター","スターシアター","装備解除時、[テレキネシスインテンス]を解除する",243,7,100000000006059,1,100000000006057,1,100000000006053,1,100000000006066,1,100265,7,7000012,10,7000079,5,7000077,5,9000194,1,9019798,75000,10000269,15,0];
+ItemObjNew[5762] = [5762,52,165,0,0,0,10,200,"イクトゥスのロザリオ(銀)","イクトゥスノロザリオギン","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5763] = [5763,77,192,0,0,0,0,200,"[シャドウ] メロンアーマー","シャドウメロンアーマー","",100013,500,100014,50,7000013,1000,7000014,100,9000013,1500,9000014,150,0];
+ItemObjNew[5764] = [5764,82,192,0,0,0,0,200,"[シャドウ] メロンイヤリング","シャドウメロンイヤリング","",100089,1,7000080,2,7000089,2,9000080,3,9000089,3,0];
+ItemObjNew[5765] = [5765,72,192,0,0,0,0,200,"[シャドウ] メロンウェポン","シャドウメロンウェポン","",100017,10,100100,10,7000017,20,7000100,20,9000017,30,9000100,30,0];
+ItemObjNew[5766] = [5766,73,192,0,0,0,0,200,"[シャドウ] メロンシールド","シャドウメロンシールド","",100018,10,100019,1,7000018,20,7000019,2,9000018,30,9000019,3,0];
+ItemObjNew[5767] = [5767,80,192,0,0,0,0,200,"[シャドウ] メロンシューズ","シャドウメロンシューズ","",100013,500,100014,50,7000013,1000,7000014,100,9000013,1500,9000014,150,0];
+ItemObjNew[5768] = [5768,83,192,0,0,0,0,200,"[シャドウ] メロンペンダント","シャドウメロンペンダント","",100080,1,7000080,2,7000089,2,9000080,3,9000089,3,0];
+ItemObjNew[5769] = [5769,77,192,0,0,0,0,200,"[シャドウ] プレミアメロンアーマー","シャドウプレミアメロンアーマー","",100013,500,100014,50,7000013,1000,7000014,100,7019901,5000,9000013,1500,9000014,150,9019901,10000,0];
+ItemObjNew[5770] = [5770,82,192,0,0,0,0,200,"[シャドウ] プレミアメロンイヤリング","シャドウプレミアメロンイヤリング","",100089,1,7000080,2,7000089,2,7019901,5000,9000080,3,9000089,3,9019901,10000,0];
+ItemObjNew[5771] = [5771,72,192,0,0,0,0,200,"[シャドウ] プレミアメロンウェポン","シャドウプレミアメロンウェポン","",100017,10,100100,10,7000017,20,7000100,20,7019901,5000,9000017,30,9000100,30,9019901,10000,0];
+ItemObjNew[5772] = [5772,73,192,0,0,0,0,200,"[シャドウ] プレミアメロンシールド","シャドウプレミアメロンシールド","",100018,10,100019,1,7000018,20,7000019,2,7019901,5000,9000018,30,9000019,3,9019901,10000,0];
+ItemObjNew[5773] = [5773,80,192,0,0,0,0,200,"[シャドウ] プレミアメロンシューズ","シャドウプレミアメロンシューズ","",100013,500,100014,50,7000013,1000,7000014,100,7019901,5000,9000013,1500,9000014,150,9019901,10000,0];
+ItemObjNew[5774] = [5774,83,192,0,0,0,0,200,"[シャドウ] プレミアメロンペンダント","シャドウプレミアメロンペンダント","",100080,1,7000080,2,7000089,2,7019901,5000,9000080,3,9000089,3,9019901,10000,0];
+ItemObjNew[5775] = [5775,62,0,50,0,0,40,100,"アバンダンドクローク","アバンダンドクローク","物理・魔法攻撃時、[捨てられた穴 01]、[捨てられた穴 02]に出現するモンスターに与えるダメージ + 30%<br>[捨てられた穴 01]、[捨てられた穴 02]に出現するモンスターから受けるダメージ - 60%",61,50,66,50,0];
+//
+ItemObjNew[5776] = [5776,50,192,10,0,1,50,200,"ポポリンサンバイザー","ポポリンサンバイザー","",230,3,243,13,79,20,77,20,80,40,100000000006072,1,100000000006242,1,100000000006073,1,100000000006292,1,100000000006293,1,100230,1,10000086,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006072n,1,10100000000006242n,1,10100000000006073n,1,10100000000006292n,1,10100000000006293n,1,10000000000100230n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5777] = [5777,50,192,10,0,1,50,200,"パルスオブイグドラシル","パルスオブイグドラシル","",234,3,243,13,79,20,77,20,80,40,100000000006373,1,100000000006379,1,100000000006385,1,100234,1,10000010,25,10000074,20,10000000000000217n,10,10000000000000015n,10,10000000000000016n,10,10100000000006373n,1,10100000000006379n,1,10100000000006385n,1,10000000000100234n,1,10000000010000015n,15,10000000010000262n,15,10000000010000269n,15,0];
+ItemObjNew[5778] = [5778,60,175,100,0,1,100,200,"ドーントレス","ドーントレス","",243,7,100000000006216,1,100000000006217,1,100000000006218,1,100000000006296,1,100260,7,7000012,10,7000079,5,7000077,5,9000194,1,9019832,5000,10000262,15,0];
+ItemObjNew[5779] = [5779,52,178,0,0,0,10,200,"フューリアスオーブ","フューリアスオーブ","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5780] = [5780,21,175,210,4,0,140,200,"セレスティアルグレネードガン","セレスティアルグレネードガン","超越段階が2以上の時、精錬値が10の時、追加で5秒毎にHP + 5% , SP + 5%",194,1,73,-100,77,40,243,45,100261,6,100266,3,10000000000000079n,40,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,3,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5781] = [5781,2,166,150,4,0,120,200,"セレスティアルブレイド","セレスティアルブレイド","超越段階が2以上の時、精錬値が10の時、追加で5秒毎にHP + 5% , SP + 5%",194,1,73,-100,88,130,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+ItemObjNew[5782] = [5782,9,176,60,4,0,30,200,"セレスティアルロッド","セレスティアルロッド","超越段階が2以上の時、精錬値が10の時、追加で5秒毎にHP + 5% , SP + 5%",194,1,73,-100,88,180,243,10,100261,6,100266,3,10000000000100261n,7,10000000000100266n,7,10000000010000217n,10,20000000000100015n,1,20000000010000261n,15,20000000010000266n,15,0];
+
+ItemObjNew[5783] = [5783,60,162,100,0,1,100,200,"ハルピュイア","ハルピュイア","",243,7,100000000006046,1,100000000006043,1,100000000006291,1,100260,7,7000012,10,7000077,5,7000079,5,9000194,1,9011499,100,10000262,15,0];
+ItemObjNew[5784] = [5784,60,178,100,0,1,100,200,"グリンカムビ","グリンカムビ","",243,7,100000000006373,1,100000000006379,1,100000000006385,1,100260,7,7000012,10,7000077,5,7000079,5,9000194,1,9020357,500,10000262,15,0];
+ItemObjNew[5785] = [5785,52,176,0,0,0,10,200,"マジカルケープ","マジカルケープ","",243,3,100000000000260,1,100000000000265,1,0];
+ItemObjNew[5786] = [5786,52,174,0,0,0,10,200,"藤の扇","フジノオウギ","",243,3,100000000000260,1,100000000000265,1,0];
+
+// <<< INSERT NEW DATA ABOVE THIS LINE >>>
+
+/*
+データ破損せず扱える itemID の最大値は 14bit = 16383 です
+これを拡張したい場合は engine/savedata/CSaveDataUnit.js の CSaveDataUnitEquipable クラスで
+propNameItemID の bit 数を更新した上で
+parse 関数をオーバーライドして後方互換性を確保してください
+オーバーライドされた parse の処理は CSaveDataUnitMob クラスを参考にしてください
+*/
+import { register } from "../runtime/engine-registry.js";
+register('ItemObjNew', ItemObjNew);
