@@ -4,7 +4,7 @@
  * `CSaveDataManager.encodeToURL()` は現在、最新形式のセーブを作るのに旧形式の保存処理
  * （`SaveSystem()` → `translateFromOldFormat()`）を経由している。`buildSaveDataUnitsFromState()`
  * （`engine/savedata/savedata-collect.js`）はその迂回を経ずに状態から直接ユニットを組み立てる
- * 並行実装で、`MIGRATED_SAVE_DATA_UNIT_TYPES` に載った型だけを対象とする。
+ * 並行実装で、`MIGRATED_SAVE_DATA_UNITS`（`isMigratedSaveDataUnit()`）に載ったユニットだけを対象とする。
  *
  * 比較単位はユニット1件ずつ（type + parsedMap の完全一致）。URL全体のバイト比較ではなく
  * prop単位で差分が出るため、Phase A の各コミットで移植ミスの原因を局所化できる。
@@ -41,16 +41,30 @@ afterAll(async () => {
 
 type UnitJson = { parsedMap: Record<string, unknown> };
 
-/** type ごとにグルーピングし、各グループ内は JSON文字列でソートして配列順序に依存しないようにする */
-function groupByType(units: UnitJson[]): Record<number, string[]> {
-    const map = new Map<number, string[]>();
+/**
+ * キー挿入順を無視して比較するための正規化文字列（ソート専用。比較そのものは
+ * toEqual の構造的等価性に任せる）。
+ *
+ * `setProp()` で組み立てたユニットは `doCompaction()` が `parseCtrlFlag` を最後に
+ * 上書きするため、実パース経由のユニット（`propNames` 宣言順）とキー挿入順が
+ * 一致しない（プロジェクト全体の `#collectDataXxx()` 系に共通する挙動であり、
+ * `encodeToURL()` は `propNames` の配列順で読むためバイト出力には影響しない）。
+ * そのため JSON文字列の直接比較ではなく、キーをソートしてから比較する。
+ */
+function canonicalize(obj: Record<string, unknown>): string {
+    return JSON.stringify(obj, Object.keys(obj).sort());
+}
+
+/** type ごとにグルーピングし、各グループ内は正規化キーでソートして配列順序に依存しないようにする */
+function groupByType(units: UnitJson[]): Record<number, Record<string, unknown>[]> {
+    const map = new Map<number, Record<string, unknown>[]>();
     for (const unit of units) {
         const type = Number(unit.parsedMap.type);
         const list = map.get(type) ?? [];
-        list.push(JSON.stringify(unit.parsedMap));
+        list.push(unit.parsedMap);
         map.set(type, list);
     }
-    for (const list of map.values()) list.sort();
+    for (const list of map.values()) list.sort((a, b) => canonicalize(a).localeCompare(canonicalize(b)));
     return Object.fromEntries(map);
 }
 
@@ -76,7 +90,7 @@ describe('savedata-collect.js 差分オラクル（残件台帳 B-11 Phase 0）'
                     const dynamicImport = new Function('specifier', 'return import(specifier);') as
                         (specifier: string) => Promise<Record<string, any>>;
                     const { serializeSaveDataUnitsToJSON } = await dynamicImport('/engine/savedata/CSaveDataUnitJsonCodec.js');
-                    const { buildSaveDataUnitsFromState, MIGRATED_SAVE_DATA_UNIT_TYPES } =
+                    const { buildSaveDataUnitsFromState, isMigratedSaveDataUnit } =
                         await dynamicImport('/engine/savedata/savedata-collect.js');
                     const reg = (globalThis as any)._ratorioReg;
                     const mgr = reg.CSaveController.getSaveDataManagerCur();
@@ -84,8 +98,7 @@ describe('savedata-collect.js 差分オラクル（残件台帳 B-11 Phase 0）'
                     mgr.ReCalcManager();
                     const legacyAll = JSON.parse(mgr.encodeToJSON());
                     const builderAll = JSON.parse(serializeSaveDataUnitsToJSON(buildSaveDataUnitsFromState()));
-                    const migratedSet = new Set(MIGRATED_SAVE_DATA_UNIT_TYPES as number[]);
-                    const filterMigrated = (units: any[]) => units.filter((u) => migratedSet.has(Number(u.parsedMap.type)));
+                    const filterMigrated = (units: any[]) => units.filter((u) => isMigratedSaveDataUnit(u.parsedMap));
                     return {
                         legacyUnits: filterMigrated(legacyAll),
                         builderUnits: filterMigrated(builderAll),
