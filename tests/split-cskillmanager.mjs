@@ -39,7 +39,7 @@ import assert from 'node:assert/strict';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = resolve(__dirname, '..'); // tests/.. = ratorio/
-const JS_DIR = join(ROOT, 'roro/m/js');
+const JS_DIR = join(ROOT, 'engine');
 const SKILL_DIR = join(JS_DIR, 'skill');
 const DEFAULT_SOURCE = join(JS_DIR, 'CSkillManager.js');
 const SKILL_DAT = join(JS_DIR, 'skill.dat.js');

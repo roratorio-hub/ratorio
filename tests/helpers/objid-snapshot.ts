@@ -2,7 +2,7 @@
  * integration テスト共有ヘルパー: 静的ファイルサーバー・全 OBJID_* スナップショット・差分整形。
  *
  * 出自: integration/calcx.test.ts のスイート3（セーブデータ復元比較・本番 vs ローカル）で
- * 実装されたロジックを、巨大ファイル分割（foot.js/head.js）の before/after 差分ハーネス
+ * 実装されたロジックを、巨大ファイル分割（stallcalc.js/battlecalc.js）の before/after 差分ハーネス
  * （integration/split-regression.test.ts）でも再利用するために切り出したもの。
  * ロジック自体は変更していない（コピー＋ import 差し替えのみ）。
  *
@@ -100,7 +100,7 @@ export function loadSaveDataEntries(filePath: string, prefix: string): FixtureEn
  * Pass 4: A1/A4/A7/A8 の SKILLSW スイッチ（BuffJobSpecificSelf.js / BuffGuildAndGospel.js /
  *   BuffItemAndFood.js / BuffOtherCategory.js）
  *   - folding-switch-MIG を持たないため Pass 1-2 では開かない独自の折りたたみ
- *   - StAllCalc（roro/m/js/foot.js）が `n_A_PassSkill4/7/8` へ読み込む calcForm 入力
+ *   - StAllCalc（engine/stallcalc.js）が `n_A_PassSkill4/7/8` へ読み込む calcForm 入力
  *     （`A4_Skill0`〜`A4_Skill35` 等）はこのスイッチを開くまで DOM に存在しない。
  *     Phase 0 のテスト網拡張（.claude/context/remaining-work.md 系リファクタリング計画）の対象
  */
@@ -157,7 +157,7 @@ const INTENTIONAL_DIVERGENCE_FORM_NAMES = new Set([
  * 全 OBJID_* 要素 + document.calcForm の全 name 付きコントロールの値を
  * DOM から直接評価して返す（副作用なし）。
  *
- * 後者は StAllCalc（roro/m/js/foot.js）が `eval(calcForm.X.value)` / `eval(calcForm.X.checked)`
+ * 後者は StAllCalc（engine/stallcalc.js）が `eval(calcForm.X.value)` / `eval(calcForm.X.checked)`
  * で読む入力の可視化が目的（.claude/context/remaining-work.md 系のリファクタリング計画 Phase 0）。
  * StAllCalc が読む calcForm.X は 126 種類あるが、OBJID_ id を持つのは約30種類のみで、
  * 残りは `<template>` 化前のビューコードが実行時生成する name 属性のみの要素だった
@@ -243,19 +243,19 @@ export async function captureFullObjidSnapshot(page: Page): Promise<Record<strin
 // 既存のモジュールキャッシュと一致することで「今まさに計算に使われているライブバインディング」
 // を読む。新しいモジュールインスタンスが作られるわけではない）。
 const STATE_MODULE_PATHS = [
-    '/roro/m/js/roro-state.js',
-    '/ro4/m/js/ro4-state.js',
-    '/ro4/m/js/global.js',
-    '/ro4/m/js/head-calc-state.js',
-    '/roro/m/js/learnedskill.js',
-    '/roro/m/js/mobconfdebuf.js',
-    '/roro/m/js/mobconfplayer.js',
-    '/roro/m/js/mobconfbuf.js',
-    '/ro4/m/js/hmjob.js',
+    '/engine/runtime/roro-state.js',
+    '/engine/runtime/ro4-state.js',
+    '/engine/runtime/global.js',
+    '/engine/battle/calc-state.js',
+    '/engine/skill/learnedskill.js',
+    '/engine/monster/mobconfdebuf.js',
+    '/engine/monster/mobconfplayer.js',
+    '/engine/monster/mobconfbuf.js',
+    '/engine/chara/hmjob.js',
     // Phase 8（リファクタリング計画）で追加: n_A_PassSkill/3/4/7/8（バフ配列5本）の
     // owner。Phase 6でOBJID化した約110入力の書き込み先だが、それまでこの一覧に
     // 含まれておらずモデル導入の検証（二重hydration差分）の死角になっていた。
-    '/ro4/m/js/skillstate.js',
+    '/engine/skill/skillstate.js',
 ] as const;
 
 /**
@@ -273,7 +273,7 @@ const STATE_MODULE_PATHS = [
  * 例: `global.js` の `g_skillManager`）は落とさず `'[unserializable]'` として記録する
  * （こういうフィールドは通常2回の hydration 間で値が変わらないため、diff には出現しない）。
  *
- * hydration の冪等性（`foot.js:1438-1441` で `n_tok` 等を都度ゼロクリアしてから積算する）が
+ * hydration の冪等性（`stallcalc.js:1438-1441` で `n_tok` 等を都度ゼロクリアしてから積算する）が
  * 前提。連続呼び出しで値が累積することはない。
  */
 export function snapshotAllGlobals(page: Page): Promise<Record<string, string>> {

@@ -1,4 +1,4 @@
-import { get as registryGet } from "../../ro4/m/js/engine-registry.js";
+import { get as registryGet } from "../../engine/runtime/engine-registry.js";
 
 async function optInSavedata(): Promise<void> {
     // ダイアログを作成

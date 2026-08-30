@@ -71,7 +71,7 @@ def load_card_prefix() -> dict:
 def main():
     cards = load_card_prefix()
     cards = load_card_names(cards)
-    prefix = os.path.join(os.path.dirname(__file__), "../../roro/m/js/card.prefix.dat.js")
+    prefix = os.path.join(os.path.dirname(__file__), "../../engine/equip/card.prefix.dat.js")
 
     fileSystemLoader = jinja2.FileSystemLoader(
         searchpath=os.path.join(os.path.dirname(__file__), "templates")

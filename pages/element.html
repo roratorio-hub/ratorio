@@ -1,0 +1,81 @@
+
+<HTML>
+    <HEAD>
+    <meta http-equiv="Content-type"
+          content="text/html; charset=UTF-8">
+    <TITLE>RO 属性表</TITLE>
+    <link rel="stylesheet" href="../assets/common.css" type="text/css">
+	<link rel="stylesheet" href="../assets/calcx-legacy.css" type="text/css">
+	<link rel="stylesheet" href="../assets/calcx-chrome.css" type="text/css">
+	<script type="module" src="../engine/data/element-affinity.dat.js"></script>
+    <style type="text/css">
+    td{white-space:nowrap;text-align:right;}
+    </style>
+    
+    </HEAD>
+    <BODY>
+        <div class="wrapper">
+            <div class="side">
+                <span id="ID_FRAME"></span>
+            </div>
+            <div class="content">
+                <div style="padding: 20px 34px">
+                <Font size=2>属性表の見方。<BR>
+                まず敵の防御属性のLvを調べます。例としてポリンなら[水1]でLv1の属性表を見ます。[水3]や[地3]と書いてあったらLv3の表です。<BR>
+                表は縦に並んでいる属性が自分の攻撃属性、横が敵の防御属性なので、自分の武器が風属性なら、水と交差する175(%)がダメージ倍率になります。<BR>
+                </Font>
+                <Form name="ElementForm">
+                <TABLE>
+                <TR valign="top"><TD id="a1"></TD><TD id="a2"></TD></TR>
+                <TR><TD id="a3"></TD><TD id="a4"></TD></TR>
+                </TABLE>
+                <BR>
+                <HR>
+                <Font size=2>属性がよくわからない初心者のかたへ。以下が要点です。<BR>
+                火属性のモンスターは水属性武器で殴る。<BR>
+                水属性のモンスターは風属性武器で殴る。<BR>
+                風属性のモンスターは地属性武器で殴る。<BR>
+                地属性のモンスターは火属性武器で殴る。<BR>
+                死属性のモンスターは聖か火属性武器で殴る。<BR>
+                闇属性のモンスターは聖属性武器で殴る。<BR>
+                と、ダメージが多いです。<BR>
+                <HR>
+                以下、基礎知識＆豆知識<BR>
+                不死種族と不死属性が紛らわしいので、当サイトでは不死属性を死属性と表記することがあります。<BR>
+                <BR>
+                <B>攻撃属性の優先順位</B><BR>
+                攻撃属性の優先順位は<BR>
+                アクティブスキルの攻撃属性＞属性付与(アスペルシオなど)＞矢や弾の属性＞武器の属性<BR>
+                です。つまり、無属性のアーバレストで水属性の水矢装備して聖属性付与のアスペルシオを貰っても<BR>
+                火属性のマグナムブレイク(マリンスフィアーカード)で攻撃したら、攻撃属性は火です。<BR>
+                <BR>
+                <B>プレイヤーの防御属性</B><BR>
+                無1です。なので念属性攻撃をくらっても25%しかダメージを受けません。<BR>
+                防御属性のある属性鎧や防御属性を変える体カードを装備すると、それぞれに対応した属性のLv1になります。<BR>
+                イビルドルイドカード挿しの服なら死1になります。<BR>
+                <BR>
+                <B>防御属性が死属性の時の特殊効果</B><BR>
+                ・状態異常[凍結/石化]にかからない<BR>
+                ・ヒールでダメージを受ける<BR>
+                ・リカバリーで暗闇になる<BR>
+                ・ファイアーウォールでノックバックしない<BR>
+                ・ブレッシングを受けるとDexとIntが半減する(対人では効果がない)<BR>
+                などがあります。<BR>
+                これら効果は死属性に依存するため、人間種族で死属性のアヌビスなどにも効果があります。<BR>
+                <BR>
+                <B>過去の退避情報</B><BR>
+                ※RR化以前、インジャスティスは不死種族＆闇属性でしたが、その場合、アヌビスとは逆に死属性特有の仕様はありませんでした。<BR>
+                ※イビルドルイドカードによって鎧属性を死属性にした場合、<BR>
+                ※属性倍率上、闇と死属性攻撃を無効化するため、昔はモンスターの闇属性攻撃や呪い攻撃・出血攻撃を防ぐ効果もありました(過去形)<BR>
+                ※R化で呪い攻撃(出血攻撃)のダメージを無効化しても状態異常の呪い(出血)は受けるようになったらしいです。<BR>
+                <BR>
+                </Font>
+                </Form>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="module" src="../assets/frame.js"></script>
+    <script type="module" src="./js/element.js"></script>
+    </HTML>
+    

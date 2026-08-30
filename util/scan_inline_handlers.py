@@ -17,7 +17,7 @@ JS ファイル内の setAttribute / HtmlSetAttribute / HTML文字列 に埋め�
 既知の限界（スキャンしないもの）:
   - 完全動的な連結文字列  ("Func(" + v1 + "," + v2 + ")") — A2/B2 では先頭フラグメントのみ検出
   - テンプレートリテラル中の ${} 式
-  - roro/other/ 以下のファイル
+  - pages/ 以下のファイル
   - lib/tom-select/ 等のサードパーティ周辺コード
 
 使用方法 (ratorio/ ディレクトリから実行):
@@ -32,9 +32,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent  # util/ → ratorio/
 
 JS_SCAN_DIRS = [
-    ROOT / "roro/m/js",
-    ROOT / "ro4/m/js",
-    ROOT / "roro/common/js",
+    ROOT / "engine",
 ]
 
 # ---------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 /**
  * enum 定数の値が壊れていないかを検証する。
  *
- * roro/m/js/const/EnumXxx.js が値の一次情報。**既存の定数値を変えると
+ * engine/const/EnumXxx.js が値の一次情報。**既存の定数値を変えると
  * セーブデータとアイテムデータの解釈が壊れる**ため、git のベース断面と突き合わせて
  * 「既存の列挙定数の値が動いていないこと」を保証する。
  *
@@ -28,7 +28,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const REPO = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const CONST_REL = 'roro/m/js/const';
+const CONST_REL = 'engine/const';
 const CONST_DIR = join(REPO, CONST_REL);
 
 // ---- git ヘルパ ----

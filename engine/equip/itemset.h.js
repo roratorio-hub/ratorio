@@ -1,0 +1,217 @@
+// === AUTO-GENERATED IMPORTS ===
+import "./item.h.js";
+import { CARD_ID_NONE, CardObjNew } from "./card.dat.js";
+import { CARD_REGION_ID_COUNT } from "../runtime/common.js";
+import { ITEM_ID_NOEQUIP_SET, ItemObjNew } from "./item.dat.js";
+import { PET_OBJ } from "./pet.dat.js";
+import { n_A_PassSkill8 } from "../skill/skillstate.js";
+import { ITEM_SET_PET_ID_OFFSET, w_SE } from "./itemset.dat.js";
+import { __registerItemSetFunctions } from "../bridge/itemset-bridge.js";
+import { n_A_Equip, n_A_card, set_n_A_Equip, set_n_A_card } from "../runtime/roro-state.js";
+import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_NAME } from "../const/EnumCardDataIndex.js";
+import { CARD_KIND_ENCHANT } from "../const/EnumCardKind.js";
+import { ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_NAME } from "../const/EnumItemDataIndex.js";
+import { EQUIP_REGION_ID_COUNT } from "../const/EnumMigItemParamId.js";
+import { PET_DATA_INDEX_NAME } from "../const/EnumPetDataIndex.js";
+// === END AUTO-GENERATED IMPORTS ===
+
+// ペットID指定のオフセット（定義は itemset.dat.js へ移動 — 既存の参照元のために再エクスポート）
+export { ITEM_SET_PET_ID_OFFSET };
+
+export const ITEMSET_ID_LIMIT_WITH_ITEM = 200;
+export const ITEMSET_ID_LIMIT_WITH_CARD = 200;
+
+
+/**
+ * セットアイテムの構成メンバーのテキストを取得する.
+ * @param setId セットID
+ * @return 構成メンバーのテキスト
+ */
+export function GetItemSetMemberText(setId){
+
+	var idxMember = 0;
+
+	var setData = null;
+	var memberId = 0;
+	var dataId = 0;
+	var dataName = "";
+
+	var memberText = "";
+
+
+	// セット定義データ取得
+	setData = w_SE[setId];
+
+	for (idxMember = 1; idxMember < setData.length; idxMember++) {
+
+		// TODO: 削除予定
+		if (setData[idxMember] == "NULL") {
+			continue;
+		}
+
+		// メンバー指定IDを取得
+		memberId = setData[idxMember];
+
+		// データIDを特定
+		dataId = Math.abs(memberId);
+
+		// アイテム指定の場合
+		if (memberId > 0) {
+			dataName = ItemObjNew[dataId][ITEM_DATA_INDEX_NAME];
+		}
+
+		// ペット指定の場合
+		else if (memberId < (ITEM_SET_PET_ID_OFFSET * -1)) {
+
+			dataId -= ITEM_SET_PET_ID_OFFSET;
+
+			dataName = "キューペット「" + PET_OBJ[dataId][PET_DATA_INDEX_NAME] + "」";
+		}
+
+		// カード指定の場合
+		else {
+			dataName = CardObjNew[dataId][CARD_DATA_INDEX_NAME];
+
+			// エンチャントでない場合は、末尾に "C" を付与
+			if (CardObjNew[dataId][CARD_DATA_INDEX_KIND] != CARD_KIND_ENCHANT) {
+				dataName += "C";
+			}
+
+			// エンチャントの場合は、末尾に "(エンチャント)" を付与
+			else {
+				dataName += "(エンチャント)";
+			}
+		}
+
+		if (memberText.length > 0) {
+			memberText += "＋";
+		}
+
+		memberText += "【" + dataName + "】";
+	}
+
+	// TODO: 矢が構成品目のケース（いずれ統合予定）
+	if (2356 <= setData[0] && setData[0] <= 2359) {
+		// TODO: なぜかカナに名称が設定されている
+		memberText += "＋【"+ ItemObjNew[setData[0]][ITEM_DATA_INDEX_KANA] +"】";
+	}
+
+	return memberText;
+}
+
+
+/**
+ * セットの装備状況を検査し、適用する.
+ */
+export function CheckAndApplyItemSetEquipping() {
+
+	var idx = 0;
+	var idxMember = 0;
+
+	var setData = null;
+	var setSourceId = 0;
+	var memberId = 0;
+	var dataId = 0;
+
+	var equippedItemIdArray = null;
+	var equippedCardIdArray = null;
+
+	var modifiedItemIdArray = null;
+	var modifiedCardIdArray = null;
+
+	// 装備済みID配列を用意
+	equippedItemIdArray = n_A_Equip.slice(0, EQUIP_REGION_ID_COUNT);
+	equippedCardIdArray = n_A_card.slice(0, CARD_REGION_ID_COUNT);
+
+	// 加工用ID配列を用意
+	modifiedItemIdArray = n_A_Equip.slice(0, EQUIP_REGION_ID_COUNT);
+	modifiedCardIdArray = n_A_card.slice(0, CARD_REGION_ID_COUNT);
+
+	// すべてのセット定義をループ
+	for (idx = 0; idx < w_SE.length; idx++) {
+
+		// セット定義データ取得
+		setData = w_SE[idx];
+
+		// 無効な定義はスキップ
+		if (setData.length <= 1) {
+			continue;
+		}
+
+		for (idxMember = 1; idxMember < setData.length; idxMember++) {
+
+			// TODO: 削除予定
+			if (setData[idxMember] == "NULL") {
+				continue;
+			}
+
+			// メンバー指定IDを取得
+			memberId = setData[idxMember];
+
+			// データIDを特定
+			dataId = Math.abs(memberId);
+
+			// アイテム指定の場合
+			if (memberId > 0) {
+
+				// 装備していなければ、処理打ち切り
+				if (equippedItemIdArray.indexOf(dataId) < 0) {
+					break;
+				}
+
+			}
+
+			// ペット指定の場合
+			else if (memberId < (ITEM_SET_PET_ID_OFFSET * -1)) {
+
+				dataId -= ITEM_SET_PET_ID_OFFSET;
+
+				// 装備していなければ、処理打ち切り
+				if (n_A_PassSkill8[0] != dataId) {
+					break;
+				}
+			}
+
+			// カード指定の場合
+			else {
+				// 装備していなければ、処理打ち切り
+				if (equippedCardIdArray.indexOf(dataId) < 0) {
+					break;
+				}
+			}
+		}
+
+		// 全メンバーを装備していない場合は、次へ
+		if (idxMember != setData.length) {
+			continue;
+		}
+
+		// セット定義IDを取得
+		setSourceId = setData[0];
+
+		// アイテムでの定義の場合
+		if (setSourceId > 0) {
+			modifiedItemIdArray.push(Math.abs(setSourceId));
+		}
+
+		// カードでの定義の場合
+		else {
+			modifiedCardIdArray.push(Math.abs(setSourceId));
+		}
+	}
+
+	// 領域の空きを埋める
+	while (modifiedItemIdArray.length < ITEMSET_ID_LIMIT_WITH_ITEM) {	// セットが増えたらこの上限が増える可能性がある
+		modifiedItemIdArray.push(ITEM_ID_NOEQUIP_SET);
+	}
+	while (modifiedCardIdArray.length < ITEMSET_ID_LIMIT_WITH_CARD) {
+		modifiedCardIdArray.push(CARD_ID_NONE);
+	}
+
+	// 補正した配列を、本来の配列に設定
+	set_n_A_Equip(modifiedItemIdArray);
+	set_n_A_card(modifiedCardIdArray);
+}
+
+// 循環 import 不可の呼び出し元（CItemInfoManager.js / item.h.js）向けにブリッジへ登録する
+__registerItemSetFunctions({ GetItemSetMemberText });

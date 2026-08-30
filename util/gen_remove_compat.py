@@ -27,14 +27,12 @@ WORKSPACE_INTERFACE_DTS = BASE / 'workspace/src/common.d.ts'
 
 HTML_FILES = [
     BASE / 'ro4/m/calcx.html',
-    *sorted((BASE / 'roro/other').glob('*.html')),
+    *sorted((BASE / 'pages').glob('*.html')),
 ]
 
 JS_DIRS = [
-    BASE / 'roro/m/js',
-    BASE / 'ro4/m/js',
-    BASE / 'roro/other/js',
-    BASE / 'roro/common/js',
+    BASE / 'engine',
+    BASE / 'pages/js',
 ]
 
 MIN_SYM_LEN = 4  # same as gen_imports.py

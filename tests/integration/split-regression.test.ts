@@ -1,5 +1,5 @@
 /**
- * 巨大ファイル分割（foot.js / head.js）の before/after 差分ハーネス。
+ * 巨大ファイル分割（stallcalc.js / battlecalc.js）の before/after 差分ハーネス。
  *
  * .claude/context/remaining-work.md「残作業 1: 巨大ファイルの分割」の作業計画（Phase 0）で
  * 定義した安全網。const 化と違い分割には「値の同一性」のような機械検証がなく、
