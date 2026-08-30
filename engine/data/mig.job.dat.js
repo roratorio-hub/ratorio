@@ -1316,7 +1316,7 @@ g_constDataManager.jobDataManager.sourceArray = [
 				SKILL_ID_QUILL_SPEAR,
 				SKILL_ID_TEMPEST_FLAP,
 			],[ // 装備可能カテゴリ
-				0,1,90,134,178,179,192,196,206
+				0,1,90,134,178,179,192,196,198,206
 			]],
 ];
 
