@@ -38,7 +38,7 @@ const PROJECT_ROOT = join(__dirname, '../..');
 const FIXTURE_PATH = join(__dirname, 'fixtures/broken-enchant-migrate-jobchange.md');
 const entries = loadSaveDataEntries(FIXTURE_PATH, 'broken-enchant');
 
-// MIG_JOB_ID_SPIRIT_HANDLER（ro4/m/js/data/mig.job.id.js）
+// MIG_JOB_ID_SPIRIT_HANDLER（engine/data/mig.job.id.js）
 const MIG_JOB_ID_SPIRIT_HANDLER = 85;
 
 // 装備欄の OBJID（衣装を除く全箇所）

@@ -5,10 +5,10 @@
  * 「宣言も import もされていない変数を読む」バグは検出できない状態だった。
  * ESM は常に strict mode なので、未定義識別子の読み取りは実行時 ReferenceError になる。
  * これは「その分岐を通る操作をしたときだけ」落ちるため、integration 全緑のまますり抜ける。
- * （実例: head.js の SU_INT 等20箇所 / CSkillManager の powCard タイポ / saveload の n_CONFIG_SW）
+ * （実例: battlecalc.js（旧head.js） の SU_INT 等20箇所 / CSkillManager の powCard タイポ / saveload の n_CONFIG_SW）
  *
  * かつて bare read の 97.6% は CGlobalConstManager.DefineEnum() が実行時生成する定数だったが、
- * 現在は全て roro/m/js/const/EnumXxx.js の `export const` に移行済みのため除外は不要。
+ * 現在は全て engine/const/EnumXxx.js の `export const` に移行済みのため除外は不要。
  * DefineEnum が復活していないかも併せて検査する。
  *
  * 実行: cd tests && node scan-undeclared-reads.mjs
@@ -19,8 +19,8 @@ import { readdirSync, statSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 const ROOT = join(process.cwd(), '..');
-const SCAN_DIRS = ['roro/m/js', 'ro4/m/js', 'roro/other/js', 'roro/common/js'];
-const EXTRA_FILES = ['ro4/m/calcx-ai.js'];
+const SCAN_DIRS = ['engine', 'pages/js'];
+const EXTRA_FILES = ['ro4/m/calcx-ai.js', 'assets/toast.js'];
 
 // classic script（type="module" でない <script>）が定義する真のグローバルを収集する対象
 const CLASSIC_DIRS = ['lib', 'jquery'];
@@ -62,7 +62,7 @@ const DEAD_CODE_ALLOWLIST = new Map([
     ['n_EnchantType', 'hmcard.js BuildUpCardSlotsCard/Enchant は呼び出し元なし（デッド）'],
     ['n_EnchantList', 'hmcard.js BuildUpCardSlotsCard/Enchant は呼び出し元なし（デッド）'],
     ['n_A_PassSkill8', 'mig.job.h.js UpgradeJobTo4th は呼び出し元なし（デッド）。import すると skillstate→item.h→mig.job.h の循環になるため据置'],
-    ['Click_CONFIG', 'foot.js で try/catch に包まれた「次世代版では消える」暫定呼び出し'],
+    ['Click_CONFIG', 'stallcalc.js（旧foot.js）で try/catch に包まれた「次世代版では消える」暫定呼び出し'],
 ]);
 // ファイル単位の除外。現在は該当なし。
 // （mig.itemsp.h.js のデッド関数14個は削除済み。未定義 MIG_* 136箇所はその中にあった）
@@ -121,7 +121,7 @@ function collectHostGlobals() {
 
 const hostGlobals = collectHostGlobals();
 
-// DefineEnum は全廃済み（定数は roro/m/js/const/EnumXxx.js の export const に移行）。
+// DefineEnum は全廃済み（定数は engine/const/EnumXxx.js の export const に移行）。
 // 復活すると「実行時にグローバルへ生える＝定義箇所が追えない定数」が戻ってくるので検出する。
 const resurrected = files.filter((f) =>
     /CGlobalConstManager\.Define(?:Pseudo)?Enum\s*\(/.test(readFileSync(f, 'utf8')));

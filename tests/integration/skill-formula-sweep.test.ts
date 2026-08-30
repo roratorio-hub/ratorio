@@ -7,14 +7,14 @@
  * DOM の攻撃方法セレクト（カスケード式・複数階層）を実際に操作して全スキルを踏むのは
  * 構造が複雑すぎて非現実的なため、対象を「skillId を直接引数に取るスキルデータ関数」に絞り、
  * ページ内で動的 import してブラウザ内で直接呼び出す方式にした
- * （foot.js を vitest の SSR ローダーで直接 import すると CSkillManager 系の循環 import で
+ * （stallcalc.js を vitest の SSR ローダーで直接 import すると CSkillManager 系の循環 import で
  * ハングする既知の問題があるため、実ブラウザの ESM ローダーを経由する）。
  *
- * roro/m/js/skill.dat.js が定義する SKILL_ID_* 定数（約1,382件）全てに対して各関数を呼び、
- * 結果を Vitest スナップショットに固定する。foot.js の分割（Phase 1・Phase 2）で該当関数を
+ * engine/skill.dat.js が定義する SKILL_ID_* 定数（約1,382件）全てに対して各関数を呼び、
+ * 結果を Vitest スナップショットに固定する。stallcalc.js の分割（Phase 1・Phase 2）で該当関数を
  * 別ファイルへ移動する際、本文を1バイトでも変えればここで検出できる。
  *
- * 対象関数は Phase 1 の分割単位と対応している（foot-bridge.js 経由。関数一覧は下記 TARGETS）。
+ * 対象関数は Phase 1 の分割単位と対応している（stallcalc-bridge.js 経由。関数一覧は下記 TARGETS）。
  * Phase 2 で StAllCalc からセクションを切り出す際は、対応する関数をここに追加すること。
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
@@ -26,7 +26,7 @@ import { startStaticServer, closeServer, loadSaveDataEntries } from '../helpers/
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const PROJECT_ROOT = join(__dirname, '../..');
 
-// skillId を直接引数に取り、foot-bridge.js 経由で呼び出せる関数（Phase 1 分割対象と対応）。
+// skillId を直接引数に取り、stallcalc-bridge.js 経由で呼び出せる関数（Phase 1 分割対象と対応）。
 // GetAdditionalFixedCastTime は skillId 引数を取らないためスイープ対象外
 // （呼び出し元 charaData 経由で split-regression.test.ts の全 OBJID_* 比較がカバーする）。
 const TARGETS = [
@@ -68,7 +68,7 @@ afterAll(async () => {
     await closeServer(server);
 });
 
-describe('スキルデータ関数 総当たりスイープ（foot.js）', () => {
+describe('スキルデータ関数 総当たりスイープ（stallcalc.js）', () => {
     for (const { label, query } of sweepEntries) {
         it(`${label}: 全 SKILL_ID_* に対する関数出力がスナップショットと一致する`, async () => {
             const page = await browser.newPage();
@@ -86,8 +86,8 @@ describe('スキルデータ関数 総当たりスイープ（foot.js）', () =>
             const result = await page.evaluate(`
                 (async () => {
                     const targets = ${JSON.stringify(TARGETS)};
-                    const bridge = await import('/roro/m/js/foot-bridge.js');
-                    const skillMod = await import('/roro/m/js/skill.dat.js');
+                    const bridge = await import('/engine/bridge/stallcalc-bridge.js');
+                    const skillMod = await import('/engine/skill/skill.dat.js');
                     const skillIds = Object.entries(skillMod)
                         .filter(([name]) => name.startsWith('SKILL_ID_'))
                         .map(([, value]) => value)

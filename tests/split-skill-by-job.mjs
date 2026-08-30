@@ -23,7 +23,7 @@ import assert from 'node:assert/strict';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const ROOT = resolve(__dirname, '..'); // tests/.. = ratorio/
-const JS_DIR = join(ROOT, 'roro/m/js');
+const JS_DIR = join(ROOT, 'engine');
 const SKILL_DIR = join(JS_DIR, 'skill');
 const CSKILLMANAGER = join(JS_DIR, 'CSkillManager.js');
 const ASSIGN_PATH = resolve(__dirname, '../../.claude/tools/skill-split/final_assign.json');

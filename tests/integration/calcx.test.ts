@@ -12,7 +12,7 @@
  *
  * セーブデータ復元テストで検出できる主なバグ（スイート 3）:
  *   - Pattern A バリアント: let X（classic script）と window.X の乖離
- *     例: n_A_Arrow が head.js の let バインディングを読んで矢の選択値がズレる
+ *     例: n_A_Arrow が battlecalc.js の let バインディングを読んで矢の選択値がズレる
  *   - Pattern B: 非ESMスクリプトが export let 配列を差し替えて習得スキル表示が消える
  *   - 折りたたみセクション内要素（CConfBase 等）がクリックなしでは生成されないバグ
  *
@@ -99,11 +99,31 @@ async function collectPageErrors(
     return errors;
 }
 
+// ─── 到達可能性チェック（staging-vs-prod.test.ts と同型）────────────────────────
+
+/** url に到達できるか（5xx 未満で応答するか）を確認する。 */
+async function isReachable(browser: Browser, url: string): Promise<boolean> {
+    const ctx = await browser.newContext();
+    try {
+        const page = await ctx.newPage();
+        const res = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
+        return (res?.status() ?? 0) < 500;
+    } catch {
+        return false;
+    } finally {
+        await ctx.close();
+    }
+}
+
+const PRODUCTION_CALCX_URL = 'https://roratorio-hub.github.io/ratorio/ro4/m/calcx.html';
+
 // ─── テストセットアップ ──────────────────────────────────────────────────────
 
 let server: Server;
 let browser: Browser;
 let baseUrl: string;
+/** 本番サイトに到達できたか。スイート3の実行可否をここで一度だけ決める。 */
+let productionOk = false;
 
 beforeAll(async () => {
     server = createStaticServer(PROJECT_ROOT);
@@ -112,7 +132,11 @@ beforeAll(async () => {
     const port = typeof addr === 'object' && addr !== null ? addr.port : 0;
     baseUrl = `http://127.0.0.1:${port}`;
     browser = await chromium.launch({ headless: true });
-});
+    productionOk = await isReachable(browser, PRODUCTION_CALCX_URL);
+    if (!productionOk) {
+        console.warn('[calcx] 本番サイトに到達できません。本番比較テスト（スイート3）をスキップします。');
+    }
+}, 30000);
 
 afterAll(async () => {
     await browser?.close();
@@ -131,6 +155,33 @@ describe('ro4/m/calcx.html 起動テスト', () => {
                 timeout: 60000,
             });
             await page.waitForTimeout(500);
+        });
+        expect(errors, formatErrorMsg('ページロード中', errors)).toHaveLength(0);
+    });
+
+    // frame.js（現 assets/frame.js）の fetch('../date.json') は <base href> 経由でのみ
+    // 正しく date.json（当時は roro/date.json）に解決していた（calcx.htmlの<base href>を
+    // 前提にした相対パス）。B-14（engine/統合）で <base href> を撤去した際に見落とし、
+    // 404 で失敗するようになっていた（実害: 手動ブラウザ確認で発覚。frame.js の.catch()に
+    // 飲まれるため未捕捉JS例外にはならず、上の「起動テスト」では検出できない）。
+    // import.meta.url基準の解決に修正した後、このテストで再発を検出する。
+    it('サイドバーの更新日時が date.json から正しく読み込まれる（フェッチ失敗しない）', async () => {
+        const errors = await collectPageErrors(browser, async (page) => {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+            await page.waitForFunction(() => {
+                const titles = document.querySelectorAll('.menu-title');
+                const last = titles[titles.length - 1];
+                return !!last && last.textContent !== '';
+            }, { timeout: 10000 });
+            const lastUpdatedText = await page.evaluate(() => {
+                const titles = document.querySelectorAll('.menu-title');
+                return titles[titles.length - 1]?.textContent ?? '';
+            });
+            expect(lastUpdatedText).not.toBe('取得失敗...');
+            expect(lastUpdatedText).toMatch(/^\d{4}-\d{2}-\d{2}/);
         });
         expect(errors, formatErrorMsg('ページロード中', errors)).toHaveLength(0);
     });
@@ -408,12 +459,12 @@ describe('ro4/m/calcx.html 起動テスト', () => {
     });
 
     // スーパーノービスの魂 ON で装備制限が解除されることを確認する。
-    // 回帰背景: スパノビの魂フラグ g_bSuperNoviceFullWeapon は foot.js（書き手・
+    // 回帰背景: スパノビの魂フラグ g_bSuperNoviceFullWeapon は stallcalc.js（書き手・
     // RefreshSuperNoviceFullWeapon）と equip.js（読み手・RebuildArmorsSelect 等）で
     // 共有される必要があるが、ESM 移行(#1394)で両ファイルに別個のモジュールローカル変数が
-    // 宣言され状態が分断していた。結果 foot.js が値を立てても equip.js 側は undefined のままで
+    // 宣言され状態が分断していた。結果 stallcalc.js が値を立てても equip.js 側は undefined のままで
     // 「魂を ON にしても効果が出ない」バグになっていた。
-    // ユニットでは foot.js が巨大で import できずクロスモジュール結線を検証できないため
+    // ユニットでは stallcalc.js が巨大で import できずクロスモジュール結線を検証できないため
     // 実機（calcx.html）で「魂 ON → 頭装備の選択肢が増える」ことを確認する。
     it('スーパーノービスの魂 ON で頭装備の選択肢が解禁される（魂フラグのクロスモジュール同期）', async () => {
         let result: { found: boolean; headBefore: number; headAfter: number; tsBefore: number; tsAfter: number } =
@@ -678,6 +729,16 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         const page = await context.newPage();
         try {
             await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            // 既定状態（未選択の武器種＝素手）では OBJID_ARMS_RIGHT の選択肢が1件しか無く、
+            // ↓キー連打を検証できない（RebuildArmsRightSelect() は OBJID_ARMS_TYPE_RIGHT の
+            // change で発火する。equip.js 参照）。「短剣」を選んで実在武器の一覧に切り替える。
+            await page.waitForFunction(() => {
+                const el = document.getElementById('OBJID_ARMS_TYPE_RIGHT') as HTMLSelectElement | null;
+                return !!(el && el.options.length > 1);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.selectOption('#OBJID_ARMS_TYPE_RIGHT', { index: 1 });
+            await page.waitForTimeout(500);
+
             await page.waitForFunction(() => {
                 const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: unknown }) | null;
                 return !!(el && el.tomselect);
@@ -738,39 +799,65 @@ describe('ro4/m/calcx.html 起動テスト', () => {
     });
 
     // #1482「TomSelect再初期化時のoption末尾移動バグ」の回帰防止。
-    // ↓ キー確定は操作中インスタンスの再初期化を blur まで先送りする（#1496 実装）。
-    // 先送り中に DOM の option 順が崩れても、blur 後の destroy() が
-    // revertSettings.innerHTML（正しい50音順）を復元することを確認する。
-    it('↓ キーで確定を繰り返した後 blur すると option の DOM 順が50音順に戻る（#1482 回帰防止）', async () => {
+    // 元のバグ報告（3c62b768）は「装備品を変更すると選択していた装備がプルダウン末尾に
+    // 現れる」——ユーザーが実際に見る**ドロップダウンの表示順**が壊れる不具合だった。
+    // ↓ キー確定は操作中インスタンスの再初期化を blur まで先送りする（#1496 実装）ため、
+    // 先送り中に何が起きても blur 後にドロップダウンの表示順が50音順のままであることを検証する。
+    //
+    // 残件台帳 B-30（2026-08-30発覚・深掘り済み）: 前提条件未達（OBJID_ARMS_RIGHT の
+    // 選択肢が複数必要）のため導入（#1536）以来ずっと無言PASSしていた。前提を満たして
+    // 初めて実行したところ、隠れている native <select> の生DOM順（`el.options`）は
+    // 実際に乱れることを発見した。しかし深掘りの結果、ユーザーが見る**ドロップダウンの
+    // 描画順は乱れない**ことを実測で確認した——TomSelect はドロップダウンを内部の
+    // `$order`/検索結果メタデータから描画し、生DOMの option 順は読まない
+    // （`refreshOptions()`/`self.search()`）ため。実機相当のセーブデータ・合成データの
+    // 両方で、操作前後のドロップダウン描画は完全一致することを確認済み。生DOM順に
+    // 依存するエンジン側コードも存在しない（`OBJID_ARMS_RIGHT`の`.options`走査はゼロ件）。
+    // #1482 が本来問題にしていたのはドロップダウンの見た目なので、アサーション対象を
+    // 生DOM順からドロップダウンの描画順へ差し替える。
+    it('↓ キーで確定を繰り返した後 blur しても、ドロップダウンの表示順が50音順のまま変わらない（#1482 回帰防止）', async () => {
         const context = await browser.newContext();
         const page = await context.newPage();
         try {
             await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            // 既定状態（未選択の武器種＝素手）では OBJID_ARMS_RIGHT の選択肢が1件しか無く、
+            // ↓キー連打を検証できない（RebuildArmsRightSelect() は OBJID_ARMS_TYPE_RIGHT の
+            // change で発火する。equip.js 参照）。「短剣」を選んで実在武器の一覧に切り替える。
+            await page.waitForFunction(() => {
+                const el = document.getElementById('OBJID_ARMS_TYPE_RIGHT') as HTMLSelectElement | null;
+                return !!(el && el.options.length > 1);
+            }, { timeout: 15000 }).catch(() => {});
+            await page.selectOption('#OBJID_ARMS_TYPE_RIGHT', { index: 1 });
+            await page.waitForTimeout(500);
+
             await page.waitForFunction(() => {
                 const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: unknown }) | null;
                 return !!(el && el.tomselect);
             }, { timeout: 15000 }).catch(() => {});
             await page.waitForTimeout(300);
 
-            const setup = await page.evaluate(async () => {
-                const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-                const el = document.getElementById('OBJID_ARMS_RIGHT') as (HTMLSelectElement & { tomselect?: any }) | null;
-                if (!el || !el.tomselect) return null;
-                const ts = el.tomselect;
-                const orderedBefore = Array.from(el.options).map((o) => o.value).filter((v) => v !== '');
-                if (orderedBefore.length < 3) return null;
-                ts.setValue(orderedBefore[0]);
-                await sleep(300);
-                return { orderedBefore };
+            // ドロップダウンを開いてユーザーに見える描画順（data-selectable）を読む。
+            const readDropdownOrder = () => page.evaluate(() => {
+                const el = document.getElementById('OBJID_ARMS_RIGHT') as HTMLSelectElement | null;
+                const wrapper = el?.nextElementSibling ?? null;
+                return wrapper
+                    ? Array.from(wrapper.querySelectorAll('[data-selectable]')).map((o) => (o as HTMLElement).dataset.value)
+                    : [];
             });
-            if (!setup) {
-                console.warn('スキップ: OBJID_ARMS_RIGHT の選択肢を用意できない環境');
-                return;
-            }
 
             await page.click('#OBJID_ARMS_RIGHT-ts-control');
-            await page.keyboard.press('Escape');
+            await page.waitForTimeout(200);
+            const orderedBefore = await readDropdownOrder();
+            if (orderedBefore.length < 3) {
+                console.warn('スキップ: OBJID_ARMS_RIGHT の選択肢を用意できない環境');
+                await page.keyboard.press('Escape');
+                return;
+            }
+            await page.keyboard.press('Escape'); // 開いた状態を閉じてフォーカスだけ残す
+            await page.waitForTimeout(100);
+
             await page.keyboard.press('ArrowDown');
+            await page.waitForTimeout(200);
             await page.keyboard.press('ArrowDown');
             await page.waitForTimeout(200);
 
@@ -778,12 +865,14 @@ describe('ro4/m/calcx.html 起動テスト', () => {
             await page.evaluate(() => (document.getElementById('OBJID_SELECT_JOB') as HTMLElement | null)?.focus());
             await page.waitForTimeout(200);
 
-            const orderedAfter = await page.evaluate(() => {
-                const el = document.getElementById('OBJID_ARMS_RIGHT') as HTMLSelectElement | null;
-                return el ? Array.from(el.options).map((o) => o.value).filter((v) => v !== '') : [];
-            });
+            await page.click('#OBJID_ARMS_RIGHT-ts-control');
+            await page.waitForTimeout(200);
+            const orderedAfter = await readDropdownOrder();
 
-            expect(orderedAfter, '確定を繰り返した後、選択中の装備が DOM 末尾に残っている').toEqual(setup.orderedBefore);
+            expect(
+                orderedAfter,
+                '確定を繰り返した後、ドロップダウンの表示順が変化している（選択中の装備が末尾に現れる等）'
+            ).toEqual(orderedBefore);
         } finally {
             await context.close();
         }
@@ -1128,6 +1217,35 @@ describe('URL セーブ/ロード 往復テスト（新形式フィクスチャ�
 // staging-vs-prod.test.ts の「セーブデータ復元比較」に対応するローカル版。
 // staging-vs-prod はネット接続・staging 環境が必要で pnpm test:staging-diff でのみ実行される。
 
+/**
+ * ページ読み込み後の初回自動計算完了を待つ。
+ * BATTLE_RESULT_BASIC は本番・ローカルどちらの calcx.html にも空 <div> として置かれており、
+ * StAllCalc の描画（engine/battle/battle-result-html.js）で初めて子要素が入る。
+ * DOM だけを見るので、モジュール配置の違い（本番 roro/m/js・ローカル engine/）に依存しない
+ * （旧実装は `/engine/ui/CExtraInfoDataBridge.js` をルート絶対パスで動的importしており、
+ * 本番では `github.io/ratorio/` 配下・`roro/m/js` レイアウトのため常に404していた）。
+ */
+const waitForAutoCalc = (p: Page) => p.waitForFunction(
+    () => {
+        const el = document.getElementById('BATTLE_RESULT_BASIC');
+        return el !== null && el.childElementCount > 0;
+    },
+    { timeout: 30000 },
+);
+
+/** url を開いて初回計算完了を待ち、全 OBJID_* スナップショットを取る。context は必ず閉じる。 */
+async function captureObjidSnapshotAt(url: string, gotoTimeout: number): Promise<Record<string, string>> {
+    const context = await browser.newContext();
+    try {
+        const page = await context.newPage();
+        await page.goto(url, { waitUntil: 'networkidle', timeout: gotoTimeout });
+        await waitForAutoCalc(page);
+        return await captureFullObjidSnapshot(page);
+    } finally {
+        await context.close();
+    }
+}
+
 describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ローカル）', () => {
     if (allEntries.length === 0) {
         it('フィクスチャなし（fixtures/sample-savedata-new.md または -old.md に URL を追加してください）', () => {
@@ -1136,40 +1254,31 @@ describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ロー
     }
 
     for (const { label, url: prodUrl, query } of allEntries) {
-        it(`${label}: 全 OBJID_* 要素の値が本番と一致する`, async () => {
-            // ── 本番から期待値を取得 ─────────────────────────────────────
-            let prodSnapshot: Record<string, string>;
-            try {
-                const prodCtx  = await browser.newContext();
-                const prodPage = await prodCtx.newPage();
-                await prodPage.goto(prodUrl, { waitUntil: 'networkidle', timeout: 30000 });
-                prodSnapshot = await captureFullObjidSnapshot(prodPage);
-                await prodCtx.close();
-            } catch {
-                console.warn(`本番サイトへのアクセスに失敗したためスキップ: ${label}`);
-                return;
-            }
+        it(`${label}: 全 OBJID_* 要素の値が本番と一致する`, async ({ skip }) => {
+            // 到達性の判定は beforeAll の一度きり。ここで判定し直さないのは、
+            // 比較ロジック側の不具合を「本番に繋がらなかった」に化けさせないため。
+            skip(!productionOk, '本番サイトに到達できません');
 
-            // ── ローカルで同一セーブデータを読み込み ─────────────────────
-            const localCtx  = await browser.newContext();
-            const localPage = await localCtx.newPage();
-            await localPage.goto(`${baseUrl}/ro4/m/calcx.html?${query}`, {
-                waitUntil: 'networkidle',
-                timeout: 60000,
-            });
-            const localSnapshot = await captureFullObjidSnapshot(localPage);
-            await localCtx.close();
+            const prodSnapshot = await captureObjidSnapshotAt(prodUrl, 30000);
+
+            // 本番側が実際に収集できていること（比較が空振りしていないこと）を保証する。
+            expect(
+                Object.keys(prodSnapshot).length,
+                `本番スナップショットがほぼ空（比較が成立していない・テスト前提の不成立）: ${label}`,
+            ).toBeGreaterThan(100);
+
+            const localSnapshot = await captureObjidSnapshotAt(`${baseUrl}/ro4/m/calcx.html?${query}`, 60000);
 
             // ── 比較 ─────────────────────────────────────────────────────
             // 本番に存在するキーのみをローカルから抽出して照合する。
             // ローカルにしかないキー（未デプロイ新機能）は比較対象外。
             const localSubset: Record<string, string> = {};
-            for (const key of Object.keys(prodSnapshot!)) {
+            for (const key of Object.keys(prodSnapshot)) {
                 localSubset[key] = localSnapshot[key] ?? '(なし)';
             }
             expect(
                 localSubset,
-                buildObjidDiffMessage(label, prodSnapshot!, localSnapshot),
+                buildObjidDiffMessage(label, prodSnapshot, localSnapshot),
             ).toEqual(prodSnapshot);
         });
     }

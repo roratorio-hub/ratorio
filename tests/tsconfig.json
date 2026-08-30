@@ -11,8 +11,7 @@
         "resolveJsonModule": true,
         "noEmit": true,
         "paths": {
-            "@roro/*": ["../roro/m/js/*"],
-            "@ro4/*": ["../ro4/m/js/*"],
+            "@engine/*": ["../engine/*"],
             "@helpers/*": ["./helpers/*"]
         }
     },

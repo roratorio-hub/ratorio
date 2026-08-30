@@ -1,5 +1,5 @@
 /**
- * roro/other/cardlist.html 起動統合テスト
+ * pages/cardlist.html 起動統合テスト
  *
  * 目的:
  *   ESM 移行によって window.XXX グローバルへの依存が壊れていないかを検出する。
@@ -81,7 +81,7 @@ afterAll(async () => {
     );
 });
 
-describe('roro/other/cardlist.html 起動テスト', () => {
+describe('pages/cardlist.html 起動テスト', () => {
     it('スクリプト読み込みと初期化で未捕捉 JS 例外が発生しない', async () => {
         const context = await browser.newContext();
         const page = await context.newPage();
@@ -102,7 +102,7 @@ describe('roro/other/cardlist.html 起動テスト', () => {
             });
         });
 
-        await page.goto(`${baseUrl}/roro/other/cardlist.html`, {
+        await page.goto(`${baseUrl}/pages/cardlist.html`, {
             waitUntil: 'networkidle',
             timeout: 60000,
         });
@@ -144,7 +144,7 @@ describe('roro/other/cardlist.html 起動テスト', () => {
                 (window as any).__pendingRejections.push(msg);
             });
         });
-        await page.goto(`${baseUrl}/roro/other/cardlist.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.goto(`${baseUrl}/pages/cardlist.html`, { waitUntil: 'networkidle', timeout: 60000 });
         await page.waitForTimeout(500);
 
         const exercised = await page.evaluate(async () => {

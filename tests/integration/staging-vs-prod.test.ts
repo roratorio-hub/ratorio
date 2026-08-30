@@ -108,9 +108,7 @@ function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
 
         // ステージング(phase1-2)にのみ存在する意図的な追加要素。
         // 本番(master)が追従したら不要になるので、その際に削除すること。
-        // OBJID_CHECK_A3_SKILLSW: 演奏/踊り系スキル欄はステージング側で機能削除済み
-        // （本番にのみ存在する）ため除外。
-        const IGNORED_OBJIDS = new Set(['OBJID_BUTTON_OPT_IN_SAVEDATA', 'OBJID_CHECK_A3_SKILLSW']);
+        const IGNORED_OBJIDS = new Set(['OBJID_BUTTON_OPT_IN_SAVEDATA']);
 
         document.querySelectorAll<HTMLElement>('[id^="OBJID_"]').forEach((el) => {
             const id = el.id;

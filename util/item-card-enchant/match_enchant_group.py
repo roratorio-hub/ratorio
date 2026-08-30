@@ -50,7 +50,7 @@ import yaml
 from craft_util import CARD_OR_ENCH_CODE, loadItemDict
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-MIG_ENCHLIST_PATH = f'{script_dir}/../../roro/m/js/data/mig.enchlist.dat.js'
+MIG_ENCHLIST_PATH = f'{script_dir}/../../engine/data/mig.enchlist.dat.js'
 
 ID_TO_CARD_NAME = {v: k for k, v in CARD_OR_ENCH_CODE.items()}
 

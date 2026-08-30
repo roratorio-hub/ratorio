@@ -3,7 +3,7 @@
  *
  * .claude/context/remaining-work.md 系の「UI/ロジック分離」リファクタリング計画で、
  * 既存の安全網 `evalObjidSnapshot`（`[id^="OBJID_"]` のみ観測）が
- * StAllCalc（roro/m/js/foot.js）の読む calcForm 入力 126 種類のうち
+ * StAllCalc（engine/stallcalc.js）の読む calcForm 入力 126 種類のうち
  * 約30種類しか観測できていなかった問題への対処:
  *
  *   1. evalObjidSnapshot の calcForm 拡張（helpers/objid-snapshot.ts）
@@ -114,7 +114,7 @@ describe('snapshotAllGlobals', () => {
 
         expect(Object.keys(snapshot).length).toBeGreaterThan(100);
         // roro-state.js の n_A_STR はデフォルト状態で 1（初期値）。
-        expect(snapshot['/roro/m/js/roro-state.js#n_A_STR']).toBe('1');
+        expect(snapshot['/engine/runtime/roro-state.js#n_A_STR']).toBe('1');
     });
 
     it('職業変更の前後で異なるグローバル値を検出できる（差分オラクルとしての基本性質）', async () => {

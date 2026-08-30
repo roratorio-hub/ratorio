@@ -18,5 +18,5 @@
 
 ```python card_prefix_builder.py```
 
-__* roro/m/js/card.prefix.dat.js を直接編集します__
+__* engine/equip/card.prefix.dat.js を直接編集します__
 

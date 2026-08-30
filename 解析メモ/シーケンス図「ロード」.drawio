@@ -36,7 +36,7 @@
                         <mxPoint x="225" y="190" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2" value="ro4/m/js/&lt;br&gt;calcx.html" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="2" value="engine/&lt;br&gt;calcx.html" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
                     <mxGeometry x="110" y="80" width="100" height="922" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="2">
@@ -45,7 +45,7 @@
                 <mxCell id="3" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
                     <mxGeometry x="30" y="80" width="20" height="921" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="ro4/m/js/&lt;br&gt;saveload.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="4" value="engine/&lt;br&gt;saveload-mig.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
                     <mxGeometry x="250" y="80" width="100" height="920" as="geometry"/>
                 </mxCell>
                 <mxCell id="8" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="4">
@@ -56,7 +56,7 @@
                         <mxPoint x="85" y="160" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="11" value="ro4/m/js/&lt;br&gt;CSaveController.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="11" value="engine/&lt;br&gt;CSaveController.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
                     <mxGeometry x="410" y="80" width="120" height="925" as="geometry"/>
                 </mxCell>
                 <mxCell id="12" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="11">
@@ -96,7 +96,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="17" value="roro/m/js/&lt;br&gt;CSaveDataConverter.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="17" value="engine/&lt;br&gt;CSaveDataConverter.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
                     <mxGeometry x="938" y="80" width="150" height="280" as="geometry"/>
                 </mxCell>
                 <mxCell id="18" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="17">
@@ -107,7 +107,7 @@
                         <mxPoint x="480" y="330" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="21" value="ro4/m/js/&lt;br&gt;CSaveDataManager.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="21" value="engine/&lt;br&gt;CSaveDataManager.js" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
                     <mxGeometry x="590" y="350" width="140" height="533" as="geometry"/>
                 </mxCell>
                 <mxCell id="22" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="21">
@@ -159,7 +159,7 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="35" value="ro4/m/js&lt;br&gt;CSaveDataUnit.js&lt;br&gt;&amp;lt;CSaveDataUnitVersion&amp;gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;gradientColor=none;" vertex="1" parent="1">
+                <mxCell id="35" value="engine&lt;br&gt;CSaveDataUnit.js&lt;br&gt;&amp;lt;CSaveDataUnitVersion&amp;gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;gradientColor=none;" vertex="1" parent="1">
                     <mxGeometry x="1045" y="560" width="160" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="36" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;gradientColor=none;" vertex="1" parent="35">
@@ -170,7 +170,7 @@
                         <mxPoint x="859.5" y="687.5" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="38" value="ro4/m/js/&lt;br&gt;CSaveDataUnit.js&lt;br&gt;&amp;lt;CSaveDataUnitParse&amp;gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="38" value="engine/&lt;br&gt;CSaveDataUnit.js&lt;br&gt;&amp;lt;CSaveDataUnitParse&amp;gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
                     <mxGeometry x="780" y="420" width="150" height="340" as="geometry"/>
                 </mxCell>
                 <mxCell id="39" value="parse( dataText )&lt;br&gt;// ユニット毎に定義されたメソッドを呼び出す" style="html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;align=left;" edge="1" parent="38">
