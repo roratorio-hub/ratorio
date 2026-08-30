@@ -20,9 +20,13 @@ import {
 import {
     SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS, SAVE_DATA_UNIT_TYPE_CHARA_BUFF, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF,
     SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST, SAVE_DATA_UNIT_TYPE_ITEM_BUFF, SAVE_DATA_UNIT_TYPE_TIME_BUFF,
-    SAVE_DATA_UNIT_TYPE_AUTO_SPELLS,
+    SAVE_DATA_UNIT_TYPE_AUTO_SPELLS, SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE,
+    SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
 } from '@engine/savedata/CSaveDataUnit.js';
 import { OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB } from '@engine/skill/calcautospell.js';
+import {
+    g_confDataCustomStatus, g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomSpecStatus,
+} from '@engine/runtime/global.js';
 
 /** テスト対象が読む OBJID_* 要素をまとめて用意する（値は既定値のまま）。 */
 function buildDom() {
@@ -55,6 +59,11 @@ function setDomValue(id: string, value: string) {
 /** 指定 type のユニットを見つける（無ければ undefined）。 */
 function findUnit(units: any[], type: number) {
     return units.find((u) => u.constructor.type === type);
+}
+
+/** 指定 type+instanceKind のユニットを見つける（CHARA_CONF_SPECIALIZEのように同一typeが複数ある場合用）。 */
+function findUnitByInstanceKind(units: any[], type: number, instanceKind: number) {
+    return units.find((u) => u.constructor.type === type && Number(u.getProp(CSaveDataConst.instanceKind)) === instanceKind);
 }
 
 beforeEach(() => {
@@ -213,6 +222,119 @@ describe('savedata-collect.js', () => {
                 delete n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_ID + 0];
                 delete n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_LV + 0];
                 delete n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + 0];
+            }
+        });
+    });
+
+    describe('buildSaveDataUnitsFromState: A3 性能カスタマイズ系のマッピング', () => {
+        // g_confDataCustomStatus/Atk/Def/Skill/SpecStatus はいずれも [0] を使わない
+        // 1-origin の配列（CSaveDataManager#applyDataToControls() のsplice(1,...)由来）。
+
+        it('CHARA_CONF_BASICはcustomStatus[1..22]をmig[0..21]へ直接転記する', () => {
+            g_confDataCustomStatus[1] = 11;
+            g_confDataCustomStatus[22] = 99;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameStMaxHPUp))).toBe(11);
+                expect(Number(unit.getProp(CSaveDataConst.propNameStCostDown))).toBe(99);
+            } finally {
+                g_confDataCustomStatus[1] = 0;
+                g_confDataCustomStatus[22] = 0;
+            }
+        });
+
+        it('CHARA_CONF_BASICはcustomAtk[11]をmig[26](StPerfectAttackUp・符号無し単独値)へ転記する', () => {
+            g_confDataCustomAtk[11] = 7;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameStPerfectAttackUp))).toBe(7);
+            } finally {
+                g_confDataCustomAtk[11] = 0;
+            }
+        });
+
+        it('CHARA_CONF_BASICはcustomAtk[24]をmig[27](StWeaponAtkUp)へ転記する（符号ペア）', () => {
+            g_confDataCustomAtk[24] = -9;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameStWeaponAtkUpSign))).toBe(1);
+                expect(Number(unit.getProp(CSaveDataConst.propNameStWeaponAtkUp))).toBe(9);
+            } finally {
+                g_confDataCustomAtk[24] = 0;
+            }
+        });
+
+        it('性能カスタマイズ（特化：攻撃｜物理）はcustomAtk[5]をspecDamageへ転記する', () => {
+            g_confDataCustomAtk[5] = 42;
+            try {
+                const units = buildSaveDataUnitsFromState();
+                const unit = findUnitByInstanceKind(units, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, CSaveDataConst.specKindAttackPhysical)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameSpecDamage))).toBe(42);
+            } finally {
+                g_confDataCustomAtk[5] = 0;
+            }
+        });
+
+        it('性能カスタマイズ（特化：攻撃｜魔法）はcustomAtk[14]をspecDamageへ転記する', () => {
+            g_confDataCustomAtk[14] = 17;
+            try {
+                const units = buildSaveDataUnitsFromState();
+                const unit = findUnitByInstanceKind(units, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, CSaveDataConst.specKindAttackMagical)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameSpecDamage))).toBe(17);
+            } finally {
+                g_confDataCustomAtk[14] = 0;
+            }
+        });
+
+        it('性能カスタマイズ（特化：攻撃｜すべて）はcustomAtk[10]をspecCriticalDamage(pos1)へ転記する', () => {
+            g_confDataCustomAtk[10] = 5;
+            try {
+                const units = buildSaveDataUnitsFromState();
+                const unit = findUnitByInstanceKind(units, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, CSaveDataConst.specKindAttackAny)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameSpecCriticalDamage))).toBe(5);
+            } finally {
+                g_confDataCustomAtk[10] = 0;
+            }
+        });
+
+        it('性能カスタマイズ（特化：防御｜すべて）はcustomDef[9]をspecMapへ転記する', () => {
+            g_confDataCustomDef[9] = 3;
+            try {
+                const units = buildSaveDataUnitsFromState();
+                const unit = findUnitByInstanceKind(units, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, CSaveDataConst.specKindDefencekAny)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameSpecMap))).toBe(3);
+            } finally {
+                g_confDataCustomDef[9] = 0;
+            }
+        });
+
+        it('CHARA_CONF_SKILLはcustomSkill[10]をspecDamageUpConditionValueへ転記し、conditionTypeはその非0判定を運ぶ', () => {
+            g_confDataCustomSkill[10] = 8;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameSpecDamageUpConditionValue))).toBe(8);
+                expect(Number(unit.getProp(CSaveDataConst.propNameSpecDamageUpConditionType))).toBe(1);
+            } finally {
+                g_confDataCustomSkill[10] = 0;
+            }
+        });
+
+        it('CHARA_CONF_SKILLはcustomSkill[10]が0のときconditionTypeも0にする', () => {
+            const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL);
+            // customSkill[10]=0（既定）だと他フィールドも全て0なのでユニット自体が空として除去される
+            expect(unit).toBeUndefined();
+        });
+
+        it('CHARA_CONF_SPEC_BASICはcustomSpecStatus[1..12]をpos0..11へ直接転記する', () => {
+            g_confDataCustomSpecStatus[1] = 21;
+            g_confDataCustomSpecStatus[12] = 34;
+            try {
+                const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC)!;
+                expect(Number(unit.getProp(CSaveDataConst.propNameStPowPlus))).toBe(21);
+                expect(Number(unit.getProp(CSaveDataConst.propNameStMresPlus))).toBe(34);
+            } finally {
+                g_confDataCustomSpecStatus[1] = 0;
+                g_confDataCustomSpecStatus[12] = 0;
             }
         });
     });

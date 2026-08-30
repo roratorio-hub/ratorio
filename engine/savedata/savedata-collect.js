@@ -30,6 +30,10 @@ import {
     SAVE_DATA_UNIT_TYPE_ITEM_BUFF,
     SAVE_DATA_UNIT_TYPE_TIME_BUFF,
     SAVE_DATA_UNIT_TYPE_AUTO_SPELLS,
+    SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC,
+    SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE,
+    SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL,
+    SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
 } from "./CSaveDataUnit.js";
 import { HtmlGetObjectCheckedById, HtmlGetObjectValueByIdAsInteger } from "../runtime/util.js";
 import { GetHigherJobSeriesID, JOB_SERIES_ID_SUPERNOVICE } from "../data/mig.job.h.js";
@@ -40,7 +44,10 @@ import {
 import { n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { n_A_Arrow } from "../runtime/ro4-state.js";
 import { n_A_PassSkill5 } from "../runtime/roro-state.js";
-import { g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi, g_constDataManager, g_timeItemConf } from "../runtime/global.js";
+import {
+    g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi, g_constDataManager, g_timeItemConf,
+    g_confDataCustomStatus, g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomSpecStatus,
+} from "../runtime/global.js";
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB,
 } from "../skill/calcautospell.js";
@@ -50,6 +57,41 @@ function padArray(arr, len) {
     const out = arr.slice(0, len);
     while (out.length < len) out.push(0);
     return out;
+}
+
+/**
+ * 「性能カスタマイズ」系ユニット（"Sign"接尾辞プロパティ＋直後の値プロパティのペア、または
+ * 単独の値プロパティが混在する可変長プロパティを持つ）共通の組み立て処理.
+ * `CSaveDataManager#applyDataToControlsConfig()`/`#applyDataToControlsConfigSpec()` の
+ * 読み取りロジック（ctrlFlagを1ビットずつ消費しながらpropNamesを歩き、Signプロパティは
+ * 符号を記録するだけで値を積まず、直後の値プロパティにその符号を適用する）を反転したもの。
+ * @param {object} unit `SetUpAsDefault()` 済みのユニット
+ * @param {Function} UnitClass ユニットのクラス（`static propNames` を持つ）
+ * @param {number} prefixCount type/versionを除いた自身のプロパティのうち、値走査の対象外な
+ *   先頭プロパティ数（例: instanceKind+subInvalidateSettings+ctrlFlagなら3、
+ *   subInvalidateSettings+ctrlFlagのみなら2）
+ * @param {number[]} migArray 符号付き整数の平坦配列（値スロット1個につき1要素。
+ *   `#applyDataToControlsConfig` 系が最終的に組み立てる g_confDataXxxMIG と同じレイアウト）
+ */
+function fillConfigValuesFromMigArray(unit, UnitClass, prefixCount, migArray) {
+    const propNamesSelf = UnitClass.propNames.slice(2 + prefixCount);
+    let migIdx = 0;
+    let pendingSignPropName = null;
+    for (const propName of propNamesSelf) {
+        if (propName.slice(-4) === "Sign") {
+            pendingSignPropName = propName;
+            continue;
+        }
+        const rawValue = migArray[migIdx] ?? 0;
+        migIdx++;
+        if (pendingSignPropName !== null) {
+            unit.setProp(pendingSignPropName, rawValue < 0 ? 1 : 0);
+            unit.setProp(propName, Math.abs(rawValue));
+            pendingSignPropName = null;
+        } else {
+            unit.setProp(propName, rawValue);
+        }
+    }
 }
 
 /**
@@ -78,6 +120,14 @@ export const MIGRATED_SAVE_DATA_UNITS = Object.freeze([
     { type: SAVE_DATA_UNIT_TYPE_ITEM_BUFF },
     { type: SAVE_DATA_UNIT_TYPE_TIME_BUFF },
     { type: SAVE_DATA_UNIT_TYPE_AUTO_SPELLS },
+    // Phase A3
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC },
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindAttackPhysical },
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindAttackMagical },
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindAttackAny },
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindDefencekAny },
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL },
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC },
 ]);
 
 /**
@@ -346,6 +396,158 @@ function buildAutoSpellsUnit() {
 }
 
 /**
+ * 性能カスタマイズ（基本）ユニットを組み立てる.
+ *
+ * このユニットは名前に反して「ステータス・攻撃・防御・スキル関連の中で個別ユニット化
+ * されなかった残り」を運ぶ寄せ集めで、値は複数の g_confDataCustomXxx グローバルから
+ * 集まる。マッピングは `CSaveDataManager#applyDataToControls()` 末尾の
+ * `g_confDataCustomAtk.splice(...)` 等（"TODO: 構造変更後、撤去予定"というコメント付きの
+ * ブロック）を実際に実行して機械的に抽出したもの（手動転記の誤りを避けるため）。
+ * mig配列の [28]・[34..45] は上記ブロックのどこからも参照されておらず、対応する
+ * 現行UI入力元が無いため常に0（ChangeArms*・StRange・特性ステータス系Plus群など）。
+ */
+function buildCharaConfBasicUnit() {
+    const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC);
+    const unit = new UnitClass();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
+
+    const mig = new Array(46).fill(0);
+    for (let i = 0; i < 22; i++) mig[i] = g_confDataCustomStatus[1 + i] ?? 0;
+    mig[22] = g_confDataCustomAtk[1] ?? 0;
+    mig[23] = g_confDataCustomAtk[2] ?? 0;
+    mig[24] = g_confDataCustomAtk[3] ?? 0;
+    mig[25] = g_confDataCustomAtk[4] ?? 0;
+    mig[26] = g_confDataCustomAtk[11] ?? 0;
+    mig[27] = g_confDataCustomAtk[24] ?? 0;
+    mig[29] = g_confDataCustomAtk[13] ?? 0;
+    mig[30] = g_confDataCustomDef[1] ?? 0;
+    mig[31] = g_confDataCustomDef[2] ?? 0;
+    mig[32] = g_confDataCustomSkill[2] ?? 0;
+    mig[33] = g_confDataCustomSkill[3] ?? 0;
+
+    fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * 性能カスタマイズ（特化）ユニットを1件組み立てる（物理/魔法/攻撃すべて/防御すべての4種で共有）.
+ * マッピングは buildCharaConfBasicUnit() と同じ抽出方法による
+ * （`g_confDataSpecMIG[x][y][N]` ← `g_confDataCustomAtk`/`Def`[M]、位置は
+ * `#applyDataToControlsConfigSpec()` の読み取り順で決まる）。
+ * @param {number} instanceKind CSaveDataConst.specKindAttackPhysical 等
+ * @param {number[]} mig 54要素の符号付き整数配列
+ */
+function buildCharaConfSpecializeUnit(instanceKind, mig) {
+    const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE);
+    const unit = new UnitClass();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.instanceKind, instanceKind);
+    unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
+    fillConfigValuesFromMigArray(unit, UnitClass, 3, mig);
+    unit.doCompaction();
+    return unit;
+}
+
+/** 性能カスタマイズ（特化：攻撃｜物理）ユニットを組み立てる。 */
+function buildCharaConfSpecializePhysicalUnit() {
+    const mig = new Array(54).fill(0);
+    mig[0] = g_confDataCustomAtk[5] ?? 0;
+    mig[14] = g_confDataCustomAtk[6] ?? 0;
+    mig[26] = g_confDataCustomAtk[25] ?? 0;
+    mig[37] = g_confDataCustomAtk[7] ?? 0;
+    mig[41] = g_confDataCustomAtk[8] ?? 0;
+    mig[44] = g_confDataCustomAtk[22] ?? 0;
+    mig[47] = g_confDataCustomAtk[9] ?? 0;
+    mig[51] = g_confDataCustomAtk[12] ?? 0;
+    mig[53] = g_confDataCustomAtk[27] ?? 0;
+    return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackPhysical, mig);
+}
+
+/** 性能カスタマイズ（特化：攻撃｜魔法）ユニットを組み立てる。 */
+function buildCharaConfSpecializeMagicalUnit() {
+    const mig = new Array(54).fill(0);
+    mig[0] = g_confDataCustomAtk[14] ?? 0;
+    mig[14] = g_confDataCustomAtk[15] ?? 0;
+    mig[26] = g_confDataCustomAtk[18] ?? 0;
+    mig[37] = g_confDataCustomAtk[16] ?? 0;
+    mig[41] = g_confDataCustomAtk[17] ?? 0;
+    mig[44] = g_confDataCustomAtk[23] ?? 0;
+    mig[51] = g_confDataCustomAtk[19] ?? 0;
+    return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackMagical, mig);
+}
+
+/** 性能カスタマイズ（特化：攻撃｜すべて）ユニットを組み立てる。 */
+function buildCharaConfSpecializeAttackAnyUnit() {
+    const mig = new Array(54).fill(0);
+    mig[1] = g_confDataCustomAtk[10] ?? 0;
+    mig[2] = g_confDataCustomAtk[21] ?? 0;
+    mig[50] = g_confDataCustomAtk[20] ?? 0;
+    return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackAny, mig);
+}
+
+/** 性能カスタマイズ（特化：防御｜すべて）ユニットを組み立てる。 */
+function buildCharaConfSpecializeDefenceAnyUnit() {
+    const mig = new Array(54).fill(0);
+    mig[2] = g_confDataCustomDef[9] ?? 0;
+    mig[14] = g_confDataCustomDef[3] ?? 0;
+    mig[26] = g_confDataCustomDef[5] ?? 0;
+    mig[37] = g_confDataCustomDef[4] ?? 0;
+    mig[41] = g_confDataCustomDef[6] ?? 0;
+    mig[44] = g_confDataCustomDef[10] ?? 0;
+    mig[46] = g_confDataCustomDef[7] ?? 0; // 全射程ではなく遠距離なので注意（CSaveDataManager.js の元コード同様）
+    mig[50] = g_confDataCustomDef[8] ?? 0;
+    return buildCharaConfSpecializeUnit(CSaveDataConst.specKindDefencekAny, mig);
+}
+
+/**
+ * 性能カスタマイズ（スキル）ユニットを組み立てる.
+ * skillID・特定条件系（pos0,1）は現行UIの入力元が無いため常に0
+ * （translateFromOldFormat() の "TODO: すべてのスキルを表すダミーのスキルIDに変更のこと" 参照）。
+ */
+function buildCharaConfSkillUnit() {
+    const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL);
+    const unit = new UnitClass();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
+    // specDamageUpConditionType(pos1)は独立入力元ではなく、conditionValue(pos2)と同じ
+    // customSkill[10]から派生する（0以外なら1）。現行でも translateFromOldFormat() が
+    // `(convertedArraySkill[10][1] > 0) ? 1 : 0` として同じ値から計算している
+    // （CSaveDataUnitParse.js「性能カスタマイズ（スキル）」ブロック参照）。
+    const skillCond = g_confDataCustomSkill[10] ?? 0;
+    const mig = [
+        0, skillCond !== 0 ? 1 : 0,
+        skillCond,
+        g_confDataCustomSkill[1] ?? 0,
+        g_confDataCustomSkill[11] ?? 0,
+        g_confDataCustomSkill[12] ?? 0,
+        g_confDataCustomSkill[5] ?? 0,
+        g_confDataCustomSkill[4] ?? 0,
+        g_confDataCustomSkill[7] ?? 0,
+        g_confDataCustomSkill[6] ?? 0,
+        g_confDataCustomSkill[9] ?? 0,
+        g_confDataCustomSkill[8] ?? 0,
+    ];
+    fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
+    unit.doCompaction();
+    return unit;
+}
+
+/** 性能カスタマイズ（特性ステータス関連）ユニットを組み立てる（g_confDataCustomSpecStatus[1..12]を直接転記）。 */
+function buildCharaConfSpecBasicUnit() {
+    const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC);
+    const unit = new UnitClass();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
+    const mig = [];
+    for (let i = 0; i < 12; i++) mig.push(g_confDataCustomSpecStatus[1 + i] ?? 0);
+    fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
+    unit.doCompaction();
+    return unit;
+}
+
+/**
  * 状態からセーブデータユニット配列を直接組み立てる.
  * 空ユニット（`isEmptyUnit()`）は除く——`CSaveDataManager.doCompaction()` が
  * 配列レベルで行う除去と同じ扱い（例: 習得スキルが1つも無いキャラクターでは
@@ -371,6 +573,13 @@ export function buildSaveDataUnitsFromState() {
         buildItemBuffUnit(),
         buildTimeBuffUnit(),
         buildAutoSpellsUnit(),
+        buildCharaConfBasicUnit(),
+        buildCharaConfSpecializePhysicalUnit(),
+        buildCharaConfSpecializeMagicalUnit(),
+        buildCharaConfSpecializeAttackAnyUnit(),
+        buildCharaConfSpecializeDefenceAnyUnit(),
+        buildCharaConfSkillUnit(),
+        buildCharaConfSpecBasicUnit(),
     ];
     return units.filter((unit) => !unit.isEmptyUnit());
 }
