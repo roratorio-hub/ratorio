@@ -19,12 +19,38 @@ import {
     SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS,
     SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS,
     SAVE_DATA_UNIT_TYPE_EQUIP_ARROW,
+    SAVE_DATA_UNIT_TYPE_CHARA_BUFF,
+    SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF,
+    SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST,
+    SAVE_DATA_UNIT_TYPE_SKILL_BUFF_2ND,
+    SAVE_DATA_UNIT_TYPE_SKILL_BUFF_3RD,
+    SAVE_DATA_UNIT_TYPE_SKILL_BUFF_4TH,
+    SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC,
+    SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD,
+    SAVE_DATA_UNIT_TYPE_ITEM_BUFF,
+    SAVE_DATA_UNIT_TYPE_TIME_BUFF,
+    SAVE_DATA_UNIT_TYPE_AUTO_SPELLS,
 } from "./CSaveDataUnit.js";
 import { HtmlGetObjectCheckedById, HtmlGetObjectValueByIdAsInteger } from "../runtime/util.js";
 import { GetHigherJobSeriesID, JOB_SERIES_ID_SUPERNOVICE } from "../data/mig.job.h.js";
-import { n_A_PassSkill } from "../skill/skillstate.js";
+import { CONST_DATA_KIND_JOB } from "../const/EnumConstDataKind.js";
+import {
+    n_A_PassSkill, n_A_PassSkill3, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8,
+} from "../skill/skillstate.js";
 import { n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { n_A_Arrow } from "../runtime/ro4-state.js";
+import { n_A_PassSkill5 } from "../runtime/roro-state.js";
+import { g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi, g_constDataManager, g_timeItemConf } from "../runtime/global.js";
+import {
+    AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB,
+} from "../skill/calcautospell.js";
+
+/** 配列を長さ len に揃える（不足分は0埋め、超過分は切り捨て）。 */
+function padArray(arr, len) {
+    const out = arr.slice(0, len);
+    while (out.length < len) out.push(0);
+    return out;
+}
 
 /**
  * builder が現在対応しているユニットの識別子一覧（Phase 進行に応じて増える）。
@@ -34,11 +60,24 @@ import { n_A_Arrow } from "../runtime/ro4-state.js";
  * 「この Phase までに移植済みのユニットだけを比較する」ために `isMigratedSaveDataUnit()` 経由で参照する。
  */
 export const MIGRATED_SAVE_DATA_UNITS = Object.freeze([
+    // Phase A1
     { type: SAVE_DATA_UNIT_TYPE_VERSION },
     { type: SAVE_DATA_UNIT_TYPE_CHARA },
     { type: SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, dataKind: CSaveDataConst.eqpRgnKindCostume },
     { type: SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS },
     { type: SAVE_DATA_UNIT_TYPE_EQUIP_ARROW },
+    // Phase A2
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_BUFF },
+    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF },
+    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST },
+    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_2ND },
+    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_3RD },
+    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_4TH },
+    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC },
+    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD },
+    { type: SAVE_DATA_UNIT_TYPE_ITEM_BUFF },
+    { type: SAVE_DATA_UNIT_TYPE_TIME_BUFF },
+    { type: SAVE_DATA_UNIT_TYPE_AUTO_SPELLS },
 ]);
 
 /**
@@ -56,6 +95,15 @@ export function isMigratedSaveDataUnit(parsedMap) {
     });
 }
 
+/**
+ * 現在の職業ID（MigID）を取得する.
+ * SaveSystem() と同じく `n_A_JOB` ではなく DOM を直接読む
+ * （`document.getElementById("OBJID_SELECT_JOB").value` が一次情報という既存の設計を踏襲）。
+ */
+function getCurrentJobId() {
+    return HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_JOB", 0);
+}
+
 /** バージョン情報ユニットを組み立てる（プロパティは type/version のみ）。 */
 function buildVersionUnit() {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_VERSION))();
@@ -66,12 +114,12 @@ function buildVersionUnit() {
 /**
  * キャラクターステータスユニットを組み立てる.
  * SaveSystem() の [0001-0009]・[1821-1826] 区画（DOM直読み）と同じ入力源を使う。
+ * @param {number} jobId `getCurrentJobId()` の戻り値
  */
-function buildCharaUnit() {
+function buildCharaUnit(jobId) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA))();
     unit.SetUpAsDefault();
 
-    const jobId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_JOB", 0);
     // スーパーノービスの魂（SL_SUPERNOVICE、A1パッシブスキル欄index9）ON で装備制限を無視する。
     // 旧形式では saveDataArrayOld[84] が n_A_PassSkill[9] と同じ値だった（SaveSystem() [0075-0174]区画）。
     const bIgnoreEquipRestrict = (GetHigherJobSeriesID(jobId) === JOB_SERIES_ID_SUPERNOVICE) && (n_A_PassSkill[9] > 0);
@@ -150,6 +198,154 @@ function buildEquipArrowUnit() {
 }
 
 /**
+ * 武器属性付与＋その他の支援/設定（A8欄）ユニットを組み立てる.
+ * armsElement は SaveSystem() の [0014] 区画（右手武器属性）と同じ DOM を読む。
+ */
+function buildCharaBuffUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_BUFF))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameArmsElement, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", 0));
+    // n_A_PassSkill8 は70件枠のうち28件分しか実体を持たない（SaveSystem()はn_A_PassSkill8.lengthまでしか
+    // 書かないため、旧形式の残り42スロットは常に0だった。同じ挙動を0埋めで再現する）。
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill8, 70));
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * 職固有自己支援（A1欄・パッシブ持続系）ユニットを組み立てる.
+ * SaveSystem() の [0075-0174] 区画は `passiveSkillIdArray.length`（現在の職業の
+ * パッシブスキル数）までしか書かない。n_A_PassSkill 自体は全職業共通の固定長51配列
+ * （直近に選んでいた別の職業の残存値を含みうる）なので、同じ範囲で切り詰めてから0埋めする。
+ * @param {number} jobId `getCurrentJobId()` の戻り値
+ */
+function buildSkillBuffSelfUnit(jobId) {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetPassiveSkillIdArray();
+    const truncated = n_A_PassSkill.slice(0, passiveSkillIdArray.length);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(truncated, 100));
+    unit.doCompaction();
+    return unit;
+}
+
+/** 一次職支援（基本支援）ユニットを組み立てる（g_confDataIchiziをそのまま運ぶ）。 */
+function buildSkillBuff1stUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataIchizi, 100));
+    unit.doCompaction();
+    return unit;
+}
+
+/** 二次職支援ユニットを組み立てる（g_confDataNiziをそのまま運ぶ）。 */
+function buildSkillBuff2ndUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_2ND))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataNizi, 50));
+    unit.doCompaction();
+    return unit;
+}
+
+/** 三次職支援ユニットを組み立てる（g_confDataSanziをそのまま運ぶ）。 */
+function buildSkillBuff3rdUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_3RD))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataSanzi, 100));
+    unit.doCompaction();
+    return unit;
+}
+
+/** 四次職支援ユニットを組み立てる（g_confDataYoziをそのまま運ぶ）。 */
+function buildSkillBuff4thUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_4TH))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataYozi, 30));
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * 演奏/踊り系スキル（支援スキル３）ユニットを組み立てる.
+ * 機能削除済みのため常に空（n_A_PassSkill3 は47件枠だが、旧形式の位置互換のため
+ * 60スロット分0埋めする——SaveSystem() 冒頭コメント参照）。
+ */
+function buildSkillBuffMusicUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill3, 60));
+    unit.doCompaction();
+    return unit;
+}
+
+/** ギルドスキル/ゴスペル/他（A4欄）ユニットを組み立てる（n_A_PassSkill4は36件枠、60スロット中）。 */
+function buildSkillBuffGuildUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill4, 60));
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * アイテム（食品/他。A7欄）ユニットを組み立てる.
+ * subSpeedPot は SaveSystem() の [0013] 区画（速度POT）と同じ DOM を読む。
+ * n_A_PassSkill7 は53件枠、70スロット中（末尾は未使用のため0埋め）。
+ */
+function buildItemBuffUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_ITEM_BUFF))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameSubSpeedPot, HtmlGetObjectValueByIdAsInteger("OBJID_SPEED_POT", 0));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill7, 70));
+    unit.doCompaction();
+    return unit;
+}
+
+/** 時限効果設定ユニットを組み立てる（g_timeItemConfをそのまま運ぶ）。 */
+function buildTimeBuffUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_TIME_BUFF))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    unit.setProp(CSaveDataConst.propNameTimeBuffID, padArray(g_timeItemConf, 20));
+    unit.doCompaction();
+    return unit;
+}
+
+/**
+ * オートスペル設定ユニットを組み立てる.
+ * n_A_PassSkill5 は SkillID/Lv/Prob を OBJID_OFFSET_AS_SKILL_* オフセットで
+ * 同一配列内に格納している（calcautospell.js）。SaveSystem() の [1691-1750] 区画と同じ
+ * 読み取り方をする。
+ */
+function buildAutoSpellsUnit() {
+    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_AUTO_SPELLS))();
+    unit.SetUpAsDefault();
+    unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    const idArray = [];
+    const lvArray = [];
+    const probArray = [];
+    for (let idx = 0; idx < AUTO_SPELL_SETTING_COUNT; idx++) {
+        idArray.push(n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_ID + idx] ?? 0);
+        lvArray.push(n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_LV + idx] ?? 0);
+        probArray.push(n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + idx] ?? 0);
+    }
+    unit.setProp(CSaveDataConst.propNameAutoSpellID, idArray);
+    unit.setProp(CSaveDataConst.propNameAutoSpellLv, lvArray);
+    unit.setProp(CSaveDataConst.propNameAutoSpellProb, probArray);
+    unit.doCompaction();
+    return unit;
+}
+
+/**
  * 状態からセーブデータユニット配列を直接組み立てる.
  * 空ユニット（`isEmptyUnit()`）は除く——`CSaveDataManager.doCompaction()` が
  * 配列レベルで行う除去と同じ扱い（例: 習得スキルが1つも無いキャラクターでは
@@ -157,12 +353,24 @@ function buildEquipArrowUnit() {
  * @returns {Array} `MIGRATED_SAVE_DATA_UNITS` に含まれるユニットの配列
  */
 export function buildSaveDataUnitsFromState() {
+    const jobId = getCurrentJobId();
     const units = [
         buildVersionUnit(),
-        buildCharaUnit(),
+        buildCharaUnit(jobId),
         buildEquipRegionsCostumeUnit(),
         buildLearnedSkillsUnit(),
         buildEquipArrowUnit(),
+        buildCharaBuffUnit(),
+        buildSkillBuffSelfUnit(jobId),
+        buildSkillBuff1stUnit(),
+        buildSkillBuff2ndUnit(),
+        buildSkillBuff3rdUnit(),
+        buildSkillBuff4thUnit(),
+        buildSkillBuffMusicUnit(),
+        buildSkillBuffGuildUnit(),
+        buildItemBuffUnit(),
+        buildTimeBuffUnit(),
+        buildAutoSpellsUnit(),
     ];
     return units.filter((unit) => !unit.isEmptyUnit());
 }
