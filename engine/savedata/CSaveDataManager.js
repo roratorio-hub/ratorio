@@ -1,4 +1,3 @@
-import { n_A_Equip } from "../runtime/roro-state.js";
 import { CSaveDataConst } from "./CSaveDataConst.js";
 import { CSaveDataUnitTypeManager } from "./CSaveDataUnitTypeManager.js";
 import { CSaveDataUnitParse } from "./CSaveDataUnitParse.js";
@@ -79,7 +78,7 @@ import { OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.j
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from "../monster/mobconfplayer.js";
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../equip/rndopttype.h.js";
+import { SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import { serializeSaveDataUnitsToJSON } from "./CSaveDataUnitJsonCodec.js";
 import { buildSaveDataUnitsFromState } from "./savedata-collect.js";
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
@@ -117,24 +116,15 @@ import {
 
 // C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
-         n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
-         n_A_SHOES_DEF_PLUS, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence, n_A_HEAD_DEF_Transcendence,
-         n_A_SHIELD_DEF_Transcendence, n_A_BODY_DEF_Transcendence, n_A_SHOULDER_DEF_Transcendence, n_A_SHOES_DEF_Transcendence,
-         n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5, g_itemIdArray,
-         g_refinedArray, g_objMobConfInput,
+         n_A_PassSkill5, g_objMobConfInput,
 } from "../runtime/roro-state.js";
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
-    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
-    EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT, EQUIP_REGION_ID_SHADOW_HEAD_MID, EQUIP_REGION_ID_SHADOW_HEAD_TOP, EQUIP_REGION_ID_SHADOW_HEAD_UNDER, EQUIP_REGION_ID_SHADOW_SHOULDER,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER,
     EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
 } from "../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_KIND } from "../const/EnumItemDataIndex.js";
 import { JOB_ID_SUPERNOVICE, JOB_ID_SUPERNOVICE_PLUS } from "../const/EnumJobId.js";
-import {
-    MIG_EQUIP_REGION_ID_ACCESSORY_1, MIG_EQUIP_REGION_ID_ACCESSORY_2, MIG_EQUIP_REGION_ID_ARMS_LEFT, MIG_EQUIP_REGION_ID_ARMS_RIGHT, MIG_EQUIP_REGION_ID_BODY, MIG_EQUIP_REGION_ID_FOOT,
-    MIG_EQUIP_REGION_ID_HEAD_MID, MIG_EQUIP_REGION_ID_HEAD_TOP, MIG_EQUIP_REGION_ID_HEAD_UNDER, MIG_EQUIP_REGION_ID_SHIELD, MIG_EQUIP_REGION_ID_SHOULDER,
-} from "../const/EnumMigEquipRegionId.js";
 import {
     MOB_CONF_INPUT_DATA_INDEX_AGI, MOB_CONF_INPUT_DATA_INDEX_ATK, MOB_CONF_INPUT_DATA_INDEX_BASE_EXP, MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE, MOB_CONF_INPUT_DATA_INDEX_DEF, MOB_CONF_INPUT_DATA_INDEX_DEX,
     MOB_CONF_INPUT_DATA_INDEX_ELEMENT, MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE, MOB_CONF_INPUT_DATA_INDEX_HP, MOB_CONF_INPUT_DATA_INDEX_INT, MOB_CONF_INPUT_DATA_INDEX_JOB_EXP, MOB_CONF_INPUT_DATA_INDEX_LUK,
@@ -449,9 +439,6 @@ export class CSaveDataManager {
 		}
 
 		this.#saveDataUnitArray = buildSaveDataUnitsFromState();
-		this.#collectDataEquipable();
-		this.#collectDataCharaConfDebuff();
-		this.#collectDataShadowEquips();
 		this.doCompaction();
 		this.applyDataToControls();
 		CItemInfoManager.RebuildControls();
@@ -474,13 +461,9 @@ export class CSaveDataManager {
 
 		// 状態から直接ユニット配列を組み立てる（B-11 Phase A5-1。旧: SaveSystem()経由の
 		// 変換だったが、メンバ変数の配列を置き換える点は変わらないため、データ追記は
-		// これ以降に行う）。
+		// これ以降に行う。B-33 B2-2で装備/シャドウ装備/プレイヤー状態異常も
+		// buildSaveDataUnitsFromState() 側に統合済み）。
 		this.#saveDataUnitArray = buildSaveDataUnitsFromState();
-
-		// 次世代版限定データの追加
-		this.#collectDataEquipable();
-		this.#collectDataCharaConfDebuff();
-		this.#collectDataShadowEquips();
 
 		// CHARAユニットの差し替え（職業変更「維持ON」用。旧: SaveSystem()のfuncSaveDataModify
 		// 経由でSaveData[1]（職業ID）/[11]（自動レベル調整）を書き換えていた処理の置き換え）
@@ -503,298 +486,6 @@ export class CSaveDataManager {
 
 		return dataTextWork;
 	}
-
-	/**
-	 * 装備部位データユニットを取得する
-	 * @param {*} reginKind CSaveDataConst.eqpRgnKindItem | CSaveDataConst.eqpRgnKindCostume | CSaveDataConst.eqpRgnKindShadow
-	 * @returns saveDataUnitEqpRgn
-	 */
-	#setupRegionUnit(reginKind) {
-		// 装備箇所 判定用 データユニット 用意（すでに存在する可能性がある）
-		let saveDataUnitEqpRgn = null;
-		for (let idx = 0; idx < this.#saveDataUnitArray.length; idx++) {
-			const saveDataUnit = this.#saveDataUnitArray[idx];
-			// 装備用装備箇所データユニットでなければ、次へ
-			if (saveDataUnit.constructor.type != SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS) {
-				continue;
-			}
-			if (floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameDataKind)) != reginKind) {
-				continue;
-			}
-			// ここまで来れば、目的のデータユニット
-			saveDataUnitEqpRgn = saveDataUnit;
-			break;
-		}
-		// メンバ変数の配列に存在しなかった場合は、新規に作成
-		if (!saveDataUnitEqpRgn) {
-			saveDataUnitEqpRgn = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
-			saveDataUnitEqpRgn.SetUpAsDefault();
-			saveDataUnitEqpRgn.setProp(CSaveDataConst.propNameDataKind, reginKind);
-			this.#saveDataUnitArray.push(saveDataUnitEqpRgn);
-		}
-		return saveDataUnitEqpRgn;
-	}
-
-	/**
-	 * セーブ時、装備欄のデータをセーブデータユニットに追加する
-	 */
-	#collectDataEquipable() {
-		// 装備箇所ID配列
-		const eqpRgnIdArray = [
-			MIG_EQUIP_REGION_ID_ARMS_RIGHT,
-			MIG_EQUIP_REGION_ID_ARMS_LEFT,
-			MIG_EQUIP_REGION_ID_HEAD_TOP,
-			MIG_EQUIP_REGION_ID_HEAD_MID,
-			MIG_EQUIP_REGION_ID_HEAD_UNDER,
-			MIG_EQUIP_REGION_ID_SHIELD,
-			MIG_EQUIP_REGION_ID_BODY,
-			MIG_EQUIP_REGION_ID_SHOULDER,
-			MIG_EQUIP_REGION_ID_FOOT,
-			MIG_EQUIP_REGION_ID_ACCESSORY_1,
-			MIG_EQUIP_REGION_ID_ACCESSORY_2,
-		];
-		// カードマップ
-		const cardMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: "OBJID_ARMS_RIGHT",
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: "OBJID_ARMS_LEFT",
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: "OBJID_HEAD_TOP",
-			[MIG_EQUIP_REGION_ID_HEAD_MID]: "OBJID_HEAD_MID",
-			[MIG_EQUIP_REGION_ID_HEAD_UNDER]: "OBJID_HEAD_UNDER",
-			[MIG_EQUIP_REGION_ID_SHIELD]: "OBJID_SHIELD",
-			[MIG_EQUIP_REGION_ID_BODY]: "OBJID_BODY",
-			[MIG_EQUIP_REGION_ID_SHOULDER]: "OBJID_SHOULDER",
-			[MIG_EQUIP_REGION_ID_FOOT]: "OBJID_SHOES",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: "OBJID_ACCESSORY_1",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: "OBJID_ACCESSORY_2",
-		};
-		// 精錬値マップ
-		const refineMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: n_A_Weapon_ATKplus,
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: n_A_Weapon2_ATKplus,
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: n_A_HEAD_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_BODY]: n_A_BODY_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_SHIELD]: n_A_SHIELD_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_SHOULDER]: n_A_SHOULDER_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_FOOT]: n_A_SHOES_DEF_PLUS,
-		};
-		// 超越値マップ
-		const transcendenceMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: n_A_Weapon_Transcendence,
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: n_A_Weapon2_Transcendence,
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: n_A_HEAD_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_BODY]: n_A_BODY_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_SHIELD]: n_A_SHIELD_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_SHOULDER]: n_A_SHOULDER_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_FOOT]: n_A_SHOES_DEF_Transcendence,
-		};
-		// 装備部位マップ
-		const regionMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: CSaveDataConst.propNameEqpRgnArmsRight,
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: CSaveDataConst.propNameEqpRgnArmsLeft,
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: CSaveDataConst.propNameEqpRgnHeadTop,
-			[MIG_EQUIP_REGION_ID_HEAD_MID]: CSaveDataConst.propNameEqpRgnHeadMid,
-			[MIG_EQUIP_REGION_ID_HEAD_UNDER]: CSaveDataConst.propNameEqpRgnHeadUnder,
-			[MIG_EQUIP_REGION_ID_SHIELD]: CSaveDataConst.propNameEqpRgnShield,
-			[MIG_EQUIP_REGION_ID_BODY]: CSaveDataConst.propNameEqpRgnBody,
-			[MIG_EQUIP_REGION_ID_SHOULDER]: CSaveDataConst.propNameEqpRgnShoulder,
-			[MIG_EQUIP_REGION_ID_FOOT]: CSaveDataConst.propNameEqpRgnFoot,
-			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: CSaveDataConst.propNameEqpRgnAccessory1,
-			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: CSaveDataConst.propNameEqpRgnAccessory2,
-		};
-		// 衣装を除く、すべての装備箇所のデータを追加する
-		// 避難所の次世代版ソースコードの時点で衣装のセーブ・ロードには未対応だった
-		// bから始まる旧セーブ形式ではサポートされていた
-		const saveDataUnitEqpRgn = this.#setupRegionUnit(CSaveDataConst.eqpRgnKindItem);
-		for (let idx = 0; idx < eqpRgnIdArray.length; idx++) {
-			const eqpRgnId = eqpRgnIdArray[idx];
-			// データユニット生成
-			const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
-			saveDataUnit.SetUpAsDefault();
-			// データ設定
-			saveDataUnit.setProp(CSaveDataConst.propNameEquipItemDefID, eqpRgnId + 1);
-			saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-			saveDataUnit.setProp(CSaveDataConst.propNameItemID, n_A_Equip[eqpRgnId]);
-			// 精錬値の採取
-			saveDataUnit.setProp(CSaveDataConst.propNameRefinedCount, refineMap[eqpRgnId]|0);
-			// 超越値の採取
-			saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, transcendenceMap[eqpRgnId]|0);
-			// ランダムオプションの採取
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID1, GetEquipRndOptTableKind(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue1, GetEquipRndOptTableValue(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID2, GetEquipRndOptTableKind(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue2, GetEquipRndOptTableValue(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID3, GetEquipRndOptTableKind(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue3, GetEquipRndOptTableValue(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID4, GetEquipRndOptTableKind(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue4, GetEquipRndOptTableValue(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID5, GetEquipRndOptTableKind(eqpRgnId, 4));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue5, GetEquipRndOptTableValue(eqpRgnId, 4));
-			// カード情報の採取
-			const cardCategoryArray = g_charaData.cardCategoryMap.get(cardMap[eqpRgnId])
-			if (cardCategoryArray) {
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID1, cardCategoryArray[0]);
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID2, cardCategoryArray[1]);
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID3, cardCategoryArray[2]);
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID4, cardCategoryArray[3]);
-			}
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID1, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_1`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_2`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_3`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_4`, 0));
-			// 装備箇所データ設定
-			saveDataUnitEqpRgn.setProp(regionMap[eqpRgnId], eqpRgnId + 1);
-			// データユニットをメンバ変数の配列へ追加
-			this.#saveDataUnitArray.push(saveDataUnit);
-		}
-	}
-
-	/**
-	 * セーブ時、プレイヤー状態異常設定のデータをセーブデータユニットに追加する
-	 */
-	#collectDataCharaConfDebuff() {
-		const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF))();
-		saveDataUnit.SetUpAsDefault();
-		saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-		saveDataUnit.setProp(CSaveDataConst.propNameBuffLv, g_confDataDebuff);
-		saveDataUnit.doCompaction();
-		if (!saveDataUnit.isEmptyUnit()) {
-			this.#saveDataUnitArray.push(saveDataUnit);
-		}
-	}
-
-	/**
-	 * セーブ時、シャドウ装備のデータを収集する.
-	 */
-	#collectDataShadowEquips () {
-		// シャドウ装備の装備箇所ID配列
-		const eqpRgnIdArray = [
-			EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
-			EQUIP_REGION_ID_SHADOW_ARMS_LEFT,
-			EQUIP_REGION_ID_SHADOW_BODY,
-			EQUIP_REGION_ID_SHADOW_FOOT,
-			EQUIP_REGION_ID_SHADOW_ACCESSORY_1,
-			EQUIP_REGION_ID_SHADOW_ACCESSORY_2,
-		];
-		// シャドウ装備の連想配列キー
-		const eqpRgnKey = {
-			[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]: "OBJID_SHADOW_ARMS_RIGHT_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]: "OBJID_SHADOW_SHIELD_CARD_",
-			[EQUIP_REGION_ID_SHADOW_BODY]: "OBJID_SHADOW_BODY_CARD_",
-			[EQUIP_REGION_ID_SHADOW_FOOT]: "OBJID_SHADOW_SHOES_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ACCESSORY_1]: "OBJID_SHADOW_ACCESSORY-1_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ACCESSORY_2]: "OBJID_SHADOW_ACCESSORY-2_CARD_",
-		}
-		// 装備箇所 判定用 データユニット
-		const saveDataUnitEqpRgn = this.#setupRegionUnit(CSaveDataConst.eqpRgnKindShadow);
-		// すべての装備箇所のデータを追加する
-		for (let idx = 0; idx < eqpRgnIdArray.length; idx++) {
-			const eqpRgnId = eqpRgnIdArray[idx];
-			// データユニット生成
-			const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
-			saveDataUnit.SetUpAsDefault();
-			// データ設定
-			const candidateDefID = this.#getCandidateEquipItemDefID();
-			saveDataUnit.setProp(CSaveDataConst.propNameEquipItemDefID, candidateDefID);
-			saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-			saveDataUnit.setProp(CSaveDataConst.propNameItemID, g_itemIdArray[eqpRgnId]);
-			saveDataUnit.setProp(CSaveDataConst.propNameRefinedCount, g_refinedArray[eqpRgnId]);
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID1, GetEquipRndOptTableKind(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue1, GetEquipRndOptTableValue(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID2, GetEquipRndOptTableKind(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue2, GetEquipRndOptTableValue(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID3, GetEquipRndOptTableKind(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue3, GetEquipRndOptTableValue(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID4, GetEquipRndOptTableKind(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue4, GetEquipRndOptTableValue(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID5, GetEquipRndOptTableKind(eqpRgnId, 4));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue5, GetEquipRndOptTableValue(eqpRgnId, 4));
-			const shadow_equip_key = eqpRgnKey[eqpRgnId];
-			// シャドウ装備はSlot1にカードを挿せないのでID2からスタート
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}2`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}3`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}4`, 0));
-			// コンパクション実行
-			saveDataUnit.doCompaction();
-			// データなしの場合は次へ
-			if (saveDataUnit.isEmptyUnit()) {
-				continue;
-			}
-			// 装備箇所データ設定
-			let propName = "";
-			switch (eqpRgnId) {
-				case EQUIP_REGION_ID_SHADOW_ARMS_RIGHT:
-					propName = CSaveDataConst.propNameEqpRgnArmsRight;
-					break;
-				case EQUIP_REGION_ID_SHADOW_ARMS_LEFT:
-					propName = CSaveDataConst.propNameEqpRgnArmsLeft;
-					break;
-				case EQUIP_REGION_ID_SHADOW_HEAD_TOP:
-					propName = CSaveDataConst.propNameEqpRgnHeadTop;
-					break;
-				case EQUIP_REGION_ID_SHADOW_HEAD_MID:
-					propName = CSaveDataConst.propNameEqpRgnHeadMid;
-					break;
-				case EQUIP_REGION_ID_SHADOW_HEAD_UNDER:
-					propName = CSaveDataConst.propNameEqpRgnHeadUnder;
-					break;
-				case EQUIP_REGION_ID_SHADOW_BODY:
-					propName = CSaveDataConst.propNameEqpRgnBody;
-					break;
-				case EQUIP_REGION_ID_SHADOW_SHOULDER:
-					propName = CSaveDataConst.propNameEqpRgnShoulder;
-					break;
-				case EQUIP_REGION_ID_SHADOW_FOOT:
-					propName = CSaveDataConst.propNameEqpRgnFoot;
-					break;
-				case EQUIP_REGION_ID_SHADOW_ACCESSORY_1:
-					propName = CSaveDataConst.propNameEqpRgnAccessory1;
-					break;
-				case EQUIP_REGION_ID_SHADOW_ACCESSORY_2:
-					propName = CSaveDataConst.propNameEqpRgnAccessory2;
-					break;
-				// 上記以外はNG
-				default:
-					continue;
-			}
-			saveDataUnitEqpRgn.setProp(propName, candidateDefID);
-			// データユニットをメンバ変数の配列へ追加
-			this.#saveDataUnitArray.push(saveDataUnit);
-		}
-	}
-
-	/**
-	 * 未使用、かつ、最小の装備定義IDを取得する.
-	 * @returns 未使用、かつ、最小の装備定義ID
-	 */
-	#getCandidateEquipItemDefID () {
-
-		const usedIdArray = [];
-
-		// すでに使用されている装備定義IDを収集する
-		for (let idx = 0; idx < this.#saveDataUnitArray.length; idx++) {
-
-			const saveDataUnit = this.#saveDataUnitArray[idx];
-
-			// 装備定義でなければ次へ
-			if (saveDataUnit.constructor.type != SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
-				continue;
-			}
-
-			// 装備定義IDを収集
-			usedIdArray.push(floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameEquipItemDefID)));
-		}
-
-		// 未使用、かつ、最小の装備定義IDを検索する
-		for (let candidate = 1; candidate < (0x01 << 6); candidate++) {
-			if (usedIdArray.indexOf(candidate) == -1) {
-				return candidate;
-			}
-		}
-
-		// ここに来たら使用できる装備定義IDがない（オーバーフローする）
-		throw new Error("No candidates for EquipItemDefID");
-	}
-
 
 	/**
 	 * 文字表現データをパースする.

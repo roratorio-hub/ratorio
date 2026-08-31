@@ -33,7 +33,7 @@ import {
 import { n_A_PassSkill5 } from '@engine/runtime/roro-state.js';
 import {
     g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi, g_timeItemConf,
-    set_g_confDataIchizi, set_g_confDataNizi, set_g_confDataSanzi, set_g_confDataYozi,
+    set_g_confDataIchizi, set_g_confDataNizi, set_g_confDataSanzi, set_g_confDataYozi, set_g_confDataDebuff,
 } from '@engine/runtime/global.js';
 import {
     SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS, SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, SAVE_DATA_UNIT_TYPE_CHARA_BUFF, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF,
@@ -56,6 +56,17 @@ import { n_B_IJYOU } from '@engine/monster/mobconfdebuf.js';
 import { SetMobConfInput } from '@engine/monster/CMobConfInput.js';
 import { MOB_CONF_INPUT_DATA_INDEX_LV, MOB_CONF_INPUT_DATA_INDEX_HP } from '@engine/const/EnumMobConfId.js';
 import { g_attackMethodBridge } from '@engine/battle/CAttackMethodDataBridge.js';
+import {
+    SAVE_DATA_UNIT_TYPE_EQUIPABLE, SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF,
+} from '@engine/savedata/CSaveDataUnit.js';
+import {
+    set_n_A_Equip, set_g_itemIdArray, set_g_refinedArray,
+    set_n_A_Weapon_ATKplus, set_n_A_Weapon_Transcendence,
+} from '@engine/runtime/roro-state.js';
+import {
+    MIG_EQUIP_REGION_ID_ARMS_RIGHT, MIG_EQUIP_REGION_ID_ACCESSORY_2,
+} from '@engine/const/EnumMigEquipRegionId.js';
+import { EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, EQUIP_REGION_ID_SHADOW_ARMS_LEFT } from '@engine/const/EnumEquipRegionId.js';
 
 /** テスト対象が読む OBJID_* 要素をまとめて用意する（値は既定値のまま）。 */
 function buildDom() {
@@ -103,6 +114,13 @@ beforeEach(() => {
     set_g_confDataNizi(Array(50).fill(0));
     set_g_confDataSanzi(Array(100).fill(0));
     set_g_confDataYozi(Array(30).fill(0));
+    // g_confDataDebuff も同様（B-33 B2-2でextractSaveModelFromState()が読むようになった）。
+    set_g_confDataDebuff(Array(50).fill(0));
+    // g_itemIdArray/g_refinedArray（シャドウ装備）はデフォルト[]のため、EQUIP_REGION_ID_SHADOW_*の
+    // 添字（最大23）へアクセスするとundefinedになる。実ページでは常にEQUIP_REGION_ID_COUNT=24件の
+    // 配列が用意されているため、同じ形で0埋めする。
+    set_g_itemIdArray(Array(24).fill(0));
+    set_g_refinedArray(Array(24).fill(0));
 });
 
 afterEach(() => {
@@ -119,7 +137,11 @@ describe('savedata-collect.js', () => {
         it('dataKind 指定は一致する dataKind のユニットだけに一致する', () => {
             const costumeEntry = MIGRATED_SAVE_DATA_UNITS.find((e) => e.dataKind !== undefined)!;
             expect(isMigratedSaveDataUnit({ type: String(costumeEntry.type), dataKind: String(costumeEntry.dataKind) })).toBe(true);
-            expect(isMigratedSaveDataUnit({ type: String(costumeEntry.type), dataKind: String(CSaveDataConst.eqpRgnKindItem) })).toBe(false);
+            // 実在するdataKind値（item/costume/shadow）に依存せず、存在しない値で不一致になることを見る
+            // （B-33 B2-2でEQUIP_REGIONSの全dataKindが移植済みになったため、特定の「未移植dataKind」は
+            // もう存在しない。フィルタが機能していること自体を検証する）。
+            const bogusDataKind = -9999;
+            expect(isMigratedSaveDataUnit({ type: String(costumeEntry.type), dataKind: String(bogusDataKind) })).toBe(false);
         });
 
         it('未移植の type には一致しない', () => {
@@ -128,18 +150,11 @@ describe('savedata-collect.js', () => {
     });
 
     describe('buildSaveDataUnitsFromState: 共通', () => {
-        it('各ユニットの type が isMigratedSaveDataUnit で真になる（装備位置アイテムの矢欄の種ユニットを除く）', () => {
+        it('各ユニットの type が isMigratedSaveDataUnit で真になる（B-33 B2-2で装備・シャドウ装備・プレイヤー状態異常も統合済みのため例外なし）', () => {
             const units = buildSaveDataUnitsFromState();
             for (const unit of units) {
                 const parsedMapObj: Record<string, unknown> = {};
                 unit.parsedMap.forEach((value: unknown, key: string) => { parsedMapObj[key] = value; });
-                // buildEquipRegionsItemArrowSeedUnit()（装備位置・アイテムの矢欄だけを運ぶ種）は
-                // 意図的にMIGRATED_SAVE_DATA_UNITSの対象外（#collectDataEquipable() 適用後の
-                // 最終形はこの単体オラクルでは検証できないため。savedata-collect.js の
-                // 同関数のコメント参照）。
-                const isItemArrowSeed = Number(parsedMapObj.type) === SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS
-                    && Number(parsedMapObj.dataKind) === CSaveDataConst.eqpRgnKindItem;
-                if (isItemArrowSeed) continue;
                 expect(isMigratedSaveDataUnit(parsedMapObj)).toBe(true);
             }
         });
@@ -473,6 +488,156 @@ describe('savedata-collect.js', () => {
         it('MOBユニットは常に出力する（isEmptyUnit()が常にfalse）', () => {
             const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB);
             expect(unit).toBeDefined();
+        });
+    });
+
+    describe('buildSaveDataUnitsFromState: B2-2 装備・シャドウ装備・プレイヤー状態異常', () => {
+        /** type+defIDでEQUIPABLEユニットを1件探す。 */
+        function findEquipableByDefId(units: any[], defId: number) {
+            return units.find((u) =>
+                u.constructor.type === SAVE_DATA_UNIT_TYPE_EQUIPABLE
+                && Number(u.getProp(CSaveDataConst.propNameEquipItemDefID)) === defId);
+        }
+
+        it('アイテム装備は11部位すべてに装備定義ID(eqpRgnId+1)を割り当てる（itemIdが0の部位はisEmptyUnit()によりユニット自体が出力されない）', () => {
+            // 全11部位を装備済みにする（1つでも0のままだとそのユニットはisEmptyUnit()で
+            // 除去される——旧経路でも最終的な出力URLには現れない。CSaveDataManager.doCompaction()
+            // の除去タイミングがbuildSaveDataUnits()内へ早まっただけで最終結果は同じ）。
+            const equip = Array(12).fill(0).map((_, i) => 100 + i);
+            set_n_A_Equip(equip);
+
+            const units = buildSaveDataUnitsFromState();
+            const itemUnits = units.filter((u: any) => u.constructor.type === SAVE_DATA_UNIT_TYPE_EQUIPABLE
+                && Number(u.getProp(CSaveDataConst.propNameEquipItemDefID)) <= 11);
+            expect(itemUnits.length).toBe(11);
+
+            const armsRight = findEquipableByDefId(units, MIG_EQUIP_REGION_ID_ARMS_RIGHT + 1)!;
+            expect(Number(armsRight.getProp(CSaveDataConst.propNameItemID))).toBe(100 + MIG_EQUIP_REGION_ID_ARMS_RIGHT);
+            const accessory2 = findEquipableByDefId(units, MIG_EQUIP_REGION_ID_ACCESSORY_2 + 1)!;
+            expect(Number(accessory2.getProp(CSaveDataConst.propNameItemID))).toBe(100 + MIG_EQUIP_REGION_ID_ACCESSORY_2);
+        });
+
+        it('精錬値・超越値はn_A_Weapon_ATKplus/n_A_Weapon_Transcendenceを毎回読み直す（呼び出しごとの値変化に追随する）', () => {
+            // 回帰テスト: 精錬値・超越値の読み取り元マップをモジュール読み込み時に1回だけ
+            // 組み立てていたため（object literalの値はimportの生きた束縛と違い一度きりの代入）、
+            // モジュール評価時点（値がまだ0）のまま固定され、以後の値変更を反映しなかった
+            // （B-33 B2-2で発見・修正）。1回目のbuildSaveDataUnitsFromState()呼び出しの後に
+            // 値を変えても正しく反映されることを見る。
+            set_n_A_Equip(Array(12).fill(0).map((_, i) => 100 + i));
+            set_n_A_Weapon_ATKplus(0);
+            set_n_A_Weapon_Transcendence(0);
+            buildSaveDataUnitsFromState(); // 1回目（ここでモジュール内マップが誤ってキャッシュされていた）
+
+            set_n_A_Weapon_ATKplus(9);
+            set_n_A_Weapon_Transcendence(3);
+            const units = buildSaveDataUnitsFromState(); // 2回目。新しい値が反映されるべき
+            const armsRight = findEquipableByDefId(units, MIG_EQUIP_REGION_ID_ARMS_RIGHT + 1)!;
+            expect(Number(armsRight.getProp(CSaveDataConst.propNameRefinedCount))).toBe(9);
+            expect(Number(armsRight.getProp(CSaveDataConst.propNameTranscendenceCount))).toBe(3);
+
+            // 後続テストへ値を持ち越さない
+            set_n_A_Weapon_ATKplus(0);
+            set_n_A_Weapon_Transcendence(0);
+        });
+
+        it('itemIdが0の部位はEQUIPABLEユニット自体が出力されない（isEmptyUnit()）', () => {
+            set_n_A_Equip(Array(12).fill(0));
+            const units = buildSaveDataUnitsFromState();
+            const itemUnits = units.filter((u: any) => u.constructor.type === SAVE_DATA_UNIT_TYPE_EQUIPABLE
+                && Number(u.getProp(CSaveDataConst.propNameEquipItemDefID)) <= 11);
+            expect(itemUnits.length).toBe(0);
+        });
+
+        it('アイテム装備位置ユニット（EQUIP_REGIONS・kind=item）は11部位すべてに装備定義IDを持つ', () => {
+            const units = buildSaveDataUnitsFromState();
+            const itemRegionUnit = units.find((u: any) =>
+                u.constructor.type === SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS
+                && Number(u.getProp(CSaveDataConst.propNameDataKind)) === CSaveDataConst.eqpRgnKindItem)!;
+            expect(itemRegionUnit).toBeDefined();
+            expect(Number(itemRegionUnit.getProp(CSaveDataConst.propNameEqpRgnArmsRight))).toBe(MIG_EQUIP_REGION_ID_ARMS_RIGHT + 1);
+            expect(Number(itemRegionUnit.getProp(CSaveDataConst.propNameEqpRgnAccessory2))).toBe(MIG_EQUIP_REGION_ID_ACCESSORY_2 + 1);
+            // 矢欄は#collectDataEquipable()時代からの固定値11をそのまま踏襲
+            expect(Number(itemRegionUnit.getProp(CSaveDataConst.propNameEqpRgnArrow))).toBe(11);
+        });
+
+        it('EQUIPABLE型内では、アイテム11件がシャドウ装備より前に並ぶ（doCompaction()の安定ソートによるバイト列依存）', () => {
+            set_n_A_Equip(Array(12).fill(0).map((_, i) => 100 + i));
+            const itemArray = Array(24).fill(0);
+            itemArray[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT] = 9001;
+            set_g_itemIdArray(itemArray);
+            const refinedArray = Array(24).fill(0);
+            set_g_refinedArray(refinedArray);
+
+            const units = buildSaveDataUnitsFromState();
+            const equipableIndices = units
+                .map((u: any, idx: number) => ({ type: u.constructor.type, idx }))
+                .filter((e: any) => e.type === SAVE_DATA_UNIT_TYPE_EQUIPABLE)
+                .map((e: any) => e.idx);
+            // 12件（アイテム11+シャドウ1）のうち、最後の1件がシャドウ（defID>=12）であること
+            expect(equipableIndices.length).toBe(12);
+            const lastUnit = units[equipableIndices[equipableIndices.length - 1]];
+            expect(Number(lastUnit.getProp(CSaveDataConst.propNameEquipItemDefID))).toBeGreaterThanOrEqual(12);
+        });
+
+        it('シャドウ装備の装備定義IDは12から始まり、空の枠はIDを消費しない', () => {
+            const itemArray = Array(24).fill(0);
+            // ARMS_RIGHT（1番目のシャドウ枠）は空のまま、ARMS_LEFT（2番目）だけ装備させる
+            itemArray[EQUIP_REGION_ID_SHADOW_ARMS_LEFT] = 8001;
+            set_g_itemIdArray(itemArray);
+            set_g_refinedArray(Array(24).fill(0));
+
+            const units = buildSaveDataUnitsFromState();
+            const shadowUnits = units.filter((u: any) => u.constructor.type === SAVE_DATA_UNIT_TYPE_EQUIPABLE
+                && Number(u.getProp(CSaveDataConst.propNameEquipItemDefID)) >= 12);
+            // ARMS_RIGHTは空なのでユニット化されず、ARMS_LEFT側だけが「最初の空き番号=12」を得る
+            // （旧#getCandidateEquipItemDefID()と同じ「discardされた候補は次の枠で再利用」の挙動）
+            expect(shadowUnits.length).toBe(1);
+            expect(Number(shadowUnits[0].getProp(CSaveDataConst.propNameEquipItemDefID))).toBe(12);
+            expect(Number(shadowUnits[0].getProp(CSaveDataConst.propNameItemID))).toBe(8001);
+        });
+
+        it('シャドウ装備のカードはSlot1が無くID2から始まる', () => {
+            set_g_itemIdArray((() => { const a = Array(24).fill(0); a[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT] = 7001; return a; })());
+            set_g_refinedArray(Array(24).fill(0));
+            document.getElementById('OBJID_SHADOW_ARMS_RIGHT_CARD_2') ?? (() => {
+                const el = document.createElement('input');
+                el.id = 'OBJID_SHADOW_ARMS_RIGHT_CARD_2';
+                el.value = '555';
+                document.body.appendChild(el);
+            })();
+
+            const units = buildSaveDataUnitsFromState();
+            const shadowUnit = units.find((u: any) => u.constructor.type === SAVE_DATA_UNIT_TYPE_EQUIPABLE
+                && Number(u.getProp(CSaveDataConst.propNameItemID)) === 7001)!;
+            expect(Number(shadowUnit.getProp(CSaveDataConst.propNameCardID2))).toBe(555);
+            expect(shadowUnit.getProp(CSaveDataConst.propNameCardID1)).toBeUndefined();
+        });
+
+        it('プレイヤー状態異常設定が全て0ならCHARA_DEBUFFユニットは出力されない', () => {
+            const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF);
+            expect(unit).toBeUndefined();
+        });
+
+        it('プレイヤー状態異常設定に非0の値があればCHARA_DEBUFFユニットがg_confDataDebuffをそのまま運ぶ', () => {
+            set_g_confDataDebuff(Array(50).fill(0).map((_, i) => (i === 3 ? 42 : 0)));
+            const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF)!;
+            expect(unit).toBeDefined();
+            const buffLv = unit.getProp(CSaveDataConst.propNameBuffLv) as (number | bigint)[];
+            expect(Number(buffLv[3])).toBe(42);
+        });
+
+        it('EQUIP_REGIONS型内では、アイテム→衣装→シャドウの順で並ぶ（doCompaction()の安定ソートによるバイト列依存）', () => {
+            set_g_itemIdArray((() => { const a = Array(24).fill(0); a[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT] = 6001; return a; })());
+            set_g_refinedArray(Array(24).fill(0));
+
+            const units = buildSaveDataUnitsFromState();
+            const regionUnits = units.filter((u: any) => u.constructor.type === SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS);
+            const dataKinds = regionUnits.map((u: any) => Number(u.getProp(CSaveDataConst.propNameDataKind)));
+            expect(dataKinds).toEqual([
+                CSaveDataConst.eqpRgnKindItem,
+                CSaveDataConst.eqpRgnKindCostume,
+                CSaveDataConst.eqpRgnKindShadow,
+            ]);
         });
     });
 });

@@ -89,5 +89,32 @@ export function createEmptySaveModel() {
         attackMethodSourceType: undefined,
         attackMethodSkillLv: undefined,
         attackMethodOptions: [],
+
+        // ---- 装備・プレイヤー状態異常 ----
+        /** 装備・シャドウ装備・プレイヤー状態異常設定欄（旧 CSaveDataManager#collectData*() が
+         *  DOM/グローバルから直接読んでいたもの。B-33 B2-2で統合） */
+        equip: {
+            /** 装備部位11件（衣装を除く）。各要素は下記の形。列挙順は
+             *  MIG_EQUIP_REGION_ID_*（旧#collectDataEquipable()と同じ ARMS_RIGHT〜ACCESSORY_2 順）。
+             *  ```
+             *  { eqpRgnId, itemId, refine, transcendence,
+             *    rndOpt: [{kind, value}, ×5],
+             *    cardCategoryIds: [c1,c2,c3,c4] | null,
+             *    cardIds: [id1,id2,id3,id4] }
+             *  ```
+             */
+            itemRegions: [],
+            /** シャドウ装備6件。各要素は下記の形。列挙順は EQUIP_REGION_ID_SHADOW_*
+             *  （旧#collectDataShadowEquips()と同じ ARMS_RIGHT〜ACCESSORY_2 順。頭防具・肩は非対応）。
+             *  ```
+             *  { eqpRgnId, itemId, refine,
+             *    rndOpt: [{kind, value}, ×5],
+             *    cardIds: [id2,id3,id4] }  // Slot1にはカードを挿せないため無し
+             *  ```
+             */
+            shadowRegions: [],
+            /** プレイヤー状態異常設定欄（g_confDataDebuffのスナップショット） */
+            debuff: [],
+        },
     };
 }

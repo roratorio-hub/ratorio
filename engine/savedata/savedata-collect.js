@@ -13,10 +13,10 @@
  *   DOM/グローバルの読み取りを一切含まない（純粋関数）。
  * - `buildSaveDataUnitsFromState()`（従来のエントリポイント）は両者を繋ぐ薄いラッパとして残す。
  *
- * 既存の `CSaveDataManager#collectDataEquipable()` 等（装備・シャドウ装備・プレイヤー状態異常）
- * と同型のパターンを、翻訳経由だった残りの型へ広げたもの。装備（アイテム/シャドウ）の
- * EQUIP_REGIONS は上記3メソッドが引き続き担当するため、ここでは扱わない
- * （衣装のみ、下記の通り固定値でこの関数が担当する）。
+ * B-33 B2-2で、旧 `CSaveDataManager#collectDataEquipable()`/`#collectDataCharaConfDebuff()`/
+ * `#collectDataShadowEquips()`（装備・シャドウ装備・プレイヤー状態異常）も統合した
+ * （`buildEquipUnits()` 参照）。衣装（COSTUME）のみ、次世代版ソースコードの時点でセーブ・
+ * ロード未対応のため固定値のまま。
  */
 import { CSaveDataUnitTypeManager } from "./CSaveDataUnitTypeManager.js";
 import { CSaveDataConst } from "./CSaveDataConst.js";
@@ -48,6 +48,8 @@ import {
     SAVE_DATA_UNIT_TYPE_MOB_BUFF,
     SAVE_DATA_UNIT_TYPE_MOB_DEBUFF,
     SAVE_DATA_UNIT_TYPE_ATTACK_CONF,
+    SAVE_DATA_UNIT_TYPE_EQUIPABLE,
+    SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF,
 } from "./CSaveDataUnit.js";
 import { createEmptySaveModel } from "./save-model.js";
 import { HtmlGetObjectCheckedById, HtmlGetObjectValueByIdAsInteger } from "../runtime/util.js";
@@ -58,11 +60,28 @@ import {
 } from "../skill/skillstate.js";
 import { n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { n_A_Arrow } from "../runtime/ro4-state.js";
-import { n_A_PassSkill5 } from "../runtime/roro-state.js";
+import {
+    n_A_PassSkill5, n_A_Equip,
+    n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_SHOES_DEF_PLUS,
+    n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence, n_A_HEAD_DEF_Transcendence,
+    n_A_SHIELD_DEF_Transcendence, n_A_BODY_DEF_Transcendence, n_A_SHOULDER_DEF_Transcendence, n_A_SHOES_DEF_Transcendence,
+    n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, g_itemIdArray, g_refinedArray,
+} from "../runtime/roro-state.js";
 import {
     g_confDataIchizi, g_confDataNizi, g_confDataSanzi, g_confDataYozi, g_constDataManager, g_timeItemConf,
     g_confDataCustomStatus, g_confDataCustomAtk, g_confDataCustomDef, g_confDataCustomSkill, g_confDataCustomSpecStatus,
+    g_charaData, g_confDataDebuff,
 } from "../runtime/global.js";
+import {
+    MIG_EQUIP_REGION_ID_ACCESSORY_1, MIG_EQUIP_REGION_ID_ACCESSORY_2, MIG_EQUIP_REGION_ID_ARMS_LEFT, MIG_EQUIP_REGION_ID_ARMS_RIGHT,
+    MIG_EQUIP_REGION_ID_BODY, MIG_EQUIP_REGION_ID_FOOT, MIG_EQUIP_REGION_ID_HEAD_MID, MIG_EQUIP_REGION_ID_HEAD_TOP,
+    MIG_EQUIP_REGION_ID_HEAD_UNDER, MIG_EQUIP_REGION_ID_SHIELD, MIG_EQUIP_REGION_ID_SHOULDER,
+} from "../const/EnumMigEquipRegionId.js";
+import {
+    EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT,
+    EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT,
+} from "../const/EnumEquipRegionId.js";
+import { GetEquipRndOptTableKind, GetEquipRndOptTableValue } from "../equip/rndopttype.h.js";
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB,
 } from "../skill/calcautospell.js";
@@ -86,6 +105,110 @@ import {
     CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP,
     CHARA_CONF_SKILL_MIG_MAP, CHARA_CONF_SPEC_BASIC_MIG_MAP, migArrayFromConf,
 } from "./conf-mig-mapping.js";
+
+// ---- 装備（アイテム11部位）関連の定数マップ ----
+// 列挙順は旧 CSaveDataManager#collectDataEquipable() の eqpRgnIdArray と同じ。
+const ITEM_EQUIP_REGION_ID_ARRAY = [
+    MIG_EQUIP_REGION_ID_ARMS_RIGHT, MIG_EQUIP_REGION_ID_ARMS_LEFT, MIG_EQUIP_REGION_ID_HEAD_TOP,
+    MIG_EQUIP_REGION_ID_HEAD_MID, MIG_EQUIP_REGION_ID_HEAD_UNDER, MIG_EQUIP_REGION_ID_SHIELD,
+    MIG_EQUIP_REGION_ID_BODY, MIG_EQUIP_REGION_ID_SHOULDER, MIG_EQUIP_REGION_ID_FOOT,
+    MIG_EQUIP_REGION_ID_ACCESSORY_1, MIG_EQUIP_REGION_ID_ACCESSORY_2,
+];
+const ITEM_CARD_OBJID_PREFIX = {
+    [MIG_EQUIP_REGION_ID_ARMS_RIGHT]: "OBJID_ARMS_RIGHT",
+    [MIG_EQUIP_REGION_ID_ARMS_LEFT]: "OBJID_ARMS_LEFT",
+    [MIG_EQUIP_REGION_ID_HEAD_TOP]: "OBJID_HEAD_TOP",
+    [MIG_EQUIP_REGION_ID_HEAD_MID]: "OBJID_HEAD_MID",
+    [MIG_EQUIP_REGION_ID_HEAD_UNDER]: "OBJID_HEAD_UNDER",
+    [MIG_EQUIP_REGION_ID_SHIELD]: "OBJID_SHIELD",
+    [MIG_EQUIP_REGION_ID_BODY]: "OBJID_BODY",
+    [MIG_EQUIP_REGION_ID_SHOULDER]: "OBJID_SHOULDER",
+    [MIG_EQUIP_REGION_ID_FOOT]: "OBJID_SHOES",
+    [MIG_EQUIP_REGION_ID_ACCESSORY_1]: "OBJID_ACCESSORY_1",
+    [MIG_EQUIP_REGION_ID_ACCESSORY_2]: "OBJID_ACCESSORY_2",
+};
+/**
+ * 精錬値・超越値の読み取り元（7部位のみ。頭中段/下段・アクセサリ2件は対象外。
+ * 存在しない場合は呼び出し側の `| 0` によりundefinedが0になる仕様——旧#collectDataEquipable()と同じ）。
+ *
+ * `n_A_Weapon_ATKplus` 等は ES モジュールの生きた束縛（`export let`）だが、これをオブジェクト
+ * リテラルの値として書くと**評価時点の値がコピーされるだけ**で、以後の変更を追跡しない
+ * （import 識別子を直接コードで読む場合とは違い、object literal の property value は
+ * 束縛ではなく単なる代入である）。モジュール読み込み直後（値がまだ0のとき）に固定された
+ * マップになってしまうため、**呼び出しのたびに関数で作り直す**必要がある。
+ * @returns {Record<number, number>}
+ */
+function buildItemRefineSourceMap() {
+    return {
+        [MIG_EQUIP_REGION_ID_ARMS_RIGHT]: n_A_Weapon_ATKplus,
+        [MIG_EQUIP_REGION_ID_ARMS_LEFT]: n_A_Weapon2_ATKplus,
+        [MIG_EQUIP_REGION_ID_HEAD_TOP]: n_A_HEAD_DEF_PLUS,
+        [MIG_EQUIP_REGION_ID_BODY]: n_A_BODY_DEF_PLUS,
+        [MIG_EQUIP_REGION_ID_SHIELD]: n_A_SHIELD_DEF_PLUS,
+        [MIG_EQUIP_REGION_ID_SHOULDER]: n_A_SHOULDER_DEF_PLUS,
+        [MIG_EQUIP_REGION_ID_FOOT]: n_A_SHOES_DEF_PLUS,
+    };
+}
+/** @returns {Record<number, number>} 超越値版（buildItemRefineSourceMap()と同じ理由で関数化）。 */
+function buildItemTranscendenceSourceMap() {
+    return {
+        [MIG_EQUIP_REGION_ID_ARMS_RIGHT]: n_A_Weapon_Transcendence,
+        [MIG_EQUIP_REGION_ID_ARMS_LEFT]: n_A_Weapon2_Transcendence,
+        [MIG_EQUIP_REGION_ID_HEAD_TOP]: n_A_HEAD_DEF_Transcendence,
+        [MIG_EQUIP_REGION_ID_BODY]: n_A_BODY_DEF_Transcendence,
+        [MIG_EQUIP_REGION_ID_SHIELD]: n_A_SHIELD_DEF_Transcendence,
+        [MIG_EQUIP_REGION_ID_SHOULDER]: n_A_SHOULDER_DEF_Transcendence,
+        [MIG_EQUIP_REGION_ID_FOOT]: n_A_SHOES_DEF_Transcendence,
+    };
+}
+/** 装備部位ID → EQUIP_REGIONSユニットのプロパティ名（旧#collectDataEquipable()のregionMapと同じ）。 */
+const ITEM_REGION_PROP_MAP = {
+    [MIG_EQUIP_REGION_ID_ARMS_RIGHT]: CSaveDataConst.propNameEqpRgnArmsRight,
+    [MIG_EQUIP_REGION_ID_ARMS_LEFT]: CSaveDataConst.propNameEqpRgnArmsLeft,
+    [MIG_EQUIP_REGION_ID_HEAD_TOP]: CSaveDataConst.propNameEqpRgnHeadTop,
+    [MIG_EQUIP_REGION_ID_HEAD_MID]: CSaveDataConst.propNameEqpRgnHeadMid,
+    [MIG_EQUIP_REGION_ID_HEAD_UNDER]: CSaveDataConst.propNameEqpRgnHeadUnder,
+    [MIG_EQUIP_REGION_ID_SHIELD]: CSaveDataConst.propNameEqpRgnShield,
+    [MIG_EQUIP_REGION_ID_BODY]: CSaveDataConst.propNameEqpRgnBody,
+    [MIG_EQUIP_REGION_ID_SHOULDER]: CSaveDataConst.propNameEqpRgnShoulder,
+    [MIG_EQUIP_REGION_ID_FOOT]: CSaveDataConst.propNameEqpRgnFoot,
+    [MIG_EQUIP_REGION_ID_ACCESSORY_1]: CSaveDataConst.propNameEqpRgnAccessory1,
+    [MIG_EQUIP_REGION_ID_ACCESSORY_2]: CSaveDataConst.propNameEqpRgnAccessory2,
+};
+
+// ---- シャドウ装備（6部位）関連の定数マップ ----
+// 列挙順は旧 CSaveDataManager#collectDataShadowEquips() の eqpRgnIdArray と同じ
+// （頭防具・肩は非対応のため対象外）。
+const SHADOW_EQUIP_REGION_ID_ARRAY = [
+    EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_BODY,
+    EQUIP_REGION_ID_SHADOW_FOOT, EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2,
+];
+const SHADOW_CARD_OBJID_PREFIX = {
+    [EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]: "OBJID_SHADOW_ARMS_RIGHT_CARD_",
+    [EQUIP_REGION_ID_SHADOW_ARMS_LEFT]: "OBJID_SHADOW_SHIELD_CARD_",
+    [EQUIP_REGION_ID_SHADOW_BODY]: "OBJID_SHADOW_BODY_CARD_",
+    [EQUIP_REGION_ID_SHADOW_FOOT]: "OBJID_SHADOW_SHOES_CARD_",
+    [EQUIP_REGION_ID_SHADOW_ACCESSORY_1]: "OBJID_SHADOW_ACCESSORY-1_CARD_",
+    [EQUIP_REGION_ID_SHADOW_ACCESSORY_2]: "OBJID_SHADOW_ACCESSORY-2_CARD_",
+};
+/** シャドウ装備部位ID → EQUIP_REGIONSユニットのプロパティ名（旧#collectDataShadowEquips()のswitch文と同じ）。 */
+const SHADOW_REGION_PROP_MAP = {
+    [EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]: CSaveDataConst.propNameEqpRgnArmsRight,
+    [EQUIP_REGION_ID_SHADOW_ARMS_LEFT]: CSaveDataConst.propNameEqpRgnArmsLeft,
+    [EQUIP_REGION_ID_SHADOW_BODY]: CSaveDataConst.propNameEqpRgnBody,
+    [EQUIP_REGION_ID_SHADOW_FOOT]: CSaveDataConst.propNameEqpRgnFoot,
+    [EQUIP_REGION_ID_SHADOW_ACCESSORY_1]: CSaveDataConst.propNameEqpRgnAccessory1,
+    [EQUIP_REGION_ID_SHADOW_ACCESSORY_2]: CSaveDataConst.propNameEqpRgnAccessory2,
+};
+
+/** ランダムオプション5枠を読み取る（アイテム・シャドウ共通）。 */
+function readRndOpt(eqpRgnId) {
+    const rndOpt = [];
+    for (let slot = 0; slot < 5; slot++) {
+        rndOpt.push({ kind: GetEquipRndOptTableKind(eqpRgnId, slot), value: GetEquipRndOptTableValue(eqpRgnId, slot) });
+    }
+    return rndOpt;
+}
 
 /** 配列を長さ len に揃える（不足分は0埋め、超過分は切り捨て）。 */
 function padArray(arr, len) {
@@ -171,6 +294,11 @@ export const MIGRATED_SAVE_DATA_UNITS = Object.freeze([
     { type: SAVE_DATA_UNIT_TYPE_MOB_BUFF },
     { type: SAVE_DATA_UNIT_TYPE_MOB_DEBUFF },
     { type: SAVE_DATA_UNIT_TYPE_ATTACK_CONF },
+    // Phase B2-2（装備・シャドウ装備・プレイヤー状態異常。旧CSaveDataManager#collectData*()を統合）
+    { type: SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, dataKind: CSaveDataConst.eqpRgnKindItem },
+    { type: SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, dataKind: CSaveDataConst.eqpRgnKindShadow },
+    { type: SAVE_DATA_UNIT_TYPE_EQUIPABLE },
+    { type: SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF },
 ]);
 
 /**
@@ -285,6 +413,39 @@ export function extractSaveModelFromState() {
     model.attackMethodSkillLv = attackMethodConf ? attackMethodConf.GetSkillLv() : 0;
     model.attackMethodOptions = attackOptionArray;
 
+    // ---- 装備（アイテム11部位・衣装を除く） ----
+    const itemRefineSourceMap = buildItemRefineSourceMap();
+    const itemTranscendenceSourceMap = buildItemTranscendenceSourceMap();
+    model.equip.itemRegions = ITEM_EQUIP_REGION_ID_ARRAY.map((eqpRgnId) => {
+        const cardPrefix = ITEM_CARD_OBJID_PREFIX[eqpRgnId];
+        const cardCategoryArray = g_charaData.cardCategoryMap.get(cardPrefix);
+        return {
+            eqpRgnId,
+            itemId: n_A_Equip[eqpRgnId],
+            refine: itemRefineSourceMap[eqpRgnId] | 0,
+            transcendence: itemTranscendenceSourceMap[eqpRgnId] | 0,
+            rndOpt: readRndOpt(eqpRgnId),
+            cardCategoryIds: cardCategoryArray ? cardCategoryArray.slice(0, 4) : null,
+            cardIds: [1, 2, 3, 4].map((slot) => HtmlGetObjectValueByIdAsInteger(`${cardPrefix}_CARD_${slot}`, 0)),
+        };
+    });
+
+    // ---- シャドウ装備（6部位） ----
+    model.equip.shadowRegions = SHADOW_EQUIP_REGION_ID_ARRAY.map((eqpRgnId) => {
+        const cardPrefix = SHADOW_CARD_OBJID_PREFIX[eqpRgnId];
+        return {
+            eqpRgnId,
+            itemId: g_itemIdArray[eqpRgnId],
+            refine: g_refinedArray[eqpRgnId],
+            rndOpt: readRndOpt(eqpRgnId),
+            // シャドウ装備はSlot1にカードを挿せないのでID2からスタート
+            cardIds: [2, 3, 4].map((slot) => HtmlGetObjectValueByIdAsInteger(`${cardPrefix}${slot}`, 0)),
+        };
+    });
+
+    // ---- プレイヤー状態異常設定欄 ----
+    model.equip.debuff = g_confDataDebuff.slice();
+
     return model;
 }
 
@@ -353,26 +514,6 @@ function buildEquipRegionsCostumeUnit() {
     unit.setProp(CSaveDataConst.propNameEqpRgnAccessory1, 0);
     unit.setProp(CSaveDataConst.propNameEqpRgnAccessory2, 0);
     unit.setProp(CSaveDataConst.propNameEqpRgnArrow, 0);
-    unit.doCompaction();
-    return unit;
-}
-
-/**
- * 装備位置（アイテム）ユニットの「矢」欄だけを種として作る.
- * 実データ（11部位の実際の割り当て）は `CSaveDataManager#collectDataEquipable()` が
- * `#setupRegionUnit()` 経由でこのユニットを見つけて上書きする（B-11 Phase A の対象外）。
- * ただし `#collectDataEquipable()` 自身のループは矢欄（propNameEqpRgnArrow）を一切触らない
- * ため、translateFromOldFormat() が unconditional に埋めていた固定値11
- * （EQUIPABLE の矢defIDと同じ値。装備品としての矢が別途 defID=11 で扱われるための旧設計の
- * 名残）をここで再現しないと欠落する。この種ユニットは MIGRATED_SAVE_DATA_UNITS の対象外
- * （#collectDataEquipable() 適用後の最終形は savedata-collect.js 単体のオラクルでは検証できず、
- * tests/integration/calcx.test.ts の URL往復テストが実質的なオラクルになる）。
- */
-function buildEquipRegionsItemArrowSeedUnit() {
-    const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
-    unit.SetUpAsDefault();
-    unit.setProp(CSaveDataConst.propNameDataKind, CSaveDataConst.eqpRgnKindItem);
-    unit.setProp(CSaveDataConst.propNameEqpRgnArrow, 11);
     unit.doCompaction();
     return unit;
 }
@@ -752,6 +893,139 @@ function buildAttackConfUnit(model) {
 }
 
 /**
+ * `usedDefIds` に含まれない、1以上64未満の最小の装備定義IDを返す
+ * （旧 CSaveDataManager#getCandidateEquipItemDefID() と同じアルゴリズム）。
+ * @param {number[]} usedDefIds 既に使用中の装備定義ID一覧
+ * @returns {number}
+ */
+function getCandidateEquipItemDefId(usedDefIds) {
+    for (let candidate = 1; candidate < (0x01 << 6); candidate++) {
+        if (usedDefIds.indexOf(candidate) === -1) {
+            return candidate;
+        }
+    }
+    throw new Error("No candidates for EquipItemDefID");
+}
+
+/** ランダムオプション5枠をユニットへ設定する（アイテム・シャドウ共通）。 */
+function setRndOptProps(unit, rndOpt) {
+    unit.setProp(CSaveDataConst.propNameRndOptID1, rndOpt[0].kind);
+    unit.setProp(CSaveDataConst.propNameRndOptValue1, rndOpt[0].value);
+    unit.setProp(CSaveDataConst.propNameRndOptID2, rndOpt[1].kind);
+    unit.setProp(CSaveDataConst.propNameRndOptValue2, rndOpt[1].value);
+    unit.setProp(CSaveDataConst.propNameRndOptID3, rndOpt[2].kind);
+    unit.setProp(CSaveDataConst.propNameRndOptValue3, rndOpt[2].value);
+    unit.setProp(CSaveDataConst.propNameRndOptID4, rndOpt[3].kind);
+    unit.setProp(CSaveDataConst.propNameRndOptValue4, rndOpt[3].value);
+    unit.setProp(CSaveDataConst.propNameRndOptID5, rndOpt[4].kind);
+    unit.setProp(CSaveDataConst.propNameRndOptValue5, rndOpt[4].value);
+}
+
+/**
+ * 装備（アイテム11部位・シャドウ装備6部位）とプレイヤー状態異常設定のユニット群を組み立てる
+ * （旧 CSaveDataManager#collectDataEquipable()/#collectDataCharaConfDebuff()/
+ * #collectDataShadowEquips() の統合。B-33 B2-2）.
+ *
+ * 装備位置ユニット（EQUIP_REGIONS）は、対応する EQUIPABLE ユニット群を作りながら
+ * 各部位のプロパティを直接書き込む（旧実装の「既存ユニットを配列内から検索して書き戻す」
+ * パターン——`#setupRegionUnit()`——を、1関数内で完結する形に置き換えた）。
+ *
+ * シャドウ装備の装備定義ID（defID）は、アイテム側11件が常に使う defID（`eqpRgnId+1`）の
+ * 続きから、未使用の最小値を順に割り当てる（旧#getCandidateEquipItemDefID()と同じ
+ * アルゴリズム。空のシャドウ装備枠はdefIDを消費しない——旧実装と同じ「discardされた候補は
+ * 次の枠で再利用される」挙動を再現するため、非空と判定された枠のぶんだけ usedDefIds に積む）。
+ *
+ * 各ユニットは生成直後に `doCompaction()` を呼ぶ（`buildSaveDataUnits()` 側の
+ * 一括 `isEmptyUnit()` フィルタが正しく働くために必要。旧実装はアイテム側の11ユニットに
+ * ついて個別の doCompaction() を呼んでいなかったが、最終的な出力バイト列は
+ * `CSaveDataManager.doCompaction()`（本関数の外側で必ず呼ばれる）が全ユニットへ
+ * 再度 doCompaction() するため同一になる）。
+ * @param {object} model `extractSaveModelFromState()` の戻り値
+ * @returns {{ itemEquipRegionsUnit: object, restUnits: object[] }}
+ */
+function buildEquipUnits(model) {
+    const usedDefIds = [];
+
+    const itemEquipRegionsUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
+    itemEquipRegionsUnit.SetUpAsDefault();
+    itemEquipRegionsUnit.setProp(CSaveDataConst.propNameDataKind, CSaveDataConst.eqpRgnKindItem);
+    itemEquipRegionsUnit.setProp(CSaveDataConst.propNameEqpRgnArrow, 11);
+
+    const itemEquipableUnits = model.equip.itemRegions.map((region) => {
+        const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
+        unit.SetUpAsDefault();
+        const defId = region.eqpRgnId + 1;
+        unit.setProp(CSaveDataConst.propNameEquipItemDefID, defId);
+        unit.setProp(CSaveDataConst.propNameOptCode, 0);
+        unit.setProp(CSaveDataConst.propNameItemID, region.itemId);
+        unit.setProp(CSaveDataConst.propNameRefinedCount, region.refine);
+        unit.setProp(CSaveDataConst.propNameTranscendenceCount, region.transcendence);
+        setRndOptProps(unit, region.rndOpt);
+        if (region.cardCategoryIds) {
+            unit.setProp(CSaveDataConst.propNameCardCategoryID1, region.cardCategoryIds[0]);
+            unit.setProp(CSaveDataConst.propNameCardCategoryID2, region.cardCategoryIds[1]);
+            unit.setProp(CSaveDataConst.propNameCardCategoryID3, region.cardCategoryIds[2]);
+            unit.setProp(CSaveDataConst.propNameCardCategoryID4, region.cardCategoryIds[3]);
+        }
+        unit.setProp(CSaveDataConst.propNameCardID1, region.cardIds[0]);
+        unit.setProp(CSaveDataConst.propNameCardID2, region.cardIds[1]);
+        unit.setProp(CSaveDataConst.propNameCardID3, region.cardIds[2]);
+        unit.setProp(CSaveDataConst.propNameCardID4, region.cardIds[3]);
+
+        itemEquipRegionsUnit.setProp(ITEM_REGION_PROP_MAP[region.eqpRgnId], defId);
+        usedDefIds.push(defId);
+
+        unit.doCompaction();
+        return unit;
+    });
+    itemEquipRegionsUnit.doCompaction();
+
+    const shadowEquipRegionsUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
+    shadowEquipRegionsUnit.SetUpAsDefault();
+    shadowEquipRegionsUnit.setProp(CSaveDataConst.propNameDataKind, CSaveDataConst.eqpRgnKindShadow);
+
+    const shadowEquipableUnits = [];
+    for (const region of model.equip.shadowRegions) {
+        const defId = getCandidateEquipItemDefId(usedDefIds);
+        const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
+        unit.SetUpAsDefault();
+        unit.setProp(CSaveDataConst.propNameEquipItemDefID, defId);
+        unit.setProp(CSaveDataConst.propNameOptCode, 0);
+        unit.setProp(CSaveDataConst.propNameItemID, region.itemId);
+        unit.setProp(CSaveDataConst.propNameRefinedCount, region.refine);
+        setRndOptProps(unit, region.rndOpt);
+        // シャドウ装備はSlot1にカードを挿せないのでID2からスタート
+        unit.setProp(CSaveDataConst.propNameCardID2, region.cardIds[0]);
+        unit.setProp(CSaveDataConst.propNameCardID3, region.cardIds[1]);
+        unit.setProp(CSaveDataConst.propNameCardID4, region.cardIds[2]);
+        unit.doCompaction();
+
+        if (unit.isEmptyUnit()) {
+            continue;
+        }
+
+        shadowEquipRegionsUnit.setProp(SHADOW_REGION_PROP_MAP[region.eqpRgnId], defId);
+        usedDefIds.push(defId);
+        shadowEquipableUnits.push(unit);
+    }
+    shadowEquipRegionsUnit.doCompaction();
+
+    const debuffUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF))();
+    debuffUnit.SetUpAsDefault();
+    debuffUnit.setProp(CSaveDataConst.propNameOptCode, 0);
+    debuffUnit.setProp(CSaveDataConst.propNameBuffLv, model.equip.debuff);
+    debuffUnit.doCompaction();
+
+    return {
+        itemEquipRegionsUnit,
+        // EQUIPABLE型内の相対順序（アイテム→シャドウ）は doCompaction() の安定ソートで
+        // 保持されるバイト列に影響するため、shadowEquipRegionsUnit（別type）を間に挟んでも
+        // itemEquipableUnits → shadowEquipableUnits の順を保つ。
+        restUnits: [...itemEquipableUnits, shadowEquipRegionsUnit, ...shadowEquipableUnits, debuffUnit],
+    };
+}
+
+/**
  * セーブモデルからセーブデータユニット配列を組み立てる（純粋関数。DOM/グローバル読み取りなし）.
  * 空ユニット（`isEmptyUnit()`）は除く——`CSaveDataManager.doCompaction()` が
  * 配列レベルで行う除去と同じ扱い（例: 習得スキルが1つも無いキャラクターでは
@@ -760,16 +1034,15 @@ function buildAttackConfUnit(model) {
  * @returns {Array} `MIGRATED_SAVE_DATA_UNITS` に含まれるユニットの配列
  */
 export function buildSaveDataUnits(model) {
+    const equip = buildEquipUnits(model);
     const units = [
         buildVersionUnit(),
         buildCharaUnit(model),
         // EQUIP_REGIONS ×3（アイテム/衣装/シャドウ）は doCompaction() の安定ソートにより、
         // 同一type内では元の挿入順を保つ。encodeToURL() のバイト列は挿入順に依存するため、
-        // 旧経路（translateFromOldFormat()。アイテム→衣装→シャドウの順で生成）と同じ順で
-        // ここに置く（アイテムのみ本関数が種を作り、衣装は本関数がそのまま作る。シャドウは
-        // #collectDataShadowEquips() が末尾に追加する——両経路とも同じ場所で追加されるため
-        // 順序は自然に一致する）。
-        buildEquipRegionsItemArrowSeedUnit(),
+        // アイテム→衣装→シャドウの順で置く（旧経路 translateFromOldFormat() と同じ順。
+        // シャドウの EQUIP_REGIONS ユニットは equip.restUnits の中に含まれる——末尾で展開する）。
+        equip.itemEquipRegionsUnit,
         buildEquipRegionsCostumeUnit(),
         buildLearnedSkillsUnit(model),
         buildEquipArrowUnit(model),
@@ -798,6 +1071,11 @@ export function buildSaveDataUnits(model) {
         buildMobBuffUnit(model),
         buildMobDebuffUnit(model),
         buildAttackConfUnit(model),
+        // 装備（アイテム11部位）→シャドウ装備EQUIP_REGIONS→シャドウ装備（≤6部位）→
+        // プレイヤー状態異常設定の順（旧経路の挿入順を踏襲。EQUIPABLE型内の
+        // アイテム→シャドウという相対順が保たれていれば、他typeとの位置関係は
+        // 出力バイト列に影響しない——buildEquipUnits() のコメント参照）。
+        ...equip.restUnits,
     ];
     return units.filter((unit) => !unit.isEmptyUnit());
 }
