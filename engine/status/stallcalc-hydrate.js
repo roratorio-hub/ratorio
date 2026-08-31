@@ -22,6 +22,7 @@ import { n_Skill1SW } from "../ui/BuffJobSpecificSelf.js";
 import { n_Skill8SW } from "../ui/BuffOtherCategory.js";
 import { n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill, n_A_PassSkill8 } from "../skill/skillstate.js";
 import { CAttackMethodAreaComponentManager } from "../battle/CAttackMethodAreaComponentManager.js";
+import { CAttackMethodConf } from "../battle/CAttackMethodConf.js";
 import { CShadowEquipController, g_shadowEquipController } from "../equip/CShadowEquipController.js";
 import { n_B_TAISEI } from "../monster/mobconfplayer.js";
 import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
@@ -206,6 +207,36 @@ export function ExtractModelFromDom() {
     // グローバルの残存値に左右されないようにする。
     const isNitou = deriveNitou(model.weapon.weapon2Type);
     model.arrow = HtmlGetObjectValueById("OBJID_SELECT_ARROW", ARROW_ID_NONE);
+
+    //----------------------------------------------------------------
+    // 攻撃手段（CAttackMethodAreaComponentManager 自身の内部状態を解決済みの値として写す）
+    //----------------------------------------------------------------
+    {
+        const attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
+        model.attackMethod.skillId = attackMethodConf.GetSkillId();
+        model.attackMethod.sourceType = attackMethodConf.GetSourceType();
+        model.attackMethod.skillLv = attackMethodConf.GetSkillLv();
+        model.attackMethod.optionValueArray = attackMethodConf.GetOptionValueArray().slice();
+    }
+
+    //----------------------------------------------------------------
+    // シャドウ装備（g_shadowEquipController 自身の内部状態を写す）
+    //----------------------------------------------------------------
+    if ((typeof g_shadowEquipController) !== "undefined") {
+        const shadowRegionArray = [
+            [EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, CShadowEquipController.EQPRGN_NAME_ARMS_RIGHT],
+            [EQUIP_REGION_ID_SHADOW_ARMS_LEFT, CShadowEquipController.EQPRGN_NAME_ARMS_LEFT],
+            [EQUIP_REGION_ID_SHADOW_BODY, CShadowEquipController.EQPRGN_NAME_BODY],
+            [EQUIP_REGION_ID_SHADOW_FOOT, CShadowEquipController.EQPRGN_NAME_FOOT],
+            [EQUIP_REGION_ID_SHADOW_ACCESSORY_1, CShadowEquipController.EQPRGN_NAME_ACCESSORY_1],
+            [EQUIP_REGION_ID_SHADOW_ACCESSORY_2, CShadowEquipController.EQPRGN_NAME_ACCESSORY_2],
+        ];
+        for (const [eqpRgnId, eqpRgnName] of shadowRegionArray) {
+            model.shadowEquip.itemId[eqpRgnId] = g_shadowEquipController.getEquippedID(eqpRgnName);
+            model.shadowEquip.refined[eqpRgnId] = g_shadowEquipController.getRefined(eqpRgnName);
+            model.shadowEquip.rndOpt[eqpRgnId] = g_shadowEquipController.getRndOptInfoArray(eqpRgnName);
+        }
+    }
 
     model.equip = new Array(EQUIP_REGION_ID_COUNT).fill(0);
     model.equip[EQUIP_REGION_ID_ARMS] = HtmlGetObjectValueByIdAsInteger("OBJID_ARMS_RIGHT", 0);
@@ -603,36 +634,19 @@ export function HydrateFromModel(model) {
     set_n_A_SHOULDER_DEF_PLUS(model.defPlus.shoulder);
     set_n_A_SHOES_DEF_PLUS(model.defPlus.shoes);
 
-    // シャドウ装備データ（g_shadowEquipController 自身の内部状態。境界の外側）
+    // シャドウ装備データ（残件台帳 B-28 でモデル化。model.shadowEquip から読むだけになった）
     set_g_itemIdArray([]);
     set_g_refinedArray([]);
-    if ((typeof g_shadowEquipController) !== "undefined") {
-        g_itemIdArray[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ARMS_RIGHT);
-        g_itemIdArray[EQUIP_REGION_ID_SHADOW_ARMS_LEFT] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ARMS_LEFT);
-        g_itemIdArray[EQUIP_REGION_ID_SHADOW_BODY] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_BODY);
-        g_itemIdArray[EQUIP_REGION_ID_SHADOW_FOOT] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_FOOT);
-        g_itemIdArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_1] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
-        g_itemIdArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_2] = g_shadowEquipController.getEquippedID(CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
-
-        g_refinedArray[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ARMS_RIGHT);
-        g_refinedArray[EQUIP_REGION_ID_SHADOW_ARMS_LEFT] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ARMS_LEFT);
-        g_refinedArray[EQUIP_REGION_ID_SHADOW_BODY] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_BODY);
-        g_refinedArray[EQUIP_REGION_ID_SHADOW_FOOT] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_FOOT);
-        g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_1] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
-        g_refinedArray[EQUIP_REGION_ID_SHADOW_ACCESSORY_2] = g_shadowEquipController.getRefined(CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
-
-        const funcSetRndOptTable = (eqpRgnIdF, eqpRgnNameF) => {
-            const rndOptInfoArrayF = g_shadowEquipController.getRndOptInfoArray(eqpRgnNameF);
-            for (let idxF = 0; idxF < rndOptInfoArrayF.length; idxF++) {
-                SetEquipRndOptTable(eqpRgnIdF, idxF, rndOptInfoArrayF[idxF][0], rndOptInfoArrayF[idxF][1]);
-            }
-        };
-        funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, CShadowEquipController.EQPRGN_NAME_ARMS_RIGHT);
-        funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ARMS_LEFT, CShadowEquipController.EQPRGN_NAME_ARMS_LEFT);
-        funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_BODY, CShadowEquipController.EQPRGN_NAME_BODY);
-        funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_FOOT, CShadowEquipController.EQPRGN_NAME_FOOT);
-        funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ACCESSORY_1, CShadowEquipController.EQPRGN_NAME_ACCESSORY_1);
-        funcSetRndOptTable(EQUIP_REGION_ID_SHADOW_ACCESSORY_2, CShadowEquipController.EQPRGN_NAME_ACCESSORY_2);
+    for (const eqpRgnId of [
+        EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_BODY,
+        EQUIP_REGION_ID_SHADOW_FOOT, EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2,
+    ]) {
+        g_itemIdArray[eqpRgnId] = model.shadowEquip.itemId[eqpRgnId] ?? 0;
+        g_refinedArray[eqpRgnId] = model.shadowEquip.refined[eqpRgnId] ?? 0;
+        const rndOptInfoArray = model.shadowEquip.rndOpt[eqpRgnId] ?? [];
+        for (let idx = 0; idx < rndOptInfoArray.length; idx++) {
+            SetEquipRndOptTable(eqpRgnId, idx, rndOptInfoArray[idx][0], rndOptInfoArray[idx][1]);
+        }
     }
 
     // 超越段階
@@ -645,9 +659,13 @@ export function HydrateFromModel(model) {
     set_n_A_SHOES_DEF_Transcendence(model.defTranscendence.shoes);
 
     //----------------------------------------------------------------
-    // 攻撃手段を設定する（CAttackMethodAreaComponentManager 自身の内部状態。境界の外側）
+    // 攻撃手段を設定する（残件台帳 B-28 でモデル化。model.attackMethod から組み立てるだけになった）
     //----------------------------------------------------------------
-    const attackMethodConf = CAttackMethodAreaComponentManager.GetAttackMethodConf();
+    const attackMethodConf = new CAttackMethodConf();
+    attackMethodConf.SetSkillId(model.attackMethod.skillId);
+    attackMethodConf.SetSourceType(model.attackMethod.sourceType);
+    attackMethodConf.SetSkillLv(model.attackMethod.skillLv);
+    attackMethodConf.SetOptionValueArray(model.attackMethod.optionValueArray);
 
     set_n_A_ActiveSkill(attackMethodConf.GetSkillId());
     set_n_A_ActiveSkillLV(attackMethodConf.GetSkillLv());

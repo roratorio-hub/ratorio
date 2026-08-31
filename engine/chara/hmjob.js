@@ -495,54 +495,54 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 
 	// STR
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_STR");
-	objStatus.innerHTML = ((valSTR >= 0) ? "+" : "") + valSTR;
+	if (objStatus != null) objStatus.innerHTML = ((valSTR >= 0) ? "+" : "") + valSTR;
 
 	// AGI
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_AGI");
-	objStatus.innerHTML = ((valAGI >= 0) ? "+" : "") + valAGI;
+	if (objStatus != null) objStatus.innerHTML = ((valAGI >= 0) ? "+" : "") + valAGI;
 
 	// VIT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_VIT");
-	objStatus.innerHTML = ((valVIT >= 0) ? "+" : "") + valVIT;
+	if (objStatus != null) objStatus.innerHTML = ((valVIT >= 0) ? "+" : "") + valVIT;
 
 	// INT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_INT");
-	objStatus.innerHTML = ((valINT >= 0) ? "+" : "") + valINT;
+	if (objStatus != null) objStatus.innerHTML = ((valINT >= 0) ? "+" : "") + valINT;
 
 	// DEX
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_DEX");
-	objStatus.innerHTML = ((valDEX >= 0) ? "+" : "") + valDEX;
+	if (objStatus != null) objStatus.innerHTML = ((valDEX >= 0) ? "+" : "") + valDEX;
 
 	// LUK
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_LUK");
-	objStatus.innerHTML = ((valLUK >= 0) ? "+" : "") + valLUK;
+	if (objStatus != null) objStatus.innerHTML = ((valLUK >= 0) ? "+" : "") + valLUK;
 
 
 	// 特性ステータス対応
 
 	// POW
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_POW");
-	objStatus.innerHTML = ((valPOW >= 0) ? "+" : "") + valPOW;
+	if (objStatus != null) objStatus.innerHTML = ((valPOW >= 0) ? "+" : "") + valPOW;
 
 	// STA
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_STA");
-	objStatus.innerHTML = ((valSTA >= 0) ? "+" : "") + valSTA;
+	if (objStatus != null) objStatus.innerHTML = ((valSTA >= 0) ? "+" : "") + valSTA;
 
 	// WIS
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_WIS");
-	objStatus.innerHTML = ((valWIS >= 0) ? "+" : "") + valWIS;
+	if (objStatus != null) objStatus.innerHTML = ((valWIS >= 0) ? "+" : "") + valWIS;
 
 	// SPL
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_SPL");
-	objStatus.innerHTML = ((valSPL >= 0) ? "+" : "") + valSPL;
+	if (objStatus != null) objStatus.innerHTML = ((valSPL >= 0) ? "+" : "") + valSPL;
 
 	// CON
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_CON");
-	objStatus.innerHTML = ((valCON >= 0) ? "+" : "") + valCON;
+	if (objStatus != null) objStatus.innerHTML = ((valCON >= 0) ? "+" : "") + valCON;
 
 	// CRT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_CRT");
-	objStatus.innerHTML = ((valCRT >= 0) ? "+" : "") + valCRT;
+	if (objStatus != null) objStatus.innerHTML = ((valCRT >= 0) ? "+" : "") + valCRT;
 
 
 	// 導出ステータス
@@ -552,7 +552,7 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 	valWork = GetTStatusPoint(baseLv);
 	g_tStatusPointRemain = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 }
 
 /**
@@ -570,37 +570,37 @@ export function DisplayReferStatusAll() {
 	valWork = GetPAtk();
 	g_referStatusDisplay.pAtk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_P_ATK");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// S.Matk
 	valWork = GetSMatk();
 	g_referStatusDisplay.sMatk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_S_MATK");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// C.Rate
 	valWork = GetCRate();
 	g_referStatusDisplay.cRate = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_C_RATE");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// Res
 	valWork = GetRes();
 	g_referStatusDisplay.res = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_RES");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// Mres
 	valWork = GetMres();
 	g_referStatusDisplay.mres = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_MRES");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// H.Plus
 	valWork = GetHPlus();
 	g_referStatusDisplay.hPlus = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_H_PLUS");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 }
 
 /**
