@@ -1,10 +1,17 @@
 /**
- * 状態から直接セーブデータユニット配列を組み立てる（残件台帳 B-11 Phase A）。
+ * 状態から直接セーブデータユニット配列を組み立てる（残件台帳 B-11 Phase A・B-33 B2）.
  *
  * `CSaveDataManager.encodeToURL()` は現在、最新形式のセーブを作るのに旧形式の保存処理
- * （`SaveSystem()` → 旧形式文字列 → `translateFromOldFormat()`）を経由している。
- * `buildSaveDataUnitsFromState()` はその迂回を経ずに、DOM/グローバルから各ユニットを
- * 直接組み立てる。移植はユニット型ごとに段階的に進める（Phase A1〜A4）。
+ * （`SaveSystem()` → 旧形式文字列 → `translateFromOldFormat()`）を経由していた（B-11 Phase A5-3で撤去済み）。
+ * `buildSaveDataUnitsFromState()` はその迂回を経ずに、DOM/グローバル/コンポーネントから
+ * 各ユニットを直接組み立てる。
+ *
+ * B-33 B2で「読み取り」と「組み立て」を分離した:
+ * - `extractSaveModelFromState()` — DOM/グローバル/コンポーネントを読み、`save-model.js` の
+ *   形（プレーンなスナップショット）で返す。副作用ゼロ・DOM書き込みゼロ。
+ * - `buildSaveDataUnits(model)` — モデルを受け取り `CSaveDataUnit*` 配列を組み立てるだけ。
+ *   DOM/グローバルの読み取りを一切含まない（純粋関数）。
+ * - `buildSaveDataUnitsFromState()`（従来のエントリポイント）は両者を繋ぐ薄いラッパとして残す。
  *
  * 既存の `CSaveDataManager#collectDataEquipable()` 等（装備・シャドウ装備・プレイヤー状態異常）
  * と同型のパターンを、翻訳経由だった残りの型へ広げたもの。装備（アイテム/シャドウ）の
@@ -42,6 +49,7 @@ import {
     SAVE_DATA_UNIT_TYPE_MOB_DEBUFF,
     SAVE_DATA_UNIT_TYPE_ATTACK_CONF,
 } from "./CSaveDataUnit.js";
+import { createEmptySaveModel } from "./save-model.js";
 import { HtmlGetObjectCheckedById, HtmlGetObjectValueByIdAsInteger } from "../runtime/util.js";
 import { GetHigherJobSeriesID, JOB_SERIES_ID_SUPERNOVICE } from "../data/mig.job.h.js";
 import { CONST_DATA_KIND_JOB } from "../const/EnumConstDataKind.js";
@@ -181,12 +189,103 @@ export function isMigratedSaveDataUnit(parsedMap) {
 }
 
 /**
- * 現在の職業ID（MigID）を取得する.
- * SaveSystem() と同じく `n_A_JOB` ではなく DOM を直接読む
- * （`document.getElementById("OBJID_SELECT_JOB").value` が一次情報という既存の設計を踏襲）。
+ * DOM/グローバル/コンポーネントから、セーブに必要な値をすべて読み取る（副作用ゼロ）.
+ * 戻り値は `save-model.js` の形（プレーンなスナップショット）。配列はすべてコピーする
+ * （ライブ配列への参照を持たせない——`buildSaveDataUnits()` 側で誤って共有・変異させないため）。
+ * @returns {object} `createEmptySaveModel()` の形をした、状態で埋まったモデル
  */
-function getCurrentJobId() {
-    return HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_JOB", 0);
+export function extractSaveModelFromState() {
+    const model = createEmptySaveModel();
+
+    // 職業ID。translateFromOldFormat()時代と同じく n_A_JOB ではなく DOM を直接読む
+    // （document.getElementById("OBJID_SELECT_JOB").value が一次情報という既存の設計を踏襲）。
+    model.jobId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_JOB", 0);
+
+    // ---- キャラクターステータス ----
+    model.autoAdjustBaseLv = HtmlGetObjectCheckedById("OBJID_CHECK_AUTO_BASE_LEVEL", false);
+    model.baseLv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_BASE_LEVEL", 0);
+    model.jobLv = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_JOB_LEVEL", 0);
+    model.statStr = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_STR", 0);
+    model.statAgi = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_AGI", 0);
+    model.statVit = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_VIT", 0);
+    model.statInt = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_INT", 0);
+    model.statDex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_DEX", 0);
+    model.statLuk = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_LUK", 0);
+    model.statPow = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_POW", 0);
+    model.statSta = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_STA", 0);
+    model.statWis = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_WIS", 0);
+    model.statSpl = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_SPL", 0);
+    model.statCon = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_CON", 0);
+    model.statCrt = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_CRT", 0);
+    model.armsElement = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", 0);
+    model.speedPot = HtmlGetObjectValueByIdAsInteger("OBJID_SPEED_POT", 0);
+    model.arrow = n_A_Arrow;
+
+    // ---- スキル・バフ設定欄 ----
+    model.learnedSkill = n_A_LearnedSkill.slice();
+    model.passiveSkillSelf = n_A_PassSkill.slice();
+    model.passiveSkillSelfCount = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, model.jobId).GetPassiveSkillIdArray().length;
+    model.passiveSkillMusic = n_A_PassSkill3.slice();
+    model.passiveSkillGuild = n_A_PassSkill4.slice();
+    model.autoSpellRaw = n_A_PassSkill5.slice();
+    model.passiveSkillItem = n_A_PassSkill7.slice();
+    model.passiveSkillOther = n_A_PassSkill8.slice();
+    model.confIchizi = g_confDataIchizi.slice();
+    model.confNizi = g_confDataNizi.slice();
+    model.confSanzi = g_confDataSanzi.slice();
+    model.confYozi = g_confDataYozi.slice();
+    model.timeItemConf = g_timeItemConf.slice();
+
+    // ---- 性能カスタマイズ ----
+    model.confCustomStatus = g_confDataCustomStatus.slice();
+    model.confCustomAtk = g_confDataCustomAtk.slice();
+    model.confCustomDef = g_confDataCustomDef.slice();
+    model.confCustomSkill = g_confDataCustomSkill.slice();
+    model.confCustomSpecStatus = g_confDataCustomSpecStatus.slice();
+
+    // ---- モンスター ----
+    model.mobCategoryId = CMonsterMapAreaComponentManager.GetCategoryId();
+    model.mobMapId = CMonsterMapAreaComponentManager.GetMapId();
+    model.mobMonsterId = CMonsterMapAreaComponentManager.GetMonsterId();
+    model.mobConfTaisei = n_B_TAISEI.slice();
+    model.mobConfInput = {
+        lv: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LV) ?? 0,
+        hp: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_HP) ?? 0,
+        str: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_STR) ?? 0,
+        int: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_INT) ?? 0,
+        vit: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_VIT) ?? 0,
+        dex: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_DEX) ?? 0,
+        agi: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_AGI) ?? 0,
+        luk: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LUK) ?? 0,
+        atk: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_ATK) ?? 0,
+        matk: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_MATK) ?? 0,
+        range: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_RANGE) ?? 0,
+        def: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_DEF) ?? 0,
+        mdef: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_MDEF) ?? 0,
+        baseExp: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_BASE_EXP) ?? 0,
+        jobExp: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_JOB_EXP) ?? 0,
+        size: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_SIZE) ?? 0,
+        element: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_ELEMENT) ?? 0,
+        race: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_RACE) ?? 0,
+        bossType: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE) ?? 0,
+        grassType: GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE) ?? 0,
+    };
+    model.mobConfKyouka = n_B_KYOUKA.slice();
+    model.mobConfIjyou = n_B_IJYOU.slice();
+
+    // ---- 攻撃手段 ----
+    const attackMethodConf = g_attackMethodBridge.getAttackMethodConf?.();
+    const attackOptionArray = [];
+    const attackOptionCount = attackMethodConf ? Math.min(5, attackMethodConf.GetOptionValueCount()) : 0;
+    for (let idx = 0; idx < 5; idx++) {
+        attackOptionArray.push(idx < attackOptionCount ? (attackMethodConf.GetOptionValue(idx) ?? 0) : 0);
+    }
+    model.attackMethodSkillId = attackMethodConf ? attackMethodConf.GetSkillId() : 0;
+    model.attackMethodSourceType = attackMethodConf ? attackMethodConf.GetSourceType() : 0;
+    model.attackMethodSkillLv = attackMethodConf ? attackMethodConf.GetSkillLv() : 0;
+    model.attackMethodOptions = attackOptionArray;
+
+    return model;
 }
 
 /** バージョン情報ユニットを組み立てる（プロパティは type/version のみ）。 */
@@ -199,33 +298,33 @@ function buildVersionUnit() {
 /**
  * キャラクターステータスユニットを組み立てる.
  * SaveSystem() の [0001-0009]・[1821-1826] 区画（DOM直読み）と同じ入力源を使う。
- * @param {number} jobId `getCurrentJobId()` の戻り値
+ * @param {object} model `extractSaveModelFromState()` の戻り値
  */
-function buildCharaUnit(jobId) {
+function buildCharaUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA))();
     unit.SetUpAsDefault();
 
     // スーパーノービスの魂（SL_SUPERNOVICE、A1パッシブスキル欄index9）ON で装備制限を無視する。
     // 旧形式では saveDataArrayOld[84] が n_A_PassSkill[9] と同じ値だった（SaveSystem() [0075-0174]区画）。
-    const bIgnoreEquipRestrict = (GetHigherJobSeriesID(jobId) === JOB_SERIES_ID_SUPERNOVICE) && (n_A_PassSkill[9] > 0);
+    const bIgnoreEquipRestrict = (GetHigherJobSeriesID(model.jobId) === JOB_SERIES_ID_SUPERNOVICE) && (model.passiveSkillSelf[9] > 0);
 
-    unit.setProp(CSaveDataConst.propNameSubAutoAdjustBaseLv, HtmlGetObjectCheckedById("OBJID_CHECK_AUTO_BASE_LEVEL", false) ? 1 : 0);
+    unit.setProp(CSaveDataConst.propNameSubAutoAdjustBaseLv, model.autoAdjustBaseLv ? 1 : 0);
     unit.setProp(CSaveDataConst.propNameSubIgnoreEquipRestrict, bIgnoreEquipRestrict ? 1 : 0);
-    unit.setProp(CSaveDataConst.propNameJobID, jobId);
-    unit.setProp(CSaveDataConst.propNameBaseLv, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_BASE_LEVEL", 0));
-    unit.setProp(CSaveDataConst.propNameJobLv, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_JOB_LEVEL", 0));
-    unit.setProp(CSaveDataConst.propNameStStr, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_STR", 0));
-    unit.setProp(CSaveDataConst.propNameStAgi, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_AGI", 0));
-    unit.setProp(CSaveDataConst.propNameStVit, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_VIT", 0));
-    unit.setProp(CSaveDataConst.propNameStInt, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_INT", 0));
-    unit.setProp(CSaveDataConst.propNameStDex, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_DEX", 0));
-    unit.setProp(CSaveDataConst.propNameStLuk, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_LUK", 0));
-    unit.setProp(CSaveDataConst.propNameStPow, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_POW", 0));
-    unit.setProp(CSaveDataConst.propNameStSta, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_STA", 0));
-    unit.setProp(CSaveDataConst.propNameStWis, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_WIS", 0));
-    unit.setProp(CSaveDataConst.propNameStSpl, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_SPL", 0));
-    unit.setProp(CSaveDataConst.propNameStCon, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_CON", 0));
-    unit.setProp(CSaveDataConst.propNameStCrt, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_STATUS_CRT", 0));
+    unit.setProp(CSaveDataConst.propNameJobID, model.jobId);
+    unit.setProp(CSaveDataConst.propNameBaseLv, model.baseLv);
+    unit.setProp(CSaveDataConst.propNameJobLv, model.jobLv);
+    unit.setProp(CSaveDataConst.propNameStStr, model.statStr);
+    unit.setProp(CSaveDataConst.propNameStAgi, model.statAgi);
+    unit.setProp(CSaveDataConst.propNameStVit, model.statVit);
+    unit.setProp(CSaveDataConst.propNameStInt, model.statInt);
+    unit.setProp(CSaveDataConst.propNameStDex, model.statDex);
+    unit.setProp(CSaveDataConst.propNameStLuk, model.statLuk);
+    unit.setProp(CSaveDataConst.propNameStPow, model.statPow);
+    unit.setProp(CSaveDataConst.propNameStSta, model.statSta);
+    unit.setProp(CSaveDataConst.propNameStWis, model.statWis);
+    unit.setProp(CSaveDataConst.propNameStSpl, model.statSpl);
+    unit.setProp(CSaveDataConst.propNameStCon, model.statCon);
+    unit.setProp(CSaveDataConst.propNameStCrt, model.statCrt);
 
     return unit;
 }
@@ -278,26 +377,26 @@ function buildEquipRegionsItemArrowSeedUnit() {
     return unit;
 }
 
-/** 習得スキルユニットを組み立てる（n_A_LearnedSkill をそのまま運ぶ）。 */
-function buildLearnedSkillsUnit() {
+/** 習得スキルユニットを組み立てる（model.learnedSkillをそのまま運ぶ）。 */
+function buildLearnedSkillsUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameSkillLv, n_A_LearnedSkill);
+    unit.setProp(CSaveDataConst.propNameSkillLv, model.learnedSkill);
     unit.doCompaction();
     return unit;
 }
 
 /**
  * 矢ユニットを組み立てる.
- * 値は n_A_Arrow+1（0は「未設定」を表すためのオフセット。読み込み側は arrowArray[0]-1 で戻す。
+ * 値は model.arrow+1（0は「未設定」を表すためのオフセット。読み込み側は arrowArray[0]-1 で戻す。
  * CSaveDataManager#applyDataToControls() 参照）。
  */
-function buildEquipArrowUnit() {
+function buildEquipArrowUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_ARROW))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
-    unit.setProp(CSaveDataConst.propNameArrow, n_A_Arrow + 1);
+    unit.setProp(CSaveDataConst.propNameArrow, model.arrow + 1);
     unit.doCompaction();
     return unit;
 }
@@ -306,14 +405,14 @@ function buildEquipArrowUnit() {
  * 武器属性付与＋その他の支援/設定（A8欄）ユニットを組み立てる.
  * armsElement は SaveSystem() の [0014] 区画（右手武器属性）と同じ DOM を読む。
  */
-function buildCharaBuffUnit() {
+function buildCharaBuffUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_BUFF))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameArmsElement, HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", 0));
+    unit.setProp(CSaveDataConst.propNameArmsElement, model.armsElement);
     // n_A_PassSkill8 は70件枠のうち28件分しか実体を持たない（SaveSystem()はn_A_PassSkill8.lengthまでしか
     // 書かないため、旧形式の残り42スロットは常に0だった。同じ挙動を0埋めで再現する）。
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill8, 70));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.passiveSkillOther, 70));
     unit.doCompaction();
     return unit;
 }
@@ -323,55 +422,53 @@ function buildCharaBuffUnit() {
  * SaveSystem() の [0075-0174] 区画は `passiveSkillIdArray.length`（現在の職業の
  * パッシブスキル数）までしか書かない。n_A_PassSkill 自体は全職業共通の固定長51配列
  * （直近に選んでいた別の職業の残存値を含みうる）なので、同じ範囲で切り詰めてから0埋めする。
- * @param {number} jobId `getCurrentJobId()` の戻り値
  */
-function buildSkillBuffSelfUnit(jobId) {
+function buildSkillBuffSelfUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    const passiveSkillIdArray = g_constDataManager.GetDataObject(CONST_DATA_KIND_JOB, jobId).GetPassiveSkillIdArray();
-    const truncated = n_A_PassSkill.slice(0, passiveSkillIdArray.length);
+    const truncated = model.passiveSkillSelf.slice(0, model.passiveSkillSelfCount);
     unit.setProp(CSaveDataConst.propNameBuffLv, padArray(truncated, 100));
     unit.doCompaction();
     return unit;
 }
 
-/** 一次職支援（基本支援）ユニットを組み立てる（g_confDataIchiziをそのまま運ぶ）。 */
-function buildSkillBuff1stUnit() {
+/** 一次職支援（基本支援）ユニットを組み立てる（model.confIchiziをそのまま運ぶ）。 */
+function buildSkillBuff1stUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataIchizi, 100));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.confIchizi, 100));
     unit.doCompaction();
     return unit;
 }
 
-/** 二次職支援ユニットを組み立てる（g_confDataNiziをそのまま運ぶ）。 */
-function buildSkillBuff2ndUnit() {
+/** 二次職支援ユニットを組み立てる（model.confNiziをそのまま運ぶ）。 */
+function buildSkillBuff2ndUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_2ND))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataNizi, 50));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.confNizi, 50));
     unit.doCompaction();
     return unit;
 }
 
-/** 三次職支援ユニットを組み立てる（g_confDataSanziをそのまま運ぶ）。 */
-function buildSkillBuff3rdUnit() {
+/** 三次職支援ユニットを組み立てる（model.confSanziをそのまま運ぶ）。 */
+function buildSkillBuff3rdUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_3RD))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataSanzi, 100));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.confSanzi, 100));
     unit.doCompaction();
     return unit;
 }
 
-/** 四次職支援ユニットを組み立てる（g_confDataYoziをそのまま運ぶ）。 */
-function buildSkillBuff4thUnit() {
+/** 四次職支援ユニットを組み立てる（model.confYoziをそのまま運ぶ）。 */
+function buildSkillBuff4thUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_4TH))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(g_confDataYozi, 30));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.confYozi, 30));
     unit.doCompaction();
     return unit;
 }
@@ -381,21 +478,21 @@ function buildSkillBuff4thUnit() {
  * 機能削除済みのため常に空（n_A_PassSkill3 は47件枠だが、旧形式の位置互換のため
  * 60スロット分0埋めする——SaveSystem() 冒頭コメント参照）。
  */
-function buildSkillBuffMusicUnit() {
+function buildSkillBuffMusicUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill3, 60));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.passiveSkillMusic, 60));
     unit.doCompaction();
     return unit;
 }
 
 /** ギルドスキル/ゴスペル/他（A4欄）ユニットを組み立てる（n_A_PassSkill4は36件枠、60スロット中）。 */
-function buildSkillBuffGuildUnit() {
+function buildSkillBuffGuildUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill4, 60));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.passiveSkillGuild, 60));
     unit.doCompaction();
     return unit;
 }
@@ -405,33 +502,33 @@ function buildSkillBuffGuildUnit() {
  * subSpeedPot は SaveSystem() の [0013] 区画（速度POT）と同じ DOM を読む。
  * n_A_PassSkill7 は53件枠、70スロット中（末尾は未使用のため0埋め）。
  */
-function buildItemBuffUnit() {
+function buildItemBuffUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_ITEM_BUFF))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameSubSpeedPot, HtmlGetObjectValueByIdAsInteger("OBJID_SPEED_POT", 0));
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_A_PassSkill7, 70));
+    unit.setProp(CSaveDataConst.propNameSubSpeedPot, model.speedPot);
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.passiveSkillItem, 70));
     unit.doCompaction();
     return unit;
 }
 
-/** 時限効果設定ユニットを組み立てる（g_timeItemConfをそのまま運ぶ）。 */
-function buildTimeBuffUnit() {
+/** 時限効果設定ユニットを組み立てる（model.timeItemConfをそのまま運ぶ）。 */
+function buildTimeBuffUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_TIME_BUFF))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameTimeBuffID, padArray(g_timeItemConf, 20));
+    unit.setProp(CSaveDataConst.propNameTimeBuffID, padArray(model.timeItemConf, 20));
     unit.doCompaction();
     return unit;
 }
 
 /**
  * オートスペル設定ユニットを組み立てる.
- * n_A_PassSkill5 は SkillID/Lv/Prob を OBJID_OFFSET_AS_SKILL_* オフセットで
+ * model.autoSpellRaw は SkillID/Lv/Prob を OBJID_OFFSET_AS_SKILL_* オフセットで
  * 同一配列内に格納している（calcautospell.js）。SaveSystem() の [1691-1750] 区画と同じ
  * 読み取り方をする。
  */
-function buildAutoSpellsUnit() {
+function buildAutoSpellsUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_AUTO_SPELLS))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
@@ -439,9 +536,9 @@ function buildAutoSpellsUnit() {
     const lvArray = [];
     const probArray = [];
     for (let idx = 0; idx < AUTO_SPELL_SETTING_COUNT; idx++) {
-        idArray.push(n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_ID + idx] ?? 0);
-        lvArray.push(n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_LV + idx] ?? 0);
-        probArray.push(n_A_PassSkill5[OBJID_OFFSET_AS_SKILL_PROB + idx] ?? 0);
+        idArray.push(model.autoSpellRaw[OBJID_OFFSET_AS_SKILL_ID + idx] ?? 0);
+        lvArray.push(model.autoSpellRaw[OBJID_OFFSET_AS_SKILL_LV + idx] ?? 0);
+        probArray.push(model.autoSpellRaw[OBJID_OFFSET_AS_SKILL_PROB + idx] ?? 0);
     }
     unit.setProp(CSaveDataConst.propNameAutoSpellID, idArray);
     unit.setProp(CSaveDataConst.propNameAutoSpellLv, lvArray);
@@ -454,22 +551,22 @@ function buildAutoSpellsUnit() {
  * 性能カスタマイズ（基本）ユニットを組み立てる.
  *
  * このユニットは名前に反して「ステータス・攻撃・防御・スキル関連の中で個別ユニット化
- * されなかった残り」を運ぶ寄せ集めで、値は複数の g_confDataCustomXxx グローバルから
- * 集まる。mig配列位置との対応は `conf-mig-mapping.js`（`CHARA_CONF_BASIC_MIG_MAP`）参照。
+ * されなかった残り」を運ぶ寄せ集めで、値は複数の model.confCustomXxx から集まる。
+ * mig配列位置との対応は `conf-mig-mapping.js`（`CHARA_CONF_BASIC_MIG_MAP`）参照。
  * マップに無いスロット（[28]・[34..45]）は対応する現行UI入力元が無いため常に0
  * （ChangeArms*・StRange・特性ステータス系Plus群など）。
  */
-function buildCharaConfBasicUnit() {
+function buildCharaConfBasicUnit(model) {
     const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC);
     const unit = new UnitClass();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
 
     const mig = migArrayFromConf(46, CHARA_CONF_BASIC_MIG_MAP, {
-        confCustomStatus: g_confDataCustomStatus,
-        confCustomAtk: g_confDataCustomAtk,
-        confCustomDef: g_confDataCustomDef,
-        confCustomSkill: g_confDataCustomSkill,
+        confCustomStatus: model.confCustomStatus,
+        confCustomAtk: model.confCustomAtk,
+        confCustomDef: model.confCustomDef,
+        confCustomSkill: model.confCustomSkill,
     });
 
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
@@ -494,26 +591,26 @@ function buildCharaConfSpecializeUnit(instanceKind, mig) {
 }
 
 /** 性能カスタマイズ（特化：攻撃｜物理）ユニットを組み立てる。 */
-function buildCharaConfSpecializePhysicalUnit() {
-    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, { confCustomAtk: g_confDataCustomAtk });
+function buildCharaConfSpecializePhysicalUnit(model) {
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, { confCustomAtk: model.confCustomAtk });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackPhysical, mig);
 }
 
 /** 性能カスタマイズ（特化：攻撃｜魔法）ユニットを組み立てる。 */
-function buildCharaConfSpecializeMagicalUnit() {
-    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP, { confCustomAtk: g_confDataCustomAtk });
+function buildCharaConfSpecializeMagicalUnit(model) {
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP, { confCustomAtk: model.confCustomAtk });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackMagical, mig);
 }
 
 /** 性能カスタマイズ（特化：攻撃｜すべて）ユニットを組み立てる。 */
-function buildCharaConfSpecializeAttackAnyUnit() {
-    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, { confCustomAtk: g_confDataCustomAtk });
+function buildCharaConfSpecializeAttackAnyUnit(model) {
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, { confCustomAtk: model.confCustomAtk });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackAny, mig);
 }
 
 /** 性能カスタマイズ（特化：防御｜すべて）ユニットを組み立てる。 */
-function buildCharaConfSpecializeDefenceAnyUnit() {
-    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP, { confCustomDef: g_confDataCustomDef });
+function buildCharaConfSpecializeDefenceAnyUnit(model) {
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP, { confCustomDef: model.confCustomDef });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindDefencekAny, mig);
 }
 
@@ -525,38 +622,38 @@ function buildCharaConfSpecializeDefenceAnyUnit() {
  * customSkill[10]から派生する（0以外なら1）ため、マッピングテーブルには含めない
  * （`conf-mig-mapping.js` の `CHARA_CONF_SKILL_MIG_MAP` 参照）。
  */
-function buildCharaConfSkillUnit() {
+function buildCharaConfSkillUnit(model) {
     const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL);
     const unit = new UnitClass();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
-    const mig = migArrayFromConf(12, CHARA_CONF_SKILL_MIG_MAP, { confCustomSkill: g_confDataCustomSkill });
-    mig[1] = mig[2] !== 0 ? 1 : 0; // 派生値（マップ対象外。mig[2]=customSkill[10]の非0判定）
+    const mig = migArrayFromConf(12, CHARA_CONF_SKILL_MIG_MAP, { confCustomSkill: model.confCustomSkill });
+    mig[1] = mig[2] !== 0 ? 1 : 0; // 派生値（マップ対象外。mig[2]=confCustomSkill[10]の非0判定）
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
     unit.doCompaction();
     return unit;
 }
 
-/** 性能カスタマイズ（特性ステータス関連）ユニットを組み立てる（g_confDataCustomSpecStatus[1..12]を直接転記）。 */
-function buildCharaConfSpecBasicUnit() {
+/** 性能カスタマイズ（特性ステータス関連）ユニットを組み立てる（model.confCustomSpecStatus[1..12]を直接転記）。 */
+function buildCharaConfSpecBasicUnit(model) {
     const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC);
     const unit = new UnitClass();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
-    const mig = migArrayFromConf(12, CHARA_CONF_SPEC_BASIC_MIG_MAP, { confCustomSpecStatus: g_confDataCustomSpecStatus });
+    const mig = migArrayFromConf(12, CHARA_CONF_SPEC_BASIC_MIG_MAP, { confCustomSpecStatus: model.confCustomSpecStatus });
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
     unit.doCompaction();
     return unit;
 }
 
-/** モンスター基本情報ユニットを組み立てる（現在選択中のカテゴリ/マップ/モンスターIDをそのまま運ぶ）。 */
-function buildMobUnit() {
+/** モンスター基本情報ユニットを組み立てる（model.mobCategoryId/mobMapId/mobMonsterIdをそのまま運ぶ）。 */
+function buildMobUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameMonsterMapCategoryID, CMonsterMapAreaComponentManager.GetCategoryId());
-    unit.setProp(CSaveDataConst.propNameMonsterMapID, CMonsterMapAreaComponentManager.GetMapId());
-    unit.setProp(CSaveDataConst.propNameMonsterID, CMonsterMapAreaComponentManager.GetMonsterId());
+    unit.setProp(CSaveDataConst.propNameMonsterMapCategoryID, model.mobCategoryId);
+    unit.setProp(CSaveDataConst.propNameMonsterMapID, model.mobMapId);
+    unit.setProp(CSaveDataConst.propNameMonsterID, model.mobMonsterId);
     return unit;
 }
 
@@ -575,17 +672,17 @@ function buildMobConfPlayerUnit() {
 }
 
 /**
- * 対プレイヤー設定2ユニットを組み立てる（n_B_TAISEIをそのまま運ぶ。現行の実質的な実体）.
+ * 対プレイヤー設定2ユニットを組み立てる（model.mobConfTaiseiをそのまま運ぶ。現行の実質的な実体）.
  * pos41(StResPlus)・pos42(StMresPlus)は現行の translateFromOldFormat() 同様、符号を
  * 常に0として送る（符号ペアだが常に絶対値のみを渡している——CSaveDataUnitParse.js
  * 「対プレイヤー設定2」ブロックの `signValueArray[41][1]`/`[42][1]` 単独参照を参照）。
  */
-function buildMobConfPlayer2Unit() {
+function buildMobConfPlayer2Unit(model) {
     const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2);
     const unit = new UnitClass();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    const mig = padArray(n_B_TAISEI, 49);
+    const mig = padArray(model.mobConfTaisei, 49);
     mig[41] = Math.abs(mig[41] ?? 0);
     mig[42] = Math.abs(mig[42] ?? 0);
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
@@ -601,32 +698,15 @@ function buildMobConfPlayer2Unit() {
  * 登録されていない。うち Res/Mres は CMobConfInput.js 自体には格納領域があるが、
  * セーブデータのマッピングテーブルには繋がっていない）。
  */
-function buildMobConfInputUnit() {
+function buildMobConfInputUnit(model) {
     const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT);
     const unit = new UnitClass();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
+    const c = model.mobConfInput;
     const mig = [
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LV) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_HP) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_STR) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_INT) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_VIT) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_DEX) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_AGI) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_LUK) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_ATK) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_MATK) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_RANGE) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_DEF) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_MDEF) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_BASE_EXP) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_JOB_EXP) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_SIZE) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_ELEMENT) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_RACE) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE) ?? 0,
-        GetMobConfInput(MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE) ?? 0,
+        c.lv, c.hp, c.str, c.int, c.vit, c.dex, c.agi, c.luk, c.atk, c.matk,
+        c.range, c.def, c.mdef, c.baseExp, c.jobExp, c.size, c.element, c.race, c.bossType, c.grassType,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, // Pow,Sta,Wis,Spl,Con,Crt,PAtk,SMatk,HPlus,CRate,Res,Mres — 入力元なし
     ];
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
@@ -634,22 +714,22 @@ function buildMobConfInputUnit() {
     return unit;
 }
 
-/** 敵状態強化ユニットを組み立てる（n_B_KYOUKAをそのまま運ぶ）。 */
-function buildMobBuffUnit() {
+/** 敵状態強化ユニットを組み立てる（model.mobConfKyoukaをそのまま運ぶ）。 */
+function buildMobBuffUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_BUFF))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_B_KYOUKA, 80));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.mobConfKyouka, 80));
     unit.doCompaction();
     return unit;
 }
 
-/** 敵状態異常ユニットを組み立てる（n_B_IJYOUをそのまま運ぶ）。 */
-function buildMobDebuffUnit() {
+/** 敵状態異常ユニットを組み立てる（model.mobConfIjyouをそのまま運ぶ）。 */
+function buildMobDebuffUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_MOB_DEBUFF))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(n_B_IJYOU, 80));
+    unit.setProp(CSaveDataConst.propNameBuffLv, padArray(model.mobConfIjyou, 80));
     unit.doCompaction();
     return unit;
 }
@@ -659,36 +739,30 @@ function buildMobDebuffUnit() {
  * SaveSystem() の [0276-0285] 区画と同じ入力源（g_attackMethodBridge 経由の現在の
  * CAttackMethodConf）を使う。
  */
-function buildAttackConfUnit() {
+function buildAttackConfUnit(model) {
     const unit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_ATTACK_CONF))();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameOptCode, 0);
-    const attackMethodConf = g_attackMethodBridge.getAttackMethodConf?.();
-    const optionArray = [];
-    const optionCount = attackMethodConf ? Math.min(5, attackMethodConf.GetOptionValueCount()) : 0;
-    for (let idx = 0; idx < 5; idx++) {
-        optionArray.push(idx < optionCount ? (attackMethodConf.GetOptionValue(idx) ?? 0) : 0);
-    }
-    unit.setProp(CSaveDataConst.propNameAttackSkillID, attackMethodConf ? attackMethodConf.GetSkillId() : 0);
-    unit.setProp(CSaveDataConst.propNameSourceTypeID, attackMethodConf ? attackMethodConf.GetSourceType() : 0);
-    unit.setProp(CSaveDataConst.propNameAttackSkillLv, attackMethodConf ? attackMethodConf.GetSkillLv() : 0);
-    unit.setProp(CSaveDataConst.propNameAttackSkillOption, optionArray);
+    unit.setProp(CSaveDataConst.propNameAttackSkillID, model.attackMethodSkillId);
+    unit.setProp(CSaveDataConst.propNameSourceTypeID, model.attackMethodSourceType);
+    unit.setProp(CSaveDataConst.propNameAttackSkillLv, model.attackMethodSkillLv);
+    unit.setProp(CSaveDataConst.propNameAttackSkillOption, model.attackMethodOptions);
     unit.doCompaction();
     return unit;
 }
 
 /**
- * 状態からセーブデータユニット配列を直接組み立てる.
+ * セーブモデルからセーブデータユニット配列を組み立てる（純粋関数。DOM/グローバル読み取りなし）.
  * 空ユニット（`isEmptyUnit()`）は除く——`CSaveDataManager.doCompaction()` が
  * 配列レベルで行う除去と同じ扱い（例: 習得スキルが1つも無いキャラクターでは
  * LEARNED_SKILLS ユニット自体が最終出力に含まれない）。
+ * @param {object} model `extractSaveModelFromState()` の戻り値
  * @returns {Array} `MIGRATED_SAVE_DATA_UNITS` に含まれるユニットの配列
  */
-export function buildSaveDataUnitsFromState() {
-    const jobId = getCurrentJobId();
+export function buildSaveDataUnits(model) {
     const units = [
         buildVersionUnit(),
-        buildCharaUnit(jobId),
+        buildCharaUnit(model),
         // EQUIP_REGIONS ×3（アイテム/衣装/シャドウ）は doCompaction() の安定ソートにより、
         // 同一type内では元の挿入順を保つ。encodeToURL() のバイト列は挿入順に依存するため、
         // 旧経路（translateFromOldFormat()。アイテム→衣装→シャドウの順で生成）と同じ順で
@@ -697,33 +771,42 @@ export function buildSaveDataUnitsFromState() {
         // 順序は自然に一致する）。
         buildEquipRegionsItemArrowSeedUnit(),
         buildEquipRegionsCostumeUnit(),
-        buildLearnedSkillsUnit(),
-        buildEquipArrowUnit(),
-        buildCharaBuffUnit(),
-        buildSkillBuffSelfUnit(jobId),
-        buildSkillBuff1stUnit(),
-        buildSkillBuff2ndUnit(),
-        buildSkillBuff3rdUnit(),
-        buildSkillBuff4thUnit(),
-        buildSkillBuffMusicUnit(),
-        buildSkillBuffGuildUnit(),
-        buildItemBuffUnit(),
-        buildTimeBuffUnit(),
-        buildAutoSpellsUnit(),
-        buildCharaConfBasicUnit(),
-        buildCharaConfSpecializePhysicalUnit(),
-        buildCharaConfSpecializeMagicalUnit(),
-        buildCharaConfSpecializeAttackAnyUnit(),
-        buildCharaConfSpecializeDefenceAnyUnit(),
-        buildCharaConfSkillUnit(),
-        buildCharaConfSpecBasicUnit(),
-        buildMobUnit(),
+        buildLearnedSkillsUnit(model),
+        buildEquipArrowUnit(model),
+        buildCharaBuffUnit(model),
+        buildSkillBuffSelfUnit(model),
+        buildSkillBuff1stUnit(model),
+        buildSkillBuff2ndUnit(model),
+        buildSkillBuff3rdUnit(model),
+        buildSkillBuff4thUnit(model),
+        buildSkillBuffMusicUnit(model),
+        buildSkillBuffGuildUnit(model),
+        buildItemBuffUnit(model),
+        buildTimeBuffUnit(model),
+        buildAutoSpellsUnit(model),
+        buildCharaConfBasicUnit(model),
+        buildCharaConfSpecializePhysicalUnit(model),
+        buildCharaConfSpecializeMagicalUnit(model),
+        buildCharaConfSpecializeAttackAnyUnit(model),
+        buildCharaConfSpecializeDefenceAnyUnit(model),
+        buildCharaConfSkillUnit(model),
+        buildCharaConfSpecBasicUnit(model),
+        buildMobUnit(model),
         buildMobConfPlayerUnit(),
-        buildMobConfPlayer2Unit(),
-        buildMobConfInputUnit(),
-        buildMobBuffUnit(),
-        buildMobDebuffUnit(),
-        buildAttackConfUnit(),
+        buildMobConfPlayer2Unit(model),
+        buildMobConfInputUnit(model),
+        buildMobBuffUnit(model),
+        buildMobDebuffUnit(model),
+        buildAttackConfUnit(model),
     ];
     return units.filter((unit) => !unit.isEmptyUnit());
+}
+
+/**
+ * 状態からセーブデータユニット配列を直接組み立てる.
+ * `extractSaveModelFromState()` → `buildSaveDataUnits()` の薄いラッパ（従来のエントリポイント）。
+ * @returns {Array} `MIGRATED_SAVE_DATA_UNITS` に含まれるユニットの配列
+ */
+export function buildSaveDataUnitsFromState() {
+    return buildSaveDataUnits(extractSaveModelFromState());
 }
