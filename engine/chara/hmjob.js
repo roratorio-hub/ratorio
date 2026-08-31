@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip } from "../runtime/roro-state.js";
-import { SaveSystem } from "../bridge/saveload-bridge.js";
 import "../runtime/common.js";
 import "../data/mig.itemsp.h.js";
 import "../equip/item.h.js";
@@ -1912,22 +1911,20 @@ export function migrateOtherJob(jobId) {
 	const migId = parseInt(jobId, 10);
 
 	const recentJobMigId = n_A_JOB;
-	let dataURL = "";
-	let funcModifySaveData = function (saveDataArrayF) {
-		// 職業ID
-		saveDataArrayF[1] = migId;
-		// 自動レベル調整は強制OFF
-		saveDataArrayF[11] = 0;
-		return saveDataArrayF;
-	};
 	// インジケーター表示
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
 		set_n_Nitou(IsDualArmsJob(migId));
-		// TODO: 暫定対処　旧形式の保存処理呼び出し
-		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
-		dataURL = SaveSystem(funcModifySaveData);
+		// 状態から直接組み立てたユニット配列のCHARAユニットの職業ID・自動レベル調整を
+		// 差し替えてからURLへ出力し、同じURLを読み込み直す（装備・シャドウ装備・超越段階値・
+		// ランダムオプション・プレイヤー状態異常設定等、旧形式には存在しなかった入力項目も
+		// 維持されるようになった。旧: SaveSystem()のfuncSaveDataModify経由でSaveData[1]/[11]
+		// を書き換えていたが、その経路はSaveData[1936]分の旧形式スロットしか運べなかった）。
+		const dataURL = registryGet('CSaveController').getSaveDataManagerCur().encodeToURL((charaUnit) => {
+			charaUnit.setProp(CSaveDataConst.propNameJobID, migId);
+			charaUnit.setProp(CSaveDataConst.propNameSubAutoAdjustBaseLv, 0);
+		});
 		// URL入力を実行
 		registryGet('CSaveController').loadFromURL(dataURL);
 		// 異なる職業系列へ変更する場合

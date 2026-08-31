@@ -456,9 +456,12 @@ export class CSaveDataManager {
 	/**
 	 * 計算機の状態を採取してURLクエリ文字列として出力する.
 	 * セーブ時のみ呼び出される.
+	 * @param {?(unit: object) => void} funcModifyCharaUnit 組み立てたCHARAユニットを
+	 *   その場で書き換えるコールバック（省略可）。職業変更「維持ON」用
+	 *   （`migrateOtherJob()`。hmjob.js）。
 	 * @returns {string} URLクエリ文字列
 	 */
-	encodeToURL () {
+	encodeToURL (funcModifyCharaUnit = null) {
 
 		if (!Array.isArray(this.#saveDataUnitArray)) {
 			return "";
@@ -473,6 +476,15 @@ export class CSaveDataManager {
 		this.#collectDataEquipable();
 		this.#collectDataCharaConfDebuff();
 		this.#collectDataShadowEquips();
+
+		// CHARAユニットの差し替え（職業変更「維持ON」用。旧: SaveSystem()のfuncSaveDataModify
+		// 経由でSaveData[1]（職業ID）/[11]（自動レベル調整）を書き換えていた処理の置き換え）
+		if (funcModifyCharaUnit) {
+			const charaUnit = this.#saveDataUnitArray.find((unit) => unit.constructor.type === SAVE_DATA_UNIT_TYPE_CHARA);
+			if (charaUnit) {
+				funcModifyCharaUnit(charaUnit);
+			}
+		}
 
 		// コンパクション
 		this.doCompaction();
