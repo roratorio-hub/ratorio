@@ -62,6 +62,11 @@ import {
 } from "../runtime/global.js";
 import { CalcStatusPoint } from "../chara/hmjob.js";
 import { CAttackMethodConf } from "../battle/CAttackMethodConf.js";
+import {
+         CHARA_CONF_BASIC_MIG_MAP, CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP,
+         CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP,
+         CHARA_CONF_SKILL_MIG_MAP, CHARA_CONF_SPEC_BASIC_MIG_MAP, applyMigArrayToConf
+} from "./conf-mig-mapping.js";
 import { CBattleQuickControlAreaComponentManager } from "../battle/CBattleQuickControlAreaComponentManager.js";
 import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { SetActiveIndexMobConfInput, SetMobConfInput } from "../monster/CMobConfInput.js";
@@ -1046,69 +1051,33 @@ export class CSaveDataManager {
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_BUFF, n_B_KYOUKA);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_DEBUFF, n_B_IJYOU);
 
-
-		// TODO: 構造変更後、撤去予定
-
-		// グローバル変数のデータ調整
-		let spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
-		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
-
-		spliceArray = g_confDataCustomStatusMIG.slice(0, 22);
-		g_confDataCustomStatus.splice(1, spliceArray.length, ...spliceArray);
-
-		spliceArray = g_confDataCustomStatusMIG.slice(22, 25);
-		spliceArray.push(g_confDataCustomStatusMIG[25]);
-		spliceArray.push(g_confDataSpecMIG[0][0][0]);
-		spliceArray.push(g_confDataSpecMIG[0][0][14]);
-		spliceArray.push(g_confDataSpecMIG[0][0][37]);
-		spliceArray.push(g_confDataSpecMIG[0][0][41]);
-		spliceArray.push(g_confDataSpecMIG[0][0][47]);
-		spliceArray.push(g_confDataSpecMIG[0][2][1]);
-		spliceArray.push(g_confDataCustomStatusMIG[26]);
-		spliceArray.push(g_confDataSpecMIG[0][0][51]);
-		spliceArray.push(g_confDataCustomStatusMIG[29]);
-		spliceArray.push(g_confDataSpecMIG[0][1][0]);
-		spliceArray.push(g_confDataSpecMIG[0][1][14]);
-		spliceArray.push(g_confDataSpecMIG[0][1][37]);
-		spliceArray.push(g_confDataSpecMIG[0][1][41]);
-		spliceArray.push(g_confDataSpecMIG[0][1][26]);
-		spliceArray.push(g_confDataSpecMIG[0][1][51]);
-		spliceArray.push(g_confDataSpecMIG[0][2][50]);
-		spliceArray.push(g_confDataSpecMIG[0][2][2]);
-		spliceArray.push(g_confDataSpecMIG[0][0][44]);
-		spliceArray.push(g_confDataSpecMIG[0][1][44]);
-		spliceArray.push(g_confDataCustomStatusMIG[27]);
-		spliceArray.push(g_confDataSpecMIG[0][0][26]);
-		g_confDataCustomAtk.splice(1, spliceArray.length, ...spliceArray);
-		g_confDataCustomAtk.splice(27, 1, g_confDataSpecMIG[0][0][53]);
-
-		spliceArray = g_confDataCustomStatusMIG.slice(30, 32);
-		spliceArray.push(g_confDataSpecMIG[1][2][14]);
-		spliceArray.push(g_confDataSpecMIG[1][2][37]);
-		spliceArray.push(g_confDataSpecMIG[1][2][26]);
-		spliceArray.push(g_confDataSpecMIG[1][2][41]);
-		spliceArray.push(g_confDataSpecMIG[1][2][46]);		// 全射程ではなく遠距離なので注意
-		spliceArray.push(g_confDataSpecMIG[1][2][50]);
-		spliceArray.push(g_confDataSpecMIG[1][2][2]);
-		spliceArray.push(g_confDataSpecMIG[1][2][44]);
-		g_confDataCustomDef.splice(1, spliceArray.length, ...spliceArray);
-
-		spliceArray = [g_confDataCustomSkillMIG[3]];
-		spliceArray.push(g_confDataCustomStatusMIG[32]);
-		spliceArray.push(g_confDataCustomStatusMIG[33]);
-		spliceArray.push(g_confDataCustomSkillMIG[7]);
-		spliceArray.push(g_confDataCustomSkillMIG[6]);
-		spliceArray.push(g_confDataCustomSkillMIG[9]);
-		spliceArray.push(g_confDataCustomSkillMIG[8]);
-		spliceArray.push(g_confDataCustomSkillMIG[11]);
-		spliceArray.push(g_confDataCustomSkillMIG[10]);
-		spliceArray.push(g_confDataCustomSkillMIG[2]);
-		spliceArray.push(g_confDataCustomSkillMIG[4]);
-		spliceArray.push(g_confDataCustomSkillMIG[5]);
-		g_confDataCustomSkill.splice(1, spliceArray.length, ...spliceArray);
-		spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
-		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
-
+		// グローバル変数のデータ調整（B-33 B1: セーブ側 savedata-collect.js と共有する
+		// マッピングテーブル conf-mig-mapping.js 経由。従来はここに逆方向の対応関係を
+		// 個別に書いていたが、二重保守を避けるため一本化した）
+		applyMigArrayToConf(CHARA_CONF_SPEC_BASIC_MIG_MAP, g_confDataCustomSpecStatusMIG, {
+			confCustomSpecStatus: g_confDataCustomSpecStatus,
+		});
+		applyMigArrayToConf(CHARA_CONF_BASIC_MIG_MAP, g_confDataCustomStatusMIG, {
+			confCustomStatus: g_confDataCustomStatus,
+			confCustomAtk: g_confDataCustomAtk,
+			confCustomDef: g_confDataCustomDef,
+			confCustomSkill: g_confDataCustomSkill,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, g_confDataSpecMIG[0][0], {
+			confCustomAtk: g_confDataCustomAtk,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP, g_confDataSpecMIG[0][1], {
+			confCustomAtk: g_confDataCustomAtk,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, g_confDataSpecMIG[0][2], {
+			confCustomAtk: g_confDataCustomAtk,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP, g_confDataSpecMIG[1][2], {
+			confCustomDef: g_confDataCustomDef,
+		});
+		applyMigArrayToConf(CHARA_CONF_SKILL_MIG_MAP, g_confDataCustomSkillMIG, {
+			confCustomSkill: g_confDataCustomSkill,
+		});
 
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();

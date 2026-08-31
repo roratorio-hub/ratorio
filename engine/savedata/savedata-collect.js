@@ -73,6 +73,11 @@ import {
     MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE, MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE,
 } from "../const/EnumMobConfId.js";
 import { g_attackMethodBridge } from "../battle/CAttackMethodDataBridge.js";
+import {
+    CHARA_CONF_BASIC_MIG_MAP, CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP,
+    CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP,
+    CHARA_CONF_SKILL_MIG_MAP, CHARA_CONF_SPEC_BASIC_MIG_MAP, migArrayFromConf,
+} from "./conf-mig-mapping.js";
 
 /** 配列を長さ len に揃える（不足分は0埋め、超過分は切り捨て）。 */
 function padArray(arr, len) {
@@ -450,11 +455,9 @@ function buildAutoSpellsUnit() {
  *
  * このユニットは名前に反して「ステータス・攻撃・防御・スキル関連の中で個別ユニット化
  * されなかった残り」を運ぶ寄せ集めで、値は複数の g_confDataCustomXxx グローバルから
- * 集まる。マッピングは `CSaveDataManager#applyDataToControls()` 末尾の
- * `g_confDataCustomAtk.splice(...)` 等（"TODO: 構造変更後、撤去予定"というコメント付きの
- * ブロック）を実際に実行して機械的に抽出したもの（手動転記の誤りを避けるため）。
- * mig配列の [28]・[34..45] は上記ブロックのどこからも参照されておらず、対応する
- * 現行UI入力元が無いため常に0（ChangeArms*・StRange・特性ステータス系Plus群など）。
+ * 集まる。mig配列位置との対応は `conf-mig-mapping.js`（`CHARA_CONF_BASIC_MIG_MAP`）参照。
+ * マップに無いスロット（[28]・[34..45]）は対応する現行UI入力元が無いため常に0
+ * （ChangeArms*・StRange・特性ステータス系Plus群など）。
  */
 function buildCharaConfBasicUnit() {
     const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC);
@@ -462,19 +465,12 @@ function buildCharaConfBasicUnit() {
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
 
-    const mig = new Array(46).fill(0);
-    for (let i = 0; i < 22; i++) mig[i] = g_confDataCustomStatus[1 + i] ?? 0;
-    mig[22] = g_confDataCustomAtk[1] ?? 0;
-    mig[23] = g_confDataCustomAtk[2] ?? 0;
-    mig[24] = g_confDataCustomAtk[3] ?? 0;
-    mig[25] = g_confDataCustomAtk[4] ?? 0;
-    mig[26] = g_confDataCustomAtk[11] ?? 0;
-    mig[27] = g_confDataCustomAtk[24] ?? 0;
-    mig[29] = g_confDataCustomAtk[13] ?? 0;
-    mig[30] = g_confDataCustomDef[1] ?? 0;
-    mig[31] = g_confDataCustomDef[2] ?? 0;
-    mig[32] = g_confDataCustomSkill[2] ?? 0;
-    mig[33] = g_confDataCustomSkill[3] ?? 0;
+    const mig = migArrayFromConf(46, CHARA_CONF_BASIC_MIG_MAP, {
+        confCustomStatus: g_confDataCustomStatus,
+        confCustomAtk: g_confDataCustomAtk,
+        confCustomDef: g_confDataCustomDef,
+        confCustomSkill: g_confDataCustomSkill,
+    });
 
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
     unit.doCompaction();
@@ -483,9 +479,6 @@ function buildCharaConfBasicUnit() {
 
 /**
  * 性能カスタマイズ（特化）ユニットを1件組み立てる（物理/魔法/攻撃すべて/防御すべての4種で共有）.
- * マッピングは buildCharaConfBasicUnit() と同じ抽出方法による
- * （`g_confDataSpecMIG[x][y][N]` ← `g_confDataCustomAtk`/`Def`[M]、位置は
- * `#applyDataToControlsConfigSpec()` の読み取り順で決まる）。
  * @param {number} instanceKind CSaveDataConst.specKindAttackPhysical 等
  * @param {number[]} mig 54要素の符号付き整数配列
  */
@@ -502,83 +495,43 @@ function buildCharaConfSpecializeUnit(instanceKind, mig) {
 
 /** 性能カスタマイズ（特化：攻撃｜物理）ユニットを組み立てる。 */
 function buildCharaConfSpecializePhysicalUnit() {
-    const mig = new Array(54).fill(0);
-    mig[0] = g_confDataCustomAtk[5] ?? 0;
-    mig[14] = g_confDataCustomAtk[6] ?? 0;
-    mig[26] = g_confDataCustomAtk[25] ?? 0;
-    mig[37] = g_confDataCustomAtk[7] ?? 0;
-    mig[41] = g_confDataCustomAtk[8] ?? 0;
-    mig[44] = g_confDataCustomAtk[22] ?? 0;
-    mig[47] = g_confDataCustomAtk[9] ?? 0;
-    mig[51] = g_confDataCustomAtk[12] ?? 0;
-    mig[53] = g_confDataCustomAtk[27] ?? 0;
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, { confCustomAtk: g_confDataCustomAtk });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackPhysical, mig);
 }
 
 /** 性能カスタマイズ（特化：攻撃｜魔法）ユニットを組み立てる。 */
 function buildCharaConfSpecializeMagicalUnit() {
-    const mig = new Array(54).fill(0);
-    mig[0] = g_confDataCustomAtk[14] ?? 0;
-    mig[14] = g_confDataCustomAtk[15] ?? 0;
-    mig[26] = g_confDataCustomAtk[18] ?? 0;
-    mig[37] = g_confDataCustomAtk[16] ?? 0;
-    mig[41] = g_confDataCustomAtk[17] ?? 0;
-    mig[44] = g_confDataCustomAtk[23] ?? 0;
-    mig[51] = g_confDataCustomAtk[19] ?? 0;
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP, { confCustomAtk: g_confDataCustomAtk });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackMagical, mig);
 }
 
 /** 性能カスタマイズ（特化：攻撃｜すべて）ユニットを組み立てる。 */
 function buildCharaConfSpecializeAttackAnyUnit() {
-    const mig = new Array(54).fill(0);
-    mig[1] = g_confDataCustomAtk[10] ?? 0;
-    mig[2] = g_confDataCustomAtk[21] ?? 0;
-    mig[50] = g_confDataCustomAtk[20] ?? 0;
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, { confCustomAtk: g_confDataCustomAtk });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindAttackAny, mig);
 }
 
 /** 性能カスタマイズ（特化：防御｜すべて）ユニットを組み立てる。 */
 function buildCharaConfSpecializeDefenceAnyUnit() {
-    const mig = new Array(54).fill(0);
-    mig[2] = g_confDataCustomDef[9] ?? 0;
-    mig[14] = g_confDataCustomDef[3] ?? 0;
-    mig[26] = g_confDataCustomDef[5] ?? 0;
-    mig[37] = g_confDataCustomDef[4] ?? 0;
-    mig[41] = g_confDataCustomDef[6] ?? 0;
-    mig[44] = g_confDataCustomDef[10] ?? 0;
-    mig[46] = g_confDataCustomDef[7] ?? 0; // 全射程ではなく遠距離なので注意（CSaveDataManager.js の元コード同様）
-    mig[50] = g_confDataCustomDef[8] ?? 0;
+    const mig = migArrayFromConf(54, CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP, { confCustomDef: g_confDataCustomDef });
     return buildCharaConfSpecializeUnit(CSaveDataConst.specKindDefencekAny, mig);
 }
 
 /**
  * 性能カスタマイズ（スキル）ユニットを組み立てる.
- * skillID・特定条件系（pos0,1）は現行UIの入力元が無いため常に0
+ * skillID（pos0）は現行UIの入力元が無いため常に0
  * （translateFromOldFormat() の "TODO: すべてのスキルを表すダミーのスキルIDに変更のこと" 参照）。
+ * specDamageUpConditionType(pos1)は独立入力元ではなく、conditionValue(pos2)と同じ
+ * customSkill[10]から派生する（0以外なら1）ため、マッピングテーブルには含めない
+ * （`conf-mig-mapping.js` の `CHARA_CONF_SKILL_MIG_MAP` 参照）。
  */
 function buildCharaConfSkillUnit() {
     const UnitClass = CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL);
     const unit = new UnitClass();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
-    // specDamageUpConditionType(pos1)は独立入力元ではなく、conditionValue(pos2)と同じ
-    // customSkill[10]から派生する（0以外なら1）。現行でも translateFromOldFormat() が
-    // `(convertedArraySkill[10][1] > 0) ? 1 : 0` として同じ値から計算している
-    // （CSaveDataUnitParse.js「性能カスタマイズ（スキル）」ブロック参照）。
-    const skillCond = g_confDataCustomSkill[10] ?? 0;
-    const mig = [
-        0, skillCond !== 0 ? 1 : 0,
-        skillCond,
-        g_confDataCustomSkill[1] ?? 0,
-        g_confDataCustomSkill[11] ?? 0,
-        g_confDataCustomSkill[12] ?? 0,
-        g_confDataCustomSkill[5] ?? 0,
-        g_confDataCustomSkill[4] ?? 0,
-        g_confDataCustomSkill[7] ?? 0,
-        g_confDataCustomSkill[6] ?? 0,
-        g_confDataCustomSkill[9] ?? 0,
-        g_confDataCustomSkill[8] ?? 0,
-    ];
+    const mig = migArrayFromConf(12, CHARA_CONF_SKILL_MIG_MAP, { confCustomSkill: g_confDataCustomSkill });
+    mig[1] = mig[2] !== 0 ? 1 : 0; // 派生値（マップ対象外。mig[2]=customSkill[10]の非0判定）
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
     unit.doCompaction();
     return unit;
@@ -590,8 +543,7 @@ function buildCharaConfSpecBasicUnit() {
     const unit = new UnitClass();
     unit.SetUpAsDefault();
     unit.setProp(CSaveDataConst.propNameSubInvalidateSettings, 0);
-    const mig = [];
-    for (let i = 0; i < 12; i++) mig.push(g_confDataCustomSpecStatus[1 + i] ?? 0);
+    const mig = migArrayFromConf(12, CHARA_CONF_SPEC_BASIC_MIG_MAP, { confCustomSpecStatus: g_confDataCustomSpecStatus });
     fillConfigValuesFromMigArray(unit, UnitClass, 2, mig);
     unit.doCompaction();
     return unit;
