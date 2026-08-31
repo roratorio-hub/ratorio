@@ -817,42 +817,35 @@ export class CSaveDataManager {
 
 	/**
 	 * 保持しているデータを画面部品に適用する.
+	 * 読み取り（#extractCharaLoad）と適用（DOM書き込み・changeJobSettings()呼び出し）を
+	 * 分離した（B-33 B3-4）。**注意**: 職業ID（propNameJobID）の適用が `n_A_JOB` を
+	 * 副作用として確定させ、以降に処理する BaseLv/JobLv/classic統計のクランプ計算
+	 * （`GetBaseLevelMin(n_A_JOB)` 等）がその確定後の値を読む——という順序依存が
+	 * `#extractCharaLoad()` が返す `entries` の並び（= propNames の宣言順。JobIDが
+	 * BaseLv等より先）に暗黙に依存している。読み取り自体はDOM/サブシステム非依存のまま
+	 * 保ち、解釈（switch分岐・クランプ・DOM書き込み）は本メソッド側にそのまま残した
+	 * （クランプ関数へジョブIDを明示的に渡す形への刷新はここでは行わない——エントリ順序への
+	 * 暗黙依存を崩さないための保守的な選択）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 */
 	#applyDataToControlsChara (unitType, idxUnit) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const load = this.#extractCharaLoad(unitType, idxUnit);
+		if (!load) {
 			return;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 処理対象のプロパティを列挙
-		const propNames = saveDataUnit.constructor.propNames.slice();
-		propNames.push(CSaveDataConst.propNameSubAutoAdjustBaseLv);
 
 		// すべてのプロパティを走査し、必要なプロパティのみ処理
-		for (let idx = 0; idx < propNames.length; idx++) {
+		for (const { propName, objID, propValue: propValueRaw } of load.entries) {
 
 			// プロパティに関する情報を取得
-			const propName = propNames[idx];
-			let propValue = floorBigInt32(saveDataUnit.getProp(propName));
-			const objID = objIDMap.get(propName);
+			let propValue = propValueRaw;
 
 			// プロパティ名で処理分岐
 			switch (propName) {
 				// 職業IDは専用処理
 				case CSaveDataConst.propNameJobID: {
-					this.#applyToControlsCharaJobID(saveDataUnit, objID, propValue);
+					this.#applyToControlsCharaJobID(load.saveDataUnit, objID, propValue);
 					break;
 				}
 				// ベースレベル自動調整チェックボックス
@@ -893,6 +886,37 @@ export class CSaveDataManager {
 					break;
 			}
 		}
+	}
+
+	/**
+	 * キャラクターステータスユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * 各エントリの並び順は `propNames` の宣言順（職業IDがBaseLv等より先）を保つ——
+	 * `#applyDataToControlsChara()` 側のクランプ計算が `n_A_JOB` の確定順に依存するため。
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @returns {?{saveDataUnit: object, entries: Array<{propName: string, objID: string|undefined, propValue: number}>}}
+	 */
+	#extractCharaLoad (unitType, idxUnit) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return null;
+		}
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
+
+		// 処理対象のプロパティを列挙
+		const propNames = saveDataUnit.constructor.propNames.slice();
+		propNames.push(CSaveDataConst.propNameSubAutoAdjustBaseLv);
+
+		const entries = propNames.map((propName) => ({
+			propName,
+			objID: objIDMap.get(propName),
+			propValue: floorBigInt32(saveDataUnit.getProp(propName)),
+		}));
+
+		return { saveDataUnit, entries };
 	}
 
 	/**
