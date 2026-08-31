@@ -1354,103 +1354,114 @@ export class CSaveDataManager {
 
 	/**
 	 * 保持しているデータを画面部品に適用する（キャラBUFF）.
+	 * 読み取り（#extractCompositBuffLoad）と適用（DOM書き込み）を分離した（B-33 B3-3）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
 	 */
 	#applyDataToControlsCompositBuff (unitType, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const load = this.#extractCompositBuffLoad(unitType, idxUnit);
+		if (!load) {
 			return;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
+		for (const { objID, propValue } of load.domWrites) {
+			HtmlSetObjectValueById(objID, propValue);
 		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// オブジェクトIDマップの定義をもとに、データを設定
-		for (const [propNameF, objIDF] of objIDMap) {
-			const propValueF = floorBigInt32(saveDataUnit.getProp(propNameF));
-			HtmlSetObjectValueById(objIDF, propValueF);
-		}
-
-
-		// これ以降、従来のグローバル配列にデータを読み込む処理
-
-		// パース制御フラグ、データプロパティ値（配列）を取得
-		const ctrlFlag = saveDataUnit.getProp(CSaveDataConst.propNameParseCtrlFlag);
-		let ctrlFlagWork = ctrlFlag;
-		const propValueArray = saveDataUnit.getProp(CSaveDataConst.propNameBuffLv);
-
-		// すべてのプロパティを走査し、必要なプロパティのみ処理
-		const dataArrayRead = [];
-		for (let idx = 0; ctrlFlagWork > 0n; idx++) {
-
-			const buffLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
-			dataArrayRead.push(buffLv);
-
-			ctrlFlagWork >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
 		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
+			dataArrayF.fill(0).splice(0, load.buffLvArray.length, ...load.buffLvArray);
 		}
 	}
 
 	/**
+	 * キャラBUFFユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @returns {?{domWrites: Array<{objID: string, propValue: number}>, buffLvArray: number[]}}
+	 */
+	#extractCompositBuffLoad (unitType, idxUnit) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return null;
+		}
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
+
+		// オブジェクトIDマップの定義をもとに、データを収集
+		const domWrites = [];
+		for (const [propNameF, objIDF] of objIDMap) {
+			const propValueF = floorBigInt32(saveDataUnit.getProp(propNameF));
+			domWrites.push({ objID: objIDF, propValue: propValueF });
+		}
+
+		// これ以降、従来のグローバル配列に読み込む値を収集する処理
+		const ctrlFlag = saveDataUnit.getProp(CSaveDataConst.propNameParseCtrlFlag);
+		let ctrlFlagWork = ctrlFlag;
+		const propValueArray = saveDataUnit.getProp(CSaveDataConst.propNameBuffLv);
+
+		const buffLvArray = [];
+		for (let idx = 0; ctrlFlagWork > 0n; idx++) {
+			const buffLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
+			buffLvArray.push(buffLv);
+			ctrlFlagWork >>= 1n;
+		}
+
+		return { domWrites, buffLvArray };
+	}
+
+	/**
 	 * 保持しているデータを画面部品に適用する（スキル／BUFFレベル）.
+	 * 読み取り（#extractXXXXLvLoad）と適用（DOM書き込み）を分離した（B-33 B3-3）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 * @param {string} propName 対応するプロパティの名称
 	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
 	 */
 	#applyDataToControlsXXXXLv (unitType, idxUnit, propName, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const load = this.#extractXXXXLvLoad(unitType, idxUnit, propName);
+		if (!load) {
 			return;
 		}
+		if (load.objIDPrefix !== undefined) {
+			load.values.forEach((skillLv, idx) => {
+				HtmlSetObjectValueById(load.objIDPrefix + idx, skillLv);
+			});
+		}
+		if (Array.isArray(dataArrayF)) {
+			dataArrayF.fill(0).splice(0, load.values.length, ...load.values);
+		}
+	}
 
-		// オブジェクトIDマップが存在しない場合は、処理しない
+	/**
+	 * スキル／BUFFレベルユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @param {string} propName 対応するプロパティの名称
+	 * @returns {?{objIDPrefix: string|undefined, values: number[]}}
+	 */
+	#extractXXXXLvLoad (unitType, idxUnit, propName) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
 		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
 		if (!objIDMap) {
-			return;
+			return null;
 		}
-		const objIDPrefixF = objIDMap.get(propName);
-
-		// データユニットを取得
+		const objIDPrefix = objIDMap.get(propName);
 		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
 
-		// パース制御フラグ、データプロパティ値（配列）を取得
 		const ctrlFlag = saveDataUnit.getProp(CSaveDataConst.propNameParseCtrlFlag);
 		let ctrlFlagWork = ctrlFlag;
 		const propValueArray = saveDataUnit.getProp(propName);
 
-		// すべてのプロパティを走査し、必要なプロパティのみ処理
-		const dataArrayRead = [];
+		const values = [];
 		for (let idx = 0; ctrlFlagWork > 0n; ctrlFlagWork >>= 1n, idx++) {
-
-			// スキルレベルを取得
 			const skillLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
-
-			// データを設定
-			dataArrayRead.push(skillLv);
-			if (objIDPrefixF !== undefined) {
-				HtmlSetObjectValueById(objIDPrefixF + idx, skillLv);
-			}
+			values.push(skillLv);
 		}
 
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
+		return { objIDPrefix, values };
 	}
 
 	/**
