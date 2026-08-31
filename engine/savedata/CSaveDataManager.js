@@ -811,26 +811,6 @@ export class CSaveDataManager {
 	}
 
 	/**
-	 * parseDataText 関数からコピーしたセーブ専用の暫定処理
-	 * セーブとロードが両方とも parseDataText 関数を利用していて場合分けが複雑になりすぎるため
-	 * @param {*} dataText 
-	 * @returns {int} パースした文字数
-	 * @throws {Error} パース中に異常が検出された場合
-	 */
-	parseDataTextForCreateSave (dataText) {
-		let offset = 0;
-		// 強制文字列化
-		dataText = "" + dataText;
-		// パースユニットのインスタンスを用意してパース開始
-		const unitParse = new CSaveDataUnitParse();
-		offset += unitParse.parseForCreateSave(dataText, 0);
-		// メンバ変数にデータを保持
-		this.#saveDataUnitArray = unitParse.saveDataUnitArray;
-		// オフセット位置はパースした文字数に一致する
-		return offset;
-	}
-
-	/**
 	 * すべてのセーブデータユニットのコンパクションを行う.
 	 */
 	doCompaction () {

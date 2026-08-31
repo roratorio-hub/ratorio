@@ -36,7 +36,7 @@ import {
     set_g_confDataIchizi, set_g_confDataNizi, set_g_confDataSanzi, set_g_confDataYozi,
 } from '@engine/runtime/global.js';
 import {
-    SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS, SAVE_DATA_UNIT_TYPE_CHARA_BUFF, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF,
+    SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS, SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, SAVE_DATA_UNIT_TYPE_CHARA_BUFF, SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF,
     SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST, SAVE_DATA_UNIT_TYPE_ITEM_BUFF, SAVE_DATA_UNIT_TYPE_TIME_BUFF,
     SAVE_DATA_UNIT_TYPE_AUTO_SPELLS, SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE,
     SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL, SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC,
@@ -128,11 +128,18 @@ describe('savedata-collect.js', () => {
     });
 
     describe('buildSaveDataUnitsFromState: 共通', () => {
-        it('各ユニットの type が isMigratedSaveDataUnit で真になる', () => {
+        it('各ユニットの type が isMigratedSaveDataUnit で真になる（装備位置アイテムの矢欄の種ユニットを除く）', () => {
             const units = buildSaveDataUnitsFromState();
             for (const unit of units) {
                 const parsedMapObj: Record<string, unknown> = {};
                 unit.parsedMap.forEach((value: unknown, key: string) => { parsedMapObj[key] = value; });
+                // buildEquipRegionsItemArrowSeedUnit()（装備位置・アイテムの矢欄だけを運ぶ種）は
+                // 意図的にMIGRATED_SAVE_DATA_UNITSの対象外（#collectDataEquipable() 適用後の
+                // 最終形はこの単体オラクルでは検証できないため。savedata-collect.js の
+                // 同関数のコメント参照）。
+                const isItemArrowSeed = Number(parsedMapObj.type) === SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS
+                    && Number(parsedMapObj.dataKind) === CSaveDataConst.eqpRgnKindItem;
+                if (isItemArrowSeed) continue;
                 expect(isMigratedSaveDataUnit(parsedMapObj)).toBe(true);
             }
         });

@@ -13,8 +13,9 @@
  *   不整合ペアを含む。ロード側の funcLoadAndSetCard（CSaveDataManager.js）は
  *   enchListId（カテゴリ）が 0 のときオプション存在検証を素通りし、存在しない
  *   cardID をステートフルデータへそのまま書き戻す。維持ONの職業変更は
- *   SaveSystem()→loadFromURL() の往復で実装されており、Init() が装備を全消去した後に
- *   壊れたステートフルデータを再投入することで、装備の再構築に支障が出る。
+ *   encodeToURL()→loadFromURL() の往復で実装されており（B-11 Phase A5-2以前は
+ *   SaveSystem()→loadFromURL()）、Init() が装備を全消去した後に壊れたステートフルデータを
+ *   再投入することで、装備の再構築に支障が出る。
  *
  * 本テストで検証すること:
  *   1. 壊れた定義下のセーブデータ（フィクスチャ、ユーザー提供の実データ）を読み込むと
