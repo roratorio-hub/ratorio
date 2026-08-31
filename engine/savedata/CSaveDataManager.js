@@ -675,14 +675,17 @@ export class CSaveDataManager {
 		const funcCallApplyMob = (thisF, dataKindF) => {
 			thisF.#applyDataToControlsMob(dataKindF, idxMap.get(dataKindF));
 		};
+		// ConfigSpec/MobConfPlayer/MobConfPlayer2 は #applyDataToControlsConfig と中身が同一
+		// だったため統合済み（B-33 B3-1）。ConfigSpec のみ objectIDMapMap のゲート判定用
+		// unitType が dataKind と別（固定値）なので、その unitType 自体を渡す。
 		const funcCallApplyConfigSpec = (thisF, dataKindF, dataArrayF) => {
-			thisF.#applyDataToControlsConfigSpec(dataKindF, idxMapSpecs.get(dataKindF), dataArrayF);
+			thisF.#applyDataToControlsConfig(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, idxMapSpecs.get(dataKindF), dataArrayF);
 		};
 		const funcCallApplyMobConfPlayer = (thisF, unitTypeF, dataArrayF) => {
-			thisF.#applyDataToControlsMobConfPlayer(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
+			thisF.#applyDataToControlsConfig(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
 		};
 		const funcCallApplyMobConfPlayer2 = (thisF, unitTypeF, dataArrayF) => {
-			thisF.#applyDataToControlsMobConfPlayer2(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
+			thisF.#applyDataToControlsConfig(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
 		};
 		const funcCallApplyMobConfInput = (thisF, unitTypeF) => {
 			thisF.#applyDataToControlsMobConfInput(unitTypeF, idxMap.get(unitTypeF));
@@ -1489,8 +1492,11 @@ export class CSaveDataManager {
 	}
 
 	/**
-	 * 保持しているデータを画面部品に適用する（性能カスタマイズ）.
-	 * @param {int} unitType ユニットのタイプ値
+	 * 保持しているデータを画面部品に適用する（parseCtrlFlagをビット単位で消費しながら
+	 * propNamesを歩き、"Sign"接尾辞プロパティは符号として直後の値プロパティへ適用する
+	 * 共通デコード処理）. 性能カスタマイズ（基本/特化）・対プレイヤー設定（1/2）の4型で
+	 * 中身が同一だったため統合した（B-33 B3-1）。
+	 * @param {int} unitType ユニットのタイプ値（objectIDMapMapのゲート判定にのみ使う）
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
 	 */
@@ -1566,87 +1572,6 @@ export class CSaveDataManager {
 	}
 
 	/**
-	 * 保持しているデータを画面部品に適用する（性能カスタマイズ：特化）.
-	 * @param {int} dataKind 特化種別
-	 * @param {int|undefined} idxUnit データユニットの配列インデックス
-	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
-	 */
-	#applyDataToControlsConfigSpec (dataKind, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
-			return;
-		}
-
-		// ユニットデータ種別は固定
-		const unitType = SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE;
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// プロパティ名配列を取得
-		const propNames = saveDataUnit.constructor.propNames.slice();
-
-		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
-		let idx = 0;
-
-		// パース制御フラグを取得
-		let ctrlFlag = undefined;
-		for (idx = 0; idx < propNames.length; idx++) {
-			const propName = propNames[idx];
-			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-				ctrlFlag = saveDataUnit.getProp(propName);
-				idx++;
-				break;
-			}
-		}
-
-		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
-		let sign = undefined;
-		const dataArrayRead = [];
-		for (; idx < propNames.length; idx++) {
-
-			// 必要な情報を収集
-			const propName = propNames[idx];
-
-
-			// 符号プロパティの場合
-			if (propName.slice(-4) == "Sign") {
-				if (ctrlFlag & 1n) {
-					// 負論理なので注意
-					sign = (saveDataUnit.getProp(propName) == 1n) ? -1 : 1;
-				}
-				else {
-					sign = undefined;
-				}
-			}
-
-			// 上記以外の場合
-			else {
-				let propValue = (ctrlFlag & 1n) ? floorBigInt32(saveDataUnit.getProp(propName)) : 0;
-				if (sign !== undefined) {
-					propValue *= sign;
-				}
-				dataArrayRead.push(propValue);
-				sign = undefined;
-			}
-
-			ctrlFlag >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
-	}
-
-	/**
 	 * 保持しているデータを画面部品に適用する（モンスター基本）.
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
@@ -1674,160 +1599,6 @@ export class CSaveDataManager {
 
 		// 専用処理
 		CMonsterMapAreaComponentManager.ChangeSelect(categoryID, mapID, mobID, true);
-	}
-
-	/**
-	 * 保持しているデータを画面部品に適用する（対プレイヤー設定）.
-	 * @param {int} unitType ユニットのタイプ値
-	 * @param {int|undefined} idxUnit データユニットの配列インデックス
-	 */
-	#applyDataToControlsMobConfPlayer (unitType, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
-			return;
-		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 処理対象のプロパティを列挙
-		const propNames = saveDataUnit.constructor.propNames.slice();
-
-		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
-		let idx = 0;
-
-		// パース制御フラグを取得
-		let ctrlFlag = undefined;
-		for (idx = 0; idx < propNames.length; idx++) {
-			const propName = propNames[idx];
-			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-				ctrlFlag = saveDataUnit.getProp(propName);
-				idx++;
-				break;
-			}
-		}
-
-		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
-		let sign = undefined;
-		const dataArrayRead = [];
-		for (; idx < propNames.length; idx++) {
-
-			// 必要な情報を収集
-			const propName = propNames[idx];
-
-
-			// 符号プロパティの場合
-			if (propName.slice(-4) == "Sign") {
-				if (ctrlFlag & 1n) {
-					// 負論理なので注意
-					sign = (saveDataUnit.getProp(propName) == 1n) ? -1 : 1;
-				}
-				else {
-					sign = undefined;
-				}
-			}
-
-			// 上記以外の場合
-			else {
-				let propValue = (ctrlFlag & 1n) ? floorBigInt32(saveDataUnit.getProp(propName)) : 0;
-				if (sign !== undefined) {
-					propValue *= sign;
-				}
-				dataArrayRead.push(propValue);
-				sign = undefined;
-			}
-
-			ctrlFlag >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
-	}
-
-	/**
-	 * 保持しているデータを画面部品に適用する（対プレイヤー設定2）.
-	 * @param {int} unitType ユニットのタイプ値
-	 * @param {int|undefined} idxUnit データユニットの配列インデックス
-	 */
-	#applyDataToControlsMobConfPlayer2 (unitType, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
-			return;
-		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 処理対象のプロパティを列挙
-		const propNames = saveDataUnit.constructor.propNames.slice();
-
-		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
-		let idx = 0;
-
-		// パース制御フラグを取得
-		let ctrlFlag = undefined;
-		for (idx = 0; idx < propNames.length; idx++) {
-			const propName = propNames[idx];
-			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-				ctrlFlag = saveDataUnit.getProp(propName);
-				idx++;
-				break;
-			}
-		}
-
-		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
-		let sign = undefined;
-		const dataArrayRead = [];
-		for (; idx < propNames.length; idx++) {
-
-			// 必要な情報を収集
-			const propName = propNames[idx];
-
-
-			// 符号プロパティの場合
-			if (propName.slice(-4) == "Sign") {
-				if (ctrlFlag & 1n) {
-					// 負論理なので注意
-					sign = (saveDataUnit.getProp(propName) == 1n) ? -1 : 1;
-				}
-				else {
-					sign = undefined;
-				}
-			}
-
-			// 上記以外の場合
-			else {
-				let propValue = (ctrlFlag & 1n) ? floorBigInt32(saveDataUnit.getProp(propName)) : 0;
-				if (sign !== undefined) {
-					propValue *= sign;
-				}
-				dataArrayRead.push(propValue);
-				sign = undefined;
-			}
-
-			ctrlFlag >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
 	}
 
 	/**
