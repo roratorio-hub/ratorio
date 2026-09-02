@@ -37,6 +37,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium, type Browser } from 'playwright';
 import { join } from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { startStaticServer, closeServer, loadSaveDataEntries } from '../helpers/objid-snapshot.js';
 
@@ -50,9 +51,28 @@ const SAMPLE_SIZE = 12;
 const step = Math.max(1, Math.floor(allEntries.length / SAMPLE_SIZE));
 const entries = allEntries.filter((_, i) => i % step === 0).slice(0, SAMPLE_SIZE);
 
-// 異物モデルは間引き後の12件ではなく、全101件から選ぶ（上記コメント参照）。
+/**
+ * generated-job-corpus.md の "# Pass C:" 見出し以前（Pass A/B）の件数を返す
+ * （job-corpus-snapshot.test.ts の findPassCStartIndex と同じ方針。見出し行を目印にする）。
+ */
+function findPassABCount(filePath: string): number {
+    if (!existsSync(filePath)) return 0;
+    let urlCount = 0;
+    for (const raw of readFileSync(filePath, 'utf-8').split('\n')) {
+        const line = raw.trim();
+        if (line.startsWith('# Pass C:')) break;
+        if (!line || line.startsWith('#')) continue;
+        urlCount++;
+    }
+    return urlCount;
+}
+
+// 異物モデルは間引き後の12件ではなく、Pass A/B（全101件）から選ぶ（上記コメント参照）。
 // 末尾付近（インデックス100）は実測で n_Enekyori=2 を残すことを確認済み。
-const ADVERSARIAL_FOREIGN_INDEX = allEntries.length - 1;
+// Pass C（残件台帳 B-32）の追記で allEntries が伸びても `allEntries.length - 1` は使わない
+// ——それだと異物モデルが無検証の Pass C エントリへ静かにすり替わり、この保証を失う。
+const passABCount = findPassABCount(FIXTURES_PATH);
+const ADVERSARIAL_FOREIGN_INDEX = passABCount > 0 ? passABCount - 1 : allEntries.length - 1;
 const adversarialForeignEntry = allEntries[ADVERSARIAL_FOREIGN_INDEX];
 
 let server: Awaited<ReturnType<typeof startStaticServer>>['server'];
