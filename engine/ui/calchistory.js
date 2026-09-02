@@ -7,8 +7,13 @@ import {
 } from "../battle/battlecalc.js";
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from "../runtime/engine-registry.js";
+import { OnDomReady } from "../runtime/dom-ready.js";
+import { HtmlGetObjectCheckedById } from "../runtime/util.js";
 // Chart.js ESM（auto = 全チャートタイプ登録済みビルド）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
+
+export let g_Chart;
+export function setG_Chart(v) { g_Chart = v; }
 
 /**
  * DPS clip 履歴パネルの静的スケルトンHTML（グラフ・ボタン・モーダルの骨組み）。
@@ -183,13 +188,39 @@ export function buildHistoryRowHtml({ no, dps, kill, memo, isFirst, isLast }) {
             </tr>`;
 }
 
-$(function () {
+/**
+ * el から前方（DOM順で手前）に n 個ぶん previousElementSibling を辿る。テキストノードは無視する。
+ * calchistory.js / CSaveController.js の双方で使う。
+ */
+export function prevElementSibling(el, n) {
+    for (let i = 0; i < n && el; i++) el = el.previousElementSibling;
+    return el;
+}
+
+/**
+ * el の子要素のうち selector に一致するものだけを配列で返す。
+ * calchistory.js / CSaveController.js の双方で使う。
+ */
+export function childrenMatching(el, selector) {
+    return el ? Array.from(el.children).filter((c) => c.matches(selector)) : [];
+}
+
+/**
+ * clip 履歴テーブルの memo 欄（div ⇄ input）の表示/編集を切り替える。
+ * calchistory.js（新規構築時）と CSaveController.js（セーブ復元時）の双方で使う。
+ */
+export function setMemoEditing(div, input, editing) {
+    div.style.display = editing ? "none" : "";
+    input.style.display = editing ? "" : "none";
+}
+
+OnDomReady(() => {
   const buildForm = () => {
 	let test = document.getElementById("history_graph");
 	if (test) {
       return;
 	}
-    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(buildHistoryPanelHtml());
+    document.getElementById("OBJID_ATTACK_SETTING_BLOCK_MIG")?.insertAdjacentHTML("afterend", buildHistoryPanelHtml());
 
     let target = 0;
     const data = {
@@ -273,44 +304,44 @@ $(function () {
       }
     });
     g_Chart = chart;
-    $("#history_clip").click(e => {
+    document.getElementById("history_clip")?.addEventListener("click", (e) => {
       // 直前の敵と同じか？
-      if (target != $(".OBJID_MONSTER_MAP_MONSTER").val()) {
+      if (target != document.querySelector(".OBJID_MONSTER_MAP_MONSTER")?.value) {
         chart.data.labels = [];
         chart.data.datasets[0].data = [];
         chart.data.datasets[0].metadata = [];
         chart.data.datasets[1].data = [];
         chart.data.datasets[2].data = [];
         chart.data.datasets[3].data = [];
-        target = $(".OBJID_MONSTER_MAP_MONSTER").val();
+        target = document.querySelector(".OBJID_MONSTER_MAP_MONSTER")?.value;
       }
       const mgr = registryGet('CSaveController').getSaveDataManagerCur();
       mgr.ReCalcManager();
       calc();
       LoadTomSelect();
       const metadata = { "memo": "", "url": registryGet('CSaveController').encodeToURL() };
-      if ($("#clip_with_memo").prop('checked')) {
+      if (HtmlGetObjectCheckedById("clip_with_memo", false)) {
         let memo = prompt("clipメモ");
         if (memo) metadata["memo"] = memo;
       }
       chart.data.labels.push(chart.data.labels.length + 1);
-      const dps = parseFloat($("#BTLRSLT_PART_ATKCNT").parent().prev().prev().prev().prev().text().replaceAll(",", ""))
+      const dps = parseFloat((prevElementSibling(document.getElementById("BTLRSLT_PART_ATKCNT")?.parentElement, 4)?.textContent ?? "").replaceAll(",", ""))
       chart.data.datasets[0].data.push(isNaN(dps) ? 0 : dps);
       chart.data.datasets[0].metadata.push(metadata);
-      const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text().replaceAll(",", ""));
+      const cnt = parseInt((prevElementSibling(document.getElementById("BTLRSLT_PART_EXP")?.parentElement, 2)?.textContent ?? "").replaceAll(",", ""));
       chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
-      const btlrslt_damage_totals = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_TOTAL");
-      const btlrslt_damage_details = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_DETAIL");
+      const btlrslt_damage_totals = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_TOTAL");
+      const btlrslt_damage_details = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_DETAIL");
       const dmg_index = btlrslt_damage_totals.length/3;
-      const dmg = parseFloat($(btlrslt_damage_totals.get(dmg_index)).text().replaceAll(",", ""));
+      const dmg = parseFloat((btlrslt_damage_totals[dmg_index]?.textContent ?? "").replaceAll(",", ""));
       const cycle_index = dmg_index + btlrslt_damage_totals.length/3/2;
       chart.data.datasets[2].data.push(isNaN(dmg) ? 0 : dmg);
-      const cycle = parseFloat($(btlrslt_damage_details.get(cycle_index)).text().replaceAll(",", ""));
+      const cycle = parseFloat((btlrslt_damage_details[cycle_index]?.textContent ?? "").replaceAll(",", ""));
       chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
       chart.update();
       g_Chart = chart;
     });
-    $("#history_reset").click(e => {
+    document.getElementById("history_reset")?.addEventListener("click", (e) => {
       chart.data.labels = [];
       chart.data.datasets[0].data = [];
       chart.data.datasets[0].metadata = [];
@@ -321,7 +352,7 @@ $(function () {
       chart.update();
       g_Chart = null;
     });
-    $("#history_list").click(e => {
+    document.getElementById("history_list")?.addEventListener("click", (e) => {
       document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
       reload_history_table();
       openHistoryModal();
@@ -339,7 +370,7 @@ $(function () {
         [data.datasets[3].data[j], data.datasets[3].data[i]];
     }
     const reload_history_table = () => {
-      $("#clip_modal_table tbody *").remove();
+      document.querySelector("#clip_modal_table tbody")?.replaceChildren();
       let body = ""
       for (let i = 0; i < data.labels.length; i++) {
         body += buildHistoryRowHtml({
@@ -351,27 +382,35 @@ $(function () {
           isLast: i === data.labels.length - 1,
         });
       }
-      $("#clip_modal_table tbody").append(body);
+      document.querySelector("#clip_modal_table tbody")?.insertAdjacentHTML("beforeend", body);
     }
-    $(document).on("click", "div.clip_memo", (e) => {
-      $(e.target).toggle();
-      $(e.target).next("input").toggle().focus();
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest("div.clip_memo");
+      if (!target) return;
+      const input = target.nextElementSibling;
+      if (!input) return;
+      setMemoEditing(target, input, true);
+      input.focus();
     });
-    $(document).on("change", "input.clip_memo", (e) => {
-      if (g_Chart !== chart) return;
-      const index = e.target.closest("tr").rowIndex - 1;
-      data.datasets[0].metadata[index]["memo"] = e.target.value;
+    document.addEventListener("change", (e) => {
+      const target = e.target.closest("input.clip_memo");
+      if (!target || g_Chart !== chart) return;
+      const index = target.closest("tr").rowIndex - 1;
+      data.datasets[0].metadata[index]["memo"] = target.value;
       chart.update();
       reload_history_table();
       g_Chart = chart;
     });
-    $(document).on("blur", "input.clip_memo", (e) => {
-      $(e.target).toggle();
-      $(e.target).prev("div").toggle();
+    document.addEventListener("focusout", (e) => {
+      const target = e.target.closest("input.clip_memo");
+      if (!target) return;
+      const div = target.previousElementSibling;
+      if (div) setMemoEditing(div, target, false);
     });
-    $(document).on("click", ".up_clip", (e) => {
-      if (g_Chart !== chart) return;
-      const row = e.target.closest("tr");
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest(".up_clip");
+      if (!target || g_Chart !== chart) return;
+      const row = target.closest("tr");
       if (row.previousElementSibling) {
         const index = row.rowIndex - 1;
         flip_clip(index, index - 1);
@@ -380,9 +419,10 @@ $(function () {
         g_Chart = chart;
       }
     });
-    $(document).on("click", ".down_clip", (e) => {
-      if (g_Chart !== chart) return;
-      const row = e.target.closest("tr");
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest(".down_clip");
+      if (!target || g_Chart !== chart) return;
+      const row = target.closest("tr");
       if (row.nextElementSibling) {
         const index = row.rowIndex - 1;
         flip_clip(index, index + 1);
@@ -391,9 +431,10 @@ $(function () {
         g_Chart = chart;
       }
     });
-    $(document).on("click", ".remove_clip", (e) => {
-      if (g_Chart !== chart) return;
-      const row = e.target.closest("tr");
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest(".remove_clip");
+      if (!target || g_Chart !== chart) return;
+      const row = target.closest("tr");
       const index = row.rowIndex - 1;
       data.labels.pop();
       data.datasets[0].data.splice(index, 1);
@@ -409,6 +450,4 @@ $(function () {
   };
   buildForm();
 });
-export let g_Chart;
-export function setG_Chart(v) { g_Chart = v; }
 

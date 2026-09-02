@@ -12,8 +12,8 @@ import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { GetJobName } from "../data/mig.job.h.js";
-import { floorBigInt32 } from "../runtime/util.js";
-import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose } from "../ui/calchistory.js";
+import { floorBigInt32, HtmlGetObjectCheckedById } from "../runtime/util.js";
+import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose, setMemoEditing, prevElementSibling, childrenMatching } from "../ui/calchistory.js";
 import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
 // === END AUTO-GENERATED IMPORTS ===
 // Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）
@@ -630,6 +630,14 @@ export class CSaveController {
 			canvas.remove();
 			cont.remove();
 			button.remove()
+
+			// calchistory.js 側の OnDomReady と本メソッドは互いに非同期で、
+			// どちらが先に buildForm() を実行するかはタイミング次第（実測で
+			// 前後関係が入れ替わることを確認済み）。history_graph の有無だけを
+			// 見るガードでは #clip_modal/#clip_modal_blocker の重複生成を
+			// 防げないため、ここでも合わせて除去する。
+			document.getElementById("clip_modal")?.remove();
+			document.getElementById("clip_modal_blocker")?.remove();
 		}
 
 		// 復元データから必要な情報を抽出
@@ -710,7 +718,7 @@ export class CSaveController {
 		chartOptions = sanitizeForChart(chartOptions);
 		// チャートを再作成
 		const buildForm = () => {
-		    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(buildHistoryPanelHtml());
+		    document.getElementById("OBJID_ATTACK_SETTING_BLOCK_MIG")?.insertAdjacentHTML("afterend", buildHistoryPanelHtml());
 
 			let target = 0;
 			let data = {
@@ -798,45 +806,45 @@ export class CSaveController {
 		    	}
 		    });
 
-		    $("#history_clip").click(e => {
+		    document.getElementById("history_clip")?.addEventListener("click", (e) => {
 		    	// 直前の敵と同じか？
-		    	if (target != $(".OBJID_MONSTER_MAP_MONSTER").val()) {
+		    	if (target != document.querySelector(".OBJID_MONSTER_MAP_MONSTER")?.value) {
 		    		chart.data.labels = [];
 		    		chart.data.datasets[0].data = [];
 		    		chart.data.datasets[0].metadata = [];
 		    		chart.data.datasets[1].data = [];
 		    		chart.data.datasets[2].data = [];
 		    		chart.data.datasets[3].data = [];
-		    		target = $(".OBJID_MONSTER_MAP_MONSTER").val();
+		    		target = document.querySelector(".OBJID_MONSTER_MAP_MONSTER")?.value;
 		    	}
 				showLoadingIndicator();
 				const mgr = CSaveController.getSaveDataManagerCur();
 				mgr.ReCalcManager();
 				calc();
 		    	const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
-		    	if ($("#clip_with_memo").prop('checked')) {
+		    	if (HtmlGetObjectCheckedById("clip_with_memo", false)) {
 		    		let memo = prompt("clipメモ");
 		    		if (memo) metadata["memo"] = memo;
 		    	}
 		    	chart.data.labels.push(chart.data.labels.length + 1);
-		    	const dps = parseFloat($("#BTLRSLT_PART_ATKCNT").parent().prev().prev().prev().prev().text().replaceAll(",", ""))
+		    	const dps = parseFloat((prevElementSibling(document.getElementById("BTLRSLT_PART_ATKCNT")?.parentElement, 4)?.textContent ?? "").replaceAll(",", ""))
 		    	chart.data.datasets[0].data.push(isNaN(dps) ? 0 : dps);
 		    	chart.data.datasets[0].metadata.push(metadata);
-		    	const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text().replaceAll(",", ""));
+		    	const cnt = parseInt((prevElementSibling(document.getElementById("BTLRSLT_PART_EXP")?.parentElement, 2)?.textContent ?? "").replaceAll(",", ""));
 		    	chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
-		    	const btlrslt_damage_totals = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_TOTAL");
-		    	const btlrslt_damage_details = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_DETAIL");
+		    	const btlrslt_damage_totals = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_TOTAL");
+		    	const btlrslt_damage_details = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_DETAIL");
 		    	const dmg_index = btlrslt_damage_totals.length/3;
-		    	const dmg = parseFloat($(btlrslt_damage_totals.get(dmg_index)).text().replaceAll(",", ""));
+		    	const dmg = parseFloat((btlrslt_damage_totals[dmg_index]?.textContent ?? "").replaceAll(",", ""));
 		    	const cycle_index = dmg_index + btlrslt_damage_totals.length/3/2;
 		    	chart.data.datasets[2].data.push(isNaN(dmg) ? 0 : dmg);
-		    	const cycle = parseFloat($(btlrslt_damage_details.get(cycle_index)).text().replaceAll(",", ""));
+		    	const cycle = parseFloat((btlrslt_damage_details[cycle_index]?.textContent ?? "").replaceAll(",", ""));
 		    	chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
 		    	chart.update();
 				hideLoadingIndicator();
 		    	setG_Chart(chart);
 		    });
-		    $("#history_reset").click(e => {
+		    document.getElementById("history_reset")?.addEventListener("click", (e) => {
 		    	chart.data.labels = [];
 		    	chart.data.datasets[0].data = [];
 		    	chart.data.datasets[0].metadata = [];
@@ -847,7 +855,7 @@ export class CSaveController {
 		    	chart.update();
 		    	setG_Chart(null);
 		    });
-		    $("#history_list").click(e => {
+		    document.getElementById("history_list")?.addEventListener("click", (e) => {
 		    	document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
 		    	reload_history_table();
 		    	openHistoryModal();
@@ -865,7 +873,7 @@ export class CSaveController {
 		    	  [data.datasets[3].data[j], data.datasets[3].data[i]];
 		    }
 		    const reload_history_table = () => {
-		      $("#clip_modal_table tbody *").remove();
+		      document.querySelector("#clip_modal_table tbody")?.replaceChildren();
 		      let body = ""
 		      for (let i = 0; i < data.labels.length; i++) {
 		        body += buildHistoryRowHtml({
@@ -877,27 +885,35 @@ export class CSaveController {
 		          isLast: i === data.labels.length - 1,
 		        });
 		      }
-		      $("#clip_modal_table tbody").append(body);
+		      document.querySelector("#clip_modal_table tbody")?.insertAdjacentHTML("beforeend", body);
 		    }
-		    $(document).on("click", "div.clip_memo", (e) => {
-		      $(e.target).toggle();
-		      $(e.target).next("input").toggle().focus();
+		    document.addEventListener("click", (e) => {
+		      const target = e.target.closest("div.clip_memo");
+		      if (!target) return;
+		      const input = target.nextElementSibling;
+		      if (!input) return;
+		      setMemoEditing(target, input, true);
+		      input.focus();
 		    });
-		    $(document).on("change", "input.clip_memo", (e) => {
-		      if (g_Chart !== chart) return;
-		      const index = e.target.closest("tr").rowIndex - 1;
-		      data.datasets[0].metadata[index]["memo"] = e.target.value;
+		    document.addEventListener("change", (e) => {
+		      const target = e.target.closest("input.clip_memo");
+		      if (!target || g_Chart !== chart) return;
+		      const index = target.closest("tr").rowIndex - 1;
+		      data.datasets[0].metadata[index]["memo"] = target.value;
 		      chart.update();
 		      reload_history_table();
 		      setG_Chart(chart);
 		    });
-		    $(document).on("blur", "input.clip_memo", (e) => {
-		      $(e.target).toggle();
-		      $(e.target).prev("div").toggle();
+		    document.addEventListener("focusout", (e) => {
+		      const target = e.target.closest("input.clip_memo");
+		      if (!target) return;
+		      const div = target.previousElementSibling;
+		      if (div) setMemoEditing(div, target, false);
 		    });
-		    $(document).on("click", ".up_clip", (e) => {
-		      if (g_Chart !== chart) return;
-		      const row = e.target.closest("tr");
+		    document.addEventListener("click", (e) => {
+		      const target = e.target.closest(".up_clip");
+		      if (!target || g_Chart !== chart) return;
+		      const row = target.closest("tr");
 		      if (row && row.previousElementSibling) {
 		        const index = row.rowIndex - 1;
 		        flip_clip(index, index - 1);
@@ -906,9 +922,10 @@ export class CSaveController {
 		        setG_Chart(chart);
 		      }
 		    });
-		    $(document).on("click", ".down_clip", (e) => {
-		      if (g_Chart !== chart) return;
-		      const row = e.target.closest("tr");
+		    document.addEventListener("click", (e) => {
+		      const target = e.target.closest(".down_clip");
+		      if (!target || g_Chart !== chart) return;
+		      const row = target.closest("tr");
 		      if (row && row.nextElementSibling) {
 		        const index = row.rowIndex - 1;
 		        flip_clip(index, index + 1);
@@ -917,9 +934,10 @@ export class CSaveController {
 		        setG_Chart(chart);
 		      }
 		    });
-		    $(document).on("click", ".remove_clip", (e) => {
-		      if (g_Chart !== chart) return;
-		      const row = e.target.closest("tr");
+		    document.addEventListener("click", (e) => {
+		      const target = e.target.closest(".remove_clip");
+		      if (!target || g_Chart !== chart) return;
+		      const row = target.closest("tr");
 		      const index = row.rowIndex - 1;
 		      data.labels.pop();
 		      data.datasets[0].data.splice(index, 1);
