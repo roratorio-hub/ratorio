@@ -284,3 +284,266 @@ describe('clip履歴パネル', () => {
         await context.close();
     });
 });
+
+/**
+ * jQuery 撤去（refactor/remove-jquery Phase 5a）前の characterization テスト。
+ * `div.clip_memo` トグル・`.up_clip`/`.down_clip`/`.remove_clip`・`#history_reset` は
+ * 上のスイートでは未カバーだった。$(document).on(...) の委譲6本を移行する前に、
+ * 現行（jQuery実装）の観測可能な挙動を固定する。
+ *
+ * 新規構築経路（calchistory.js）とセーブURL復元経路（CSaveController.js#restoreChartDisplay）
+ * の両方で検証する（実体が意図的に重複しているため）。
+ */
+
+/**
+ * memo1 → memo2 の順で2回 clip する（#clip_with_memo は ON のまま）。
+ * confirm 型（URL出力時の「クリップデータを保存しますか？」等）は accept する
+ * （dismiss すると encodeToURL(true) が chartData を送出しない。既存テスト参照）。
+ */
+async function clipTwice(page: Page, memo1: string, memo2: string): Promise<void> {
+    let call = 0;
+    page.on('dialog', async (dialog) => {
+        if (dialog.type() === 'prompt') {
+            await dialog.accept(call++ === 0 ? memo1 : memo2).catch(() => {});
+        } else if (dialog.type() === 'confirm') {
+            await dialog.accept().catch(() => {});
+        } else {
+            await dialog.dismiss().catch(() => {});
+        }
+    });
+    await page.check('#clip_with_memo');
+    await page.click('#history_clip');
+    await page.waitForTimeout(400);
+    await page.click('#history_clip');
+    await page.waitForTimeout(400);
+}
+
+/** #clip_modal_table 内の行ごとの memo テキスト（div.clip_memo）を上から順に返す。 */
+async function readMemoOrder(page: Page): Promise<(string | null)[]> {
+    return page.evaluate(() =>
+        Array.from(document.querySelectorAll('#clip_modal_table tbody tr')).map(
+            (tr) => tr.querySelector('div.clip_memo')?.textContent ?? null
+        )
+    );
+}
+
+describe('clip履歴パネル 未カバー操作（jQuery撤去前の characterization・新規構築経路）', () => {
+    it('div.clip_memo クリックで input に切り替わりフォーカスされ、未編集なら外すと元に戻る', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        page.on('dialog', (dialog) => {
+            if (dialog.type() === 'prompt') dialog.accept('memoA').catch(() => {});
+            else dialog.dismiss().catch(() => {});
+        });
+
+        await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(1000);
+        await page.check('#clip_with_memo');
+        await page.click('#history_clip');
+        await page.waitForTimeout(400);
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+
+        await page.click('#clip_modal_table tbody tr:first-child div.clip_memo');
+        await page.waitForTimeout(100);
+
+        const opened = await page.evaluate(() => {
+            const row = document.querySelector('#clip_modal_table tbody tr');
+            const div = row?.querySelector<HTMLElement>('div.clip_memo');
+            const input = row?.querySelector<HTMLInputElement>('input.clip_memo');
+            return {
+                divHidden: div ? getComputedStyle(div).display === 'none' : null,
+                inputVisible: input ? getComputedStyle(input).display !== 'none' : null,
+                isFocused: input === document.activeElement,
+                inputValue: input?.value ?? null,
+            };
+        });
+        expect(opened.divHidden).toBe(true);
+        expect(opened.inputVisible).toBe(true);
+        expect(opened.isFocused).toBe(true);
+        expect(opened.inputValue).toBe('memoA');
+
+        // 値を変更せずに外す → change は発火せず blur のみ。同じノードのまま div/input が入れ替わる。
+        await page.click('#clip_modal_table thead');
+        await page.waitForTimeout(100);
+
+        const closed = await page.evaluate(() => {
+            const row = document.querySelector('#clip_modal_table tbody tr');
+            const div = row?.querySelector<HTMLElement>('div.clip_memo');
+            const input = row?.querySelector<HTMLInputElement>('input.clip_memo');
+            return {
+                divVisible: div ? getComputedStyle(div).display !== 'none' : null,
+                inputHidden: input ? getComputedStyle(input).display === 'none' : null,
+                divText: div?.textContent ?? null,
+            };
+        });
+        expect(closed.divVisible).toBe(true);
+        expect(closed.inputHidden).toBe(true);
+        expect(closed.divText).toBe('memoA');
+
+        await context.close();
+    });
+
+    it('メモを編集して外すと保存され、テーブルが再描画される', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        page.on('dialog', (dialog) => {
+            if (dialog.type() === 'prompt') dialog.accept('before').catch(() => {});
+            else dialog.dismiss().catch(() => {});
+        });
+
+        await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(1000);
+        await page.check('#clip_with_memo');
+        await page.click('#history_clip');
+        await page.waitForTimeout(400);
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+
+        await page.click('#clip_modal_table tbody tr:first-child div.clip_memo');
+        await page.waitForTimeout(100);
+        await page.fill('#clip_modal_table tbody tr:first-child input.clip_memo', 'after');
+        await page.click('#clip_modal_table thead');
+        await page.waitForTimeout(200);
+
+        const result = await page.evaluate(() => {
+            const row = document.querySelector('#clip_modal_table tbody tr');
+            const div = row?.querySelector<HTMLElement>('div.clip_memo');
+            const input = row?.querySelector<HTMLInputElement>('input.clip_memo');
+            return {
+                divText: div?.textContent ?? null,
+                divVisible: div ? getComputedStyle(div).display !== 'none' : null,
+                inputHidden: input ? getComputedStyle(input).display === 'none' : null,
+                inputValue: input?.value ?? null,
+            };
+        });
+        expect(result.divText).toBe('after');
+        expect(result.divVisible).toBe(true);
+        expect(result.inputHidden).toBe(true);
+        expect(result.inputValue).toBe('after');
+
+        await context.close();
+    });
+
+    it('↑↓×でclip行の並び替え・削除ができる', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+
+        await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(1000);
+        await clipTwice(page, 'MemoFirst', 'MemoSecond');
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+
+        expect(await readMemoOrder(page)).toEqual(['MemoFirst', 'MemoSecond']);
+
+        // 1行目（MemoFirst・isFirst=true）を1つ下げる
+        await page.click('#clip_modal_table tbody tr:nth-child(1) button.down_clip');
+        await page.waitForTimeout(200);
+        expect(await readMemoOrder(page)).toEqual(['MemoSecond', 'MemoFirst']);
+
+        // 2行目（MemoFirst・現在位置）を1つ上げて元に戻す
+        await page.click('#clip_modal_table tbody tr:nth-child(2) button.up_clip');
+        await page.waitForTimeout(200);
+        expect(await readMemoOrder(page)).toEqual(['MemoFirst', 'MemoSecond']);
+
+        // 1行目（MemoFirst）を削除
+        await page.click('#clip_modal_table tbody tr:nth-child(1) button.remove_clip');
+        await page.waitForTimeout(200);
+        expect(await readMemoOrder(page)).toEqual(['MemoSecond']);
+
+        await context.close();
+    });
+
+    it('#history_reset で全クリップが消去される（再clipしても前のデータを引きずらない）', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        let call = 0;
+        page.on('dialog', async (dialog) => {
+            if (dialog.type() === 'prompt') {
+                await dialog.accept(call++ === 0 ? 'ToBeReset' : 'AfterReset').catch(() => {});
+            } else {
+                await dialog.dismiss().catch(() => {});
+            }
+        });
+
+        await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(1000);
+        await page.check('#clip_with_memo');
+        await page.click('#history_clip');
+        await page.waitForTimeout(400);
+
+        await page.click('#history_reset');
+        await page.waitForTimeout(200);
+
+        await page.click('#history_clip');
+        await page.waitForTimeout(400);
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+
+        expect(await readMemoOrder(page)).toEqual(['AfterReset']);
+
+        await context.close();
+    });
+});
+
+describe('clip履歴パネル 未カバー操作（jQuery撤去前の characterization・セーブURL復元経路）', () => {
+    // CSaveController.js#restoreChartDisplay 側は calchistory.js とは別コードパス
+    // （意図的な重複）。上のスイートと同じ操作をセーブURL復元後のページに対して行う。
+    it('復元後のパネルでも↑↓×・#history_reset が同様に動作する', async () => {
+        const context = await browser.newContext();
+        const clipPage = await context.newPage();
+
+        await clipPage.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await clipPage.waitForTimeout(1000);
+        await clipTwice(clipPage, 'RestoredFirst', 'RestoredSecond');
+
+        await clipPage.check('#OBJID_SWITCH_SAVE_CTRL_MIG');
+        await clipPage.waitForSelector('#OBJID_INPUT_URL_OUT_MIG', { state: 'visible', timeout: 5000 });
+        await clipPage.click('#OBJID_BUTTON_URL_OUT_MIG');
+        await clipPage.waitForTimeout(300);
+        const outputUrl = await clipPage.inputValue('#OBJID_INPUT_URL_OUT_MIG');
+        await clipPage.close();
+        expect(outputUrl.length).toBeGreaterThan(200);
+
+        const page = await context.newPage();
+        const restoreErrors: string[] = [];
+        page.on('pageerror', (e) => restoreErrors.push(String(e)));
+        page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+
+        await page.goto(outputUrl, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(1500);
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+
+        expect(await readMemoOrder(page)).toEqual(['RestoredFirst', 'RestoredSecond']);
+
+        await page.click('#clip_modal_table tbody tr:nth-child(1) button.down_clip');
+        await page.waitForTimeout(200);
+        expect(await readMemoOrder(page)).toEqual(['RestoredSecond', 'RestoredFirst']);
+
+        await page.click('#clip_modal_table tbody tr:nth-child(2) button.up_clip');
+        await page.waitForTimeout(200);
+        expect(await readMemoOrder(page)).toEqual(['RestoredFirst', 'RestoredSecond']);
+
+        await page.click('#clip_modal_table tbody tr:nth-child(1) button.remove_clip');
+        await page.waitForTimeout(200);
+        expect(await readMemoOrder(page)).toEqual(['RestoredSecond']);
+
+        await page.click('#clip_modal_close');
+        await page.waitForTimeout(200);
+
+        await page.click('#history_reset');
+        await page.waitForTimeout(200);
+        await page.click('#history_clip');
+        await page.waitForTimeout(400);
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+        // #clip_with_memo は毎回未チェックへ戻る（パネルHTMLの初期状態）。
+        // チェックしていないので memo は空文字のまま clip される。
+        expect(await readMemoOrder(page)).toEqual(['']);
+
+        expect(restoreErrors, `復元後の操作中に未捕捉例外: ${restoreErrors.join('\n')}`).toEqual([]);
+        await context.close();
+    });
+});
