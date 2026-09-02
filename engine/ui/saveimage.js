@@ -25,9 +25,8 @@ import {
          n_A_JOB,
 } from "../runtime/roro-state.js";
 
-// リファクタリング計画 Phase 12: jQueryによるDOM走査（v()/t()/e()）を
-// モデル読み取り（extractModelFromDom）・計算結果ブリッジ（g_extraInfoDataBridge）・
-// 純粋関数（hmjob-bridge.js / hmchara.js / mig.job.h.js）に置換した。
+// DOM読み取りはモデル（extractModelFromDom）・計算結果ブリッジ（g_extraInfoDataBridge）・
+// 純粋関数（hmjob-bridge.js / hmchara.js / mig.job.h.js）経由に統一している。
 // DOMは「装備・カード・矢の隠しDATA_要素」等、モデルの対応が無い箇所（衣装欄の
 // 精錬値表記等）以外では一切読まない。
 // extractModelFromDom は stallcalc-hydrate.js から直接importせず engine-registry.js

@@ -2,8 +2,7 @@ import { vi, describe, it, expect } from 'vitest';
 
 vi.hoisted(() => {
     // Phase 3b で BuffOtherCategory.js が CAttackMethodAreaComponentManager を import するようになり
-    // 連鎖的に calchistory.js の $(function(){...}) と CShadowEquipController.initializeHTML() が呼ばれる
-    (globalThis as any).$ = (_fn: any) => {};
+    // 連鎖的に CShadowEquipController.initializeHTML() が呼ばれる
     const mockEl = {
         querySelectorAll: () => [],
         querySelector: () => null,

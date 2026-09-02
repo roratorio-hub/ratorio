@@ -171,10 +171,9 @@ export function OnClickSkillSWLearned(){
 			const objUrlInput = document.getElementById("ID_SKILL_LEARNED_URL");
 			url = new URL(objUrlInput?.value||location.href);
 			showLoadingIndicator();
-			// 各 select に値を反映したあと再計算通知をまとめて 1 回だけ呼ぶ。
-			// 注意: jQuery の .change() はネイティブ addEventListener('change') ハンドラを
-			// 発火させないため、状態更新（n_A_LearnedSkill）と着色は
-			// RefreshSkillColumnHeaderLearned を直接呼んで行う（第4引数で再計算通知を抑止）。
+			// 各 select に値を代入しても change イベントは発火しないため、
+			// 状態更新（n_A_LearnedSkill）と着色は RefreshSkillColumnHeaderLearned を
+			// 直接呼んで行う（第4引数で再計算通知を抑止し、ループ後にまとめて 1 回だけ呼ぶ）。
 			setTimeout(() => {
 				for (const elm of document.querySelectorAll("#ID_SKILL_LEARNED select")) {
 					const id_skill_name = elm.id.replace("SELECT","TD").replace("LEVEL","NAME");

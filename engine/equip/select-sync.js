@@ -1,12 +1,10 @@
 /**
  * select の値を設定し、表示と change を同期させる。
  *
- * Tom Select 化された select は元 <select> への直接代入（jQuery .val() 含む）では
- * UI が更新されないため、インスタンスがあれば setValue() を使う。
- * setValue() は非 silent で native 'change' を発火するので、
- * eventsetup.js の native listener / inline onchange / 再初期化リスナーがすべて駆動する。
- * （select2 は jQuery の合成 change を購読していたため旧実装でも動いていたが、
- *   Tom Select は native しか見ない＝Phase 3d リグレッション対策）
+ * Tom Select 化された select は元 <select> への直接代入では UI が更新されないため、
+ * インスタンスがあれば setValue() を使う。setValue() は非 silent で native 'change' を
+ * 発火するので、eventsetup.js の native listener / inline onchange / 再初期化リスナーが
+ * すべて駆動する（Tom Select は native change しか見ない）。
  *
  * 必ず「値」で指定すること。アクセサリ1と2ではカード候補リストの並び・件数が
  * 一致しないため、selectedIndex でのコピーは index がズレて空選択になる。

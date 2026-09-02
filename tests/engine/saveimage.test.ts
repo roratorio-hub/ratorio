@@ -1,14 +1,4 @@
-import { vi, describe, it, expect } from 'vitest';
-
-vi.hoisted(() => {
-    const mockJQuery: any = (fn: any) => {
-        if (typeof fn === 'function') fn();
-        return mockJQuery;
-    };
-    mockJQuery.click = () => mockJQuery;
-    (globalThis as any).$ = mockJQuery;
-});
-
+import { describe, it, expect } from 'vitest';
 import { generateImage } from '@engine/ui/saveimage.js';
 import { get as registryGet } from '@engine/runtime/engine-registry.js';
 
