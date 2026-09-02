@@ -145,7 +145,7 @@ export function applyMigArrayToConf(map, migArray, confGlobals) {
     for (const globalName of Object.keys(map)) {
         const dst = confGlobals[globalName];
         for (const { migIndex, confIndex } of map[globalName]) {
-            dst[confIndex] = migArray[migIndex];
+            dst[confIndex] = migArray[migIndex] ?? 0;
         }
     }
 }
