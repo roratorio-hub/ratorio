@@ -93,7 +93,7 @@ export async function loadFromBase64String(importData: string): Promise<void> {
 
 async function importRtxDataObject(dataObject: RtxData): Promise<void> {
     // ローディングインジケーターを表示
-    showLoadingIndicator();
+    (registryGet('showLoadingIndicator') as (() => void) | undefined)?.();
 
     // setTimeout 内の処理が完了するまで待てるよう Promise で包む
     await new Promise<void>((resolve) => {
@@ -370,7 +370,7 @@ async function importRtxDataObject(dataObject: RtxData): Promise<void> {
                 console.error("importRtxDataObject 内でエラー:", err);
             } finally {
                 // 処理中にエラーが出てもインジケーターを消して resolve する
-                try { hideLoadingIndicator(); } catch (e) { /* ignore */ }
+                try { (registryGet('hideLoadingIndicator') as (() => void) | undefined)?.(); } catch (e) { /* ignore */ }
                 resolve();
             }
         }, 0);

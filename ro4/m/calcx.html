@@ -159,9 +159,6 @@
 	<!-- セーブ履歴機能（Chart.js は calchistory.js が ESM import で読み込む。
 	     モーダルはネイティブ <dialog> を使うため jquery-modal は不要） -->
 	<script type="module" src="../../engine/ui/calchistory.js"></script>
-	<!-- 重い処理用のローディングインジケーター -->
-	<link href="../../jquery/loadingindicator/spinner.css" rel="stylesheet" />
-	<script src="../../jquery/loadingindicator/spinner.js"></script>
 
 </head>
 
@@ -171,7 +168,6 @@
 			<span id="ID_FRAME"></span>
 		</div>
 		<div class="content">
-			<div class="spinner" id="loadingSpinner"></div>
 			<div style="padding: 20px 34px">
 
 				<form name="calcForm">

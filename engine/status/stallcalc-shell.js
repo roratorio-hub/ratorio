@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			// 確認ダイアログの有効化スイッチを初期化
 			if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
-				$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
+				document.getElementById("OBJID_SWITCH_CONFIRM_DIALOG")?.click();
 			}
 		}
 		else {

@@ -14,6 +14,7 @@ import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { GetJobName } from "../data/mig.job.h.js";
 import { floorBigInt32 } from "../runtime/util.js";
 import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose } from "../ui/calchistory.js";
+import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
 // === END AUTO-GENERATED IMPORTS ===
 // Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';

@@ -9,6 +9,7 @@ import { ItemObjNew } from "../equip/item.dat.js";
 import { SkillObjNew } from "./skill.dat.js";
 import { HtmlCreateElement, HtmlCreateTextNode } from "../runtime/util.js";
 import { RegisterLearnedSkillSearch } from "../bridge/skill-search-bridge.js";
+import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: equip.js との循環 import 回避
 import { equipBridge } from "../bridge/equip-bridge.js";
@@ -145,8 +146,8 @@ export function OnClickSkillSWLearned(){
 	if (!n_SkillSWLearned) {
 		return;
 	}
-	// 公式スキルツリーから出力されたURLを読み込む機能 
-	$(objTbody).append(`
+	// 公式スキルツリーから出力されたURLを読み込む機能
+	objTbody.insertAdjacentHTML("beforeend", `
 		<tr><td colspan="6" style="padding: 3px">
 			<div style="display:flex">
 				<div style="width:100px;margin:0 0.5em"><button type="button" id="ID_SKILL_LEARNED_LOAD" style="width:100%">URL入力</button></div>
@@ -155,36 +156,40 @@ export function OnClickSkillSWLearned(){
 			</div>
 		</td></tr>
 	`);
-	$(document).off("click","#ID_SKILL_LEARNED_URL_CLEAR");
-	$(document).on("click","#ID_SKILL_LEARNED_URL_CLEAR", (e)=>{
-		$("#ID_SKILL_LEARNED_URL").val("");
-		$("#ID_SKILL_LEARNED_LOAD").click();
+	// OnClickSkillSWLearned() は呼ばれるたび ID_SKILL_LEARNED 配下を作り直す（92-94行目）ため、
+	// このボタンも毎回新しい要素になる。直接束縛でよく、再登録前の解除（旧 .off()）は不要。
+	const objLoadBtn = document.getElementById("ID_SKILL_LEARNED_LOAD");
+	const objClearBtn = document.getElementById("ID_SKILL_LEARNED_URL_CLEAR");
+	objClearBtn.addEventListener("click", (e)=>{
+		const objUrlInput = document.getElementById("ID_SKILL_LEARNED_URL");
+		if (objUrlInput) objUrlInput.value = "";
+		objLoadBtn.click();
 	});
-	$(document).off("click","#ID_SKILL_LEARNED_LOAD");
-	$(document).on("click","#ID_SKILL_LEARNED_LOAD", (e)=>{
+	objLoadBtn.addEventListener("click", (e)=>{
 		let	url = location.href;
 		try{
-			url = new URL($("#ID_SKILL_LEARNED_URL").val()||location.href);
+			const objUrlInput = document.getElementById("ID_SKILL_LEARNED_URL");
+			url = new URL(objUrlInput?.value||location.href);
 			showLoadingIndicator();
 			// 各 select に値を反映したあと再計算通知をまとめて 1 回だけ呼ぶ。
 			// 注意: jQuery の .change() はネイティブ addEventListener('change') ハンドラを
 			// 発火させないため、状態更新（n_A_LearnedSkill）と着色は
 			// RefreshSkillColumnHeaderLearned を直接呼んで行う（第4引数で再計算通知を抑止）。
 			setTimeout(() => {
-				$("#ID_SKILL_LEARNED select").each(function(idx,elm) {
-					const id_skill_name = $(elm).attr("id").replace("SELECT","TD").replace("LEVEL","NAME");
-					const skill_name = $("#"+id_skill_name).text();
+				for (const elm of document.querySelectorAll("#ID_SKILL_LEARNED select")) {
+					const id_skill_name = elm.id.replace("SELECT","TD").replace("LEVEL","NAME");
+					const skill_name = document.getElementById(id_skill_name)?.textContent ?? "";
 					const skill = SkillObjNew.filter((d) => d[SKILL_DATA_INDEX_NAME].replace(/\([^)]*\)/g, "").replace(/\<[^>]*\>/g, "")==skill_name)[0];
 					var skill_level = 0
 					if (skill) {
 						skill_level = url.searchParams.get(skill[SKILL_DATA_INDEX_REFID])||0;
 					}
-					$(this).val(skill_level);
+					elm.value = String(skill_level);
 					// id 末尾の数値が n_A_LearnedSkill のインデックス
-					const learnedIdx = parseInt($(elm).attr("id").replace("OBJID_SELECT_LEARNED_SKILL_LEVEL_", ""), 10);
+					const learnedIdx = parseInt(elm.id.replace("OBJID_SELECT_LEARNED_SKILL_LEVEL_", ""), 10);
 					// 状態更新・着色のみ（再計算通知はループ後に1回だけ）
-					RefreshSkillColumnHeaderLearned(this, learnedIdx, this.value, true);
-				});
+					RefreshSkillColumnHeaderLearned(elm, learnedIdx, elm.value, true);
+				}
 				// まとめて1回だけ再計算
 				// "OnClickSkillLearnedLoad" は旧 AutoCalc のswitch文のどのcaseにも一致しない
 				// 文字列だった（実質no-op、flag=3のときのみ再計算）。ここでも同じ挙動を保つため

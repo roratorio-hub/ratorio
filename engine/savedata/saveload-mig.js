@@ -7,7 +7,8 @@ import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { CSaveDataConverter } from "./CSaveDataConverter.js";
 import { CSaveDataMappingManager, CURRENT_VERSION } from "./CSaveDataMappingManager.js";
 import { GetSaveDataVersion, VersionModify } from "./savedata-codec.js";
-import { HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, MallocArray } from "../runtime/util.js";
+import { HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, MallocArray } from "../runtime/util.js";
+import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 // 旧データ構造は、最大でバージョン 99 まで
@@ -22,7 +23,7 @@ export function OnClickSaveSaveData () {
 	const savedName = CSaveController.getDisplayName(dataIndex);
 	// 上書き確認
 	const noDataRegex = /^No\.\d+:No Data$/;
-	if ($("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") && !noDataRegex.test(savedName)) {
+	if (HtmlGetObjectCheckedById("OBJID_SWITCH_CONFIRM_DIALOG", false) && !noDataRegex.test(savedName)) {
 		if (!confirm(`${savedName}\nを上書きしてよろしいですか？`)) {
 			return;
 		}
@@ -68,7 +69,7 @@ export function OnClickLoadSaveData () {
 	// 必要情報の取得
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 	const saveName = CSaveController.getDisplayName(dataIndex);
-	if ($("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") && !confirm(`入力中の情報は破棄されます。\n${saveName}\nをロードしてよろしいですか？`)) {
+	if (HtmlGetObjectCheckedById("OBJID_SWITCH_CONFIRM_DIALOG", false) && !confirm(`入力中の情報は破棄されます。\n${saveName}\nをロードしてよろしいですか？`)) {
 		return;
 	}
 	// インジケーター表示
@@ -96,7 +97,7 @@ export function OnClickDeleteSaveData () {
 	// 必要情報の取得
 	const dataIndex = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_SAVE_DATA_MIG", 0);
 	const saveName = CSaveController.getDisplayName(dataIndex);
-	if ($("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") && !confirm(`${saveName}\nを削除してもよろしいですか？`)) {
+	if (HtmlGetObjectCheckedById("OBJID_SWITCH_CONFIRM_DIALOG", false) && !confirm(`${saveName}\nを削除してもよろしいですか？`)) {
 		return;
 	}
 	// データを削除
@@ -363,7 +364,7 @@ export function SaveDataChangeMIG (wstr) {
  * 確認ダイアログの表示・非表示状態を変更する
  */
 export function OnClickConfirmDialogSwitch() {
-	const status = $("#OBJID_SWITCH_CONFIRM_DIALOG").prop("checked") ? 1 : 0;
+	const status = HtmlGetObjectCheckedById("OBJID_SWITCH_CONFIRM_DIALOG", false) ? 1 : 0;
 	CSaveController.setSettingProp(CSaveDataConst.propNameConfirmDialogSwitch, status);
 }
 

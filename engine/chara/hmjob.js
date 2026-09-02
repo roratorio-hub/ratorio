@@ -14,6 +14,7 @@ import { CCharaConfYozi } from "./CCharaConfYozi.js";
 import { EquipNumSearch } from "./chara.js";
 import { changeJobSettings } from "../equip/equip.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
+import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
 import {
          ITEM_ID_MICHINARU_SHUCHUNO_BOOTS, ITEM_ID_MICHINARU_SOZONO_BOOTS,
          ITEM_ID_NOEQUIP_SHIELD
@@ -1939,7 +1940,11 @@ export function migrateOtherJob(jobId) {
 			OnClickSkillSWLearned();
 			// 職固有自己支援・パッシブ持続系の初期化
 			n_A_PassSkill.fill(0);
-			$("#OBJID_CHECK_A1_SKILL_SW").prop("checked", true).trigger("click");
+			const objA1SkillSw = document.getElementById("OBJID_CHECK_A1_SKILL_SW");
+			if (objA1SkillSw) {
+				objA1SkillSw.checked = true;
+				objA1SkillSw.click();
+			}
 		}
 		// 再計算
 		calc();
