@@ -7,6 +7,7 @@ vi.hoisted(() => {
         value: '0',
         checked: false,
         appendChild: () => {},
+        replaceChildren: () => {},
         setAttribute: () => {},
         removeAttribute: () => {},
         getAttribute: () => null,

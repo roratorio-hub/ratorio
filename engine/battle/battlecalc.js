@@ -612,7 +612,7 @@ import {
          n_A_Weapon_ATKplus, n_A_WeaponLV_seirenATK, n_A_WeaponLV_Minplus, n_A_WeaponLV_Maxplus,
          n_A_Weapon2LV, n_A_Weapon2_ATK, n_A_Weapon2_ATKplus, n_A_Weapon2LV_seirenATK,
          n_A_Weapon2LV_Minplus, n_A_Weapon2LV_Maxplus, n_A_BodyZokusei, n_B_DEF2,
-         n_B_MDEF2, n_A_PassSkill5,
+         n_B_MDEF2, n_A_PassSkill5, n_A_WeaponZokusei,
 } from "../runtime/roro-state.js";
 
 
@@ -2851,7 +2851,11 @@ export function ComputeBattleResult(retValArray) {
 
 	if(n_A_ActiveSkill==0 || n_A_ActiveSkill==SKILL_ID_SHARP_SHOOTING || n_A_ActiveSkill==401 || n_A_ActiveSkill==456 || n_A_ActiveSkill==578 || (n_A_ActiveSkill==86 && (50 <= mobData[18] && mobData[18] <60))){
 		CS.w_HIT_HYOUJI = Math.floor(GetActHitRateAll(n_A_ActiveSkill, mobData) * 100) /100;
-		document.getElementById("CRInum").textContent = (Math.round(GetActRateCritical(n_A_ActiveSkill, mobData) * 100) / 100) + SubName[0];
+		// headless実行時（要素が存在しない）は表示を諦める（残件台帳 B-28）
+		const objCRInum = document.getElementById("CRInum");
+		if (objCRInum != null) {
+			objCRInum.textContent = (Math.round(GetActRateCritical(n_A_ActiveSkill, mobData) * 100) / 100) + SubName[0];
+		}
 	}
 
 	set_w_FLEE(95 - (mobData[33] - charaData[CHARA_DATA_INDEX_FLEE]));
@@ -2874,7 +2878,11 @@ export function ComputeBattleResult(retValArray) {
 	// FLEE範囲補正
 	set_w_FLEE(Math.min(95, Math.max(5, w_FLEE)));
 
-	document.getElementById("BattleFLEE").textContent = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
+	// headless実行時（要素が存在しない）は表示を諦める（残件台帳 B-28）
+	const objBattleFLEE = document.getElementById("BattleFLEE");
+	if (objBattleFLEE != null) {
+		objBattleFLEE.textContent = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
+	}
 
 	//----------------------------------------------------------------
 	//
@@ -3089,7 +3097,9 @@ export function ComputeBattleResult(retValArray) {
 		psycoFix = zokusei[mobData[MONSTER_DATA_INDEX_ELEMENT]][ELM_ID_VANITY];
 	}
 	else {
-		psycoFix = zokusei[mobData[MONSTER_DATA_INDEX_ELEMENT]][HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", 0)];
+		// OBJID_SELECT_ARMS_ELEMENT と同じ select を HydrateFromModel() 経由で
+		// 既に読んでいる n_A_WeaponZokusei を使う（DOM への直読みは残件台帳 B-28 で撤去）。
+		psycoFix = zokusei[mobData[MONSTER_DATA_INDEX_ELEMENT]][n_A_WeaponZokusei];
 	}
 
 	// 強制無属性倍率の適用
@@ -4226,8 +4236,9 @@ export function SET_ZOKUSEI(mobData, attackMethodConfArray) {
 	var itemRegionIdArray = null;
 	var cardRegionIdArray = null;
 	var bApplyArrowElement = false;
-	// 属性付与状態を取得
-	set_n_A_Weapon_zokusei(HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY));
+	// 属性付与状態を取得（OBJID_SELECT_ARMS_ELEMENT と同じ select を HydrateFromModel() 経由で
+	// 既に読んでいる n_A_WeaponZokusei を使う。DOM への直読みは残件台帳 B-28 で撤去）
+	set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
 	//n_A_Weapon2_zokusei = n_A_Weapon_zokusei;
 	CS.BK_Weapon_zokusei = n_A_Weapon_zokusei;
 	// 属性付与が指定されていない場合のみ、装備の属性を確認
