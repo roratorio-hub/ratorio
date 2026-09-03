@@ -14,7 +14,7 @@ import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { GetJobName } from "../data/mig.job.h.js";
 import { floorBigInt32, HtmlGetObjectCheckedById } from "../runtime/util.js";
 import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose, setMemoEditing, prevElementSibling, childrenMatching } from "../ui/calchistory.js";
-import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
+import { runWithLoadingIndicator } from "../ui/loading-indicator.js";
 // === END AUTO-GENERATED IMPORTS ===
 // Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
@@ -791,9 +791,9 @@ export class CSaveController {
 		    	    }
 		    	  },
 		    	  onClick: (e) => {
-					showLoadingIndicator();
-		    	    // v4: onClick の e は ChartEvent — e.x がキャンバス座標を直接保持
+			    	    // v4: onClick の e は ChartEvent — e.x がキャンバス座標を直接保持
 		    	    const dataX = chart.scales.x.getValueForPixel(e.x);
+					runWithLoadingIndicator(() => {
 		    	    if (chart.data.datasets[0].data.length > dataX) {
 		    	    	let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
 		    	    	CSaveController.loadFromURL(url);
@@ -801,7 +801,7 @@ export class CSaveController {
 		    	    }
 					calc();
 					LoadTomSelect();
-					hideLoadingIndicator();
+					});
 		    	  }
 		    	}
 		    });
@@ -817,7 +817,7 @@ export class CSaveController {
 		    		chart.data.datasets[3].data = [];
 		    		target = document.querySelector(".OBJID_MONSTER_MAP_MONSTER")?.value;
 		    	}
-				showLoadingIndicator();
+				runWithLoadingIndicator(() => {
 				const mgr = CSaveController.getSaveDataManagerCur();
 				mgr.ReCalcManager();
 				calc();
@@ -841,8 +841,8 @@ export class CSaveController {
 		    	const cycle = parseFloat((btlrslt_damage_details[cycle_index]?.textContent ?? "").replaceAll(",", ""));
 		    	chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
 		    	chart.update();
-				hideLoadingIndicator();
 		    	setG_Chart(chart);
+				});
 		    });
 		    document.getElementById("history_reset")?.addEventListener("click", (e) => {
 		    	chart.data.labels = [];

@@ -547,3 +547,86 @@ describe('clip履歴パネル 未カバー操作（jQuery撤去前の characteri
         await context.close();
     });
 });
+
+/**
+ * clip履歴パネルのClip（保存）・グラフ点クリック（ロード）操作へのローディング
+ * インジケーター配線（2026-09-03 ユーザー要望）。
+ * jQuery スピナー時代にはこの2箇所（calchistory.js の新規構築経路）に
+ * インジケーター表示が実装されていなかった（CSaveController.js のセーブ復元経路には
+ * 元々あったが、非対称だった）。runWithLoadingIndicator() で統一する。
+ *
+ * document.body の aria-busy 属性の set/remove を Element.prototype レベルでフックし、
+ * 呼ばれた事実を記録する（calcx.test.ts の職業変更テストと同じ手法）。
+ */
+describe('clip履歴パネル ローディングインジケーター配線（新規構築経路）', () => {
+    async function hookAriaBusy(page: Page): Promise<void> {
+        await page.evaluate(() => {
+            const events: string[] = [];
+            const origSet = Element.prototype.setAttribute;
+            const origRemove = Element.prototype.removeAttribute;
+            Element.prototype.setAttribute = function (name: string, value: string) {
+                if (this === document.body && name === 'aria-busy') events.push('set');
+                return origSet.call(this, name, value);
+            };
+            Element.prototype.removeAttribute = function (name: string) {
+                if (this === document.body && name === 'aria-busy') events.push('remove');
+                return origRemove.call(this, name);
+            };
+            (window as any).__ariaBusyEvents = events;
+        });
+    }
+
+    async function readAriaBusyEvents(page: Page): Promise<string[]> {
+        return page.evaluate(() => (window as any).__ariaBusyEvents as string[]);
+    }
+
+    it('Clip（#history_clip）でローディングインジケーターの表示/非表示が呼ばれる', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            await page.waitForTimeout(1000);
+            await hookAriaBusy(page);
+
+            await page.click('#history_clip');
+            await page.waitForTimeout(300);
+
+            const events = await readAriaBusyEvents(page);
+            expect(events.filter((e) => e === 'set').length).toBeGreaterThan(0);
+            expect(events.filter((e) => e === 'set').length)
+                .toBe(events.filter((e) => e === 'remove').length);
+        } finally {
+            await context.close();
+        }
+    });
+
+    // グラフの onClick は当たり判定（データ点をヒットしたか）に関わらず既存挙動で
+    // 常に calc()/LoadTomSelect() が走る（ヒットしなかった場合は URL 読み込みだけ
+    // スキップする設計）。ただし Chart.js 自体は「chartArea（軸ラベル等のパディングを
+    // 除いた実際の描画領域）内のクリックのみ」onClick を発火する（実測で確認:
+    // canvas 左上付近 (5,5) は軸パディングに掛かり発火しない）。
+    // Playwright の click() はデフォルトで要素の中心をクリックするため、
+    // 明示的な position 指定はせず中心（chartArea内に収まる）を使う。
+    it('グラフ上のクリック（ロード）でローディングインジケーターの表示/非表示が呼ばれる', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+            await page.waitForTimeout(1000);
+            // 少なくとも1点あるとより実操作に近い
+            await page.click('#history_clip');
+            await page.waitForTimeout(300);
+
+            await hookAriaBusy(page);
+            await page.click('#history_graph');
+            await page.waitForTimeout(300);
+
+            const events = await readAriaBusyEvents(page);
+            expect(events.filter((e) => e === 'set').length).toBeGreaterThan(0);
+            expect(events.filter((e) => e === 'set').length)
+                .toBe(events.filter((e) => e === 'remove').length);
+        } finally {
+            await context.close();
+        }
+    });
+});

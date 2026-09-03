@@ -9,6 +9,7 @@ import {
 import { get as registryGet } from "../runtime/engine-registry.js";
 import { OnDomReady } from "../runtime/dom-ready.js";
 import { HtmlGetObjectCheckedById } from "../runtime/util.js";
+import { runWithLoadingIndicator } from "./loading-indicator.js";
 // Chart.js ESM（auto = 全チャートタイプ登録済みビルド）
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
 
@@ -295,11 +296,13 @@ OnDomReady(() => {
         onClick: (e) => {
           // v4: onClick の e は ChartEvent — e.x がキャンバス座標を直接保持
           const dataX = chart.scales.x.getValueForPixel(e.x);
-          if (chart.data.datasets[0].data.length > dataX) {
-            let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
-            registryGet('CSaveController').loadFromURL(url);
-            CItemInfoManager.OnClickExtractSwitch();
-          }
+          runWithLoadingIndicator(() => {
+            if (chart.data.datasets[0].data.length > dataX) {
+              let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
+              registryGet('CSaveController').loadFromURL(url);
+              CItemInfoManager.OnClickExtractSwitch();
+            }
+          });
         }
       }
     });
@@ -315,31 +318,33 @@ OnDomReady(() => {
         chart.data.datasets[3].data = [];
         target = document.querySelector(".OBJID_MONSTER_MAP_MONSTER")?.value;
       }
-      const mgr = registryGet('CSaveController').getSaveDataManagerCur();
-      mgr.ReCalcManager();
-      calc();
-      LoadTomSelect();
-      const metadata = { "memo": "", "url": registryGet('CSaveController').encodeToURL() };
-      if (HtmlGetObjectCheckedById("clip_with_memo", false)) {
-        let memo = prompt("clipメモ");
-        if (memo) metadata["memo"] = memo;
-      }
-      chart.data.labels.push(chart.data.labels.length + 1);
-      const dps = parseFloat((prevElementSibling(document.getElementById("BTLRSLT_PART_ATKCNT")?.parentElement, 4)?.textContent ?? "").replaceAll(",", ""))
-      chart.data.datasets[0].data.push(isNaN(dps) ? 0 : dps);
-      chart.data.datasets[0].metadata.push(metadata);
-      const cnt = parseInt((prevElementSibling(document.getElementById("BTLRSLT_PART_EXP")?.parentElement, 2)?.textContent ?? "").replaceAll(",", ""));
-      chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
-      const btlrslt_damage_totals = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_TOTAL");
-      const btlrslt_damage_details = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_DETAIL");
-      const dmg_index = btlrslt_damage_totals.length/3;
-      const dmg = parseFloat((btlrslt_damage_totals[dmg_index]?.textContent ?? "").replaceAll(",", ""));
-      const cycle_index = dmg_index + btlrslt_damage_totals.length/3/2;
-      chart.data.datasets[2].data.push(isNaN(dmg) ? 0 : dmg);
-      const cycle = parseFloat((btlrslt_damage_details[cycle_index]?.textContent ?? "").replaceAll(",", ""));
-      chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
-      chart.update();
-      g_Chart = chart;
+      runWithLoadingIndicator(() => {
+        const mgr = registryGet('CSaveController').getSaveDataManagerCur();
+        mgr.ReCalcManager();
+        calc();
+        LoadTomSelect();
+        const metadata = { "memo": "", "url": registryGet('CSaveController').encodeToURL() };
+        if (HtmlGetObjectCheckedById("clip_with_memo", false)) {
+          let memo = prompt("clipメモ");
+          if (memo) metadata["memo"] = memo;
+        }
+        chart.data.labels.push(chart.data.labels.length + 1);
+        const dps = parseFloat((prevElementSibling(document.getElementById("BTLRSLT_PART_ATKCNT")?.parentElement, 4)?.textContent ?? "").replaceAll(",", ""))
+        chart.data.datasets[0].data.push(isNaN(dps) ? 0 : dps);
+        chart.data.datasets[0].metadata.push(metadata);
+        const cnt = parseInt((prevElementSibling(document.getElementById("BTLRSLT_PART_EXP")?.parentElement, 2)?.textContent ?? "").replaceAll(",", ""));
+        chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
+        const btlrslt_damage_totals = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_TOTAL");
+        const btlrslt_damage_details = childrenMatching(document.getElementById("BATTLE_RESULT_DAMAGE"), ".BTLRSLT_DAMAGE_DETAIL");
+        const dmg_index = btlrslt_damage_totals.length/3;
+        const dmg = parseFloat((btlrslt_damage_totals[dmg_index]?.textContent ?? "").replaceAll(",", ""));
+        const cycle_index = dmg_index + btlrslt_damage_totals.length/3/2;
+        chart.data.datasets[2].data.push(isNaN(dmg) ? 0 : dmg);
+        const cycle = parseFloat((btlrslt_damage_details[cycle_index]?.textContent ?? "").replaceAll(",", ""));
+        chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
+        chart.update();
+        g_Chart = chart;
+      });
     });
     document.getElementById("history_reset")?.addEventListener("click", (e) => {
       chart.data.labels = [];

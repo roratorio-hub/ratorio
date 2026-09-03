@@ -257,6 +257,49 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         }
     });
 
+    // 実ブラウザ確認（2026-09-03）で報告: OBJID_BUTTON_LOAD_SAVE_DATA_MIG クリックで
+    // インジケーターが「表示されたりされなかったり」する。原因は showLoadingIndicator() 直後に
+    // 重い処理を setTimeout(fn, 0) で開始する従来のパターンが描画を保証しないこと
+    // （実測: 30回中6回しか描画機会が無かった）。runWithLoadingIndicator()
+    // （requestAnimationFrame の二重ネスト）へ置換して解消した。
+    // ここでは「インジケーターが存在する間に実際に1フレーム以上描画された」ことを
+    // requestAnimationFrame の発火そのもので確認する（DOM に存在するだけでは
+    // 描画されたことの証明にならないため）。
+    it('セーブデータロードでローディングインジケーターが確実に描画される', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        page.on('dialog', (dialog) => dialog.dismiss().catch(() => {})); // 「データがありません。」alert
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+
+            // セーブ／ロード欄は折りたたみ済みなので展開する
+            await page.check('#OBJID_SWITCH_SAVE_CTRL_MIG');
+            await page.waitForSelector('#OBJID_BUTTON_LOAD_SAVE_DATA_MIG', { state: 'visible', timeout: 5000 });
+
+            await page.evaluate(() => {
+                (window as any).__paintedWhileVisible = false;
+                const loop = () => {
+                    if (document.getElementById('loadingIndicatorBar')) {
+                        (window as any).__paintedWhileVisible = true;
+                    }
+                    requestAnimationFrame(loop);
+                };
+                requestAnimationFrame(loop);
+            });
+
+            await page.click('#OBJID_BUTTON_LOAD_SAVE_DATA_MIG');
+            await page.waitForTimeout(300);
+
+            const painted = await page.evaluate(() => (window as any).__paintedWhileVisible);
+            expect(painted).toBe(true);
+        } finally {
+            await context.close();
+        }
+    });
+
     // 装備セレクトの change は OnChangeEquip(eqpRgnId, itemId) を呼ぶ。
     // eqpRgnId を window['EQUIP_REGION_ID_XXX'] で引く実装だと、DefineEnum 廃止で
     // 該当グローバルが消えたため undefined が渡り、

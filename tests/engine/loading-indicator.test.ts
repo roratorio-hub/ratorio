@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach } from 'vitest';
-import { showLoadingIndicator, hideLoadingIndicator } from '@engine/ui/loading-indicator.js';
+import { showLoadingIndicator, hideLoadingIndicator, runWithLoadingIndicator } from '@engine/ui/loading-indicator.js';
 import { get as registryGet } from '@engine/runtime/engine-registry.js';
 
 describe('loading-indicator.js', () => {
@@ -56,5 +56,41 @@ describe('loading-indicator.js', () => {
         const reducedMotionBlock = styleText.match(/prefers-reduced-motion[\s\S]*?\}\s*\}/)?.[0] ?? '';
         expect(reducedMotionBlock).not.toContain('animation: none');
         expect(reducedMotionBlock).toContain('loading-indicator-pulse');
+    });
+
+    // 実ブラウザ確認で発覚: showLoadingIndicator() の直後に setTimeout(heavyWork, 0) を
+    // 呼ぶ従来のパターンは描画を保証しない（実測: 30回中6回しか描画されなかった）ため
+    // インジケーターが「表示されたりされなかったり」した。runWithLoadingIndicator() は
+    // requestAnimationFrame を2重にして必ず1回描画させてから重い処理を実行する。
+    describe('runWithLoadingIndicator', () => {
+        it('表示 → 重い処理の実行 → 非表示、の順で実行される', async () => {
+            const order: string[] = [];
+            expect(document.querySelector('[role="progressbar"]')).toBeNull();
+            const promise = runWithLoadingIndicator(() => {
+                order.push('work');
+            });
+            // 呼び出し直後（重い処理が走る前）にインジケーターが表示されている
+            expect(document.querySelector('[role="progressbar"]')).not.toBeNull();
+            await promise;
+            expect(order).toEqual(['work']);
+            expect(document.querySelector('[role="progressbar"]')).toBeNull();
+        });
+
+        it('重い処理の戻り値で解決する', async () => {
+            const result = await runWithLoadingIndicator(() => 42);
+            expect(result).toBe(42);
+        });
+
+        it('重い処理が例外を投げても、インジケーターは非表示になり Promise は reject する', async () => {
+            const promise = runWithLoadingIndicator(() => {
+                throw new Error('boom');
+            });
+            await expect(promise).rejects.toThrow('boom');
+            expect(document.querySelector('[role="progressbar"]')).toBeNull();
+        });
+
+        it('engine-registry に登録される', () => {
+            expect(registryGet('runWithLoadingIndicator')).toBe(runWithLoadingIndicator);
+        });
     });
 });

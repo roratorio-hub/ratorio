@@ -8,7 +8,7 @@ import { CSaveDataConverter } from "./CSaveDataConverter.js";
 import { CSaveDataMappingManager, CURRENT_VERSION } from "./CSaveDataMappingManager.js";
 import { GetSaveDataVersion, VersionModify } from "./savedata-codec.js";
 import { HtmlGetObjectCheckedById, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, MallocArray } from "../runtime/util.js";
-import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
+import { runWithLoadingIndicator } from "../ui/loading-indicator.js";
 // === END AUTO-GENERATED IMPORTS ===
 
 // 旧データ構造は、最大でバージョン 99 まで
@@ -72,9 +72,8 @@ export function OnClickLoadSaveData () {
 	if (HtmlGetObjectCheckedById("OBJID_SWITCH_CONFIRM_DIALOG", false) && !confirm(`入力中の情報は破棄されます。\n${saveName}\nをロードしてよろしいですか？`)) {
 		return;
 	}
-	// インジケーター表示
-	showLoadingIndicator();
-	setTimeout(() => {
+	// インジケーター表示 → 描画確認後に処理実行
+	runWithLoadingIndicator(() => {
 		// データをロード
 		const charaName = CSaveController.loadCharaData(dataIndex);
 		if (charaName.length > 0) {
@@ -85,9 +84,7 @@ export function OnClickLoadSaveData () {
 		} else {
 			alert("データがありません。");
 		}
-		// インジケーター非表示
-		hideLoadingIndicator();
-	},0);
+	});
 }
 
 /**
@@ -138,9 +135,8 @@ export function OnClickUrlOutMIG () {
  * URL入力ボタン押下イベントハンドラ.
  */
 export function OnClickUrlInMIG () {
-	// インジケーター表示
-	showLoadingIndicator();
-	setTimeout(() => {
+	// インジケーター表示 → 描画確認後に処理実行
+	runWithLoadingIndicator(() => {
 		// 入力欄のURLを取得
 		const urlText = HtmlGetObjectValueById("OBJID_INPUT_URL_IN_MIG", "");
 		// ＵＲＬからパラメタ部分を切り出す
@@ -151,10 +147,8 @@ export function OnClickUrlInMIG () {
 			// アイテム情報の構築
 			CItemInfoManager.OnClickExtractSwitch();
 			document.getElementById("OBJID_INPUT_URL_IN_MIG").focus();
-		} 
-		// インジケーター非表示
-		hideLoadingIndicator();
-	}, 0);
+		}
+	});
 }
 
 

@@ -9,7 +9,7 @@ import { ItemObjNew } from "../equip/item.dat.js";
 import { SkillObjNew } from "./skill.dat.js";
 import { HtmlCreateElement, HtmlCreateTextNode } from "../runtime/util.js";
 import { RegisterLearnedSkillSearch } from "../bridge/skill-search-bridge.js";
-import { hideLoadingIndicator, showLoadingIndicator } from "../ui/loading-indicator.js";
+import { runWithLoadingIndicator } from "../ui/loading-indicator.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: equip.js との循環 import 回避
 import { equipBridge } from "../bridge/equip-bridge.js";
@@ -170,11 +170,10 @@ export function OnClickSkillSWLearned(){
 		try{
 			const objUrlInput = document.getElementById("ID_SKILL_LEARNED_URL");
 			url = new URL(objUrlInput?.value||location.href);
-			showLoadingIndicator();
 			// 各 select に値を代入しても change イベントは発火しないため、
 			// 状態更新（n_A_LearnedSkill）と着色は RefreshSkillColumnHeaderLearned を
 			// 直接呼んで行う（第4引数で再計算通知を抑止し、ループ後にまとめて 1 回だけ呼ぶ）。
-			setTimeout(() => {
+			runWithLoadingIndicator(() => {
 				for (const elm of document.querySelectorAll("#ID_SKILL_LEARNED select")) {
 					const id_skill_name = elm.id.replace("SELECT","TD").replace("LEVEL","NAME");
 					const skill_name = document.getElementById(id_skill_name)?.textContent ?? "";
@@ -194,8 +193,7 @@ export function OnClickSkillSWLearned(){
 				// 文字列だった（実質no-op、flag=3のときのみ再計算）。ここでも同じ挙動を保つため
 				// kind未指定で notifyChanged する（calc-invalidation.js 冒頭コメント参照）。
 				notifyChanged();
-				hideLoadingIndicator();
-			},0); // ローディングインジケータ表示のために 0 ms後の非同期処理に送る
+			});
 		} catch(e) {}
 	});
 	// 設定欄内のスキルテーブルを構築
