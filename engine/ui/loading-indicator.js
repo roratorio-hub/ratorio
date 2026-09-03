@@ -27,10 +27,9 @@ function ensureStyleInjected() {
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 4px;
             overflow: hidden;
             z-index: 10000;
-            background: rgba(0, 123, 255, 0.15);
             pointer-events: none;
         }
         #${ELEMENT_ID} .loading-indicator-sweep {
@@ -38,20 +37,25 @@ function ensureStyleInjected() {
             top: 0;
             left: 0;
             height: 100%;
-            width: 40%;
-            background: #007bff;
-            animation: loading-indicator-sweep 1.2s ease-in-out infinite;
+            width: 35%;
+            background: #0d6efd;
+            box-shadow: 0 0 6px 1px rgba(13, 110, 253, 0.8);
+            animation: loading-indicator-sweep 0.9s ease-in-out infinite;
         }
         @keyframes loading-indicator-sweep {
             0% { transform: translateX(-100%); }
-            100% { transform: translateX(350%); }
+            100% { transform: translateX(385%); }
         }
         @media (prefers-reduced-motion: reduce) {
             #${ELEMENT_ID} .loading-indicator-sweep {
-                animation: none;
+                animation: loading-indicator-pulse 1s ease-in-out infinite;
                 width: 100%;
                 transform: none;
             }
+        }
+        @keyframes loading-indicator-pulse {
+            0%, 100% { opacity: 0.35; }
+            50% { opacity: 1; }
         }
     `;
     document.head.appendChild(style);

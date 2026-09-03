@@ -45,4 +45,16 @@ describe('loading-indicator.js', () => {
         expect(registryGet('showLoadingIndicator')).toBe(showLoadingIndicator);
         expect(registryGet('hideLoadingIndicator')).toBe(hideLoadingIndicator);
     });
+
+    // 実ブラウザ確認（Firefox）で発覚: prefers-reduced-motion 環境では
+    // スイープが animation: none の静止バーになり「読み込み中」に見えないという
+    // 報告があった。opacity のパルスアニメーションに差し替えたので、
+    // reduced-motion 分岐が再び animation: none に戻っていないことを固定する。
+    it('prefers-reduced-motion 環境でも animation: none にはならない（opacityパルスへフォールバック）', () => {
+        showLoadingIndicator();
+        const styleText = document.getElementById('loadingIndicatorStyle')?.textContent ?? '';
+        const reducedMotionBlock = styleText.match(/prefers-reduced-motion[\s\S]*?\}\s*\}/)?.[0] ?? '';
+        expect(reducedMotionBlock).not.toContain('animation: none');
+        expect(reducedMotionBlock).toContain('loading-indicator-pulse');
+    });
 });
