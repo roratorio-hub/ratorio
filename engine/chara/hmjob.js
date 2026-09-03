@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import { n_A_Equip } from "../runtime/roro-state.js";
-import { SaveSystem } from "../bridge/saveload-bridge.js";
 import "../runtime/common.js";
 import "../data/mig.itemsp.h.js";
 import "../equip/item.h.js";
@@ -496,54 +495,54 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 
 	// STR
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_STR");
-	objStatus.innerHTML = ((valSTR >= 0) ? "+" : "") + valSTR;
+	if (objStatus != null) objStatus.innerHTML = ((valSTR >= 0) ? "+" : "") + valSTR;
 
 	// AGI
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_AGI");
-	objStatus.innerHTML = ((valAGI >= 0) ? "+" : "") + valAGI;
+	if (objStatus != null) objStatus.innerHTML = ((valAGI >= 0) ? "+" : "") + valAGI;
 
 	// VIT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_VIT");
-	objStatus.innerHTML = ((valVIT >= 0) ? "+" : "") + valVIT;
+	if (objStatus != null) objStatus.innerHTML = ((valVIT >= 0) ? "+" : "") + valVIT;
 
 	// INT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_INT");
-	objStatus.innerHTML = ((valINT >= 0) ? "+" : "") + valINT;
+	if (objStatus != null) objStatus.innerHTML = ((valINT >= 0) ? "+" : "") + valINT;
 
 	// DEX
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_DEX");
-	objStatus.innerHTML = ((valDEX >= 0) ? "+" : "") + valDEX;
+	if (objStatus != null) objStatus.innerHTML = ((valDEX >= 0) ? "+" : "") + valDEX;
 
 	// LUK
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_LUK");
-	objStatus.innerHTML = ((valLUK >= 0) ? "+" : "") + valLUK;
+	if (objStatus != null) objStatus.innerHTML = ((valLUK >= 0) ? "+" : "") + valLUK;
 
 
 	// 特性ステータス対応
 
 	// POW
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_POW");
-	objStatus.innerHTML = ((valPOW >= 0) ? "+" : "") + valPOW;
+	if (objStatus != null) objStatus.innerHTML = ((valPOW >= 0) ? "+" : "") + valPOW;
 
 	// STA
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_STA");
-	objStatus.innerHTML = ((valSTA >= 0) ? "+" : "") + valSTA;
+	if (objStatus != null) objStatus.innerHTML = ((valSTA >= 0) ? "+" : "") + valSTA;
 
 	// WIS
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_WIS");
-	objStatus.innerHTML = ((valWIS >= 0) ? "+" : "") + valWIS;
+	if (objStatus != null) objStatus.innerHTML = ((valWIS >= 0) ? "+" : "") + valWIS;
 
 	// SPL
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_SPL");
-	objStatus.innerHTML = ((valSPL >= 0) ? "+" : "") + valSPL;
+	if (objStatus != null) objStatus.innerHTML = ((valSPL >= 0) ? "+" : "") + valSPL;
 
 	// CON
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_CON");
-	objStatus.innerHTML = ((valCON >= 0) ? "+" : "") + valCON;
+	if (objStatus != null) objStatus.innerHTML = ((valCON >= 0) ? "+" : "") + valCON;
 
 	// CRT
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_BONUS_CRT");
-	objStatus.innerHTML = ((valCRT >= 0) ? "+" : "") + valCRT;
+	if (objStatus != null) objStatus.innerHTML = ((valCRT >= 0) ? "+" : "") + valCRT;
 
 
 	// 導出ステータス
@@ -553,7 +552,7 @@ export function DisplayStatusBonusAll(baseLv, valSTR, valAGI, valVIT, valINT, va
 	valWork = GetTStatusPoint(baseLv);
 	g_tStatusPointRemain = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_T_STATUS_POINT");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 }
 
 /**
@@ -571,37 +570,37 @@ export function DisplayReferStatusAll() {
 	valWork = GetPAtk();
 	g_referStatusDisplay.pAtk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_P_ATK");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// S.Matk
 	valWork = GetSMatk();
 	g_referStatusDisplay.sMatk = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_S_MATK");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// C.Rate
 	valWork = GetCRate();
 	g_referStatusDisplay.cRate = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_C_RATE");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// Res
 	valWork = GetRes();
 	g_referStatusDisplay.res = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_RES");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// Mres
 	valWork = GetMres();
 	g_referStatusDisplay.mres = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_MRES");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 
 	// H.Plus
 	valWork = GetHPlus();
 	g_referStatusDisplay.hPlus = valWork;
 	objStatus = document.getElementById("OBJID_SPAN_STATUS_H_PLUS");
-	objStatus.innerHTML = "" + valWork;
+	if (objStatus != null) objStatus.innerHTML = "" + valWork;
 }
 
 /**
@@ -1912,22 +1911,20 @@ export function migrateOtherJob(jobId) {
 	const migId = parseInt(jobId, 10);
 
 	const recentJobMigId = n_A_JOB;
-	let dataURL = "";
-	let funcModifySaveData = function (saveDataArrayF) {
-		// 職業ID
-		saveDataArrayF[1] = migId;
-		// 自動レベル調整は強制OFF
-		saveDataArrayF[11] = 0;
-		return saveDataArrayF;
-	};
 	// インジケーター表示
 	showLoadingIndicator();
 	setTimeout(() => {
 		// 変更後の職業の二刀流可能性に合わせる
 		set_n_Nitou(IsDualArmsJob(migId));
-		// TODO: 暫定対処　旧形式の保存処理呼び出し
-		// 「プレイヤー状態異常設定」のように旧形式に存在しなかった入力項目は維持できないということ
-		dataURL = SaveSystem(funcModifySaveData);
+		// 状態から直接組み立てたユニット配列のCHARAユニットの職業ID・自動レベル調整を
+		// 差し替えてからURLへ出力し、同じURLを読み込み直す（装備・シャドウ装備・超越段階値・
+		// ランダムオプション・プレイヤー状態異常設定等、旧形式には存在しなかった入力項目も
+		// 維持されるようになった。旧: SaveSystem()のfuncSaveDataModify経由でSaveData[1]/[11]
+		// を書き換えていたが、その経路はSaveData[1936]分の旧形式スロットしか運べなかった）。
+		const dataURL = registryGet('CSaveController').getSaveDataManagerCur().encodeToURL((charaUnit) => {
+			charaUnit.setProp(CSaveDataConst.propNameJobID, migId);
+			charaUnit.setProp(CSaveDataConst.propNameSubAutoAdjustBaseLv, 0);
+		});
 		// URL入力を実行
 		registryGet('CSaveController').loadFromURL(dataURL);
 		// 異なる職業系列へ変更する場合

@@ -8,7 +8,6 @@
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { HtmlGetObjectValueByIdAsInteger } from "../../runtime/util.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
@@ -16,7 +15,7 @@ import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import { MOB_CONF_DEBUF_ID_SOUND_BLEND, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
-import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import { n_A_WeaponType, n_A_WeaponZokusei } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_GEFFENIA_NOCTURNE, SKILL_ID_KAISO, SKILL_ID_KOINNO_RHAPSODY, SKILL_ID_LOKINO_KIMAGURE,
@@ -316,8 +315,9 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = function(option, mobData) {
-				// 属性付与を優先する
-				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				// 属性付与を優先する（OBJID_SELECT_ARMS_ELEMENT と同じ select を
+				// HydrateFromModel() 経由で既に読んでいる n_A_WeaponZokusei を使う）
+				let value = n_A_WeaponZokusei;
 				if (value === ELM_ID_VANITY) {
 					// 付与されていなければ矢の属性を適用する
 					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
@@ -369,8 +369,9 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = function(option, mobData) {
-				// 属性付与を優先する
-				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				// 属性付与を優先する（OBJID_SELECT_ARMS_ELEMENT と同じ select を
+				// HydrateFromModel() 経由で既に読んでいる n_A_WeaponZokusei を使う）
+				let value = n_A_WeaponZokusei;
 				if (value === ELM_ID_VANITY) {
 					// 付与されていなければ矢の属性を適用する
 					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
@@ -711,8 +712,9 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = function(option) {
-				// 属性付与を優先する
-				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				// 属性付与を優先する（OBJID_SELECT_ARMS_ELEMENT と同じ select を
+				// HydrateFromModel() 経由で既に読んでいる n_A_WeaponZokusei を使う）
+				let value = n_A_WeaponZokusei;
 				if (value === ELM_ID_VANITY) {
 					// 付与されていなければ矢の属性を適用する
 					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);

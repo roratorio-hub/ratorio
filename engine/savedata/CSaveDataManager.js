@@ -1,4 +1,3 @@
-import { n_A_Equip } from "../runtime/roro-state.js";
 import { CSaveDataConst } from "./CSaveDataConst.js";
 import { CSaveDataUnitTypeManager } from "./CSaveDataUnitTypeManager.js";
 import { CSaveDataUnitParse } from "./CSaveDataUnitParse.js";
@@ -62,6 +61,11 @@ import {
 } from "../runtime/global.js";
 import { CalcStatusPoint } from "../chara/hmjob.js";
 import { CAttackMethodConf } from "../battle/CAttackMethodConf.js";
+import {
+         CHARA_CONF_BASIC_MIG_MAP, CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP,
+         CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP,
+         CHARA_CONF_SKILL_MIG_MAP, CHARA_CONF_SPEC_BASIC_MIG_MAP, applyMigArrayToConf
+} from "./conf-mig-mapping.js";
 import { CBattleQuickControlAreaComponentManager } from "../battle/CBattleQuickControlAreaComponentManager.js";
 import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { SetActiveIndexMobConfInput, SetMobConfInput } from "../monster/CMobConfInput.js";
@@ -74,8 +78,9 @@ import { OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.j
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import { RefreshMobConfDebufControlCSS, RefreshMobConfDebufSelectAreaHeader, n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n_B_TAISEI } from "../monster/mobconfplayer.js";
-import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "../equip/rndopttype.h.js";
-import { SaveSystem } from "./savedata-codec.js";
+import { SetEquipRndOptTable } from "../equip/rndopttype.h.js";
+import { serializeSaveDataUnitsToJSON } from "./CSaveDataUnitJsonCodec.js";
+import { buildSaveDataUnitsFromState } from "./savedata-collect.js";
 import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from "../runtime/util.js";
 import { Click_A1 } from "../ui/BuffJobSpecificSelf.js";
@@ -111,24 +116,15 @@ import {
 
 // C-6: 共有 state（旧 stallcalc.js window 変数）
 import {
-         n_A_HEAD_DEF_PLUS, n_A_BODY_DEF_PLUS, n_A_SHIELD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS,
-         n_A_SHOES_DEF_PLUS, n_A_Weapon_Transcendence, n_A_Weapon2_Transcendence, n_A_HEAD_DEF_Transcendence,
-         n_A_SHIELD_DEF_Transcendence, n_A_BODY_DEF_Transcendence, n_A_SHOULDER_DEF_Transcendence, n_A_SHOES_DEF_Transcendence,
-         n_A_Weapon_ATKplus, n_A_Weapon2_ATKplus, n_A_PassSkill5, g_itemIdArray,
-         g_refinedArray, g_objMobConfInput,
+         n_A_PassSkill5, g_objMobConfInput,
 } from "../runtime/roro-state.js";
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
-    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
-    EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT, EQUIP_REGION_ID_SHADOW_HEAD_MID, EQUIP_REGION_ID_SHADOW_HEAD_TOP, EQUIP_REGION_ID_SHADOW_HEAD_UNDER, EQUIP_REGION_ID_SHADOW_SHOULDER,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER,
     EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
 } from "../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_KIND } from "../const/EnumItemDataIndex.js";
 import { JOB_ID_SUPERNOVICE, JOB_ID_SUPERNOVICE_PLUS } from "../const/EnumJobId.js";
-import {
-    MIG_EQUIP_REGION_ID_ACCESSORY_1, MIG_EQUIP_REGION_ID_ACCESSORY_2, MIG_EQUIP_REGION_ID_ARMS_LEFT, MIG_EQUIP_REGION_ID_ARMS_RIGHT, MIG_EQUIP_REGION_ID_BODY, MIG_EQUIP_REGION_ID_FOOT,
-    MIG_EQUIP_REGION_ID_HEAD_MID, MIG_EQUIP_REGION_ID_HEAD_TOP, MIG_EQUIP_REGION_ID_HEAD_UNDER, MIG_EQUIP_REGION_ID_SHIELD, MIG_EQUIP_REGION_ID_SHOULDER,
-} from "../const/EnumMigEquipRegionId.js";
 import {
     MOB_CONF_INPUT_DATA_INDEX_AGI, MOB_CONF_INPUT_DATA_INDEX_ATK, MOB_CONF_INPUT_DATA_INDEX_BASE_EXP, MOB_CONF_INPUT_DATA_INDEX_BOSS_TYPE, MOB_CONF_INPUT_DATA_INDEX_DEF, MOB_CONF_INPUT_DATA_INDEX_DEX,
     MOB_CONF_INPUT_DATA_INDEX_ELEMENT, MOB_CONF_INPUT_DATA_INDEX_GRASS_TYPE, MOB_CONF_INPUT_DATA_INDEX_HP, MOB_CONF_INPUT_DATA_INDEX_INT, MOB_CONF_INPUT_DATA_INDEX_JOB_EXP, MOB_CONF_INPUT_DATA_INDEX_LUK,
@@ -363,35 +359,7 @@ export class CSaveDataManager {
 			return "";
 		}
 
-		// 全てのセーブデータユニットを効率的に JSON に変換
-		const unitDataArray = this.#saveDataUnitArray.map((unit) => {
-			// Map -> Object に変換（JSON 対応）
-			const parsedMapObj = {};
-			unit.parsedMap.forEach((value, key) => {
-				parsedMapObj[key] = value;
-			});
-
-			const propInfoMapObj = {};
-			unit.propInfoMap.forEach((value, key) => {
-				propInfoMapObj[key] = {
-					name: value.name,
-					bits: value.bits
-				};
-			});
-
-			return {
-				parsedMap: parsedMapObj,
-				propInfoMap: propInfoMapObj
-			};
-		});
-
-		// JSON 文字列に変換して返す（BigInt を文字列に変換）
-		return JSON.stringify(unitDataArray, (key, value) => {
-			if (typeof value === 'bigint') {
-				return value.toString();
-			}
-			return value;
-		});
+		return serializeSaveDataUnitsToJSON(this.#saveDataUnitArray);
 	}
 
 	/**
@@ -470,10 +438,7 @@ export class CSaveDataManager {
 			return "";
 		}
 
-		this.parseDataTextForCreateSave(SaveSystem());
-		this.#collectDataEquipable();
-		this.#collectDataCharaConfDebuff();
-		this.#collectDataShadowEquips();
+		this.#saveDataUnitArray = buildSaveDataUnitsFromState();
 		this.doCompaction();
 		this.applyDataToControls();
 		CItemInfoManager.RebuildControls();
@@ -483,22 +448,31 @@ export class CSaveDataManager {
 	/**
 	 * 計算機の状態を採取してURLクエリ文字列として出力する.
 	 * セーブ時のみ呼び出される.
+	 * @param {?(unit: object) => void} funcModifyCharaUnit 組み立てたCHARAユニットを
+	 *   その場で書き換えるコールバック（省略可）。職業変更「維持ON」用
+	 *   （`migrateOtherJob()`。hmjob.js）。
 	 * @returns {string} URLクエリ文字列
 	 */
-	encodeToURL () {
+	encodeToURL (funcModifyCharaUnit = null) {
 
 		if (!Array.isArray(this.#saveDataUnitArray)) {
 			return "";
 		}
 
-		// TODO: 暫定対処　旧形式の保存処理を呼び出してパースする
-		// パース処理のなかで、メンバ変数の配列を置き換えるため、データ追記はこれ以降に行う
-		this.parseDataTextForCreateSave(SaveSystem())
+		// 状態から直接ユニット配列を組み立てる（B-11 Phase A5-1。旧: SaveSystem()経由の
+		// 変換だったが、メンバ変数の配列を置き換える点は変わらないため、データ追記は
+		// これ以降に行う。B-33 B2-2で装備/シャドウ装備/プレイヤー状態異常も
+		// buildSaveDataUnitsFromState() 側に統合済み）。
+		this.#saveDataUnitArray = buildSaveDataUnitsFromState();
 
-		// 次世代版限定データの追加
-		this.#collectDataEquipable();
-		this.#collectDataCharaConfDebuff();
-		this.#collectDataShadowEquips();
+		// CHARAユニットの差し替え（職業変更「維持ON」用。旧: SaveSystem()のfuncSaveDataModify
+		// 経由でSaveData[1]（職業ID）/[11]（自動レベル調整）を書き換えていた処理の置き換え）
+		if (funcModifyCharaUnit) {
+			const charaUnit = this.#saveDataUnitArray.find((unit) => unit.constructor.type === SAVE_DATA_UNIT_TYPE_CHARA);
+			if (charaUnit) {
+				funcModifyCharaUnit(charaUnit);
+			}
+		}
 
 		// コンパクション
 		this.doCompaction();
@@ -514,298 +488,6 @@ export class CSaveDataManager {
 	}
 
 	/**
-	 * 装備部位データユニットを取得する
-	 * @param {*} reginKind CSaveDataConst.eqpRgnKindItem | CSaveDataConst.eqpRgnKindCostume | CSaveDataConst.eqpRgnKindShadow
-	 * @returns saveDataUnitEqpRgn
-	 */
-	#setupRegionUnit(reginKind) {
-		// 装備箇所 判定用 データユニット 用意（すでに存在する可能性がある）
-		let saveDataUnitEqpRgn = null;
-		for (let idx = 0; idx < this.#saveDataUnitArray.length; idx++) {
-			const saveDataUnit = this.#saveDataUnitArray[idx];
-			// 装備用装備箇所データユニットでなければ、次へ
-			if (saveDataUnit.constructor.type != SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS) {
-				continue;
-			}
-			if (floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameDataKind)) != reginKind) {
-				continue;
-			}
-			// ここまで来れば、目的のデータユニット
-			saveDataUnitEqpRgn = saveDataUnit;
-			break;
-		}
-		// メンバ変数の配列に存在しなかった場合は、新規に作成
-		if (!saveDataUnitEqpRgn) {
-			saveDataUnitEqpRgn = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS))();
-			saveDataUnitEqpRgn.SetUpAsDefault();
-			saveDataUnitEqpRgn.setProp(CSaveDataConst.propNameDataKind, reginKind);
-			this.#saveDataUnitArray.push(saveDataUnitEqpRgn);
-		}
-		return saveDataUnitEqpRgn;
-	}
-
-	/**
-	 * セーブ時、装備欄のデータをセーブデータユニットに追加する
-	 */
-	#collectDataEquipable() {
-		// 装備箇所ID配列
-		const eqpRgnIdArray = [
-			MIG_EQUIP_REGION_ID_ARMS_RIGHT,
-			MIG_EQUIP_REGION_ID_ARMS_LEFT,
-			MIG_EQUIP_REGION_ID_HEAD_TOP,
-			MIG_EQUIP_REGION_ID_HEAD_MID,
-			MIG_EQUIP_REGION_ID_HEAD_UNDER,
-			MIG_EQUIP_REGION_ID_SHIELD,
-			MIG_EQUIP_REGION_ID_BODY,
-			MIG_EQUIP_REGION_ID_SHOULDER,
-			MIG_EQUIP_REGION_ID_FOOT,
-			MIG_EQUIP_REGION_ID_ACCESSORY_1,
-			MIG_EQUIP_REGION_ID_ACCESSORY_2,
-		];
-		// カードマップ
-		const cardMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: "OBJID_ARMS_RIGHT",
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: "OBJID_ARMS_LEFT",
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: "OBJID_HEAD_TOP",
-			[MIG_EQUIP_REGION_ID_HEAD_MID]: "OBJID_HEAD_MID",
-			[MIG_EQUIP_REGION_ID_HEAD_UNDER]: "OBJID_HEAD_UNDER",
-			[MIG_EQUIP_REGION_ID_SHIELD]: "OBJID_SHIELD",
-			[MIG_EQUIP_REGION_ID_BODY]: "OBJID_BODY",
-			[MIG_EQUIP_REGION_ID_SHOULDER]: "OBJID_SHOULDER",
-			[MIG_EQUIP_REGION_ID_FOOT]: "OBJID_SHOES",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: "OBJID_ACCESSORY_1",
-			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: "OBJID_ACCESSORY_2",
-		};
-		// 精錬値マップ
-		const refineMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: n_A_Weapon_ATKplus,
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: n_A_Weapon2_ATKplus,
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: n_A_HEAD_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_BODY]: n_A_BODY_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_SHIELD]: n_A_SHIELD_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_SHOULDER]: n_A_SHOULDER_DEF_PLUS,
-			[MIG_EQUIP_REGION_ID_FOOT]: n_A_SHOES_DEF_PLUS,
-		};
-		// 超越値マップ
-		const transcendenceMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: n_A_Weapon_Transcendence,
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: n_A_Weapon2_Transcendence,
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: n_A_HEAD_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_BODY]: n_A_BODY_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_SHIELD]: n_A_SHIELD_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_SHOULDER]: n_A_SHOULDER_DEF_Transcendence,
-			[MIG_EQUIP_REGION_ID_FOOT]: n_A_SHOES_DEF_Transcendence,
-		};
-		// 装備部位マップ
-		const regionMap = {
-			[MIG_EQUIP_REGION_ID_ARMS_RIGHT]: CSaveDataConst.propNameEqpRgnArmsRight,
-			[MIG_EQUIP_REGION_ID_ARMS_LEFT]: CSaveDataConst.propNameEqpRgnArmsLeft,
-			[MIG_EQUIP_REGION_ID_HEAD_TOP]: CSaveDataConst.propNameEqpRgnHeadTop,
-			[MIG_EQUIP_REGION_ID_HEAD_MID]: CSaveDataConst.propNameEqpRgnHeadMid,
-			[MIG_EQUIP_REGION_ID_HEAD_UNDER]: CSaveDataConst.propNameEqpRgnHeadUnder,
-			[MIG_EQUIP_REGION_ID_SHIELD]: CSaveDataConst.propNameEqpRgnShield,
-			[MIG_EQUIP_REGION_ID_BODY]: CSaveDataConst.propNameEqpRgnBody,
-			[MIG_EQUIP_REGION_ID_SHOULDER]: CSaveDataConst.propNameEqpRgnShoulder,
-			[MIG_EQUIP_REGION_ID_FOOT]: CSaveDataConst.propNameEqpRgnFoot,
-			[MIG_EQUIP_REGION_ID_ACCESSORY_1]: CSaveDataConst.propNameEqpRgnAccessory1,
-			[MIG_EQUIP_REGION_ID_ACCESSORY_2]: CSaveDataConst.propNameEqpRgnAccessory2,
-		};
-		// 衣装を除く、すべての装備箇所のデータを追加する
-		// 避難所の次世代版ソースコードの時点で衣装のセーブ・ロードには未対応だった
-		// bから始まる旧セーブ形式ではサポートされていた
-		const saveDataUnitEqpRgn = this.#setupRegionUnit(CSaveDataConst.eqpRgnKindItem);
-		for (let idx = 0; idx < eqpRgnIdArray.length; idx++) {
-			const eqpRgnId = eqpRgnIdArray[idx];
-			// データユニット生成
-			const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
-			saveDataUnit.SetUpAsDefault();
-			// データ設定
-			saveDataUnit.setProp(CSaveDataConst.propNameEquipItemDefID, eqpRgnId + 1);
-			saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-			saveDataUnit.setProp(CSaveDataConst.propNameItemID, n_A_Equip[eqpRgnId]);
-			// 精錬値の採取
-			saveDataUnit.setProp(CSaveDataConst.propNameRefinedCount, refineMap[eqpRgnId]|0);
-			// 超越値の採取
-			saveDataUnit.setProp(CSaveDataConst.propNameTranscendenceCount, transcendenceMap[eqpRgnId]|0);
-			// ランダムオプションの採取
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID1, GetEquipRndOptTableKind(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue1, GetEquipRndOptTableValue(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID2, GetEquipRndOptTableKind(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue2, GetEquipRndOptTableValue(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID3, GetEquipRndOptTableKind(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue3, GetEquipRndOptTableValue(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID4, GetEquipRndOptTableKind(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue4, GetEquipRndOptTableValue(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID5, GetEquipRndOptTableKind(eqpRgnId, 4));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue5, GetEquipRndOptTableValue(eqpRgnId, 4));
-			// カード情報の採取
-			const cardCategoryArray = g_charaData.cardCategoryMap.get(cardMap[eqpRgnId])
-			if (cardCategoryArray) {
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID1, cardCategoryArray[0]);
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID2, cardCategoryArray[1]);
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID3, cardCategoryArray[2]);
-				saveDataUnit.setProp(CSaveDataConst.propNameCardCategoryID4, cardCategoryArray[3]);
-			}
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID1, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_1`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_2`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_3`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${cardMap[eqpRgnId]}_CARD_4`, 0));
-			// 装備箇所データ設定
-			saveDataUnitEqpRgn.setProp(regionMap[eqpRgnId], eqpRgnId + 1);
-			// データユニットをメンバ変数の配列へ追加
-			this.#saveDataUnitArray.push(saveDataUnit);
-		}
-	}
-
-	/**
-	 * セーブ時、プレイヤー状態異常設定のデータをセーブデータユニットに追加する
-	 */
-	#collectDataCharaConfDebuff() {
-		const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF))();
-		saveDataUnit.SetUpAsDefault();
-		saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-		saveDataUnit.setProp(CSaveDataConst.propNameBuffLv, g_confDataDebuff);
-		saveDataUnit.doCompaction();
-		if (!saveDataUnit.isEmptyUnit()) {
-			this.#saveDataUnitArray.push(saveDataUnit);
-		}
-	}
-
-	/**
-	 * セーブ時、シャドウ装備のデータを収集する.
-	 */
-	#collectDataShadowEquips () {
-		// シャドウ装備の装備箇所ID配列
-		const eqpRgnIdArray = [
-			EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
-			EQUIP_REGION_ID_SHADOW_ARMS_LEFT,
-			EQUIP_REGION_ID_SHADOW_BODY,
-			EQUIP_REGION_ID_SHADOW_FOOT,
-			EQUIP_REGION_ID_SHADOW_ACCESSORY_1,
-			EQUIP_REGION_ID_SHADOW_ACCESSORY_2,
-		];
-		// シャドウ装備の連想配列キー
-		const eqpRgnKey = {
-			[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]: "OBJID_SHADOW_ARMS_RIGHT_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]: "OBJID_SHADOW_SHIELD_CARD_",
-			[EQUIP_REGION_ID_SHADOW_BODY]: "OBJID_SHADOW_BODY_CARD_",
-			[EQUIP_REGION_ID_SHADOW_FOOT]: "OBJID_SHADOW_SHOES_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ACCESSORY_1]: "OBJID_SHADOW_ACCESSORY-1_CARD_",
-			[EQUIP_REGION_ID_SHADOW_ACCESSORY_2]: "OBJID_SHADOW_ACCESSORY-2_CARD_",
-		}
-		// 装備箇所 判定用 データユニット
-		const saveDataUnitEqpRgn = this.#setupRegionUnit(CSaveDataConst.eqpRgnKindShadow);
-		// すべての装備箇所のデータを追加する
-		for (let idx = 0; idx < eqpRgnIdArray.length; idx++) {
-			const eqpRgnId = eqpRgnIdArray[idx];
-			// データユニット生成
-			const saveDataUnit = new (CSaveDataUnitTypeManager.getUnitClass(SAVE_DATA_UNIT_TYPE_EQUIPABLE))();
-			saveDataUnit.SetUpAsDefault();
-			// データ設定
-			const candidateDefID = this.#getCandidateEquipItemDefID();
-			saveDataUnit.setProp(CSaveDataConst.propNameEquipItemDefID, candidateDefID);
-			saveDataUnit.setProp(CSaveDataConst.propNameOptCode, 0);
-			saveDataUnit.setProp(CSaveDataConst.propNameItemID, g_itemIdArray[eqpRgnId]);
-			saveDataUnit.setProp(CSaveDataConst.propNameRefinedCount, g_refinedArray[eqpRgnId]);
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID1, GetEquipRndOptTableKind(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue1, GetEquipRndOptTableValue(eqpRgnId, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID2, GetEquipRndOptTableKind(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue2, GetEquipRndOptTableValue(eqpRgnId, 1));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID3, GetEquipRndOptTableKind(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue3, GetEquipRndOptTableValue(eqpRgnId, 2));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID4, GetEquipRndOptTableKind(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue4, GetEquipRndOptTableValue(eqpRgnId, 3));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptID5, GetEquipRndOptTableKind(eqpRgnId, 4));
-			saveDataUnit.setProp(CSaveDataConst.propNameRndOptValue5, GetEquipRndOptTableValue(eqpRgnId, 4));
-			const shadow_equip_key = eqpRgnKey[eqpRgnId];
-			// シャドウ装備はSlot1にカードを挿せないのでID2からスタート
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID2, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}2`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID3, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}3`, 0));
-			saveDataUnit.setProp(CSaveDataConst.propNameCardID4, HtmlGetObjectValueByIdAsInteger(`${shadow_equip_key}4`, 0));
-			// コンパクション実行
-			saveDataUnit.doCompaction();
-			// データなしの場合は次へ
-			if (saveDataUnit.isEmptyUnit()) {
-				continue;
-			}
-			// 装備箇所データ設定
-			let propName = "";
-			switch (eqpRgnId) {
-				case EQUIP_REGION_ID_SHADOW_ARMS_RIGHT:
-					propName = CSaveDataConst.propNameEqpRgnArmsRight;
-					break;
-				case EQUIP_REGION_ID_SHADOW_ARMS_LEFT:
-					propName = CSaveDataConst.propNameEqpRgnArmsLeft;
-					break;
-				case EQUIP_REGION_ID_SHADOW_HEAD_TOP:
-					propName = CSaveDataConst.propNameEqpRgnHeadTop;
-					break;
-				case EQUIP_REGION_ID_SHADOW_HEAD_MID:
-					propName = CSaveDataConst.propNameEqpRgnHeadMid;
-					break;
-				case EQUIP_REGION_ID_SHADOW_HEAD_UNDER:
-					propName = CSaveDataConst.propNameEqpRgnHeadUnder;
-					break;
-				case EQUIP_REGION_ID_SHADOW_BODY:
-					propName = CSaveDataConst.propNameEqpRgnBody;
-					break;
-				case EQUIP_REGION_ID_SHADOW_SHOULDER:
-					propName = CSaveDataConst.propNameEqpRgnShoulder;
-					break;
-				case EQUIP_REGION_ID_SHADOW_FOOT:
-					propName = CSaveDataConst.propNameEqpRgnFoot;
-					break;
-				case EQUIP_REGION_ID_SHADOW_ACCESSORY_1:
-					propName = CSaveDataConst.propNameEqpRgnAccessory1;
-					break;
-				case EQUIP_REGION_ID_SHADOW_ACCESSORY_2:
-					propName = CSaveDataConst.propNameEqpRgnAccessory2;
-					break;
-				// 上記以外はNG
-				default:
-					continue;
-			}
-			saveDataUnitEqpRgn.setProp(propName, candidateDefID);
-			// データユニットをメンバ変数の配列へ追加
-			this.#saveDataUnitArray.push(saveDataUnit);
-		}
-	}
-
-	/**
-	 * 未使用、かつ、最小の装備定義IDを取得する.
-	 * @returns 未使用、かつ、最小の装備定義ID
-	 */
-	#getCandidateEquipItemDefID () {
-
-		const usedIdArray = [];
-
-		// すでに使用されている装備定義IDを収集する
-		for (let idx = 0; idx < this.#saveDataUnitArray.length; idx++) {
-
-			const saveDataUnit = this.#saveDataUnitArray[idx];
-
-			// 装備定義でなければ次へ
-			if (saveDataUnit.constructor.type != SAVE_DATA_UNIT_TYPE_EQUIPABLE) {
-				continue;
-			}
-
-			// 装備定義IDを収集
-			usedIdArray.push(floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameEquipItemDefID)));
-		}
-
-		// 未使用、かつ、最小の装備定義IDを検索する
-		for (let candidate = 1; candidate < (0x01 << 6); candidate++) {
-			if (usedIdArray.indexOf(candidate) == -1) {
-				return candidate;
-			}
-		}
-
-		// ここに来たら使用できる装備定義IDがない（オーバーフローする）
-		throw new Error("No candidates for EquipItemDefID");
-	}
-
-
-	/**
 	 * 文字表現データをパースする.
 	 * @param {string} dataText パース対象を含む文字表現データ文字列
 	 * @returns {int} パースした文字数
@@ -818,26 +500,6 @@ export class CSaveDataManager {
 		// パースユニットのインスタンスを用意してパース開始
 		const unitParse = new CSaveDataUnitParse();
 		offset += unitParse.parse(dataText, 0);
-		// メンバ変数にデータを保持
-		this.#saveDataUnitArray = unitParse.saveDataUnitArray;
-		// オフセット位置はパースした文字数に一致する
-		return offset;
-	}
-
-	/**
-	 * parseDataText 関数からコピーしたセーブ専用の暫定処理
-	 * セーブとロードが両方とも parseDataText 関数を利用していて場合分けが複雑になりすぎるため
-	 * @param {*} dataText 
-	 * @returns {int} パースした文字数
-	 * @throws {Error} パース中に異常が検出された場合
-	 */
-	parseDataTextForCreateSave (dataText) {
-		let offset = 0;
-		// 強制文字列化
-		dataText = "" + dataText;
-		// パースユニットのインスタンスを用意してパース開始
-		const unitParse = new CSaveDataUnitParse();
-		offset += unitParse.parseForCreateSave(dataText, 0);
 		// メンバ変数にデータを保持
 		this.#saveDataUnitArray = unitParse.saveDataUnitArray;
 		// オフセット位置はパースした文字数に一致する
@@ -1013,14 +675,17 @@ export class CSaveDataManager {
 		const funcCallApplyMob = (thisF, dataKindF) => {
 			thisF.#applyDataToControlsMob(dataKindF, idxMap.get(dataKindF));
 		};
+		// ConfigSpec/MobConfPlayer/MobConfPlayer2 は #applyDataToControlsConfig と中身が同一
+		// だったため統合済み（B-33 B3-1）。ConfigSpec のみ objectIDMapMap のゲート判定用
+		// unitType が dataKind と別（固定値）なので、その unitType 自体を渡す。
 		const funcCallApplyConfigSpec = (thisF, dataKindF, dataArrayF) => {
-			thisF.#applyDataToControlsConfigSpec(dataKindF, idxMapSpecs.get(dataKindF), dataArrayF);
+			thisF.#applyDataToControlsConfig(SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, idxMapSpecs.get(dataKindF), dataArrayF);
 		};
 		const funcCallApplyMobConfPlayer = (thisF, unitTypeF, dataArrayF) => {
-			thisF.#applyDataToControlsMobConfPlayer(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
+			thisF.#applyDataToControlsConfig(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
 		};
 		const funcCallApplyMobConfPlayer2 = (thisF, unitTypeF, dataArrayF) => {
-			thisF.#applyDataToControlsMobConfPlayer2(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
+			thisF.#applyDataToControlsConfig(unitTypeF, idxMap.get(unitTypeF), dataArrayF);
 		};
 		const funcCallApplyMobConfInput = (thisF, unitTypeF) => {
 			thisF.#applyDataToControlsMobConfInput(unitTypeF, idxMap.get(unitTypeF));
@@ -1080,69 +745,33 @@ export class CSaveDataManager {
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_BUFF, n_B_KYOUKA);
 		funcCallApplyBuffLv(this, SAVE_DATA_UNIT_TYPE_MOB_DEBUFF, n_B_IJYOU);
 
-
-		// TODO: 構造変更後、撤去予定
-
-		// グローバル変数のデータ調整
-		let spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
-		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
-
-		spliceArray = g_confDataCustomStatusMIG.slice(0, 22);
-		g_confDataCustomStatus.splice(1, spliceArray.length, ...spliceArray);
-
-		spliceArray = g_confDataCustomStatusMIG.slice(22, 25);
-		spliceArray.push(g_confDataCustomStatusMIG[25]);
-		spliceArray.push(g_confDataSpecMIG[0][0][0]);
-		spliceArray.push(g_confDataSpecMIG[0][0][14]);
-		spliceArray.push(g_confDataSpecMIG[0][0][37]);
-		spliceArray.push(g_confDataSpecMIG[0][0][41]);
-		spliceArray.push(g_confDataSpecMIG[0][0][47]);
-		spliceArray.push(g_confDataSpecMIG[0][2][1]);
-		spliceArray.push(g_confDataCustomStatusMIG[26]);
-		spliceArray.push(g_confDataSpecMIG[0][0][51]);
-		spliceArray.push(g_confDataCustomStatusMIG[29]);
-		spliceArray.push(g_confDataSpecMIG[0][1][0]);
-		spliceArray.push(g_confDataSpecMIG[0][1][14]);
-		spliceArray.push(g_confDataSpecMIG[0][1][37]);
-		spliceArray.push(g_confDataSpecMIG[0][1][41]);
-		spliceArray.push(g_confDataSpecMIG[0][1][26]);
-		spliceArray.push(g_confDataSpecMIG[0][1][51]);
-		spliceArray.push(g_confDataSpecMIG[0][2][50]);
-		spliceArray.push(g_confDataSpecMIG[0][2][2]);
-		spliceArray.push(g_confDataSpecMIG[0][0][44]);
-		spliceArray.push(g_confDataSpecMIG[0][1][44]);
-		spliceArray.push(g_confDataCustomStatusMIG[27]);
-		spliceArray.push(g_confDataSpecMIG[0][0][26]);
-		g_confDataCustomAtk.splice(1, spliceArray.length, ...spliceArray);
-		g_confDataCustomAtk.splice(27, 1, g_confDataSpecMIG[0][0][53]);
-
-		spliceArray = g_confDataCustomStatusMIG.slice(30, 32);
-		spliceArray.push(g_confDataSpecMIG[1][2][14]);
-		spliceArray.push(g_confDataSpecMIG[1][2][37]);
-		spliceArray.push(g_confDataSpecMIG[1][2][26]);
-		spliceArray.push(g_confDataSpecMIG[1][2][41]);
-		spliceArray.push(g_confDataSpecMIG[1][2][46]);		// 全射程ではなく遠距離なので注意
-		spliceArray.push(g_confDataSpecMIG[1][2][50]);
-		spliceArray.push(g_confDataSpecMIG[1][2][2]);
-		spliceArray.push(g_confDataSpecMIG[1][2][44]);
-		g_confDataCustomDef.splice(1, spliceArray.length, ...spliceArray);
-
-		spliceArray = [g_confDataCustomSkillMIG[3]];
-		spliceArray.push(g_confDataCustomStatusMIG[32]);
-		spliceArray.push(g_confDataCustomStatusMIG[33]);
-		spliceArray.push(g_confDataCustomSkillMIG[7]);
-		spliceArray.push(g_confDataCustomSkillMIG[6]);
-		spliceArray.push(g_confDataCustomSkillMIG[9]);
-		spliceArray.push(g_confDataCustomSkillMIG[8]);
-		spliceArray.push(g_confDataCustomSkillMIG[11]);
-		spliceArray.push(g_confDataCustomSkillMIG[10]);
-		spliceArray.push(g_confDataCustomSkillMIG[2]);
-		spliceArray.push(g_confDataCustomSkillMIG[4]);
-		spliceArray.push(g_confDataCustomSkillMIG[5]);
-		g_confDataCustomSkill.splice(1, spliceArray.length, ...spliceArray);
-		spliceArray = g_confDataCustomSpecStatusMIG.slice(0, 24);
-		g_confDataCustomSpecStatus.splice(1, spliceArray.length, ...spliceArray);
-
+		// グローバル変数のデータ調整（B-33 B1: セーブ側 savedata-collect.js と共有する
+		// マッピングテーブル conf-mig-mapping.js 経由。従来はここに逆方向の対応関係を
+		// 個別に書いていたが、二重保守を避けるため一本化した）
+		applyMigArrayToConf(CHARA_CONF_SPEC_BASIC_MIG_MAP, g_confDataCustomSpecStatusMIG, {
+			confCustomSpecStatus: g_confDataCustomSpecStatus,
+		});
+		applyMigArrayToConf(CHARA_CONF_BASIC_MIG_MAP, g_confDataCustomStatusMIG, {
+			confCustomStatus: g_confDataCustomStatus,
+			confCustomAtk: g_confDataCustomAtk,
+			confCustomDef: g_confDataCustomDef,
+			confCustomSkill: g_confDataCustomSkill,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_PHYSICAL_MIG_MAP, g_confDataSpecMIG[0][0], {
+			confCustomAtk: g_confDataCustomAtk,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_MAGICAL_MIG_MAP, g_confDataSpecMIG[0][1], {
+			confCustomAtk: g_confDataCustomAtk,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_ATTACK_ANY_MIG_MAP, g_confDataSpecMIG[0][2], {
+			confCustomAtk: g_confDataCustomAtk,
+		});
+		applyMigArrayToConf(CHARA_CONF_SPECIALIZE_DEFENCE_ANY_MIG_MAP, g_confDataSpecMIG[1][2], {
+			confCustomDef: g_confDataCustomDef,
+		});
+		applyMigArrayToConf(CHARA_CONF_SKILL_MIG_MAP, g_confDataCustomSkillMIG, {
+			confCustomSkill: g_confDataCustomSkill,
+		});
 
 		// 画面表示リフレッシュ処理（既存移植）
 		OnClickSkillSWLearned();
@@ -1188,42 +817,35 @@ export class CSaveDataManager {
 
 	/**
 	 * 保持しているデータを画面部品に適用する.
+	 * 読み取り（#extractCharaLoad）と適用（DOM書き込み・changeJobSettings()呼び出し）を
+	 * 分離した（B-33 B3-4）。**注意**: 職業ID（propNameJobID）の適用が `n_A_JOB` を
+	 * 副作用として確定させ、以降に処理する BaseLv/JobLv/classic統計のクランプ計算
+	 * （`GetBaseLevelMin(n_A_JOB)` 等）がその確定後の値を読む——という順序依存が
+	 * `#extractCharaLoad()` が返す `entries` の並び（= propNames の宣言順。JobIDが
+	 * BaseLv等より先）に暗黙に依存している。読み取り自体はDOM/サブシステム非依存のまま
+	 * 保ち、解釈（switch分岐・クランプ・DOM書き込み）は本メソッド側にそのまま残した
+	 * （クランプ関数へジョブIDを明示的に渡す形への刷新はここでは行わない——エントリ順序への
+	 * 暗黙依存を崩さないための保守的な選択）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 */
 	#applyDataToControlsChara (unitType, idxUnit) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const load = this.#extractCharaLoad(unitType, idxUnit);
+		if (!load) {
 			return;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 処理対象のプロパティを列挙
-		const propNames = saveDataUnit.constructor.propNames.slice();
-		propNames.push(CSaveDataConst.propNameSubAutoAdjustBaseLv);
 
 		// すべてのプロパティを走査し、必要なプロパティのみ処理
-		for (let idx = 0; idx < propNames.length; idx++) {
+		for (const { propName, objID, propValue: propValueRaw } of load.entries) {
 
 			// プロパティに関する情報を取得
-			const propName = propNames[idx];
-			let propValue = floorBigInt32(saveDataUnit.getProp(propName));
-			const objID = objIDMap.get(propName);
+			let propValue = propValueRaw;
 
 			// プロパティ名で処理分岐
 			switch (propName) {
 				// 職業IDは専用処理
 				case CSaveDataConst.propNameJobID: {
-					this.#applyToControlsCharaJobID(saveDataUnit, objID, propValue);
+					this.#applyToControlsCharaJobID(load.saveDataUnit, objID, propValue);
 					break;
 				}
 				// ベースレベル自動調整チェックボックス
@@ -1264,6 +886,37 @@ export class CSaveDataManager {
 					break;
 			}
 		}
+	}
+
+	/**
+	 * キャラクターステータスユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * 各エントリの並び順は `propNames` の宣言順（職業IDがBaseLv等より先）を保つ——
+	 * `#applyDataToControlsChara()` 側のクランプ計算が `n_A_JOB` の確定順に依存するため。
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @returns {?{saveDataUnit: object, entries: Array<{propName: string, objID: string|undefined, propValue: number}>}}
+	 */
+	#extractCharaLoad (unitType, idxUnit) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return null;
+		}
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
+
+		// 処理対象のプロパティを列挙
+		const propNames = saveDataUnit.constructor.propNames.slice();
+		propNames.push(CSaveDataConst.propNameSubAutoAdjustBaseLv);
+
+		const entries = propNames.map((propName) => ({
+			propName,
+			objID: objIDMap.get(propName),
+			propValue: floorBigInt32(saveDataUnit.getProp(propName)),
+		}));
+
+		return { saveDataUnit, entries };
 	}
 
 	/**
@@ -1593,18 +1246,35 @@ export class CSaveDataManager {
 	// TODO: いずれこちらの方式に統合したい
 	/**
 	 * 保持しているデータを画面部品に適用する（装備可能品系、シャドウ装備用）.
+	 * 読み取り（#extractEquipableShadowLoads）と適用（g_shadowEquipController呼び出し）を
+	 * 分離した（B-33 B3-2）。
 	 * @param {int} equipRegionKind 装備領域種別
 	 * @param {int|undefined} idxUnitEqpRgn データユニットの配列インデックス
 	 * @param {Map} mapDefEquipables 装備定義のマップ
 	 */
 	#applyDataToControlsEquipableShadow (equipRegionKind, idxUnitEqpRgn, mapDefEquipables) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnitEqpRgn === undefined) || (idxUnitEqpRgn < 0) || (idxUnitEqpRgn >= this.#saveDataUnitArray.length)) {
+		const loads = this.#extractEquipableShadowLoads(idxUnitEqpRgn, mapDefEquipables);
+		if (!loads) {
 			return;
 		}
+		for (const load of loads) {
+			g_shadowEquipController.onLoadShadow(load.eqpRgnName, load.itemID, load.refined, load.rndOptInfoArray, load.enchantArray);
+		}
+	}
+
+	/**
+	 * シャドウ装備位置ユニット＋対応する装備定義ユニット群から読み込み内容を抽出する
+	 * （DOM/サブシステム非依存）.
+	 * @param {int|undefined} idxUnitEqpRgn データユニットの配列インデックス
+	 * @param {Map} mapDefEquipables 装備定義のマップ
+	 * @returns {?Array<{eqpRgnName: string, itemID: number, refined: number, rndOptInfoArray: Array, enchantArray: number[]}>}
+	 */
+	#extractEquipableShadowLoads (idxUnitEqpRgn, mapDefEquipables) {
+		if ((idxUnitEqpRgn === undefined) || (idxUnitEqpRgn < 0) || (idxUnitEqpRgn >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
 		if ((!mapDefEquipables) || (!(mapDefEquipables instanceof SKeyMap))) {
-			return;
+			return null;
 		}
 
 		// 装備領域データユニットを取得
@@ -1612,6 +1282,8 @@ export class CSaveDataManager {
 
 		// 処理対象のプロパティを列挙
 		const propNames = saveDataUnitEqpRgn.constructor.propNames.slice();
+
+		const loads = [];
 
 		// すべてのプロパティを走査し、必要なプロパティのみ処理
 		for (let idx = 0; idx < propNames.length; idx++) {
@@ -1698,110 +1370,122 @@ export class CSaveDataManager {
 				floorBigInt32(saveDataUnitItemDef.getProp(CSaveDataConst.propNameCardID4)),
 			]
 
-			// 設定の適用
-			g_shadowEquipController.onLoadShadow(eqpRgnName, itemID, refined, rndOptInfoArray, enchantArray);
+			loads.push({ eqpRgnName, itemID, refined, rndOptInfoArray, enchantArray });
 		}
+
+		return loads;
 	}
 
 	/**
 	 * 保持しているデータを画面部品に適用する（キャラBUFF）.
+	 * 読み取り（#extractCompositBuffLoad）と適用（DOM書き込み）を分離した（B-33 B3-3）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
 	 */
 	#applyDataToControlsCompositBuff (unitType, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const load = this.#extractCompositBuffLoad(unitType, idxUnit);
+		if (!load) {
 			return;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
+		for (const { objID, propValue } of load.domWrites) {
+			HtmlSetObjectValueById(objID, propValue);
 		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// オブジェクトIDマップの定義をもとに、データを設定
-		for (const [propNameF, objIDF] of objIDMap) {
-			const propValueF = floorBigInt32(saveDataUnit.getProp(propNameF));
-			HtmlSetObjectValueById(objIDF, propValueF);
-		}
-
-
-		// これ以降、従来のグローバル配列にデータを読み込む処理
-
-		// パース制御フラグ、データプロパティ値（配列）を取得
-		const ctrlFlag = saveDataUnit.getProp(CSaveDataConst.propNameParseCtrlFlag);
-		let ctrlFlagWork = ctrlFlag;
-		const propValueArray = saveDataUnit.getProp(CSaveDataConst.propNameBuffLv);
-
-		// すべてのプロパティを走査し、必要なプロパティのみ処理
-		const dataArrayRead = [];
-		for (let idx = 0; ctrlFlagWork > 0n; idx++) {
-
-			const buffLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
-			dataArrayRead.push(buffLv);
-
-			ctrlFlagWork >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
 		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
+			dataArrayF.fill(0).splice(0, load.buffLvArray.length, ...load.buffLvArray);
 		}
 	}
 
 	/**
+	 * キャラBUFFユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @returns {?{domWrites: Array<{objID: string, propValue: number}>, buffLvArray: number[]}}
+	 */
+	#extractCompositBuffLoad (unitType, idxUnit) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return null;
+		}
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
+
+		// オブジェクトIDマップの定義をもとに、データを収集
+		const domWrites = [];
+		for (const [propNameF, objIDF] of objIDMap) {
+			const propValueF = floorBigInt32(saveDataUnit.getProp(propNameF));
+			domWrites.push({ objID: objIDF, propValue: propValueF });
+		}
+
+		// これ以降、従来のグローバル配列に読み込む値を収集する処理
+		const ctrlFlag = saveDataUnit.getProp(CSaveDataConst.propNameParseCtrlFlag);
+		let ctrlFlagWork = ctrlFlag;
+		const propValueArray = saveDataUnit.getProp(CSaveDataConst.propNameBuffLv);
+
+		const buffLvArray = [];
+		for (let idx = 0; ctrlFlagWork > 0n; idx++) {
+			const buffLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
+			buffLvArray.push(buffLv);
+			ctrlFlagWork >>= 1n;
+		}
+
+		return { domWrites, buffLvArray };
+	}
+
+	/**
 	 * 保持しているデータを画面部品に適用する（スキル／BUFFレベル）.
+	 * 読み取り（#extractXXXXLvLoad）と適用（DOM書き込み）を分離した（B-33 B3-3）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 * @param {string} propName 対応するプロパティの名称
 	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
 	 */
 	#applyDataToControlsXXXXLv (unitType, idxUnit, propName, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const load = this.#extractXXXXLvLoad(unitType, idxUnit, propName);
+		if (!load) {
 			return;
 		}
+		if (load.objIDPrefix !== undefined) {
+			load.values.forEach((skillLv, idx) => {
+				HtmlSetObjectValueById(load.objIDPrefix + idx, skillLv);
+			});
+		}
+		if (Array.isArray(dataArrayF)) {
+			dataArrayF.fill(0).splice(0, load.values.length, ...load.values);
+		}
+	}
 
-		// オブジェクトIDマップが存在しない場合は、処理しない
+	/**
+	 * スキル／BUFFレベルユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @param {string} propName 対応するプロパティの名称
+	 * @returns {?{objIDPrefix: string|undefined, values: number[]}}
+	 */
+	#extractXXXXLvLoad (unitType, idxUnit, propName) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
 		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
 		if (!objIDMap) {
-			return;
+			return null;
 		}
-		const objIDPrefixF = objIDMap.get(propName);
-
-		// データユニットを取得
+		const objIDPrefix = objIDMap.get(propName);
 		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
 
-		// パース制御フラグ、データプロパティ値（配列）を取得
 		const ctrlFlag = saveDataUnit.getProp(CSaveDataConst.propNameParseCtrlFlag);
 		let ctrlFlagWork = ctrlFlag;
 		const propValueArray = saveDataUnit.getProp(propName);
 
-		// すべてのプロパティを走査し、必要なプロパティのみ処理
-		const dataArrayRead = [];
+		const values = [];
 		for (let idx = 0; ctrlFlagWork > 0n; ctrlFlagWork >>= 1n, idx++) {
-
-			// スキルレベルを取得
 			const skillLv = (ctrlFlagWork & 1n) ? floorBigInt32(propValueArray[idx]) : 0;
-
-			// データを設定
-			dataArrayRead.push(skillLv);
-			if (objIDPrefixF !== undefined) {
-				HtmlSetObjectValueById(objIDPrefixF + idx, skillLv);
-			}
+			values.push(skillLv);
 		}
 
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
+		return { objIDPrefix, values };
 	}
 
 	/**
@@ -1863,8 +1547,11 @@ export class CSaveDataManager {
 	}
 
 	/**
-	 * 保持しているデータを画面部品に適用する（性能カスタマイズ）.
-	 * @param {int} unitType ユニットのタイプ値
+	 * 保持しているデータを画面部品に適用する（parseCtrlFlagをビット単位で消費しながら
+	 * propNamesを歩き、"Sign"接尾辞プロパティは符号として直後の値プロパティへ適用する
+	 * 共通デコード処理）. 性能カスタマイズ（基本/特化）・対プレイヤー設定（1/2）の4型で
+	 * 中身が同一だったため統合した（B-33 B3-1）。
+	 * @param {int} unitType ユニットのタイプ値（objectIDMapMapのゲート判定にのみ使う）
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
 	 */
@@ -1940,302 +1627,77 @@ export class CSaveDataManager {
 	}
 
 	/**
-	 * 保持しているデータを画面部品に適用する（性能カスタマイズ：特化）.
-	 * @param {int} dataKind 特化種別
-	 * @param {int|undefined} idxUnit データユニットの配列インデックス
-	 * @param {Array} dataArrayF データ値を保存しておくグローバル空間の配列（n_A_PassSkill等）
-	 */
-	#applyDataToControlsConfigSpec (dataKind, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
-			return;
-		}
-
-		// ユニットデータ種別は固定
-		const unitType = SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE;
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// プロパティ名配列を取得
-		const propNames = saveDataUnit.constructor.propNames.slice();
-
-		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
-		let idx = 0;
-
-		// パース制御フラグを取得
-		let ctrlFlag = undefined;
-		for (idx = 0; idx < propNames.length; idx++) {
-			const propName = propNames[idx];
-			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-				ctrlFlag = saveDataUnit.getProp(propName);
-				idx++;
-				break;
-			}
-		}
-
-		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
-		let sign = undefined;
-		const dataArrayRead = [];
-		for (; idx < propNames.length; idx++) {
-
-			// 必要な情報を収集
-			const propName = propNames[idx];
-
-
-			// 符号プロパティの場合
-			if (propName.slice(-4) == "Sign") {
-				if (ctrlFlag & 1n) {
-					// 負論理なので注意
-					sign = (saveDataUnit.getProp(propName) == 1n) ? -1 : 1;
-				}
-				else {
-					sign = undefined;
-				}
-			}
-
-			// 上記以外の場合
-			else {
-				let propValue = (ctrlFlag & 1n) ? floorBigInt32(saveDataUnit.getProp(propName)) : 0;
-				if (sign !== undefined) {
-					propValue *= sign;
-				}
-				dataArrayRead.push(propValue);
-				sign = undefined;
-			}
-
-			ctrlFlag >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
-	}
-
-	/**
 	 * 保持しているデータを画面部品に適用する（モンスター基本）.
+	 * 読み取り（#extractMobLoad）と適用（CMonsterMapAreaComponentManager呼び出し）を分離した（B-33 B3-2）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 */
 	#applyDataToControlsMob (unitType, idxUnit) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const mobLoad = this.#extractMobLoad(unitType, idxUnit);
+		if (!mobLoad) {
 			return;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// データ取得
-		const categoryID = floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameMonsterMapCategoryID));
-		const mapID = floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameMonsterMapID));
-		const mobID = floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameMonsterID));
-
-		// 専用処理
-		CMonsterMapAreaComponentManager.ChangeSelect(categoryID, mapID, mobID, true);
+		CMonsterMapAreaComponentManager.ChangeSelect(mobLoad.categoryID, mobLoad.mapID, mobLoad.mobID, true);
 	}
 
 	/**
-	 * 保持しているデータを画面部品に適用する（対プレイヤー設定）.
+	 * モンスター基本ユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @returns {?{categoryID: number, mapID: number, mobID: number}}
 	 */
-	#applyDataToControlsMobConfPlayer (unitType, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
+	#extractMobLoad (unitType, idxUnit) {
 		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
-			return;
+			return null;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
 		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
 		if (!objIDMap) {
-			return;
+			return null;
 		}
-
-		// データユニットを取得
 		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 処理対象のプロパティを列挙
-		const propNames = saveDataUnit.constructor.propNames.slice();
-
-		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
-		let idx = 0;
-
-		// パース制御フラグを取得
-		let ctrlFlag = undefined;
-		for (idx = 0; idx < propNames.length; idx++) {
-			const propName = propNames[idx];
-			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-				ctrlFlag = saveDataUnit.getProp(propName);
-				idx++;
-				break;
-			}
-		}
-
-		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
-		let sign = undefined;
-		const dataArrayRead = [];
-		for (; idx < propNames.length; idx++) {
-
-			// 必要な情報を収集
-			const propName = propNames[idx];
-
-
-			// 符号プロパティの場合
-			if (propName.slice(-4) == "Sign") {
-				if (ctrlFlag & 1n) {
-					// 負論理なので注意
-					sign = (saveDataUnit.getProp(propName) == 1n) ? -1 : 1;
-				}
-				else {
-					sign = undefined;
-				}
-			}
-
-			// 上記以外の場合
-			else {
-				let propValue = (ctrlFlag & 1n) ? floorBigInt32(saveDataUnit.getProp(propName)) : 0;
-				if (sign !== undefined) {
-					propValue *= sign;
-				}
-				dataArrayRead.push(propValue);
-				sign = undefined;
-			}
-
-			ctrlFlag >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
-	}
-
-	/**
-	 * 保持しているデータを画面部品に適用する（対プレイヤー設定2）.
-	 * @param {int} unitType ユニットのタイプ値
-	 * @param {int|undefined} idxUnit データユニットの配列インデックス
-	 */
-	#applyDataToControlsMobConfPlayer2 (unitType, idxUnit, dataArrayF) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
-			return;
-		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 処理対象のプロパティを列挙
-		const propNames = saveDataUnit.constructor.propNames.slice();
-
-		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
-		let idx = 0;
-
-		// パース制御フラグを取得
-		let ctrlFlag = undefined;
-		for (idx = 0; idx < propNames.length; idx++) {
-			const propName = propNames[idx];
-			if (propName == CSaveDataConst.propNameParseCtrlFlag) {
-				ctrlFlag = saveDataUnit.getProp(propName);
-				idx++;
-				break;
-			}
-		}
-
-		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
-		let sign = undefined;
-		const dataArrayRead = [];
-		for (; idx < propNames.length; idx++) {
-
-			// 必要な情報を収集
-			const propName = propNames[idx];
-
-
-			// 符号プロパティの場合
-			if (propName.slice(-4) == "Sign") {
-				if (ctrlFlag & 1n) {
-					// 負論理なので注意
-					sign = (saveDataUnit.getProp(propName) == 1n) ? -1 : 1;
-				}
-				else {
-					sign = undefined;
-				}
-			}
-
-			// 上記以外の場合
-			else {
-				let propValue = (ctrlFlag & 1n) ? floorBigInt32(saveDataUnit.getProp(propName)) : 0;
-				if (sign !== undefined) {
-					propValue *= sign;
-				}
-				dataArrayRead.push(propValue);
-				sign = undefined;
-			}
-
-			ctrlFlag >>= 1n;
-		}
-
-		// 読み取ったデータ値をグローバル配列に設定する
-		if (Array.isArray(dataArrayF)) {
-			dataArrayF.fill(0).splice(0, dataArrayRead.length, ...dataArrayRead);
-		}
+		return {
+			categoryID: floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameMonsterMapCategoryID)),
+			mapID: floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameMonsterMapID)),
+			mobID: floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameMonsterID)),
+		};
 	}
 
 	/**
 	 * 保持しているデータを画面部品に適用する（モンスター手入力）.
+	 * 読み取り（#extractMobConfInputLoads）と適用（SetMobConfInput呼び出し）を分離した（B-33 B3-2）。
 	 * @param {int} unitType ユニットのタイプ値
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 */
 	#applyDataToControlsMobConfInput (unitType, idxUnit) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const loads = this.#extractMobConfInputLoads(unitType, idxUnit);
+		if (!loads) {
 			return;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 旧形式の処理を移植
 		// 自動読み込みをアクティブに
 		SetActiveIndexMobConfInput(0);
+		for (const load of loads) {
+			SetMobConfInput(load.propIndex, load.propValue);
+		}
+	}
 
-		// 処理対象のプロパティを列挙
+	/**
+	 * モンスター手入力ユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @returns {?Array<{propIndex: *, propValue: bigint|number}>}
+	 */
+	#extractMobConfInputLoads (unitType, idxUnit) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return null;
+		}
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
 		const propNames = saveDataUnit.constructor.propNames.slice();
 
-		// 一連の処理で共通の配列インデックスを使うため、ここで宣言
 		let idx = 0;
-
-		// パース制御フラグを取得
 		let ctrlFlag = undefined;
 		for (idx = 0; idx < propNames.length; idx++) {
 			const propName = propNames[idx];
@@ -2246,19 +1708,15 @@ export class CSaveDataManager {
 			}
 		}
 
-		// パース制御フラグ以降のすべてのプロパティを走査し、必要なプロパティのみ処理
+		const loads = [];
 		for (; idx < propNames.length; idx++) {
-
-			// 必要な情報を収集
 			const propName = propNames[idx];
 			const propIndex = objIDMap.get(propName);
-
-			let propValue = (ctrlFlag & 1n) ? floorBigInt40(saveDataUnit.getProp(propName)) : 0;
-
-			SetMobConfInput(propIndex, propValue);
-
+			const propValue = (ctrlFlag & 1n) ? floorBigInt40(saveDataUnit.getProp(propName)) : 0;
+			loads.push({ propIndex, propValue });
 			ctrlFlag >>= 1n;
 		}
+		return loads;
 	}
 
 	/**
@@ -2267,43 +1725,48 @@ export class CSaveDataManager {
 	 * @param {int|undefined} idxUnit データユニットの配列インデックス
 	 */
 	#applyDataToControlsAttackConf (unitType, idxUnit) {
-
-		// データユニットが存在しない場合は、処理しない
-		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+		const load = this.#extractAttackConfLoad(unitType, idxUnit);
+		if (!load) {
 			return;
 		}
-
-		// オブジェクトIDマップが存在しない場合は、処理しない
-		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
-		if (!objIDMap) {
-			return;
-		}
-
-		// データユニットを取得
-		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
-
-		// 旧形式の処理を移植
-
-		// 必要な情報を取得
-		const skillID = floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameAttackSkillID));
-		const sourceTypeID = floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameSourceTypeID));
-		const skillLv = floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameAttackSkillLv));
-		const optionArray = floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameAttackSkillOption));
 
 		// 攻撃手段エリアコンポーネントの再構築
 		CAttackMethodAreaComponentManager.RebuildControls();
 
 		// 攻撃手段設定を生成
 		const attackMethodConf = new CAttackMethodConf();
-		attackMethodConf.SetSkillId(skillID);
-		attackMethodConf.SetSourceType(sourceTypeID);
-		attackMethodConf.SetSkillLv(skillLv);
-		if (optionArray != undefined) {
-			attackMethodConf.SetOptionValueArray(optionArray);
+		attackMethodConf.SetSkillId(load.skillID);
+		attackMethodConf.SetSourceType(load.sourceTypeID);
+		attackMethodConf.SetSkillLv(load.skillLv);
+		if (load.optionArray != undefined) {
+			attackMethodConf.SetOptionValueArray(load.optionArray);
 		}
 
 		//  攻撃手段の設定設定を変更
 		CAttackMethodAreaComponentManager.SetAttackMethodConf(attackMethodConf);
+	}
+
+	/**
+	 * 攻撃手段情報ユニットから読み込み内容を抽出する（DOM/サブシステム非依存）.
+	 * @param {int} unitType ユニットのタイプ値
+	 * @param {int|undefined} idxUnit データユニットの配列インデックス
+	 * @returns {?{skillID: number, sourceTypeID: number, skillLv: number, optionArray: *}}
+	 */
+	#extractAttackConfLoad (unitType, idxUnit) {
+		if ((idxUnit === undefined) || (idxUnit < 0) || (idxUnit >= this.#saveDataUnitArray.length)) {
+			return null;
+		}
+		const objIDMap = this.constructor.objectIDMapMap.get(unitType);
+		if (!objIDMap) {
+			return null;
+		}
+		const saveDataUnit = this.#saveDataUnitArray[idxUnit];
+		return {
+			skillID: floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameAttackSkillID)),
+			sourceTypeID: floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameSourceTypeID)),
+			skillLv: floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameAttackSkillLv)),
+			optionArray: floorBigInt32(saveDataUnit.getProp(CSaveDataConst.propNameAttackSkillOption)),
+		};
 	}
 }
 

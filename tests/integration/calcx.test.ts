@@ -1218,28 +1218,15 @@ describe('URL セーブ/ロード 往復テスト（新形式フィクスチャ�
 // staging-vs-prod はネット接続・staging 環境が必要で pnpm test:staging-diff でのみ実行される。
 
 /**
- * ページ読み込み後の初回自動計算完了を待つ。
- * BATTLE_RESULT_BASIC は本番・ローカルどちらの calcx.html にも空 <div> として置かれており、
- * StAllCalc の描画（engine/battle/battle-result-html.js）で初めて子要素が入る。
- * DOM だけを見るので、モジュール配置の違い（本番 roro/m/js・ローカル engine/）に依存しない
- * （旧実装は `/engine/ui/CExtraInfoDataBridge.js` をルート絶対パスで動的importしており、
- * 本番では `github.io/ratorio/` 配下・`roro/m/js` レイアウトのため常に404していた）。
+ * url を開いて初回計算完了を待ち、全 OBJID_* スナップショットを取る。context は必ず閉じる。
+ * 初回自動計算完了待ち（旧 waitForAutoCalc）は captureFullObjidSnapshot() 内の
+ * waitForBattleResultRendered() に統合済み（helpers/objid-snapshot.ts）。
  */
-const waitForAutoCalc = (p: Page) => p.waitForFunction(
-    () => {
-        const el = document.getElementById('BATTLE_RESULT_BASIC');
-        return el !== null && el.childElementCount > 0;
-    },
-    { timeout: 30000 },
-);
-
-/** url を開いて初回計算完了を待ち、全 OBJID_* スナップショットを取る。context は必ず閉じる。 */
 async function captureObjidSnapshotAt(url: string, gotoTimeout: number): Promise<Record<string, string>> {
     const context = await browser.newContext();
     try {
         const page = await context.newPage();
         await page.goto(url, { waitUntil: 'networkidle', timeout: gotoTimeout });
-        await waitForAutoCalc(page);
         return await captureFullObjidSnapshot(page);
     } finally {
         await context.close();
@@ -1254,7 +1241,7 @@ describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ロー
     }
 
     for (const { label, url: prodUrl, query } of allEntries) {
-        it(`${label}: 全 OBJID_* 要素の値が本番と一致する`, async ({ skip }) => {
+        it(`${label}: 全 OBJID_* 要素と戦闘結果パネルの値が本番と一致する`, async ({ skip }) => {
             // 到達性の判定は beforeAll の一度きり。ここで判定し直さないのは、
             // 比較ロジック側の不具合を「本番に繋がらなかった」に化けさせないため。
             skip(!productionOk, '本番サイトに到達できません');
@@ -1266,6 +1253,14 @@ describe('セーブデータ復元比較（全 OBJID_* 要素・本番 vs ロー
                 Object.keys(prodSnapshot).length,
                 `本番スナップショットがほぼ空（比較が成立していない・テスト前提の不成立）: ${label}`,
             ).toBeGreaterThan(100);
+
+            // 戦闘結果パネル（battle:）が空振りしていないことも同様に保証する（残件台帳 B-29）。
+            // ここがゼロのまま緑になると、与ダメージ・DPS・詠唱時間の回帰を検出できない
+            // まま気付けない、という B-29 発覚時と同じ死角が復活する。
+            expect(
+                Object.keys(prodSnapshot).filter((k) => k.startsWith('battle:')).length,
+                `本番スナップショットの戦闘結果パネル（battle:）がほぼ空: ${label}`,
+            ).toBeGreaterThan(10);
 
             const localSnapshot = await captureObjidSnapshotAt(`${baseUrl}/ro4/m/calcx.html?${query}`, 60000);
 

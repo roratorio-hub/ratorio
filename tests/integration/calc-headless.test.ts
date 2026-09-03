@@ -18,7 +18,7 @@ const PROJECT_ROOT = join(__dirname, '../..');
 const FIXTURES_PATH = join(__dirname, 'fixtures/generated-job-corpus.md');
 
 const allEntries = loadSaveDataEntries(FIXTURES_PATH, 'headless');
-// 全101件はPlaywrightで2回ずつページロードすると重いため、均等に抜粋する。
+// 全件（Pass A/B/C 計125件）をPlaywrightで2回ずつページロードすると重いため、均等に抜粋する。
 const SAMPLE_SIZE = 12;
 const step = Math.max(1, Math.floor(allEntries.length / SAMPLE_SIZE));
 const entries = allEntries.filter((_, i) => i % step === 0).slice(0, SAMPLE_SIZE);

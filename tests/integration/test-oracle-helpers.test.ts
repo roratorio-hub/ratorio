@@ -22,12 +22,42 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium, type Browser } from 'playwright';
 import { type Server } from 'node:http';
+import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createStaticServer, evalObjidSnapshot, snapshotAllGlobals } from '../helpers/objid-snapshot.js';
+import {
+    createStaticServer, evalObjidSnapshot, snapshotAllGlobals, waitForBattleResultRendered,
+} from '../helpers/objid-snapshot.js';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const PROJECT_ROOT = join(__dirname, '../..');
+const CORPUS_PATH = join(__dirname, 'fixtures/generated-job-corpus.md');
+
+/**
+ * generated-job-corpus.md から「Pass B: 代表職業（スキル攻撃手段選択）」の1件を選ぶ。
+ * 数値インデックスで決め打ちすると再生成（generate-job-corpus.mjs）で対象が変わりうるため、
+ * コメント行（`# ○○（スキル攻撃）`）を目印に探す。
+ * ウォーロック（詠唱の長い魔法スキル）を優先する——他の代表職業は「攻撃手段セレクトの
+ * 2番目の option」がインスタントスキルで詠唱0のことがあり、詠唱非ゼロを保証できないため
+ * （実測で確認済み）。無ければ最初に見つかった「スキル攻撃」フィクスチャへフォールバックする。
+ */
+function findSkillAttackFixtureQuery(): string | null {
+    const lines = readFileSync(CORPUS_PATH, 'utf-8').split('\n');
+    let lastComment = '';
+    let fallback: string | null = null;
+    for (const raw of lines) {
+        const line = raw.trim();
+        if (line.startsWith('#')) { lastComment = line; continue; }
+        if (line.startsWith('https') && lastComment.includes('スキル攻撃')) {
+            const qi = line.indexOf('?');
+            if (qi < 0) continue;
+            const query = line.slice(qi + 1);
+            if (lastComment.includes('ウォーロック')) return query;
+            fallback ??= query;
+        }
+    }
+    return fallback;
+}
 
 let server: Server;
 let browser: Browser;
@@ -88,7 +118,10 @@ describe('evalObjidSnapshot の calcForm 拡張', () => {
         expect(snapshot['calcForm:A7_Skill42']).toBeDefined();
     });
 
-    it('A_JOB は OBJID_SELECT_JOB と同一要素のため意図的乖離として除外される', async () => {
+    it('A_JOB は OBJID_SELECT_JOB と同一要素のため calcForm:A_JOB と OBJID_SELECT_JOB が同じ値で現れる', async () => {
+        // 2026-08-10〜2026-08-31（残件台帳 B-29）の間は本番未デプロイの差分を理由に
+        // 除外されていたが、本番デプロイ完了に伴い陳腐化したため撤去済み（INTENTIONAL_DIVERGENCE_FORM_NAMES
+        // は helpers/objid-snapshot.ts 参照）。他の name 付き要素と同じ扱いになったことを確認する。
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
@@ -97,8 +130,47 @@ describe('evalObjidSnapshot の calcForm 拡張', () => {
         const snapshot = await evalObjidSnapshot(page);
         await context.close();
 
-        expect(snapshot['calcForm:A_JOB']).toBeUndefined();
-        expect(snapshot['OBJID_SELECT_JOB']).toBeUndefined();
+        expect(snapshot['calcForm:A_JOB']).toBeDefined();
+        expect(snapshot['calcForm:A_JOB']).toBe(snapshot['OBJID_SELECT_JOB']);
+    });
+});
+
+describe('evalObjidSnapshot の戦闘結果パネル採取（残件台帳 B-29）', () => {
+    it('詠唱時間（変動）が0秒以外の値として観測できる（g_VariableCastTimeRate 型の回帰を検出可能）', async () => {
+        // 通常攻撃のセーブデータは BASIC グリッドに「詠唱/ディレイ > （変動）」行自体が
+        // 現れない（攻撃間隔のみ）ため、必ず詠唱を伴うスキル攻撃のフィクスチャを使う。
+        const query = findSkillAttackFixtureQuery();
+        expect(query).not.toBeNull();
+
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto(`${baseUrl}/ro4/m/calcx.html?${query}`, { waitUntil: 'networkidle', timeout: 60000 });
+        await waitForBattleResultRendered(page);
+
+        const snapshot = await evalObjidSnapshot(page);
+        await context.close();
+
+        const castKey = 'battle:BATTLE_RESULT_BASIC > 詠唱/ディレイ > （変動）';
+        expect(snapshot[castKey]).toBeDefined();
+        expect(snapshot[castKey]).not.toBe('0.00 秒');
+        expect(snapshot['battle:TINY > DPS']).toBeDefined();
+        expect(snapshot['legacy:AveSecondATK']).toBeDefined();
+    });
+
+    it('最大被ダメージ行のラベル（<select>を内包）は行ラベルとして属性選択肢を巻き込まない', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(500);
+
+        const snapshot = await evalObjidSnapshot(page);
+        await context.close();
+
+        const battleKeys = Object.keys(snapshot).filter((k) => k.startsWith('battle:'));
+        expect(battleKeys.length).toBeGreaterThan(10);
+        for (const key of battleKeys) {
+            expect(key).not.toContain('属性なし無属性水属性');
+        }
     });
 });
 
