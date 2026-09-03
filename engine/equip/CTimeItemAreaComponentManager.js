@@ -267,10 +267,10 @@ CTimeItemAreaComponentManager.RefreshControlCSS = function () {
 
 		if (objSelect) {
 			if (HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_TIME_ITEM_" + idx, 0) != 0) {
-				$(objSelect).addClass("CSSCLS_SELECTED_CONF");
+				objSelect.classList.add("CSSCLS_SELECTED_CONF");
 			}
 			else {
-				$(objSelect).removeClass("CSSCLS_SELECTED_CONF");
+				objSelect.classList.remove("CSSCLS_SELECTED_CONF");
 			}
 		}
 	}

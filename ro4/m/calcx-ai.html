@@ -147,10 +147,6 @@
 	<script defer src="../../lib/tom-select/dropdown_input.js"></script>
 	<script defer src="../../lib/tom-select/tom-select.custom.js"></script>
 
-	<!-- **************************************************
-	ここからjQuery
-	*************************************************** -->
-	<script src="../../jquery/jquery.min.js"></script>
 	<!-- セーブデータの画像出力機能 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
 		integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
@@ -158,12 +154,8 @@
 	<script type="module" src="../../engine/ui/saveimage.js"></script>
 	<!-- セーブ履歴機能 -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.css" />
 	<script type="module" src="../../engine/ui/calchistory.js"></script>
-	<!-- 重い処理用のローディングインジケーター -->
-	<link href="../../jquery/loadingindicator/spinner.css" rel="stylesheet" />
-	<script src="../../jquery/loadingindicator/spinner.js"></script>
+	<script type="module" src="../../engine/ui/loading-indicator.js"></script>
 
 
 <!-- **************************************************
@@ -200,7 +192,6 @@
 			<span id="ID_FRAME"></span>
 		</div>
 		<div class="content">
-			<div class="spinner" id="loadingSpinner"></div>
 			<div style="padding: 20px 34px">
 
 				<form name="calcForm">

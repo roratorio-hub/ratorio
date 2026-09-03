@@ -23,7 +23,7 @@ const SCAN_DIRS = ['engine', 'pages/js'];
 const EXTRA_FILES = ['ro4/m/calcx-ai.js', 'assets/toast.js'];
 
 // classic script（type="module" でない <script>）が定義する真のグローバルを収集する対象
-const CLASSIC_DIRS = ['lib', 'jquery'];
+const CLASSIC_DIRS = ['lib'];
 // TypeScript 層（workspace/）が window に生やすシンボルを収集する対象
 const TS_DIR = 'workspace/src';
 
@@ -53,7 +53,7 @@ const BUILTINS = new Set([
     'HTMLOptGroupElement', 'HTMLOptionElement', 'HTMLTableRowElement', 'HTMLTableCellElement',
     'MutationObserver', 'IntersectionObserver', 'ResizeObserver',
     // 外部ライブラリ（CDN / lib 配下の classic script）
-    '$', 'jQuery', 'TomSelect', 'Chart', 'html2canvas',
+    'TomSelect', 'Chart', 'html2canvas',
 ]);
 
 // 静的には追えないが、デッドコード内のためランタイムに到達しないことを確認済みの名前。

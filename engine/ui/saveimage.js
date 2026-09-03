@@ -7,6 +7,7 @@ import { g_rndOptArray } from "../equip/rndopt.dat.js";
 import { GetRndOptDispName } from "../equip/rndopt.h.js";
 import { g_equipRndOptTable } from "../equip/rndopttype.h.js";
 import { g_extraInfoDataBridge } from "./CExtraInfoDataBridge.js";
+import { OnDomReady } from "../runtime/dom-ready.js";
 // === END AUTO-GENERATED IMPORTS ===
 import { getShadowEquippedID, getShadowRefined, getShadowRndOptInfoArray } from "../equip/CShadowEquipControllerDataBridge.js";
 // C-6: global.js 管理の共有 conf state
@@ -24,9 +25,8 @@ import {
          n_A_JOB,
 } from "../runtime/roro-state.js";
 
-// リファクタリング計画 Phase 12: jQueryによるDOM走査（v()/t()/e()）を
-// モデル読み取り（extractModelFromDom）・計算結果ブリッジ（g_extraInfoDataBridge）・
-// 純粋関数（hmjob-bridge.js / hmchara.js / mig.job.h.js）に置換した。
+// DOM読み取りはモデル（extractModelFromDom）・計算結果ブリッジ（g_extraInfoDataBridge）・
+// 純粋関数（hmjob-bridge.js / hmchara.js / mig.job.h.js）経由に統一している。
 // DOMは「装備・カード・矢の隠しDATA_要素」等、モデルの対応が無い箇所（衣装欄の
 // 精錬値表記等）以外では一切読まない。
 // extractModelFromDom は stallcalc-hydrate.js から直接importせず engine-registry.js
@@ -74,8 +74,8 @@ import {
 // sample
 // https://ragnarokonline.gungho.jp/campaign_event/campaign/baselv220cp-2.html#modal
 // calcx.html?cx1cy1EtMmfo4Owqof.3M4X00cz11.32jYJlE0cz120022jAp3VvR1cz13.4fYl3cz14.4hj1cz15002Edw7Bot9w8cz16002yfJC0xiTd62cz170022j8nn3td2cz18.4fIm3cz19.32dhop8cz1a002GhcqRoQmQ6G8cz1b.4hM1cz1c.4hOacz1d00s0hPgX1h_1cz1e00c0jP1to02cz1f00s0jOfup0z0cz1g00c0jP2vq01cz1h00s0jPjsr0utcz1i.4mcA1Z_1127456b89a3cA128c0cA1vgfdejgh2cB1.sf_V___51d171n5n5nll5dldldl511cC1.ecR1.4S8cU1.cg003cW100Bcl3cZ121
-$(function () {
-  $("#OBJID_BUTTON_IMAGE_SAVE_DATA_MIG").click(function () {
+OnDomReady(() => {
+  document.getElementById("OBJID_BUTTON_IMAGE_SAVE_DATA_MIG")?.addEventListener("click", (e) => {
 	generateImage();
     html2canvas(document.querySelector("#imgdiv"), { allowTaint: true, useCORS: true }).then(
       function (canvas) {
@@ -83,10 +83,11 @@ $(function () {
         download.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         download.download = "ratorio.png";
         download.click();
-        $("#imgdiv").remove();
+        document.getElementById("imgdiv")?.remove();
       }
     );
-    return false;
+    e.preventDefault();
+    e.stopPropagation();
   });
 });
 
@@ -667,18 +668,15 @@ export function generateImage() {
 
     </div>
     `;
-    $("#imgdiv").remove();
-    let div = $("<div>", {
-      id: "imgdiv",
-    }).css({
-      position: "relative",
-    })
-    div.append(tpl);
-    $(".content").append(div);
-    const dd = $("#equip dd");
-    for (let i = 0; i < dd.length; i++) {
-      $(dd[i]).text($(dd[i]).text().replace(/ *\(\+\d+以上\)/g, ""))
-      $(dd[i]).text($(dd[i]).text().replace(/【習】/g, ""))
+    document.getElementById("imgdiv")?.remove();
+    const div = document.createElement("div");
+    div.id = "imgdiv";
+    div.style.position = "relative";
+    div.insertAdjacentHTML("beforeend", tpl);
+    document.querySelector(".content")?.appendChild(div);
+    for (const dd of document.querySelectorAll("#equip dd")) {
+      dd.textContent = dd.textContent.replace(/ *\(\+\d+以上\)/g, "");
+      dd.textContent = dd.textContent.replace(/【習】/g, "");
     }
 }
 

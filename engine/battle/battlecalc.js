@@ -2060,7 +2060,8 @@ export function RebuildSizeModifyRatioInfo(battleCalcInfo, charaData, specData, 
 
 		html = `　サイズ補正： <span class="CSSCLS_SIZE_MODIFY_${wRatio>=1?"PLUS":"MINUS"}">${wRatio*100}%</span> (武器倍率<span class="CSSCLS_SIZE_MODIFY_${wWeaponRatio>=1?"PLUS":"MINUS"}">${wWeaponRatio*100}%</span>)`;
 	}
-	$("#OBJID_SPAN_SIZE_MODIFY").html(html);
+	const objSizeModify = document.getElementById("OBJID_SPAN_SIZE_MODIFY");
+	if (objSizeModify) objSizeModify.innerHTML = html;
 }
 
 /**
@@ -3301,7 +3302,8 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 	// calc()をトリガーにするその他の処理
 	//--------------------------------
 	BuildResistElementTinyHtml();
-	$("#OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL").html(RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData));
+	const objActiveSkillRatio = document.getElementById("OBJID_SPAN_ACTIVE_SKILL_RATIO_CHANGE_PHYSICAL");
+	if (objActiveSkillRatio) objActiveSkillRatio.innerHTML = RebuildActiveSkillRatioInfo(null, charaData, n_tok, mobData);
 	RebuildSizeModifyRatioInfo(null, charaData, n_tok, mobData, CS.wCSize);
 
 	//----------------------------------------------------------------

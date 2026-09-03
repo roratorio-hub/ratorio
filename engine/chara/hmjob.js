@@ -13,6 +13,7 @@ import { CCharaConfYozi } from "./CCharaConfYozi.js";
 import { EquipNumSearch } from "./chara.js";
 import { changeJobSettings } from "../equip/equip.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
+import { runWithLoadingIndicator } from "../ui/loading-indicator.js";
 import {
          ITEM_ID_MICHINARU_SHUCHUNO_BOOTS, ITEM_ID_MICHINARU_SOZONO_BOOTS,
          ITEM_ID_NOEQUIP_SHIELD
@@ -1911,9 +1912,16 @@ export function migrateOtherJob(jobId) {
 	const migId = parseInt(jobId, 10);
 
 	const recentJobMigId = n_A_JOB;
-	// インジケーター表示
-	showLoadingIndicator();
-	setTimeout(() => {
+	let dataURL = "";
+	let funcModifySaveData = function (saveDataArrayF) {
+		// 職業ID
+		saveDataArrayF[1] = migId;
+		// 自動レベル調整は強制OFF
+		saveDataArrayF[11] = 0;
+		return saveDataArrayF;
+	};
+	// インジケーター表示 → 描画確認後に処理実行
+	runWithLoadingIndicator(() => {
 		// 変更後の職業の二刀流可能性に合わせる
 		set_n_Nitou(IsDualArmsJob(migId));
 		// 状態から直接組み立てたユニット配列のCHARAユニットの職業ID・自動レベル調整を
@@ -1936,16 +1944,15 @@ export function migrateOtherJob(jobId) {
 			OnClickSkillSWLearned();
 			// 職固有自己支援・パッシブ持続系の初期化
 			n_A_PassSkill.fill(0);
-			$("#OBJID_CHECK_A1_SKILL_SW").prop("checked", true).trigger("click");
+			const objA1SkillSw = document.getElementById("OBJID_CHECK_A1_SKILL_SW");
+			if (objA1SkillSw) {
+				objA1SkillSw.checked = true;
+				objA1SkillSw.click();
+			}
 		}
 		// 再計算
 		calc();
-		// インジケーター非表示
-		hideLoadingIndicator();
-		setTimeout(() => {
-			// 完了後に処理を挟みたい場合はここに書く
-		}, 0);
-	}, 0);
+	});
 }
 
 /**

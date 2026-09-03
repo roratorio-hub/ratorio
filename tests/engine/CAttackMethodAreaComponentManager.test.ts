@@ -1,8 +1,6 @@
 import { vi, describe, it, expect } from 'vitest';
 
 vi.hoisted(() => {
-    // CAttackMethodAreaComponentManager→CSaveController→calchistory.js の $(function(){...}) をモック
-    (globalThis as any).$ = (_fn: any) => {};
     const mockEl = {
         checked: false,
         value: '0',

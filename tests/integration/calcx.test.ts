@@ -202,6 +202,104 @@ describe('ro4/m/calcx.html 起動テスト', () => {
         expect(errors, formatErrorMsg('職業変更操作中', errors)).toHaveLength(0);
     });
 
+    // jQuery スピナー撤去（engine/ui/loading-indicator.js）の配線確認。
+    // show/hide は同一の同期タスク内（setTimeout(0) の中）で呼ばれるため、
+    // 呼び出し後に DOM を poll しても既に非表示に戻っており観測できない。
+    // hmjob.js 等は loading-indicator.js を直接 import しているため関数参照の
+    // 差し替えでは横取りできない → document.body への実際の DOM API 呼び出し
+    // （setAttribute/removeAttribute("aria-busy")）を Element.prototype レベルで
+    // フックし、呼ばれた事実そのものを記録する。
+    it('職業変更でローディングインジケーターの表示/非表示が呼ばれ、完了後に残らない', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+
+            await page.evaluate(() => {
+                const events: string[] = [];
+                const origSet = Element.prototype.setAttribute;
+                const origRemove = Element.prototype.removeAttribute;
+                Element.prototype.setAttribute = function (name: string, value: string) {
+                    if (this === document.body && name === 'aria-busy') events.push('set');
+                    return origSet.call(this, name, value);
+                };
+                Element.prototype.removeAttribute = function (name: string) {
+                    if (this === document.body && name === 'aria-busy') events.push('remove');
+                    return origRemove.call(this, name);
+                };
+                (window as any).__ariaBusyEvents = events;
+            });
+
+            // showLoadingIndicator/hideLoadingIndicator は OnChangeJob() の
+            // migrateOtherJob() 経路（＝「職業変更時に装備等を維持する」ON）でのみ呼ばれる
+            // （hmjob.js:1963-1972）。OFF のままだと呼ばれないので先にチェックを入れる。
+            await page.check('#OBJID_CHK_MIGRATE_SETTING');
+            await page.selectOption('#OBJID_SELECT_JOB', { index: 1 });
+            await page.waitForTimeout(500);
+
+            const events = await page.evaluate(() => (window as any).__ariaBusyEvents as string[]);
+            expect(events.filter((e) => e === 'set').length).toBeGreaterThan(0);
+            expect(events.filter((e) => e === 'set').length)
+                .toBe(events.filter((e) => e === 'remove').length);
+
+            // 完了後、プログレスバー要素も aria-busy 属性も残っていない
+            const remaining = await page.evaluate(() => ({
+                barExists: document.querySelector('[role="progressbar"]') !== null,
+                ariaBusy: document.body.getAttribute('aria-busy'),
+            }));
+            expect(remaining.barExists).toBe(false);
+            expect(remaining.ariaBusy).toBeNull();
+        } finally {
+            await context.close();
+        }
+    });
+
+    // 実ブラウザ確認（2026-09-03）で報告: OBJID_BUTTON_LOAD_SAVE_DATA_MIG クリックで
+    // インジケーターが「表示されたりされなかったり」する。原因は showLoadingIndicator() 直後に
+    // 重い処理を setTimeout(fn, 0) で開始する従来のパターンが描画を保証しないこと
+    // （実測: 30回中6回しか描画機会が無かった）。runWithLoadingIndicator()
+    // （requestAnimationFrame の二重ネスト）へ置換して解消した。
+    // ここでは「インジケーターが存在する間に実際に1フレーム以上描画された」ことを
+    // requestAnimationFrame の発火そのもので確認する（DOM に存在するだけでは
+    // 描画されたことの証明にならないため）。
+    it('セーブデータロードでローディングインジケーターが確実に描画される', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        page.on('dialog', (dialog) => dialog.dismiss().catch(() => {})); // 「データがありません。」alert
+        try {
+            await page.goto(`${baseUrl}/ro4/m/calcx.html`, {
+                waitUntil: 'networkidle',
+                timeout: 60000,
+            });
+
+            // セーブ／ロード欄は折りたたみ済みなので展開する
+            await page.check('#OBJID_SWITCH_SAVE_CTRL_MIG');
+            await page.waitForSelector('#OBJID_BUTTON_LOAD_SAVE_DATA_MIG', { state: 'visible', timeout: 5000 });
+
+            await page.evaluate(() => {
+                (window as any).__paintedWhileVisible = false;
+                const loop = () => {
+                    if (document.getElementById('loadingIndicatorBar')) {
+                        (window as any).__paintedWhileVisible = true;
+                    }
+                    requestAnimationFrame(loop);
+                };
+                requestAnimationFrame(loop);
+            });
+
+            await page.click('#OBJID_BUTTON_LOAD_SAVE_DATA_MIG');
+            await page.waitForTimeout(300);
+
+            const painted = await page.evaluate(() => (window as any).__paintedWhileVisible);
+            expect(painted).toBe(true);
+        } finally {
+            await context.close();
+        }
+    });
+
     // 装備セレクトの change は OnChangeEquip(eqpRgnId, itemId) を呼ぶ。
     // eqpRgnId を window['EQUIP_REGION_ID_XXX'] で引く実装だと、DefineEnum 廃止で
     // 該当グローバルが消えたため undefined が渡り、

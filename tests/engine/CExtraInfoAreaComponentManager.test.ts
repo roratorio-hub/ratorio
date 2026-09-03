@@ -2,8 +2,7 @@ import { vi, describe, it, expect } from 'vitest';
 
 vi.hoisted(() => {
     // Phase 3b 以降、import チェーンが CShadowEquipController.initializeHTML() に到達する。
-    // mockEl に querySelectorAll が必要。また calchistory.js の $ もモック。
-    (globalThis as any).$ = (_fn: any) => {};
+    // mockEl に querySelectorAll が必要。
     const mockEl = {
         value: '0',
         checked: false,

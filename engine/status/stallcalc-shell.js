@@ -4,8 +4,8 @@
  * `StAllCalc()` / `Init()` / `LoadSaveDataToCalculator()` / DOMContentLoaded ブロックを
  * stallcalc.js から分離した。`StAllCalcCore()`（Core・DOM 非依存）は stallcalc.js に残る。
  * `calcFromModel()`（calc-core-entry.js）はこのファイルを import しない
- * ——ここを import すると CSaveController 経由で calchistory.js（jQuery）まで
- * 芋づる式にモジュール評価されてしまい、DOM/jQuery 非依存の Core エントリという
+ * ——ここを import すると CSaveController 経由で calchistory.js（DOM操作あり）まで
+ * 芋づる式にモジュール評価されてしまい、DOM 非依存の Core エントリという
  * D3 の前提が崩れるため。ブラウザからは calcx.html がこのファイルを
  * `<script type="module">` で直接読み込む（stallcalc.js は本ファイル経由で
  * 間接的に評価される）。
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 			// 確認ダイアログの有効化スイッチを初期化
 			if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
-				$("#OBJID_SWITCH_CONFIRM_DIALOG").click();
+				document.getElementById("OBJID_SWITCH_CONFIRM_DIALOG")?.click();
 			}
 		}
 		else {
