@@ -758,6 +758,8 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	let battleCalcInfoArray = null;
 	let battleCalcResultAll = null;
 	let BK_AS_Weapon_zokusei = 0;
+	let BK_AS_ActiveSkill = 0;
+	let BK_AS_ActiveSkillLV = 0;
 	// 戻り値用インスタンス用意
 	battleCalcResultAll = new CBattleCalcResultAll();
 	// 基本情報を設定
@@ -1046,6 +1048,14 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	// SET_ZOKUSEI() は StAllCalc() から主撃のスキルＩＤで一度だけ呼ばれるため、
 	// オートスペルごとの属性はここで面倒を見るしかない.
 	BK_AS_Weapon_zokusei = n_A_Weapon_zokusei;
+	// 主撃のスキルID/Lvを退避する（引数の battleCalcInfo から。n_A_ActiveSkill の
+	// 現在値ではなく引数から取るのは、通常攻撃ブランチの三段掌等で n_A_ActiveSkill が
+	// 既に書き換わっている場合があるため）。
+	// オートスペルは BattleCalc999Body() 呼び出しのたびに n_A_ActiveSkill/LV を
+	// 自分のスキルID/Lvへ書き換えるが、ループの外では戻さないため、描画（全計算完了後）が
+	// 「最後に計算したオートスペル」のスキルID/Lvを見てしまう。
+	BK_AS_ActiveSkill = battleCalcInfo.skillId;
+	BK_AS_ActiveSkillLV = battleCalcInfo.skillLv;
 	for (idxAS = 0; idxAS < n_AS_SKILL.length; idxAS++) {
 		// 発動率不明は除外
 		if (n_AS_SKILL[idxAS][2] <= 0) {
@@ -1064,6 +1074,9 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	}
 	// 主撃の武器属性へ戻す（calc() が計算データ収集で読むため）
 	set_n_A_Weapon_zokusei(BK_AS_Weapon_zokusei);
+	// 主撃のスキルID/Lvへ戻す（描画（全計算完了後）が主撃の値を見るため）
+	set_n_A_ActiveSkill(BK_AS_ActiveSkill);
+	set_n_A_ActiveSkillLV(BK_AS_ActiveSkillLV);
 	// オートスペルフラグ OFF
 	CS.n_AS_MODE = false;
 	return battleCalcResultAll;
@@ -1324,6 +1337,9 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 		// 描画は全計算の完了後なので、グローバル変数のままだと追撃・オートスペルが
 		// 最後に走ったときに「最後の計算結果」の値で描画されてしまう。
 		battleCalcResult.bGroundInstallation = g_bDefinedDamageIntervals;
+		// 使用条件判定も同じ理由で結果インスタンスごとに確定させる。
+		battleCalcResult.bWeaponMismatch = CS.n_Buki_Muri;
+		battleCalcResult.bNoDamage = CS.g_bSkillNoDamage;
 		battleCalcResult.coolTime = n_Delay[7];
 
 		// 修正量削減のために、グローバル変数で密結合になっているデータを取得

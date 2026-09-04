@@ -47,6 +47,14 @@ export function CBattleCalcResult () {
 	// 「最後に計算した結果」の値を見てしまう（追撃・オートスペルがあると誤判定になる）。
 	this.bGroundInstallation = false;
 
+	// 武器種不一致等によるスキル使用不可フラグ
+	// この結果インスタンスを算出した時点の CS.n_Buki_Muri を保持する（bGroundInstallation と同じ理由）。
+	this.bWeaponMismatch = false;
+
+	// ダメージ判定無しフラグ
+	// この結果インスタンスを算出した時点の CS.g_bSkillNoDamage を保持する（bGroundInstallation と同じ理由）。
+	this.bNoDamage = false;
+
 	// クールタイム
 	this.coolTime = 0;
 
@@ -112,6 +120,8 @@ export function CBattleCalcResult () {
 		this.damageInterval = 0;
 		this.objectLifeTime = 0;
 		this.bGroundInstallation = false;
+		this.bWeaponMismatch = false;
+		this.bNoDamage = false;
 		this.coolTime = 0;
 		this.attackInterval = 0;
 		this.actRate = 0;
@@ -925,6 +935,8 @@ export function CBattleCalcResult () {
 		result.damageInterval = this.damageInterval;
 		result.objectLifeTime = this.objectLifeTime;
 		result.bGroundInstallation = this.bGroundInstallation;
+		result.bWeaponMismatch = this.bWeaponMismatch;
+		result.bNoDamage = this.bNoDamage;
 		result.coolTime = this.coolTime;
 		result.attackInterval = this.attackInterval;
 		result.actRate = this.actRate;

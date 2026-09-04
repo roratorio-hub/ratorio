@@ -595,7 +595,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 		// 使用不可の場合
-		if (CS.n_Buki_Muri) {
+		if (battleCalcResultF.bWeaponMismatch) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
 			objCellF.style.gridColumnEnd = "6";
@@ -607,7 +607,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		}
 
 		// ダメージなし化の場合
-		if (CS.g_bSkillNoDamage) {
+		if (battleCalcResultF.bNoDamage) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
 			objCellF.style.gridColumnEnd = "6";
