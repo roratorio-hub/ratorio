@@ -122,6 +122,7 @@ import { MIG_JOB_ID_SHADOW_CROSS } from "../data/mig.job.dat.js";
 import { GetJobLevelMax } from "../data/mig.job.h.js";
 import { g_skillManager } from "../runtime/global.js";
 import { ATKbaiJYOUSAN, BattleCalcSubDamagePhysicalCommon, GetBattlerAtkPercentUp } from "../bridge/battlecalc-bridge.js";
+import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { CS } from "./calc-state.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
@@ -547,12 +548,12 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			case SKILL_ID_IGNITION_BREAK:
 				n_Delay[7] = 3000;
-				var w = attackMethodConfArray[0].GetOptionValue(0);
+				var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 0);
 				if(w == 0) CS.wbairitu = 300 * n_A_ActiveSkillLV;
 				if(w == 1) CS.wbairitu = 250 * n_A_ActiveSkillLV;
 				if(w == 2) CS.wbairitu = 200 * n_A_ActiveSkillLV;
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				if(attackMethodConfArray[0].GetOptionValue(1) == 1) CS.wbairitu -= 1;
+				if(GetAttackMethodOptionValue(attackMethodConfArray, 1, 1) == 1) CS.wbairitu -= 1;
 				if(CS.BK_Weapon_zokusei == 3) CS.wbairitu += 100 * n_A_ActiveSkillLV;
 				break;
 
@@ -1020,8 +1021,11 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 						CS.wbairitu = (w1 + w2) / 1.5;
 					}
 				} else {
-					// オートスペル時
-					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_COMBO_SORYUKYAKU) {
+					// オートスペル時（攻撃手段が閃光連撃なら単発扱い、それ以外＝双龍コンボならコンボ扱い。
+					// battlecalc.js の GetPerfectHitDamage() 側の號砲分岐と同じ判定）
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI) {
+						CS.wbairitu = (w1 + w2) / 4;
+					} else {
 						CS.wbairitu = (w1 + w2) / 1.5;
 					}
 				}

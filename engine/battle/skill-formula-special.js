@@ -75,6 +75,7 @@ import {
 import {
     TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD, TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from "../equip/timeitem.dat.js";
+import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "./attackmethod.dat.js";
 import { AS_PLUS } from "../skill/calcautospell.js";
 import { GetHigherJobSeriesID } from "../data/mig.job.h.js";
@@ -117,7 +118,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			CS.wbairitu = 500 + 50 * n_A_ActiveSkillLV;
 			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			var w = attackMethodConfArray[0].GetOptionValue(0);
+			var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 1);
 			if(w == 2){
 				if(mobData[17] == 0){
 					CS.wActiveHitNum = 2;
@@ -773,7 +774,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-			const CRbai = attackMethodConfArray[0].GetOptionValue(0) / (8000 + 500 * cart_kaizo_lv) * 100;
+			const cart_weight_max = 8000 + 500 * cart_kaizo_lv;
+			const CRbai = GetAttackMethodOptionValue(attackMethodConfArray, 0, cart_weight_max) / cart_weight_max * 100;
 
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = ROUNDDOWN(CS.n_A_DMG[i] * 150 / 100);
