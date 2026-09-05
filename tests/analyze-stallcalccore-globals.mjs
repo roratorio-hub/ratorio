@@ -17,7 +17,7 @@
  * ため、範囲を広げて再計測している。
  *
  * ⚠️ 残件台帳 B-09 の全体設計調査（2026-08-29。
- * `.claude/context/b09-core-purification-design.md` 訂正0参照）で、以下2点の
+ * `.claude/context/backlog.md` B-09行参照）で、以下2点の
  * 不備が判明し本版で修正した:
  *   - `global.js` を走査対象に含めていなかった（roro-state.js/ro4-state.js の
  *     export let 85個しか数えておらず、global.js の33個中26個がCore内で

@@ -5,7 +5,7 @@
  * 旧 `analyze-stallcalccore-globals.mjs`（B-09 訂正0以前）は
  * `roro-state.js`(59) + `ro4-state.js`(26) + `global.js`(33) = 118個しか見ておらず、
  * `engine/**` に313個ある `export let` のうち195個が走査窓の外だった
- * （2026-08-29 全体設計調査で判明。詳細は `.claude/context/b09-core-purification-design.md`）。
+ * （2026-08-29 全体設計調査で判明。詳細は `.claude/context/backlog.md` B-09行参照）。
  * 本ツールはその反省を踏まえ、対象変数の宇宙を `engine/**` の全モジュールレベル
  * 可変束縛（`export let` + 非exportのトップレベル `let` + `CS`（`calc-state.js`）の
  * プロパティ）へ広げる。
@@ -72,7 +72,7 @@
  * 上記2つが重なると、Core内で完結する正規のスクラッチ変数（`n_AS_DMG`/
  * `n_AS_DMG_OverHP`）が (A) 隠れ入力に誤分類される実例が確認されている
  * （`AS_Calc()` が毎回リセットし `AS_PLUS()` が同一呼び出し内で読むだけで、
- * 外部からの書き込みは存在しない。詳細は `.claude/context/b09-core-purification-design.md`）。
+ * 外部からの書き込みは存在しない。詳細は `.claude/context/backlog.md` B-09行参照）。
  * (A) の判定結果は**人間によるダブルチェックを前提**とし、鵜呑みにしないこと。
  *
  * 使い方:

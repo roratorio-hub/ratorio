@@ -4,7 +4,7 @@
  * （残件台帳 B-19）。
  *
  * 計画: /home/vscode/.claude/plans/backlog-md-b-19-goofy-journal.md
- * 分類表（一次情報）: .claude/context/b19-classification-phase0.md
+ * 分類表（一次情報）: .claude/context/backlog.md B-19行
  *
  * tests/migrate-to-engine.mjs（B-14）を土台にしている。中心となる不変条件は同じ:
  * 全ての参照サイト r について、旧解決先 T_old に対し新しい参照の解決先 T_new が
@@ -47,7 +47,7 @@ function toPosix(p) {
     return p.split(sep).join('/');
 }
 
-// ─── Stage A: バケット割当（.claude/context/b19-classification-phase0.md §3 が一次情報） ──
+// ─── Stage A: バケット割当（.claude/context/backlog.md B-19行 が一次情報） ──
 
 const BUCKETS = {
     'ui': [
