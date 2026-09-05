@@ -40,7 +40,7 @@ import {
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import {
          HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
-         HtmlGetObjectValueByIdAsInteger, HtmlRemoveAllChild, myInnerHtml
+         HtmlGetObjectValueByIdAsInteger, HtmlRemoveAllChild
 } from "../runtime/util.js";
 import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
 import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
@@ -2877,11 +2877,6 @@ export function ComputeBattleResult(retValArray) {
 
 	if(n_A_ActiveSkill==0 || n_A_ActiveSkill==SKILL_ID_SHARP_SHOOTING || n_A_ActiveSkill==401 || n_A_ActiveSkill==456 || n_A_ActiveSkill==578 || (n_A_ActiveSkill==86 && (50 <= mobData[18] && mobData[18] <60))){
 		CS.w_HIT_HYOUJI = Math.floor(GetActHitRateAll(n_A_ActiveSkill, mobData) * 100) /100;
-		// headless実行時（要素が存在しない）は表示を諦める（残件台帳 B-28）
-		const objCRInum = document.getElementById("CRInum");
-		if (objCRInum != null) {
-			objCRInum.textContent = (Math.round(GetActRateCritical(n_A_ActiveSkill, mobData) * 100) / 100) + SubName[0];
-		}
 	}
 
 	set_w_FLEE(95 - (mobData[33] - charaData[CHARA_DATA_INDEX_FLEE]));
@@ -2903,12 +2898,6 @@ export function ComputeBattleResult(retValArray) {
 
 	// FLEE範囲補正
 	set_w_FLEE(Math.min(95, Math.max(5, w_FLEE)));
-
-	// headless実行時（要素が存在しない）は表示を諦める（残件台帳 B-28）
-	const objBattleFLEE = document.getElementById("BattleFLEE");
-	if (objBattleFLEE != null) {
-		objBattleFLEE.textContent = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
-	}
 
 	//----------------------------------------------------------------
 	//
@@ -3416,22 +3405,6 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 		HtmlCreateElement("br", objSpan);
 		HtmlCreateTextNode("　実際のゲームでのダメージと異なる場合がありますので、ご注意ください。", objSpan);
 		HtmlCreateElement("br", objSpan);
-	}
-
-	var innerHtmlText = "";
-	for (let idx = 0; idx < CS.g_damageTextArray.length; idx++) {
-		innerHtmlText = "";
-		for (let idxArray = 0; idxArray < CS.g_damageTextArray[idx].length; idxArray++) {
-			// 数値でなければ、そのまま追記
-			if (isNaN(CS.g_damageTextArray[idx][idxArray])) {
-				innerHtmlText += CS.g_damageTextArray[idx][idxArray];
-			}
-			// 数値の場合は、３桁区切り適用
-			else {
-				innerHtmlText += __DIG3(CS.g_damageTextArray[idx][idxArray]);
-			}
-		}
-		myInnerHtml("strID_" + idx, innerHtmlText, 0);
 	}
 
 	// StAllCalc() 内の RefreshDispAreaAll（stallcalc.js）は w_BONUS 確定前に走るため、

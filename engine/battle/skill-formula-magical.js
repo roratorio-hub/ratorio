@@ -1917,7 +1917,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					if(b==2) CS.wHITsuu = 3 * attackMethodConfArray[0].GetOptionValue(0);
 				}
 				CS.Last_DMG_A[b] = ROUNDDOWN(w_DMG[b] * CS.wHITsuu);
-				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", CS.Last_DMG_B[b], SubName[8], CS.wHITsuu, "hit)");
 				// TODO: 四次データ形式変更対応
 				// w_DMG[b] = Last_DMG_A[b];
 			}
@@ -1932,7 +1931,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					var KoteiDMG = 400 * subnumvalue;
 					KoteiDMG = KoteiDMG * ROUNDDOWN((100 + 40 * UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) / 100);
 					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu + KoteiDMG;
-					if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit + ", KoteiDMG, ")");
 					// TODO: 四次データ形式変更対応
 					// w_DMG[b] *= wHITsuu;
 				}
@@ -1942,7 +1940,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					// w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
 					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * Math.floor(CS.wbairitu / CS.wHITsuu) * CS.wHITsuu / 100) / CS.wHITsuu);
 					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu;
-					if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit)");
 					// TODO: 四次データ形式変更対応
 					// w_DMG[b] *= wHITsuu;
 				}
@@ -1951,14 +1948,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		if(CS.n_AS_MODE){
 			CS.SG_Special_HITnum = 0;
 			return w_DMG;
-		}
-		if(n_A_ActiveSkill==783 && (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == 0 || UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU) == 0)) CS.g_damageTextArray[0] = ["<Font color=Red><B>術式解放の計算をするにはパッシブ欄で<BR>符の属性と数を設定して下さい</B></Font>"];
-		if(n_A_ActiveSkill==526){
-			CS.str_bSUBname += "<FONT color='#0000FF'><B>吸収量</B></FONT><BR>";
-			var w = ROUNDDOWN((8 * n_A_ActiveSkillLV) * n_A_BaseLV / 100);
-			var w0 = ROUNDDOWN(w_DMG[0] * w / 100);
-			var w2 = ROUNDDOWN(w_DMG[2] * w / 100);
-			CS.str_bSUB += "<FONT color='#0000FF'><B>"+ __DIG3(w0) +"～"+ __DIG3(w2) +"</B></FONT><BR>";
 		}
 		CS.w_HIT_HYOUJI = 100;
 		AS_PLUS();
