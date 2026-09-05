@@ -1297,7 +1297,15 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 	// ダメージ計算本体
 	//
 	//----------------------------------------------------------------
+	// n_Delay は BattleCalc999Core() のスクラッチ初期化でリセットされないため、
+	// n_Delay[x] = n_Delay[x] * 2 のような自己参照型の代入（ブーストナックル等）が
+	// クリティカル判定周回（idxUnit==1）で二重適用されるのを防ぐ。周回のたびに
+	// 主撃計算前の状態へ戻す。
+	const BK_n_Delay = n_Delay.slice();
 	for (idxUnit = 0; idxUnit < dmgUnitArray.length; idxUnit++) {
+		for (let idxDelay = 0; idxDelay < n_Delay.length; idxDelay++) {
+			n_Delay[idxDelay] = BK_n_Delay[idxDelay];
+		}
 		CS.g_wHITsuu_Array = null;
 		// クリティカルが発生しない場合は、計算せずゼロにする
 		if (idxUnit == 1) {

@@ -214,7 +214,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 		}
-		n_AS_SKILL[idx][3] = 0;
 
 		// オートスペルに、デュプレライト魔法部分（ミリアムライト）を設定
 		funcAddAS();
@@ -225,7 +224,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 		}
-		n_AS_SKILL[idx][3] = 0;
 
 		// カーディナルスキル「ペティティオ」を習得している場合、「ペティティオ」も追加
 		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_PETITIO), UsedSkillSearch(SKILL_ID_PETITIO_LEARNED)) ;
@@ -242,7 +240,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 						// ＡＳ三段掌が設定されている場合は、発動率を補正
 						n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 					}
-					n_AS_SKILL[idx][3] = 0;
 					break;
 			}
 		}
@@ -276,7 +273,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 		}
 
-		n_AS_SKILL[idx][3] = 0;
 
 
 		// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
@@ -289,7 +285,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				n_AS_SKILL[idx][0] = n_AS_SKILL[idx - 1][0];
 				n_AS_SKILL[idx][1] = n_AS_SKILL[idx - 1][1];
 				n_AS_SKILL[idx][2] = n_AS_SKILL[idx - 1][2] / 10 * 40 * 10 / 100;
-				n_AS_SKILL[idx][3] = 0;
 			}
 		}
 	}
@@ -312,7 +307,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 		}
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 	//----------------------------------------------------------------
@@ -337,7 +331,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 		}
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 	//----------------------------------------------------------------
@@ -355,7 +348,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 		}
-		n_AS_SKILL[idx][3] = 0;
 		// アビススクエア習得時、習得レベルで発動
 		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_ABYSS_SQUARE), UsedSkillSearch(SKILL_ID_ABYSS_SQUARE_LEARNED_LEVEL));
 		if (skillLvSub > 0) {
@@ -368,7 +360,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				// ＡＳ三段掌が設定されている場合は、発動率を補正
 				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 			}
-			n_AS_SKILL[idx][3] = 0;
 		}
 	}
 
@@ -388,7 +379,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				// ＡＳ三段掌（混沌のサイドワインダー）が設定されている場合は、発動率を補正
 				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 			}
-			n_AS_SKILL[idx][3] = 0;
 		}
 		// オートスペルに、ヘイスティファイアインザホールを設定
 		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_HASTY_FIRE_IN_THE_HOLE), UsedSkillSearch(SKILL_ID_HASTY_FIRE_IN_THE_HOLE_LEARNED_LEVEL));
@@ -401,7 +391,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				// ＡＳ三段掌（混沌のサイドワインダー）が設定されている場合は、発動率を補正
 				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 			}
-			n_AS_SKILL[idx][3] = 0;
 		}
 		// オートスペルに、グレネーズドロッピングを設定
 		skillLvSub = Math.max(LearnedSkillSearch(SKILL_ID_GRENADES_DROPPING), UsedSkillSearch(SKILL_ID_GRENADES_DROPPING_LEARNED_LEVEL));
@@ -414,7 +403,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				// ＡＳ三段掌（混沌のサイドワインダー）が設定されている場合は、発動率を補正
 				n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 			}
-			n_AS_SKILL[idx][3] = 0;
 		}
 
 	}
@@ -427,7 +415,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_DOUBLE_STRAFING;
 		n_AS_SKILL[idx][1] = 10;
 		n_AS_SKILL[idx][2] = 100;
-		n_AS_SKILL[idx][3] = -2;
 	}
 
 
@@ -442,7 +429,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			// スピアブーメランが習得Lvで発動する
 			n_AS_SKILL[idx][1] = spear_boomerang_lv;
 			n_AS_SKILL[idx][2] = (10 + 3 * n_A_ActiveSkillLV) * 10;
-			n_AS_SKILL[idx][3] = 0;
 		}
 	}
 
@@ -455,7 +441,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_CROSS_IMPACT;
 		n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(0);
 		n_AS_SKILL[idx][2] = (30 - 5 * n_A_ActiveSkillLV) * 10;
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 
@@ -471,7 +456,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			n_AS_SKILL[idx][0] = SKILL_ID_AXE_BOOMERANG;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(0);
 			n_AS_SKILL[idx][2] = 5 * n_A_ActiveSkillLV * 10;
-			n_AS_SKILL[idx][3] = 0;
 		}
 	}
 
@@ -487,7 +471,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		// 発動率
 		n_AS_SKILL[idx][2] = attackMethodConfArray[0].GetOptionValue(0) == 1 ? 1000 : 0;
 		// オートスペルフラグ 0=通常. どこからも参照されないommitされたパラメータの可能性がある.
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 	/**
@@ -502,7 +485,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		// 発動率
 		n_AS_SKILL[idx][2] = attackMethodConfArray[0].GetOptionValue(0) == 1 ? 1000 : 0;
 		// オートスペルフラグ 0=通常. どこからも参照されないommitされたパラメータの可能性がある.
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 	//----------------------------------------------------------------
@@ -519,7 +501,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_WUG_STRIKE;
 		n_AS_SKILL[idx][1] = skillLvWug;
 		n_AS_SKILL[idx][2] = n_A_LUK * 3;
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 	// 自動鷹の場合
@@ -551,7 +532,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 		n_AS_SKILL[idx][1] = ASBlitzLv;
 		n_AS_SKILL[idx][2] = 10 + n_A_LUK * 3;
-		n_AS_SKILL[idx][3] = 10;
 	}
 
 
@@ -568,7 +548,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_BLITZ_BEAT;
 		n_AS_SKILL[idx][1] = skillLvBlitz;
 		n_AS_SKILL[idx][2] = (50 + Math.min(120, SU_LUK) * 2) * skillLvBlitz / 5;
-		n_AS_SKILL[idx][3] = 11;
 	}
 
 
@@ -585,7 +564,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_BLITZ_BEAT;
 		n_AS_SKILL[idx][1] = skillLvBlitz;
 		n_AS_SKILL[idx][2] = (50 + Math.min(120, SU_LUK) * 2) * skillLvBlitz / 5;
-		n_AS_SKILL[idx][3] = 11;
 	}
 
 
@@ -604,7 +582,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			// 発動率の設定
 			n_AS_SKILL[idx][2] = (50 + Math.min(120, SU_LUK) * 2) * skillLvWug / 5;
 			// 表示組立部フラグの設定（通常は０）
-			n_AS_SKILL[idx][3] = 0;
 		}
 	}
 
@@ -630,7 +607,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][2] = 5 * skillLvChainAction * 10;
 
 		// 表示組立部フラグの設定（通常は０）
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 
@@ -656,7 +632,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][2] = 5 * skillLvEternalChain * 10;
 
 		// 表示組立部フラグの設定（通常は０）
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 
@@ -689,7 +664,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				break;
 		}
 		// 表示組立部フラグの設定（通常は０）
-		n_AS_SKILL[idx][3] = 0;
 
 		// 流星落下の周辺追撃を設定
 		funcAddAS();
@@ -715,7 +689,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				break;
 		}
 		// 表示組立部フラグの設定（通常は０）
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 
@@ -727,7 +700,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_WUG_BITE;
 		n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(0);
 		n_AS_SKILL[idx][2] = 8 * n_A_ActiveSkillLV * 10;
-		n_AS_SKILL[idx][3] = 0;
 	}
 
 
@@ -742,7 +714,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			n_AS_SKILL[idx][0] = SKILL_ID_PINGPOINT_ATTACK;
 			n_AS_SKILL[idx][1] = 1;
 			n_AS_SKILL[idx][2] = 100;
-			n_AS_SKILL[idx][3] = -3;
 		}
 	}
 
@@ -756,28 +727,24 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			n_AS_SKILL[idx][0] = SKILL_ID_SORYUKYAKU;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(0);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 		if (attackMethodConfArray[0].GetOptionValue(1) != 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_DAITENHOSUI;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(1);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 		if (attackMethodConfArray[0].GetOptionValue(2) != 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_GOHO;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(2);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 		if (attackMethodConfArray[0].GetOptionValue(3) != 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_TENRACHIMO;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(3);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 	}
 
@@ -791,14 +758,12 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_SANDANSHO;
 		n_AS_SKILL[idx][1] = Math.max(LearnedSkillSearch(SKILL_ID_SANDANSHO), UsedSkillSearch(SKILL_ID_SANDANSHO));
 		n_AS_SKILL[idx][2] = 1000;
-		n_AS_SKILL[idx][3] = -4;
 
 		if (attackMethodConfArray[0].GetOptionValue(0) != 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_RENDASHO;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(0);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 
 		if (attackMethodConfArray[0].GetOptionValue(1) != 0) {
@@ -806,7 +771,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			n_AS_SKILL[idx][0] = SKILL_ID_MORYUKEN;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(1);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 
 		// モンクの場合
@@ -816,7 +780,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				n_AS_SKILL[idx][0] = SKILL_ID_ASHURA_HAOKEN_SPKOTEI;
 				n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(2);
 				n_AS_SKILL[idx][2] = 1000;
-				n_AS_SKILL[idx][3] = -4;
 			}
 		}
 
@@ -827,21 +790,18 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				n_AS_SKILL[idx][0] = SKILL_ID_BUKKOKEN;
 				n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(2);
 				n_AS_SKILL[idx][2] = 1000;
-				n_AS_SKILL[idx][3] = -4;
 			}
 			if (attackMethodConfArray[0].GetOptionValue(3) != 0) {
 				funcAddAS();
 				n_AS_SKILL[idx][0] = SKILL_ID_RENCHUHOGEKI;
 				n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(3);
 				n_AS_SKILL[idx][2] = 1000;
-				n_AS_SKILL[idx][3] = -4;
 			}
 			if (attackMethodConfArray[0].GetOptionValue(4) != 0) {
 				funcAddAS();
 				n_AS_SKILL[idx][0] = SKILL_ID_ASHURA_HAOKEN_SPKOTEI;
 				n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(4);
 				n_AS_SKILL[idx][2] = 1000;
-				n_AS_SKILL[idx][3] = -4;
 			}
 		}
 	}
@@ -856,7 +816,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_SORYUKYAKU;
 		n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(0);
 		n_AS_SKILL[idx][2] = 1000;
-		n_AS_SKILL[idx][3] = -4;
 
 		// 双龍→天羅止め
 		if (attackMethodConfArray[0].GetOptionValue(1) != 0) {
@@ -864,7 +823,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			n_AS_SKILL[idx][0] = SKILL_ID_TENRACHIMO;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(1);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 
 		else {
@@ -875,7 +833,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				n_AS_SKILL[idx][0] = SKILL_ID_DAITENHOSUI;
 				n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(2);
 				n_AS_SKILL[idx][2] = 1000;
-				n_AS_SKILL[idx][3] = -4;
 			}
 
 			// 双龍→大纏→号砲止め
@@ -884,7 +841,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				n_AS_SKILL[idx][0] = SKILL_ID_GOHO;
 				n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(3);
 				n_AS_SKILL[idx][2] = 1000;
-				n_AS_SKILL[idx][3] = -4;
 			}
 
 			// 双龍→大纏→羅刹止め
@@ -895,7 +851,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 					n_AS_SKILL[idx][0] = SKILL_ID_RASETSU_HAOGEKI_MAX;
 					n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(4);
 					n_AS_SKILL[idx][2] = 1000;
-					n_AS_SKILL[idx][3] = -4;
 				}
 			}
 		}
@@ -911,14 +866,12 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_JOINT_BEAT;
 		n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(0);
 		n_AS_SKILL[idx][2] = 1000;
-		n_AS_SKILL[idx][3] = -4;
 
 		if (attackMethodConfArray[0].GetOptionValue(1) != 0) {
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_SPIRAL_PIERCE;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(1);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 
 		if (attackMethodConfArray[0].GetOptionValue(2) != 0) {
@@ -926,7 +879,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			n_AS_SKILL[idx][0] = SKILL_ID_SONIC_WAVE;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(2);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 	}
 
@@ -940,14 +892,12 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_SPIRAL_PIERCE;
 		n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(1);
 		n_AS_SKILL[idx][2] = 1000;
-		n_AS_SKILL[idx][3] = -4;
 
 		if(attackMethodConfArray[0].GetOptionValue(1) != 0){
 			funcAddAS();
 			n_AS_SKILL[idx][0] = SKILL_ID_SONIC_WAVE;
 			n_AS_SKILL[idx][1] = attackMethodConfArray[0].GetOptionValue(1);
 			n_AS_SKILL[idx][2] = 1000;
-			n_AS_SKILL[idx][3] = -4;
 		}
 	}
 
@@ -1010,7 +960,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 						n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
 					}
 
-					n_AS_SKILL[idx][3] = 0;
 
 
 					// ダブルキャスティング効果の適用
@@ -1027,7 +976,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 							n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
 							n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
 							n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * (30 + 10 * skillLvDoubleCasting) * 10 / 100;
-							n_AS_SKILL[idx][3] = 0;
 						}
 
 						// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
@@ -1036,7 +984,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 							n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
 							n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
 							n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * 40 * 10 / 100;
-							n_AS_SKILL[idx][3] = 0;
 						}
 					}
 
@@ -1095,7 +1042,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			}
 
 			// オートスペルフラグは、一般オートスペル
-			n_AS_SKILL[idx][3] = 0;
 
 
 			// ダブルキャスティングの効果
@@ -1112,7 +1058,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 					n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
 					n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
 					n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * (30 + 10 * skillLvDoubleCasting) * 10 / 100;
-					n_AS_SKILL[idx][3] = 0;
 				}
 
 				// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
@@ -1121,7 +1066,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 					n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
 					n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
 					n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * 40 * 10 / 100;
-					n_AS_SKILL[idx][3] = 0;
 				}
 			}
 		}
@@ -1139,7 +1083,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				n_AS_SKILL[idx][0] = n_A_ActiveSkill;
 				n_AS_SKILL[idx][1] = n_A_ActiveSkillLV;
 				n_AS_SKILL[idx][2] = (30 + 10 * skillLvDoubleCasting) * 10;
-				n_AS_SKILL[idx][3] = 0;
 			}
 			// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
 			else if (TimeItemNumSearch(76)) {
@@ -1147,7 +1090,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 				n_AS_SKILL[idx][0] = n_A_ActiveSkill;
 				n_AS_SKILL[idx][1] = n_A_ActiveSkillLV;
 				n_AS_SKILL[idx][2] = 40 * 10;
-				n_AS_SKILL[idx][3] = 0;
 			}
 	}
 	//----------------------------------------------------------------
@@ -1181,7 +1123,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 			}
 			// 発動率の設定
 			n_AS_SKILL[idx][2] = (5 + 2 * skillLv) * 10;
-			n_AS_SKILL[idx][3] = -1;
 			// ダブルキャスティングの効果
 			switch (n_AS_SKILL[idx][0]) {
 				case SKILL_ID_FIRE_BOLT:
@@ -1193,7 +1134,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 						n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
 						n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
 						n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * (30 + 10 * skillLvDoubleCasting) * 10 / 100;
-						n_AS_SKILL[idx][3] = 0;
 					}
 					// 「バニルミルトの帽子　浮遊する賢者の石セット」のダブルキャスティング効果への対応
 					else if (TimeItemNumSearch(76)) {
@@ -1201,7 +1141,6 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 						n_AS_SKILL[idx][0] = n_AS_SKILL[idx-1][0];
 						n_AS_SKILL[idx][1] = n_AS_SKILL[idx-1][1];
 						n_AS_SKILL[idx][2] = n_AS_SKILL[idx-1][2] / 10 * 40 * 10 / 100;
-						n_AS_SKILL[idx][3] = 0;
 					}
 			}
 		}

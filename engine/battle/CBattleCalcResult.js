@@ -135,6 +135,8 @@ export function CBattleCalcResult () {
 		this.coolTime = 0;
 		this.attackInterval = 0;
 		this.actRate = 0;
+		this.stackLimit = -1;
+		this.stackIncrement = 0;
 		this.hitRate = 0;
 		this.perfectRate = 0;
 		this.criRate = 0;
@@ -952,6 +954,8 @@ export function CBattleCalcResult () {
 		result.coolTime = this.coolTime;
 		result.attackInterval = this.attackInterval;
 		result.actRate = this.actRate;
+		result.stackLimit = this.stackLimit;
+		result.stackIncrement = this.stackIncrement;
 		result.hitRate = this.hitRate;
 		result.perfectRate = this.perfectRate;
 		result.criRate = this.criRate;
