@@ -1340,6 +1340,8 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 		// 使用条件判定も同じ理由で結果インスタンスごとに確定させる。
 		battleCalcResult.bWeaponMismatch = CS.n_Buki_Muri;
 		battleCalcResult.bNoDamage = CS.g_bSkillNoDamage;
+		battleCalcResult.bIrregularBattleTime = !!n_Delay[0];
+		battleCalcResult.bUnknownCasts = g_bUnknownCasts;
 		battleCalcResult.coolTime = n_Delay[7];
 
 		// 修正量削減のために、グローバル変数で密結合になっているデータを取得
@@ -3307,11 +3309,8 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 	// 戦闘結果を出力
 	//--------------------------------
 
-	// TODO: これ、中にフックいれてMIG関数呼んでる
-	// 詠唱／ディレイ表示
-	BuildCastAndDelayHtml(mobData);
 	// ダメージ
-	BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+	BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll);
 	BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll);
 
 	//--------------------------------
