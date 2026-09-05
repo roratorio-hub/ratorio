@@ -13,7 +13,7 @@
  * タイミングに依存する込み入った実装で、実測でも完全な再現は非現実的だった）。
  * 同じ DOMContentLoaded に複数のリスナーが依存する場合の**実行順序**まで
  * 一致させたいなら、呼び出し側で明示的な同期（本ファイルではなく該当箇所）が要る
- * （calchistory.js / CSaveController.js の buildForm 二重実行対策を参照）。
+ * （calchistory.js#buildHistoryPanel() の二重実行ガードを参照）。
  *
  * @param {Function} fn readyになったら呼ぶ関数
  */

@@ -630,3 +630,136 @@ describe('clip履歴パネル ローディングインジケーター配線（�
         }
     });
 });
+
+/**
+ * セーブURL復元（CSaveController.js#restoreChartDisplay）を同一ページで複数回行うと
+ * document委譲リスナー・パネル用<style>が回収されずに増え続ける実害（B-34）を固定する。
+ * 実際に踏める経路は URL入力ボタン（#OBJID_BUTTON_URL_IN_MIG）でチャート入りURLを
+ * 繰り返し読み込む操作（初回のページロードによる復元と合わせて複数回蓄積する）。
+ */
+describe('clip履歴パネル 委譲リスナー/<style>の多重登録（B-34）', () => {
+    // calchistory.js の wireDocumentDelegates() が登録する4種のイベント型に絞って数える。
+    // document には TomSelect 側（mousedown）等、restore のたびに正当な理由で
+    // destroy→再登録が走る既存の委譲リスナーも同居しており、それらは対象外
+    // （型を絞らず総数を見るとTomSelect側の churn を誤検出するため）。
+    const DELEGATE_EVENT_TYPES = ['click', 'change', 'focusout', 'keydown'];
+
+    async function instrumentDocumentListeners(page: Page): Promise<void> {
+        await page.addInitScript((types) => {
+            const orig = Document.prototype.addEventListener;
+            (window as unknown as { __docAddCalls: string[] }).__docAddCalls = [];
+            Document.prototype.addEventListener = function (
+                this: Document,
+                type: string,
+                listener: EventListenerOrEventListenerObject,
+                opts?: boolean | AddEventListenerOptions
+            ) {
+                if (this === document && (types as string[]).includes(type)) {
+                    (window as unknown as { __docAddCalls: string[] }).__docAddCalls.push(type);
+                }
+                return orig.call(this, type, listener, opts as AddEventListenerOptions);
+            };
+        }, DELEGATE_EVENT_TYPES);
+    }
+
+    async function countDocListeners(page: Page): Promise<number> {
+        return page.evaluate(() => (window as unknown as { __docAddCalls: string[] }).__docAddCalls.length);
+    }
+
+    /** パネルの<style>はidを持たないため、中身の特徴的なセレクタ文字列で数える。 */
+    async function countHistoryStyleTags(page: Page): Promise<number> {
+        return page.evaluate(
+            () =>
+                Array.from(document.querySelectorAll('style')).filter((s) =>
+                    (s.textContent ?? '').includes('clip_modal_blocker')
+                ).length
+        );
+    }
+
+    it('セーブURLの複数回restoreで委譲リスナー・<style>が多重登録されない', async () => {
+        const context = await browser.newContext();
+
+        // 1ページ目: チャート入りURLを作る
+        const clipPage = await context.newPage();
+        clipPage.on('dialog', async (dialog) => {
+            if (dialog.type() === 'prompt') await dialog.accept('leak-check').catch(() => {});
+            else await dialog.accept().catch(() => {});
+        });
+        await clipPage.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+        await clipPage.waitForTimeout(1000);
+        await clipPage.check('#clip_with_memo');
+        await clipPage.click('#history_clip');
+        await clipPage.waitForTimeout(500);
+        await clipPage.check('#OBJID_SWITCH_SAVE_CTRL_MIG');
+        await clipPage.waitForSelector('#OBJID_INPUT_URL_OUT_MIG', { state: 'visible', timeout: 5000 });
+        await clipPage.click('#OBJID_BUTTON_URL_OUT_MIG');
+        await clipPage.waitForTimeout(300);
+        const outputUrl = await clipPage.inputValue('#OBJID_INPUT_URL_OUT_MIG');
+        await clipPage.close();
+        expect(outputUrl.length).toBeGreaterThan(200);
+
+        // 2ページ目: 初回ロード（restore #1）+ URL入力ボタンで同じURLをさらに2回ロード（restore #2/#3）
+        const page = await context.newPage();
+        const pageErrors: string[] = [];
+        page.on('pageerror', (e) => pageErrors.push(String(e)));
+        page.on('dialog', (dialog) => dialog.dismiss().catch(() => {}));
+        await instrumentDocumentListeners(page);
+
+        await page.goto(outputUrl, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForTimeout(1500); // restore #1 完了
+
+        const afterRestore1 = {
+            listeners: await countDocListeners(page),
+            styles: await countHistoryStyleTags(page),
+        };
+
+        await page.check('#OBJID_SWITCH_SAVE_CTRL_MIG');
+        await page.waitForSelector('#OBJID_INPUT_URL_IN_MIG', { state: 'visible', timeout: 5000 });
+        for (let i = 0; i < 2; i++) {
+            await page.fill('#OBJID_INPUT_URL_IN_MIG', outputUrl);
+            await page.click('#OBJID_BUTTON_URL_IN_MIG');
+            await page.waitForTimeout(500);
+        }
+        // restore #2/#3 完了
+
+        const afterRestore3 = {
+            listeners: await countDocListeners(page),
+            styles: await countHistoryStyleTags(page),
+        };
+
+        expect(afterRestore3.listeners, 'restore #2/#3 でdocumentレベルの委譲リスナーが増えないこと').toBe(
+            afterRestore1.listeners
+        );
+        expect(afterRestore3.styles, 'restore #2/#3 で<style>が増えないこと').toBe(afterRestore1.styles);
+
+        // パネル要素は常に1個
+        const counts = await page.evaluate(() => ({
+            clipModal: document.querySelectorAll('#clip_modal').length,
+            historyGraph: document.querySelectorAll('#history_graph').length,
+            historyButton: document.querySelectorAll('#history_button').length,
+        }));
+        expect(counts.clipModal).toBe(1);
+        expect(counts.historyGraph).toBe(1);
+        expect(counts.historyButton).toBe(1);
+
+        // 3回restoreした後でも操作系が機能すること（多重登録の無害化ではなく一本化で保証する）
+        await page.click('#history_list');
+        await page.waitForTimeout(300);
+        expect(await readMemoOrder(page)).toEqual(['leak-check']);
+
+        await page.click('#clip_modal_table tbody tr:first-child div.clip_memo');
+        await page.waitForTimeout(100);
+        await page.fill('#clip_modal_table tbody tr:first-child input.clip_memo', 'after-leak-check');
+        await page.click('#clip_modal_table thead');
+        await page.waitForTimeout(200);
+        expect(await readMemoOrder(page)).toEqual(['after-leak-check']);
+
+        await page.click('#clip_modal_close');
+        await page.waitForTimeout(200);
+        await page.click('#history_reset');
+        await page.waitForTimeout(200);
+
+        expect(pageErrors, `未捕捉例外: ${pageErrors.join('\n')}`).toEqual([]);
+        await context.close();
+    });
+});
