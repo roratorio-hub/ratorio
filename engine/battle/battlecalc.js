@@ -40,7 +40,7 @@ import {
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import {
          HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode,
-         HtmlGetObjectValueByIdAsInteger, HtmlRemoveAllChild, myInnerHtml
+         HtmlGetObjectValueByIdAsInteger, HtmlRemoveAllChild
 } from "../runtime/util.js";
 import { CCharaConfCustomAtk } from "../chara/CCharaConfCustomAtk.js";
 import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
@@ -758,6 +758,8 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	let battleCalcInfoArray = null;
 	let battleCalcResultAll = null;
 	let BK_AS_Weapon_zokusei = 0;
+	let BK_AS_ActiveSkill = 0;
+	let BK_AS_ActiveSkillLV = 0;
 	// 戻り値用インスタンス用意
 	battleCalcResultAll = new CBattleCalcResultAll();
 	// 基本情報を設定
@@ -1046,6 +1048,14 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	// SET_ZOKUSEI() は StAllCalc() から主撃のスキルＩＤで一度だけ呼ばれるため、
 	// オートスペルごとの属性はここで面倒を見るしかない.
 	BK_AS_Weapon_zokusei = n_A_Weapon_zokusei;
+	// 主撃のスキルID/Lvを退避する（引数の battleCalcInfo から。n_A_ActiveSkill の
+	// 現在値ではなく引数から取るのは、通常攻撃ブランチの三段掌等で n_A_ActiveSkill が
+	// 既に書き換わっている場合があるため）。
+	// オートスペルは BattleCalc999Body() 呼び出しのたびに n_A_ActiveSkill/LV を
+	// 自分のスキルID/Lvへ書き換えるが、ループの外では戻さないため、描画（全計算完了後）が
+	// 「最後に計算したオートスペル」のスキルID/Lvを見てしまう。
+	BK_AS_ActiveSkill = battleCalcInfo.skillId;
+	BK_AS_ActiveSkillLV = battleCalcInfo.skillLv;
 	for (idxAS = 0; idxAS < n_AS_SKILL.length; idxAS++) {
 		// 発動率不明は除外
 		if (n_AS_SKILL[idxAS][2] <= 0) {
@@ -1064,6 +1074,9 @@ export function BattleCalc999(battleCalcInfo, charaData, specData, mobData, atta
 	}
 	// 主撃の武器属性へ戻す（calc() が計算データ収集で読むため）
 	set_n_A_Weapon_zokusei(BK_AS_Weapon_zokusei);
+	// 主撃のスキルID/Lvへ戻す（描画（全計算完了後）が主撃の値を見るため）
+	set_n_A_ActiveSkill(BK_AS_ActiveSkill);
+	set_n_A_ActiveSkillLV(BK_AS_ActiveSkillLV);
 	// オートスペルフラグ OFF
 	CS.n_AS_MODE = false;
 	return battleCalcResultAll;
@@ -1284,7 +1297,15 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 	// ダメージ計算本体
 	//
 	//----------------------------------------------------------------
+	// n_Delay は BattleCalc999Core() のスクラッチ初期化でリセットされないため、
+	// n_Delay[x] = n_Delay[x] * 2 のような自己参照型の代入（ブーストナックル等）が
+	// クリティカル判定周回（idxUnit==1）で二重適用されるのを防ぐ。周回のたびに
+	// 主撃計算前の状態へ戻す。
+	const BK_n_Delay = n_Delay.slice();
 	for (idxUnit = 0; idxUnit < dmgUnitArray.length; idxUnit++) {
+		for (let idxDelay = 0; idxDelay < n_Delay.length; idxDelay++) {
+			n_Delay[idxDelay] = BK_n_Delay[idxDelay];
+		}
 		CS.g_wHITsuu_Array = null;
 		// クリティカルが発生しない場合は、計算せずゼロにする
 		if (idxUnit == 1) {
@@ -1324,6 +1345,11 @@ export function BattleCalc999Body(battleCalcInfo, charaData, specData, mobData, 
 		// 描画は全計算の完了後なので、グローバル変数のままだと追撃・オートスペルが
 		// 最後に走ったときに「最後の計算結果」の値で描画されてしまう。
 		battleCalcResult.bGroundInstallation = g_bDefinedDamageIntervals;
+		// 使用条件判定も同じ理由で結果インスタンスごとに確定させる。
+		battleCalcResult.bWeaponMismatch = CS.n_Buki_Muri;
+		battleCalcResult.bNoDamage = CS.g_bSkillNoDamage;
+		battleCalcResult.bIrregularBattleTime = !!n_Delay[0];
+		battleCalcResult.bUnknownCasts = g_bUnknownCasts;
 		battleCalcResult.coolTime = n_Delay[7];
 
 		// 修正量削減のために、グローバル変数で密結合になっているデータを取得
@@ -2851,11 +2877,6 @@ export function ComputeBattleResult(retValArray) {
 
 	if(n_A_ActiveSkill==0 || n_A_ActiveSkill==SKILL_ID_SHARP_SHOOTING || n_A_ActiveSkill==401 || n_A_ActiveSkill==456 || n_A_ActiveSkill==578 || (n_A_ActiveSkill==86 && (50 <= mobData[18] && mobData[18] <60))){
 		CS.w_HIT_HYOUJI = Math.floor(GetActHitRateAll(n_A_ActiveSkill, mobData) * 100) /100;
-		// headless実行時（要素が存在しない）は表示を諦める（残件台帳 B-28）
-		const objCRInum = document.getElementById("CRInum");
-		if (objCRInum != null) {
-			objCRInum.textContent = (Math.round(GetActRateCritical(n_A_ActiveSkill, mobData) * 100) / 100) + SubName[0];
-		}
 	}
 
 	set_w_FLEE(95 - (mobData[33] - charaData[CHARA_DATA_INDEX_FLEE]));
@@ -2877,12 +2898,6 @@ export function ComputeBattleResult(retValArray) {
 
 	// FLEE範囲補正
 	set_w_FLEE(Math.min(95, Math.max(5, w_FLEE)));
-
-	// headless実行時（要素が存在しない）は表示を諦める（残件台帳 B-28）
-	const objBattleFLEE = document.getElementById("BattleFLEE");
-	if (objBattleFLEE != null) {
-		objBattleFLEE.textContent = Math.floor((w_FLEE + (100 - w_FLEE) * charaData[CHARA_DATA_INDEX_LUCKY] / 100) * 100) / 100;
-	}
 
 	//----------------------------------------------------------------
 	//
@@ -3291,11 +3306,8 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 	// 戦闘結果を出力
 	//--------------------------------
 
-	// TODO: これ、中にフックいれてMIG関数呼んでる
-	// 詠唱／ディレイ表示
-	BuildCastAndDelayHtml(mobData);
 	// ダメージ
-	BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+	BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll);
 	BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll);
 
 	//--------------------------------
@@ -3393,22 +3405,6 @@ function RenderCalcResults(battleCalcResultAll, attackMethodConfArray, w_BONUS) 
 		HtmlCreateElement("br", objSpan);
 		HtmlCreateTextNode("　実際のゲームでのダメージと異なる場合がありますので、ご注意ください。", objSpan);
 		HtmlCreateElement("br", objSpan);
-	}
-
-	var innerHtmlText = "";
-	for (let idx = 0; idx < CS.g_damageTextArray.length; idx++) {
-		innerHtmlText = "";
-		for (let idxArray = 0; idxArray < CS.g_damageTextArray[idx].length; idxArray++) {
-			// 数値でなければ、そのまま追記
-			if (isNaN(CS.g_damageTextArray[idx][idxArray])) {
-				innerHtmlText += CS.g_damageTextArray[idx][idxArray];
-			}
-			// 数値の場合は、３桁区切り適用
-			else {
-				innerHtmlText += __DIG3(CS.g_damageTextArray[idx][idxArray]);
-			}
-		}
-		myInnerHtml("strID_" + idx, innerHtmlText, 0);
 	}
 
 	// StAllCalc() 内の RefreshDispAreaAll（stallcalc.js）は w_BONUS 確定前に走るため、

@@ -38,7 +38,8 @@ import {
     SKILL_ID_ELECTRIC_WALK, SKILL_ID_ELEMENTAL_BASTER, SKILL_ID_ESFU, SKILL_ID_ESHA, SKILL_ID_ESMA, SKILL_ID_ESPA,
     SKILL_ID_ESTIN, SKILL_ID_ESTON, SKILL_ID_FIDOS_ANIMUS, SKILL_ID_FIRE_BALL, SKILL_ID_FIRE_BOLT,
     SKILL_ID_FIRE_WALK, SKILL_ID_FIRE_WALL, SKILL_ID_FLORAL_FLARE_ROAD, SKILL_ID_FROM_THE_ABYSS,
-    SKILL_ID_FROST_DIVER, SKILL_ID_FROST_MISTY, SKILL_ID_FROST_NOVA, SKILL_ID_FROZEN_SLASH, SKILL_ID_FUKYOWAON,
+    SKILL_ID_FROST_DIVER, SKILL_ID_FROST_MISTY, SKILL_ID_FROST_NOVA, SKILL_ID_FROST_WEAPON, SKILL_ID_FROZEN_SLASH,
+    SKILL_ID_FUKYOWAON,
     SKILL_ID_FURIOS_STORM, SKILL_ID_FUZIN, SKILL_ID_FU_COUNT_OF_FU, SKILL_ID_FU_ELEMENT_OF_FU, SKILL_ID_GENBU_FU,
     SKILL_ID_GENZYUTSU_ANKOKURYUU, SKILL_ID_GLACIER_MONOLITH, SKILL_ID_GLACIER_NOVA, SKILL_ID_GLACIER_SHARD,
     SKILL_ID_GLACIER_STOMP, SKILL_ID_GRAVITY_HOLE, SKILL_ID_GROUND_BLOOM, SKILL_ID_GROUND_GRAVITATION,
@@ -48,7 +49,8 @@ import {
     SKILL_ID_INUHAKKA_METEOR, SKILL_ID_JACK_FROST, SKILL_ID_JACK_FROST_NOVA, SKILL_ID_JUDEX,
     SKILL_ID_JUDGEMENT_CROSS, SKILL_ID_JUPITER_THUNDER, SKILL_ID_JUPITER_THUNDER_STORM, SKILL_ID_KAENZIN,
     SKILL_ID_KAGETOKI, SKILL_ID_KINNRYUU_HOU, SKILL_ID_KOUENKA, SKILL_ID_LESSON, SKILL_ID_LIGHTNING_BOLT,
-    SKILL_ID_LIGHTNING_LAND, SKILL_ID_LORD_OF_VERMILLION, SKILL_ID_MAGNUS_EXORCISMUS, SKILL_ID_MAHOKEN_SHUREN,
+    SKILL_ID_LIGHTNING_LAND, SKILL_ID_LIGHTNING_LOADER, SKILL_ID_LORD_OF_VERMILLION, SKILL_ID_MAGNUS_EXORCISMUS,
+    SKILL_ID_MAHOKEN_SHUREN,
     SKILL_ID_MATATABI_LANCE, SKILL_ID_METALIC_FURY, SKILL_ID_METALIC_SOUND, SKILL_ID_METEOR_STORM,
     SKILL_ID_METEOR_STORM_BUSTER, SKILL_ID_MIRIAM_LIGHT, SKILL_ID_MYSTERY_ILLUSION, SKILL_ID_NAPALM_VULKAN_STRIKE,
     SKILL_ID_NUMATIC_PROCERA, SKILL_ID_NYANTOMO_KENROKU, SKILL_ID_OMEGA_ABYSS_STRIKE, SKILL_ID_PHREMEN,
@@ -56,12 +58,14 @@ import {
     SKILL_ID_RAIN_OF_CRYSTAL, SKILL_ID_RAY_OF_GENESIS, SKILL_ID_REIDO_FU, SKILL_ID_REIKETSU_HOU,
     SKILL_ID_RHYTHMICAL_WAVE, SKILL_ID_ROARING_CHARGE, SKILL_ID_ROARING_PIERCER, SKILL_ID_ROCK_DOWN,
     SKILL_ID_RULE_BREAK_STATE, SKILL_ID_RUWACH, SKILL_ID_RYUENZIN, SKILL_ID_SAKUFU, SKILL_ID_SANREI_ITTAI,
-    SKILL_ID_SEIRYU_FU, SKILL_ID_SEKIEN_HOU, SKILL_ID_SERE, SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SHIELD_SPELL_LV_2,
+    SKILL_ID_SEIRYU_FU, SKILL_ID_SEISMIC_WEAPON, SKILL_ID_SEKIEN_HOU, SKILL_ID_SERE, SKILL_ID_SERE_SUPPORT_SKILL,
+    SKILL_ID_SHIELD_SPELL_LV_2,
     SKILL_ID_SHIHOZIN_FU, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN, SKILL_ID_SHINDOZANKYO,
     SKILL_ID_SHIRYO_BAKUHATSU, SKILL_ID_SHIRYO_ZYOKA, SKILL_ID_SIGHT_RASHER, SKILL_ID_SOLID_STOMP,
     SKILL_ID_SOUL_EXPANSION, SKILL_ID_SOUL_STRIKE, SKILL_ID_SOUL_VULKUN_STRIKE, SKILL_ID_SOUND_BLEND,
     SKILL_ID_SPELL_FIST, SKILL_ID_SPIRIT_MASTERY, SKILL_ID_STORM_CANNON, SKILL_ID_STORM_GUST,
-    SKILL_ID_STRATUM_TREAMER, SKILL_ID_SUMMON_FIRE_BALL, SKILL_ID_SUMMON_LIGHTNING_BALL, SKILL_ID_SUMMON_STONE,
+    SKILL_ID_STRATUM_TREAMER, SKILL_ID_STRIKING, SKILL_ID_SUMMON_FIRE_BALL, SKILL_ID_SUMMON_LIGHTNING_BALL,
+    SKILL_ID_SUMMON_STONE,
     SKILL_ID_SUMMON_WATER_BALL, SKILL_ID_SUZAKU_FU, SKILL_ID_TELECHINESIS_INSTENCE, SKILL_ID_TERA_DRIVE,
     SKILL_ID_TERRA_HARVEST, SKILL_ID_TERRA_WAVE, SKILL_ID_THUNDERING_CALL, SKILL_ID_THUNDERING_FOCUS,
     SKILL_ID_THUNDERING_ORB, SKILL_ID_THUNDER_STORM, SKILL_ID_TORNADE_STORM, SKILL_ID_TSURARAOTOSHI,
@@ -74,6 +78,7 @@ import {
     ApplyMagicalSkillDamageRatioChange, ApplyMagicalSpecializeMonster, ApplyRegistPVPNormal, ApplyResistElement,
     BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerMatkPercentUp
 } from "../bridge/battlecalc-bridge.js";
+import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { SubName } from "./sub-name.js";
 import { CS } from "./calc-state.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
@@ -722,7 +727,8 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wCast = 2000 + 200 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 5000;
-			var subnumvalue = attackMethodConfArray[0].GetOptionValue(0);
+			const seismic_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_SEISMIC_WEAPON), UsedSkillSearch(SKILL_ID_SEISMIC_WEAPON));
+			var subnumvalue = GetAttackMethodOptionValue(attackMethodConfArray, 0, seismic_weapon_lv);
 			CS.wbairitu = 200 * subnumvalue + n_A_INT * n_A_ActiveSkillLV;
 			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
@@ -736,7 +742,8 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.n_KoteiCast = 2000 - 200 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1000;
 			n_Delay[7] = 5000;
-			CS.wbairitu = 200 * attackMethodConfArray[0].GetOptionValue(0) + n_A_INT * n_A_ActiveSkillLV;
+			const frost_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_FROST_WEAPON), UsedSkillSearch(SKILL_ID_FROST_WEAPON));
+			CS.wbairitu = 200 * GetAttackMethodOptionValue(attackMethodConfArray, 0, frost_weapon_lv) + n_A_INT * n_A_ActiveSkillLV;
 			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
@@ -843,8 +850,10 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.n_bunkatuHIT = 1;
 			CS.wHITsuu = 3;
 
-			var subnumvalue = attackMethodConfArray[0].GetOptionValue(0);
-			var subnumvalue2 = attackMethodConfArray[0].GetOptionValue(1);
+			const lightning_loader_lv = Math.max(LearnedSkillSearch(SKILL_ID_LIGHTNING_LOADER), UsedSkillSearch(SKILL_ID_LIGHTNING_LOADER));
+			const striking_lv = Math.max(LearnedSkillSearch(SKILL_ID_STRIKING), UsedSkillSearch(SKILL_ID_STRIKING));
+			var subnumvalue = GetAttackMethodOptionValue(attackMethodConfArray, 0, lightning_loader_lv);
+			var subnumvalue2 = GetAttackMethodOptionValue(attackMethodConfArray, 1, striking_lv);
 			CS.wbairitu = ROUNDDOWN((120 * (subnumvalue + subnumvalue2) + n_A_INT * (n_A_ActiveSkillLV / 2)) * n_A_BaseLV / 100);
 
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
@@ -1421,8 +1430,8 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu += 15 * n_A_ActiveSkillLV * mahoken_shuren_lv;
 			// ベースレベル補正
 			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			// 攻撃回数
-			if (attackMethodConfArray[0].GetOptionValue(0) >= 1) {
+			// 攻撃回数（既定=範囲内=2Hit）
+			if (GetAttackMethodOptionValue(attackMethodConfArray, 0, 1) >= 1) {
 				CS.wHITsuu = 2;
 			}
 			break;
@@ -1908,7 +1917,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					if(b==2) CS.wHITsuu = 3 * attackMethodConfArray[0].GetOptionValue(0);
 				}
 				CS.Last_DMG_A[b] = ROUNDDOWN(w_DMG[b] * CS.wHITsuu);
-				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", CS.Last_DMG_B[b], SubName[8], CS.wHITsuu, "hit)");
 				// TODO: 四次データ形式変更対応
 				// w_DMG[b] = Last_DMG_A[b];
 			}
@@ -1923,7 +1931,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					var KoteiDMG = 400 * subnumvalue;
 					KoteiDMG = KoteiDMG * ROUNDDOWN((100 + 40 * UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) / 100);
 					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu + KoteiDMG;
-					if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit + ", KoteiDMG, ")");
 					// TODO: 四次データ形式変更対応
 					// w_DMG[b] *= wHITsuu;
 				}
@@ -1933,7 +1940,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					// w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);
 					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * Math.floor(CS.wbairitu / CS.wHITsuu) * CS.wHITsuu / 100) / CS.wHITsuu);
 					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu;
-					if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit)");
 					// TODO: 四次データ形式変更対応
 					// w_DMG[b] *= wHITsuu;
 				}
@@ -1942,14 +1948,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		if(CS.n_AS_MODE){
 			CS.SG_Special_HITnum = 0;
 			return w_DMG;
-		}
-		if(n_A_ActiveSkill==783 && (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == 0 || UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU) == 0)) CS.g_damageTextArray[0] = ["<Font color=Red><B>術式解放の計算をするにはパッシブ欄で<BR>符の属性と数を設定して下さい</B></Font>"];
-		if(n_A_ActiveSkill==526){
-			CS.str_bSUBname += "<FONT color='#0000FF'><B>吸収量</B></FONT><BR>";
-			var w = ROUNDDOWN((8 * n_A_ActiveSkillLV) * n_A_BaseLV / 100);
-			var w0 = ROUNDDOWN(w_DMG[0] * w / 100);
-			var w2 = ROUNDDOWN(w_DMG[2] * w / 100);
-			CS.str_bSUB += "<FONT color='#0000FF'><B>"+ __DIG3(w0) +"～"+ __DIG3(w2) +"</B></FONT><BR>";
 		}
 		CS.w_HIT_HYOUJI = 100;
 		AS_PLUS();

@@ -47,6 +47,22 @@ export function CBattleCalcResult () {
 	// 「最後に計算した結果」の値を見てしまう（追撃・オートスペルがあると誤判定になる）。
 	this.bGroundInstallation = false;
 
+	// 武器種不一致等によるスキル使用不可フラグ
+	// この結果インスタンスを算出した時点の CS.n_Buki_Muri を保持する（bGroundInstallation と同じ理由）。
+	this.bWeaponMismatch = false;
+
+	// ダメージ判定無しフラグ
+	// この結果インスタンスを算出した時点の CS.g_bSkillNoDamage を保持する（bGroundInstallation と同じ理由）。
+	this.bNoDamage = false;
+
+	// 攻撃間隔判定不能フラグ（n_Delay[0]）
+	// この結果インスタンスを算出した時点の値を保持する（bGroundInstallation と同じ理由）。
+	this.bIrregularBattleTime = false;
+
+	// 詠唱時間等未実測フラグ
+	// この結果インスタンスを算出した時点の g_bUnknownCasts を保持する（bGroundInstallation と同じ理由）。
+	this.bUnknownCasts = false;
+
 	// クールタイム
 	this.coolTime = 0;
 
@@ -112,9 +128,15 @@ export function CBattleCalcResult () {
 		this.damageInterval = 0;
 		this.objectLifeTime = 0;
 		this.bGroundInstallation = false;
+		this.bWeaponMismatch = false;
+		this.bNoDamage = false;
+		this.bIrregularBattleTime = false;
+		this.bUnknownCasts = false;
 		this.coolTime = 0;
 		this.attackInterval = 0;
 		this.actRate = 0;
+		this.stackLimit = -1;
+		this.stackIncrement = 0;
 		this.hitRate = 0;
 		this.perfectRate = 0;
 		this.criRate = 0;
@@ -925,9 +947,15 @@ export function CBattleCalcResult () {
 		result.damageInterval = this.damageInterval;
 		result.objectLifeTime = this.objectLifeTime;
 		result.bGroundInstallation = this.bGroundInstallation;
+		result.bWeaponMismatch = this.bWeaponMismatch;
+		result.bNoDamage = this.bNoDamage;
+		result.bIrregularBattleTime = this.bIrregularBattleTime;
+		result.bUnknownCasts = this.bUnknownCasts;
 		result.coolTime = this.coolTime;
 		result.attackInterval = this.attackInterval;
 		result.actRate = this.actRate;
+		result.stackLimit = this.stackLimit;
+		result.stackIncrement = this.stackIncrement;
 		result.hitRate = this.hitRate;
 		result.perfectRate = this.perfectRate;
 		result.criRate = this.criRate;

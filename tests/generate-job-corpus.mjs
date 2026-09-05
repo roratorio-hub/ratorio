@@ -255,6 +255,10 @@ async function exportCurrentUrlForPassC(page) {
  * 食い違いが確認された（TomSelectの同値再選択によるchange抑制を疑い対策したが、
  * 対策後も再発した——根本原因は未特定だが、ライブDOM読み取りは信頼できないと判断した）。
  * そのため判定は必ずこの関数（URL復元後の再計算）で行う。ライブDOM読み取りは使わない。
+ *
+ * MinATKnum は常時display:noneの旧戦闘結果テーブルの要素だったため削除済み。
+ * 現在は簡易表示（OBJID_DIV_BATTLE_RESULT_TINY。ラベルspan・値spanが交互に並ぶ）の
+ * 「平均」ダメージを同じ判定に使う。
  */
 async function verifyUrlNonZero(page, baseUrl, url) {
     const q = url.slice(url.indexOf('?'));
@@ -262,8 +266,14 @@ async function verifyUrlNonZero(page, baseUrl, url) {
     try {
         await verifyPage.goto(`${baseUrl}/ro4/m/calcx.html${q}`, { waitUntil: 'networkidle', timeout: 60000 });
         await verifyPage.waitForTimeout(800);
-        const min = await verifyPage.evaluate(() => document.getElementById('MinATKnum')?.textContent ?? '');
-        return !!min && !min.includes('0ダメージ');
+        const ave = await verifyPage.evaluate(() => {
+            const tiny = document.getElementById('OBJID_DIV_BATTLE_RESULT_TINY');
+            if (!tiny) return '';
+            const children = Array.from(tiny.children);
+            const idx = children.findIndex((el) => (el.textContent ?? '').trim() === '平均');
+            return idx >= 0 ? (children[idx + 1]?.textContent ?? '').trim() : '';
+        });
+        return !!ave && ave !== '0';
     } finally {
         await verifyPage.close();
     }

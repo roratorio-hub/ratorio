@@ -154,7 +154,6 @@ describe('evalObjidSnapshot の戦闘結果パネル採取（残件台帳 B-29�
         expect(snapshot[castKey]).toBeDefined();
         expect(snapshot[castKey]).not.toBe('0.00 秒');
         expect(snapshot['battle:TINY > DPS']).toBeDefined();
-        expect(snapshot['legacy:AveSecondATK']).toBeDefined();
     });
 
     it('最大被ダメージ行のラベル（<select>を内包）は行ラベルとして属性選択肢を巻き込まない', async () => {

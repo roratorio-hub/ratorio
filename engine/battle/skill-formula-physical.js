@@ -104,7 +104,7 @@ import {
     SKILL_ID_TENCHI_BANSE, SKILL_ID_TENCHI_ICHIGETSU, SKILL_ID_TENCHI_ICHIYO, SKILL_ID_TENGETSU,
     SKILL_ID_TENKETSU_MOKU, SKILL_ID_TENKINO_MI, SKILL_ID_TENKI_SHUREN, SKILL_ID_TENME_RAKUSE, SKILL_ID_TENRACHIMO,
     SKILL_ID_TENRA_BANSHO, SKILL_ID_TENSE, SKILL_ID_TENYO, SKILL_ID_TIGER_HOWLING, SKILL_ID_TIGER_SLASH,
-    SKILL_ID_TIGER_STRIKE, SKILL_ID_TOMAHAWKNAGE, SKILL_ID_TOOTH_OF_WUG, SKILL_ID_TORURYOCHAGI, SKILL_ID_TRACKING,
+    SKILL_ID_TIGER_STRIKE, SKILL_ID_TOMAHAWKNAGE, SKILL_ID_TORURYOCHAGI, SKILL_ID_TRACKING,
     SKILL_ID_TRIANGLE_SHOT, SKILL_ID_TRIPLE_LASER, SKILL_ID_TUZYO_KOGEKI_CALC_LEFT, SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT,
     SKILL_ID_TYPHOON_WING, SKILL_ID_UNKONO_ZYOTAI, SKILL_ID_UNLUCKY_RUSH, SKILL_ID_UNTIMATERIAL_BLAST,
     SKILL_ID_VAMPIRE_GIFT, SKILL_ID_VENOM_KNIFE, SKILL_ID_VENOM_PRESSURE, SKILL_ID_VIGILANT_AT_NIGHT,
@@ -122,6 +122,7 @@ import { MIG_JOB_ID_SHADOW_CROSS } from "../data/mig.job.dat.js";
 import { GetJobLevelMax } from "../data/mig.job.h.js";
 import { g_skillManager } from "../runtime/global.js";
 import { ATKbaiJYOUSAN, BattleCalcSubDamagePhysicalCommon, GetBattlerAtkPercentUp } from "../bridge/battlecalc-bridge.js";
+import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { CS } from "./calc-state.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
@@ -547,12 +548,12 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			case SKILL_ID_IGNITION_BREAK:
 				n_Delay[7] = 3000;
-				var w = attackMethodConfArray[0].GetOptionValue(0);
+				var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 0);
 				if(w == 0) CS.wbairitu = 300 * n_A_ActiveSkillLV;
 				if(w == 1) CS.wbairitu = 250 * n_A_ActiveSkillLV;
 				if(w == 2) CS.wbairitu = 200 * n_A_ActiveSkillLV;
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				if(attackMethodConfArray[0].GetOptionValue(1) == 1) CS.wbairitu -= 1;
+				if(GetAttackMethodOptionValue(attackMethodConfArray, 1, 1) == 1) CS.wbairitu -= 1;
 				if(CS.BK_Weapon_zokusei == 3) CS.wbairitu += 100 * n_A_ActiveSkillLV;
 				break;
 
@@ -652,14 +653,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 						break;
 				}
 				CS.wbairitu = 800 + 200 * n_A_ActiveSkillLV;
-				if(!CS.n_AS_MODE){
-					const tooth_of_wug_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOOTH_OF_WUG), UsedSkillSearch(SKILL_ID_TOOTH_OF_WUG));
-					let w = 50 + 10 * n_A_ActiveSkillLV - Math.floor(mobData[8] / 4) + tooth_of_wug_lv * 2;
-					if(w < 50) w = 50;
-					if(w > 100) w = 100;
-					CS.str_bSUBname += "<Font size=2>命中時の拘束確率(推定)<BR></Font>";
-					CS.str_bSUB += w +"%<BR>";
-				}
 				break;
 			}
 
@@ -1020,8 +1013,11 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 						CS.wbairitu = (w1 + w2) / 1.5;
 					}
 				} else {
-					// オートスペル時
-					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_COMBO_SORYUKYAKU) {
+					// オートスペル時（攻撃手段が閃光連撃なら単発扱い、それ以外＝双龍コンボならコンボ扱い。
+					// battlecalc.js の GetPerfectHitDamage() 側の號砲分岐と同じ判定）
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI) {
+						CS.wbairitu = (w1 + w2) / 4;
+					} else {
 						CS.wbairitu = (w1 + w2) / 1.5;
 					}
 				}
