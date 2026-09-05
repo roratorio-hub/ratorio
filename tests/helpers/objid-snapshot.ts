@@ -139,11 +139,13 @@ export async function expandAllSections(page: Page): Promise<void> {
 }
 
 // 本番と意図的に乖離している要素（ローカル側で機能削除済み・仕様差分）を入れる置き場。
-// 2026-08-31（残件台帳 B-29）時点では該当ゼロ——過去に入っていた3件
-// （OBJID_CHECK_A3_SKILLSW / OBJID_SELECT_JOB / OBJID_DIV_BATTLE_RESULT_TINY）は
-// 本番デプロイ完了・機能自体の消滅により全て陳腐化したため撤去した。
-// 将来また本番未デプロイの差分が出た場合の一時的な置き場として空のまま残す。
-const INTENTIONAL_DIVERGENCE_IDS = new Set<string>([]);
+// 現在の2件は、常時display:noneの旧戦闘結果テーブル（削除済み）の内側にあった
+// JS配線ゼロの孤児ボタン・progress要素。実際の詠唱シミュレータ機能は
+// OBJID_TD_CASTSIM側（castsim.js）が別id体系で提供しており無事。
+// 本番デプロイ完了後は撤去すること。
+const INTENTIONAL_DIVERGENCE_IDS = new Set<string>([
+    'OBJID_BUTTON_SIMULATE_CAST_TIME', 'OBJID_PROGRESS_SIMULATE_CAST_TIME',
+]);
 
 // calcForm の name 属性ベースで同じ理由により除外するもの（同じく現在は空）。
 const INTENTIONAL_DIVERGENCE_FORM_NAMES = new Set<string>([]);
@@ -290,12 +292,11 @@ export function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
 
         // 旧レイアウトの出力欄（OBJID_ を持たない素の id）。ページ上の非OBJID id を
         // 無差別に拾うと巨大な TomSelect 生成 <select>（数万文字）まで混入するため許可リスト方式。
+        // 常時display:noneの旧戦闘結果テーブル（BattleHIT等）は削除済みのため、
+        // このテーブルの外にある A_STPOINT（基本ステータスポイント残り）と
+        // A_SobWeaponName（左手武器タイプselectを内包する可視要素）の2つのみ残す。
         const LEGACY_BATTLE_RESULT_IDS = [
-            'BattleHIT', 'BattlePerfectHIT', 'BattleFLEE',
-            'CRIATKname', 'CRIATK', 'CRInumname', 'CRInum', 'bSUBname', 'bSUB', 'bSUB2name', 'bSUB2',
-            'MinATKnum', 'AveATKnum', 'MaxATKnum', 'AveSecondATK', 'BattleTime',
-            'AtkBaseExp', 'AtkJobExp', 'B_AveAtk', 'B_Ave2Atk',
-            'strID_0', 'strID_1', 'strID_2', 'A_STPOINT', 'A_SobWeaponName',
+            'A_STPOINT', 'A_SobWeaponName',
         ];
         for (const id of LEGACY_BATTLE_RESULT_IDS) {
             const el = document.getElementById(id);

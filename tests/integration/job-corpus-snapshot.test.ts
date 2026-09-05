@@ -102,9 +102,11 @@ describe('職業×攻撃手段コーパス 全 OBJID_* スナップショット'
             if (battleKeyCount <= 10) emptyBattlePanelLabels.push(`${label}(${battleKeyCount}件)`);
             // Pass C（残件台帳 B-32）の範囲だけ、与ダメージが0のまま再固定されていないことを
             // 確認する。これが無いと将来ここが0ダメージへ戻っても誰も気付けない（B-29と同型）。
+            // 常時display:noneの旧UI（legacy:MinATKnum）は削除済みのため、
+            // 同じ0判定を新UIの簡易表示（battle:TINY > 平均）で行う。
             if (passCStartIndex !== null && entryIndex >= passCStartIndex) {
-                const minATK = out[label]['legacy:MinATKnum'] ?? '';
-                if (minATK.includes('0ダメージ')) zeroDamagePassCLabels.push(`${label}(${minATK})`);
+                const aveDmg = out[label]['battle:TINY > 平均'] ?? '';
+                if (aveDmg === '0') zeroDamagePassCLabels.push(`${label}(平均${aveDmg})`);
             }
             entryIndex++;
         }
