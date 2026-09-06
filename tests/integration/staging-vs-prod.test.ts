@@ -106,9 +106,8 @@ function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
         // 除外しないとステージング vs 本番が全フィクスチャで誤検知する。
         const TS_GENERATED_ID = /-ts-(control|dropdown|label)$/;
 
-        // ステージング(phase1-2)にのみ存在する意図的な追加要素。
-        // 本番(master)が追従したら不要になるので、その際に削除すること。
-        const IGNORED_OBJIDS = new Set(['OBJID_BUTTON_OPT_IN_SAVEDATA']);
+        // ステージング(phase1-2)にのみ存在する意図的な追加要素（現在は該当なし）。
+        const IGNORED_OBJIDS = new Set<string>([]);
 
         document.querySelectorAll<HTMLElement>('[id^="OBJID_"]').forEach((el) => {
             const id = el.id;

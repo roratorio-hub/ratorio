@@ -2006,7 +2006,6 @@ export const OnChangeStatus = _debounce(function() {
 }, 200);
 
 import { register } from "../runtime/engine-registry.js";
-register('CalcStatusPoint', CalcStatusPoint);
 register('RebuildStatusSelect', RebuildStatusSelect);
 import { __registerHmjobFunctions } from "../bridge/hmjob-bridge.js";
 import { CHARA_DATA_INDEX_FLEE, CHARA_DATA_INDEX_HIT, CHARA_DATA_INDEX_STATUS_ATK, CHARA_DATA_INDEX_STATUS_MATK } from "../const/EnumCharaDataIndex.js";

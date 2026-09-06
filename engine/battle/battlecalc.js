@@ -2640,18 +2640,6 @@ export function GetIkariPow(mobData) {
 	return pow;
 }
 
-/**
- * 旧・各種パラメータ変更時の自動計算機能。
- * 内部呼び出し側は全てリファクタリング計画 Phase 9 D2 で `notifyChanged(CalcInput.X)` へ
- * 移行済み（旧 `callFrom` 文字列15種による分岐は D5 で撤去。calc-invalidation.js 冒頭コメント
- * 参照）。現在は `engine-registry.js` に登録された公開APIとしてのみ存在し、
- * 唯一の呼び出し元 `workspace/src/rtxApiImport.ts` が引数なしで呼ぶ
- * （`window.AutoCalc` 経由。`.claude/context/window-and-bridges.md` 参照）。
- */
-export function AutoCalc() {
-	notifyChanged(undefined);
-}
-
 //================================================================================================================================
 //================================================================================================================================
 //
@@ -5756,7 +5744,6 @@ __registerHeadFunctions({
     calc,
     ComputeBattleResult,
     ApplyPhysicalSpecializeMonster,
-    AutoCalc,
     // Phase 3b: head-skill-formula-*.js から呼ばれる関数
     ATKbaiJYOUSAN,
     BattleCalcSubDamagePhysicalCommon,
@@ -5792,7 +5779,6 @@ __registerHeadFunctions({
     ApplyPhysicalSkillDamageRatioChangeSubArcanaCard,
 });
 
-import { register, get as registryGet } from "../runtime/engine-registry.js";
 import {
     ELM_ID_COUNT, ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_POISON,
     ELM_ID_PSYCO, ELM_ID_UNDEAD, ELM_ID_VANITY, ELM_ID_WATER, ELM_ID_WIND,
@@ -5841,4 +5827,3 @@ import {
     MONSTER_DATA_INDEX_RANGE, MONSTER_DATA_INDEX_SIZE, MONSTER_DATA_INDEX_STR,
 } from "../const/EnumMonsterDataIndex.js";
 import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../const/EnumSizeId.js";
-register('AutoCalc', AutoCalc);

@@ -18,7 +18,6 @@
  * まだ `roro-state.js`/`ro4-state.js` のモジュールグローバルを読み書きするため、
  * 完全な再入可能性は無い（残件台帳 B-09）。1回呼んで結果を使い切ってから次を呼ぶこと。
  */
-import { createEmptyModel } from "./calc-model.js";
 import { ExtractModelFromDom, HydrateFromModel } from "../status/stallcalc-hydrate.js";
 import { StAllCalcCore } from "../status/stallcalc.js";
 import { ComputeBattleResult } from "../battle/battlecalc.js";
@@ -53,4 +52,3 @@ export function calcCoreFromModel(model) {
 register('calcFromModel', calcFromModel);
 register('calcCoreFromModel', calcCoreFromModel);
 register('extractModelFromDom', ExtractModelFromDom);
-register('createEmptyModel', createEmptyModel);

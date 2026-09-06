@@ -11,8 +11,6 @@
  * 間接的に評価される）。
  *
  * 外部からの呼び出しは engine/bridge/stallcalc-bridge.js 経由（__registerFootFunctions）。
- * StAllCalc のみ workspace TS 向けに engine-registry.js へも登録する
- * （stallcalc-bridge.js 冒頭のコメント参照）。
  */
 
 import { StAllCalcCore } from "./stallcalc.js";
@@ -113,7 +111,6 @@ import {
 import { CFloatingInfoAreaComponentManager } from "../ui/CFloatingInfoAreaComponentManager.js";
 import { HydrateFromDom } from "./stallcalc-hydrate.js";
 import { __registerFootFunctions } from "../bridge/stallcalc-bridge.js";
-import { register } from "../runtime/engine-registry.js";
 
 
 /**
@@ -554,5 +551,3 @@ __registerFootFunctions({
     Init,
     StAllCalc,
 });
-
-register('StAllCalc', StAllCalc);

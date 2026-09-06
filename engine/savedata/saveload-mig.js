@@ -363,5 +363,4 @@ export function OnClickConfirmDialogSwitch() {
 }
 
 import { register } from "../runtime/engine-registry.js";
-register('OnClickUrlOutMIG', OnClickUrlOutMIG);
 register('ConvertDataTextMIG', ConvertDataTextMIG);

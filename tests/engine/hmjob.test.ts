@@ -39,10 +39,6 @@ import {
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_CRT, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL, MIG_PARAM_ID_STA, MIG_PARAM_ID_WIS, MIG_PARAM_ID_STR } from '@engine/const/EnumMigItemParamId.js';
 
 describe('hmjob.js', () => {
-    // 3e-3: window compat 除去（window.CalcStatusPoint の state テストは削除）。
-    // CalcStatusPoint は engine-registry 経由（registryGet('CalcStatusPoint')）で公開される
-    // （動作は呼び出し側の bridge テストでカバー）
-
     describe('スモークコール（ReferenceError検出）', () => {
         // 純粋計算関数（グローバル依存なし）
         it('GetStatusIncrementCost が呼び出し可能', () => {
