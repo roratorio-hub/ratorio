@@ -1,4 +1,3 @@
-import { SaveSystem } from "../bridge/saveload-bridge.js";
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
 import "../equip/item.h.js";

@@ -12,12 +12,13 @@
  * D4: `onResults()` を実際に配線した。`calc()`（battlecalc.js）が `battleCalcResultAll` を
  *     返すようになったため、`notifyChanged`/`requestRecalc`/`withBatch` 経由の再計算の
  *     たびに登録済みコールバックへ配信する（完了。残件台帳 B-10）。
- * D5（本コミット）: D1で導入した `LEGACY_CALL_FROM_MAP`/`notifyChangedLegacy`（旧文字列→kind
+ * D5: D1で導入した `LEGACY_CALL_FROM_MAP`/`notifyChangedLegacy`（旧文字列→kind
  *     変換シム）を撤去した。D2で内部呼び出し側の移行は完了しており、リポジトリ全体を
- *     検索しても `AutoCalc(callFrom)` を文字列付きで呼ぶ箇所は無かった（唯一の実呼び出し元
- *     `workspace/src/rtxApiImport.ts` も常に引数なしで呼ぶ）。ヘッダーコメント自身が
+ *     検索しても `AutoCalc(callFrom)` を文字列付きで呼ぶ箇所は無かった。ヘッダーコメント自身が
  *     「D2完了後に撤去する」と予告していた通りの後始末。`AutoCalc()` は `notifyChanged(undefined)`
  *     を直接呼ぶだけになった。
+ * D6: 唯一の実呼び出し元だった RTX API（`workspace/src/rtxApiImport.ts`）を撤去したのに伴い、
+ *     `AutoCalc()` 自体（`battlecalc.js`）も削除した。
  *
  * ⚠️ D3着手前に調査した「真実の源が2つある」問題について: 実際には既にDOM要素側が
  *     savedata prop の**鏡**として設計されていた（`CAttackMethodAreaComponentManager.js`

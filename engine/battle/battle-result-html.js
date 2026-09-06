@@ -1,310 +1,76 @@
 /**
  * 戦闘結果表示（BuildBattleResultHtml 系）の分割（Phase 3c）。
  *
- * BuildBattleResultHtml / BuildBattleResultHtmlMIG を battlecalc.js から移動。
- * 両者の間にあった、コメントアウト済みの旧 OnClickTabBTLRSLT（死んだコード）も
- * バイト単位で不変のまま含めている。
- *
- * g_AttackCount / g_dps / g_receiveDamageAvoids / w_DMG_AS_OverHP は
- * BuildBattleResultHtml だけが使っていた scratch 変数、w_AG は同関数だけが
- * 参照する定数のため、いずれもこのファイルへ移設した。
+ * BuildBattleResultHtml は元々「旧レイアウトの戦闘結果テーブル」（常に display:none）
+ * の DOM を書き込む関数だったが、そのテーブルごと削除したため、現在はダメージ計算に
+ * 効く2つの特殊判定（エンペリウム相手の無効化・武器使用不可）だけが残っている。
+ * BuildBattleResultHtmlMIG() より前に呼ぶ必要がある（w_DMG を書き換えるため）。
  */
 import {
-    HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode, myInnerHtml
+    HtmlCreateElement, HtmlCreateElementOption, HtmlCreateTextNode
 } from "../runtime/util.js";
-import { CCharaConfNizi } from "../chara/CCharaConfNizi.js";
 import { g_extraInfoDataBridge } from "../ui/CExtraInfoDataBridge.js";
-import { TimeItemNumSearch } from "../chara/chara.js";
 import {
-    CHARA_DATA_INDEX_ASPD, CHARA_DATA_INDEX_CAST_PARAM, CHARA_DATA_INDEX_LUCKY
+    CHARA_DATA_INDEX_ASPD, CHARA_DATA_INDEX_CAST_PARAM
 } from "../const/EnumCharaDataIndex.js";
 import {
     ELM_ID_DARK, ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_HOLY, ELM_ID_POISON, ELM_ID_PSYCO, ELM_ID_UNDEAD, ELM_ID_VANITY,
     ELM_ID_WATER, ELM_ID_WIND
 } from "../const/EnumElmId.js";
-import { ITEM_SP_PERFECT_ATTACK_UP } from "../const/EnumItemSpId.js";
-import { GetCastScalingOfSkillForCastTimeFixed, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
+import { GetCastScalingOfSkillForCastTimeFixed } from "../bridge/stallcalc-bridge.js";
 import { MOB_CONF_BUF_ID_MAX_PAIN, n_B_KYOUKA } from "../monster/mobconfbuf.js";
-import { n_A_WeaponType } from "../runtime/roro-state.js";
-import { SKILL_ID_AUTO_GUARD, SKILL_ID_PARIYING, SKILL_ID_REJECT_SWORD } from "../skill/skill.dat.js";
 import { CReceivedDamageConfManager } from "../ui/CReceivedDamageConfManager.js";
-import { n_AS_SKILL } from "../skill/calcautospell.js";
 import { get as registryGet } from "../runtime/engine-registry.js";
-import { __DIG3, g_confDataNizi, n_Nitou } from "../runtime/global.js";
+import { __DIG3 } from "../runtime/global.js";
 import { CS } from "./calc-state.js";
-import { SubName } from "./sub-name.js";
 import {
-    aspdRaw, delayDownForDisp, n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, n_Delay, n_tok, w_DMG,
-    g_bUnknownCasts, wDelay, w_FLEE,
+    aspdRaw, delayDownForDisp, n_A_ActiveSkill, n_A_Kotei_Cast_Keigen, w_DMG, w_FLEE,
 } from "../runtime/ro4-state.js";
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
-import { UsedSkillSearch } from "../skill/skillstate.js";
 import { BattleHiDamMaxPain, calcReceivedDamage, calcReceivedMagicDamage } from "./received-damage.js";
 import { GetActRateCritical } from "../bridge/battlecalc-bridge.js";
 
-/** オートガードによるダメージ減衰率 */
-export const w_AG = [100,95,90,86,82,79,76,74,72,71,70];
-
-let g_AttackCount = [0,0,0];
-let g_dps = 0;
-let g_receiveDamageAvoids = 0;
-let w_DMG_AS_OverHP = 0;
-
 /**
- * 戦闘結果表示部を組み立てる.
- * @param {*} charaData 
- * @param {*} specData 
- * @param {*} mobData 
- * @param {*} attackMethodConfArray 
- * @returns 
+ * ダメージ計算に効く特殊判定を適用する.
+ * @param {*} charaData
+ * @param {*} specData
+ * @param {*} mobData
+ * @param {*} attackMethodConfArray
+ * @param {*} battleCalcResultAll
  */
-export function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray) {
-	// 命中率が１００％未満の場合、必中ダメージがあれば追加表示
-	if(CS.n_PerfectHIT_DMG > 0 && CS.w_HIT_HYOUJI <100){
-		CS.str_bSUBname += "<Font size=2>Miss時の必中ダメージ</Font>";
-		if(CS.str_PerfectHIT_DMG == 0){
-			if(CS.wActiveHitNum > 1){
-				var w = ROUNDDOWN(CS.n_PerfectHIT_DMG / CS.wActiveHitNum);
-				CS.str_bSUB += __DIG3(w * CS.wActiveHitNum) +"("+ __DIG3(w) +"×"+ CS.wActiveHitNum +"Hit)";
-			}
-			else CS.str_bSUB += __DIG3(CS.n_PerfectHIT_DMG);
-		}else CS.str_bSUB += CS.str_PerfectHIT_DMG;
+export function BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray, battleCalcResultAll) {
+	// 主撃の結果インスタンス（使用条件判定はここから読む。グローバル変数を直接参照すると、
+	// 追撃・オートスペルが最後に走ったときの値を見てしまう）。
+	// battleCalcResultAll は RenderCalcResults() からの最終呼び出しでのみ渡される。
+	// スキル計算式（skill-formula-*.js）内から計算途中に呼ばれる場合は渡されず、
+	// この時点の判定は最終呼び出しに上書きされるためグローバル値で代替する。
+	let battleCalcResult = null;
+	if (battleCalcResultAll) {
+		if (battleCalcResultAll.GetPassiveResultCount() > 0) {
+			battleCalcResult = battleCalcResultAll.GetPassiveResult(0);
+		}
+		else if (battleCalcResultAll.GetActiveResultCount() > 0) {
+			battleCalcResult = battleCalcResultAll.GetActiveResult(0);
+		}
 	}
-	myInnerHtml("bSUBname",CS.str_bSUBname,0);
-	myInnerHtml("bSUB",CS.str_bSUB,0);
-	document.getElementById("BattleHIT").textContent = CS.w_HIT_HYOUJI;
-	document.getElementById("BattlePerfectHIT").textContent = n_tok[ITEM_SP_PERFECT_ATTACK_UP];
-//	myInnerHtml("nm067","％",0);
-	// 二刀流の通常攻撃時の表示部分
-	if (n_Nitou && n_A_ActiveSkill == 0) {
-		document.getElementById("BattleHIT").textContent = CS.w_HIT_HYOUJI +"％(左手"+ CS.w_HIT +"％)";
-//		myInnerHtml("nm067","",0);
-	}
-	// TODO : 謎処理　通常攻撃とグラビテーションフィールド以外
+
+	// エンペリウム相手には、通常攻撃とグラビテーションフィールド以外のダメージが通らない
 	if(mobData[21]==6 && n_A_ActiveSkill != 0 && n_A_ActiveSkill != 325){
 		for(var i=0;i<=2;i++){
 			w_DMG[i] = 0;
-			CS.g_damageTextArray[i] = ["Miss"];
 		}
-		document.getElementById("MinATKnum").textContent = "無理です";
-		document.getElementById("AveATKnum").textContent = "無理です";
-		document.getElementById("MaxATKnum").textContent = "無理です";
-		document.getElementById("AveSecondATK").textContent = "-";
-		document.getElementById("AtkBaseExp").textContent = "-";
-		document.getElementById("AtkJobExp").textContent = "-";
-		document.getElementById("BattleTime").textContent = "-";
-
 		return;
 	}
-	// スキル使用不可武器の場合の表示部分
-	if (CS.n_Buki_Muri) {
+	// スキル使用不可武器の場合
+	if (battleCalcResult ? battleCalcResult.bWeaponMismatch : CS.n_Buki_Muri) {
 		for(var i=0;i<=2;i++) w_DMG[i] = 0;
-		CS.g_damageTextArray[0] = ["<B>この武器では</B>"];
-		CS.g_damageTextArray[1] = ["<B>このスキルを</B>"];
-		CS.g_damageTextArray[2] = ["<B>使用できません</B>"];
-		document.getElementById("MinATKnum").textContent = "-";
-		document.getElementById("AveATKnum").textContent = "-";
-		document.getElementById("MaxATKnum").textContent = "-";
-		document.getElementById("AveSecondATK").textContent = "-";
-		document.getElementById("AtkBaseExp").textContent = "-";
-		document.getElementById("AtkJobExp").textContent = "-";
-		document.getElementById("BattleTime").textContent = "-";
-
 		return;
 	}
-	g_AttackCount = [-1, -1, -1];
-	// 最小攻撃回数表示部の組み立て
-	if(w_DMG[2] > 0){
-
-		// 最小攻撃回数を算出
-		g_AttackCount[0] = Math.ceil(mobData[3] / w_DMG[2]);
-
-		// 最小攻撃回数が１万回未満ならば、そのまま表示
-		if(g_AttackCount[0] < 10000) {
-			document.getElementById("MinATKnum").textContent = __DIG3(g_AttackCount[0]);
-		}
-		// １万回を超える場合は特殊表示
-		else {
-			document.getElementById("MinATKnum").textContent = SubName[5];
-		}
-
-	}else{
-		myInnerHtml("MinATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-	}
-	// 多段ＨＩＴスキルで１殺の場合、１殺できる確率を表示する
-	var w;
-	if(CS.SG_Special_HITnum != 0){
-
-		if(w == 1){
-
-			var wHITnum;
-			var x;
-
-			wHITnum = CS.SG_Special_HITnum;
-			x = (CS.SG_Special_DMG[2] * CS.wHITsuu - mobData[3]) / (CS.SG_Special_DMG[2] * CS.wHITsuu - CS.SG_Special_DMG[0] * CS.wHITsuu);
-
-			if(x > 1) x = 1;
-			if(x < 0) x = 0;
-
-			if(wHITnum == 2){
-				if(x < 0.5) x = 2 * x * x;
-				else x = 1 - 2 * (1-x) * (1-x);
-			}
-
-			if(wHITnum == 3){
-				if(x <(1/3)) x = 4.5 * Math.pow(x,3);
-				else if((1/3) <= x && x <(2/3)) x = 4.5 * (Math.pow(x,3) - 3 * Math.pow(x-1/3,3));
-				else if((2/3) <= x) x = 1 - 4.5 * Math.pow(1-x,3);
-			}
-
-			if(wHITnum >= 4){
-				var y = Math.sqrt(Math.pow(CS.SG_Special_DMG[2]-CS.SG_Special_DMG[0],2) / 12 * wHITnum);
-				x = (CS.SG_Special_DMG[1] * CS.wHITsuu - mobData[3]) / y;
-				if(x >= 0) x = 0.5+0.5*Math.sqrt(1-Math.exp(-2*Math.pow(x,2)/Math.PI));
-				else x = 0.5-0.5*Math.sqrt(1-Math.exp(-2*Math.pow(x,2)/Math.PI));
-			}
-
-			x = Math.floor(x * 10000) / 100;
-
-			document.getElementById("MinATKnum").textContent = "1(1回で倒せる確率"+ x +"%)";
-		}
-
+	// 多段HITスキルの一撃判定フラグをリセットする
+	if (CS.SG_Special_HITnum != 0) {
 		CS.SG_Special_HITnum = 0;
 	}
-	//----------------------------------------------------------------
-	// 経験値効率計算モード（SPMODE）の場合
-	//----------------------------------------------------------------
-	var atkCountAve = 0;
-	var battleTimeAve = 0;
-	var perexpBaseAve = 0;
-	var perexpJobAve = 0;
-
-	// 最大攻撃回数表示部の組み立て
-	// 命中率が１００％未満の場合は、特殊表示
-	if(CS.w_HIT_HYOUJI <100 && CS.n_PerfectHIT_DMG == 0){
-		myInnerHtml("MaxATKnum","<Font size=2>計算不能<BR>(命中100未満なので)</Font>",0);
-	}
-	// 命中率が１００％の場合は、確殺を計算
-	else{
-		var wX = w_DMG[0];
-		if(CS.w_HIT_HYOUJI <100) wX = CS.n_PerfectHIT_DMG;
-		if(wX > 0){
-			g_AttackCount[2] = Math.ceil(mobData[3] / wX);
-			if(g_AttackCount[2]<10000) document.getElementById("MaxATKnum").textContent = __DIG3(g_AttackCount[2]);
-			else document.getElementById("MaxATKnum").textContent = SubName[5];
-		}else{
-			myInnerHtml("MaxATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-		}
-	}
-	// 平均攻撃回数表示部の組み立て
-	// TODO : 詳細未解析
-	g_dps = 0;
-	if(w_DMG[1] > 0){
-		var check=0;
-		for(var j = 0; j < n_AS_SKILL.length; j++){
-			if(n_AS_SKILL[j][0] != -1) check = 1;
-		}
-		if((w_DMG[1] <w_DMG_AS_OverHP) || check == 0){
-			g_AttackCount[1] = Math.ceil(mobData[3] / w_DMG[1]);
-		}else{
-			g_AttackCount[1] = Math.ceil(mobData[3] / w_DMG_AS_OverHP);
-		}
-
-		if(g_AttackCount[1]<10000){
-			document.getElementById("AtkBaseExp").textContent = __DIG3(Math.round(mobData[15] / g_AttackCount[1])) +"Exp";
-			document.getElementById("AtkJobExp").textContent = __DIG3(Math.round(mobData[16] / g_AttackCount[1])) +"Exp";
-		}else{
-			document.getElementById("AtkBaseExp").textContent = SubName[7];
-			document.getElementById("AtkJobExp").textContent = SubName[7];
-		}
-
-		if(g_AttackCount[1]<10000){
-			document.getElementById("AveATKnum").textContent = __DIG3(g_AttackCount[1]);
-			const n_AveATKnum = g_AttackCount[1];
-			var w2 = (CS.wCast + wDelay) * n_AveATKnum;
-			w2 = Math.floor(w2 * 100) / 100;
-			if(n_Delay[0]) document.getElementById("BattleTime").textContent = "特殊";
-			else document.getElementById("BattleTime").textContent = __DIG3(w2) + "秒";
-		}else{
-			document.getElementById("AveATKnum").textContent = SubName[5];
-			document.getElementById("BattleTime").textContent = SubName[6];
-		}
-
-		g_dps = 1 / (CS.wCast + wDelay) * w_DMG[1];
-		g_dps *= 100;
-		g_dps = Math.round(g_dps);
-		g_dps /= 100;
-		if(n_Delay[0]) {
-			g_dps = -1;
-			document.getElementById("AveSecondATK").textContent = "特殊";
-		}
-		else document.getElementById("AveSecondATK").textContent = __DIG3(g_dps);
-	}else{
-		myInnerHtml("AtkBaseExp","<Font size=2>計算不能</Font>",0);
-		myInnerHtml("AtkJobExp","<Font size=2>計算不能</Font>",0);
-		myInnerHtml("AveSecondATK","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-		myInnerHtml("AveATKnum","<Font size=2>計算不能<BR>(0ダメージなので)</Font>",0);
-		myInnerHtml("BattleTime","<Font size=2>計算不能</Font>",0);
-	}
-	w = calcReceivedDamage(charaData, specData, mobData, attackMethodConfArray, undefined,
-		document.getElementById("OBJID_ENEMY_SKILL_RATIO")?.value, document.getElementById("OBJID_ENEMY_SKILL_ELEMENT")?.value);
-	w = Math.round(w *(100-charaData[CHARA_DATA_INDEX_LUCKY]))/100;
-	w = Math.round(w *(100-w_FLEE))/100;
-	var agLv = Math.max(
-		0,
-		UsedSkillSearch(SKILL_ID_AUTO_GUARD),
-		g_confDataNizi[CCharaConfNizi.CONF_ID_AUTO_GUARD],
-		TimeItemNumSearch(70)
-	);
-	if (agLv > 0) {
-		w = Math.round(w * w_AG[agLv]) / 100;
-	}
-	if(n_A_WeaponType==3 && UsedSkillSearch(SKILL_ID_PARIYING)){
-		w = Math.round(w * (80- UsedSkillSearch(SKILL_ID_PARIYING) *3))/100;
-	}
-	if(UsedSkillSearch(SKILL_ID_REJECT_SWORD)){
-		w = Math.round(w * (100- UsedSkillSearch(SKILL_ID_REJECT_SWORD) *7.5))/100;
-	}
-	document.getElementById("B_Ave2Atk").textContent = __DIG3(w)+"ダメージ";
-	g_receiveDamageAvoids = w;
-	if(n_A_ActiveSkill==441) {
-		document.getElementById("B_Ave2Atk").textContent = "-";
-	}
 }
-
-/*
-function OnClickTabBTLRSLT(tabIndex) {
-
-	var objGridDmg = document.getElementById("BATTLE_RESULT_DAMAGE");
-
-	if (!objGridDmg) {
-		return;
-	}
-
-
-	objGridDmg.classList.remove("CSSFLG_BTLRSLT_TAB_ALL");
-	objGridDmg.classList.remove("CSSFLG_BTLRSLT_TAB_BASIC");
-	objGridDmg.classList.remove("CSSFLG_BTLRSLT_TAB_DAMAGE");
-	objGridDmg.classList.remove("CSSFLG_BTLRSLT_TAB_RESULT");
-
-
-	switch (tabIndex) {
-	case 0:
-		objGridDmg.classList.add("CSSFLG_BTLRSLT_TAB_ALL");
-		break;
-	case 1:
-		objGridDmg.classList.add("CSSFLG_BTLRSLT_TAB_BASIC");
-		break;
-	case 2:
-		objGridDmg.classList.add("CSSFLG_BTLRSLT_TAB_DAMAGE");
-		break;
-	case 3:
-		objGridDmg.classList.add("CSSFLG_BTLRSLT_TAB_RESULT");
-		break;
-	}
-
-}
-*/
 
 /**
  * 戦闘結果（DPSや戦闘時間など）を構築する
@@ -595,7 +361,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 		// 使用不可の場合
-		if (CS.n_Buki_Muri) {
+		if (battleCalcResultF.bWeaponMismatch) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
 			objCellF.style.gridColumnEnd = "6";
@@ -607,7 +373,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		}
 
 		// ダメージなし化の場合
-		if (CS.g_bSkillNoDamage) {
+		if (battleCalcResultF.bNoDamage) {
 			objCellF = HtmlCreateElement("div", objGridF);
 			objCellF.style.gridColumnStart = "1";
 			objCellF.style.gridColumnEnd = "6";
@@ -641,7 +407,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		}
 		// 1サイクルダメージ
 
-		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, Math.ceil(n_Delay[6]/n_Delay[5])), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, Math.ceil(battleCalcResultF.objectLifeTime / battleCalcResultF.damageInterval)), funcCreateCellF(false));
 		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(true));
 		// クリティカル
 		if (criRateF > 0) {
@@ -670,7 +436,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 		// 1サイクルダメージ
-		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0, Math.ceil(n_Delay[6]/n_Delay[5])), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0, Math.ceil(battleCalcResultF.objectLifeTime / battleCalcResultF.damageInterval)), funcCreateCellF(false));
 		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(true));
 		// クリティカル
 		if (criRateF > 0) {
@@ -699,7 +465,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 		// 1サイクルダメージ
-		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0, Math.ceil(n_Delay[6]/n_Delay[5])), funcCreateCellF(false));
+		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0, Math.ceil(battleCalcResultF.objectLifeTime / battleCalcResultF.damageInterval)), funcCreateCellF(false));
 		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(true));
 		// クリティカル
 		if (criRateF > 0) {
@@ -856,7 +622,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 
 		//----------------
 		// 攻撃間隔
@@ -1080,7 +846,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	}
 
 	// TODO: 詠唱時間等未実測スキル対応
-	else if (g_bUnknownCasts) {
+	else if (battleCalcResult.bUnknownCasts) {
 
 		objCell = HtmlCreateElement("div", objGridBasic);
 		objCell.style.gridColumnStart = "1";
@@ -1286,7 +1052,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 	let bDPSActual = registryGet('CSaveController').getSettingProp(CSaveDataConst.propNameDPSActual);
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
@@ -1325,7 +1091,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 	funcRenderResultTinyHtml(objGridTiny, "平均", funcDIG3PX(battleCalcResultAll.GetDamageSummaryAvePerAtk(), 0));
 
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
@@ -1367,7 +1133,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 		objCell = HtmlCreateElement("div", objGridDmg);
 		objCell.classList.add("BTLRSLT_TAB_DAMAGE");
 		objCell.classList.add(partIdStr);
@@ -1431,7 +1197,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 	}
 	else {
 		// 秒数
@@ -1471,7 +1237,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 	}
 	else {
 		// 秒数
@@ -1508,7 +1274,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 	}
 	else {
 		// 秒数
@@ -1598,7 +1364,7 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 
 
 	// TODO: 詠唱時間等未実測スキル対応
-	if (g_bUnknownCasts) {
+	if (battleCalcResult.bUnknownCasts) {
 	}
 	else {
 		//----------------

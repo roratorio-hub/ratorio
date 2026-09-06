@@ -158,9 +158,7 @@ export function HtmlRemoveOptionAll(objSelect) {
 		return;
 	}
 
-	while (objSelect.options.length > 0) {
-		objSelect.options.remove(0);
-	}
+	objSelect.replaceChildren();
 }
 
 /************************************************************************************************
@@ -187,11 +185,8 @@ export function HtmlCreateElementOption(optionValue, optionText, objSelect) {
 
 	if (objSelect != null) {
 
-		if (objSelect instanceof HTMLOptGroupElement) {
+		if ((objSelect instanceof HTMLOptGroupElement) || (objSelect instanceof HTMLSelectElement)) {
 			objSelect.appendChild(objOption);
-		}
-		else if (objSelect instanceof HTMLSelectElement) {
-			objSelect.options.add(objOption);
 		}
 	}
 
@@ -1249,6 +1244,10 @@ export function toSafeBigInt(value) {
  */
 export function myInnerHtml(elementID,htmlString,appendMode) {
 	let element = document.getElementById(elementID);
+	// 要素が存在しない場合は何もしない（headless実行時。残件台帳 B-28）
+	if (element == null) {
+		return;
+	}
 	if(appendMode == 0){
 		while(element.hasChildNodes()) {
 			element.removeChild(element.firstChild);

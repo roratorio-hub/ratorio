@@ -61,6 +61,7 @@ import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRem
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "./slotpager-const.js";
 // C-6: equip.js との循環 import 回避のため equip-name.js から直接参照
 import { GetFlagAppendedCardName } from "./equip-name.js";
+import { setSelectValueSynced } from "./select-sync.js";
 
 // C-6: global.js 管理の共有 conf state
 import {
@@ -1097,16 +1098,11 @@ function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
 				searchBtn.addEventListener('click', function() {
 					var enchId = selectEl.value;
 					if (!enchId || enchId == '0') return;
-					var $enchSearch = $('#ench_search');
-					if ($enchSearch.length === 0) return;
+					var enchSearchEl = document.getElementById('ench_search');
+					if (!enchSearchEl) return;
 					// 同じエンチャントで検索中なら解除、そうでなければ検索
-					const enchSearchEl = $enchSearch[0];
-					if (enchSearchEl.tomselect) {
-						enchSearchEl.tomselect.setValue($enchSearch.val() === enchId ? '' : enchId);
-					} else {
-						const newVal = $enchSearch.val() === enchId ? '' : enchId;
-						$enchSearch.val(newVal).trigger('change');
-					}
+					var newVal = enchSearchEl.value === enchId ? '' : enchId;
+					setSelectValueSynced('#ench_search', newVal);
 				});
 				parent.appendChild(searchBtn);
 			})(objSelect);

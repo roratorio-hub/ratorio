@@ -24,10 +24,6 @@ export function createBattleScratchTemplate() {
     return {
         /** レックスエーテルナの計算に係るフラグ. 解析不足でロジックが追えてない. */
         wLAch: false,
-        /** 計算結果の補足文字列. 既に使われていない可能性がある */
-        str_bSUBname: "",
-        /** 計算結果の補足文字列. 既に使われていない可能性がある */
-        str_bSUB: "",
         /** 詠唱短縮が無視されるフラグ */
         cast_kotei: false,
         /** 必中ダメージ. 號砲 などの計算式に含まれるもの */
@@ -80,8 +76,6 @@ export function createBattleScratchTemplate() {
         n_bunkatuHIT: 0,
         /** ダメージ配列 特殊計算用 */
         SG_Special_DMG: [0,0,0],
-        /** ダメージ表示部のテキスト配列（最小、平均、最大）. 旧 InnStr での組み立てから、３桁区切り対応で部分改造 */
-        g_damageTextArray: [[],[],[]],
         /** ヒット数配列 */
         g_wHITsuu_Array: null,
         /** 命中率 */

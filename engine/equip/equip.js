@@ -84,6 +84,7 @@ import { equipBridge } from "../bridge/equip-bridge.js";
 
 // C-6: CItemInfoManager.js / hmcard.js との循環 import 回避のため equip-name.js へ移設
 import { GetFlagAppendedItemName, GetFlagAppendedCardName } from "./equip-name.js";
+import { setSelectValueSynced } from "./select-sync.js";
 
 // C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import {
@@ -1921,30 +1922,6 @@ export function IsLongRange(itemId) {
 	return false;
 }
 
-/**
- * select の値を設定し、表示と change を同期させる。
- *
- * Tom Select 化された select は元 <select> への直接代入（jQuery .val() 含む）では
- * UI が更新されないため、インスタンスがあれば setValue() を使う。
- * setValue() は非 silent で native 'change' を発火するので、
- * eventsetup.js の native listener / inline onchange / 再初期化リスナーがすべて駆動する。
- * （select2 は jQuery の合成 change を購読していたため旧実装でも動いていたが、
- *   Tom Select は native しか見ない＝Phase 3d リグレッション対策）
- *
- * 必ず「値」で指定すること。アクセサリ1と2ではカード候補リストの並び・件数が
- * 一致しないため、selectedIndex でのコピーは index がズレて空選択になる。
- */
-function setSelectValueSynced(selector, value) {
-	const el = document.querySelector(selector);
-	if (!el) return;
-	if (el.tomselect) {
-		el.tomselect.setValue(value);
-	} else {
-		el.value = value;
-		el.dispatchEvent(new Event('change', { bubbles: true }));
-	}
-}
-
 export function copyAccs(from, to){
 	// ランダムオプション入力中はelementがないので処理できない
 	// 中途半端になるので何もしないようにする
@@ -1954,9 +1931,10 @@ export function copyAccs(from, to){
 
 	const id_from = "#OBJID_ACCESSORY_"+from;
 	const id_to = "#OBJID_ACCESSORY_"+to;
-	const accs_from = $(id_from).val();
+	const accs_from = document.querySelector(id_from)?.value;
 
-	if ($(`${id_to} option[value=${accs_from}]`).length>0) {
+	const elTo = document.querySelector(id_to);
+	if (elTo && Array.from(elTo.options).some((o) => o.value === accs_from)) {
 		// アクセサリ本体をコピー（OnChangeEquip がカード欄を再構築する）
 		setSelectValueSynced(id_to, accs_from);
 		// カードは「値」でコピーする（index 不可・上記コメント参照）

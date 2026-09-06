@@ -7,11 +7,14 @@
  * 「境界の外側の既にhydrate済みの前提」として扱う）:
  *
  * - `n_Skill{1,4,7,8}SW`（バフパネルの開閉状態。各 `Buff*.js` のクリックハンドラが管理）
- * - `CAttackMethodAreaComponentManager.GetAttackMethodConf()` の戻り値
- *   （攻撃手段コンポーネント自身の内部状態。メソッドを持つオブジェクトで
- *   プレーンなJSON化ができない）
- * - `g_shadowEquipController.getEquippedID/getRefined/getRndOptInfoArray(...)`
- *   （シャドウ装備コンポーネント自身の内部状態）
+ *
+ * シャドウ装備（`shadowEquip`）と攻撃手段（`attackMethod`）は
+ * 残件台帳 B-28 でモデルへ格上げした。以前は「メソッドを持つオブジェクトで
+ * プレーンなJSON化ができない」として意図的に除外していたが、`ExtractModelFromDom`が
+ * getter を呼んで得た**結果**（プレーンな値）をモデルへ運べば良いだけだった
+ * （`CAttackMethodAreaComponentManager.GetAttackMethodData(fullId)` によるIDの解決自体は
+ * `RebuildControls()` が構築した `attackMethodDataArray` に依存し DOM 駆動のままなので、
+ * モデルは解決済みの `skillId`/`sourceType` を運ぶ。生の fullId は運ばない）。
  *
  * 判定基準: 「hydrate.js が `document.calcForm.X` / `HtmlGetObjectValueById(Id, default)` /
  * `GetStatefullData(Id, default)` を**直接**呼んで得ている値」だけがモデルに入る。
@@ -98,6 +101,24 @@ export function createEmptyModel() {
         },
         /** 矢のID（OBJID_SELECT_ARROW） */
         arrow: undefined,
+        /** 攻撃手段（CAttackMethodAreaComponentManager.GetAttackMethodConf() の解決済み結果） */
+        attackMethod: {
+            skillId: undefined,
+            sourceType: undefined,
+            skillLv: undefined,
+            optionValueArray: [],
+        },
+        /**
+         * シャドウ装備（g_shadowEquipController の内部状態を写したもの。
+         * 各フィールドは EQUIP_REGION_ID_SHADOW_* の6区分（ARMS_RIGHT/ARMS_LEFT/BODY/FOOT/
+         * ACCESSORY_1/ACCESSORY_2）で添字アクセスする。頭・肩・盾のシャドウ装備は存在しない）
+         */
+        shadowEquip: {
+            itemId: [],
+            refined: [],
+            /** 区分ごとに [[rndOptId, rndOptValue], ...] の配列 */
+            rndOpt: [],
+        },
         /** 装備部位ごとのアイテムID配列（EQUIP_REGION_ID_* で添字アクセス） */
         equip: [],
         /** カード・エンチャント枠ごとのアイテムID配列（CARD_REGION_ID_* で添字アクセス） */

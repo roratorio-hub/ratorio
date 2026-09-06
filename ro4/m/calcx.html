@@ -11,134 +11,16 @@
 	<link rel="stylesheet" href="../../assets/calcx-chrome.css" type="text/css">
 	<link rel="stylesheet" href="../../assets/common.css" type="text/css">
 
+	<!-- エンジンエントリの import 深部（3〜4階層）にある巨大データファイル。
+	     単一エントリ化で発見が遅れる分を先読みで取り戻す -->
+	<link rel="modulepreload" href="../../engine/equip/item.dat.js">
+	<link rel="modulepreload" href="../../engine/equip/card.dat.js">
+	<link rel="modulepreload" href="../../engine/monster/monster.dat.js">
+	<link rel="modulepreload" href="../../engine/chara/chara.js">
+	<link rel="modulepreload" href="../../engine/data/mig.enchlist.dat.js">
+
 	<!-- アイコン -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-
-	<!-- Webpack -->
-	<script type="text/javascript" src="../../dist/bundle.js"></script>
-
-	<!-- サイト共通系ファイル -->
-	<script type="module" src="../../engine/runtime/util.js"></script>
-	<script type="module" src="../../engine/ui/CModalWindow.js"></script>
-
-	<!-- 共通系 javascript ファイル -->
-	<script type="module" src="../../engine/runtime/CInstanceManager.js"></script>
-	<script type="module" src="../../engine/chara/CNameKana.js"></script>
-	<script type="module" src="../../engine/monster/CCustomSelectBase.js"></script>
-	<script type="module" src="../../engine/monster/CCustomSelectMapBase.js"></script>
-	<script type="module" src="../../engine/monster/CCustomSelectMapCategory.js"></script>
-	<script type="module" src="../../engine/monster/CCustomSelectMapMap.js"></script>
-	<script type="module" src="../../engine/monster/CCustomSelectMapMonster.js"></script>
-	<script type="module" src="../../engine/runtime/common.js"></script>
-	<script type="module" src="../../engine/data/element-affinity.dat.js"></script>
-
-	<!-- データ定義系 javascript ファイル -->
-	<script type="module" src="../../engine/monster/alias.h.js"></script>
-	<script type="module" src="../../engine/monster/alias.dat.js"></script>
-	<script type="module" src="../../engine/skill/skill.h.js"></script>
-	<script type="module" src="../../engine/skill/skill.dat.js"></script>
-	<script type="module" src="../../engine/skill/usableskill.h.js"></script>
-	<script type="module" src="../../engine/skill/usableskill.dat.js"></script>
-	<script type="module" src="../../engine/skill/autospell.h.js"></script>
-	<script type="module" src="../../engine/skill/autospell.dat.js"></script>
-	<script type="module" src="../../engine/skill/CSkillManager.js"></script>
-	<script type="module" src="../../engine/monster/monster.h.js"></script>
-	<script type="module" src="../../engine/monster/monster.dat.js"></script>
-	<script type="module" src="../../engine/monster/monster.toughness.dat.js"></script>
-	<script type="module" src="../../engine/monster/monstergroup.dat.js"></script>
-	<script type="module" src="../../engine/monster/monstermap.h.js"></script>
-	<script type="module" src="../../engine/monster/monstermap.dat.js"></script>
-	<script type="module" src="../../engine/equip/item.h.js"></script>
-	<script type="module" src="../../engine/equip/item.dat.js"></script>
-	<script type="module" src="../../engine/equip/arrow.dat.js"></script>
-	<script type="module" src="../../engine/equip/card.dat.js"></script>
-	<script type="module" src="../../engine/equip/costume.dat.js"></script>
-	<script type="module" src="../../engine/equip/pet.dat.js"></script>
-	<script type="module" src="../../engine/equip/itemset.h.js"></script>
-	<script type="module" src="../../engine/equip/itemset.dat.js"></script>
-	<script type="module" src="../../engine/equip/rndopt.h.js"></script>
-	<script type="module" src="../../engine/equip/rndopt.dat.js"></script>
-	<script type="module" src="../../engine/equip/rndoptlist.dat.js"></script>
-	<script type="module" src="../../engine/equip/rndopttype.h.js"></script>
-	<script type="module" src="../../engine/equip/rndopttype.dat.js"></script>
-	<script type="module" src="../../engine/equip/timeitem.h.js"></script>
-	<script type="module" src="../../engine/equip/timeitem.dat.js"></script>
-	<script type="module" src="../../engine/equip/itempack.dat.js"></script>
-
-	<!-- [MIG] データ定義系 javascript ファイル -->
-	<script type="module" src="../../engine/data/mig.job.h.js"></script>
-	<script type="module" src="../../engine/data/mig.itemsp.h.js"></script>
-	<script type="module" src="../../engine/data/CMigJobData.js"></script>
-	<script type="module" src="../../engine/data/CMigStateData.js"></script>
-	<script type="module" src="../../engine/data/CMigEquipableSpTag.js"></script>
-	<script type="module" src="../../engine/data/CMigEquipableStaticData.js"></script>
-	<script type="module" src="../../engine/data/CMigEquipableSpData.js"></script>
-	<script type="module" src="../../engine/data/CMigEquipableData.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubBase.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubJob.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubState.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubBuff.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubMonster.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubArrow.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubItem.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubCard.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubEnchList.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManagerSubRndOpt.js"></script>
-	<script type="module" src="../../engine/data/CMigConstDataManager.js"></script>
-
-	<!-- グローバル変数定義 javascript ファイル -->
-	<script type="module" src="../../engine/runtime/global.js"></script>
-
-	<!-- [MIG] dat ファイル -->
-	<script type="module" src="../../engine/data/mig.job.dat.js"></script>
-	<script type="module" src="../../engine/data/mig.enchlist.dat.js"></script>
-
-	<!-- 機能処理系 javascript ファイル -->
-	<script type="module" src="../../engine/skill/calcautospell.js"></script>
-	<script type="module" src="../../engine/equip/rndench.js"></script>
-	<script type="module" src="../../engine/equip/equip.js"></script>
-	<script type="module" src="../../engine/skill/learnedskill.js"></script>
-	<script type="module" src="../../engine/equip/slotpager.js"></script>
-	<script type="module" src="../../engine/battle/quickcontrol.js"></script>
-
-	<!-- データ管理系 javascript ファイル -->
-	<script type="module" src="../../engine/chara/chara.js"></script>
-	<script type="module" src="../../engine/monster/mob.js"></script>
-	<script type="module" src="../../engine/battle/CAttackMethodConf.js"></script>
-
-	<!-- キャラクター設定操作系 javascript ファイル -->
-	<script type="module" src="../../engine/ui/CConfBase.js"></script>
-	<script type="module" src="../../engine/ui/CConfBase2.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfIchizi.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfNizi.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfSanzi.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfYozi.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfDebuff.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfCustomStatus.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfCustomAtk.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfCustomDef.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfCustomSkill.js"></script>
-	<script type="module" src="../../engine/chara/CCharaConfCustomSpecStatus.js"></script>
-
-	<!-- モンスター設定操作系 javascript ファイル -->
-	<script type="module" src="../../engine/monster/mobconfdebuf.js"></script>
-	<script type="module" src="../../engine/monster/mobconfbuf.js"></script>
-	<script type="module" src="../../engine/monster/mobconfplayer.js"></script>
-	<script type="module" src="../../engine/monster/CMobConfInput.js"></script>
-
-	<!-- 機能処理系 HTML 処理 javascript ファイル -->
-	<script type="module" src="../../engine/equip/CItemInfoManager.js"></script>
-	<script type="module" src="../../engine/chara/hmjob.js"></script>
-	<script type="module" src="../../engine/equip/hmcard.js"></script>
-	<script type="module" src="../../engine/equip/hmcostume.js"></script>
-	<script type="module" src="../../engine/monster/CMonsterMapAreaComponentManager.js"></script>
-	<script type="module" src="../../engine/equip/hmrndopt.js"></script>
-	<script type="module" src="../../engine/chara/hmchara.js"></script>
-	<script type="module" src="../../engine/monster/hmmob.js"></script>
-
-	<!-- その他、機能系 javascript ファイル -->
-	<script type="module" src="../../engine/battle/castsim.js"></script>
-	<script type="module" src="../../engine/equip/CEnchSearch.js"></script>
 
 	<!-- アイテム多すぎて選ぶの大変だから検索可能ドロップダウンリストに置き換え -->
 	<link href="../../lib/tom-select/tom-select.min.css" rel="stylesheet" />
@@ -147,21 +29,10 @@
 	<script defer src="../../lib/tom-select/dropdown_input.js"></script>
 	<script defer src="../../lib/tom-select/tom-select.custom.js"></script>
 
-	<!-- **************************************************
-	ここからjQuery
-	*************************************************** -->
-	<script src="../../jquery/jquery.min.js"></script>
 	<!-- セーブデータの画像出力機能 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
 		integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script type="module" src="../../engine/ui/saveimage.js"></script>
-	<!-- セーブ履歴機能（Chart.js は calchistory.js が ESM import で読み込む。
-	     モーダルはネイティブ <dialog> を使うため jquery-modal は不要） -->
-	<script type="module" src="../../engine/ui/calchistory.js"></script>
-	<!-- 重い処理用のローディングインジケーター -->
-	<link href="../../jquery/loadingindicator/spinner.css" rel="stylesheet" />
-	<script src="../../jquery/loadingindicator/spinner.js"></script>
 
 </head>
 
@@ -171,7 +42,6 @@
 			<span id="ID_FRAME"></span>
 		</div>
 		<div class="content">
-			<div class="spinner" id="loadingSpinner"></div>
 			<div style="padding: 20px 34px">
 
 				<form name="calcForm">
@@ -224,9 +94,6 @@
 								</strong>
 									「セーブ/ロード」>「URL入力」を使えば避難所以前のセーブデータURLも読み込むことが出来ます<br>
 							</div>
-						</div>
-						<div>
-							<button type="button" id="OBJID_BUTTON_OPT_IN_SAVEDATA" style="font-size: 1.4em;">🐱‍💻 データをラトリオHub開発チームへ提供する</button>
 						</div>
 						<!-- ボディ部 -->
 						<div style="display: grid; grid-template-columns: max-content auto; column-gap: 3%;">
@@ -1510,122 +1377,6 @@
 							<!-- 基本情報 -->
 							<td>
 								<div id="BATTLE_RESULT_BASIC"></div>
-								<table style="display: none;">
-									<tbody>
-										<tr>
-											<td>
-												<table border="1">
-													<tr>
-														<td ColSpan="2" Bgcolor="#DDDDFF">戦闘結果</td>
-													</tr>
-
-													<tr>
-														<td>命中率　（必中効果）</td>
-														<td><span id="BattleHIT"></span>％　（<span
-																id="BattlePerfectHIT"></span>％）</td>
-													</tr>
-
-													<tr>
-														<td>回避率</td>
-														<td><span id="BattleFLEE"></span>％</td>
-													</tr>
-
-													<tr>
-														<td id="CRIATKname">クリティカルダメージ</td>
-														<td id="CRIATK"></td>
-													</tr>
-
-													<tr>
-														<td id="CRInumname">クリティカル(発動率)</td>
-														<td id="CRInum"></td>
-													</tr>
-
-													<tr>
-														<td id="bSUBname"></td>
-														<td id="bSUB"></td>
-													</tr>
-
-													<tr>
-														<td id="bSUB2name">攻撃間隔</td>
-														<td id="bSUB2"></td>
-													</tr>
-
-													<tr>
-														<td>
-															<a href="../../pages/howtouse_simulatecasttime.html"
-																target="_blank">詠唱イメージ</a>
-															<input type="button" value="詠唱!!"
-																id="OBJID_BUTTON_SIMULATE_CAST_TIME">
-														</td>
-														<td>
-															<progress id="OBJID_PROGRESS_SIMULATE_CAST_TIME"></progress>
-														</td>
-													</tr>
-
-													<tr>
-														<td>最小与ダメ</td>
-														<td id="strID_0"></td>
-													</tr>
-
-													<tr>
-														<td>平均与ダメ</td>
-														<td id="strID_1"></td>
-													</tr>
-
-													<tr>
-														<td>最大与ダメ</td>
-														<td id="strID_2"></td>
-													</tr>
-
-													<tr>
-														<td>秒間与ダメ</td>
-														<td id="AveSecondATK"></td>
-													</tr>
-
-													<tr>
-														<td>最小攻撃回数</td>
-														<td id="MinATKnum"></td>
-													</tr>
-
-													<tr>
-														<td>平均攻撃回数</td>
-														<td id="AveATKnum"></td>
-													</tr>
-
-													<tr>
-														<td>最大攻撃回数</td>
-														<td id="MaxATKnum"></td>
-													</tr>
-
-													<tr>
-														<td>平均戦闘時間</td>
-														<td id="BattleTime"></td>
-													</tr>
-
-													<tr>
-														<td>一撃BaseExp</td>
-														<td id="AtkBaseExp"></td>
-													</tr>
-
-													<tr>
-														<td>一撃JobExp</td>
-														<td id="AtkJobExp"></td>
-													</tr>
-
-													<tr>
-														<td>平均被ダメージ(仮)</td>
-														<td id="B_AveAtk"></td>
-													</tr>
-
-													<tr>
-														<td>平均被ダメ(回避込)</td>
-														<td Width=128 id="B_Ave2Atk"></td>
-													</tr>
-												</table>
-											</td>
-										</tr>
-									</tbody>
-								</table>
 							</td>
 							<!-- ダメージ表示 -->
 							<td>
@@ -1891,8 +1642,6 @@
 						</tbody>
 					</table>
 					<br>
-					<!-- 開発中の UI を表示するためのスペース -->
-					<div id="UI_DISPLAY_SPACE_UNDER_DEVELOPMENT"></div>
 					<!-- フッター -->
 					<table>
 						<tbody>
@@ -2057,85 +1806,8 @@
 	</div>
 </body>
 
-<!-- 機能処理系 javascript ファイル -->
-<script type="module" src="../../engine/equip/CTimeItemAreaComponentManager.js"></script>
-<script type="module" src="../../engine/battle/CBattleQuickControlAreaComponentManager.js"></script>
-<script type="module" src="../../engine/ui/CExtraInfoAreaComponentManager.js"></script>
-<script type="module" src="../../engine/ui/CFloatingInfoAreaComponentManager.js"></script>
-
-<!-- [MIG] 操作処理系 javascript ファイル -->
-<script type="module" src="../../engine/equip/CShadowEquipController.js"></script>
-
-<!-- メイン処理系 javascript ファイル -->
-<script type="module" src="../../engine/battle/CBattleCalcInfo.js"></script>
-<script type="module" src="../../engine/battle/CBattleCalcResult.js"></script>
-<script type="module" src="../../engine/battle/CBattleCalcResultAll.js"></script>
-<script type="module" src="../../engine/ui/CReceivedDamageConfManager.js"></script>
-<script type="module" src="../../engine/battle/battlecalc.js"></script>
-
-<!-- セーブデータ管理系 javascript ファイル -->
-<script type="module" src="../../engine/savedata/CSaveDataMappingManager.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataConverter.js"></script>
-<script type="module" src="../../engine/savedata/savedata-codec.js"></script>
-<script type="module" src="../../engine/savedata/SKeyMap.js"></script>
-<script type="module" src="../../engine/savedata/CSingletonMapper.js"></script>
-<script type="module" src="../../engine/savedata/CMultiValueMapper.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataConst.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitTypeManager.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataPropInfo.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitBase.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitVersion.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitChara.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitEquipable.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitEquipRegions.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitLearnedSkills.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitCharaBuff.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSkillBuffSelf.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSkillBuff1st.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSkillBuff2nd.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSkillBuff3rd.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSkillBuff4th.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSkillBuffMusic.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSkillBuffGuild.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitItemBuff.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitTimeBuff.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitAutoSpells.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitCharaDebuff.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitCharaConfBasic.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitCharaConfSpecialize.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitCharaConfSkill.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitMob.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitMobConfPlayer.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitMobConfPlayer2.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitMobConfInput.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitMobBuff.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitMobDebuff.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitAttackConf.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitSettings.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitCharaConfSpecBasic.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitEquipArrow.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnit.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataUnitParse.js"></script>
-<script type="module" src="../../engine/savedata/CSaveDataManager.js"></script>
-<script type="module" src="../../engine/savedata/CSaveController.js"></script>
-<script type="module" src="../../engine/savedata/saveload-mig.js"></script>
-
-<!-- バフ設定系 javascript ファイル -->
-<script type="module" src="../../engine/ui/BuffJobSpecificSelf.js"></script>
-<script type="module" src="../../engine/ui/BuffGuildAndGospel.js"></script>
-<script type="module" src="../../engine/ui/BuffItemAndFood.js"></script>
-<script type="module" src="../../engine/ui/BuffOtherCategory.js"></script>
-
-<!-- 機能処理系 javascript ファイル （この辺の順序整理したい）-->
-<script type="module" src="../../engine/battle/CAttackMethodAreaComponentManager.js"></script>
-
-<!-- メイン処理系 javascript ファイル（Shell側。内部で stallcalc.js を import する。残件台帳 B-09 Phase 5） -->
-<script type="module" src="../../engine/status/stallcalc-shell.js"></script>
-<!-- DOM読み書きゼロのヘッドレス計算API（リファクタリング計画 Phase 10）。engine-registry へ自己登録する -->
-<script type="module" src="../../engine/runtime/calc-headless.js"></script>
-
 <!-- 左メニュー用 javascript ファイル -->
-<script type="module" src="../../engine/ui/eventsetup.js"></script>
+<script type="module" src="../../engine/entry/calcx.js"></script>
 <script type="module" src="../../assets/frame.js"></script>
 
 </html>

@@ -2,14 +2,14 @@
  * 被ダメージ計算関連の分割（Phase 3c）。
  *
  * calcReceivedDamage / calcReceivedMagicDamage / getResistanceOfEnvironment /
- * BattleHiDamMaxPain を battlecalc.js から移動。本文はバイト単位で不変。
+ * BattleHiDamMaxPain を battlecalc.js から移動。
  *
- * g_receiveDamageAverage / wRef1 / wRef2 / wRef3 / w_HiDam は元 battlecalc.js の
+ * wRef1 / wRef2 / wRef3 / w_HiDam は元 battlecalc.js の
  * モジュールレベル scratch 変数のうち、このファイル内の関数からのみ参照されていた
  * （battlecalc.js 外・他関数からの参照なしを確認済み）ため、このファイルのモジュール
  * ローカル変数として移設した。
  */
-import { HtmlCreateTextNode, HtmlRemoveAllChild, myInnerHtml } from "../runtime/util.js";
+import { HtmlCreateTextNode, HtmlRemoveAllChild } from "../runtime/util.js";
 import { CCharaConfCustomDef } from "../chara/CCharaConfCustomDef.js";
 import { CCharaConfNizi } from "../chara/CCharaConfNizi.js";
 import { CARD_ID_ENCHANT_UCHUKONGEN_GENZYU } from "../equip/card.dat.js";
@@ -97,7 +97,6 @@ import {
 } from "../skill/skillstate.js";
 import { BattleCalc999, DamageModifierOfArea } from "../bridge/battlecalc-bridge.js";
 
-let g_receiveDamageAverage = 0;
 let wRef1 = [];
 let wRef2 = [];
 let wRef3 = [];
@@ -509,12 +508,7 @@ export function calcReceivedDamage(charaData, specData, mobData, attackMethodCon
 	if (objCell) {
 		HtmlRemoveAllChild(objCell);
 		HtmlCreateTextNode(__DIG3(Math.floor(wBHD)), objCell);
-	} else {
-		// 現行バージョンでは詳細な「戦闘結果」テーブルが非表示になっているから意味が無いコード
-		myInnerHtml("B_AveAtk", __DIG3(wBHD) + "<BR>" + " (" + __DIG3(w_HiDam[0]) + "～" + __DIG3(w_HiDam[6]) + ")" + wRefStr, 0);
 	}
-
-	g_receiveDamageAverage = wBHD;
 
 	return wBHD;
 }
@@ -1158,10 +1152,6 @@ export function BattleHiDamMaxPain(charaData, specData, mobData, attackMethodCon
 	if (objCell) {
 		HtmlCreateTextNode(__DIG3(Math.floor(wBHD)), objCell);
 	}
-	else {
-		myInnerHtml("B_AveAtk", __DIG3(wBHD) + "<BR>" + " (" + __DIG3(w_HiDam[0]) + "～" + __DIG3(w_HiDam[6]) + ")" + wRefStr, 0);
-	}
-	g_receiveDamageAverage = wBHD;
 
 	return wBHD;
 }

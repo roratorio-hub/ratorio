@@ -1,4 +1,7 @@
 import { CSaveDataConverter } from "./CSaveDataConverter.js";
+import {
+    initializeZstd, zstdCompressSync, zstdDecompressSync, base64ToUint8Array, uint8ArrayToBase64,
+} from "./zstd-codec.js";
 import { CSingletonMapper } from "./CSingletonMapper.js";
 import { CMultiValueMapper } from "./CMultiValueMapper.js";
 import { CSaveDataPropInfo } from "./CSaveDataPropInfo.js";
@@ -8,15 +11,12 @@ import { SAVE_DATA_UNIT_TYPE_SETTINGS } from "./CSaveDataUnit.js";
 // === AUTO-GENERATED IMPORTS ===
 import { CSaveDataManager } from "./CSaveDataManager.js";
 import { calc } from "../battle/battlecalc.js";
-import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { n_B_KYOUKA } from "../monster/mobconfbuf.js";
 import { n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import { GetJobName } from "../data/mig.job.h.js";
 import { floorBigInt32 } from "../runtime/util.js";
-import { g_Chart, setG_Chart, buildHistoryPanelHtml, buildHistoryRowHtml, openHistoryModal, wireHistoryModalClose } from "../ui/calchistory.js";
+import { g_Chart, rebuildHistoryPanel } from "../ui/calchistory.js";
 // === END AUTO-GENERATED IMPORTS ===
-// Chart.js ESM（calchistory.js と同一URL → 同一モジュールインスタンス = Chart.instances 共有）
-import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.5.1/auto/+esm';
 // C-6: 共有 state 追加分
 import {
          n_A_JOB,
@@ -402,7 +402,7 @@ export class CSaveController {
 
 			const inputBytes = this.stringToByteArray(jsonString);
 
-			const compressed = window.zstdCompressSync(inputBytes);
+			const compressed = zstdCompressSync(inputBytes);
 			console.debug('[encodeToURL]', 'Compressed Data Size:', compressed.length);
 			const base64String = uint8ArrayToBase64(compressed);
 			return `dx${base64String}`;
@@ -582,89 +582,42 @@ export class CSaveController {
 
 	/**
 	 * 復元されたチャートデータを canvas に再描画する.
+	 * @param {*} restored パース済みのチャートデータ（bJSON時はg_Chart相当のオブジェクト全体、
+	 *   非bJSON時は chart.data のみを持つ { data: ... }）
 	 */
-	static #restoreChartDisplay () {
+	static #restoreChartDisplay (restored) {
 
-		if (!g_Chart || typeof g_Chart !== 'object') {
-			console.log("[Chart] g_Chart is not a valid object, type:", typeof g_Chart);
+		if (!restored || typeof restored !== 'object') {
+			console.log("[Chart] restored chart data is not a valid object, type:", typeof restored);
 			return;
-		}
-
-		// history_graph canvas を取得
-		let canvas = document.getElementById("history_graph");
-		let cont = document.getElementById("history_container");
-		let button = document.getElementById("history_button");
-		if (canvas) {
-
-			// Canvas 上のすべての Chart インスタンスを破棄
-			if (Chart.instances) {
-				// WeakMap また は Map, Array の場合に対応
-				if (Array.isArray(Chart.instances)) {
-					// 配列の場合（Chart.js v2 互換）
-					for (let i = Chart.instances.length - 1; i >= 0; i--) {
-						if (Chart.instances[i] && Chart.instances[i].canvas === canvas) {
-							Chart.instances[i].destroy();
-							Chart.instances.splice(i, 1);
-						}
-					}
-				} else if (typeof Chart.instances.entries === 'function') {
-					// Map の場合（Chart.js v3+）
-					const toDelete = [];
-					Chart.instances.forEach((instance) => {
-						if (instance && instance.canvas === canvas) {
-							toDelete.push(instance);
-						}
-					});
-					toDelete.forEach(instance => {
-						instance.destroy();
-						Chart.instances.delete(instance);
-					});
-				}
-			}
-
-			// 既存の g_Chart インスタンスも破棄
-			if (g_Chart && typeof g_Chart.destroy === 'function') {
-				g_Chart.destroy();
-			}
-			canvas.remove();
-			cont.remove();
-			button.remove()
 		}
 
 		// 復元データから必要な情報を抽出
-		let chartType = 'line';
 		let chartDataObj = null;
-		let chartOptions = {};
 
 		// Chart.js の構造に対応
-		if (g_Chart.config && g_Chart.config._config) {
+		if (restored.config && restored.config._config) {
 			// Chart.js インスタンスの構造
-			const _config = g_Chart.config._config;
-			chartType = _config.type || 'line';
-			chartDataObj = this.#normalizeChartData(_config.data);
-			chartOptions = _config.options || {};
-		} else if (g_Chart.type && g_Chart.data) {
+			chartDataObj = this.#normalizeChartData(restored.config._config.data);
+		} else if (restored.type && restored.data) {
 			// シンプルな config オブジェクト
-			chartType = g_Chart.type;
-			chartDataObj = this.#normalizeChartData(g_Chart.data);
-			chartOptions = g_Chart.options || {};
-		} else if (g_Chart.data) {
+			chartDataObj = this.#normalizeChartData(restored.data);
+		} else if (restored.data) {
 			// データのみの場合
-			chartDataObj = this.#normalizeChartData(g_Chart.data);
+			chartDataObj = this.#normalizeChartData(restored.data);
 		}
 
 		if (!chartDataObj) {
-			console.warn("[Chart] no data found in g_Chart, g_Chart keys:", Object.keys(g_Chart));
+			console.warn("[Chart] no data found in restored chart data, keys:", Object.keys(restored));
 			return;
 		}
 
-		// サニタイズ: Chart.js に渡す前に関数・DOM・Chartインスタンス等を取り除く
+		// サニタイズ: Chart.js に渡す前に関数・DOM等を取り除く
 		const sanitizeForChart = (obj, depth = 0) => {
 			if (depth > 10 || obj == null) return obj;
 			if (typeof obj === 'function') return undefined;
 			if (typeof obj !== 'object') return obj;
 			if (obj instanceof Node || obj instanceof Window) return undefined;
-			if (obj === g_Chart) return undefined;
 			if (Array.isArray(obj)) {
 				return obj.map(v => sanitizeForChart(v, depth + 1)).filter(v => v !== undefined);
 			}
@@ -676,8 +629,8 @@ export class CSaveController {
 				if (typeof v === 'function') {
 					continue;
 				}
-				// remove Chart instances and DOM
-				if (v && (v instanceof Node || v === g_Chart || v.canvas)) {
+				// remove DOM
+				if (v && (v instanceof Node || v.canvas)) {
 					continue;
 				}
 				// convert BigInt to string
@@ -706,241 +659,9 @@ export class CSaveController {
 		};
 
 		chartDataObj = sanitizeForChart(chartDataObj);
-		chartOptions = sanitizeForChart(chartOptions);
-		// チャートを再作成
-		const buildForm = () => {
-		    $("#OBJID_ATTACK_SETTING_BLOCK_MIG").after(buildHistoryPanelHtml());
 
-			let target = 0;
-			let data = {
-			  labels: [],
-			  datasets: [{
-			    label: "DPS",
-			    data: [],
-			    metadata: [],
-			    borderColor: "#005AFF",
-			    yAxisID: "y",
-			  }, {
-			    label: "確殺",
-			    data: [],
-			    borderColor: "#FF4B00",
-			    yAxisID: "y1",
-			  }, {
-			    label: "通常",
-			    data: [],
-			    borderColor: "#4DC4FF",
-			    yAxisID: "y",
-			  }, {
-			    label: "1ｻｲｸﾙﾀﾞﾒ",
-			    data: [],
-			    borderColor: "#03AF7A",
-			    yAxisID: "y",
-			    hidden: true,
-			  }]
-			}
-		    const footer = (items) => {
-		    	return items[0].dataset.metadata[items[0].parsed.x].memo;
-		    };
-		    const ctx = document.getElementById("history_graph");
-		    let chart = new Chart(ctx, {
-		    	type: 'line',
-		    	data: data,
-		    	options: {
-		    	  responsive: true,
-		    	  maintainAspectRatio: false,
-		    	  interaction: {
-		    	    mode: 'index',
-		    	    intersect: false,
-		    	  },
-		    	  plugins: {
-		    	    legend: {
-		    	      position: "right"
-		    	    },
-		    	    tooltip: {
-		    	      callbacks: {
-		    	        footer: footer,
-		    	      }
-		    	    },
-		    	  },
-		    	  stacked: false,
-		    	  scales: {
-		    	    y: {
-		    	      type: "linear",
-		    	      display: true,
-		    	      position: "left",
-		    	      grid: {
-		    	        drawOnChartArea: false,
-		    	      },
-		    	    },
-		    	    y1: {
-		    	      type: "linear",
-		    	      display: true,
-		    	      position: "right",
-		    	      grid: {
-		    	        drawOnChartArea: false,
-		    	      },
-		    	    }
-		    	  },
-		    	  onClick: (e) => {
-					showLoadingIndicator();
-		    	    // v4: onClick の e は ChartEvent — e.x がキャンバス座標を直接保持
-		    	    const dataX = chart.scales.x.getValueForPixel(e.x);
-		    	    if (chart.data.datasets[0].data.length > dataX) {
-		    	    	let url = chart.data.datasets[0].metadata[Math.abs(dataX)]["url"];
-		    	    	CSaveController.loadFromURL(url);
-		    	    	CItemInfoManager.OnClickExtractSwitch();
-		    	    }
-					calc();
-					LoadTomSelect();
-					hideLoadingIndicator();
-		    	  }
-		    	}
-		    });
-
-		    $("#history_clip").click(e => {
-		    	// 直前の敵と同じか？
-		    	if (target != $(".OBJID_MONSTER_MAP_MONSTER").val()) {
-		    		chart.data.labels = [];
-		    		chart.data.datasets[0].data = [];
-		    		chart.data.datasets[0].metadata = [];
-		    		chart.data.datasets[1].data = [];
-		    		chart.data.datasets[2].data = [];
-		    		chart.data.datasets[3].data = [];
-		    		target = $(".OBJID_MONSTER_MAP_MONSTER").val();
-		    	}
-				showLoadingIndicator();
-				const mgr = CSaveController.getSaveDataManagerCur();
-				mgr.ReCalcManager();
-				calc();
-		    	const metadata = { "memo": "", "url": CSaveController.encodeToURL() };
-		    	if ($("#clip_with_memo").prop('checked')) {
-		    		let memo = prompt("clipメモ");
-		    		if (memo) metadata["memo"] = memo;
-		    	}
-		    	chart.data.labels.push(chart.data.labels.length + 1);
-		    	const dps = parseFloat($("#BTLRSLT_PART_ATKCNT").parent().prev().prev().prev().prev().text().replaceAll(",", ""))
-		    	chart.data.datasets[0].data.push(isNaN(dps) ? 0 : dps);
-		    	chart.data.datasets[0].metadata.push(metadata);
-		    	const cnt = parseInt($("#BTLRSLT_PART_EXP").parent().prev().prev().text().replaceAll(",", ""));
-		    	chart.data.datasets[1].data.push(isNaN(cnt) ? 0 : cnt);
-		    	const btlrslt_damage_totals = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_TOTAL");
-		    	const btlrslt_damage_details = $("#BATTLE_RESULT_DAMAGE").children(".BTLRSLT_DAMAGE_DETAIL");
-		    	const dmg_index = btlrslt_damage_totals.length/3;
-		    	const dmg = parseFloat($(btlrslt_damage_totals.get(dmg_index)).text().replaceAll(",", ""));
-		    	const cycle_index = dmg_index + btlrslt_damage_totals.length/3/2;
-		    	chart.data.datasets[2].data.push(isNaN(dmg) ? 0 : dmg);
-		    	const cycle = parseFloat($(btlrslt_damage_details.get(cycle_index)).text().replaceAll(",", ""));
-		    	chart.data.datasets[3].data.push(isNaN(cycle) ? 0 : cycle);
-		    	chart.update();
-				hideLoadingIndicator();
-		    	setG_Chart(chart);
-		    });
-		    $("#history_reset").click(e => {
-		    	chart.data.labels = [];
-		    	chart.data.datasets[0].data = [];
-		    	chart.data.datasets[0].metadata = [];
-		    	chart.data.datasets[1].data = [];
-		    	chart.data.datasets[2].data = [];
-		    	chart.data.datasets[3].data = [];
-		    	target = 0;
-		    	chart.update();
-		    	setG_Chart(null);
-		    });
-		    $("#history_list").click(e => {
-		    	document.getElementById("clip_modal_table")?.before(document.getElementById("history_graph"));
-		    	reload_history_table();
-		    	openHistoryModal();
-		    });
-		    const flip_clip = (i, j) => {
-		    	[data.datasets[0].data[i], data.datasets[0].data[j]] =
-		    	  [data.datasets[0].data[j], data.datasets[0].data[i]];
-		    	[data.datasets[0].metadata[i], data.datasets[0].metadata[j]] =
-		    	  [data.datasets[0].metadata[j], data.datasets[0].metadata[i]];
-		    	[data.datasets[1].data[i], data.datasets[1].data[j]] =
-		    	  [data.datasets[1].data[j], data.datasets[1].data[i]];
-		    	[data.datasets[2].data[i], data.datasets[2].data[j]] =
-		    	  [data.datasets[2].data[j], data.datasets[2].data[i]];
-		    	[data.datasets[3].data[i], data.datasets[3].data[j]] =
-		    	  [data.datasets[3].data[j], data.datasets[3].data[i]];
-		    }
-		    const reload_history_table = () => {
-		      $("#clip_modal_table tbody *").remove();
-		      let body = ""
-		      for (let i = 0; i < data.labels.length; i++) {
-		        body += buildHistoryRowHtml({
-		          no: data.labels[i].toLocaleString(),
-		          dps: data.datasets[0].data[i].toLocaleString(),
-		          kill: data.datasets[1].data[i].toLocaleString(),
-		          memo: data.datasets[0].metadata[i].memo,
-		          isFirst: i === 0,
-		          isLast: i === data.labels.length - 1,
-		        });
-		      }
-		      $("#clip_modal_table tbody").append(body);
-		    }
-		    $(document).on("click", "div.clip_memo", (e) => {
-		      $(e.target).toggle();
-		      $(e.target).next("input").toggle().focus();
-		    });
-		    $(document).on("change", "input.clip_memo", (e) => {
-		      if (g_Chart !== chart) return;
-		      const index = e.target.closest("tr").rowIndex - 1;
-		      data.datasets[0].metadata[index]["memo"] = e.target.value;
-		      chart.update();
-		      reload_history_table();
-		      setG_Chart(chart);
-		    });
-		    $(document).on("blur", "input.clip_memo", (e) => {
-		      $(e.target).toggle();
-		      $(e.target).prev("div").toggle();
-		    });
-		    $(document).on("click", ".up_clip", (e) => {
-		      if (g_Chart !== chart) return;
-		      const row = e.target.closest("tr");
-		      if (row && row.previousElementSibling) {
-		        const index = row.rowIndex - 1;
-		        flip_clip(index, index - 1);
-		        chart.update();
-		        reload_history_table();
-		        setG_Chart(chart);
-		      }
-		    });
-		    $(document).on("click", ".down_clip", (e) => {
-		      if (g_Chart !== chart) return;
-		      const row = e.target.closest("tr");
-		      if (row && row.nextElementSibling) {
-		        const index = row.rowIndex - 1;
-		        flip_clip(index, index + 1);
-		        chart.update();
-		        reload_history_table();
-		        setG_Chart(chart);
-		      }
-		    });
-		    $(document).on("click", ".remove_clip", (e) => {
-		      if (g_Chart !== chart) return;
-		      const row = e.target.closest("tr");
-		      const index = row.rowIndex - 1;
-		      data.labels.pop();
-		      data.datasets[0].data.splice(index, 1);
-		      data.datasets[0].metadata.splice(index, 1);
-		      data.datasets[1].data.splice(index, 1);
-		      data.datasets[2].data.splice(index, 1);
-		      data.datasets[3].data.splice(index, 1);
-		      chart.update();
-		      reload_history_table();
-		      setG_Chart(chart);
-		    });
-		    wireHistoryModalClose();
-
-			chart.data = chartDataObj;
-			data = chartDataObj;
-	    	chart.update();
-			setG_Chart(chart);
-
-		};
-		buildForm();
-
-
+		// パネルを復元データで作り直す
+		rebuildHistoryPanel(chartDataObj);
 	}
 
 
@@ -999,7 +720,7 @@ export class CSaveController {
 			const compressedData = base64ToUint8Array(urlText.slice(2));
 
 			// Zstd 展開
-			const decompressedData = window.zstdDecompressSync(compressedData);
+			const decompressedData = zstdDecompressSync(compressedData);
 
 			const parsedDecompressedData = JSON.parse(new TextDecoder().decode(decompressedData));
 
@@ -1107,22 +828,21 @@ export class CSaveController {
 
 			// chartdata があれば復元
 			if (chartData && chartData.length > 1) {
+				let restored;
 				if (CSaveController.bJSON) {
-					setG_Chart(JSON.parse(chartData, (key, value) => {
+					restored = JSON.parse(chartData, (key, value) => {
 						if (typeof value === 'string' && /^\d+$/.test(value)) {
 							// leave numeric-looking strings as-is (no BigInt conversion here)
 						}
 						return value;
-					}));
+					});
 				}
 				else {
 					// Chartのデータはchart.dataのみに絞っているのでこれだけでよい
-					let param = JSON.parse(chartData);
-					setG_Chart({});
-					g_Chart.data = param;
+					restored = { data: JSON.parse(chartData) };
 				}
 				// チャートの復元
-				CSaveController.#restoreChartDisplay();
+				CSaveController.#restoreChartDisplay(restored);
 			}
 
 		} else {

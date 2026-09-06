@@ -75,6 +75,7 @@ import {
 import {
     TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD, TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD
 } from "../equip/timeitem.dat.js";
+import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "./attackmethod.dat.js";
 import { AS_PLUS } from "../skill/calcautospell.js";
 import { GetHigherJobSeriesID } from "../data/mig.job.h.js";
@@ -117,7 +118,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			CS.wbairitu = 500 + 50 * n_A_ActiveSkillLV;
 			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			var w = attackMethodConfArray[0].GetOptionValue(0);
+			var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 1);
 			if(w == 2){
 				if(mobData[17] == 0){
 					CS.wActiveHitNum = 2;
@@ -167,8 +168,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				if(CS.n_AS_MODE) return w_DMG;
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-					if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (w_DMG[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 				}
 			}
 			else{
@@ -187,8 +186,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				if(CS.n_AS_MODE) return w_DMG;
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-					if(i != 1) CS.g_damageTextArray[i].push("(", Math.floor(w_DMG[i] / sizebai[mobData[17]][i]), "×", sizebai[mobData[17]][i], "Hit)");
 				}
 
 			}
@@ -234,7 +231,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 
 			// 改めて必中ダメージ計算
@@ -373,12 +369,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				CS.Last_DMG_B[i] = w_DMG[i];
 				if(n_A_ActiveSkill==76) CS.Last_DMG_B[i] = w_DMG[i] * 2;
 
-				// TODO: ダメージ表示方式変更対応
-				// Last_DMG_A[i] = w_DMG[i] * wHITsuu;
-
-				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0 || !CS.wLAch) CS.g_damageTextArray[i].push(Math.floor(w_DMG[i] * CS.wHITsuu), "(", w_DMG[i], SubName[8], CS.wHITsuu, "hit)");
-				else{
-					CS.g_damageTextArray[i].push((w_DMG[i] * 3), "(", (w_DMG[i] * 2), "＋", w_DMG[i], ")");
+				if(!(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0 || !CS.wLAch)){
 					CS.Last_DMG_B[i] = w_DMG[i] * 3;
 				}
 
@@ -393,15 +384,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			// TODO: ダメージ表示方式変更対応
 			// w_DMG[1] = (w_DMG[1] * w_HIT + wX * wHITsuu *(100-w_HIT))/100;
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT + wX * (100-CS.w_HIT))/100;
-
-			if(CS.wHITsuu == 0 && n_A_ActiveSkill==192){
-				if(GetHigherJobSeriesID(n_A_JOB) == 15) CS.g_damageTextArray[0] = ["<Font color=Red><B>指弾の計算をするには<BR>気功を1以上にして下さい</B></Font>"];
-				else CS.g_damageTextArray[0] = ["<Font color=Red><B>指弾の計算をするには<BR>気功(天下大将軍C)を<BR>1以上にして下さい</B></Font>"];
-			}
-
-			if (CS.wHITsuu < 3 && n_A_ActiveSkill == SKILL_ID_HESPERUS_SLIT) {
-				CS.g_damageTextArray[0] = ["<Font color=Red><B>パッシブ持続系の欄で<BR>RGの人数を3人以上にするか、インスピレーション状態に設定してください</B></Font>"];
-			}
 
 			AS_PLUS();
 
@@ -425,7 +407,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			ISI = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, ISI);
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = ISI;
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				w_DMG[i] = ISI;
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -462,10 +443,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = wBT;
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				if(n_A_ActiveSkill==118){
 					CS.Last_DMG_B[i] = wBT / n_A_ActiveSkillLV;
-					CS.g_damageTextArray[i].push("(", CS.Last_DMG_B[i], "×", n_A_ActiveSkillLV, "Hit)");
 				}
 				w_DMG[i] = wBT;
 			}
@@ -500,7 +479,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
 			AS_PLUS();
@@ -530,7 +508,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				}
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT)/100;
 			BuildCastAndDelayHtml(mobData);
@@ -576,7 +553,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_B[i] = w_DMG[i];
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 5;
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "5hit)");
 				w_DMG[i] = CS.Last_DMG_A[i];
 			}
 			w_DMG[1] = w_DMG[1] * CS.w_HIT /100;
@@ -611,7 +587,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				CS.Last_DMG_B[i] = w_DMG[i];
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 5;
 				if(!CS.n_AS_MODE) {
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "5hit)");
 				}
 				w_DMG[i] = CS.Last_DMG_A[i];
 			}
@@ -643,7 +618,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -678,12 +652,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			if(5 <= mobData[21] && mobData[21] <= 9){
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = 1;
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -694,9 +666,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			CS.n_PerfectHIT_DMG = 0;
-			myInnerHtml("CRIATKname",'<Font color="#FF0000">発動コスト</Font>',0);
-			myInnerHtml("CRIATK",'<Font color="#FF0000">'+ __DIG3(Math.floor(charaData[CHARA_DATA_INDEX_MAXHP] /5)) +"</Font>",0);
-			myInnerHtml("CRInumname",'<Font color="#FF0000">反動ダメージ</Font>',0);
 			set_n_Enekyori(2);
 			set_n_A_Weapon_zokusei(6);
 			for(var i=0;i<=2;i++){
@@ -719,7 +688,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				if(EquipNumSearch(2495)) wGXbai3 += n_A_BaseLV;
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * (100+GetEquippedTotalSPEquip(5000+n_A_ActiveSkill)+GetEquippedTotalSPCardAndElse(5000+n_A_ActiveSkill) + wGXbai3) / 100);
 			}
-			if(!CS.n_AS_MODE) myInnerHtml("CRInum",'<Font color="#FF0000">'+ __DIG3(w_DMG[0]) +"×3hit～"+ __DIG3(w_DMG[2]) +"×3hit</Font>",0);
 			CS.wCast = 3000;
 			n_Delay[2] = 1500;
 			CS.wLAch = true;
@@ -755,13 +723,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0){
 				for(var b=0;b<=2;b++){
 					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * 3;
-					CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], "3hit)");
 					w_DMG[b] = CS.Last_DMG_A[b];
 				}
 			}else{
 				for(var b=0;b<=2;b++){
 					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * 4;
-					CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", (w_DMG[b] * 2), "＋", w_DMG[b], SubName[8], "2hit)");
 					w_DMG[b] = CS.Last_DMG_A[b];
 				}
 			}
@@ -773,7 +739,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-			const CRbai = attackMethodConfArray[0].GetOptionValue(0) / (8000 + 500 * cart_kaizo_lv) * 100;
+			const cart_weight_max = 8000 + 500 * cart_kaizo_lv;
+			const CRbai = GetAttackMethodOptionValue(attackMethodConfArray, 0, cart_weight_max) / cart_weight_max * 100;
 
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = ROUNDDOWN(CS.n_A_DMG[i] * 150 / 100);
@@ -785,7 +752,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				if(w_DMG[i] <0) w_DMG[i] = 0;
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -803,7 +769,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 1500 + n_A_ActiveSkillLV * 500;
@@ -823,7 +788,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			w_DMG[0] = w_DMG[1] = w_DMG[2];
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -851,7 +815,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			CS.wCast = 1000;
@@ -900,7 +863,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			CS.wCast = 4500 - 500 * n_A_ActiveSkillLV;
@@ -925,7 +887,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -958,11 +919,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				if(n_A_ActiveSkill==395){
 					CS.Last_DMG_B[i] = ROUNDDOWN(w_DMG[i] / 3);
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 3;
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "3hit)");
 				}else{
 					CS.Last_DMG_B[i] = w_DMG[i];
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i];
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 				w_DMG[i] = CS.Last_DMG_A[i];
 			}
@@ -994,7 +953,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				CS.Last_DMG_B[i] = w_DMG[i];
 				CS.Last_DMG_A[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				w_DMG[i] = CS.Last_DMG_A[i];
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -1018,8 +976,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-				CS.g_damageTextArray[i].push("(", (CS.Last_DMG_A[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 			}
 			CS.n_PerfectHIT_DMG = ApplyElementRatio(mobData, ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData), 0);
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
@@ -1037,7 +993,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = Math.floor(dm[i] * n_A_ActiveSkillLV);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1061,7 +1016,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = Math.floor(w_DMG[i] / 10);
 				CS.Last_DMG_B[i] = w_DMG[i];
 				CS.Last_DMG_A[i] = w_DMG[i] * 10;
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", CS.Last_DMG_B[i], SubName[8], "10hit)");
 				w_DMG[i] = CS.Last_DMG_A[i];
 			}
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT)/100;
@@ -1105,8 +1059,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-				if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (CS.Last_DMG_A[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1134,12 +1086,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			if(5 <= mobData[21] && mobData[21] <= 9){
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = 1;
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 			}
 			BuildCastAndDelayHtml(mobData);
@@ -1230,7 +1180,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1263,7 +1212,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1290,7 +1238,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			w_DMG[0] = w_DMG[1] = w_DMG[2];
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1333,9 +1280,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[1] = Math.round((mobData[3] * w + w_DMG[0] * (100-w)/100));
 			}
 			for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-			CS.g_damageTextArray[0].push(w_DMG[0], "(失敗ダメージ)");
-			CS.g_damageTextArray[1].push(w_DMG[1], "(一発期待値)");
-			CS.g_damageTextArray[2].push(ApplyElementRatio(mobData, w_DMG[2], n_A_Weapon_zokusei), "(成功確率", Math.floor(w * 10000) / 100, "％)");
 			n_Delay[2] = 3000;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1361,7 +1305,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			w_DMG[0] = w_DMG[1] = w_DMG[2];
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i], "(", (w_DMG[i] / CS.wHITsuu), "×", CS.wHITsuu, "hit)");
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1417,7 +1360,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1482,7 +1424,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1516,11 +1457,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[2] = CS.n_DEATH_BOUND[2];
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
-				if(mobData[20] == 1) CS.g_damageTextArray[0].push("<BR><Font color=Red><B>(BOSS属性には無効)</B></Font>");
 				BuildCastAndDelayHtml(mobData);
 				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}
@@ -1575,11 +1514,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wHell_DMG1[i] + wHell_DMG2[i];
-				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wHell_DMG1[i], "+", wHell_DMG2[i], ")");
-				else{
+				if(!(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0)){
 					var w = wHell_DMG1[i] * 2;
 					var w2 = w + wHell_DMG2[i];
-					CS.g_damageTextArray[i].push(w2, " (", w, "+", wHell_DMG2[i], ")");
 					CS.Last_DMG_B[i] = w2;
 				}
 			}
@@ -1658,27 +1595,12 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 					// TODO: ダメージ表示方式変更対応
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = Math.floor(w_DMG[i] / CS.wHITsuu);
-
-					CS.g_damageTextArray[i].push(w_DMG[i], " (");
-					for(var j=0;j<=(CS.wHITsuu-1);j++){
-						CS.g_damageTextArray[i].push(wC_DMG[j][i]);
-						if(j <5 && wC_DMG[j+1][i] != 0) CS.g_damageTextArray[i].push(" + ");
-					}
-					CS.g_damageTextArray[i].push(")");
 				}else{
 
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = (wC_DMG[0][i] * 2) + wC_DMG[1][i] + wC_DMG[2][i] + wC_DMG[3][i] + wC_DMG[4][i] + wC_DMG[5][i];
 
 					// TODO: ダメージ表示方式変更対応
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = Math.floor(w_DMG[i] / CS.wHITsuu);
-
-					CS.g_damageTextArray[i].push(w_DMG[i], " (");
-					for(var j=0;j<=(CS.wHITsuu-1);j++){
-						if(j==0) CS.g_damageTextArray[i].push(wC_DMG[j][i] * 2);
-						else CS.g_damageTextArray[i].push(wC_DMG[j][i]);
-						if(j <5 && wC_DMG[j+1][i] != 0) CS.g_damageTextArray[i].push(" + ");
-					}
-					CS.g_damageTextArray[i].push(")");
 				}
 			}
 			CS.n_PerfectHIT_DMG = 0;
@@ -1751,11 +1673,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wT_DMG1[i] + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
-				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wT_DMG1[i], "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
-				else{
+				if(!(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0)){
 					var w = wT_DMG1[i] * 2;
 					var w2 = w + wT_DMG2[i] + wT_DMG3[i] + wT_DMG4[i];
-					CS.g_damageTextArray[i].push(w2, " (", w, "+", wT_DMG2[i], "+", wT_DMG3[i], "+", wT_DMG4[i], ")");
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = w2;
 				}
 			}
@@ -1811,7 +1731,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1862,7 +1781,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			// ダメージ表示（不要な可能性あり）
 			BuildCastAndDelayHtml(mobData);
@@ -1915,7 +1833,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1942,7 +1859,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -1982,22 +1898,18 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(w3HIT==1){
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i] + wOB_DMG[2][i];
-					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
-					else{
+					if(!(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0)){
 						var w = wOB_DMG[0][i] * 2;
 						var w2 = w + wOB_DMG[1][i] + wOB_DMG[2][i];
-						CS.g_damageTextArray[i].push(w2, " (", w, "+", wOB_DMG[1][i], "+", wOB_DMG[2][i], ")");
 						CS.Last_DMG_B[i] = w2;
 					}
 				}
 			}else{
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i];
-					if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0) CS.g_damageTextArray[i].push(w_DMG[i], " (", wOB_DMG[0][i], "+", wOB_DMG[1][i], ")");
-					else{
+					if(!(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0)){
 						var w = wOB_DMG[0][i] * 2;
 						var w2 = w + wOB_DMG[1][i];
-						CS.g_damageTextArray[i].push(w2, " (", w, "+", wOB_DMG[1][i], ")");
 						CS.Last_DMG_B[i] = w2;
 					}
 				}
@@ -2048,11 +1960,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				if(attackMethodConfArray[0].GetOptionValue(0) == 1){
 					var w = w2hit[i];
 					if(w == 0) w = "Miss";
-					CS.g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
 				}
 			}
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
@@ -2121,11 +2031,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				if(CS.n_AS_MODE) return w_DMG;
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 					if(attackMethodConfArray[0].GetOptionValue(0) == 1){
 						var w = w2hit[i];
 						if(w == 0) w = "Miss";
-						CS.g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
 					}
 				}
 				CS.n_PerfectHIT_DMG = 0;
@@ -2204,7 +2112,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[i] = ApplyAttackDamageAmplify(mobData, w_DMG[i]);
 
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -2228,7 +2135,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
@@ -2283,9 +2189,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				}
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = wjyuu[i] + w_DMG[i] * attackMethodConfArray[0].GetOptionValue(0);
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-					CS.g_damageTextArray[i].push("(", (wjyuu[i] / 2), "×2Hit + ");
-					CS.g_damageTextArray[i].push((w_DMG[i] / 2), "×", (2 * attackMethodConfArray[0].GetOptionValue(0)), ")");
 					w_DMG[i] = CS.Last_DMG_A[i];
 				}
 
@@ -2298,8 +2201,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			else{
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-					if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (w_DMG[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 				}
 
 				// 改めて必中ダメージを計算
@@ -2337,14 +2238,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(GetActHitRateAll(n_A_ActiveSkill, mobData) == 100){
 				for(var i=0;i<=2;i++){
 					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-					CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				}
 			}else{
 				for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				if(CS.Last_DMG_A[0] >= 1) CS.g_damageTextArray[0].push(ROUNDDOWN(CS.Last_DMG_A[0]));
-				else CS.g_damageTextArray[0].push("Miss<BR><Font size=2>(命中100未満なので)</Font>");
-				CS.g_damageTextArray[1].push(ROUNDDOWN(CS.Last_DMG_A[1]), "<BR><Font size=2>※コンボ系のこの欄は特別仕様で、<BR>※Miss込みの平均与ダメージです。<BR>※Missを消すにはフリオニCなどで。</Font>");
-				CS.g_damageTextArray[2].push(CS.Last_DMG_A[2]);
 			}
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			BuildCastAndDelayHtml(mobData);
@@ -2386,8 +2282,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_B[i] = Math.floor(w_DMG[i] / 3);		// B = 1 hitあたりダメージ
 				CS.Last_DMG_A[i] = w_DMG[i];						// A = 3 hit合計ダメージ
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-				CS.g_damageTextArray[i].push("(", w_DMG[i], "×3Hit)");
 				w_DMG[i] = CS.Last_DMG_A[i];
 			}
 			var wX = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
@@ -2453,8 +2347,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			}
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-				CS.g_damageTextArray[i].push("(", (w_DMG[i] - MAGUMA * 10), "＋", MAGUMA, "×10Hit)");
 			}
 
 			// 改めて必中ダメージ計算
@@ -2506,7 +2398,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				// TODO: ダメージ表示方式変更対応
 				CS.Last_DMG_A[b] = w_DMG[b] * CS.wHITsuu;
 
-				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", CS.Last_DMG_B[b], SubName[8], CS.wHITsuu, "hit)");
 				w_DMG[b] = CS.Last_DMG_A[b];
 			}
 			if(CS.n_AS_MODE) return w_DMG;
@@ -2549,7 +2440,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				// 最終ダメージ Last_DMG_A
 				// TODO: ダメージ表示方式変更対応
 				CS.Last_DMG_A[b] = w_DMG[b];
-				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", CS.Last_DMG_B[b], SubName[8], CS.wHITsuu, "hit)");
 				w_DMG[b] = CS.Last_DMG_A[b];
 			}
 			if(CS.n_AS_MODE) return w_DMG;
@@ -2582,7 +2472,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			for(var b=0;b<=2;b++){
 				w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100) / CS.wHITsuu);
 				CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu;
-				if(!CS.n_AS_MODE) CS.g_damageTextArray[b].push(CS.Last_DMG_A[b], "(", w_DMG[b], SubName[8], CS.wHITsuu, "hit)");
 
 				// TODO: ダメージ表示方式変更対応
 				// w_DMG[b] *= wHITsuu;
@@ -2629,7 +2518,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 			}
 			AS_PLUS();
 			BuildCastAndDelayHtml(mobData);
@@ -2679,11 +2567,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
 				if(attackMethodConfArray[0].GetOptionValue(0) == 1){
 					var w = w2hit[i];
 					if(w == 0) w = "Miss";
-					CS.g_damageTextArray[i].push(" (", (w_DMG[i] - w2hit[i]), " + ", w, ")");
 				}
 			}
 			w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
@@ -2742,13 +2628,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			// 表示の調整
 			for (let idx = 0; idx <= 2; idx++) {
 				CS.Last_DMG_A[idx] = CS.Last_DMG_B[idx] = w_DMG[idx];
-				CS.g_damageTextArray[idx].push(CS.Last_DMG_A[idx]);
 				if ((hitMode & 3) == 3) {
 					var w = w2hit[idx];
 					if (w == 0) {
 						w = "Miss";
 					}
-					CS.g_damageTextArray[idx].push(" (", (w_DMG[idx] - w2hit[idx]), " + ", w, ")");
 				}
 			}
 			//w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
@@ -2808,8 +2692,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				CS.g_damageTextArray[i].push(CS.Last_DMG_A[i]);
-				if(CS.wActiveHitNum > 1) CS.g_damageTextArray[i].push("(", (w_DMG[i] / CS.wActiveHitNum), "×", CS.wActiveHitNum, "Hit)");
 			}
 
 			// 改めて必中ダメージ計算

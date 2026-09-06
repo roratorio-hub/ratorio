@@ -90,7 +90,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_ATK");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(totalAtkBase + "+" + totalAtkAppend);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -106,7 +106,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_MAXHP");
 	HtmlRemoveAllChild(objSpan);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -122,7 +122,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_MAXSP");
 	HtmlRemoveAllChild(objSpan);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -134,7 +134,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_DEF");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_DEF_MINUS] + "+" + charaData[CHARA_DATA_INDEX_DEF_DIV]);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -146,7 +146,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_MDEF");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_MDEF_MINUS] + "+" + charaData[CHARA_DATA_INDEX_MDEF_DIV]);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -157,7 +157,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_HIT");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_HIT]);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -168,7 +168,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_FLEE");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_FLEE]);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -179,9 +179,9 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_LUCKY");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_LUCKY]);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
-	if (g_lucky_over > 0) {
+	if (g_lucky_over > 0 && objSpan != null) {
 
 		valueWork = Math.round(g_lucky_over * 10);
 		textWork = "" + Math.floor(valueWork / 10);
@@ -192,7 +192,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 		objSpan.appendChild(document.createElement("br"));
 		objText = HtmlCreateTextSpan("[過 " + textWork + "]", objSpan, "");
 		objText.style.color = "red";
-		objSpan.appendChild(objText);
+		if (objSpan != null) objSpan.appendChild(objText);
 	}
 
 
@@ -204,7 +204,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_CRI");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_CRI]);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -224,7 +224,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_MATK");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(totalMatkBase + "+" + totalMatkAppend);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -236,7 +236,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_ASPD");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(dispAspd);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -247,7 +247,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	objSpan = document.getElementById("OBJID_SPAN_CHARA_HPR");
 	HtmlRemoveAllChild(objSpan);
 	objText = document.createTextNode(charaData[CHARA_DATA_INDEX_HPR]);
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 	//----------------------------------------------------------------
@@ -263,7 +263,7 @@ export function UpdateCharaDataHtml(charaData, specData) {
 	else {
 		objText = document.createTextNode("回復停止(" + charaData[CHARA_DATA_INDEX_SPR] + ")");
 	}
-	objSpan.appendChild(objText);
+	if (objSpan != null) objSpan.appendChild(objText);
 
 
 }

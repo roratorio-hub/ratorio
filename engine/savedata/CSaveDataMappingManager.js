@@ -8,6 +8,9 @@ export function CSaveDataMappingManager() {
 // セーブデータ形式の現行バージョン
 // （3f-6 で savedata-codec.js（当時 saveload.js）から移動 — マッピング配列の版数と対で
 // 管理する。改版履歴は savedata-codec.js 参照）
+// マッピング配列自体はB-11 Phase A5-3以降ロード専用（旧形式セーブURLの読み込み）。
+// 新規セーブはCSaveDataUnitクラス自身のプロパティ定義（registerPropInfo）が使われるため、
+// 新機能のためにここへ旧形式の枠を確保する必要はもう無い。
 export const CURRENT_VERSION = 54;	// 対人データの拡張対応
 
 

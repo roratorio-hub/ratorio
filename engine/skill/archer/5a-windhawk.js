@@ -8,7 +8,6 @@
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { HtmlGetObjectValueByIdAsInteger } from "../../runtime/util.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW } from "../../const/EnumItemKind.js";
@@ -17,6 +16,7 @@ import { MIG_PARAM_ID_CON } from "../../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
 import { RACE_ID_ANIMAL, RACE_ID_FISH } from "../../const/EnumRaceId.js";
 import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
+import { n_A_WeaponZokusei } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ADVANCED_TRAP, SKILL_ID_CALAMITY_GALE, SKILL_ID_CRESSIVE_VOLT,
@@ -581,8 +581,9 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = function(option) {
-				// 属性付与を優先する
-				let value = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_ARMS_ELEMENT", ELM_ID_VANITY);
+				// 属性付与を優先する（OBJID_SELECT_ARMS_ELEMENT と同じ select を
+				// HydrateFromModel() 経由で既に読んでいる n_A_WeaponZokusei を使う）
+				let value = n_A_WeaponZokusei;
 				if (value === ELM_ID_VANITY) {
 					// 付与されていなければ矢の属性を適用する
 					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL);
