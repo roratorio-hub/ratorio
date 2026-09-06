@@ -29,6 +29,7 @@ import { OnClickSlotModeButton } from "../equip/slotpager.js";
 import {
     HtmlCopyToClipboardById, HtmlSetObjectValueById,
 } from "../runtime/util.js";
+import { attachPageKeyListenerToInput } from "./page-key-listener.js";
 
 function wire(id, event, handler) {
     document.getElementById(id)?.addEventListener(event, handler);
@@ -139,3 +140,7 @@ wire('OBJID_SELECT_ACTIVE_INTERVAL',        'change', () => CAttackMethodAreaCom
 wire('OBJID_SELECT_CASTSIM_INTERVAL',       'change', () => CAttackMethodAreaComponentManager.OnChangeCastSimInterval());
 wire('OBJID_CHECK_POINT_CAP',               'change', () => CAttackMethodAreaComponentManager.OnChangePointCap());
 wire('OBJID_CHECK_DPS_ACTUAL',              'change', () => CAttackMethodAreaComponentManager.OnChangeDpsActual());
+
+// Lv・ステータス入力欄への PageUp/PageDown ショートカット登録
+const pageKeyIds = ['OBJID_SELECT_BASE_LEVEL', 'OBJID_SELECT_JOB_LEVEL', ...statusIds];
+pageKeyIds.forEach(id => attachPageKeyListenerToInput(document.getElementById(id)));

@@ -16,6 +16,8 @@
  */
 
 import { StAllCalcCore } from "./stallcalc.js";
+import { OnDomReady } from "../runtime/dom-ready.js";
+import { BuildJobSelectOptions } from "../ui/job-select.js";
 import { CAttackMethodAreaComponentManager } from "../battle/CAttackMethodAreaComponentManager.js";
 import { CBattleQuickControlAreaComponentManager } from "../battle/CBattleQuickControlAreaComponentManager.js";
 import { calc } from "../battle/battlecalc.js";
@@ -151,116 +153,116 @@ export function StAllCalc(){
 
 const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 
-// 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. DOMContentLoaded を指定する必要がある.
-document.addEventListener('DOMContentLoaded', () => {
-	console.log("DOM Content is loaded.");
-	// YAMLデータのロードが完了していたら発火
-	waitForDataLoaded().then(() => {
-		console.log("All data is loaded.");
+// 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. OnDomReady で DOMContentLoaded 相当のタイミングを取る.
+OnDomReady(() => {
+	// 職業選択セレクトボックスの構築（changeJobSettings()/loadFromURL() が値を設定する前に必須）
+	const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
+	if (selectJobElem) {
+		BuildJobSelectOptions(selectJobElem);
+	}
 
-		// 計算機設定の読み込み
-		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-			CSaveController.LoadSettingFromLocalStorageMIG();
+	// 計算機設定の読み込み
+	if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
+		CSaveController.LoadSettingFromLocalStorageMIG();
+	}
+
+	document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
+	document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
+
+	for (var i=0; i<=9; i++) {
+		document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
+	}
+
+	CMonsterMapAreaComponentManager.RebuildControls();
+
+	//--------------------------------
+	// モンスター手入力設定欄の初期化
+	//--------------------------------
+	set_g_objMobConfInput(new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput));
+	g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
+
+	//--------------------------------
+	// ステートフルデータの初期化
+	//--------------------------------
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_TOP);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_MID);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHIELD);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_BODY);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOULDER);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOES);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_1);
+	UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_2);
+
+	if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
+		CSaveController.LoadFromLocalStorageMIG();
+		// 画面上部セーブ選択セレクトボックスの初期化
+		const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
+		HtmlRemoveAllChild(objSelect)
+		for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
+			const optText = CSaveController.getDisplayName(idx);
+			HtmlCreateElementOption(idx, optText, objSelect);
 		}
-
-		document.calcForm.A_SpeedPOT.options[0] = new Option(SpeedPotName[0],0);
-		document.calcForm.A_SpeedPOT.options[1] = new Option(SpeedPotName[1],1);
-
-		for (var i=0; i<=9; i++) {
-			document.calcForm.A_Weapon_zokusei.options[i] = new Option(EnName[i],i);
+		// 確認ダイアログの有効化スイッチを初期化
+		if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
+			document.getElementById("OBJID_SWITCH_CONFIRM_DIALOG")?.click();
 		}
+	}
+	else {
+		LoadSaveDataToCalculator();
+	}
 
-		CMonsterMapAreaComponentManager.RebuildControls();
+	/**
+	 * 新形式を前提としたロード処理
+	 * 初代の a 形式
+	 * 避難所の b 形式
+	 * Hub の c 形式
+	 * どれも読み込めることを確認
+	 */
+	// URL引数のチェック
+	const query = window.location.search;
+	const param = query.replace("?", "");
+	const patternRtx = /^rtx[0-9]+:/
 
-		//--------------------------------
-		// モンスター手入力設定欄の初期化
-		//--------------------------------
-		set_g_objMobConfInput(new CMobConfInputAreaComponentManager(g_dataManagerMobConfInput));
-		g_objMobConfInput.BuildUpSelectArea(document.getElementById("OBJID_TD_MOB_CONF_INPUT_NEW"), false);
+	if (param.length > 0 && !patternRtx.test(param)) {
+		// ラトリオ独自のロード処理
+		CSaveController.loadFromURL(param);
+	} else {
+		// URLロードがない場合は、ノービスを初期ジョブとして設定
+		// job.yaml 廃止によりセレクトボックスの value は mig ID の数値文字列
+		changeJobSettings(String(JOB_ID_NOVICE));
+		// 検索可能ドロップダウンリストのロード
+		LoadTomSelect();
+	}
 
-		//--------------------------------
-		// ステートフルデータの初期化
-		//--------------------------------
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ARMS_LEFT);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_TOP);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_MID);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_HEAD_UNDER);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHIELD);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_BODY);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOULDER);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_SHOES);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_1);
-		UpdateStatefullDataOnChangeEquip(EQUIP_REGION_ID_ACCESSORY_2);
+	// 再計算
+	CalcStatusPoint(true);
+	calc();
 
-		if (document.getElementById("OBJID_SAVE_BLOCK_MIG")) {
-			CSaveController.LoadFromLocalStorageMIG();
-			// 画面上部セーブ選択セレクトボックスの初期化
-			const objSelect = document.getElementById("OBJID_SELECT_SAVE_DATA_MIG");
-			HtmlRemoveAllChild(objSelect)
-			for (let idx = 0; idx < CSaveController.CHARA_DATA_COUNT; idx++) {
-				const optText = CSaveController.getDisplayName(idx);
-				HtmlCreateElementOption(idx, optText, objSelect);
-			}
-			// 確認ダイアログの有効化スイッチを初期化
-			if (CSaveController.getSettingProp(CSaveDataConst.propNameConfirmDialogSwitch) == 1) {
-				document.getElementById("OBJID_SWITCH_CONFIRM_DIALOG")?.click();
-			}
-		}
-		else {
-			LoadSaveDataToCalculator();
-		}
+	/**
+	 * カスタム表示の状態を復元する
+	 * 装備・ステータスに依存するカスタム表示欄があるので再計算後に実施する
+	 */
+	if (CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch) === 1n) {
+		// カスタム表示を開く
+		document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").click();
+		// 中身を復元する
+		CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
+	}
+	/**
+	 * アイテム情報の状態を復元する
+	 */
+	if (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoSwitch) === 1n) {
+		// カスタム表示を開く
+		document.getElementById("OBJID_ITEM_INFO_EXTRACT_CHECKBOX").click();
+		// 中身を復元する
+		CItemInfoManager.LoadFromLocalStorage();
+	}
 
-		/**
-		 * 新形式を前提としたロード処理
-		 * 初代の a 形式
-		 * 避難所の b 形式
-		 * Hub の c 形式
-		 * どれも読み込めることを確認
-		 */
-		// URL引数のチェック
-		const query = window.location.search;
-		const param = query.replace("?", "");
-		const patternRtx = /^rtx[0-9]+:/
-
-		if (param.length > 0 && !patternRtx.test(param)) {
-			// ラトリオ独自のロード処理
-			CSaveController.loadFromURL(param);
-		} else {
-			// URLロードがない場合は、ノービスを初期ジョブとして設定
-			// job.yaml 廃止によりセレクトボックスの value は mig ID の数値文字列
-			changeJobSettings(String(JOB_ID_NOVICE));
-			// 検索可能ドロップダウンリストのロード
-			LoadTomSelect();
-		}
-
-		// 再計算
-		CalcStatusPoint(true);
-		calc();
-
-		/**
-		 * カスタム表示の状態を復元する
-		 * 装備・ステータスに依存するカスタム表示欄があるので再計算後に実施する
-		 */
-		if (CSaveController.getSettingProp(CSaveDataConst.propNameFloatingInfoAreaSwitch) === 1n) {
-			// カスタム表示を開く
-			document.getElementById("OBJID_FLOATING_INFO_AREA_EXTRACT_CHECKBOX").click();
-			// 中身を復元する
-			CFloatingInfoAreaComponentManager.LoadFromLocalStorage();
-		}
-		/**
-		 * アイテム情報の状態を復元する
-		 */
-		if (CSaveController.getSettingProp(CSaveDataConst.propNameItemInfoSwitch) === 1n) {
-			// カスタム表示を開く
-			document.getElementById("OBJID_ITEM_INFO_EXTRACT_CHECKBOX").click();
-			// 中身を復元する
-			CItemInfoManager.LoadFromLocalStorage();
-		}
-
-		// エンチャントサーチのロード
-		new enchSearch();
-	});
+	// エンチャントサーチのロード
+	new enchSearch();
 });
 
 export function LoadSaveDataToCalculator () {
