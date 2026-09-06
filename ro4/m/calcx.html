@@ -11,6 +11,14 @@
 	<link rel="stylesheet" href="../../assets/calcx-chrome.css" type="text/css">
 	<link rel="stylesheet" href="../../assets/common.css" type="text/css">
 
+	<!-- エンジンエントリの import 深部（3〜4階層）にある巨大データファイル。
+	     単一エントリ化で発見が遅れる分を先読みで取り戻す -->
+	<link rel="modulepreload" href="../../engine/equip/item.dat.js">
+	<link rel="modulepreload" href="../../engine/equip/card.dat.js">
+	<link rel="modulepreload" href="../../engine/monster/monster.dat.js">
+	<link rel="modulepreload" href="../../engine/chara/chara.js">
+	<link rel="modulepreload" href="../../engine/data/mig.enchlist.dat.js">
+
 	<!-- アイコン -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 
