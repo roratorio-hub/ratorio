@@ -34,10 +34,10 @@ describe('zstd-codec.js', () => {
             expect(decoded).toBe('Hello World');
         });
 
-        it('URLセーフなBase64（-と_を含む）に対応する', () => {
-            const urlSafeBase64 = 'YWJjLWRlZl9naGk'; // "abc-def_ghi" without padding
-            const result = base64ToUint8Array(urlSafeBase64);
-            expect(result).toBeInstanceOf(Uint8Array);
+        it('URLセーフなBase64（-と_）をパディング補完付きでデコードできる', () => {
+            // [0xfb,0xff,0xbf,0x00] は標準Base64で "+/+/AA=="。URLセーフ化＋パディング除去で "-_-_AA"。
+            // セーブデータURL（dx形式）は実際に - と _ を含むため、この復元は全セーブで効いている。
+            expect(base64ToUint8Array('-_-_AA')).toEqual(new Uint8Array([0xfb, 0xff, 0xbf, 0x00]));
         });
 
         it('パディングが不足している場合でも変換できる', () => {
@@ -190,11 +190,6 @@ describe('zstd-codec.js', () => {
             expect(consoleErrorSpy).toHaveBeenCalled();
 
             consoleErrorSpy.mockRestore();
-        });
-
-        it('zstdCompressAsyncでエラーが発生した場合、エラーが送出される', async () => {
-            const data = new TextEncoder().encode('test');
-            await expect(zstdCompressAsync(data)).resolves.not.toThrow();
         });
     });
 });
