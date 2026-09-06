@@ -22,8 +22,6 @@ vi.mock('@engine/monster/monster.dat.js', async (importActual) => {
 import '@engine/data/mig.job.dat.js';
 import {
     buildSaveDataUnitsFromState,
-    isMigratedSaveDataUnit,
-    MIGRATED_SAVE_DATA_UNITS,
 } from '@engine/savedata/savedata-collect.js';
 import { CSaveDataConst } from '@engine/savedata/CSaveDataConst.js';
 import { n_A_LearnedSkill } from '@engine/skill/learnedskill.js';
@@ -128,37 +126,7 @@ afterEach(() => {
 });
 
 describe('savedata-collect.js', () => {
-    describe('isMigratedSaveDataUnit', () => {
-        it('type だけの指定は同じ type のユニットすべてに一致する', () => {
-            const versionEntry = MIGRATED_SAVE_DATA_UNITS.find((e) => e.dataKind === undefined && e.instanceKind === undefined)!;
-            expect(isMigratedSaveDataUnit({ type: String(versionEntry.type) })).toBe(true);
-        });
-
-        it('dataKind 指定は一致する dataKind のユニットだけに一致する', () => {
-            const costumeEntry = MIGRATED_SAVE_DATA_UNITS.find((e) => e.dataKind !== undefined)!;
-            expect(isMigratedSaveDataUnit({ type: String(costumeEntry.type), dataKind: String(costumeEntry.dataKind) })).toBe(true);
-            // 実在するdataKind値（item/costume/shadow）に依存せず、存在しない値で不一致になることを見る
-            // （B-33 B2-2でEQUIP_REGIONSの全dataKindが移植済みになったため、特定の「未移植dataKind」は
-            // もう存在しない。フィルタが機能していること自体を検証する）。
-            const bogusDataKind = -9999;
-            expect(isMigratedSaveDataUnit({ type: String(costumeEntry.type), dataKind: String(bogusDataKind) })).toBe(false);
-        });
-
-        it('未移植の type には一致しない', () => {
-            expect(isMigratedSaveDataUnit({ type: '999999' })).toBe(false);
-        });
-    });
-
     describe('buildSaveDataUnitsFromState: 共通', () => {
-        it('各ユニットの type が isMigratedSaveDataUnit で真になる（B-33 B2-2で装備・シャドウ装備・プレイヤー状態異常も統合済みのため例外なし）', () => {
-            const units = buildSaveDataUnitsFromState();
-            for (const unit of units) {
-                const parsedMapObj: Record<string, unknown> = {};
-                unit.parsedMap.forEach((value: unknown, key: string) => { parsedMapObj[key] = value; });
-                expect(isMigratedSaveDataUnit(parsedMapObj)).toBe(true);
-            }
-        });
-
         it('衣装の装備位置ユニットは下段=defID12固定・他部位は0', () => {
             const units = buildSaveDataUnitsFromState();
             const costume = units.find((u: any) => Number(u.getProp(CSaveDataConst.propNameDataKind)) === CSaveDataConst.eqpRgnKindCostume)!;

@@ -253,70 +253,6 @@ function fillConfigValuesFromMigArray(unit, UnitClass, prefixCount, migArray) {
 }
 
 /**
- * builder が現在対応しているユニットの識別子一覧（Phase 進行に応じて増える）。
- * `EQUIP_REGIONS`/`EQUIPABLE`/`CHARA_CONF_SPECIALIZE` のように同一 type で複数の「種別」を
- * 持つ型は `dataKind`/`instanceKind` で個別に指定する（未指定なら type 全体が対象）。
- * 差分オラクル（`savedata-collect.test.ts` / `tests/integration/savedata-collect.test.ts`）が
- * 「この Phase までに移植済みのユニットだけを比較する」ために `isMigratedSaveDataUnit()` 経由で参照する。
- */
-export const MIGRATED_SAVE_DATA_UNITS = Object.freeze([
-    // Phase A1
-    { type: SAVE_DATA_UNIT_TYPE_VERSION },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA },
-    { type: SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, dataKind: CSaveDataConst.eqpRgnKindCostume },
-    { type: SAVE_DATA_UNIT_TYPE_LEARNED_SKILLS },
-    { type: SAVE_DATA_UNIT_TYPE_EQUIP_ARROW },
-    // Phase A2
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_BUFF },
-    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_SELF },
-    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_1ST },
-    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_2ND },
-    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_3RD },
-    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_4TH },
-    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_MUSIC },
-    { type: SAVE_DATA_UNIT_TYPE_SKILL_BUFF_GUILD },
-    { type: SAVE_DATA_UNIT_TYPE_ITEM_BUFF },
-    { type: SAVE_DATA_UNIT_TYPE_TIME_BUFF },
-    { type: SAVE_DATA_UNIT_TYPE_AUTO_SPELLS },
-    // Phase A3
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_BASIC },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindAttackPhysical },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindAttackMagical },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindAttackAny },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPECIALIZE, instanceKind: CSaveDataConst.specKindDefencekAny },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SKILL },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_CONF_SPEC_BASIC },
-    // Phase A4
-    { type: SAVE_DATA_UNIT_TYPE_MOB },
-    { type: SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER },
-    { type: SAVE_DATA_UNIT_TYPE_MOB_CONF_PLAYER2 },
-    { type: SAVE_DATA_UNIT_TYPE_MOB_CONF_INPUT },
-    { type: SAVE_DATA_UNIT_TYPE_MOB_BUFF },
-    { type: SAVE_DATA_UNIT_TYPE_MOB_DEBUFF },
-    { type: SAVE_DATA_UNIT_TYPE_ATTACK_CONF },
-    // Phase B2-2（装備・シャドウ装備・プレイヤー状態異常。旧CSaveDataManager#collectData*()を統合）
-    { type: SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, dataKind: CSaveDataConst.eqpRgnKindItem },
-    { type: SAVE_DATA_UNIT_TYPE_EQUIP_REGIONS, dataKind: CSaveDataConst.eqpRgnKindShadow },
-    { type: SAVE_DATA_UNIT_TYPE_EQUIPABLE },
-    { type: SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF },
-]);
-
-/**
- * JSON化済みユニット1件分の parsedMap が `MIGRATED_SAVE_DATA_UNITS` のいずれかに一致するかを判定する。
- * @param {{type: string|number, dataKind?: string|number, instanceKind?: string|number}} parsedMap
- * @returns {boolean}
- */
-export function isMigratedSaveDataUnit(parsedMap) {
-    const type = Number(parsedMap.type);
-    return MIGRATED_SAVE_DATA_UNITS.some((entry) => {
-        if (entry.type !== type) return false;
-        if (entry.dataKind !== undefined && Number(parsedMap.dataKind) !== entry.dataKind) return false;
-        if (entry.instanceKind !== undefined && Number(parsedMap.instanceKind) !== entry.instanceKind) return false;
-        return true;
-    });
-}
-
-/**
  * DOM/グローバル/コンポーネントから、セーブに必要な値をすべて読み取る（副作用ゼロ）.
  * 戻り値は `save-model.js` の形（プレーンなスナップショット）。配列はすべてコピーする
  * （ライブ配列への参照を持たせない——`buildSaveDataUnits()` 側で誤って共有・変異させないため）。
@@ -1031,7 +967,7 @@ function buildEquipUnits(model) {
  * 配列レベルで行う除去と同じ扱い（例: 習得スキルが1つも無いキャラクターでは
  * LEARNED_SKILLS ユニット自体が最終出力に含まれない）。
  * @param {object} model `extractSaveModelFromState()` の戻り値
- * @returns {Array} `MIGRATED_SAVE_DATA_UNITS` に含まれるユニットの配列
+ * @returns {Array} セーブデータユニットの配列
  */
 export function buildSaveDataUnits(model) {
     const equip = buildEquipUnits(model);
@@ -1083,7 +1019,7 @@ export function buildSaveDataUnits(model) {
 /**
  * 状態からセーブデータユニット配列を直接組み立てる.
  * `extractSaveModelFromState()` → `buildSaveDataUnits()` の薄いラッパ（従来のエントリポイント）。
- * @returns {Array} `MIGRATED_SAVE_DATA_UNITS` に含まれるユニットの配列
+ * @returns {Array} セーブデータユニットの配列
  */
 export function buildSaveDataUnitsFromState() {
     return buildSaveDataUnits(extractSaveModelFromState());
