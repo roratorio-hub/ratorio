@@ -1,10 +1,4 @@
-/**
- * workspace/src/funcZstd.ts のユニットテスト
- *
- * Zstd圧縮・展開・Base64変換機能のテスト
- */
-
-import { describe, it, expect, beforeAll, vi } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import {
     initializeZstd,
     base64ToUint8Array,
@@ -13,10 +7,9 @@ import {
     zstdDecompressString,
     zstdCompressAsync,
     zstdDecompressAsync,
-} from '../../src/funcZstd';
+} from '@engine/savedata/zstd-codec.js';
 
-describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
-
+describe('zstd-codec.js', () => {
     describe('initializeZstd', () => {
         it('Zstdインスタンスの初期化に成功する', async () => {
             const zstd = await initializeZstd();
@@ -42,8 +35,6 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
         });
 
         it('URLセーフなBase64（-と_を含む）に対応する', () => {
-            // 標準的なBase64: "abc+def/ghi="
-            // URLセーフ: "abc-def_ghi"
             const urlSafeBase64 = 'YWJjLWRlZl9naGk'; // "abc-def_ghi" without padding
             const result = base64ToUint8Array(urlSafeBase64);
             expect(result).toBeInstanceOf(Uint8Array);
@@ -70,7 +61,6 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
         it('URLセーフなBase64（-と_）で返す', () => {
             const uint8Array = new Uint8Array([0xff, 0xfe, 0xfd]);
             const base64 = uint8ArrayToBase64(uint8Array);
-            // URLセーフであることを確認（+と/が含まれないこと）
             expect(/[+/]/.test(base64)).toBe(false);
         });
 
@@ -86,7 +76,6 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
             const originalBase64 = 'SGVsbG8gV29ybGQ'; // "Hello World"
             const uint8Array = base64ToUint8Array(originalBase64);
             const convertedBase64 = uint8ArrayToBase64(uint8Array);
-            // 同じデータになることを確認
             const originalDecoded = base64ToUint8Array(originalBase64);
             const convertedDecoded = base64ToUint8Array(convertedBase64);
             expect(originalDecoded).toEqual(convertedDecoded);
@@ -105,10 +94,9 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
         });
 
         it('デフォルト圧縮レベル（22）で圧縮できる', async () => {
-            const original = 'a'.repeat(1000); // 長いテキスト
+            const original = 'a'.repeat(1000);
             const compressed = await zstdCompressString(original);
             expect(compressed).not.toBeNull();
-            // 圧縮後のサイズが元のサイズより小さいことを確認
             expect(compressed!.length).toBeLessThan(original.length);
         });
 
@@ -118,7 +106,6 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
             const compressed22 = await zstdCompressString(original, 22);
             expect(compressed1).not.toBeNull();
             expect(compressed22).not.toBeNull();
-            // 両方圧縮できることを確認
             expect(compressed1!.length).toBeGreaterThan(0);
             expect(compressed22!.length).toBeGreaterThan(0);
         });
@@ -169,15 +156,11 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
 
         it('不正なデータの展開はnullを返す', async () => {
             const invalidData = new Uint8Array([255, 254, 253]);
-
-            // console.errorがスパイされて、エラーメッセージが出力される
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => { });
 
             const decompressed = await zstdDecompressAsync(invalidData);
 
-            // エラーがハンドルされてnullが返される
             expect(decompressed).toBeNull();
-            // console.errorが呼ばれていることを確認
             expect(consoleErrorSpy).toHaveBeenCalled();
 
             consoleErrorSpy.mockRestore();
@@ -187,15 +170,11 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
     describe('圧縮・展開のエラーハンドリング', () => {
         it('zstdDecompressStringで無効データを渡すとnullを返す', async () => {
             const invalidData = new Uint8Array([0xff, 0xfe, 0xfd, 0xfc]);
-
-            // console.errorがスパイされて、エラーメッセージが出力される
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => { });
 
             const result = await zstdDecompressString(invalidData);
 
-            // エラーがハンドルされてnullが返される
             expect(result).toBeNull();
-            // console.errorが呼ばれていることを確認
             expect(consoleErrorSpy).toHaveBeenCalled();
 
             consoleErrorSpy.mockRestore();
@@ -203,21 +182,17 @@ describe('funcZstd.ts - Zstd圧縮・展開機能', () => {
 
         it('zstdDecompressAsyncで無効データを渡すとnullを返す', async () => {
             const invalidData = new Uint8Array([255, 254, 253]);
-
             const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => { });
 
             const decompressed = await zstdDecompressAsync(invalidData);
 
-            // エラーがハンドルされてnullが返される
             expect(decompressed).toBeNull();
-            // console.errorが呼ばれていることを確認
             expect(consoleErrorSpy).toHaveBeenCalled();
 
             consoleErrorSpy.mockRestore();
         });
 
         it('zstdCompressAsyncでエラーが発生した場合、エラーが送出される', async () => {
-            // 通常のUint8Arrayではエラーが生じない想定
             const data = new TextEncoder().encode('test');
             await expect(zstdCompressAsync(data)).resolves.not.toThrow();
         });

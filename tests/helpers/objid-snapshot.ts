@@ -145,6 +145,9 @@ export async function expandAllSections(page: Page): Promise<void> {
 // 本番デプロイ完了後は撤去すること。
 const INTENTIONAL_DIVERGENCE_IDS = new Set<string>([
     'OBJID_BUTTON_SIMULATE_CAST_TIME', 'OBJID_PROGRESS_SIMULATE_CAST_TIME',
+    // optInSavedata（データ提供ダイアログ）撤去に伴いローカルから恒久的に削除済み。
+    // 送信先の外部サーバーが停止済みのため撤去した機能で、本番の旧バージョンにのみ残る。
+    'OBJID_BUTTON_OPT_IN_SAVEDATA',
 ]);
 
 // calcForm の name 属性ベースで同じ理由により除外するもの（同じく現在は空）。

@@ -16,6 +16,7 @@
 import { StAllCalcCore } from "./stallcalc.js";
 import { OnDomReady } from "../runtime/dom-ready.js";
 import { BuildJobSelectOptions } from "../ui/job-select.js";
+import { initializeZstd } from "../savedata/zstd-codec.js";
 import { CAttackMethodAreaComponentManager } from "../battle/CAttackMethodAreaComponentManager.js";
 import { CBattleQuickControlAreaComponentManager } from "../battle/CBattleQuickControlAreaComponentManager.js";
 import { calc } from "../battle/battlecalc.js";
@@ -151,7 +152,11 @@ export function StAllCalc(){
 const EnName =["なし","水","地","火","風","毒","聖","闇","念","死"];
 
 // 他の関数実行に先駆けて初期化される必要があるので load だとタイミングが遅い. OnDomReady で DOMContentLoaded 相当のタイミングを取る.
-OnDomReady(() => {
+OnDomReady(async () => {
+	// zstd（zstd-codec.js）の初期化完了を待つ。CSaveController のセーブURL読み込みが
+	// zstdDecompressSync を同期呼び出しするため、未初期化のまま呼ぶと例外になる。
+	await initializeZstd();
+
 	// 職業選択セレクトボックスの構築（changeJobSettings()/loadFromURL() が値を設定する前に必須）
 	const selectJobElem = document.getElementById("OBJID_SELECT_JOB");
 	if (selectJobElem) {

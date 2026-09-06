@@ -1,4 +1,7 @@
 import { CSaveDataConverter } from "./CSaveDataConverter.js";
+import {
+    initializeZstd, zstdCompressSync, zstdDecompressSync, base64ToUint8Array, uint8ArrayToBase64,
+} from "./zstd-codec.js";
 import { CSingletonMapper } from "./CSingletonMapper.js";
 import { CMultiValueMapper } from "./CMultiValueMapper.js";
 import { CSaveDataPropInfo } from "./CSaveDataPropInfo.js";
@@ -399,7 +402,7 @@ export class CSaveController {
 
 			const inputBytes = this.stringToByteArray(jsonString);
 
-			const compressed = window.zstdCompressSync(inputBytes);
+			const compressed = zstdCompressSync(inputBytes);
 			console.debug('[encodeToURL]', 'Compressed Data Size:', compressed.length);
 			const base64String = uint8ArrayToBase64(compressed);
 			return `dx${base64String}`;
@@ -717,7 +720,7 @@ export class CSaveController {
 			const compressedData = base64ToUint8Array(urlText.slice(2));
 
 			// Zstd 展開
-			const decompressedData = window.zstdDecompressSync(compressedData);
+			const decompressedData = zstdDecompressSync(compressedData);
 
 			const parsedDecompressedData = JSON.parse(new TextDecoder().decode(decompressedData));
 

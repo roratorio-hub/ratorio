@@ -12,7 +12,6 @@
         "pnpm": ">=10.0.0"
     },
     "devDependencies": {
-        "@hpcc-js/wasm-zstd": "^1.12.0",
         "@types/node": "^25.3.0",
         "@vitest/coverage-v8": "^4.0.18",
         "@vitest/ui": "^4.0.18",

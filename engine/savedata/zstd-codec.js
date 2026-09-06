@@ -1,12 +1,15 @@
-import { Zstd } from "@hpcc-js/wasm-zstd";
+import { Zstd } from "../../lib/wasm-zstd/index.js";
 
 // Zstd インスタンスのキャッシュ（初期化済みインスタンス）
-let zstdInstance: Zstd | null = null;
+let zstdInstance = null;
 // 初期化中の Promise をキャッシュ（並列呼び出しでも 1 回だけロード）
-let zstdInstancePromise: Promise<Zstd> | null = null;
+let zstdInstancePromise = null;
 
-// Zstdインスタンスの初期化（統一された初期化関数）
-export async function initializeZstd(): Promise<Zstd> {
+/**
+ * Zstd インスタンスの初期化（統一された初期化関数）。
+ * @returns {Promise<Zstd>}
+ */
+export async function initializeZstd() {
     // 既に初期化済みならそのまま返す
     if (zstdInstance) {
         return zstdInstance;
@@ -16,7 +19,7 @@ export async function initializeZstd(): Promise<Zstd> {
         // 初期化中の Promise をキャッシュし、失敗時はキャッシュをリセットして再試行可能にする
         zstdInstancePromise = Zstd.load()
             .then((instance) => {
-                zstdInstance = instance;  // 初期化完了後、インスタンスをキャッシュ
+                zstdInstance = instance; // 初期化完了後、インスタンスをキャッシュ
                 return instance;
             })
             .catch((err) => {
@@ -28,27 +31,27 @@ export async function initializeZstd(): Promise<Zstd> {
     return zstdInstancePromise;
 }
 
-// ファイル読み込み
-export async function loadFileAsUint8Array(url: string): Promise<Uint8Array> {
-    const response = await fetch(url);
-    return new Uint8Array(await response.arrayBuffer());
-}
-
-// zstdで展開
-export async function zstdDecompressAsync(compressed: Uint8Array): Promise<Uint8Array | null> {
+/**
+ * zstdで展開する。
+ * @param {Uint8Array} compressed
+ * @returns {Promise<Uint8Array | null>}
+ */
+export async function zstdDecompressAsync(compressed) {
     try {
         const zstd = await initializeZstd();
-        // zstd.decompress() で zstd データを展開
-        const result = await zstd.decompress(compressed);
-        return result;
+        return zstd.decompress(compressed);
     } catch (err) {
         console.error("Error decompressing:", err);
         return null;
     }
 }
 
-// 文字列をzstdで展開
-export async function zstdDecompressString(compressed: Uint8Array): Promise<string | null> {
+/**
+ * 文字列をzstdで展開する。
+ * @param {Uint8Array} compressed
+ * @returns {Promise<string | null>}
+ */
+export async function zstdDecompressString(compressed) {
     const decompressed = await zstdDecompressAsync(compressed);
     if (decompressed) {
         const decoder = new TextDecoder();
@@ -57,28 +60,40 @@ export async function zstdDecompressString(compressed: Uint8Array): Promise<stri
     return null;
 }
 
-// zstdで圧縮
-export async function zstdCompressAsync(inputBytes: Uint8Array, level: number = 22): Promise<Uint8Array | null> {
+/**
+ * zstdで圧縮する。
+ * @param {Uint8Array} inputBytes
+ * @param {number} [level=22]
+ * @returns {Promise<Uint8Array | null>}
+ */
+export async function zstdCompressAsync(inputBytes, level = 22) {
     try {
         const zstd = await initializeZstd();
-        // zstd.compress() でzstd圧縮
-        const result = await zstd.compress(inputBytes, level);
-        return result;
+        return zstd.compress(inputBytes, level);
     } catch (err) {
         console.error("Error compressing:", err);
         throw err; // エラーを呼び出し元に伝播させる
     }
 }
 
-// 文字列をzstdで圧縮
-export async function zstdCompressString(input: string, level: number = 22): Promise<Uint8Array | null> {
+/**
+ * 文字列をzstdで圧縮する。
+ * @param {string} input
+ * @param {number} [level=22]
+ * @returns {Promise<Uint8Array | null>}
+ */
+export async function zstdCompressString(input, level = 22) {
     const encoder = new TextEncoder();
     const inputBytes = encoder.encode(input);
     return await zstdCompressAsync(inputBytes, level);
 }
 
-// Base64 → Uint8Array（URLセーフに対応）
-export function base64ToUint8Array(base64: string): Uint8Array {
+/**
+ * Base64 → Uint8Array（URLセーフに対応）。
+ * @param {string} base64
+ * @returns {Uint8Array}
+ */
+export function base64ToUint8Array(base64) {
     // パディングの補完
     let paddedBase = base64.replace(/-/g, '+').replace(/_/g, '/');
     const padding = paddedBase.length % 4;
@@ -94,8 +109,12 @@ export function base64ToUint8Array(base64: string): Uint8Array {
     return bytes;
 }
 
-// Uint8Array → Base64（URLセーフ対応）
-export function uint8ArrayToBase64(bytes: Uint8Array): string {
+/**
+ * Uint8Array → Base64（URLセーフ対応）。
+ * @param {Uint8Array} bytes
+ * @returns {string}
+ */
+export function uint8ArrayToBase64(bytes) {
     let binary = '';
     for (let i = 0; i < bytes.length; i++) {
         binary += String.fromCharCode(bytes[i]);
@@ -107,34 +126,37 @@ export function uint8ArrayToBase64(bytes: Uint8Array): string {
 }
 
 /**
- * 同期展開（初期化後のみ使用可）
+ * 同期展開（初期化後のみ使用可）。
+ * @param {Uint8Array} input
+ * @returns {Uint8Array}
  */
-function zstdDecompressSync(input: Uint8Array): Uint8Array {
+export function zstdDecompressSync(input) {
     if (!zstdInstance) {
-        throw new Error("zstd not initialized: call initZstdOnce()");
+        throw new Error("zstd not initialized: call initializeZstd() first");
     }
     return zstdInstance.decompress(input);
 }
 
 /**
- * 同期圧縮（初期化後のみ使用可）
+ * 同期圧縮（初期化後のみ使用可）。
+ * @param {Uint8Array} input
+ * @param {number} [level=22]
+ * @returns {Uint8Array}
  */
-function zstdCompressSync(input: Uint8Array, level: number = 22): Uint8Array {
+export function zstdCompressSync(input, level = 22) {
     if (!zstdInstance) {
-        throw new Error("zstd not initialized: call initZstdOnce()");
+        throw new Error("zstd not initialized: call initializeZstd() first");
     }
     return zstdInstance.compress(input, level);
 }
 
-// ブラウザ環境でのみ初期化を実行
+// モジュール評価時に初期化を開始する。CSaveController.js からの静的 import 経由で
+// engine の module graph 読み込み時点から走るため、DOMContentLoaded 時点（セーブURL
+// 読み込み等が zstdDecompressSync/zstdCompressSync を呼ぶ最速のタイミング）には
+// 初期化が完了している。ブラウザ環境でのみ実行する（vitest 等の node 環境では
+// テスト側が必要に応じて initializeZstd() を明示的に呼ぶ）。
 if (typeof window !== 'undefined') {
-    initializeZstd().then(() => {
-        console.log('Zstd initialized successfully.');
-    }).catch(err => {
+    initializeZstd().catch((err) => {
         console.error("zstd initialization failed:", err);
     });
-    (window as any).zstdDecompressSync = zstdDecompressSync;
-    (window as any).zstdCompressSync = zstdCompressSync;
-    (window as any).base64ToUint8Array = base64ToUint8Array;
-    (window as any).uint8ArrayToBase64 = uint8ArrayToBase64;
 }
