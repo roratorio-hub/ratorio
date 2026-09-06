@@ -76,12 +76,18 @@ describe('generateImage() の出力が画面表示と一致する（マージ前
             await page.goto(`${baseUrl}/ro4/m/calcx.html${q}`, { waitUntil: 'networkidle', timeout: 60000 });
             // 固定700ms待機は、フルスイート実行時の負荷次第でページ読み込み後の初回自動計算が
             // 間に合わないことがあった（saveimage-old[5]のflake。残件台帳 B-13）。
-            // generateImage() が読む g_extraInfoDataBridge.charaData が実際に埋まるまで待つ。
+            // generateImage() が読む g_extraInfoDataBridge.charaData に加え、
+            // これから呼び出す reg.generateImage 自体の登録完了も条件待機に含める
+            // （フルスイート負荷下で reg.generateImage is not a function が発生した実例あり。
+            // memory: project-calc-headless-test-flake「1つの readiness signal だけでは
+            // 不十分」の教訓を適用）。
             await page.waitForFunction(async () => {
                 const dynamicImport = new Function('specifier', 'return import(specifier);') as
                     (specifier: string) => Promise<Record<string, any>>;
                 const mod = await dynamicImport('/engine/ui/CExtraInfoDataBridge.js');
-                return mod.g_extraInfoDataBridge?.charaData != null;
+                const reg = (globalThis as any)._ratorioReg;
+                return mod.g_extraInfoDataBridge?.charaData != null
+                    && typeof reg?.generateImage === 'function';
             });
 
             const result = await page.evaluate(async () => {
