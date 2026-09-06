@@ -314,7 +314,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			set_g_bDefinedDamageIntervals(true);
 			n_Delay[5] = 450;	// ダメージ間隔
 			// 「3hitで凍った場合のダメージを算出したいニーズ」を切り捨てない苦肉の策でオブジェクト存続時間を調整する
-			n_Delay[6] = 450 * attackMethodConfArray[0].GetOptionValue(0);;	// オブジェクト存続時間
+			n_Delay[6] = 450 * GetAttackMethodOptionValue(attackMethodConfArray, 0, 3);	// オブジェクト存続時間
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率

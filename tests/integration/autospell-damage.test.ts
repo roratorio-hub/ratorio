@@ -57,12 +57,15 @@ async function gotoFixture(query: string) {
 
 /**
  * フィクスチャのキャラクターに attackMethod / autoSpell を上書きしたモデルで計算し、
- * 指定した結果配列（'active' | 'append'）の [0] 番目の平均ダメージ（非クリティカル）を返す。
+ * 指定した結果配列（'active' | 'append'）から pickSkillId のスキル（省略時は [0] 番目）の
+ * 平均ダメージ（非クリティカル）を返す。
  */
 async function calcAveDamage(query: string, patch: {
     attackMethod: { skillId: number; skillLv: number; optionValueArray: number[] };
     autoSpellSlot0?: { asId: number; probIndex: number };
     resultKind: 'active' | 'append';
+    /** 結果配列から拾うスキルID（省略時は [0] 番目）。 */
+    pickSkillId?: number;
 }) {
     const { context, page } = await gotoFixture(query);
     try {
@@ -86,9 +89,16 @@ async function calcAveDamage(query: string, patch: {
                 model.autoSpell[300 + 0] = null;
             }
             const result = reg.calcFromModel(model);
-            const r = p.resultKind === 'active'
-                ? (result.GetActiveResultCount() > 0 ? result.GetActiveResult(0) : null)
-                : (result.GetAppendResultCount() > 0 ? result.GetAppendResult(0) : null);
+            const count = p.resultKind === 'active' ? result.GetActiveResultCount() : result.GetAppendResultCount();
+            const at = (i: number) => (p.resultKind === 'active' ? result.GetActiveResult(i) : result.GetAppendResult(i));
+            let r = null;
+            if (p.pickSkillId !== undefined) {
+                for (let i = 0; i < count; i++) {
+                    if (at(i).skillId === p.pickSkillId) { r = at(i); break; }
+                }
+            } else if (count > 0) {
+                r = at(0);
+            }
             // dmgUnitArray[0] = [非クリ最小, 非クリ平均, 非クリ最大]（CBattleCalcResult.js）
             return { skillId: r?.skillId, skillLv: r?.skillLv, ave: r ? r.dmgUnitArray[0][1] : null };
         }, patch);
@@ -117,14 +127,14 @@ describe('オートスペル発動時のダメージが、手動選択時と一�
         });
         expect(auto.skillId).toBe(497);
         expect(auto.skillLv).toBe(10);
-        expect(auto.ave).not.toBeNull();
+        expect(auto.ave).toBeGreaterThan(0);
 
         // SKILL_ID_AIMED_BOLT = 497 を攻撃手段で直接選択（Lv10・オプション「通常計算」=1）。
         const manual = await calcAveDamage(query, {
             attackMethod: { skillId: 497, skillLv: 10, optionValueArray: [1] },
             resultKind: 'active',
         });
-        expect(manual.ave).not.toBeNull();
+        expect(manual.ave).toBeGreaterThan(0);
 
         expect(auto.ave).toBe(manual.ave);
     });
@@ -148,7 +158,7 @@ describe('オートスペル発動時のダメージが、手動選択時と一�
         });
         expect(lv1.skillId).toBe(615);
         expect(lv1.skillLv).toBe(1);
-        expect(lv1.ave).not.toBeNull();
+        expect(lv1.ave).toBeGreaterThan(0);
 
         const lv10 = await calcAveDamage(query, {
             attackMethod: { skillId: 799, skillLv: 5, optionValueArray: [0, 0, 10, 0] },
@@ -156,9 +166,37 @@ describe('オートスペル発動時のダメージが、手動選択時と一�
         });
         expect(lv10.skillId).toBe(615);
         expect(lv10.skillLv).toBe(10);
-        expect(lv10.ave).not.toBeNull();
+        expect(lv10.ave).toBeGreaterThan(0);
 
         // 修正前は wbairitu が初期値100に固定されLvに依存しないため、この比は1に近い値になる。
         expect((lv10.ave as number) / (lv1.ave as number)).toBeGreaterThan(1.5);
+    });
+
+    // 装備オートスペルは主撃が通常攻撃/スペルフィストのときだけ発動する（calcautospell.js）。
+    // スペルフィストは option[1] に「ボルトLv」を持つため、パワースイングの計算式が
+    // option[1]（本来は「ABRバトルウォリアー」= 無し(0)/召喚中(1)）を未ガードで読むと、
+    // 主撃のボルトLvが 1 のときだけ「召喚中」と誤認して倍率(600→950)とHit数(1→2)が跳ね上がる。
+    // オートスペルのダメージが主撃のボルトLvに依存しないことを見る。
+    it('パワースイング: オートスペル発動時のダメージが、主撃スペルフィストのボルトLvに依存しない', async () => {
+        // SKILL_ID_SPELL_FIST = 660 / AS_ID_POWER_SWING_3 = 199 → SKILL_ID_POWER_SWING(543) Lv3。
+        // スペルフィストは自身のボルトも結果配列へ積むため、スキルIDで拾う。
+        const boltLv1 = await calcAveDamage(query, {
+            attackMethod: { skillId: 660, skillLv: 5, optionValueArray: [0, 1] },
+            autoSpellSlot0: { asId: 199, probIndex: 1 },
+            resultKind: 'append',
+            pickSkillId: 543,
+        });
+        expect(boltLv1.skillLv).toBe(3);
+        expect(boltLv1.ave).toBeGreaterThan(0);
+
+        const boltLv2 = await calcAveDamage(query, {
+            attackMethod: { skillId: 660, skillLv: 5, optionValueArray: [0, 2] },
+            autoSpellSlot0: { asId: 199, probIndex: 1 },
+            resultKind: 'append',
+            pickSkillId: 543,
+        });
+        expect(boltLv2.skillLv).toBe(3);
+
+        expect(boltLv1.ave).toBe(boltLv2.ave);
     });
 });

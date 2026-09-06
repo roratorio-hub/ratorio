@@ -717,7 +717,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			// 2025/01/27 実測値との誤差無しを確認済み
 			case SKILL_ID_POWER_SWING:
 				CS.wCast = Math.max(0, 1000 - 200 * n_A_ActiveSkillLV);
-				if (attackMethodConfArray[0].GetOptionValue(1) == 1) {
+				if (GetAttackMethodOptionValue(attackMethodConfArray, 1, 0) == 1) {
 					// ABRバトルウォリアー状態の場合
 					CS.wActiveHitNum = 2;
 					CS.wbairitu = 500 + 150 * n_A_ActiveSkillLV;
