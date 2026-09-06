@@ -10,7 +10,6 @@ util/*monster.csv
 .clinerules
 .claude/*.local.*
 memory-bank
-dist/
 CLAUDE.md
 tests/.vitest-attachments/**
 tests/node_modules/**

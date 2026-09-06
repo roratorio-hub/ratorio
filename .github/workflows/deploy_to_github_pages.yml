@@ -23,35 +23,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # --------- ここからメインのワークフロー ----------
-      # Node.js のセットアップ
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22' # memo: version 22 のEOLは 2027年4月頃
-
-      # Node.js のパッケージマネージャー pnpm をインストール
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      # Node.js 依存関係をpnpmでインストール & webpack でビルド
-      - name: Install and build Node.js dependencies
-        working-directory: workspace
-        run: |
-             pnpm install --frozen-lockfile
-             pnpm run build
-      # ------------ ここまでメインのワークフロー ----------
-
       # PR に release ラベルが付与されている時のみ PR がマージされた日時を json に書き出す
       - name: Get and format PR merged date in JST
         if: contains(github.event.pull_request.labels.*.name, 'release')
         id: get_formatted_pr_date
-        working-directory: workspace
         run: |
           JST_DATE=$(TZ="Asia/Tokyo" date +"%Y-%m-%d %H:%M")
-          echo "{\"release_date\": \"$JST_DATE\"}" > ../assets/date.json
+          echo "{\"release_date\": \"$JST_DATE\"}" > ./assets/date.json
 
       # PR に release ラベルが付与されている時のみ json をコミットする
       - name: Commit and push if changed
@@ -63,10 +41,10 @@ jobs:
           git commit -m "リリース日時の更新"
           git push
 
-      # `dist` ディレクトリの内容を GitHub Pages にデプロイ
+      # リポジトリルートの内容を GitHub Pages にデプロイ（exclude_assets 記載分を除く）
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./  # ルートディレクトリをコピーする
-          exclude_assets: '.circleci,.github,.gemini,.vscode,node_modules,.gitignore,解析メモ,util,workspace,tests'
+          exclude_assets: '.circleci,.github,.gemini,.vscode,node_modules,.gitignore,解析メモ,util,tests'

@@ -21,34 +21,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: refs/pull/${{ github.event.inputs.pull_request_number }}/head
 
-      # --------- ここからメインのワークフロー ----------
-      # Node.js のセットアップ
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22' # memo: version 22 のEOLは 2027年4月頃
-
-      # Node.js のパッケージマネージャー pnpm をインストール
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      # Node.js 依存関係をpnpmでインストール & webpack でビルド
-      - name: Install and build Node.js dependencies
-        working-directory: workspace
-        run: |
-             pnpm install --frozen-lockfile
-             pnpm run build
-      # ------------ ここまでメインのワークフロー ----------
-
       # ワークフローがキックされた日時を json に書き出す
       - name: Get and format current date in JST
         id: get_formatted_date
-        working-directory: workspace
         run: |
           JST_DATE=$(TZ="Asia/Tokyo" date +"%Y-%m-%d %H:%M")
-          echo "{\"release_date\": \"$JST_DATE\"}" > ../assets/date.json
+          echo "{\"release_date\": \"$JST_DATE\"}" > ./assets/date.json
 
       - name: Deploy to Staging Repository
         env:
@@ -61,7 +39,6 @@ jobs:
           mv ./assets temp_dist/
           mv ./pages temp_dist/
           mv ./engine temp_dist/
-          mv ./dist temp_dist/
           mv ./README.md temp_dist/
           mv ./LICENSE temp_dist/
           mv ./index.html temp_dist/
