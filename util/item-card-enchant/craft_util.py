@@ -106,6 +106,7 @@ AT_EQUIP_LOCATION_CODE = {
     '靴': 3,
     'アクセサリー': 4,
     '兜中段': 5,
+    '一般装備': 6,
 }
 
 script_dir = os.path.dirname(os.path.abspath(__file__))

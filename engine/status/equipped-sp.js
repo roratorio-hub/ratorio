@@ -1777,6 +1777,31 @@ export function CheckSpDefEquipmentLocation(spDefRemain, location) {
 						return parseInt(spDefRemain % baseFlag);
 				}
 				break;
+			case 6:	// 一般装備（シャドウ装備を除く）
+				switch(location) {
+					case CARD_REGION_ID_SHADOW_ARMS_RIGHT_1:
+					case CARD_REGION_ID_SHADOW_ARMS_RIGHT_2:
+					case CARD_REGION_ID_SHADOW_ARMS_RIGHT_3:
+					case CARD_REGION_ID_SHADOW_SHIELD_1:
+					case CARD_REGION_ID_SHADOW_SHIELD_2:
+					case CARD_REGION_ID_SHADOW_SHIELD_3:
+					case CARD_REGION_ID_SHADOW_ENCHANT_BODY_1:
+					case CARD_REGION_ID_SHADOW_ENCHANT_BODY_2:
+					case CARD_REGION_ID_SHADOW_ENCHANT_BODY_3:
+					case CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1:
+					case CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2:
+					case CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3:
+					case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_1:
+					case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_2:
+					case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_3:
+					case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_1:
+					case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_2:
+					case CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_3:
+						break;
+					default:
+						return parseInt(spDefRemain % baseFlag);
+				}
+				break;
 		}
 		// 実際の装備部位が条件を満たさない場合
 		return -1;
