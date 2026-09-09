@@ -1,132 +1,37 @@
 item_list:
-  - name: ハルピュイア[1]
-    yomi: ハルピュイア
-    type: 鎧
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 100
-    weight: 100
-    required_lv: 200
-    required_job: ウィンドホーク
-    capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: スキルダメージ増加
-        skill: ホークブーメラン
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ホークラッシュ
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ワイルドウォーク
-        value: 1
-        per_lv: 10
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 7
-        per_refine: 1
-      - name: ASPD増加
-        value: 10
-        at_refine: 7
-      - name: ボス耐性
-        value: 5
-        at_refine: 7
-      - name: 一般耐性
-        value: 5
-        at_refine: 7
-      - name: 破損しない
-        value: 1
-        at_refine: 9
-      - name: スキル固定詠唱割合減少
-        skill: フィアーブリーズ
-        value: 100
-        at_refine: 9
-      - name: 全属性への物理ダメージ増加
-        value: 15
-        at_refine: 10
-
-  - name: グリンカムビ[1]
-    yomi: グリンカムビ
-    type: 鎧
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 100
-    weight: 100
-    required_lv: 200
-    required_job: アリテア
-    capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: スキルダメージ増加
-        skill: ピニオンショット
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: クイールスピア
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: テンペストフラップ
-        value: 1
-        per_lv: 10
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 7
-        per_refine: 1
-      - name: ASPD増加
-        value: 10
-        at_refine: 7
-      - name: ボス耐性
-        value: 5
-        at_refine: 7
-      - name: 一般耐性
-        value: 5
-        at_refine: 7
-      - name: 破損しない
-        value: 1
-        at_refine: 9
-      - name: 再使用待機時間減少
-        skill: フェザースプリンクル
-        value: 500
-        at_refine: 9
-      - name: 全属性への物理ダメージ増加
-        value: 15
-        at_refine: 10
-
-  - name: マジカルケープ[0]
-    yomi: マジカルケープ
-    type: 下段
+  - name: "[シャドウ] ヒーローウェポン"
+    yomi: シャドウヒーローウェポン
+    type: シャドウ右手
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
-    weight: 10
+    weight: 0
     required_lv: 200
-    required_job: ハイパーノービス
+    required_job: 4次職 拡張4次職
     capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
+      - { name: ATK加算, value: 10, per_refine: 1 }
+      - { name: MATK加算, value: 10, per_refine: 1 }
+      - { name: ATK加算, value: 20, at_refine: 7 }
+      - { name: MATK加算, value: 20, at_refine: 7 }
+      - { name: 睡眠耐性, value: 20, at_refine: 7 }
+      - { name: ATK加算, value: 30, at_refine: 9 }
+      - { name: MATK加算, value: 30, at_refine: 9 }
+      - { name: 睡眠耐性, value: 30, at_refine: 9 }
 
-  - name: 藤の扇[0]
-    yomi: フジノオウギ
-    type: 下段
+  - name: "[シャドウ] ヒーローペンダント"
+    yomi: シャドウヒーローペンダント
+    type: シャドウアクセサリー(2)
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
-    weight: 10
+    weight: 0
     required_lv: 200
-    required_job: 蜃気楼 不知火
+    required_job: 4次職 拡張4次職
     capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
+      - { name: 物理ダメージ増加, value: 1, per_refine: 1 }
+      - { name: 物理ダメージ増加, value: 2, at_refine: 7 }
+      - { name: 魔法ダメージ増加, value: 2, at_refine: 7 }
+      - { name: 睡眠耐性, value: 20, at_refine: 7 }
+      - { name: 物理ダメージ増加, value: 3, at_refine: 9 }
+      - { name: 魔法ダメージ増加, value: 3, at_refine: 9 }
+      - { name: 睡眠耐性, value: 30, at_refine: 9 }
