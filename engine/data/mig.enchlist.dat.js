@@ -1309,12 +1309,10 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.sourceArray[844] = [844,-1,0,0,[["シーズナルシャドウエンチャント グループ3","シーズナルシャドウエンチャント グループ3"]],[],[[[174,[50,[5381,]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3934,576,3935,977,3936,3937,3938,3939,3978,3979,3980,3981,3982,3983,3984,3985,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.sourceArray[845] = [845,-1,0,0,[["シーズナルシャドウエンチャント グループ3","シーズナルシャドウエンチャント グループ3"]],[],[[[174,[50,[5382,5383,]]],,[[[178,[27,[2]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3934,576,3935,977,3936,3937,3938,3939,3986,3987,2501,3988,3989,2504,3990,3991,2502,3992,3993,2503,3994,3995,2505,3996,3997,2506,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.sourceArray[846] = [846,-1,0,0,[["シーズナルシャドウエンチャント グループ1","シーズナルシャドウエンチャント グループ1"]],[],[[[174,[50,[5378,5379,5380,5381,5382,5383,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3998,3999,3719,3720,3721,3722,4000,3723,3724,4001,3725,4002,3726,3727,4003,4004,3728,4005,3729,3730,4006,4007,4008,3731,4009,4010,3732,3733,4011,4012,3734,4013,4014,4015,4016,3735,3736,4017,4018,4019,3737,3738,4251,4252,4253]]],,[]]]]]],]]],[]];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5378] = [846,840,841];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5379] = [846,840,842];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5380] = [846,840,843];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5381] = [846,840,844];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5382] = [846,840,845];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5383] = [846,840,845];
 	// --- 2025-12-06 ---
 	g_constDataManager.enchListDataManager.sourceArray[847] = [847,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5479,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2043,2005,1813,2028,2437,2668,1678,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[3519,1594,]]],,[]]]]]],]]],[]];
 	g_constDataManager.enchListDataManager.sourceArray[848] = [848,-1,0,0,[["ベテラン遺跡細工師","ベテラン遺跡細工師"]],[],[[[174,[50,[5481,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[1975,2005,1813,2028,2043,2311,2437,2668,1678,]]],,[]]]]]],]]],[]];
@@ -1638,12 +1636,6 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5766] = [923];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5767] = [923];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5768] = [923];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5769] = [924];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5770] = [924];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5771] = [924];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5772] = [924];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5773] = [924];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5774] = [924];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5775] = [291];
 //
 	g_constDataManager.enchListDataManager.sourceArray[925] = [925,-1,0,0,[["スペシャルエンチャント（オーブ）","スペシャルエンチャント（オーブ）"]],[],[[[174,[50,[5776]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4463,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1297,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1975,]]],,[]]]]]],]]],[]];
@@ -1704,6 +1696,20 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5784] = [942,730];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5785] = [943,776];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5786] = [944,776];
+
+	g_constDataManager.enchListDataManager.sourceArray[945] = [945,-1,0,0,[["甘い匂いがする男(グループ6)","甘い匂いがする男(グループ6)"]],[],[[[174,[50,[5771,5772,5769,5773,5770,5774,]]],,[[[178,[27,[4]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[556,518,563,521,524,572,1381,1678,2098,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[946] = [946,-1,0,0,[["シェイド(グループ4)","シェイド(グループ4)"]],[],[[[174,[50,[5378,5383,]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[556,518,563,521,524,572,1975,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[947] = [947,-1,0,0,[["エンチャントマシーン(グループ10)","エンチャントマシーン(グループ10)"]],[],[[[174,[50,[5787,5788,]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[556,518,563,521,524,572,1975,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5378] = [846,840,841,946];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5383] = [846,840,845,946];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5769] = [924,945];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5770] = [924,945];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5771] = [924,945];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5772] = [924,945];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5773] = [924,945];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5774] = [924,945];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5787] = [947];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5788] = [947];
 
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
