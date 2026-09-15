@@ -19,6 +19,8 @@ import { ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_NAME } from '@engine/const/EnumItem
 (globalThis as any).CARD_ID_GIGANTES = 1526;
 
 let getItemList: any;
+let GetPackageFilteredItemList: any;
+let ItemPackageDat: any;
 let IsMatchJobRestrict: any;
 let ItemObjNew: any;
 let MIG_JOB_ID_SKY_EMPEROR: number; // 天帝 = 79
@@ -33,6 +35,9 @@ beforeAll(async () => {
 	ItemObjNew = itemDat.ItemObjNew;
 	const hmitemlist = await import('/workspace/ratorio/pages/js/hmitemlist.js');
 	getItemList = hmitemlist.getItemList;
+	GetPackageFilteredItemList = hmitemlist.GetPackageFilteredItemList;
+	const itemPackageDat = await import('/workspace/ratorio/engine/equip/item.package.dat.js');
+	ItemPackageDat = itemPackageDat.ItemPackageDat;
 	const migJobH = await import('/workspace/ratorio/engine/data/mig.job.h.js');
 	IsMatchJobRestrict = migJobH.IsMatchJobRestrict;
 	const migJobId = await import('/workspace/ratorio/engine/data/mig.job.id.js');
@@ -91,6 +96,37 @@ describe('hmitemlist', () => {
 			);
 			expect(jobFiltered).toHaveLength(1);
 			expect(jobFiltered[0][ITEM_DATA_INDEX_NAME]).toBe('暴食のクラウン(アリテア)');
+		});
+	});
+
+	describe('GetPackageFilteredItemList（パッケージ選択の絞り込み。id 属性を廃止し配列添字で識別する）', () => {
+		it('-1 を渡すと ItemObjNew 全体を返す', () => {
+			expect(GetPackageFilteredItemList(-1)).toBe(ItemObjNew);
+		});
+
+		it('添字を渡すと該当パッケージの itemIds を ItemObjNew から解決した配列を返す', () => {
+			const pkg = ItemPackageDat.List[0];
+			const result = GetPackageFilteredItemList(0);
+			const expected = pkg.itemIds.map((id: number) => ItemObjNew[id]).filter(Boolean);
+			expect(result).toEqual(expected);
+		});
+
+		it('List を並び替えても添字はその時点の配列位置を指す（id 属性が無いため振り直し不要）', () => {
+			const original = ItemPackageDat.List;
+			const lastPkg = original[original.length - 1];
+			ItemPackageDat.List = [lastPkg, ...original.slice(0, -1)];
+			try {
+				const result = GetPackageFilteredItemList(0);
+				const expected = lastPkg.itemIds.map((id: number) => ItemObjNew[id]).filter(Boolean);
+				expect(result).toEqual(expected);
+			} finally {
+				ItemPackageDat.List = original;
+			}
+		});
+
+		it('範囲外の添字を渡しても例外を投げず空配列を返す', () => {
+			expect(() => GetPackageFilteredItemList(999)).not.toThrow();
+			expect(GetPackageFilteredItemList(999)).toEqual([]);
 		});
 	});
 });

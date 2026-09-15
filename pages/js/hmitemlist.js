@@ -88,8 +88,8 @@ export function SetUpSelects() {
 	objSelect = document.getElementById("OBJID_SELECT_PACKAGE");
 	HtmlRemoveOptionAll(objSelect);
 	HtmlCreateElementOption(-1, "全て表示", objSelect);
-	for (const pkg of ItemPackageDat.List) {
-		HtmlCreateElementOption(pkg.id, pkg.name, objSelect);
+	for (const [index, pkg] of ItemPackageDat.List.entries()) {
+		HtmlCreateElementOption(index, pkg.name, objSelect);
 	}
 }
 
@@ -179,6 +179,19 @@ export function getItemList(itemlist, seachword) {
 }
 
 /**
+ * パッケージ選択値から絞り込み対象のアイテム配列を返す.
+ * @param {number} packageIndex ItemPackageDat.List の添字. -1 は全アイテム
+ * @returns {Array} ItemObjNew のデータ定義に基づく配列
+ */
+export function GetPackageFilteredItemList(packageIndex) {
+	if (packageIndex === -1) {
+		return ItemObjNew;
+	}
+	const pkg = ItemPackageDat.List[packageIndex];
+	return pkg ? pkg.itemIds.map(id => ItemObjNew[id]).filter(Boolean) : [];
+}
+
+/**
  * 表示するアイテム一覧を更新する
  */
 export function BuildUpItemList() {
@@ -228,13 +241,7 @@ export function BuildUpItemList() {
 	//----------------------------------------------------------------
 	// パッケージフィルタ
 	//----------------------------------------------------------------
-	let baseItemList;
-	if (condPackage === -1) {
-		baseItemList = ItemObjNew;
-	} else {
-		const pkg = ItemPackageDat.List.find(p => p.id === condPackage);
-		baseItemList = pkg ? pkg.itemIds.map(id => ItemObjNew[id]).filter(Boolean) : [];
-	}
+	const baseItemList = GetPackageFilteredItemList(condPackage);
 
 	//----------------------------------------------------------------
 	// 対象となるアイテムの抽出
