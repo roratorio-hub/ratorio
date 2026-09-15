@@ -1,36 +1,6 @@
 card_list:
-  - name: 潜在解放(ハイパーノービスXXIV)
-    yomi: センザイカイホウハイパーノービス24
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ヘルズドライブ
-            value: 200
-          - name: 再使用待機時間減少
-            skill: ナパームバルカンストライク
-            value: 200
-
-  - name: 潜在解放(蜃気楼&不知火XXV)
-    yomi: センザイカイホウシンキロウシラヌイ25
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: 赤炎砲
-            value: 200
-          - name: 再使用待機時間減少
-            skill: 雷電砲
-            value: 200
-
-  - name: 潜在解放(ウィンドホークXXIII)
-    yomi: センザイカイホウウィンドホーク23
+  - name: 潜在解放(アビスチェイサーXXII)
+    yomi: センザイカイホウアビスチェイサー22
     type: エンチャント
     set_list:
       - set:
@@ -38,17 +8,29 @@ card_list:
           - card_name: 豪傑
         capabilities:
           - name: 再使用待機時間減少
-            skill: ホークブーメラン
-            value: 200
-          - name: 再使用待機時間減少
-            skill: ホークラッシュ
-            value: 200
-          - name: 再使用待機時間減少
-            skill: ワイルドウォーク
-            value: 200
+            skill: チェイシングショット
+            value: 100
 
-  - name: 潜在解放(アリテアXXIII)
-    yomi: センザイカイホウアリテア23
+  - name: 潜在解放(アークメイジXXIV)
+    yomi: センザイカイホウアークメイジ24
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        capabilities:
+          - name: 再使用待機時間減少
+            skill: フローラルフレアロード
+            value: 500
+          - name: 再使用待機時間減少
+            skill: トルネードストーム
+            value: 500
+          - name: 再使用待機時間減少
+            skill: ディストラクティブハリケーン
+            value: 500
+
+  - name: 潜在解放(ナイトウォッチXX)
+    yomi: センザイカイホウナイトウォッチ20
     type: エンチャント
     set_list:
       - set:
@@ -56,5 +38,32 @@ card_list:
           - card_name: 豪傑
         capabilities:
           - name: 再使用待機時間減少
-            skill: テンペストフラップ
+            skill: ワイルドファイア
             value: 200
+
+  - name: 潜在覚醒(ストーンスキンI)
+    yomi: センザイカクセイストーンスキン1
+    type: エンチャント
+    set_list:
+      - set:
+        entity_list:
+          - card_name: 豪傑
+        desc: 覚醒支配者のローブ装備時、再使用待機時間減少効果が発動しない
+        capabilities:
+          - name: スキル使用可能
+            skill: ストーンスキン
+            skill_lv: 1
+          - name: 再使用待機時間減少
+            skill: ストーンスキン
+            value: 20000
+      - set:
+        entity_list:
+          - card_name: 真理の解放
+        desc: 覚醒支配者のローブ装備時、再使用待機時間減少効果が発動しない
+        capabilities:
+          - name: スキル使用可能
+            skill: ストーンスキン
+            skill_lv: 1
+          - name: 再使用待機時間減少
+            skill: ストーンスキン
+            value: 20000
