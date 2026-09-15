@@ -1,7 +1,6 @@
 export class ItemPackageDat {
     static List = [
         {
-            id: 1,
             name: "サマーパッケージ2026",
             itemIds: [
                 5695, // トゥーサイドウィング
@@ -12,7 +11,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 2,
             name: "サマーパッケージ2025",
             itemIds: [
                 5479, // ズホー
@@ -23,7 +21,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 3,
             name: "サマーパッケージ2024",
             itemIds: [
                 5217, // オブアビ
@@ -34,7 +31,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 4,
             name: "23rdアニバーサリーパッケージ",
             itemIds: [
                 5569, // アルカナム
@@ -45,7 +41,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 5,
             name: "22rdアニバーサリーパッケージ",
             itemIds: [
                 5368, // アトクウェ
@@ -56,7 +51,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 6,
             name: "21rdアニバーサリーパッケージ",
             itemIds: [
                 4994, // アウェイ
@@ -67,7 +61,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 7,
             name: "ラグ缶2026 July",
             itemIds: [
                 5760, // キングオブウェアウルフ
@@ -76,7 +69,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 8,
             name: "ラグ缶2026 June",
             itemIds: [
                 5691, // スタリー
@@ -85,7 +77,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 9,
             name: "ラグ缶2026 April",
             itemIds: [
                 5667, // ジュディス
@@ -94,7 +85,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 10,
             name: "ラグ缶2026 Spring",
             itemIds: [
                 5689, // ス・ロザリオ
@@ -104,7 +94,6 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 11,
             name: "ラグ缶2026 September",
             itemIds: [
                 5785, // マジカルケープ
@@ -114,13 +103,21 @@ export class ItemPackageDat {
             ],
         },
         {
-            id: 12,
             name: "ラグ缶2026 Summer",
             itemIds: [
                 5779, // フューリアスオーブ
                 5778, // ドーントレス
                 5776, // ポポリンサンバイザー
                 5777, // パルスオブイグドラシル
+            ],
+        },
+        {
+            name: "ラグ缶2026 October",
+            itemIds: [
+                5789, // アバドン
+                5790, // くわえたクラブのエース
+                5791, // クラナネミエリーの傍観者
+                5792, // ディメンションクリミナルアーク
             ],
         },
     ];

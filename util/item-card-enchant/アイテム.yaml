@@ -1,37 +1,151 @@
 item_list:
-  - name: "[シャドウ] ヒーローウェポン"
-    yomi: シャドウヒーローウェポン
-    type: シャドウ右手
-    slot: 0
+  - name: アバドン
+    yomi: アバドン
+    desc: "精錬値が9以上の時、[フェイントボム]使用時、20秒間、[アンリミット]Lv5状態になる。<br>装備解除時、[アンリミット]を解除する"
+    type: 鎧
+    slot: 1
     weapon_lv: 0
-    atk_or_def: 0
-    weight: 0
+    atk_or_def: 100
+    weight: 100
     required_lv: 200
-    required_job: 4次職 拡張4次職
+    required_job: アビスチェイサー
     capabilities:
-      - { name: ATK加算, value: 10, per_refine: 1 }
-      - { name: MATK加算, value: 10, per_refine: 1 }
-      - { name: ATK加算, value: 20, at_refine: 7 }
-      - { name: MATK加算, value: 20, at_refine: 7 }
-      - { name: 睡眠耐性, value: 20, at_refine: 7 }
-      - { name: ATK加算, value: 30, at_refine: 9 }
-      - { name: MATK加算, value: 30, at_refine: 9 }
-      - { name: 睡眠耐性, value: 30, at_refine: 9 }
+      - name: プレイヤー耐性
+        value: 7
+      - name: スキルダメージ増加
+        skill: チェーンリアクションショット
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: フレンジショット
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ヒットアンドスライディング
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: チェイシングショット
+        value: 1
+        per_lv: 10
+      - name: 小・中・大型モンスターへの物理ダメージ増加
+        value: 7
+        per_refine: 1
+      - name: 破損しない
+        value : 1
+        at_refine: 9
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: 一般耐性
+        value: 5
+        at_refine: 7
+      - name: ボス耐性
+        value: 5
+        at_refine: 7
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
 
-  - name: "[シャドウ] ヒーローペンダント"
-    yomi: シャドウヒーローペンダント
-    type: シャドウアクセサリー(2)
+  - name: くわえたクラブのエース
+    yomi: クワエタクラブノエース
+    type: 下段
     slot: 0
     weapon_lv: 0
     atk_or_def: 0
-    weight: 0
+    weight: 10
+    required_lv: 200
+    required_job: アークメイジ
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 小・中・大型モンスターへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: クラナネミエリーの傍観者
+    yomi: クラナネミエリーノボウカンシャ
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: ナイトウォッチ
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 小・中・大型モンスターへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: ディメンションクリミナルアーク
+    yomi: ディメンションクリミナルアーク
+    desc: "精錬値が9以上の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる<br>精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%"
+    type: 肩にかける物
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 38
+    weight: 40
     required_lv: 200
     required_job: 4次職 拡張4次職
     capabilities:
-      - { name: 物理ダメージ増加, value: 1, per_refine: 1 }
-      - { name: 物理ダメージ増加, value: 2, at_refine: 7 }
-      - { name: 魔法ダメージ増加, value: 2, at_refine: 7 }
-      - { name: 睡眠耐性, value: 20, at_refine: 7 }
-      - { name: 物理ダメージ増加, value: 3, at_refine: 9 }
-      - { name: 魔法ダメージ増加, value: 3, at_refine: 9 }
-      - { name: 睡眠耐性, value: 30, at_refine: 9 }
+      - name: 一般耐性
+        value: 5
+      - name: ボス耐性
+        value: 5
+      - name: プレイヤー耐性
+        value: 5
+      - name: ASPD増加
+        value: 20
+        at_sp_status_100: STA
+      - name: スキルディレイ減少
+        value: 25
+        at_sp_status_100: STA
+      - name: MAXHP増加
+        value: 2
+        per_refine: 1
+      - name: MAXSP増加
+        value: 2
+        per_refine: 1
+      - name: STA加算
+        value: 1
+        per_refine: 1
+      - name: 全基本ステータス加算
+        value: 10
+        at_refine: 5
+      - name: 全属性への物理ダメージ増加
+        value: 10
+        at_refine: 5
+      - name: 全属性への魔法ダメージ増加
+        value: 10
+        at_refine: 5
+      - name: 必中
+        value: 25
+        at_refine: 7
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 7
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 7
+      - name: 念属性耐性
+        value: 15
+        at_refine: 9
+      - name: 小・中・大型モンスターへの物理ダメージ増加
+        value: 15
+        at_refine: 10
+      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        value: 15
+        at_refine: 10
+    set_list:
+      - set:
+        entity_list:
+          - item_name: 星座の印章
+        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
