@@ -7256,10 +7256,10 @@ CardIdToSetIdMap[4463] = [3610,];
 	ItemIdToSetIdMap[5003] = ItemIdToSetIdMap[5003].concat([3677]);
 	ItemIdToSetIdMap[5004] = ItemIdToSetIdMap[5004].concat([3678]);
 	ItemIdToSetIdMap[5005] = ItemIdToSetIdMap[5005].concat([3679]);
-	ItemIdToSetIdMap[5006] = ItemIdToSetIdMap[5006].concat([3670]);
-	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([3671]);
-	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([3672]);
-	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([3673]);
+	ItemIdToSetIdMap[5006] = ItemIdToSetIdMap[5006].concat([3680]);
+	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([3681]);
+	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([3682]);
+	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([3683]);
 
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 

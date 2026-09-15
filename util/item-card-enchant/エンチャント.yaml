@@ -1,56 +1,81 @@
 enchant_list:
-  - enchant: #
-
-    - name: 甘い匂いがする男(グループ6)
-      item_list: #
-        - item_name: "[シャドウ] プレミアメロンウェポン"
-        - item_name: "[シャドウ] プレミアメロンシールド"
-        - item_name: "[シャドウ] プレミアメロンアーマー"
-        - item_name: "[シャドウ] プレミアメロンシューズ"
-        - item_name: "[シャドウ] プレミアメロンイヤリング"
-        - item_name: "[シャドウ] プレミアメロンペンダント"
-      slot_list: #
+  - enchant:
+    - name: スペシャルエンチャント(オーブ)
+      item_list:
+        - item_name: アバドン
+      slot_list:
         - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "潜在解放(アビスチェイサーXXII)"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: 火属性付与(鎧)
+            - name: 水属性付与(鎧)
+            - name: 風属性付与(鎧)
+            - name: 地属性付与(鎧)
+            - name: 聖属性付与(鎧)
+            - name: 闇属性付与(鎧)
+            - name: 念属性付与(鎧)
+            - name: 毒属性付与(鎧)
+            - name: 不死属性付与(鎧)
+        - slot: 2
           refine: 9
-          enchant_list: #
-            - name: Str+3
-            - name: Agi+3
-            - name: Vit+3
-            - name: Int+3
-            - name: Dex+3
-            - name: Luk+3
-            - name: アルカナ
-            - name: シンソウの王
-            - name: 極限の魔力
-
-    - name: シェイド(グループ4)
-      item_list: #
-        - item_name: "[シャドウ] シーズナルウェポン"
-        - item_name: "[シャドウ] シーズナルペンダント"
-      slot_list: #
-        - slot: 4
-          refine: 8
-          enchant_list: #
-            - name: Str+3
-            - name: Agi+3
-            - name: Vit+3
-            - name: Int+3
-            - name: Dex+3
-            - name: Luk+3
+          enchant_list:
+            - name: "スキルディレイ-15%"
+            - name: "必中攻撃+25%"
+            - name: 詠唱妨害不可
             - name: 英雄の凱歌
 
-    - name: エンチャントマシーン(グループ10)
-      item_list: #
-        - item_name: "[シャドウ] ヒーローウェポン"
-        - item_name: "[シャドウ] ヒーローペンダント"
-      slot_list: #
+    - name: スペシャルエンチャント(ミオン)
+      item_list:
+        - item_name: くわえたクラブのエース
+      slot_list:
         - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "潜在解放(アークメイジXXIV)"
+
+    - name: スペシャルエンチャント(ミオン)
+      item_list:
+        - item_name: クラナネミエリーの傍観者
+      slot_list:
+        - slot: 4
+          refine: 0
+          enchant_list:
+            - name: "潜在解放(ナイトウォッチXX)"
+
+    - name: スペシャルエンチャント(ネコヤン)
+      item_list:
+        - item_name: ディメンションクリミナルアーク
+      slot_list:
+        - slot: 4
+          refine: 6
+          enchant_list:
+            - name: グロウファイア
+            - name: グロウウォーター
+            - name: グロウウィンド
+            - name: グロウアース
+            - name: グロウセイント
+            - name: グロウダークネス
+            - name: グロウテレキネシス
+            - name: グロウポイズン
+        - slot: 3
           refine: 8
-          enchant_list: #
-            - name: Str+3
-            - name: Agi+3
-            - name: Vit+3
-            - name: Int+3
-            - name: Dex+3
-            - name: Luk+3
+          enchant_list:
             - name: 英雄の凱歌
+            - name: 起源の王
+            - name: 殺意の怨念
+            - name: 豊穣の女神
+            - name: 厄災の魔将
+            - name: 異境の統轄者
+            - name: 知識の探求者
+            - name: 最果ての支配者
+        - slot: 2
+          refine: 10
+          enchant_list:
+            - name: 覇王
+            - name: 暴走した魔力
+            - name: 大鷲の眼光
+            - name: "潜在覚醒(ストーンスキンI)"
