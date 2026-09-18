@@ -193,59 +193,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			}
 			break;
 
-		case SKILL_ID_FIRE_BALL:
-			set_n_A_Weapon_zokusei(3);
-			if(n_A_ActiveSkillLV <=5){
-				CS.wCast = 1500;
-				n_Delay[2] = 1500;
-			}else{
-				CS.wCast = 150;
-				n_Delay[2] = 1000;
-			}
-			CS.wbairitu = (70 + n_A_ActiveSkillLV * 10) * 2;
-			break;
-
-		case SKILL_ID_FIRE_WALL:
-			set_n_A_Weapon_zokusei(3);
-			CS.wHITsuu = 4 + n_A_ActiveSkillLV;
-			CS.wCast = 2150 - (n_A_ActiveSkillLV * 150);
-			n_Delay[2] = 100;
-			CS.wbairitu = 50;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 1) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			break;
-
-		case SKILL_ID_FROST_DIVER:
-			set_n_A_Weapon_zokusei(1);
-			CS.wCast = 800;
-			n_Delay[2] = 1500;
-			CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 10) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			break;
-
-		case SKILL_ID_THUNDER_STORM:
-			set_n_A_Weapon_zokusei(4);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 800 * n_A_ActiveSkillLV;
-			n_Delay[2] = 2000;
-			CS.wbairitu = 100;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 19) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			break;
-
-		case SKILL_ID_SOUL_STRIKE:
-			set_n_A_Weapon_zokusei(8);
-			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
-			CS.wCast = 500;
-			if(n_A_ActiveSkillLV % 2 == 0) n_Delay[2] = 800 + n_A_ActiveSkillLV / 2 * 200;
-			else n_Delay[2] = 1000 + (n_A_ActiveSkillLV+1) / 2 * 200;
-			break;
-
-		case SKILL_ID_SIGHT_RASHER:
-			set_n_A_Weapon_zokusei(3);
-			CS.wCast = 700;
-			n_Delay[2] = 2000;
-			CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
-			break;
-
 		case SKILL_ID_METEOR_STORM:
 			CS.wbairitu = 125;
 			set_n_A_Weapon_zokusei(3);
@@ -254,12 +201,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wCast = 12000;
 			if(g_VariableCastTimeRate == 0) n_Delay[1] = n_Delay[1] / 2;
 			n_Delay[2] = Math.floor(n_A_ActiveSkillLV / 2) * 1000 + 2000;
-			break;
-
-		case SKILL_ID_JUPITER_THUNDER:
-			set_n_A_Weapon_zokusei(4);
-			CS.wHITsuu = n_A_ActiveSkillLV + 2;
-			CS.wCast = 1600 + n_A_ActiveSkillLV * 400;
 			break;
 
 		//「ウィザード」スキル「ロードオブヴァーミリオン」
@@ -293,12 +234,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[3] = 0.1 * CS.wHITsuu;
 			break;
 
-		case SKILL_ID_FROST_NOVA:
-			CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-			set_n_A_Weapon_zokusei(1);
-			CS.wCast = 1000;
-			break;
-
 		// 「ウィザード」スキル「ストームガスト」
 		case SKILL_ID_STORM_GUST:
 			// 詠唱時間等
@@ -319,20 +254,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		// 「ウィザード」スキル「アーススパイク」
-		case SKILL_ID_EARTH_SPIKE:
-			set_n_A_Weapon_zokusei(2);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 560 * n_A_ActiveSkillLV;
-			n_Delay[2] = 800 + 200 * n_A_ActiveSkillLV;
-			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-				case SERE_SUPPORT_SKILL_ID_PETROLOGY:
-					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-					break;
-				case SERE_SUPPORT_SKILL_ID_EARTH_CARE:
-					CS.wbairitu += 75;
-					break;
-			}
-			break;
 
 		// 「ウィザード」スキル「ヘヴンズドライブ」			
 
@@ -396,45 +317,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wCast = 4000;
 			break;
 
-		case SKILL_ID_SOUL_EXPANSION:
-			set_n_A_Weapon_zokusei(8);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 2;
-			CS.wCast = 2000;
-			n_Delay[2] = 500;
-			CS.wbairitu = 400 + 100 * n_A_ActiveSkillLV + n_A_INT;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		case SKILL_ID_FROST_MISTY:
-			set_n_A_Weapon_zokusei(1);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 2 + n_A_ActiveSkillLV;
-			CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 1200 - 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 200;
-			CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		case SKILL_ID_JACK_FROST:
-			set_n_A_Weapon_zokusei(1);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 5;
-			CS.n_KoteiCast = 1000;
-			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 200;
-			if(attackMethodConfArray[0].GetOptionValue(0) == 1){
-				CS.wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			}else{
-				CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
-			}
-			break;
-
 		case SKILL_ID_DRAIN_LIFE:
 			set_n_A_Weapon_zokusei(0);
 			CS.wHITsuu = 1;
@@ -446,100 +328,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
-		case SKILL_ID_CRYMSON_ROCK:
-			set_n_A_Weapon_zokusei(3);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 7;
-			CS.n_KoteiCast = 500;
-			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 2000;
-			CS.wbairitu = 300 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			CS.wbairitu += 1300;
-			break;
-
-		case SKILL_ID_COMMET:
-			set_n_A_Weapon_zokusei(0);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 20;
-			CS.n_KoteiCast = 1500 + 500 * n_A_ActiveSkillLV;
-			CS.wCast = 8500 + 1500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 2000;
-			n_Delay[7] = 120000;
-
-			var wDistance = attackMethodConfArray[0].GetOptionValue(0);
-
-			switch (wDistance) {
-
-			case 0:
-				CS.wbairitu = 2500 + 500 * n_A_ActiveSkillLV;
-				break;
-
-			case 1:
-				CS.wbairitu = 1600 + 400 * n_A_ActiveSkillLV;
-				break;
-
-			case 2:
-				CS.wbairitu = 1200 + 300 * n_A_ActiveSkillLV;
-				break;
-
-			case 3:
-				CS.wbairitu = 800 + 200 * n_A_ActiveSkillLV;
-				break;
-
-			case 4:	// 協力発動
-				CS.wbairitu = Math.floor(2500 + 400 * n_A_ActiveSkillLV * n_A_BaseLV / 120);
-				break;
-			}
-			break;
-
-		case SKILL_ID_EARTH_STRAIN:
-			set_n_A_Weapon_zokusei(2);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 2;
-			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 500;
-			n_Delay[2] = 500;
-			n_Delay[7] = 600 * n_A_ActiveSkillLV;
-			CS.wbairitu = 2000 + 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		case SKILL_ID_SUMMON_FIRE_BALL:
-		case SKILL_ID_SUMMON_WATER_BALL:
-		case SKILL_ID_SUMMON_LIGHTNING_BALL:
-		case SKILL_ID_SUMMON_STONE:
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_FIRE_BALL) set_n_A_Weapon_zokusei(3);
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_WATER_BALL) set_n_A_Weapon_zokusei(1);
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_LIGHTNING_BALL) set_n_A_Weapon_zokusei(4);
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_STONE) set_n_A_Weapon_zokusei(2);
-			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			CS.wCast = 6000 - 1000 * n_A_ActiveSkillLV;
-
-			CS.wbairitu = (n_A_BaseLV + n_A_JobLV) * Math.round(n_A_ActiveSkillLV / 2);
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
 		// メタリックサウンド
-
-		case SKILL_ID_FIRE_WALK:
-		case SKILL_ID_ELECTRIC_WALK:
-			if(n_A_ActiveSkill==SKILL_ID_FIRE_WALK) set_n_A_Weapon_zokusei(3);
-			else set_n_A_Weapon_zokusei(4);
-			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			CS.wCast = 1000;
-			n_Delay[0] = 1;
-			n_Delay[2] = 1000;
-			CS.wbairitu = 60 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			if(n_A_ActiveSkill==SKILL_ID_FIRE_WALK && UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 4) {
-				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 2);
-			}
-			if(n_A_ActiveSkill==SKILL_ID_ELECTRIC_WALK && UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) {
-				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 2);
-			}
-			break;
 
 		// 「ソーサラー」スキル「サイキックウェーブ」
 		case SKILL_ID_PSYCHIC_WAVE:
@@ -596,17 +385,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					CS.wbairitu += 200;
 					break;
 			}				
-			break;
-
-		case SKILL_ID_POISON_BUSTER:
-			set_n_A_Weapon_zokusei(5);
-			CS.n_KoteiCast = 1750 - 250 * n_A_ActiveSkillLV;
-			CS.wCast = 1250 * n_A_ActiveSkillLV - 750;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 2000;
-			CS.wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
 		case SKILL_ID_EARTH_GRAVE:

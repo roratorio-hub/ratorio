@@ -13,7 +13,7 @@ import {
     SKILL_ID_EARTH_SPIKE, SKILL_ID_FIRE_PILLAR, SKILL_ID_FROST_NOVA, SKILL_ID_HEAVENS_DRIVE, SKILL_ID_ICE_WALL,
     SKILL_ID_JUPITER_THUNDER, SKILL_ID_LORD_OF_VERMILLION, SKILL_ID_METEOR_STORM, SKILL_ID_MONSTER_ZYOHO,
     SKILL_ID_QUAGMIRE, SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SIGHT_BLASTER, SKILL_ID_SIGHT_RASHER,
-    SKILL_ID_STORM_GUST, SKILL_ID_WATER_BALL, SERE_SUPPORT_SKILL_ID_PETROLOGY
+    SKILL_ID_STORM_GUST, SKILL_ID_WATER_BALL, SERE_SUPPORT_SKILL_ID_PETROLOGY, SERE_SUPPORT_SKILL_ID_EARTH_CARE
 } from "../skill.dat.js";
 
 export const skills = [
@@ -101,6 +101,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -171,6 +172,7 @@ export const skills = [
 				return 1600 + 400 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -293,6 +295,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -351,6 +354,8 @@ export const skills = [
 				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
 					pow += Math.floor(n_A_JobLV / 3);
+				} else if (seirei == SERE_SUPPORT_SKILL_ID_EARTH_CARE) {
+					pow += 75;
 				}
 
 				return pow;
@@ -368,6 +373,7 @@ export const skills = [
 				return 800 + 200 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

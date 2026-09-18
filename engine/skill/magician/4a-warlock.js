@@ -10,6 +10,8 @@ import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_INT, n_A_JobLV } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_CHAIN_LIGHTNING, SKILL_ID_COMMET, SKILL_ID_CRYMSON_ROCK, SKILL_ID_DRAIN_LIFE, SKILL_ID_EARTH_STRAIN,
     SKILL_ID_FREEZING_SPELL, SKILL_ID_FROST_MISTY, SKILL_ID_HELL_INFERNO, SKILL_ID_JACK_FROST,
@@ -74,10 +76,10 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = 400 + 100 * skillLv + charaDataManger.GetCharaInt();
+				pow = 400 + 100 * skillLv + n_A_INT;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -94,6 +96,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -121,7 +124,7 @@ export const skills = [
 				pow = 200 + 100 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -146,6 +149,7 @@ export const skills = [
 				return 200;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -166,8 +170,18 @@ export const skills = [
 				return 70 + 10 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+
+				if (option.GetOptionValue(0) == 1) {
+					pow = 1000 + 300 * skillLv;
+					pow = Math.floor(pow * n_A_BaseLV / 100);
+				} else {
+					pow = 500 + 100 * skillLv;
+					pow = Math.floor(pow * n_A_BaseLV / 150);
+				}
+
+				return pow;
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {
@@ -190,6 +204,7 @@ export const skills = [
 				return 200;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -432,7 +447,7 @@ export const skills = [
 				pow = 300 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				// ベースレベル補正がかからない威力
 				pow += 1300;
@@ -460,6 +475,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -507,8 +523,34 @@ export const skills = [
 				return 400 + 80 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+				var wDistance = option.GetOptionValue(0);
+
+				switch (wDistance) {
+
+				case 0:
+					pow = 2500 + 500 * skillLv;
+					break;
+
+				case 1:
+					pow = 1600 + 400 * skillLv;
+					break;
+
+				case 2:
+					pow = 1200 + 300 * skillLv;
+					break;
+
+				case 3:
+					pow = 800 + 200 * skillLv;
+					break;
+
+				case 4:	// 協力発動
+					pow = Math.floor(2500 + 400 * skillLv * n_A_BaseLV / 120);
+					break;
+				}
+
+				return pow;
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {
@@ -531,6 +573,7 @@ export const skills = [
 				return 120000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -597,7 +640,7 @@ export const skills = [
 				pow = 2000 + 100 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -622,6 +665,7 @@ export const skills = [
 				return 600 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -685,24 +729,24 @@ export const skills = [
 				var powlv = 0;
 
 				// 基本式
-				powlv = charaDataManger.GetCharaBaseLv()
-						+ charaDataManger.GetCharaJobLv();
+				powlv = n_A_BaseLV + n_A_JobLV;
 				pow = powlv * Math.floor((skillLv + 1) / 2);
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 6000 - 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -727,24 +771,24 @@ export const skills = [
 				var powlv = 0;
 
 				// 基本式
-				powlv = charaDataManger.GetCharaBaseLv()
-						+ charaDataManger.GetCharaJobLv();
+				powlv = n_A_BaseLV + n_A_JobLV;
 				pow = powlv * Math.floor((skillLv + 1) / 2);
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 6000 - 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -769,24 +813,24 @@ export const skills = [
 				var powlv = 0;
 
 				// 基本式
-				powlv = charaDataManger.GetCharaBaseLv()
-						+ charaDataManger.GetCharaJobLv();
+				powlv = n_A_BaseLV + n_A_JobLV;
 				pow = powlv * Math.floor((skillLv + 1) / 2);
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 6000 - 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -811,24 +855,24 @@ export const skills = [
 				var powlv = 0;
 
 				// 基本式
-				powlv = charaDataManger.GetCharaBaseLv()
-						+ charaDataManger.GetCharaJobLv();
+				powlv = n_A_BaseLV + n_A_JobLV;
 				pow = powlv * Math.floor((skillLv + 1) / 2);
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 6000 - 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
