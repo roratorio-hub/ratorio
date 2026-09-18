@@ -103,6 +103,7 @@ export const skills = [
 				return 800 + 200 * Math.floor((skillLv - 1) / 5);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

@@ -7,6 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_Delay } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_ANGELUS, SKILL_ID_AQUA_BENEDICTA, SKILL_ID_BLESSING, SKILL_ID_CURE, SKILL_ID_DEMON_BANE,
     SKILL_ID_DIVINE_PROTECTION, SKILL_ID_HEAL, SKILL_ID_HOLY_LIGHT, SKILL_ID_PNEUMA, SKILL_ID_RUWACH,
@@ -355,6 +356,17 @@ export const skills = [
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 2000;
 			}
+
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				// ディレイを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[2];
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				// クールタイムを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[7];
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -383,6 +395,17 @@ export const skills = [
 				return 2000;
 			}
 
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				// ディレイを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[2];
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				// クールタイムを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[7];
+			}
+
+			this.genericFormula = true;
 		}),
 
 ];

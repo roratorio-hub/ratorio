@@ -455,8 +455,7 @@ export const skills = [
 			this.name = "寸勁";
 			this.kana = "スンケイ";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -472,6 +471,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

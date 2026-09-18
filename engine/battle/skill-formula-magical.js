@@ -354,14 +354,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = 0;
 			break;
 
-		case SKILL_ID_HOLY_LIGHT:
-		case SKILL_ID_HOLY_LIGHT_TAMASHI:
-			set_n_A_Weapon_zokusei(6);
-			CS.wCast = 2000;
-			CS.wbairitu = 125;
-			if(n_A_ActiveSkill==SKILL_ID_HOLY_LIGHT_TAMASHI) CS.wbairitu += 500;
-			break;
-
 		// 「プリースト」スキル「マグヌスエクソシズム」
 		case SKILL_ID_MAGNUS_EXORCISMUS:
 			// 詠唱時間等
@@ -1706,7 +1698,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			// 詠唱などの情報
 			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// ダメージ算出に関する情報
 			// ※このブロックは attackMethodConfArray[0] を常に渡す（オートスペルでも main の conf を使う、

@@ -327,14 +327,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 				break;
 
-			case SKILL_ID_RENCHUHOGEKI:
-				CS.wActiveHitNum = ROUNDDOWN((n_A_ActiveSkillLV + 1) / 2);
-				n_Delay[0] = 1;
-				CS.wbairitu += (300 + 100 * n_A_ActiveSkillLV);
-				if(n_A_ActiveSkillLV>=6) n_Delay[2] = 1000;
-				else n_Delay[2] = 800;
-				break;
-
 			case SKILL_ID_TOMAHAWKNAGE:
 				set_n_Enekyori(1);
 								set_n_A_Weapon_zokusei(4);
@@ -387,11 +379,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
 				CS.wbairitu = 100;
-				break;
-
-			case SKILL_ID_SUNKEI:
-								CS.wbairitu += 200;
-				n_Delay[2] = 2000;
 				break;
 
 			case SKILL_ID_FEORICHAGI:
@@ -787,33 +774,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[2] = 500 - 50 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_SORYUKYAKU:
-				CS.wActiveHitNum = 2;
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					CS.wbairitu = 50 + 20 * n_A_ActiveSkillLV;
-					break;
-
-				default:
-					CS.wbairitu = 100 + 40 * n_A_ActiveSkillLV;
-					break;
-
-				}
-
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-
-				var w = attackMethodConfArray[0].GetOptionValue(0);
-
-				if(w != 0){
-					if(w == 1) n_Delay[2] = 1000 - n_A_AGI * 4 - n_A_DEX * 2;
-					if(w == 2) n_Delay[2] = 300 + (1000 - n_A_AGI * 4 - n_A_DEX * 2);
-					if(n_Delay[2] <0) n_Delay[2] = 0;
-				}
-				break;
-
 			case SKILL_ID_TENRACHIMO:
 				n_Delay[7] = 200;
 				CS.wActiveHitNum = 3;
@@ -856,12 +816,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				else CS.wbairitu = ROUNDDOWN(20 * n_A_ActiveSkillLV * n_A_BaseLV / 150 * w);
 				break;
 			}
-			case SKILL_ID_DAITENHOSUI:
-				n_Delay[0] = 1;
-				CS.wActiveHitNum = 2;
-				CS.wbairitu = 100 + 250 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
-				break;
 
 			case SKILL_ID_RASETSU_HAOGEKI_MAX:
 			case SKILL_ID_RASETSU_HAOGEKI:
@@ -907,20 +861,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					}
 				}
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_SENPUTAI:
-				n_Delay[7] = 5000;
-				CS.wbairitu = n_A_BaseLV + n_A_DEX;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_SISIKO:
-				CS.wCast = 1000;
-				CS.n_KoteiCast = 500;
-				n_Delay[7] = 10000;
-				CS.wbairitu = 300 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
 				break;
 
 			case SKILL_ID_RAIKODAN:
@@ -1857,7 +1797,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				// 詠唱などの情報
 				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				// ダメージ算出に関する情報
 				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);

@@ -330,8 +330,8 @@ export function CSkillManager() {
 		return this.dataArray[skillId].CastTimeForce(skillLv, charaDataManger);
 	}
 
-	this.GetDelayTimeCommon = function(skillId, skillLv, charaDataManger) {
-		return this.dataArray[skillId].DelayTimeCommon(skillLv, charaDataManger);
+	this.GetDelayTimeCommon = function(skillId, skillLv, charaDataManger, option) {
+		return this.dataArray[skillId].DelayTimeCommon(skillLv, charaDataManger, option);
 	}
 
 	this.GetDelayTimeForceMotion = function(skillId, skillLv, charaDataManger) {

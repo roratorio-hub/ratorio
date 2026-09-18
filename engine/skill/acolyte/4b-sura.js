@@ -11,6 +11,8 @@ import { ELM_ID_WIND } from "../../const/EnumElmId.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import { n_A_BaseLV, n_Delay } from "../../runtime/ro4-state.js";
+import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
     SKILL_ID_GOHO, SKILL_ID_HASAICHU, SKILL_ID_KYUKIKO, SKILL_ID_RAIKODAN, SKILL_ID_RASETSU_HAOGEKI,
@@ -57,7 +59,7 @@ export const skills = [
 				}
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -66,10 +68,23 @@ export const skills = [
 				return 2;
 			}
 
-			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return -1;
+			this.DelayTimeCommon = function(skillLv, charaDataManger, option) {
+				var w = option.GetOptionValue(0);
+
+				if (w == 0) {
+					// 単発時はディレイを変更しない（呼び出し元の現在値をそのまま返す）
+					return n_Delay[2];
+				}
+
+				var d = n_Delay[2];
+				if (w == 1) d = 1000 - n_A_AGI * 4 - n_A_DEX * 2;
+				if (w == 2) d = 300 + (1000 - n_A_AGI * 4 - n_A_DEX * 2);
+				if (d < 0) d = 0;
+
+				return d;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -222,7 +237,7 @@ export const skills = [
 				pow = 100 + 250 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 150);
+				pow = Math.floor(pow * n_A_BaseLV / 150);
 
 				return pow;
 			}
@@ -231,6 +246,17 @@ export const skills = [
 				return 2;
 			}
 
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				// ディレイを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[2];
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				// クールタイムを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[7];
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -363,18 +389,24 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = charaDataManger.GetCharaBaseLv() + charaDataManger.GetCharaDex();
+				pow = n_A_BaseLV + n_A_DEX;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
+			}
+
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				// ディレイを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[2];
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 5000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -486,7 +518,7 @@ export const skills = [
 				pow = 300 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 150);
 
 				return pow;
 			}
@@ -499,10 +531,16 @@ export const skills = [
 				return 500;
 			}
 
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				// ディレイを変更しない（呼び出し元の現在値をそのまま返す）
+				return n_Delay[2];
+			}
+
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 10000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
