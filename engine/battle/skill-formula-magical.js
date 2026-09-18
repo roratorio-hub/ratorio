@@ -414,42 +414,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu = 40 + n_A_BaseLV;
 			break;
 
-		case SKILL_ID_KOUENKA:
-			set_n_A_Weapon_zokusei(3);
-			CS.wbairitu = 90;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 700 * n_A_ActiveSkillLV;
-			break;
-
-		case SKILL_ID_KAENZIN:
-			set_n_A_Weapon_zokusei(3);
-			CS.wbairitu = 50;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) +4 ;
-			CS.wCast = 6500 - 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[0] = 1;
-			break;
-
-		case SKILL_ID_RYUENZIN:
-			CS.n_bunkatuHIT = 1;
-			set_n_A_Weapon_zokusei(3);
-			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 3;
-			CS.wCast = 3000;
-			n_Delay[2] = 3000;
-			break;
-
-		case SKILL_ID_HYOSENSO:
-			set_n_A_Weapon_zokusei(1);
-			CS.wbairitu = 70;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = n_A_ActiveSkillLV + 2;
-			CS.wCast = 700 * n_A_ActiveSkillLV;
-			break;
-
 		case SKILL_ID_TSURARAOTOSHI:
 			set_n_A_Weapon_zokusei(1);
 			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
@@ -457,14 +421,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wHITsuu = 1;
 			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
 			n_Delay[2] = 2000;
-			break;
-
-		case SKILL_ID_FUZIN:
-			set_n_A_Weapon_zokusei(4);
-			CS.wbairitu = 150;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = Math.floor(n_A_ActiveSkillLV / 2) +1;
-			CS.wCast = 1000 + 1000 * Math.floor(n_A_ActiveSkillLV / 2);
 			break;
 
 		case SKILL_ID_RAIGEKISAI:
@@ -778,12 +734,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			var wX = 0;
 			for(var i=ITEM_DATA_INDEX_SPBEGIN;ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] != 0;i += 2) if(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] == 19) wX += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i+1];
 			CS.wbairitu = n_A_BaseLV * 4 + wX * 100 + n_A_INT * 2;
-			break;
-
-		case SKILL_ID_ZYUTSUSHIKI_KAIHO:
-			set_n_A_Weapon_zokusei(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU));
-			CS.wbairitu = 200 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 
 		// 「サモナー」スキル「マタタビランス」
@@ -1779,9 +1729,9 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
 				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}
-			// 100%ヒット・特殊な戦闘時間区分・強制ディレイの情報
-			// （TYPE_DIVHIT_FORMULA と DelayTimeForceMotion は既存の slot 値との
-			// 整合を個別スキル移行時に確認するまで、ここでは読まない）
+			// 100%ヒット・特殊な戦闘時間区分・分割ヒット式・強制ディレイの情報
+			// （DelayTimeForceMotion は既存の slot 値との整合を個別スキル移行時に
+			// 確認するまで、ここでは読まない）
 			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_100HIT) {
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
@@ -1790,6 +1740,9 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				n_Delay[0] = 1;
 			} else if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_UNKNOWN_DELAY_TIME) {
 				n_Delay[0] = 2;
+			}
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_DIVHIT_FORMULA) {
+				CS.n_bunkatuHIT = 1;
 			}
 			n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			break;

@@ -153,12 +153,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[2] = 1500;
 				break;
 
-			case SKILL_ID_KAGEKIRI:
-				n_Delay[0] = 1;
-				set_n_Enekyori(0);
-				CS.wbairitu += (-50 + 150 * n_A_ActiveSkillLV);
-				break;
-
 			case SKILL_ID_CRUSH_STRIKE:
 				CS.n_KoteiCast = 3000;
 				n_Delay[7] = 1000;
@@ -423,16 +417,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[0] = 1;
 				if (UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI) && n_A_WeaponType==0) CS.wbairitu += (n_A_BaseLV * 8 - 100);
 				else CS.wbairitu += (n_A_BaseLV * 4 - 100);
-				break;
-
-			case SKILL_ID_TATAMI_GAESHI:
-				CS.wbairitu = (100 + 10 * n_A_ActiveSkillLV) * 2;
-				n_Delay[2] = 3000;
-				break;
-
-			case SKILL_ID_KASUMIGIRI:
-				n_Delay[0] = 0;
-				CS.wbairitu += (20 * n_A_ActiveSkillLV);
 				break;
 
 			case SKILL_ID_BULLS_EYE:
@@ -1964,8 +1948,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				}
 				// 100%ヒット・特殊な戦闘時間区分・強制ディレイの情報
-				// （TYPE_DIVHIT_FORMULA と DelayTimeForceMotion は既存の slot 値との
-				// 整合を個別スキル移行時に確認するまで、ここでは読まない）
+				// （DelayTimeForceMotion は既存の slot 値との整合を個別スキル移行時に
+				// 確認するまで、ここでは読まない）
 				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_100HIT) {
 					CS.w_HIT = 100;
 					CS.w_HIT_HYOUJI = 100;

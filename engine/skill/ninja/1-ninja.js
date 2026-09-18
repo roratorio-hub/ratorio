@@ -7,6 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { ELM_ID_FIRE, ELM_ID_WATER, ELM_ID_WIND } from "../../const/EnumElmId.js";
 import {
     SKILL_ID_FUMASHURIKEN_NAGE, SKILL_ID_FUZIN, SKILL_ID_FU_COUNT_OF_FU, SKILL_ID_FU_ELEMENT_OF_FU,
@@ -168,6 +169,7 @@ export const skills = [
 				return 3000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -214,6 +216,7 @@ export const skills = [
 				return 100 + 20 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -245,6 +248,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -382,8 +386,8 @@ export const skills = [
 				pow = 90;
 
 				// 「影狼・朧 火符：炎天」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
+					pow += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -397,6 +401,7 @@ export const skills = [
 				return 700 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -424,8 +429,8 @@ export const skills = [
 				pow = 50;
 
 				// 「影狼・朧 火符：炎天」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
+					pow += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -443,6 +448,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -470,8 +476,8 @@ export const skills = [
 				pow = 150 + 150 * skillLv;
 
 				// 「影狼・朧 火符：炎天」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
-					pow += 100 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_FIRE) {
+					pow += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -489,6 +495,7 @@ export const skills = [
 				return 3000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -515,8 +522,8 @@ export const skills = [
 				pow = 70;
 
 				// 「影狼・朧 氷符：吹雪」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
+					pow += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -530,6 +537,7 @@ export const skills = [
 				return 700 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -583,8 +591,8 @@ export const skills = [
 				pow = 150 + 150 * skillLv;
 
 				// 「影狼・朧 氷符：吹雪」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
-					pow += 100 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WATER) {
+					pow += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -624,8 +632,8 @@ export const skills = [
 				pow = 150;
 
 				// 「影狼・朧 風符：青嵐」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
+					pow += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -639,6 +647,7 @@ export const skills = [
 				return 1000 + 1000 * Math.floor(skillLv / 2);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -665,8 +674,8 @@ export const skills = [
 				pow = 100 + 100 * skillLv;
 
 				// 「影狼・朧 風符：青嵐」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
-					pow += 20 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
+					pow += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;
@@ -702,8 +711,8 @@ export const skills = [
 				pow = 100 + 100 * skillLv;
 
 				// 「影狼・朧 風符：青嵐」の効果
-				if (charaDataManger.UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
-					pow += 100 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				if (UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU) == ELM_ID_WIND) {
+					pow += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 				}
 
 				return pow;

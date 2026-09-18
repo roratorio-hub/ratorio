@@ -7,6 +7,8 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
@@ -609,7 +611,9 @@ export const skills = [
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_SPECIAL;
+			this.element = function() {
+				return UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU);
+			}
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 20;
@@ -619,14 +623,15 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = 200 * charaDataManger.UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
+				pow = 200 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
