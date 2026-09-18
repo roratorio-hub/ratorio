@@ -419,21 +419,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				else CS.wbairitu += (n_A_BaseLV * 4 - 100);
 				break;
 
-			case SKILL_ID_BULLS_EYE:
-								CS.wCast = 500;
-				n_Delay[2] = 1000;
-				set_n_Enekyori(1);
-				CS.wActiveHitNum = 5;
-				if(mobData[19] == 2 || mobData[19] == 7) CS.wbairitu += 400;
-				break;
-
-			case SKILL_ID_RAPID_SHOWER:
-				set_n_Enekyori(1);
-				CS.wActiveHitNum = 5;
-				CS.wbairitu += 400 + 50 * n_A_ActiveSkillLV;
-				n_Delay[2] = 1700;
-				break;
-
 			case SKILL_ID_TRACKING:
 				CS.wCast = 500 + 100 * n_A_ActiveSkillLV;
 				CS.cast_kotei = true;
@@ -443,12 +428,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.w_HIT = CS.w_HIT * 5 +5;
 				if(CS.w_HIT > 100) CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = CS.w_HIT;
-				break;
-
-			case SKILL_ID_DISARM:
-				CS.wCast = 2000;
-				n_Delay[2] = 1000;
-				set_n_Enekyori(1);
 				break;
 
 			case SKILL_ID_PIERCING_SHOT:
@@ -466,25 +445,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				set_n_Enekyori(0);
 				CS.wbairitu += 50 * n_A_ActiveSkillLV;
 				n_Delay[3] = 1;
-				break;
-
-			case SKILL_ID_FULL_BASTER:
-				set_n_Enekyori(1);
-				CS.wbairitu += 200 + 100 * n_A_ActiveSkillLV;
-				n_Delay[2] = 1000 + 200 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_SPREAD_ATTACK:
-				set_n_Enekyori(1);
-				CS.wbairitu = 200 + 30 * n_A_ActiveSkillLV;
-				n_Delay[2] = 1000;
-				break;
-
-			case SKILL_ID_GROUND_DRIFT:
-				CS.wbairitu = 200 + 20 * n_A_ActiveSkillLV;
-				set_n_Enekyori(1);
-								CS.wCast = 1000;
-				n_Delay[2] = 1000;
 				break;
 
 			case SKILL_ID_SONIC_WAVE:
@@ -1068,14 +1028,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = 100 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_SHUTTER_STORM:
-				CS.wbairitu = 1700 + 200 * n_A_ActiveSkillLV;
-				set_n_Enekyori(1);
-				CS.wCast = 3500 - 500 * n_A_ActiveSkillLV;
-				n_Delay[2] = 0;
-				n_Delay[7] = 2000;
-				break;
-
 			case SKILL_ID_HOWLING_MINE:
 				CS.wbairitu = 400 * n_A_ActiveSkillLV;
 				set_n_Enekyori(1);
@@ -1122,31 +1074,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.n_KoteiCast = 1000;
 				n_Delay[2] = 0;
 				n_Delay[7] = 0;
-				break;
-
-			case SKILL_ID_UNTIMATERIAL_BLAST:
-				CS.wbairitu = 1500 + 300 * n_A_ActiveSkillLV;
-				set_n_Enekyori(1);
-				CS.wCast = 4000;
-				CS.n_KoteiCast = 1000;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 5000;
-				break;
-
-			case SKILL_ID_DRAGON_TAIL:
-	// TODO: 暫定。ここにはいらない。
-	//			set_n_A_Weapon_zokusei(0);		// 強制無属性
-				CS.wbairitu = 500 + 200 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				// 烙印状態ならば、攻撃力２倍
-				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI]) {
-					CS.wbairitu *= 2;
-				}
-
-				set_n_Enekyori(1);
-				CS.wCast = Math.min(2000, 1000 + 200 * n_A_ActiveSkillLV);
-				n_Delay[2] = 2000;
-				n_Delay[7] = 5000;
 				break;
 
 			case SKILL_ID_SLUG_SHOT:

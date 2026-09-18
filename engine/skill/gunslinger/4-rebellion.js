@@ -7,6 +7,9 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_AS_QUICKDRAW, SKILL_ID_BIND_TRAP, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CRYMSON_MARKER,
     SKILL_ID_DRAGON_TAIL, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_FALLIN_ANGEL, SKILL_ID_FIRE_DANCE, SKILL_ID_FIRE_RAIN,
@@ -96,6 +99,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -343,6 +347,7 @@ export const skills = [
 				return 5000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -383,14 +388,21 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			// 強制無属性は現状無効化されている（元コードの該当行はコメントアウト済み）
+			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 50 + 10 * skillLv;
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				let ratio = 500 + 200 * skillLv;
+				ratio = ROUNDDOWN(ratio * n_A_BaseLV / 100);
+				// 烙印状態ならば、攻撃力２倍
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI]) {
+					ratio *= 2;
+				}
+				return ratio;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -405,6 +417,7 @@ export const skills = [
 				return 5000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

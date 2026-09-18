@@ -8,6 +8,7 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE } from "../../const/EnumItemKind.js";
+import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
 import { RACE_ID_ANIMAL, RACE_ID_HUMAN } from "../../const/EnumRaceId.js";
 import {
     SKILL_ID_ADJUSTMENT, SKILL_ID_BULLS_EYE, SKILL_ID_CHAIN_ACTION, SKILL_ID_COUNT_OF_COIN, SKILL_ID_CRACKER,
@@ -99,7 +100,7 @@ export const skills = [
 				return 30;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
 				var pow = 0;
 				var race = 0;
 
@@ -107,7 +108,7 @@ export const skills = [
 				pow = 100;
 
 				// 人間形と動物形には500%
-				race = charaDataManger.GetMobRace();
+				race = mobData[MONSTER_DATA_INDEX_RACE];
 				if ((race == RACE_ID_HUMAN) || (race == RACE_ID_ANIMAL)) {
 					pow = 500;
 				}
@@ -127,6 +128,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -331,6 +333,7 @@ export const skills = [
 				return 1700;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -424,6 +427,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -551,6 +555,7 @@ export const skills = [
 				return 1000 + 200 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -571,13 +576,14 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return 200 + 20 * skillLv;
+				return 200 + 30 * skillLv;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -609,6 +615,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
