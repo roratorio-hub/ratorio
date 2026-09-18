@@ -7,10 +7,13 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_DEX, n_A_STR } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BLOOD_SUCKER, SKILL_ID_CART_BOOST_GENETIC, SKILL_ID_CART_CANNON,
     SKILL_ID_CART_KAIZO, SKILL_ID_CART_TORNADO, SKILL_ID_CHANGE_MATERIAL, SKILL_ID_CRAZY_WEED, SKILL_ID_DEMONIC_FIRE,
@@ -172,8 +175,9 @@ export const skills = [
 				return 4;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				const kihon_bairitu = [300, 800, 800, 500, 877];
+				return ROUNDDOWN((kihon_bairitu[option.GetOptionValue(0)] + n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
@@ -193,6 +197,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

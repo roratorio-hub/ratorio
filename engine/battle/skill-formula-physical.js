@@ -201,10 +201,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu += 50;
 				break;
 
-			case SKILL_ID_MAMMONITE:
-				CS.wbairitu += n_A_ActiveSkillLV * 50;
-				break;
-
 			case SKILL_ID_SPEAR_STUB:
 				CS.wbairitu += n_A_ActiveSkillLV * 20;
 				set_n_Enekyori(1);
@@ -229,7 +225,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu += 35 * n_A_ActiveSkillLV;
 				set_n_A_Weapon_zokusei(7);
 				break;
-
 
 			case SKILL_ID_SURPRISE_ATTACK:
 				CS.wbairitu += 80 * n_A_ActiveSkillLV;
@@ -398,11 +393,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
 				CS.wbairitu = 100;
-				break;
-
-
-			case SKILL_ID_CART_TERMINATION:
-				CS.wbairitu += Math.floor((attackMethodConfArray[0].GetOptionValue(0) / (16 - n_A_ActiveSkillLV) / 100 -1) * 100);
 				break;
 
 			case SKILL_ID_SUNKEI:
@@ -686,33 +676,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			// 「メカニック」スキル「アックストルネード」
-			case SKILL_ID_AXE_TORNADE:
-				// 2024/09/18 実測値との誤差無しを確認済み
-				CS.wActiveHitNum = 6;
-				n_Delay[2] = 500;
-				n_Delay[7] = 4500 - 500 * n_A_ActiveSkillLV;
-				// 基本倍率
-				// TODO: アックスストンプ状態はスキル倍率だけに影響するので職固有自己支援から攻撃手段オプションに移行する
-				const state_axe_stomp = attackMethodConfArray[0].GetOptionValue(0);
-				if (state_axe_stomp === 1) {
-					// アックスストンプ状態の場合
-					CS.wbairitu = 230 + 230 * n_A_ActiveSkillLV;
-					CS.wbairitu += n_A_VIT * 2;
-				} else {
-					CS.wbairitu = 200 + 180 * n_A_ActiveSkillLV;
-					CS.wbairitu += n_A_VIT;
-				}
-				// 最終倍率
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_AXE_BOOMERANG:
-				set_n_Enekyori(1);
-				var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
-				CS.wCast = 5500 - 500 * n_A_ActiveSkillLV;
-				CS.wbairitu = 250 + 50 * n_A_ActiveSkillLV + w_Weight;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
 
 			// 「メカニック」スキル「パワースイング」
 			// 2025/01/27 実測値との誤差無しを確認済み
@@ -739,13 +702,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
 				break;
 
-			case SKILL_ID_PILE_BUNKER:
-				n_Delay[2] = 3000 - 1000 * n_A_ActiveSkillLV;
-				n_Delay[7] = 7500 - 2500 * n_A_ActiveSkillLV;
-				CS.wbairitu = 300 + 100 * n_A_ActiveSkillLV + n_A_STR;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
 			// 「メカニック」スキル「バルカンアーム」
 			case SKILL_ID_VULCAN_ARM:
 				set_n_Enekyori(1);
@@ -753,22 +709,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) CS.wHITsuu = 2;
 				CS.wbairitu = 70 * n_A_ActiveSkillLV + n_A_DEX;
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
-				break;
-
-			case SKILL_ID_FLAME_THROWER:
-			case SKILL_ID_COLD_THROWER:
-				if(n_A_ActiveSkill==SKILL_ID_FLAME_THROWER){
-					set_n_A_Weapon_zokusei(3);
-					CS.wCast = 500;
-				}
-				if(n_A_ActiveSkill==SKILL_ID_COLD_THROWER){
-					set_n_A_Weapon_zokusei(1);
-					CS.wCast = 1000 * n_A_ActiveSkillLV;
-				}
-				n_Delay[2] = 2000 - 500 * n_A_ActiveSkillLV;
-				set_n_Enekyori(1);
-				CS.wbairitu = 300 + 300 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
 				break;
 
 			// 「ロイヤルガード」スキル「キャノンスピア」
@@ -1072,27 +1012,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wActiveHitNum = 3;
 				break;
 			}
-
-			case SKILL_ID_SLING_ITEM:
-				set_n_Enekyori(1);
-				n_Delay[2] = 500;
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_Delay[7] = 7000;
-					break;
-
-				default:
-					n_Delay[7] = 1000;
-					break;
-
-				}
-
-				var kihon_bairitu = [300,800,800,500,877];
-				CS.wbairitu = ROUNDDOWN((kihon_bairitu[attackMethodConfArray[0].GetOptionValue(0)] + n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
-				break;
 
 			// 「ジェネティック」スキル「スポアエクスプロージョン」
 			// 2024/11/16 YEサーバー実測との誤差 +1 ～ -8 を確認
@@ -1524,7 +1443,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			case SKILL_ID_SHINSE_BAKUHATSU:
-
 
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
@@ -2171,12 +2089,10 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 		// ↑おそらく、別の場所で処理可能
 
-
 		//--------------------------------
 		// オートスペルの発動を適用
 		//--------------------------------
 		AS_PLUS();
-
 
 		// ↑の AS_PLUS() は、単純にオートスペルのダメージを足しているだけ。
 		// 特殊な処理もなく、グローバル空間にダメージデータの変数を持っているので、別の場所で処理可能

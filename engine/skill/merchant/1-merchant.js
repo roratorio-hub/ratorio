@@ -129,6 +129,7 @@ export const skills = [
 				return 100 + 50 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
