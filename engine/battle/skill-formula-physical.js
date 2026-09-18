@@ -147,40 +147,12 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 四次計算式方式移行分
 
-			case SKILL_ID_CRUSH_STRIKE:
-				CS.n_KoteiCast = 3000;
-				n_Delay[7] = 1000;
-				CS.wbairitu = n_A_WeaponLV * (6 + n_A_Weapon_ATKplus)* 100 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER] + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
-				break;
-
-			case SKILL_ID_EXCEED_BREAK:
-				CS.n_KoteiCast = 4500 + 500 * n_A_ActiveSkillLV;
-				n_Delay[0] = 1;
-				n_Delay[2] = 1000;
-				set_n_Enekyori(0);
-				CS.wbairitu = 100 + 15 * n_A_JobLV + 150 * n_A_ActiveSkillLV + Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] * n_A_WeaponLV * n_A_BaseLV / 100);
-				break;
-
 			// 従来からある分
-			case SKILL_ID_BASH:
-				CS.wbairitu += n_A_ActiveSkillLV * 30;
-				break;
-
-			case SKILL_ID_MAGNUM_BREAK:
-				CS.wbairitu += n_A_ActiveSkillLV * 20;
-				set_n_A_Weapon_zokusei(3);
-				n_Delay[2] = 2000;
-				break;
 
 			case SKILL_ID_ARROW_SHOWER:
 				set_n_Enekyori(1);
 				CS.wbairitu += 50 + 10 * n_A_ActiveSkillLV;
 				n_Delay[3] = 1;
-				break;
-
-			case SKILL_ID_SPEAR_STUB:
-				CS.wbairitu += n_A_ActiveSkillLV * 20;
-				set_n_Enekyori(1);
 				break;
 
 			case SKILL_ID_GRIM_TOOTH:
@@ -189,33 +161,9 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu += 20 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_SHIELD_CHARGE:
-				CS.wbairitu += 20 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_HOLY_CROSS:
-				CS.wbairitu += 35 * n_A_ActiveSkillLV;
-				set_n_A_Weapon_zokusei(6);
-				break;
-
 			case SKILL_ID_DARK_CROSS:
 				CS.wbairitu += 35 * n_A_ActiveSkillLV;
 				set_n_A_Weapon_zokusei(7);
-				break;
-
-			case SKILL_ID_SPEAR_BOOMERANG:
-				CS.wbairitu += 50 * n_A_ActiveSkillLV;
-				n_Delay[2] = 1000;
-				set_n_Enekyori(1);
-				break;
-
-			case SKILL_ID_BRANDISH_SPEAR:
-				w = (100 + 20 * n_A_ActiveSkillLV);
-				if(n_A_ActiveSkillLV == 10)CS.wbairitu += 462.5;
-				else if(n_A_ActiveSkillLV >= 7)CS.wbairitu += (w + w/2 + w/4 - 100);
-				else if(n_A_ActiveSkillLV >= 4)CS.wbairitu += (w + w/2 - 100);
-				else CS.wbairitu += (w - 100);
-				CS.wCast = 700;
 				break;
 
 			case SKILL_ID_SONIC_BLOW:
@@ -262,19 +210,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 				break;
 
-			case SKILL_ID_HEAD_CRUSH:
-				set_n_Enekyori(1);
-				CS.wbairitu += 40 * n_A_ActiveSkillLV;
-				n_Delay[2] = 500;
-				break;
-
-			case SKILL_ID_JOINT_BEAT:
-				set_n_Enekyori(1);
-				CS.wbairitu += (10 * n_A_ActiveSkillLV - 50);
-				if(n_A_ActiveSkillLV > 5) n_Delay[2] = 1000;
-				else n_Delay[2] = 800;
-				break;
-
 			case SKILL_ID_MOKOKOHAZAN:
 				CS.wbairitu += (100 + 100 * n_A_ActiveSkillLV);
 				n_Delay[3] = 1;
@@ -301,14 +236,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				set_n_Enekyori(1);
 								CS.n_A_DMG[1] += Math.floor(14.5 * CS.wCSize);
 				CS.n_A_DMG[2] += Math.floor(29 * CS.wCSize);
-				break;
-
-			case SKILL_ID_CHARGE_ATTACK:
-				var w;
-				w = attackMethodConfArray[0].GetOptionValue(0);
-				CS.wbairitu += 100 * w;
-				CS.wCast = 500 * (w+1);
-				if(CS.wCast > 1500) CS.wCast = 1500;
 				break;
 
 			// 「拳聖」スキル「＊＊の温もり」
@@ -391,21 +318,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
-			case SKILL_ID_WIND_CUTTER:
-				set_n_A_Weapon_zokusei(4);
-				CS.wCast = n_A_ActiveSkillLV * 500 - 500;
-				n_Delay[2] = 500;
-				n_Delay[7] = 2500 - 500 * n_A_ActiveSkillLV;
-				CS.wbairitu = 100 + 50 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_PHANTOM_SLAST:	// ファントムスラスト
-				set_n_Enekyori(1);
-				CS.wbairitu = 50 * n_A_ActiveSkillLV + 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
-				break;
-
 			case SKILL_ID_IGNITION_BREAK:
 				n_Delay[7] = 3000;
 				var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 0);
@@ -468,88 +380,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			// 「ロイヤルガード」スキル「キャノンスピア」
-			case SKILL_ID_CANNON_SPEAR:
-				set_n_Enekyori(1);
-				n_Delay[7] = 2000;
-				CS.wbairitu = (50 + n_A_STR) * n_A_ActiveSkillLV;
-				/*
-				グランドジャッジメント状態スキル倍率
-				実測値との一致を確認済み
-				*/
-				if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
-					CS.wbairitu = (200 + n_A_STR) * n_A_ActiveSkillLV;
-				}
-
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				break;
 
 			// 「ロイヤルガード」スキル「バニシングポイント」
-			case SKILL_ID_BANISHING_POINT:
-				set_n_Enekyori(1);
-				// バッシュ習得Lv補正
-				let w_BN = 30 * Math.max(LearnedSkillSearch(SKILL_ID_BASH), attackMethodConfArray[0].GetOptionValue(0));
-				// 基本倍率
-				CS.wbairitu = 50 * n_A_ActiveSkillLV + w_BN;
-				/*
-				グランドジャッジメント状態スキル倍率
-				実測値との一致を確認済み
-				*/
-				if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
-					CS.wbairitu *= 2;
-				}
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_SHIELD_PRESS:
-				n_Delay[7] = 2000;
-				CS.wbairitu = 200 * n_A_ActiveSkillLV
-				/*
-				シールドシューティング状態スキル倍率
-				実測値との一致を確認済み
-				*/
-				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
-					CS.wbairitu = 300 * n_A_ActiveSkillLV;
-				}
-
-				CS.wbairitu += n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_RAGE_BURST_ATTACK:
-				n_Delay[7] = 3000;
-				CS.wbairitu = 200 * attackMethodConfArray[0].GetOptionValue(0);
-				if(attackMethodConfArray[0].GetOptionValue(1) > 0) {
-					CS.wbairitu += (charaData[CHARA_DATA_INDEX_MAXHP] - attackMethodConfArray[0].GetOptionValue(1)) / 100;
-				}
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_MOON_SLUSHER:
-				// オーバーブランドの習得Lv補正
-				var w_OB = 80 * Math.max(LearnedSkillSearch(SKILL_ID_OVER_BLAND), attackMethodConfArray[0].GetOptionValue(0));
-				CS.wCast = 2000;
-				n_Delay[7] = 5500 - 500 * n_A_ActiveSkillLV;
-				CS.wbairitu = 120 * n_A_ActiveSkillLV + w_OB;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_EARTH_DRIVE:
-				CS.wActiveHitNum = 1;
-				CS.wCast = 1000;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 8000 - 1000 * n_A_ActiveSkillLV;
-				CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-				/*
-				シールドシューティング状態スキル倍率
-				実測値との一致を確認済み
-				*/
-				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
-					CS.wbairitu = 300 + 100 * n_A_ActiveSkillLV;
-				}
-
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] / 100);
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
 
 			// 「シャドウチェイサー」スキル「フェイタルメナス」
 			case SKILL_ID_FATAL_MENUS:
@@ -715,14 +547,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			case SKILL_ID_GRAHAM_LIGHT:
 				set_n_Enekyori(1);
 				CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_SHIELD_SPELL_LV_1:
-				CS.wCast = 1000;
-				n_Delay[0] = 1;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 2000;
-				CS.wbairitu = n_A_BaseLV * 4 + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_POWER] * 10 + n_A_VIT * 2;
 				break;
 
 			case SKILL_ID_CHIMEITEKINA_KIZU:
@@ -1505,7 +1329,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					break;
 				}
 				// 詠唱などの情報
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);

@@ -172,6 +172,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -199,6 +200,7 @@ export const skills = [
 				return 800 + 200 * Math.floor((skillLv - 1) / 5);
 			}
 
+			this.genericFormula = true;
 		}),
 
 ];

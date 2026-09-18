@@ -9,12 +9,12 @@
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
-import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
+import { ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
 import { ItemObjNew } from "../../equip/item.dat.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
-import { n_A_Equip } from "../../runtime/roro-state.js";
+import { n_A_Equip, n_A_WeaponLV, n_A_Weapon_ATKplus } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_AVANDANCE, SKILL_ID_CRUSH_STRIKE, SKILL_ID_DEATH_BOUND, SKILL_ID_DRAGONIC_AURA_STATE,
@@ -199,7 +199,7 @@ export const skills = [
 				pow = 100 + 50 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -216,6 +216,7 @@ export const skills = [
 				return 2500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -243,11 +244,12 @@ export const skills = [
 				pow += 10 * Math.max(LearnedSkillSearch(SKILL_ID_YARI_SHUREN), UsedSkillSearch(SKILL_ID_YARI_SHUREN));
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 150);
+				pow = Math.floor(pow * n_A_BaseLV / 150);
 
 				return pow;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -527,7 +529,9 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return n_A_WeaponLV * (6 + n_A_Weapon_ATKplus) * 100
+						+ ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_POWER]
+						+ ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
 			}
 
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
@@ -545,6 +549,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData);
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

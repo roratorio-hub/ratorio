@@ -318,8 +318,8 @@ export function CSkillManager() {
 		return this.dataArray[skillId].CostAP(skillLv, charaDataManger);
 	}
 
-	this.GetCastTimeVary = function(skillId, skillLv, charaDataManger) {
-		return this.dataArray[skillId].CastTimeVary(skillLv, charaDataManger);
+	this.GetCastTimeVary = function(skillId, skillLv, charaDataManger, option) {
+		return this.dataArray[skillId].CastTimeVary(skillLv, charaDataManger, option);
 	}
 
 	this.GetCastTimeFixed = function(skillId, skillLv, charaDataManger) {

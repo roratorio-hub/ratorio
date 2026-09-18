@@ -72,6 +72,7 @@ export const skills = [
 				return 100 + 20 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -99,6 +100,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -136,6 +138,7 @@ export const skills = [
 				return 700;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -273,21 +276,22 @@ export const skills = [
 			this.kana = "チヤアシアタツク";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 40;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				return 100 + 100 * option.GetOptionValue(0);
 			}
 
-			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return -1;
+			this.CastTimeVary = function(skillLv, charaDataManger, option) {
+				return Math.min(1500, 500 * (option.GetOptionValue(0) + 1));
 			}
 
+			this.genericFormula = true;
 		}),
 
 ];

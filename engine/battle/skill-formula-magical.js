@@ -662,17 +662,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu = 200 + 20 * n_A_ActiveSkillLV;
 			break;
 
-		case SKILL_ID_SHIELD_SPELL_LV_2:
-			set_n_A_Weapon_zokusei(6);
-			CS.wCast = 1000;
-			n_Delay[0] = 1;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 2000;
-			var wX = 0;
-			for(var i=ITEM_DATA_INDEX_SPBEGIN;ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] != 0;i += 2) if(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] == 19) wX += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i+1];
-			CS.wbairitu = n_A_BaseLV * 4 + wX * 100 + n_A_INT * 2;
-			break;
-
 		// 「サモナー」スキル「マタタビランス」
 		case SKILL_ID_MATATABI_LANCE:
 			// レベルによって属性が変化する
@@ -1623,7 +1612,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				break;
 			}
 			// 詠唱などの情報
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
