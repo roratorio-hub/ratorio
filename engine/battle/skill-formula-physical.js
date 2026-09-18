@@ -2078,6 +2078,19 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
 					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				}
+				// 100%ヒット・特殊な戦闘時間区分・強制ディレイの情報
+				// （TYPE_DIVHIT_FORMULA と DelayTimeForceMotion は既存の slot 値との
+				// 整合を個別スキル移行時に確認するまで、ここでは読まない）
+				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_100HIT) {
+					CS.w_HIT = 100;
+					CS.w_HIT_HYOUJI = 100;
+				}
+				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_IRREGULAR_BATTLE_TIME) {
+					n_Delay[0] = 1;
+				} else if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_UNKNOWN_DELAY_TIME) {
+					n_Delay[0] = 2;
+				}
+				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
 		}
