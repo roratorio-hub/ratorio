@@ -382,30 +382,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			else n_Delay[2] = 1000 + (n_A_ActiveSkillLV+1) / 2 * 200;
 			break;
 
-		case SKILL_ID_ESTIN:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100;
-			n_Delay[2] = 500;
-			if(mobData[17] == 0) CS.wbairitu = 10 * n_A_ActiveSkillLV;
-			else CS.wbairitu = 1;
-			break;
-
-		case SKILL_ID_ESTON:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100;
-			n_Delay[2] = 500;
-			CS.wbairitu = 5 * n_A_ActiveSkillLV;
-			break;
-
-		case SKILL_ID_ESMA:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			n_Delay[0] = 1;
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 2000;
-			n_Delay[2] = 500;
-			CS.wbairitu = 40 + n_A_BaseLV;
-			break;
-
 		case SKILL_ID_TSURARAOTOSHI:
 			set_n_A_Weapon_zokusei(1);
 			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
@@ -557,26 +533,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		// メタリックサウンド
-		case SKILL_ID_METALIC_SOUND:
-			set_n_A_Weapon_zokusei(0);
-			CS.n_bunkatuHIT = 1;
-			CS.wCast = Math.min(3000, 500 + 500 * n_A_ActiveSkillLV);
-			n_Delay[7] = 200;
-			// 基本倍率
-			CS.wbairitu = 120 * n_A_ActiveSkillLV
-			// サウンドブレンド補正
-			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
-				CS.wbairitu *= 2;
-			}
-			// レッスン補正
-			CS.wbairitu += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
-			// BaseLv補正
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			// 睡眠補正
-			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * 150 / 100);
-			}
-			break;
 
 		case SKILL_ID_FIRE_WALK:
 		case SKILL_ID_ELECTRIC_WALK:
@@ -783,24 +739,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 
 			CS.n_bunkatuHIT = 1;
 			CS.wHITsuu = 7;
-
-			break;
-
-		case SKILL_ID_ESHA:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 200 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 200 * n_A_ActiveSkillLV;
-			n_Delay[7] = 1000;
-			CS.wbairitu = 2000 + (100 * n_A_ActiveSkillLV);
-
-			break;
-
-		case SKILL_ID_ESPA:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = 500 + (250 * n_A_ActiveSkillLV);
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 
 			break;
 
@@ -1699,7 +1637,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			// ダメージ算出に関する情報
 			// ※このブロックは attackMethodConfArray[0] を常に渡す（オートスペルでも main の conf を使う、
 			//   従来どおりの挙動）。アドラムス等 option 依存の 999 未満スキルは main の conf で評価しないと

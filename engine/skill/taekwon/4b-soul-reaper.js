@@ -7,6 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_COUNT_OF_SOUL_ENERGY, SKILL_ID_CRITICAL_WOUNDS, SKILL_ID_ESFU, SKILL_ID_ESHA, SKILL_ID_ESPA,
     SKILL_ID_GOLEMNO_TAMASHI, SKILL_ID_KAGENO_TAMASHI, SKILL_ID_KAUTO, SKILL_ID_ODINNO_CHIKARA, SKILL_ID_PEONY_MAMY,
@@ -50,6 +51,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -70,7 +72,15 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var pow = 0;
+
+				// 基本式
+				pow = 500 + 250 * skillLv;
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -81,6 +91,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

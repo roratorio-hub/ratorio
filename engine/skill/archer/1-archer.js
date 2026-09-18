@@ -162,6 +162,7 @@ export const skills = [
 				return 1500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 ];

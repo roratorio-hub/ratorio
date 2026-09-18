@@ -185,6 +185,7 @@ export const skills = [
 				var nLifeTime = ([0, 150000, 120000, 90000, 60000, 30000])[skillLv];
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -416,6 +417,7 @@ export const skills = [
 				return 150;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

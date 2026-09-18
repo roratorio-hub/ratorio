@@ -146,12 +146,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			// 四次計算式方式移行分
-			case SKILL_ID_SHARP_SHOOTING:
-				set_n_Enekyori(1);
-				CS.wbairitu = 200 + 50 * n_A_ActiveSkillLV;
-				CS.wCast = 2000;
-				n_Delay[2] = 1500;
-				break;
 
 			case SKILL_ID_CRUSH_STRIKE:
 				CS.n_KoteiCast = 3000;
@@ -187,12 +181,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				set_n_Enekyori(1);
 				CS.wbairitu += 50 + 10 * n_A_ActiveSkillLV;
 				n_Delay[3] = 1;
-				break;
-
-			case SKILL_ID_CHARGE_ARROW:
-				set_n_Enekyori(1);
-				CS.wCast = 1500;
-				CS.wbairitu += 50;
 				break;
 
 			case SKILL_ID_SPEAR_STUB:
@@ -253,11 +241,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 						n_Delay[3] = 1;
 					}
 				}
-				break;
-
-			case SKILL_ID_FREEZING_TRAP:
-				n_Delay[0] = 1;
-								set_n_A_Weapon_zokusei(1);
 				break;
 
 			case SKILL_ID_BACK_STAB:
@@ -342,11 +325,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.n_A_DMG[2] += Math.floor(29 * CS.wCSize);
 				break;
 
-			case SKILL_ID_FANTASMIC_ARROW:
-				set_n_Enekyori(1);
-								CS.wbairitu += 50;
-				break;
-
 			case SKILL_ID_CHARGE_ATTACK:
 				var w;
 				w = attackMethodConfArray[0].GetOptionValue(0);
@@ -381,29 +359,11 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = 100;
 				break;
 
-			case SKILL_ID_FEORICHAGI:
-			case SKILL_ID_NERYOCHAGI:
-				n_Delay[0] = 1;
-				CS.wbairitu += (60 + 20 * n_A_ActiveSkillLV);
-				break;
-
 			case SKILL_ID_TORURYOCHAGI:
 			case SKILL_ID_APUCHAORURIGI:
 				n_Delay[0] = 1;
 				CS.wbairitu += (90 + 30 * n_A_ActiveSkillLV);
 				if(n_A_ActiveSkill==SKILL_ID_APUCHAORURIGI) CS.wActiveHitNum = 3;
-				break;
-
-			case SKILL_ID_TEIOAPUCHAGI:
-				set_n_Enekyori(1);
-				CS.wbairitu += (10 * n_A_ActiveSkillLV - 70);
-				break;
-
-			case SKILL_ID_TEIOAPUCHAGI_IN_DASH:
-				set_n_Enekyori(1);
-				n_Delay[0] = 1;
-				if (UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI) && n_A_WeaponType==0) CS.wbairitu += (n_A_BaseLV * 8 - 100);
-				else CS.wbairitu += (n_A_BaseLV * 4 - 100);
 				break;
 
 			case SKILL_ID_TRACKING:
@@ -541,69 +501,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
 				break;
 
-			case SKILL_ID_ARROW_STORM:
-				CS.wCast = 2000 + 200 * n_A_ActiveSkillLV;
-				n_Delay[2] = 7000 - 400 * n_A_ActiveSkillLV;
-				n_Delay[7] = 5500 - 500 * n_A_ActiveSkillLV;
-				CS.wActiveHitNum = 3;
-				set_n_Enekyori(1);
-				CS.wbairitu = 1000 + 80 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_CLUSTER_BOMB:
-				CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_FIRING_TRAP:
-				CS.wbairitu = 100;
-				break;
-
 			case SKILL_ID_ICEBOUND_TRAP:
 				CS.wbairitu = 100;
-				break;
-
-			case SKILL_ID_WUG_BITE: {	// ウォーグバイト
-				n_Delay[2] = 2000;
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-					case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-						n_Delay[7] = 2500 + 500 * n_A_ActiveSkillLV;
-						break;
-					default:
-						n_Delay[7] = 2000 + 2000 * n_A_ActiveSkillLV;
-						break;
-				}
-				CS.wbairitu = 800 + 200 * n_A_ActiveSkillLV;
-				break;
-			}
-
-			case SKILL_ID_WUG_STRIKE:
-				set_n_Enekyori(1);
-				CS.wbairitu = 250 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_EIBINNA_KYUKAKU:
-				n_Delay[2] = 3000;
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_Delay[7] = 2000 + 1000 * n_A_ActiveSkillLV;
-					break;
-
-				default:
-					n_Delay[7] = 0;
-					break;
-
-				}
-
-				CS.wbairitu = 100 + 50 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_WUG_DASH:
-				CS.wbairitu = 300;
 				break;
 
 			// 「メカニック」スキル「アックストルネード」
@@ -1223,85 +1122,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 				break;
 
-			case  SKILL_ID_SAKUGETSU_KYAKU:
-
-				CS.wbairitu = 1650 + 50 * n_A_ActiveSkillLV;
-
-				CS.wCast = 500 + 250 * n_A_ActiveSkillLV;
-				n_Delay[7] = 500;
-
-				break;
-
-			case  SKILL_ID_MANGETSU_KYAKU:
-
-				var hikariLv = 0;
-				var hikariBairitsu = 0;
-	/*
-				hikariLv = UsedSkillSearch(SKILL_ID_TSUKINO_HIKARI);
-
-				if (hikariLv > 0) {
-					hikariBairitsu = 25 + 5 * hikariLv;
-				}
-	*/
-				CS.wbairitu = 500 + 150 * n_A_ActiveSkillLV;
-				CS.wbairitu = Math.floor(CS.wbairitu * (100 + hikariBairitsu) / 100);
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-
-				CS.wCast = 100 * n_A_ActiveSkillLV;
-				CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
-
-				break;
-
-			case  SKILL_ID_SENKO_KYAKU:
-
-				CS.wbairitu = 100;
-
-				n_Delay[7] = 3500 - 500 * n_A_ActiveSkillLV;
-
-				break;
-
-			case SKILL_ID_SHINSE_BAKUHATSU:
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					CS.wbairitu = 750 + 750 * n_A_ActiveSkillLV;
-					break;
-
-				default:
-					CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-					break;
-				}
-
-				CS.n_KoteiCast = 500;
-				n_Delay[7] = 2000;
-
-				if (attackMethodConfArray[0].GetOptionValue(0) == 1) {
-					n_Delay[7] = 0;
-				}
-
-				break;
-
-			case SKILL_ID_SEITE_KORIN:
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					CS.wbairitu = 2250 + 750 * n_A_ActiveSkillLV;
-					break;
-
-				default:
-					CS.wbairitu = 1500 + 500 * n_A_ActiveSkillLV;
-					break;
-				}
-
-				CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
-				n_Delay[7] = 3000;
-
-				break;
-
 			// 「バイオロ」スキル「アシディファイドゾーン」
 			// 2024/11/15 初撃のダメージ誤差無しを確認済み
 			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します
@@ -1798,7 +1618,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				// ダメージ算出に関する情報
 				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 				set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));

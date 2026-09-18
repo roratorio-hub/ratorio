@@ -342,8 +342,8 @@ export function CSkillManager() {
 		return this.dataArray[skillId].DelayTimeSkillTiming(skillLv, charaDataManger);
 	}
 
-	this.GetCoolTime = function(skillId, skillLv, charaDataManger) {
-		return this.dataArray[skillId].CoolTime(skillLv, charaDataManger);
+	this.GetCoolTime = function(skillId, skillLv, charaDataManger, option) {
+		return this.dataArray[skillId].CoolTime(skillLv, charaDataManger, option);
 	}
 
 	/**
