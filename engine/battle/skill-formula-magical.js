@@ -99,7 +99,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		CS.wbairitu = 100;
 		CS.n_bunkatuHIT = 0;
 
-
 		// 四次スキル以降の属性設定共通処理
 		if (battleCalcInfo.skillId >= SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0]));
@@ -263,7 +262,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wCast = 1600 + n_A_ActiveSkillLV * 400;
 			break;
 
-
 		//「ウィザード」スキル「ロードオブヴァーミリオン」
 		case SKILL_ID_LORD_OF_VERMILLION:
 			// 詠唱時間等
@@ -283,7 +281,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			// 見た目 10 hit * hit数
 			CS.wActiveHitNum = 10;
 			break;
-
 
 		case SKILL_ID_WATER_BALL:
 		case SKILL_ID_WATER_BALL_FOR_CLONE:
@@ -814,30 +811,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wCast = 2000;
 			n_Delay[2] = 0;
 			n_Delay[7] = 0;
-			break;
-
-		case SKILL_ID_INUHAKKA_METEOR:
-//			wActiveHitNum = 7;	// 分割ダメージを削除
-
-			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
-			if (attackMethodConfArray[0].optionValueArray.length == 1) {
-				// 属性未定義の場合
-				set_n_A_Weapon_zokusei(ELM_ID_VANITY);
-			} else {
-				set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(1));
-			};
-
-//			wbairitu = 700;		// 旧仕様
-			CS.wbairitu = 400;		// 新仕様
-			if(n_A_BaseLV >= 100) {
-				// Base100以上の場合BaseLvが影響するように変更
-				CS.wbairitu = CS.wbairitu * (n_A_BaseLV / 100);
-			}
-			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0) / 2;
-			CS.wCast = 2000;
-			n_Delay[2] = 3000;
-			var aDelay = [1000, 500, 500, 0, 0];
-			n_Delay[7] = aDelay[n_A_ActiveSkillLV - 1];
 			break;
 
 		case SKILL_ID_VERATURE_SPEAR:

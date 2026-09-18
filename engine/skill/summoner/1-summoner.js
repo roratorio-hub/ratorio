@@ -7,9 +7,16 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import {
+    SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10, SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51,
+    SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81, SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100
+} from "../skill.h.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI, SKILL_ID_ARCLOUSE_DASH, SKILL_ID_CARROT_BEAT, SKILL_ID_CHATTERING,
     SKILL_ID_DAICHINO_CHIKARA, SKILL_ID_DAICHINO_TAMASHI, SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER,
@@ -516,22 +523,30 @@ export const skills = [
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_SPECIAL;
+			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れる
+			this.element = function(option) {
+				if (option.optionValueArray.length == 1) {
+					// 属性未定義の場合
+					return CSkillData.ELEMENT_FORCE_VANITY;
+				}
+				return option.GetOptionValue(1);
+			}
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 80;
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return 700;
+				let ratio = 400;
+				if (n_A_BaseLV >= 100) {
+					// Base100以上の場合BaseLvが影響する
+					ratio = ratio * (n_A_BaseLV / 100);
+				}
+				return ratio;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
-			}
-
-			this.dispHitCount = function(skillLv, charaDataManger) {
-				return 7;
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0) / 2;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -546,6 +561,7 @@ export const skills = [
 				return 1000 - 500 * Math.floor(skillLv / 2);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -954,7 +970,25 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				let ratio = 2500 + 100 * skillLv;
+				// 「サモナー　生命の魂効果（残りHP）」の、「アニマル系スキル」強化
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
+					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
+							ratio = ROUNDDOWN(ratio * 2);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
+							ratio = ROUNDDOWN(ratio * 1.5);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
+							ratio = ROUNDDOWN(ratio * 1.3);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
+							ratio = ROUNDDOWN(ratio * 1.1);
+							break;
+					}
+				}
+				return ratio;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -971,6 +1005,7 @@ export const skills = [
 				return 2500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

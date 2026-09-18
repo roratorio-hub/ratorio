@@ -1352,39 +1352,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[7] = aCool[n_A_ActiveSkillLV - 1];
 				break;
 
-			case  SKILL_ID_SAVAGENO_TAMASHI:
-
-				set_n_Enekyori(1);
-
-				CS.wbairitu = 2500 + 100 * n_A_ActiveSkillLV;
-
-				//----------------------------------------------------------------
-				// 「サモナー　生命の魂効果<BR>(残りHP)」の、「アニマル系スキル」強化
-				//----------------------------------------------------------------
-				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
-					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
-					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
-						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
-						break;
-					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
-						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.5);
-						break;
-					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
-						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.3);
-						break;
-					case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
-						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.1);
-						break;
-					}
-				}
-
-				var aCast = [1000, 1000, 1000, 2000, 2000];
-				CS.wCast = aCast[n_A_ActiveSkillLV - 1];
-				var aDelay = [0, 500, 1000, 1000, 1500];
-				n_Delay[2] = aDelay[n_A_ActiveSkillLV - 1];
-				n_Delay[7] = 2500 - 500 * n_A_ActiveSkillLV;
-				break;
-
 			case  SKILL_ID_TAIYO_BAKUHATSU:
 
 				var hikariLv = 0;
