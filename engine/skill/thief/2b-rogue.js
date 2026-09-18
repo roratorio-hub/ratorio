@@ -10,13 +10,15 @@ import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import { n_A_JobLV } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_BACK_STAB, SKILL_ID_CLEANER, SKILL_ID_CLONE_SKILL, SKILL_ID_CLOSE_CONFINE, SKILL_ID_COMPULSION_DISCOUNT,
     SKILL_ID_FLAG_GRAPHITY, SKILL_ID_GANGSTAR_PARADISE, SKILL_ID_GRAPHITY, SKILL_ID_HEAVENS_DRIVE,
     SKILL_ID_HEAVENS_DRIVE_FOR_CLONE, SKILL_ID_INTIMIDATE, SKILL_ID_INTIMIDATE_FOR_CLONE,
     SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SNATCHER, SKILL_ID_STEAL_COIN, SKILL_ID_STRIP_ARMER, SKILL_ID_STRIP_HELM,
     SKILL_ID_STRIP_SHIELD, SKILL_ID_STRIP_WEAPON, SKILL_ID_SURPRISE_ATTACK, SKILL_ID_TUNNEL_DRIVE,
-    SKILL_ID_WATER_BALL, SKILL_ID_WATER_BALL_FOR_CLONE
+    SKILL_ID_WATER_BALL, SKILL_ID_WATER_BALL_FOR_CLONE, SERE_SUPPORT_SKILL_ID_PETROLOGY
 } from "../skill.dat.js";
 
 export const skills = [
@@ -108,8 +110,7 @@ export const skills = [
 			this.name = "サプライズアタック";
 			this.kana = "サフライスアタツク";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -121,10 +122,7 @@ export const skills = [
 				return 100 + 80 * skillLv;
 			}
 
-			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 500;
-			}
-
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -348,6 +346,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -467,9 +466,9 @@ export const skills = [
 				pow = 125;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
-				if (seirei == 28) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				if (seirei == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -491,6 +490,7 @@ export const skills = [
 				return 0;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -584,6 +584,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 ];

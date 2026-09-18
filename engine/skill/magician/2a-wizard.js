@@ -7,11 +7,13 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_JobLV } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_EARTH_SPIKE, SKILL_ID_FIRE_PILLAR, SKILL_ID_FROST_NOVA, SKILL_ID_HEAVENS_DRIVE, SKILL_ID_ICE_WALL,
     SKILL_ID_JUPITER_THUNDER, SKILL_ID_LORD_OF_VERMILLION, SKILL_ID_METEOR_STORM, SKILL_ID_MONSTER_ZYOHO,
     SKILL_ID_QUAGMIRE, SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SIGHT_BLASTER, SKILL_ID_SIGHT_RASHER,
-    SKILL_ID_STORM_GUST, SKILL_ID_WATER_BALL
+    SKILL_ID_STORM_GUST, SKILL_ID_WATER_BALL, SERE_SUPPORT_SKILL_ID_PETROLOGY
 } from "../skill.dat.js";
 
 export const skills = [
@@ -346,9 +348,9 @@ export const skills = [
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
-				if (seirei == 28) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				if (seirei == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -393,9 +395,9 @@ export const skills = [
 				pow = 125;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
-				if (seirei == 28) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				if (seirei == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -417,6 +419,7 @@ export const skills = [
 				return 0;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

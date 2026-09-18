@@ -172,11 +172,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[2] = 2000;
 				break;
 
-			case SKILL_ID_SUNAMAKI:
-								CS.wbairitu += 30;
-				set_n_A_Weapon_zokusei(2);
-				break;
-
 			case SKILL_ID_ARROW_SHOWER:
 				set_n_Enekyori(1);
 				CS.wbairitu += 50 + 10 * n_A_ActiveSkillLV;
@@ -206,10 +201,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			case SKILL_ID_DARK_CROSS:
 				CS.wbairitu += 35 * n_A_ActiveSkillLV;
 				set_n_A_Weapon_zokusei(7);
-				break;
-
-			case SKILL_ID_SURPRISE_ATTACK:
-				CS.wbairitu += 80 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_SPEAR_BOOMERANG:
@@ -250,12 +241,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.w_HIT_HYOUJI = 100;
 				break;
 
-			case SKILL_ID_INTIMIDATE:
-			case SKILL_ID_INTIMIDATE_FOR_CLONE:
-				CS.wbairitu += 30 * n_A_ActiveSkillLV;
-				n_Delay[2] = 1000;
-				break;
-
 			case SKILL_ID_SANDANSHO:
 				CS.wActiveHitNum = 3;
 				CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
@@ -288,13 +273,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu += (10 * n_A_ActiveSkillLV - 50);
 				if(n_A_ActiveSkillLV > 5) n_Delay[2] = 1000;
 				else n_Delay[2] = 800;
-				break;
-
-			case SKILL_ID_METEOR_ASSALT:
-				CS.wbairitu += (40 * n_A_ActiveSkillLV - 60);
-				CS.wCast = 500;
-
-				n_Delay[2] = 500;
 				break;
 
 			case SKILL_ID_MOKOKOHAZAN:
@@ -448,58 +426,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
 				break;
 			}
-			case SKILL_ID_CROSS_IMPACT:
-				CS.wActiveHitNum = 7;
-				n_Delay[0] = 2;
-				n_Delay[2] = 3000 - 500 * n_A_ActiveSkillLV;
-				CS.wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
-				break;
-
-			case SKILL_ID_DARK_ILLUSION:
-				set_n_Enekyori(1);
-				n_Delay[7] = 1500 + 500 * n_A_ActiveSkillLV;
-				CS.wbairitu = 100;
-				break;
-
-			case SKILL_ID_VENOM_PRESSURE:
-				n_Delay[0] = 1;
-				n_Delay[2] = 1000;
-				CS.wbairitu = 1000;
-				break;
-
-			case SKILL_ID_COUNTER_SLASH:
-				n_Delay[2] = 2000;
-				CS.wbairitu = 300 + 150 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
-				ampWork = (n_A_JOB == MIG_JOB_ID_SHADOW_CROSS) ? GetJobLevelMax(JOB_ID_GILOTINCROSS) : n_A_JobLV;
-				CS.wbairitu += n_A_AGI * 2 + ampWork * 4;
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
-				break;
-
-			case SKILL_ID_PHANTOM_MENUS:
-				n_Delay[7] = 1000;
-				CS.wbairitu = 300;
-				if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = 0;
-				break;
-
-			case SKILL_ID_ROLLING_CUTTER:
-				n_Delay[7] = 200;
-				CS.wbairitu = 50 + 50 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
-				break;
-
-			case SKILL_ID_CROSS_RIPPER_SLASHER:
-				set_n_Enekyori(1);
-				n_Delay[0] = 1;
-				n_Delay[2] = 1000;
-				CS.wbairitu = 400 + 80 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				CS.wbairitu += attackMethodConfArray[0].GetOptionValue(0) * n_A_AGI;
-				if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
-				break;
 
 			case SKILL_ID_ICEBOUND_TRAP:
 				CS.wbairitu = 100;
@@ -625,26 +551,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				break;
 
-			case SKILL_ID_FAINT_BOMB:
-				var ratio = 1 + (n_A_ActiveSkillLV == 1 ? 2 : 3) + Math.floor((n_A_ActiveSkillLV - 1) / 3);
-				CS.wbairitu = ROUNDDOWN(ratio * (n_A_DEX / 2) * n_A_JobLV / 10 * n_A_BaseLV / 120);
-				CS.wCast = Math.max(0, 1000 * Math.floor((n_A_ActiveSkillLV - 4) / 3));
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_Delay[7] = 7000;
-					break;
-
-				default:
-					n_Delay[7] = 2000;
-					break;
-
-				}
-
-				break;
-
 			// 「シャドウチェイサー」スキル「フェイタルメナス」
 			case SKILL_ID_FATAL_MENUS:
 				n_Delay[2] = 500;
@@ -660,17 +566,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				if (n_A_WeaponType == ITEM_KIND_KNIFE) {
 					CS.wHITsuu = 2;
 				}
-				break;
-
-			case SKILL_ID_TRIANGLE_SHOT:
-				CS.wActiveHitNum = 3;
-				CS.wbairitu = (n_A_ActiveSkillLV - 1) * (n_A_AGI / 2) + 300;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
-				set_n_A_Weapon_zokusei(GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL));
-				if(n_A_WeaponZokusei != 0) set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-				set_n_Enekyori(1);
-				CS.wCast = 5000 - 500 * n_A_ActiveSkillLV;
-				n_Delay[2] = 500 - 50 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_TENRACHIMO:
@@ -861,11 +756,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				if(!CS.n_AS_MODE && n_A_WeaponType != 16) CS.n_Buki_Muri = true;
 				break;
 			}
-			case SKILL_ID_DARK_CRAW:
-				CS.wActiveHitNum = 3;
-				n_Delay[7] = 60000;
-				CS.wbairitu = 100 * n_A_ActiveSkillLV;
-				break;
 
 			case SKILL_ID_HOWLING_MINE:
 				CS.wbairitu = 400 * n_A_ActiveSkillLV;

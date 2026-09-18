@@ -7,9 +7,15 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { JOB_ID_GILOTINCROSS } from "../../const/EnumJobId.js";
+import { MIG_JOB_ID_SHADOW_CROSS } from "../../data/mig.job.id.js";
+import { GetJobLevelMax } from "../../data/mig.job.h.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_AGI, n_A_JOB, n_A_JobLV } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ANTIDOTE, SKILL_ID_CLOAKING_EXCEED, SKILL_ID_COUNTER_SLASH, SKILL_ID_CROSS_IMPACT,
     SKILL_ID_CROSS_RIPPER_SLASHER, SKILL_ID_DARK_CRAW, SKILL_ID_DARK_ILLUSION, SKILL_ID_ENCHANT_DEADLY_POISON,
@@ -81,10 +87,10 @@ export const skills = [
 				pow = 1000 + 100 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
+				pow = Math.floor(pow * n_A_BaseLV / 120);
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -100,6 +106,7 @@ export const skills = [
 				return 3000 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -127,6 +134,7 @@ export const skills = [
 				return 1500 + 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -243,6 +251,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -329,19 +338,20 @@ export const skills = [
 			this.Power = function(skillLv, charaDataManger) {
 				var pow = 0;
 				var edp = 0;
+				var ampWork = 0;
 
 				// 基本式
 				pow = 300 + 150 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
+				pow = Math.floor(pow * n_A_BaseLV / 120);
 
-				// ステータス補正
-				pow += 2 * charaDataManger.GetCharaAgi();
-				pow += 4 * charaDataManger.GetCharaJobLv();
+				// ステータス補正（シャドウクロスは職業レベルの代わりにギロチンクロスの最大職業レベルを使う）
+				ampWork = (n_A_JOB == MIG_JOB_ID_SHADOW_CROSS) ? GetJobLevelMax(JOB_ID_GILOTINCROSS) : n_A_JobLV;
+				pow += n_A_AGI * 2 + ampWork * 4;
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -353,6 +363,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -431,14 +442,18 @@ export const skills = [
 				return 30;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				if (option.GetOptionValue(0) == 0) {
+					return 0;
+				}
+				return 300;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -489,10 +504,10 @@ export const skills = [
 				pow = 50 + 50 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -504,6 +519,7 @@ export const skills = [
 				return 200;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -524,14 +540,31 @@ export const skills = [
 				return 16 + 4 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+
+				// 基本式
+				pow = 400 + 80 * skillLv;
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				// オプション値補正
+				pow += option.GetOptionValue(0) * n_A_AGI;
+
+				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
+				if (UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) {
+					pow = Math.floor(pow / 2);
+				}
+
+				return pow;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -563,6 +596,7 @@ export const skills = [
 				return 60000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 ];

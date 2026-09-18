@@ -335,17 +335,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		// 「ウィザード」スキル「ヘヴンズドライブ」			
-		case SKILL_ID_HEAVENS_DRIVE:
-		case SKILL_ID_HEAVENS_DRIVE_FOR_CLONE:
-			set_n_A_Weapon_zokusei(2);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wbairitu = 125;
-			CS.wCast = 1000 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
-				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			}
-			break;
 
 		case SKILL_ID_RUWACH:
 			set_n_A_Weapon_zokusei(6);

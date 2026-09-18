@@ -7,9 +7,14 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
+import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
+import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_AGI, n_A_DEX, n_A_JobLV, n_A_WeaponZokusei } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_AUTO_SHADOW_SPELL, SKILL_ID_BLOODY_LAST, SKILL_ID_BODY_PAINTING, SKILL_ID_CHAOS_PANIC,
     SKILL_ID_DEADLY_INEFFECT, SKILL_ID_DEMENSION_DOOR, SKILL_ID_ESCAPE, SKILL_ID_FAINT_BOMB, SKILL_ID_FATAL_MENUS,
@@ -540,11 +545,11 @@ export const skills = [
 				ratio = 1 + (skillLv == 1 ? 2 : 3) + Math.floor((skillLv - 1) / 3);
 
 				// 基本式
-				pow = ratio * (charaDataManger.GetCharaDex() / 2)
-						* (charaDataManger.GetCharaJobLv() / 10);
+				pow = ratio * (n_A_DEX / 2)
+						* (n_A_JobLV / 10);
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
+				pow = Math.floor(pow * n_A_BaseLV / 120);
 
 				return pow;
 			}
@@ -566,6 +571,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -721,7 +727,14 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = function(option, mobData) {
+				// 矢の属性を適用する（付与済みならそちらを優先）
+				let value = n_A_WeaponZokusei;
+				if (value === ELM_ID_VANITY) {
+					value = GetEquippedTotalSPArrow(ITEM_SP_ELEMENTAL, mobData);
+				}
+				return value;
+			}
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 18;
@@ -731,10 +744,10 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = 300 + (skillLv - 1) * (charaDataManger.GetCharaAgi() / 2);
+				pow = 300 + (skillLv - 1) * (n_A_AGI / 2);
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
+				pow = Math.floor(pow * n_A_BaseLV / 120);
 
 				return pow;
 			}
@@ -751,6 +764,7 @@ export const skills = [
 				return 500 - 50 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
