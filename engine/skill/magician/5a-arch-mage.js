@@ -100,6 +100,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -193,6 +194,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -241,6 +243,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -363,6 +366,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -416,6 +420,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

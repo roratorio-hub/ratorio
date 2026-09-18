@@ -86,6 +86,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -229,6 +230,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -275,6 +277,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 2000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -322,6 +325,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 2000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -396,6 +400,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -444,6 +449,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -577,6 +583,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** 天気身月 */
@@ -628,6 +635,7 @@ export const skills = [
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** 天星の行 */
@@ -677,6 +685,7 @@ export const skills = [
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

@@ -239,6 +239,7 @@ export const skills = [
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -301,6 +302,7 @@ export const skills = [
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 		
 
@@ -356,6 +358,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -407,6 +410,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return [0, 1, 3, 8, 15, 30][skillLv] * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -770,6 +774,7 @@ export const skills = [
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

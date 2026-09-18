@@ -923,118 +923,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		//
 		//----------------------------------------------------------------
 
-		//----------------------------------------------------------------
-		// 計算式を CSkillManager.js へ移動させ battlecalc.js をスリム化する対応を進めています
-		//----------------------------------------------------------------
-		/* バード */
-		case SKILL_ID_FUKYOWAON:	// 不協和音
-		/* ミンストレル・ワンダラー */
-		case SKILL_ID_SHINDOZANKYO:	// 振動残響
-		/* アークビショップ */
-		case SKILL_ID_JUDEX:	// ジュデックス
-		case SKILL_ID_ADORAMUS:	// アドラムス
-		case SKILL_ID_ARBITRIUM: 
-		/** トルヴェール・トルバドゥール */
-		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
-		case SKILL_ID_SOUND_BLEND:	// サウンドブレンド
-		case SKILL_ID_METALIC_FURY: // メタリックフューリー
-		/** エレメンタルマスター */
-		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
-		case SKILL_ID_DIAMOND_STORM: 
-		case SKILL_ID_TERA_DRIVE:
-		/** アークメイジ */
-		case SKILL_ID_MYSTERY_ILLUSION:
-		case SKILL_ID_DESTRACTIVE_HURRICANE:
-		case SKILL_ID_VIOLENT_QUAKE:
-		case SKILL_ID_ALL_BLOOM:
-		case SKILL_ID_CRYSTAL_IMPACT:
-		/** ソウルアセティック */
-		case SKILL_ID_SEIRYU_FU:	// 青龍符
-		case SKILL_ID_BYAKKO_FU:	// 白虎符
-		case SKILL_ID_SUZAKU_FU:	// 朱雀符
-		case SKILL_ID_GENBU_FU:		// 玄武符
-		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
-		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
-		case SKILL_ID_REIDO_FU:		// 霊道符
-		/** スピリットハンドラー */
-		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
-		case SKILL_ID_DEER_CANON:
-		/** アビスチェイサー */
-		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
-		/** インペリアルガード */
-		case SKILL_ID_CROSS_RAIN:
-		case SKILL_ID_IMPERIAL_PRESSURE: // インペリアルプレッシャー
-		/** カーディナル */
-		case SKILL_ID_DIVINUS_FLOS:	// ディヴィヌスフロス
-		/** アリテア */
-		case SKILL_ID_GLACIER_MONOLITH:
-		case SKILL_ID_GLACIER_SHARD:
-		case SKILL_ID_GLACIER_STOMP:
-		case SKILL_ID_ROARING_CHARGE:
-		case SKILL_ID_ROARING_PIERCER:
-		case SKILL_ID_FURIOS_STORM:
-		case SKILL_ID_TERRA_HARVEST:
-		case SKILL_ID_TERRA_WAVE:
-		case SKILL_ID_SOLID_STOMP:
-		case SKILL_ID_CHILLING_BLAST:
-		case SKILL_ID_GRAVITY_HOLE:
-		case SKILL_ID_GLACIER_NOVA:
-		/** ドルイド */
-		case SKILL_ID_ICE_TOTEM:
-		case SKILL_ID_ICE_CLOUD:
-		case SKILL_ID_CUTTING_WIND:
-		case SKILL_ID_WIND_BOMB:
-		case SKILL_ID_EARTH_FLOWER:
-		case SKILL_ID_AROUND_FLOWER:
-		/** カルノス */
-		case SKILL_ID_ICE_PILLAR:
-		case SKILL_ID_ICE_SPLASH:
-		case SKILL_ID_THUNDERING_FOCUS:
-		case SKILL_ID_THUNDERING_ORB:
-		case SKILL_ID_THUNDERING_CALL:
-		case SKILL_ID_EARTH_DRILL:
-		case SKILL_ID_EARTH_STAMP:
-		case SKILL_ID_GROUND_BLOOM:
-		/** 蜃気楼・不知火 */
-		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
-		case SKILL_ID_ANTEN_HOU:
-		/** ハイパーノービス */
-		case SKILL_ID_GROUND_GRAVITATION:
-
-			// スキル使用条件の判定
-			CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
-			if (CS.n_Buki_Muri) {
-				CS.wbairitu = 0;
-				break;
-			}
-			// 詠唱などの情報
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			// ダメージ算出に関する情報
-			// ※このブロックは attackMethodConfArray[0] を常に渡す（オートスペルでも main の conf を使う、
-			//   従来どおりの挙動）。アドラムス等 option 依存の 999 未満スキルは main の conf で評価しないと
-			//   ダメージが変わってしまうため、ここでは bAutoSpell による null 化は行わない。
-			//   四次スキル（ID>=999）の強制属性は BattleCalc999Body() で決定済みなのでここでは基本上書きされない。
-			var elmWork = g_skillManager.GetForcedElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
-			if (elmWork != CSkillData.ELEMENT_VOID) {
-				set_n_A_Weapon_zokusei(elmWork);
-			}
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-			CS.g_bSkillNoDamage = (CS.wbairitu == 0);
-			set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
-			// ヒット数に関する情報
-			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			// 地面設置スキルの情報
-			set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
-			if (g_bDefinedDamageIntervals) {
-				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
-				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			}
-			break;
-
 		// 「カーディナル」スキル「ニューマティックプロセラ」
 		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
 		case SKILL_ID_NUMATIC_PROCERA: {
@@ -1879,6 +1767,46 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 /* --------------------------------------------------
 ↑ 魔法攻撃スキル追加位置
 -------------------------------------------------- */
+
+		default:
+			// engine/skill/<職業>/*.js の Power 等の slot へ移行済みのスキルはここで汎用計算式を適用する
+			if (!g_skillManager.IsGenericFormula(n_A_ActiveSkill) || (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_MAGICAL) !== CSkillData.TYPE_MAGICAL) {
+				break;
+			}
+
+			// スキル使用条件の判定
+			CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+			if (CS.n_Buki_Muri) {
+				CS.wbairitu = 0;
+				break;
+			}
+			// 詠唱などの情報
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			// ダメージ算出に関する情報
+			// ※このブロックは attackMethodConfArray[0] を常に渡す（オートスペルでも main の conf を使う、
+			//   従来どおりの挙動）。アドラムス等 option 依存の 999 未満スキルは main の conf で評価しないと
+			//   ダメージが変わってしまうため、ここでは bAutoSpell による null 化は行わない。
+			//   四次スキル（ID>=999）の強制属性は BattleCalc999Body() で決定済みなのでここでは基本上書きされない。
+			var elmWork = g_skillManager.GetForcedElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
+			if (elmWork != CSkillData.ELEMENT_VOID) {
+				set_n_A_Weapon_zokusei(elmWork);
+			}
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+			CS.g_bSkillNoDamage = (CS.wbairitu == 0);
+			set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
+			// ヒット数に関する情報
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			// 地面設置スキルの情報
+			set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
+			if (g_bDefinedDamageIntervals) {
+				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
+				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			}
+			break;
 		}
 
 		if (CS.g_bSkillNoDamage) {

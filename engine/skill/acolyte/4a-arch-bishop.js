@@ -59,6 +59,7 @@ export const skills = [
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 2000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -135,6 +136,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaData) {
 				return (10 + 5 * skillLv) * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

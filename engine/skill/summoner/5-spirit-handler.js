@@ -226,6 +226,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -369,6 +370,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -562,6 +564,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ディアースピリットパワー */
@@ -613,6 +616,7 @@ export const skills = [
 				return 0;
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

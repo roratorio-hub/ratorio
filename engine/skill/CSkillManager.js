@@ -402,6 +402,16 @@ export function CSkillManager() {
 	}
 
 	/**
+	 * BattleCalc999Core の汎用計算式パスを使うスキルかどうかを判定する.
+	 * オーバーライドされない場合は false を返す.
+	 * @param {Number} skillId
+	 * @returns {boolean}
+	 */
+	this.IsGenericFormula = function(skillId) {
+		return this.dataArray[skillId].genericFormula;
+	}
+
+	/**
 	 * スキルを発動させるために必要なカウンター上限を返す. オーバーライドされない場合は -1 を返す.
 	 * @param {Number} skillId 
 	 * @returns {Number}

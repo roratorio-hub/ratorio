@@ -74,6 +74,7 @@ export const skills = [
 			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

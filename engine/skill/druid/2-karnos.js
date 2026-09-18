@@ -62,6 +62,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** シャープンガスト */
@@ -105,6 +106,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ウルフインスティンクト */
@@ -169,6 +171,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 7000;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** サンダリングフォーカス */
@@ -214,6 +217,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** アースバド */
@@ -268,6 +272,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** シャープンヘイル */
@@ -311,6 +316,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ラプトリアルインスティンクト */
@@ -364,6 +370,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** サンダリングオーブ */
@@ -409,6 +416,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** アースドリル */
@@ -450,6 +458,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** クローウェーブ */
@@ -493,6 +502,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** フェザースプリンクル */
@@ -536,6 +546,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** サンダリングコール */
@@ -581,6 +592,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** アーススタンプ */
@@ -622,6 +634,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** チョップチョップ */
@@ -665,6 +678,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** タイフーンウィング */
@@ -708,6 +722,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ネイチャーヴィゴール */

@@ -335,6 +335,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 200;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -465,6 +466,7 @@ export const skills = [
 			this.damageInterval = function(skillLv) {
 				return 300;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -976,6 +978,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -1025,6 +1028,7 @@ export const skills = [
 			this.damageInterval = function(skillLv) {
 				return 300;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

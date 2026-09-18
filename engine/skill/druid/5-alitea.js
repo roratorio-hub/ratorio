@@ -111,6 +111,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 20 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ロアリングチャージ */
@@ -160,6 +161,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** テラハーベスト */
@@ -201,6 +203,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** プライマルクロー */
@@ -254,6 +257,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ピニオンショット */
@@ -302,6 +306,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** アルファフェーズ */
@@ -375,6 +380,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ロアリングピアサー */
@@ -424,6 +430,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** テラウェーブ */
@@ -465,6 +472,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** フェラルクロー */
@@ -518,6 +526,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** クイールスピア */
@@ -566,6 +575,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** エイペックスフェーズ */
@@ -638,6 +648,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** フューリアスストーム */
@@ -679,6 +690,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ソリッドストンプ */
@@ -721,6 +733,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** アルファクロー */
@@ -774,6 +787,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** テンペストフラップ */
@@ -822,6 +836,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** チリングブラスト */
@@ -863,6 +878,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** フレンジファング */
@@ -923,6 +939,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** エアロシンク */
@@ -1036,6 +1053,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** サベージランジ */
@@ -1089,6 +1107,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 		
 		/** グレイシアノヴァ */
@@ -1107,6 +1126,7 @@ export const skills = [
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.StackLimit = 0;
+			this.genericFormula = true;
 		}),
 
 		/** グラウンドブルーム */
@@ -1125,6 +1145,7 @@ export const skills = [
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.StackLimit = 12;
+			this.genericFormula = true;
 		}),
 
 		/** ゼファーリンク */

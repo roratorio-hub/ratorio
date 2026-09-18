@@ -8,6 +8,7 @@
  * これに伴う変更は switch 末尾の `break;` → `return undefined;` の1箇所のみ。
  * それ以外（290 case の中身）はバイト単位で不変。
  */
+import { CSkillData } from "../skill/CSkillManager.js";
 import { TimeItemNumSearch } from "../chara/chara.js";
 import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from "../const/EnumCharaDataIndex.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_SHIELD } from "../const/EnumEquipRegionId.js";
@@ -1565,188 +1566,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 				break;
 
-			//----------------------------------------------------------------
-			// 計算式を CSkillManager.js へ移動させ battlecalc.js をスリム化する対応を進めています
-			//----------------------------------------------------------------
-			/* ミンストレル・ワンダラー */
-			case SKILL_ID_SEVERE_RAINSTORM:	// シビアレインストーム
-			case SKILL_ID_SEVERE_RAINSTORM_EX:	// シビアレインストーム
-			case SKILL_ID_GREAT_ECHO:	// グレートエコー
-			/* クラウン・ジプシー */
-			case SKILL_ID_ARRAW_VULKAN:	// アローバルカン
-			/* トルバドゥール・トルヴェール */
-			case SKILL_ID_ROSE_BLOSSOM:
-			case SKILL_ID_RHYTHM_SHOOTING:
-			/* バード */
-			case SKILL_ID_MUSICAL_STRIKE:	// ミュージカルストライク
-			/* ダンサー */
-			case SKILL_ID_YAUCHI:	// 矢撃ち
-			/* ドラゴンナイト */
-			case SKILL_ID_SERVANT_WEAPON:	// サーヴァントウェポン
-			case SKILL_ID_HACK_AND_SLASHER:	// ハックアンドスラッシャー
-			case SKILL_ID_DRAGONIC_BREATH: // ドラゴニックブレス
-			case SKILL_ID_SERVANT_WEAPON_PHANTOM:	// サーヴァントウェポン：ファントム
-			case SKILL_ID_STORM_SLASH:	// ストームスラッシュ
-			case SKILL_ID_MADNESS_CRUSHER:	// マッドネスクラッシャー
-			case SKILL_ID_SERVANT_WEAPON_DEMOLISION:	// サーヴァントウェポン：デモリッション
-			case SKILL_ID_DRAGONIC_AURA:	// ドラゴニックオーラ
-			case SKILL_ID_DRAGONIC_PIERCE:	// ドラゴニックピアース
-			/* シャドウクロス */			
-			case SKILL_ID_DANCING_KNIFE:	// ダンシングナイフ
-			case SKILL_ID_SAVAGE_IMPACT:	// サベージインパクト
-			case SKILL_ID_ETERNAL_SLASH:	// エターナルスラッシュ
-			case SKILL_ID_IMPACT_CRATER:	// インパクトクレーター
-			case SKILL_ID_SHADOW_STAB:	// シャドウスタブ
-			case SKILL_ID_FATAL_SHADOW_CRAW:	// フェイタルシャドウクロー
-			case SKILL_ID_CROSS_SLASH: // クロススラッシュ
-			/*カーディナル */
-			case SKILL_ID_EFIRIGO:	// エフィリゴ
-			case SKILL_ID_PETITIO: 	// ペティティオ
-			/* ウィンドホーク */
-			case SKILL_ID_HAWK_RUSH:	// ホークラッシュ
-			case SKILL_ID_HAWK_BOOMERANG: // ホークブーメラン
-			case SKILL_ID_GALE_STORM:	// ゲイルストーム
-			case SKILL_ID_DEEP_BLIND_TRAP:	// ディープブラインドトラップ
-			case SKILL_ID_SOLID_TRAP:	// ソリッドトラップ
-			case SKILL_ID_SWIFT_TRAP:	// スイフトトラップ
-			case SKILL_ID_FLAME_TRAP:	// フレイムトラップ
-			case SKILL_ID_CRESSIVE_VOLT:	// クレッシブボルト
-			case SKILL_ID_WILD_WALK: // ワイルドウォーク
-			/* マイスター */
-			case SKILL_ID_AXE_STOMP:	// アックスストンプ
-			case SKILL_ID_RUSH_QUAKE:	// ラッシュクエイク
-			case SKILL_ID_SPARK_BLASTER:	// スパークブラスター
-			case SKILL_ID_TRIPLE_LASER:	// トリプルレーザー
-			case SKILL_ID_MIGHTY_SMASH:	// マイティスマッシュ
-			case SKILL_ID_KOGEKI_SOCHI_YUKOKA:	// 攻撃装置有効化
-			case SKILL_ID_RUSH_STRIKE: // ラッシュストライク
-			case SKILL_ID_POWERFUL_SWING: // パワフルスイング
-			case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
-			/* インペリアルガード */
-			case SKILL_ID_GRAND_JUDGEMENT:	// グランドジャッジメント
-			case SKILL_ID_SHIELD_SHOOTING:	// シールドシューティング
-			case SKILL_ID_OVER_SLASH:	// オーバースラッシュ
-			case SKILL_ID_RADIANT_SPEAR: // レイディアントスピア
-			case SKILL_ID_IMPERIAL_CROSS: // 
-			/* アビスチェイサー */
-			case SKILL_ID_ABYSS_DAGGER:	// アビスダガー
-			case SKILL_ID_UNLUCKY_RUSH:	// アンラッキーラッシュ
-			case SKILL_ID_DEFT_STAB:	// デフトスタブ
-			case SKILL_ID_FLANGE_SHOT:	// フレンジショット
-			case SKILL_ID_CHAIN_REACTION_SHOT:	// チェーンリアクションショット
-			case SKILL_ID_HIT_AND_SLIDING: // 
-			case SKILL_ID_CHASING_BREAK: // 
-			case SKILL_ID_CHASING_SHOT: // 
-			/* インクイジター */
-			case SKILL_ID_SEYU_SENRE:	// 聖油洗礼
-			case SKILL_ID_DAIICHIGEKI_RAKUIN:	// 第一撃：烙印
-			case SKILL_ID_DAINIGEKI_SHINNEN:	// 第二撃：信念
-			case SKILL_ID_DAISANGEKI_DANZAI:	// 第三撃：断罪
-			case SKILL_ID_DAINIGEKI_SHINPAN:	// 第二撃：審判
-			case SKILL_ID_DAISANGEKI_ZYOKA:	// 第三撃：浄化
-			case SKILL_ID_DAINIGEKI_METSUMANO_HI:	// 第二撃：滅魔の火
-			case SKILL_ID_DAISANGEKI_MEKKAGEKI:	// 第三撃：滅火撃
-			case SKILL_ID_BAKKA_SHINDAN:	// 爆火神弾
-			case SKILL_ID_ENKA_METSUMA_SHINDAN:	// 炎火滅魔神弾
-			case SKILL_ID_BLAZING_FLAME_BLAST: // 烈火気弾
-			/* ナイトウォッチ */
-			case SKILL_ID_WILD_SHOT: // ワイルドショット
-			case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
-			case SKILL_ID_ONLY_ONE_BULLET: // オンリーワンバレット
-			case SKILL_ID_WILD_FIRE: // ワイルドファイア
-			case SKILL_ID_BASIC_GRENADE: // ベーシックグレネード
-			case SKILL_ID_HASTY_FIRE_IN_THE_HOLE: // ヘイスティファイアインザホール
-			case SKILL_ID_GRENADES_DROPPING: // グレネーズドロッピング
-			case SKILL_ID_MISSION_BOMBARD: // ミッションボンバード
-			/* 天帝 */
-			case SKILL_ID_SKY_SUN: // 天気身陽
-			case SKILL_ID_SKY_MOON: // 天気身月
-			case SKILL_ID_STAR_LIGHT_KICK: // 天星の行
-			case SKILL_ID_TENCHI_ICHIYO:
-			case SKILL_ID_TENCHI_ICHIGETSU:
-			case SKILL_ID_TAITEN_ICHIGETSU:
-			case SKILL_ID_TENGETSU:
-			case SKILL_ID_TENME_RAKUSE:
-			case SKILL_ID_TENSE:
-			/* スピリットハンドラー */
-			case SKILL_ID_TIGER_SLASH:
-			case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
-			/** バイオロ */
-			case SKILL_ID_EXPLOSIVE_POWDER: // 
-			case SKILL_ID_MYSTERY_POWDER: // 
-			case SKILL_ID_DUST_EXPLOSION: // 
-			case SKILL_ID_MEYHEMIC_THORNS: // メイヘミックソーンズ
-			/** 蜃気楼・不知火 */
-			case SKILL_ID_KAGE_GARI:
-			case SKILL_ID_KAGE_ISSEN:
-			case SKILL_ID_GENJUTSU_KAGE_NUI:
-			case SKILL_ID_GENJUTSU_KUNAI:
-			case SKILL_ID_KUNAI_WAIKYOKU:
-			case SKILL_ID_KUNAI_KAITEN:
-			case SKILL_ID_KUNAI_KUSSETSU:
-			case SKILL_ID_KAGE_NO_MAI:
-			/** ハイパーノービス */
-			case SKILL_ID_DOUBLE_BOWLING_BASH:
-			case SKILL_ID_MEGA_SONIC_BLOW:
-			case SKILL_ID_SHIELD_CHAIN_RUSH:
-			case SKILL_ID_SPIRAL_PIERCE_MAX:
-			/** アリテア */
-			case SKILL_ID_PINION_SHOT:
-			case SKILL_ID_QUILL_SPEAR:
-			case SKILL_ID_TEMPEST_FLAP:
-			case SKILL_ID_PRIMAL_CLAW:
-			case SKILL_ID_FERAL_CLAW:
-			case SKILL_ID_ALPHA_CLAW:
-			case SKILL_ID_FRENZY_FANG:
-			case SKILL_ID_SAVAGE_LUNGE:
-			/** ドルイド */
-			case SKILL_ID_NOMERCY_CLAW:
-			case SKILL_ID_CRUEL_BITE:
-			case SKILL_ID_HUNGER:
-			case SKILL_ID_SHOOTING_FEATHER:
-			case SKILL_ID_LOW_FLIGHT:
-			case SKILL_ID_FLICKING_TONADO:
-			/** カルノス */
-			case SKILL_ID_DOUBLE_SLASH:
-			case SKILL_ID_CLAW_WAVE:
-			case SKILL_ID_CHOP_CHOP:
-			case SKILL_ID_NASTY_SLASH:
-			case SKILL_ID_SHARPEN_GUST:
-			case SKILL_ID_SHARPEN_HAIL:
-			case SKILL_ID_TYPHOON_WING:
-			case SKILL_ID_FEATHER_SPRINKLE:
-
-				// 属性は BattleCalc999Body() で設定済み。ここで設定しても、
-				// 物理の属性倍率は BattleCalc999Body() 内で先に適用されているため間に合わない
-				// （BattleCalcSubDamagePhysicalCommon() は ApplyElementRatio を呼ばない）。
-				// スキル使用条件の判定
-				CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
-				if (CS.n_Buki_Muri) {
-					CS.wbairitu = 0;
-					break;
-				}
-				// 詠唱などの情報
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				// ダメージ算出に関する情報
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-				set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
-				// ヒット数に関する情報
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV ,charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
-				if (n_A_ActiveSkill === SKILL_ID_FLANGE_SHOT) {
-					hitCountArray = [1, CS.wHITsuu, 3];
-				}
-				// 地面設置スキルの情報
-				set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
-				if (g_bDefinedDamageIntervals) {
-					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
-					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				}
-				break;
-
 			// 「バイオロ」スキル「アシディファイドゾーン」
 			// 2024/11/15 初撃のダメージ誤差無しを確認済み
 			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します
@@ -2224,7 +2043,41 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 	-------------------------------------------------- */
 
 			default:
-				bDefaultFormula = false;
+				// engine/skill/<職業>/*.js の Power 等の slot へ移行済みのスキルはここで汎用計算式を適用する
+				if (!g_skillManager.IsGenericFormula(n_A_ActiveSkill) || (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_PHYSICAL) !== CSkillData.TYPE_PHYSICAL) {
+					bDefaultFormula = false;
+					break;
+				}
+
+				// 属性は BattleCalc999Body() で設定済み。ここで設定しても、
+				// 物理の属性倍率は BattleCalc999Body() 内で先に適用されているため間に合わない
+				// （BattleCalcSubDamagePhysicalCommon() は ApplyElementRatio を呼ばない）。
+				// スキル使用条件の判定
+				CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+				if (CS.n_Buki_Muri) {
+					CS.wbairitu = 0;
+					break;
+				}
+				// 詠唱などの情報
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				// ダメージ算出に関する情報
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+				set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
+				// ヒット数に関する情報
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV ,charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+				if (n_A_ActiveSkill === SKILL_ID_FLANGE_SHOT) {
+					hitCountArray = [1, CS.wHITsuu, 3];
+				}
+				// 地面設置スキルの情報
+				set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
+				if (g_bDefinedDamageIntervals) {
+					n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
+					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				}
 				break;
 
 		}

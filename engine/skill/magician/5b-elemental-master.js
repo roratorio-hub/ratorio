@@ -195,6 +195,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -341,6 +342,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -641,6 +643,7 @@ export const skills = [
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
 			}
+			this.genericFormula = true;
 		}),
 
 ];
