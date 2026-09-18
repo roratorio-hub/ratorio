@@ -14,6 +14,14 @@
  * 装備なしだと与ダメージが大半0になり回帰を検出できないため（backlog-archive B-32）、
  * 装備ありのフィクスチャ（sample-savedata-new.md の先頭エントリ）を使う。
  *
+ * 各スキルの直前に SET_ZOKUSEI(mobData, attackMethodConfArray) を呼ぶこと。
+ * 本番では StAllCalc() がスキル選択のたびにこれを1回呼ぶため n_A_Weapon_zokusei は
+ * 常にそのスキル用の値になるが、本ハーネスは StAllCalc() を1回しか呼ばないため、
+ * 呼ばないと「属性を自分で設定しないスキル（未対応スキル・攻撃系ではない案内役の
+ * ダミー等）」を計算した直後は前のスキルの属性が残り、次に計算する無関係なスキルの
+ * ダメージが NaN（JSON化すると null）になることがある（実測: SKILL_ID_TWOHAND_DEFENDING
+ * 等を経由した直後に SKILL_ID_DRAGONIC_AURA が壊れた）。
+ *
  * 用途:
  *   通常実行 … __snapshots__/battle-damage-sweep/default.json と照合
  *   BATTLE_SWEEP_OUT=<dir> pnpm test:integration -- battle-damage-sweep
@@ -80,6 +88,8 @@ describe('全スキル ダメージ計算 総当たりスイープ（BattleCalc9
                 // 本番と同じ経路で charaData/specData/mobData/attackMethodConfArray を
                 // 1回だけ取得し、全 SKILL_ID_* に使い回す（skill-data-sweep と同じ手順）。
                 const retValArray = bridge.StAllCalc();
+                const mobData = retValArray[2];
+                const attackMethodConfArray = retValArray[3];
 
                 function ser(v) {
                     if (typeof v === 'number') {
@@ -118,6 +128,8 @@ describe('全スキル ダメージ計算 総当たりスイープ（BattleCalc9
                         try {
                             stateMod.set_n_A_ActiveSkill(id);
                             stateMod.set_n_A_ActiveSkillLV(lv);
+                            // StAllCalc() が毎回行う属性設定を、このスキルの分だけ再現する。
+                            battleMod.SET_ZOKUSEI(mobData, attackMethodConfArray);
                             const { battleCalcResultAll } = battleMod.ComputeBattleResult(retValArray);
                             const r = battleCalcResultAll.GetActiveResult(0);
                             row[lv] = serializeResult(r);
