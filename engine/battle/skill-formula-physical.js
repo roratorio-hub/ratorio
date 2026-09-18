@@ -161,11 +161,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu += 20 * n_A_ActiveSkillLV;
 				break;
 
-			case SKILL_ID_DARK_CROSS:
-				CS.wbairitu += 35 * n_A_ActiveSkillLV;
-				set_n_A_Weapon_zokusei(7);
-				break;
-
 			case SKILL_ID_SONIC_BLOW:
 			case SKILL_ID_SONIC_BLOW_TAMASHI:
 				CS.wActiveHitNum = 8;
@@ -221,15 +216,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu += 100 * n_A_ActiveSkillLV - 60;
 				n_Delay[1] = 0.1;
 				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
-				break;
-
-			case SKILL_ID_TOMAHAWKNAGE:
-				set_n_Enekyori(1);
-								set_n_A_Weapon_zokusei(4);
-				break;
-
-			case SKILL_ID_PULSE_STRIKE:
-				CS.wbairitu += (100 * n_A_ActiveSkillLV - 100);
 				break;
 
 			case SKILL_ID_VENOM_KNIFE:
@@ -547,17 +533,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			case SKILL_ID_GRAHAM_LIGHT:
 				set_n_Enekyori(1);
 				CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_CHIMEITEKINA_KIZU:
-				CS.wbairitu += 0;
-				break;
-
-			case SKILL_ID_HELL_JUDGEMENT:
-			case SKILL_ID_VAMPIRE_GIFT:
-	// 投稿フォームからの連絡　プレイヤーが使用する場合、遠距離扱いではないらしい
-	//			set_n_Enekyori(1);
-				CS.wbairitu = 100 * n_A_ActiveSkillLV;
 				break;
 
 			case SKILL_ID_YOMIGAESHI:	// 黄泉返し

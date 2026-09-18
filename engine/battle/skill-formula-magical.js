@@ -284,14 +284,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wHITsuu = n_A_ActiveSkillLV;
 			break;
 
-		case SKILL_ID_DARK_STRIKE:
-			set_n_A_Weapon_zokusei(7);
-			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
-			CS.wCast = 500;
-			if(n_A_ActiveSkillLV % 2 == 0) n_Delay[2] = 800 + n_A_ActiveSkillLV / 2 * 200;
-			else n_Delay[2] = 1000 + (n_A_ActiveSkillLV+1) / 2 * 200;
-			break;
-
 		case SKILL_ID_TSURARAOTOSHI:
 			set_n_A_Weapon_zokusei(1);
 			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
