@@ -122,9 +122,9 @@ CSkillData.prototype.Power = function(skillLv, charaDataManger) {
 CSkillData.prototype.hitCount = function(skillLv, option, weapon) {
 	return 1;
 }
-/** 分割ヒット数を取得する. オーバーライドされていない場合は 0 が返される. */
+/** 分割ヒット数を取得する. オーバーライドされていない場合は 1 が返される. */
 CSkillData.prototype.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
-	return 0;
+	return 1;
 }
 /**
  * 変動詠唱をミリ秒で取得する. オーバーライドされていない場合は 0 が返される.
