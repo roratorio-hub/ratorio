@@ -184,12 +184,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.w_HIT_HYOUJI = 100;
 				break;
 
-			case SKILL_ID_SANDANSHO:
-				CS.wActiveHitNum = 3;
-				CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
-				n_Delay[0] = 1;
-				break;
-
 			case SKILL_ID_RENDASHO:
 				CS.wActiveHitNum = 4;
 				CS.wbairitu += 150 + 50 * n_A_ActiveSkillLV;
@@ -285,25 +279,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[3] = 1;
 				break;
 
-			case SKILL_ID_SONIC_WAVE:
-				CS.wActiveHitNum = 3;
-				set_n_Enekyori(1);
-				n_Delay[2] = (n_A_ActiveSkillLV <= 5) ? 1000 : 0;
-				n_Delay[7] = (n_A_ActiveSkillLV <= 5) ? 2000 : 200;
-				CS.wbairitu = 700 + 100 * n_A_ActiveSkillLV;
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_HANDRED_SPEAR:	// ハンドレッドスピア
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-
 			case SKILL_ID_IGNITION_BREAK:
 				n_Delay[7] = 3000;
 				var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 0);
@@ -324,10 +299,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
 				break;
 			}
-
-			case SKILL_ID_ICEBOUND_TRAP:
-				CS.wbairitu = 100;
-				break;
 
 			// 「メカニック」スキル「アックストルネード」
 
@@ -370,21 +341,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			// 「ロイヤルガード」スキル「バニシングポイント」
 
 			// 「シャドウチェイサー」スキル「フェイタルメナス」
-			case SKILL_ID_FATAL_MENUS:
-				n_Delay[2] = 500;
-				// 基本倍率
-				CS.wbairitu = (n_A_ActiveSkillLV + 1) * 100;
-				// アビスダガー状態補正
-				if (UsedSkillSearch(SKILL_ID_ABYSS_DAGGER_STATE) == 1) {
-					CS.wbairitu *= 1.2;
-				}
-				// BaseLv補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				// ヒット数
-				if (n_A_WeaponType == ITEM_KIND_KNIFE) {
-					CS.wHITsuu = 2;
-				}
-				break;
 
 			case SKILL_ID_TENRACHIMO:
 				n_Delay[7] = 200;
@@ -407,12 +363,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					}
 				}
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			case SKILL_ID_ZIRAISHIN:
-				n_Delay[7] = 3000;
-				if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = ((50 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 2;
-				else CS.wbairitu = ((150 * n_A_ActiveSkillLV) * n_A_BaseLV / 100) + n_A_INT * 3;
 				break;
 
 			case SKILL_ID_BAKKISANDAN: {	// 爆気散弾
@@ -530,10 +480,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			// 「アークビショップ」スキル「グレイアムライト」
-			case SKILL_ID_GRAHAM_LIGHT:
-				set_n_Enekyori(1);
-				CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-				break;
 
 			case SKILL_ID_YOMIGAESHI:	// 黄泉返し
 				set_n_Enekyori(1);

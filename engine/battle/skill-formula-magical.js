@@ -257,13 +257,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 
 		// 「ウィザード」スキル「ヘヴンズドライブ」			
 
-		case SKILL_ID_RUWACH:
-			set_n_A_Weapon_zokusei(6);
-			CS.wHITsuu = 1;
-			CS.wbairitu = 145;
-			if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = 0;
-			break;
-
 		// 「プリースト」スキル「マグヌスエクソシズム」
 		case SKILL_ID_MAGNUS_EXORCISMUS:
 			// 詠唱時間等
@@ -427,10 +420,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		// 「アークビショップ」スキル「ミリアムライト」
-		case SKILL_ID_MIRIAM_LIGHT:
-			set_n_A_Weapon_zokusei(0);
-			CS.wbairitu = 200 + 20 * n_A_ActiveSkillLV;
-			break;
 
 		// 「サモナー」スキル「マタタビランス」
 		case SKILL_ID_MATATABI_LANCE:
@@ -476,17 +465,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu = ROUNDDOWN((120 * (subnumvalue + subnumvalue2) + n_A_INT * (n_A_ActiveSkillLV / 2)) * n_A_BaseLV / 100);
 
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
-
-			break;
-
-		case SKILL_ID_RAY_OF_GENESIS:
-			CS.wCast = 2000;
-			n_Delay[2] = 1000;
-			CS.wbairitu = 200 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 7;
 
 			break;
 
@@ -842,57 +820,16 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 
 		// 「インペリアルガード」スキル「ジャッジメントクロス」
 		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
-		case SKILL_ID_JUDGEMENT_CROSS:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			// 見た目10hit
-			CS.wActiveHitNum = 10;
-			break;
 
 		// 「アビスチェイサー」スキル「フロムジアビス」
 		// 2024/10/24 提供データとのほぼ誤差無しを確認
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
-		case SKILL_ID_FROM_THE_ABYSS:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 1500 + 1500 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
 
 		// 「アビスチェイサー」スキル「オメガアビスストライク」
 		// 2024/10/24 提供データとのほぼ誤差無しを確認済み
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
-		case SKILL_ID_OMEGA_ABYSS_STRIKE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
 
 		// 「アビスチェイサー」スキル「アビススクエア」
 		// 2024/10/24 提供データとのほぼ誤差無しを確認済み
@@ -925,7 +862,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			}
 			break;
 		}
-			
+
 		//「エレメンタルマスター」スキル「ライトニングランド」
 		case SKILL_ID_LIGHTNING_LAND:
 			// 2024/08/27 実測

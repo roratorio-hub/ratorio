@@ -12,7 +12,7 @@ import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
 import { n_A_BaseLV, n_Delay } from "../../runtime/ro4-state.js";
-import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
+import { n_A_AGI, n_A_DEX, n_A_INT } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
     SKILL_ID_GOHO, SKILL_ID_HASAICHU, SKILL_ID_KYUKIKO, SKILL_ID_RAIKODAN, SKILL_ID_RASETSU_HAOGEKI,
@@ -135,13 +135,18 @@ export const skills = [
 				return 32 + 4 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				if (option.GetOptionValue(0) == 0) {
+					return ((50 * skillLv) * n_A_BaseLV / 100) + n_A_INT * 2;
+				}
+				return ((150 * skillLv) * n_A_BaseLV / 100) + n_A_INT * 3;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+
+			this.genericFormula = true;
 
 		}),
 

@@ -99,9 +99,20 @@ export const skills = [
 			this.name = "三段掌";
 			this.kana = "サンタンシヨウ";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_PASSIVE;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
+					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 100 + 20 * skillLv;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

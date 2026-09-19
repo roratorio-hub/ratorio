@@ -284,10 +284,14 @@ export const skills = [
 				return 10;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				if (option.GetOptionValue(0) == 0) {
+					return 0;
+				}
+				return 145;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

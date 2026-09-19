@@ -604,6 +604,11 @@ export const skills = [
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
 
+			this.Power = function(skillLv, charaDataManger) {
+				return 100 + 10 * skillLv;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -615,10 +620,15 @@ export const skills = [
 			this.name = "ミリアムライト";
 			this.kana = "ミリアムライト";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_VANITY;
 
+			this.Power = function(skillLv, charaDataManger) {
+				return 200 + 20 * skillLv;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

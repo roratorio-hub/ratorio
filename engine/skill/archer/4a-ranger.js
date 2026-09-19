@@ -381,6 +381,8 @@ export const skills = [
 				var nLifeTime = 15000;
 				return nLifeTime;
 			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

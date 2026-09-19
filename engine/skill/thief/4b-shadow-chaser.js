@@ -8,6 +8,7 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
+import { ITEM_KIND_KNIFE } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
 import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
 import {
@@ -15,7 +16,9 @@ import {
 } from "../../monster/mobconfplayer.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { n_A_AGI, n_A_DEX, n_A_JobLV, n_A_WeaponZokusei } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
+    SKILL_ID_ABYSS_DAGGER_STATE,
     SKILL_ID_AUTO_SHADOW_SPELL, SKILL_ID_BLOODY_LAST, SKILL_ID_BODY_PAINTING, SKILL_ID_CHAOS_PANIC,
     SKILL_ID_DEADLY_INEFFECT, SKILL_ID_DEMENSION_DOOR, SKILL_ID_ESCAPE, SKILL_ID_FAINT_BOMB, SKILL_ID_FATAL_MENUS,
     SKILL_ID_HALLUCINATION_WALKGONO_ASPD_GENSHO, SKILL_ID_INVISIBILITY, SKILL_ID_MAELSTORM,
@@ -660,16 +663,26 @@ export const skills = [
 				// 基本式
 				pow = 100 + 100 * skillLv;
 
+				// 「アビスダガー状態」の効果
+				if (UsedSkillSearch(SKILL_ID_ABYSS_DAGGER_STATE) == 1) {
+					pow *= 1.2;
+				}
+
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
+			}
+
+			this.hitCount = function(skillLv, option, weapon) {
+				return (weapon == ITEM_KIND_KNIFE) ? 2 : 1;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

@@ -73,9 +73,13 @@ export const skills = [
 				pow = 700 + 100 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100)
+				pow = Math.floor(pow * n_A_BaseLV / 100)
 
 				return pow;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
@@ -86,6 +90,7 @@ export const skills = [
 				return (skillLv <= 5) ? 2000 : 200;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -173,6 +178,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

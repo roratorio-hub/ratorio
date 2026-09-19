@@ -522,7 +522,8 @@ export const skills = [
 			this.name = "(△)レイオブジェネシス";
 			this.kana = "レイオフシエネシス";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
+					| CSkillData.TYPE_DIVHIT_FORMULA;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
 
@@ -531,7 +532,16 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var pow = 0;
+
+				pow = 200 * skillLv;
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return 7;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -542,6 +552,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
