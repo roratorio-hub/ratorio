@@ -287,8 +287,7 @@ export const skills = [
 			this.name = "レイジバーストアタック";
 			this.kana = "レイシハアストアタツク";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_100HIT;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -825,7 +824,7 @@ export const skills = [
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
 					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
 
 			this.CostFixed = function(skillLv, charaDataManger) {

@@ -152,8 +152,7 @@ export const skills = [
 			this.name = "畳返し";
 			this.kana = "タタミカエシ";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_100HIT;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 

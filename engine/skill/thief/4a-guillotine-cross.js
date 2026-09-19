@@ -326,8 +326,7 @@ export const skills = [
 			this.name = "(△)カウンタースラッシュ";
 			this.kana = "カウンタアスラツシユ";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 

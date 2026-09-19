@@ -177,7 +177,7 @@ export const skills = [
 			this.kana = "テモンストレエシヨン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_100HIT;
-			this.range = CSkillData.RANGE_LONG;
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 10;
