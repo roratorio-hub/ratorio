@@ -400,10 +400,10 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = 200 * skillLv + charaDataManger.GetCharaInt();
+				pow = 200 * skillLv + n_A_INT;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -420,6 +420,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
