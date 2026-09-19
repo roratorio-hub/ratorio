@@ -8,7 +8,9 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_SIZE } from "../../const/EnumMonsterDataIndex.js";
 import { MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
+import { MONSTER_ID_PLAYER } from "../../monster/monster.dat.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_AS_QUICKDRAW, SKILL_ID_BIND_TRAP, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CRYMSON_MARKER,
@@ -192,6 +194,11 @@ export const skills = [
 				return 1000;
 			}
 
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -215,6 +222,10 @@ export const skills = [
 				return 500 + 500 * skillLv;
 			}
 
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
@@ -223,6 +234,7 @@ export const skills = [
 				return 6000 - 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -295,7 +307,7 @@ export const skills = [
 				pow = 200 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -308,6 +320,15 @@ export const skills = [
 				return 1000;
 			}
 
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -511,24 +532,38 @@ export const skills = [
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 100 + 20 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				var pow = 0;
+
+				pow = 600 * skillLv;
+				pow *= (2 + mobData[MONSTER_DATA_INDEX_SIZE]);
+				// 対モンスターのみ２倍
+				if (mobData[MONSTER_DATA_INDEX_ID] != MONSTER_ID_PLAYER) {
+					pow *= 2;
+				}
+
+				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 2500;
 			}
 
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 15000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -542,14 +577,33 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 30 + 5 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+				var coincount = 0;
+
+				pow = 500 + 100 * skillLv;
+
+				// 烙印状態の影響
+				coincount = option.GetOptionValue(0);
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI]) {
+					pow += coincount * 200;
+				} else {
+					pow += coincount * 50;
+				}
+
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
@@ -560,6 +614,7 @@ export const skills = [
 				return 30000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -673,12 +728,25 @@ export const skills = [
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.element = CSkillData.ELEMENT_VOID;
 
 			this.Power = function(skillLv, charaDataManger) {
 				return 1000 + 400 * skillLv;
 			}
 
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

@@ -13,7 +13,7 @@ import {
 } from "../../monster/mobconfplayer.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { n_A_DEX, n_A_STR } from "../../runtime/roro-state.js";
+import { n_A_DEX, n_A_INT, n_A_STR } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BLOOD_SUCKER, SKILL_ID_CART_BOOST_GENETIC, SKILL_ID_CART_CANNON,
     SKILL_ID_CART_KAIZO, SKILL_ID_CART_TORNADO, SKILL_ID_CHANGE_MATERIAL, SKILL_ID_CRAZY_WEED, SKILL_ID_DEMONIC_FIRE,
@@ -486,20 +486,39 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
-			this.element = CSkillData.ELEMENT_FORCE_VANITY;
+			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 50 + 5 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+
+				// 基本倍率
+				pow = 150 * skillLv;
+
+				// ウドゥンフェアリー補正
+				pow += 100 * skillLv * option.GetOptionValue(0);
+
+				// INT補正
+				pow += 200 + n_A_INT;
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

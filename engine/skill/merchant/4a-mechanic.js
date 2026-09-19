@@ -14,6 +14,7 @@ import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../../const/EnumSi
 import { ItemObjNew } from "../../equip/item.dat.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { n_A_DEX, n_A_Equip, n_A_STR, n_A_VIT } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE,
     MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, n_B_TAISEI
@@ -26,7 +27,7 @@ import {
     SKILL_ID_MADOGEAR_LICENSE, SKILL_ID_MAGMA_ILLUPTION, SKILL_ID_MAGNETIC_FIELD, SKILL_ID_MAINFRAME_KAIZO,
     SKILL_ID_NUTRAL_BARRIER, SKILL_ID_ONO_SHUREN_MECHANIC, SKILL_ID_PILE_BUNKER, SKILL_ID_POWER_SWING,
     SKILL_ID_REARSIDE_SLIDE, SKILL_ID_REPEAR, SKILL_ID_SELF_DESTRUCTION, SKILL_ID_SELF_DESTRUCTION_MAX,
-    SKILL_ID_SHAPE_SHIFT, SKILL_ID_STEALTH_FIELD, SKILL_ID_VULCAN_ARM
+    SKILL_ID_SHAPE_SHIFT, SKILL_ID_STEALTH_FIELD, SKILL_ID_VULCAN_ARM, SKILL_ID_ABR_DUAL_CANNON
 } from "../skill.dat.js";
 
 export const skills = [
@@ -349,18 +350,23 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = 70 * skillLv + charaDataManger.GetCharaDex();
+				pow = 70 * skillLv + n_A_DEX;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
+				pow = Math.floor(pow * n_A_BaseLV / 120);
 
 				return pow;
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON) ? 2 : 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return -1000 + 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

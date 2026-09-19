@@ -328,13 +328,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			// 「メカニック」スキル「バルカンアーム」
-			case SKILL_ID_VULCAN_ARM:
-				set_n_Enekyori(1);
-				CS.wCast = 1000 * n_A_ActiveSkillLV - 1000;
-				if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) CS.wHITsuu = 2;
-				CS.wbairitu = 70 * n_A_ActiveSkillLV + n_A_DEX;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
-				break;
 
 			// 「ロイヤルガード」スキル「キャノンスピア」
 
@@ -462,22 +455,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			// 「ジェネティック」スキル「スポアエクスプロージョン」
 			// 2024/11/16 YEサーバー実測との誤差 +1 ～ -8 を確認
 			// 計算式自体は合っていると判断
-			case SKILL_ID_SPORE_EXPLOSION:
-				// 詠唱など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 遠距離
-				set_n_Enekyori(1);
-				// 基本倍率
-				CS.wbairitu = 150 * n_A_ActiveSkillLV;
-				// ウドゥンフェアリー補正
-				CS.wbairitu += 100 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(0);
-				// INT補正
-				CS.wbairitu += 200 + n_A_INT;
-				// BaseLv補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				// 分割ヒット
-				CS.wActiveHitNum = 3;
-				break;
 
 			// 「アークビショップ」スキル「グレイアムライト」
 
@@ -502,32 +479,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 			}
 
-			case SKILL_ID_HOWLING_MINE:
-				CS.wbairitu = 400 * n_A_ActiveSkillLV;
-				set_n_Enekyori(1);
-				CS.wCast = 1000;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 0;
-				break;
-
-			case SKILL_ID_HOWLING_MINE_APPEND:
-	// TODO: 暫定。ここにはいらない。
-	//			set_n_A_Weapon_zokusei(3);		// 強制火属性
-				CS.wbairitu = 1000 + 400 * n_A_ActiveSkillLV;
-				set_n_Enekyori(1);
-				CS.wCast = 0;
-				n_Delay[2] = 0;
-				n_Delay[7] = 0;
-				break;
-
-			case SKILL_ID_FIRE_RAIN:
-				CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-				set_n_Enekyori(1);
-				CS.wCast = 0;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 6000 - 1000 * n_A_ActiveSkillLV;
-				break;
-
 			case SKILL_ID_FIRE_DANCE: {	// ファイヤーダンス
 				CS.wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
 				// デスペラード習得Lv補正
@@ -540,50 +491,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[7] = 0;
 				break;
 			}
-			case SKILL_ID_BUNISHING_BASTER:
-				CS.wbairitu = 200 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				set_n_Enekyori(1);
-				CS.wCast = 3500 - 500 * n_A_ActiveSkillLV;
-				CS.n_KoteiCast = 1000;
-				n_Delay[2] = 0;
-				n_Delay[7] = 0;
-				break;
-
-			case SKILL_ID_SLUG_SHOT:
-	// TODO: 暫定。ここにはいらない。
-	//			set_n_A_Weapon_zokusei(0);		// 強制無属性
-				CS.wbairitu = 600 * n_A_ActiveSkillLV;
-				CS.wbairitu *= (2 + mobData[17]);
-				// 対モンスターのみ２倍 ****
-				if(mobData[0] != MONSTER_ID_PLAYER){
-					CS.wbairitu *= 2;
-				}
-				CS.wCast = 2500;
-				n_Delay[2] = 0;
-				n_Delay[7] = 15000;
-				break;
-
-			case SKILL_ID_HAMMER_OF_GOD:
-	// TODO: 暫定。ここにはいらない。
-	//			set_n_A_Weapon_zokusei(0);		// 強制無属性
-				CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
-
-				// 烙印状態の影響
-				var coincount = attackMethodConfArray[0].GetOptionValue(0);
-				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI]) {
-					CS.wbairitu += coincount * 200;
-				} else {
-					CS.wbairitu += coincount * 50;
-				}
-
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-
-				set_n_Enekyori(1);
-				CS.wCast = 0;
-				n_Delay[2] = 2000;
-				n_Delay[7] = 30000;
-				break;
 
 			case SKILL_ID_BIND_TRAP:
 				CS.wbairitu = (1000 + 90 * n_A_ActiveSkillLV) / 100;
