@@ -8,6 +8,7 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { MOB_CONF_DEBUF_ID_SHIRYO_HYOI, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import {
     SKILL_ID_COUNT_OF_SOUL_ENERGY, SKILL_ID_CRITICAL_WOUNDS, SKILL_ID_ESFU, SKILL_ID_ESHA, SKILL_ID_ESPA,
     SKILL_ID_GOLEMNO_TAMASHI, SKILL_ID_KAGENO_TAMASHI, SKILL_ID_KAUTO, SKILL_ID_ODINNO_CHIKARA, SKILL_ID_PEONY_MAMY,
@@ -112,8 +113,14 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return Math.floor((1500 + 250 * skillLv) * n_A_BaseLV / 100);
 			}
+
+			this.hitCount = function(skillLv, option, weapon) {
+				return 5;
+			}
+
+			this.type |= CSkillData.TYPE_DIVHIT_FORMULA;
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 100 * skillLv;
@@ -123,6 +130,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -339,8 +347,20 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				let ratio;
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) {
+					ratio = 2500 + 250 * skillLv;
+				} else {
+					ratio = 2300 + 50 * skillLv;
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
+
+			this.hitCount = function(skillLv, option, weapon) {
+				return 7;
+			}
+
+			this.type |= CSkillData.TYPE_DIVHIT_FORMULA;
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 2000;
@@ -354,6 +374,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

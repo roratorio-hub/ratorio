@@ -121,13 +121,18 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return Math.floor((1000 + 220 * skillLv) * n_A_BaseLV / 100);
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				return 3;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

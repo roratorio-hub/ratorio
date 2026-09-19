@@ -216,6 +216,7 @@ export const skills = [
 				return 190 + 30 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -259,6 +260,11 @@ export const skills = [
 				return 190 + 30 * skillLv;
 			}
 
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				return 3;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

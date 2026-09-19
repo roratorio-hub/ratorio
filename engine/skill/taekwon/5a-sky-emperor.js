@@ -357,6 +357,19 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.dispHitCount = 3;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 250 + 100 * skillLv;
+				// POW補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 天気修練 補正
+				ratio += 3 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

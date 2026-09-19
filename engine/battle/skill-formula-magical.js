@@ -443,34 +443,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 
 			break;
 
-		case SKILL_ID_ESFU:
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 5;
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = 1500 + (250 * n_A_ActiveSkillLV);
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-
-			break;
-
-		case SKILL_ID_SHIRYO_BAKUHATSU:
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 7;
-			set_n_A_Weapon_zokusei(ELM_ID_DARK);
-			CS.wCast = 2000;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 1000;
-			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) {
-				CS.wbairitu = 2500 + (250 * n_A_ActiveSkillLV);
-			}
-			else {
-				CS.wbairitu = 2300 + (50 * n_A_ActiveSkillLV);
-			}
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-
-			break;
-
 		//----------------------------------------------------------------
 		//
 		// 魔法ここから

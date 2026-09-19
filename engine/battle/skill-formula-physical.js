@@ -244,13 +244,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = 100;
 				break;
 
-			case SKILL_ID_TORURYOCHAGI:
-			case SKILL_ID_APUCHAORURIGI:
-				n_Delay[0] = 1;
-				CS.wbairitu += (90 + 30 * n_A_ActiveSkillLV);
-				if(n_A_ActiveSkill==SKILL_ID_APUCHAORURIGI) CS.wActiveHitNum = 3;
-				break;
-
 			case SKILL_ID_TRACKING:
 				CS.wCast = 500 + 100 * n_A_ActiveSkillLV;
 				CS.cast_kotei = true;
@@ -492,26 +485,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[0] = 2000;
 				break;
 
-			case  SKILL_ID_TAIYO_BAKUHATSU:
-
-				var hikariLv = 0;
-				var hikariBairitsu = 0;
-	/*
-				hikariLv = UsedSkillSearch(SKILL_ID_TAIYONO_HIKARI);
-
-				if (hikariLv > 0) {
-					hikariBairitsu = 25 + 5 * hikariLv;
-				}
-	*/
-				CS.wbairitu = 1000 + 220 * n_A_ActiveSkillLV;
-				CS.wbairitu = Math.floor(CS.wbairitu * (100 + hikariBairitsu) / 100);
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-
-				CS.wActiveHitNum = 3;
-				n_Delay[7] = 500;
-
-				break;
-
 			// 「バイオロ」スキル「アシディファイドゾーン」
 			// 2024/11/15 初撃のダメージ誤差無しを確認済み
 			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します
@@ -635,32 +608,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wActiveHitNum = 2;
 				break;
 			}
-
-			// 「天帝」スキル「天地万星」
-			case SKILL_ID_TENCHI_BANSE:
-				// 距離属性
-				set_n_Enekyori(0);
-				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置スキル
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ダメージ間隔
-				n_Delay[5] = 300;
-				// 基本倍率
-				CS.wbairitu = 250 + (100 * n_A_ActiveSkillLV);
-				// POW補正
-				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// 天気修練 補正
-				CS.wbairitu += 3 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
-				// ベースレベル補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				// 分割ヒット
-				CS.wActiveHitNum = 3;
-				break;
 
 			// 「天帝」スキル「天羅万象」
 			case SKILL_ID_TENRA_BANSHO:
