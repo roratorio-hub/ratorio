@@ -8,7 +8,8 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { SIZE_ID_SMALL } from "../../const/EnumSizeId.js";
-import { MONSTER_ID_PLAYER } from "../../monster/monster.dat.js";
+import { MONSTER_DATA_INDEX_SIZE } from "../../const/EnumMonsterDataIndex.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_ALCHEMISTNO_TAMASHI, SKILL_ID_ASSASINNO_TAMASHI, SKILL_ID_BARDTO_DANCERNO_TAMASHI,
     SKILL_ID_BLACKSMITHNO_TAMASHI, SKILL_ID_CRUSADERNO_TAMASHI, SKILL_ID_ENCHANT_DEADLY_POISON, SKILL_ID_ESKA,
@@ -140,20 +141,15 @@ export const skills = [
 				return 16 + 2 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
 				var pow = 0;
 
 				// 基本式
 				pow = 10 * skillLv;
 
 				// 小型以外には効果激減
-				if (charaDataManger.GetMobSize() != SIZE_ID_SMALL) {
+				if (mobData[MONSTER_DATA_INDEX_SIZE] != SIZE_ID_SMALL) {
 					pow = 1;
-				}
-
-				// プレイヤーには効果なし
-				if (charaDataManger.GetMobId() == MONSTER_ID_PLAYER) {
-					pow = 0;
 				}
 
 				return pow;
@@ -167,6 +163,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -187,17 +184,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 5 * skillLv;
-
-				// プレイヤーには効果なし
-				if (charaDataManger.GetMobId() == MONSTER_ID_PLAYER) {
-					pow = 0;
-				}
-
-				return pow;
+				return 5 * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -208,6 +195,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -229,7 +217,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return 40 + charaDataManger.GetCharaBaseLv();
+				return 40 + n_A_BaseLV;
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {
@@ -244,6 +232,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

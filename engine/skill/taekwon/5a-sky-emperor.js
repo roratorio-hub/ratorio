@@ -86,6 +86,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -229,6 +230,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -275,6 +277,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 2000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -322,6 +325,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 2000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -353,6 +357,19 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.dispHitCount = 3;
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 250 + 100 * skillLv;
+				// POW補正
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// 天気修練 補正
+				ratio += 3 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
+				// ベースレベル補正
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -396,6 +413,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -444,6 +462,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -577,6 +596,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** 天気身月 */
@@ -628,6 +648,7 @@ export const skills = [
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** 天星の行 */
@@ -677,6 +698,7 @@ export const skills = [
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

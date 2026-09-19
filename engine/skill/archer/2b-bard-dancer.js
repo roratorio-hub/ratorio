@@ -63,6 +63,7 @@ export const skills = [
 				return 1500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -73,7 +74,7 @@ export const skills = [
 			this.name = "(×)不協和音";
 			this.kana = "フキヨウワオン";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
 			this.WeaponCondition = function(weapon) {
@@ -97,6 +98,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 5000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -240,6 +242,7 @@ export const skills = [
 				return 1500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

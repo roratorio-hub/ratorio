@@ -49,6 +49,12 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 5000 + 1000 * skillLv;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 2000 + 500 * skillLv;
+				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -100,6 +106,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -148,6 +155,14 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 4000;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 500;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 2000 + 200 * skillLv;
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -193,6 +208,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -241,6 +257,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -269,6 +286,15 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 350 + 50 * skillLv;
+				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option, weapon) {
+				return 2 + skillLv;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -303,6 +329,15 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 900 + 300 * skillLv;
+				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -363,6 +398,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -416,6 +452,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -450,6 +487,14 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 900 + 300 * skillLv;
+				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -484,6 +529,14 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio = 900 + 300 * skillLv;
+				ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -552,6 +605,22 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.ground_installation = function(option) {
+				return option.GetOptionValue(0) != 0;
+			}
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger, option) {
+				let ratio;
+				if (option.GetOptionValue(0) == 0) {
+					ratio = 7000 + 2000 * skillLv;
+					ratio += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = 200 + 100 * skillLv;
+					ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -586,6 +655,19 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio;
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
+					ratio = 6000 + 1500 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = 4250 + 1250 * skillLv;
+					ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.dispHitCount = 5;
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -620,6 +702,18 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio;
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
+					ratio = 6000 + 1500 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = 4250 + 1250 * skillLv;
+					ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -654,6 +748,24 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+				let ratio;
+				if (parentSkillId === undefined) {
+					ratio = 100 * skillLv;
+					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = 1500 + 500 * skillLv;
+					ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				if (parentSkillId === undefined) {
+					return 1;
+				}
+				return (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) ? 3 : 2;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -688,6 +800,18 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio;
+				if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
+					ratio = 6000 + 1500 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = 4250 + 1250 * skillLv;
+					ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

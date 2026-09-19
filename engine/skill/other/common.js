@@ -113,6 +113,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -186,6 +187,7 @@ export const skills = [
 				return 100;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -219,6 +221,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -389,6 +392,7 @@ export const skills = [
 				return 100;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -402,7 +406,7 @@ export const skills = [
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return -1;
@@ -412,6 +416,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -452,7 +457,7 @@ export const skills = [
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {
-				return Math.floor(skillLv / 2);
+				return Math.round(skillLv / 2);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -464,6 +469,7 @@ export const skills = [
 						* ((skillLv + 1) % 2);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -768,6 +774,7 @@ export const skills = [
 				return 100 + 35 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

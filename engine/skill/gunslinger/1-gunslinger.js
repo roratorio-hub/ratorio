@@ -8,6 +8,7 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE } from "../../const/EnumItemKind.js";
+import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
 import { RACE_ID_ANIMAL, RACE_ID_HUMAN } from "../../const/EnumRaceId.js";
 import {
     SKILL_ID_ADJUSTMENT, SKILL_ID_BULLS_EYE, SKILL_ID_CHAIN_ACTION, SKILL_ID_COUNT_OF_COIN, SKILL_ID_CRACKER,
@@ -99,7 +100,7 @@ export const skills = [
 				return 30;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
 				var pow = 0;
 				var race = 0;
 
@@ -107,7 +108,7 @@ export const skills = [
 				pow = 100;
 
 				// 人間形と動物形には500%
-				race = charaDataManger.GetMobRace();
+				race = mobData[MONSTER_DATA_INDEX_RACE];
 				if ((race == RACE_ID_HUMAN) || (race == RACE_ID_ANIMAL)) {
 					pow = 500;
 				}
@@ -127,6 +128,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -331,6 +333,7 @@ export const skills = [
 				return 1700;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -424,6 +427,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -444,22 +448,11 @@ export const skills = [
 				return 10 + 1 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 武器の種類によって威力が変化
-				switch (charaDataManger.GetCharaArmsType()) {
-
-				case ITEM_KIND_HANDGUN:
-					pow = 100 + 20 * skillLv;
-					break;
-
-				case ITEM_KIND_RIFLE:
-					pow = 150 + 30 * skillLv;
-					break;
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon) {
+				if (weapon == ITEM_KIND_RIFLE) {
+					return 250 + 30 * skillLv;
 				}
-
-				return pow;
+				return 200 + 20 * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -470,6 +463,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -508,7 +502,8 @@ export const skills = [
 			this.name = "ダスト";
 			this.kana = "タスト";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
+					| CSkillData.TYPE_CAST_KOTEI;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -520,10 +515,11 @@ export const skills = [
 				return 100 + 50 * skillLv;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 1000;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 1;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -551,6 +547,7 @@ export const skills = [
 				return 1000 + 200 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -571,13 +568,14 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return 200 + 20 * skillLv;
+				return 200 + 30 * skillLv;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -609,6 +607,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

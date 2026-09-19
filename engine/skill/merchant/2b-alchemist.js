@@ -177,7 +177,7 @@ export const skills = [
 			this.kana = "テモンストレエシヨン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_100HIT;
-			this.range = CSkillData.RANGE_LONG;
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 10;
@@ -194,6 +194,18 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 500;
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 35000 + 5000 * skillLv;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 35000 + 5000 * skillLv;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return 100 + 20 * skillLv;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

@@ -7,11 +7,13 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_JobLV } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_EARTH_SPIKE, SKILL_ID_FIRE_PILLAR, SKILL_ID_FROST_NOVA, SKILL_ID_HEAVENS_DRIVE, SKILL_ID_ICE_WALL,
     SKILL_ID_JUPITER_THUNDER, SKILL_ID_LORD_OF_VERMILLION, SKILL_ID_METEOR_STORM, SKILL_ID_MONSTER_ZYOHO,
     SKILL_ID_QUAGMIRE, SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SIGHT_BLASTER, SKILL_ID_SIGHT_RASHER,
-    SKILL_ID_STORM_GUST, SKILL_ID_WATER_BALL
+    SKILL_ID_STORM_GUST, SKILL_ID_WATER_BALL, SERE_SUPPORT_SKILL_ID_PETROLOGY, SERE_SUPPORT_SKILL_ID_EARTH_CARE
 } from "../skill.dat.js";
 
 export const skills = [
@@ -99,6 +101,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -169,6 +172,7 @@ export const skills = [
 				return 1600 + 400 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -194,12 +198,22 @@ export const skills = [
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 5000;
 			}
-			this.DelayTimeSkillObject = function(skillLv, charaDataManger) {
-				return 4000;
-			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 1000;
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 3100;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 3100;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return [0,100,105,115,130,150,175,205,240,280,330][skillLv];
+			}
+			this.dispHitCount = 10;
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -211,7 +225,8 @@ export const skills = [
 			this.name = "ウォーターボール";
 			this.kana = "ウオオタアホオル";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
+					| CSkillData.TYPE_SG_SPECIAL_HITNUM;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
 
@@ -241,10 +256,11 @@ export const skills = [
 				return 1000 * skillLv;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 100 * this.hitCount(skillLv, charaDataManger);
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 0.1 * this.hitCount(skillLv);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -291,6 +307,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -346,9 +363,11 @@ export const skills = [
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
-				if (seirei == 28) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				if (seirei == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
+					pow += Math.floor(n_A_JobLV / 3);
+				} else if (seirei == SERE_SUPPORT_SKILL_ID_EARTH_CARE) {
+					pow += 75;
 				}
 
 				return pow;
@@ -366,6 +385,7 @@ export const skills = [
 				return 800 + 200 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -393,9 +413,9 @@ export const skills = [
 				pow = 125;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
-				if (seirei == 28) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				if (seirei == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -417,6 +437,7 @@ export const skills = [
 				return 0;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

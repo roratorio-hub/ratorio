@@ -133,6 +133,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 4;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -232,6 +233,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) * 0.5;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -300,6 +302,7 @@ export const skills = [
 					return 0;
 				}
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -352,6 +355,7 @@ export const skills = [
 				}
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -404,6 +408,7 @@ export const skills = [
 				}
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -456,6 +461,7 @@ export const skills = [
 				}
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -518,6 +524,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -570,6 +577,7 @@ export const skills = [
 				}
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ワイルドウォーク */
@@ -625,6 +633,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

@@ -177,6 +177,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -211,12 +212,34 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+			this.WeaponCondition = function(weapon) {
+				return weapon == ITEM_KIND_GRENADEGUN || weapon == ITEM_KIND_RIFLE;
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon) {
+				let ratio;
+				if (weapon == ITEM_KIND_GRENADEGUN) {
+					ratio = 1700 + 300 * skillLv;
+					ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				} else {
+					ratio = 1950 + 350 * skillLv;
+				}
+				const optionCount = option.GetOptionValue(0);
+				ratio += optionCount * (550 + 100 * skillLv);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option, weapon) {
+				return (weapon == ITEM_KIND_GRENADEGUN) ? 2 : 1;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData, option, weapon) => {  // クリティカル発生率
+				if (weapon == ITEM_KIND_GRENADEGUN) {
+					return 0;
+				}
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -251,12 +274,34 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
-			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+			this.WeaponCondition = function(weapon) {
+				return weapon == ITEM_KIND_HANDGUN || weapon == ITEM_KIND_GATLINGGUN;
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon) {
+				let ratio;
+				if (weapon == ITEM_KIND_GATLINGGUN) {
+					ratio = 430 + 90 * skillLv;
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				} else {
+					ratio = 500 + 50 * skillLv;
+				}
+				const optionCount = option.GetOptionValue(0);
+				ratio += optionCount * (125 + 25 * skillLv);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option, weapon) {
+				return (weapon == ITEM_KIND_GATLINGGUN) ? 10 : 6;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData, option, weapon) => {  // クリティカル発生率
+				if (weapon == ITEM_KIND_GATLINGGUN) {
+					return 0;
+				}
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -291,6 +336,27 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.WeaponCondition = function(weapon) {
+				return weapon == ITEM_KIND_SHOTGUN || weapon == ITEM_KIND_GATLINGGUN;
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon) {
+				let ratio;
+				const optionCount = option.GetOptionValue(0);
+				if (weapon == ITEM_KIND_GATLINGGUN) {
+					ratio = 375 + 85 * skillLv;
+					ratio += optionCount * (125 + 25 * skillLv);
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				} else {
+					ratio = 700 + 150 * skillLv;
+					ratio += optionCount * (250 + 50 * skillLv);
+					ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option, weapon) {
+				return (weapon == ITEM_KIND_GATLINGGUN) ? 7 : 4;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -336,6 +402,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -384,6 +451,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -438,6 +506,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -487,6 +556,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 4 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -546,6 +616,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 4000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -687,6 +758,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ミッドナイトフォーリン */
@@ -745,6 +817,7 @@ export const skills = [
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

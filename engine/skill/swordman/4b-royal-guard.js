@@ -7,12 +7,22 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { CHARA_DATA_INDEX_MAXHP } from "../../const/EnumCharaDataIndex.js";
+import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_SHIELD } from "../../const/EnumEquipRegionId.js";
+import { ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_SPBEGIN, ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
+import { ItemObjNew } from "../../equip/item.dat.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_Equip, n_A_INT, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
-    SKILL_ID_BANDING, SKILL_ID_BANISHING_POINT, SKILL_ID_CANNON_SPEAR, SKILL_ID_COUNT_OF_RG_FOR_BANDING,
-    SKILL_ID_EARTH_DRIVE, SKILL_ID_EXCEED_BREAK, SKILL_ID_FORCE_OF_BANGUARD, SKILL_ID_HESPERUS_SLIT,
+    SKILL_ID_BANDING, SKILL_ID_BANISHING_POINT, SKILL_ID_BASH, SKILL_ID_CANNON_SPEAR,
+    SKILL_ID_COUNT_OF_RG_FOR_BANDING,
+    SKILL_ID_EARTH_DRIVE, SKILL_ID_EXCEED_BREAK, SKILL_ID_FORCE_OF_BANGUARD, SKILL_ID_GRAND_JUDGEMENT_STATE,
+    SKILL_ID_HESPERUS_SLIT,
     SKILL_ID_INSPIRATION, SKILL_ID_KINGS_GRACE, SKILL_ID_MOON_SLUSHER, SKILL_ID_OVER_BLAND, SKILL_ID_PIETY,
     SKILL_ID_PINGPOINT_ATTACK, SKILL_ID_PRESTAGE, SKILL_ID_RAGE_BURST_ATTACK, SKILL_ID_RAY_OF_GENESIS,
-    SKILL_ID_REFLECT_DAMAGE, SKILL_ID_SHIELD_PRESS, SKILL_ID_SHIELD_SPELL, SKILL_ID_SHIELD_SPELL_ATK_PLUS,
+    SKILL_ID_REFLECT_DAMAGE, SKILL_ID_SHIELD_PRESS, SKILL_ID_SHIELD_SHOOTING_STATE, SKILL_ID_SHIELD_SPELL,
+    SKILL_ID_SHIELD_SPELL_ATK_PLUS,
     SKILL_ID_SHIELD_SPELL_DEF_PLUS, SKILL_ID_SHIELD_SPELL_LV_1, SKILL_ID_SHIELD_SPELL_LV_2,
     SKILL_ID_SHIELD_SPELL_REFLECT, SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE, SKILL_ID_TRUMPLE
 } from "../skill.dat.js";
@@ -39,10 +49,15 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = (50 + charaDataManger.GetCharaStr()) * skillLv;
+				pow = (50 + n_A_STR) * skillLv;
+
+				// 「グランドジャッジメント状態」の効果
+				if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
+					pow = (200 + n_A_STR) * skillLv;
+				}
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -51,6 +66,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -70,10 +86,28 @@ export const skills = [
 				return 20 + 5 * Math.floor((skillLv - 1) / 5);
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+				var bashBonus = 0;
+
+				// バッシュ習得Lv補正
+				bashBonus = 30 * Math.max(LearnedSkillSearch(SKILL_ID_BASH), option.GetOptionValue(0));
+
+				// 基本倍率
+				pow = 50 * skillLv + bashBonus;
+
+				// 「グランドジャッジメント状態」の効果
+				if (UsedSkillSearch(SKILL_ID_GRAND_JUDGEMENT_STATE) > 0) {
+					pow *= 2;
+				}
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -121,13 +155,29 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var pow = 0;
+
+				// 基本式
+				pow = 200 * skillLv;
+
+				// 「シールドシューティング状態」の効果
+				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+					pow = 300 * skillLv;
+				}
+
+				pow += n_A_STR + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -237,23 +287,31 @@ export const skills = [
 			this.name = "レイジバーストアタック";
 			this.kana = "レイシハアストアタツク";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_100HIT;
-			this.range = CSkillData.RANGE_LONG;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 150;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+
+				pow = 200 * option.GetOptionValue(0);
+				if (option.GetOptionValue(1) > 0) {
+					pow += (charaDataManger[CHARA_DATA_INDEX_MAXHP] - option.GetOptionValue(1)) / 100;
+				}
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -292,8 +350,9 @@ export const skills = [
 			this.name = "イクシードブレイク";
 			this.kana = "イクシイトフレイク";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
+					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -301,7 +360,8 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 100 + 15 * n_A_JobLV + 150 * skillLv
+						+ Math.floor(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] * n_A_WeaponLV * n_A_BaseLV / 100);
 			}
 
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
@@ -312,10 +372,6 @@ export const skills = [
 				return 1000;
 			}
 
-			this.CoolTime = function(skillLv, charaDataManger) {
-				return 500;
-			}
-
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
@@ -323,6 +379,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData);
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -431,8 +488,17 @@ export const skills = [
 				return 16 + 4 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+				var overBlandBonus = 0;
+
+				// オーバーブランドの習得Lv補正
+				overBlandBonus = 80 * Math.max(LearnedSkillSearch(SKILL_ID_OVER_BLAND), option.GetOptionValue(0));
+
+				pow = 120 * skillLv + overBlandBonus;
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -443,6 +509,7 @@ export const skills = [
 				return 5500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -454,7 +521,8 @@ export const skills = [
 			this.name = "(△)レイオブジェネシス";
 			this.kana = "レイオフシエネシス";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
+					| CSkillData.TYPE_DIVHIT_FORMULA;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
 
@@ -463,7 +531,16 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var pow = 0;
+
+				pow = 200 * skillLv;
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return 7;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -474,6 +551,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -517,11 +595,24 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var pow = 0;
+
+				// 基本式
+				pow = 100 + 100 * skillLv;
+
+				// 「シールドシューティング状態」の効果
+				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+					pow = 300 + 100 * skillLv;
+				}
+
+				pow = Math.floor(pow * ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
 			this.dispHitCount = function(skillLv, charaDataManger) {
-				return 5;
+				return 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -536,6 +627,7 @@ export const skills = [
 				return 8000 - 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -701,7 +793,9 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return n_A_BaseLV * 4
+						+ ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_POWER] * 10
+						+ n_A_VIT * 2;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -716,6 +810,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -727,9 +822,9 @@ export const skills = [
 			this.name = "シールドスペルLv2(魔法)";
 			this.kana = "シイルトスヘルレヘルニマホウ";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
 					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -737,7 +832,16 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var wX = 0;
+
+				// シールドに付与された特殊能力ID 19（属性の宝珠等）の合計値を加算する
+				for (var i = ITEM_DATA_INDEX_SPBEGIN; ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] != 0; i += 2) {
+					if (ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] == 19) {
+						wX += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i + 1];
+					}
+				}
+
+				return n_A_BaseLV * 4 + wX * 100 + n_A_INT * 2;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -752,6 +856,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

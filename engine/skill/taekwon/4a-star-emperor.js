@@ -7,6 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
@@ -120,13 +121,18 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return Math.floor((1000 + 220 * skillLv) * n_A_BaseLV / 100);
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				return 3;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -198,7 +204,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 1650 + 50 * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -209,6 +215,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -229,7 +236,15 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var pow = 0;
+
+				// 基本式（「月の光」による補正は現状コメントアウトで無効）
+				pow = 500 + 150 * skillLv;
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -240,6 +255,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -318,6 +334,7 @@ export const skills = [
 				return 3500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -447,17 +464,30 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+
+				// 特定の戦闘エリアでの補正
+				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					return 750 + 750 * skillLv;
+
+				}
+
+				return 500 + 500 * skillLv;
 			}
 
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 500;
 			}
 
-			this.CoolTime = function(skillLv, charaDataManger) {
+			this.CoolTime = function(skillLv, charaDataManger, option) {
+				if (option.GetOptionValue(0) == 1) {
+					return 0;
+				}
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -498,6 +528,7 @@ export const skills = [
 				return 3000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -526,6 +557,21 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 5000;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 500;
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 10000;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 10000;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
+					return 750 + 750 * skillLv;
+				}
+				return 500 + 500 * skillLv;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

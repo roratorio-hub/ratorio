@@ -99,7 +99,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		CS.wbairitu = 100;
 		CS.n_bunkatuHIT = 0;
 
-
 		// 四次スキル以降の属性設定共通処理
 		if (battleCalcInfo.skillId >= SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT) {
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId, attackMethodConfArray[0]));
@@ -194,59 +193,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			}
 			break;
 
-		case SKILL_ID_FIRE_BALL:
-			set_n_A_Weapon_zokusei(3);
-			if(n_A_ActiveSkillLV <=5){
-				CS.wCast = 1500;
-				n_Delay[2] = 1500;
-			}else{
-				CS.wCast = 150;
-				n_Delay[2] = 1000;
-			}
-			CS.wbairitu = (70 + n_A_ActiveSkillLV * 10) * 2;
-			break;
-
-		case SKILL_ID_FIRE_WALL:
-			set_n_A_Weapon_zokusei(3);
-			CS.wHITsuu = 4 + n_A_ActiveSkillLV;
-			CS.wCast = 2150 - (n_A_ActiveSkillLV * 150);
-			n_Delay[2] = 100;
-			CS.wbairitu = 50;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 1) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			break;
-
-		case SKILL_ID_FROST_DIVER:
-			set_n_A_Weapon_zokusei(1);
-			CS.wCast = 800;
-			n_Delay[2] = 1500;
-			CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 10) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			break;
-
-		case SKILL_ID_THUNDER_STORM:
-			set_n_A_Weapon_zokusei(4);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 800 * n_A_ActiveSkillLV;
-			n_Delay[2] = 2000;
-			CS.wbairitu = 100;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 19) CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			break;
-
-		case SKILL_ID_SOUL_STRIKE:
-			set_n_A_Weapon_zokusei(8);
-			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
-			CS.wCast = 500;
-			if(n_A_ActiveSkillLV % 2 == 0) n_Delay[2] = 800 + n_A_ActiveSkillLV / 2 * 200;
-			else n_Delay[2] = 1000 + (n_A_ActiveSkillLV+1) / 2 * 200;
-			break;
-
-		case SKILL_ID_SIGHT_RASHER:
-			set_n_A_Weapon_zokusei(3);
-			CS.wCast = 700;
-			n_Delay[2] = 2000;
-			CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
-			break;
-
 		case SKILL_ID_METEOR_STORM:
 			CS.wbairitu = 125;
 			set_n_A_Weapon_zokusei(3);
@@ -255,51 +201,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wCast = 12000;
 			if(g_VariableCastTimeRate == 0) n_Delay[1] = n_Delay[1] / 2;
 			n_Delay[2] = Math.floor(n_A_ActiveSkillLV / 2) * 1000 + 2000;
-			break;
-
-		case SKILL_ID_JUPITER_THUNDER:
-			set_n_A_Weapon_zokusei(4);
-			CS.wHITsuu = n_A_ActiveSkillLV + 2;
-			CS.wCast = 1600 + n_A_ActiveSkillLV * 400;
-			break;
-
-
-		//「ウィザード」スキル「ロードオブヴァーミリオン」
-		case SKILL_ID_LORD_OF_VERMILLION:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 1000;	// ダメージ間隔
-			n_Delay[6] = 3100;	// オブジェクト存続時間
-			n_Delay[3] = 3100;	// 強制ディレイ（オブジェクト発生中は別のLoVオブジェクトのダメージが発生しないため）
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = [0,100,105,115,130,150,175,205,240,280,330][n_A_ActiveSkillLV];
-			// 見た目 10 hit * hit数
-			CS.wActiveHitNum = 10;
-			break;
-
-
-		case SKILL_ID_WATER_BALL:
-		case SKILL_ID_WATER_BALL_FOR_CLONE:
-			set_n_A_Weapon_zokusei(1);
-			if(n_A_ActiveSkillLV >= 4) CS.wHITsuu = 25;
-			else if(n_A_ActiveSkillLV >= 2) CS.wHITsuu = 9;
-			CS.SG_Special_HITnum = CS.wHITsuu;
-			CS.wCast = 1000 * n_A_ActiveSkillLV;
-			CS.wbairitu = 100 + 30 * n_A_ActiveSkillLV;
-			n_Delay[3] = 0.1 * CS.wHITsuu;
-			break;
-
-		case SKILL_ID_FROST_NOVA:
-			CS.wbairitu = 100 + 10 * n_A_ActiveSkillLV;
-			set_n_A_Weapon_zokusei(1);
-			CS.wCast = 1000;
 			break;
 
 		// 「ウィザード」スキル「ストームガスト」
@@ -322,334 +223,10 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		// 「ウィザード」スキル「アーススパイク」
-		case SKILL_ID_EARTH_SPIKE:
-			set_n_A_Weapon_zokusei(2);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 560 * n_A_ActiveSkillLV;
-			n_Delay[2] = 800 + 200 * n_A_ActiveSkillLV;
-			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-				case SERE_SUPPORT_SKILL_ID_PETROLOGY:
-					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-					break;
-				case SERE_SUPPORT_SKILL_ID_EARTH_CARE:
-					CS.wbairitu += 75;
-					break;
-			}
-			break;
 
-		// 「ウィザード」スキル「ヘヴンズドライブ」			
-		case SKILL_ID_HEAVENS_DRIVE:
-		case SKILL_ID_HEAVENS_DRIVE_FOR_CLONE:
-			set_n_A_Weapon_zokusei(2);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wbairitu = 125;
-			CS.wCast = 1000 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == SERE_SUPPORT_SKILL_ID_PETROLOGY) {
-				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-			}
-			break;
-
-		case SKILL_ID_RUWACH:
-			set_n_A_Weapon_zokusei(6);
-			CS.wHITsuu = 1;
-			CS.wbairitu = 145;
-			if(attackMethodConfArray[0].GetOptionValue(0) == 0) CS.wbairitu = 0;
-			break;
-
-		case SKILL_ID_HOLY_LIGHT:
-		case SKILL_ID_HOLY_LIGHT_TAMASHI:
-			set_n_A_Weapon_zokusei(6);
-			CS.wCast = 2000;
-			CS.wbairitu = 125;
-			if(n_A_ActiveSkill==SKILL_ID_HOLY_LIGHT_TAMASHI) CS.wbairitu += 500;
-			break;
-
-		// 「プリースト」スキル「マグヌスエクソシズム」
-		case SKILL_ID_MAGNUS_EXORCISMUS:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 3000;								// ダメージ間隔
-			n_Delay[6] = 4000 + 1000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
-			n_Delay[3] = n_Delay[6];						// 複数展開しても多重Hitしないスキル
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = 100;
-			// ヒット数
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			break;
-
-		case SKILL_ID_DARK_STRIKE:
-			set_n_A_Weapon_zokusei(7);
-			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2);
-			CS.wCast = 500;
-			if(n_A_ActiveSkillLV % 2 == 0) n_Delay[2] = 800 + n_A_ActiveSkillLV / 2 * 200;
-			else n_Delay[2] = 1000 + (n_A_ActiveSkillLV+1) / 2 * 200;
-			break;
-
-		case SKILL_ID_ESTIN:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100;
-			n_Delay[2] = 500;
-			if(mobData[17] == 0) CS.wbairitu = 10 * n_A_ActiveSkillLV;
-			else CS.wbairitu = 1;
-			break;
-
-		case SKILL_ID_ESTON:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100;
-			n_Delay[2] = 500;
-			CS.wbairitu = 5 * n_A_ActiveSkillLV;
-			break;
-
-		case SKILL_ID_ESMA:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			n_Delay[0] = 1;
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 2000;
-			n_Delay[2] = 500;
-			CS.wbairitu = 40 + n_A_BaseLV;
-			break;
-
-		case SKILL_ID_KOUENKA:
-			set_n_A_Weapon_zokusei(3);
-			CS.wbairitu = 90;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 700 * n_A_ActiveSkillLV;
-			break;
-
-		case SKILL_ID_KAENZIN:
-			set_n_A_Weapon_zokusei(3);
-			CS.wbairitu = 50;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) +4 ;
-			CS.wCast = 6500 - 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[0] = 1;
-			break;
-
-		case SKILL_ID_RYUENZIN:
-			CS.n_bunkatuHIT = 1;
-			set_n_A_Weapon_zokusei(3);
-			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==3) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 3;
-			CS.wCast = 3000;
-			n_Delay[2] = 3000;
-			break;
-
-		case SKILL_ID_HYOSENSO:
-			set_n_A_Weapon_zokusei(1);
-			CS.wbairitu = 70;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = n_A_ActiveSkillLV + 2;
-			CS.wCast = 700 * n_A_ActiveSkillLV;
-			break;
-
-		case SKILL_ID_TSURARAOTOSHI:
-			set_n_A_Weapon_zokusei(1);
-			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 1;
-			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 2000;
-			break;
-
-		case SKILL_ID_FUZIN:
-			set_n_A_Weapon_zokusei(4);
-			CS.wbairitu = 150;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = Math.floor(n_A_ActiveSkillLV / 2) +1;
-			CS.wCast = 1000 + 1000 * Math.floor(n_A_ActiveSkillLV / 2);
-			break;
-
-		case SKILL_ID_RAIGEKISAI:
-			set_n_A_Weapon_zokusei(4);
-			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 1;
-			CS.wCast = 4000;
-			break;
-
-		case SKILL_ID_SAKUFU:
-			set_n_A_Weapon_zokusei(4);
-			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 1;
-			CS.wCast = 4000;
-			break;
-
-		case SKILL_ID_SOUL_EXPANSION:
-			set_n_A_Weapon_zokusei(8);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 2;
-			CS.wCast = 2000;
-			n_Delay[2] = 500;
-			CS.wbairitu = 400 + 100 * n_A_ActiveSkillLV + n_A_INT;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		case SKILL_ID_FROST_MISTY:
-			set_n_A_Weapon_zokusei(1);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 2 + n_A_ActiveSkillLV;
-			CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 1200 - 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 200;
-			CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		case SKILL_ID_JACK_FROST:
-			set_n_A_Weapon_zokusei(1);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 5;
-			CS.n_KoteiCast = 1000;
-			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 200;
-			if(attackMethodConfArray[0].GetOptionValue(0) == 1){
-				CS.wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			}else{
-				CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 150);
-			}
-			break;
-
-		case SKILL_ID_DRAIN_LIFE:
-			set_n_A_Weapon_zokusei(0);
-			CS.wHITsuu = 1;
-			CS.n_KoteiCast = 1000;
-			CS.wCast = 4000;
-			n_Delay[2] = 0;
-			n_Delay[7] = 2000;
-			CS.wbairitu = 200 * n_A_ActiveSkillLV + n_A_INT;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		case SKILL_ID_CRYMSON_ROCK:
-			set_n_A_Weapon_zokusei(3);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 7;
-			CS.n_KoteiCast = 500;
-			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
-			n_Delay[7] = 2000;
-			CS.wbairitu = 300 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			CS.wbairitu += 1300;
-			break;
-
-		case SKILL_ID_COMMET:
-			set_n_A_Weapon_zokusei(0);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 20;
-			CS.n_KoteiCast = 1500 + 500 * n_A_ActiveSkillLV;
-			CS.wCast = 8500 + 1500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 2000;
-			n_Delay[7] = 120000;
-
-			var wDistance = attackMethodConfArray[0].GetOptionValue(0);
-
-			switch (wDistance) {
-
-			case 0:
-				CS.wbairitu = 2500 + 500 * n_A_ActiveSkillLV;
-				break;
-
-			case 1:
-				CS.wbairitu = 1600 + 400 * n_A_ActiveSkillLV;
-				break;
-
-			case 2:
-				CS.wbairitu = 1200 + 300 * n_A_ActiveSkillLV;
-				break;
-
-			case 3:
-				CS.wbairitu = 800 + 200 * n_A_ActiveSkillLV;
-				break;
-
-			case 4:	// 協力発動
-				CS.wbairitu = Math.floor(2500 + 400 * n_A_ActiveSkillLV * n_A_BaseLV / 120);
-				break;
-			}
-			break;
-
-		case SKILL_ID_EARTH_STRAIN:
-			set_n_A_Weapon_zokusei(2);
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 2;
-			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 500;
-			n_Delay[2] = 500;
-			n_Delay[7] = 600 * n_A_ActiveSkillLV;
-			CS.wbairitu = 2000 + 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		case SKILL_ID_SUMMON_FIRE_BALL:
-		case SKILL_ID_SUMMON_WATER_BALL:
-		case SKILL_ID_SUMMON_LIGHTNING_BALL:
-		case SKILL_ID_SUMMON_STONE:
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_FIRE_BALL) set_n_A_Weapon_zokusei(3);
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_WATER_BALL) set_n_A_Weapon_zokusei(1);
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_LIGHTNING_BALL) set_n_A_Weapon_zokusei(4);
-			if(n_A_ActiveSkill == SKILL_ID_SUMMON_STONE) set_n_A_Weapon_zokusei(2);
-			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			CS.wCast = 6000 - 1000 * n_A_ActiveSkillLV;
-
-			CS.wbairitu = (n_A_BaseLV + n_A_JobLV) * Math.round(n_A_ActiveSkillLV / 2);
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
+		// 「ウィザード」スキル「ヘヴンズドライブ」
 
 		// メタリックサウンド
-		case SKILL_ID_METALIC_SOUND:
-			set_n_A_Weapon_zokusei(0);
-			CS.n_bunkatuHIT = 1;
-			CS.wCast = Math.min(3000, 500 + 500 * n_A_ActiveSkillLV);
-			n_Delay[7] = 200;
-			// 基本倍率
-			CS.wbairitu = 120 * n_A_ActiveSkillLV
-			// サウンドブレンド補正
-			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
-				CS.wbairitu *= 2;
-			}
-			// レッスン補正
-			CS.wbairitu += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
-			// BaseLv補正
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			// 睡眠補正
-			if(n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * 150 / 100);
-			}
-			break;
-
-		case SKILL_ID_FIRE_WALK:
-		case SKILL_ID_ELECTRIC_WALK:
-			if(n_A_ActiveSkill==SKILL_ID_FIRE_WALK) set_n_A_Weapon_zokusei(3);
-			else set_n_A_Weapon_zokusei(4);
-			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
-			CS.wCast = 1000;
-			n_Delay[0] = 1;
-			n_Delay[2] = 1000;
-			CS.wbairitu = 60 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			if(n_A_ActiveSkill==SKILL_ID_FIRE_WALK && UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 4) {
-				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 2);
-			}
-			if(n_A_ActiveSkill==SKILL_ID_ELECTRIC_WALK && UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) {
-				CS.wbairitu += ROUNDDOWN(n_A_JobLV / 2);
-			}
-			break;
 
 		// 「ソーサラー」スキル「サイキックウェーブ」
 		case SKILL_ID_PSYCHIC_WAVE:
@@ -678,45 +255,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			// ベースレベル補正
 			CS.wbairitu *= n_A_BaseLV / 100;
 			CS.wbairitu = ROUNDDOWN(CS.wbairitu);
-			break;
-
-		//「ソーサラー」スキル「クラウドキル」
-		case SKILL_ID_CLOUD_KILL:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 500;								// ダメージ間隔
-			n_Delay[6] = 6000 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
-			n_Delay[3] = n_Delay[6]; 						// 重複設置はできない
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = 40 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			// 精霊補正
-			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-				case SERE_SUPPORT_SKILL_ID_CURSED_SOIL:
-					CS.wbairitu += n_A_JobLV;
-					break;
-				case SERE_SUPPORT_SKILL_ID_DEEP_POISONING:
-					CS.wbairitu += 200;
-					break;
-			}				
-			break;
-
-		case SKILL_ID_POISON_BUSTER:
-			set_n_A_Weapon_zokusei(5);
-			CS.n_KoteiCast = 1750 - 250 * n_A_ActiveSkillLV;
-			CS.wCast = 1250 * n_A_ActiveSkillLV - 750;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 2000;
-			CS.wbairitu = 1000 + 300 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
-			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
 		case SKILL_ID_EARTH_GRAVE:
@@ -748,46 +286,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			break;
 
-		// 「ジェネティック」スキル「デモニックファイアー」
-		case SKILL_ID_DEMONIC_FIRE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 2000;								// ダメージ間隔
-			n_Delay[6] = 8001 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間 8000 だと発動回数が現実と合わないため 8001
-			n_Delay[3] = n_Delay[6]; 						// 現実的な状況では重複設置はできない
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = 200 * n_A_ActiveSkillLV;
-			break;
-
 		// 「アークビショップ」スキル「ミリアムライト」
-		case SKILL_ID_MIRIAM_LIGHT:
-			set_n_A_Weapon_zokusei(0);
-			CS.wbairitu = 200 + 20 * n_A_ActiveSkillLV;
-			break;
-
-		case SKILL_ID_SHIELD_SPELL_LV_2:
-			set_n_A_Weapon_zokusei(6);
-			CS.wCast = 1000;
-			n_Delay[0] = 1;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 2000;
-			var wX = 0;
-			for(var i=ITEM_DATA_INDEX_SPBEGIN;ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] != 0;i += 2) if(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i] == 19) wX += ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][i+1];
-			CS.wbairitu = n_A_BaseLV * 4 + wX * 100 + n_A_INT * 2;
-			break;
-
-		case SKILL_ID_ZYUTSUSHIKI_KAIHO:
-			set_n_A_Weapon_zokusei(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU));
-			CS.wbairitu = 200 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			break;
 
 		// 「サモナー」スキル「マタタビランス」
 		case SKILL_ID_MATATABI_LANCE:
@@ -816,30 +315,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[7] = 0;
 			break;
 
-		case SKILL_ID_INUHAKKA_METEOR:
-//			wActiveHitNum = 7;	// 分割ダメージを削除
-
-			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
-			if (attackMethodConfArray[0].optionValueArray.length == 1) {
-				// 属性未定義の場合
-				set_n_A_Weapon_zokusei(ELM_ID_VANITY);
-			} else {
-				set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(1));
-			};
-
-//			wbairitu = 700;		// 旧仕様
-			CS.wbairitu = 400;		// 新仕様
-			if(n_A_BaseLV >= 100) {
-				// Base100以上の場合BaseLvが影響するように変更
-				CS.wbairitu = CS.wbairitu * (n_A_BaseLV / 100);
-			}
-			CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0) / 2;
-			CS.wCast = 2000;
-			n_Delay[2] = 3000;
-			var aDelay = [1000, 500, 500, 0, 0];
-			n_Delay[7] = aDelay[n_A_ActiveSkillLV - 1];
-			break;
-
 		case SKILL_ID_VERATURE_SPEAR:
 			CS.wCast = Math.min(3000, 2000 + 200 * n_A_ActiveSkillLV);
 			CS.n_KoteiCast = Math.max(1000, 2000 - 200 * n_A_ActiveSkillLV);
@@ -860,180 +335,11 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 
 			break;
 
-		case SKILL_ID_RAY_OF_GENESIS:
-			CS.wCast = 2000;
-			n_Delay[2] = 1000;
-			CS.wbairitu = 200 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 7;
-
-			break;
-
-		case SKILL_ID_ESHA:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 200 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 200 * n_A_ActiveSkillLV;
-			n_Delay[7] = 1000;
-			CS.wbairitu = 2000 + (100 * n_A_ActiveSkillLV);
-
-			break;
-
-		case SKILL_ID_ESPA:
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = 500 + (250 * n_A_ActiveSkillLV);
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-
-			break;
-
-		case SKILL_ID_ESFU:
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 5;
-			set_n_A_Weapon_zokusei(n_A_WeaponZokusei);
-			CS.wCast = 100 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = 1500 + (250 * n_A_ActiveSkillLV);
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-
-			break;
-
-		case SKILL_ID_SHIRYO_BAKUHATSU:
-			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 7;
-			set_n_A_Weapon_zokusei(ELM_ID_DARK);
-			CS.wCast = 2000;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 1000;
-			if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) {
-				CS.wbairitu = 2500 + (250 * n_A_ActiveSkillLV);
-			}
-			else {
-				CS.wbairitu = 2300 + (50 * n_A_ActiveSkillLV);
-			}
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-
-			break;
-
 		//----------------------------------------------------------------
 		//
 		// 魔法ここから
 		//
 		//----------------------------------------------------------------
-
-		//----------------------------------------------------------------
-		// 計算式を CSkillManager.js へ移動させ battlecalc.js をスリム化する対応を進めています
-		//----------------------------------------------------------------
-		/* バード */
-		case SKILL_ID_FUKYOWAON:	// 不協和音
-		/* ミンストレル・ワンダラー */
-		case SKILL_ID_SHINDOZANKYO:	// 振動残響
-		/* アークビショップ */
-		case SKILL_ID_JUDEX:	// ジュデックス
-		case SKILL_ID_ADORAMUS:	// アドラムス
-		case SKILL_ID_ARBITRIUM: 
-		/** トルヴェール・トルバドゥール */
-		case SKILL_ID_RHYTHMICAL_WAVE: // リズミカルウェーブ
-		case SKILL_ID_SOUND_BLEND:	// サウンドブレンド
-		case SKILL_ID_METALIC_FURY: // メタリックフューリー
-		/** エレメンタルマスター */
-		case SKILL_ID_PSYCHIC_STREAM: // サイキックストリーム
-		case SKILL_ID_DIAMOND_STORM: 
-		case SKILL_ID_TERA_DRIVE:
-		/** アークメイジ */
-		case SKILL_ID_MYSTERY_ILLUSION:
-		case SKILL_ID_DESTRACTIVE_HURRICANE:
-		case SKILL_ID_VIOLENT_QUAKE:
-		case SKILL_ID_ALL_BLOOM:
-		case SKILL_ID_CRYSTAL_IMPACT:
-		/** ソウルアセティック */
-		case SKILL_ID_SEIRYU_FU:	// 青龍符
-		case SKILL_ID_BYAKKO_FU:	// 白虎符
-		case SKILL_ID_SUZAKU_FU:	// 朱雀符
-		case SKILL_ID_GENBU_FU:		// 玄武符
-		case SKILL_ID_SHIRYO_ZYOKA:	// 死霊浄化
-		case SKILL_ID_SHIHOZIN_FU:	// 四方神符
-		case SKILL_ID_REIDO_FU:		// 霊道符
-		/** スピリットハンドラー */
-		case SKILL_ID_HYUN_ROK_SPIRIT_POWER: // ディアースピリットパワー
-		case SKILL_ID_DEER_CANON:
-		/** アビスチェイサー */
-		case SKILL_ID_ABYSS_FLAME: // アビスフレイム
-		/** インペリアルガード */
-		case SKILL_ID_CROSS_RAIN:
-		case SKILL_ID_IMPERIAL_PRESSURE: // インペリアルプレッシャー
-		/** カーディナル */
-		case SKILL_ID_DIVINUS_FLOS:	// ディヴィヌスフロス
-		/** アリテア */
-		case SKILL_ID_GLACIER_MONOLITH:
-		case SKILL_ID_GLACIER_SHARD:
-		case SKILL_ID_GLACIER_STOMP:
-		case SKILL_ID_ROARING_CHARGE:
-		case SKILL_ID_ROARING_PIERCER:
-		case SKILL_ID_FURIOS_STORM:
-		case SKILL_ID_TERRA_HARVEST:
-		case SKILL_ID_TERRA_WAVE:
-		case SKILL_ID_SOLID_STOMP:
-		case SKILL_ID_CHILLING_BLAST:
-		case SKILL_ID_GRAVITY_HOLE:
-		case SKILL_ID_GLACIER_NOVA:
-		/** ドルイド */
-		case SKILL_ID_ICE_TOTEM:
-		case SKILL_ID_ICE_CLOUD:
-		case SKILL_ID_CUTTING_WIND:
-		case SKILL_ID_WIND_BOMB:
-		case SKILL_ID_EARTH_FLOWER:
-		case SKILL_ID_AROUND_FLOWER:
-		/** カルノス */
-		case SKILL_ID_ICE_PILLAR:
-		case SKILL_ID_ICE_SPLASH:
-		case SKILL_ID_THUNDERING_FOCUS:
-		case SKILL_ID_THUNDERING_ORB:
-		case SKILL_ID_THUNDERING_CALL:
-		case SKILL_ID_EARTH_DRILL:
-		case SKILL_ID_EARTH_STAMP:
-		case SKILL_ID_GROUND_BLOOM:
-		/** 蜃気楼・不知火 */
-		case SKILL_ID_GENZYUTSU_ANKOKURYUU:
-		case SKILL_ID_ANTEN_HOU:
-		/** ハイパーノービス */
-		case SKILL_ID_GROUND_GRAVITATION:
-
-			// スキル使用条件の判定
-			CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
-			if (CS.n_Buki_Muri) {
-				CS.wbairitu = 0;
-				break;
-			}
-			// 詠唱などの情報
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			// ダメージ算出に関する情報
-			// ※このブロックは attackMethodConfArray[0] を常に渡す（オートスペルでも main の conf を使う、
-			//   従来どおりの挙動）。アドラムス等 option 依存の 999 未満スキルは main の conf で評価しないと
-			//   ダメージが変わってしまうため、ここでは bAutoSpell による null 化は行わない。
-			//   四次スキル（ID>=999）の強制属性は BattleCalc999Body() で決定済みなのでここでは基本上書きされない。
-			var elmWork = g_skillManager.GetForcedElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
-			if (elmWork != CSkillData.ELEMENT_VOID) {
-				set_n_A_Weapon_zokusei(elmWork);
-			}
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-			CS.g_bSkillNoDamage = (CS.wbairitu == 0);
-			set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
-			// ヒット数に関する情報
-			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			// 地面設置スキルの情報
-			set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
-			if (g_bDefinedDamageIntervals) {
-				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
-				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			}
-			break;
 
 		// 「カーディナル」スキル「ニューマティックプロセラ」
 		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
@@ -1100,310 +406,18 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			break;
 		}
-		// 「アークメイジ」スキル「デッドリープロジェクション」
-		case SKILL_ID_DEADLY_PROJECTION:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 2000 + 500 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「レインオブクリスタル」
-		case SKILL_ID_RAIN_OF_CRYSTAL:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			set_g_bDefinedDamageIntervals(true);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 500;
-			// 基本倍率
-			CS.wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「ソウルバルカンストライク」
-		case SKILL_ID_SOUL_VULKUN_STRIKE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 350 + 50 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			// ヒット数
-			CS.wHITsuu = 2 + n_A_ActiveSkillLV;
-			break;
-
-		// 「アークメイジ」スキル「ストラタムトレマー」
-		case SKILL_ID_STRATUM_TREAMER:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			set_g_bDefinedDamageIntervals(true);
-			// 基本倍率
-			CS.wbairitu = 900 + 300 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			// 分割Hit数
-			CS.wActiveHitNum = 2;
-			break;
-
-		// 「アークメイジ」スキル「トルネードストーム」
-		case SKILL_ID_TORNADE_STORM:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			set_g_bDefinedDamageIntervals(true);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			// 基本倍率
-			CS.wbairitu = 900 + 300 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「フローラルフレアロード」
-		case SKILL_ID_FLORAL_FLARE_ROAD:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			set_g_bDefinedDamageIntervals(true);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			// 基本倍率
-			CS.wbairitu = 900 + 300 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「アストラルストライク」
-		case SKILL_ID_ASTRAL_STRIKE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 初段ダメージの場合
-			if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
-				// 基本倍率
-				CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 設置持続ダメージの場合
-			else {
-				set_g_bDefinedDamageIntervals(true);
-				// オブジェクト存続時間
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// ダメージ間隔
-				n_Delay[5] = 300;
-				// 基本倍率
-				CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		// 「アークメイジ」スキル「ロックダウン」
-		case SKILL_ID_ROCK_DOWN:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// クライマックス時
-			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
-				// 基本倍率
-				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 通常時
-			else {
-				// 基本倍率
-				CS.wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			// 分割Hit
-			CS.wActiveHitNum = 5;
-			break;
-
-		// 「アークメイジ」スキル「ストームキャノン」
-		case SKILL_ID_STORM_CANNON:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// クライマックス時
-			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
-				// 基本倍率
-				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 通常時
-			else {
-				// 基本倍率
-				CS.wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		//「アークメイジ」スキル「クリムゾンアロー」
-		case SKILL_ID_CRYMSON_ARROW:
-			// 初段ＨＩＴの場合
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 詠唱時間等
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				CS.wbairitu = 100 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// 追撃の場合
-			else {
-				// 基本倍率
-				CS.wbairitu = 1500 + 500 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 15 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// 攻撃回数
-				if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
-					CS.wHITsuu = 3;
-				} else {
-					CS.wHITsuu = 2;
-				}
-			}
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
-		//「アークメイジ」スキル「フローズンスラッシュ」
-		case SKILL_ID_FROZEN_SLASH:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// クライマックス時
-			if (UsedSkillSearch(SKILL_ID_CLIMAX) > 0) {
-				// 基本倍率
-				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 通常時
-			} else {
-				// 基本倍率
-				CS.wbairitu = 4250 + 1250 * n_A_ActiveSkillLV;
-				// SPL補正
-				CS.wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
 		// 「インペリアルガード」スキル「ジャッジメントクロス」
 		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
-		case SKILL_ID_JUDGEMENT_CROSS:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			// 見た目10hit
-			CS.wActiveHitNum = 10;
-			break;
 
 		// 「アビスチェイサー」スキル「フロムジアビス」
 		// 2024/10/24 提供データとのほぼ誤差無しを確認
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
-		case SKILL_ID_FROM_THE_ABYSS:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 1500 + 1500 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
 
 		// 「アビスチェイサー」スキル「オメガアビスストライク」
 		// 2024/10/24 提供データとのほぼ誤差無しを確認済み
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
-		case SKILL_ID_OMEGA_ABYSS_STRIKE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			CS.wbairitu = 7000 + 2000 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
 
 		// 「アビスチェイサー」スキル「アビススクエア」
 		// 2024/10/24 提供データとのほぼ誤差無しを確認済み
@@ -1436,84 +450,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			}
 			break;
 		}
-			
-		//「エレメンタルマスター」スキル「ライトニングランド」
-		case SKILL_ID_LIGHTNING_LAND:
-			// 2024/08/27 実測
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 300;	// ダメージ間隔
-			n_Delay[6] = 3000;	// オブジェクト存続時間
-			// ダメージ倍率
-			if (UsedSkillSearch(SKILL_ID_SERE) == 15) {	// 15: 風 プロセラ
-				// 四次精霊あり
-				CS.wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
-				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			} else {
-				// 四次精霊なし
-				CS.wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
-				CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu *= n_A_BaseLV / 100;
-			break;
-			
-		//「エレメンタルマスター」スキル「コンフラグレーション」
-		case SKILL_ID_CONFLAGRATION:
-			// 2024/08/27 実測
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 300;	// ダメージ間隔
-			n_Delay[6] = 3000;	// オブジェクト存続時間
-			// ダメージ倍率
-			if (UsedSkillSearch(SKILL_ID_SERE) == 13) {	// 13: 火 アルドール
-				// 四次精霊あり
-				CS.wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
-				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			} else {
-				// 四次精霊なし
-				CS.wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
-				CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu *= n_A_BaseLV / 100;
-			break;
-			
-		//「エレメンタルマスター」スキル「ベナムスワンプ」
-		case SKILL_ID_VENOM_SWAMP:
-			// 2024/08/27 実測
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 300;	// ダメージ間隔
-			n_Delay[6] = 3000;	// オブジェクト存続時間
-			// ダメージ倍率
-			if (UsedSkillSearch(SKILL_ID_SERE) == 17) {	// 17: 毒 サーペンス
-				// 四次精霊あり
-				CS.wbairitu = [0,1400,1800,2200,2600,3000][n_A_ActiveSkillLV];
-				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			} else {
-				// 四次精霊なし
-				CS.wbairitu = [0,1200,1500,1800,2100,2400][n_A_ActiveSkillLV];
-				CS.wbairitu += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu *= n_A_BaseLV / 100;
-			break;
 
 		//「エレメンタルマスター」スキル「エレメンタルバスター」
 		case SKILL_ID_ELEMENTAL_BASTER:
@@ -1689,106 +625,12 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 		}
 
-		/*
-			「スピリットハンドラー」スキル「ディアーブリーズ」
-		*/
-		case SKILL_ID_DEER_BREEZE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			set_g_bDefinedDamageIntervals(true);
-			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
-			if (attackMethodConfArray[0].optionValueArray.length == 0) {
-				// 属性未定義の場合
-				set_n_A_Weapon_zokusei(ELM_ID_VANITY);
-			} else {
-				set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
-			};
-			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
-				|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				) {
-				// 基礎倍率
-				CS.wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				CS.wbairitu += 40 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			} else {
-				// 基礎倍率
-				CS.wbairitu = 800 + 100 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				CS.wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			}
-			// SPL補正
-			CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
 		/**
 		 * 「蜃気楼　不知火」スキル「赤炎砲」「冷血砲」「雷電砲」「金龍砲」
 		 */
-		case SKILL_ID_SEKIEN_HOU:
-		case SKILL_ID_REIKETSU_HOU:
-		case SKILL_ID_RAIDEN_HOU:
-		case SKILL_ID_KINNRYUU_HOU:{
-			// 詠唱時間など
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 暗転砲の習得Lv
-			const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 本体の攻撃
-				const yonshoku_fu = attackMethodConfArray[0].GetOptionValue(1);
-				if (yonshoku_fu === 0) {
-					CS.wbairitu = 4000 + 300 * n_A_ActiveSkillLV;
-				} else {
-					// 四色符 は4属性部分の基本倍率のみに影響する
-					CS.wbairitu = 7500 + 300 * n_A_ActiveSkillLV;
-				}
-				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// spl補正
-				CS.wbairitu += 70 * n_A_ActiveSkillLV * anten_hou_lv;			// 習得済みスキル条件
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);			// BaseLv補正
-			} else {
-				// 分身の追撃 暗転砲
-				set_n_A_Weapon_zokusei(ELM_ID_DARK);							// 属性は闇固定
-				if (anten_hou_lv == 0) {
-					CS.wbairitu = 0;
-				} else {
-					CS.wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
-					CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-					CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);		// BaseLv補正
-					CS.wbairitu = Math.floor(CS.wbairitu * 30 / 100);				// 分身の威力は30%
-					CS.wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
-					// 分割ヒット
-					CS.wActiveHitNum = 4;
-				}
-			}
-			break;
-		}
 
 		// 「蜃気楼　不知火」スキル「影溶き」
 		// 2024/12/25 もなこさん提供データに対して誤差なしを確認
-		case SKILL_ID_KAGETOKI:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ倍率
-			CS.wbairitu = 3200 + 500 * n_A_ActiveSkillLV;											// 基本倍率
-			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);								// 特性ステータス補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);									// BaseLv補正
-			// 分割ヒット
-			CS.wActiveHitNum = 2;
-			break;
 
 		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」
 		case SKILL_ID_JACK_FROST_NOVA: {
@@ -1879,6 +721,71 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 /* --------------------------------------------------
 ↑ 魔法攻撃スキル追加位置
 -------------------------------------------------- */
+
+		default:
+			// engine/skill/<職業>/*.js の Power 等の slot へ移行済みのスキルはここで汎用計算式を適用する
+			if (!g_skillManager.IsGenericFormula(n_A_ActiveSkill) || (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_MAGICAL) !== CSkillData.TYPE_MAGICAL) {
+				break;
+			}
+
+			// スキル使用条件の判定
+			CS.n_Buki_Muri = !g_skillManager.MatchWeaponCondition(n_A_ActiveSkill, n_A_WeaponType);
+			if (CS.n_Buki_Muri) {
+				CS.wbairitu = 0;
+				break;
+			}
+			// 詠唱などの情報
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			// ダメージ算出に関する情報
+			// ※このブロックは attackMethodConfArray[0] を常に渡す（オートスペルでも main の conf を使う、
+			//   従来どおりの挙動）。アドラムス等 option 依存の 999 未満スキルは main の conf で評価しないと
+			//   ダメージが変わってしまうため、ここでは bAutoSpell による null 化は行わない。
+			//   四次スキル（ID>=999）の強制属性は BattleCalc999Body() で決定済みなのでここでは基本上書きされない。
+			var elmWork = g_skillManager.GetForcedElement(battleCalcInfo.skillId, attackMethodConfArray[0], mobData, battleCalcInfo.parentSkillId);
+			if (elmWork != CSkillData.ELEMENT_VOID) {
+				set_n_A_Weapon_zokusei(elmWork);
+			}
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+			CS.g_bSkillNoDamage = (CS.wbairitu == 0);
+			set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
+			// ヒット数に関する情報
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType, battleCalcInfo.parentSkillId);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			// 地面設置スキルの情報
+			set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
+			if (g_bDefinedDamageIntervals) {
+				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
+				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			}
+			// 100%ヒット・特殊な戦闘時間区分・分割ヒット式・強制ディレイの情報
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_100HIT) {
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+			}
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_IRREGULAR_BATTLE_TIME) {
+				n_Delay[0] = 1;
+			} else if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_UNKNOWN_DELAY_TIME) {
+				n_Delay[0] = 2;
+			}
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_DIVHIT_FORMULA) {
+				CS.n_bunkatuHIT = 1;
+			}
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_SG_SPECIAL_HITNUM) {
+				CS.SG_Special_HITnum = CS.wHITsuu;
+			}
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) {
+				CS.cast_kotei = true;
+			}
+			// モーションディレイの強制上書き（未オーバーライドなら null なので ASPD 由来の既定値を維持する）
+			var delayForceMotion = g_skillManager.GetDelayTimeForceMotion(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			if (delayForceMotion !== null) {
+				n_Delay[1] = delayForceMotion;
+			}
+			n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			break;
 		}
 
 		if (CS.g_bSkillNoDamage) {

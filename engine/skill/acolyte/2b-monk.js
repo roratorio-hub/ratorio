@@ -8,6 +8,7 @@
  */
 import { CCharaConfNizi } from "../../chara/CCharaConfNizi.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_ASHURA_HAOKEN, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, SKILL_ID_BAKURETSU_HADO, SKILL_ID_COMBO_SANDAN_MONK,
     SKILL_ID_HAKKEI, SKILL_ID_IBUKI, SKILL_ID_KIDATSU, SKILL_ID_KIKO, SKILL_ID_KIKO_TENI, SKILL_ID_KONGO,
@@ -99,9 +100,20 @@ export const skills = [
 			this.name = "三段掌";
 			this.kana = "サンタンシヨウ";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_PASSIVE;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
+					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 100 + 20 * skillLv;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -131,10 +143,14 @@ export const skills = [
 			}
 
 			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 1000 - (4 * charaDataManger.GetCharaAgi())
-						- (2 * charaDataManger.GetCharaDex());
+				return 0.1;
 			}
 
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 1 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -160,10 +176,14 @@ export const skills = [
 			}
 
 			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 700 - (4 * charaDataManger.GetCharaAgi())
-						- (2 * charaDataManger.GetCharaDex());
+				return 0.1;
 			}
 
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -455,8 +475,7 @@ export const skills = [
 			this.name = "寸勁";
 			this.kana = "スンケイ";
 			this.maxLv = 1;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -472,6 +491,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

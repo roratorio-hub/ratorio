@@ -7,6 +7,9 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_APUCHAORURIGI, SKILL_ID_APUCHAORURIGINO_KAMAE, SKILL_ID_ATATAKAI_KAZE, SKILL_ID_FEORICHAGI,
     SKILL_ID_FEORICHAGINO_KAMAE, SKILL_ID_FIGHT, SKILL_ID_NERYOCHAGI, SKILL_ID_NERYOCHAGINO_KAMAE, SKILL_ID_NOPITIGI,
@@ -42,11 +45,11 @@ export const skills = [
 				var wpn = 0;
 
 				// 基本式
-				pow = 4 * charaDataManger.GetCharaBaseLv();
+				pow = 4 * n_A_BaseLV;
 
 				// 「テコンキッド スパート状態」の効果
-				spurt = charaDataManger.UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI);
-				wpn = charaDataManger.GetWeaponType();
+				spurt = UsedSkillSearch(SKILL_ID_SPURT_ZYOTAI);
+				wpn = n_A_WeaponType;
 				if ((spurt > 0) && (wpn == 0)) {
 					pow *= 2;
 				}
@@ -54,6 +57,7 @@ export const skills = [
 				return pow;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -124,6 +128,7 @@ export const skills = [
 				return 160 + 20 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -167,6 +172,7 @@ export const skills = [
 				return 160 + 20 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -210,6 +216,7 @@ export const skills = [
 				return 190 + 30 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -253,6 +260,11 @@ export const skills = [
 				return 190 + 30 * skillLv;
 			}
 
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				return 3;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -283,8 +295,7 @@ export const skills = [
 			this.name = "ティオアプチャギ";
 			this.kana = "テイオアフチヤキ";
 			this.maxLv = 7;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
-					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -296,6 +307,7 @@ export const skills = [
 				return 30 + 10 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

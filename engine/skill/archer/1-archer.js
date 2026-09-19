@@ -89,10 +89,11 @@ export const skills = [
 				return 150 + 10 * skillLv;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 1000;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 1;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -162,6 +163,7 @@ export const skills = [
 				return 1500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 ];

@@ -7,7 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
-import { MOB_CONF_DEBUF_ID_LEX_AETERNA } from "../../monster/mobconfdebuf.js";
+import { MOB_CONF_DEBUF_ID_LEX_AETERNA, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import {
     SKILL_ID_AUTO_COUNTER, SKILL_ID_BOWLING_BASH, SKILL_ID_BRANDISH_SPEAR, SKILL_ID_CHARGE_ATTACK,
     SKILL_ID_KIHE_SHUREN, SKILL_ID_PIERCE, SKILL_ID_RIDING, SKILL_ID_SPEAR_BOOMERANG, SKILL_ID_SPEAR_STUB,
@@ -72,6 +72,7 @@ export const skills = [
 				return 100 + 20 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -99,6 +100,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -136,6 +138,7 @@ export const skills = [
 				return 700;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -222,7 +225,7 @@ export const skills = [
 					hitcnt -= 1;
 				}
 
-				if (charaDataManger.GetMonsterDebuf(MOB_CONF_DEBUF_ID_LEX_AETERNA) > 0) {
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA]) {
 					hitcnt += 1;
 				}
 
@@ -273,21 +276,22 @@ export const skills = [
 			this.kana = "チヤアシアタツク";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 40;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				return 100 + 100 * option.GetOptionValue(0);
 			}
 
-			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return -1;
+			this.CastTimeVary = function(skillLv, charaDataManger, option) {
+				return Math.min(1500, 500 * (option.GetOptionValue(0) + 1));
 			}
 
+			this.genericFormula = true;
 		}),
 
 ];
