@@ -1090,47 +1090,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 		}
 
-		/*
-			「スピリットハンドラー」スキル「ディアーブリーズ」
-		*/
-		case SKILL_ID_DEER_BREEZE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = 300;
-			set_g_bDefinedDamageIntervals(true);
-			// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
-			if (attackMethodConfArray[0].optionValueArray.length == 0) {
-				// 属性未定義の場合
-				set_n_A_Weapon_zokusei(ELM_ID_VANITY);
-			} else {
-				set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
-			};
-			if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0 
-				|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
-				) {
-				// 基礎倍率
-				CS.wbairitu = 1600 + 200 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				CS.wbairitu += 40 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			} else {
-				// 基礎倍率
-				CS.wbairitu = 800 + 100 * n_A_ActiveSkillLV;
-				// スピリットマスタリー補正
-				CS.wbairitu += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
-			}
-			// SPL補正
-			CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			break;
-
 		/**
 		 * 「蜃気楼　不知火」スキル「赤炎砲」「冷血砲」「雷電砲」「金龍砲」
 		 */

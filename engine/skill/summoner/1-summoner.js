@@ -9,6 +9,8 @@
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { MONSTER_DATA_INDEX_BOSS_TYPE } from "../../const/EnumMonsterDataIndex.js";
+import { MOB_CONF_DEBUF_ID_TARONO_KIZU, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
@@ -17,6 +19,7 @@ import {
     SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81, SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100
 } from "../skill.h.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_STR } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI, SKILL_ID_ARCLOUSE_DASH, SKILL_ID_CARROT_BEAT, SKILL_ID_CHATTERING,
     SKILL_ID_DAICHINO_CHIKARA, SKILL_ID_DAICHINO_TAMASHI, SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER,
@@ -64,8 +67,15 @@ export const skills = [
 				return 15;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+
+				pow = 1000;
+				if (option.GetOptionValue(0) == 1) {
+					pow = Math.floor(pow * 1.5);
+				}
+
+				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -76,6 +86,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -122,6 +133,7 @@ export const skills = [
 				return 400 + 200 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -747,8 +759,45 @@ export const skills = [
 				return 30;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+				var resthp = 0;
+
+				pow = 1250 + 50 * skillLv;
+
+				// 「サモナー 生命の魂効果（残りHP）」の、「アニマル系スキル」強化
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
+					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
+							pow = ROUNDDOWN(pow * 2);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
+							pow = ROUNDDOWN(pow * 1.5);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
+							pow = ROUNDDOWN(pow * 1.3);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
+							pow = ROUNDDOWN(pow * 1.1);
+							break;
+					}
+				}
+
+				// 敵の残りＨＰによって威力増加
+				resthp = option.GetOptionValue(0);
+				if ((skillLv == 1 && resthp < 30)
+					|| (skillLv == 2 && resthp < 40)
+					|| (skillLv == 3 && resthp < 50)
+					|| (skillLv == 4 && resthp < 60)
+					|| (skillLv == 5 && resthp < 70)) {
+					pow = ROUNDDOWN(pow * 2);
+				}
+
+				return pow;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 5;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -759,6 +808,7 @@ export const skills = [
 				return 2500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -805,8 +855,40 @@ export const skills = [
 				return 90;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				var pow = 0;
+
+				pow = 4000 + 200 * skillLv;
+
+				// 「サモナー 生命の魂効果（残りHP）」の、「アニマル系スキル」強化
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
+					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
+							pow = ROUNDDOWN(pow * 2);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
+							pow = ROUNDDOWN(pow * 1.5);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
+							pow = ROUNDDOWN(pow * 1.3);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
+							pow = ROUNDDOWN(pow * 1.1);
+							break;
+					}
+				}
+
+				// ボスモンスターにはダメージ２倍
+				if (mobData[MONSTER_DATA_INDEX_BOSS_TYPE] == 1) {
+					pow *= 2;
+				}
+
+				// タロウの傷状態のモンスターにはダメージ２倍
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_TARONO_KIZU]) {
+					pow *= 2;
+				}
+
+				return pow;
 			}
 
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
@@ -821,6 +903,7 @@ export const skills = [
 				return 15000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -841,7 +924,42 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				var pow = 0;
+
+				// 基礎倍率
+				pow = 1000 + 100 * skillLv;
+
+				// Str補正
+				pow += n_A_STR;
+
+				// Lv補正
+				if (n_A_BaseLV >= 100) {
+					pow = ROUNDDOWN(pow * (n_A_BaseLV / 100));
+				}
+
+				// 「サモナー 生命の魂効果（残りHP）」の、「アニマル系スキル」強化
+				if (Math.max(LearnedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI), UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI)) > 0) {
+					switch (UsedSkillSearch(SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP)) {
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100:
+							pow = ROUNDDOWN(pow * 2);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81:
+							pow = ROUNDDOWN(pow * 1.5);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51:
+							pow = ROUNDDOWN(pow * 1.3);
+							break;
+						case SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10:
+							pow = ROUNDDOWN(pow * 1.1);
+							break;
+					}
+				}
+
+				return pow;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -858,6 +976,7 @@ export const skills = [
 				return coolArray[skillLv - 1];
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
