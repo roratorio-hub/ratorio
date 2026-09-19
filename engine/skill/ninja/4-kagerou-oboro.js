@@ -130,14 +130,20 @@ export const skills = [
 				return 55 - 5 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+
+				pow = (100 + 20 * option.GetOptionValue(0)) * skillLv;
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

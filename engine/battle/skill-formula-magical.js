@@ -277,31 +277,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wHITsuu = n_A_ActiveSkillLV;
 			break;
 
-		case SKILL_ID_TSURARAOTOSHI:
-			set_n_A_Weapon_zokusei(1);
-			CS.wbairitu = 150 + 150 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==1) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 1;
-			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 2000;
-			break;
-
-		case SKILL_ID_RAIGEKISAI:
-			set_n_A_Weapon_zokusei(4);
-			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 20 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 1;
-			CS.wCast = 4000;
-			break;
-
-		case SKILL_ID_SAKUFU:
-			set_n_A_Weapon_zokusei(4);
-			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-			if(UsedSkillSearch(SKILL_ID_FU_ELEMENT_OF_FU)==4) CS.wbairitu += 100 * UsedSkillSearch(SKILL_ID_FU_COUNT_OF_FU);
-			CS.wHITsuu = 1;
-			CS.wCast = 4000;
-			break;
-
 		case SKILL_ID_DRAIN_LIFE:
 			set_n_A_Weapon_zokusei(0);
 			CS.wHITsuu = 1;
@@ -1159,62 +1134,9 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		/**
 		 * 「蜃気楼　不知火」スキル「赤炎砲」「冷血砲」「雷電砲」「金龍砲」
 		 */
-		case SKILL_ID_SEKIEN_HOU:
-		case SKILL_ID_REIKETSU_HOU:
-		case SKILL_ID_RAIDEN_HOU:
-		case SKILL_ID_KINNRYUU_HOU:{
-			// 詠唱時間など
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 暗転砲の習得Lv
-			const anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
-			if (battleCalcInfo.parentSkillId === undefined) {
-				// 本体の攻撃
-				const yonshoku_fu = attackMethodConfArray[0].GetOptionValue(1);
-				if (yonshoku_fu === 0) {
-					CS.wbairitu = 4000 + 300 * n_A_ActiveSkillLV;
-				} else {
-					// 四色符 は4属性部分の基本倍率のみに影響する
-					CS.wbairitu = 7500 + 300 * n_A_ActiveSkillLV;
-				}
-				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// spl補正
-				CS.wbairitu += 70 * n_A_ActiveSkillLV * anten_hou_lv;			// 習得済みスキル条件
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);			// BaseLv補正
-			} else {
-				// 分身の追撃 暗転砲
-				set_n_A_Weapon_zokusei(ELM_ID_DARK);							// 属性は闇固定
-				if (anten_hou_lv == 0) {
-					CS.wbairitu = 0;
-				} else {
-					CS.wbairitu = 5750 + 350 * anten_hou_lv;					// 基本倍率
-					CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// spl補正
-					CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);		// BaseLv補正
-					CS.wbairitu = Math.floor(CS.wbairitu * 30 / 100);				// 分身の威力は30%
-					CS.wbairitu *= attackMethodConfArray[0].GetOptionValue(0);	// 分身の数
-					// 分割ヒット
-					CS.wActiveHitNum = 4;
-				}
-			}
-			break;
-		}
 
 		// 「蜃気楼　不知火」スキル「影溶き」
 		// 2024/12/25 もなこさん提供データに対して誤差なしを確認
-		case SKILL_ID_KAGETOKI:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ倍率
-			CS.wbairitu = 3200 + 500 * n_A_ActiveSkillLV;											// 基本倍率
-			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);								// 特性ステータス補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);									// BaseLv補正
-			// 分割ヒット
-			CS.wActiveHitNum = 2;
-			break;
 
 		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」
 		case SKILL_ID_JACK_FROST_NOVA: {

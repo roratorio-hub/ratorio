@@ -606,6 +606,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -685,6 +686,7 @@ export const skills = [
 				return 4000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -722,6 +724,7 @@ export const skills = [
 				return 4000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

@@ -458,13 +458,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 「アークビショップ」スキル「グレイアムライト」
 
-			case SKILL_ID_YOMIGAESHI:	// 黄泉返し
-				set_n_Enekyori(1);
-				n_Delay[7] = 3500 - 500 * n_A_ActiveSkillLV;
-				CS.wbairitu = (100 + 20 * attackMethodConfArray[0].GetOptionValue(0)) * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
 			case SKILL_ID_FUMASHURIKEN_RANKA: {	// 風魔手裏剣 -乱華-
 				set_n_Enekyori(1);
 				CS.wActiveHitNum = 5;
@@ -1102,21 +1095,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 「蜃気楼　不知火」スキル「影潜り」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_KAGEMOGURI:
-				// 詠唱時間等
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 属性
-				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-				// ダメージ倍率
-				CS.wbairitu = 2500 + 500 * n_A_ActiveSkillLV;											// 基本倍率
-				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);								// 特性ステータス補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);									// BaseLv補正
-				// 分割ヒット
-				CS.wActiveHitNum = 2;
-				break;
 
 			// 「星帝」スキル「流星落下」
 			/**
