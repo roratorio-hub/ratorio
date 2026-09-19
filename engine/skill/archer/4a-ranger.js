@@ -71,7 +71,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 500 + 50 * skillLv;
 			}
 
 			this.dispHitCount = function(skillLv, charaDataManger) {

@@ -106,17 +106,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		case SKILL_ID_AIMED_BOLT:
 			set_n_Enekyori(1);
-			CS.wCast = 4000;
-			CS.n_KoteiCast = 1000;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 500;
-			if(n_A_ActiveSkillLV > 5){
-				CS.wCast = 3500 - 400 * (n_A_ActiveSkillLV - 5);
-				CS.n_KoteiCast = 1000 - 150 * (n_A_ActiveSkillLV - 5);
-				n_Delay[2] = 1000 - 100 * (n_A_ActiveSkillLV - 5);
-				n_Delay[7] = 500 - 50 * (n_A_ActiveSkillLV - 5);
-			}
-			CS.wbairitu = 500 + 50 * n_A_ActiveSkillLV;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 			var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 1);
 			if(w == 2){
@@ -204,8 +198,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		case SKILL_ID_MAGIC_CRUSHER:
 			set_n_Enekyori(1);
-			CS.wCast = 300;
-			n_Delay[2] = 300;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = BK_n_A_MATK[i];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
@@ -260,14 +254,14 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		case SKILL_ID_QUICKDRAW_SHOT:
 			if(n_A_ActiveSkill==SKILL_ID_DOUBLE_STRAFING){
 				set_n_Enekyori(1);
-				CS.wbairitu += 10 * n_A_ActiveSkillLV - 10;
-				CS.wHITsuu = 2;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			}else if(n_A_ActiveSkill==SKILL_ID_PIERCE){
 				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				CS.wHITsuu = mobData[17]+1;
 			}else if(n_A_ActiveSkill==SKILL_ID_BOWLING_BASH){
-				CS.wbairitu += 40 * n_A_ActiveSkillLV;
-				CS.wCast = 700;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.wHITsuu = 2;
 				if(n_A_ActiveSkillLV == 1) CS.wHITsuu = 1;
 				CS.wLAch = true;
@@ -292,24 +286,24 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				set_n_Enekyori(1);
 			}else if(n_A_ActiveSkill==SKILL_ID_TRIPLE_ACTION){
 				set_n_Enekyori(1);
-				n_Delay[2] = 1000;
-				CS.wbairitu += 50;
-				CS.wHITsuu = 3;
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			}else if(n_A_ActiveSkill==SKILL_ID_BEAST_STRAIFING){
 				n_Delay[0] = 1;
 				set_n_Enekyori(1);
-				CS.wbairitu += n_A_STR * 8 - 50;
-				CS.wHITsuu = 2;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			}else if(n_A_ActiveSkill==SKILL_ID_DEATHPERAD){
 				set_n_Enekyori(1);
-				CS.wbairitu += 50 * n_A_ActiveSkillLV - 50;
-				n_Delay[2] = 1000;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				var DEATH = [1,1.2,1.6,2,2.4,3,3.6,4,5,6,7,8,9,10];
 				CS.wHITsuu = DEATH[attackMethodConfArray[0].GetOptionValue(0)];
 			}else if(n_A_ActiveSkill==SKILL_ID_HESPERUS_SLIT){
-				CS.wCast = 2000;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 2000;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
 				var w = 1 + UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING);
 				if(
@@ -333,10 +327,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 			}else if(n_A_ActiveSkill==SKILL_ID_CRAZY_WEED){
 				set_n_A_Weapon_zokusei(2);
-				CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
-				n_Delay[2] = 500 + 500 * Math.round(n_A_ActiveSkillLV / 2);
-				n_Delay[7] = 5000;
-				CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 			}
 

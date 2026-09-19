@@ -7,6 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_STR } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_ANKLESNARE, SKILL_ID_BEAST_BANE, SKILL_ID_BEAST_STRAIFING, SKILL_ID_BLAST_MINE, SKILL_ID_BLITZ_BEAT,
     SKILL_ID_CLAYMORE_TRAP, SKILL_ID_DETECTING, SKILL_ID_FALCON_MASTERY, SKILL_ID_FANTASMIC_ARROW, SKILL_ID_FLASHER,
@@ -439,7 +440,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return 50 + 8 * charaDataManger.GetCharaStr();
+				return 50 + 8 * n_A_STR;
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {
