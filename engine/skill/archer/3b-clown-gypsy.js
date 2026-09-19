@@ -71,9 +71,6 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 300;
 			}
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 3000;
-			}
 			this.genericFormula = true;
 		}),
 

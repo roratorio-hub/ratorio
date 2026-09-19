@@ -149,67 +149,10 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 従来からある分
 
-			case SKILL_ID_ARROW_SHOWER:
-				set_n_Enekyori(1);
-				CS.wbairitu += 50 + 10 * n_A_ActiveSkillLV;
-				n_Delay[3] = 1;
-				break;
-
 			case SKILL_ID_GRIM_TOOTH:
 				if(n_A_ActiveSkillLV >= 3) set_n_Enekyori(1);
 				else set_n_Enekyori(0);
 				CS.wbairitu += 20 * n_A_ActiveSkillLV;
-				break;
-
-			case SKILL_ID_SONIC_BLOW:
-			case SKILL_ID_SONIC_BLOW_TAMASHI:
-				CS.wActiveHitNum = 8;
-				CS.wbairitu = 400 + 40 * n_A_ActiveSkillLV;
-				if (UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) CS.wbairitu = ROUNDDOWN(CS.wbairitu / 2);
-				n_Delay[3] = 2;
-				if(n_A_ActiveSkill==SKILL_ID_SONIC_BLOW_TAMASHI){
-					if(n_SiegeMode){
-						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 1.25);
-					}else{
-						CS.wbairitu = ROUNDDOWN(CS.wbairitu * 2);
-						n_Delay[3] = 1;
-					}
-				}
-				break;
-
-			case SKILL_ID_BACK_STAB:
-				CS.wbairitu += 200 + 40 * n_A_ActiveSkillLV;
-				n_Delay[2] = 500;
-				CS.w_HIT = 100;
-				CS.w_HIT_HYOUJI = 100;
-				break;
-
-			case SKILL_ID_RENDASHO:
-				CS.wActiveHitNum = 4;
-				CS.wbairitu += 150 + 50 * n_A_ActiveSkillLV;
-				n_Delay[0] = 1;
-				n_Delay[1] = 0.1;
-				n_Delay[3] = 1 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
-				break;
-
-			case SKILL_ID_MORYUKEN:
-				CS.wbairitu = 450 + 50 * n_A_ActiveSkillLV;
-				n_Delay[0] = 1;
-				n_Delay[1] = 0.1;
-				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
-				break;
-
-			case SKILL_ID_MOKOKOHAZAN:
-				CS.wbairitu += (100 + 100 * n_A_ActiveSkillLV);
-				n_Delay[3] = 1;
-				n_Delay[2] = 300;
-				break;
-
-			case SKILL_ID_BUKKOKEN:
-				n_Delay[0] = 1;
-				CS.wbairitu += 100 * n_A_ActiveSkillLV - 60;
-				n_Delay[1] = 0.1;
-				n_Delay[3] = 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
 				break;
 
 			case SKILL_ID_VENOM_KNIFE:
@@ -253,23 +196,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.w_HIT = CS.w_HIT * 5 +5;
 				if(CS.w_HIT > 100) CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = CS.w_HIT;
-				break;
-
-			case SKILL_ID_PIERCING_SHOT:
-				CS.wCast = 1500;
-				set_n_Enekyori(1);
-				if(n_A_WeaponType == 18) CS.wbairitu += 150 + 30 * n_A_ActiveSkillLV;
-				else CS.wbairitu += 100 + 20 * n_A_ActiveSkillLV;
-				n_Delay[2] = 500;
-				CS.w_HIT = 100;
-				CS.w_HIT_HYOUJI = 100;
-				break;
-
-			case SKILL_ID_DUST:
-				CS.cast_kotei = true;
-				set_n_Enekyori(0);
-				CS.wbairitu += 50 * n_A_ActiveSkillLV;
-				n_Delay[3] = 1;
 				break;
 
 			case SKILL_ID_IGNITION_BREAK:
@@ -637,113 +563,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				}
 				break;
 
-			// 「ナイトウォッチ」スキル「スパイラルシューティング」
-			// 2025/01/25 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_SPIRAL_SHOOTING:
-				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 使用武器制限
-				if (n_A_WeaponType != ITEM_KIND_GRENADEGUN && n_A_WeaponType != ITEM_KIND_RIFLE) {
-					CS.n_Buki_Muri = true
-					CS.wbairitu = 0;
-					break;
-				}
-				// 遠距離属性
-				set_n_Enekyori(1);
-				if (n_A_WeaponType == ITEM_KIND_GRENADEGUN) {
-					CS.wbairitu = 1700 + 300 * n_A_ActiveSkillLV;
-					bCri = false;	// クリティカルしない
-					CS.wHITsuu = 2;	// 2ヒットする
-				}
-				else if (n_A_WeaponType == ITEM_KIND_RIFLE) {
-					CS.wbairitu = 1950 + 350 * n_A_ActiveSkillLV;
-				}
-				// CON補正
-				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// 照準カウンター補正
-				CS.option_count = attackMethodConfArray[0].GetOptionValue(0);
-				CS.wbairitu += CS.option_count * (550 + 100 * n_A_ActiveSkillLV);
-				// ベースレベル補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			// 「ナイトウォッチ」スキル「マガジンフォーワン」
-			// 2025/01/25 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_MAGAZIN_FOR_ONE:
-				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 使用武器制限
-				if (n_A_WeaponType != ITEM_KIND_HANDGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
-					CS.n_Buki_Muri = true
-					CS.wbairitu = 0;
-					break;
-				}
-				// 遠距離属性
-				set_n_Enekyori(1);
-				if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-					CS.wbairitu = 430 + 90 * n_A_ActiveSkillLV;
-					bCri = false;	// クリティカルしない
-					CS.wHITsuu = 10;	// 10ヒットする
-				}
-				else if (n_A_WeaponType == ITEM_KIND_HANDGUN) {
-					CS.wbairitu = 500 + 50 * n_A_ActiveSkillLV;
-					CS.wHITsuu = 6;	// 6ヒットする
-				}
-				// CON補正
-				CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				// 照準カウンター補正
-				CS.option_count = attackMethodConfArray[0].GetOptionValue(0);
-				CS.wbairitu += CS.option_count * (125 + 25 * n_A_ActiveSkillLV);
-				// ベースレベル補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
-			//「ナイトウォッチ」スキル「ビジラントアットナイト」
-			// 2025/01/25 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_VIGILANT_AT_NIGHT:
-				// 使用武器制限
-				if (n_A_WeaponType != ITEM_KIND_SHOTGUN && n_A_WeaponType != ITEM_KIND_GATLINGGUN) {
-					CS.n_Buki_Muri = true
-					CS.wbairitu = 0;
-					break;
-				}
-				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 遠距離属性
-				set_n_Enekyori(1);
-				// 照準カウンター
-				CS.option_count = attackMethodConfArray[0].GetOptionValue(0);
-				if (n_A_WeaponType == ITEM_KIND_GATLINGGUN) {
-					CS.wHITsuu = 7;	// 7ヒットする
-					// 基本倍率
-					CS.wbairitu = 375 + 85 * n_A_ActiveSkillLV;
-					// 照準カウンター補正
-					CS.wbairitu += CS.option_count * (125 + 25 * n_A_ActiveSkillLV);
-					// CON補正
-					CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				}
-				else if (n_A_WeaponType == ITEM_KIND_SHOTGUN) {
-					CS.wHITsuu = 4;	// 4ヒットする
-					// 基本倍率
-					CS.wbairitu = 700 + 150 * n_A_ActiveSkillLV;
-					// 照準カウンター補正
-					CS.wbairitu += CS.option_count * (250 + 50 * n_A_ActiveSkillLV);
-					// CON補正
-					CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
-				}
-				// ベースレベル補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-				break;
-
 			// 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_FUMASHURIKEN_SHOUAKU: {
@@ -788,50 +607,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);					// BaseLv補正
 				break;
 			}
-
-			// 「アルケミスト」スキル「デモンストレーション」
-			case SKILL_ID_DEMONSTRATION:
-				// 必中
-				CS.w_HIT = 100;
-				CS.w_HIT_HYOUJI = 100;
-				// 詠唱時間等
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置スキル設定
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = 500;								// ダメージ間隔
-				n_Delay[6] = 35000 + 5000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
-				n_Delay[3] = n_Delay[6]; 						// 足元置きができないので重複設置はできない
-				// 属性
-				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-				// ダメージ倍率
-				CS.wbairitu = 100 + 20 * n_A_ActiveSkillLV;
-				break;
-
-			// 「星帝」スキル「創星の書」
-			case SKILL_ID_SOSENO_SHO:
-				set_n_Enekyori(1);
-				// 詠唱時間等
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置スキル設定
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = 500;			// ダメージ間隔
-				n_Delay[6] = 10000;			// オブジェクト存続時間
-				n_Delay[3] = n_Delay[6]; 	// 重複設置はできない
-				// 属性
-				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-				// ダメージ倍率
-				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
-					CS.wbairitu = 750 + 750 * n_A_ActiveSkillLV;
-				} else {
-					CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
-				}
-				break;
 
 			// 「蜃気楼　不知火」スキル「影潜り」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
@@ -895,8 +670,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				}
 				// 100%ヒット・特殊な戦闘時間区分・強制ディレイの情報
-				// （DelayTimeForceMotion は既存の slot 値との整合を個別スキル移行時に
-				// 確認するまで、ここでは読まない）
 				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_100HIT) {
 					CS.w_HIT = 100;
 					CS.w_HIT_HYOUJI = 100;
@@ -905,6 +678,14 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					n_Delay[0] = 1;
 				} else if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_UNKNOWN_DELAY_TIME) {
 					n_Delay[0] = 2;
+				}
+				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) {
+					CS.cast_kotei = true;
+				}
+				// モーションディレイの強制上書き（未オーバーライドなら null なので ASPD 由来の既定値を維持する）
+				var delayForceMotion = g_skillManager.GetDelayTimeForceMotion(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				if (delayForceMotion !== null) {
+					n_Delay[1] = delayForceMotion;
 				}
 				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;

@@ -557,6 +557,21 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 5000;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 500;
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 10000;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 10000;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM) {
+					return 750 + 750 * skillLv;
+				}
+				return 500 + 500 * skillLv;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

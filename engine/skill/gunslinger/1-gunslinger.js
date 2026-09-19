@@ -448,22 +448,11 @@ export const skills = [
 				return 10 + 1 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 武器の種類によって威力が変化
-				switch (charaDataManger.GetCharaArmsType()) {
-
-				case ITEM_KIND_HANDGUN:
-					pow = 100 + 20 * skillLv;
-					break;
-
-				case ITEM_KIND_RIFLE:
-					pow = 150 + 30 * skillLv;
-					break;
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon) {
+				if (weapon == ITEM_KIND_RIFLE) {
+					return 250 + 30 * skillLv;
 				}
-
-				return pow;
+				return 200 + 20 * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -474,6 +463,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -512,7 +502,8 @@ export const skills = [
 			this.name = "ダスト";
 			this.kana = "タスト";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL
+					| CSkillData.TYPE_CAST_KOTEI;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -524,10 +515,11 @@ export const skills = [
 				return 100 + 50 * skillLv;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 1000;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 1;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

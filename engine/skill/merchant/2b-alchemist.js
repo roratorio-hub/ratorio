@@ -194,6 +194,18 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 500;
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 35000 + 5000 * skillLv;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 35000 + 5000 * skillLv;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return 100 + 20 * skillLv;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

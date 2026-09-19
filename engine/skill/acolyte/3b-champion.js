@@ -7,6 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_BUKKOKEN, SKILL_ID_COMBO_SANDAN_CHAMP, SKILL_ID_MOKOKOHAZAN, SKILL_ID_RENCHUHOGEKI, SKILL_ID_RENKIKO,
     SKILL_ID_SOUL_COLECT
@@ -38,10 +39,11 @@ export const skills = [
 				return 300;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 1000;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 1;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -67,10 +69,14 @@ export const skills = [
 			}
 
 			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 700 - (4 * charaDataManger.GetCharaAgi())
-						- (2 * charaDataManger.GetCharaDex());
+				return 0.1;
 			}
 
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 0.7 - (0.004 * n_A_AGI) - (0.002 * n_A_DEX);
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

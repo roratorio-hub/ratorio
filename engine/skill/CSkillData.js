@@ -32,6 +32,8 @@ CSkillData.TYPE_100HIT = 16;
 CSkillData.TYPE_IRREGULAR_BATTLE_TIME = 32; // 戦闘時間が特殊になるフラグ。n_Delay[0] = 1 に対応
 CSkillData.TYPE_UNKNOWN_DELAY_TIME = 64; // ディレイorクールタイム不明フラグ。n_Delay[0] = 2 に対応
 CSkillData.TYPE_DIVHIT_FORMULA = 128; // 分割ヒット計算フラグ。n_bunkatuHIT == 1 に対応
+CSkillData.TYPE_SG_SPECIAL_HITNUM = 256; // CS.SG_Special_HITnum（多段HIT一撃ダメージ表示用）に wHITsuu を反映するフラグ
+CSkillData.TYPE_CAST_KOTEI = 512; // 詠唱時間が可変詠唱短縮の対象外であるフラグ。CS.cast_kotei = true に対応
 
 CSkillData.RANGE_SHORT = 0;
 CSkillData.RANGE_LONG = 1;
@@ -156,8 +158,9 @@ CSkillData.prototype.CastTimeForce = function(skillLv, charaDataManger) {
 CSkillData.prototype.DelayTimeCommon = function(skillLv, charaDataManger) {
 	return 0;
 }
+/** モーションディレイ（秒）を強制上書きする. オーバーライドされていない場合は null（ASPD由来の既定値を変更しない）が返される. */
 CSkillData.prototype.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-	return 0;
+	return null;
 }
 CSkillData.prototype.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
 	return 0;

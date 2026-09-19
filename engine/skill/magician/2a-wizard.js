@@ -198,12 +198,22 @@ export const skills = [
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 5000;
 			}
-			this.DelayTimeSkillObject = function(skillLv, charaDataManger) {
-				return 4000;
-			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 1000;
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 3100;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 3100;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return [0,100,105,115,130,150,175,205,240,280,330][skillLv];
+			}
+			this.dispHitCount = 10;
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -215,7 +225,8 @@ export const skills = [
 			this.name = "ウォーターボール";
 			this.kana = "ウオオタアホオル";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
+					| CSkillData.TYPE_SG_SPECIAL_HITNUM;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
 
@@ -245,10 +256,11 @@ export const skills = [
 				return 1000 * skillLv;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 100 * this.hitCount(skillLv, charaDataManger);
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 0.1 * this.hitCount(skillLv);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

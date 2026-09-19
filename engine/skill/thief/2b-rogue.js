@@ -85,6 +85,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -503,7 +504,8 @@ export const skills = [
 			this.name = "ウォーターボール(盗作用Ex)";
 			this.kana = "ウオオタアホオルトウサクヨウ";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
+					| CSkillData.TYPE_SG_SPECIAL_HITNUM;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WATER;
 
@@ -533,10 +535,11 @@ export const skills = [
 				return 1000 * skillLv;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 100 * this.hitCount(skillLv, charaDataManger);
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 0.1 * this.hitCount(skillLv);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

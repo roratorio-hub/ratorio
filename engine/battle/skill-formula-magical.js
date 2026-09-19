@@ -203,37 +203,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[2] = Math.floor(n_A_ActiveSkillLV / 2) * 1000 + 2000;
 			break;
 
-		//「ウィザード」スキル「ロードオブヴァーミリオン」
-		case SKILL_ID_LORD_OF_VERMILLION:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 1000;	// ダメージ間隔
-			n_Delay[6] = 3100;	// オブジェクト存続時間
-			n_Delay[3] = 3100;	// 強制ディレイ（オブジェクト発生中は別のLoVオブジェクトのダメージが発生しないため）
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = [0,100,105,115,130,150,175,205,240,280,330][n_A_ActiveSkillLV];
-			// 見た目 10 hit * hit数
-			CS.wActiveHitNum = 10;
-			break;
-
-		case SKILL_ID_WATER_BALL:
-		case SKILL_ID_WATER_BALL_FOR_CLONE:
-			set_n_A_Weapon_zokusei(1);
-			if(n_A_ActiveSkillLV >= 4) CS.wHITsuu = 25;
-			else if(n_A_ActiveSkillLV >= 2) CS.wHITsuu = 9;
-			CS.SG_Special_HITnum = CS.wHITsuu;
-			CS.wCast = 1000 * n_A_ActiveSkillLV;
-			CS.wbairitu = 100 + 30 * n_A_ActiveSkillLV;
-			n_Delay[3] = 0.1 * CS.wHITsuu;
-			break;
-
 		// 「ウィザード」スキル「ストームガスト」
 		case SKILL_ID_STORM_GUST:
 			// 詠唱時間等
@@ -255,27 +224,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 
 		// 「ウィザード」スキル「アーススパイク」
 
-		// 「ウィザード」スキル「ヘヴンズドライブ」			
-
-		// 「プリースト」スキル「マグヌスエクソシズム」
-		case SKILL_ID_MAGNUS_EXORCISMUS:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 3000;								// ダメージ間隔
-			n_Delay[6] = 4000 + 1000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
-			n_Delay[3] = n_Delay[6];						// 複数展開しても多重Hitしないスキル
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = 100;
-			// ヒット数
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			break;
+		// 「ウィザード」スキル「ヘヴンズドライブ」
 
 		// メタリックサウンド
 
@@ -308,34 +257,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu = ROUNDDOWN(CS.wbairitu);
 			break;
 
-		//「ソーサラー」スキル「クラウドキル」
-		case SKILL_ID_CLOUD_KILL:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 500;								// ダメージ間隔
-			n_Delay[6] = 6000 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間
-			n_Delay[3] = n_Delay[6]; 						// 重複設置はできない
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = 40 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-			// 精霊補正
-			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-				case SERE_SUPPORT_SKILL_ID_CURSED_SOIL:
-					CS.wbairitu += n_A_JobLV;
-					break;
-				case SERE_SUPPORT_SKILL_ID_DEEP_POISONING:
-					CS.wbairitu += 200;
-					break;
-			}				
-			break;
-
 		case SKILL_ID_EARTH_GRAVE:
 			set_n_A_Weapon_zokusei(2);
 			CS.n_bunkatuHIT = 1;
@@ -363,24 +284,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.wbairitu = 200 * GetAttackMethodOptionValue(attackMethodConfArray, 0, frost_weapon_lv) + n_A_INT * n_A_ActiveSkillLV;
 			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 			if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
-			break;
-
-		// 「ジェネティック」スキル「デモニックファイアー」
-		case SKILL_ID_DEMONIC_FIRE:
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル設定
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 2000;								// ダメージ間隔
-			n_Delay[6] = 8001 + 2000 * n_A_ActiveSkillLV;	// オブジェクト存続時間 8000 だと発動回数が現実と合わないため 8001
-			n_Delay[3] = n_Delay[6]; 						// 現実的な状況では重複設置はできない
-			// 属性
-			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-			// ダメージ倍率
-			CS.wbairitu = 200 * n_A_ActiveSkillLV;
 			break;
 
 		// 「アークビショップ」スキル「ミリアムライト」
@@ -858,8 +761,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}
 			// 100%ヒット・特殊な戦闘時間区分・分割ヒット式・強制ディレイの情報
-			// （DelayTimeForceMotion は既存の slot 値との整合を個別スキル移行時に
-			// 確認するまで、ここでは読まない）
 			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_100HIT) {
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
@@ -871,6 +772,17 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			}
 			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_DIVHIT_FORMULA) {
 				CS.n_bunkatuHIT = 1;
+			}
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_SG_SPECIAL_HITNUM) {
+				CS.SG_Special_HITnum = CS.wHITsuu;
+			}
+			if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) {
+				CS.cast_kotei = true;
+			}
+			// モーションディレイの強制上書き（未オーバーライドなら null なので ASPD 由来の既定値を維持する）
+			var delayForceMotion = g_skillManager.GetDelayTimeForceMotion(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			if (delayForceMotion !== null) {
+				n_Delay[1] = delayForceMotion;
 			}
 			n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			break;
