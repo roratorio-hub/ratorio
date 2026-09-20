@@ -23,6 +23,11 @@ const SAMPLE_SIZE = 12;
 const step = Math.max(1, Math.floor(allEntries.length / SAMPLE_SIZE));
 const entries = allEntries.filter((_, i) => i % step === 0).slice(0, SAMPLE_SIZE);
 
+// generated-job-corpus.md の Pass A/B は装備なしで与ダメージが大半0になる（battle-damage-sweep
+// と同じ理由）ため、装備ありフィクスチャが要るテストはこちらを使う。
+const FIXTURES_GEARED_PATH = join(__dirname, 'fixtures/sample-savedata-new.md');
+const gearedEntry = loadSaveDataEntries(FIXTURES_GEARED_PATH, 'new')[0];
+
 let server: Awaited<ReturnType<typeof startStaticServer>>['server'];
 let baseUrl: string;
 let browser: Browser;
@@ -695,5 +700,49 @@ describe('習得スキル欄（learnedSkill）（残件台帳 B-09 Phase 2h）',
         expect(headless.errors, `headless側で未捕捉例外: ${headless.errors.join('\n')}`).toEqual([]);
 
         expect(headlessResult).toEqual(domResult);
+    }, 60000);
+});
+
+describe('分割ヒットの端数丸めが多段ヒット数に依存しない（天星の基準ダメージ回帰）', () => {
+    if (!gearedEntry) {
+        it('フィクスチャなし（fixtures/sample-savedata-new.md にエントリがありません）', () => {
+            console.warn('sample-savedata-new.md にエントリがないためスキップ');
+        });
+        return;
+    }
+
+    const { query } = gearedEntry;
+
+    // 天星（dispHitCount=3）は「決まったダメージを3分割して表示する」だけなので、
+    // hitCount（命中率オプション：全弾命中=2 / 1.6 / 1.2 / 0.8）を切り替えても
+    // 基準ダメージ（分割前の合計。dmgUnitArray）は変わらないはず。
+    it('天星の命中率オプションを切り替えても基準ダメージが変わらない', async () => {
+        const headless = await gotoFixture(query);
+        const results = await headless.page.evaluate(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const skillMod = await dynamicImport('/engine/skill/skill.dat.js');
+            const reg = (globalThis as any)._ratorioReg;
+
+            const out: number[][] = [];
+            for (const opt of [0, 1, 2, 3]) {
+                const model = reg.extractModelFromDom();
+                model.attackMethod.skillId = skillMod.SKILL_ID_TENSE;
+                model.attackMethod.skillLv = 5;
+                model.attackMethod.optionValueArray = [opt];
+                const battleCalcResultAll = reg.calcFromModel(model);
+                out.push(battleCalcResultAll.activeResultArray[0].dmgUnitArray[0]);
+            }
+            return out;
+        });
+        await headless.context.close();
+        expect(headless.errors, `headless側で未捕捉例外: ${headless.errors.join('\n')}`).toEqual([]);
+
+        // 退行防止: 空振り（全部0）で通ってしまうのを防ぐ
+        expect(results[0][1]).toBeGreaterThan(0);
+
+        expect(results[1]).toEqual(results[0]);
+        expect(results[2]).toEqual(results[0]);
+        expect(results[3]).toEqual(results[0]);
     }, 60000);
 });

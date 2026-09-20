@@ -737,7 +737,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 		// ダメージ計算本体
 		//--------------------------------
 		// 通常ダメージ計算
-		ret = BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, n_A_ActiveSkill, dmgUnit, CS.wbairitu, CS.g_wHITsuu_Array, CS.wActiveHitNum, bCri, bLeft);
+		ret = BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, n_A_ActiveSkill, dmgUnit, CS.wbairitu, CS.wActiveHitNum, bCri, bLeft);
 		// 暫定互換性対応
 		set_w_DMG(ret[0].slice());
 		CS.n_PerfectHIT_DMG = ret[1];

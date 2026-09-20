@@ -428,8 +428,16 @@ export const skills = [
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 			this.hitCount = function(skillLv, option) {
-				// 全弾命中ならx2倍
-				return option.GetOptionValue(0) == 0 ? 2 : 1;
+				switch (option.GetOptionValue(0)) {
+					case 0:
+						return 2;
+					case 1:
+						return 1.6;
+					case 2:
+						return 1.2;
+					case 3:
+						return 0.8;
+				}
 			}
 			this.dispHitCount = 3;
 			this.ground_installation = true;
