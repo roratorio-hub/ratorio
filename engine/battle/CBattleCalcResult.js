@@ -4,6 +4,7 @@ import { instobject } from "./CBattleCalcResultAll.js";
 import { g_skillManager } from "../runtime/global.js";
 import { GetArrayMax, GetArrayMin } from "../runtime/util.js";
 // === END AUTO-GENERATED IMPORTS ===
+import { NormalizeHitCount } from "./damage-summary-text.js";
 
 
 /**
@@ -233,19 +234,13 @@ export function CBattleCalcResult () {
 
 		var dmg = this.dmgUnitArray[idxKind][idxMath];
 		var divHit = this.dividedHitCountArray[idxKind][idxMath];
-		var multiHit = this.hitCountArray[idxKind][idxMath];
+		var multiHit = NormalizeHitCount(this.hitCountArray[idxKind][idxMath]);
 
 		if (divHit > 1) {
 			dmg /= divHit;
 		}
 		else {
 			divHit = 1;
-		}
-
-		if (multiHit > 1) {
-		}
-		else {
-			multiHit = 1;
 		}
 
 		return [dmg, divHit, multiHit];
@@ -414,7 +409,7 @@ export function CBattleCalcResult () {
 
 		// クリティカル率が 100% の場合、クリティカルダメージの最小ダメージを採用
 		else if (this.criRate >= 100) {
-			dmg = this.dmgUnitArray[1][0] * Math.max(1, this.hitCountArray[1][0]);
+			dmg = this.dmgUnitArray[1][0] * NormalizeHitCount(this.hitCountArray[1][0]);
 		}
 
 		// 上記以外で、命中率が 100% 未満の場合、Miss （0 ダメージ）が最小
@@ -425,7 +420,7 @@ export function CBattleCalcResult () {
 
 		// 上記以外の場合、通常ダメージの最小ダメージを採用
 		else {
-			dmg = this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]);
+			dmg = this.dmgUnitArray[0][0] * NormalizeHitCount(this.hitCountArray[0][0]);
 		}
 
 
@@ -455,10 +450,10 @@ export function CBattleCalcResult () {
 
 
 		// 通常ダメージ
-		dmg += Math.floor(this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) * (100 - this.criRate) / 100 * this.hitRate / 100);
+		dmg += Math.floor(this.dmgUnitArray[0][1] * NormalizeHitCount(this.hitCountArray[0][1]) * (100 - this.criRate) / 100 * this.hitRate / 100);
 
 		// クリティカルダメージ
-		dmg += Math.floor(this.dmgUnitArray[1][1] * Math.max(1, this.hitCountArray[1][1]) * this.criRate / 100);
+		dmg += Math.floor(this.dmgUnitArray[1][1] * NormalizeHitCount(this.hitCountArray[1][1]) * this.criRate / 100);
 
 		// 配列に格納
 		dmgArray = [dmg];
@@ -492,10 +487,10 @@ export function CBattleCalcResult () {
 		dmgArray = [];
 
 		// 通常ダメージ
-		dmgArray.push(this.dmgUnitArray[0][2] * Math.max(1, this.hitCountArray[0][2]));
+		dmgArray.push(this.dmgUnitArray[0][2] * NormalizeHitCount(this.hitCountArray[0][2]));
 
 		// クリティカルダメージ
-		dmgArray.push(this.dmgUnitArray[1][2] * Math.max(1, this.hitCountArray[1][2]));
+		dmgArray.push(this.dmgUnitArray[1][2] * NormalizeHitCount(this.hitCountArray[1][2]));
 
 		// その中でも最大のダメージを採用する
 		dmg = GetArrayMax(dmgArray);
@@ -546,7 +541,7 @@ export function CBattleCalcResult () {
 
 		// クリティカル率が 100% の場合、クリティカルダメージの最小ダメージを採用
 		else if (this.criRate >= 100) {
-			dmg = Math.floor(this.dmgUnitArray[1][0] * Math.max(1, this.hitCountArray[1][0]) / actInterval);
+			dmg = Math.floor(this.dmgUnitArray[1][0] * NormalizeHitCount(this.hitCountArray[1][0]) / actInterval);
 		}
 
 		// 上記以外で、命中率が 100% 未満の場合、Miss （0 ダメージ）が最小
@@ -557,7 +552,7 @@ export function CBattleCalcResult () {
 
 		// 上記以外の場合、通常ダメージの最小ダメージを採用
 		else {
-			dmg = Math.floor(this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]) / actInterval);
+			dmg = Math.floor(this.dmgUnitArray[0][0] * NormalizeHitCount(this.hitCountArray[0][0]) / actInterval);
 		}
 
 		// 子要素の、最小ダメージを取得し、加算する
@@ -601,10 +596,10 @@ export function CBattleCalcResult () {
 		}
 
 		// 通常ダメージ
-		dmg += Math.floor((this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) / actInterval) * (100 - this.criRate) / 100 * this.hitRate / 100);
+		dmg += Math.floor((this.dmgUnitArray[0][1] * NormalizeHitCount(this.hitCountArray[0][1]) / actInterval) * (100 - this.criRate) / 100 * this.hitRate / 100);
 
 		// クリティカルダメージ
-		dmg += Math.floor((this.dmgUnitArray[1][1] * Math.max(1, this.hitCountArray[1][1]) / actInterval) * this.criRate / 100);
+		dmg += Math.floor((this.dmgUnitArray[1][1] * NormalizeHitCount(this.hitCountArray[1][1]) / actInterval) * this.criRate / 100);
 
 		// 配列に格納
 		dmgArray = [dmg];
@@ -651,10 +646,10 @@ export function CBattleCalcResult () {
 		dmgArray = [];
 
 		// 通常ダメージ
-		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * Math.max(1, this.hitCountArray[0][2]) / actInterval));
+		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * NormalizeHitCount(this.hitCountArray[0][2]) / actInterval));
 
 		// クリティカルダメージ
-		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * Math.max(1, this.hitCountArray[1][2]) / actInterval));
+		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * NormalizeHitCount(this.hitCountArray[1][2]) / actInterval));
 
 		// その中でも最大のダメージを採用する
 		dmg = GetArrayMax(dmgArray);
@@ -697,7 +692,7 @@ export function CBattleCalcResult () {
 
 		// クリティカル率が 100% の場合、クリティカルダメージの最小ダメージを採用
 		else if (this.criRate >= 100) {
-			dmgPerHit = this.dmgUnitArray[1][0] * Math.max(1, this.hitCountArray[1][0]);
+			dmgPerHit = this.dmgUnitArray[1][0] * NormalizeHitCount(this.hitCountArray[1][0]);
 			dmg = Math.floor(dmgPerHit * hitsPerSecond.min);
 		}
 
@@ -709,7 +704,7 @@ export function CBattleCalcResult () {
 
 		// 上記以外の場合、通常ダメージの最小ダメージを採用
 		else {
-			dmgPerHit = this.dmgUnitArray[0][0] * Math.max(1, this.hitCountArray[0][0]);
+			dmgPerHit = this.dmgUnitArray[0][0] * NormalizeHitCount(this.hitCountArray[0][0]);
 			dmg = Math.floor(dmgPerHit * hitsPerSecond.min);
 		}
 
@@ -743,10 +738,10 @@ export function CBattleCalcResult () {
 		var hitsPerSecond = this._getHitsPerSecondActual(castVary, castFixed, attackInterval, bCollectChild);
 
 		// 通常ダメージ
-		dmg += Math.floor((this.dmgUnitArray[0][1] * Math.max(1, this.hitCountArray[0][1]) * hitsPerSecond.ave) * (100 - this.criRate) / 100 * this.hitRate / 100);
+		dmg += Math.floor((this.dmgUnitArray[0][1] * NormalizeHitCount(this.hitCountArray[0][1]) * hitsPerSecond.ave) * (100 - this.criRate) / 100 * this.hitRate / 100);
 
 		// クリティカルダメージ
-		dmg += Math.floor((this.dmgUnitArray[1][1] * Math.max(1, this.hitCountArray[1][1]) * hitsPerSecond.ave) * this.criRate / 100);
+		dmg += Math.floor((this.dmgUnitArray[1][1] * NormalizeHitCount(this.hitCountArray[1][1]) * hitsPerSecond.ave) * this.criRate / 100);
 
 		// 配列に格納
 		dmgArray = [dmg];
@@ -783,10 +778,10 @@ export function CBattleCalcResult () {
 		dmgArray = [];
 
 		// 通常ダメージ
-		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * Math.max(1, this.hitCountArray[0][2]) * hitsPerSecond.max));
+		dmgArray.push(Math.floor(this.dmgUnitArray[0][2] * NormalizeHitCount(this.hitCountArray[0][2]) * hitsPerSecond.max));
 
 		// クリティカルダメージ
-		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * Math.max(1, this.hitCountArray[1][2]) * hitsPerSecond.max));
+		dmgArray.push(Math.floor(this.dmgUnitArray[1][2] * NormalizeHitCount(this.hitCountArray[1][2]) * hitsPerSecond.max));
 
 		// その中でも最大のダメージを採用する
 		dmg = GetArrayMax(dmgArray);

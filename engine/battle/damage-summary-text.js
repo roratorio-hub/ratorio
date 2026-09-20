@@ -23,6 +23,17 @@ export function NormalizeCycleCount(counts) {
 }
 
 /**
+ * ヒット数を 0 より大きい数へ正規化する.
+ * スキル定義はヒット数が不定であることを -1 で表し、クリティカル率が 0 のときは 0 が入る。
+ * いずれも 1 ヒット扱いにする。1 未満の小数（0.5 など）はそのまま通す。
+ * @param {number} hitCount ヒット数
+ * @returns {number} 0 より大きい数
+ */
+export function NormalizeHitCount(hitCount) {
+    return (hitCount > 0) ? hitCount : 1;
+}
+
+/**
  * 1要素分の実ダメージ（分割・多段を掛け戻した値）を求める.
  * @param {Array} entry `[分割後ダメージ, 分割ヒット数, 多段ヒット数]`
  * @param {number} cycleCount 正規化済みサイクル数
@@ -31,7 +42,7 @@ export function NormalizeCycleCount(counts) {
 function totalOfEntry(entry, cycleCount) {
     let dmg = entry[0] * cycleCount;
     dmg *= (entry[1] > 1) ? entry[1] : 1;
-    dmg *= (entry[2] > 1) ? entry[2] : 1;
+    dmg *= NormalizeHitCount(entry[2]);
     return dmg;
 }
 
@@ -76,7 +87,7 @@ export function GetJoinDmgText(dmgArray, funcDig, funcDigParam) {
                 text += " × " + cur[1] + " hits";
             }
 
-            if (cur[2] > 1) {
+            if (cur[2] !== 1) {
                 text += " × " + cur[2] + " Hits";
             }
 

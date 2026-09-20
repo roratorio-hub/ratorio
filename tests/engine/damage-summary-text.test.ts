@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
-    NormalizeCycleCount, GetJoinDmgText, GetJoinDmgText2, GetSumDmgText,
+    NormalizeCycleCount, NormalizeHitCount, GetJoinDmgText, GetJoinDmgText2, GetSumDmgText,
 } from '@engine/battle/damage-summary-text.js';
 
 // 整形なしの数値整形スタブ（数値の正しさだけを検証する）
@@ -13,6 +13,28 @@ describe('NormalizeCycleCount', () => {
 
     it.each([undefined, NaN, 0, Infinity, -1])('%s を 1 に丸める', (v) => {
         expect(NormalizeCycleCount(v as number)).toBe(1);
+    });
+});
+
+describe('NormalizeHitCount', () => {
+    it('1未満の小数（0.5）はそのまま通す', () => {
+        expect(NormalizeHitCount(0.5)).toBe(0.5);
+    });
+
+    it('1を超える小数（1.1。フレンジショット相当）はそのまま通す', () => {
+        expect(NormalizeHitCount(1.1)).toBe(1.1);
+    });
+
+    it('1 はそのまま返す', () => {
+        expect(NormalizeHitCount(1)).toBe(1);
+    });
+
+    it('0（クリティカル率0のときの hitCountArray）は1ヒット扱いにする', () => {
+        expect(NormalizeHitCount(0)).toBe(1);
+    });
+
+    it('-1（ヒット数不定のセンチネル）は1ヒット扱いにする', () => {
+        expect(NormalizeHitCount(-1)).toBe(1);
     });
 });
 
@@ -47,6 +69,11 @@ describe('GetJoinDmgText2（1サイクルダメージ・詳細表示セル）', 
         const result = GetJoinDmgText2([[100, 3, 2], [50, 1, 1]], raw, 0, 10);
         expect(result).toBe('6000 + 500');
     });
+
+    it('多段ヒット数が1未満の小数（0.5）でも1に丸めず掛ける', () => {
+        const result = GetJoinDmgText2([[4383, 3, 0.5]], raw, 0, 10);
+        expect(result).toBe('65745');
+    });
 });
 
 describe('GetSumDmgText（1サイクルダメージ・合計表示セル）', () => {
@@ -64,6 +91,16 @@ describe('GetSumDmgText（1サイクルダメージ・合計表示セル）', ()
         const result = GetSumDmgText([[100, 3, 2], [50, 1, 1]], raw, 0, 10);
         expect(result).toBe(6500);
     });
+
+    it('多段ヒット数が1未満の小数（0.5）でも1に丸めず掛ける', () => {
+        const result = GetSumDmgText([[4383, 3, 0.5]], raw, 0);
+        expect(result).toBe(6574.5);
+    });
+
+    it('多段ヒット数が1を超える小数（1.1。フレンジショット相当）でも従来どおり掛ける', () => {
+        const result = GetSumDmgText([[1000, 1, 1.1]], raw, 0);
+        expect(result).toBeCloseTo(1100, 5);
+    });
 });
 
 describe('GetJoinDmgText（通常(1Hit)欄・内訳表示）', () => {
@@ -80,5 +117,10 @@ describe('GetJoinDmgText（通常(1Hit)欄・内訳表示）', () => {
     it('追撃がある場合は " + " で連結する', () => {
         const result = GetJoinDmgText([[100, 1, 1], [50, 1, 1]], raw, 0);
         expect(result).toBe('100 + 50');
+    });
+
+    it('多段ヒット数が1未満の小数（0.5）を内訳に表示する', () => {
+        const result = GetJoinDmgText([[4383, 3, 0.5]], raw, 0);
+        expect(result).toBe('4383 × 3 hits × 0.5 Hits');
     });
 });
