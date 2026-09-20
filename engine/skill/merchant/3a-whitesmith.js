@@ -72,10 +72,11 @@ export const skills = [
 				return 15;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				return 100 + Math.floor((option.GetOptionValue(0) / (16 - skillLv) / 100 - 1) * 100);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

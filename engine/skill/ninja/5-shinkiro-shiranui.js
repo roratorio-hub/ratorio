@@ -9,7 +9,7 @@
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
-import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
+import { MIG_PARAM_ID_CON, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_AKUMU_KESHI, SKILL_ID_ANTEN_HOU, SKILL_ID_ANTEN_HOU_LEARNED_LEVEL, SKILL_ID_FOUR_CHARM,
@@ -69,6 +69,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -120,6 +121,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -164,6 +166,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 5000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -211,6 +214,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -291,7 +295,10 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.element = function(option, mobData, parentSkillId) {
+				// 分身の追撃は闇属性固定
+				return (parentSkillId !== undefined) ? CSkillData.ELEMENT_FORCE_DARK : CSkillData.ELEMENT_FORCE_FIRE;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 280;
 			}
@@ -313,6 +320,45 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+				var pow = 0;
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+
+				if (parentSkillId === undefined) {
+					// 本体の攻撃
+					var yonshoku_fu = option.GetOptionValue(1);
+					if (yonshoku_fu === 0) {
+						pow = 4000 + 300 * skillLv;
+					} else {
+						// 四色符 は4属性部分の基本倍率のみに影響する
+						pow = 7500 + 300 * skillLv;
+					}
+					pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					pow += 70 * skillLv * anten_hou_lv;
+					pow = Math.floor(pow * n_A_BaseLV / 100);
+				} else {
+					// 分身の追撃
+					if (anten_hou_lv == 0) {
+						pow = 0;
+					} else {
+						pow = 5750 + 350 * anten_hou_lv;
+						pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+						pow = Math.floor(pow * n_A_BaseLV / 100);
+						pow = Math.floor(pow * 30 / 100);
+						pow *= option.GetOptionValue(0);
+					}
+				}
+
+				return pow;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				if (parentSkillId === undefined) {
+					return 1;
+				}
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+				return (anten_hou_lv == 0) ? 1 : 4;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -326,7 +372,10 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.element = function(option, mobData, parentSkillId) {
+				// 分身の追撃は闇属性固定
+				return (parentSkillId !== undefined) ? CSkillData.ELEMENT_FORCE_DARK : CSkillData.ELEMENT_FORCE_WATER;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 250;
 			}
@@ -348,6 +397,45 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+				var pow = 0;
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+
+				if (parentSkillId === undefined) {
+					// 本体の攻撃
+					var yonshoku_fu = option.GetOptionValue(1);
+					if (yonshoku_fu === 0) {
+						pow = 4000 + 300 * skillLv;
+					} else {
+						// 四色符 は4属性部分の基本倍率のみに影響する
+						pow = 7500 + 300 * skillLv;
+					}
+					pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					pow += 70 * skillLv * anten_hou_lv;
+					pow = Math.floor(pow * n_A_BaseLV / 100);
+				} else {
+					// 分身の追撃
+					if (anten_hou_lv == 0) {
+						pow = 0;
+					} else {
+						pow = 5750 + 350 * anten_hou_lv;
+						pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+						pow = Math.floor(pow * n_A_BaseLV / 100);
+						pow = Math.floor(pow * 30 / 100);
+						pow *= option.GetOptionValue(0);
+					}
+				}
+
+				return pow;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				if (parentSkillId === undefined) {
+					return 1;
+				}
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+				return (anten_hou_lv == 0) ? 1 : 4;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -361,7 +449,10 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.element = function(option, mobData, parentSkillId) {
+				// 分身の追撃は闇属性固定
+				return (parentSkillId !== undefined) ? CSkillData.ELEMENT_FORCE_DARK : CSkillData.ELEMENT_FORCE_WIND;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 280;
 			}
@@ -383,6 +474,45 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+				var pow = 0;
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+
+				if (parentSkillId === undefined) {
+					// 本体の攻撃
+					var yonshoku_fu = option.GetOptionValue(1);
+					if (yonshoku_fu === 0) {
+						pow = 4000 + 300 * skillLv;
+					} else {
+						// 四色符 は4属性部分の基本倍率のみに影響する
+						pow = 7500 + 300 * skillLv;
+					}
+					pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					pow += 70 * skillLv * anten_hou_lv;
+					pow = Math.floor(pow * n_A_BaseLV / 100);
+				} else {
+					// 分身の追撃
+					if (anten_hou_lv == 0) {
+						pow = 0;
+					} else {
+						pow = 5750 + 350 * anten_hou_lv;
+						pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+						pow = Math.floor(pow * n_A_BaseLV / 100);
+						pow = Math.floor(pow * 30 / 100);
+						pow *= option.GetOptionValue(0);
+					}
+				}
+
+				return pow;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				if (parentSkillId === undefined) {
+					return 1;
+				}
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+				return (anten_hou_lv == 0) ? 1 : 4;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -396,7 +526,10 @@ export const skills = [
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.element = function(option, mobData, parentSkillId) {
+				// 分身の追撃は闇属性固定
+				return (parentSkillId !== undefined) ? CSkillData.ELEMENT_FORCE_DARK : CSkillData.ELEMENT_FORCE_EARTH;
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 200;
 			}
@@ -418,6 +551,45 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+				var pow = 0;
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+
+				if (parentSkillId === undefined) {
+					// 本体の攻撃
+					var yonshoku_fu = option.GetOptionValue(1);
+					if (yonshoku_fu === 0) {
+						pow = 4000 + 300 * skillLv;
+					} else {
+						// 四色符 は4属性部分の基本倍率のみに影響する
+						pow = 7500 + 300 * skillLv;
+					}
+					pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+					pow += 70 * skillLv * anten_hou_lv;
+					pow = Math.floor(pow * n_A_BaseLV / 100);
+				} else {
+					// 分身の追撃
+					if (anten_hou_lv == 0) {
+						pow = 0;
+					} else {
+						pow = 5750 + 350 * anten_hou_lv;
+						pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+						pow = Math.floor(pow * n_A_BaseLV / 100);
+						pow = Math.floor(pow * 30 / 100);
+						pow *= option.GetOptionValue(0);
+					}
+				}
+
+				return pow;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				if (parentSkillId === undefined) {
+					return 1;
+				}
+				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
+				return (anten_hou_lv == 0) ? 1 : 4;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -475,6 +647,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -531,6 +704,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -578,6 +752,19 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 2000;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				var pow = 0;
+
+				pow = 2500 + 500 * skillLv;
+				pow += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 2;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -612,6 +799,19 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 2000;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				var pow = 0;
+
+				pow = 3200 + 500 * skillLv;
+				pow += 3 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 2;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -668,6 +868,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 5000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -715,6 +916,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 2000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -759,6 +961,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 2000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -804,6 +1007,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 		
 		// ----------------------------------------------------------------

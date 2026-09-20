@@ -4303,10 +4303,12 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			// 天星
 			case SKILL_ID_TENSE:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"命中率",
+					"ターゲットの位置",
 					[
-						[0, "全弾命中"],
-						[1, "半分"],
+						[0, "発動地点"],
+						[1, "発動地点+1セル"],
+						[2, "発動地点+2セル"],
+						[3, "発動地点+3セル"],
 					],
 					0
 				);

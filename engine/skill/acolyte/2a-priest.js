@@ -379,8 +379,7 @@ export const skills = [
 			this.name = "マグヌスエクソシズム";
 			this.kana = "マクヌスエクソシスム";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL
-					| CSkillData.TYPE_IRREGULAR_BATTLE_TIME;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_HOLY;
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -398,6 +397,21 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 3000;
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 4000 + 1000 * skillLv;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 4000 + 1000 * skillLv;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return 100;
+			}
+			this.hitCount = function(skillLv, option, weapon) {
+				return skillLv;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

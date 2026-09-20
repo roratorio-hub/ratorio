@@ -9,6 +9,7 @@
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
@@ -226,6 +227,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -242,6 +244,31 @@ export const skills = [
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 200;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				var pow = 0;
+
+				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
+					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					) {
+					// 基礎倍率
+					pow = 2400 + 300 * skillLv;
+					pow += 100 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				} else {
+					// 基礎倍率
+					pow = 1600 + 200 * skillLv;
+					pow += 50 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				}
+				// POW補正
+				pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
+			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 500;
 			}
@@ -257,6 +284,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -279,6 +307,31 @@ export const skills = [
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 170;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				var pow = 0;
+
+				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
+					|| UsedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_TEKKO) > 0
+					) {
+					// 基礎倍率
+					pow = 450 + (150 * skillLv);
+					pow += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				} else {
+					// 基礎倍率
+					pow = 300 + (100 * skillLv);
+					pow += 10 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				}
+				// POW補正
+				pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+			this.hitCount = function(skillLv, option) {
+				return 3;
+			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
 				return 500;
 			}
@@ -291,6 +344,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -369,6 +423,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -381,9 +436,44 @@ export const skills = [
 			this.maxLv = 7;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
 			this.range = CSkillData.RANGE_MAGIC;
-			this.element = CSkillData.ELEMENT_SPECIAL;
+			this.element = function(option, mobData, parentSkillId) {
+				// スピリットハンドラーのレインボーホーン追加に伴い任意の属性を取れるように変更
+				if (option.optionValueArray.length == 0) {
+					// 属性未定義の場合
+					return ELM_ID_VANITY;
+				}
+				return option.GetOptionValue(0);
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 200;
+			}
+			this.Power = function(skillLv, charaDataManger, option) {
+				var pow = 0;
+
+				if (UsedSkillSearch(SKILL_ID_SANREI_ITTAI) > 0
+					|| UsedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+					|| LearnedSkillSearch(SKILL_ID_NYANTOMO_KENROKU) > 0
+					) {
+					// 基礎倍率
+					pow = 1600 + 200 * skillLv;
+					// スピリットマスタリー補正
+					pow += 40 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				} else {
+					// 基礎倍率
+					pow = 800 + 100 * skillLv;
+					// スピリットマスタリー補正
+					pow += 20 * Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY));
+				}
+				// SPL補正
+				pow += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
+			this.ground_installation = true;
+			this.damageInterval = function(skillLv) {
+				return 300;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 500 + 1000 * skillLv;
@@ -400,6 +490,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -562,6 +653,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** ディアースピリットパワー */
@@ -613,6 +705,7 @@ export const skills = [
 				return 0;
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

@@ -318,8 +318,8 @@ export function CSkillManager() {
 		return this.dataArray[skillId].CostAP(skillLv, charaDataManger);
 	}
 
-	this.GetCastTimeVary = function(skillId, skillLv, charaDataManger) {
-		return this.dataArray[skillId].CastTimeVary(skillLv, charaDataManger);
+	this.GetCastTimeVary = function(skillId, skillLv, charaDataManger, option) {
+		return this.dataArray[skillId].CastTimeVary(skillLv, charaDataManger, option);
 	}
 
 	this.GetCastTimeFixed = function(skillId, skillLv, charaDataManger) {
@@ -330,12 +330,20 @@ export function CSkillManager() {
 		return this.dataArray[skillId].CastTimeForce(skillLv, charaDataManger);
 	}
 
-	this.GetDelayTimeCommon = function(skillId, skillLv, charaDataManger) {
-		return this.dataArray[skillId].DelayTimeCommon(skillLv, charaDataManger);
+	this.GetDelayTimeCommon = function(skillId, skillLv, charaDataManger, option) {
+		return this.dataArray[skillId].DelayTimeCommon(skillLv, charaDataManger, option);
 	}
 
-	this.GetCoolTime = function(skillId, skillLv, charaDataManger) {
-		return this.dataArray[skillId].CoolTime(skillLv, charaDataManger);
+	this.GetDelayTimeForceMotion = function(skillId, skillLv, charaDataManger) {
+		return this.dataArray[skillId].DelayTimeForceMotion(skillLv, charaDataManger);
+	}
+
+	this.GetDelayTimeSkillTiming = function(skillId, skillLv, charaDataManger) {
+		return this.dataArray[skillId].DelayTimeSkillTiming(skillLv, charaDataManger);
+	}
+
+	this.GetCoolTime = function(skillId, skillLv, charaDataManger, option) {
+		return this.dataArray[skillId].CoolTime(skillLv, charaDataManger, option);
 	}
 
 	/**
@@ -399,6 +407,16 @@ export function CSkillManager() {
 		} else {
 			return this.dataArray[skillId].ground_installation;
 		}
+	}
+
+	/**
+	 * BattleCalc999Core の汎用計算式パスを使うスキルかどうかを判定する.
+	 * オーバーライドされない場合は false を返す.
+	 * @param {Number} skillId
+	 * @returns {boolean}
+	 */
+	this.IsGenericFormula = function(skillId) {
+		return this.dataArray[skillId].genericFormula;
 	}
 
 	/**

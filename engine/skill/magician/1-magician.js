@@ -7,6 +7,8 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { n_A_JobLV } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_COLD_BOLT, SKILL_ID_ENERGY_COAT, SKILL_ID_FIRE_BALL, SKILL_ID_FIRE_BOLT, SKILL_ID_FIRE_WALL,
     SKILL_ID_FROST_DIVER, SKILL_ID_LIGHTNING_BOLT, SKILL_ID_NAPALM_BEAT, SKILL_ID_SAFETY_WALL,
@@ -102,7 +104,7 @@ export const skills = [
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {
-				return Math.floor(skillLv / 2);
+				return Math.round(skillLv / 2);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -114,6 +116,7 @@ export const skills = [
 						* ((skillLv + 1) % 2);
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -215,9 +218,9 @@ export const skills = [
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 1) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -266,6 +269,7 @@ export const skills = [
 				return (skillLv <= 5) ? 1500 : 1000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -293,9 +297,9 @@ export const skills = [
 				pow = 50;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 1) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -317,6 +321,7 @@ export const skills = [
 				var nLifeTime = ([0, 5000, 6000, 7000, 8000, 9000, 10000, 11000, 12000, 13000, 14000])[skillLv];
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -344,9 +349,9 @@ export const skills = [
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 10) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -391,9 +396,9 @@ export const skills = [
 				pow = 100 + 10 * skillLv;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 10) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -407,6 +412,7 @@ export const skills = [
 				return 1500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -434,9 +440,9 @@ export const skills = [
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 19) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -481,9 +487,9 @@ export const skills = [
 				pow = 100;
 
 				// 「ソーサラー 精霊スキル」の効果
-				seirei = charaDataManger.UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
+				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 19) {
-					pow += Math.floor(charaDataManger.GetCharaJobLv() / 3);
+					pow += Math.floor(n_A_JobLV / 3);
 				}
 
 				return pow;
@@ -501,6 +507,7 @@ export const skills = [
 				return 2000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

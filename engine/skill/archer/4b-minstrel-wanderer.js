@@ -12,7 +12,7 @@ import { ELM_ID_VANITY } from "../../const/EnumElmId.js";
 import { ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP } from "../../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../../const/EnumItemSpId.js";
 import { GetEquippedTotalSPArrow } from "../../bridge/stallcalc-bridge.js";
-import { MOB_CONF_DEBUF_ID_SUIMIN } from "../../monster/mobconfdebuf.js";
+import { MOB_CONF_DEBUF_ID_SOUND_BLEND, MOB_CONF_DEBUF_ID_SUIMIN, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
@@ -335,6 +335,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 200;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -394,19 +395,19 @@ export const skills = [
 				var pow = 0;
 				// 基本式
 				pow = 120 * skillLv;
+				// 「モンスター状態異常 サウンドブレンド」による補正
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND] > 0) {
+					pow *= 2;
+				}
 				// 「ミンストレル・ワンダラー レッスン」の習得レベルによる補正
 				pow += 60 * Math.max(LearnedSkillSearch(SKILL_ID_LESSON), UsedSkillSearch(SKILL_ID_LESSON));
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 				// 「モンスター状態異常 睡眠」による補正
-				if (charaDataManger.GetMobDebuf(MOB_CONF_DEBUF_ID_SUIMIN)) {
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SUIMIN]) {
 					pow = Math.floor(pow * 150 / 100);
 				}
 				return pow;
-			}
-
-			this.hitCount = function(skillLv, charaDataManger) {
-				return 1 + Math.floor((skillLv + 1) / 2);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -417,6 +418,7 @@ export const skills = [
 				return 200;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -465,6 +467,7 @@ export const skills = [
 			this.damageInterval = function(skillLv) {
 				return 300;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -976,6 +979,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -1025,6 +1029,7 @@ export const skills = [
 			this.damageInterval = function(skillLv) {
 				return 300;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
