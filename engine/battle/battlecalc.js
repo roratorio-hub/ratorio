@@ -1482,14 +1482,13 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
  * @param {*} attackMethodConfArray 
  * @param {*} skillId 
  * @param {*} dmgUnit 
- * @param {*} dmgAmp 
- * @param {*} hitCountArrat 
- * @param {*} dividedHitCount 
- * @param {*} bCri 
- * @param {*} bLeft 
- * @returns 
+ * @param {*} dmgAmp
+ * @param {*} dividedHitCount
+ * @param {*} bCri
+ * @param {*} bLeft
+ * @returns
  */
-export function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, skillId, dmgUnit, dmgAmp, hitCountArrat, dividedHitCount, bCri, bLeft) {
+export function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, skillId, dmgUnit, dmgAmp, dividedHitCount, bCri, bLeft) {
 	var idx = 0;
 	var dmgUnitResult = null;
 	var dmgPerfect = 0;
@@ -1537,10 +1536,9 @@ export function BattleCalcSubDamagePhysicalCommon(battleCalcInfo, charaData, spe
 		dmgUnitResult[idx] = ApplyHitJudgeElementRatio(skillId, dmgUnitResult[idx], mobData);
 		// スキルダメージ増幅効果、その他ダメージ計算の適用
 		dmgUnitResult[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, dmgUnitResult[idx], idx, bCri, bLeft);
-		// TODO: ここのヒット数を加味した計算、誤差出るかも
 		// 分割ヒットスキルの場合、端数の丸め処理を適用
 		if (dividedHitCount > 1) {
-			dmgUnitResult[idx] = Math.floor(Math.floor(dmgUnitResult[idx] * hitCountArrat[idx] / dividedHitCount) * dividedHitCount / hitCountArrat[idx]);
+			dmgUnitResult[idx] = Math.floor(dmgUnitResult[idx] / dividedHitCount) * dividedHitCount;
 		}
 	}
 	//--------------------------------

@@ -7,7 +7,14 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
+import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
 import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../../const/EnumSizeId.js";
+import { ItemObjNew } from "../../equip/item.dat.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_DEX, n_A_Equip, n_A_STR, n_A_VIT } from "../../runtime/roro-state.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE,
     MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, n_B_TAISEI
@@ -20,7 +27,7 @@ import {
     SKILL_ID_MADOGEAR_LICENSE, SKILL_ID_MAGMA_ILLUPTION, SKILL_ID_MAGNETIC_FIELD, SKILL_ID_MAINFRAME_KAIZO,
     SKILL_ID_NUTRAL_BARRIER, SKILL_ID_ONO_SHUREN_MECHANIC, SKILL_ID_PILE_BUNKER, SKILL_ID_POWER_SWING,
     SKILL_ID_REARSIDE_SLIDE, SKILL_ID_REPEAR, SKILL_ID_SELF_DESTRUCTION, SKILL_ID_SELF_DESTRUCTION_MAX,
-    SKILL_ID_SHAPE_SHIFT, SKILL_ID_STEALTH_FIELD, SKILL_ID_VULCAN_ARM
+    SKILL_ID_SHAPE_SHIFT, SKILL_ID_STEALTH_FIELD, SKILL_ID_VULCAN_ARM, SKILL_ID_ABR_DUAL_CANNON
 } from "../skill.dat.js";
 
 export const skills = [
@@ -55,8 +62,17 @@ export const skills = [
 				return 20 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				let ratio = 0;
+				if (option.GetOptionValue(0) === 1) {
+					// アックスストンプ状態の場合
+					ratio = 230 + 230 * skillLv;
+					ratio += n_A_VIT * 2;
+				} else {
+					ratio = 200 + 180 * skillLv;
+					ratio += n_A_VIT;
+				}
+				return ROUNDDOWN(ratio * n_A_BaseLV / 100);
 			}
 
 			this.dispHitCount = function(skillLv, charaDataManger) {
@@ -71,6 +87,7 @@ export const skills = [
 				return 4500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -91,13 +108,15 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				const w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT];
+				return ROUNDDOWN((250 + 50 * skillLv + w_Weight) * n_A_BaseLV / 100);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 5500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -291,10 +310,10 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = 300 + 100 * skillLv + charaDataManger.GetCharaStr();
+				pow = 300 + 100 * skillLv + n_A_STR;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -307,6 +326,7 @@ export const skills = [
 				return 7500 - 2500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -330,18 +350,23 @@ export const skills = [
 				var pow = 0;
 
 				// 基本式
-				pow = 70 * skillLv + charaDataManger.GetCharaDex();
+				pow = 70 * skillLv + n_A_DEX;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
+				pow = Math.floor(pow * n_A_BaseLV / 120);
 
 				return pow;
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON) ? 2 : 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return -1000 + 1000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -368,7 +393,7 @@ export const skills = [
 				pow = 300 + 300 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 150);
+				pow = Math.floor(pow * n_A_BaseLV / 150);
 
 				return pow;
 			}
@@ -381,6 +406,7 @@ export const skills = [
 				return 2000 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -407,7 +433,7 @@ export const skills = [
 				pow = 300 + 300 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 150);
+				pow = Math.floor(pow * n_A_BaseLV / 150);
 
 				return pow;
 			}
@@ -420,6 +446,7 @@ export const skills = [
 				return 2000 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

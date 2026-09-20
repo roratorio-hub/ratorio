@@ -100,6 +100,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

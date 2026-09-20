@@ -240,6 +240,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -284,6 +285,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -329,6 +331,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -377,6 +380,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -425,6 +429,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -473,6 +478,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -514,6 +520,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

@@ -195,6 +195,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -230,6 +231,20 @@ export const skills = [
 				var nLifeTime = 3000;
 				return nLifeTime;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio;
+				if (UsedSkillSearch(SKILL_ID_SERE) == 15) { // 15: 風 プロセラ
+					ratio = [0, 1400, 1800, 2200, 2600, 3000][skillLv];
+					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = [0, 1200, 1500, 1800, 2100, 2400][skillLv];
+					ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return ratio * n_A_BaseLV / 100;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -265,6 +280,20 @@ export const skills = [
 				var nLifeTime = 3000;
 				return nLifeTime;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio;
+				if (UsedSkillSearch(SKILL_ID_SERE) == 17) { // 17: 毒 サーペンス
+					ratio = [0, 1400, 1800, 2200, 2600, 3000][skillLv];
+					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = [0, 1200, 1500, 1800, 2100, 2400][skillLv];
+					ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return ratio * n_A_BaseLV / 100;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -298,6 +327,20 @@ export const skills = [
 				var nLifeTime = 3000;
 				return nLifeTime;
 			}
+			this.ground_installation = true;
+			this.damageInterval = 300;
+			this.Power = function(skillLv, charaDataManger) {
+				let ratio;
+				if (UsedSkillSearch(SKILL_ID_SERE) == 13) { // 13: 火 アルドール
+					ratio = [0, 1400, 1800, 2200, 2600, 3000][skillLv];
+					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = [0, 1200, 1500, 1800, 2100, 2400][skillLv];
+					ratio += 8 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				}
+				return ratio * n_A_BaseLV / 100;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -341,6 +384,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -641,6 +685,7 @@ export const skills = [
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

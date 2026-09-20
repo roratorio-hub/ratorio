@@ -129,6 +129,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 1000;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -180,6 +181,7 @@ export const skills = [
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -236,6 +238,7 @@ export const skills = [
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -267,6 +270,20 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 60000;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				var pow = 0;
+
+				// 基本倍率
+				pow = 1500 + 1500 * skillLv;
+
+				// SPL補正
+				pow += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return [0, 240, 180, 120, 90, 60][skillLv] * 1000;
 			}
@@ -278,6 +295,7 @@ export const skills = [
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -343,6 +361,20 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				var pow = 0;
+
+				// 基本倍率
+				pow = 7000 + 2000 * skillLv;
+
+				// SPL補正
+				pow += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+
+				// ベースレベル補正
+				pow = Math.floor(pow * n_A_BaseLV / 100);
+
+				return pow;
+			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
@@ -354,6 +386,7 @@ export const skills = [
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -398,6 +431,7 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -510,6 +544,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 
@@ -576,6 +611,7 @@ export const skills = [
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** チェイシングブレイク */
@@ -628,6 +664,7 @@ export const skills = [
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** チェイシングショット */
@@ -682,6 +719,7 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		/** アビスフレイム */
@@ -745,6 +783,7 @@ export const skills = [
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+			this.genericFormula = true;
 		}),
 
 ];

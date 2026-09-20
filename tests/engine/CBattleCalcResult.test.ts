@@ -218,6 +218,41 @@ describe('CBattleCalcResult.js', () => {
         });
     });
 
+    describe('ヒット数の正規化（1未満の小数・センチネル値）', () => {
+
+        it('hitCountArray が1未満の小数（0.5）でも1に丸めずダメージへ反映する', () => {
+            const half = makeResult(1000, { hitCountArray: [[1, 0.5, 1], [1, 1, 1]] });
+            const whole = makeResult(1000, { hitCountArray: [[1, 1, 1], [1, 1, 1]] });
+
+            expect(half.GetDamageSummaryAvePerAtk(false)[0])
+                .toBe(whole.GetDamageSummaryAvePerAtk(false)[0] / 2);
+        });
+
+        it('hitCountArray が -1（ヒット数不定のセンチネル）のときは1ヒット扱いと同値になる', () => {
+            const sentinel = makeResult(1000, { hitCountArray: [[1, -1, 1], [1, 1, 1]] });
+            const whole = makeResult(1000, { hitCountArray: [[1, 1, 1], [1, 1, 1]] });
+
+            expect(sentinel.GetDamageSummaryAvePerAtk(false)).toEqual(whole.GetDamageSummaryAvePerAtk(false));
+        });
+
+        it('hitCountArray が 0（クリティカル率0のときの既定値）のときは1ヒット扱いと同値になる', () => {
+            const zero = makeResult(1000, { hitCountArray: [[1, 0, 1], [1, 1, 1]] });
+            const whole = makeResult(1000, { hitCountArray: [[1, 1, 1], [1, 1, 1]] });
+
+            expect(zero.GetDamageSummaryAvePerAtk(false)).toEqual(whole.GetDamageSummaryAvePerAtk(false));
+        });
+
+        it('GetDamageSummaryAve の戻り値タプル（多段ヒット数）は0.5のまま通る', () => {
+            const obj = makeResult(1000, { hitCountArray: [[1, 0.5, 1], [1, 1, 1]] });
+
+            const [dmg, divHit, multiHit] = obj.GetDamageSummaryAve(false)[0];
+
+            expect(dmg).toBe(1000);
+            expect(divHit).toBe(1);
+            expect(multiHit).toBe(0.5);
+        });
+    });
+
     describe('GetDamageSummaryAvePerSecActual（実ダメージDPS）', () => {
 
         it('非設置スキルは追撃があっても本体のDPSが 0 にならない', () => {

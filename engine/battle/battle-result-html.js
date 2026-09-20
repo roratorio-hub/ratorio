@@ -29,6 +29,7 @@ import {
 import { CSaveDataConst } from "../savedata/CSaveDataConst.js";
 import { BattleHiDamMaxPain, calcReceivedDamage, calcReceivedMagicDamage } from "./received-damage.js";
 import { GetActRateCritical } from "../bridge/battlecalc-bridge.js";
+import { GetJoinDmgText, GetJoinDmgText2, GetSumDmgText } from "./damage-summary-text.js";
 
 /**
  * ダメージ計算に効く特殊判定を適用する.
@@ -256,90 +257,11 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 			return objCellFF;
 		};
 
-		// 配列の和を計算する
-		var funcGetSumDmgText = function (arrayFF, funcDigFF, funcDigParamFF) {
-
-			var sumFF = arrayFF.reduce(
-				(accFFF, curFFF) => {
-					var valFFF = curFFF[0];
-					valFFF *= (curFFF[1] > 1) ? curFFF[1] : 1;
-					valFFF *= (curFFF[2] > 1) ? curFFF[2] : 1;
-					return (accFFF + valFFF);
-				},
-				0
-			);
-
-			return funcDigFF(sumFF, funcDigParamFF);
-		};
-
-		// 結合表示を取得する
-		var funcGetJoinDmgText = function (arrayFF, funcDigFF, funcDigParamFF) {
-			return arrayFF.reduce(
-				(accFFF, curFFF) => {
-
-					var valFFF = "";
-
-					if (accFFF.length > 0) {
-						valFFF = " + ";
-					}
-
-					valFFF += funcDigFF(curFFF[0], funcDigParamFF);
-
-					if (curFFF[1] > 1) {
-						valFFF += " × " + curFFF[1] + " hits";
-					}
-
-					if (curFFF[2] > 1) {
-						valFFF += " × " + curFFF[2] + " Hits";
-					}
-
-					return (accFFF + valFFF);
-				},
-				""
-			);
-		};
-
-
-		// 合計ダメージ表示を取得する
-		var funcGetJoinDmgText2 = function (arrayFF, funcDigFF, funcDigParamFF, counts) {
-			return arrayFF.reduce(
-				(accFFF, curFFF) => {
-
-					var valFFF = "";
-
-					if (!counts){
-						counts = 1;
-					}
-					else if (counts === Infinity) {
-						counts = 1;
-					}
-
-					valFFF = funcDigFF(curFFF[0] * counts, funcDigParamFF);
-
-					if (curFFF[1] > 1) {
-						valFFF = funcDigFF(curFFF[0] * counts * curFFF[1], funcDigParamFF);
-					}
-
-					// クライマックスクリムゾンアローのような 単発 + 複数Hit スキルの場合は
-					// curFFF[2]に複数Hit数が入っているので計算する
-					if (curFFF[2] > 1) {
-						valFFF = funcDigFF(curFFF[0] * counts * curFFF[2], funcDigParamFF);
-					}
-
-					// accFFFが空でない場合（追撃の場合）は初撃と追撃を + で結合表示する
-					if (accFFF.length > 0) {
-						valFFF = " + " + valFFF;
-					}
-
-					return (accFFF + valFFF);
-				},
-				""
-			);
-		};
-
-
 		// クリティカル率を取得
 		criRateF = battleCalcResultF.criRate;
+
+		// 設置スキルのサイクル数（非設置は NaN になり GetJoinDmgText2/GetSumDmgText 側で 1 に正規化される）
+		var cycleCountF = Math.ceil(battleCalcResultF.objectLifeTime / battleCalcResultF.damageInterval);
 
 
 		//----------------
@@ -397,22 +319,22 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		HtmlCreateTextNode("最小", objCellF);
 
 		// 通常
-		HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(false));
-		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+		HtmlCreateTextNode(GetJoinDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(false));
+		HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(true));
 
 		// クリティカル
 		if (criRateF > 0) {
-			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(false));
-			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+			HtmlCreateTextNode(GetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(false));
+			HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 		// 1サイクルダメージ
 
-		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, Math.ceil(battleCalcResultF.objectLifeTime / battleCalcResultF.damageInterval)), funcCreateCellF(false));
-		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+		HtmlCreateTextNode(GetJoinDmgText2(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(false));
+		HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryMin(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(true));
 		// クリティカル
 		if (criRateF > 0) {
-			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
-			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0), funcCreateCellF(true));
+			HtmlCreateTextNode(GetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(false));
+			HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryCriMin(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(true));
 		}
 
 
@@ -427,21 +349,21 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		HtmlCreateTextNode("平均", objCellF);
 
 		// 通常
-		HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(false));
-		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+		HtmlCreateTextNode(GetJoinDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(false));
+		HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(true));
 
 		// クリティカル
 		if (criRateF > 0) {
-			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(false));
-			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+			HtmlCreateTextNode(GetJoinDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(false));
+			HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 		// 1サイクルダメージ
-		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0, Math.ceil(battleCalcResultF.objectLifeTime / battleCalcResultF.damageInterval)), funcCreateCellF(false));
-		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+		HtmlCreateTextNode(GetJoinDmgText2(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(false));
+		HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryAve(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(true));
 		// クリティカル
 		if (criRateF > 0) {
-			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
-			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0), funcCreateCellF(true));
+			HtmlCreateTextNode(GetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(false));
+			HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryCriAve(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(true));
 		}
 
 
@@ -456,21 +378,21 @@ export function BuildBattleResultHtmlMIG(charaData, specData, mobData, attackMet
 		HtmlCreateTextNode("最大", objCellF);
 
 		// 通常
-		HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(false));
-		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+		HtmlCreateTextNode(GetJoinDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(false));
+		HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(true));
 
 		// クリティカル
 		if (criRateF > 0) {
-			HtmlCreateTextNode(funcGetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(false));
-			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+			HtmlCreateTextNode(GetJoinDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(false));
+			HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
 		}
 		// 1サイクルダメージ
-		HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0, Math.ceil(battleCalcResultF.objectLifeTime / battleCalcResultF.damageInterval)), funcCreateCellF(false));
-		HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+		HtmlCreateTextNode(GetJoinDmgText2(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(false));
+		HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryMax(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(true));
 		// クリティカル
 		if (criRateF > 0) {
-			HtmlCreateTextNode(funcGetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0, 1), funcCreateCellF(false));
-			HtmlCreateTextNode(funcGetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0), funcCreateCellF(true));
+			HtmlCreateTextNode(GetJoinDmgText2(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(false));
+			HtmlCreateTextNode(GetSumDmgText(battleCalcResultF.GetDamageSummaryCriMax(true), funcDIG3PX, 0, cycleCountF), funcCreateCellF(true));
 		}
 	};
 

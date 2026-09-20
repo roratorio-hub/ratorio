@@ -10,6 +10,7 @@ import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_AIMED_BOLT, SKILL_ID_ARROW_STORM, SKILL_ID_AUTO_WUG, SKILL_ID_CAMOUFLAGE, SKILL_ID_CLUSTER_BOMB,
     SKILL_ID_COBALT_TRAP, SKILL_ID_DETONATOR, SKILL_ID_EIBINNA_KYUKAKU, SKILL_ID_ELECTRIC_SHOCKER,
@@ -70,7 +71,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 500 + 50 * skillLv;
 			}
 
 			this.dispHitCount = function(skillLv, charaDataManger) {
@@ -119,7 +120,7 @@ export const skills = [
 				pow = 1000 + 80 * skillLv;
 
 				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
+				pow = Math.floor(pow * n_A_BaseLV / 100);
 
 				return pow;
 			}
@@ -140,6 +141,7 @@ export const skills = [
 				return 5500 - 500 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -304,6 +306,7 @@ export const skills = [
 				var nLifeTime = 15000;
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -350,6 +353,7 @@ export const skills = [
 				var nLifeTime = 15000;
 				return nLifeTime;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -377,6 +381,8 @@ export const skills = [
 				var nLifeTime = 15000;
 				return nLifeTime;
 			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -467,6 +473,7 @@ export const skills = [
 				return 2000 + 2000 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -504,6 +511,7 @@ export const skills = [
 				return 250 * skillLv;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -516,7 +524,7 @@ export const skills = [
 			this.kana = "エイヒンナキユウカク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_LONG;
+			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -544,6 +552,7 @@ export const skills = [
 				return 0;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -590,6 +599,7 @@ export const skills = [
 				return 300;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

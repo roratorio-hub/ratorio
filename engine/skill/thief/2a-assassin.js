@@ -10,6 +10,8 @@ import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_POISON } from "../../const/EnumElmId.js";
 import { MONSTER_DATA_INDEX_ELEMENT } from "../../const/EnumMonsterDataIndex.js";
 import { GetMonseterElmBasicType } from "../../monster/monster.h.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { n_SiegeMode } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_CLOAKING, SKILL_ID_ENCHANT_DEADLY_POISON, SKILL_ID_ENCHANT_POISON, SKILL_ID_GRIM_TOOTH,
     SKILL_ID_HIDARITE_SHUREN, SKILL_ID_KATAR_SHUREN, SKILL_ID_MIGITE_SHUREN, SKILL_ID_POISON_REACT,
@@ -99,7 +101,7 @@ export const skills = [
 				// 基本式
 				pow = 400 + 40 * skillLv;
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
@@ -108,9 +110,10 @@ export const skills = [
 			this.dispHitCount = function(skillLv, charaDataManger) {
 				return 8;
 			}
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 2000;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 2;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -134,20 +137,21 @@ export const skills = [
 				// 基本式
 				pow = 400 + 40 * skillLv;
 				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
+				edp = UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
 				if (edp > 0) {
 					pow = Math.floor(pow / 2);
 				}
-				// 魂効果
-				pow *= (charaDataManger.IsSeedsMode()) ? 1.25 : 2;
+				// 攻城戦時は1.25倍、それ以外は2倍
+				pow = Math.floor(pow * (n_SiegeMode ? 1.25 : 2));
 				return pow;
 			}
 			this.dispHitCount = function(skillLv, charaDataManger) {
 				return 8;
 			}
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return (charaDataManger.IsSeedsMode()) ? 2000 : 1;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return n_SiegeMode ? 2 : 1;
 			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
