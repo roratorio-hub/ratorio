@@ -52,7 +52,7 @@ import {
     SKILL_ID_CRUEL_BITE, SKILL_ID_CRUSH_STRIKE, SKILL_ID_DAIICHIGEKI_RAKUIN, SKILL_ID_DAINIGEKI_METSUMANO_HI,
     SKILL_ID_DAINIGEKI_SHINNEN, SKILL_ID_DAINIGEKI_SHINPAN, SKILL_ID_DAISANGEKI_DANZAI,
     SKILL_ID_DAISANGEKI_MEKKAGEKI, SKILL_ID_DAISANGEKI_ZYOKA, SKILL_ID_DAITENHOSUI, SKILL_ID_DANCING_KNIFE,
-    SKILL_ID_DARK_CRAW, SKILL_ID_DARK_CROSS, SKILL_ID_DARK_ILLUSION, SKILL_ID_DEATHPERAD, SKILL_ID_DEEP_BLIND_TRAP,
+    SKILL_ID_DARK_CRAW, SKILL_ID_DARK_CROSS, SKILL_ID_DARK_ILLUSION, SKILL_ID_DEEP_BLIND_TRAP,
     SKILL_ID_DEFT_STAB, SKILL_ID_DEMONSTRATION, SKILL_ID_DISARM, SKILL_ID_DOUBLE_BOWLING_BASH, SKILL_ID_DOUBLE_SLASH,
     SKILL_ID_DRAGONIC_AURA, SKILL_ID_DRAGONIC_BREATH, SKILL_ID_DRAGONIC_PIERCE, SKILL_ID_DRAGON_TAIL, SKILL_ID_DUST,
     SKILL_ID_DUST_EXPLOSION, SKILL_ID_EARTH_DRIVE, SKILL_ID_EFIRIGO, SKILL_ID_EIBINNA_KYUKAKU,
@@ -187,11 +187,11 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			case SKILL_ID_TRACKING:
-				CS.wCast = 500 + 100 * n_A_ActiveSkillLV;
-				CS.cast_kotei = true;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) CS.cast_kotei = true;
 				set_n_Enekyori(1);
-				CS.wbairitu += 100 + 100 * n_A_ActiveSkillLV;
-				n_Delay[2] = 1000;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.w_HIT = CS.w_HIT * 5 +5;
 				if(CS.w_HIT > 100) CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = CS.w_HIT;
@@ -372,20 +372,16 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			}
 
 			case SKILL_ID_FIRE_DANCE: {	// ファイヤーダンス
-				CS.wbairitu = 1000 + 100 * n_A_ActiveSkillLV;
-				// デスペラード習得Lv補正
-				let deathperad_lv = Math.max(LearnedSkillSearch(SKILL_ID_DEATHPERAD), attackMethodConfArray[0].GetOptionValue(0));
-				CS.wbairitu += 20 * deathperad_lv;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				set_n_Enekyori(1);
-				CS.wCast = 0;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 0;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 			}
 
 			case SKILL_ID_BIND_TRAP:
-				CS.wbairitu = (1000 + 90 * n_A_ActiveSkillLV) / 100;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				set_n_Enekyori(1);
 				CS.wCast = "不明";
 				n_Delay[0] = 2000;

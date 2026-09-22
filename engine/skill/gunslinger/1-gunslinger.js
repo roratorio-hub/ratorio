@@ -376,7 +376,7 @@ export const skills = [
 			this.name = "トラッキング";
 			this.kana = "トラツキンク";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_CAST_KOTEI;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -386,6 +386,10 @@ export const skills = [
 
 			this.Power = function(skillLv, charaDataManger) {
 				return 200 + 100 * skillLv;
+			}
+
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 500 + 100 * skillLv;
 			}
 
 			this.CastTimeForce = function(skillLv, charaDataManger) {

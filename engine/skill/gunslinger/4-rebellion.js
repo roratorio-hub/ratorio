@@ -8,13 +8,15 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
-import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_SIZE } from "../../const/EnumMonsterDataIndex.js";
+import { LearnedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF, MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_SIZE } from "../../const/EnumMonsterDataIndex.js";
 import { MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import { MONSTER_ID_PLAYER } from "../../monster/monster.dat.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
     SKILL_ID_AS_QUICKDRAW, SKILL_ID_BIND_TRAP, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CRYMSON_MARKER,
-    SKILL_ID_DRAGON_TAIL, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_FALLIN_ANGEL, SKILL_ID_FIRE_DANCE, SKILL_ID_FIRE_RAIN,
+    SKILL_ID_DEATHPERAD, SKILL_ID_DRAGON_TAIL, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_FALLIN_ANGEL, SKILL_ID_FIRE_DANCE,
+    SKILL_ID_FIRE_RAIN,
     SKILL_ID_FRICKER, SKILL_ID_HAMMER_OF_GOD, SKILL_ID_HEAT_BARREL, SKILL_ID_HEAT_BARREL_COIN_COUNT,
     SKILL_ID_HOWLING_MINE, SKILL_ID_HOWLING_MINE_APPEND, SKILL_ID_MASS_SPIRAL,
     SKILL_ID_PLATINUM_ALTER, SKILL_ID_PLATINUM_ALTER_COIN_COUNT, SKILL_ID_QUICKDRAW_SHOT, SKILL_ID_RICHS_COIN,
@@ -121,12 +123,23 @@ export const skills = [
 				return 20 + 2 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				// 威力に影響するＤＥＦは５００まで
+				const origDef = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF];
+				const defpower = origDef > 500 ? 500 : origDef;
+				return (200 + defpower) * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 2000;
+			}
+
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
 			}
 
 		}),
@@ -273,12 +286,23 @@ export const skills = [
 				return 30 + 2 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				// デスペラード習得Lv補正
+				const deathperad_lv = Math.max(LearnedSkillSearch(SKILL_ID_DEATHPERAD), option.GetOptionValue(0));
+				const wbairitu = 1000 + 100 * skillLv + 20 * deathperad_lv;
+				return ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
+			}
+
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
 			}
 
 		}),
@@ -456,6 +480,18 @@ export const skills = [
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return Math.max(200, 1200 - 200 * skillLv);
+			}
+
+			this.CastTimeVary = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				return ROUNDDOWN((100 + 40 * skillLv) * n_A_BaseLV / 100);
 			}
 
 		}),
@@ -679,7 +715,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return (1000 + 90 * skillLv) / 100;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

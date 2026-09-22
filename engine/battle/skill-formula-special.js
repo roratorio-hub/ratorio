@@ -1293,7 +1293,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT_HYOUJI = 100;
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
-			n_Delay[2] = 500;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			set_n_A_Weapon_zokusei(8);
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_A_MATK[i];
@@ -2367,17 +2367,14 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		// リベリオン－マススパイラル（ハッケイから流用）
 		case SKILL_ID_MASS_SPIRAL:
 			set_n_Enekyori(1);
-			CS.wCast = 2000;
-			n_Delay[2] = 0;
-			n_Delay[7] = 0;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
-			// 威力に影響するＤＥＦは５００まで
 			// dewindow: 旧 mob.js の暗黙グローバル B_Original_DEF（除算DEF補正前の値）を参照していたが、
 			// 移行時に mob.js 側が関数ローカル var 化され ReferenceError になっていた。
 			// 同値が mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF]（補正前の値を保持）に入っているためそれを使う。
-			var origDef = mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF];
-			var defpower =  origDef > 500 ? 500 :  origDef;
-			CS.wbairitu = (200 + defpower) * n_A_ActiveSkillLV;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
 
 			var AS_ATK = 0;
 			if(CS.n_AS_MODE){
@@ -2408,12 +2405,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		// リベリオン－ラウンドトリップ（修羅身弾から流用）
 		case SKILL_ID_ROUND_TRIP:
 			set_n_Enekyori(1);
-			CS.wCast = 0;
-			n_Delay[2] = 0;
-			n_Delay[7] = Math.max(200, 1200 - 200 * n_A_ActiveSkillLV);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
-			var basePower = 100 + 40 * n_A_ActiveSkillLV;
-			basePower = ROUNDDOWN(basePower * n_A_BaseLV / 100);
+			var basePower = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
 			CS.wbairitu = basePower;
 			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
