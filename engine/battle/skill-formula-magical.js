@@ -14,7 +14,7 @@ import { EQUIP_REGION_ID_SHIELD } from "../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumItemDataIndex.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_SPL } from "../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
-import { RACE_ID_DEMON, RACE_ID_UNDEAD } from "../const/EnumRaceId.js";
+import { RACE_ID_DEMON } from "../const/EnumRaceId.js";
 import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
@@ -36,7 +36,7 @@ import {
     SKILL_ID_DIVINUS_FLOS, SKILL_ID_DOKUGAKU_MADOGAKU, SKILL_ID_DRAIN_LIFE, SKILL_ID_EARTH_DRILL,
     SKILL_ID_EARTH_FLOWER, SKILL_ID_EARTH_GRAVE, SKILL_ID_EARTH_SPIKE, SKILL_ID_EARTH_STAMP, SKILL_ID_EARTH_STRAIN,
     SKILL_ID_ELECTRIC_WALK, SKILL_ID_ELEMENTAL_BASTER, SKILL_ID_ESFU, SKILL_ID_ESHA, SKILL_ID_ESMA, SKILL_ID_ESPA,
-    SKILL_ID_ESTIN, SKILL_ID_ESTON, SKILL_ID_FIDOS_ANIMUS, SKILL_ID_FIRE_BALL, SKILL_ID_FIRE_BOLT,
+    SKILL_ID_ESTIN, SKILL_ID_ESTON, SKILL_ID_FIRE_BALL, SKILL_ID_FIRE_BOLT,
     SKILL_ID_FIRE_WALK, SKILL_ID_FIRE_WALL, SKILL_ID_FLORAL_FLARE_ROAD, SKILL_ID_FROM_THE_ABYSS,
     SKILL_ID_FROST_DIVER, SKILL_ID_FROST_MISTY, SKILL_ID_FROST_NOVA, SKILL_ID_FROST_WEAPON, SKILL_ID_FROZEN_SLASH,
     SKILL_ID_FUKYOWAON,
@@ -352,25 +352,10 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			set_g_bDefinedDamageIntervals(true);
 			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
-			n_Delay[5] = 3000;
-			// フィドスアニムス習得Lv
-			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-			// 不死・悪魔の場合
-			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
-				CS.wbairitu = 6000 + 1500 * n_A_ActiveSkillLV;				// 基本倍率
-				CS.wbairitu += 5 * fidos_animus_lv;						// フィドスアニムス補正
-				CS.wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
-			}
-			// それ以外の場合
-			else {
-				CS.wbairitu = 5500 + 1250 * n_A_ActiveSkillLV;				// 基本倍率
-				CS.wbairitu += 3 * fidos_animus_lv;						// フィドスアニムス補正
-				CS.wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
-			}
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData);
 			// 見た目10hitで最大40hit
-			CS.wActiveHitNum = 10;
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			break;
 		}
 		// 「カーディナル」スキル「フレーメン」
@@ -381,28 +366,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// フィドスアニムス習得Lv
-			const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-			// 不死・悪魔の場合
-			if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
-				// 基本倍率
-				CS.wbairitu = (900 * n_A_ActiveSkillLV);
-				// フィドスアニムス補正
-				CS.wbairitu += 60 * n_A_ActiveSkillLV * fidos_animus_lv;
-				// SPL補正
-				CS.wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// それ以外の場合
-			else {
-				// 基本倍率
-				CS.wbairitu = (600 * n_A_ActiveSkillLV);
-				// フィドスアニムス補正
-				CS.wbairitu += 30 * n_A_ActiveSkillLV * fidos_animus_lv;
-				// SPL補正
-				CS.wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			}
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData);
 			break;
 		}
 		// 「インペリアルガード」スキル「ジャッジメントクロス」

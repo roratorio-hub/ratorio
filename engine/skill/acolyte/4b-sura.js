@@ -14,8 +14,11 @@ import {
 import { n_A_BaseLV, n_Delay } from "../../runtime/ro4-state.js";
 import { n_A_AGI, n_A_DEX, n_A_INT } from "../../runtime/roro-state.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { TimeItemNumSearch } from "../../bridge/chara-search-bridge.js";
 import {
-    SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
+    SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_BAKURETSU_HADO,
+    SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
     SKILL_ID_GOHO, SKILL_ID_HASAICHU, SKILL_ID_KYUKIKO, SKILL_ID_RAIKODAN, SKILL_ID_RASETSU_HAOGEKI,
     SKILL_ID_RASETSU_HAOGEKI_MAX, SKILL_ID_SENDENPO, SKILL_ID_SENKO_RENGEKI, SKILL_ID_SENPUTAI,
     SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SHURASHINDAN, SKILL_ID_SISIKO, SKILL_ID_SORYUKYAKU, SKILL_ID_TENKETSU_HAN,
@@ -176,8 +179,13 @@ export const skills = [
 				return 150;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			// TODO 爆裂波動の習得Lvがスキル倍率に影響する可能性がある
+			this.Power = function(skillLv, charaDataManger, option) {
+				const w = option.GetOptionValue(0);
+				if (UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN) || UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) || TimeItemNumSearch(34)) {
+					return ROUNDDOWN((125 + 25 * skillLv) * n_A_BaseLV / 150 * w);
+				}
+				return ROUNDDOWN(20 * skillLv * n_A_BaseLV / 150 * w);
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
@@ -586,6 +594,10 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 22 - 2 * skillLv;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				return ROUNDDOWN((100 * skillLv + n_A_DEX) * n_A_BaseLV / 100);
 			}
 
 		}),

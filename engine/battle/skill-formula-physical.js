@@ -9,7 +9,6 @@
  * それ以外（290 case の中身）はバイト単位で不変。
  */
 import { CSkillData } from "../skill/CSkillManager.js";
-import { TimeItemNumSearch } from "../chara/chara.js";
 import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from "../const/EnumCharaDataIndex.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_SHIELD } from "../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_WEIGHT } from "../const/EnumItemDataIndex.js";
@@ -42,7 +41,7 @@ import {
     SKILL_ID_ACIDIFIED_ZONE_HI, SKILL_ID_ACIDIFIED_ZONE_KAZE, SKILL_ID_ACIDIFIED_ZONE_MIZU, SKILL_ID_ALPHA_CLAW,
     SKILL_ID_APUCHAORURIGI, SKILL_ID_ARRAW_VULKAN, SKILL_ID_ARROW_SHOWER, SKILL_ID_ARROW_STORM,
     SKILL_ID_AXE_BOOMERANG, SKILL_ID_AXE_STOMP, SKILL_ID_AXE_TORNADE, SKILL_ID_BACK_STAB, SKILL_ID_BAKKA_SHINDAN,
-    SKILL_ID_BAKKISANDAN, SKILL_ID_BAKURETSU_HADO, SKILL_ID_BANISHING_POINT, SKILL_ID_BASH, SKILL_ID_BASIC_GRENADE,
+    SKILL_ID_BAKKISANDAN, SKILL_ID_BANISHING_POINT, SKILL_ID_BASH, SKILL_ID_BASIC_GRENADE,
     SKILL_ID_BIND_TRAP, SKILL_ID_BLAZING_FLAME_BLAST, SKILL_ID_BOOST_KNUCKLE, SKILL_ID_BRANDISH_SPEAR,
     SKILL_ID_BUKKOKEN, SKILL_ID_BULLS_EYE, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CANNON_SPEAR, SKILL_ID_CARROT_BEAT,
     SKILL_ID_CART_KAIZO, SKILL_ID_CART_TERMINATION, SKILL_ID_CART_TORNADO, SKILL_ID_CHAIN_REACTION_SHOT,
@@ -89,7 +88,7 @@ import {
     SKILL_ID_RYUSE_RAKKA_TSUIGEKI, SKILL_ID_SAKUGETSU_KYAKU, SKILL_ID_SANDANSHO, SKILL_ID_SANREI_ITTAI,
     SKILL_ID_SAVAGENO_TAMASHI, SKILL_ID_SAVAGE_IMPACT, SKILL_ID_SAVAGE_LUNGE, SKILL_ID_SEIMEINO_TAMASHI,
     SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP, SKILL_ID_SEITE_KORIN, SKILL_ID_SENKO_KYAKU, SKILL_ID_SENKO_RENGEKI,
-    SKILL_ID_SENPUTAI, SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SERVANT_WEAPON, SKILL_ID_SERVANT_WEAPON_DEMOLISION,
+    SKILL_ID_SENPUTAI, SKILL_ID_SERVANT_WEAPON, SKILL_ID_SERVANT_WEAPON_DEMOLISION,
     SKILL_ID_SERVANT_WEAPON_PHANTOM, SKILL_ID_SEVERE_RAINSTORM, SKILL_ID_SEVERE_RAINSTORM_EX, SKILL_ID_SEYU_SENRE,
     SKILL_ID_SHADOW_STAB, SKILL_ID_SHARPEN_GUST, SKILL_ID_SHARPEN_HAIL, SKILL_ID_SHARP_SHOOTING,
     SKILL_ID_SHIELD_CHAIN_RUSH, SKILL_ID_SHIELD_CHARGE, SKILL_ID_SHIELD_PRESS, SKILL_ID_SHIELD_SHOOTING,
@@ -254,8 +253,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			// 「シャドウチェイサー」スキル「フェイタルメナス」
 
 			case SKILL_ID_TENRACHIMO:
-				n_Delay[7] = 200;
-				CS.wActiveHitNum = 3;
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 				if(!CS.n_AS_MODE){
 					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
 						// 単発の場合
@@ -279,22 +278,17 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			case SKILL_ID_BAKKISANDAN: {	// 爆気散弾
 				set_n_Enekyori(1);
 				n_Delay[0] = 1;
-				n_Delay[2] = 1000;
-				n_Delay[7] = 10000;
-				// TODO 爆裂波動の習得Lvがスキル倍率に影響する可能性がある
-				var w = attackMethodConfArray[0].GetOptionValue(0);
-				if (UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN) || UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) || TimeItemNumSearch(34)) {
-					CS.wbairitu = ROUNDDOWN((125 + 25 * n_A_ActiveSkillLV) * n_A_BaseLV / 150 * w);
-				}
-				else CS.wbairitu = ROUNDDOWN(20 * n_A_ActiveSkillLV * n_A_BaseLV / 150 * w);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				break;
 			}
 
 			case SKILL_ID_RASETSU_HAOGEKI_MAX:
 			case SKILL_ID_RASETSU_HAOGEKI:
-				CS.wActiveHitNum = 7;
-				CS.wCast = 800 + 200 * n_A_ActiveSkillLV;
-				n_Delay[2] = 100 * n_A_ActiveSkillLV;
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.wbairitu = 500 * n_A_ActiveSkillLV;
 				if(!CS.n_AS_MODE){
 					if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
@@ -308,8 +302,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			case SKILL_ID_GOHO:
-				n_Delay[2] = 1000;
-				n_Delay[7] = 2000;
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				var w1 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXHP] * (10 + 2 * n_A_ActiveSkillLV) / 100);
 				var w2 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (5 + n_A_ActiveSkillLV) / 100);
 				if(!CS.n_AS_MODE){
@@ -338,15 +332,14 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			case SKILL_ID_RAIKODAN:
 				set_n_Enekyori(1);
-				CS.wCast = 1000 * n_A_ActiveSkillLV;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.wbairitu = 200 * n_A_ActiveSkillLV;
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				if(CS.BK_Weapon_zokusei == 4) CS.wbairitu = ROUNDDOWN(CS.wbairitu * 125 / 100);
 				break;
 
 			case SKILL_ID_TENKETSU_MOKU:
-				CS.wbairitu = 100 * n_A_ActiveSkillLV + n_A_DEX;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.w_HIT = Math.floor(CS.w_HIT * (5 * n_A_ActiveSkillLV + (n_A_DEX + n_A_BaseLV) / 10) / 100);
 				CS.w_HIT_HYOUJI = CS.w_HIT;
 				break;
