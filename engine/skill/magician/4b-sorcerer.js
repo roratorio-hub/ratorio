@@ -8,8 +8,9 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { n_A_JobLV } from "../../runtime/roro-state.js";
-import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { n_A_INT, n_A_JobLV } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import {
     SERE_SUPPORT_SKILL_ID_CURSED_SOIL, SERE_SUPPORT_SKILL_ID_DEEP_POISONING,
     SKILL_ID_ARRULLO, SKILL_ID_CLOUD_KILL, SKILL_ID_DIAMOND_DUST, SKILL_ID_EARTH_GRAVE, SKILL_ID_EARTH_INSIGNIA,
@@ -224,6 +225,15 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 1500, 2000, 2500, 3000, 3500])[skillLv];
 				return nLifeTime;
+			}
+
+			this.damageInterval = function(skillLv) {
+				return 500;
+			}
+
+			// 2025-03-29 SIAさんの検証により n_A_INT による倍率補正が実態と異なる可能性が示唆されている
+			this.Power = function(skillLv, charaDataManger) {
+				return ROUNDDOWN((70 * skillLv + 3 * n_A_INT) * n_A_BaseLV / 100);
 			}
 		}),
 
@@ -524,6 +534,10 @@ export const skills = [
 
 			this.Power = function(skillLv, charaDataManger) {
 				return -1;
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return 3;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

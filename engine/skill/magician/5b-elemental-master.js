@@ -616,6 +616,11 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 10500 + (3000 * skillLv);				// 基本倍率
+				wbairitu += 135 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
+				return wbairitu * n_A_BaseLV / 100;				// ベースレベル補正
+			}
 		}),
 
 		// ----------------------------------------------------------------

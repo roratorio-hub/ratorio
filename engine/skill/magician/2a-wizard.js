@@ -336,6 +336,15 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {	// 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
+				return 4500;
+			}
+			this.damageInterval = function(skillLv) {	// ダメージ間隔
+				return 450;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return 70 + 50 * skillLv;
+			}
 		}),
 
 		// ----------------------------------------------------------------

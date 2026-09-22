@@ -226,6 +226,9 @@ export const skills = [
 				if (seirei == 1) {
 					pow += Math.floor(n_A_JobLV / 3);
 				}
+				if (seirei == 37) {
+					pow += 75;
+				}
 
 				return pow;
 			}
@@ -357,6 +360,9 @@ export const skills = [
 				if (seirei == 10) {
 					pow += Math.floor(n_A_JobLV / 3);
 				}
+				if (seirei == 40) {
+					pow += 75;
+				}
 
 				return pow;
 			}
@@ -447,6 +453,9 @@ export const skills = [
 				seirei = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL);
 				if (seirei == 19) {
 					pow += Math.floor(n_A_JobLV / 3);
+				}
+				if (seirei == 43) {
+					pow += 75;
 				}
 
 				return pow;

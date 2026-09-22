@@ -23,10 +23,8 @@ import {
 } from "../monster/mobconfdebuf.js";
 import { n_A_Equip, n_A_INT, n_A_JobLV, n_A_MATK, n_A_WeaponType } from "../runtime/roro-state.js";
 import {
-    SERE_SUPPORT_SKILL_ID_AQUA_PLAY, SERE_SUPPORT_SKILL_ID_COLD_FORCE, SERE_SUPPORT_SKILL_ID_CURSED_SOIL,
-    SERE_SUPPORT_SKILL_ID_DEEP_POISONING, SERE_SUPPORT_SKILL_ID_EARTH_CARE, SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE,
-    SERE_SUPPORT_SKILL_ID_GRACE_BREEZE, SERE_SUPPORT_SKILL_ID_GUST, SERE_SUPPORT_SKILL_ID_PETROLOGY,
-    SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC, SKILL_ID_ABYSS_FLAME, SKILL_ID_ABYSS_SQUARE, SKILL_ID_ADORAMUS,
+    SERE_SUPPORT_SKILL_ID_CURSED_SOIL, SERE_SUPPORT_SKILL_ID_DEEP_POISONING, SERE_SUPPORT_SKILL_ID_EARTH_CARE,
+    SERE_SUPPORT_SKILL_ID_PETROLOGY, SKILL_ID_ABYSS_FLAME, SKILL_ID_ABYSS_SQUARE, SKILL_ID_ADORAMUS,
     SKILL_ID_ALL_BLOOM, SKILL_ID_ANTEN_HOU, SKILL_ID_ANTEN_HOU_LEARNED_LEVEL, SKILL_ID_ARBITRIUM,
     SKILL_ID_AROUND_FLOWER, SKILL_ID_ASTRAL_STRIKE, SKILL_ID_BYAKKO_FU, SKILL_ID_CHILLING_BLAST, SKILL_ID_CLIMAX,
     SKILL_ID_CLOUD_KILL, SKILL_ID_COLD_BOLT, SKILL_ID_COMMET, SKILL_ID_CONFLAGRATION, SKILL_ID_CROSS_RAIN,
@@ -124,14 +122,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				CS.wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
-			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-				case SERE_SUPPORT_SKILL_ID_PYRO_TECHNIC: 
-					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-					break;
-				case SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE:
-					CS.wbairitu += 75;
-					break;
-			}
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			break;
 
 		// 「マジシャン」スキル「コールドボルト」
@@ -153,14 +144,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				CS.wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
-			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-				case SERE_SUPPORT_SKILL_ID_AQUA_PLAY:
-					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-					break;
-				case SERE_SUPPORT_SKILL_ID_COLD_FORCE:
-					CS.wbairitu += 75;
-					break;
-			}
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			break;
 
 		// 「マジシャン」スキル「ライトニングボルト」
@@ -182,24 +166,17 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				CS.wCast = 560 * n_A_ActiveSkillLV;
 				n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 			}
-			switch (UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)) {
-				case SERE_SUPPORT_SKILL_ID_GUST:
-					CS.wbairitu += ROUNDDOWN(n_A_JobLV / 3);
-					break;
-				case SERE_SUPPORT_SKILL_ID_GRACE_BREEZE:
-					CS.wbairitu += 75;
-					break;
-			}
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			break;
 
 		case SKILL_ID_METEOR_STORM:
-			CS.wbairitu = 125;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			set_n_A_Weapon_zokusei(3);
 			if(!CS.n_AS_MODE) CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * attackMethodConfArray[0].GetOptionValue(0);
 			else CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * (Math.floor(n_A_ActiveSkillLV / 2) + 2);
-			CS.wCast = 12000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			if(g_VariableCastTimeRate == 0) n_Delay[1] = n_Delay[1] / 2;
-			n_Delay[2] = Math.floor(n_A_ActiveSkillLV / 2) * 1000 + 2000;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			break;
 
 		// 「ウィザード」スキル「ストームガスト」
@@ -209,16 +186,16 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[3] = 4500 // 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
+			n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
 			// 設置スキル設定
 			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 450;	// ダメージ間隔
+			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);	// ダメージ間隔
 			// 「3hitで凍った場合のダメージを算出したいニーズ」を切り捨てない苦肉の策でオブジェクト存続時間を調整する
 			n_Delay[6] = 450 * GetAttackMethodOptionValue(attackMethodConfArray, 0, 3);	// オブジェクト存続時間
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率
-			CS.wbairitu = 70 + 50 * n_A_ActiveSkillLV;
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			break;
 
 		// 「ウィザード」スキル「アーススパイク」
@@ -239,31 +216,26 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//5000
 
 			// ダメージ間隔
-			n_Delay[5] = 500;
+			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
 
 			// オブジェクト存続時間
-			n_Delay[6] = 1000 + (n_A_ActiveSkillLV * 500);
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 
 			// 属性の設定
 			if(!CS.n_AS_MODE) set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
 			else set_n_A_Weapon_zokusei(0);
 
-			// 2025-03-29 SIAさんの検証により n_A_INT による倍率補正が実態と異なる可能性が示唆されている
-			CS.wbairitu = 70 * n_A_ActiveSkillLV + 3 * n_A_INT;
-
-			// ベースレベル補正
-			CS.wbairitu *= n_A_BaseLV / 100;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			break;
 
 		case SKILL_ID_EARTH_GRAVE:
 			set_n_A_Weapon_zokusei(2);
 			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 3;
-			CS.n_KoteiCast = 2000 - 200 * n_A_ActiveSkillLV;
-			CS.wCast = 2000 + 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 5000;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			const seismic_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_SEISMIC_WEAPON), UsedSkillSearch(SKILL_ID_SEISMIC_WEAPON));
 			var subnumvalue = GetAttackMethodOptionValue(attackMethodConfArray, 0, seismic_weapon_lv);
 			CS.wbairitu = 200 * subnumvalue + n_A_INT * n_A_ActiveSkillLV;
@@ -274,11 +246,11 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		case SKILL_ID_DIAMOND_DUST:
 			set_n_A_Weapon_zokusei(1);
 			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 5;
-			CS.wCast = 2000 + 200 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 2000 - 200 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			n_Delay[7] = 5000;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			const frost_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_FROST_WEAPON), UsedSkillSearch(SKILL_ID_FROST_WEAPON));
 			CS.wbairitu = 200 * GetAttackMethodOptionValue(attackMethodConfArray, 0, frost_weapon_lv) + n_A_INT * n_A_ActiveSkillLV;
 			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
@@ -315,14 +287,14 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			break;
 
 		case SKILL_ID_VERATURE_SPEAR:
-			CS.wCast = Math.min(3000, 2000 + 200 * n_A_ActiveSkillLV);
-			CS.n_KoteiCast = Math.max(1000, 2000 - 200 * n_A_ActiveSkillLV);
-			n_Delay[2] = 1000;
-			n_Delay[7] = 2000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			set_n_A_Weapon_zokusei(4);
 
 			CS.n_bunkatuHIT = 1;
-			CS.wHITsuu = 3;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 
 			const lightning_loader_lv = Math.max(LearnedSkillSearch(SKILL_ID_LIGHTNING_LOADER), UsedSkillSearch(SKILL_ID_LIGHTNING_LOADER));
 			const striking_lv = Math.max(LearnedSkillSearch(SKILL_ID_STRIKING), UsedSkillSearch(SKILL_ID_STRIKING));
@@ -440,12 +412,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				CS.wbairitu = 10500 + (3000 * n_A_ActiveSkillLV);
-				// SPL補正
-				CS.wbairitu += 135 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// ベースレベル補正
-				CS.wbairitu *= n_A_BaseLV / 100;
+				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			}
 			// 使用不可
 			else {
