@@ -21,7 +21,7 @@ import { JOB_ID_GILOTINCROSS } from "../const/EnumJobId.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_POW } from "../const/EnumMigItemParamId.js";
 import { MONSTER_BOSSTYPE_BOSS } from "../const/EnumMonsterBossType.js";
 import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
-import { RACE_ID_DEMON, RACE_ID_HUMAN, RACE_ID_PLANT, RACE_ID_SOLID } from "../const/EnumRaceId.js";
+import { RACE_ID_DEMON, RACE_ID_HUMAN } from "../const/EnumRaceId.js";
 import { GetEquippedTotalSPArrow, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { LearnedSkillSearch } from "../skill/learnedskill.js";
@@ -33,18 +33,18 @@ import {
 } from "../monster/mobconfplayer.js";
 import { MONSTER_ID_PLAYER } from "../monster/monster.dat.js";
 import {
-    SU_STR, n_A_AGI, n_A_DEX, n_A_Equip, n_A_JOB, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV, n_A_WeaponType,
+    n_A_AGI, n_A_DEX, n_A_Equip, n_A_JOB, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV, n_A_WeaponType,
     n_A_Weapon_ATKplus
 } from "../runtime/roro-state.js";
 import {
-    SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_ABYSS_DAGGER, SKILL_ID_ABYSS_DAGGER_STATE, SKILL_ID_ACIDIFIED_ZONE_CHI,
+    SKILL_ID_ABYSS_DAGGER, SKILL_ID_ABYSS_DAGGER_STATE, SKILL_ID_ACIDIFIED_ZONE_CHI,
     SKILL_ID_ACIDIFIED_ZONE_HI, SKILL_ID_ACIDIFIED_ZONE_KAZE, SKILL_ID_ACIDIFIED_ZONE_MIZU, SKILL_ID_ALPHA_CLAW,
     SKILL_ID_APUCHAORURIGI, SKILL_ID_ARRAW_VULKAN, SKILL_ID_ARROW_SHOWER, SKILL_ID_ARROW_STORM,
     SKILL_ID_AXE_BOOMERANG, SKILL_ID_AXE_STOMP, SKILL_ID_AXE_TORNADE, SKILL_ID_BACK_STAB, SKILL_ID_BAKKA_SHINDAN,
     SKILL_ID_BAKKISANDAN, SKILL_ID_BANISHING_POINT, SKILL_ID_BASH, SKILL_ID_BASIC_GRENADE,
     SKILL_ID_BIND_TRAP, SKILL_ID_BLAZING_FLAME_BLAST, SKILL_ID_BOOST_KNUCKLE, SKILL_ID_BRANDISH_SPEAR,
     SKILL_ID_BUKKOKEN, SKILL_ID_BULLS_EYE, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CANNON_SPEAR, SKILL_ID_CARROT_BEAT,
-    SKILL_ID_CART_KAIZO, SKILL_ID_CART_TERMINATION, SKILL_ID_CART_TORNADO, SKILL_ID_CHAIN_REACTION_SHOT,
+    SKILL_ID_CART_TERMINATION, SKILL_ID_CART_TORNADO, SKILL_ID_CHAIN_REACTION_SHOT,
     SKILL_ID_CHARGE_ARROW, SKILL_ID_CHARGE_ATTACK, SKILL_ID_CHASING_BREAK, SKILL_ID_CHASING_SHOT,
     SKILL_ID_CHIMEITEKINA_KIZU, SKILL_ID_CHOP_CHOP, SKILL_ID_CHUL_HO_BATTERING, SKILL_ID_CLAW_WAVE,
     SKILL_ID_CLUSTER_BOMB, SKILL_ID_COLD_THROWER, SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_COUNTER_SLASH,
@@ -83,7 +83,7 @@ import {
     SKILL_ID_POWERFUL_SWING, SKILL_ID_POWER_SWING, SKILL_ID_PRIMAL_CLAW, SKILL_ID_PULSE_STRIKE, SKILL_ID_QUILL_SPEAR,
     SKILL_ID_RADIANT_SPEAR, SKILL_ID_RAGE_BURST_ATTACK, SKILL_ID_RAIKODAN, SKILL_ID_RAPID_SHOWER,
     SKILL_ID_RASETSU_HAOGEKI, SKILL_ID_RASETSU_HAOGEKI_MAX, SKILL_ID_RENCHUHOGEKI, SKILL_ID_RENDASHO,
-    SKILL_ID_RESEARCH_REPORT, SKILL_ID_RHYTHM_SHOOTING, SKILL_ID_ROLLING_CUTTER, SKILL_ID_ROSE_BLOSSOM,
+    SKILL_ID_RHYTHM_SHOOTING, SKILL_ID_ROLLING_CUTTER, SKILL_ID_ROSE_BLOSSOM,
     SKILL_ID_RUSH_QUAKE, SKILL_ID_RUSH_STRIKE, SKILL_ID_RYUSE_RAKKA,
     SKILL_ID_RYUSE_RAKKA_TSUIGEKI, SKILL_ID_SAKUGETSU_KYAKU, SKILL_ID_SANDANSHO, SKILL_ID_SANREI_ITTAI,
     SKILL_ID_SAVAGENO_TAMASHI, SKILL_ID_SAVAGE_IMPACT, SKILL_ID_SAVAGE_LUNGE, SKILL_ID_SEIMEINO_TAMASHI,
@@ -222,7 +222,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			// 「メカニック」スキル「パワースイング」
 			// 2025/01/27 実測値との誤差無しを確認済み
 			case SKILL_ID_POWER_SWING:
-				CS.wCast = Math.max(0, 1000 - 200 * n_A_ActiveSkillLV);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				if (GetAttackMethodOptionValue(attackMethodConfArray, 1, 0) == 1) {
 					// ABRバトルウォリアー状態の場合
 					CS.wActiveHitNum = 2;
@@ -237,11 +237,10 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			// 「メカニック」スキル「ブーストナックル」
 			case SKILL_ID_BOOST_KNUCKLE:
 				set_n_Enekyori(1);
-				CS.wCast = 500 * n_A_ActiveSkillLV - 500;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				n_Delay[1] = n_Delay[1] / 2;
-				if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) CS.wHITsuu = 2;
-				CS.wbairitu = 200 + 100 * n_A_ActiveSkillLV + n_A_DEX;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
 			// 「メカニック」スキル「バルカンアーム」
@@ -349,17 +348,9 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			case SKILL_ID_CART_TORNADO: {
 				// 詠唱など
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				CS.wbairitu = 100 * n_A_ActiveSkillLV
-				// ウドゥンウォリアー補正
-				CS.wbairitu += 100 * n_A_ActiveSkillLV * attackMethodConfArray[0].GetOptionValue(1);
-				// 修練補正
-				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-				CS.wbairitu += 50 * cart_kaizo_lv;
-				// カート重量・純粋STR補正
-				CS.wbairitu += Math.floor(attackMethodConfArray[0].GetOptionValue(0) / (150 - SU_STR));;
+				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
 				// 分割ヒット
-				CS.wActiveHitNum = 3;
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
 				break;
 			}
 
@@ -415,32 +406,12 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				// 初段ダメージの場合
 				if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
 					// 距離属性
 					set_n_Enekyori(1);
-					// バイオニックファーマシーはダメージ倍率に寄与しない
-					// 基本倍率
-					CS.wbairitu = 2000 + 200 * n_A_ActiveSkillLV;
-					// リサーチレポートの状態
-					let research_report = (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0);
-					let effective_race = [RACE_ID_SOLID, RACE_ID_PLANT].includes(mobData[MONSTER_DATA_INDEX_RACE]);
-					// POW補正
-					if (research_report && effective_race) {
-						// リサーチレポート種族特攻は POW 補正だけに 1.5 倍率がかかる
-						CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW) * 1.5;
-					} else {
-						// POW補正
-						CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-					}
-					// リサーチレポート共通補正は全体に 1.5 倍率がかかる
-					if (research_report) {
-						CS.wbairitu *= 1.5;
-					}
-					// BaseLv補正
-					CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-					// ヒット数
-					CS.wHITsuu = 3;
 				}
 				// 設置ダメージの場合
 				// 2024/11/15 YEサーバー実測と全く合わないことを確認済み
@@ -453,12 +424,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 					n_Delay[6] = 10000;
 					// 距離属性
 					set_n_Enekyori(0);
-					// 基本倍率
-					CS.wbairitu = Math.floor(62.5 * n_A_ActiveSkillLV);
-					// POW補正
-					//wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-					// ベースレベル補正
-					CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
 				}
 				break;
 

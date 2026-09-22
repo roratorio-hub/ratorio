@@ -13,10 +13,11 @@ import {
 } from "../../monster/mobconfplayer.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { n_A_DEX, n_A_INT, n_A_STR } from "../../runtime/roro-state.js";
+import { SU_STR, n_A_DEX, n_A_INT, n_A_STR } from "../../runtime/roro-state.js";
 import {
-    SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BLOOD_SUCKER, SKILL_ID_CART_BOOST_GENETIC, SKILL_ID_CART_CANNON,
-    SKILL_ID_CART_KAIZO, SKILL_ID_CART_TORNADO, SKILL_ID_CHANGE_MATERIAL, SKILL_ID_CRAZY_WEED, SKILL_ID_DEMONIC_FIRE,
+    SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BLOOD_SUCKER, SKILL_ID_CART_BOOST_GENETIC,
+    SKILL_ID_CART_CANNON, SKILL_ID_CART_KAIZO, SKILL_ID_CART_TORNADO, SKILL_ID_CHANGE_MATERIAL, SKILL_ID_CRAZY_WEED,
+    SKILL_ID_DEMONIC_FIRE,
     SKILL_ID_FIRE_EXPANSION, SKILL_ID_HELLS_PLANT, SKILL_ID_HOWLING_OF_MANDRAGORA, SKILL_ID_ILLUSION_DOOPING,
     SKILL_ID_KEN_SHUREN_GENETIC, SKILL_ID_MIX_COOKING, SKILL_ID_SLING_ITEM, SKILL_ID_SPECIAL_PHARMACY,
     SKILL_ID_SPORE_EXPLOSION, SKILL_ID_THORN_TRAP, SKILL_ID_THORN_WALL
@@ -69,6 +70,19 @@ export const skills = [
 				return [0, 1000, 1000, 500, 500, 200, 200, 200, 200, 200, 200][skillLv];
 			}
 
+			this.Power = function(skillLv, charaDataManger, option) {
+				let wbairitu = 100 * skillLv;					// 基本倍率
+				wbairitu += 100 * skillLv * option.GetOptionValue(1);		// ウドゥンウォリアー補正
+				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				wbairitu += 50 * cart_kaizo_lv;				// 修練補正
+				wbairitu += Math.floor(option.GetOptionValue(0) / (150 - SU_STR));	// カート重量・純粋STR補正
+				return wbairitu;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -86,6 +100,15 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 40 + 2 * skillLv;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				return 60 * skillLv + Math.floor(cart_kaizo_lv * 50 * n_A_INT / 40);
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(1) == 1 ? 2 : 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -273,7 +296,7 @@ export const skills = [
 				return 500;
 			}
 
-			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+			this.damageInterval = function(skillLv) {
 				return 1000;
 			}
 
@@ -379,7 +402,7 @@ export const skills = [
 				return 500;
 			}
 
-			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+			this.damageInterval = function(skillLv) {
 				return 1000;
 			}
 
@@ -569,8 +592,11 @@ export const skills = [
 				return -1;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
+			this.hitCount = function(skillLv, option) {
+				const acid_demonstration_lv = LearnedSkillSearch(SKILL_ID_ACID_DEMONSTRATION);
+				let h = Math.max(acid_demonstration_lv, option.GetOptionValue(0));
+				if (h < 5) h = 5;
+				return h;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

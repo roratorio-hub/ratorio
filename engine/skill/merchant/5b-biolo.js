@@ -10,6 +10,8 @@ import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
+import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
+import { RACE_ID_PLANT, RACE_ID_SOLID } from "../../const/EnumRaceId.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ACIDIFIED_ZONE_CHI, SKILL_ID_ACIDIFIED_ZONE_HI, SKILL_ID_ACIDIFIED_ZONE_KAZE,
@@ -145,6 +147,31 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				if (option.GetOptionValue(0) == 0) {
+					// 初段ダメージ。バイオニックファーマシーはダメージ倍率に寄与しない
+					let wbairitu = 2000 + 200 * skillLv;
+					const research_report = (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0);
+					const effective_race = [RACE_ID_SOLID, RACE_ID_PLANT].includes(mobData[MONSTER_DATA_INDEX_RACE]);
+					if (research_report && effective_race) {
+						// リサーチレポート種族特攻は POW 補正だけに 1.5 倍率がかかる
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW) * 1.5;
+					} else {
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					}
+					// リサーチレポート共通補正は全体に 1.5 倍率がかかる
+					if (research_report) {
+						wbairitu *= 1.5;
+					}
+					return Math.floor(wbairitu * n_A_BaseLV / 100);
+				}
+				// 設置ダメージ
+				const wbairitu = Math.floor(62.5 * skillLv);
+				return Math.floor(wbairitu * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0) == 0 ? 3 : 1;
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -173,6 +200,31 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				if (option.GetOptionValue(0) == 0) {
+					// 初段ダメージ。バイオニックファーマシーはダメージ倍率に寄与しない
+					let wbairitu = 2000 + 200 * skillLv;
+					const research_report = (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0);
+					const effective_race = [RACE_ID_SOLID, RACE_ID_PLANT].includes(mobData[MONSTER_DATA_INDEX_RACE]);
+					if (research_report && effective_race) {
+						// リサーチレポート種族特攻は POW 補正だけに 1.5 倍率がかかる
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW) * 1.5;
+					} else {
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					}
+					// リサーチレポート共通補正は全体に 1.5 倍率がかかる
+					if (research_report) {
+						wbairitu *= 1.5;
+					}
+					return Math.floor(wbairitu * n_A_BaseLV / 100);
+				}
+				// 設置ダメージ
+				const wbairitu = Math.floor(62.5 * skillLv);
+				return Math.floor(wbairitu * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0) == 0 ? 3 : 1;
 			}
 		}),
 
@@ -203,6 +255,31 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				if (option.GetOptionValue(0) == 0) {
+					// 初段ダメージ。バイオニックファーマシーはダメージ倍率に寄与しない
+					let wbairitu = 2000 + 200 * skillLv;
+					const research_report = (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0);
+					const effective_race = [RACE_ID_SOLID, RACE_ID_PLANT].includes(mobData[MONSTER_DATA_INDEX_RACE]);
+					if (research_report && effective_race) {
+						// リサーチレポート種族特攻は POW 補正だけに 1.5 倍率がかかる
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW) * 1.5;
+					} else {
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					}
+					// リサーチレポート共通補正は全体に 1.5 倍率がかかる
+					if (research_report) {
+						wbairitu *= 1.5;
+					}
+					return Math.floor(wbairitu * n_A_BaseLV / 100);
+				}
+				// 設置ダメージ
+				const wbairitu = Math.floor(62.5 * skillLv);
+				return Math.floor(wbairitu * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0) == 0 ? 3 : 1;
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -230,6 +307,31 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				if (option.GetOptionValue(0) == 0) {
+					// 初段ダメージ。バイオニックファーマシーはダメージ倍率に寄与しない
+					let wbairitu = 2000 + 200 * skillLv;
+					const research_report = (UsedSkillSearch(SKILL_ID_RESEARCH_REPORT) > 0);
+					const effective_race = [RACE_ID_SOLID, RACE_ID_PLANT].includes(mobData[MONSTER_DATA_INDEX_RACE]);
+					if (research_report && effective_race) {
+						// リサーチレポート種族特攻は POW 補正だけに 1.5 倍率がかかる
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW) * 1.5;
+					} else {
+						wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					}
+					// リサーチレポート共通補正は全体に 1.5 倍率がかかる
+					if (research_report) {
+						wbairitu *= 1.5;
+					}
+					return Math.floor(wbairitu * n_A_BaseLV / 100);
+				}
+				// 設置ダメージ
+				const wbairitu = Math.floor(62.5 * skillLv);
+				return Math.floor(wbairitu * n_A_BaseLV / 100);
+			}
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(0) == 0 ? 3 : 1;
 			}
 		}),
 

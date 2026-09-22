@@ -16,7 +16,7 @@ import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { n_A_DEX, n_A_Equip, n_A_STR, n_A_VIT } from "../../runtime/roro-state.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
-    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE,
+    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE,
     MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
 import {
@@ -256,6 +256,15 @@ export const skills = [
 				return 3 * skillLv;
 			}
 
+			this.Power = function(skillLv, charaDataManger) {
+				const pow = 200 + 100 * skillLv + n_A_DEX;
+				return ROUNDDOWN(pow * n_A_BaseLV / 120);
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON) ? 2 : 1;
+			}
+
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return -500 + 500 * skillLv;
 			}
@@ -438,6 +447,26 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 35 + 5 * skillLv;
+			}
+
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				let pow;
+				switch (mobData[17]) {
+					case SIZE_ID_SMALL:
+						pow = 300 + 400 * skillLv;
+						break;
+					case SIZE_ID_MEDIUM:
+						pow = 300 + 350 * skillLv;
+						break;
+					case SIZE_ID_LARGE:
+						pow = 300 + 300 * skillLv;
+						break;
+				}
+				return ROUNDDOWN(pow * n_A_BaseLV / 120);
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON) ? 2 : 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -644,7 +673,6 @@ export const skills = [
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
 					return 10000;
@@ -659,7 +687,6 @@ export const skills = [
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
 					return 10000;
@@ -832,7 +859,6 @@ export const skills = [
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
 					return 10000;
@@ -847,7 +873,6 @@ export const skills = [
 				// 特定の戦闘エリアでの補正
 				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
 
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
 				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
 					return 10000;

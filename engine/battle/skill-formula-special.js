@@ -21,7 +21,6 @@ import {
 } from "../const/EnumItemSpId.js";
 import { MIG_PARAM_ID_POW } from "../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF } from "../const/EnumMonsterDataIndex.js";
-import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from "../const/EnumSizeId.js";
 import { zokusei } from "../data/element-affinity.dat.js";
 import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 import { ItemObjNew } from "../equip/item.dat.js";
@@ -33,7 +32,6 @@ import {
 } from "../monster/mobconfdebuf.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
-    MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO,
     MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI, n_B_TAISEI
 } from "../monster/mobconfplayer.js";
 import { MonsterObjNew } from "../monster/monster.dat.js";
@@ -42,7 +40,7 @@ import {
     n_A_SHIELD_DEF_PLUS, n_A_STR, n_A_VIT, n_A_WeaponLV_seirenATK, n_A_WeaponType, n_B_DEF2, n_B_MDEF2
 } from "../runtime/roro-state.js";
 import {
-    SKILL_ID_ABR_DUAL_CANNON, SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_ACID_TERROR, SKILL_ID_AIMED_BOLT,
+    SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_ACID_TERROR, SKILL_ID_AIMED_BOLT,
     SKILL_ID_ARMS_CANNON, SKILL_ID_ASHURA_HAOKEN, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, SKILL_ID_BAKURETSU_KUNAI,
     SKILL_ID_BEAST_STRAIFING, SKILL_ID_BIOPLANT, SKILL_ID_BLAST_MINE, SKILL_ID_BLITZ_BEAT, SKILL_ID_BLOOD_SUCKER,
     SKILL_ID_BOWLING_BASH, SKILL_ID_BUKI_KENKYU, SKILL_ID_CART_BOOST_GENETIC, SKILL_ID_CART_CANNON,
@@ -1034,10 +1032,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		case SKILL_ID_ACID_TERROR:
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
-			CS.wCast = 1000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_A_MATK[i];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
@@ -1067,21 +1065,15 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		case SKILL_ID_FIRE_EXPANSION:
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
-			CS.wCast = 400 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			CS.wHITsuu = n_A_ActiveSkillLV;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 
 			if(n_A_ActiveSkill==SKILL_ID_FIRE_EXPANSION){
-				CS.wCast = 2000;
 				n_Delay[0] = 1;
-				n_Delay[2] = 500;
-				// アシッドデモンストレーションの習得Lvに応じたヒット数
-				const acid_demonstration_lv = LearnedSkillSearch(SKILL_ID_ACID_DEMONSTRATION);
-				CS.wHITsuu = Math.max(acid_demonstration_lv, attackMethodConfArray[0].GetOptionValue(0));
-				if(CS.wHITsuu <5) CS.wHITsuu = 5;
 			}
 			var w1 = [0,0,0];
 			for(var i=0;i<=2;i++){
@@ -1644,20 +1636,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			var wMADO = 0;
 			set_n_Enekyori(1);
-			CS.wCast = Math.min(2000, 500 + 500 * n_A_ActiveSkillLV);
-			n_Delay[2] = Math.max(500, 2000 - 500 * n_A_ActiveSkillLV);
-			switch (mobData[17]) {
-				case SIZE_ID_SMALL:
-					CS.wbairitu = 300 + 400 * n_A_ActiveSkillLV;
-					break;
-				case SIZE_ID_MEDIUM:
-					CS.wbairitu = 300 + 350 * n_A_ActiveSkillLV;
-					break;
-				case SIZE_ID_LARGE:
-					CS.wbairitu = 300 + 300 * n_A_ActiveSkillLV;
-					break;
-			}
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
 			wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 			if(n_A_WeaponType == 6 || n_A_WeaponType == 7) {
 				wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
@@ -1671,9 +1652,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(UsedSkillSearch(SKILL_ID_MADOGEAR)) {
 				wMADO += 20 * Math.max(LearnedSkillSearch(SKILL_ID_MADOGEAR_LICENSE), UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE));
 			}
-			if(UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON)) {
-				CS.wHITsuu = 2;
-			}
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = CS.n_A_DMG[i] + wMADO;
@@ -1699,17 +1678,12 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			// 遠距離
 			set_n_Enekyori(1);
 			// 詠唱など
-			CS.wCast = 500 + 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 500;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// ウドゥンウォリアー補正
-			if (attackMethodConfArray[0].GetOptionValue(1) == 1) {
-				CS.wHITsuu = 2;
-			}
-			// 基本倍率
-			CS.wbairitu = 60 * n_A_ActiveSkillLV;
-			// カート改造補正
-			const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-			CS.wbairitu += Math.floor(cart_kaizo_lv * 50 * n_A_INT / 40);
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			// 基本倍率＋カート改造補正
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// 倍率補正
 			var wMADO = 0;
 			// 斧修練
@@ -1746,21 +1720,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_GVG_TE:
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_SHINKIRO:
-				CS.wCast = 10000;
-				CS.n_KoteiCast = 10000;
-				break;
-
-			default:
-				CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
-				CS.n_KoteiCast = 3500 - 500 * n_A_ActiveSkillLV;
-				break;
-
-			}
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
 			var w_HP;
 			var w_SP;
@@ -1997,9 +1958,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		case SKILL_ID_THORN_TRAP:
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
-			CS.wCast = 1500;
-			n_Delay[2] = 500;
-			n_Delay[5] = 1000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 
@@ -2053,7 +2014,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(2);
-			CS.wCast = 2000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 			w = n_A_ActiveSkillLV * mobData[2] * 10;
@@ -2235,9 +2196,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			break;
 
 		case SKILL_ID_MAGMA_ILLUPTION:
-			CS.wCast = 2000;
-			n_Delay[7] = 11000 - 1000 * n_A_ActiveSkillLV;
-			CS.wbairitu = 450 + 50 * n_A_ActiveSkillLV;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 
