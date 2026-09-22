@@ -422,14 +422,14 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				wBT = ApplyElementRatio(mobData, wBT,0);
 				wBT = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wBT);
 				wBT *= 5;
-				CS.wCast = 1000;
-				n_Delay[2] = 3000;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}else{
 				wBT = ApplyElementRatio(mobData, wBT,0);
 				wBT = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wBT);
 				wBT *= n_A_ActiveSkillLV;
-				CS.wCast = 1500;
-				n_Delay[2] = 1000;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}
 			if(CS.n_AS_MODE){
 				w_DMG[0] = w_DMG[1] = w_DMG[2] = wBT;
