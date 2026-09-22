@@ -19,8 +19,17 @@
  * 与ダメージ・DPSが大半0だった。5次職代表12職業に装備・合法配分ステータス・弱いモンスター
  * を設定し、実際に非ゼロの与ダメージ・詠唱時間を持つセーブデータを追加する。
  *
+ * Pass D（B-38）: Pass A〜C はいずれも武器種別を「最後の選択肢」で固定するため、
+ * 楽器・鞭を要求する WeaponCondition を持つスキル（アローバルカン等）が
+ * battle-damage-sweep.test.ts で一度も倒せない（bWeaponMismatch のまま倍率が0で
+ * break する）。トルバドゥール（楽器）・トルヴェール（鞭）の2エントリを生成し、
+ * battle-damage-sweep 専用の別フィクスチャファイルへ書き出す。
+ *
  * 実行: cd tests && node generate-job-corpus.mjs
- * 出力: tests/integration/fixtures/generated-job-corpus.md（コミット対象）
+ * 出力: tests/integration/fixtures/generated-job-corpus.md（コミット対象。Pass A/B/C）
+ *
+ * Pass D のみ再生成: cd tests && node generate-job-corpus.mjs --pass D
+ * 出力: tests/integration/fixtures/battle-sweep-weapon-variants.md（コミット対象）
  *
  * 再生成が必要になるタイミング: 職業一覧・スキル一覧・セーブデータのエンコード形式が変わったとき。
  * 通常のリファクタリング作業では再生成不要（一度生成したURLをそのままゴールデンの入力として使い続ける）。
@@ -34,6 +43,14 @@ import { fileURLToPath } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const PROJECT_ROOT = join(__dirname, '..');
 const OUTPUT_PATH = join(__dirname, 'integration/fixtures/generated-job-corpus.md');
+const OUTPUT_PATH_D = join(__dirname, 'integration/fixtures/battle-sweep-weapon-variants.md');
+
+// --pass D 指定時は Pass A/B/C を走らせず Pass D のみ実行する（B-38。他のパスは全職業を
+// 巡回するため数分かかり、楽器/鞭の2件だけ更新したいときに毎回待つのは無駄なため）。
+const ONLY_PASS = (() => {
+    const idx = process.argv.indexOf('--pass');
+    return idx >= 0 ? process.argv[idx + 1] : null;
+})();
 
 // helpers/objid-snapshot.ts の createStaticServer と同等（TS ヘルパーは vitest 経由でしか
 // 読めないため、素の node で動くこのスクリプト用に最小構成でインライン化してある。
@@ -103,22 +120,12 @@ const PASS_C_TARGET_JOBS = [
     ['アリテア', 'physical'], ['ハイパーノービス', 'physical'], ['スピリットハンドラー', 'magic'],
 ];
 
-/**
- * 武器種別（素手以外の最後）→ 武器・防具・カード（各セレクトの最小 item ID）→
- * 精錬最大、の順に装備する。「装備なし」センチネルは選択前の値と一致するため、
- * それを除外することで自然に弾ける（実測確認済み。生の item ID をベタ書きしない）。
+/** 武器・防具・カード（各セレクトの最小 item ID）→ 精錬最大、の順に装備する。
+ * 「装備なし」センチネルは選択前の値と一致するため、それを除外することで自然に弾ける
+ * （実測確認済み。生の item ID をベタ書きしない）。武器種別セレクトは呼び出し側で
+ * 先に確定させておくこと（pickLastWeaponKind / pickWeaponKindByText）。
  */
-async function equipGearForPassC(page) {
-    await page.evaluate(() => {
-        const armsType = document.getElementById('OBJID_ARMS_TYPE_RIGHT');
-        if (armsType.options.length > 1) {
-            const o = armsType.options[armsType.options.length - 1];
-            armsType.value = o.value;
-            armsType.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-    });
-    await page.waitForTimeout(400);
-
+async function pickGearItems(page) {
     await page.evaluate(() => {
         const pickMinId = (id) => {
             const el = document.getElementById(id);
@@ -145,6 +152,42 @@ async function equipGearForPassC(page) {
         }
     });
     await page.waitForTimeout(600);
+}
+
+/** 武器種別セレクトの最後の選択肢（素手以外）を選ぶ。Pass C 用。 */
+async function pickLastWeaponKind(page) {
+    await page.evaluate(() => {
+        const armsType = document.getElementById('OBJID_ARMS_TYPE_RIGHT');
+        if (armsType.options.length > 1) {
+            const o = armsType.options[armsType.options.length - 1];
+            armsType.value = o.value;
+            armsType.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+    await page.waitForTimeout(400);
+}
+
+/** 武器種別セレクトを表示テキスト（「楽器」「鞭」等。GetItemKindNameText の値）で指定する。
+ * Pass D 用（楽器/鞭を要求する WeaponCondition のスキルを battle-damage-sweep で
+ * カバーするため。B-38）。見つからなければ例外を投げる（無言でカバレッジが欠けるのを防ぐ）。
+ */
+async function pickWeaponKindByText(page, kindText) {
+    const found = await page.evaluate((text) => {
+        const armsType = document.getElementById('OBJID_ARMS_TYPE_RIGHT');
+        const o = Array.from(armsType.options).find((x) => x.text === text);
+        if (!o) return false;
+        armsType.value = o.value;
+        armsType.dispatchEvent(new Event('change', { bubbles: true }));
+        return true;
+    }, kindText);
+    if (!found) throw new Error(`Pass D: 武器種別が見つかりません: ${kindText}`);
+    await page.waitForTimeout(400);
+}
+
+/** Pass C 用: 武器種別（最後の選択肢）→ 装備一式、の順に設定する。 */
+async function equipGearForPassC(page) {
+    await pickLastWeaponKind(page);
+    await pickGearItems(page);
 }
 
 /**
@@ -360,6 +403,33 @@ async function exportUrlForJobPassC(page, baseUrl, jobText, archetype, useSkillA
     return url;
 }
 
+// Pass D（B-38）: 楽器/鞭を装備した職業を2件だけ生成する。武器種別は明示テキストで指定する
+// （GetItemKindNameText の表記。equipGearForPassC の「最後の選択肢」を使わない点だけが Pass C と違う）。
+const PASS_D_JOBS = [
+    ['トルバドゥール', '楽器', 'ranged'],
+    ['トルヴェール', '鞭', 'ranged'],
+];
+
+async function exportUrlForJobPassD(page, baseUrl, jobText, weaponKindText, archetype) {
+    await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+    await page.waitForTimeout(400);
+    const jobs = await page.evaluate(() =>
+        Array.from(document.getElementById('OBJID_SELECT_JOB').options).map((o) => ({ value: o.value, text: o.text }))
+    );
+    const job = jobs.find((j) => j.text === jobText);
+    if (!job) throw new Error(`Pass D: 職業が見つかりません: ${jobText}`);
+    await page.selectOption('#OBJID_SELECT_JOB', { value: job.value });
+    await page.waitForTimeout(400);
+
+    await pickWeaponKindByText(page, weaponKindText);
+    await pickGearItems(page);
+    await allocateLegalStatsForPassC(page, PASS_C_STAT_WEIGHTS[archetype]);
+
+    const url = await buildNormalAttackUrlForPassC(page, baseUrl);
+    if (!url) throw new Error(`Pass D: ${jobText} — 通常攻撃で弱モンスタープール全滅（URL復元後も0ダメージ）`);
+    return url;
+}
+
 // 生成時は一時ローカルサーバー（ポート乱数）で export するため、出力そのままだと
 // 無意味な localhost:xxxxx URL がコミットされてしまう。他のフィクスチャファイル
 // （sample-savedata-new.md 等）と同じ本番ホスト表記に正規化する。
@@ -408,13 +478,7 @@ async function exportUrlForJobWithSkillAttack(page, baseUrl, jobValue) {
     return page.inputValue('#OBJID_INPUT_URL_OUT_MIG');
 }
 
-async function main() {
-    const server = createStaticServer(PROJECT_ROOT);
-    await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
-    const addr = server.address();
-    const baseUrl = `http://127.0.0.1:${addr.port}`;
-    const browser = await chromium.launch({ headless: true });
-
+async function runPassABC(page, baseUrl) {
     const lines = [
         '# 職業×攻撃手段 生成コーパス（Phase 0 テストオラクル拡張）',
         '#',
@@ -425,84 +489,128 @@ async function main() {
         '',
     ];
 
+    // 職業一覧を取得（先頭の goto で1回だけ）
+    await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
+    await page.waitForTimeout(500);
+    const jobs = await page.evaluate(() =>
+        Array.from(document.getElementById('OBJID_SELECT_JOB').options).map((o) => ({
+            value: o.value,
+            text: o.text,
+        }))
+    );
+    console.log(`職業数: ${jobs.length}`);
+
+    // Pass A: 全職業 × 通常攻撃
+    lines.push('# Pass A: 全職業（通常攻撃・デフォルトステータス）');
+    let count = 0;
+    for (const job of jobs) {
+        const url = await exportUrlForJob(page, baseUrl, job.value);
+        if (!url) {
+            console.warn(`  [skip] ${job.text}: URL出力が空`);
+            continue;
+        }
+        lines.push(`# ${job.text}`);
+        lines.push(canonicalizeUrl(url));
+        count++;
+        if (count % 10 === 0) console.log(`  ${count}/${jobs.length} 完了`);
+    }
+    console.log(`Pass A 完了: ${count}件`);
+
+    // Pass B: 代表職業 × スキル攻撃手段
+    lines.push('');
+    lines.push('# Pass B: 代表職業（スキル攻撃手段選択）');
+    let countB = 0;
+    for (const job of jobs) {
+        if (!SKILL_ATTACK_REPRESENTATIVES.has(job.text)) continue;
+        const url = await exportUrlForJobWithSkillAttack(page, baseUrl, job.value);
+        if (!url) {
+            console.warn(`  [skip] ${job.text}: スキル攻撃手段の選択肢なし、またはURL出力が空`);
+            continue;
+        }
+        lines.push(`# ${job.text}（スキル攻撃）`);
+        lines.push(canonicalizeUrl(url));
+        countB++;
+    }
+    console.log(`Pass B 完了: ${countB}件`);
+
+    // Pass C: 5次職代表12職業 × 2バリアント（通常攻撃/スキル攻撃）。装備・合法配分
+    // ステータス・弱モンスターを設定し、実際に非ゼロの与ダメージ・詠唱時間を持つ
+    // セーブデータを生成する（残件台帳 B-32）。Pass A/B の101件は一切変更しない。
+    lines.push('');
+    lines.push('# Pass C: 5次職代表12職業（装備・ステータス・対象モンスター設定込み。残件台帳 B-32）');
+    let countC = 0;
+    for (const [jobText, archetype] of PASS_C_TARGET_JOBS) {
+        const urlNormal = await exportUrlForJobPassC(page, baseUrl, jobText, archetype, false);
+        lines.push(`# ${jobText}（Pass C 通常攻撃）`);
+        lines.push(canonicalizeUrl(urlNormal));
+        countC++;
+
+        const urlSkill = await exportUrlForJobPassC(page, baseUrl, jobText, archetype, true);
+        lines.push(`# ${jobText}（Pass C 技能攻撃）`);
+        lines.push(canonicalizeUrl(urlSkill));
+        countC++;
+
+        console.log(`  Pass C: ${jobText} 完了（${countC}件）`);
+    }
+    console.log(`Pass C 完了: ${countC}件`);
+
+    console.log(`合計: ${count + countB + countC}件`);
+    writeFileSync(OUTPUT_PATH, lines.join('\n') + '\n');
+    console.log(`書き出し: ${OUTPUT_PATH}`);
+}
+
+async function runPassD(page, baseUrl) {
+    const lines = [
+        '# 楽器/鞭 装備フィクスチャ（battle-damage-sweep 専用。残件台帳 B-38）',
+        '#',
+        '# generate-job-corpus.mjs --pass D で機械生成。手動編集しない（再生成で上書きされる）。',
+        '# 対象テスト: integration/battle-damage-sweep.test.ts',
+        '#',
+        '# Pass A〜C（generated-job-corpus.md）はいずれも武器種別を「最後の選択肢」で固定する',
+        '# ため、楽器・鞭を要求する WeaponCondition のスキル（アローバルカン等）が',
+        '# battle-damage-sweep でカバーされていなかった。ここではその2職業だけを対象に、',
+        '# 武器種別を明示指定して装備する。',
+        '#',
+        '# 使い方は他のフィクスチャファイルと同じ（1行1URL、空行・#行はスキップ）。',
+        '',
+    ];
+
+    let countD = 0;
+    for (const [jobText, weaponKindText, archetype] of PASS_D_JOBS) {
+        const url = await exportUrlForJobPassD(page, baseUrl, jobText, weaponKindText, archetype);
+        lines.push(`# ${jobText}（${weaponKindText}装備）`);
+        lines.push(canonicalizeUrl(url));
+        countD++;
+        console.log(`  Pass D: ${jobText} 完了（${countD}件）`);
+    }
+    console.log(`Pass D 完了: ${countD}件`);
+
+    writeFileSync(OUTPUT_PATH_D, lines.join('\n') + '\n');
+    console.log(`書き出し: ${OUTPUT_PATH_D}`);
+}
+
+async function main() {
+    const server = createStaticServer(PROJECT_ROOT);
+    await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+    const addr = server.address();
+    const baseUrl = `http://127.0.0.1:${addr.port}`;
+    const browser = await chromium.launch({ headless: true });
+
     try {
         const context = await browser.newContext();
         const page = await context.newPage();
 
-        // 職業一覧を取得（先頭の goto で1回だけ）
-        await page.goto(`${baseUrl}/ro4/m/calcx.html`, { waitUntil: 'networkidle', timeout: 60000 });
-        await page.waitForTimeout(500);
-        const jobs = await page.evaluate(() =>
-            Array.from(document.getElementById('OBJID_SELECT_JOB').options).map((o) => ({
-                value: o.value,
-                text: o.text,
-            }))
-        );
-        console.log(`職業数: ${jobs.length}`);
-
-        // Pass A: 全職業 × 通常攻撃
-        lines.push('# Pass A: 全職業（通常攻撃・デフォルトステータス）');
-        let count = 0;
-        for (const job of jobs) {
-            const url = await exportUrlForJob(page, baseUrl, job.value);
-            if (!url) {
-                console.warn(`  [skip] ${job.text}: URL出力が空`);
-                continue;
-            }
-            lines.push(`# ${job.text}`);
-            lines.push(canonicalizeUrl(url));
-            count++;
-            if (count % 10 === 0) console.log(`  ${count}/${jobs.length} 完了`);
+        if (ONLY_PASS === 'D') {
+            await runPassD(page, baseUrl);
+        } else {
+            await runPassABC(page, baseUrl);
         }
-        console.log(`Pass A 完了: ${count}件`);
-
-        // Pass B: 代表職業 × スキル攻撃手段
-        lines.push('');
-        lines.push('# Pass B: 代表職業（スキル攻撃手段選択）');
-        let countB = 0;
-        for (const job of jobs) {
-            if (!SKILL_ATTACK_REPRESENTATIVES.has(job.text)) continue;
-            const url = await exportUrlForJobWithSkillAttack(page, baseUrl, job.value);
-            if (!url) {
-                console.warn(`  [skip] ${job.text}: スキル攻撃手段の選択肢なし、またはURL出力が空`);
-                continue;
-            }
-            lines.push(`# ${job.text}（スキル攻撃）`);
-            lines.push(canonicalizeUrl(url));
-            countB++;
-        }
-        console.log(`Pass B 完了: ${countB}件`);
-
-        // Pass C: 5次職代表12職業 × 2バリアント（通常攻撃/スキル攻撃）。装備・合法配分
-        // ステータス・弱モンスターを設定し、実際に非ゼロの与ダメージ・詠唱時間を持つ
-        // セーブデータを生成する（残件台帳 B-32）。Pass A/B の101件は一切変更しない。
-        lines.push('');
-        lines.push('# Pass C: 5次職代表12職業（装備・ステータス・対象モンスター設定込み。残件台帳 B-32）');
-        let countC = 0;
-        for (const [jobText, archetype] of PASS_C_TARGET_JOBS) {
-            const urlNormal = await exportUrlForJobPassC(page, baseUrl, jobText, archetype, false);
-            lines.push(`# ${jobText}（Pass C 通常攻撃）`);
-            lines.push(canonicalizeUrl(urlNormal));
-            countC++;
-
-            const urlSkill = await exportUrlForJobPassC(page, baseUrl, jobText, archetype, true);
-            lines.push(`# ${jobText}（Pass C 技能攻撃）`);
-            lines.push(canonicalizeUrl(urlSkill));
-            countC++;
-
-            console.log(`  Pass C: ${jobText} 完了（${countC}件）`);
-        }
-        console.log(`Pass C 完了: ${countC}件`);
 
         await context.close();
-        console.log(`合計: ${count + countB + countC}件`);
     } finally {
         await browser.close();
         await new Promise((resolve, reject) => server.close((err) => (err ? reject(err) : resolve())));
     }
-
-    writeFileSync(OUTPUT_PATH, lines.join('\n') + '\n');
-    console.log(`書き出し: ${OUTPUT_PATH}`);
 }
 
 main().catch((err) => {
