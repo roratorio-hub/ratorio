@@ -1283,8 +1283,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル設定
 			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 500;								// ダメージ間隔
-			n_Delay[6] = 4000 + (n_A_ActiveSkillLV * 1000);	// オブジェクト存続時間
+			n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);	// ダメージ間隔
+			n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);	// オブジェクト存続時間
 			// 固定ダメージ設定
 			CS.w_HIT = 100;									// 命中率 100%
 			w_DMG[2] = 500 + 100 * n_A_ActiveSkillLV;		// 固定ダメージ計算式
@@ -1434,7 +1434,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			wBai[1] = Math.floor(wBai[1] * n_A_BaseLV / 100);
 			wBai[0] += GetBattlerMatkPercentUp();
 			wBai[1] += GetBattlerMatkPercentUp();
-			CS.wCast = 1000 + 200 * n_A_ActiveSkillLV;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			var wHell_DMG1 = [0,0,0];
 			var wHell_DMG2 = [0,0,0];
 			set_n_A_Weapon_zokusei(3);
@@ -1485,9 +1485,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			set_n_A_Weapon_zokusei(4);
 			if(!CS.n_AS_MODE) CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 			else CS.wHITsuu = 4;
-			CS.wCast = 500 + 1000 * n_A_ActiveSkillLV;
-			CS.n_KoteiCast = 500;
-			n_Delay[7] = 1000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			var wC_DMG = new Array();
 			for(var i=0;i<=5;i++) wC_DMG[i] = [0,0,0];
 			var wBK_MATK = [0,0,0];
@@ -1565,10 +1565,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(2);
-			CS.wCast = Math.min(9000, 4000 + 1000 * n_A_ActiveSkillLV);
-			CS.n_KoteiCast = Math.max(1000, 6000 - 1000 * n_A_ActiveSkillLV);
-			n_Delay[7] = 1000;
-			CS.wbairitu = 500 + 500 * n_A_ActiveSkillLV;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.wbairitu += GetBattlerMatkPercentUp();
 			var wT_DMG1 = [0,0,0];
 			var wT_DMG2 = [0,0,0];
@@ -2308,15 +2308,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 			}
-			CS.wHITsuu = 1;
-			CS.wCast = 500;
-			if(n_A_ActiveSkillLV==10) n_Delay[2] = 500;
-			else if(n_A_ActiveSkillLV==9) n_Delay[2] = 600;
-			else if(n_A_ActiveSkillLV==8) n_Delay[2] = 700;
-			else if(n_A_ActiveSkillLV>=6) n_Delay[2] = 800;
-			else if(n_A_ActiveSkillLV>=4) n_Delay[2] = 900;
-			else n_Delay[2] = 1000;
-			CS.wbairitu = 100;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.wbairitu += GetBattlerMatkPercentUp();
 			var wBunsan = 1;
 			if(!CS.n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
@@ -2355,10 +2350,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 				w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 			}
-			CS.wHITsuu = n_A_ActiveSkillLV;
-			CS.wCast = 1000;
-			n_Delay[2] = 1000;
-			CS.wbairitu = 100;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.wbairitu += GetBattlerMatkPercentUp();
 			var wBunsan = 1;
 			if(!CS.n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
@@ -2384,13 +2379,13 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		case SKILL_ID_FIRE_PILLAR:
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(2);
-			CS.wbairitu = 100;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.directSubtractionMdef = true;
 			CS.n_bunkatuHIT = 1;
 			set_n_A_Weapon_zokusei(3);
-			CS.wHITsuu = (n_A_ActiveSkillLV +2);
-			CS.wCast = 3300 - (300 * n_A_ActiveSkillLV);
-			n_Delay[2] = 1000;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_Heal_MATK[i];
 				w_MATK[i] = Math.floor(w_MATK[i] * (40 + 20 * n_A_ActiveSkillLV) / 100) + 100 + 50 * n_A_ActiveSkillLV;

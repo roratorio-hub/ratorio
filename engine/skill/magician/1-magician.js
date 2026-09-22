@@ -49,7 +49,11 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 100;
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

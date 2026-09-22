@@ -142,6 +142,12 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.damageInterval = function(skillLv) {
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {
+				return 4000 + skillLv * 1000;
+			}
 		}),
 
 		// ----------------------------------------------------------------
