@@ -8,7 +8,10 @@
  */
 import { CCharaConfNizi } from "../../chara/CCharaConfNizi.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
-import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
+import { GetHigherJobSeriesID } from "../../data/mig.job.h.js";
+import { n_A_AGI, n_A_DEX, n_A_JOB } from "../../runtime/roro-state.js";
+import { GetCharaConfNizi } from "../../bridge/chara-conf-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ASHURA_HAOKEN, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, SKILL_ID_BAKURETSU_HADO, SKILL_ID_COMBO_SANDAN_MONK,
     SKILL_ID_HAKKEI, SKILL_ID_IBUKI, SKILL_ID_KIDATSU, SKILL_ID_KIKO, SKILL_ID_KIKO_TENI, SKILL_ID_KONGO,
@@ -244,7 +247,7 @@ export const skills = [
 				var kidan = 0;
 
 				// 気弾数
-				kidan = this.CountOfKidan(charaDataManger);
+				kidan = this.CountOfKidan();
 
 				// 補正
 				if (kidan > skillLv) {
@@ -258,7 +261,7 @@ export const skills = [
 				var kidan = 0;
 
 				// 気弾数
-				kidan = this.CountOfKidan(charaDataManger);
+				kidan = this.CountOfKidan();
 
 				// 補正
 				if (kidan > skillLv) {
@@ -272,16 +275,17 @@ export const skills = [
 				return 500;
 			}
 
-			this.CountOfKidan = function(charaDataManger) {
+			// charaDataManger は本番の呼び出し規約に存在しないメソッドしか持たない
+			// （B-37）ため、他の defineSkill と同じくモジュールレベルの UsedSkillSearch /
+			// g_confDataNizi を直接参照する。モンク系（GetHigherJobSeriesID==15）は
+			// 自己支援スキル、それ以外は二次職支援（気功転移）の設定値を使う。
+			this.CountOfKidan = function() {
 				var kidan = 0;
 
-				// モンク系の自己支援
-				kidan = charaDataManger.UsedSkillSearch(SKILL_ID_KIKO);
-
-				// 気功転移等による二次職支援
-				if (kidan == 0) {
-					kidan = charaDataManger
-							.GetCharaConfNizi(CCharaConfNizi.CONF_ID_KIKO);
+				if (GetHigherJobSeriesID(n_A_JOB) == 15) {
+					kidan = UsedSkillSearch(SKILL_ID_KIKO);
+				} else {
+					kidan = GetCharaConfNizi(CCharaConfNizi.CONF_ID_KIKO);
 				}
 
 				return kidan;

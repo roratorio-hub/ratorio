@@ -392,10 +392,6 @@ export const skills = [
 				return 100;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return 1 + Math.floor(charaDataManger.GetCharaJobLv() / 20);
-			}
-
 		}),
 
 		// ----------------------------------------------------------------
@@ -456,18 +452,6 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 10 + 1 * skillLv;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 100 + 40 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				return pow;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {

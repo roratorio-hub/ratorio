@@ -136,21 +136,6 @@ export const skills = [
 				return 8 + 2 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = charaDataManger.GetCharaStr() + charaDataManger.GetCharaDex();
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				// ベースレベル補正がかからない威力
-				pow += 300 + 100 * skillLv;
-
-				return pow;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return Math.max(0, 1000 - 200 * skillLv);
 			}
@@ -269,18 +254,6 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 3 * skillLv;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 200 + 100 * skillLv + charaDataManger.GetCharaDex();
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
-
-				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -465,28 +438,6 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 35 + 5 * skillLv;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				switch (charaDataManger.GetMobSize()) {
-				case SIZE_ID_SMALL:
-					pow = 300 + 400 * skillLv;
-					break;
-				case SIZE_ID_MEDIUM:
-					pow = 300 + 350 * skillLv;
-					break;
-				case SIZE_ID_LARGE:
-					pow = 300 + 300 * skillLv;
-					break;
-				}
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
-
-				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

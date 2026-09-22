@@ -69,6 +69,13 @@ export const skills = [
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger, option) {
+				// 詠唱シミュレータ（castsim.js）は option を渡さない。戦闘コンテキストが
+				// 無いと「呼び出し元の現在値をそのまま返す」(w==0)分岐は無意味な値になる
+				// ため、option 無しは 0 を返す。
+				if (!option) {
+					return 0;
+				}
+
 				var w = option.GetOptionValue(0);
 
 				if (w == 0) {
@@ -197,18 +204,6 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 8 + 2 * skillLv;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 500 + 100 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				return pow;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
@@ -565,23 +560,6 @@ export const skills = [
 				return 15;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 200 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				// 武器属性による補正
-				if (charaDataManger.GetCharaAttackElement() == ELM_ID_WIND) {
-					pow = Math.floor(pow * 125 / 100);
-				}
-
-				return pow;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000 * skillLv;
 			}
@@ -603,18 +581,6 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 22 - 2 * skillLv;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 100 * skillLv + charaDataManger.GetCharaDex();
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				return pow;
 			}
 
 		}),

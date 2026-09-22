@@ -433,14 +433,6 @@ export const skills = [
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 0;
 			}
-			this.Power = function(skillLv, charaDataManger) {
-				let pow = 0;
-				// 基本式
-				const sklLvRuneMastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
-				pow += 100 * sklLvRuneMastery;
-				pow += 100 * Math.floor(charaDataManger.GetCharaInt() / 8);
-				return pow;
-			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000;
 			}

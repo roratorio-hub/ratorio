@@ -481,7 +481,9 @@ export const skills = [
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger, option) {
-				if (option.GetOptionValue(0) == 1) {
+				// 詠唱シミュレータ（castsim.js）は option を渡さない。その場合は
+				// 既定ブランチ（option値0扱い）を返す。
+				if (option && option.GetOptionValue(0) == 1) {
 					return 0;
 				}
 				return 2000;

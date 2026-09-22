@@ -4,6 +4,7 @@ import { CMigConstDataManager } from "../data/CMigConstDataManager.js";
 import { HtmlGetObjectCheckedById, MallocArray, DivideDigits3 } from "./util.js";
 import { n_B_TAISEI } from "../monster/mobconfplayer.js";
 import { g_dataManagerMobConfInput } from "../monster/CMobConfInput.js";
+import { RegisterGetCharaConfNizi } from "../bridge/chara-conf-bridge.js";
 // === END AUTO-GENERATED IMPORTS ===
 "use strict";
 
@@ -166,3 +167,8 @@ export function set_g_objCharaConfCustomDef(v) { g_objCharaConfCustomDef = v; }
 export function set_g_objCharaConfCustomSkill(v) { g_objCharaConfCustomSkill = v; }
 export function set_g_objCharaConfCustomSpecStatus(v) { g_objCharaConfCustomSpecStatus = v; }
 export function set_g_objCharaConfCustomStatus(v) { g_objCharaConfCustomStatus = v; }
+
+// chara-conf-bridge.js 経由でのアクセスを登録する（skill-search-bridge.js と同じ理由。
+// engine/skill/*.js から本ファイルを直接 import すると CSkillManager.js 経由の
+// 循環 import で TDZ を踏むため、依存ゼロのブリッジ越しに公開する）。
+RegisterGetCharaConfNizi((confId) => g_confDataNizi[confId]);

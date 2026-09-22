@@ -45,22 +45,6 @@ export const skills = [
 				return 20 + 10 * Math.floor((skillLv - 1) / 5);
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-				var edp = 0;
-
-				// 基本式
-				pow = 300 + 50 * skillLv;
-
-				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
-				if (edp > 0) {
-					pow = Math.floor(pow / 2);
-				}
-
-				return pow;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 500;
 			}

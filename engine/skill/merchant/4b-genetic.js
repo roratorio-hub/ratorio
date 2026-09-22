@@ -88,20 +88,6 @@ export const skills = [
 				return 40 + 2 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-				var powCart = 0;
-				var powInt = 0;
-
-				// 基本式
-				pow = 60 * skillLv;
-				powCart = 50 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-				powInt = charaDataManger.GetCharaInt() / 40;
-				pow += Math.floor(powCart * powInt);
-
-				return pow;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 500 + 500 * skillLv;
 			}

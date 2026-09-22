@@ -91,18 +91,6 @@ export const skills = [
 				return 6 + 4 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 200 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
-
-				return pow;
-			}
-
 			this.dispHitCount = function(skillLv, charaDataManger) {
 				return 2;
 			}
@@ -162,22 +150,6 @@ export const skills = [
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 20;
-			}
-
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = (50 + Math.floor(charaDataManger.GetCharaDex() / 4)) * skillLv;
-				pow *= 0.4 * charaDataManger.UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN);
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
-
-				// ベースレベル補正がかからない威力
-				pow += 10 * charaDataManger.GetCharaJobLv();
-
-				return pow;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

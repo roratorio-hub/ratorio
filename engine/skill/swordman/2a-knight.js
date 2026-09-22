@@ -288,7 +288,10 @@ export const skills = [
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger, option) {
-				return Math.min(1500, 500 * (option.GetOptionValue(0) + 1));
+				// 詠唱シミュレータ（castsim.js）は option を渡さない。その場合は
+				// option値0扱いにする（戦闘計算経路では必ず option が渡る）。
+				const optionValue = option ? option.GetOptionValue(0) : 0;
+				return Math.min(1500, 500 * (optionValue + 1));
 			}
 
 			this.genericFormula = true;

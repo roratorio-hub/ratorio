@@ -123,11 +123,6 @@ export const skills = [
 				return 100;
 			}
 
-			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
-				return (charaDataManger.GetMobBossType() == MONSTER_BOSSTYPE_BOSS) ? 100
-						: 50;
-			}
-
 		}),
 
 		// ----------------------------------------------------------------
@@ -152,11 +147,6 @@ export const skills = [
 				return 100;
 			}
 
-			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
-				return (charaDataManger.GetMobBossType() == MONSTER_BOSSTYPE_BOSS) ? 100
-						: 50;
-			}
-
 		}),
 
 		// ----------------------------------------------------------------
@@ -179,11 +169,6 @@ export const skills = [
 
 			this.Power = function(skillLv, charaDataManger) {
 				return 100;
-			}
-
-			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
-				return (charaDataManger.GetMobBossType() == MONSTER_BOSSTYPE_BOSS) ? 100
-						: 50;
 			}
 
 		}),

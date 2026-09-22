@@ -221,19 +221,6 @@ export const skills = [
 				return 50;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 100 * skillLv;
-				pow += 5 * charaDataManger.GetCharaAgi();
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 120);
-
-				return pow;
-			}
-
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
