@@ -243,7 +243,7 @@ export const skills = [
 				return 125 + 25 * skillLv;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
+			this.hitCount = function(skillLv, option) {
 				var kidan = 0;
 
 				// 気弾数

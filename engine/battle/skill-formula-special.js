@@ -6,7 +6,6 @@
  * （switch 末尾の `break;` → `return undefined;` の1箇所のみが非バイト単位の変更）。
  */
 import { myInnerHtml } from "../runtime/util.js";
-import { CCharaConfNizi } from "../chara/CCharaConfNizi.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
 import {
     CHARA_DATA_INDEX_DEF_DIV, CHARA_DATA_INDEX_DEF_MINUS, CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP,
@@ -59,7 +58,7 @@ import {
     SKILL_ID_GRAND_CROSS, SKILL_ID_GRAVITATION_FIELD, SKILL_ID_HAKKEI, SKILL_ID_HAPPO_KUNAI, SKILL_ID_HASAICHU,
     SKILL_ID_HEAL, SKILL_ID_HELLS_PLANT, SKILL_ID_HELL_INFERNO, SKILL_ID_HESPERUS_SLIT,
     SKILL_ID_HITO_DAICHINO_KENKYU, SKILL_ID_INSPIRATION, SKILL_ID_ISHINAGE, SKILL_ID_ISSEN, SKILL_ID_ISSEN_MAX,
-    SKILL_ID_KEN_SHUREN_GENETIC, SKILL_ID_KIKO, SKILL_ID_KOEN_KYAKU, SKILL_ID_KUNAI_NAGE, SKILL_ID_LAND_MINE,
+    SKILL_ID_KEN_SHUREN_GENETIC, SKILL_ID_KOEN_KYAKU, SKILL_ID_KUNAI_NAGE, SKILL_ID_LAND_MINE,
     SKILL_ID_MADOGEAR, SKILL_ID_MADOGEAR_LICENSE, SKILL_ID_MAGIC_CRUSHER, SKILL_ID_MAGMA_ILLUPTION,
     SKILL_ID_MAINFRAME_KAIZO, SKILL_ID_MASS_SPIRAL, SKILL_ID_MEDITATIO, SKILL_ID_MUCHANAGE, SKILL_ID_NAPALM_BEAT,
     SKILL_ID_NAPALM_VULKAN, SKILL_ID_ONO_SHUREN, SKILL_ID_ONO_SHUREN_MECHANIC, SKILL_ID_OVER_BLAND, SKILL_ID_PIERCE,
@@ -78,8 +77,7 @@ import {
 import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { CanonOBJ, KunaiOBJ, SyurikenOBJ } from "./attackmethod.dat.js";
 import { AS_PLUS } from "../skill/calcautospell.js";
-import { GetHigherJobSeriesID } from "../data/mig.job.h.js";
-import { __DIG3, g_confDataNizi, g_skillManager } from "../runtime/global.js";
+import { __DIG3, g_skillManager } from "../runtime/global.js";
 import {
     ATKbaiJYOUSAN, ApplyAttackDamageAmplify, ApplyElementRatio, ApplyHitJudgeElementRatio, ApplyLexAeterna,
     ApplyMagicalSkillDamageRatioChange, ApplyMagicalSpecializeMonster, ApplyMonsterDefence, ApplyPhysicalDamageRatio,
@@ -270,19 +268,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 					if(n_A_ActiveSkillLV == 1) CS.wHITsuu = 2;
 				}
 			}else if(n_A_ActiveSkill==SKILL_ID_SHIDAN){
-				CS.wbairitu += (25 + 25 * n_A_ActiveSkillLV);
-				if(GetHigherJobSeriesID(n_A_JOB)==15) {
-					w = UsedSkillSearch(SKILL_ID_KIKO);
-				}
-				else {
-					w = g_confDataNizi[CCharaConfNizi.CONF_ID_KIKO];
-				}
-				if(w > n_A_ActiveSkillLV){
-					w = n_A_ActiveSkillLV;
-				}
-				CS.wHITsuu = w;
-				CS.wCast = (1 + w) * 1000;
-				n_Delay[2] = 500;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				set_n_Enekyori(1);
 			}else if(n_A_ActiveSkill==SKILL_ID_TRIPLE_ACTION){
 				set_n_Enekyori(1);
