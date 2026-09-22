@@ -212,7 +212,7 @@ export const skills = [
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return -1000 + 1000 * skillLv;
+				return 3000;
 			}
 
 		}),

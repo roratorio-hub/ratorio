@@ -13,6 +13,7 @@ import {
 } from "../../monster/mobconfplayer.js";
 import { n_A_BaseLV, n_Delay } from "../../runtime/ro4-state.js";
 import { n_A_AGI, n_A_DEX, n_A_INT } from "../../runtime/roro-state.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import {
     SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
     SKILL_ID_GOHO, SKILL_ID_HASAICHU, SKILL_ID_KYUKIKO, SKILL_ID_RAIKODAN, SKILL_ID_RASETSU_HAOGEKI,
@@ -208,6 +209,10 @@ export const skills = [
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return Math.max(200, 1200 - 200 * skillLv);
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				return ROUNDDOWN((500 + 100 * skillLv) * n_A_BaseLV / 100);
 			}
 
 		}),
@@ -735,6 +740,15 @@ export const skills = [
 				return 5000;
 			}
 
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				let wEHP = option.GetOptionValue(1);
+				if (wEHP == 0) {
+					wEHP = mobData[3];
+					if (wEHP >= 100000) wEHP = 100000;
+				}
+				return Math.floor((wEHP / 100) * skillLv * n_A_BaseLV / 125);
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -785,8 +799,8 @@ export const skills = [
 				return 1000;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 2350;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 2.35;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {

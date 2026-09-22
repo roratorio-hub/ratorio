@@ -21,6 +21,8 @@
  * `g_confDataNizi` も本番では同じ箇所で `set_g_confDataNizi(new Array())` により
  * ページ読み込み時点で必ず非 null になる（null のままスキル計算に到達することは無い）ため、
  * ここでも空配列を設定する。
+ * `chara.js`（`CardNumSearch`等の登録元。SKILL_ID_HIGHNESS_HEALのCoolTimeが参照。
+ * Phase 6のパラメータ抽出で新規に追加された依存）も同じ理由で先に読み込む。
  */
 import { describe, it, expect, beforeAll } from 'vitest';
 
@@ -31,6 +33,7 @@ beforeAll(async () => {
     await import('@engine/data/mig.job.dat.js');
     await import('@engine/skill/learnedskill.js');
     await import('@engine/skill/skillstate.js');
+    await import('@engine/chara/chara.js');
     const globalMod = await import('@engine/runtime/global.js');
     globalMod.set_g_confDataNizi([]);
     const { CCharaConfNizi } = await import('@engine/chara/CCharaConfNizi.js');

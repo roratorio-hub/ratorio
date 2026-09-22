@@ -8,6 +8,7 @@
  */
 import { CCharaConfNizi } from "../../chara/CCharaConfNizi.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { GetHigherJobSeriesID } from "../../data/mig.job.h.js";
 import { n_A_AGI, n_A_DEX, n_A_JOB } from "../../runtime/roro-state.js";
 import { GetCharaConfNizi } from "../../bridge/chara-conf-bridge.js";
@@ -408,8 +409,8 @@ export const skills = [
 				return 100;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				return 800 + 10 * (option.GetOptionValue(0) - 1);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -457,7 +458,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 800 + 10 * (charaDataManger[CHARA_DATA_INDEX_MAXSP] - 1);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

@@ -8,6 +8,7 @@
  */
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { CardNumSearch } from "../../bridge/chara-search-bridge.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
     n_B_TAISEI
@@ -416,6 +417,10 @@ export const skills = [
 				return 1000;
 			}
 
+			this.hitCount = function(skillLv, option) {
+				return 18;
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -436,7 +441,7 @@ export const skills = [
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return (skillLv == 5) ? 2000 : (100 + 400 * skillLv);
+				return 400 * skillLv;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
@@ -444,7 +449,7 @@ export const skills = [
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 1000;
+				return CardNumSearch(611) ? 0 : 1000;
 			}
 
 		}),

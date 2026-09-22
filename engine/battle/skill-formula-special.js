@@ -6,7 +6,7 @@
  * （switch 末尾の `break;` → `return undefined;` の1箇所のみが非バイト単位の変更）。
  */
 import { myInnerHtml } from "../runtime/util.js";
-import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
+import { EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
 import {
     CHARA_DATA_INDEX_DEF_DIV, CHARA_DATA_INDEX_DEF_MINUS, CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP,
     CHARA_DATA_INDEX_MDEF_DIV, CHARA_DATA_INDEX_MDEF_MINUS, CHARA_DATA_INDEX_STATUS_ATK
@@ -769,7 +769,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.n_PerfectHIT_DMG = 0;
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
-			CS.wbairitu += 75 * n_A_ActiveSkillLV;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			var AS_ATK = 0;
 			if(CS.n_AS_MODE){
 				AS_ATK = Math.floor(mobData[13] / 2);
@@ -789,8 +789,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
 			}
 			AS_PLUS();
-			CS.wCast = 1000;
-			n_Delay[2] = 500;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
@@ -802,12 +802,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT_HYOUJI = 100;
 			set_n_A_Weapon_zokusei(0);
 
-			if(n_A_ActiveSkill==SKILL_ID_ASHURA_HAOKEN) {
-				CS.wbairitu += 700 + 10 * (attackMethodConfArray[0].GetOptionValue(0) -1);
-			}
-			else {
-				CS.wbairitu += 700 + 10 * (charaData[CHARA_DATA_INDEX_MAXSP]-1);
-			}
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 
 			var wASYU = 0;
 
@@ -837,8 +832,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
 			}
 			AS_PLUS();
-			CS.wCast = 4500 - 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 3500 - 500 * n_A_ActiveSkillLV;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
@@ -1164,12 +1159,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT_HYOUJI = 100;
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(6);
-			n_Delay[2] = 1000;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			set_n_Enekyori(2);
 			if(n_A_ActiveSkill==489){
-				CS.wCast = 400 * n_A_ActiveSkillLV;
-				n_Delay[7] = 1000;
-				if(CardNumSearch(611)) n_Delay[7] -= 1000;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}
 			for(var i=0;i<=2;i++){
 				if(n_A_ActiveSkill==25) w_DMG[i] = HealCalc(n_A_ActiveSkillLV,0,i,2,0);
@@ -1194,7 +1188,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT_HYOUJI = 100;
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(6);
-			CS.wCast = 5000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[0] = 1;
 			set_n_Enekyori(2);
 			if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
@@ -1227,11 +1221,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.n_PerfectHIT_DMG = 0;
 			if(n_A_ActiveSkill==SKILL_ID_TURN_UNDEAD){
 				set_n_A_Weapon_zokusei(6);
-				CS.wCast = 1000;
 			}else{
 				set_n_A_Weapon_zokusei(0);
-				CS.wCast = 8000 - n_A_ActiveSkillLV * 2000;
 			}
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			set_n_Enekyori(2);
 			if(mobData[18] <90){
 				w = 0;
@@ -1252,7 +1245,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				w_DMG[1] = Math.round((mobData[3] * w + w_DMG[0] * (100-w)/100));
 			}
 			for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-			n_Delay[2] = 3000;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
@@ -1262,11 +1255,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT_HYOUJI = 100;
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(6);
-			CS.wCast = 3000;
-			CS.n_KoteiCast = 2000;
-			n_Delay[7] = 1000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[0] = 1;
-			CS.wHITsuu = 18;
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			w_DMG[2] = n_A_BaseLV * 10 + n_A_INT;
 			w_DMG[2] = ApplyElementRatio(mobData, w_DMG[2],6);
 			if(mobData[18] <= 89 || 100 <= mobData[18]) w_DMG[2]=0;
@@ -1884,9 +1877,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		case SKILL_ID_SHURASHINDAN:
 			set_n_Enekyori(1);
-			n_Delay[7] = Math.max(200, 1200 - 200 * n_A_ActiveSkillLV);
-			CS.wbairitu = 500 + 100 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 			for(var i=0;i<=2;i++){
@@ -1937,29 +1929,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}else{
 				n_Delay[0] = 1;
-				n_Delay[2] = 1000;
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					CS.n_KoteiCast = 5500 - 500 * n_A_ActiveSkillLV;
-					n_Delay[7] = 2000 + 1000 * n_A_ActiveSkillLV;
-					break;
-
-				default:
-					CS.n_KoteiCast = 0;
-					n_Delay[7] = 5000;
-					break;
-
-				}
-
-				var wEHP = attackMethodConfArray[0].GetOptionValue(1);
-				if(wEHP == 0){
-					wEHP = mobData[3];
-					if(wEHP >= 100000) wEHP = 100000;
-				}
-				CS.wbairitu = Math.floor((wEHP / 100) * n_A_ActiveSkillLV * n_A_BaseLV / 125);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
 				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				for(var i=0;i<=2;i++){
@@ -2186,9 +2160,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		case SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT:
 		case SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE:
 			if(n_A_ActiveSkill == SKILL_ID_SENKO_RENGEKI){
-				n_Delay[2] = 1000;
-				n_Delay[3] = 2.35;
-				n_Delay[7] = 14000 - 2000 * n_A_ActiveSkillLV;
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}else n_Delay[0] = 1;
 			if(CS.n_AS_MODE) return w_DMG;
 			for(var i=0;i<=2;i++) w_DMG[i] = 0;
