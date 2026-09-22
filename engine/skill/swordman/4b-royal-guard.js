@@ -12,8 +12,9 @@ import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_SHIELD } from "../../const/EnumEq
 import { ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_SPBEGIN, ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
 import { ItemObjNew } from "../../equip/item.dat.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { n_A_Equip, n_A_INT, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV } from "../../runtime/roro-state.js";
+import { n_A_AGI, n_A_Equip, n_A_INT, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import {
     SKILL_ID_BANDING, SKILL_ID_BANISHING_POINT, SKILL_ID_BASH, SKILL_ID_CANNON_SPEAR,
     SKILL_ID_COUNT_OF_RG_FOR_BANDING,
@@ -221,6 +222,11 @@ export const skills = [
 				return 50;
 			}
 
+			this.Power = function(skillLv, charaDataManger) {
+				const wBAI = 100 * skillLv + n_A_AGI * 5;
+				return ROUNDDOWN(wBAI * n_A_BaseLV / 120);
+			}
+
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
@@ -399,7 +405,7 @@ export const skills = [
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 2000;
+				return 2500;
 			}
 
 		}),

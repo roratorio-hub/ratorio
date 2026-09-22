@@ -39,7 +39,7 @@ import {
 } from "../monster/mobconfplayer.js";
 import { MonsterObjNew } from "../monster/monster.dat.js";
 import {
-    BK_n_A_MATK, n_A_AGI, n_A_BodyZokusei, n_A_DEX, n_A_Equip, n_A_INT, n_A_JOB, n_A_JobLV, n_A_LUK, n_A_MATK,
+    BK_n_A_MATK, n_A_BodyZokusei, n_A_DEX, n_A_Equip, n_A_INT, n_A_JOB, n_A_JobLV, n_A_LUK, n_A_MATK,
     n_A_SHIELD_DEF_PLUS, n_A_STR, n_A_VIT, n_A_WeaponLV_seirenATK, n_A_WeaponType, n_B_DEF2, n_B_MDEF2
 } from "../runtime/roro-state.js";
 import {
@@ -485,11 +485,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			n_Delay[2] = 700;
-			if(n_A_ActiveSkill==SKILL_ID_SHIELD_BOOMERANG_TAMASHI) n_Delay[2] = 350;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			var wSBr = n_A_SHIELD_DEF_PLUS *4;
-			var wbairitu2 = (100 + 30 * n_A_ActiveSkillLV);
-			if(n_A_ActiveSkill==SKILL_ID_SHIELD_BOOMERANG_TAMASHI) wbairitu2 *= 2;
+			var wbairitu2 = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = charaData[CHARA_DATA_INDEX_STATUS_ATK] + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] + wSBr;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
@@ -518,22 +516,14 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			CS.wCast = 1000;
-			n_Delay[2] = 1000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
-			// 通常スキル倍率
-			var SdCBAI = [0,130,160,190,220,250];
-			/*
-			実測確認出来るまでコメントアウト
-
-			if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
-				SdCBAI = [0,360,420,480,540,600];
-			}
-			 */
+			var wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = CS.n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = ROUNDDOWN(w_DMG[i] * SdCBAI[n_A_ActiveSkillLV] / 100);
+				w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
 				w_DMG[i] -= CS.B_Total_DEF;
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 				if(n_B_KYOUKA[10]){
@@ -681,8 +671,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				if(EquipNumSearch(2495)) wGXbai3 += n_A_BaseLV;
 				w_DMG[i] = ROUNDDOWN(w_DMG[i] * (100+GetEquippedTotalSPEquip(5000+n_A_ActiveSkill)+GetEquippedTotalSPCardAndElse(5000+n_A_ActiveSkill) + wGXbai3) / 100);
 			}
-			CS.wCast = 3000;
-			n_Delay[2] = 1500;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.wLAch = true;
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_A_MATK[i];
@@ -763,8 +753,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			for(var i=0;i<=2;i++){
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
 			}
-			CS.wCast = 1500 + 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1500 + n_A_ActiveSkillLV * 500;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
@@ -1431,19 +1421,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}else{
 				n_Delay[0] = 1;
-
-				// 特定の戦闘エリアでの補正
-				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-					n_Delay[7] = 2500 + 500 * n_A_ActiveSkillLV;
-					break;
-
-				default:
-					n_Delay[7] = 3000;
-					break;
-
-				}
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
 				w_DMG[0] = CS.n_DEATH_BOUND[0];
 				w_DMG[1] = CS.n_DEATH_BOUND[1];
@@ -1835,11 +1813,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(1);
-			n_Delay[2] = 1000;
-			n_Delay[7] = 5000;
-			var wBAI = 100 * n_A_ActiveSkillLV;
-			wBAI += n_A_AGI * 5;
-			wBAI = ROUNDDOWN(wBAI * n_A_BaseLV / 120);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			var wBAI = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			wBAI += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			wBAI = ATKbaiJYOUSAN(wBAI);
 			for(var i=0;i<=2;i++){
@@ -1868,10 +1844,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			wBai[1] = n_A_ActiveSkillLV * 300 + n_A_STR + n_A_DEX;
 			wBai[1] = Math.floor(wBai[1] * n_A_BaseLV / 150);
 			wBai[2] = n_A_ActiveSkillLV * 200;
-			CS.wCast = 2000;
-			CS.n_KoteiCast = 1000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			n_Delay[1] = n_Delay[1] * 2;
-			n_Delay[7] = 2500;
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
 			var wOB_DMG = new Array();
 			wOB_DMG[0] = [0,0,0];

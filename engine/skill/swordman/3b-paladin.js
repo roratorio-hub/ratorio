@@ -103,7 +103,16 @@ export const skills = [
 				return 25 + 3 * skillLv;
 			}
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				// 通常スキル倍率
+				const SdCBAI = [0,130,160,190,220,250];
+				/*
+				実測確認出来るまでコメントアウト
+
+				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+					return [0,360,420,480,540,600][skillLv];
+				}
+				*/
+				return SdCBAI[skillLv];
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000;

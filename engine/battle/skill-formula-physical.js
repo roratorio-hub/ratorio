@@ -34,7 +34,7 @@ import {
 } from "../monster/mobconfplayer.js";
 import { MONSTER_ID_PLAYER } from "../monster/monster.dat.js";
 import {
-    SU_STR, n_A_AGI, n_A_DEX, n_A_Equip, n_A_INT, n_A_JOB, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV, n_A_WeaponType,
+    SU_STR, n_A_AGI, n_A_DEX, n_A_Equip, n_A_JOB, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV, n_A_WeaponType,
     n_A_Weapon_ATKplus
 } from "../runtime/roro-state.js";
 import {
@@ -85,7 +85,7 @@ import {
     SKILL_ID_RADIANT_SPEAR, SKILL_ID_RAGE_BURST_ATTACK, SKILL_ID_RAIKODAN, SKILL_ID_RAPID_SHOWER,
     SKILL_ID_RASETSU_HAOGEKI, SKILL_ID_RASETSU_HAOGEKI_MAX, SKILL_ID_RENCHUHOGEKI, SKILL_ID_RENDASHO,
     SKILL_ID_RESEARCH_REPORT, SKILL_ID_RHYTHM_SHOOTING, SKILL_ID_ROLLING_CUTTER, SKILL_ID_ROSE_BLOSSOM,
-    SKILL_ID_RUNE_MASTERY, SKILL_ID_RUSH_QUAKE, SKILL_ID_RUSH_STRIKE, SKILL_ID_RYUSE_RAKKA,
+    SKILL_ID_RUSH_QUAKE, SKILL_ID_RUSH_STRIKE, SKILL_ID_RYUSE_RAKKA,
     SKILL_ID_RYUSE_RAKKA_TSUIGEKI, SKILL_ID_SAKUGETSU_KYAKU, SKILL_ID_SANDANSHO, SKILL_ID_SANREI_ITTAI,
     SKILL_ID_SAVAGENO_TAMASHI, SKILL_ID_SAVAGE_IMPACT, SKILL_ID_SAVAGE_LUNGE, SKILL_ID_SEIMEINO_TAMASHI,
     SKILL_ID_SEIMEINO_TAMASHI_KOKA_NOKORI_HP, SKILL_ID_SEITE_KORIN, SKILL_ID_SENKO_KYAKU, SKILL_ID_SENKO_RENGEKI,
@@ -211,11 +211,10 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// ストームブラスト
 			case SKILL_ID_STORM_BLAST: {
-				CS.wCast = 1000;
-				CS.n_KoteiCast = 1000;
-				n_Delay[7] = 8000;
-				const rune_mastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
-				CS.wbairitu = 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				break;
 			}
 

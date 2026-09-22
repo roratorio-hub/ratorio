@@ -14,8 +14,9 @@ import { ItemObjNew } from "../../equip/item.dat.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
-import { n_A_Equip, n_A_WeaponLV, n_A_Weapon_ATKplus } from "../../runtime/roro-state.js";
+import { n_A_Equip, n_A_INT, n_A_WeaponLV, n_A_Weapon_ATKplus } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import {
     SKILL_ID_AVANDANCE, SKILL_ID_CRUSH_STRIKE, SKILL_ID_DEATH_BOUND, SKILL_ID_DRAGONIC_AURA_STATE,
     SKILL_ID_DRAGON_HOWLING, SKILL_ID_DRAGON_TRAINING, SKILL_ID_ENCHANT_BLADE, SKILL_ID_FIGHTING_SPIRIT,
@@ -441,6 +442,10 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 8000;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				const rune_mastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
+				return 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
 			}
 		}),
 
