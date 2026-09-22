@@ -249,6 +249,17 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 5000;
 			}
+			this.damageInterval = function(skillLv) {                   // ダメージ間隔
+				return 250;
+			}
+			this.Power = function(skillLv, charaDataManger, option) {
+				// 風魔手裏剣 -構築-の習得Lv
+				const fumashuriken_kouchiku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_KOUCHIKU), option.GetOptionValue(0));
+				let wbairitu = 50 * skillLv;								// 基礎倍率
+				wbairitu += 5 * skillLv * fumashuriken_kouchiku_lv;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// 特性ステータス補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);				// BaseLv補正
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -282,6 +293,19 @@ export const skills = [
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+				// 風魔手裏剣 -掌握-の習得Lv
+				const fumashuriken_shouaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_SHOUAKU), option.GetOptionValue(1));
+				let wbairitu;
+				if (parentSkillId === undefined) {
+					wbairitu = 3800 + 100 * skillLv;			// 初撃 ダメージ倍率
+				} else {
+					wbairitu = 10500 + 200 * skillLv;			// 追撃 ダメージ倍率
+				}
+				wbairitu += 48 * skillLv * fumashuriken_shouaku_lv;		// 習得済みスキル条件
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 			}
 		}),
 

@@ -346,6 +346,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.dispHitCount = function(skillLv, charaDataManger, option) {
+				return option.GetOptionValue(1) ? 2 + option.GetOptionValue(1) : 0;
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -748,6 +752,10 @@ export const skills = [
 
 			this.Power = function(skillLv, charaDataManger) {
 				return -1;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger, option) {
+				return option.GetOptionValue(1) ? 2 + option.GetOptionValue(1) : 0;
 			}
 
 		}),

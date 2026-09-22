@@ -839,7 +839,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		case SKILL_ID_SHURIKEN_NAGE: {	// 手裏剣投げ
 			set_n_Enekyori(1);
 						CS.n_PerfectHIT_DMG = 0;
-			CS.wbairitu = 100 + 5 * n_A_ActiveSkillLV;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			// 投擲修練Lv
 			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
 			for(let i = 0; i <= 2; i++){
@@ -866,10 +866,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 				CS.w_HIT = 100;
 			}
 			set_n_Enekyori(1);
-			CS.wbairitu = 100 * n_A_ActiveSkillLV;
-			if(n_A_ActiveSkill==SKILL_ID_HAPPO_KUNAI){
-				CS.wbairitu = 300 + 60 * n_A_ActiveSkillLV;
-			}
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			var wKUNAI = KunaiOBJ[attackMethodConfArray[0].GetOptionValue(0)][0];
 
 			for(var i=0;i<=2;i++){
@@ -899,13 +896,11 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT_HYOUJI = 100;
 			CS.w_HIT = 100;
 			set_n_Enekyori(1);
-			n_Delay[2] = 1000;
-			n_Delay[7] = 1000;
-			CS.wCast = 800 * n_A_ActiveSkillLV - 800;
-			CS.n_KoteiCast = 800;
-			// 投擲修練Lv
-			const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
-			CS.wbairitu = n_A_ActiveSkillLV * (50 + Math.floor(n_A_DEX / 4)) * toteki_shuren_lv * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			var wKUNAI = 0;
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = CS.n_A_DMG[i] + wKUNAI;
@@ -927,12 +922,12 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		case SKILL_ID_FUMASHURIKEN_NAGE:
 			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-			CS.wbairitu += (-50 + 250 * n_A_ActiveSkillLV);
+			CS.wbairitu += g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 			set_n_Enekyori(1);
-			CS.wCast = 3500 - 500 * n_A_ActiveSkillLV;
-			n_Delay[2] = 1000;
-			CS.wActiveHitNum = 2 + Math.round(n_A_ActiveSkillLV / 2);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = Math.floor(CS.n_A_DMG[i] * CS.wbairitu / 100);
 				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
@@ -969,8 +964,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			if(CS.w_HIT <0) CS.w_HIT = 0;
 			CS.w_HIT_HYOUJI = CS.w_HIT;
 			set_n_Enekyori(1);
-			CS.wCast = 1000;
-			n_Delay[7] = 10000;
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			for(var i=0;i<=2;i++){
 				var dm = [5000,7500,10000];
 				w_DMG[i] = Math.floor(dm[i] * n_A_ActiveSkillLV);
@@ -1005,11 +1000,10 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			else {
 				w_1senHP = charaData[CHARA_DATA_INDEX_MAXHP];
 			}
-			CS.wActiveHitNum = 0;
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			var wKageBai = 100;
 			if(attackMethodConfArray[0].GetOptionValue(1)){
 				wKageBai = 120 + 20 * attackMethodConfArray[0].GetOptionValue(1);
-				CS.wActiveHitNum = 2 + attackMethodConfArray[0].GetOptionValue(1);
 			}
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = CS.n_A_DMG[i] * n_A_ActiveSkillLV + w_1senHP;
@@ -2036,10 +2030,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		case SKILL_ID_ZYUMONZIGIRI:
 			set_n_Enekyori(1);
-			CS.wActiveHitNum = 2;
-			n_Delay[7] = Math.max(600, 6100 - 1100 * n_A_ActiveSkillLV);
-			CS.wbairitu = 200 * n_A_ActiveSkillLV;
-			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 120);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 

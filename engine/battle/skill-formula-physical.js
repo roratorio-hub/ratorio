@@ -61,7 +61,7 @@ import {
     SKILL_ID_FATAL_MENUS, SKILL_ID_FATAL_SHADOW_CRAW, SKILL_ID_FEATHER_SPRINKLE, SKILL_ID_FEORICHAGI,
     SKILL_ID_FERAL_CLAW, SKILL_ID_FIRE_DANCE, SKILL_ID_FIRE_RAIN, SKILL_ID_FIRING_TRAP, SKILL_ID_FLAME_THROWER,
     SKILL_ID_FLAME_TRAP, SKILL_ID_FLANGE_SHOT, SKILL_ID_FLICKING_TONADO, SKILL_ID_FREEZING_TRAP,
-    SKILL_ID_FRENZY_FANG, SKILL_ID_FULL_BASTER, SKILL_ID_FUMASHURIKEN_KOUCHIKU, SKILL_ID_FUMASHURIKEN_NAGE,
+    SKILL_ID_FRENZY_FANG, SKILL_ID_FULL_BASTER, SKILL_ID_FUMASHURIKEN_KOUCHIKU,
     SKILL_ID_FUMASHURIKEN_RANKA, SKILL_ID_FUMASHURIKEN_SHOUAKU, SKILL_ID_GALE_STORM, SKILL_ID_GENJUTSU_KAGE_NUI,
     SKILL_ID_GENJUTSU_KUNAI, SKILL_ID_GOHO, SKILL_ID_GRAHAM_LIGHT, SKILL_ID_GRAND_JUDGEMENT,
     SKILL_ID_GRAND_JUDGEMENT_STATE, SKILL_ID_GREAT_ECHO, SKILL_ID_GRENADES_DROPPING, SKILL_ID_GRIM_TOOTH,
@@ -362,14 +362,11 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			case SKILL_ID_FUMASHURIKEN_RANKA: {	// 風魔手裏剣 -乱華-
 				set_n_Enekyori(1);
-				CS.wActiveHitNum = 5;
-				CS.wCast = Math.max(1200, 2200 - 200 * n_A_ActiveSkillLV);
-				CS.n_KoteiCast = Math.min(1800, 800 + 200 * n_A_ActiveSkillLV);
-				n_Delay[7] = 500;
-				// 風魔手裏剣投げの習得Lv
-				const fumashuriken_nage_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_NAGE), attackMethodConfArray[0].GetOptionValue(0));
-				CS.wbairitu = 150 * n_A_ActiveSkillLV + n_A_STR + 100 * fumashuriken_nage_lv;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				if(!CS.n_AS_MODE && n_A_WeaponType != 16) CS.n_Buki_Muri = true;
 				break;
 			}
@@ -531,15 +528,10 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				// 設置
 				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = 250;		// ダメージ間隔
+				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);		// ダメージ間隔
 				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
-				// 風魔手裏剣 -構築-の習得Lv
-				const fumashuriken_kouchiku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_KOUCHIKU), attackMethodConfArray[0].GetOptionValue(0));
 				// ダメージ倍率
-				CS.wbairitu = 50 * n_A_ActiveSkillLV;										// 基礎倍率
-				CS.wbairitu += 5 * n_A_ActiveSkillLV * fumashuriken_kouchiku_lv;			// 習得済みスキル条件
-				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);					// 特性ステータス補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);						// BaseLv補正
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				break;
 			}
 			//「蜃気楼　不知火」スキル「風魔手裏剣 -構築-」
@@ -551,17 +543,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 風魔手裏剣 -掌握-の習得Lv
-				const fumashuriken_shouaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_SHOUAKU), attackMethodConfArray[0].GetOptionValue(1));
-				// 基礎倍率
-				if (battleCalcInfo.parentSkillId === undefined) {
-					CS.wbairitu = 3800 + 100 * n_A_ActiveSkillLV;						// 初撃 ダメージ倍率
-				} else {
-					CS.wbairitu = 10500 + 200 * n_A_ActiveSkillLV;						// 追撃 ダメージ倍率
-				}
-				CS.wbairitu += 48 * n_A_ActiveSkillLV * fumashuriken_shouaku_lv;		// 習得済みスキル条件
-				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);				// 特性ステータス補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);					// BaseLv補正
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 				break;
 			}
 

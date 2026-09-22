@@ -7,14 +7,17 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
-import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_DEX, n_A_JobLV, n_A_STR } from "../../runtime/roro-state.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
 import {
     SKILL_ID_BAKURETSU_KUNAI, SKILL_ID_DOFU_GOKAI,
-    SKILL_ID_FUFU_SEIRAN, SKILL_ID_FUMASHURIKEN_RANKA, SKILL_ID_FU_COUNT_OF_FU, SKILL_ID_FU_ELEMENT_OF_FU,
+    SKILL_ID_FUFU_SEIRAN, SKILL_ID_FUMASHURIKEN_NAGE, SKILL_ID_FUMASHURIKEN_RANKA, SKILL_ID_FU_COUNT_OF_FU,
+    SKILL_ID_FU_ELEMENT_OF_FU,
     SKILL_ID_GENZYUTSU_BUNSHIN, SKILL_ID_GENZYUTSU_GENWAKU, SKILL_ID_GENZYUTSU_KAGEFUMI,
     SKILL_ID_GENZYUTSU_KAGEMUSHA, SKILL_ID_GENZYUTSU_KOUGETSU, SKILL_ID_GENZYUTSU_KYOGAKU,
     SKILL_ID_GENZYUTSU_KYOMUNOKAGE, SKILL_ID_GENZYUTSU_OBOROGENSO, SKILL_ID_GENZYUTSU_ZANGETSU,
@@ -99,6 +102,10 @@ export const skills = [
 				return Math.max(600, 6100 - 1100 * skillLv);
 			}
 
+			this.Power = function(skillLv, charaDataManger) {
+				return ROUNDDOWN(200 * skillLv * n_A_BaseLV / 120);
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -156,12 +163,21 @@ export const skills = [
 				return -800 + 800 * skillLv;
 			}
 
+			this.CastTimeFixed = function(skillLv, charaDataManger) {
+				return 800;
+			}
+
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 1000;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
+				return skillLv * (50 + Math.floor(n_A_DEX / 4)) * toteki_shuren_lv * 0.4 * n_A_BaseLV / 100 + 10 * n_A_JobLV;
 			}
 
 		}),
@@ -207,8 +223,11 @@ export const skills = [
 				return 20 + 4 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				// 風魔手裏剣投げの習得Lv
+				const fumashuriken_nage_lv = Math.max(LearnedSkillSearch(SKILL_ID_FUMASHURIKEN_NAGE), option.GetOptionValue(0));
+				const wbairitu = 150 * skillLv + n_A_STR + 100 * fumashuriken_nage_lv;
+				return ROUNDDOWN(wbairitu * n_A_BaseLV / 100);
 			}
 
 			this.dispHitCount = function(skillLv, charaDataManger) {
