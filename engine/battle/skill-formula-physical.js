@@ -152,7 +152,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			case SKILL_ID_GRIM_TOOTH:
 				if(n_A_ActiveSkillLV >= 3) set_n_Enekyori(1);
 				else set_n_Enekyori(0);
-				CS.wbairitu += 20 * n_A_ActiveSkillLV;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				break;
 
 			case SKILL_ID_VENOM_KNIFE:

@@ -50,7 +50,6 @@ import {
     SKILL_ID_JUDGEMENT_CROSS, SKILL_ID_JUPITER_THUNDER, SKILL_ID_JUPITER_THUNDER_STORM, SKILL_ID_KAENZIN,
     SKILL_ID_KAGETOKI, SKILL_ID_KINNRYUU_HOU, SKILL_ID_KOUENKA, SKILL_ID_LESSON, SKILL_ID_LIGHTNING_BOLT,
     SKILL_ID_LIGHTNING_LAND, SKILL_ID_LIGHTNING_LOADER, SKILL_ID_LORD_OF_VERMILLION, SKILL_ID_MAGNUS_EXORCISMUS,
-    SKILL_ID_MAHOKEN_SHUREN,
     SKILL_ID_MATATABI_LANCE, SKILL_ID_METALIC_FURY, SKILL_ID_METALIC_SOUND, SKILL_ID_METEOR_STORM,
     SKILL_ID_METEOR_STORM_BUSTER, SKILL_ID_MIRIAM_LIGHT, SKILL_ID_MYSTERY_ILLUSION, SKILL_ID_NAPALM_VULKAN_STRIKE,
     SKILL_ID_NUMATIC_PROCERA, SKILL_ID_NYANTOMO_KENROKU, SKILL_ID_OMEGA_ABYSS_STRIKE, SKILL_ID_PHREMEN,
@@ -433,17 +432,10 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			// オブジェクト存続時間
 			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ間隔
-			n_Delay[5] = 300;
+			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
 			set_g_bDefinedDamageIntervals(true);
 			// 基本倍率
-			CS.wbairitu = 150 * n_A_ActiveSkillLV;
-			// SPL補正
-			CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-			// 魔法剣修練補正
-			const mahoken_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN));
-			CS.wbairitu += 15 * n_A_ActiveSkillLV * mahoken_shuren_lv;
-			// ベースレベル補正
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
 			// 攻撃回数（既定=範囲内=2Hit）
 			if (GetAttackMethodOptionValue(attackMethodConfArray, 0, 1) >= 1) {
 				CS.wHITsuu = 2;

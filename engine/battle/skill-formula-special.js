@@ -596,9 +596,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			n_Delay[0] = 1;
-			n_Delay[7] = 7000 + 500 * n_A_ActiveSkillLV;
-			CS.wCast = 1000;
-			var VSbai = 500 + 75 * n_A_ActiveSkillLV;
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			var VSbai = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			VSbai = ATKbaiJYOUSAN(VSbai);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = ROUNDDOWN((CS.n_A_DMG[i]) * VSbai / 100);
@@ -622,10 +622,9 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			set_n_Enekyori(1);
-			CS.wCast = 500;
-			n_Delay[2] = 800 + 200 * n_A_ActiveSkillLV;
-			var wbai = (300 + 50 * n_A_ActiveSkillLV);
-			if(UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbai = ROUNDDOWN(wbai / 2);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			var wbai = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			for(var i=0;i<=2;i++){
 				w_MATK[i] = n_A_MATK[i];
 				w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);

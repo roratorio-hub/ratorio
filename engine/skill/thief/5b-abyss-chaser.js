@@ -466,6 +466,16 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.damageInterval = function(skillLv) {                   // ダメージ間隔
+				return 300;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				let wbai = 150 * skillLv;
+				wbai += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				const mahoken_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN));
+				wbai += 15 * skillLv * mahoken_shuren_lv;
+				return Math.floor(wbai * n_A_BaseLV / 100);
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
 				// return this._CriActRate100(skillLv, charaData, specData, mobData);
 				return 0;

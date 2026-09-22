@@ -7,6 +7,8 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_CANCEL_EDP_POISON_ATTACK, SKILL_ID_CREATE_DEADLY_POISON, SKILL_ID_ENCHANT_DEADLY_POISON,
     SKILL_ID_KATAR_KENKYU, SKILL_ID_METEOR_ASSALT, SKILL_ID_SOUL_BREAKER
@@ -51,6 +53,12 @@ export const skills = [
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 800 + 200 * skillLv;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				let wbai = 300 + 50 * skillLv;
+				if (UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbai = ROUNDDOWN(wbai / 2);
+				return wbai;
 			}
 
 		}),
