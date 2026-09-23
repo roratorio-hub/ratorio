@@ -72,6 +72,20 @@ CSkillData.prototype.ground_installation = false;
  */
 CSkillData.prototype.genericFormula = false;
 
+/**
+ * スキル固有の計算式. 既定は null（個別の計算式なし）.
+ * シグネチャ: function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft)
+ * env は engine/battle/skill-formula-env.js の CreateSkillFormulaEnv() が作る戦闘計算側の依存
+ * （engine/skill/ から直接 import すると循環するもの）. 戻り値は使われない.
+ * CSkillManager.ApplyXxxFormula() からメソッドとして呼ばれるため、本体中の this はこのスキル定義を指す.
+ *   - PhysicalFormula: 物理基本計算式のパラメータ設定. 呼び出し後に共通の物理ダメージ計算が続く
+ *   - SpecialFormula: 物理特殊計算式. w_DMG 等へ書き込み、ダメージ計算をこの中で完結させる
+ *   - MagicalFormula: 魔法計算式のパラメータ設定. 呼び出し後に共通の魔法ダメージ計算が続く
+ */
+CSkillData.prototype.PhysicalFormula = null;
+CSkillData.prototype.SpecialFormula = null;
+CSkillData.prototype.MagicalFormula = null;
+
 // ---- 既定メソッド -----------------------------------------------------------
 /**
  * スキルの距離属性値を取得する. オーバーライドされていない場合は CSkillData.RANGE_SHORT (近接物理タイプ) が返される.

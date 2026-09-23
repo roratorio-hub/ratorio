@@ -124,6 +124,7 @@ import { g_skillManager } from "../runtime/global.js";
 import { ATKbaiJYOUSAN, BattleCalcSubDamagePhysicalCommon, GetBattlerAtkPercentUp } from "../bridge/battlecalc-bridge.js";
 import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { CS } from "./calc-state.js";
+import { CreateSkillFormulaEnv } from "./skill-formula-env.js";
 import {
     g_bDefinedDamageIntervals, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, n_SiegeMode,
     set_g_bDefinedDamageIntervals, set_n_A_Weapon_zokusei, set_n_Enekyori, set_w_DMG, w_DMG
@@ -544,6 +545,12 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 	-------------------------------------------------- */
 
 			default:
+				// engine/skill/<職業>/*.js の PhysicalFormula slot へ移行済みのスキルはそちらを呼ぶ
+				// （呼び出し後は break して、後続の共通物理ダメージ計算をそのまま通す）
+				if (g_skillManager.HasPhysicalFormula(n_A_ActiveSkill)) {
+					g_skillManager.ApplyPhysicalFormula(n_A_ActiveSkill, CreateSkillFormulaEnv(), battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+					break;
+				}
 				// engine/skill/<職業>/*.js の Power 等の slot へ移行済みのスキルはここで汎用計算式を適用する
 				if (!g_skillManager.IsGenericFormula(n_A_ActiveSkill) || (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_PHYSICAL) !== CSkillData.TYPE_PHYSICAL) {
 					bDefaultFormula = false;

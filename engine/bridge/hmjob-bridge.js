@@ -16,3 +16,4 @@ export function __registerHmjobFunctions(fns) {
 export function ApplySpecModify(...a)         { return _reg.ApplySpecModify?.(...a); }
 export function GetTotalPureBasicStatus(...a) { return _reg.GetTotalPureBasicStatus?.(...a); }
 export function GetTotalSpecStatus(...a)      { return _reg.GetTotalSpecStatus?.(...a); }
+export function GetPAtk(...a)                 { return _reg.GetPAtk?.(...a); }

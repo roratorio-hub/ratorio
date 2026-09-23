@@ -78,6 +78,7 @@ import {
 import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { SubName } from "./sub-name.js";
 import { CS } from "./calc-state.js";
+import { CreateSkillFormulaEnv } from "./skill-formula-env.js";
 import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     g_bDefinedDamageIntervals, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay,
@@ -572,6 +573,12 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 -------------------------------------------------- */
 
 		default:
+			// engine/skill/<職業>/*.js の MagicalFormula slot へ移行済みのスキルはそちらを呼ぶ
+			// （呼び出し後は break して、後続の共通魔法ダメージ計算をそのまま通す）
+			if (g_skillManager.HasMagicalFormula(n_A_ActiveSkill)) {
+				g_skillManager.ApplyMagicalFormula(n_A_ActiveSkill, CreateSkillFormulaEnv(), battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+				break;
+			}
 			// engine/skill/<職業>/*.js の Power 等の slot へ移行済みのスキルはここで汎用計算式を適用する
 			if (!g_skillManager.IsGenericFormula(n_A_ActiveSkill) || (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_MAGICAL) !== CSkillData.TYPE_MAGICAL) {
 				break;

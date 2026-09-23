@@ -86,6 +86,7 @@ import {
 } from "../bridge/battlecalc-bridge.js";
 import { SubName } from "./sub-name.js";
 import { CS } from "./calc-state.js";
+import { CreateSkillFormulaEnv } from "./skill-formula-env.js";
 import { GetPAtk, GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay, n_Enekyori, n_Heal_MATK, n_tok,
@@ -2571,6 +2572,14 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			break;
 
 		default:
+			// engine/skill/<職業>/*.js の SpecialFormula slot へ移行済みのスキルはそちらを呼ぶ
+			// （呼び出し後は break して、後続の共通末尾処理〔return w_DMG〕をそのまま通す。
+			//   hook 本体内の return は hook 自身を抜けるだけで、CS・w_DMG への書き込みは
+			//   共有された参照を直接書き換えるため、ここでの return 有無は結果に影響しない）
+			if (g_skillManager.HasSpecialFormula(n_A_ActiveSkill)) {
+				g_skillManager.ApplySpecialFormula(n_A_ActiveSkill, CreateSkillFormulaEnv(), battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+				break;
+			}
 			bPhysicalFormula = false;
 			break;
 
