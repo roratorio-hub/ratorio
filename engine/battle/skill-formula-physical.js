@@ -181,17 +181,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 「アークビショップ」スキル「グレイアムライト」
 
-			case SKILL_ID_FUMASHURIKEN_RANKA: {	// 風魔手裏剣 -乱華-
-				set_n_Enekyori(1);
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				if(!CS.n_AS_MODE && n_A_WeaponType != 16) CS.n_Buki_Muri = true;
-				break;
-			}
-
 			case SKILL_ID_FIRE_DANCE: {	// ファイヤーダンス
 				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				set_n_Enekyori(1);
@@ -207,36 +196,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.wCast = "不明";
 				n_Delay[0] = 2000;
 				break;
-
-			// 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
-			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_FUMASHURIKEN_SHOUAKU: {
-				set_n_Enekyori(1);			// 遠距離フラグ
-				// 詠唱など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);		// ダメージ間隔
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
-				// ダメージ倍率
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				break;
-			}
-			//「蜃気楼　不知火」スキル「風魔手裏剣 -構築-」
-			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-			case SKILL_ID_FUMASHURIKEN_KOUCHIKU: {
-				set_n_Enekyori(1);			// 遠距離フラグ
-				// 詠唱など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-				break;
-			}
 
 			// 「蜃気楼　不知火」スキル「影潜り」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ

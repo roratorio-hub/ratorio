@@ -7,7 +7,10 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_Enekyori, set_g_bDefinedDamageIntervals
+} from "../../runtime/ro4-state.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
@@ -260,6 +263,21 @@ export const skills = [
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// 特性ステータス補正
 				return Math.floor(wbairitu * n_A_BaseLV / 100);				// BaseLv補正
 			}
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_n_Enekyori(1);			// 遠距離フラグ
+				// 詠唱など
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// 設置
+				set_g_bDefinedDamageIntervals(true);
+				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);		// ダメージ間隔
+				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
+				// ダメージ倍率
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -306,6 +324,16 @@ export const skills = [
 				wbairitu += 48 * skillLv * fumashuriken_shouaku_lv;		// 習得済みスキル条件
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
 				return Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
+			}
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_n_Enekyori(1);			// 遠距離フラグ
+				// 詠唱など
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 			}
 		}),
 
