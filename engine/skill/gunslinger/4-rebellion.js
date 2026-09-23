@@ -12,7 +12,15 @@ import { LearnedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF, MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_SIZE } from "../../const/EnumMonsterDataIndex.js";
 import { MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import { MONSTER_ID_PLAYER } from "../../monster/monster.dat.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_B_TAISEI } from "../../monster/mobconfplayer.js";
+import {
+    n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, n_A_Weapon_zokusei, w_DMG, set_n_Enekyori
+} from "../../runtime/ro4-state.js";
+import {
+    ApplyPhysicalSpecializeMonster, ApplyElementRatio, ApplyPhysicalDamageRatio, GetFixedAppendAtk,
+    ApplyMonsterDefence, ApplyPhysicalSkillDamageRatioChange, BuildCastAndDelayHtml, BuildBattleResultHtml,
+    GetBattlerAtkPercentUp, ATKbaiJYOUSAN, ApplyHitJudgeElementRatio, GetPerfectHitDamage
+} from "../../bridge/battlecalc-bridge.js";
 import {
     SKILL_ID_AS_QUICKDRAW, SKILL_ID_BIND_TRAP, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CRYMSON_MARKER,
     SKILL_ID_DEATHPERAD, SKILL_ID_DRAGON_TAIL, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_FALLIN_ANGEL, SKILL_ID_FIRE_DANCE,
@@ -142,6 +150,43 @@ export const skills = [
 				return 0;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				set_n_Enekyori(1);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+
+				// dewindow: 旧 mob.js の暗黙グローバル B_Original_DEF（除算DEF補正前の値）を参照していたが、
+				// 移行時に mob.js 側が関数ローカル var 化され ReferenceError になっていた。
+				// 同値が mobData[MONSTER_DATA_INDEX_DEF_DIV_IGNORE_BUFF]（補正前の値を保持）に入っているためそれを使う。
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+
+				var AS_ATK = 0;
+				if(CS.n_AS_MODE){
+					AS_ATK = Math.floor(mobData[13] / 2);
+					AS_ATK = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, AS_ATK);
+					AS_ATK = ApplyElementRatio(mobData, AS_ATK,n_A_Weapon_zokusei);
+				}
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + AS_ATK;
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					// ＤＥＦの影響を受ける
+					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					// バグ？　属性が２回かかってる。
+					//			w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i], n_A_Weapon_zokusei);
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -305,6 +350,14 @@ export const skills = [
 				return 0;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				set_n_Enekyori(1);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -494,6 +547,58 @@ export const skills = [
 				return ROUNDDOWN((100 + 40 * skillLv) * n_A_BaseLV / 100);
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				set_n_Enekyori(1);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+
+				var basePower = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+
+				CS.wbairitu = basePower;
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i];
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				}
+				var w2hit = [0,0,0];
+				CS.wLAch = true;
+				for(var i=0;i<=2;i++){
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] != 1){
+
+						var w = basePower;
+						w += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+
+						if(mobData[0] == 787 && n_B_TAISEI[37] != 0) w += ROUNDDOWN(1000 * n_B_TAISEI[36] / n_B_TAISEI[37]);
+						w = ATKbaiJYOUSAN(w);
+						w = Math.floor(CS.n_A_DMG[i] * w / 100);
+						w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+						w = ApplyMonsterDefence(mobData, w, 0);
+						if(i == 0 && CS.w_HIT <100) w = 0;
+						if(i == 1) w = w * CS.w_HIT / 100;
+						if(w_DMG[i] <= 0) w = 0;
+						w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
+					}
+					w_DMG[i] += w2hit[i] }
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1){
+						var w = w2hit[i];
+						if(w == 0) w = "Miss";
+					}
+				}
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -734,6 +839,13 @@ export const skills = [
 				return -2;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				set_n_Enekyori(1);
+				CS.wCast = "不明";
+				n_Delay[0] = 2000;
+			}
 		}),
 
 		// ----------------------------------------------------------------

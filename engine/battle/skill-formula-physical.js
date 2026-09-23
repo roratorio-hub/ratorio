@@ -148,55 +148,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 従来からある分
 
-			case SKILL_ID_TRACKING:
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) CS.cast_kotei = true;
-				set_n_Enekyori(1);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.w_HIT = CS.w_HIT * 5 +5;
-				if(CS.w_HIT > 100) CS.w_HIT = 100;
-				CS.w_HIT_HYOUJI = CS.w_HIT;
-				break;
-
-			// 「メカニック」スキル「アックストルネード」
-
-			// 「メカニック」スキル「パワースイング」
-
-			// 「メカニック」スキル「ブーストナックル」
-
-			// 「メカニック」スキル「バルカンアーム」
-
-			// 「ロイヤルガード」スキル「キャノンスピア」
-
-			// 「ロイヤルガード」スキル「バニシングポイント」
-
-			// 「シャドウチェイサー」スキル「フェイタルメナス」
-
-			// 「ジェネティック」スキル「カートトルネード」
-
-			// 「ジェネティック」スキル「スポアエクスプロージョン」
-			// 2024/11/16 YEサーバー実測との誤差 +1 ～ -8 を確認
-			// 計算式自体は合っていると判断
-
-			// 「アークビショップ」スキル「グレイアムライト」
-
-			case SKILL_ID_FIRE_DANCE: {	// ファイヤーダンス
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				set_n_Enekyori(1);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			}
-
-			case SKILL_ID_BIND_TRAP:
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				set_n_Enekyori(1);
-				CS.wCast = "不明";
-				n_Delay[0] = 2000;
-				break;
-
 			// 「蜃気楼　不知火」スキル「影潜り」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 

@@ -11,6 +11,14 @@ import { ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE } from "../../const/EnumItemKind.js"
 import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
 import { RACE_ID_ANIMAL, RACE_ID_HUMAN } from "../../const/EnumRaceId.js";
 import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, w_DMG, set_n_Enekyori, set_n_A_Weapon_zokusei
+} from "../../runtime/ro4-state.js";
+import { n_A_MATK } from "../../runtime/roro-state.js";
+import {
+    ApplyMagicalSpecializeMonster, ApplyResistElement, ApplyRegistPVPNormal, ApplyPhysicalDamageRatio,
+    ApplyPhysicalSkillDamageRatioChange, ApplyElementRatio, BuildCastAndDelayHtml, BuildBattleResultHtml
+} from "../../bridge/battlecalc-bridge.js";
+import {
     SKILL_ID_ADJUSTMENT, SKILL_ID_BULLS_EYE, SKILL_ID_CHAIN_ACTION, SKILL_ID_COUNT_OF_COIN, SKILL_ID_CRACKER,
     SKILL_ID_DEATHPERAD, SKILL_ID_DISARM, SKILL_ID_DUST, SKILL_ID_FLIP_THE_COIN, SKILL_ID_FLYING,
     SKILL_ID_FULL_BASTER, SKILL_ID_GATLING_FEVER, SKILL_ID_GROUND_DRIFT, SKILL_ID_INCREASING_ACCURACY,
@@ -229,6 +237,35 @@ export const skills = [
 				return 500;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				let w_MATK = [0,0,0];
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_Enekyori(1);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				set_n_A_Weapon_zokusei(8);
+				for(var i=0;i<=2;i++){
+					w_MATK[i] = n_A_MATK[i];
+					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
+					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
+					w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
+				}
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + w_MATK[i];
+					w_DMG[i] = w_DMG[i] - CS.B_Total_DEF;
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],8);
+				}
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -400,6 +437,17 @@ export const skills = [
 				return 1000;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) CS.cast_kotei = true;
+				set_n_Enekyori(1);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.w_HIT = CS.w_HIT * 5 +5;
+				if(CS.w_HIT > 100) CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = CS.w_HIT;
+			}
 		}),
 
 		// ----------------------------------------------------------------
