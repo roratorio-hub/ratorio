@@ -12,13 +12,18 @@ import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
 import {
-    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_n_Enekyori
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_n_Enekyori, w_DMG
 } from "../../runtime/ro4-state.js";
 import { n_A_AGI, n_A_DEX, n_A_INT } from "../../runtime/roro-state.js";
 import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { TimeItemNumSearch } from "../../bridge/chara-search-bridge.js";
+import {
+    GetBattlerAtkPercentUp, ATKbaiJYOUSAN, ApplyPhysicalDamageRatio, ApplyMonsterDefence,
+    ApplyPhysicalSkillDamageRatioChange, ApplyHitJudgeElementRatio, GetPerfectHitDamage,
+    BuildCastAndDelayHtml, BuildBattleResultHtml
+} from "../../bridge/battlecalc-bridge.js";
 import {
     SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_BAKURETSU_HADO,
     SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
@@ -275,6 +280,52 @@ export const skills = [
 				return ROUNDDOWN((500 + 100 * skillLv) * n_A_BaseLV / 100);
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				set_n_Enekyori(1);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i];
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				}
+				var w2hit = [0,0,0];
+				CS.wLAch = true;
+				for(var i=0;i<=2;i++){
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] != 1){
+						var w = GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+						w += 150 * n_A_ActiveSkillLV;
+						w += ROUNDDOWN(mobData[2] * 5 * n_A_BaseLV / 150);
+						if(mobData[0] == 787 && n_B_TAISEI[37] != 0) w += ROUNDDOWN(1000 * n_B_TAISEI[36] / n_B_TAISEI[37]);
+						w = ATKbaiJYOUSAN(w);
+						w = Math.floor(CS.n_A_DMG[i] * w / 100);
+						w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+						w = ApplyMonsterDefence(mobData, w, 0);
+						if(i == 0 && CS.w_HIT <100) w = 0;
+						if(i == 1) w = w * CS.w_HIT / 100;
+						if(w_DMG[i] <= 0) w = 0;
+						w2hit[i] += w;
+					}
+					w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[i]);
+					w_DMG[i] += w2hit[i] }
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1){
+						var w = w2hit[i];
+						if(w == 0) w = "Miss";
+					}
+				}
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -858,6 +909,78 @@ export const skills = [
 				return Math.floor((wEHP / 100) * skillLv * n_A_BaseLV / 125);
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, __DIG3, AS_PLUS } = env;
+				if(CS.n_DEATH_BOUND[3] == 0){
+					w_DMG[0] = 1;
+					w_DMG[1] = 1;
+					w_DMG[2] = 1;
+					BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+				}else{
+					n_Delay[0] = 1;
+					n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+					CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+					n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+
+					CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+					CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+					CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+					for(var i=0;i<=2;i++){
+						w_DMG[i] = CS.n_A_DMG[i];
+						w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+						w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+						w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+						w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					}
+					w_DMG[0] += CS.n_DEATH_BOUND[0];
+					w_DMG[1] += CS.n_DEATH_BOUND[1];
+					w_DMG[2] += CS.n_DEATH_BOUND[2];
+					var w2hit = [0,0,0];
+					CS.wLAch = true;
+					for(var i=0;i<=2;i++){
+						if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] == 0){
+							var w = GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+							w += 200 * n_A_ActiveSkillLV;
+							w = ATKbaiJYOUSAN(w);
+							w = Math.floor(CS.n_A_DMG[i] * w / 100);
+							w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+							w = ApplyMonsterDefence(mobData, w, 0);
+							w2hit[i] += w;
+						}
+						w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[i]);
+						w_DMG[i] += w2hit[i] }
+					if(CS.n_AS_MODE) return w_DMG;
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+						if(attackMethodConfArray[0].GetOptionValue(0) == 1){
+							var w = w2hit[i];
+							if(w == 0) w = "Miss";
+						}
+					}
+					CS.n_PerfectHIT_DMG = 0;
+					if(CS.w_HIT_HYOUJI <100){
+						if(attackMethodConfArray[0].GetOptionValue(0) == 0 && mobData[20] == 0) CS.str_PerfectHIT_DMG = __DIG3(CS.n_DEATH_BOUND[0]) +"～"+ __DIG3(CS.n_DEATH_BOUND[2]);
+						else CS.str_PerfectHIT_DMG = __DIG3(CS.n_DEATH_BOUND[0]) +"+"+ __DIG3(w2hit[0]) +"～"+ __DIG3(CS.n_DEATH_BOUND[2]) +"+"+ __DIG3(w2hit[2]);
+						CS.n_PerfectHIT_DMG = CS.n_DEATH_BOUND[1] + w2hit[1];
+					}
+					w_DMG[1] = (w_DMG[1] * CS.w_HIT + (ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) + CS.n_DEATH_BOUND[1] + w2hit[1]) *(100-CS.w_HIT))/100;
+					AS_PLUS();
+					BuildCastAndDelayHtml(mobData);
+					BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+					/*
+						w_DMG[0] = n_DEATH_BOUND[0];
+						w_DMG[1] = n_DEATH_BOUND[1];
+						w_DMG[2] = n_DEATH_BOUND[2];
+						for(var i=0;i<=2;i++){
+						Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
+						g_damageTextArray[i].push(Last_DMG_A[i]);
+						}
+						w_HIT_HYOUJI = 100;
+						BuildCastAndDelayHtml(mobData);
+						BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+					*/
+				}
+			}
 		}),
 
 		// ----------------------------------------------------------------
