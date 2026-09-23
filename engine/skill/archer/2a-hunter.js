@@ -10,9 +10,10 @@ import {
     n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei,
     set_n_Enekyori, w_DMG
 } from "../../runtime/ro4-state.js";
-import { n_A_DEX, n_A_INT, n_A_STR } from "../../runtime/roro-state.js";
+import { n_A_DEX, n_A_INT, n_A_STR, n_A_WeaponType } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { ApplyElementRatio, ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml, BuildCastAndDelayHtml } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ANKLESNARE, SKILL_ID_BEAST_BANE, SKILL_ID_BEAST_STRAIFING, SKILL_ID_BLAST_MINE, SKILL_ID_BLITZ_BEAT,
@@ -488,6 +489,14 @@ export const skills = [
 				return 2;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				n_Delay[0] = 1;
+				set_n_Enekyori(1);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 ];

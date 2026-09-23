@@ -8,9 +8,10 @@
  */
 import { CCharaConfNizi } from "../../chara/CCharaConfNizi.js";
 import {
-    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei, w_DMG
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
 } from "../../runtime/ro4-state.js";
-import { n_A_AGI, n_A_DEX, n_A_JOB } from "../../runtime/roro-state.js";
+import { n_A_AGI, n_A_DEX, n_A_JOB, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
 import { CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { GetHigherJobSeriesID } from "../../data/mig.job.h.js";
 import {
@@ -346,6 +347,15 @@ export const skills = [
 				return kidan;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				set_n_Enekyori(1);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

@@ -13,11 +13,12 @@ import { RACE_ID_ANIMAL, RACE_ID_HUMAN } from "../../const/EnumRaceId.js";
 import {
     n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, w_DMG, set_n_Enekyori, set_n_A_Weapon_zokusei
 } from "../../runtime/ro4-state.js";
-import { n_A_MATK } from "../../runtime/roro-state.js";
+import { n_A_MATK, n_A_WeaponType } from "../../runtime/roro-state.js";
 import {
     ApplyMagicalSpecializeMonster, ApplyResistElement, ApplyRegistPVPNormal, ApplyPhysicalDamageRatio,
     ApplyPhysicalSkillDamageRatioChange, ApplyElementRatio, BuildCastAndDelayHtml, BuildBattleResultHtml
 } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
 import {
     SKILL_ID_ADJUSTMENT, SKILL_ID_BULLS_EYE, SKILL_ID_CHAIN_ACTION, SKILL_ID_COUNT_OF_COIN, SKILL_ID_CRACKER,
     SKILL_ID_DEATHPERAD, SKILL_ID_DISARM, SKILL_ID_DUST, SKILL_ID_FLIP_THE_COIN, SKILL_ID_FLYING,
@@ -89,6 +90,14 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_n_Enekyori(1);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -402,6 +411,15 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_n_Enekyori(1);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				var DEATH = [1,1.2,1.6,2,2.4,3,3.6,4,5,6,7,8,9,10];
+				CS.wHITsuu = DEATH[attackMethodConfArray[0].GetOptionValue(0)];
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

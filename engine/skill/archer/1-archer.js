@@ -8,6 +8,11 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_Enekyori
+} from "../../runtime/ro4-state.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
+import {
     SKILL_ID_ARROW_SHOWER, SKILL_ID_CHARGE_ARROW, SKILL_ID_DOUBLE_STRAFING, SKILL_ID_FUKURONO_ME,
     SKILL_ID_SHUCHURYOKU_KOZYO, SKILL_ID_WASHINO_ME, SKILL_ID_YA_SAKUSEI
 } from "../skill.dat.js";
@@ -66,6 +71,13 @@ export const skills = [
 				return 2;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_n_Enekyori(1);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

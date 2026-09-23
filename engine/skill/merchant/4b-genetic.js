@@ -21,6 +21,7 @@ import {
     ApplyAttackDamageAmplify, ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
     BuildBattleResultHtml, BuildCastAndDelayHtml, GetFixedAppendAtk
 } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BIOPLANT, SKILL_ID_BLOOD_SUCKER,
@@ -488,6 +489,16 @@ export const skills = [
 				return 5000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_n_A_Weapon_zokusei(2);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

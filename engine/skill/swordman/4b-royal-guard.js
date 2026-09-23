@@ -19,7 +19,12 @@ import {
 } from "../../runtime/roro-state.js";
 import { MOB_CONF_DEBUF_ID_LEX_AETERNA, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { TimeItemNumSearch } from "../../bridge/chara-search-bridge.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD, TIME_ITEM_ID_DEMI_FREYA, TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD
+} from "../../equip/timeitem.dat.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
 import {
     ATKbaiJYOUSAN, ApplyMonsterDefence, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
     BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerAtkPercentUp, GetFixedAppendAtk
@@ -756,6 +761,33 @@ export const skills = [
 				return 2000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+
+				var w = 1 + UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING);
+				if(
+					UsedSkillSearch(SKILL_ID_INSPIRATION)
+					|| TimeItemNumSearch(TIME_ITEM_ID_ZETSUBONO_KAMI_MOROCC_CARD)
+					|| TimeItemNumSearch(TIME_ITEM_ID_DEMI_FREYA)
+					|| TimeItemNumSearch(TIME_ITEM_ID_MAKENSHI_SAKRAY_CARD)
+					){
+					if(UsedSkillSearch(SKILL_ID_COUNT_OF_RG_FOR_BANDING) == 0) w = 3;
+				}
+
+				CS.wbairitu = 120 * n_A_ActiveSkillLV + 200 * w;
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+
+				// ヘスペルスリットは、なぜか「６人のとき“だけ”」威力が１．５倍されるらしい
+				if (w == 6) {
+					CS.wbairitu = Math.floor(CS.wbairitu * 150 / 100);
+				}
+
+				CS.wHITsuu = w;
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

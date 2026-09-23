@@ -16,11 +16,13 @@ import { n_B_TAISEI } from "../../monster/mobconfplayer.js";
 import {
     n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, n_A_Weapon_zokusei, w_DMG, set_n_Enekyori
 } from "../../runtime/ro4-state.js";
+import { n_A_JobLV } from "../../runtime/roro-state.js";
 import {
     ApplyPhysicalSpecializeMonster, ApplyElementRatio, ApplyPhysicalDamageRatio, GetFixedAppendAtk,
     ApplyMonsterDefence, ApplyPhysicalSkillDamageRatioChange, BuildCastAndDelayHtml, BuildBattleResultHtml,
     GetBattlerAtkPercentUp, ATKbaiJYOUSAN, ApplyHitJudgeElementRatio, GetPerfectHitDamage
 } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
 import {
     SKILL_ID_AS_QUICKDRAW, SKILL_ID_BIND_TRAP, SKILL_ID_BUNISHING_BASTER, SKILL_ID_CRYMSON_MARKER,
     SKILL_ID_DEATHPERAD, SKILL_ID_DRAGON_TAIL, SKILL_ID_ETERNAL_CHAIN, SKILL_ID_FALLIN_ANGEL, SKILL_ID_FIRE_DANCE,
@@ -469,6 +471,15 @@ export const skills = [
 				return 100;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_Enekyori(1);
+				CS.wCast = 0;
+				n_Delay[2] = 0;
+				n_Delay[7] = 0;
+				CS.wHITsuu = ROUNDDOWN(n_A_JobLV / 20) + 1;
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
