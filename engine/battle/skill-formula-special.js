@@ -947,7 +947,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			CS.w_HIT_HYOUJI = 100;
 			CS.w_HIT = 100;
 			set_n_Enekyori(1);
-			n_Delay[2] = 5000;
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			for(var i=0;i<=2;i++){
 				var dm = [500,750,1000];
 				w_DMG[i] = Math.floor(dm[i] * n_A_ActiveSkillLV);
