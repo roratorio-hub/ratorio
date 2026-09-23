@@ -101,98 +101,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		switch (n_A_ActiveSkill) {
 
-		case SKILL_ID_AIMED_BOLT:
-			set_n_Enekyori(1);
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-			CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
-			var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 1);
-			if(w == 2){
-				if(mobData[17] == 0){
-					CS.wActiveHitNum = 2;
-					CS.wbairitu *= 2;
-				}
-				if(mobData[17] == 1){
-					CS.wActiveHitNum = 3;
-					CS.wbairitu *= 3;
-				}
-				if(mobData[17] == 2){
-					CS.wActiveHitNum = 4;
-					CS.wbairitu *= 4;
-				}
-			}
-			if(w == 3){
-				if(mobData[17] == 0){
-					CS.wActiveHitNum = 3;
-					CS.wbairitu *= 3;
-				}
-				if(mobData[17] == 1){
-					CS.wActiveHitNum = 4;
-					CS.wbairitu *= 4;
-				}
-				if(mobData[17] == 2){
-					CS.wActiveHitNum = 5;
-					CS.wbairitu *= 5;
-				}
-			}
-
-			// 必中ダメージのみ仮計算（属性倍率未適用）
-			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-
-			if(w != 1){
-				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
-				for(var i=0;i<=2;i++){
-					w_DMG[i] = CS.n_A_DMG[i];
-					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
-					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
-					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-					w_DMG[i] += CS.n_PerfectHIT_DMG;
-					w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
-					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
-				}
-				if(CS.n_AS_MODE) return w_DMG;
-				for(var i=0;i<=2;i++){
-					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				}
-			}
-			else{
-				var sizebai = [[2,2.5,3],[3,3.4,4],[4,4.3,5]];
-				for(var i=0;i<=2;i++){
-					w_DMG[i] = CS.n_A_DMG[i];
-					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					w_DMG[i] = Math.floor(w_DMG[i] * (CS.wbairitu * sizebai[mobData[17]][i] + GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray)) / 100);
-					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
-					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
-					w_DMG[i] += CS.n_PerfectHIT_DMG;
-					w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
-					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-					w_DMG[i] = Math.floor(Math.floor(w_DMG[i] / sizebai[mobData[17]][i]) * sizebai[mobData[17]][i]);
-				}
-				if(CS.n_AS_MODE) return w_DMG;
-				for(var i=0;i<=2;i++){
-					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				}
-
-			}
-
-			// 改めて必中ダメージのみ計算（属性倍率適用）
-			CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
-			CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
-
-			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
-			AS_PLUS();
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-
-			break;
-
 		case SKILL_ID_MAGIC_CRUSHER:
 			set_n_Enekyori(1);
 			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -996,39 +904,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
-
-		case SKILL_ID_LAND_MINE:
-		case SKILL_ID_BLAST_MINE:
-		case SKILL_ID_CLAYMORE_TRAP: {
-			CS.w_HIT = 100;
-			CS.w_HIT_HYOUJI = 100;
-			CS.n_PerfectHIT_DMG = 0;
-			n_Delay[0] = 1;
-			set_n_Enekyori(0);
-			if(n_A_ActiveSkill==SKILL_ID_LAND_MINE){
-				set_n_A_Weapon_zokusei(2);
-			}
-			else if(n_A_ActiveSkill==SKILL_ID_BLAST_MINE){
-				set_n_A_Weapon_zokusei(4);
-			}
-			else if(n_A_ActiveSkill==SKILL_ID_CLAYMORE_TRAP){
-				set_n_A_Weapon_zokusei(3);
-			}
-			w_DMG[1] = n_A_DEX * (3 + n_A_BaseLV / 100) * (1 + n_A_INT / 35) * n_A_ActiveSkillLV;
-			// トラップ研究習得Lv補正
-			const trap_kenkyu_lv = Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU));
-			w_DMG[1] += 40 * trap_kenkyu_lv;
-			w_DMG[1] = ApplyElementRatio(mobData, w_DMG[1],n_A_Weapon_zokusei);
-			w_DMG[0] = Math.floor(w_DMG[1] * 90 / 100);
-			w_DMG[2] = Math.floor(w_DMG[1] * 110 / 100);
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-			}
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-		}
 
 		case SKILL_ID_HEAL:
 		case 489:

@@ -10,7 +10,15 @@ import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import {
+    ATKbaiJYOUSAN, ApplyHitJudgeElementRatio, ApplyMonsterDefence, ApplyPhysicalDamageRatio,
+    ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerAtkPercentUp,
+    GetFixedAppendAtk, GetPerfectHitDamage
+} from "../../bridge/battlecalc-bridge.js";
 import {
     SKILL_ID_AIMED_BOLT, SKILL_ID_ARROW_STORM, SKILL_ID_AUTO_WUG, SKILL_ID_CAMOUFLAGE, SKILL_ID_CLUSTER_BOMB,
     SKILL_ID_COBALT_TRAP, SKILL_ID_DETONATOR, SKILL_ID_EIBINNA_KYUKAKU, SKILL_ID_ELECTRIC_SHOCKER,
@@ -94,6 +102,98 @@ export const skills = [
 				return (skillLv > 5) ? (750 - 50 * skillLv) : 500;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, GetAttackMethodOptionValue, AS_PLUS } = env;
+				set_n_Enekyori(1);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+				var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 1);
+				if(w == 2){
+					if(mobData[17] == 0){
+						CS.wActiveHitNum = 2;
+						CS.wbairitu *= 2;
+					}
+					if(mobData[17] == 1){
+						CS.wActiveHitNum = 3;
+						CS.wbairitu *= 3;
+					}
+					if(mobData[17] == 2){
+						CS.wActiveHitNum = 4;
+						CS.wbairitu *= 4;
+					}
+				}
+				if(w == 3){
+					if(mobData[17] == 0){
+						CS.wActiveHitNum = 3;
+						CS.wbairitu *= 3;
+					}
+					if(mobData[17] == 1){
+						CS.wActiveHitNum = 4;
+						CS.wbairitu *= 4;
+					}
+					if(mobData[17] == 2){
+						CS.wActiveHitNum = 5;
+						CS.wbairitu *= 5;
+					}
+				}
+
+				// 必中ダメージのみ仮計算（属性倍率未適用）
+				CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+
+				if(w != 1){
+					CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+					CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+					for(var i=0;i<=2;i++){
+						w_DMG[i] = CS.n_A_DMG[i];
+						w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+						w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+						w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+						w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+						w_DMG[i] += CS.n_PerfectHIT_DMG;
+						w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
+						w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+						if(CS.wActiveHitNum > 1) w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
+					}
+					if(CS.n_AS_MODE) return w_DMG;
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					}
+				}
+				else{
+					var sizebai = [[2,2.5,3],[3,3.4,4],[4,4.3,5]];
+					for(var i=0;i<=2;i++){
+						w_DMG[i] = CS.n_A_DMG[i];
+						w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+						w_DMG[i] = Math.floor(w_DMG[i] * (CS.wbairitu * sizebai[mobData[17]][i] + GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray)) / 100);
+						w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+						w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+						w_DMG[i] += CS.n_PerfectHIT_DMG;
+						w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
+						w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+						w_DMG[i] = Math.floor(Math.floor(w_DMG[i] / sizebai[mobData[17]][i]) * sizebai[mobData[17]][i]);
+					}
+					if(CS.n_AS_MODE) return w_DMG;
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					}
+
+				}
+
+				// 改めて必中ダメージのみ計算（属性倍率適用）
+				CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+				CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+				CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
+
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+
+			}
 		}),
 
 		// ----------------------------------------------------------------

@@ -6,14 +6,52 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei,
+    set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_DEX, n_A_INT, n_A_STR } from "../../runtime/roro-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { ApplyElementRatio, ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml, BuildCastAndDelayHtml } from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
-import { n_A_STR } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_ANKLESNARE, SKILL_ID_BEAST_BANE, SKILL_ID_BEAST_STRAIFING, SKILL_ID_BLAST_MINE, SKILL_ID_BLITZ_BEAT,
     SKILL_ID_CLAYMORE_TRAP, SKILL_ID_DETECTING, SKILL_ID_FALCON_MASTERY, SKILL_ID_FANTASMIC_ARROW, SKILL_ID_FLASHER,
     SKILL_ID_FREEZING_TRAP, SKILL_ID_LAND_MINE, SKILL_ID_REMOVE_TRAP, SKILL_ID_SANDMAN, SKILL_ID_SHOCKWAVE_TRAP,
-    SKILL_ID_SKID_TRAP, SKILL_ID_SPRING_TRAP, SKILL_ID_STEEL_CROW, SKILL_ID_TALKIE_BOX
+    SKILL_ID_SKID_TRAP, SKILL_ID_SPRING_TRAP, SKILL_ID_STEEL_CROW, SKILL_ID_TALKIE_BOX, SKILL_ID_TRAP_KENKYU
 } from "../skill.dat.js";
+
+/** ランドマイン・ブラストマイン・クレイモアトラップ共通のダメージ計算式（属性のみ異なる）。 */
+function ApplyMineTrapFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS } = env;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.n_PerfectHIT_DMG = 0;
+			n_Delay[0] = 1;
+			set_n_Enekyori(0);
+			if(n_A_ActiveSkill==SKILL_ID_LAND_MINE){
+				set_n_A_Weapon_zokusei(2);
+			}
+			else if(n_A_ActiveSkill==SKILL_ID_BLAST_MINE){
+				set_n_A_Weapon_zokusei(4);
+			}
+			else if(n_A_ActiveSkill==SKILL_ID_CLAYMORE_TRAP){
+				set_n_A_Weapon_zokusei(3);
+			}
+			w_DMG[1] = n_A_DEX * (3 + n_A_BaseLV / 100) * (1 + n_A_INT / 35) * n_A_ActiveSkillLV;
+			// トラップ研究習得Lv補正
+			const trap_kenkyu_lv = Math.max(LearnedSkillSearch(SKILL_ID_TRAP_KENKYU), UsedSkillSearch(SKILL_ID_TRAP_KENKYU));
+			w_DMG[1] += 40 * trap_kenkyu_lv;
+			w_DMG[1] = ApplyElementRatio(mobData, w_DMG[1],n_A_Weapon_zokusei);
+			w_DMG[0] = Math.floor(w_DMG[1] * 90 / 100);
+			w_DMG[2] = Math.floor(w_DMG[1] * 110 / 100);
+			for(var i=0;i<=2;i++){
+				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			}
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -66,6 +104,7 @@ export const skills = [
 				var nLifeTime = ([0, 200000, 160000, 120000, 80000, 40000])[skillLv];
 				return nLifeTime;
 			}
+			this.SpecialFormula = ApplyMineTrapFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -216,6 +255,7 @@ export const skills = [
 				var nLifeTime = ([0, 25000, 20000, 15000, 10000, 5000])[skillLv];
 				return nLifeTime;
 			}
+			this.SpecialFormula = ApplyMineTrapFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -245,6 +285,7 @@ export const skills = [
 				var nLifeTime = ([0, 20000, 40000, 60000, 80000, 100000])[skillLv];
 				return nLifeTime;
 			}
+			this.SpecialFormula = ApplyMineTrapFormula;
 		}),
 
 		// ----------------------------------------------------------------
