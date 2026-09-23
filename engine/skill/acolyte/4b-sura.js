@@ -24,6 +24,7 @@ import {
     ApplyPhysicalSkillDamageRatioChange, ApplyHitJudgeElementRatio, GetPerfectHitDamage,
     BuildCastAndDelayHtml, BuildBattleResultHtml
 } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG2CommonTailFormula } from "../skill-formula-shared.js";
 import {
     SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_BAKURETSU_HADO,
     SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
@@ -1039,6 +1040,13 @@ export const skills = [
 				return 14000 - 2000 * skillLv;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { g_skillManager } = env;
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -1059,6 +1067,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

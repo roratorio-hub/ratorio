@@ -7,7 +7,7 @@ import { n_A_ActiveSkill, w_DMG } from "../runtime/ro4-state.js";
 import { MOB_CONF_DEBUF_ID_LEX_AETERNA, n_B_IJYOU } from "../monster/mobconfdebuf.js";
 import {
     GetBattlerAtkPercentUp, ATKbaiJYOUSAN, ApplyPhysicalDamageRatio, ApplyMonsterDefence, GetFixedAppendAtk,
-    ApplyPhysicalSkillDamageRatioChange, GetPerfectHitDamage, ApplyHitJudgeElementRatio,
+    ApplyPhysicalSkillDamageRatioChange, GetPerfectHitDamage, ApplyHitJudgeElementRatio, GetActHitRateAll,
     BuildCastAndDelayHtml, BuildBattleResultHtml
 } from "../bridge/battlecalc-bridge.js";
 
@@ -60,6 +60,27 @@ export function ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specDat
 			// n_PerfectHIT_DMG = wX * wHITsuu;
 
 			CS.str_PerfectHIT_DMG = __DIG3(wX * CS.wHITsuu) +"("+ __DIG3(wX) +"×"+ CS.wHITsuu +"hit)";
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+}
+
+/**
+ * G2（閃光連撃・コンボ系）共通の後半。各スキルの hook は自分の分岐（詠唱情報 or n_Delay[0]=1）を
+ * 実行した後、この関数を呼ぶ（本文は移動元の switch 本体の共通部分をそのまま）。
+ */
+export function ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS, AS_PLUS } = env;
+			if(CS.n_AS_MODE) return w_DMG;
+			for(var i=0;i<=2;i++) w_DMG[i] = 0;
+			AS_PLUS();
+			if(GetActHitRateAll(n_A_ActiveSkill, mobData) == 100){
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+			}else{
+				for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			}
+			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 }

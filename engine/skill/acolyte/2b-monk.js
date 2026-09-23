@@ -11,7 +11,7 @@ import {
     n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
 } from "../../runtime/ro4-state.js";
 import { n_A_AGI, n_A_DEX, n_A_JOB, n_A_WeaponType } from "../../runtime/roro-state.js";
-import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
+import { ApplyG1CommonTailFormula, ApplyG2CommonTailFormula } from "../skill-formula-shared.js";
 import { CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { GetHigherJobSeriesID } from "../../data/mig.job.h.js";
 import {
@@ -613,6 +613,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

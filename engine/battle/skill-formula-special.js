@@ -287,39 +287,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-		case SKILL_ID_SENKO_RENGEKI:
-		case SKILL_ID_COMBO_SANDAN_MONK:
-		case SKILL_ID_COMBO_SANDAN_CHAMP:
-		case SKILL_ID_COMBO_SORYUKYAKU:
-		case SKILL_ID_COMBO_RESERVED_803:
-		case SKILL_ID_COMBO_RESERVED_804:
-		case SKILL_ID_COMBO_RESERVED_805:
-		case SKILL_ID_COMBO_RESERVED_806:
-		case SKILL_ID_COMBO_RESERVED_807:
-		case SKILL_ID_COMBO_RESERVED_808:
-		case SKILL_ID_COMBO_RESERVED_809:
-		case SKILL_ID_COMBO_GIGANTSET_JOINT_BEAT:
-		case SKILL_ID_COMBO_GIGANTSET_SPIRAL_PIERCE:
-			if(n_A_ActiveSkill == SKILL_ID_SENKO_RENGEKI){
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			}else n_Delay[0] = 1;
-			if(CS.n_AS_MODE) return w_DMG;
-			for(var i=0;i<=2;i++) w_DMG[i] = 0;
-			AS_PLUS();
-			if(GetActHitRateAll(n_A_ActiveSkill, mobData) == 100){
-				for(var i=0;i<=2;i++){
-					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-				}
-			}else{
-				for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-			}
-			w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-
 		default:
 			// engine/skill/<職業>/*.js の SpecialFormula slot へ移行済みのスキルはそちらを呼ぶ
 			// （呼び出し後は break して、後続の共通末尾処理〔return w_DMG〕をそのまま通す。

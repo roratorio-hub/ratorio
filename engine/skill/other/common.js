@@ -8,7 +8,7 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
-    n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_Enekyori, w_DMG, n_Enekyori
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_Enekyori, w_DMG, n_Enekyori
 } from "../../runtime/ro4-state.js";
 import { n_A_WeaponType } from "../../runtime/roro-state.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
@@ -16,6 +16,7 @@ import {
     ApplyPhysicalDamageRatio, ApplyElementRatio, ApplyAttackDamageAmplify, GetPerfectHitDamage,
     ApplyHitJudgeElementRatio, ApplyPhysicalSkillDamageRatioChange, BuildCastAndDelayHtml, BuildBattleResultHtml
 } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG2CommonTailFormula } from "../skill-formula-shared.js";
 import { n_B_KYOUKA } from "../../monster/mobconfbuf.js";
 import {
 	SKILL_ID_KIHON_SKILL, SKILL_ID_OKYU_TEATE, SKILL_ID_SHOZIGENKAIRYO_ZOKA, SKILL_ID_SHOZIGENKAIRYO_ZOKA_R,
@@ -575,6 +576,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -595,6 +600,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -615,6 +624,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -635,6 +648,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -655,6 +672,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -675,6 +696,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -695,6 +720,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -859,6 +888,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -879,6 +912,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

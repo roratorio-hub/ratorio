@@ -8,6 +8,8 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
+import { n_Delay } from "../../runtime/ro4-state.js";
+import { ApplyG2CommonTailFormula } from "../skill-formula-shared.js";
 import {
     SKILL_ID_BUKKOKEN, SKILL_ID_COMBO_SANDAN_CHAMP, SKILL_ID_MOKOKOHAZAN, SKILL_ID_RENCHUHOGEKI, SKILL_ID_RENKIKO,
     SKILL_ID_SOUL_COLECT
@@ -168,6 +170,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 ];
