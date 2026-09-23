@@ -138,11 +138,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
     let ampWork = 0;
 		var bDefaultFormula = true;
 		switch (n_A_ActiveSkill) {
-			// 四次計算式用ダミー
-			case SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT:
-			case SKILL_ID_TUZYO_KOGEKI_CALC_LEFT:
-				// 等倍計算
-				break;
 
 			// 四次計算式方式移行分
 

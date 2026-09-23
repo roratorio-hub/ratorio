@@ -578,60 +578,6 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			break;
 
-		// 「アースクエイク」
-		case SKILL_ID_EARTH_QUAKE:
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-			set_n_Enekyori(2);
-			CS.w_HIT = 100;
-			CS.w_HIT_HYOUJI = 100;
-			if(!CS.n_AS_MODE){
-				var wBunsan = attackMethodConfArray[0].GetOptionValue(0);
-				if(wBunsan >= 2) CS.wbairitu = ROUNDDOWN(CS.wbairitu / wBunsan);
-			}
-			for(var i=0;i<=2;i++){
-				// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
-				w_DMG[i] = CS.n_A_DMG_GX[i] * CS.wCSize;	
-				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
-				w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
-				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
-				if(n_B_KYOUKA[7] && n_Enekyori == 2) w_DMG[i] += Math.floor(w_DMG[i] * (20 * n_B_KYOUKA[7]) / 100);
-			}
-			if(CS.n_AS_MODE){
-				// 最小、平均、最大の 1 hitあたりダメージ
-				w_DMG[0] = w_DMG[0];
-				w_DMG[1] = w_DMG[1];
-				w_DMG[2] = w_DMG[2];
-				return w_DMG;
-			}
-			// GvG補正
-			for(var i=0;i<=2;i++){
-				w_DMG[i] = ApplyAttackDamageAmplify(mobData, w_DMG[i]);
-			}
-			//
-			for(var i=0;i<=2;i++){
-				CS.Last_DMG_B[i] = Math.floor(w_DMG[i] / 3);		// B = 1 hitあたりダメージ
-				CS.Last_DMG_A[i] = w_DMG[i];						// A = 3 hit合計ダメージ
-				w_DMG[i] = CS.Last_DMG_A[i];
-			}
-			var wX = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
-			wX = ApplyHitJudgeElementRatio(n_A_ActiveSkill, wX, mobData);
-			wX = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wX);
-
-			// TODO: ダメージ表示方式変更対応
-			//w_DMG[1] = (w_DMG[1] * w_HIT + wX * wHITsuu *(100-w_HIT))/100;
-			w_DMG[1] = (w_DMG[1] * CS.w_HIT + wX * (100-CS.w_HIT))/100;
-
-			AS_PLUS();
-
-			// TODO: ダメージ表示方式変更対応
-			//n_PerfectHIT_DMG = wX * wHITsuu;
-
-			CS.str_PerfectHIT_DMG = __DIG3(wX * CS.wHITsuu) +"("+ __DIG3(wX) +"×"+ CS.wHITsuu +"hit)";
-			BuildCastAndDelayHtml(mobData);
-			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
-			break;
-
 		default:
 			// engine/skill/<職業>/*.js の SpecialFormula slot へ移行済みのスキルはそちらを呼ぶ
 			// （呼び出し後は break して、後続の共通末尾処理〔return w_DMG〕をそのまま通す。

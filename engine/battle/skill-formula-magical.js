@@ -112,32 +112,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 
 		// 「アークビショップ」スキル「ミリアムライト」
 
-		// 「サモナー」スキル「マタタビランス」
-		case SKILL_ID_MATATABI_LANCE:
-			// レベルによって属性が変化する
-			set_n_A_Weapon_zokusei(ELM_ID_PSYCO);
-			switch (n_A_ActiveSkillLV) {
-			case 1:
-				break;
-			case 2:
-				set_n_A_Weapon_zokusei(ELM_ID_WATER);
-				break;
-			case 3:
-				set_n_A_Weapon_zokusei(ELM_ID_WIND);
-				break;
-			case 4:
-				set_n_A_Weapon_zokusei(ELM_ID_EARTH);
-				break;
-			case 5:
-				set_n_A_Weapon_zokusei(ELM_ID_FIRE);
-				break;
-			}
-
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			break;
 
 		//----------------------------------------------------------------
 		//
@@ -158,59 +132,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 
-		// 「ハイパーノービス」スキル「ユピテルサンダーストーム」
-		case SKILL_ID_JUPITER_THUNDER_STORM: {
-			// 2024/09/19 実測値との誤差無しを確認済み
-			// 詠唱時間など
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			break;
-		}
-		// 「ハイパーノービス」スキル「ヘルズドライブ」
-		case SKILL_ID_HELLS_DRIVE: {
-			// 2024/09/19 実測値との誤差無しを確認済み
-			// 詠唱時間など
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 分割Hit数
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			break;
-		}
-		// 「ハイパーノービス」スキル「ナパームバルカンストライク」
-		case SKILL_ID_NAPALM_VULKAN_STRIKE: {
-			// 2024/09/19 実測値との誤差無しまたは誤差1を確認済み
-			// スキル計算式の問題ではなく後続の計算式の丸め誤差と判断しています
-			// 詠唱時間など
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 分割Hit数
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			break;
-		}
-		// 「ハイパーノービス」スキル「メテオストームバスター」
-		case SKILL_ID_METEOR_STORM_BUSTER: {
-			// 詠唱時間など
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 設置スキル
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv); // ダメージ発生間隔
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// オブジェクト生存期間
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);	// 隕石 1 つあたり見た目 3 Hit
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-			break;
-		}
 
 		/**
 		 * 「蜃気楼　不知火」スキル「赤炎砲」「冷血砲」「雷電砲」「金龍砲」
@@ -219,27 +140,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		// 「蜃気楼　不知火」スキル「影溶き」
 		// 2024/12/25 もなこさん提供データに対して誤差なしを確認
 
-		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」
-		case SKILL_ID_JACK_FROST_NOVA: {
-			// 2024/09/19 実測値との誤差1を確認済み
-			// 後続の計算式による丸め誤差と判断しています
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ計算
-			if (attackMethodConfArray[0].GetOptionValue(0) !== 0) {
-				// 設置ダメージ計算が指定された場合
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = 500;	// ダメージ間隔
-				n_Delay[6] = 3000;	// オブジェクト存続時間
-			}
-			// 分割Hit数
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
-			break;
-		}
 		
 /*
 		case SKILL_ID_DUMMY:

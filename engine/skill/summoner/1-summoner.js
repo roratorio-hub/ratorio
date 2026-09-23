@@ -18,8 +18,11 @@ import {
     SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_10, SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_51,
     SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_81, SKILL_LEVEL_VALUE_SEIMEINO_TAMASHI_KOKA_NOKORI_HP_OVER_100
 } from "../skill.h.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_A_Weapon_zokusei
+} from "../../runtime/ro4-state.js";
 import { n_A_STR } from "../../runtime/roro-state.js";
+import { ELM_ID_PSYCO, ELM_ID_WATER, ELM_ID_WIND, ELM_ID_EARTH, ELM_ID_FIRE } from "../../const/EnumElmId.js";
 import {
     SKILL_ID_ANIMAL_KEI_SHUTOKU_LEVEL_GOKEI, SKILL_ID_ARCLOUSE_DASH, SKILL_ID_CARROT_BEAT, SKILL_ID_CHATTERING,
     SKILL_ID_DAICHINO_CHIKARA, SKILL_ID_DAICHINO_TAMASHI, SKILL_ID_DAICHINO_TAMASHI_KOKA_INUHAKKA_SHOWER,
@@ -503,6 +506,31 @@ export const skills = [
 				return 0;
 			}
 
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_n_A_Weapon_zokusei(ELM_ID_PSYCO);
+				switch (n_A_ActiveSkillLV) {
+				case 1:
+					break;
+				case 2:
+					set_n_A_Weapon_zokusei(ELM_ID_WATER);
+					break;
+				case 3:
+					set_n_A_Weapon_zokusei(ELM_ID_WIND);
+					break;
+				case 4:
+					set_n_A_Weapon_zokusei(ELM_ID_EARTH);
+					break;
+				case 5:
+					set_n_A_Weapon_zokusei(ELM_ID_FIRE);
+					break;
+				}
+
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			}
 		}),
 
 		// ----------------------------------------------------------------
