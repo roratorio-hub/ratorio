@@ -6,6 +6,15 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_MATK } from "../../runtime/roro-state.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ApplyElementRatio, ApplyMagicalSpecializeMonster, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
+    ApplyResistElement, BuildBattleResultHtml, BuildCastAndDelayHtml
+} from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ACID_TERROR, SKILL_ID_ANSOKU, SKILL_ID_BERSERK_PITCHER, SKILL_ID_BIOPLANT, SKILL_ID_CALL_HOMUNCULUS,
@@ -89,6 +98,39 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				let w_MATK = [0,0,0];
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				set_n_Enekyori(1);
+				set_n_A_Weapon_zokusei(0);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				for(var i=0;i<=2;i++){
+					w_MATK[i] = n_A_MATK[i];
+					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
+					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
+				}
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + w_MATK[i];
+					w_DMG[i] = ROUNDDOWN(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] -= (CS.B_Total_DEF + CS.B_Total_MDEF);
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+					if(mobData[20]==1) w_DMG[i] = Math.floor(w_DMG[i] / 2);
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				if(5 <= mobData[21] && mobData[21] <= 9){
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = 1;
+					}
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------

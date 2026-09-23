@@ -200,28 +200,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			// 「メカニック」スキル「アックストルネード」
 
 			// 「メカニック」スキル「パワースイング」
-			// 2025/01/27 実測値との誤差無しを確認済み
-			case SKILL_ID_POWER_SWING:
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				if (GetAttackMethodOptionValue(attackMethodConfArray, 1, 0) == 1) {
-					// ABRバトルウォリアー状態の場合
-					CS.wActiveHitNum = 2;
-					CS.wbairitu = 500 + 150 * n_A_ActiveSkillLV;
-				} else {
-					// 通常時
-					CS.wbairitu = 300 + 100 * n_A_ActiveSkillLV;
-				}
-				CS.wbairitu += ROUNDDOWN((n_A_STR + n_A_DEX) * n_A_BaseLV / 100);
-				break;
 
 			// 「メカニック」スキル「ブーストナックル」
-			case SKILL_ID_BOOST_KNUCKLE:
-				set_n_Enekyori(1);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[1] = n_Delay[1] / 2;
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
 
 			// 「メカニック」スキル「バルカンアーム」
 
@@ -324,15 +304,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				break;
 
 			// 「ジェネティック」スキル「カートトルネード」
-			// 2024/11/16 実測誤差無しを確認済み
-			case SKILL_ID_CART_TORNADO: {
-				// 詠唱など
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
-				// 分割ヒット
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
-				break;
-			}
 
 			// 「ジェネティック」スキル「スポアエクスプロージョン」
 			// 2024/11/16 YEサーバー実測との誤差 +1 ～ -8 を確認
@@ -365,39 +336,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				set_n_Enekyori(1);
 				CS.wCast = "不明";
 				n_Delay[0] = 2000;
-				break;
-
-			// 「バイオロ」スキル「アシディファイドゾーン」
-			// 2024/11/15 初撃のダメージ誤差無しを確認済み
-			// 設置ダメージは全く合わないが実用性が薄いので調査優先度は低いと判断しこのまま静観します
-			case SKILL_ID_ACIDIFIED_ZONE_MIZU:
-			case SKILL_ID_ACIDIFIED_ZONE_CHI:
-			case SKILL_ID_ACIDIFIED_ZONE_HI:
-			case SKILL_ID_ACIDIFIED_ZONE_KAZE:
-				// 詠唱時間等
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				// 初段ダメージの場合
-				if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
-					// 距離属性
-					set_n_Enekyori(1);
-				}
-				// 設置ダメージの場合
-				// 2024/11/15 YEサーバー実測と全く合わないことを確認済み
-				// POW補正とBaseLv補正をそれぞれON/OFF組み合わせても合わない
-				else {
-					set_g_bDefinedDamageIntervals(true);
-					// ダメージ間隔
-					n_Delay[5] = 1000;
-					// オブジェクト存続時間
-					n_Delay[6] = 10000;
-					// 距離属性
-					set_n_Enekyori(0);
-				}
 				break;
 
 			// 「天帝」スキル「太天一陽」

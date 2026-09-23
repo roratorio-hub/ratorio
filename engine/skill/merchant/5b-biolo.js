@@ -7,7 +7,10 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_g_bDefinedDamageIntervals, set_n_Enekyori
+} from "../../runtime/ro4-state.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
@@ -20,6 +23,34 @@ import {
     SKILL_ID_EXPLOSIVE_POWDER, SKILL_ID_FULL_SHADOW_CHARGE, SKILL_ID_HALL_FULL_CHEMICAL_CHARGE,
     SKILL_ID_MEYHEMIC_THORNS, SKILL_ID_MYSTERY_POWDER, SKILL_ID_RESEARCH_REPORT
 } from "../skill.dat.js";
+
+/** アシディファイドゾーン（水/地/火/風）共通のダメージ計算式（属性のみ異なる）。 */
+function ApplyAcidifiedZoneFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS, g_skillManager } = env;
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			// 初段ダメージの場合
+			if (attackMethodConfArray[0].GetOptionValue(0) == 0) {
+				// 距離属性
+				set_n_Enekyori(1);
+			}
+			// 設置ダメージの場合
+			// 2024/11/15 YEサーバー実測と全く合わないことを確認済み
+			// POW補正とBaseLv補正をそれぞれON/OFF組み合わせても合わない
+			else {
+				set_g_bDefinedDamageIntervals(true);
+				// ダメージ間隔
+				n_Delay[5] = 1000;
+				// オブジェクト存続時間
+				n_Delay[6] = 10000;
+				// 距離属性
+				set_n_Enekyori(0);
+			}
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -172,6 +203,7 @@ export const skills = [
 			this.hitCount = function(skillLv, option) {
 				return option.GetOptionValue(0) == 0 ? 3 : 1;
 			}
+			this.PhysicalFormula = ApplyAcidifiedZoneFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -226,6 +258,7 @@ export const skills = [
 			this.hitCount = function(skillLv, option) {
 				return option.GetOptionValue(0) == 0 ? 3 : 1;
 			}
+			this.PhysicalFormula = ApplyAcidifiedZoneFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -280,6 +313,7 @@ export const skills = [
 			this.hitCount = function(skillLv, option) {
 				return option.GetOptionValue(0) == 0 ? 3 : 1;
 			}
+			this.PhysicalFormula = ApplyAcidifiedZoneFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -333,6 +367,7 @@ export const skills = [
 			this.hitCount = function(skillLv, option) {
 				return option.GetOptionValue(0) == 0 ? 3 : 1;
 			}
+			this.PhysicalFormula = ApplyAcidifiedZoneFormula;
 		}),
 
 		// ----------------------------------------------------------------
