@@ -495,6 +495,14 @@ export const skills = [
 				return 2000;
 			}
 
+			this.DelayTimeCommon = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
+			this.CoolTime = function(skillLv, charaDataManger) {
+				return 0;
+			}
+
 		}),
 
 		// ----------------------------------------------------------------

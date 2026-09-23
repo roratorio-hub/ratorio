@@ -77,6 +77,18 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
+				let wbairitu = 2700 + (150 * skillLv);
+				wbairitu += 3 * skillLv * madogaku;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+				wbairitu = Math.floor(wbairitu);
+				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+				wbairitu = Math.floor(wbairitu);
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				return Math.floor(wbairitu);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -105,6 +117,19 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
+			}
+			this.dispHitCount = 3;
+			this.Power = function(skillLv, charaDataManger) {
+				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
+				let wbairitu = 2600 + (150 * skillLv);			// 基礎倍率
+				wbairitu += 4 * skillLv * madogaku;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+				wbairitu = Math.floor(wbairitu);
+				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+				wbairitu = Math.floor(wbairitu);
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				return Math.floor(wbairitu);
 			}
 		}),
 
@@ -135,6 +160,19 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.dispHitCount = 7;
+			this.Power = function(skillLv, charaDataManger) {
+				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
+				let wbairitu = 2600 + (150 * skillLv);			// 基礎倍率
+				wbairitu += 4 * skillLv * madogaku;			// 習得済みスキル条件
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+				wbairitu = Math.floor(wbairitu);
+				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+				wbairitu = Math.floor(wbairitu);
+				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				return Math.floor(wbairitu);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -163,6 +201,41 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return [0,1500,2000,2000,2500,2500,3000,3000,3500,3500,4000][skillLv];
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {	// オブジェクト生存期間
+				return [0,1500,2000,2000,2500,2500,3000,3000,3500,3500,4000][skillLv];
+			}
+			this.damageInterval = function(skillLv) {	// ダメージ発生間隔
+				return 500;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				return parentSkillId === undefined ? 3 : 1;	// 隕石 1 つあたり見た目 3 Hit
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData, weapon, parentSkillId) {
+				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
+				let wbairitu;
+				// 隕石
+				if (parentSkillId === undefined) {
+					wbairitu = 1750 + 50 * skillLv;				// 基礎倍率
+					wbairitu += 5 * skillLv * madogaku;			// 習得済みスキル条件
+					wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+					wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
+					wbairitu = Math.floor(wbairitu);
+					wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+					wbairitu = Math.floor(wbairitu);
+					wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				}
+				// 爆発
+				else {
+					wbairitu = 1175 + 25 * skillLv;				// 基礎倍率
+					wbairitu += 5 * skillLv * madogaku;			// 習得済みスキル条件
+					wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+					// 爆発には独学補正が掛からない
+					wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
+					wbairitu = Math.floor(wbairitu);
+					wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				}
+				return Math.floor(wbairitu);
 			}
 		}),
 
@@ -395,6 +468,33 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
+			}
+			this.Power = function(skillLv, charaDataManger, option) {
+				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
+				let wbairitu;
+				if (option.GetOptionValue(0) === 0) {
+					// 初撃ダメージ計算が指定された場合 (独学補正は掛からない)
+					wbairitu = 100 + (20 * skillLv);											// 基礎倍率
+					wbairitu += 3 * skillLv * madogaku;										// 習得済みスキル条件
+					wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
+					wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
+					wbairitu = Math.floor(wbairitu);
+					wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
+				} else {
+					// 設置ダメージ計算が指定された場合
+					wbairitu = 650 + (25 * skillLv);							// 基礎倍率
+					wbairitu += 3 * skillLv * madogaku;						// 習得済みスキル条件
+					wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
+					wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
+					wbairitu = Math.floor(wbairitu);
+					wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
+					wbairitu = Math.floor(wbairitu);
+					wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
+				}
+				return Math.floor(wbairitu);
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option) {
+				return option.GetOptionValue(0) === 0 ? 1 : 2;
 			}
 		}),
 

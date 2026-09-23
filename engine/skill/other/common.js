@@ -702,7 +702,8 @@ export const skills = [
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				const QuakeBairitu = [0,300,500,600,800,1000,1200,1300,1500,1600,1800];
+				return QuakeBairitu[skillLv];
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {

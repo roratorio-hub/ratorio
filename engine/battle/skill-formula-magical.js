@@ -12,7 +12,7 @@ import {
 } from "../const/EnumElmId.js";
 import { EQUIP_REGION_ID_SHIELD } from "../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumItemDataIndex.js";
-import { MIG_PARAM_ID_CON, MIG_PARAM_ID_SPL } from "../const/EnumMigItemParamId.js";
+import { MIG_PARAM_ID_CON } from "../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
 import { RACE_ID_DEMON } from "../const/EnumRaceId.js";
 import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
@@ -31,7 +31,7 @@ import {
     SKILL_ID_CRYMSON_ARROW, SKILL_ID_CRYMSON_ROCK, SKILL_ID_CRYSTAL_IMPACT, SKILL_ID_CUTTING_WIND,
     SKILL_ID_DARK_STRIKE, SKILL_ID_DEADLY_PROJECTION, SKILL_ID_DEER_BREEZE, SKILL_ID_DEER_CANON,
     SKILL_ID_DEMONIC_FIRE, SKILL_ID_DESTRACTIVE_HURRICANE, SKILL_ID_DIAMOND_DUST, SKILL_ID_DIAMOND_STORM,
-    SKILL_ID_DIVINUS_FLOS, SKILL_ID_DOKUGAKU_MADOGAKU, SKILL_ID_DRAIN_LIFE, SKILL_ID_EARTH_DRILL,
+    SKILL_ID_DIVINUS_FLOS, SKILL_ID_DRAIN_LIFE, SKILL_ID_EARTH_DRILL,
     SKILL_ID_EARTH_FLOWER, SKILL_ID_EARTH_GRAVE, SKILL_ID_EARTH_SPIKE, SKILL_ID_EARTH_STAMP, SKILL_ID_EARTH_STRAIN,
     SKILL_ID_ELECTRIC_WALK, SKILL_ID_ELEMENTAL_BASTER, SKILL_ID_ESFU, SKILL_ID_ESHA, SKILL_ID_ESMA, SKILL_ID_ESPA,
     SKILL_ID_ESTIN, SKILL_ID_ESTON, SKILL_ID_FIRE_BALL, SKILL_ID_FIRE_BOLT,
@@ -54,7 +54,7 @@ import {
     SKILL_ID_POISON_BUSTER, SKILL_ID_PSYCHIC_STREAM, SKILL_ID_PSYCHIC_WAVE, SKILL_ID_RAIDEN_HOU, SKILL_ID_RAIGEKISAI,
     SKILL_ID_RAIN_OF_CRYSTAL, SKILL_ID_RAY_OF_GENESIS, SKILL_ID_REIDO_FU, SKILL_ID_REIKETSU_HOU,
     SKILL_ID_RHYTHMICAL_WAVE, SKILL_ID_ROARING_CHARGE, SKILL_ID_ROARING_PIERCER, SKILL_ID_ROCK_DOWN,
-    SKILL_ID_RULE_BREAK_STATE, SKILL_ID_RUWACH, SKILL_ID_RYUENZIN, SKILL_ID_SAKUFU, SKILL_ID_SANREI_ITTAI,
+    SKILL_ID_RUWACH, SKILL_ID_RYUENZIN, SKILL_ID_SAKUFU, SKILL_ID_SANREI_ITTAI,
     SKILL_ID_SEIRYU_FU, SKILL_ID_SEISMIC_WEAPON, SKILL_ID_SEKIEN_HOU, SKILL_ID_SERE, SKILL_ID_SERE_SUPPORT_SKILL,
     SKILL_ID_SHIELD_SPELL_LV_2,
     SKILL_ID_SHIHOZIN_FU, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN, SKILL_ID_SHINDOZANKYO,
@@ -280,10 +280,10 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 				break;
 			}
 
-			CS.wbairitu = 5000;
-			CS.wCast = 2000;
-			n_Delay[2] = 0;
-			n_Delay[7] = 0;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			break;
 
 		case SKILL_ID_VERATURE_SPEAR:
@@ -446,18 +446,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// 基本倍率
-			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			CS.wbairitu = 2700 + (150 * n_A_ActiveSkillLV);
-			CS.wbairitu += 3 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
-			// 最終倍率
-			CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
-			CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
-			CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			break;
 		}
 		// 「ハイパーノービス」スキル「ヘルズドライブ」
@@ -469,19 +458,8 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 分割Hit数
-			CS.wActiveHitNum = 3;
-			// 基本倍率
-			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			CS.wbairitu = 2600 + (150 * n_A_ActiveSkillLV);			// 基礎倍率
-			CS.wbairitu += 4 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
-			// 最終倍率
-			CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
-			CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
-			CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			break;
 		}
 		// 「ハイパーノービス」スキル「ナパームバルカンストライク」
@@ -494,19 +472,8 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 分割Hit数
-			CS.wActiveHitNum = 7;
-			// 基本倍率
-			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			CS.wbairitu = 2600 + (150 * n_A_ActiveSkillLV);			// 基礎倍率
-			CS.wbairitu += 4 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-			CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
-			// 最終倍率
-			CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
-			CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
-			CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			CS.wbairitu = Math.floor(CS.wbairitu);
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			break;
 		}
 		// 「ハイパーノービス」スキル「メテオストームバスター」
@@ -518,33 +485,10 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// 設置スキル
 			set_g_bDefinedDamageIntervals(true);
-			n_Delay[5] = 500; // ダメージ発生間隔
-			n_Delay[6] = [0,1500,2000,2000,2500,2500,3000,3000,3500,3500,4000][n_A_ActiveSkillLV];	// オブジェクト生存期間
-			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			// 隕石
-			if (battleCalcInfo.parentSkillId === undefined) {
-				CS.wActiveHitNum = 3;	// 隕石 1 つあたり見た目 3 Hit
-				CS.wbairitu = 1750 + 50 * n_A_ActiveSkillLV;				// 基礎倍率
-				CS.wbairitu += 5 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
-				// 最終倍率
-				CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-				CS.wbairitu = Math.floor(CS.wbairitu);
-				CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-				CS.wbairitu = Math.floor(CS.wbairitu);
-				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			}
-			// 爆発
-			else {
-				CS.wbairitu = 1175 + 25 * n_A_ActiveSkillLV;				// 基礎倍率
-				CS.wbairitu += 5 * n_A_ActiveSkillLV * madogaku;			// 習得済みスキル条件
-				CS.wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
-				// 最終倍率 (爆発には独学補正が掛からない)
-				CS.wbairitu *= n_A_BaseLV / 100;												// BaseLv補正
-				CS.wbairitu = Math.floor(CS.wbairitu);
-				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
-			}
-			CS.wbairitu = Math.floor(CS.wbairitu);
+			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv); // ダメージ発生間隔
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// オブジェクト生存期間
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);	// 隕石 1 つあたり見た目 3 Hit
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 			break;
 		}
 
@@ -565,33 +509,15 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			// ダメージ計算
-			let madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-			if (attackMethodConfArray[0].GetOptionValue(0) === 0) {
-				// 初撃ダメージ計算が指定された場合 (独学補正は掛からない)
-				CS.wbairitu = 100 + (20 * n_A_ActiveSkillLV);											// 基礎倍率
-				CS.wbairitu += 3 * n_A_ActiveSkillLV * madogaku;										// 習得済みスキル条件
-				CS.wbairitu += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);								// 特性ステータス補正
-				CS.wbairitu *= n_A_BaseLV / 100;														// BaseLv補正
-				CS.wbairitu = Math.floor(CS.wbairitu);
-				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;			// ルールブレイク補正
-			} else {
+			if (attackMethodConfArray[0].GetOptionValue(0) !== 0) {
 				// 設置ダメージ計算が指定された場合
 				set_g_bDefinedDamageIntervals(true);
 				n_Delay[5] = 500;	// ダメージ間隔
 				n_Delay[6] = 3000;	// オブジェクト存続時間
-				// 分割Hit数
-				CS.wActiveHitNum = 2;
-				// 基本倍率
-				CS.wbairitu = 650 + (25 * n_A_ActiveSkillLV);							// 基礎倍率
-				CS.wbairitu += 3 * n_A_ActiveSkillLV * madogaku;						// 習得済みスキル条件
-				CS.wbairitu += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);				// 特性ステータス補正
-				CS.wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
-				CS.wbairitu = Math.floor(CS.wbairitu);
-				CS.wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
-				CS.wbairitu = Math.floor(CS.wbairitu);
-				CS.wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
 			}
-			CS.wbairitu = Math.floor(CS.wbairitu);
+			// 分割Hit数
+			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
+			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
 			break;
 		}
 		

@@ -2135,9 +2135,8 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		// 「アースクエイク」
 		case SKILL_ID_EARTH_QUAKE:
-			var QuakeBairitu = [0,300,500,600,800,1000,1200,1300,1500,1600,1800];
-			CS.wbairitu = QuakeBairitu[n_A_ActiveSkillLV];
-			CS.wHITsuu = 3;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 			set_n_Enekyori(2);
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
