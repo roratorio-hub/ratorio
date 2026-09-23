@@ -11,10 +11,19 @@ import { CHARA_DATA_INDEX_MAXHP } from "../../const/EnumCharaDataIndex.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_SHIELD } from "../../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_SPBEGIN, ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
 import { ItemObjNew } from "../../equip/item.dat.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { n_A_AGI, n_A_Equip, n_A_INT, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV } from "../../runtime/roro-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import {
+    n_A_AGI, n_A_DEX, n_A_Equip, n_A_INT, n_A_JobLV, n_A_STR, n_A_VIT, n_A_WeaponLV
+} from "../../runtime/roro-state.js";
+import { MOB_CONF_DEBUF_ID_LEX_AETERNA, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ATKbaiJYOUSAN, ApplyMonsterDefence, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerAtkPercentUp, GetFixedAppendAtk
+} from "../../bridge/battlecalc-bridge.js";
 import {
     SKILL_ID_BANDING, SKILL_ID_BANISHING_POINT, SKILL_ID_BASH, SKILL_ID_CANNON_SPEAR,
     SKILL_ID_COUNT_OF_RG_FOR_BANDING,
@@ -23,6 +32,7 @@ import {
     SKILL_ID_INSPIRATION, SKILL_ID_KINGS_GRACE, SKILL_ID_MOON_SLUSHER, SKILL_ID_OVER_BLAND, SKILL_ID_PIETY,
     SKILL_ID_PINGPOINT_ATTACK, SKILL_ID_PRESTAGE, SKILL_ID_RAGE_BURST_ATTACK, SKILL_ID_RAY_OF_GENESIS,
     SKILL_ID_REFLECT_DAMAGE, SKILL_ID_SHIELD_PRESS, SKILL_ID_SHIELD_SHOOTING_STATE, SKILL_ID_SHIELD_SPELL,
+    SKILL_ID_SPEAR_QUICKEN,
     SKILL_ID_SHIELD_SPELL_ATK_PLUS,
     SKILL_ID_SHIELD_SPELL_DEF_PLUS, SKILL_ID_SHIELD_SPELL_LV_1, SKILL_ID_SHIELD_SPELL_LV_2,
     SKILL_ID_SHIELD_SPELL_REFLECT, SKILL_ID_SKILL_LV_DEFENDER_FOR_PRESTAGE, SKILL_ID_TRUMPLE
@@ -242,6 +252,31 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				set_n_Enekyori(1);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				var wBAI = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				wBAI += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				wBAI = ATKbaiJYOUSAN(wBAI);
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, CS.n_A_CriATK[i], true);
+					w_DMG[i] = Math.floor(w_DMG[i] * wBAI / 100);
+					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i],0);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,100);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i], i, true);
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -406,6 +441,67 @@ export const skills = [
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 2500;
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				CS.wLAch = true;
+				var w3HIT = attackMethodConfArray[0].GetOptionValue(0);
+				// スピアクイッケン習得Lv補正
+				var wSQ = Math.max(LearnedSkillSearch(SKILL_ID_SPEAR_QUICKEN), attackMethodConfArray[0].GetOptionValue(1));
+				var wBai = new Array();
+				wBai[0] = n_A_ActiveSkillLV * 400 + 50 * wSQ;
+				wBai[0] = Math.floor(wBai[0] * n_A_BaseLV / 150);
+				wBai[1] = n_A_ActiveSkillLV * 300 + n_A_STR + n_A_DEX;
+				wBai[1] = Math.floor(wBai[1] * n_A_BaseLV / 150);
+				wBai[2] = n_A_ActiveSkillLV * 200;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[1] = n_Delay[1] * 2;
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+
+				var wOB_DMG = new Array();
+				wOB_DMG[0] = [0,0,0];
+				wOB_DMG[1] = [0,0,0];
+				wOB_DMG[2] = [0,0,0];
+				for(var j=0;j<=2;j++){
+					wBai[j] += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+					wBai[j] = ATKbaiJYOUSAN(wBai[j]);
+					for(var i=0;i<=2;i++){
+						wOB_DMG[j][i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, CS.n_A_DMG[i]);
+						wOB_DMG[j][i] = Math.floor(wOB_DMG[j][i] * wBai[j] / 100);
+						wOB_DMG[j][i] = ApplyMonsterDefence(mobData, wOB_DMG[j][i], 0);
+						wOB_DMG[j][i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, wOB_DMG[j][i],i,-1);
+						wOB_DMG[j][i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wOB_DMG[j][i]);
+					}
+				}
+				if(w3HIT==1){
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i] + wOB_DMG[2][i];
+						if(!(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0)){
+							var w = wOB_DMG[0][i] * 2;
+							var w2 = w + wOB_DMG[1][i] + wOB_DMG[2][i];
+							CS.Last_DMG_B[i] = w2;
+						}
+					}
+				}else{
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = wOB_DMG[0][i] + wOB_DMG[1][i];
+						if(!(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 0)){
+							var w = wOB_DMG[0][i] * 2;
+							var w2 = w + wOB_DMG[1][i];
+							CS.Last_DMG_B[i] = w2;
+						}
+					}
+				}
+				w_DMG[1] = 0;
+				w_DMG[1] += (wOB_DMG[0][1] * CS.w_HIT) / 100;
+				w_DMG[1] += (wOB_DMG[1][1] * CS.w_HIT) / 100;
+				if(w3HIT == 1) w_DMG[1] += (wOB_DMG[2][1] * CS.w_HIT) / 100 * CS.w_HIT / 100;
+				AS_PLUS();
+				CS.n_PerfectHIT_DMG = 0;
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}
 
 		}),

@@ -197,26 +197,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.w_HIT_HYOUJI = CS.w_HIT;
 				break;
 
-			case SKILL_ID_IGNITION_BREAK:
-				n_Delay[7] = 3000;
-				var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 0);
-				if(w == 0) CS.wbairitu = 300 * n_A_ActiveSkillLV;
-				if(w == 1) CS.wbairitu = 250 * n_A_ActiveSkillLV;
-				if(w == 2) CS.wbairitu = 200 * n_A_ActiveSkillLV;
-				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
-				if(GetAttackMethodOptionValue(attackMethodConfArray, 1, 1) == 1) CS.wbairitu -= 1;
-				if(CS.BK_Weapon_zokusei == 3) CS.wbairitu += 100 * n_A_ActiveSkillLV;
-				break;
-
-			// ストームブラスト
-			case SKILL_ID_STORM_BLAST: {
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				break;
-			}
-
 			// 「メカニック」スキル「アックストルネード」
 
 			// 「メカニック」スキル「パワースイング」

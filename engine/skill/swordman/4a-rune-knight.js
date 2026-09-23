@@ -6,17 +6,28 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay,
+    set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_POWER, ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
+import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
 import { ItemObjNew } from "../../equip/item.dat.js";
 import {
-    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
+    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
+    n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
 import { n_A_Equip, n_A_INT, n_A_WeaponLV, n_A_Weapon_ATKplus } from "../../runtime/roro-state.js";
+import { GetPAtk, GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange, ApplyResistElement,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetSpiderWebDamageRatio
+} from "../../bridge/battlecalc-bridge.js";
 import {
     SKILL_ID_AVANDANCE, SKILL_ID_CRUSH_STRIKE, SKILL_ID_DEATH_BOUND, SKILL_ID_DRAGONIC_AURA_STATE,
     SKILL_ID_DRAGON_HOWLING, SKILL_ID_DRAGON_TRAINING, SKILL_ID_ENCHANT_BLADE, SKILL_ID_FIGHTING_SPIRIT,
@@ -25,6 +36,68 @@ import {
     SKILL_ID_SPIRAL_PIERCE, SKILL_ID_STONE_HARD_SKIN, SKILL_ID_STORM_BLAST, SKILL_ID_VITARITY_ACTIVATION,
     SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WIND_CUTTER, SKILL_ID_YARI_SHUREN
 } from "../skill.dat.js";
+
+/** ファイアードラゴンブレス・ウォータードラゴンブレス共通のダメージ計算式（属性のみ異なる）。 */
+function ApplyDragonBreathFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS, g_skillManager } = env;
+			if (UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) == 0) {
+				CS.n_Buki_Muri = true;
+				return;
+			}
+			// 遠距離スキル
+			set_n_Enekyori(1);
+			// 必中スキル
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			// 詠唱時間等
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 属性補正
+			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
+			// --------- ダメージ計算開始 ---------
+			CS.n_PerfectHIT_DMG = 0;
+			// 現HPとMaxSPから基本ダメージを算出
+			var w_HP = attackMethodConfArray[0].GetOptionValue(0);
+			if(w_HP == 0) {
+				w_HP = charaData[CHARA_DATA_INDEX_MAXHP];
+			}
+			var w = w_HP / 50 + charaData[CHARA_DATA_INDEX_MAXSP] / 4;
+			// スキルLv補正
+			w *= n_A_ActiveSkillLV;
+			// ドラゴントレーニング補正. UsedSkillSearch の方は'Lv0'の前に'未騎乗'が挿入されているのでオフセットを合わせている
+			const dragon_training_lv = Math.max(LearnedSkillSearch(SKILL_ID_DRAGON_TRAINING), UsedSkillSearch(SKILL_ID_DRAGON_TRAINING) - 1);
+			w *= [100,100,105,110,115,120][dragon_training_lv] / 100;
+			// Lv補正
+			w *= n_A_BaseLV / 100;
+			// ドラゴニックオーラ補正
+			if (UsedSkillSearch(SKILL_ID_DRAGONIC_AURA_STATE) > 0) {
+				if (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA] == MOB_CONF_PLAYER_ID_SENTO_AREA_YE) {
+					// YE鯖だと指数1.0298で誤差1に収まる
+					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.0298) / 100 * 250 / 300;
+				}
+				else{
+					// 通常鯖だと指数1.05555で誤差2桁以内に収まる
+					w *= 1 + Math.pow(GetTotalSpecStatus(MIG_PARAM_ID_POW) + GetPAtk(), 1.05555) / 100 * 250 / 300;
+				}
+			}
+			// --------- 減衰計算開始 ---------
+			w = ApplyResistElement(mobData, w);
+			var wX = GetSpiderWebDamageRatio();
+			if(wX != 0) w = ROUNDDOWN(w * (100 + wX) / 100);
+			w -= CS.B_Total_DEF;
+			if(w <0) w = 0;
+			w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+			w = ApplyElementRatio(mobData, w,n_A_Weapon_zokusei);
+			w = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
+			w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
+			for(var i=0;i<=2;i++){
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			}
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -128,6 +201,30 @@ export const skills = [
 				}
 
 				return 3000;
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				if(CS.n_DEATH_BOUND[3] == 0){
+					w_DMG[0] = 1;
+					w_DMG[1] = 1;
+					w_DMG[2] = 1;
+					BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+				}else{
+					n_Delay[0] = 1;
+					n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+
+					w_DMG[0] = CS.n_DEATH_BOUND[0];
+					w_DMG[1] = CS.n_DEATH_BOUND[1];
+					w_DMG[2] = CS.n_DEATH_BOUND[2];
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					}
+					CS.w_HIT = 100;
+					CS.w_HIT_HYOUJI = 100;
+					BuildCastAndDelayHtml(mobData);
+					BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+				}
 			}
 
 		}),
@@ -284,6 +381,18 @@ export const skills = [
 				return 3000;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { GetAttackMethodOptionValue, CS } = env;
+				n_Delay[7] = 3000;
+				var w = GetAttackMethodOptionValue(attackMethodConfArray, 0, 0);
+				if(w == 0) CS.wbairitu = 300 * n_A_ActiveSkillLV;
+				if(w == 1) CS.wbairitu = 250 * n_A_ActiveSkillLV;
+				if(w == 2) CS.wbairitu = 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(GetAttackMethodOptionValue(attackMethodConfArray, 1, 1) == 1) CS.wbairitu -= 1;
+				if(CS.BK_Weapon_zokusei == 3) CS.wbairitu += 100 * n_A_ActiveSkillLV;
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -326,6 +435,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.SpecialFormula = ApplyDragonBreathFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -446,6 +556,14 @@ export const skills = [
 			this.Power = function(skillLv, charaDataManger) {
 				const rune_mastery = Math.max(LearnedSkillSearch(SKILL_ID_RUNE_MASTERY), UsedSkillSearch(SKILL_ID_RUNE_MASTERY));
 				return 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
+			}
+
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			}
 		}),
 
@@ -627,6 +745,7 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
 			}
+			this.SpecialFormula = ApplyDragonBreathFormula;
 		}),
 
 ];
