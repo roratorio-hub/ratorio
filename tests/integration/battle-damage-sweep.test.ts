@@ -24,7 +24,7 @@
  *
  * 用途:
  *   通常実行 … __snapshots__/battle-damage-sweep/default.json と照合
- *   BATTLE_SWEEP_OUT=<dir> pnpm test:integration -- battle-damage-sweep
+ *   BATTLE_SWEEP_OUT=<dir> pnpm test:integration battle-damage-sweep
  *     … 照合の代わりに <dir>/default.json へ生JSONを書き出す（before/after diff 用）
  *
  * 注意: この harness は「今の挙動」を固定するだけで正しさは保証しない

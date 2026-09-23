@@ -18,7 +18,7 @@
  * 与ダメージ・DPS がほぼ全件0で、与ダメージの大きさそのものの回帰は検出できなかった。
  *
  * 通常実行 … __snapshots__/job-corpus-snapshot/default.json と照合
- * JOB_CORPUS_SWEEP_OUT=<dir> pnpm test:integration -- job-corpus-snapshot
+ * JOB_CORPUS_SWEEP_OUT=<dir> pnpm test:integration job-corpus-snapshot
  *   … 照合の代わりに <dir>/default.json へ生JSONを書き出す（コーパス再生成後の再固定用）
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
