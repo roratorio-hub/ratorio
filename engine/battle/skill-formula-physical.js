@@ -148,18 +148,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 従来からある分
 
-			case SKILL_ID_GRIM_TOOTH:
-				if(n_A_ActiveSkillLV >= 3) set_n_Enekyori(1);
-				else set_n_Enekyori(0);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				break;
-
-			case SKILL_ID_VENOM_KNIFE:
-				set_n_Enekyori(1);
-								CS.n_A_DMG[1] += Math.floor(14.5 * CS.wCSize);
-				CS.n_A_DMG[2] += Math.floor(29 * CS.wCSize);
-				break;
-
 			// 「拳聖」スキル「＊＊の温もり」
 			case SKILL_ID_NUKUMORI:
 			case SKILL_ID_NUKUMORI_KABE:

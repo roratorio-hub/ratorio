@@ -7,7 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_BaseLV, n_Delay, set_g_bDefinedDamageIntervals } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOW, ITEM_KIND_KNIFE, ITEM_KIND_SWORD } from "../../const/EnumItemKind.js";
 import {
@@ -483,6 +483,25 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
+			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// オブジェクト存続時間
+				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				// ダメージ間隔
+				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
+				set_g_bDefinedDamageIntervals(true);
+				// 基本倍率
+				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
+				// 攻撃回数（既定=範囲内=2Hit）
+				if (GetAttackMethodOptionValue(attackMethodConfArray, 0, 1) >= 1) {
+					CS.wHITsuu = 2;
+				}
 			}
 		}),
 

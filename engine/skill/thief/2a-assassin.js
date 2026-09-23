@@ -11,7 +11,14 @@ import { ELM_ID_POISON } from "../../const/EnumElmId.js";
 import { MONSTER_DATA_INDEX_ELEMENT } from "../../const/EnumMonsterDataIndex.js";
 import { GetMonseterElmBasicType } from "../../monster/monster.h.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
-import { n_SiegeMode } from "../../runtime/ro4-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, n_SiegeMode, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ATKbaiJYOUSAN, ApplyMonsterDefence, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetFixedAppendAtk
+} from "../../bridge/battlecalc-bridge.js";
 import {
     SKILL_ID_CLOAKING, SKILL_ID_ENCHANT_DEADLY_POISON, SKILL_ID_ENCHANT_POISON, SKILL_ID_GRIM_TOOTH,
     SKILL_ID_HIDARITE_SHUREN, SKILL_ID_KATAR_SHUREN, SKILL_ID_MIGITE_SHUREN, SKILL_ID_POISON_REACT,
@@ -175,6 +182,12 @@ export const skills = [
 				return 100 + 20 * skillLv;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				if(n_A_ActiveSkillLV >= 3) set_n_Enekyori(1);
+				else set_n_Enekyori(0);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -284,6 +297,32 @@ export const skills = [
 				return 7000 + 500 * skillLv;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				n_Delay[0] = 1;
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				var VSbai = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				VSbai = ATKbaiJYOUSAN(VSbai);
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = ROUNDDOWN((CS.n_A_DMG[i]) * VSbai / 100);
+					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+					if(mobData[20] == 1) w_DMG[i] = 0;
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -307,6 +346,12 @@ export const skills = [
 				return 100;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_Enekyori(1);
+								CS.n_A_DMG[1] += Math.floor(14.5 * CS.wCSize);
+				CS.n_A_DMG[2] += Math.floor(29 * CS.wCSize);
+			}
 		}),
 
 		// ----------------------------------------------------------------

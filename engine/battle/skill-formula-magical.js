@@ -355,31 +355,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 
-		// 「アビスチェイサー」スキル「アビススクエア」
-		// 2024/10/24 提供データとのほぼ誤差無しを確認済み
-		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
-		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
-		// 参考: ragna-promenade様
-		case SKILL_ID_ABYSS_SQUARE: {
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// オブジェクト存続時間
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
-			set_g_bDefinedDamageIntervals(true);
-			// 基本倍率
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
-			// 攻撃回数（既定=範囲内=2Hit）
-			if (GetAttackMethodOptionValue(attackMethodConfArray, 0, 1) >= 1) {
-				CS.wHITsuu = 2;
-			}
-			break;
-		}
-
 		//「エレメンタルマスター」スキル「エレメンタルバスター」
 		case SKILL_ID_ELEMENTAL_BASTER:
 			bMatchCond = false;
