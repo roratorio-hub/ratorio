@@ -158,23 +158,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		// 誤差無し、無し、無し、+3誤差、無し、無し、無し、+2誤差、・・・という感じで最大 +4 までズレてくる
 		// 誤差が拡大する方向ではなく通常鯖での1桁以内の誤差なのでスキル計算式そのものは合っていると判断
 
-		// 「ソウルアセティック」スキル「四方五行陣」
-		case SKILL_ID_SHIHO_GOGYO_ZIN:
-			// 使用条件は 玄武符 or 四方五行陣 状態であること
-			if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) < 4) {
-				CS.n_Buki_Muri = true;
-				break;
-			}
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
-			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV, attackMethodConfArray[0]);
-			set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
-			break;
-
 		// 「ハイパーノービス」スキル「ユピテルサンダーストーム」
 		case SKILL_ID_JUPITER_THUNDER_STORM: {
 			// 2024/09/19 実測値との誤差無しを確認済み

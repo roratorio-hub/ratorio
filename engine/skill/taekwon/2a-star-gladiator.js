@@ -6,8 +6,11 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../CSkillData.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_g_bDefinedDamageIntervals, set_n_A_Weapon_zokusei
+} from "../../runtime/ro4-state.js";
 import { MONSTER_BOSSTYPE_BOSS } from "../../const/EnumMonsterBossType.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
 	SKILL_ID_NUKUMORI, SKILL_ID_NUKUMORI_KABE,
     SKILL_ID_HOSHINO_ANRAKU, SKILL_ID_HOSHINO_IKARI, SKILL_ID_HOSHINO_NUKUMORI, SKILL_ID_HOSHINO_SHUKUFUKU,
@@ -19,6 +22,31 @@ import {
     SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_YUGO, SKILL_ID_TSUKINO_ANRAKU, SKILL_ID_TSUKINO_IKARI,
     SKILL_ID_TSUKINO_NUKUMORI, SKILL_ID_TSUKUNO_SHUKUFUKU
 } from "../skill.dat.js";
+
+/** ＊＊の温もり／壁版共通のダメージ計算式（設置対象の属性のみ異なる）。 */
+function ApplyNukumoriFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS, g_skillManager } = env;
+			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			// 設置スキル設定
+			set_g_bDefinedDamageIntervals(true);
+			// ダメージ間隔
+			if (mobData[20] == MONSTER_BOSSTYPE_BOSS) {
+				n_Delay[5] = 100;
+			} else if (n_A_ActiveSkill == SKILL_ID_NUKUMORI) {
+				n_Delay[5] = 50;
+			} else {
+				n_Delay[5] = 20;
+			}
+			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// オブジェクト存続時間
+			n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData); 	// 重複設置はできない
+			// 属性
+			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
+			// ダメージ倍率
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -79,6 +107,7 @@ export const skills = [
 			this.Power = function(skillLv, charaDataManger) {
 				return 100;
 			}
+			this.PhysicalFormula = ApplyNukumoriFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -117,6 +146,7 @@ export const skills = [
 			this.Power = function(skillLv, charaDataManger) {
 				return 100;
 			}
+			this.PhysicalFormula = ApplyNukumoriFormula;
 		}),
 
 		// ----------------------------------------------------------------

@@ -148,32 +148,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 従来からある分
 
-			// 「拳聖」スキル「＊＊の温もり」
-			case SKILL_ID_NUKUMORI:
-			case SKILL_ID_NUKUMORI_KABE:
-				// 詠唱時間等
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 設置スキル設定
-				set_g_bDefinedDamageIntervals(true);
-				// ダメージ間隔
-				if (mobData[20] == MONSTER_BOSSTYPE_BOSS) {
-					n_Delay[5] = 100;
-				} else if (n_A_ActiveSkill == SKILL_ID_NUKUMORI) {
-					n_Delay[5] = 50;
-				} else {
-					n_Delay[5] = 20;
-				}
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// オブジェクト存続時間
-				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData); 	// 重複設置はできない
-				// 属性
-				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
-				// ダメージ倍率
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-
 			case SKILL_ID_TRACKING:
 				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) CS.cast_kotei = true;
@@ -234,80 +208,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				n_Delay[0] = 2000;
 				break;
 
-			// 「天帝」スキル「太天一陽」
-			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TAITEN_ICHIYO: {
-				// 日出、正午、天気の身状態でのみ使用可能
-				const state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
-				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
-				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
-				if (!state_hinode && !state_shougo && !state_tenki_no_mi) {
-					CS.wbairitu = 0;
-					CS.n_Buki_Muri = true;
-					break;
-				}
-				// 距離属性
-				set_n_Enekyori(0);
-				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
-				// 分割ヒット
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			}
-			// 「天帝」スキル「天陽」
-			// 2024/11/11 もなこさん提供データに対して誤差なしを確認
-			case SKILL_ID_TENYO: {
-				// 正午、日没、天気の身状態でのみ使用可能
-				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
-				const state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
-				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
-				if (!state_shougo && !state_nichibotsu && !state_tenki_no_mi) {
-					CS.wbairitu = 0;
-					CS.n_Buki_Muri = true;
-					break;
-				}
-				// 距離属性
-				set_n_Enekyori(0);
-				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
-				// 分割ヒット
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				break;
-			}
-
-			// 「天帝」スキル「天羅万象」
-			case SKILL_ID_TENRA_BANSHO:
-				// 距離属性
-				set_n_Enekyori(0);
-				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
-				CS.wHITsuu = 1;
-				switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
-					case RACE_ID_HUMAN:
-						if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
-							break;
-						}
-					case RACE_ID_DEMON:
-						CS.wHITsuu = 3;
-						break;
-				}
-				break;
-
 			// 「蜃気楼　不知火」スキル「風魔手裏剣 -掌握-」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
 			case SKILL_ID_FUMASHURIKEN_SHOUAKU: {
@@ -340,19 +240,6 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 
 			// 「蜃気楼　不知火」スキル「影潜り」
 			// 2024/12/25 もなこさん検証データとの誤差無しを確認ずみ
-
-			// 「星帝」スキル「流星落下」
-			/**
-			 *  オートスペルですが何故かアクティブスキルとして登録されています
-			 *  いずれアクティブスキル配列から削除したいと考えています
-			 */
-			case SKILL_ID_RYUSE_RAKKA:
-			case SKILL_ID_RYUSE_RAKKA_TSUIGEKI:
-				// 基礎倍率
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				// 分割ヒット数
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
-				break;
 
 	/* --------------------------------------------------
 	↑ 物理攻撃スキル追加位置
