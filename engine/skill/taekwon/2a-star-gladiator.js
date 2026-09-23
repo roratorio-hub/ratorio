@@ -70,6 +70,15 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
 			}
+			this.LifeTime = function(skillLv, charaDataManger) {	// オブジェクト存続時間
+				return [0,10,20,60][skillLv] * 1000;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {	// 重複設置はできない
+				return [0,10,20,60][skillLv] * 1000;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return 100;
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -98,6 +107,15 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {	// オブジェクト存続時間
+				return [0,10,20,60][skillLv] * 1000;
+			}
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {	// 重複設置はできない
+				return [0,10,20,60][skillLv] * 1000;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				return 100;
 			}
 		}),
 

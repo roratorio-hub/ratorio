@@ -94,7 +94,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 650 + 50 * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -357,6 +357,12 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return (skillLv > 5) ? 120000 : 240000;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				return Math.floor((100 + 100 * skillLv) * n_A_BaseLV / 100);
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				return parentSkillId === undefined ? 2 : 3;
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -442,6 +448,10 @@ export const skills = [
 				}
 
 				return 2000;
+			}
+
+			this.Power = function(skillLv, charaDataManger) {
+				return 100;
 			}
 
 		}),
@@ -628,6 +638,10 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaDataManger) {
+				return Math.floor((100 + 100 * skillLv) * n_A_BaseLV / 100);
+			}
+			this.dispHitCount = 3;
 		}),
 
 ];

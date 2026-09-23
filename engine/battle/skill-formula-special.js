@@ -2458,13 +2458,13 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 		// 紅焔脚（修羅身弾から流用）
 		case SKILL_ID_KOEN_KYAKU:
 			var hitMode = attackMethodConfArray[0].GetOptionValue(0);
-			CS.wCast = 50 + 80 * n_A_ActiveSkillLV + 40 * Math.floor(n_A_ActiveSkillLV / 2);
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			for (let idx = 0; idx <= 2; idx++) {
 				w_DMG[idx] = 0;
 			}
 			// 攻撃対象のダメージ計算
 			if ((hitMode & 1) == 1) {
-				CS.wbairitu = 650 + 50 * n_A_ActiveSkillLV;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				for (let idx = 0; idx <= 2; idx++) {
@@ -2480,7 +2480,7 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 			// 追加ダメージの計算
 			if ((hitMode & 2) == 2) {
 				for (let idx = 0; idx <= 2; idx++) {
-					var w = 650 + 50 * n_A_ActiveSkillLV;
+					var w = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 					w += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 					w = ATKbaiJYOUSAN(w);
 					w = Math.floor(CS.n_A_DMG[idx] * w / 100);
@@ -2520,25 +2520,14 @@ export function ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, spec
 
 		case SKILL_ID_ZYURYOKU_CHOSE:
 
-			CS.wbairitu = 100;
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 
-			CS.n_KoteiCast = 1000;
+			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
-			// 特定の戦闘エリアでの補正
-			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
-
-			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
-				n_Delay[7] = 10000;
-				break;
-
-			default:
-				n_Delay[7] = 2000;
-				break;
-
-			}
+			n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 
 			CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 			CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);

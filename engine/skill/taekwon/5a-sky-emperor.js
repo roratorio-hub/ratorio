@@ -100,6 +100,13 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 1125 + 175 * skillLv;					// 基本倍率
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// POW補正
+				wbairitu += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));	// 天気修練 補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);			// ベースレベル補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 230;
 			}
@@ -150,6 +157,13 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 1575 + 225 * skillLv;					// 基本倍率
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// POW補正
+				wbairitu += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));	// 天気修練 補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);			// ベースレベル補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 230;
 			}
@@ -501,6 +515,11 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 300 * skillLv;					// 基本倍率
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// POW補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);		// ベースレベル補正
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);

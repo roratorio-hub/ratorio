@@ -18,7 +18,7 @@ import {
 } from "../const/EnumItemKind.js";
 import { ITEM_SP_ELEMENTAL } from "../const/EnumItemSpId.js";
 import { JOB_ID_GILOTINCROSS } from "../const/EnumJobId.js";
-import { MIG_PARAM_ID_CON, MIG_PARAM_ID_POW } from "../const/EnumMigItemParamId.js";
+import { MIG_PARAM_ID_CON } from "../const/EnumMigItemParamId.js";
 import { MONSTER_BOSSTYPE_BOSS } from "../const/EnumMonsterBossType.js";
 import { MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_RACE } from "../const/EnumMonsterDataIndex.js";
 import { RACE_ID_DEMON, RACE_ID_HUMAN } from "../const/EnumRaceId.js";
@@ -102,7 +102,7 @@ import {
     SKILL_ID_TAITEN_ICHIGETSU, SKILL_ID_TAITEN_ICHIYO, SKILL_ID_TAIYO_BAKUHATSU, SKILL_ID_TAROUNO_KIZU,
     SKILL_ID_TATAMI_GAESHI, SKILL_ID_TEIOAPUCHAGI, SKILL_ID_TEIOAPUCHAGI_IN_DASH, SKILL_ID_TEMPEST_FLAP,
     SKILL_ID_TENCHI_BANSE, SKILL_ID_TENCHI_ICHIGETSU, SKILL_ID_TENCHI_ICHIYO, SKILL_ID_TENGETSU,
-    SKILL_ID_TENKETSU_MOKU, SKILL_ID_TENKINO_MI, SKILL_ID_TENKI_SHUREN, SKILL_ID_TENME_RAKUSE, SKILL_ID_TENRACHIMO,
+    SKILL_ID_TENKETSU_MOKU, SKILL_ID_TENKINO_MI, SKILL_ID_TENME_RAKUSE, SKILL_ID_TENRACHIMO,
     SKILL_ID_TENRA_BANSHO, SKILL_ID_TENSE, SKILL_ID_TENYO, SKILL_ID_TIGER_HOWLING, SKILL_ID_TIGER_SLASH,
     SKILL_ID_TIGER_STRIKE, SKILL_ID_TOMAHAWKNAGE, SKILL_ID_TORURYOCHAGI, SKILL_ID_TRACKING,
     SKILL_ID_TRIANGLE_SHOT, SKILL_ID_TRIPLE_LASER, SKILL_ID_TUZYO_KOGEKI_CALC_LEFT, SKILL_ID_TUZYO_KOGEKI_CALC_RIGHT,
@@ -124,7 +124,6 @@ import { g_skillManager } from "../runtime/global.js";
 import { ATKbaiJYOUSAN, BattleCalcSubDamagePhysicalCommon, GetBattlerAtkPercentUp } from "../bridge/battlecalc-bridge.js";
 import { GetAttackMethodOptionValue } from "./attack-method-option.js";
 import { CS } from "./calc-state.js";
-import { GetTotalSpecStatus } from "../chara/hmjob.js";
 import {
     g_bDefinedDamageIntervals, n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, n_SiegeMode,
     set_g_bDefinedDamageIntervals, set_n_A_Weapon_zokusei, set_n_Enekyori, set_w_DMG, w_DMG
@@ -178,12 +177,12 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				} else {
 					n_Delay[5] = 20;
 				}
-				n_Delay[6] = [0,10,20,60][n_A_ActiveSkillLV] * 1000;	// オブジェクト存続時間
-				n_Delay[3] = n_Delay[6]; 								// 重複設置はできない
+				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// オブジェクト存続時間
+				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData); 	// 重複設置はできない
 				// 属性
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
-				CS.wbairitu = 100;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 
 			case SKILL_ID_TRACKING:
@@ -439,17 +438,10 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				CS.wbairitu = 1125 + 175 * n_A_ActiveSkillLV;
-				// POW補正
-				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// 天気修練 補正
-				CS.wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
-				// ベースレベル補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
 				// 分割ヒット
-				CS.wActiveHitNum = 2;
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 			}
 			// 「天帝」スキル「天陽」
@@ -471,17 +463,10 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				CS.wbairitu = 1575 + 225 * n_A_ActiveSkillLV;
-				// POW補正
-				CS.wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// 天気修練 補正
-				CS.wbairitu += 5 * n_A_ActiveSkillLV * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));
-				// ベースレベル補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
 				// 分割ヒット
-				CS.wActiveHitNum = 2;
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				break;
 			}
 
@@ -494,12 +479,7 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				// 基本倍率
-				CS.wbairitu = 300 * n_A_ActiveSkillLV;
-				// POW補正
-				CS.wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				// ベースレベル補正
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
 				CS.wHITsuu = 1;
 				switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
@@ -554,14 +534,9 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 			case SKILL_ID_RYUSE_RAKKA:
 			case SKILL_ID_RYUSE_RAKKA_TSUIGEKI:
 				// 基礎倍率
-				CS.wbairitu = 100 + 100 * n_A_ActiveSkillLV;
-				CS.wbairitu = Math.floor(CS.wbairitu * n_A_BaseLV / 100);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 				// 分割ヒット数
-				if (n_A_ActiveSkill == SKILL_ID_RYUSE_RAKKA && battleCalcInfo.parentSkillId === undefined) {
-					CS.wActiveHitNum = 2;
-				} else {
-					CS.wActiveHitNum = 3;
-				}
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 				break;
 
 	/* --------------------------------------------------
