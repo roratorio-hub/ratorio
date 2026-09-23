@@ -6,9 +6,19 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../CSkillData.js";
-import { n_A_JobLV } from "../../runtime/roro-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, n_Heal_MATK, n_tok,
+    set_g_bDefinedDamageIntervals, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_JobLV, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON } from "../../const/EnumItemSpId.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { GetEquippedTotalSPCardAndElse, GetEquippedTotalSPEquip } from "../../bridge/stallcalc-bridge.js";
+import {
+    ApplyMagicalSkillDamageRatioChange, ApplyMagicalSpecializeMonster, ApplyRegistPVPNormal, ApplyResistElement,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerMatkPercentUp
+} from "../../bridge/battlecalc-bridge.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_EARTH_SPIKE, SKILL_ID_FIRE_PILLAR, SKILL_ID_FROST_NOVA, SKILL_ID_HEAVENS_DRIVE, SKILL_ID_ICE_WALL,
     SKILL_ID_JUPITER_THUNDER, SKILL_ID_LORD_OF_VERMILLION, SKILL_ID_METEOR_STORM, SKILL_ID_MONSTER_ZYOHO,
@@ -51,6 +61,41 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				let w_MATK = [0,0,0];
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_Enekyori(2);
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.directSubtractionMdef = true;
+				CS.n_bunkatuHIT = 1;
+				set_n_A_Weapon_zokusei(3);
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				for(var i=0;i<=2;i++){
+					w_MATK[i] = n_Heal_MATK[i];
+					w_MATK[i] = Math.floor(w_MATK[i] * (40 + 20 * n_A_ActiveSkillLV) / 100) + 100 + 50 * n_A_ActiveSkillLV;
+					w_MATK[i] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
+					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
+					w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
+					w_MATK[i] = Math.floor(w_MATK[i] * (100+GetEquippedTotalSPEquip(5122) + GetEquippedTotalSPCardAndElse(5122)) / 100);
+				}
+				CS.wbairitu += GetBattlerMatkPercentUp();
+				for(var b=0;b<=2;b++){
+					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100) / CS.wHITsuu);
+					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu;
+
+					// TODO: ダメージ表示方式変更対応
+					// w_DMG[b] *= wHITsuu;
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				CS.w_HIT_HYOUJI = 100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -141,6 +186,16 @@ export const skills = [
 				return 0;
 			}
 
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, g_VariableCastTimeRate } = env;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				set_n_A_Weapon_zokusei(3);
+				if(!CS.n_AS_MODE) CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * attackMethodConfArray[0].GetOptionValue(0);
+				else CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * (Math.floor(n_A_ActiveSkillLV / 2) + 2);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				if(g_VariableCastTimeRate == 0) n_Delay[1] = n_Delay[1] / 2;
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -344,6 +399,24 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaDataManger) {
 				return 70 + 50 * skillLv;
+			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
+				// 設置スキル設定
+				set_g_bDefinedDamageIntervals(true);
+				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);	// ダメージ間隔
+				// 「3hitで凍った場合のダメージを算出したいニーズ」を切り捨てない苦肉の策でオブジェクト存続時間を調整する
+				n_Delay[6] = 450 * GetAttackMethodOptionValue(attackMethodConfArray, 0, 3);	// オブジェクト存続時間
+				// 属性
+				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
+				// ダメージ倍率
+				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
 			}
 		}),
 

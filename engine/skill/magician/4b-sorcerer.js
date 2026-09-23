@@ -6,17 +6,20 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../CSkillData.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { n_A_INT, n_A_JobLV } from "../../runtime/roro-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_g_bDefinedDamageIntervals, set_n_A_Weapon_zokusei
+} from "../../runtime/ro4-state.js";
+import { n_A_INT, n_A_JobLV, n_A_WeaponType } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SERE_SUPPORT_SKILL_ID_CURSED_SOIL, SERE_SUPPORT_SKILL_ID_DEEP_POISONING,
     SKILL_ID_ARRULLO, SKILL_ID_CLOUD_KILL, SKILL_ID_DIAMOND_DUST, SKILL_ID_EARTH_GRAVE, SKILL_ID_EARTH_INSIGNIA,
     SKILL_ID_ELECTRIC_WALK, SKILL_ID_ELEMENTAL_ACTION, SKILL_ID_ELEMENTAL_ANALYSIS, SKILL_ID_ELEMENTAL_CONTROL,
     SKILL_ID_ELEMENTAL_CURE, SKILL_ID_ELEMENTAL_SHIELD, SKILL_ID_ELEMENTAL_SYMPASY, SKILL_ID_FIRE_INSIGNIA,
-    SKILL_ID_FIRE_WALK, SKILL_ID_POISON_BUSTER, SKILL_ID_PSYCHIC_WAVE, SKILL_ID_SERE_SUPPORT_SKILL,
+    SKILL_ID_FIRE_WALK, SKILL_ID_FROST_WEAPON, SKILL_ID_LIGHTNING_LOADER, SKILL_ID_POISON_BUSTER,
+    SKILL_ID_PSYCHIC_WAVE, SKILL_ID_SEISMIC_WEAPON, SKILL_ID_SERE_SUPPORT_SKILL,
     SKILL_ID_SPELL_FIST, SKILL_ID_STRIKING, SKILL_ID_SUMMON_AGNI, SKILL_ID_SUMMON_AQUA, SKILL_ID_SUMMON_TERA,
     SKILL_ID_SUMMON_VENTOS, SKILL_ID_VACUUM_EXTREME, SKILL_ID_VERATURE_SPEAR, SKILL_ID_WARMER,
     SKILL_ID_WATER_INSIGNIA, SKILL_ID_WIND_INSIGNIA
@@ -235,6 +238,29 @@ export const skills = [
 			this.Power = function(skillLv, charaDataManger) {
 				return ROUNDDOWN((70 * skillLv + 3 * n_A_INT) * n_A_BaseLV / 100);
 			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				set_g_bDefinedDamageIntervals(true);
+
+				// 詠唱時間等
+				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//1000
+				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//5000
+
+				// ダメージ間隔
+				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
+
+				// オブジェクト存続時間
+				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+
+				// 属性の設定
+				if(!CS.n_AS_MODE) set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
+				else set_n_A_Weapon_zokusei(0);
+
+				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -425,6 +451,22 @@ export const skills = [
 				var nLifeTime = ([0, 8000, 11000, 14000, 17000, 20000])[skillLv];
 				return nLifeTime;
 			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
+				set_n_A_Weapon_zokusei(2);
+				CS.n_bunkatuHIT = 1;
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const seismic_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_SEISMIC_WEAPON), UsedSkillSearch(SKILL_ID_SEISMIC_WEAPON));
+				var subnumvalue = GetAttackMethodOptionValue(attackMethodConfArray, 0, seismic_weapon_lv);
+				CS.wbairitu = 200 * subnumvalue + n_A_INT * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 31) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -472,6 +514,21 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 12000, 14000, 16000, 18000, 20000])[skillLv];
 				return nLifeTime;
+			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
+				set_n_A_Weapon_zokusei(1);
+				CS.n_bunkatuHIT = 1;
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const frost_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_FROST_WEAPON), UsedSkillSearch(SKILL_ID_FROST_WEAPON));
+				CS.wbairitu = 200 * GetAttackMethodOptionValue(attackMethodConfArray, 0, frost_weapon_lv) + n_A_INT * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 13) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			}
 		}),
 
@@ -559,6 +616,26 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {
 				var nLifeTime = ([0, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000])[skillLv];
 				return nLifeTime;
+			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				set_n_A_Weapon_zokusei(4);
+
+				CS.n_bunkatuHIT = 1;
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+
+				const lightning_loader_lv = Math.max(LearnedSkillSearch(SKILL_ID_LIGHTNING_LOADER), UsedSkillSearch(SKILL_ID_LIGHTNING_LOADER));
+				const striking_lv = Math.max(LearnedSkillSearch(SKILL_ID_STRIKING), UsedSkillSearch(SKILL_ID_STRIKING));
+				var subnumvalue = GetAttackMethodOptionValue(attackMethodConfArray, 0, lightning_loader_lv);
+				var subnumvalue2 = GetAttackMethodOptionValue(attackMethodConfArray, 1, striking_lv);
+				CS.wbairitu = ROUNDDOWN((120 * (subnumvalue + subnumvalue2) + n_A_INT * (n_A_ActiveSkillLV / 2)) * n_A_BaseLV / 100);
+
+				if(UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL) == 22) CS.wbairitu += ROUNDDOWN(n_A_JobLV * 5);
 			}
 		}),
 
