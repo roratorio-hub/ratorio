@@ -145,35 +145,6 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		//
 		//----------------------------------------------------------------
 
-		// 「カーディナル」スキル「ニューマティックプロセラ」
-		// 2025-01-17 もなこさんから連携して頂いた情報との一致を確認
-		case SKILL_ID_NUMATIC_PROCERA: {
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// オブジェクト存続時間
-			set_g_bDefinedDamageIntervals(true);
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			// ダメージ間隔
-			n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData);
-			// 見た目10hitで最大40hit
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			break;
-		}
-		// 「カーディナル」スキル「フレーメン」
-		// 2025-01-27 もなこさんから連携して頂いた情報との一致を確認
-		case SKILL_ID_PHREMEN: {
-			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData);
-			break;
-		}
 		// 「インペリアルガード」スキル「ジャッジメントクロス」
 		// 2025/03/02 もなこさんから連携して頂いた情報に合わせてあります
 

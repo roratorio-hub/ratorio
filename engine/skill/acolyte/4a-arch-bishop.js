@@ -6,7 +6,11 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_n_A_Weapon_zokusei, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_INT, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ApplyElementRatio, BuildBattleResultHtml, BuildCastAndDelayHtml } from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { CardNumSearch } from "../../bridge/chara-search-bridge.js";
 import {
@@ -421,6 +425,31 @@ export const skills = [
 				return 18;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_A_Weapon_zokusei(6);
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[0] = 1;
+				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				w_DMG[2] = n_A_BaseLV * 10 + n_A_INT;
+				w_DMG[2] = ApplyElementRatio(mobData, w_DMG[2],6);
+				if(mobData[18] <= 89 || 100 <= mobData[18]) w_DMG[2]=0;
+
+				// TODO: ダメージ表示方式変更対応
+				// w_DMG[2] = w_DMG[2] * wHITsuu;
+
+				w_DMG[0] = w_DMG[1] = w_DMG[2];
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------

@@ -7,18 +7,72 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CCharaConfNizi } from "../../chara/CCharaConfNizi.js";
-import { CSkillData, defineSkill } from "../CSkillData.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_AGI, n_A_DEX, n_A_JOB } from "../../runtime/roro-state.js";
 import { CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { GetHigherJobSeriesID } from "../../data/mig.job.h.js";
-import { n_A_AGI, n_A_DEX, n_A_JOB } from "../../runtime/roro-state.js";
+import {
+    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
+} from "../../monster/mobconfplayer.js";
 import { GetCharaConfNizi } from "../../bridge/chara-conf-bridge.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import {
+    ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange, ApplyPhysicalSpecializeMonster,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetFixedAppendAtk
+} from "../../bridge/battlecalc-bridge.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ASHURA_HAOKEN, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, SKILL_ID_BAKURETSU_HADO, SKILL_ID_COMBO_SANDAN_MONK,
     SKILL_ID_HAKKEI, SKILL_ID_IBUKI, SKILL_ID_KIDATSU, SKILL_ID_KIKO, SKILL_ID_KIKO_TENI, SKILL_ID_KONGO,
     SKILL_ID_MIKIRI, SKILL_ID_MORYUKEN, SKILL_ID_RENDASHO, SKILL_ID_SANDANSHO, SKILL_ID_SANDAN_DELAY_ZOKA,
     SKILL_ID_SHIDAN, SKILL_ID_SHIRAHADORI, SKILL_ID_SUNKEI, SKILL_ID_TEKKEN, SKILL_ID_ZANEI
 } from "../skill.dat.js";
+
+/** 阿修羅覇凰拳・阿修羅覇凰拳(SP固定)共通のダメージ計算式。 */
+function ApplyAshuraHaokenFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS, g_skillManager, AS_PLUS } = env;
+			CS.n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			set_n_A_Weapon_zokusei(0);
+
+			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+
+			var wASYU = 0;
+
+			// 特定の戦闘エリアでの補正
+			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+				wASYU = 200000 * n_A_ActiveSkillLV;
+				break;
+
+			default:
+				wASYU = 250 + 150 * n_A_ActiveSkillLV;
+				break;
+
+			}
+
+			for(var i=0;i<=2;i++){
+				w_DMG[i] = Math.floor(CS.n_A_DMG[i] * CS.wbairitu / 100) + wASYU;
+				w_DMG[i] -= CS.B_Total_DEF;
+				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+			}
+			if(CS.n_AS_MODE) return w_DMG;
+			for(var i=0;i<=2;i++){
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			}
+			AS_PLUS();
+			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -324,6 +378,36 @@ export const skills = [
 				return 500;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				CS.n_PerfectHIT_DMG = 0;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				var AS_ATK = 0;
+				if(CS.n_AS_MODE){
+					AS_ATK = Math.floor(mobData[13] / 2);
+					AS_ATK = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, AS_ATK);
+					AS_ATK = ApplyElementRatio(mobData, AS_ATK,n_A_Weapon_zokusei);
+				}
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + AS_ATK;
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				AS_PLUS();
+				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -421,6 +505,7 @@ export const skills = [
 				return 3500 - 500 * skillLv;
 			}
 
+			this.SpecialFormula = ApplyAshuraHaokenFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -469,6 +554,7 @@ export const skills = [
 				return 3500 - 500 * skillLv;
 			}
 
+			this.SpecialFormula = ApplyAshuraHaokenFormula;
 		}),
 
 		// ----------------------------------------------------------------
