@@ -162,11 +162,11 @@ export const skills = [
 				// 距離属性
 				set_n_Enekyori(0);
 				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
 				// 分割ヒット
 				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -241,11 +241,11 @@ export const skills = [
 				// 距離属性
 				set_n_Enekyori(0);
 				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
 				// 分割ヒット
 				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
@@ -577,14 +577,14 @@ export const skills = [
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_Enekyori(0);
 				// 詠唱時間など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
 				CS.wHITsuu = 1;
 				switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {

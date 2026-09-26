@@ -119,15 +119,15 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
+				const { CS, AS_PLUS } = env;
 				var hitMode = attackMethodConfArray[0].GetOptionValue(0);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				for (let idx = 0; idx <= 2; idx++) {
 					w_DMG[idx] = 0;
 				}
 				// 攻撃対象のダメージ計算
 				if ((hitMode & 1) == 1) {
-					CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+					CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 					CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 					CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 					for (let idx = 0; idx <= 2; idx++) {
@@ -143,7 +143,7 @@ export const skills = [
 				// 追加ダメージの計算
 				if ((hitMode & 2) == 2) {
 					for (let idx = 0; idx <= 2; idx++) {
-						var w = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+						var w = this.Power(n_A_ActiveSkillLV, charaData);
 						w += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 						w = ATKbaiJYOUSAN(w);
 						w = Math.floor(CS.n_A_DMG[idx] * w / 100);
@@ -535,15 +535,15 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const { CS, AS_PLUS } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
 
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 
 				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
