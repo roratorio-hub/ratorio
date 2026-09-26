@@ -249,26 +249,26 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_g_bDefinedDamageIntervals(true);
 
 				// 詠唱時間等
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//1000
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);//5000
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);//2750 + 1250 * n_A_ActiveSkillLV;
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);//2250 - 250 * n_A_ActiveSkillLV;
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);//1000
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);//5000
 
 				// ダメージ間隔
-				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);
+				n_Delay[5] = this.damageInterval(battleCalcInfo.skillLv);
 
 				// オブジェクト存続時間
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				n_Delay[6] = this.LifeTime(battleCalcInfo.skillLv, charaData);
 
 				// 属性の設定
 				if(!CS.n_AS_MODE) set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
 				else set_n_A_Weapon_zokusei(0);
 
-				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData);
 			}
 		}),
 
@@ -462,14 +462,14 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
+				const { CS, GetAttackMethodOptionValue } = env;
 				set_n_A_Weapon_zokusei(2);
 				CS.n_bunkatuHIT = 1;
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				const seismic_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_SEISMIC_WEAPON), UsedSkillSearch(SKILL_ID_SEISMIC_WEAPON));
 				var subnumvalue = GetAttackMethodOptionValue(attackMethodConfArray, 0, seismic_weapon_lv);
 				CS.wbairitu = 200 * subnumvalue + n_A_INT * n_A_ActiveSkillLV;
@@ -526,14 +526,14 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
+				const { CS, GetAttackMethodOptionValue } = env;
 				set_n_A_Weapon_zokusei(1);
 				CS.n_bunkatuHIT = 1;
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				const frost_weapon_lv = Math.max(LearnedSkillSearch(SKILL_ID_FROST_WEAPON), UsedSkillSearch(SKILL_ID_FROST_WEAPON));
 				CS.wbairitu = 200 * GetAttackMethodOptionValue(attackMethodConfArray, 0, frost_weapon_lv) + n_A_INT * n_A_ActiveSkillLV;
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
@@ -628,15 +628,15 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const { CS, GetAttackMethodOptionValue } = env;
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				set_n_A_Weapon_zokusei(4);
 
 				CS.n_bunkatuHIT = 1;
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 
 				const lightning_loader_lv = Math.max(LearnedSkillSearch(SKILL_ID_LIGHTNING_LOADER), UsedSkillSearch(SKILL_ID_LIGHTNING_LOADER));
 				const striking_lv = Math.max(LearnedSkillSearch(SKILL_ID_STRIKING), UsedSkillSearch(SKILL_ID_STRIKING));

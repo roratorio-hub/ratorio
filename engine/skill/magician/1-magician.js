@@ -93,7 +93,7 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
+				const { CS, AS_PLUS } = env;
 				let w_MATK = [0,0,0];
 				CS.n_PerfectHIT_DMG = 0;
 				set_n_Enekyori(2);
@@ -109,10 +109,10 @@ export const skills = [
 					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 					w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 				}
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu += GetBattlerMatkPercentUp();
 				var wBunsan = 1;
 				if(!CS.n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
@@ -297,7 +297,7 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_A_Weapon_zokusei(3);
 				// スペルフィストの中身として呼ばれている場合
 				if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
@@ -315,7 +315,7 @@ export const skills = [
 					CS.wCast = 560 * n_A_ActiveSkillLV;
 					n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 				}
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 			}
 		}),
 
@@ -452,7 +452,7 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_A_Weapon_zokusei(1);
 				// スペルフィストの中身として呼ばれている場合
 				if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
@@ -470,7 +470,7 @@ export const skills = [
 					CS.wCast = 560 * n_A_ActiveSkillLV;
 					n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 				}
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 			}
 		}),
 
@@ -567,7 +567,7 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_A_Weapon_zokusei(4);
 				// スペルフィストの中身として呼ばれている場合
 				if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
@@ -585,7 +585,7 @@ export const skills = [
 					CS.wCast = 560 * n_A_ActiveSkillLV;
 					n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
 				}
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 			}
 		}),
 

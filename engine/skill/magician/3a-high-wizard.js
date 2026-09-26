@@ -69,11 +69,11 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
+				const { CS, AS_PLUS } = env;
 				let w_MATK = [0,0,0];
 				set_n_Enekyori(1);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				for(var i=0;i<=2;i++){
 					w_MATK[i] = BK_n_A_MATK[i];
 					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
@@ -172,7 +172,7 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
+				const { CS, AS_PLUS } = env;
 				let w_MATK = [0,0,0];
 				CS.n_PerfectHIT_DMG = 0;
 				set_n_Enekyori(2);
@@ -188,10 +188,10 @@ export const skills = [
 					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
 					w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 				}
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu += GetBattlerMatkPercentUp();
 				var wBunsan = 1;
 				if(!CS.n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
@@ -249,15 +249,15 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				const { CS } = env;
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
 				// 設置スキル設定
 				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);	// ダメージ間隔
-				n_Delay[6] = g_skillManager.GetLifeTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);	// オブジェクト存続時間
+				n_Delay[5] = this.damageInterval(n_A_ActiveSkillLV);	// ダメージ間隔
+				n_Delay[6] = this.LifeTime(n_A_ActiveSkillLV, charaData);	// オブジェクト存続時間
 				// 固定ダメージ設定
 				CS.w_HIT = 100;									// 命中率 100%
 				w_DMG[2] = 500 + 100 * n_A_ActiveSkillLV;		// 固定ダメージ計算式

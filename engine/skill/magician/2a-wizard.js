@@ -62,17 +62,17 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
+				const { CS, AS_PLUS } = env;
 				let w_MATK = [0,0,0];
 				CS.n_PerfectHIT_DMG = 0;
 				set_n_Enekyori(2);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.directSubtractionMdef = true;
 				CS.n_bunkatuHIT = 1;
 				set_n_A_Weapon_zokusei(3);
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				for(var i=0;i<=2;i++){
 					w_MATK[i] = n_Heal_MATK[i];
 					w_MATK[i] = Math.floor(w_MATK[i] * (40 + 20 * n_A_ActiveSkillLV) / 100) + 100 + 50 * n_A_ActiveSkillLV;
@@ -187,14 +187,14 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, g_VariableCastTimeRate } = env;
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const { CS, g_VariableCastTimeRate } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				set_n_A_Weapon_zokusei(3);
 				if(!CS.n_AS_MODE) CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * attackMethodConfArray[0].GetOptionValue(0);
 				else CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * (Math.floor(n_A_ActiveSkillLV / 2) + 2);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				if(g_VariableCastTimeRate == 0) n_Delay[1] = n_Delay[1] / 2;
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			}
 		}),
 
@@ -403,20 +403,20 @@ export const skills = [
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				n_Delay[3] = this.DelayTimeSkillTiming(battleCalcInfo.skillLv, charaData);	// 強制ディレイ（オブジェクト発生中は別のSGを重ねられないため）
 				// 設置スキル設定
 				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);	// ダメージ間隔
+				n_Delay[5] = this.damageInterval(battleCalcInfo.skillLv);	// ダメージ間隔
 				// 「3hitで凍った場合のダメージを算出したいニーズ」を切り捨てない苦肉の策でオブジェクト存続時間を調整する
 				n_Delay[6] = 450 * GetAttackMethodOptionValue(attackMethodConfArray, 0, 3);	// オブジェクト存続時間
 				// 属性
 				set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 				// ダメージ倍率
-				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData);
 			}
 		}),
 

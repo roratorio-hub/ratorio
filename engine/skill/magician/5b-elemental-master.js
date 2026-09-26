@@ -624,7 +624,7 @@ export const skills = [
 			}
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				let bMatchCond;
 				bMatchCond = false;
 				// 属性設定
@@ -653,11 +653,11 @@ export const skills = [
 				// 使用可否判定
 				if (bMatchCond) {
 					// 詠唱時間等
-					CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-					CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+					CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+					CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+					n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+					n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+					CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData);
 				}
 				// 使用不可
 				else {

@@ -534,7 +534,7 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				let w_MATK = [0,0,0];
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
@@ -551,7 +551,7 @@ export const skills = [
 				wBai[1] = Math.floor(wBai[1] * n_A_BaseLV / 100);
 				wBai[0] += GetBattlerMatkPercentUp();
 				wBai[1] += GetBattlerMatkPercentUp();
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				var wHell_DMG1 = [0,0,0];
 				var wHell_DMG2 = [0,0,0];
 				set_n_A_Weapon_zokusei(3);
@@ -705,7 +705,7 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				let w_MATK = [0,0,0];
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
@@ -713,9 +713,9 @@ export const skills = [
 				set_n_A_Weapon_zokusei(4);
 				if(!CS.n_AS_MODE) CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 				else CS.wHITsuu = 4;
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				var wC_DMG = new Array();
 				for(var i=0;i<=5;i++) wC_DMG[i] = [0,0,0];
 				var wBK_MATK = [0,0,0];
@@ -881,15 +881,15 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				let w_MATK = [0,0,0];
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				set_n_Enekyori(2);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu += GetBattlerMatkPercentUp();
 				var wT_DMG1 = [0,0,0];
 				var wT_DMG2 = [0,0,0];
