@@ -230,7 +230,7 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				let w_MATK = [0,0,0];
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
@@ -257,8 +257,8 @@ export const skills = [
 					if(EquipNumSearch(2495)) wGXbai3 += n_A_BaseLV;
 					w_DMG[i] = ROUNDDOWN(w_DMG[i] * (100+GetEquippedTotalSPEquip(5000+n_A_ActiveSkill)+GetEquippedTotalSPCardAndElse(5000+n_A_ActiveSkill) + wGXbai3) / 100);
 				}
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				CS.wLAch = true;
 				for(var i=0;i<=2;i++){
 					w_MATK[i] = n_A_MATK[i];
