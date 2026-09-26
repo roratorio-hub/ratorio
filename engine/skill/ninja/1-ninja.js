@@ -107,10 +107,10 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, SyurikenOBJ } = env;
+				const { CS, SyurikenOBJ } = env;
 				set_n_Enekyori(1);
 							CS.n_PerfectHIT_DMG = 0;
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				// 投擲修練Lv
 				const toteki_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TOTEKI_SHUREN), UsedSkillSearch(SKILL_ID_TOTEKI_SHUREN));
 				for(let i = 0; i <= 2; i++){
@@ -188,14 +188,14 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
-				CS.wbairitu += g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu += this.Power(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				set_n_Enekyori(1);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				CS.wActiveHitNum = this.dispHitCount(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 				for(var i=0;i<=2;i++){
 					w_DMG[i] = Math.floor(CS.n_A_DMG[i] * CS.wbairitu / 100);
 					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
@@ -239,11 +239,11 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				CS.w_HIT_HYOUJI = 100;
 				CS.w_HIT = 100;
 				set_n_Enekyori(1);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				for(var i=0;i<=2;i++){
 					var dm = [500,750,1000];
 					w_DMG[i] = Math.floor(dm[i] * n_A_ActiveSkillLV);

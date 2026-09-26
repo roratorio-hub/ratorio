@@ -264,19 +264,19 @@ export const skills = [
 				return Math.floor(wbairitu * n_A_BaseLV / 100);				// BaseLv補正
 			}
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_Enekyori(1);			// 遠距離フラグ
 				// 詠唱など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
 				// 設置
 				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = g_skillManager.GetDamageInterval(battleCalcInfo.skillId, battleCalcInfo.skillLv);		// ダメージ間隔
-				n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
+				n_Delay[5] = this.damageInterval(battleCalcInfo.skillLv);		// ダメージ間隔
+				n_Delay[6] = this.LifeTime(battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
 				// ダメージ倍率
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			}
 		}),
 
@@ -326,14 +326,14 @@ export const skills = [
 				return Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 			}
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_Enekyori(1);			// 遠距離フラグ
 				// 詠唱など
-				CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
 			}
 		}),
 
