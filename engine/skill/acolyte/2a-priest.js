@@ -197,12 +197,12 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 0;
 				set_n_A_Weapon_zokusei(6);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[0] = 1;
 				set_n_Enekyori(2);
 				if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;

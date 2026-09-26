@@ -155,9 +155,9 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { g_skillManager, CS } = env;
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+				const { CS } = env;
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wActiveHitNum = this.dispHitCount(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 				if(!CS.n_AS_MODE){
 					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
 						// 単発の場合
@@ -247,12 +247,12 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { g_skillManager, CS } = env;
+				const { CS } = env;
 				set_n_Enekyori(1);
 				n_Delay[0] = 1;
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			}
 		}),
 
@@ -282,10 +282,10 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
+				const { CS, AS_PLUS } = env;
 				set_n_Enekyori(1);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 				for(var i=0;i<=2;i++){
@@ -411,9 +411,9 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { g_skillManager, CS } = env;
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const { CS } = env;
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				var w1 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXHP] * (10 + 2 * n_A_ActiveSkillLV) / 100);
 				var w2 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (5 + n_A_ActiveSkillLV) / 100);
 				if(!CS.n_AS_MODE){
@@ -713,9 +713,9 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_Enekyori(1);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu = 200 * n_A_ActiveSkillLV;
 				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
 				if(CS.BK_Weapon_zokusei == 4) CS.wbairitu = ROUNDDOWN(CS.wbairitu * 125 / 100);
@@ -744,8 +744,8 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const { CS } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.w_HIT = Math.floor(CS.w_HIT * (5 * n_A_ActiveSkillLV + (n_A_DEX + n_A_BaseLV) / 10) / 100);
 				CS.w_HIT_HYOUJI = CS.w_HIT;
 			}
@@ -911,7 +911,7 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, __DIG3, AS_PLUS } = env;
+				const { CS, __DIG3, AS_PLUS } = env;
 				if(CS.n_DEATH_BOUND[3] == 0){
 					w_DMG[0] = 1;
 					w_DMG[1] = 1;
@@ -919,11 +919,11 @@ export const skills = [
 					BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 				}else{
 					n_Delay[0] = 1;
-					n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-					CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-					n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+					n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+					CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+					n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 
-					CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+					CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
 					CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 					CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 					for(var i=0;i<=2;i++){
@@ -1041,10 +1041,9 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { g_skillManager } = env;
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+								n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[3] = this.DelayTimeSkillTiming(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
 			}
 		}),

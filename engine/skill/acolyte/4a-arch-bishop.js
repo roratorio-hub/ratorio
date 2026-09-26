@@ -427,16 +427,16 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 0;
 				set_n_A_Weapon_zokusei(6);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				n_Delay[0] = 1;
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				w_DMG[2] = n_A_BaseLV * 10 + n_A_INT;
 				w_DMG[2] = ApplyElementRatio(mobData, w_DMG[2],6);
 				if(mobData[18] <= 89 || 100 <= mobData[18]) w_DMG[2]=0;
