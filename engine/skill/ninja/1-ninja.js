@@ -6,6 +6,7 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import { ApplyG7KunaiNageFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { ELM_ID_FIRE, ELM_ID_WATER, ELM_ID_WIND } from "../../const/EnumElmId.js";
@@ -150,6 +151,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.SpecialFormula = ApplyG7KunaiNageFormula;
 		}),
 
 		// ----------------------------------------------------------------

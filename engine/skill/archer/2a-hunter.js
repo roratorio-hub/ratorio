@@ -13,7 +13,7 @@ import {
 import { n_A_DEX, n_A_INT, n_A_STR, n_A_WeaponType } from "../../runtime/roro-state.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { ApplyElementRatio, ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml, BuildCastAndDelayHtml } from "../../bridge/battlecalc-bridge.js";
-import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
+import { ApplyG1CommonTailFormula, ApplyG5BlitzBeatFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ANKLESNARE, SKILL_ID_BEAST_BANE, SKILL_ID_BEAST_STRAIFING, SKILL_ID_BLAST_MINE, SKILL_ID_BLITZ_BEAT,
@@ -385,6 +385,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = ApplyG5BlitzBeatFormula;
 		}),
 
 		// ----------------------------------------------------------------

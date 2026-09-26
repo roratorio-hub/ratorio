@@ -21,7 +21,7 @@ import {
     ApplyAttackDamageAmplify, ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
     BuildBattleResultHtml, BuildCastAndDelayHtml, GetFixedAppendAtk
 } from "../../bridge/battlecalc-bridge.js";
-import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
+import { ApplyG1CommonTailFormula, ApplyG6AcidDemonstrationFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BIOPLANT, SKILL_ID_BLOOD_SUCKER,
@@ -761,6 +761,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.SpecialFormula = ApplyG6AcidDemonstrationFormula;
 		}),
 
 		// ----------------------------------------------------------------

@@ -6,6 +6,7 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import { ApplyG4EnvenomFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ELM_ID_POISON } from "../../const/EnumElmId.js";
 import { MONSTER_DATA_INDEX_ELEMENT } from "../../const/EnumMonsterDataIndex.js";
@@ -245,6 +246,8 @@ export const skills = [
 
 				return 0;
 			}
+
+			this.SpecialFormula = ApplyG4EnvenomFormula;
 		}),
 
 		// ----------------------------------------------------------------

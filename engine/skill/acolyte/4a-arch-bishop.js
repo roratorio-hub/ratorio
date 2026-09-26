@@ -11,6 +11,7 @@ import {
 } from "../../runtime/ro4-state.js";
 import { n_A_INT, n_A_WeaponType } from "../../runtime/roro-state.js";
 import { ApplyElementRatio, BuildBattleResultHtml, BuildCastAndDelayHtml } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG3HealFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { CardNumSearch } from "../../bridge/chara-search-bridge.js";
 import {
@@ -481,6 +482,7 @@ export const skills = [
 				return CardNumSearch(611) ? 0 : 1000;
 			}
 
+			this.SpecialFormula = ApplyG3HealFormula;
 		}),
 
 		// ----------------------------------------------------------------

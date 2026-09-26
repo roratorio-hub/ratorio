@@ -10,6 +10,7 @@ import { set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG } from "../../runtime/ro4
 import {
     ApplyElementRatio, ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml, BuildCastAndDelayHtml
 } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG4EnvenomFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_BACKSTEP, SKILL_ID_DOUBLE_ATTACK, SKILL_ID_ENVENOM, SKILL_ID_GEDOKU, SKILL_ID_HIDING,
@@ -111,6 +112,7 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = ApplyG4EnvenomFormula;
 		}),
 
 		// ----------------------------------------------------------------
