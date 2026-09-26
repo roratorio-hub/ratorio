@@ -184,10 +184,10 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				if(n_A_ActiveSkillLV >= 3) set_n_Enekyori(1);
 				else set_n_Enekyori(0);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			}
 		}),
 
@@ -301,13 +301,13 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
+				const { CS, AS_PLUS } = env;
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				n_Delay[0] = 1;
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				var VSbai = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				var VSbai = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				VSbai = ATKbaiJYOUSAN(VSbai);
 				for(var i=0;i<=2;i++){
 					w_DMG[i] = ROUNDDOWN((CS.n_A_DMG[i]) * VSbai / 100);
