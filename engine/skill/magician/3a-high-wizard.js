@@ -71,7 +71,7 @@ export const skills = [
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, AS_PLUS } = env;
 				let w_MATK = [0,0,0];
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				for(var i=0;i<=2;i++){
@@ -175,11 +175,11 @@ export const skills = [
 				const { CS, AS_PLUS } = env;
 				let w_MATK = [0,0,0];
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_Enekyori(2);
+				set_n_Enekyori(this.range);
 				CS.directSubtractionMdef = true;
 				CS.wbairitu = 100;
 				CS.n_bunkatuHIT = 0;
-				set_n_A_Weapon_zokusei(8);
+				set_n_A_Weapon_zokusei(this.element);
 				for(var i=0;i<=2;i++){
 					w_MATK[i] = n_Heal_MATK[i];
 					w_MATK[i] = Math.floor(w_MATK[i] * (70 + 10 * n_A_ActiveSkillLV) / 100);

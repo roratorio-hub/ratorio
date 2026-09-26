@@ -262,7 +262,7 @@ export const skills = [
 				const { CS } = env;
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 				var wBAI = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);

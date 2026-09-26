@@ -353,7 +353,7 @@ export const skills = [
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
 			}
 		}),

@@ -92,7 +92,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
@@ -413,7 +413,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				var DEATH = [1,1.2,1.6,2,2.4,3,3.6,4,5,6,7,8,9,10];
@@ -459,7 +459,7 @@ export const skills = [
 				const { CS, g_skillManager } = env;
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) CS.cast_kotei = true;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				CS.w_HIT = CS.w_HIT * 5 +5;

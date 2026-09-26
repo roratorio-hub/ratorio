@@ -65,11 +65,11 @@ export const skills = [
 				const { CS, AS_PLUS } = env;
 				let w_MATK = [0,0,0];
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_Enekyori(2);
+				set_n_Enekyori(this.range);
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.directSubtractionMdef = true;
 				CS.n_bunkatuHIT = 1;
-				set_n_A_Weapon_zokusei(3);
+				set_n_A_Weapon_zokusei(this.element);
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
@@ -189,7 +189,7 @@ export const skills = [
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, g_VariableCastTimeRate } = env;
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
-				set_n_A_Weapon_zokusei(3);
+				set_n_A_Weapon_zokusei(this.element);
 				if(!CS.n_AS_MODE) CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * attackMethodConfArray[0].GetOptionValue(0);
 				else CS.wHITsuu = Math.round(n_A_ActiveSkillLV / 2) * (Math.floor(n_A_ActiveSkillLV / 2) + 2);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);

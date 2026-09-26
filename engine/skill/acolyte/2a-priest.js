@@ -201,10 +201,10 @@ export const skills = [
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_A_Weapon_zokusei(6);
+				set_n_A_Weapon_zokusei(this.element);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[0] = 1;
-				set_n_Enekyori(2);
+				set_n_Enekyori(this.range);
 				if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
 				else w_DMG[2] = 777;
 				let w_HEAL_BAI = 100 + n_tok[ITEM_SP_HEAL_UP_USING];

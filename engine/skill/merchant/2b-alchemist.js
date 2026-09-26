@@ -104,8 +104,8 @@ export const skills = [
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
-				set_n_Enekyori(1);
-				set_n_A_Weapon_zokusei(0);
+				set_n_Enekyori(this.range);
+				set_n_A_Weapon_zokusei(this.element);
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				for(var i=0;i<=2;i++){
 					w_MATK[i] = n_A_MATK[i];

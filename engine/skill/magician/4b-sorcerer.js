@@ -463,7 +463,7 @@ export const skills = [
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, GetAttackMethodOptionValue } = env;
-				set_n_A_Weapon_zokusei(2);
+				set_n_A_Weapon_zokusei(this.element);
 				CS.n_bunkatuHIT = 1;
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
@@ -527,7 +527,7 @@ export const skills = [
 
 			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, GetAttackMethodOptionValue } = env;
-				set_n_A_Weapon_zokusei(1);
+				set_n_A_Weapon_zokusei(this.element);
 				CS.n_bunkatuHIT = 1;
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
@@ -633,7 +633,7 @@ export const skills = [
 				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
-				set_n_A_Weapon_zokusei(4);
+				set_n_A_Weapon_zokusei(this.element);
 
 				CS.n_bunkatuHIT = 1;
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);

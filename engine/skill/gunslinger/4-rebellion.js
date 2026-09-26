@@ -154,7 +154,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, AS_PLUS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
@@ -355,7 +355,7 @@ export const skills = [
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
@@ -473,7 +473,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = 0;
 				n_Delay[2] = 0;
 				n_Delay[7] = 0;
@@ -560,7 +560,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, AS_PLUS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
@@ -853,7 +853,7 @@ export const skills = [
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = "不明";
 				n_Delay[0] = 2000;
 			}

@@ -330,7 +330,7 @@ export const skills = [
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[1] = n_Delay[1] / 2;
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
@@ -550,7 +550,7 @@ export const skills = [
 				CS.w_HIT_HYOUJI = 100;
 				CS.w_HIT = 100;
 				var wMADO = 0;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);

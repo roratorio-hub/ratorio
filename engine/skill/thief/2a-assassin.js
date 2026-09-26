@@ -351,7 +351,7 @@ export const skills = [
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 								CS.n_A_DMG[1] += Math.floor(14.5 * CS.wCSize);
 				CS.n_A_DMG[2] += Math.floor(29 * CS.wCSize);
 			}

@@ -109,7 +109,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, GetAttackMethodOptionValue, AS_PLUS } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);

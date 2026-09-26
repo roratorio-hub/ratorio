@@ -540,7 +540,7 @@ export const skills = [
 				CS.w_HIT_HYOUJI = 100;
 				CS.wLAch = true;
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_Enekyori(2);
+				set_n_Enekyori(this.range);
 				CS.directSubtractionMdef = false;
 				CS.wbairitu = 100;
 				CS.n_bunkatuHIT = 0;
@@ -709,8 +709,8 @@ export const skills = [
 				let w_MATK = [0,0,0];
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
-				set_n_Enekyori(2);
-				set_n_A_Weapon_zokusei(4);
+				set_n_Enekyori(this.range);
+				set_n_A_Weapon_zokusei(this.element);
 				if(!CS.n_AS_MODE) CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 				else CS.wHITsuu = 4;
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
@@ -885,7 +885,7 @@ export const skills = [
 				let w_MATK = [0,0,0];
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
-				set_n_Enekyori(2);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);

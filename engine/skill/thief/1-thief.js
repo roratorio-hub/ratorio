@@ -228,7 +228,7 @@ export const skills = [
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 50;
-				set_n_A_Weapon_zokusei(0);
+				set_n_A_Weapon_zokusei(this.element);
 				set_n_Enekyori(1);
 				var ISI = 50;
 				ISI = ApplyElementRatio(mobData, ISI,0);

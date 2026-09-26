@@ -235,8 +235,8 @@ export const skills = [
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_Enekyori(2);
-				set_n_A_Weapon_zokusei(6);
+				set_n_Enekyori(this.range);
+				set_n_A_Weapon_zokusei(this.element);
 				for(var i=0;i<=2;i++){
 					w_MATK[i] = n_A_MATK[i];
 					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
@@ -277,7 +277,7 @@ export const skills = [
 					w_DMG[i] -= (mobData[13] + n_B_DEF2[i] + mobData[14] + n_B_MDEF2);
 					set_n_Enekyori(1);
 					w_DMG[i] = BaiTaisei_E(mobData, w_DMG[i]);
-					set_n_Enekyori(2);
+					set_n_Enekyori(this.range);
 					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],6);
 					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
 					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);

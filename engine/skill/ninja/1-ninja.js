@@ -108,7 +108,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, SyurikenOBJ } = env;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 							CS.n_PerfectHIT_DMG = 0;
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				// 投擲修練Lv
@@ -192,7 +192,7 @@ export const skills = [
 				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				CS.wbairitu += this.Power(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				CS.wActiveHitNum = this.dispHitCount(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
@@ -242,7 +242,7 @@ export const skills = [
 				const { CS } = env;
 				CS.w_HIT_HYOUJI = 100;
 				CS.w_HIT = 100;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				for(var i=0;i<=2;i++){
 					var dm = [500,750,1000];

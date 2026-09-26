@@ -160,7 +160,7 @@ export const skills = [
 					return;
 				}
 				// 距離属性
-				set_n_Enekyori(0);
+				set_n_Enekyori(this.range);
 				// 詠唱時間など
 				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
 				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
@@ -239,7 +239,7 @@ export const skills = [
 					return;
 				}
 				// 距離属性
-				set_n_Enekyori(0);
+				set_n_Enekyori(this.range);
 				// 詠唱時間など
 				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
 				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
@@ -578,7 +578,7 @@ export const skills = [
 			}
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
-				set_n_Enekyori(0);
+				set_n_Enekyori(this.range);
 				// 詠唱時間など
 				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
 				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);

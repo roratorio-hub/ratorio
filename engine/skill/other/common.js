@@ -753,7 +753,7 @@ export const skills = [
 				const { CS, AS_PLUS, __DIG3 } = env;
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				set_n_Enekyori(2);
+				set_n_Enekyori(this.range);
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				if(!CS.n_AS_MODE){

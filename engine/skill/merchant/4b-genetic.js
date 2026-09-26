@@ -200,7 +200,7 @@ export const skills = [
 				CS.w_HIT_HYOUJI = 100;
 				CS.w_HIT = 100;
 				// 遠距離
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				// 詠唱など
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
@@ -491,7 +491,7 @@ export const skills = [
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS } = env;
-				set_n_A_Weapon_zokusei(2);
+				set_n_A_Weapon_zokusei(this.element);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
@@ -582,10 +582,10 @@ export const skills = [
 				var w;
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
-				set_n_Enekyori(2);
+				set_n_Enekyori(this.range);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_A_Weapon_zokusei(0);
+				set_n_A_Weapon_zokusei(this.element);
 				w = n_A_ActiveSkillLV * mobData[2] * 10;
 				w += Math.floor(n_A_INT * 7 / 2) * Math.floor(18 + n_A_JobLV / 4);
 				// バイオプラント習得Lv補正
