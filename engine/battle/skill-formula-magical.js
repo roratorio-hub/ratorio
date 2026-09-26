@@ -277,12 +277,8 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 			w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
 		}
 		// マグヌスエクソシズム、かつ、モンスターが対象外の場合、ＭＡＴＫを０で計算する
-		if(n_A_ActiveSkill==104){
-			if(mobData[19] != 6 && mobData[18] <90){
-				w_MATK[0]=0;
-				w_MATK[1]=0;
-				w_MATK[2]=0;
-			}
+		if (g_skillManager.HasMagicalMatkFilter(n_A_ActiveSkill)) {
+			g_skillManager.ApplyMagicalMatkFilter(n_A_ActiveSkill, CreateSkillFormulaEnv(), mobData, w_MATK);
 		}
 		// ＭＡＴＫ％強化倍率を取得
 		CS.wbairitu += GetBattlerMatkPercentUp(mobData);
@@ -294,9 +290,8 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 					CS.SG_Special_DMG[b] = w_DMG[b];
 				}
 				CS.Last_DMG_B[b] = w_DMG[b];
-				if(n_A_ActiveSkill==658 || n_A_ActiveSkill==659){
-					if(b==1) CS.wHITsuu = 2 * attackMethodConfArray[0].GetOptionValue(0);
-					if(b==2) CS.wHITsuu = 3 * attackMethodConfArray[0].GetOptionValue(0);
+				if (g_skillManager.HasMagicalSingleHitLoop(n_A_ActiveSkill)) {
+					g_skillManager.ApplyMagicalSingleHitLoop(n_A_ActiveSkill, CreateSkillFormulaEnv(), b, attackMethodConfArray);
 				}
 				CS.Last_DMG_A[b] = ROUNDDOWN(w_DMG[b] * CS.wHITsuu);
 				// TODO: 四次データ形式変更対応
@@ -307,16 +302,7 @@ export function ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mo
 		// 分割ＨＩＴの場合
 		else{
 			var subnumvalue = attackMethodConfArray[0].GetOptionValue(0);
-			if(n_A_ActiveSkill==518 && subnumvalue >= 1 && mobData[20] == 0){
-				for(var b=0;b<=2;b++){
-					w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100) / CS.wHITsuu);
-					var KoteiDMG = 400 * subnumvalue;
-					KoteiDMG = KoteiDMG * ROUNDDOWN((100 + 40 * UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) / 100);
-					CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu + KoteiDMG;
-					// TODO: 四次データ形式変更対応
-					// w_DMG[b] *= wHITsuu;
-				}
-			}else{
+			if (!(g_skillManager.HasMagicalDividedHitFormula(n_A_ActiveSkill) && g_skillManager.ApplyMagicalDividedHitFormula(n_A_ActiveSkill, CreateSkillFormulaEnv(), battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK, subnumvalue))){
 				for(var b=0;b<=2;b++){
 					// TODO: 2020年スキル修正に伴う変更（元からこの計算式だったかは不明）
 					// w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * wbairitu / 100) / wHITsuu);

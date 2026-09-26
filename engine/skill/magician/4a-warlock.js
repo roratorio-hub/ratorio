@@ -11,6 +11,7 @@ import {
 } from "../../runtime/ro4-state.js";
 import { n_A_INT, n_A_JobLV, n_A_MATK, BK_n_A_MATK } from "../../runtime/roro-state.js";
 import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import { n_B_KYOUKA } from "../../monster/mobconfbuf.js";
 import {
     MOB_CONF_DEBUF_ID_ELEMENTAL_CHANGE, MOB_CONF_DEBUF_ID_LEX_AETERNA, MOB_CONF_DEBUF_ID_SEKIKA,
@@ -110,6 +111,21 @@ export const skills = [
 			}
 
 			this.genericFormula = true;
+			this.MagicalDividedHitFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK, subnumvalue) {
+				const { CS } = env;
+				if(subnumvalue >= 1 && mobData[20] == 0){
+					for(var b=0;b<=2;b++){
+						w_DMG[b] = Math.floor(ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100) / CS.wHITsuu);
+						var KoteiDMG = 400 * subnumvalue;
+						KoteiDMG = KoteiDMG * ROUNDDOWN((100 + 40 * UsedSkillSearch(SKILL_ID_TELECHINESIS_INSTENCE)) / 100);
+						CS.Last_DMG_A[b] = CS.Last_DMG_B[b] = w_DMG[b] * CS.wHITsuu + KoteiDMG;
+						// TODO: 四次データ形式変更対応
+						// w_DMG[b] *= wHITsuu;
+					}
+					return true;
+				}
+				return false;
+			}
 		}),
 
 		// ----------------------------------------------------------------

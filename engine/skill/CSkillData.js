@@ -86,6 +86,28 @@ CSkillData.prototype.PhysicalFormula = null;
 CSkillData.prototype.SpecialFormula = null;
 CSkillData.prototype.MagicalFormula = null;
 
+/**
+ * 汎用計算パス（PhysicalFormula/MagicalFormula に乗らない genericFormula スキル）の中に
+ * 直書きされていたスキルID分岐の移設先. 既定は null（分岐なし）. いずれも
+ * CSkillManager.ApplyXxx() からメソッドとして呼ばれるため、本体中の this はこのスキル定義を指す.
+ *   - PhysicalHitCountArray: function(env) => number[]|null.
+ *     物理汎用パスの hitCountArray 決定に割り込む（null なら既定の [wHITsuu,wHITsuu,wHITsuu] を使う）
+ *   - PhysicalDamageUnit: function(env, dmgUnit) => dmgUnit.
+ *     物理汎用パスの「参照するATKを特定」箇所で dmgUnit を置き換える
+ *   - MagicalMatkFilter: function(env, mobData, w_MATK) => void.
+ *     魔法汎用パスのMATK算出直後、w_MATK を in-place で書き換える
+ *   - MagicalSingleHitLoop: function(env, b, attackMethodConfArray) => void.
+ *     魔法汎用パスの単発ダメージループ（b=0..2）内で毎回呼ばれる
+ *   - MagicalDividedHitFormula: function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK, subnumvalue) => boolean.
+ *     魔法汎用パスの分割HIT・elseブランチに割り込む。true を返した場合、既定の分割HIT計算を行わない
+ *     （w_DMG/CS.Last_DMG_* への書き込みは呼び出し側で完結させる）
+ */
+CSkillData.prototype.PhysicalHitCountArray = null;
+CSkillData.prototype.PhysicalDamageUnit = null;
+CSkillData.prototype.MagicalMatkFilter = null;
+CSkillData.prototype.MagicalSingleHitLoop = null;
+CSkillData.prototype.MagicalDividedHitFormula = null;
+
 // ---- 既定メソッド -----------------------------------------------------------
 /**
  * スキルの距離属性値を取得する. オーバーライドされていない場合は CSkillData.RANGE_SHORT (近接物理タイプ) が返される.

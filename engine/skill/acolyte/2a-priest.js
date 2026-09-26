@@ -494,6 +494,14 @@ export const skills = [
 				return skillLv;
 			}
 			this.genericFormula = true;
+			// マグヌスエクソシズム、かつ、モンスターが対象外の場合、ＭＡＴＫを０で計算する
+			this.MagicalMatkFilter = function(env, mobData, w_MATK) {
+				if(mobData[19] != 6 && mobData[18] <90){
+					w_MATK[0]=0;
+					w_MATK[1]=0;
+					w_MATK[2]=0;
+				}
+			}
 		}),
 
 		// ----------------------------------------------------------------

@@ -536,6 +536,10 @@ export const skills = [
 			this.hitCount = function(skillLv) {
 				return 1 + (5 * skillLv / 100) * 2;
 			}
+			this.PhysicalHitCountArray = function(env) {
+				const { CS } = env;
+				return [1, CS.wHITsuu, 3];
+			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 基本倍率

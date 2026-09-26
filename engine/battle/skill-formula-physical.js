@@ -183,8 +183,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 				// ヒット数に関する情報
 				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV ,charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
-				if (n_A_ActiveSkill === SKILL_ID_FLANGE_SHOT) {
-					hitCountArray = [1, CS.wHITsuu, 3];
+				if (g_skillManager.HasPhysicalHitCountArray(n_A_ActiveSkill)) {
+					hitCountArray = g_skillManager.ApplyPhysicalHitCountArray(n_A_ActiveSkill, CreateSkillFormulaEnv());
 				}
 				// 地面設置スキルの情報
 				set_g_bDefinedDamageIntervals(g_skillManager.IsGroundInstallation(n_A_ActiveSkill, attackMethodConfArray[0]));
@@ -234,18 +234,8 @@ export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specDa
 		//--------------------------------
 		// 参照するＡＴＫを特定
 		//--------------------------------
-		switch (n_A_ActiveSkill) {
-
-		case SKILL_ID_WUG_BITE:
-		case SKILL_ID_WUG_STRIKE:
-		case SKILL_ID_WUG_DASH:
-			dmgUnit = CS.BK_n_A_DMG_Wolf;
-			break;
-
-		case SKILL_ID_TUZYO_KOGEKI_CALC_LEFT:
-		default:
-			// 変更なし（dmgUnitのまま）
-			break;
+		if (g_skillManager.HasPhysicalDamageUnit(n_A_ActiveSkill)) {
+			dmgUnit = g_skillManager.ApplyPhysicalDamageUnit(n_A_ActiveSkill, CreateSkillFormulaEnv(), dmgUnit);
 		}
 
 		//--------------------------------

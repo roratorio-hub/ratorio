@@ -450,6 +450,48 @@ export function CSkillManager() {
 	}
 
 	/**
+	 * 汎用計算パス内の直書き分岐の移設先（CSkillData.PhysicalHitCountArray 等）を持つかどうかを判定する.
+	 * @param {Number} skillId
+	 * @returns {boolean}
+	 */
+	this.HasPhysicalHitCountArray = function(skillId) {
+		return this.dataArray[skillId].PhysicalHitCountArray !== null;
+	}
+	this.HasPhysicalDamageUnit = function(skillId) {
+		return this.dataArray[skillId].PhysicalDamageUnit !== null;
+	}
+	this.HasMagicalMatkFilter = function(skillId) {
+		return this.dataArray[skillId].MagicalMatkFilter !== null;
+	}
+	this.HasMagicalSingleHitLoop = function(skillId) {
+		return this.dataArray[skillId].MagicalSingleHitLoop !== null;
+	}
+	this.HasMagicalDividedHitFormula = function(skillId) {
+		return this.dataArray[skillId].MagicalDividedHitFormula !== null;
+	}
+
+	/**
+	 * 汎用計算パス内の直書き分岐の移設先を実行する. スキル定義のメソッドとして呼ぶ（本体中の this はスキル定義）.
+	 * @param {Number} skillId
+	 * @param {Object} env CreateSkillFormulaEnv() の戻り値
+	 */
+	this.ApplyPhysicalHitCountArray = function(skillId, env) {
+		return this.dataArray[skillId].PhysicalHitCountArray(env);
+	}
+	this.ApplyPhysicalDamageUnit = function(skillId, env, dmgUnit) {
+		return this.dataArray[skillId].PhysicalDamageUnit(env, dmgUnit);
+	}
+	this.ApplyMagicalMatkFilter = function(skillId, env, mobData, w_MATK) {
+		this.dataArray[skillId].MagicalMatkFilter(env, mobData, w_MATK);
+	}
+	this.ApplyMagicalSingleHitLoop = function(skillId, env, b, attackMethodConfArray) {
+		this.dataArray[skillId].MagicalSingleHitLoop(env, b, attackMethodConfArray);
+	}
+	this.ApplyMagicalDividedHitFormula = function(skillId, env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK, subnumvalue) {
+		return this.dataArray[skillId].MagicalDividedHitFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK, subnumvalue);
+	}
+
+	/**
 	 * スキルを発動させるために必要なカウンター上限を返す. オーバーライドされない場合は -1 を返す.
 	 * @param {Number} skillId 
 	 * @returns {Number}

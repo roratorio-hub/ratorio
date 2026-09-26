@@ -25,6 +25,13 @@ import {
     SKILL_ID_WATER_INSIGNIA, SKILL_ID_WIND_INSIGNIA
 } from "../skill.dat.js";
 
+/** ファイアーウォーク／エレクトリックウォーク共通の単発ダメージループ内フック。 */
+function ApplyWalkSingleHitLoop(env, b, attackMethodConfArray) {
+    const { CS } = env;
+			if(b==1) CS.wHITsuu = 2 * attackMethodConfArray[0].GetOptionValue(0);
+			if(b==2) CS.wHITsuu = 3 * attackMethodConfArray[0].GetOptionValue(0);
+}
+
 export const skills = [
 		// ----------------------------------------------------------------
 		// ファイアーウォーク
@@ -76,6 +83,7 @@ export const skills = [
 			}
 
 			this.genericFormula = true;
+			this.MagicalSingleHitLoop = ApplyWalkSingleHitLoop;
 		}),
 
 		// ----------------------------------------------------------------
@@ -128,6 +136,7 @@ export const skills = [
 			}
 
 			this.genericFormula = true;
+			this.MagicalSingleHitLoop = ApplyWalkSingleHitLoop;
 		}),
 
 		// ----------------------------------------------------------------

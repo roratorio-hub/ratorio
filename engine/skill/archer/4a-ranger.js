@@ -27,6 +27,11 @@ import {
     SKILL_ID_WUG_BITE, SKILL_ID_WUG_DASH, SKILL_ID_WUG_MASTERY, SKILL_ID_WUG_RIDER, SKILL_ID_WUG_STRIKE
 } from "../skill.dat.js";
 
+/** ウォーグバイト／ウォーグストライク／ウォーグダッシュ共通の参照ATK切り替え。 */
+function ApplyWugDamageUnit(env, dmgUnit) {
+    return env.CS.BK_n_A_DMG_Wolf;
+}
+
 export const skills = [
 		// ----------------------------------------------------------------
 		// レンジャーメイン
@@ -574,6 +579,7 @@ export const skills = [
 			}
 
 			this.genericFormula = true;
+			this.PhysicalDamageUnit = ApplyWugDamageUnit;
 		}),
 
 		// ----------------------------------------------------------------
@@ -612,6 +618,7 @@ export const skills = [
 			}
 
 			this.genericFormula = true;
+			this.PhysicalDamageUnit = ApplyWugDamageUnit;
 		}),
 
 		// ----------------------------------------------------------------
@@ -700,6 +707,7 @@ export const skills = [
 			}
 
 			this.genericFormula = true;
+			this.PhysicalDamageUnit = ApplyWugDamageUnit;
 		}),
 
 		// ----------------------------------------------------------------
