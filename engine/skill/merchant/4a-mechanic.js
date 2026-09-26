@@ -187,8 +187,8 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, GetAttackMethodOptionValue } = env;
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const { CS, GetAttackMethodOptionValue } = env;
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				if (GetAttackMethodOptionValue(attackMethodConfArray, 1, 0) == 1) {
 					// ABRバトルウォリアー状態の場合
 					CS.wActiveHitNum = 2;
@@ -329,12 +329,12 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_Enekyori(1);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				n_Delay[1] = n_Delay[1] / 2;
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 			}
 		}),
 
@@ -545,15 +545,15 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, CanonOBJ } = env;
+				const { CS, CanonOBJ } = env;
 				CS.n_PerfectHIT_DMG = 0;
 				CS.w_HIT_HYOUJI = 100;
 				CS.w_HIT = 100;
 				var wMADO = 0;
 				set_n_Enekyori(1);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
 				wMADO += 2 * Math.max(LearnedSkillSearch(SKILL_ID_BUKI_KENKYU), UsedSkillSearch(SKILL_ID_BUKI_KENKYU));
 				if(n_A_WeaponType == 6 || n_A_WeaponType == 7) {
 					wMADO += 5 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC), UsedSkillSearch(SKILL_ID_ONO_SHUREN_MECHANIC));
@@ -567,7 +567,7 @@ export const skills = [
 				if(UsedSkillSearch(SKILL_ID_MADOGEAR)) {
 					wMADO += 20 * Math.max(LearnedSkillSearch(SKILL_ID_MADOGEAR_LICENSE), UsedSkillSearch(SKILL_ID_MADOGEAR_LICENSE));
 				}
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
 				for(var i=0;i<=2;i++){
 					w_DMG[i] = CS.n_A_DMG[i] + wMADO;
@@ -1026,10 +1026,10 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, AS_PLUS } = env;
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				const { CS, AS_PLUS } = env;
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
 				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
 

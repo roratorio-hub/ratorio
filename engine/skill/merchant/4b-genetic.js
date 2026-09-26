@@ -151,11 +151,11 @@ export const skills = [
 			}
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { g_skillManager, CS } = env;
-				n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = g_skillManager.GetPower(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
+				const { CS } = env;
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
 				// 分割ヒット
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
+				CS.wActiveHitNum = this.dispHitCount(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
 			}
 		}),
 
@@ -194,7 +194,7 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager, CanonOBJ } = env;
+				const { CS, CanonOBJ } = env;
 				CS.n_PerfectHIT_DMG = 0;
 				// 必中処理
 				CS.w_HIT_HYOUJI = 100;
@@ -202,12 +202,12 @@ export const skills = [
 				// 遠距離
 				set_n_Enekyori(1);
 				// 詠唱など
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 				// ウドゥンウォリアー補正
-				CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 				// 基本倍率＋カート改造補正
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 				// 倍率補正
 				var wMADO = 0;
 				// 斧修練
@@ -490,12 +490,12 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				set_n_A_Weapon_zokusei(2);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 				CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
 				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
 			}
@@ -578,12 +578,12 @@ export const skills = [
 			}
 
 			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
+				const { CS } = env;
 				var w;
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				set_n_Enekyori(2);
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				CS.n_PerfectHIT_DMG = 0;
 				set_n_A_Weapon_zokusei(0);
 				w = n_A_ActiveSkillLV * mobData[2] * 10;
