@@ -132,7 +132,7 @@ export function ApplyG4EnvenomFormula(env, battleCalcInfo, charaData, specData, 
  * G5（ブリッツビート／ファルコンアサルト共通）。本文全体をそのまま置く（分岐なし）。
  */
 export function ApplyG5BlitzBeatFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			CS.n_PerfectHIT_DMG = 0;
@@ -145,14 +145,14 @@ export function ApplyG5BlitzBeatFormula(env, battleCalcInfo, charaData, specData
 				wBT = ApplyElementRatio(mobData, wBT,0);
 				wBT = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wBT);
 				wBT *= 5;
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			}else{
 				wBT = ApplyElementRatio(mobData, wBT,0);
 				wBT = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wBT);
 				wBT *= n_A_ActiveSkillLV;
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			}
 			if(CS.n_AS_MODE){
 				w_DMG[0] = w_DMG[1] = w_DMG[2] = wBT;
@@ -173,16 +173,16 @@ export function ApplyG5BlitzBeatFormula(env, battleCalcInfo, charaData, specData
  * G6（アシッドデモンストレーション／ファイアーエクスパンション共通）。本文全体をそのまま置く（分岐なし）。
  */
 export function ApplyG6AcidDemonstrationFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
     let w_MATK = [0,0,0];
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			CS.wHITsuu = g_skillManager.GetHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+			CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
 
 			if(n_A_ActiveSkill==SKILL_ID_FIRE_EXPANSION){
 				n_Delay[0] = 1;
@@ -228,16 +228,16 @@ export function ApplyG6AcidDemonstrationFormula(env, battleCalcInfo, charaData, 
  * G3（ヒール／ハイネスヒール共通）。本文全体をそのまま置く（分岐なし）。
  */
 export function ApplyG3HealFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(6);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			set_n_Enekyori(2);
 			if(n_A_ActiveSkill==489){
-				CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = g_skillManager.GetCoolTime(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
 			}
 			for(var i=0;i<=2;i++){
 				if(n_A_ActiveSkill==25) w_DMG[i] = HealCalc(n_A_ActiveSkillLV,0,i,2,0);
@@ -261,14 +261,14 @@ export function ApplyG3HealFormula(env, battleCalcInfo, charaData, specData, mob
  * G7（苦無投げ／八方苦無共通）。本文全体をそのまま置く（分岐なし）。
  */
 export function ApplyG7KunaiNageFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager, KunaiOBJ } = env;
+    const { CS, KunaiOBJ } = env;
 			CS.n_PerfectHIT_DMG = 0;
 			if (n_A_ActiveSkill == SKILL_ID_HAPPO_KUNAI) {
 				CS.w_HIT_HYOUJI = 100;
 				CS.w_HIT = 100;
 			}
 			set_n_Enekyori(1);
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 			var wKUNAI = KunaiOBJ[attackMethodConfArray[0].GetOptionValue(0)][0];
 
 			for(var i=0;i<=2;i++){
