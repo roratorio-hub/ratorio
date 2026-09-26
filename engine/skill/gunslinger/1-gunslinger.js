@@ -235,8 +235,8 @@ export const skills = [
 			this.kana = "マシカルハレツト";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_FORCE_PSYCO;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return -1;
@@ -252,9 +252,9 @@ export const skills = [
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
-				set_n_A_Weapon_zokusei(8);
+				set_n_A_Weapon_zokusei(this.element);
 				for(var i=0;i<=2;i++){
 					w_MATK[i] = n_A_MATK[i];
 					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);

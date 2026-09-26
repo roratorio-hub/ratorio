@@ -208,7 +208,7 @@ export const skills = [
 			this.kana = "イシナケ";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -229,7 +229,7 @@ export const skills = [
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 50;
 				set_n_A_Weapon_zokusei(this.element);
-				set_n_Enekyori(1);
+				set_n_Enekyori(this.range);
 				var ISI = 50;
 				ISI = ApplyElementRatio(mobData, ISI,0);
 				ISI = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, ISI);

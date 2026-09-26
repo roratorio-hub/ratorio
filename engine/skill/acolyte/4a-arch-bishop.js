@@ -404,7 +404,7 @@ export const skills = [
 			this.maxLv = 4;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = CSkillData.ELEMENT_FORCE_HOLY;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 60 + 10 * skillLv;
@@ -431,7 +431,7 @@ export const skills = [
 				CS.w_HIT = 100;
 				CS.w_HIT_HYOUJI = 100;
 				CS.n_PerfectHIT_DMG = 0;
-				set_n_A_Weapon_zokusei(6);
+				set_n_A_Weapon_zokusei(this.element);
 				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
 				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
