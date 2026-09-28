@@ -7,10 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import {
-    n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_Enekyori, set_g_bDefinedDamageIntervals
-} from "../../runtime/ro4-state.js";
-import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_CON, MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
@@ -263,21 +260,8 @@ export const skills = [
 				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// 特性ステータス補正
 				return Math.floor(wbairitu * n_A_BaseLV / 100);				// BaseLv補正
 			}
-			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				set_n_Enekyori(this.range);			// 遠距離フラグ
-				// 詠唱など
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				// 設置
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = this.damageInterval(battleCalcInfo.skillLv);		// ダメージ間隔
-				n_Delay[6] = this.LifeTime(battleCalcInfo.skillLv, charaData);		// オブジェクト存続時間
-				// ダメージ倍率
-				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			}
+			this.ground_installation = true;
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -325,16 +309,7 @@ export const skills = [
 				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// 特性ステータス補正
 				return Math.floor(wbairitu * n_A_BaseLV / 100);		// BaseLv補正
 			}
-			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				set_n_Enekyori(this.range);			// 遠距離フラグ
-				// 詠唱など
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

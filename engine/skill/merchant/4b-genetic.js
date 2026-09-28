@@ -150,13 +150,7 @@ export const skills = [
 				return 3;
 			}
 
-			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
-				// 分割ヒット
-				CS.wActiveHitNum = this.dispHitCount(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
-			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

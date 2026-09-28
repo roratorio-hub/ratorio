@@ -6,10 +6,7 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import {
-    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay,
-    set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
-} from "../../runtime/ro4-state.js";
+import { n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
 import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
@@ -558,13 +555,7 @@ export const skills = [
 				return 100 * rune_mastery + ROUNDDOWN(n_A_INT / 8) * 100;
 			}
 
-			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

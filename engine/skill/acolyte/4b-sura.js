@@ -246,14 +246,7 @@ export const skills = [
 				return 10000;
 			}
 
-			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				set_n_Enekyori(this.range);
-				n_Delay[0] = 1;
-				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
-				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
-				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
-			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
