@@ -10,7 +10,6 @@ import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
 import {
     n_A_BaseLV, n_Delay, set_g_bDefinedDamageIntervals
 } from "../../runtime/ro4-state.js";
-import { n_A_WeaponType } from "../../runtime/roro-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { MONSTER_DATA_INDEX_SIZE } from "../../const/EnumMonsterDataIndex.js";
@@ -92,14 +91,7 @@ export const skills = [
 				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
 				return Math.floor(wbairitu);
 			}
-			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData);
-			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -142,16 +134,7 @@ export const skills = [
 				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
 				return Math.floor(wbairitu);
 			}
-			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				// 分割Hit数
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData);
-			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -194,16 +177,7 @@ export const skills = [
 				wbairitu *= [100, 300][UsedSkillSearch(SKILL_ID_RULE_BREAK_STATE)] / 100;	// ルールブレイク補正
 				return Math.floor(wbairitu);
 			}
-			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS, g_skillManager } = env;
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				// 分割Hit数
-				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData);
-			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -268,19 +242,8 @@ export const skills = [
 				}
 				return Math.floor(wbairitu);
 			}
-			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				// 設置スキル
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[5] = this.damageInterval(battleCalcInfo.skillLv); // ダメージ発生間隔
-				n_Delay[6] = this.LifeTime(battleCalcInfo.skillLv, charaData);	// オブジェクト生存期間
-				CS.wActiveHitNum = this.dispHitCount(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);	// 隕石 1 つあたり見た目 3 Hit
-				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData, n_A_WeaponType, battleCalcInfo.parentSkillId);
-			}
+			this.ground_installation = true;
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------

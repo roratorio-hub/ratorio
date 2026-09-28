@@ -7,7 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV, n_Delay, set_g_bDefinedDamageIntervals } from "../../runtime/ro4-state.js";
+import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOOK, ITEM_KIND_CLUB } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
@@ -409,21 +409,8 @@ export const skills = [
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
 
-			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				// オブジェクト存続時間
-				set_g_bDefinedDamageIntervals(true);
-				n_Delay[6] = this.LifeTime(battleCalcInfo.skillLv, charaData);
-				// ダメージ間隔
-				n_Delay[5] = this.damageInterval(battleCalcInfo.skillLv);
-				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData);
-				// 見た目10hitで最大40hit
-				CS.wActiveHitNum = this.dispHitCount(battleCalcInfo.skillLv, charaData);
-			}
+			this.ground_installation = true;
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -646,14 +633,7 @@ export const skills = [
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
 
-			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-				const { CS } = env;
-				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
-				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
-				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
-				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
-				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0], mobData);
-			}
+			this.genericFormula = true;
 		}),
 
 		/** ディヴィヌスフロス */
