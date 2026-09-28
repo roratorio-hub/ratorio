@@ -7,7 +7,7 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_BaseLV, n_Delay, set_g_bDefinedDamageIntervals } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOW, ITEM_KIND_KNIFE, ITEM_KIND_SWORD } from "../../const/EnumItemKind.js";
 import {
@@ -466,6 +466,16 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000;
 			}
+			this.damageInterval = function(skillLv) {                   // ダメージ間隔
+				return 300;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				let wbai = 150 * skillLv;
+				wbai += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				const mahoken_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_MAHOKEN_SHUREN), UsedSkillSearch(SKILL_ID_MAHOKEN_SHUREN));
+				wbai += 15 * skillLv * mahoken_shuren_lv;
+				return Math.floor(wbai * n_A_BaseLV / 100);
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
 				// return this._CriActRate100(skillLv, charaData, specData, mobData);
 				return 0;
@@ -473,6 +483,25 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 				return 0;
+			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, GetAttackMethodOptionValue } = env;
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				// オブジェクト存続時間
+				n_Delay[6] = this.LifeTime(battleCalcInfo.skillLv, charaData);
+				// ダメージ間隔
+				n_Delay[5] = this.damageInterval(battleCalcInfo.skillLv);
+				set_g_bDefinedDamageIntervals(true);
+				// 基本倍率
+				CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData, attackMethodConfArray[0]);
+				// 攻撃回数（既定=範囲内=2Hit）
+				if (GetAttackMethodOptionValue(attackMethodConfArray, 0, 1) >= 1) {
+					CS.wHITsuu = 2;
+				}
 			}
 		}),
 
@@ -506,6 +535,10 @@ export const skills = [
 			}
 			this.hitCount = function(skillLv) {
 				return 1 + (5 * skillLv / 100) * 2;
+			}
+			this.PhysicalHitCountArray = function(env) {
+				const { CS } = env;
+				return [1, CS.wHITsuu, 3];
 			}
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;

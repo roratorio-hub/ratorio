@@ -11,16 +11,47 @@ import { ELM_ID_WIND } from "../../const/EnumElmId.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
-import { n_A_BaseLV, n_Delay } from "../../runtime/ro4-state.js";
-import { n_A_AGI, n_A_DEX, n_A_INT } from "../../runtime/roro-state.js";
 import {
-    SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_AGI, n_A_DEX, n_A_INT } from "../../runtime/roro-state.js";
+import { CHARA_DATA_INDEX_MAXHP, CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { TimeItemNumSearch } from "../../bridge/chara-search-bridge.js";
+import {
+    GetBattlerAtkPercentUp, ATKbaiJYOUSAN, ApplyPhysicalDamageRatio, ApplyMonsterDefence,
+    ApplyPhysicalSkillDamageRatioChange, ApplyHitJudgeElementRatio, GetPerfectHitDamage,
+    BuildCastAndDelayHtml, BuildBattleResultHtml
+} from "../../bridge/battlecalc-bridge.js";
+import { ApplyG2CommonTailFormula } from "../skill-formula-shared.js";
+import {
+    SKILL_ID_ATK_PLUS_AFTER_SENKO_RENGEKI, SKILL_ID_BAKKISANDAN, SKILL_ID_BAKURETSU_HADO,
+    SKILL_ID_COMBO_SORYUKYAKU, SKILL_ID_DAITENHOSUI,
     SKILL_ID_GOHO, SKILL_ID_HASAICHU, SKILL_ID_KYUKIKO, SKILL_ID_RAIKODAN, SKILL_ID_RASETSU_HAOGEKI,
     SKILL_ID_RASETSU_HAOGEKI_MAX, SKILL_ID_SENDENPO, SKILL_ID_SENKO_RENGEKI, SKILL_ID_SENPUTAI,
     SKILL_ID_SENRYU_SHOTEN, SKILL_ID_SHURASHINDAN, SKILL_ID_SISIKO, SKILL_ID_SORYUKYAKU, SKILL_ID_TENKETSU_HAN,
     SKILL_ID_TENKETSU_KAI, SKILL_ID_TENKETSU_KATSU, SKILL_ID_TENKETSU_KYU, SKILL_ID_TENKETSU_MOKU,
     SKILL_ID_TENRACHIMO, SKILL_ID_ZENKI_CHUNYU, SKILL_ID_ZIRAISHIN, SKILL_ID_ZYUBAKUZIN
 } from "../skill.dat.js";
+
+/** 羅刹破凰撃(HPSP固定)・羅刹破凰撃(HPSP変動可)共通の物理基本計算式（パラメータ設定）。 */
+function ApplyRasetsuHaogekiFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS } = env;
+			CS.wActiveHitNum = this.dispHitCount(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = 500 * n_A_ActiveSkillLV;
+			if(!CS.n_AS_MODE){
+				if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
+					CS.wbairitu = 800 * n_A_ActiveSkillLV;
+				}
+			}
+			else {
+				CS.wbairitu = 800 * n_A_ActiveSkillLV;
+			}
+			CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -69,6 +100,13 @@ export const skills = [
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger, option) {
+				// 詠唱シミュレータ（castsim.js）は option を渡さない。戦闘コンテキストが
+				// 無いと「呼び出し元の現在値をそのまま返す」(w==0)分岐は無意味な値になる
+				// ため、option 無しは 0 を返す。
+				if (!option) {
+					return 0;
+				}
+
 				var w = option.GetOptionValue(0);
 
 				if (w == 0) {
@@ -116,6 +154,29 @@ export const skills = [
 				return 200;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wActiveHitNum = this.dispHitCount(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+				if(!CS.n_AS_MODE){
+					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+						// 単発の場合
+						CS.wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+					} else {
+						// コンボの場合
+						CS.wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					}
+				} else {
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI){
+						// 閃光連撃から呼ばれた場合
+						CS.wbairitu = 80 * n_A_ActiveSkillLV + n_A_AGI;
+					} else {
+						// それ以外
+						CS.wbairitu = 100 * n_A_ActiveSkillLV + n_A_AGI + 150;
+					}
+				}
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -168,8 +229,13 @@ export const skills = [
 				return 150;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			// TODO 爆裂波動の習得Lvがスキル倍率に影響する可能性がある
+			this.Power = function(skillLv, charaDataManger, option) {
+				const w = option.GetOptionValue(0);
+				if (UsedSkillSearch(SKILL_ID_SENRYU_SHOTEN) || UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) || TimeItemNumSearch(34)) {
+					return ROUNDDOWN((125 + 25 * skillLv) * n_A_BaseLV / 150 * w);
+				}
+				return ROUNDDOWN(20 * skillLv * n_A_BaseLV / 150 * w);
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
@@ -180,6 +246,7 @@ export const skills = [
 				return 10000;
 			}
 
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -199,22 +266,60 @@ export const skills = [
 				return 8 + 2 * skillLv;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 500 + 100 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				return pow;
-			}
-
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return Math.max(200, 1200 - 200 * skillLv);
 			}
 
+			this.Power = function(skillLv, charaDataManger) {
+				return ROUNDDOWN((500 + 100 * skillLv) * n_A_BaseLV / 100);
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, AS_PLUS } = env;
+				set_n_Enekyori(this.range);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i];
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				}
+				var w2hit = [0,0,0];
+				CS.wLAch = true;
+				for(var i=0;i<=2;i++){
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] != 1){
+						var w = GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+						w += 150 * n_A_ActiveSkillLV;
+						w += ROUNDDOWN(mobData[2] * 5 * n_A_BaseLV / 150);
+						if(mobData[0] == 787 && n_B_TAISEI[37] != 0) w += ROUNDDOWN(1000 * n_B_TAISEI[36] / n_B_TAISEI[37]);
+						w = ATKbaiJYOUSAN(w);
+						w = Math.floor(CS.n_A_DMG[i] * w / 100);
+						w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+						w = ApplyMonsterDefence(mobData, w, 0);
+						if(i == 0 && CS.w_HIT <100) w = 0;
+						if(i == 1) w = w * CS.w_HIT / 100;
+						if(w_DMG[i] <= 0) w = 0;
+						w2hit[i] += w;
+					}
+					w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[i]);
+					w_DMG[i] += w2hit[i] }
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1){
+						var w = w2hit[i];
+						if(w == 0) w = "Miss";
+					}
+				}
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-CS.w_HIT))/100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -298,6 +403,35 @@ export const skills = [
 				return 2000;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				var w1 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXHP] * (10 + 2 * n_A_ActiveSkillLV) / 100);
+				var w2 = ROUNDDOWN(charaData[CHARA_DATA_INDEX_MAXSP] * (5 + n_A_ActiveSkillLV) / 100);
+				if(!CS.n_AS_MODE){
+					// 手動時
+					if(attackMethodConfArray[0].GetOptionValue(0) == 0) {
+						// 単発
+						CS.wCast = 1000 + 100 * n_A_ActiveSkillLV;
+						CS.wbairitu = (w1 + w2) / 4;
+					}
+					if(attackMethodConfArray[0].GetOptionValue(0) == 1) {
+						// コンボ
+						n_Delay[0] = 1;
+						CS.wbairitu = (w1 + w2) / 1.5;
+					}
+				} else {
+					// オートスペル時（攻撃手段が閃光連撃なら単発扱い、それ以外＝双龍コンボならコンボ扱い。
+					// battlecalc.js の GetPerfectHitDamage() 側の號砲分岐と同じ判定）
+					if(attackMethodConfArray[0].GetSkillId() == SKILL_ID_SENKO_RENGEKI) {
+						CS.wbairitu = (w1 + w2) / 4;
+					} else {
+						CS.wbairitu = (w1 + w2) / 1.5;
+					}
+				}
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -335,6 +469,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.PhysicalFormula = ApplyRasetsuHaogekiFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -371,6 +506,7 @@ export const skills = [
 				return 100 * skillLv;
 			}
 
+			this.PhysicalFormula = ApplyRasetsuHaogekiFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -565,27 +701,18 @@ export const skills = [
 				return 15;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 200 * skillLv;
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				// 武器属性による補正
-				if (charaDataManger.GetCharaAttackElement() == ELM_ID_WIND) {
-					pow = Math.floor(pow * 125 / 100);
-				}
-
-				return pow;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000 * skillLv;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_Enekyori(this.range);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = 200 * n_A_ActiveSkillLV;
+				CS.wbairitu = ROUNDDOWN(CS.wbairitu * n_A_BaseLV / 100);
+				if(CS.BK_Weapon_zokusei == 4) CS.wbairitu = ROUNDDOWN(CS.wbairitu * 125 / 100);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -606,17 +733,15 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-
-				// 基本式
-				pow = 100 * skillLv + charaDataManger.GetCharaDex();
-
-				// ベースレベル補正
-				pow = Math.floor(pow * charaDataManger.GetCharaBaseLv() / 100);
-
-				return pow;
+				return ROUNDDOWN((100 * skillLv + n_A_DEX) * n_A_BaseLV / 100);
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				CS.w_HIT = Math.floor(CS.w_HIT * (5 * n_A_ActiveSkillLV + (n_A_DEX + n_A_BaseLV) / 10) / 100);
+				CS.w_HIT_HYOUJI = CS.w_HIT;
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -769,6 +894,87 @@ export const skills = [
 				return 5000;
 			}
 
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				let wEHP = option.GetOptionValue(1);
+				if (wEHP == 0) {
+					wEHP = mobData[3];
+					if (wEHP >= 100000) wEHP = 100000;
+				}
+				return Math.floor((wEHP / 100) * skillLv * n_A_BaseLV / 125);
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, __DIG3, AS_PLUS } = env;
+				if(CS.n_DEATH_BOUND[3] == 0){
+					w_DMG[0] = 1;
+					w_DMG[1] = 1;
+					w_DMG[2] = 1;
+					BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+				}else{
+					n_Delay[0] = 1;
+					n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+					CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+					n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+
+					CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], mobData);
+					CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+					CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+					for(var i=0;i<=2;i++){
+						w_DMG[i] = CS.n_A_DMG[i];
+						w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+						w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+						w_DMG[i] = ApplyMonsterDefence(mobData, w_DMG[i], 0);
+						w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					}
+					w_DMG[0] += CS.n_DEATH_BOUND[0];
+					w_DMG[1] += CS.n_DEATH_BOUND[1];
+					w_DMG[2] += CS.n_DEATH_BOUND[2];
+					var w2hit = [0,0,0];
+					CS.wLAch = true;
+					for(var i=0;i<=2;i++){
+						if(attackMethodConfArray[0].GetOptionValue(0) == 1 && mobData[20] == 0){
+							var w = GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+							w += 200 * n_A_ActiveSkillLV;
+							w = ATKbaiJYOUSAN(w);
+							w = Math.floor(CS.n_A_DMG[i] * w / 100);
+							w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+							w = ApplyMonsterDefence(mobData, w, 0);
+							w2hit[i] += w;
+						}
+						w2hit[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[i]);
+						w_DMG[i] += w2hit[i] }
+					if(CS.n_AS_MODE) return w_DMG;
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+						if(attackMethodConfArray[0].GetOptionValue(0) == 1){
+							var w = w2hit[i];
+							if(w == 0) w = "Miss";
+						}
+					}
+					CS.n_PerfectHIT_DMG = 0;
+					if(CS.w_HIT_HYOUJI <100){
+						if(attackMethodConfArray[0].GetOptionValue(0) == 0 && mobData[20] == 0) CS.str_PerfectHIT_DMG = __DIG3(CS.n_DEATH_BOUND[0]) +"～"+ __DIG3(CS.n_DEATH_BOUND[2]);
+						else CS.str_PerfectHIT_DMG = __DIG3(CS.n_DEATH_BOUND[0]) +"+"+ __DIG3(w2hit[0]) +"～"+ __DIG3(CS.n_DEATH_BOUND[2]) +"+"+ __DIG3(w2hit[2]);
+						CS.n_PerfectHIT_DMG = CS.n_DEATH_BOUND[1] + w2hit[1];
+					}
+					w_DMG[1] = (w_DMG[1] * CS.w_HIT + (ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) + CS.n_DEATH_BOUND[1] + w2hit[1]) *(100-CS.w_HIT))/100;
+					AS_PLUS();
+					BuildCastAndDelayHtml(mobData);
+					BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+					/*
+						w_DMG[0] = n_DEATH_BOUND[0];
+						w_DMG[1] = n_DEATH_BOUND[1];
+						w_DMG[2] = n_DEATH_BOUND[2];
+						for(var i=0;i<=2;i++){
+						Last_DMG_A[i] = Last_DMG_B[i] = w_DMG[i];
+						g_damageTextArray[i].push(Last_DMG_A[i]);
+						}
+						w_HIT_HYOUJI = 100;
+						BuildCastAndDelayHtml(mobData);
+						BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+					*/
+				}
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -819,14 +1025,20 @@ export const skills = [
 				return 1000;
 			}
 
-			this.DelayTimeForceMotion = function(skillLv, charaDataManger) {
-				return 2350;
+			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+				return 2.35;
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 14000 - 2000 * skillLv;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+								n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[3] = this.DelayTimeSkillTiming(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -847,6 +1059,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

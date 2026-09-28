@@ -11,6 +11,8 @@ import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOOK, ITEM_KIND_CLUB } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
+import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
+import { RACE_ID_DEMON, RACE_ID_UNDEAD } from "../../const/EnumRaceId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ARBITRIUM, SKILL_ID_ARUGUTUS_TERUM, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_BENEDICTUM, SKILL_ID_CONPETENTIA,
@@ -386,6 +388,29 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 12000;
 			}
+			this.damageInterval = function(skillLv) {                   // ダメージ間隔
+				return 3000;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger) {     // 見た目10hitで最大40hit
+				return 10;
+			}
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
+				let wbairitu;
+				if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
+					wbairitu = 6000 + 1500 * skillLv;				// 基本倍率
+					wbairitu += 5 * fidos_animus_lv;				// フィドスアニムス補正
+					wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
+				} else {
+					wbairitu = 5500 + 1250 * skillLv;				// 基本倍率
+					wbairitu += 3 * fidos_animus_lv;				// フィドスアニムス補正
+					wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
+				}
+				return Math.floor(wbairitu * n_A_BaseLV / 100);
+			}
+
+			this.ground_installation = true;
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -593,6 +618,22 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500 * skillLv;
 			}
+			this.Power = function(skillLv, charaDataManger, option, mobData) {
+				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
+				let wbairitu;
+				if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
+					wbairitu = 900 * skillLv;					// 基本倍率
+					wbairitu += 60 * skillLv * fidos_animus_lv;			// フィドスアニムス補正
+					wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// SPL補正
+				} else {
+					wbairitu = 600 * skillLv;					// 基本倍率
+					wbairitu += 30 * skillLv * fidos_animus_lv;			// フィドスアニムス補正
+					wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// SPL補正
+				}
+				return Math.floor(wbairitu * n_A_BaseLV / 100);
+			}
+
+			this.genericFormula = true;
 		}),
 
 		/** ディヴィヌスフロス */

@@ -7,8 +7,9 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import { n_A_BaseLV, n_Delay, set_n_A_Weapon_zokusei } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ELM_ID_EARTH, ELM_ID_FIRE, ELM_ID_POISON, ELM_ID_WATER, ELM_ID_WIND } from "../../const/EnumElmId.js";
 import { MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
@@ -615,6 +616,54 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 500;
+			}
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 10500 + (3000 * skillLv);				// 基本倍率
+				wbairitu += 135 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
+				return wbairitu * n_A_BaseLV / 100;				// ベースレベル補正
+			}
+
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				let bMatchCond;
+				bMatchCond = false;
+				// 属性設定
+				switch (UsedSkillSearch(SKILL_ID_SERE)) {
+					case 13:
+						set_n_A_Weapon_zokusei(ELM_ID_FIRE);
+						bMatchCond = true;
+						break;
+					case 14:
+						set_n_A_Weapon_zokusei(ELM_ID_WATER);
+						bMatchCond = true;
+						break;
+					case 15:
+						set_n_A_Weapon_zokusei(ELM_ID_WIND);
+						bMatchCond = true;
+						break;
+					case 16:
+						set_n_A_Weapon_zokusei(ELM_ID_EARTH);
+						bMatchCond = true;
+						break;
+					case 17:
+						set_n_A_Weapon_zokusei(ELM_ID_POISON);
+						bMatchCond = true;
+						break;
+				}
+				// 使用可否判定
+				if (bMatchCond) {
+					// 詠唱時間等
+					CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+					CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+					n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+					n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+					CS.wbairitu = this.Power(battleCalcInfo.skillLv, charaData);
+				}
+				// 使用不可
+				else {
+					CS.wbairitu = 0;
+					CS.n_Buki_Muri = true;
+				}
 			}
 		}),
 

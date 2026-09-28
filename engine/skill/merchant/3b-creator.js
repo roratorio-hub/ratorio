@@ -6,6 +6,7 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import { ApplyG6AcidDemonstrationFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_FULL_CHEMICAL_CHARGE, SKILL_ID_SHOKUBUTSU_SAIBAI,
@@ -47,6 +48,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = ApplyG6AcidDemonstrationFormula;
 		}),
 
 		// ----------------------------------------------------------------

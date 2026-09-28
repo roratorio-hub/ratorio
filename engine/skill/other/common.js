@@ -8,6 +8,17 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_Enekyori, w_DMG, n_Enekyori
+} from "../../runtime/ro4-state.js";
+import { n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ApplyPhysicalDamageRatio, ApplyElementRatio, ApplyAttackDamageAmplify, GetPerfectHitDamage,
+    ApplyHitJudgeElementRatio, ApplyPhysicalSkillDamageRatioChange, BuildCastAndDelayHtml, BuildBattleResultHtml
+} from "../../bridge/battlecalc-bridge.js";
+import { ApplyG2CommonTailFormula } from "../skill-formula-shared.js";
+import { n_B_KYOUKA } from "../../monster/mobconfbuf.js";
+import {
 	SKILL_ID_KIHON_SKILL, SKILL_ID_OKYU_TEATE, SKILL_ID_SHOZIGENKAIRYO_ZOKA, SKILL_ID_SHOZIGENKAIRYO_ZOKA_R,
 	SKILL_ID_CHIMEITEKINA_KIZU, SKILL_ID_ATK_FOR_IRON_NAIL, SKILL_ID_HELL_JUDGEMENT,
     SKILL_ID_313, SKILL_ID_314, SKILL_ID_315, SKILL_ID_316, SKILL_ID_323, SKILL_ID_ALCHEMY,
@@ -565,6 +576,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -585,6 +600,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -605,6 +624,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -625,6 +648,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -645,6 +672,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -665,6 +696,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -685,6 +720,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -702,13 +741,67 @@ export const skills = [
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				const QuakeBairitu = [0,300,500,600,800,1000,1200,1300,1500,1600,1800];
+				return QuakeBairitu[skillLv];
 			}
 
 			this.hitCount = function(skillLv, charaDataManger) {
 				return 3;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, AS_PLUS, __DIG3 } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				set_n_Enekyori(this.range);
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				if(!CS.n_AS_MODE){
+					var wBunsan = attackMethodConfArray[0].GetOptionValue(0);
+					if(wBunsan >= 2) CS.wbairitu = ROUNDDOWN(CS.wbairitu / wBunsan);
+				}
+				for(var i=0;i<=2;i++){
+					// 基礎攻撃力 n_A_DMG_GX[i] にサイズ補正 wCSize をかける
+					w_DMG[i] = CS.n_A_DMG_GX[i] * CS.wCSize;
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+					if(n_B_KYOUKA[7] && n_Enekyori == 2) w_DMG[i] += Math.floor(w_DMG[i] * (20 * n_B_KYOUKA[7]) / 100);
+				}
+				if(CS.n_AS_MODE){
+					// 最小、平均、最大の 1 hitあたりダメージ
+					w_DMG[0] = w_DMG[0];
+					w_DMG[1] = w_DMG[1];
+					w_DMG[2] = w_DMG[2];
+					return w_DMG;
+				}
+				// GvG補正
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = ApplyAttackDamageAmplify(mobData, w_DMG[i]);
+				}
+				//
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_B[i] = Math.floor(w_DMG[i] / 3);		// B = 1 hitあたりダメージ
+					CS.Last_DMG_A[i] = w_DMG[i];						// A = 3 hit合計ダメージ
+					w_DMG[i] = CS.Last_DMG_A[i];
+				}
+				var wX = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+				wX = ApplyHitJudgeElementRatio(n_A_ActiveSkill, wX, mobData);
+				wX = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, wX);
+
+				// TODO: ダメージ表示方式変更対応
+				//w_DMG[1] = (w_DMG[1] * w_HIT + wX * wHITsuu *(100-w_HIT))/100;
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + wX * (100-CS.w_HIT))/100;
+
+				AS_PLUS();
+
+				// TODO: ダメージ表示方式変更対応
+				//n_PerfectHIT_DMG = wX * wHITsuu;
+
+				CS.str_PerfectHIT_DMG = __DIG3(wX * CS.wHITsuu) +"("+ __DIG3(wX) +"×"+ CS.wHITsuu +"hit)";
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -795,6 +888,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -815,6 +912,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -870,6 +971,10 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData);
 			}
+
+			// 等倍計算（何もしない。分岐に載せず共通の物理ダメージ計算へそのまま進む）
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -890,6 +995,10 @@ export const skills = [
 
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData);
+			}
+
+			// 等倍計算（何もしない。分岐に載せず共通の物理ダメージ計算へそのまま進む）
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 			}
 		}),
 

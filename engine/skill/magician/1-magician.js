@@ -6,14 +6,23 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../CSkillData.js";
-import { n_A_JobLV } from "../../runtime/roro-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, n_Heal_MATK, n_tok, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_JobLV, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON } from "../../const/EnumItemSpId.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ApplyMagicalSkillDamageRatioChange, ApplyMagicalSpecializeMonster, ApplyRegistPVPNormal, ApplyResistElement,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerMatkPercentUp
+} from "../../bridge/battlecalc-bridge.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_COLD_BOLT, SKILL_ID_ENERGY_COAT, SKILL_ID_FIRE_BALL, SKILL_ID_FIRE_BOLT, SKILL_ID_FIRE_WALL,
     SKILL_ID_FROST_DIVER, SKILL_ID_LIGHTNING_BOLT, SKILL_ID_NAPALM_BEAT, SKILL_ID_SAFETY_WALL,
     SKILL_ID_SERE_SUPPORT_SKILL, SKILL_ID_SIGHT, SKILL_ID_SOUL_STRIKE, SKILL_ID_SP_KAIFUKURYOKU_KOZYO,
-    SKILL_ID_STONE_CURSE, SKILL_ID_THUNDER_STORM
+    SKILL_ID_SPELL_FIST, SKILL_ID_STONE_CURSE, SKILL_ID_THUNDER_STORM
 } from "../skill.dat.js";
 
 export const skills = [
@@ -49,7 +58,11 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 100;
+			}
+
+			this.hitCount = function(skillLv, option) {
+				return 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -79,6 +92,48 @@ export const skills = [
 				return 0;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, AS_PLUS } = env;
+				let w_MATK = [0,0,0];
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_Enekyori(this.range);
+				CS.directSubtractionMdef = true;
+				CS.wbairitu = 100;
+				CS.n_bunkatuHIT = 0;
+				set_n_A_Weapon_zokusei(this.element);
+				for(var i=0;i<=2;i++){
+					w_MATK[i] = n_Heal_MATK[i];
+					w_MATK[i] = Math.floor(w_MATK[i] * (70 + 10 * n_A_ActiveSkillLV) / 100);
+					w_MATK[i] += n_tok[ITEM_SP_MATK_PLUS_TYPE_NOT_WEAPON];
+					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
+					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
+					w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
+				}
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu += GetBattlerMatkPercentUp();
+				var wBunsan = 1;
+				if(!CS.n_AS_MODE) wBunsan = attackMethodConfArray[0].GetOptionValue(0);
+				if(wBunsan >= 2){
+					for(var i=0;i<=2;i++) w_MATK[i] = ROUNDDOWN(w_MATK[i] / wBunsan);
+				}
+				for(var b=0;b<=2;b++){
+					w_DMG[b] = ApplyMagicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK[b] * CS.wbairitu / 100);
+					CS.Last_DMG_B[b] = w_DMG[b];
+
+					// TODO: ダメージ表示方式変更対応
+					CS.Last_DMG_A[b] = w_DMG[b] * CS.wHITsuu;
+
+					w_DMG[b] = CS.Last_DMG_A[b];
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				CS.w_HIT_HYOUJI = 100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -222,6 +277,9 @@ export const skills = [
 				if (seirei == 1) {
 					pow += Math.floor(n_A_JobLV / 3);
 				}
+				if (seirei == 37) {
+					pow += 75;
+				}
 
 				return pow;
 			}
@@ -238,6 +296,27 @@ export const skills = [
 				return 800 + 200 * skillLv;
 			}
 
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_A_Weapon_zokusei(this.element);
+				// スペルフィストの中身として呼ばれている場合
+				if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
+					// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
+					set_n_Enekyori(0);
+					// ヒット数を 1 に補正
+					CS.wHITsuu = 1;
+					// 詠唱とディレイを 0 にしておく
+					CS.wCast = 0;
+					n_Delay[2] = 0;
+				}
+				// 上記以外の場合
+				else {
+					CS.wHITsuu = n_A_ActiveSkillLV;
+					CS.wCast = 560 * n_A_ActiveSkillLV;
+					n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
+				}
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -353,6 +432,9 @@ export const skills = [
 				if (seirei == 10) {
 					pow += Math.floor(n_A_JobLV / 3);
 				}
+				if (seirei == 40) {
+					pow += 75;
+				}
 
 				return pow;
 			}
@@ -369,6 +451,27 @@ export const skills = [
 				return 800 + 200 * skillLv;
 			}
 
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_A_Weapon_zokusei(this.element);
+				// スペルフィストの中身として呼ばれている場合
+				if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
+					// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
+					set_n_Enekyori(0);
+					// ヒット数を 1 に補正
+					CS.wHITsuu = 1;
+					// 詠唱とディレイを 0 にしておく
+					CS.wCast = 0;
+					n_Delay[2] = 0;
+				}
+				// 上記以外の場合
+				else {
+					CS.wHITsuu = n_A_ActiveSkillLV;
+					CS.wCast = 560 * n_A_ActiveSkillLV;
+					n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
+				}
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -444,6 +547,9 @@ export const skills = [
 				if (seirei == 19) {
 					pow += Math.floor(n_A_JobLV / 3);
 				}
+				if (seirei == 43) {
+					pow += 75;
+				}
 
 				return pow;
 			}
@@ -460,6 +566,27 @@ export const skills = [
 				return 800 + 200 * skillLv;
 			}
 
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_A_Weapon_zokusei(this.element);
+				// スペルフィストの中身として呼ばれている場合
+				if (battleCalcInfo.parentSkillId == SKILL_ID_SPELL_FIST) {
+					// 倍率計算の中の処理を正しく分岐させるために、遠距離判定フラグを調整
+					set_n_Enekyori(0);
+					// ヒット数を 1 に補正
+					CS.wHITsuu = 1;
+					// 詠唱とディレイを 0 にしておく
+					CS.wCast = 0;
+					n_Delay[2] = 0;
+				}
+				// 上記以外の場合
+				else {
+					CS.wHITsuu = n_A_ActiveSkillLV;
+					CS.wCast = 560 * n_A_ActiveSkillLV;
+					n_Delay[2] = 800 + n_A_ActiveSkillLV * 200;
+				}
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+			}
 		}),
 
 		// ----------------------------------------------------------------

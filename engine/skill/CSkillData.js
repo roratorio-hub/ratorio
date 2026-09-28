@@ -65,12 +65,47 @@ CSkillData.prototype.element = 0;
 CSkillData.prototype.ground_installation = false;
 
 /**
- * true の場合、BattleCalc999Core は個別の switch case を持たず、
- * このスキルの Power 等の slot 値だけで計算式（詠唱・ディレイ・倍率・ヒット数・
- * 属性・地面設置）が完結する汎用計算式パスへ流す
- * （engine/battle/skill-formula-physical.js・skill-formula-magical.js の default: 参照）。
+ * true の場合、このスキルの Power 等の slot 値だけでパラメータ（詠唱・ディレイ・倍率・ヒット数・
+ * 属性・地面設置）を設定する汎用計算式を使う
+ * （engine/battle/skill-formula-physical.js・skill-formula-magical.js の ApplyGeneric*Formula）。
  */
 CSkillData.prototype.genericFormula = false;
+
+/**
+ * スキル固有の計算式. 既定は null（個別の計算式なし）.
+ * シグネチャ: function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft)
+ * env は engine/battle/skill-formula-env.js の CreateSkillFormulaEnv() が作る戦闘計算側の依存
+ * （engine/skill/ から直接 import すると循環するもの）. 戻り値は使われない.
+ * CSkillManager.ApplyXxxFormula() からメソッドとして呼ばれるため、本体中の this はこのスキル定義を指す.
+ *   - PhysicalFormula: 物理基本計算式のパラメータ設定. 呼び出し後に共通の物理ダメージ計算が続く
+ *   - SpecialFormula: 物理特殊計算式. w_DMG 等へ書き込み、ダメージ計算をこの中で完結させる
+ *   - MagicalFormula: 魔法計算式のパラメータ設定. 呼び出し後に共通の魔法ダメージ計算が続く
+ */
+CSkillData.prototype.PhysicalFormula = null;
+CSkillData.prototype.SpecialFormula = null;
+CSkillData.prototype.MagicalFormula = null;
+
+/**
+ * 汎用計算パス（PhysicalFormula/MagicalFormula に乗らない genericFormula スキル）の中に
+ * 直書きされていたスキルID分岐の移設先. 既定は null（分岐なし）. いずれも
+ * CSkillManager.ApplyXxx() からメソッドとして呼ばれるため、本体中の this はこのスキル定義を指す.
+ *   - PhysicalHitCountArray: function(env) => number[]|null.
+ *     物理汎用パスの hitCountArray 決定に割り込む（null なら既定の [wHITsuu,wHITsuu,wHITsuu] を使う）
+ *   - PhysicalDamageUnit: function(env, dmgUnit) => dmgUnit.
+ *     物理汎用パスの「参照するATKを特定」箇所で dmgUnit を置き換える
+ *   - MagicalMatkFilter: function(env, mobData, w_MATK) => void.
+ *     魔法汎用パスのMATK算出直後、w_MATK を in-place で書き換える
+ *   - MagicalSingleHitLoop: function(env, b, attackMethodConfArray) => void.
+ *     魔法汎用パスの単発ダメージループ（b=0..2）内で毎回呼ばれる
+ *   - MagicalDividedHitFormula: function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, w_MATK, subnumvalue) => boolean.
+ *     魔法汎用パスの分割HIT・elseブランチに割り込む。true を返した場合、既定の分割HIT計算を行わない
+ *     （w_DMG/CS.Last_DMG_* への書き込みは呼び出し側で完結させる）
+ */
+CSkillData.prototype.PhysicalHitCountArray = null;
+CSkillData.prototype.PhysicalDamageUnit = null;
+CSkillData.prototype.MagicalMatkFilter = null;
+CSkillData.prototype.MagicalSingleHitLoop = null;
+CSkillData.prototype.MagicalDividedHitFormula = null;
 
 // ---- 既定メソッド -----------------------------------------------------------
 /**

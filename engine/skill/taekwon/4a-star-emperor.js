@@ -7,10 +7,19 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import {
-    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
+    n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_B_DEF2 } from "../../runtime/roro-state.js";
+import {
+    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
+    MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
+import {
+    GetBattlerAtkPercentUp, ATKbaiJYOUSAN, ApplyPhysicalDamageRatio, ApplyMonsterDefence,
+    ApplyPhysicalSkillDamageRatioChange, BuildCastAndDelayHtml, BuildBattleResultHtml,
+    GetPerfectHitDamage, GetFixedAppendAtk, ApplyHitJudgeElementRatio
+} from "../../bridge/battlecalc-bridge.js";
 import {
     SKILL_ID_HOSHINO_HIKARI, SKILL_ID_HOSHINO_KAMAE, SKILL_ID_KOEN_KYAKU, SKILL_ID_MANGETSU_KYAKU,
     SKILL_ID_RYUSE_RAKKA, SKILL_ID_RYUSE_RAKKA_MODE, SKILL_ID_RYUSE_RAKKA_TSUIGEKI, SKILL_ID_SAKUGETSU_KYAKU,
@@ -19,6 +28,14 @@ import {
     SKILL_ID_TAIYOTO_TSUKITO_HOSHINO_ZYOKA, SKILL_ID_TAIYO_BAKUHATSU, SKILL_ID_TSUKINO_HIKARI,
     SKILL_ID_TSUKINO_KAMAE, SKILL_ID_UCHUNO_KAMAE, SKILL_ID_ZIGENNO_SHO, SKILL_ID_ZYURYOKU_CHOSE
 } from "../skill.dat.js";
+
+/** 流星落下／流星落下(追撃)共通のダメージ計算式。 */
+function ApplyRyuseRakkaFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS, g_skillManager } = env;
+    CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+    // 分割ヒット数
+    CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -94,13 +111,75 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 650 + 50 * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 50 + 80 * skillLv + 40 * Math.floor(skillLv / 2);
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, AS_PLUS } = env;
+				var hitMode = attackMethodConfArray[0].GetOptionValue(0);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				for (let idx = 0; idx <= 2; idx++) {
+					w_DMG[idx] = 0;
+				}
+				// 攻撃対象のダメージ計算
+				if ((hitMode & 1) == 1) {
+					CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+					CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+					CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+					for (let idx = 0; idx <= 2; idx++) {
+						w_DMG[idx] = CS.n_A_DMG[idx];
+						w_DMG[idx] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
+						w_DMG[idx] = Math.floor(w_DMG[idx] * CS.wbairitu / 100);
+						w_DMG[idx] = ApplyMonsterDefence(mobData, w_DMG[idx], 0);
+						w_DMG[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[idx]);
+					}
+				}
+				var w2hit = [0,0,0];
+				CS.wLAch = true;
+				// 追加ダメージの計算
+				if ((hitMode & 2) == 2) {
+					for (let idx = 0; idx <= 2; idx++) {
+						var w = this.Power(n_A_ActiveSkillLV, charaData);
+						w += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+						w = ATKbaiJYOUSAN(w);
+						w = Math.floor(CS.n_A_DMG[idx] * w / 100);
+						w = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w);
+						w = ApplyMonsterDefence(mobData, w, 0);
+						/*
+						if (idx == 0 && w_HIT <100) {	// 命中率が 100% 未満の場合、最低ダメージを 0 にする
+							w = 0;
+						}
+						if (idx == 1) {	// 命中率を考慮した平均ダメージにする
+							w = w * w_HIT / 100;
+						}
+						*/
+						w2hit[idx] += w;
+						w2hit[idx] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w2hit[idx]);
+						w_DMG[idx] += w2hit[idx]
+					}
+				}
+				if (CS.n_AS_MODE) {
+					return w_DMG;
+				}
+				// 表示の調整
+				for (let idx = 0; idx <= 2; idx++) {
+					CS.Last_DMG_A[idx] = CS.Last_DMG_B[idx] = w_DMG[idx];
+					if ((hitMode & 3) == 3) {
+						var w = w2hit[idx];
+						if (w == 0) {
+							w = "Miss";
+						}
+					}
+				}
+				//w_DMG[1] = (w_DMG[1] * w_HIT + ApplyHitJudgeElementRatio(n_A_ActiveSkill, GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray), mobData) *(100-w_HIT))/100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -357,6 +436,13 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return (skillLv > 5) ? 120000 : 240000;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				return Math.floor((100 + 100 * skillLv) * n_A_BaseLV / 100);
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
+				return parentSkillId === undefined ? 2 : 3;
+			}
+			this.PhysicalFormula = ApplyRyuseRakkaFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -444,6 +530,62 @@ export const skills = [
 				return 2000;
 			}
 
+			this.Power = function(skillLv, charaDataManger) {
+				return 100;
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, AS_PLUS } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+
+				// 必中ダメージのみ仮計算（属性倍率未適用）
+				CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i];
+	//				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					// 重量ダメージ
+					w_DMG[i] += n_B_TAISEI[MOB_CONF_PLAYER_ID_SHOZIZYURYO_GENZAI];
+					// 防御計算が特殊
+					w_DMG[i] -= (mobData[13] + n_B_DEF2[0]);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] += CS.n_PerfectHIT_DMG;
+					w_DMG[i] = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+					w_DMG[i] = ApplyHitJudgeElementRatio(n_A_ActiveSkill, w_DMG[i], mobData);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+
+					if(CS.wActiveHitNum > 1) {
+						w_DMG[i] = Math.floor(w_DMG[i] / CS.wActiveHitNum) * CS.wActiveHitNum;
+					}
+				}
+
+				if(CS.n_AS_MODE) return w_DMG;
+
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+
+				// 改めて必中ダメージ計算
+				CS.n_PerfectHIT_DMG = GetPerfectHitDamage(charaData, specData, mobData, attackMethodConfArray);
+				CS.n_PerfectHIT_DMG = ApplyHitJudgeElementRatio(n_A_ActiveSkill, CS.n_PerfectHIT_DMG, mobData);
+				CS.n_PerfectHIT_DMG = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, CS.n_PerfectHIT_DMG);
+				w_DMG[1] = (w_DMG[1] * CS.w_HIT + CS.n_PerfectHIT_DMG * (100-CS.w_HIT))/100;
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -481,7 +623,9 @@ export const skills = [
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger, option) {
-				if (option.GetOptionValue(0) == 1) {
+				// 詠唱シミュレータ（castsim.js）は option を渡さない。その場合は
+				// 既定ブランチ（option値0扱い）を返す。
+				if (option && option.GetOptionValue(0) == 1) {
 					return 0;
 				}
 				return 2000;
@@ -626,6 +770,11 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaDataManger) {
+				return Math.floor((100 + 100 * skillLv) * n_A_BaseLV / 100);
+			}
+			this.dispHitCount = 3;
+			this.PhysicalFormula = ApplyRyuseRakkaFormula;
 		}),
 
 ];

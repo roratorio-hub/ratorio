@@ -8,6 +8,8 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MOB_CONF_DEBUF_ID_LEX_AETERNA, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
+import { n_A_ActiveSkill, n_A_ActiveSkillLV } from "../../runtime/ro4-state.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
 import {
     SKILL_ID_AUTO_COUNTER, SKILL_ID_BOWLING_BASH, SKILL_ID_BRANDISH_SPEAR, SKILL_ID_CHARGE_ATTACK,
     SKILL_ID_KIHE_SHUREN, SKILL_ID_PIERCE, SKILL_ID_RIDING, SKILL_ID_SPEAR_BOOMERANG, SKILL_ID_SPEAR_STUB,
@@ -48,6 +50,12 @@ export const skills = [
 				// チャージングピアースがONの時、与えるダメージ + 150% x スキルレベル
 				ratio *= 1 + 1.5 * option.GetOptionValue(0);
 				return ratio;
+			}
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = mobData[17]+1;
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
 			}
 		}),
 
@@ -236,6 +244,19 @@ export const skills = [
 				return 700;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.wHITsuu = 2;
+				if(n_A_ActiveSkillLV == 1) CS.wHITsuu = 1;
+				CS.wLAch = true;
+				if(n_B_IJYOU[MOB_CONF_DEBUF_ID_LEX_AETERNA] == 1){
+					CS.wHITsuu = 3;
+					if(n_A_ActiveSkillLV == 1) CS.wHITsuu = 2;
+				}
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -288,7 +309,10 @@ export const skills = [
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger, option) {
-				return Math.min(1500, 500 * (option.GetOptionValue(0) + 1));
+				// 詠唱シミュレータ（castsim.js）は option を渡さない。その場合は
+				// option値0扱いにする（戦闘計算経路では必ず option が渡る）。
+				const optionValue = option ? option.GetOptionValue(0) : 0;
+				return Math.min(1500, 500 * (optionValue + 1));
 			}
 
 			this.genericFormula = true;

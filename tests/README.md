@@ -5,7 +5,7 @@
 ```bash
 cd ratorio/tests
 
-pnpm test:run -- <テストファイル名>   # ユニットテスト（1ファイル指定）例: roro/hmmob
+pnpm test:run <テストファイル名>       # ユニットテスト（1ファイル指定）例: engine/hmjob
 pnpm test:run                          # ユニットテスト（全件）
 pnpm test:integration                  # インテグレーションテスト（Playwright）
 ```

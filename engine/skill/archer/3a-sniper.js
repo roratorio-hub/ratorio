@@ -6,6 +6,7 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import { ApplyG5BlitzBeatFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_FALCON_ASSALT, SKILL_ID_SHARP_SHOOTING, SKILL_ID_TRUE_SIGHT, SKILL_ID_WIND_WALK
@@ -65,6 +66,7 @@ export const skills = [
 				return 3000;
 			}
 
+			this.SpecialFormula = ApplyG5BlitzBeatFormula;
 		}),
 
 		// ----------------------------------------------------------------

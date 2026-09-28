@@ -16,7 +16,7 @@
  *
  * 用途:
  *   通常実行 … __snapshots__/skill-data-sweep/default.json と照合
- *   SKILL_SWEEP_OUT=<dir> pnpm test:integration -- skill-data-sweep
+ *   SKILL_SWEEP_OUT=<dir> pnpm test:integration skill-data-sweep
  *     … 照合の代わりに <dir>/default.json へ生JSONを書き出す（before/after diff 用）
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
