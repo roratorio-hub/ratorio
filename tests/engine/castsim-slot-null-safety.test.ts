@@ -68,4 +68,22 @@ describe('castsim.js の呼び出し規約（charaDataManger=null・option省略
         }
         expect(failures, failures.join('\n')).toEqual([]);
     });
+
+    it('変動詠唱と強制詠唱を両方持つスキルが無い（castsim は両者を合算するため二重計上になる）', () => {
+        const duplicated: string[] = [];
+        for (let id = 0; id < sm.dataArray.length; id++) {
+            if (!sm.dataArray[id]) continue;
+            if (!(sm.GetSkillType(id) & CSkillData.TYPE_ACTIVE)) continue;
+            const maxLv = sm.GetMaxLv(id) || 1;
+            const levels = maxLv === 1 ? [1] : [1, maxLv];
+            for (const lv of levels) {
+                const vary = sm.GetCastTimeVary(id, lv, null);
+                const force = sm.GetCastTimeForce(id, lv, null);
+                if (vary > 0 && force > 0) {
+                    duplicated.push(`id=${id}(${sm.GetSkillName(id)}) Lv${lv} CastTimeVary=${vary} CastTimeForce=${force}`);
+                }
+            }
+        }
+        expect(duplicated, duplicated.join('\n')).toEqual([]);
+    });
 });

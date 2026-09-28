@@ -132,6 +132,13 @@ const SWEEP_SCRIPT = `
                     const { battleCalcResultAll } = battleMod.ComputeBattleResult(retValArray);
                     const r = battleCalcResultAll.GetActiveResult(0);
                     row[lv] = serializeResult(r);
+                    // 追撃（parentSkillId 付きで再計算される子結果）。主撃のキー(lv)は変えず、
+                    // 追撃だけ lv+':child'+i として追記する（主撃しか見ないと追撃行の回帰を検出できない）。
+                    if (r && r.childResultArray) {
+                        r.childResultArray.forEach((c, i) => {
+                            row[lv + ':child' + i] = serializeResult(c);
+                        });
+                    }
                 } catch (e) {
                     row[lv] = 'ERR:' + e.message;
                 }

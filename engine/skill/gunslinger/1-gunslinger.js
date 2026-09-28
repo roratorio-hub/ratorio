@@ -443,10 +443,7 @@ export const skills = [
 				return 200 + 100 * skillLv;
 			}
 
-			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 500 + 100 * skillLv;
-			}
-
+			// 可変詠唱短縮の対象外（TYPE_CAST_KOTEI）の強制詠唱。CastTimeVary に置くと詠唱シミュレータで二重計上になる
 			this.CastTimeForce = function(skillLv, charaDataManger) {
 				return 500 + 100 * skillLv;
 			}
@@ -457,7 +454,7 @@ export const skills = [
 
 			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
 				const { CS, g_skillManager } = env;
-				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.wCast = this.CastTimeForce(n_A_ActiveSkillLV, charaData);
 				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) CS.cast_kotei = true;
 				set_n_Enekyori(this.range);
 				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
