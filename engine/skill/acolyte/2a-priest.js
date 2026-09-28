@@ -292,7 +292,7 @@ export const skills = [
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return 3000;
+				return 1000 * (skillLv - 1);
 			}
 
 			this.SpecialFormula = ApplyTurnUndeadFamilyFormula;

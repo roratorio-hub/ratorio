@@ -378,13 +378,6 @@ export const skills = [
 
 				return pow;
 			}
-			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
-				if (parentSkillId === undefined) {
-					return 1;
-				}
-				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
-				return (anten_hou_lv == 0) ? 1 : 4;
-			}
 			this.genericFormula = true;
 		}),
 
@@ -454,13 +447,6 @@ export const skills = [
 				}
 
 				return pow;
-			}
-			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
-				if (parentSkillId === undefined) {
-					return 1;
-				}
-				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
-				return (anten_hou_lv == 0) ? 1 : 4;
 			}
 			this.genericFormula = true;
 		}),
@@ -532,13 +518,6 @@ export const skills = [
 
 				return pow;
 			}
-			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
-				if (parentSkillId === undefined) {
-					return 1;
-				}
-				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
-				return (anten_hou_lv == 0) ? 1 : 4;
-			}
 			this.genericFormula = true;
 		}),
 
@@ -608,13 +587,6 @@ export const skills = [
 				}
 
 				return pow;
-			}
-			this.dispHitCount = function(skillLv, charaDataManger, option, parentSkillId) {
-				if (parentSkillId === undefined) {
-					return 1;
-				}
-				var anten_hou_lv = Math.max(LearnedSkillSearch(SKILL_ID_ANTEN_HOU), UsedSkillSearch(SKILL_ID_ANTEN_HOU_LEARNED_LEVEL));
-				return (anten_hou_lv == 0) ? 1 : 4;
 			}
 			this.genericFormula = true;
 		}),

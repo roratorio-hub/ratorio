@@ -378,7 +378,7 @@ export const skills = [
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return 1500;
+				return 1000;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {

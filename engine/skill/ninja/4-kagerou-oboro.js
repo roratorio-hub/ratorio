@@ -241,11 +241,11 @@ export const skills = [
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return -800 + 800 * skillLv;
+				return 1000 * (skillLv - 1);
 			}
 
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return 800;
+				return 1000;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
