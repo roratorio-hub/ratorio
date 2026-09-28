@@ -1,11 +1,10 @@
 /**
- * BattleCalc999Core「魔法判定スキル」ブロックの分割（Phase 3b）。
+ * 魔法スキルの計算パイプライン（パラメータ設定 → 魔法共通ダメージ計算）。
  *
- * 物理基本/特殊計算式のいずれにも該当しなかった場合に呼ばれる最後のブロック。
- * スキル固有の計算式は engine/skill/<職業>/*.js の MagicalFormula slot、
- * および MagicalMatkFilter/MagicalSingleHitLoop/MagicalDividedHitFormula slot
- * （汎用計算パスへの拡張ポイント）へ全て移行済み（Phase 8）。該当なしなら
- * 何もせず w_DMG をそのまま返す無条件 return は変わらない。
+ * 物理パイプライン・SpecialFormula のどちらにも振り分けられなかったスキルが、BattleCalc999Core から
+ * ここへ来る。パラメータの設定は、スキル定義の MagicalFormula slot、または genericFormula スキル共通の
+ * 汎用計算式（ApplyGenericMagicalFormula）が行う。MagicalMatkFilter/MagicalSingleHitLoop/
+ * MagicalDividedHitFormula slot は汎用計算式への拡張ポイント。
  */
 import { CSkillData } from "../skill/CSkillManager.js";
 import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";

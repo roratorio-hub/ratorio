@@ -65,10 +65,9 @@ CSkillData.prototype.element = 0;
 CSkillData.prototype.ground_installation = false;
 
 /**
- * true の場合、BattleCalc999Core は個別の switch case を持たず、
- * このスキルの Power 等の slot 値だけで計算式（詠唱・ディレイ・倍率・ヒット数・
- * 属性・地面設置）が完結する汎用計算式パスへ流す
- * （engine/battle/skill-formula-physical.js・skill-formula-magical.js の default: 参照）。
+ * true の場合、このスキルの Power 等の slot 値だけでパラメータ（詠唱・ディレイ・倍率・ヒット数・
+ * 属性・地面設置）を設定する汎用計算式を使う
+ * （engine/battle/skill-formula-physical.js・skill-formula-magical.js の ApplyGeneric*Formula）。
  */
 CSkillData.prototype.genericFormula = false;
 

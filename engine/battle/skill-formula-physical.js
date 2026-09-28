@@ -1,12 +1,9 @@
 /**
- * BattleCalc999Core「物理スキル　基本計算式」ブロックの分割（Phase 3b）。
+ * 物理スキルの計算パイプライン（パラメータ設定 → 物理共通ダメージ計算）。
  *
- * スキル固有の計算式は engine/skill/<職業>/*.js の PhysicalFormula slot、
- * および PhysicalHitCountArray/PhysicalDamageUnit slot（汎用計算パスへの
- * 拡張ポイント）へ全て移行済み（Phase 8）。このファイルは振り分けと、
- * genericFormula スキル共通の汎用計算式（ApplyGenericPhysicalFormula）・
- * ダメージ計算本体のみを持つ。該当スキルが無い場合は undefined を返す
- * （呼び出し側の BattleCalc999Core が undefined なら次のブロックを試す）。
+ * パラメータの設定は、スキル定義の PhysicalFormula slot、または genericFormula スキル共通の
+ * 汎用計算式（ApplyGenericPhysicalFormula）が行う。PhysicalHitCountArray/PhysicalDamageUnit slot は
+ * 汎用計算式への拡張ポイント。どのスキルをこのパイプラインへ流すかは BattleCalc999Core が判定する。
  */
 import { CSkillData } from "../skill/CSkillManager.js";
 import { n_A_WeaponType } from "../runtime/roro-state.js";
@@ -16,8 +13,8 @@ import { CS } from "./calc-state.js";
 import { CreateSkillFormulaEnv } from "./skill-formula-env.js";
 import { g_bDefinedDamageIntervals, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_g_bDefinedDamageIntervals, set_n_Enekyori, set_w_DMG, w_DMG } from "../runtime/ro4-state.js";
 /**
- * 汎用計算式（genericFormula=true スキル）のパラメータ設定. HasPhysicalFormula 済みでない
- * スキルにのみ呼ばれる（呼び出し前に IsGenericFormula/TYPE_PHYSICAL のチェックが必須）。
+ * 汎用計算式（genericFormula=true スキル）のパラメータ設定. PhysicalFormula を持たないスキルにのみ
+ * 呼ばれる（IsGenericFormula/TYPE_PHYSICAL の判定は BattleCalc999Core が済ませている）。
  * @returns {number[]|null} hitCountArray（スキル固有の上書きが無ければ null）
  */
 function ApplyGenericPhysicalFormula(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray) {
@@ -73,19 +70,15 @@ function ApplyGenericPhysicalFormula(battleCalcInfo, charaData, specData, mobDat
 	return hitCountArray;
 }
 
-export function ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+export function ApplyPhysicalSkillFormula(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
     let ret = null;
     let hitCountArray = null;
 
-		// engine/skill/<職業>/*.js の PhysicalFormula slot へ移行済みのスキルはそちらを呼ぶ
-		// （呼び出し後は後続の共通物理ダメージ計算をそのまま通す）
+		// スキル定義の PhysicalFormula があればそれ、無ければ汎用計算式でパラメータを設定する
+		// （どちらの後も、共通の物理ダメージ計算をそのまま通す）
 		if (g_skillManager.HasPhysicalFormula(n_A_ActiveSkill)) {
 			g_skillManager.ApplyPhysicalFormula(n_A_ActiveSkill, CreateSkillFormulaEnv(), battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
 		} else {
-			// engine/skill/<職業>/*.js の Power 等の slot へ移行済みのスキルはここで汎用計算式を適用する
-			if (!g_skillManager.IsGenericFormula(n_A_ActiveSkill) || (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_PHYSICAL) !== CSkillData.TYPE_PHYSICAL) {
-				return undefined;
-			}
 			hitCountArray = ApplyGenericPhysicalFormula(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray);
 		}
 
