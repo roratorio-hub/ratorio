@@ -32,7 +32,7 @@ import {
 /** 流星落下／流星落下(追撃)共通のダメージ計算式。 */
 function ApplyRyuseRakkaFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
     const { CS, g_skillManager } = env;
-    CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+    CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
     // 分割ヒット数
     CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
 }

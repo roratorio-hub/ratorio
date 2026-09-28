@@ -31,7 +31,7 @@ import {
 
 /** 一閃／一閃(限界突破)共通のダメージ計算式。 */
 function ApplyIssenFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
     CS.w_HIT = 100;
     CS.w_HIT_HYOUJI = 100;
     CS.n_PerfectHIT_DMG = 0;
@@ -47,7 +47,7 @@ function ApplyIssenFormula(env, battleCalcInfo, charaData, specData, mobData, at
     else {
         w_1senHP = charaData[CHARA_DATA_INDEX_MAXHP];
     }
-    CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+    CS.wActiveHitNum = this.dispHitCount(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
     var wKageBai = 100;
     if(attackMethodConfArray[0].GetOptionValue(1)){
         wKageBai = 120 + 20 * attackMethodConfArray[0].GetOptionValue(1);

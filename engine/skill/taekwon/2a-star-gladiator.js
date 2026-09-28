@@ -26,10 +26,10 @@ import {
 /** ＊＊の温もり／壁版共通のダメージ計算式（設置対象の属性のみ異なる）。 */
 function ApplyNukumoriFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
     const { CS, g_skillManager } = env;
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
 			// 設置スキル設定
 			set_g_bDefinedDamageIntervals(true);
 			// ダメージ間隔
@@ -40,12 +40,12 @@ function ApplyNukumoriFormula(env, battleCalcInfo, charaData, specData, mobData,
 			} else {
 				n_Delay[5] = 20;
 			}
-			n_Delay[6] = g_skillManager.GetLifeTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);	// オブジェクト存続時間
-			n_Delay[3] = g_skillManager.GetDelayTimeSkillTiming(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData); 	// 重複設置はできない
+			n_Delay[6] = this.LifeTime(battleCalcInfo.skillLv, charaData);	// オブジェクト存続時間
+			n_Delay[3] = this.DelayTimeSkillTiming(battleCalcInfo.skillLv, charaData); 	// 重複設置はできない
 			// 属性
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// ダメージ倍率
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
 }
 
 export const skills = [

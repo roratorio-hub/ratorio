@@ -33,13 +33,13 @@ import {
 
 /** 阿修羅覇凰拳・阿修羅覇凰拳(SP固定)共通のダメージ計算式。 */
 function ApplyAshuraHaokenFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager, AS_PLUS } = env;
+    const { CS, AS_PLUS } = env;
 			CS.n_PerfectHIT_DMG = 0;
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			set_n_A_Weapon_zokusei(0);
 
-			CS.wbairitu = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 
 			var wASYU = 0;
 
@@ -69,8 +69,8 @@ function ApplyAshuraHaokenFormula(env, battleCalcInfo, charaData, specData, mobD
 				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
 			}
 			AS_PLUS();
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 }

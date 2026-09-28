@@ -50,10 +50,10 @@ function ApplyDragonBreathFormula(env, battleCalcInfo, charaData, specData, mobD
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 			// 詠唱時間等
-			CS.wCast = g_skillManager.GetCastTimeVary(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
-			n_Delay[7] = g_skillManager.GetCoolTime(battleCalcInfo.skillId, battleCalcInfo.skillLv, charaData);
+			CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+			CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+			n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+			n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
 			// 属性補正
 			set_n_A_Weapon_zokusei(g_skillManager.GetElement(battleCalcInfo.skillId));
 			// --------- ダメージ計算開始 ---------

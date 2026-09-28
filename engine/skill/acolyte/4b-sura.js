@@ -37,10 +37,10 @@ import {
 
 /** 羅刹破凰撃(HPSP固定)・羅刹破凰撃(HPSP変動可)共通の物理基本計算式（パラメータ設定）。 */
 function ApplyRasetsuHaogekiFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
-			CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+    const { CS } = env;
+			CS.wActiveHitNum = this.dispHitCount(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0], battleCalcInfo.parentSkillId);
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			CS.wbairitu = 500 * n_A_ActiveSkillLV;
 			if(!CS.n_AS_MODE){
 				if(attackMethodConfArray[0].GetOptionValue(0) == 1) {

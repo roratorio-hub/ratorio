@@ -28,7 +28,7 @@ import {
 
 /** アンデッド特効・リザレクション共通のダメージ計算式（w は関数スコープでホイストされる作業変数）。 */
 function ApplyTurnUndeadFamilyFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
     var w;
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
@@ -42,7 +42,7 @@ function ApplyTurnUndeadFamilyFormula(env, battleCalcInfo, charaData, specData, 
 			}else{
 				set_n_A_Weapon_zokusei(0);
 			}
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
 			set_n_Enekyori(2);
 			if(mobData[18] <90){
 				w = 0;
@@ -63,7 +63,7 @@ function ApplyTurnUndeadFamilyFormula(env, battleCalcInfo, charaData, specData, 
 				w_DMG[1] = Math.round((mobData[3] * w + w_DMG[0] * (100-w)/100));
 			}
 			for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			BuildCastAndDelayHtml(mobData);
 			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 }

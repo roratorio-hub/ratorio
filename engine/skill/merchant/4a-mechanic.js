@@ -40,12 +40,12 @@ import {
 
 /** セルフデストラクション・セルフデストラクション(限界突破)共通のダメージ計算式。 */
 function ApplySelfDestructionFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
 
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			CS.n_KoteiCast = g_skillManager.GetCastTimeFixed(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
 
 			var w_HP;
 			var w_SP;

@@ -36,13 +36,13 @@ import {
 
 /** シールドブーメラン・シールドブーメラン(SL魂版)共通のダメージ計算式（倍率のみ異なる）。 */
 function ApplyShieldBoomerangFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_Enekyori(1);
 			set_n_A_Weapon_zokusei(0);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
 			var wSBr = n_A_SHIELD_DEF_PLUS *4;
-			var wbairitu2 = g_skillManager.GetPower(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+			var wbairitu2 = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
 			for(var i=0;i<=2;i++){
 				w_DMG[i] = charaData[CHARA_DATA_INDEX_STATUS_ATK] + ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT] + wSBr;
 				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);

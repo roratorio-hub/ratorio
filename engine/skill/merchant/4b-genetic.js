@@ -35,12 +35,12 @@ import {
 
 /** ブラッドサッカー・ソーントラップ共通のダメージ計算式（戦闘エリア補正の式が異なる）。 */
 function ApplyBloodSuckerFamilyFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
-    const { CS, g_skillManager } = env;
+    const { CS } = env;
 			CS.w_HIT = 100;
 			CS.w_HIT_HYOUJI = 100;
-			CS.wCast = g_skillManager.GetCastTimeVary(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[2] = g_skillManager.GetDelayTimeCommon(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
-			n_Delay[5] = g_skillManager.GetDamageInterval(n_A_ActiveSkill, n_A_ActiveSkillLV);
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+			n_Delay[5] = this.damageInterval(n_A_ActiveSkillLV);
 			CS.n_PerfectHIT_DMG = 0;
 			set_n_A_Weapon_zokusei(0);
 
