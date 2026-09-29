@@ -163,7 +163,7 @@ export function RebuildStatusSelect(jobId) {
 	let inputCon = document.getElementById("OBJID_SELECT_STATUS_CON");
 	let inputCrt = document.getElementById("OBJID_SELECT_STATUS_CRT");
 
-	statusBaseMax = 110;
+	statusBaseMax = 120;
 
 	inputPow.max = statusBaseMax;
 	inputSta.max = statusBaseMax;
