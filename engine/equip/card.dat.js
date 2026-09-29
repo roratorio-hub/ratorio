@@ -2789,6 +2789,7 @@ export const CARD_ID_PRIDE_CROW_BARON = 4469;
 export const CARD_ID_PRIDE_RUNAWAY_THANATOS = 4481;
 export const CARD_SET_ID_PRIDE_THANATOS_RESENT_EIYU = 4485;
 export const CARD_SET_ID_PRIDE_THANATOS_HORROR_EIYU = 4488;
+export const CARD_ID_TATSI= 4549;
 
 export const CardObjNew = [
 		[0,0,"(カードなし)","0","0",0],
@@ -7411,6 +7412,13 @@ CardObjNew[4464] = [4464,100,0,"","",20292,100,20293,100,0];
 	CardObjNew[4546] = [4546,99,"潜在覚醒(ストーンスキンI)","センザイカクセイストーンスキン1","",0];
 	CardObjNew[4547] = [4547,100,0,"","覚醒支配者のローブ装備時、再使用待機時間減少効果が発動しない",220,184,19996,20000,0];
 
+	CardObjNew[4548] = [4548,1,"シレーナ","シレーナ","",100341,2,10000000000100089n,1,0];
+	CardObjNew[4549] = [4549,1,"タッシ","タッシ","物理・魔法攻撃時、[未知のブルーホール]に出現するモンスターに与えるダメージ + 30%",0];
+	CardObjNew[4550] = [4550,2,"ペスカ","ペスカ","",12,15,0];
+	CardObjNew[4551] = [4551,100,0,"","",65,15,11913,100,0];
+	CardObjNew[4552] = [4552,4,"ハノン","ハノン","",100178,1,9000178,10,0];
+	CardObjNew[4553] = [4553,5,"ディオーサ","ディオーサ","",64,25,7000060,15,9000064,25,0];
+	CardObjNew[4554] = [4554,6,"ゲレーロ","ゲレーロ","",167,5,8000012,5,0];
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 export const CARD_ID_MAX = CardObjNew.length;

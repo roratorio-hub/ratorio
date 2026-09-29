@@ -6,6 +6,16 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import { n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_Enekyori, w_DMG } from "../../runtime/ro4-state.js";
+import { n_A_Equip, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { EQUIP_REGION_ID_ARMS } from "../../const/EnumEquipRegionId.js";
+import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
+import { ItemObjNew } from "../../equip/item.dat.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ATKbaiJYOUSAN, ApplyMonsterDefence, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetBattlerAtkPercentUp, GetFixedAppendAtk, TYPE_SYUUREN
+} from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_AURA_BLADE, SKILL_ID_BERSERK, SKILL_ID_CONCENTRATION, SKILL_ID_HEAD_CRUSH, SKILL_ID_JOINT_BEAT,
@@ -144,6 +154,44 @@ export const skills = [
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 0;
+			}
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager, AS_PLUS } = env;
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				set_n_Enekyori(g_skillManager.GetSkillRange(n_A_ActiveSkill, n_A_WeaponType));
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wbairitu += GetBattlerAtkPercentUp(charaData, specData, mobData, attackMethodConfArray);
+				CS.wbairitu = ATKbaiJYOUSAN(CS.wbairitu);
+				var wSYUUREN = TYPE_SYUUREN(mobData, attackMethodConfArray, false);
+				for(var i=0;i<=2;i++){
+					var wSPP;
+					wSPP = ROUNDDOWN((CS.n_A_DMG[i] - wSYUUREN) * 70 / 100) + ROUNDDOWN(ItemObjNew[n_A_Equip[EQUIP_REGION_ID_ARMS]][ITEM_DATA_INDEX_WEIGHT] * 70 / 100);
+					if(mobData[17] == 0) wSPP = ROUNDDOWN(wSPP * 115 / 100);
+					if(mobData[17] == 2) wSPP = ROUNDDOWN(wSPP * 85 / 100);
+					wSPP += wSYUUREN;
+					wSPP = Math.floor(wSPP * CS.wbairitu / 100);
+					wSPP = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, wSPP);
+					wSPP = ApplyMonsterDefence(mobData, wSPP,0);
+					w_DMG[i] = wSPP;
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				}
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_B[i] = w_DMG[i];
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 5;
+					if(!CS.n_AS_MODE) {
+					}
+					w_DMG[i] = CS.Last_DMG_A[i];
+				}
+				w_DMG[1] = w_DMG[1] * CS.w_HIT /100 + CS.n_PerfectHIT_DMG * (100- CS.w_HIT)/100;
+				if(CS.n_AS_MODE) return w_DMG;
+
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}
 		}),
 

@@ -16,7 +16,7 @@ import {
     CARD_ID_KYORYOKUNA_MARYOKU, CARD_ID_MAZIMENA_HETAI_ANDRE, CARD_ID_MEDJAY, CARD_ID_NEO_MINERAL,
     CARD_ID_NETTO_PHEN, CARD_ID_PIERROT_ZOIST, CARD_ID_POLLUTED_SILK_FROG, CARD_ID_PUNCH_BUG, CARD_ID_SAIKAKYU_RGAN,
     CARD_ID_SEA_WIND, CARD_ID_SHADOW_JAILER, CARD_ID_SHINKAINO_HANGYOZIN, CARD_ID_TANGAN_DOLLOCARIS, CARD_ID_VALTY,
-    CARD_ID_VENEDI, CARD_ID_VOLIMPET, CARD_ID_YORDOS_EXECUTOR
+    CARD_ID_VENEDI, CARD_ID_VOLIMPET, CARD_ID_YORDOS_EXECUTOR, CARD_ID_TATSI,
 } from "../equip/card.dat.js";
 import { CardNumSearch, EquipNumSearch, TimeItemNumSearch } from "../chara/chara.js";
 import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT } from "../const/EnumEquipRegionId.js";
@@ -80,7 +80,8 @@ import {
     MONSTER_GROUP_ID_ROCKRIDGE, MONSTER_GROUP_ID_SCROLL_STOLE, MONSTER_GROUP_ID_SEITAI, MONSTER_GROUP_ID_SPRENDED,
     MONSTER_GROUP_ID_SUTERARETA_ANA_01, MONSTER_GROUP_ID_SUTERARETA_ANA_02, MONSTER_GROUP_ID_THANATOS,
     MONSTER_GROUP_ID_TOKEITO, MONSTER_GROUP_ID_TOKEITO_MICHI_NO_KUUKAN, MONSTER_GROUP_ID_UKNW_RUIN,
-    MONSTER_GROUP_ID_VERNAR, MONSTER_GROUP_ID_YUGANDA_MEIKYUNO_MORI, MonsterGroupObj
+    MONSTER_GROUP_ID_VERNAR, MONSTER_GROUP_ID_YUGANDA_MEIKYUNO_MORI, MonsterGroupObj,
+	MONSTER_GROUP_ID_CMD_BHOLE,
 } from "../monster/monstergroup.dat.js";
 import {
     n_A_Equip, n_A_HEAD_DEF_PLUS, n_A_SHOULDER_DEF_PLUS, n_A_Weapon2_ATKplus, n_A_Weapon_ATKplus
@@ -953,6 +954,12 @@ candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[
 		}
 	}
 
+	/** 未知のブルーホール 特化 */
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_CMD_BHOLE]) === 1){
+		if ((cardCount = CardNumSearch(CARD_ID_TATSI)) > 0) {
+			wX += 30 * cardCount;
+		}
+	}
 
 	//--------------------------------
 	// 英雄の痕跡支援
@@ -1954,6 +1961,13 @@ export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg
 candidate = MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE1].concat(MonsterGroupObj[MONSTER_GROUP_ID_JOR_RAISE2], MonsterGroupObj[MONSTER_GROUP_ID_JOR_BASE]);
 	if(NumSearch(mobData[0], candidate) === 1){
 		if ((cardCount = CardNumSearch(CARD_ID_SEA_WIND)) > 0) {
+			w += 30 * cardCount;
+		}
+	}
+
+	/** 未知のブルーホール 特化 */
+	if(NumSearch(mobData[0], MonsterGroupObj[MONSTER_GROUP_ID_CMD_BHOLE]) === 1){
+		if ((cardCount = CardNumSearch(CARD_ID_TATSI)) > 0) {
 			w += 30 * cardCount;
 		}
 	}

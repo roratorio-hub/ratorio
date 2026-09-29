@@ -1,69 +1,68 @@
 card_list:
-  - name: 潜在解放(アビスチェイサーXXII)
-    yomi: センザイカイホウアビスチェイサー22
-    type: エンチャント
+  - name: シレーナ
+    yomi: シレーナ
+    type: 武器
+    capabilities:
+      - name: 水属性魔法ダメージ増加
+        value: 2
+        per_refine: 1
+      - name: 魔法ダメージ増加
+        value: 1
+        per_refine: 1
+        at_transcendence: 1
+
+  - name: タッシ
+    yomi: タッシ
+    desc: 物理・魔法攻撃時、[未知のブルーホール]に出現するモンスターに与えるダメージ + 30%
+    type: 武器
+
+  - name: ペスカ
+    yomi: ペスカ
+    type: 兜
+    capabilities:
+      - name: ASPD増加
+        value: 15
     set_list:
       - set:
         entity_list:
-          - card_name: 豪傑
+          - card_name: 最果ての支配者
         capabilities:
-          - name: 再使用待機時間減少
-            skill: チェイシングショット
+          - name: 毒属性耐性
+            value: 15
+          - name: スキル固定詠唱割合減少
+            skill: マグロシールド
             value: 100
 
-  - name: 潜在解放(アークメイジXXIV)
-    yomi: センザイカイホウアークメイジ24
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: フローラルフレアロード
-            value: 500
-          - name: 再使用待機時間減少
-            skill: トルネードストーム
-            value: 500
-          - name: 再使用待機時間減少
-            skill: ディストラクティブハリケーン
-            value: 500
+  - name: ハノン
+    yomi: ハノン
+    type: 鎧
+    capabilities:
+      - name: 天使形への魔法ダメージ増加
+        value: 1
+        per_refine: 1
+      - name: 天使形への魔法ダメージ増加
+        value: 10
+        at_refine: 9
 
-  - name: 潜在解放(ナイトウォッチXX)
-    yomi: センザイカイホウナイトウォッチ20
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ワイルドファイア
-            value: 200
+  - name: ディオーサ
+    yomi: ディオーサ
+    type: 肩にかける物
+    capabilities:
+      - name: 風属性耐性
+        value: 25
+      - name: 無属性耐性
+        value: 15
+        at_refine: 7
+      - name: 風属性耐性
+        value: 25
+        at_refine: 9
 
-  - name: 潜在覚醒(ストーンスキンI)
-    yomi: センザイカクセイストーンスキン1
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        desc: 覚醒支配者のローブ装備時、再使用待機時間減少効果が発動しない
-        capabilities:
-          - name: スキル使用可能
-            skill: ストーンスキン
-            skill_lv: 1
-          - name: 再使用待機時間減少
-            skill: ストーンスキン
-            value: 20000
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        desc: 覚醒支配者のローブ装備時、再使用待機時間減少効果が発動しない
-        capabilities:
-          - name: スキル使用可能
-            skill: ストーンスキン
-            skill_lv: 1
-          - name: 再使用待機時間減少
-            skill: ストーンスキン
-            value: 20000
+  - name: ゲレーロ
+    yomi: ゲレーロ
+    type: 靴
+    capabilities:
+      - name: 命中物理攻撃で与えるダメージ増加
+        value: 5
+      - name: ASPD増加
+        value: 5
+        at_refine: 8

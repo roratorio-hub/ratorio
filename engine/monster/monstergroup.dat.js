@@ -62,6 +62,7 @@ export const MONSTER_GROUP_ID_MU_FILD01J = 62;	// ヴェルンド渓谷 外郭
 export const MONSTER_GROUP_ID_HEM_FILDJ = 63; // 破壊されたゲフェンフィールド
 export const MONSTER_GROUP_ID_HEM_DUN01J = 64;	// 破壊されたウェルス
 export const MONSTER_GROUP_ID_UKNW_RUIN = 65;	// 歪んだブリミル 1階 2階
+export const MONSTER_GROUP_ID_CMD_BHOLE = 66;	// 未知のブルーホール
 
 export const MonsterGroupObj = [
 		[524,527,528,530,531,534,541],
@@ -131,6 +132,7 @@ export const MonsterGroupObj = [
 		[2355,2356,2357,2358,2359,2360],	// 破壊されたゲフェンフィールド
 		[2355,2356,2357,2363,2364,2365,2366,2367,2368],	// 破壊されたウェルス
 		[2376,2377,2378,2379,2380,2381,2382,2383,2384],	// 歪んだブリミル 1階 2階 
+		[2521,2522,2523,2524,2525,2526,2527,2528,2529,2530,2531], // 未知のブルーホール
 ];
 
 

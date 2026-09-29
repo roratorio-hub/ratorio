@@ -7,14 +7,73 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { CCharaConfNizi } from "../../chara/CCharaConfNizi.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_AGI, n_A_DEX, n_A_JOB, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ApplyG1CommonTailFormula, ApplyG2CommonTailFormula } from "../skill-formula-shared.js";
+import { CHARA_DATA_INDEX_MAXSP } from "../../const/EnumCharaDataIndex.js";
+import { GetHigherJobSeriesID } from "../../data/mig.job.h.js";
+import {
+    MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
+} from "../../monster/mobconfplayer.js";
+import { GetCharaConfNizi } from "../../bridge/chara-conf-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import {
+    ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange, ApplyPhysicalSpecializeMonster,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetFixedAppendAtk
+} from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
-import { n_A_AGI, n_A_DEX } from "../../runtime/roro-state.js";
 import {
     SKILL_ID_ASHURA_HAOKEN, SKILL_ID_ASHURA_HAOKEN_SPKOTEI, SKILL_ID_BAKURETSU_HADO, SKILL_ID_COMBO_SANDAN_MONK,
     SKILL_ID_HAKKEI, SKILL_ID_IBUKI, SKILL_ID_KIDATSU, SKILL_ID_KIKO, SKILL_ID_KIKO_TENI, SKILL_ID_KONGO,
     SKILL_ID_MIKIRI, SKILL_ID_MORYUKEN, SKILL_ID_RENDASHO, SKILL_ID_SANDANSHO, SKILL_ID_SANDAN_DELAY_ZOKA,
     SKILL_ID_SHIDAN, SKILL_ID_SHIRAHADORI, SKILL_ID_SUNKEI, SKILL_ID_TEKKEN, SKILL_ID_ZANEI
 } from "../skill.dat.js";
+
+/** 阿修羅覇凰拳・阿修羅覇凰拳(SP固定)共通のダメージ計算式。 */
+function ApplyAshuraHaokenFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS, AS_PLUS } = env;
+			CS.n_PerfectHIT_DMG = 0;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			set_n_A_Weapon_zokusei(0);
+
+			CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+
+			var wASYU = 0;
+
+			// 特定の戦闘エリアでの補正
+			switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+
+			case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+				wASYU = 200000 * n_A_ActiveSkillLV;
+				break;
+
+			default:
+				wASYU = 250 + 150 * n_A_ActiveSkillLV;
+				break;
+
+			}
+
+			for(var i=0;i<=2;i++){
+				w_DMG[i] = Math.floor(CS.n_A_DMG[i] * CS.wbairitu / 100) + wASYU;
+				w_DMG[i] -= CS.B_Total_DEF;
+				w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+				w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+				w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+			}
+			if(CS.n_AS_MODE) return w_DMG;
+			for(var i=0;i<=2;i++){
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			}
+			AS_PLUS();
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -240,11 +299,11 @@ export const skills = [
 				return 125 + 25 * skillLv;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
+			this.hitCount = function(skillLv, option) {
 				var kidan = 0;
 
 				// 気弾数
-				kidan = this.CountOfKidan(charaDataManger);
+				kidan = this.CountOfKidan();
 
 				// 補正
 				if (kidan > skillLv) {
@@ -258,7 +317,7 @@ export const skills = [
 				var kidan = 0;
 
 				// 気弾数
-				kidan = this.CountOfKidan(charaDataManger);
+				kidan = this.CountOfKidan();
 
 				// 補正
 				if (kidan > skillLv) {
@@ -272,21 +331,31 @@ export const skills = [
 				return 500;
 			}
 
-			this.CountOfKidan = function(charaDataManger) {
+			// charaDataManger は本番の呼び出し規約に存在しないメソッドしか持たない
+			// （B-37）ため、他の defineSkill と同じくモジュールレベルの UsedSkillSearch /
+			// g_confDataNizi を直接参照する。モンク系（GetHigherJobSeriesID==15）は
+			// 自己支援スキル、それ以外は二次職支援（気功転移）の設定値を使う。
+			this.CountOfKidan = function() {
 				var kidan = 0;
 
-				// モンク系の自己支援
-				kidan = charaDataManger.UsedSkillSearch(SKILL_ID_KIKO);
-
-				// 気功転移等による二次職支援
-				if (kidan == 0) {
-					kidan = charaDataManger
-							.GetCharaConfNizi(CCharaConfNizi.CONF_ID_KIKO);
+				if (GetHigherJobSeriesID(n_A_JOB) == 15) {
+					kidan = UsedSkillSearch(SKILL_ID_KIKO);
+				} else {
+					kidan = GetCharaConfNizi(CCharaConfNizi.CONF_ID_KIKO);
 				}
 
 				return kidan;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				set_n_Enekyori(this.range);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -319,6 +388,36 @@ export const skills = [
 				return 500;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, AS_PLUS } = env;
+				CS.n_PerfectHIT_DMG = 0;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				var AS_ATK = 0;
+				if(CS.n_AS_MODE){
+					AS_ATK = Math.floor(mobData[13] / 2);
+					AS_ATK = ApplyPhysicalSpecializeMonster(charaData, specData, mobData, AS_ATK);
+					AS_ATK = ApplyElementRatio(mobData, AS_ATK,n_A_Weapon_zokusei);
+				}
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + AS_ATK;
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				AS_PLUS();
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -404,8 +503,8 @@ export const skills = [
 				return 100;
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+			this.Power = function(skillLv, charaDataManger, option) {
+				return 800 + 10 * (option.GetOptionValue(0) - 1);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -416,6 +515,7 @@ export const skills = [
 				return 3500 - 500 * skillLv;
 			}
 
+			this.SpecialFormula = ApplyAshuraHaokenFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -453,7 +553,7 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				return 800 + 10 * (charaDataManger[CHARA_DATA_INDEX_MAXSP] - 1);
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -464,6 +564,7 @@ export const skills = [
 				return 3500 - 500 * skillLv;
 			}
 
+			this.SpecialFormula = ApplyAshuraHaokenFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -512,6 +613,10 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				n_Delay[0] = 1;
+				return ApplyG2CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------

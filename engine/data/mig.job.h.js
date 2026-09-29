@@ -719,7 +719,7 @@ export function GetBaseLevelMax(jobId) {
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
 		case MIG_JOB_ID_ALITEA:
-			return 275;
+			return 285;
 
 		case JOB_ID_RUNEKNIGHT:
 		case JOB_ID_GILOTINCROSS:
@@ -859,7 +859,7 @@ export function GetJobLevelMax(jobId) {
 		case MIG_JOB_ID_HYPER_NOVICE:
 		case MIG_JOB_ID_SPIRIT_HANDLER:
 		case MIG_JOB_ID_ALITEA:
-			return 60;
+			return 65;
 
 	}
 
@@ -1652,13 +1652,24 @@ export function GetBaseExpTable(tableId) {
 				, 3342427709541
 				, 3476124817922
 
-				// 271 - 275
+				// 271 - 280
 				, 3615169810638
 				, 3759776603063
 				, 3910167667185
 				, 4066574373872
 				, 4229237348826
+				, 4398406842779
+				, 4574343116490
+				, 4757316841149
+				, 4947609514794
+				, 5145513895385
 
+				// 281 - 285
+				, 5351334451200
+				, 5565387829248
+				, 5788003342417
+				, 6019523476113
+				, 6260304415157
 				, 0
 			];
 			break;
@@ -2471,7 +2482,12 @@ export function GetJobExpTable(tableId) {
 				, 6291200052524
 				, 6668672055675
 				, 7068792379015
-
+				// 61 - 65
+				, 7492919921755
+				, 7942495117060
+				, 8419044824083
+				, 8924187513527
+				, 9459638764338
 				,0
 			];
 			break;

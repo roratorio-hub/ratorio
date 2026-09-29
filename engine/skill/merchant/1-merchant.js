@@ -6,9 +6,17 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import { n_A_ActiveSkill, w_DMG } from "../../runtime/ro4-state.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml,
+    BuildCastAndDelayHtml, GetFixedAppendAtk
+} from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
-    SKILL_ID_CART_REVOLUTION, SKILL_ID_CHANGE_CART, SKILL_ID_DISCOUNT, SKILL_ID_ITEM_KANTE, SKILL_ID_LOUD_VOICE,
+    SKILL_ID_CART_KAIZO, SKILL_ID_CART_REVOLUTION, SKILL_ID_CHANGE_CART, SKILL_ID_DISCOUNT, SKILL_ID_ITEM_KANTE,
+    SKILL_ID_LOUD_VOICE,
     SKILL_ID_MAMMONITE, SKILL_ID_OVER_CHARGE, SKILL_ID_PUSH_CART, SKILL_ID_ROTEN_KAISETSU,
     SKILL_ID_SHOZIGENKAIRYO_ZOKA
 } from "../skill.dat.js";
@@ -153,6 +161,29 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, GetAttackMethodOptionValue, AS_PLUS } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				const cart_weight_max = 8000 + 500 * cart_kaizo_lv;
+				const CRbai = GetAttackMethodOptionValue(attackMethodConfArray, 0, cart_weight_max) / cart_weight_max * 100;
+
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = ROUNDDOWN(CS.n_A_DMG[i] * 150 / 100);
+					w_DMG[i] += ROUNDDOWN(CS.n_A_DMG[i] * CRbai / 100);
+					w_DMG[i] -= CS.B_Total_DEF;
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				AS_PLUS();
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------

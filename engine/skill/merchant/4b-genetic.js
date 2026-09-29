@@ -6,21 +6,89 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { CSkillData, defineSkill } from "../CSkillData.js";
-import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, n_Enekyori, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_DEX, n_A_INT, n_A_JobLV, n_A_STR, n_A_WeaponType, SU_STR } from "../../runtime/roro-state.js";
+import { ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND, ITEM_KIND_KNIFE, ITEM_KIND_SWORD } from "../../const/EnumItemKind.js";
+import { n_B_KYOUKA } from "../../monster/mobconfbuf.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM, n_B_TAISEI
 } from "../../monster/mobconfplayer.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
-import { n_A_DEX, n_A_INT, n_A_STR } from "../../runtime/roro-state.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
 import {
-    SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BLOOD_SUCKER, SKILL_ID_CART_BOOST_GENETIC, SKILL_ID_CART_CANNON,
-    SKILL_ID_CART_KAIZO, SKILL_ID_CART_TORNADO, SKILL_ID_CHANGE_MATERIAL, SKILL_ID_CRAZY_WEED, SKILL_ID_DEMONIC_FIRE,
+    ApplyAttackDamageAmplify, ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange,
+    BuildBattleResultHtml, BuildCastAndDelayHtml, GetFixedAppendAtk
+} from "../../bridge/battlecalc-bridge.js";
+import { ApplyG1CommonTailFormula, ApplyG6AcidDemonstrationFormula } from "../skill-formula-shared.js";
+import { CSkillData, defineSkill } from "../CSkillData.js";
+import {
+    SKILL_ID_ACID_DEMONSTRATION, SKILL_ID_BAKUDAN_SEIZO, SKILL_ID_BIOPLANT, SKILL_ID_BLOOD_SUCKER,
+    SKILL_ID_CART_BOOST_GENETIC,
+    SKILL_ID_CART_CANNON, SKILL_ID_CART_KAIZO, SKILL_ID_CART_TORNADO, SKILL_ID_CHANGE_MATERIAL, SKILL_ID_CRAZY_WEED,
+    SKILL_ID_DEMONIC_FIRE,
     SKILL_ID_FIRE_EXPANSION, SKILL_ID_HELLS_PLANT, SKILL_ID_HOWLING_OF_MANDRAGORA, SKILL_ID_ILLUSION_DOOPING,
-    SKILL_ID_KEN_SHUREN_GENETIC, SKILL_ID_MIX_COOKING, SKILL_ID_SLING_ITEM, SKILL_ID_SPECIAL_PHARMACY,
-    SKILL_ID_SPORE_EXPLOSION, SKILL_ID_THORN_TRAP, SKILL_ID_THORN_WALL
+    SKILL_ID_KEN_SHUREN_GENETIC, SKILL_ID_MIX_COOKING, SKILL_ID_ONO_SHUREN, SKILL_ID_SLING_ITEM,
+    SKILL_ID_SPECIAL_PHARMACY, SKILL_ID_SPORE_EXPLOSION, SKILL_ID_THORN_TRAP, SKILL_ID_THORN_WALL
 } from "../skill.dat.js";
+
+/** ブラッドサッカー・ソーントラップ共通のダメージ計算式（戦闘エリア補正の式が異なる）。 */
+function ApplyBloodSuckerFamilyFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS } = env;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+			n_Delay[5] = this.damageInterval(n_A_ActiveSkillLV);
+			CS.n_PerfectHIT_DMG = 0;
+			set_n_A_Weapon_zokusei(0);
+
+			var w;
+
+			if (n_A_ActiveSkill == SKILL_ID_BLOOD_SUCKER) {
+
+				// 特定の戦闘エリアでの補正
+				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					w = 15000 + 3000 * n_A_ActiveSkillLV + n_A_INT;
+					n_Delay[7] = 4500 + 500 * n_A_ActiveSkillLV;
+					break;
+
+				default:
+					w = 200 + 100 * n_A_ActiveSkillLV + n_A_INT;
+					break;
+
+				}
+			}
+
+			else if (n_A_ActiveSkill == SKILL_ID_THORN_TRAP) {
+
+				// 特定の戦闘エリアでの補正
+				switch (n_B_TAISEI[MOB_CONF_PLAYER_ID_SENTO_AREA]) {
+
+				case MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM:
+					w = 25000 + 5000 * n_A_ActiveSkillLV + n_A_INT;
+					break;
+
+				default:
+					w = 100 + 200 * n_A_ActiveSkillLV + n_A_INT;
+					break;
+
+				}
+			}
+
+			w_DMG[0] = w_DMG[1] = w_DMG[2] = w;
+			for(var i=0;i<=2;i++){
+
+				w_DMG[i] = ApplyAttackDamageAmplify(mobData, w_DMG[i]);
+
+				CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			}
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -69,6 +137,20 @@ export const skills = [
 				return [0, 1000, 1000, 500, 500, 200, 200, 200, 200, 200, 200][skillLv];
 			}
 
+			this.Power = function(skillLv, charaDataManger, option) {
+				let wbairitu = 100 * skillLv;					// 基本倍率
+				wbairitu += 100 * skillLv * option.GetOptionValue(1);		// ウドゥンウォリアー補正
+				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				wbairitu += 50 * cart_kaizo_lv;				// 修練補正
+				wbairitu += Math.floor(option.GetOptionValue(0) / (150 - SU_STR));	// カート重量・純粋STR補正
+				return wbairitu;
+			}
+
+			this.dispHitCount = function(skillLv, charaDataManger) {
+				return 3;
+			}
+
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -89,17 +171,12 @@ export const skills = [
 			}
 
 			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-				var powCart = 0;
-				var powInt = 0;
+				const cart_kaizo_lv = Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
+				return 60 * skillLv + Math.floor(cart_kaizo_lv * 50 * n_A_INT / 40);
+			}
 
-				// 基本式
-				pow = 60 * skillLv;
-				powCart = 50 * Math.max(LearnedSkillSearch(SKILL_ID_CART_KAIZO), UsedSkillSearch(SKILL_ID_CART_KAIZO));
-				powInt = charaDataManger.GetCharaInt() / 40;
-				pow += Math.floor(powCart * powInt);
-
-				return pow;
+			this.hitCount = function(skillLv, option) {
+				return option.GetOptionValue(1) == 1 ? 2 : 1;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -110,6 +187,50 @@ export const skills = [
 				return 500;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, CanonOBJ } = env;
+				CS.n_PerfectHIT_DMG = 0;
+				// 必中処理
+				CS.w_HIT_HYOUJI = 100;
+				CS.w_HIT = 100;
+				// 遠距離
+				set_n_Enekyori(this.range);
+				// 詠唱など
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				// ウドゥンウォリアー補正
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				// 基本倍率＋カート改造補正
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				// 倍率補正
+				var wMADO = 0;
+				// 斧修練
+				if ([ITEM_KIND_SWORD, ITEM_KIND_AXE, ITEM_KIND_AXE_2HAND].includes(n_A_WeaponType)) {
+					wMADO += 3 * Math.max(LearnedSkillSearch(SKILL_ID_ONO_SHUREN), UsedSkillSearch(SKILL_ID_ONO_SHUREN));
+				}
+				// 剣修練
+				if ([ITEM_KIND_KNIFE, ITEM_KIND_SWORD].includes(n_A_WeaponType)) {
+					wMADO += 10 * Math.max(LearnedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC), UsedSkillSearch(SKILL_ID_KEN_SHUREN_GENETIC));
+				}
+				// 改造カートブースト補正
+				wMADO += 10 * UsedSkillSearch(SKILL_ID_CART_BOOST_GENETIC);
+				// 属性キャノンボール補正
+				wMADO += ApplyElementRatio(mobData, CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][0],CanonOBJ[attackMethodConfArray[0].GetOptionValue(0)][1]);
+				// ダメージ算出
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + wMADO;
+					w_DMG[i] = Math.floor(w_DMG[i] * CS.wbairitu / 100);
+					w_DMG[i] -= CS.B_Total_DEF;
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				// ダメージ表示（不要な可能性あり）
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -287,10 +408,11 @@ export const skills = [
 				return 500;
 			}
 
-			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+			this.damageInterval = function(skillLv) {
 				return 1000;
 			}
 
+			this.SpecialFormula = ApplyBloodSuckerFamilyFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -361,6 +483,16 @@ export const skills = [
 				return 5000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_A_Weapon_zokusei(this.element);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = attackMethodConfArray[0].GetOptionValue(0);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -393,7 +525,7 @@ export const skills = [
 				return 500;
 			}
 
-			this.DelayTimeSkillTiming = function(skillLv, charaDataManger) {
+			this.damageInterval = function(skillLv) {
 				return 1000;
 			}
 
@@ -410,6 +542,7 @@ export const skills = [
 				return 0;
 			}
 
+			this.SpecialFormula = ApplyBloodSuckerFamilyFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -438,6 +571,30 @@ export const skills = [
 				return 2000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				var w;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				set_n_Enekyori(this.range);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_A_Weapon_zokusei(this.element);
+				w = n_A_ActiveSkillLV * mobData[2] * 10;
+				w += Math.floor(n_A_INT * 7 / 2) * Math.floor(18 + n_A_JobLV / 4);
+				// バイオプラント習得Lv補正
+				const bioplant_lv = LearnedSkillSearch(SKILL_ID_BIOPLANT);
+				w *= (5 / (10 - Math.max(bioplant_lv, attackMethodConfArray[0].GetOptionValue(0))));
+				w = ApplyElementRatio(mobData, w,0);
+				w = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w);
+				if(n_B_KYOUKA[7] && n_Enekyori == 2) w += Math.floor(w * (20 * n_B_KYOUKA[7]) / 100);
+				w_DMG[0] = w_DMG[1] = w_DMG[2] = Math.floor(w);
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -583,8 +740,11 @@ export const skills = [
 				return -1;
 			}
 
-			this.hitCount = function(skillLv, charaDataManger) {
-				return -1;
+			this.hitCount = function(skillLv, option) {
+				const acid_demonstration_lv = LearnedSkillSearch(SKILL_ID_ACID_DEMONSTRATION);
+				let h = Math.max(acid_demonstration_lv, option.GetOptionValue(0));
+				if (h < 5) h = 5;
+				return h;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
@@ -595,6 +755,7 @@ export const skills = [
 				return 500;
 			}
 
+			this.SpecialFormula = ApplyG6AcidDemonstrationFormula;
 		}),
 
 		// ----------------------------------------------------------------

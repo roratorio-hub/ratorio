@@ -6,8 +6,14 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_Delay, set_n_A_Weapon_zokusei, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_INT, n_A_WeaponType } from "../../runtime/roro-state.js";
+import { ApplyElementRatio, BuildBattleResultHtml, BuildCastAndDelayHtml } from "../../bridge/battlecalc-bridge.js";
+import { ApplyG3HealFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { CardNumSearch } from "../../bridge/chara-search-bridge.js";
 import {
     MOB_CONF_PLAYER_ID_SENTO_AREA, MOB_CONF_PLAYER_ID_SENTO_AREA_YE, MOB_CONF_PLAYER_ID_SENTO_AREA_YE_COLOSSEUM,
     n_B_TAISEI
@@ -398,7 +404,7 @@ export const skills = [
 			this.maxLv = 4;
 			this.type = CSkillData.TYPE_ACTIVE;
 			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.element = CSkillData.ELEMENT_FORCE_HOLY;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 60 + 10 * skillLv;
@@ -416,6 +422,35 @@ export const skills = [
 				return 1000;
 			}
 
+			this.hitCount = function(skillLv, option) {
+				return 18;
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_A_Weapon_zokusei(this.element);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				n_Delay[0] = 1;
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				w_DMG[2] = n_A_BaseLV * 10 + n_A_INT;
+				w_DMG[2] = ApplyElementRatio(mobData, w_DMG[2],6);
+				if(mobData[18] <= 89 || 100 <= mobData[18]) w_DMG[2]=0;
+
+				// TODO: ダメージ表示方式変更対応
+				// w_DMG[2] = w_DMG[2] * wHITsuu;
+
+				w_DMG[0] = w_DMG[1] = w_DMG[2];
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -436,7 +471,7 @@ export const skills = [
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {
-				return (skillLv == 5) ? 2000 : (100 + 400 * skillLv);
+				return 400 * skillLv;
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
@@ -444,9 +479,10 @@ export const skills = [
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 1000;
+				return CardNumSearch(611) ? 0 : 1000;
 			}
 
+			this.SpecialFormula = ApplyG3HealFormula;
 		}),
 
 		// ----------------------------------------------------------------

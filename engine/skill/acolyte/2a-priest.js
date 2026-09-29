@@ -6,13 +6,67 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_BaseLV, n_A_Weapon_zokusei, n_Delay, n_tok, set_n_A_Weapon_zokusei,
+    set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_INT, n_A_LUK } from "../../runtime/roro-state.js";
+import { ITEM_SP_HEAL_UP_USING } from "../../const/EnumItemSpId.js";
+import { n_B_KYOUKA } from "../../monster/mobconfbuf.js";
+import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import {
+    ApplyAttackDamageAmplify, ApplyElementRatio, ApplyLexAeterna, BuildBattleResultHtml, BuildCastAndDelayHtml
+} from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_ASPERSIO, SKILL_ID_GLORIA, SKILL_ID_IMPOSITIO_MANUS, SKILL_ID_KYRIE_ELEISON, SKILL_ID_LEX_AETERNA,
-    SKILL_ID_LEX_DIVINA, SKILL_ID_MACE_SHUREN, SKILL_ID_MAGNIFICAT, SKILL_ID_MAGNUS_EXORCISMUS, SKILL_ID_RECOVERY,
+    SKILL_ID_LEX_DIVINA, SKILL_ID_MACE_SHUREN, SKILL_ID_MAGNIFICAT, SKILL_ID_MAGNUS_EXORCISMUS, SKILL_ID_MEDITATIO,
+    SKILL_ID_RECOVERY,
     SKILL_ID_REDEMPTIO, SKILL_ID_RESURRECTION, SKILL_ID_SANCTUARY, SKILL_ID_SEITAI_KOFUKU, SKILL_ID_SLOW_POISON,
     SKILL_ID_SUFFRAGIUM, SKILL_ID_TURN_UNDEAD
 } from "../skill.dat.js";
+
+/** アンデッド特効・リザレクション共通のダメージ計算式（w は関数スコープでホイストされる作業変数）。 */
+function ApplyTurnUndeadFamilyFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+    const { CS } = env;
+    var w;
+			CS.w_HIT = 100;
+			CS.w_HIT_HYOUJI = 100;
+			if(CS.n_AS_MODE){
+				for(var i=0;i<=2;i++) w_DMG[i] = 0;
+				return w_DMG;
+			}
+			CS.n_PerfectHIT_DMG = 0;
+			if(n_A_ActiveSkill==SKILL_ID_TURN_UNDEAD){
+				set_n_A_Weapon_zokusei(6);
+			}else{
+				set_n_A_Weapon_zokusei(0);
+			}
+			CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+			set_n_Enekyori(2);
+			if(mobData[18] <90){
+				w = 0;
+				w_DMG[2] = 0;
+				w_DMG[0] = 0;
+				w_DMG[1] = 0;
+			}else{
+				if(mobData[20] != 1){
+					w = (20 * n_A_ActiveSkillLV + n_A_BaseLV + n_A_INT +n_A_LUK)/1000;
+					w_DMG[2] = mobData[3];
+				}
+				else{
+					w = 0;
+					w_DMG[2] = 0;
+				}
+				w_DMG[0] = n_A_BaseLV + n_A_INT + n_A_ActiveSkillLV *10;
+				w_DMG[0] = ApplyElementRatio(mobData, w_DMG[0],n_A_Weapon_zokusei);
+				w_DMG[1] = Math.round((mobData[3] * w + w_DMG[0] * (100-w)/100));
+			}
+			for(var i=0;i<=2;i++) CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+			n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+			BuildCastAndDelayHtml(mobData);
+			BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+}
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -142,6 +196,32 @@ export const skills = [
 				return 5000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_A_Weapon_zokusei(this.element);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[0] = 1;
+				set_n_Enekyori(this.range);
+				if(n_A_ActiveSkillLV <= 6) w_DMG[2] = 100 * n_A_ActiveSkillLV;
+				else w_DMG[2] = 777;
+				let w_HEAL_BAI = 100 + n_tok[ITEM_SP_HEAL_UP_USING];
+				w_HEAL_BAI -= 2 * Math.max(LearnedSkillSearch(SKILL_ID_MEDITATIO), UsedSkillSearch(SKILL_ID_MEDITATIO));
+				w_DMG[2] = Math.floor(w_DMG[2] * w_HEAL_BAI / 100);
+				w_DMG[2] = ApplyElementRatio(mobData, Math.floor(w_DMG[2] / 2),6);
+				if(mobData[18] <90 && mobData[19] != 6) w_DMG[2]=0;
+				if(n_B_KYOUKA[7]) w_DMG[2] += Math.floor(w_DMG[2] * (20 * n_B_KYOUKA[7]) / 100);
+				w_DMG[2] = ApplyLexAeterna(mobData, w_DMG[2]);
+				w_DMG[2] = ApplyAttackDamageAmplify(mobData, w_DMG[2]);
+				w_DMG[0] = w_DMG[1] = w_DMG[2];
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -212,9 +292,10 @@ export const skills = [
 			}
 
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
-				return -1000 + 1000 * skillLv;
+				return 1000 * (skillLv - 1);
 			}
 
+			this.SpecialFormula = ApplyTurnUndeadFamilyFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -346,6 +427,7 @@ export const skills = [
 				return 3000;
 			}
 
+			this.SpecialFormula = ApplyTurnUndeadFamilyFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -412,6 +494,14 @@ export const skills = [
 				return skillLv;
 			}
 			this.genericFormula = true;
+			// マグヌスエクソシズム、かつ、モンスターが対象外の場合、ＭＡＴＫを０で計算する
+			this.MagicalMatkFilter = function(env, mobData, w_MATK) {
+				if(mobData[19] != 6 && mobData[18] <90){
+					w_MATK[0]=0;
+					w_MATK[1]=0;
+					w_MATK[2]=0;
+				}
+			}
 		}),
 
 		// ----------------------------------------------------------------
