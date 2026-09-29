@@ -386,6 +386,17 @@ export class MonsterToughness {
         ["傲慢なタナトスの憎悪（チャレンジ）",MonsterToughness.DAMPING_10000],
         ["傲慢なタナトスの後悔（チャレンジ）",MonsterToughness.DAMPING_10000],
         ["傲慢なタナトスの怨望（チャレンジ）",MonsterToughness.DAMPING_10000],
+        ["強靭なディオーサ",MonsterToughness.DAMPING_10],
+        ["強靭なゲレーロ",MonsterToughness.DAMPING_10],
+        ["強靭なハノン",MonsterToughness.DAMPING_10],
+        ["強靭なシレーナ",MonsterToughness.DAMPING_10],
+        ["強靭なタッシ",MonsterToughness.DAMPING_10],
+        ["ディオーサ",MonsterToughness.DAMPING_10],
+        ["ゲレーロ",MonsterToughness.DAMPING_10],
+        ["ハノン",MonsterToughness.DAMPING_10],
+        ["ペスカ",MonsterToughness.DAMPING_100],
+        ["シレーナ",MonsterToughness.DAMPING_10],
+        ["タッシ",MonsterToughness.DAMPING_10],
     ]);
 
     /** 通知メッセージのリスト */
