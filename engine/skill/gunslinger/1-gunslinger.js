@@ -11,6 +11,15 @@ import { ITEM_KIND_HANDGUN, ITEM_KIND_RIFLE } from "../../const/EnumItemKind.js"
 import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
 import { RACE_ID_ANIMAL, RACE_ID_HUMAN } from "../../const/EnumRaceId.js";
 import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, w_DMG, set_n_Enekyori, set_n_A_Weapon_zokusei
+} from "../../runtime/ro4-state.js";
+import { n_A_MATK, n_A_WeaponType } from "../../runtime/roro-state.js";
+import {
+    ApplyMagicalSpecializeMonster, ApplyResistElement, ApplyRegistPVPNormal, ApplyPhysicalDamageRatio,
+    ApplyPhysicalSkillDamageRatioChange, ApplyElementRatio, BuildCastAndDelayHtml, BuildBattleResultHtml
+} from "../../bridge/battlecalc-bridge.js";
+import { ApplyG1CommonTailFormula } from "../skill-formula-shared.js";
+import {
     SKILL_ID_ADJUSTMENT, SKILL_ID_BULLS_EYE, SKILL_ID_CHAIN_ACTION, SKILL_ID_COUNT_OF_COIN, SKILL_ID_CRACKER,
     SKILL_ID_DEATHPERAD, SKILL_ID_DISARM, SKILL_ID_DUST, SKILL_ID_FLIP_THE_COIN, SKILL_ID_FLYING,
     SKILL_ID_FULL_BASTER, SKILL_ID_GATLING_FEVER, SKILL_ID_GROUND_DRIFT, SKILL_ID_INCREASING_ACCURACY,
@@ -81,6 +90,14 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_Enekyori(this.range);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0], n_A_WeaponType);
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -218,8 +235,8 @@ export const skills = [
 			this.kana = "マシカルハレツト";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE;
-			this.range = CSkillData.RANGE_SHORT;
-			this.element = CSkillData.ELEMENT_VOID;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_FORCE_PSYCO;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return -1;
@@ -229,6 +246,35 @@ export const skills = [
 				return 500;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				let w_MATK = [0,0,0];
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_Enekyori(this.range);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				set_n_A_Weapon_zokusei(this.element);
+				for(var i=0;i<=2;i++){
+					w_MATK[i] = n_A_MATK[i];
+					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
+					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
+					w_MATK[i] = ApplyRegistPVPNormal(mobData, w_MATK[i]);
+				}
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + w_MATK[i];
+					w_DMG[i] = w_DMG[i] - CS.B_Total_DEF;
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],8);
+				}
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -365,6 +411,15 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_Enekyori(this.range);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				var DEATH = [1,1.2,1.6,2,2.4,3,3.6,4,5,6,7,8,9,10];
+				CS.wHITsuu = DEATH[attackMethodConfArray[0].GetOptionValue(0)];
+				return ApplyG1CommonTailFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+			}
 		}),
 
 		// ----------------------------------------------------------------
@@ -376,7 +431,7 @@ export const skills = [
 			this.name = "トラッキング";
 			this.kana = "トラツキンク";
 			this.maxLv = 10;
-			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL | CSkillData.TYPE_CAST_KOTEI;
 			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_VOID;
 
@@ -388,6 +443,7 @@ export const skills = [
 				return 200 + 100 * skillLv;
 			}
 
+			// 可変詠唱短縮の対象外（TYPE_CAST_KOTEI）の強制詠唱。CastTimeVary に置くと詠唱シミュレータで二重計上になる
 			this.CastTimeForce = function(skillLv, charaDataManger) {
 				return 500 + 100 * skillLv;
 			}
@@ -396,6 +452,17 @@ export const skills = [
 				return 1000;
 			}
 
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				CS.wCast = this.CastTimeForce(n_A_ActiveSkillLV, charaData);
+				if (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_CAST_KOTEI) CS.cast_kotei = true;
+				set_n_Enekyori(this.range);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				CS.w_HIT = CS.w_HIT * 5 +5;
+				if(CS.w_HIT > 100) CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = CS.w_HIT;
+			}
 		}),
 
 		// ----------------------------------------------------------------

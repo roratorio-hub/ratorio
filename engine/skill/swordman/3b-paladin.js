@@ -6,6 +6,20 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_Equip, n_A_SHIELD_DEF_PLUS } from "../../runtime/roro-state.js";
+import { CHARA_DATA_INDEX_MAXHP } from "../../const/EnumCharaDataIndex.js";
+import { EQUIP_REGION_ID_SHIELD } from "../../const/EnumEquipRegionId.js";
+import { ITEM_DATA_INDEX_WEIGHT } from "../../const/EnumItemDataIndex.js";
+import { ItemObjNew } from "../../equip/item.dat.js";
+import { n_B_KYOUKA } from "../../monster/mobconfbuf.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import {
+    ApplyElementRatio, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml,
+    BuildCastAndDelayHtml, GetFixedAppendAtk
+} from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_GOSPEL, SKILL_ID_PRESSURE, SKILL_ID_PRESSURE_MISS, SKILL_ID_SACRIFICE, SKILL_ID_SHIELD_CHAIN
@@ -42,6 +56,24 @@ export const skills = [
 				return 1500 + 500 * skillLv;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 0;
+				w_DMG[2] = 500 + 300 * n_A_ActiveSkillLV;
+				if(5 <= mobData[21] && mobData[21] <= 9) w_DMG[2] = 1;
+				w_DMG[0] = w_DMG[1] = w_DMG[2];
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
+
 		}),
 
 		// ----------------------------------------------------------------
@@ -64,6 +96,24 @@ export const skills = [
 
 			this.Power = function(skillLv, charaDataManger) {
 				return -1;
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_A_Weapon_zokusei(this.element);
+				w_DMG[2] = Math.floor(charaData[CHARA_DATA_INDEX_MAXHP] * 0.09 * (0.9 + 0.1 * n_A_ActiveSkillLV));
+				w_DMG[2] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[2]);
+				w_DMG[2] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[2]);
+				w_DMG[2] = ApplyElementRatio(mobData, w_DMG[2],0);
+				w_DMG[0] = w_DMG[1] = w_DMG[2];
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}
 
 		}),
@@ -103,13 +153,55 @@ export const skills = [
 				return 25 + 3 * skillLv;
 			}
 			this.Power = function(skillLv, charaDataManger) {
-				return -1;
+				// 通常スキル倍率
+				const SdCBAI = [0,130,160,190,220,250];
+				/*
+				実測確認出来るまでコメントアウト
+
+				if (UsedSkillSearch(SKILL_ID_SHIELD_SHOOTING_STATE) > 0) {
+					return [0,360,420,480,540,600][skillLv];
+				}
+				*/
+				return SdCBAI[skillLv];
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 1000;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 1000;
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.n_PerfectHIT_DMG = 0;
+				set_n_Enekyori(this.range);
+				set_n_A_Weapon_zokusei(this.element);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				var w_Weight = ItemObjNew[n_A_Equip[EQUIP_REGION_ID_SHIELD]][ITEM_DATA_INDEX_WEIGHT];
+				var wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = CS.n_A_DMG[i] + w_Weight + n_A_SHIELD_DEF_PLUS * 4;
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ROUNDDOWN(w_DMG[i] * wbairitu / 100);
+					w_DMG[i] -= CS.B_Total_DEF;
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					if(n_B_KYOUKA[10]){
+						if(n_B_KYOUKA[10] == 6) w_DMG[i] = Math.floor(w_DMG[i] *12.5 / 100);
+						else w_DMG[i] -= Math.floor(w_DMG[i] * (5 + 15 * n_B_KYOUKA[10]) / 100);
+					}
+					w_DMG[i] += GetFixedAppendAtk(n_A_ActiveSkill, charaData, specData, mobData, w_DMG[i],i,-1);
+					w_DMG[i] = ApplyElementRatio(mobData, w_DMG[i],0);
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+				}
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_B[i] = w_DMG[i];
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] * 5;
+					w_DMG[i] = CS.Last_DMG_A[i];
+				}
+				w_DMG[1] = w_DMG[1] * CS.w_HIT /100;
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
 			}
 
 		}),

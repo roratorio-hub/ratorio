@@ -7,10 +7,15 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_Enekyori
+} from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { MONSTER_DATA_INDEX_RACE, MONSTER_DATA_INDEX_ID } from "../../const/EnumMonsterDataIndex.js";
+import { RACE_ID_HUMAN, RACE_ID_DEMON } from "../../const/EnumRaceId.js";
+import { MONSTER_ID_PLAYER } from "../../monster/monster.dat.js";
 import {
     SKILL_ID_HYOHO_SHUREN, SKILL_ID_SKY_MOON, SKILL_ID_SKY_SUN, SKILL_ID_STAR_LIGHT_KICK,
     SKILL_ID_TAITEN_ICHIGETSU, SKILL_ID_TAITEN_ICHIYO, SKILL_ID_TENCHI_BANSE, SKILL_ID_TENCHI_ICHIGETSU,
@@ -100,6 +105,13 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 1125 + 175 * skillLv;					// 基本倍率
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// POW補正
+				wbairitu += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));	// 天気修練 補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);			// ベースレベル補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 230;
 			}
@@ -136,6 +148,28 @@ export const skills = [
 					return 0;
 				}
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				const state_hinode = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 1);
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1);
+				if (!state_hinode && !state_shougo && !state_tenki_no_mi) {
+					CS.wbairitu = 0;
+					CS.n_Buki_Muri = true;
+					return;
+				}
+				// 距離属性
+				set_n_Enekyori(this.range);
+				// 詠唱時間など
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				// 正午 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
+				// 分割ヒット
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}
 		}),
 
@@ -150,6 +184,13 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.dispHitCount = 2;
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 1575 + 225 * skillLv;					// 基本倍率
+				wbairitu += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);			// POW補正
+				wbairitu += 5 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_TENKI_SHUREN), UsedSkillSearch(SKILL_ID_TENKI_SHUREN));	// 天気修練 補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);			// ベースレベル補正
+			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 230;
 			}
@@ -186,6 +227,28 @@ export const skills = [
 					return 0;
 				}
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				const state_shougo = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 2);
+				const state_nichibotsu = (UsedSkillSearch(SKILL_ID_UNKONO_ZYOTAI) == 3);
+				const state_tenki_no_mi = (UsedSkillSearch(SKILL_ID_TENKINO_MI) >= 1)
+				if (!state_shougo && !state_nichibotsu && !state_tenki_no_mi) {
+					CS.wbairitu = 0;
+					CS.n_Buki_Muri = true;
+					return;
+				}
+				// 距離属性
+				set_n_Enekyori(this.range);
+				// 詠唱時間など
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				// 日没 or 天気の身 のときだけクリが乗る仕様は CSkillManager.js 側で対処済み
+				// 分割ヒット
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill, n_A_ActiveSkillLV, charaData);
 			}
 		}),
 
@@ -502,11 +565,37 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {
 				return 3000;
 			}
+			this.Power = function(skillLv, charaDataManger) {
+				let wbairitu = 300 * skillLv;					// 基本倍率
+				wbairitu += 10 * GetTotalSpecStatus(MIG_PARAM_ID_POW);		// POW補正
+				return Math.floor(wbairitu * n_A_BaseLV / 100);		// ベースレベル補正
+			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.PhysicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				set_n_Enekyori(this.range);
+				// 詠唱時間など
+				CS.wCast = this.CastTimeVary(battleCalcInfo.skillLv, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(battleCalcInfo.skillLv, charaData);
+				n_Delay[2] = this.DelayTimeCommon(battleCalcInfo.skillLv, charaData);
+				n_Delay[7] = this.CoolTime(battleCalcInfo.skillLv, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData);
+				// 悪魔・人間(プレイヤーを除く)形では、３回ヒット
+				CS.wHITsuu = 1;
+				switch (parseInt(mobData[MONSTER_DATA_INDEX_RACE], 10)) {
+					case RACE_ID_HUMAN:
+						if (mobData[MONSTER_DATA_INDEX_ID] == MONSTER_ID_PLAYER) {
+							break;
+						}
+					case RACE_ID_DEMON:
+						CS.wHITsuu = 3;
+						break;
+				}
 			}
 		}),
 

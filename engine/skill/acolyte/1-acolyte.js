@@ -8,6 +8,7 @@
  */
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { n_Delay } from "../../runtime/ro4-state.js";
+import { ApplyG3HealFormula } from "../skill-formula-shared.js";
 import {
     SKILL_ID_ANGELUS, SKILL_ID_AQUA_BENEDICTA, SKILL_ID_BLESSING, SKILL_ID_CURE, SKILL_ID_DEMON_BANE,
     SKILL_ID_DIVINE_PROTECTION, SKILL_ID_HEAL, SKILL_ID_HOLY_LIGHT, SKILL_ID_PNEUMA, SKILL_ID_RUWACH,
@@ -69,6 +70,7 @@ export const skills = [
 				return 1000;
 			}
 
+			this.SpecialFormula = ApplyG3HealFormula;
 		}),
 
 		// ----------------------------------------------------------------

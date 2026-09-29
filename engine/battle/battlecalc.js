@@ -1,9 +1,9 @@
 // ダメージ計算スクラッチ状態（BattleCalc999Core とスキル計算式分割先が共有する）。詳細は calc-state.js 参照。
 import { CS, createBattleScratchTemplate } from "./calc-state.js";
-// BattleCalc999Core のスキル計算式ブロック分割先（Phase 3b）。循環しないため battlecalc.js が直接 import する。
-import { ApplyPhysicalSkillFormulaBasic } from "./skill-formula-physical.js";
-import { ApplyPhysicalSkillFormulaSpecial } from "./skill-formula-special.js";
+// BattleCalc999Core が振り分ける物理・魔法の計算パイプライン。循環しないため battlecalc.js が直接 import する。
+import { ApplyPhysicalSkillFormula } from "./skill-formula-physical.js";
 import { ApplyMagicalSkillFormula } from "./skill-formula-magical.js";
+import { CreateSkillFormulaEnv } from "./skill-formula-env.js";
 // battlecalc.js 残り巨大関数の分割先（Phase 3c）。循環しないため battlecalc.js が直接 import する。
 import { ApplyMagicalSpecializeMonster, ApplyPhysicalSpecializeMonster } from "./specialize-monster.js";
 import { BuildBattleResultHtml, BuildBattleResultHtmlMIG } from "./battle-result-html.js";
@@ -1444,32 +1444,21 @@ export function BattleCalc999Core(battleCalcInfo, charaData, specData, mobData, 
 	//================================================================================================================================
 	//
 	//
-	// 物理スキル　基本計算式
+	// スキルの計算パイプラインの振り分け
+	//   1. PhysicalFormula を持つ、または genericFormula かつ物理タイプ → 物理（パラメータ設定→物理共通ダメージ計算）
+	//   2. SpecialFormula を持つ → その計算式でダメージ計算を完結させる
+	//   3. それ以外 → 魔法（パラメータ設定→魔法共通ダメージ計算）
 	//
 	//
 	//================================================================================================================================
-	{
-		const result = ApplyPhysicalSkillFormulaBasic(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
-		if (result !== undefined) return result;
+	if (g_skillManager.HasPhysicalFormula(n_A_ActiveSkill)
+		|| (g_skillManager.IsGenericFormula(n_A_ActiveSkill) && (g_skillManager.GetSkillType(n_A_ActiveSkill) & CSkillData.TYPE_PHYSICAL) === CSkillData.TYPE_PHYSICAL)) {
+		return ApplyPhysicalSkillFormula(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
 	}
-
-	//================================================================================================================================
-	//
-	//
-	// 物理スキル　特殊計算式
-	//
-	//
-	//================================================================================================================================
-	{
-		const result = ApplyPhysicalSkillFormulaSpecial(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
-		if (result !== undefined) return result;
+	if (g_skillManager.HasSpecialFormula(n_A_ActiveSkill)) {
+		g_skillManager.ApplySpecialFormula(n_A_ActiveSkill, CreateSkillFormulaEnv(), battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
+		return w_DMG;
 	}
-
-	//----------------------------------------------------------------
-	//
-	// 魔法判定スキル
-	//
-	//----------------------------------------------------------------
 	return ApplyMagicalSkillFormula(battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft);
 }
 

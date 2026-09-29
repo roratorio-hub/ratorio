@@ -6,6 +6,11 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import { set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG } from "../../runtime/ro4-state.js";
+import {
+    ApplyElementRatio, ApplyPhysicalSkillDamageRatioChange, BuildBattleResultHtml, BuildCastAndDelayHtml
+} from "../../bridge/battlecalc-bridge.js";
+import { ApplyG4EnvenomFormula } from "../skill-formula-shared.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import {
     SKILL_ID_BACKSTEP, SKILL_ID_DOUBLE_ATTACK, SKILL_ID_ENVENOM, SKILL_ID_GEDOKU, SKILL_ID_HIDING,
@@ -107,6 +112,7 @@ export const skills = [
 				return -1;
 			}
 
+			this.SpecialFormula = ApplyG4EnvenomFormula;
 		}),
 
 		// ----------------------------------------------------------------
@@ -202,7 +208,7 @@ export const skills = [
 			this.kana = "イシナケ";
 			this.maxLv = 1;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
-			this.range = CSkillData.RANGE_SHORT;
+			this.range = CSkillData.RANGE_LONG;
 			this.element = CSkillData.ELEMENT_FORCE_VANITY;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
@@ -217,6 +223,23 @@ export const skills = [
 				return 100;
 			}
 
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				CS.n_PerfectHIT_DMG = 50;
+				set_n_A_Weapon_zokusei(this.element);
+				set_n_Enekyori(this.range);
+				var ISI = 50;
+				ISI = ApplyElementRatio(mobData, ISI,0);
+				ISI = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, ISI);
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = ISI;
+					w_DMG[i] = ISI;
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 ];

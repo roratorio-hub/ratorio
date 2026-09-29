@@ -6,7 +6,17 @@
  * 並び順は不問（CSkillManager.Init() は id で dataArray に格納するため実行順序に依存しない）。
  * 割当根拠は .claude/context/architecture.md 参照。
  */
+import {
+    n_A_ActiveSkill, n_A_ActiveSkillLV, n_A_Weapon_zokusei, n_Delay, set_n_A_Weapon_zokusei, set_n_Enekyori, w_DMG
+} from "../../runtime/ro4-state.js";
+import { n_A_MATK, n_B_DEF2, n_B_MDEF2 } from "../../runtime/roro-state.js";
+import {
+    ApplyMagicalSpecializeMonster, ApplyPhysicalDamageRatio, ApplyPhysicalSkillDamageRatioChange, ApplyResistElement,
+    BaiTaisei_C, BuildBattleResultHtml, BuildCastAndDelayHtml
+} from "../../bridge/battlecalc-bridge.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
+import { ROUNDDOWN } from "../../bridge/stallcalc-bridge.js";
+import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_CANCEL_EDP_POISON_ATTACK, SKILL_ID_CREATE_DEADLY_POISON, SKILL_ID_ENCHANT_DEADLY_POISON,
     SKILL_ID_KATAR_KENKYU, SKILL_ID_METEOR_ASSALT, SKILL_ID_SOUL_BREAKER
@@ -45,22 +55,6 @@ export const skills = [
 				return 20 + 10 * Math.floor((skillLv - 1) / 5);
 			}
 
-			this.Power = function(skillLv, charaDataManger) {
-				var pow = 0;
-				var edp = 0;
-
-				// 基本式
-				pow = 300 + 50 * skillLv;
-
-				// 「アサシンクロス エンチャントデッドリーポイズン」の効果（ペナルティ）
-				edp = charaDataManger.UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON);
-				if (edp > 0) {
-					pow = Math.floor(pow / 2);
-				}
-
-				return pow;
-			}
-
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return 500;
 			}
@@ -69,6 +63,50 @@ export const skills = [
 				return 800 + 200 * skillLv;
 			}
 
+			this.Power = function(skillLv, charaDataManger) {
+				let wbai = 300 + 50 * skillLv;
+				if (UsedSkillSearch(SKILL_ID_ENCHANT_DEADLY_POISON)) wbai = ROUNDDOWN(wbai / 2);
+				return wbai;
+			}
+
+			this.SpecialFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS } = env;
+				let w_MATK = [0,0,0];
+				CS.w_HIT = 100;
+				CS.w_HIT_HYOUJI = 100;
+				set_n_Enekyori(this.range);
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				var wbai = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				for(var i=0;i<=2;i++){
+					w_MATK[i] = n_A_MATK[i];
+					w_MATK[i] = ApplyMagicalSpecializeMonster(charaData, specData, mobData, w_MATK[i]);
+					var BK_X = n_A_Weapon_zokusei;
+					set_n_A_Weapon_zokusei(0);
+					w_MATK[i] = ApplyResistElement(mobData, w_MATK[i]);
+					set_n_A_Weapon_zokusei(BK_X);
+					w_MATK[i] = BaiTaisei_C(mobData, w_MATK[i]);
+				}
+				for(var i=0;i<=2;i++){
+					w_DMG[i] = ROUNDDOWN(CS.n_A_DMG[i] * wbai / 100);
+					w_DMG[i] += ROUNDDOWN(w_MATK[i] * wbai / 100);
+					w_DMG[i] -= (mobData[13] + mobData[14] + n_B_MDEF2 + n_B_DEF2[0]);
+					w_DMG[i] = ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					w_DMG[i] = ApplyPhysicalSkillDamageRatioChange(battleCalcInfo, charaData, specData, mobData, w_DMG[i]);
+					if(w_DMG[i] <0) w_DMG[i] = 0;
+				}
+				if(CS.n_AS_MODE) return w_DMG;
+				for(var i=0;i<=2;i++){
+					CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i];
+				}
+				if(5 <= mobData[21] && mobData[21] <= 9){
+					for(var i=0;i<=2;i++){
+						CS.Last_DMG_A[i] = CS.Last_DMG_B[i] = w_DMG[i] = 1;
+					}
+				}
+				BuildCastAndDelayHtml(mobData);
+				BuildBattleResultHtml(charaData, specData, mobData, attackMethodConfArray);
+			}
 		}),
 
 		// ----------------------------------------------------------------

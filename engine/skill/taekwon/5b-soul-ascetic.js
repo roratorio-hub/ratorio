@@ -7,7 +7,9 @@
  * 割当根拠は .claude/context/architecture.md 参照。
  */
 import { GetTotalSpecStatus } from "../../bridge/hmjob-bridge.js";
-import { n_A_BaseLV } from "../../runtime/ro4-state.js";
+import {
+    n_A_BaseLV, n_A_ActiveSkill, n_A_ActiveSkillLV, n_Delay, set_n_A_Weapon_zokusei
+} from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { MOB_CONF_DEBUF_ID_SHIRYO_HYOI, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
@@ -567,6 +569,21 @@ export const skills = [
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 60 * 1000;
+			}
+			this.MagicalFormula = function(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
+				const { CS, g_skillManager } = env;
+				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) < 4) {
+					CS.n_Buki_Muri = true;
+					return;
+				}
+				CS.wCast = this.CastTimeVary(n_A_ActiveSkillLV, charaData);
+				CS.n_KoteiCast = this.CastTimeFixed(n_A_ActiveSkillLV, charaData);
+				n_Delay[2] = this.DelayTimeCommon(n_A_ActiveSkillLV, charaData);
+				n_Delay[7] = this.CoolTime(n_A_ActiveSkillLV, charaData);
+				CS.wbairitu = this.Power(n_A_ActiveSkillLV, charaData, attackMethodConfArray[0]);
+				CS.wActiveHitNum = g_skillManager.GetDividedHitCount(n_A_ActiveSkill,n_A_ActiveSkillLV);
+				CS.wHITsuu = this.hitCount(n_A_ActiveSkillLV, attackMethodConfArray[0]);
+				set_n_A_Weapon_zokusei(attackMethodConfArray[0].GetOptionValue(0));
 			}
 		}),
 
