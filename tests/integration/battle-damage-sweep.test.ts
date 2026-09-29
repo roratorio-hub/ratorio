@@ -5,7 +5,7 @@
  * `engine/skill/<職業>/*.js` の defineSkill 側へ移す作業（plan:
  * engine-battle-skill-fomula-js-engine-sk-graceful-wombat）の安全網。
  *
- * skill-data-sweep.test.ts と同様に実ブラウザの ESM ローダー経由で呼ぶ
+ * skill-formula-sweep.test.ts と同様に実ブラウザの ESM ローダー経由で呼ぶ
  * （vitest の SSR ローダーで battlecalc.js 系を直接 import すると循環 import で
  * ハングするため）。装備ありのフィクスチャで StAllCalc() を1回だけ呼び、
  * charaData/specData/mobData/attackMethodConfArray を固定した上で、
@@ -68,7 +68,7 @@ afterAll(async () => {
     await closeServer(server);
 });
 
-// page.evaluate に渡すのは文字列（skill-data-sweep.test.ts と同じ理由:
+// page.evaluate に渡すのは文字列（skill-formula-sweep.test.ts と同じ理由:
 // 関数で渡すと中の dynamic import() が Vite に書き換えられブラウザ内で解決できない）。
 const SWEEP_SCRIPT = `
     (async () => {
@@ -85,7 +85,7 @@ const SWEEP_SCRIPT = `
             .sort((a, b) => a - b);
 
         // 本番と同じ経路で charaData/specData/mobData/attackMethodConfArray を
-        // 1回だけ取得し、全 SKILL_ID_* に使い回す（skill-data-sweep と同じ手順）。
+        // 1回だけ取得し、全 SKILL_ID_* に使い回す。
         const retValArray = bridge.StAllCalc();
         const mobData = retValArray[2];
         const attackMethodConfArray = retValArray[3];
