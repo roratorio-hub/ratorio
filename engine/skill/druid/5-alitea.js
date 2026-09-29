@@ -23,6 +23,7 @@ import {
     SKILL_ID_TERRA_WAVE, SKILL_ID_TRUTH_OF_EARTH, SKILL_ID_TRUTH_OF_ICE, SKILL_ID_TRUTH_OF_WIND,
     SKILL_ID_ZEPHYR_LINK
 } from "../skill.dat.js";
+import { SKILL_ID_NATURE_RAGE, SKILL_ID_PLUME_PIERCER, SKILL_ID_WERERAPTOR } from "../skill.dat.js";
 
 export const skills = [
 		/** パルスオブマッドネス */
@@ -1160,6 +1161,109 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 10 * 10000;
 			}
+		}),
+
+		/** (×)プルームピアサー */
+		// SKILL_ID_PLUME_PIERCER
+		defineSkill(SKILL_ID_PLUME_PIERCER, function() {
+			this.name = "(×)プルームピアサー";
+			this.kana = "フルウムヒアサア";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return UsedSkillSearch(SKILL_ID_WERERAPTOR) > 0;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				ratio += 4250 + 1250 * skillLv;
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 190;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 600 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData, option) => {              // クリティカル発生率
+				// エイペックスフェーズ状態は自身のクリティカル率でクリティカル攻撃になる
+				if (option.GetOptionValue(0) === 1) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				}
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)ネイチャーレイジ */
+		// SKILL_ID_NATURE_RAGE
+		defineSkill(SKILL_ID_NATURE_RAGE, function() {
+			this.name = "(×)ネイチャーレイジ";
+			this.kana = "ネイチヤアレイシ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = function(option) {
+				// トゥルースオブ○○状態の場合は対応する属性になる
+				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_ICE) > 0) {
+					return CSkillData.ELEMENT_FORCE_WATER;
+				}
+				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_WIND) > 0) {
+					return CSkillData.ELEMENT_FORCE_WIND;
+				}
+				if (UsedSkillSearch(SKILL_ID_TRUTH_OF_EARTH) > 0) {
+					return CSkillData.ELEMENT_FORCE_EARTH;
+				}
+				return CSkillData.ELEMENT_FORCE_VANITY;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				ratio += 4800 + 1200 * skillLv;
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return -500 + 1400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 4000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
 		}),
 
 ];

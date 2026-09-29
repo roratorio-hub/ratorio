@@ -18,6 +18,7 @@ import {
     SKILL_ID_ROCK_DOWN, SKILL_ID_RYOTETUSE_SHUREN, SKILL_ID_SOUL_VULKUN_STRIKE, SKILL_ID_STORM_CANNON,
     SKILL_ID_STRATUM_TREAMER, SKILL_ID_TORNADE_STORM, SKILL_ID_VIOLENT_QUAKE, SKILL_ID_CLIMAX_HURRICANE_STATE
 } from "../skill.dat.js";
+import { SKILL_ID_WRAITH_DASH } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -857,6 +858,45 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
+		}),
+
+		/** (×)レイスダッシュ */
+		// SKILL_ID_WRAITH_DASH
+		defineSkill(SKILL_ID_WRAITH_DASH, function() {
+			this.name = "(×)レイスダッシュ";
+			this.kana = "レイスタツシユ";
+			this.maxLv = 3;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_PSYCO;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				ratio += 750 + 750 * skillLv;
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 400;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
 		}),
 
 ];

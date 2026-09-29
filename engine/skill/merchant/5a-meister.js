@@ -19,6 +19,8 @@ import {
     SKILL_ID_POWERFUL_SWING, SKILL_ID_RUSH_QUAKE, SKILL_ID_RUSH_STATE, SKILL_ID_RUSH_STRIKE, SKILL_ID_SOCHI_SEIZO,
     SKILL_ID_SPARK_BLASTER, SKILL_ID_TRIPLE_LASER, SKILL_ID_TWO_AXE_DEFENDING
 } from "../skill.dat.js";
+import { LearnedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { SKILL_ID_OVERDRIVE_PROTOCOL } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -731,6 +733,62 @@ export const skills = [
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)オーバードライブプロトコル */
+		// SKILL_ID_OVERDRIVE_PROTOCOL
+		defineSkill(SKILL_ID_OVERDRIVE_PROTOCOL, function() {
+			this.name = "(×)オーバードライブプロトコル";
+			this.kana = "オオハアトライフフロトコル";
+			this.maxLv = 4;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const abr_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ABR_MASTERY), UsedSkillSearch(SKILL_ID_ABR_MASTERY));
+				// デュアルキャノン召喚中はより大きなダメージを与える
+				if (UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON) > 0) {
+					ratio += 900 + 2400 * skillLv;
+				} else {
+					ratio += 1200 + 1500 * skillLv;
+				}
+				ratio += 0 * abr_mastery_lv;	// TODO: ABRマスタリー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 250;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 + 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData, option) => {              // クリティカル発生率
+				// インフィニティ召喚中は自身のクリティカル率でクリティカル攻撃になる
+				if (option.GetOptionValue(0) === 1) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				}
+				return 0;
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.genericFormula = true;
 		}),

@@ -23,6 +23,7 @@ import {
     SKILL_ID_RHYTHMICAL_WAVE, SKILL_ID_RHYTHM_SHOOTING, SKILL_ID_ROSE_BLOSSOM, SKILL_ID_SHISHATACHIHENO_REQUIEM,
     SKILL_ID_SONATA_OF_KUVASIL, SKILL_ID_SOUND_BLEND, SKILL_ID_STAGE_MANNER, SKILL_ID_YUYAKENO_SERENADE
 } from "../skill.dat.js";
+import { SKILL_ID_FUGUE_DES_FLECHES } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -772,6 +773,55 @@ export const skills = [
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)フーガデフレーシュ */
+		// SKILL_ID_FUGUE_DES_FLECHES
+		defineSkill(SKILL_ID_FUGUE_DES_FLECHES, function() {
+			this.name = "(×)フーガデフレーシュ";
+			this.kana = "フウカテフレエシユ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_BOW, ITEM_KIND_MUSICAL, ITEM_KIND_WHIP].includes(weapon);
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const state_mystic_symphony = Math.max(UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY), option.GetOptionValue(0));
+				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
+				if (state_mystic_symphony === 1) {
+					ratio += 2500 + 1000 * skillLv;
+				} else {
+					ratio += 2000 + 800 * skillLv;
+				}
+				ratio += 0 * stage_manner_lv;	// TODO: ステージマナー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 500 + 500 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
 			}
 			this.genericFormula = true;

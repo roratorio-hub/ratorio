@@ -26,6 +26,8 @@ import {
     SKILL_ID_SERVANT_WEAPON_PHANTOM, SKILL_ID_SERVANT_WEAPON_SIGN, SKILL_ID_STORM_SLASH, SKILL_ID_TWOHAND_DEFENDING,
     SKILL_ID_VIGOR
 } from "../skill.dat.js";
+import { LearnedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { SKILL_ID_SERVANT_WEAPON_CLEAVE } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -631,6 +633,58 @@ export const skills = [
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 500 + 500 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)サーヴァントウェポン：クリーブ */
+		// SKILL_ID_SERVANT_WEAPON_CLEAVE
+		defineSkill(SKILL_ID_SERVANT_WEAPON_CLEAVE, function() {
+			this.name = "(×)サーヴァントウェポン：クリーブ";
+			this.kana = "サアウアントウエホンクリイフ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const state_vigor = UsedSkillSearch(SKILL_ID_VIGOR) > 0;
+				const vigor_lv = Math.max(LearnedSkillSearch(SKILL_ID_VIGOR), UsedSkillSearch(SKILL_ID_VIGOR));
+				if (state_vigor) {
+					ratio += 1500 + 1500 * skillLv;
+				} else {
+					ratio += 1200 + 1200 * skillLv;
+				}
+				ratio += 0 * vigor_lv;	// TODO: ヴィゴール習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 110;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500;

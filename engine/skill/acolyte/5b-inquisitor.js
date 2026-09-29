@@ -20,6 +20,7 @@ import {
     SKILL_ID_KENKONA_SHINNEN, SKILL_ID_KIKO, SKILL_ID_KYOZINNA_SHINNEN, SKILL_ID_SAISHUSHO_METSUMANO_HONO,
     SKILL_ID_SEYU_SENRE, SKILL_ID_SHINKONO_ISHI
 } from "../skill.dat.js";
+import { SKILL_ID_DAIZEROGEKI_HATENGEKI } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -865,6 +866,59 @@ export const skills = [
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)第零撃：破天撃 */
+		// SKILL_ID_DAIZEROGEKI_HATENGEKI
+		defineSkill(SKILL_ID_DAIZEROGEKI_HATENGEKI, function() {
+			this.name = "(×)第零撃：破天撃";
+			this.kana = "タイ０ケキ　ハテンケキ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = function(skillLv, option, weapon) {
+				// 第二章：審判者状態は2回連続攻撃になる
+				return (option.GetOptionValue(0) === 1) ? 2 : 1;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				ratio += 6000 + 1500 * skillLv;
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 300;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 10;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 3000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData, option) => {              // クリティカル発生率
+				// 第一章：信念の力状態は自身のクリティカル率でクリティカル攻撃になる
+				if (option.GetOptionValue(0) === 0) {
+					return this._CriActRate100(skillLv, charaData, specData, mobData);
+				}
+				return 0;
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;

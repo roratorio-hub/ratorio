@@ -19,6 +19,7 @@ import {
     SKILL_ID_SANREI_ITTAI, SKILL_ID_SPIRIT_MASTERY, SKILL_ID_TIGER_HOWLING, SKILL_ID_TIGER_SLASH,
     SKILL_ID_TIGER_STRIKE, SKILL_ID_TURTLE_SPRINKLER
 } from "../skill.dat.js";
+import { SKILL_ID_DEER_HARMONY, SKILL_ID_TIGER_HARMONY } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -706,6 +707,70 @@ export const skills = [
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.genericFormula = true;
+		}),
+
+		/** ディアーハーモニー */
+		// SKILL_ID_DEER_HARMONY
+		defineSkill(SKILL_ID_DEER_HARMONY, function() {
+			this.name = "ディアーハーモニー";
+			this.kana = "テイアアハアモニイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
+			}
+		}),
+
+		/** タイガーハーモニー */
+		// SKILL_ID_TIGER_HARMONY
+		defineSkill(SKILL_ID_TIGER_HARMONY, function() {
+			this.name = "タイガーハーモニー";
+			this.kana = "タイカアハアモニイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
+			}
 		}),
 
 ];

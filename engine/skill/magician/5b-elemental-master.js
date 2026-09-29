@@ -19,6 +19,7 @@ import {
     SKILL_ID_SPELL_ENCHANTING, SKILL_ID_SUMMON_ALDOR, SKILL_ID_SUMMON_DILBIO, SKILL_ID_SUMMON_PROCERA,
     SKILL_ID_SUMMON_SERPENSE, SKILL_ID_SUMMON_TELEMOTUS, SKILL_ID_TERA_DRIVE, SKILL_ID_VENOM_SWAMP
 } from "../skill.dat.js";
+import { SKILL_ID_ELEMENTAL_INTEGRATION } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -735,6 +736,38 @@ export const skills = [
 				return 5000;
 			}
 			this.genericFormula = true;
+		}),
+
+		/** エレメンタルインテグレーション */
+		// SKILL_ID_ELEMENTAL_INTEGRATION
+		defineSkill(SKILL_ID_ELEMENTAL_INTEGRATION, function() {
+			this.name = "エレメンタルインテグレーション";
+			this.kana = "エレメンタルインテクレエシヨン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 500;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 20 + 6 * skillLv;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 120 * 1000;
+			}
 		}),
 
 ];

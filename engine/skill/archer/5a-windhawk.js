@@ -24,6 +24,10 @@ import {
     SKILL_ID_HAWK_MASTERY, SKILL_ID_HAWK_RUSH, SKILL_ID_SHIZEN_SHINWA, SKILL_ID_SOLID_TRAP, SKILL_ID_STEEL_CROW,
     SKILL_ID_SWIFT_TRAP, SKILL_ID_WILD_WALK, SKILL_ID_WIND_SIGN
 } from "../skill.dat.js";
+import {
+    SKILL_ID_FRAGMENT_BOLT, SKILL_ID_PRIMED_DEEP_BLIND_TRAP, SKILL_ID_PRIMED_FLAME_TRAP,
+    SKILL_ID_PRIMED_SOLID_TRAP, SKILL_ID_PRIMED_SWIFT_TRAP, SKILL_ID_PRIMED_TRAP, SKILL_ID_WASHINO_ME
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -626,6 +630,272 @@ export const skills = [
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3000 * skillLv;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)プライムドソリッドトラップ */
+		// SKILL_ID_PRIMED_SOLID_TRAP
+		defineSkill(SKILL_ID_PRIMED_SOLID_TRAP, function() {
+			this.name = "(×)プライムドソリッドトラップ";
+			this.kana = "フライムトソリツトトラツフ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.WeaponCondition = function(weapon) {
+				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio += 800 + 3800 * skillLv;
+				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 150;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)プライムドディープブラインドトラップ */
+		// SKILL_ID_PRIMED_DEEP_BLIND_TRAP
+		defineSkill(SKILL_ID_PRIMED_DEEP_BLIND_TRAP, function() {
+			this.name = "(×)プライムドディープブラインドトラップ";
+			this.kana = "フライムトテイイフフライントトラツフ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_FORCE_DARK;
+			this.WeaponCondition = function(weapon) {
+				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio += 800 + 3800 * skillLv;
+				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 210;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)プライムドフレイムトラップ */
+		// SKILL_ID_PRIMED_FLAME_TRAP
+		defineSkill(SKILL_ID_PRIMED_FLAME_TRAP, function() {
+			this.name = "(×)プライムドフレイムトラップ";
+			this.kana = "フライムトフレイムトラツフ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.WeaponCondition = function(weapon) {
+				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio += 800 + 3800 * skillLv;
+				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 170;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)プライムドスイフトトラップ */
+		// SKILL_ID_PRIMED_SWIFT_TRAP
+		defineSkill(SKILL_ID_PRIMED_SWIFT_TRAP, function() {
+			this.name = "(×)プライムドスイフトトラップ";
+			this.kana = "フライムトスイフトトラツフ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.WeaponCondition = function(weapon) {
+				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				ratio += 800 + 3800 * skillLv;
+				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 170;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** プライムドトラップ */
+		// SKILL_ID_PRIMED_TRAP
+		defineSkill(SKILL_ID_PRIMED_TRAP, function() {
+			this.name = "プライムドトラップ";
+			this.kana = "フライムトトラツフ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 350;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
+			}
+		}),
+
+		/** (×)フラグメントボルト */
+		// SKILL_ID_FRAGMENT_BOLT
+		defineSkill(SKILL_ID_FRAGMENT_BOLT, function() {
+			this.name = "(×)フラグメントボルト";
+			this.kana = "フラクメントホルト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return (weapon === ITEM_KIND_BOW) && (UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0);
+			}
+			this.dispHitCount = 3;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
+				const washi_no_me_lv = Math.max(LearnedSkillSearch(SKILL_ID_WASHINO_ME), UsedSkillSearch(SKILL_ID_WASHINO_ME));
+				// カラミティゲイル状態の場合はより大きなダメージを与える
+				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
+					ratio += 1000 + 400 * skillLv;
+				} else {
+					ratio += 800 + 320 * skillLv;
+				}
+				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
+				ratio += 0 * washi_no_me_lv;	// TODO: ワシの目習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 210;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
