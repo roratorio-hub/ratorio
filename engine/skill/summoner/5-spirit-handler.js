@@ -200,7 +200,12 @@ export const skills = [
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
-				return Math.floor(ratio * n_A_BaseLV / 100);				
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// タイガーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_TIGER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;				
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 100;
@@ -407,7 +412,12 @@ export const skills = [
 				// SPL補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// ベースレベル補正
-				return Math.floor(ratio * n_A_BaseLV / 100);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// ディアーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_DEER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 110;
@@ -625,7 +635,12 @@ export const skills = [
 				ratio += 1475 + 325 * skillLv;
 				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
 				ratio += 75 * spirit_mastery_lv;	// 修練係数未検証
-				return Math.floor(ratio * n_A_BaseLV / 100);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// タイガーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_TIGER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 170;
@@ -675,7 +690,12 @@ export const skills = [
 				ratio += 2650 + 650 * skillLv;
 				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
 				ratio += 180 * spirit_mastery_lv;	// 修練係数未検証
-				return Math.floor(ratio * n_A_BaseLV / 100);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// ディアーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_DEER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 170;

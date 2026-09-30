@@ -82,6 +82,8 @@ import {
     SKILL_ID_SAVAGENO_TAMASHI, SKILL_ID_SORYUKYAKU, SKILL_ID_TAROUNO_KIZU, SKILL_ID_TENKETSU_MOKU,
     SKILL_ID_TENRACHIMO
 } from "../skill/skill.dat.js";
+import { SKILL_ID_VENOM_IGNITION } from "../skill/skill.dat.js";
+import { UsedSkillSearch } from "../skill/skillstate.js";
 import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
@@ -1241,6 +1243,9 @@ export function ApplyPhysicalDamageUpGeneral() {
 		if (confval != 0) {
 			n_tok[ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL] += confval;
 		}
+		// 「シャドウクロス」スキル「ベナムイグニッション」の、命中物理攻撃で与えるダメージ + 効果
+		n_tok[ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL] += 10 * UsedSkillSearch(SKILL_ID_VENOM_IGNITION);
+
 		// クリティカル攻撃で与えるダメージ + ◯% を適用する
 		n_tok[ITEM_SP_CRITICAL_DAMAGE_UP] = getCriticalDamageRate();
 

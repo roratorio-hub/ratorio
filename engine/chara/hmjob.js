@@ -37,6 +37,7 @@ import {
          SKILL_ID_GOLDENE_TONE, SKILL_ID_NATURE_AID, SKILL_ID_OVERCOMING_CRISIS, SKILL_ID_SIXTH_SENSE,
          SKILL_ID_TEMPERING,
 } from "../skill/skill.dat.js";
+import { SKILL_ID_VENOM_IGNITION } from "../skill/skill.dat.js";
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from "../skill/skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
@@ -1415,6 +1416,11 @@ export function ApplySpecModify(spid, spVal) {
 		// 「天帝」スキル「兵法修練」による効果
 		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_HYOHO_SHUREN), UsedSkillSearch(SKILL_ID_HYOHO_SHUREN))) > 0) {
 			spVal += [0, 3, 6, 9, 12, 15, 20, 25, 30, 40, 50][sklLv];
+		}
+
+		// 「シャドウクロス」スキル「ベナムイグニッション」による効果
+		if ((sklLv = UsedSkillSearch(SKILL_ID_VENOM_IGNITION)) > 0) {
+			spVal += 50 * sklLv;
 		}
 
 		// 「ナイトウォッチ」スキル「インテンシブエイム」による効果

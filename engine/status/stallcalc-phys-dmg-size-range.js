@@ -77,6 +77,7 @@ import {
     SKILL_ID_TAROUNO_KIZU, SKILL_ID_UNLIMIT, SKILL_ID_WATER_DRAGON_BREATH, SKILL_ID_WERERAPTOR, SKILL_ID_WEREWOLF,
     SKILL_ID_WOLF_INSTINCT, SKILL_ID_WUG_RIDER
 } from "../skill/skill.dat.js";
+import { SKILL_ID_KAGE_MICHI } from "../skill/skill.dat.js";
 import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
@@ -878,6 +879,11 @@ export function ApplyPhysicalDamageUpLongRange() {
 
 		/** ドルイド「エンレイジラプター」の遠距離物理攻撃で与えるダメージ + 効果 */
 		n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 2 * UsedSkillSearch(SKILL_ID_ENRAGE_RAPTOR);
+
+		/** 蜃気楼・不知火「影満ち」の遠距離物理攻撃で与えるダメージ + 効果 */
+		if (UsedSkillSearch(SKILL_ID_KAGE_MICHI) > 0) {
+			n_tok[ITEM_SP_LONGRANGE_DAMAGE_UP] += 20;
+		}
 
 		/**
 		 * 幻想叢書カード エレナ
