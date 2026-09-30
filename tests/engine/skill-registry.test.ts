@@ -65,8 +65,8 @@ describe('スキル定義レジストリの採番不変条件（旧 util/skill/v
         expect(defined.length).toBe(consts.size);
     });
 
-    it('定義数が 1426', () => {
-        expect(defined.length).toBe(1426);
+    it('定義数が 1431', () => {
+        expect(defined.length).toBe(1431);
     });
 
     it('全マーカーに対応する export const が skill.dat.js に存在する', () => {
@@ -74,11 +74,11 @@ describe('スキル定義レジストリの採番不変条件（旧 util/skill/v
         expect(notFound).toEqual([]);
     });
 
-    it('ID の重複が無く 0..1425 を過不足なく埋める', () => {
+    it('ID の重複が無く 0..1430 を過不足なく埋める', () => {
         const ids = defined.map((d) => consts.get(d.name)!);
         expect(new Set(ids).size).toBe(ids.length); // 重複なし
         expect([...ids].sort((a, b) => a - b)).toEqual(
-            Array.from({ length: 1426 }, (_, i) => i),
+            Array.from({ length: 1431 }, (_, i) => i),
         ); // 欠番なし
     });
 
@@ -114,7 +114,7 @@ describe('スキル定義レジストリの採番不変条件（旧 util/skill/v
         expect(mismatches).toEqual([]);
     });
 
-    it('割当表の全1426件がいずれかのファイルに存在する（割当表→実ファイルの逆方向網羅性）', () => {
+    it('割当表の全1431件がいずれかのファイルに存在する（割当表→実ファイルの逆方向網羅性）', () => {
         const definedIds = new Set(defined.map((d) => consts.get(d.name)!));
         const missing = Object.keys(assignment).filter((idStr) => !definedIds.has(Number(idStr)));
         expect(missing).toEqual([]);

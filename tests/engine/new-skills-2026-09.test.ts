@@ -70,6 +70,11 @@ const TABLE: Row[] = [
     ['NATURE_RAGE', '(×)ネイチャーレイジ', 5, 230, same(5, 0), same(5, 500), lv5((l) => -500 + 1400 * l), same(5, 4000), same(5, 500), 0],
     ['WIND_CUTTER_TURBO', '(×)ウィンドカッターターボ', 10, 80, same(10, 0), same(10, 0), range(10, (l) => 200 * l), range(10, (l) => 500 * l), same(10, 500), 0],
     ['HIGH_MAGNUM_BREAK', '(×)ハイマグナムブレイク', 10, 80, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
+    ['BURNING_FLAME', '(×)バーニングフレイム', 5, 290, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
+    ['FROZEN_HAIL', '(×)フローズンヘイル', 5, 260, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
+    ['STORM_RISE', '(×)ストームライズ', 5, 290, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
+    ['TERRA_BURST', '(×)テラバースト', 5, 260, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
+    ['VENOM_BOMBARD', '(×)ベナムボンバード', 5, 230, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
     ['DEER_HARMONY', 'ディアーハーモニー', 1, 290, [50], [1000], [0], [500], [500], 60000],
     ['TIGER_HARMONY', 'タイガーハーモニー', 1, 290, [50], [1000], [0], [500], [500], 60000],
 ];
@@ -106,6 +111,8 @@ describe('2026-09 追加スキルの基本データ（公式サイトの値）',
             KAGE_MICHI: 'SS_NOBORU', TACTICAL_REPOSITIONING: 'NW_TACTICAL_REPOSITIONING', PLUME_PIERCER: 'AT_PLUME_PIERCER',
             NATURE_RAGE: 'AT_NATURE_RAGE', WIND_CUTTER_TURBO: 'HN_WIND_CUTTER_TURBO', HIGH_MAGNUM_BREAK: 'HN_HIGH_MAGNUM_BREAK',
             DEER_HARMONY: 'SH_KI_SUL_AND_HYUN_ROK', TIGER_HARMONY: 'SH_KI_SUL_AND_CHUL_HO',
+            BURNING_FLAME: 'EM_BURNING_FLAME', FROZEN_HAIL: 'EM_FROZEN_HAIL', STORM_RISE: 'EM_STORM_RISE',
+            TERRA_BURST: 'EM_TERRA_BURST', VENOM_BOMBARD: 'EM_VENOM_BOMBARD',
         };
         for (const [c, ref] of Object.entries(refs)) {
             expect(S.SkillObjNew[S['SKILL_ID_' + c]][3], c).toBe(ref);
@@ -175,6 +182,11 @@ describe('2026-09 追加スキルのスキル倍率（公式サイトの「攻�
     it('ネイチャーレイジ', () => expect(powers('NATURE_RAGE', 5)).toEqual([6000, 7200, 8400, 9600, 10800]));
     it('ウィンドカッターターボ', () =>
         expect(powers('WIND_CUTTER_TURBO', 10)).toEqual([2250, 2800, 3350, 3900, 4450, 5000, 5550, 6100, 6650, 7200]));
+    it('エレメンタルインテグレーションで発動する5種は同じ倍率', () => {
+        for (const c of ['BURNING_FLAME', 'FROZEN_HAIL', 'STORM_RISE', 'TERRA_BURST', 'VENOM_BOMBARD']) {
+            expect(powers(c, 5), c).toEqual([750, 2250, 3750, 5250, 6750]);
+        }
+    });
     it('ハイマグナムブレイク', () =>
         expect(powers('HIGH_MAGNUM_BREAK', 10)).toEqual([1725, 1950, 2175, 2400, 2625, 2850, 3075, 3300, 3525, 3750]));
 });
@@ -217,6 +229,24 @@ describe('2026-09 追加スキルの距離・属性・使用条件・ヒット�
     it('レックスエクスピアトリクス: アンシラ状態で無属性、それ以外は聖属性', () => {
         expect(sm.GetElement(id('LEX_EXPIATRIX'), opt(0), null, undefined)).toBe(CSkillData.ELEMENT_FORCE_HOLY);
         expect(sm.GetElement(id('LEX_EXPIATRIX'), opt(1), null, undefined)).toBe(CSkillData.ELEMENT_FORCE_VANITY);
+    });
+    it('エレメンタルインテグレーションで発動する5種: 属性固定の魔法・上位精霊召喚中は3回連続攻撃', () => {
+        // [スキル, 属性, 上位精霊の SKILL_ID_SERE 値（13:火 14:水 15:風 16:地 17:毒）]
+        const cases: [string, string, number][] = [
+            ['BURNING_FLAME', 'FIRE', 13], ['FROZEN_HAIL', 'WATER', 14], ['STORM_RISE', 'WIND', 15],
+            ['TERRA_BURST', 'EARTH', 16], ['VENOM_BOMBARD', 'POISON', 17],
+        ];
+        for (const [c, e, sere] of cases) {
+            expect(sm.GetSkillType(id(c)) & CSkillData.TYPE_MAGICAL, c).toBeTruthy();
+            expect(sm.GetElement(id(c), null, null, undefined), c).toBe(CSkillData['ELEMENT_FORCE_' + e]);
+            Used = {};
+            expect(sm.GetHitCount(id(c), 1, opt(), 0), c + ' 通常').toBe(2);
+            Used[S.SKILL_ID_SERE] = sere;
+            expect(sm.GetHitCount(id(c), 1, opt(), 0), c + ' 対応する精霊').toBe(3);
+            // 別の属性の精霊では3回にならない
+            Used[S.SKILL_ID_SERE] = sere === 13 ? 14 : 13;
+            expect(sm.GetHitCount(id(c), 1, opt(), 0), c + ' 別の精霊').toBe(2);
+        }
     });
     it('レイスダッシュは念属性の魔法', () => {
         expect(sm.GetElement(id('WRAITH_DASH'), null, null, undefined)).toBe(CSkillData.ELEMENT_FORCE_PSYCO);

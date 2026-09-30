@@ -61,6 +61,10 @@ import {
          SKILL_ID_STORM_GUST, SKILL_ID_TENRACHIMO, SKILL_ID_TURN_UNDEAD,
          SKILL_ID_TUZYO_KOGEKI, SKILL_ID_WUG_BITE, SKILL_ID_WUG_STRIKE,
 } from "./skill.dat.js";
+import {
+	SKILL_ID_BURNING_FLAME, SKILL_ID_ELEMENTAL_INTEGRATION, SKILL_ID_FROZEN_HAIL, SKILL_ID_STORM_RISE,
+	SKILL_ID_TERRA_BURST, SKILL_ID_VENOM_BOMBARD
+} from "./skill.dat.js";
 import { UsedSkillSearch } from "./skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: JOB 定数
@@ -303,6 +307,26 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = SKILL_ID_SERVANT_WEAPON;
 		n_AS_SKILL[idx][1] = skillLv;
 		n_AS_SKILL[idx][2] = 10 * skillLv * 10;
+		if(wAS_3dan > 0) {
+			// ＡＳ三段掌が設定されている場合は、発動率を補正
+			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;
+		}
+	}
+
+	//----------------------------------------------------------------
+	// 通常攻撃時の、エレメンタルインテグレーション追撃効果
+	// 習得レベルに対応する属性の魔法を、スキルLv = エレメンタルインテグレーションのLvで発動する
+	//----------------------------------------------------------------
+	skillLv = UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION);
+
+	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLv > 0)) {
+
+		funcAddAS();
+		n_AS_SKILL[idx][0] = [
+			SKILL_ID_BURNING_FLAME, SKILL_ID_FROZEN_HAIL, SKILL_ID_STORM_RISE, SKILL_ID_TERRA_BURST, SKILL_ID_VENOM_BOMBARD
+		][skillLv - 1];
+		n_AS_SKILL[idx][1] = skillLv;
+		n_AS_SKILL[idx][2] = 25 * 10;	// 千分率なので * 10 してる
 		if(wAS_3dan > 0) {
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
 			n_AS_SKILL[idx][2] = n_AS_SKILL[idx][2] * (100 - wAS_3dan) / 100;

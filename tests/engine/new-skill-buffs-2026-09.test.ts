@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { calcCoreFromModel, calcFromModel } from '@engine/runtime/calc-headless.js';
 import { createEmptyModel } from '@engine/runtime/calc-model.js';
 import { g_constDataManager } from '@engine/runtime/global.js';
+import * as AS from '@engine/skill/calcautospell.js';
 import { setN_Skill1SW } from '@engine/ui/BuffJobSpecificSelf.js';
 import { CONST_DATA_KIND_JOB } from '@engine/const/EnumConstDataKind.js';
 import { ApplySpecModify } from '@engine/chara/hmjob.js';
@@ -9,7 +10,7 @@ import {
     ITEM_SP_CRITICAL_DAMAGE_UP, ITEM_SP_HIT_PLUS, ITEM_SP_DAMAGE_UP_EXCLUDING_CRITICAL,
     ITEM_SP_LONGRANGE_DAMAGE_UP, ITEM_SP_SHORTRANGE_DAMAGE_UP,
 } from '@engine/const/EnumItemSpId.js';
-import { MIG_JOB_ID_SHADOW_CROSS, MIG_JOB_ID_SHINKIROU, MIG_JOB_ID_SHIRANUI } from '@engine/data/mig.job.dat.js';
+import { MIG_JOB_ID_ELEMENTAL_MASTER, MIG_JOB_ID_SHADOW_CROSS, MIG_JOB_ID_SHINKIROU, MIG_JOB_ID_SHIRANUI } from '@engine/data/mig.job.dat.js';
 import { CCharaConfIchizi } from '@engine/chara/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '@engine/chara/CCharaConfNizi.js';
 import { CCharaConfSanzi } from '@engine/chara/CCharaConfSanzi.js';
@@ -98,6 +99,29 @@ describe('ベナムイグニッションのクリティカル不発（通常攻�
         expect(criRate(1)).toBe(0);
         expect(criRate(5)).toBe(0);
     });
+});
+
+describe('エレメンタルインテグレーション（エレメンタルマスター）のオートスペル', () => {
+    const J = MIG_JOB_ID_ELEMENTAL_MASTER;
+    const ORDER = [
+        S.SKILL_ID_BURNING_FLAME, S.SKILL_ID_FROZEN_HAIL, S.SKILL_ID_STORM_RISE, S.SKILL_ID_TERRA_BURST, S.SKILL_ID_VENOM_BOMBARD,
+    ];
+    // n_AS_SKILL は [スキルID, スキルLv, 発動率（千分率）] の配列。次の計算で作り直されるためコピーして返す
+    const autoSpells = (lv: number) => {
+        const model = buildModel(J, S.SKILL_ID_ELEMENTAL_INTEGRATION, lv);
+        model.attackMethod.skillId = S.SKILL_ID_TUZYO_KOGEKI;	// 攻撃方法「通常攻撃」
+        calcFromModel(model);
+        return (AS.n_AS_SKILL as number[][]).map((a) => [...a]);
+    };
+
+    it('未使用のときは発動しない', () => {
+        expect(autoSpells(0).filter((a) => ORDER.includes(a[0]))).toEqual([]);
+    });
+    for (let lv = 1; lv <= 5; lv++) {
+        it(`Lv${lv}: ${lv}番目のスキルが Lv${lv}・発動率25% で発動する`, () => {
+            expect(autoSpells(lv).filter((a) => ORDER.includes(a[0]))).toEqual([[ORDER[lv - 1], lv, 250]]);
+        });
+    }
 });
 
 describe('影満ち（蜃気楼・不知火）', () => {

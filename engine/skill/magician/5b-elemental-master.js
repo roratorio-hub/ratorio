@@ -20,6 +20,11 @@ import {
     SKILL_ID_SUMMON_SERPENSE, SKILL_ID_SUMMON_TELEMOTUS, SKILL_ID_TERA_DRIVE, SKILL_ID_VENOM_SWAMP
 } from "../skill.dat.js";
 import { SKILL_ID_ELEMENTAL_INTEGRATION } from "../skill.dat.js";
+import { LearnedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import {
+    SKILL_ID_BURNING_FLAME, SKILL_ID_FROZEN_HAIL, SKILL_ID_STORM_RISE, SKILL_ID_TERRA_BURST,
+    SKILL_ID_VENOM_BOMBARD
+} from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -768,6 +773,231 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 120 * 1000;
 			}
+		}),
+
+		/** (×)バーニングフレイム */
+		// SKILL_ID_BURNING_FLAME
+		defineSkill(SKILL_ID_BURNING_FLAME, function() {
+			this.name = "(×)バーニングフレイム";
+			this.kana = "ハアニンクフレイム";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === 13) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)フローズンヘイル */
+		// SKILL_ID_FROZEN_HAIL
+		defineSkill(SKILL_ID_FROZEN_HAIL, function() {
+			this.name = "(×)フローズンヘイル";
+			this.kana = "フロオスンヘイル";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === 14) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 260;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)ストームライズ */
+		// SKILL_ID_STORM_RISE
+		defineSkill(SKILL_ID_STORM_RISE, function() {
+			this.name = "(×)ストームライズ";
+			this.kana = "ストオムライス";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === 15) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)テラバースト */
+		// SKILL_ID_TERRA_BURST
+		defineSkill(SKILL_ID_TERRA_BURST, function() {
+			this.name = "(×)テラバースト";
+			this.kana = "テラハアスト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === 16) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 260;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)ベナムボンバード */
+		// SKILL_ID_VENOM_BOMBARD
+		defineSkill(SKILL_ID_VENOM_BOMBARD, function() {
+			this.name = "(×)ベナムボンバード";
+			this.kana = "ヘナムホンハアト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_POISON;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === 17) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
 		}),
 
 ];
