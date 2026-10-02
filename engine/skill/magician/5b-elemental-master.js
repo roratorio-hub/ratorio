@@ -744,6 +744,7 @@ export const skills = [
 		}),
 
 		/** エレメンタルインテグレーション */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-950.html
 		// SKILL_ID_ELEMENTAL_INTEGRATION
 		defineSkill(SKILL_ID_ELEMENTAL_INTEGRATION, function() {
 			this.name = "エレメンタルインテグレーション";
@@ -775,10 +776,10 @@ export const skills = [
 			}
 		}),
 
-		/** (×)バーニングフレイム */
+		/** バーニングフレイム */
 		// SKILL_ID_BURNING_FLAME
 		defineSkill(SKILL_ID_BURNING_FLAME, function() {
-			this.name = "(×)バーニングフレイム";
+			this.name = "バーニングフレイム";
 			this.kana = "ハアニンクフレイム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -791,9 +792,10 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
-				ratio += -750 + 1500 * skillLv;
-				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				const elemental_integration_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION), UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION));
+				ratio += -750 + 1500 * elemental_integration_lv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -820,10 +822,10 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)フローズンヘイル */
+		/** フローズンヘイル */
 		// SKILL_ID_FROZEN_HAIL
 		defineSkill(SKILL_ID_FROZEN_HAIL, function() {
-			this.name = "(×)フローズンヘイル";
+			this.name = "フローズンヘイル";
 			this.kana = "フロオスンヘイル";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -836,9 +838,10 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
-				ratio += -750 + 1500 * skillLv;
-				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				const elemental_integration_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION), UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION));
+				ratio += -750 + 1500 * elemental_integration_lv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -865,10 +868,10 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)ストームライズ */
+		/** ストームライズ */
 		// SKILL_ID_STORM_RISE
 		defineSkill(SKILL_ID_STORM_RISE, function() {
-			this.name = "(×)ストームライズ";
+			this.name = "ストームライズ";
 			this.kana = "ストオムライス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -881,9 +884,10 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
-				ratio += -750 + 1500 * skillLv;
-				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				const elemental_integration_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION), UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION));
+				ratio += -750 + 1500 * elemental_integration_lv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -910,10 +914,10 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)テラバースト */
+		/** テラバースト */
 		// SKILL_ID_TERRA_BURST
 		defineSkill(SKILL_ID_TERRA_BURST, function() {
-			this.name = "(×)テラバースト";
+			this.name = "テラバースト";
 			this.kana = "テラハアスト";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -926,9 +930,10 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
-				ratio += -750 + 1500 * skillLv;
-				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				const elemental_integration_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION), UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION));
+				ratio += -750 + 1500 * elemental_integration_lv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -955,10 +960,10 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)ベナムボンバード */
+		/** ベナムボンバード */
 		// SKILL_ID_VENOM_BOMBARD
 		defineSkill(SKILL_ID_VENOM_BOMBARD, function() {
-			this.name = "(×)ベナムボンバード";
+			this.name = "ベナムボンバード";
 			this.kana = "ヘナムホンハアト";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -971,9 +976,10 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
-				ratio += -750 + 1500 * skillLv;
-				ratio += 0 * elemental_spirit_mastery_lv;	// TODO: エレメンタルスピリットマスタリー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				const elemental_integration_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION), UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION));
+				ratio += -750 + 1500 * elemental_integration_lv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
