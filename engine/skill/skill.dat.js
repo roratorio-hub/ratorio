@@ -2908,11 +2908,11 @@ export const SkillObjNew = [
 		[1423,10,"(×)ハイマグナムブレイク","HN_HIGH_MAGNUM_BREAK"],
 		[1424,1,"ディアーハーモニー","SH_KI_SUL_AND_HYUN_ROK"],
 		[1425,1,"タイガーハーモニー","SH_KI_SUL_AND_CHUL_HO"],
-		[1426,5,"(×)バーニングフレイム","EM_BURNING_FLAME"],
-		[1427,5,"(×)フローズンヘイル","EM_FROZEN_HAIL"],
-		[1428,5,"(×)ストームライズ","EM_STORM_RISE"],
-		[1429,5,"(×)テラバースト","EM_TERRA_BURST"],
-		[1430,5,"(×)ベナムボンバード","EM_VENOM_BOMBARD"],
+		[1426,5,"バーニングフレイム","EM_BURNING_FLAME"],
+		[1427,5,"フローズンヘイル","EM_FROZEN_HAIL"],
+		[1428,5,"ストームライズ","EM_STORM_RISE"],
+		[1429,5,"テラバースト","EM_TERRA_BURST"],
+		[1430,5,"ベナムボンバード","EM_VENOM_BOMBARD"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

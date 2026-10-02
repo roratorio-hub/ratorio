@@ -381,6 +381,7 @@ import {
 } from "../skill/skill.dat.js";
 import { n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, UsedSkillSearch } from "../skill/skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
+import { SERE_KIND_AGNI_LV1, SERE_KIND_AGNI_LV2, SERE_KIND_AGNI_LV3, SERE_KIND_TERA_LV1, SERE_KIND_TERA_LV2, SERE_KIND_TERA_LV3 } from "../const/EnumSereKind.js";
 // C-6: engine-registry 型ブリッジ（skillstate.js との循環 import 回避）
 import { RegisterCardNumSearch, RegisterEquipNumSearch, RegisterTimeItemNumSearch } from "../bridge/chara-search-bridge.js";
 
@@ -3681,9 +3682,9 @@ export function GetStatusModifyAtkPlus() {
 	if ((sklLv = UsedSkillSearch(SKILL_ID_SERE)) > 0) {
 		// 火Ｌｖ１～火Ｌｖ３のパッシブモードの場合、ＡＴＫ上昇
 		if (UsedSkillSearch(SKILL_ID_SERE_MODE) == 1) {
-			if(sklLv == 1) val += 60;
-			if(sklLv == 2) val += 120;
-			if(sklLv == 3) val += 180;
+			if(sklLv == SERE_KIND_AGNI_LV1) val += 60;
+			if(sklLv == SERE_KIND_AGNI_LV2) val += 120;
+			if(sklLv == SERE_KIND_AGNI_LV3) val += 180;
 		}
 	}
 
@@ -6773,9 +6774,9 @@ export function GetStatusModifyMaxHpUp() {
 	if ((sklLv = UsedSkillSearch(SKILL_ID_SERE)) > 0) {
 		// 地Ｌｖ１～地Ｌｖ３のパッシブモードの場合、ＡＴＫ上昇
 		if (UsedSkillSearch(SKILL_ID_SERE_MODE) == 1) {
-			if(sklLv == 10) val += 5;
-			if(sklLv == 11) val += 10;
-			if(sklLv == 12) val += 15;
+			if(sklLv == SERE_KIND_TERA_LV1) val += 5;
+			if(sklLv == SERE_KIND_TERA_LV2) val += 10;
+			if(sklLv == SERE_KIND_TERA_LV3) val += 15;
 		}
 	}
 

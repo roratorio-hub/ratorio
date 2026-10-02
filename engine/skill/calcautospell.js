@@ -67,6 +67,7 @@ import {
 } from "./skill.dat.js";
 import { UsedSkillSearch } from "./skillstate.js";
 // === END AUTO-GENERATED IMPORTS ===
+import { SERE_KIND_AGNI_LV3, SERE_KIND_AQUA_LV3, SERE_KIND_VENTUS_LV3, SERE_KIND_TERA_LV3 } from "../const/EnumSereKind.js";
 // C-6: JOB 定数
 import {
          JOB_SERIES_ID_SWORDMAN, JOB_SERIES_ID_PRIEST, JOB_SERIES_ID_SAGE,
@@ -325,7 +326,7 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		n_AS_SKILL[idx][0] = [
 			SKILL_ID_BURNING_FLAME, SKILL_ID_FROZEN_HAIL, SKILL_ID_STORM_RISE, SKILL_ID_TERRA_BURST, SKILL_ID_VENOM_BOMBARD
 		][skillLv - 1];
-		n_AS_SKILL[idx][1] = skillLv;
+		n_AS_SKILL[idx][1] = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION), UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION));
 		n_AS_SKILL[idx][2] = 25 * 10;	// 千分率なので * 10 してる
 		if(wAS_3dan > 0) {
 			// ＡＳ三段掌が設定されている場合は、発動率を補正
@@ -936,35 +937,35 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 		if (sereMode == 1) {
 
-			if ([3, 6, 9, 12].indexOf(sereKind) >= 0) {
+			if ([SERE_KIND_AGNI_LV3, SERE_KIND_AQUA_LV3, SERE_KIND_VENTUS_LV3, SERE_KIND_TERA_LV3].indexOf(sereKind) >= 0) {
 
 				funcAddAS();
 
 				// 発動スキルの設定
 				switch (sereKind) {
-				case 3:
+				case SERE_KIND_AGNI_LV3:
 					n_AS_SKILL[idx][0] = SKILL_ID_FIRE_BOLT;
 					break;
 
-				case 6:
+				case SERE_KIND_AQUA_LV3:
 					n_AS_SKILL[idx][0] = SKILL_ID_COLD_BOLT;
 					break;
 
-				case 9:
+				case SERE_KIND_VENTUS_LV3:
 					n_AS_SKILL[idx][0] = SKILL_ID_LIGHTNING_BOLT;
 					break;
 
-				case 12:
+				case SERE_KIND_TERA_LV3:
 					n_AS_SKILL[idx][0] = SKILL_ID_EARTH_SPIKE;
 					break;
 				}
 
 				// 発動レベル、発動率の設定
 				switch (sereKind) {
-				case 3:
-				case 6:
-				case 9:
-				case 12:
+				case SERE_KIND_AGNI_LV3:
+				case SERE_KIND_AQUA_LV3:
+				case SERE_KIND_VENTUS_LV3:
+				case SERE_KIND_TERA_LV3:
 					// 発動レベル
 					if (n_A_JobLV < 10) {
 						n_AS_SKILL[idx][1] = 1;
