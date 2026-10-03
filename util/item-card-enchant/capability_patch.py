@@ -557,6 +557,7 @@ class EntryResult:
     warns: list = field(default_factory=list)
     desc_change: tuple | None = None
     explain_change: tuple | None = None
+    keys: list = field(default_factory=list)    # 書き込み先 (項目, 種別, レコードID)。重複指定の検出に使う
 
     @property
     def changed(self) -> bool:
@@ -610,6 +611,13 @@ def plan_entry(dat: Dat, entry: dict, engine_dir: str | None = None) -> EntryRes
                              f'（time_effect に時限効果の名前を指定してください）')
         caps_rec = cands[0]
         res.target = f'{target_label} / 時限効果 {caps_rec.id}「{caps_rec.name}」'
+
+    if entry.get('capabilities'):
+        res.keys.append(('能力', caps_rec.kind, caps_rec.id))
+    if entry.get('desc') is not None:
+        res.keys.append(('説明文', target.kind, target.id))
+    if entry.get('time_explain') is not None:
+        res.keys.append(('説明文', caps_rec.kind, caps_rec.id))
 
     existing = caps_rec.caps
     existing_pairs = {(c.code, c.value) for c in existing}
@@ -726,10 +734,10 @@ def plan_all(dat: Dat, entries: list[dict], engine_dir: str | None):
     for i, entry in enumerate(entries, 1):
         try:
             res = plan_entry(dat, entry, engine_dir)
-            key = res.target
-            if key in seen:
-                raise PatchError(f'同じレコードが複数のエントリで指定されています（{key}）')
-            seen.add(key)
+            dup = next((k for k in res.keys if k in seen), None)
+            if dup:
+                raise PatchError(f'同じレコードの{dup[0]}が複数のエントリで指定されています（{dup[1]} {dup[2]}）')
+            seen.update(res.keys)
             results.append(res)
         except PatchError as e:
             name = next((entry[k] for k in ENTITY_KEYS if isinstance(entry, dict) and k in entry), '?')

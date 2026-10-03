@@ -6,15 +6,20 @@ import { setN_Skill1SW } from '@engine/ui/BuffJobSpecificSelf.js';
 import { CONST_DATA_KIND_JOB } from '@engine/const/EnumConstDataKind.js';
 import { ApplySpecModify, GetHPlus, GetPAtk, GetSMatk } from '@engine/chara/hmjob.js';
 import {
-    GetBattlerAtkPercentUp, HEAL_TARGETTYPE_PLAYER, HEALTYPE_DILECTIO_HEAL, HEALTYPE_SHUGO_FU, HealCalc,
+    GetBattlerAtkPercentUp, GetIkariPow, HEAL_TARGETTYPE_PLAYER, HEALTYPE_DILECTIO_HEAL, HEALTYPE_SHUGO_FU, HealCalc,
 } from '@engine/battle/battlecalc.js';
-import { n_tok } from '@engine/runtime/ro4-state.js';
+import { n_tok, set_n_A_BaseLV } from '@engine/runtime/ro4-state.js';
+import { set_n_A_DEX, set_n_A_LUK, set_n_A_STR } from '@engine/runtime/roro-state.js';
+import { MONSTER_DATA_INDEX_HP, MONSTER_DATA_INDEX_ID, MONSTER_DATA_INDEX_SIZE } from '@engine/const/EnumMonsterDataIndex.js';
+import { SIZE_ID_LARGE, SIZE_ID_MEDIUM, SIZE_ID_SMALL } from '@engine/const/EnumSizeId.js';
+import { MONSTER_ID_PLAYER } from '@engine/monster/monster.dat.js';
 import { ITEM_KIND_KATAR, ITEM_KIND_KNIFE, ITEM_KIND_STUFF } from '@engine/const/EnumItemKind.js';
 import {
     ITEM_SP_CRI_PLUS, ITEM_SP_FLEE_PLUS, ITEM_SP_LONGRANGE_DAMAGE_UP, ITEM_SP_STUFF2HAND,
 } from '@engine/const/EnumItemSpId.js';
 import {
-    MIG_JOB_ID_ARCH_MAGE, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_NIGHT_WATCH, MIG_JOB_ID_SHADOW_CROSS, MIG_JOB_ID_WIND_HAWK,
+    MIG_JOB_ID_ARCH_MAGE, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_NIGHT_WATCH, MIG_JOB_ID_SHADOW_CROSS, MIG_JOB_ID_STARGRADIATOR,
+    MIG_JOB_ID_WIND_HAWK,
 } from '@engine/data/mig.job.dat.js';
 import { CCharaConfIchizi } from '@engine/chara/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '@engine/chara/CCharaConfNizi.js';
@@ -172,5 +177,55 @@ describe('2026-10 スキル調整: 回復スキルの回復量', () => {
         const h0 = 2 * h1 - h2;
         expect(h0).toBeGreaterThan(0);
         expect(Math.abs(h0 - 20 * ((h2 - h1) - hPlus))).toBeLessThanOrEqual(20);
+    });
+});
+
+describe('2026-10 スキル調整: 太陽・月・星の怒りのATK増加', () => {
+    const mob = (id: number, size: number, hp: number) => {
+        const m: number[] = Array(100).fill(0);
+        m[MONSTER_DATA_INDEX_ID] = id;
+        m[MONSTER_DATA_INDEX_SIZE] = size;
+        m[MONSTER_DATA_INDEX_HP] = hp;
+        return m;
+    };
+    const player = mob(MONSTER_ID_PLAYER, SIZE_ID_MEDIUM, 0);
+    /** 拳聖の自己支援に怒りを設定して計算を走らせたあと、BaseLv・Str・Dex・Luk を差し替えて ATK増加率％ を取得する */
+    const ikari = (skillId: number, lv: number, st: { base: number; str: number; dex: number; luk: number }, mobData: number[]) => {
+        run(MIG_JOB_ID_STARGRADIATOR, { passive: [skillId, lv] });
+        set_n_A_BaseLV(st.base);
+        set_n_A_STR(st.str);
+        set_n_A_DEX(st.dex);
+        set_n_A_LUK(st.luk);
+        return GetIkariPow(mobData) as number;
+    };
+    const low = { base: 250, str: 50, dex: 50, luk: 50 };
+    const high = { base: 250, str: 300, dex: 300, luk: 300 };
+
+    it('星の怒り: (BaseLv+Str+Luk+Dex) を 25/20/15 で割った値が増加率（Lv1〜3）', () => {
+        // 合計400 → 16 / 20 / 26
+        expect(range(3, (lv) => ikari(S.SKILL_ID_HOSHINO_IKARI, lv, low, player))).toEqual([116, 120, 126]);
+    });
+    it('星の怒り: 増加率の上限は 30 / 40 / 50%', () => {
+        expect(range(3, (lv) => ikari(S.SKILL_ID_HOSHINO_IKARI, lv, high, player))).toEqual([130, 140, 150]);
+    });
+    it('月の怒り: (BaseLv+Luk+Dex) を 30/25/20 で割った値が増加率（Lv1〜3）', () => {
+        // 合計350 → 11 / 14 / 17
+        expect(range(3, (lv) => ikari(S.SKILL_ID_TSUKINO_IKARI, lv, low, player))).toEqual([111, 114, 117]);
+    });
+    it('月の怒り: 増加率の上限は 15 / 20 / 25%', () => {
+        expect(range(3, (lv) => ikari(S.SKILL_ID_TSUKINO_IKARI, lv, high, player))).toEqual([115, 120, 125]);
+    });
+    it('太陽の怒り: (BaseLv+Luk+Dex) を 30/25/20 で割った値が増加率で、上限は 15 / 20 / 25%', () => {
+        expect(range(3, (lv) => ikari(S.SKILL_ID_TAIYONO_IKARI, lv, low, player))).toEqual([111, 114, 117]);
+        expect(range(3, (lv) => ikari(S.SKILL_ID_TAIYONO_IKARI, lv, high, player))).toEqual([115, 120, 125]);
+    });
+    it('怒りは対象モンスターのサイズ・HP条件を満たすときだけ効く', () => {
+        const other = 1;
+        expect(ikari(S.SKILL_ID_HOSHINO_IKARI, 1, low, mob(other, SIZE_ID_LARGE, 20000))).toBe(116);
+        expect(ikari(S.SKILL_ID_HOSHINO_IKARI, 1, low, mob(other, SIZE_ID_LARGE, 19999))).toBe(100);
+        expect(ikari(S.SKILL_ID_TSUKINO_IKARI, 1, low, mob(other, SIZE_ID_MEDIUM, 6000))).toBe(111);
+        expect(ikari(S.SKILL_ID_TSUKINO_IKARI, 1, low, mob(other, SIZE_ID_MEDIUM, 5999))).toBe(100);
+        expect(ikari(S.SKILL_ID_TAIYONO_IKARI, 1, low, mob(other, SIZE_ID_SMALL, 1))).toBe(111);
+        expect(ikari(S.SKILL_ID_TAIYONO_IKARI, 1, low, mob(other, SIZE_ID_MEDIUM, 1))).toBe(100);
     });
 });

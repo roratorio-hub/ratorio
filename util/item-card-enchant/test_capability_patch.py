@@ -329,6 +329,20 @@ class PlanTest(unittest.TestCase):
         _, errors = cp.plan_all(make_dat(), [e, e], None)
         self.assertEqual(len(errors), 1)
 
+    def test_セットの本体と相手を入れ替えて同じレコードを指定してもエラー(self):
+        # どちらも同じセットレコード（card 11）へ同じ能力を足す。表示ラベルが違っても二重に足さない
+        a = {'card_name': 'テスト潜在', 'set_with': [{'card_name': '相手'}], 'capabilities': [cap('ワイルドウォーク', 7)]}
+        b = {'card_name': '相手', 'set_with': [{'card_name': 'テスト潜在'}], 'capabilities': [cap('ワイルドウォーク', 7)]}
+        _, errors = cp.plan_all(make_dat(), [a, b], None)
+        self.assertEqual(len(errors), 1)
+        self.assertIn('card 11', errors[0])
+
+    def test_同じレコードでも能力と説明文を別エントリで指定できる(self):
+        a = {'card_name': 'テスト潜在', 'set_with': [{'card_name': '相手'}], 'capabilities': [cap('ワイルドウォーク', 7)]}
+        b = {'card_name': '相手', 'set_with': [{'card_name': 'テスト潜在'}], 'desc': '別エントリの説明'}
+        _, new = self.apply(make_dat(), [a, b])
+        self.assertIn('[11,100,0,,"別エントリの説明",20100,100,6291,7,0]', new['card'])
+
     def test_コメント行のレコードは対象にならない(self):
         _, errors = cp.plan_all(make_dat(), [{'item_name': 'コメント', 'capabilities': []}], None)
         self.assertEqual(len(errors), 1)
