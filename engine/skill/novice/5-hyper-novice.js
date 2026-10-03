@@ -66,7 +66,7 @@ export const skills = [
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 0;
+				return 80;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return -500 + 700 * skillLv;
@@ -82,9 +82,9 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaDataManger) {
 				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-				let wbairitu = 2700 + (150 * skillLv);
-				wbairitu += 3 * skillLv * madogaku;			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				let wbairitu = 3650 + (200 * skillLv);
+				wbairitu += 3 * skillLv * madogaku;	// TODO: 2026-10-03 係数未調査
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
 				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
@@ -108,7 +108,7 @@ export const skills = [
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 0;
+				return 70;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return -500 + 700 * skillLv;
@@ -125,9 +125,9 @@ export const skills = [
 			this.dispHitCount = 3;
 			this.Power = function(skillLv, charaDataManger) {
 				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-				let wbairitu = 2600 + (150 * skillLv);			// 基礎倍率
-				wbairitu += 4 * skillLv * madogaku;			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				let wbairitu = 3800 + (175 * skillLv);			// 基礎倍率
+				wbairitu += 4 * skillLv * madogaku;	// TODO: 2026-10-03 係数未調査
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
 				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
@@ -151,7 +151,7 @@ export const skills = [
 			this.range = CSkillData.RANGE_MAGIC;
 			this.element = CSkillData.ELEMENT_FORCE_PSYCO;
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 0;
+				return 110;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {
 				return -500 + 700 * skillLv;
@@ -168,9 +168,9 @@ export const skills = [
 			this.dispHitCount = 7;
 			this.Power = function(skillLv, charaDataManger) {
 				const madogaku = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_MADOGAKU));
-				let wbairitu = 2600 + (150 * skillLv);			// 基礎倍率
-				wbairitu += 4 * skillLv * madogaku;			// 習得済みスキル条件
-				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 特性ステータス補正
+				let wbairitu = 3800 + (175 * skillLv);			// 基礎倍率
+				wbairitu += 4 * skillLv * madogaku;	// TODO: 2026-10-03 係数未調査
+				wbairitu += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
 				wbairitu *= n_A_BaseLV / 100;										// BaseLv補正
 				wbairitu = Math.floor(wbairitu);
 				wbairitu *= [100,101,103,105,107,109,111,113,115,120,125][madogaku] / 100;	// 独学補正
@@ -711,7 +711,7 @@ export const skills = [
 				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 60 * 1000;
+				return 120 * 1000;
 			}
 		}),
 

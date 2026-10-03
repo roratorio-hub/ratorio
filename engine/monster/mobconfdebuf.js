@@ -79,6 +79,7 @@ export let MOB_CONF_DEBUF_ID_JACK_FROST_NOVA;
 export let MOB_CONF_DEBUF_ID_CLIMAX_QUAKE;
 export let MOB_CONF_DEBUF_ID_CLIMAX_BLOOM;
 export let MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA;
+export let MOB_CONF_DEBUF_ID_SERVANT_SIGN;
 
 // 初期化作業
 export let n_B_IJYOU = [];
@@ -811,6 +812,18 @@ function InitMobConfDebufData() {
 	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
 	MobConfDebufId++;
 
+	MOB_CONF_DEBUF_ID_SERVANT_SIGN = MobConfDebufId;
+	MobConfDebufData = [
+		MobConfDebufId,
+		MobConfDebufText("サーヴァントサイン状態"),
+		MobConfDebufControlType(CONTROL_TYPE_CHECKBOX),
+		MobConfDebufDefaultValue(0),
+		MobConfDebufMinValue(0),
+		MobConfDebufMaxValue(1)
+	];
+	MobConfDebufOBJ[MobConfDebufId] = MobConfDebufData;
+	MobConfDebufId++;
+
 	//----------------------------------------------------------------
 	// データ定義数チェック
 	//----------------------------------------------------------------
@@ -861,6 +874,7 @@ function InitMobConfDebufData() {
 		MOB_CONF_DEBUF_ID_RAKUIN_ZYOTAI,			// 特定スキルの倍率変動, Flee-10
 		MOB_CONF_DEBUF_ID_TARONO_KIZU,				// 特定スキルの倍率変動
 		MOB_CONF_DEBUF_ID_SOUND_BLEND,				// 特定スキルの倍率変動
+		MOB_CONF_DEBUF_ID_SERVANT_SIGN,				// 特定スキルの倍率変動
 		// ↓ ボス戦 無効
 		MOB_CONF_DEBUF_ID_MARSH_OF_ABYSS,			// 装備Def-10%, Flee-10%
 		MOB_CONF_DEBUF_ID_ENERVATION,				// 攻撃力-%

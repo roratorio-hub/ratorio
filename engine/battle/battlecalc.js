@@ -1653,7 +1653,7 @@ export function GetBattlerAtkPercentUp(charaData, specData, mobData, attackMetho
 		sklLv = UsedSkillSearch(SKILL_ID_VIGOR);
 		if (sklLv > 0) {
 			// 基本倍率
-			let ampWork = 100 * sklLv;
+			let ampWork = 1000 * sklLv;
 			w += ampWork;
 		}
 	}
@@ -1966,7 +1966,7 @@ export function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 			break;
 		case HEALTYPE_DILECTIO_HEAL:
 			wHeal = Math.floor(wHeal * healUp / 100 + wHealMatk + (((n_A_BaseLV + n_A_INT) / 5) * 3 * learnedHealLv * valHPlus / 100));
-			wHeal = Math.floor(wHeal * ((600 + 25 * HealLv) / 100) + valHPlus * HealLv);
+			wHeal = Math.floor(wHeal * ((1000 + 50 * HealLv) / 100) + valHPlus * HealLv);	// TODO: 2026-10-03 係数未調査
 			break;
 		case HEALTYPE_SHINSENNA_EBI:
 			wHeal = wHeal * healUp / 100 + wHealMatk / 2;
@@ -2000,7 +2000,7 @@ export function HealCalc(HealLv,HealType,wMinMax,w_WHO,ptmCount) {
 			wHeal = wHeal * (healUp + valHPlus) / 100 + wHealMatk;	// 基礎回復量
 			wHeal += 19 * LearnedSkillSearch(SKILL_ID_GOFU_SHUREN) * GetTotalSpecStatus(MIG_PARAM_ID_CRT);	// 修練と特性ステータスの補正
 			// 固定値に対するBaseLv補正
-			wHeal += (1000 + 500 * HealLv) * n_A_BaseLV / 100;
+			wHeal += (-750 + 2250 * HealLv) * n_A_BaseLV / 100;
 			wHeal = Math.floor(wHeal);
 			break;
 		case HEALTYPE_ZYOKODO:
@@ -2572,6 +2572,7 @@ export function GetIkariPow(mobData) {
 	var powWork = 0;
 	var lvWork = 0;
 	var effectMax = 0;
+	var divisor = 1;	// 攻撃力増幅係数値 1/divisor
 	// 複数の怒り系をパッシブで設定できるようにするため、適切な怒りを検索する
 	// 怒りは指定したモンスターだけに掛かるバフなのでLearnedSkillを参照することはできない
 	while (true) {
@@ -2588,7 +2589,8 @@ export function GetIkariPow(mobData) {
 			if (bEffective) {
 				// 有効な場合は、倍率を設定して、処理用ループを抜ける
 				powWork = n_A_BaseLV + n_A_STR + n_A_LUK + n_A_DEX;
-				effectMax = 70 * lvWork;
+				divisor = [0, 25, 20, 15][lvWork];
+				effectMax = 20 + 10 * lvWork;
 				break;
 			}
 		}
@@ -2601,9 +2603,9 @@ export function GetIkariPow(mobData) {
 				bEffective &= (mobData[MONSTER_DATA_INDEX_HP] >= 6000);
 			}
 			if (bEffective) {
-				// 有効な場合は、倍率を設定して、処理用ループを抜ける
 				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
-				effectMax = 50 * lvWork;
+				divisor = [0, 30, 25, 20][lvWork];
+				effectMax = 10 + 5 * lvWork;
 				break;
 			}
 		}
@@ -2615,16 +2617,16 @@ export function GetIkariPow(mobData) {
 				bEffective &= (mobData[MONSTER_DATA_INDEX_SIZE] == SIZE_ID_SMALL);
 			}
 			if (bEffective) {
-				// 有効な場合は、倍率を設定して、処理用ループを抜ける
 				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
-				effectMax = 50 * lvWork;
+				divisor = [0, 30, 25, 20][lvWork];
+				effectMax = 10 + 5 * lvWork;
 				break;
 			}
 		}
 		bEffective = false;
 		break;
 	}
-	pow = 100 + Math.min(effectMax, Math.floor(powWork / (12 - lvWork * 3)));
+	pow = 100 + Math.min(effectMax, Math.floor(powWork / divisor));
 	return pow;
 }
 

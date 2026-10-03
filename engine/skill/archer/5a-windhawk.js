@@ -629,7 +629,7 @@ export const skills = [
 				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 3000 * skillLv;
+				return 4000 * skillLv;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
 				return this._CriActRate100(skillLv, charaData, specData, mobData);
@@ -856,16 +856,15 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
-				const washi_no_me_lv = Math.max(LearnedSkillSearch(SKILL_ID_WASHINO_ME), UsedSkillSearch(SKILL_ID_WASHINO_ME));
 				// カラミティゲイル状態の場合はより大きなダメージを与える
 				if (UsedSkillSearch(SKILL_ID_CALAMITY_GALE) > 0) {
 					ratio += 1000 + 400 * skillLv;
+					ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				} else {
 					ratio += 800 + 320 * skillLv;
+					ratio += 12 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				}
-				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
-				ratio += 0 * washi_no_me_lv;	// TODO: ワシの目習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				ratio += 300 * advanced_trap_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
