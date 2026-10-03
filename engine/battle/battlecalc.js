@@ -4855,7 +4855,7 @@ export function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mo
 	}
 	if (Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT)) > 0) {
 		// ファイトによる、ダメージ強化
-		let w = 20 * Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT));
+		let w = 60 * Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT));
 		dmg = Math.floor(dmg * (100 + w) /100);
 	}
 	if(n_B_KYOUKA[8]) {

@@ -2896,7 +2896,7 @@ export const SkillObjNew = [
 		[1411,5,"(×)ファントムダガー","ABC_PHANTOM_DAGGER"],
 		[1412,4,"(×)オーバードライブプロトコル","MT_OVERDRIVE_PROTOCAL"],
 		[1413,5,"(×)ランパントヴァイン","BO_RAMPANT_VINE"],
-		[1414,5,"(×)七星天脚","SKE_SEVENTH_KICK"],
+		[1414,5,"七星天脚","SKE_SEVENTH_KICK"],
 		[1415,5,"(×)黄龍陣","SOA_FIELD_OF_KIRIN"],
 		[1416,10,"(×)影激流","SS_KAGEGEKIRYU"],
 		[1417,1,"蜃気楼分身 -群集-","SS_SHINKIROU_GUNSHU"],

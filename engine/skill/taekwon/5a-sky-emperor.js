@@ -799,10 +799,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)七星天脚 */
+		/** 七星天脚 */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-951.html
 		// SKILL_ID_SHICHISEI_TENKYAKU
 		defineSkill(SKILL_ID_SHICHISEI_TENKYAKU, function() {
-			this.name = "(×)七星天脚";
+			this.name = "七星天脚";
 			this.kana = "シチセイテンキヤク";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -819,10 +820,11 @@ export const skills = [
 				let ratio = 0;
 				if (option.GetOptionValue(0) === 1) {
 					ratio += 2250 + 2250 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio += 750 + 750 * skillLv;
+					ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
