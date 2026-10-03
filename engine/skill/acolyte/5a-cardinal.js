@@ -11,8 +11,6 @@ import { n_A_BaseLV } from "../../runtime/ro4-state.js";
 import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOOK, ITEM_KIND_CLUB } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
-import { MONSTER_DATA_INDEX_RACE } from "../../const/EnumMonsterDataIndex.js";
-import { RACE_ID_DEMON, RACE_ID_UNDEAD } from "../../const/EnumRaceId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
 import {
     SKILL_ID_ARBITRIUM, SKILL_ID_ARUGUTUS_TERUM, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_BENEDICTUM, SKILL_ID_CONPETENTIA,
@@ -395,18 +393,11 @@ export const skills = [
 			this.dispHitCount = function(skillLv, charaDataManger) {     // 見た目10hitで最大40hit
 				return 10;
 			}
-			this.Power = function(skillLv, charaDataManger, option, mobData) {
+			this.Power = function(skillLv) {
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-				let wbairitu;
-				if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
-					wbairitu = 6000 + 1500 * skillLv;				// 基本倍率
-					wbairitu += 5 * fidos_animus_lv;				// フィドスアニムス補正
-					wbairitu += 70 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
-				} else {
-					wbairitu = 5500 + 1250 * skillLv;				// 基本倍率
-					wbairitu += 3 * fidos_animus_lv;				// フィドスアニムス補正
-					wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// SPL補正
-				}
+				let wbairitu = 7000 + 2000 * skillLv;				// 基本倍率
+				wbairitu += 3 * fidos_animus_lv;				// TODO: 2026-10-03 係数未調査
+				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
 
@@ -619,18 +610,11 @@ export const skills = [
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
 				return 500 * skillLv;
 			}
-			this.Power = function(skillLv, charaDataManger, option, mobData) {
+			this.Power = function(skillLv) {
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-				let wbairitu;
-				if (mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_UNDEAD || mobData[MONSTER_DATA_INDEX_RACE] == RACE_ID_DEMON) {
-					wbairitu = 900 * skillLv;					// 基本倍率
-					wbairitu += 60 * skillLv * fidos_animus_lv;			// フィドスアニムス補正
-					wbairitu += 50 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// SPL補正
-				} else {
-					wbairitu = 600 * skillLv;					// 基本倍率
-					wbairitu += 30 * skillLv * fidos_animus_lv;			// フィドスアニムス補正
-					wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// SPL補正
-				}
+				let wbairitu = 1400 * skillLv;					// 基本倍率
+				wbairitu += 30 * skillLv * fidos_animus_lv;			// TODO: 2026-10-03 係数未調査
+				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// TODO: 2026-10-03 係数未調査
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
 
@@ -656,9 +640,9 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const fidos_animus_lv = Math.max(UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS), LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-				ratio += 1000 + 1000 * skillLv;
-				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数 検証済み
-				ratio += 300 * fidos_animus_lv;	// 修練係数 検証済み
+				ratio += 1500 + 1100 * skillLv;
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 300 * fidos_animus_lv;	// TODO: 2026-10-03 係数未調査
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

@@ -223,11 +223,11 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio = 8250 + 750 * skillLv;
-				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// 275パッチでは基礎倍率以外に変更無しを確認済み
+				ratio = 11800 + 1300 * skillLv;
+				ratio += 3 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
 				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
 				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
-				ratio += 7 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );
+				ratio += 7 * skillLv * ( gofu_shuren_lv + reidozyutsu_shuren_lv );	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -265,13 +265,13 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SHIRYO_HYOI]) {
-					ratio = 400 + 100 * skillLv;
+					ratio = 975 + 125 * skillLv;
 				} else {
-					ratio = 350 + 50 * skillLv;
+					ratio = 725 + 50 * skillLv;
 				}
-				ratio += GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
 				const reidozyutsu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN), UsedSkillSearch(SKILL_ID_REIDOZYUTSU_SHUREN));
-				ratio += 2 * reidozyutsu_shuren_lv;
+				ratio += 2 * reidozyutsu_shuren_lv;	// TODO: 2026-10-03 係数未調査
 				ratio = ratio * UsedSkillSearch(SKILL_ID_COUNT_OF_SOUL_ENERGY);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
@@ -307,12 +307,12 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					ratio = 11000 + 750 * skillLv;
+					ratio = 15000 + 1650 * skillLv;
 				} else {
-					ratio = 7750 + 750 * skillLv;
+					ratio = 12000 + 1320 * skillLv;
 				}
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -356,12 +356,12 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					ratio = 7750 + 750 * skillLv;
+					ratio = 11750 + 1250 * skillLv;
 				} else {
-					ratio = 6500 + 500 * skillLv;
+					ratio = 9400 + 1000 * skillLv;
 				}
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -405,12 +405,12 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					ratio = 9250 + 750 * skillLv;
+					ratio = 13250 + 1500 * skillLv;
 				} else {
-					ratio = 7500 + 500 * skillLv;
+					ratio = 10600 + 1200 * skillLv;
 				}
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -454,12 +454,12 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
-					ratio = 7750 + 750 * skillLv;
+					ratio = 11750 + 1250 * skillLv;
 				} else {
-					ratio = 6500 + 500 * skillLv;
+					ratio = 9400 + 1000 * skillLv;
 				}
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -502,9 +502,9 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				ratio = 500 + 50 * skillLv;
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				ratio = 1400 + 150 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 15 * skillLv * Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -617,7 +617,7 @@ export const skills = [
 				return 680;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 10 + 12 * skillLv;
+				return 20 + 3 * skillLv;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
 				return 500 + 100 * skillLv;
@@ -626,7 +626,7 @@ export const skills = [
 				return 3000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500;
+				return 10000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 60 * 1000;
@@ -655,11 +655,12 @@ export const skills = [
 				// 四方五行陣状態の場合はより大きなダメージを与える
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 					ratio += 3100 + 2100 * skillLv;
+					ratio += 68 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				} else {
 					ratio += -300 + 1400 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
-				ratio += 0 * gofu_shuren_lv;	// TODO: 護符修練習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				ratio += 680 * gofu_shuren_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

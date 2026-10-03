@@ -39,13 +39,13 @@ export const skills = [
 				return 2000;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {
-				return 500 + 200 * skillLv;
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) {
 				return 3000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return 5000;
+				return 3000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {
 				return 5000 + 1000 * skillLv;
@@ -288,12 +288,12 @@ export const skills = [
 				return 500;
 			}
 			this.Power = function(skillLv, charaDataManger) {
-				let ratio = 350 + 50 * skillLv;
-				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				let ratio = 500 + 200 * skillLv;
+				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.hitCount = function(skillLv, option, weapon) {
-				return 2 + skillLv;
+				return 3;
 			}
 			this.genericFormula = true;
 		}),
@@ -555,7 +555,7 @@ export const skills = [
 				return 610;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 20 + 10 * skillLv;
+				return 20 + 6 * skillLv;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 0;
@@ -570,7 +570,7 @@ export const skills = [
 				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 60 * 1000;
+				return 120 * 1000;
 			}
 		}),
 
