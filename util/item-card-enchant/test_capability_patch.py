@@ -48,6 +48,15 @@ w_SE[6] = [-15,-16,100,];
 ItemIdToSetIdMap[100] = [5,];
 '''
 
+TIMEITEM_TEXT = '''export const ITEM_SP_TIME_OBJ = [
+[0,"装備/カードの時限性補助効果","なし",[[0,0]],0],
+[1,"アイシラカード","詠唱-50%、FLEE+30",[[2,472]],9,30,0],
+];
+ITEM_SP_TIME_OBJ[5] = [5,"テスト時限","20秒間、[ワイルドウォーク]の消費SP -3",[[2,11]],24291,3,0];
+ITEM_SP_TIME_OBJ[6] = [6,"二つ目","説明",[[2,11],[1,100]],0];
+ITEM_SP_TIME_OBJ[7] = [7,"アイテム側","説明",[[1,101]],0];
+'''
+
 
 class TokenizeTest(unittest.TestCase):
     def test_空要素と空白とカンマ入り文字列を正しく区切る(self):
@@ -72,6 +81,16 @@ class TokenizeTest(unittest.TestCase):
         self.assertIn('奇数', rec.problem)
         rec = cp.parse_record_line('[5,99,"x","y","",243,1],', 'card', 0)
         self.assertIn('0 で終わ', rec.problem)
+
+    def test_時限効果の出所が入れ子の配列でも読める(self):
+        rec = cp.parse_record_line('ITEM_SP_TIME_OBJ[5] = [5,"名","説明, x",[[2,11],[1,100]],24291,3,0];', 'time', 0)
+        self.assertIsNone(rec.problem)
+        self.assertEqual(rec.sources, [(2, 11), (1, 100)])
+        self.assertEqual(rec.name, '名')
+        self.assertEqual([(c.code, c.value) for c in rec.caps], [(24291, 3)])
+
+    def test_入れ子の配列は時限効果以外では読まない(self):
+        self.assertIsNone(cp.parse_record_line('[5,99,"x","y","",[1,2],0],', 'card', 0))
 
     def test_説明文が数値0の旧形式も読める(self):
         rec = cp.parse_record_line('[5,99,"x","y",0,243,1,0],', 'card', 0)
@@ -136,7 +155,7 @@ class CodecTest(unittest.TestCase):
 
 
 def make_dat():
-    return cp.Dat(ITEM_TEXT, CARD_TEXT, ITEMSET_TEXT, SKILL_TEXT)
+    return cp.Dat(ITEM_TEXT, CARD_TEXT, ITEMSET_TEXT, SKILL_TEXT, TIMEITEM_TEXT)
 
 
 def cap(skill, value=1, **kw):
@@ -147,7 +166,7 @@ class PlanTest(unittest.TestCase):
     def apply(self, dat, entries):
         results, errors = cp.plan_all(dat, entries, None)
         self.assertEqual(errors, [])
-        edits = {'item': [], 'card': []}
+        edits = {'item': [], 'card': [], 'time': []}
         for r in results:
             for e in r.edits:
                 edits[e.kind].append(e)
@@ -224,6 +243,41 @@ class PlanTest(unittest.TestCase):
         self.assertEqual(len(errors), 1)
         self.assertIn('2 件', errors[0])
 
+    def test_time_effectを指定すると時限効果の側へ能力を足す(self):
+        entry = {'card_name': 'テスト潜在', 'set_with': [{'card_name': '相手'}], 'time_effect': 'テスト時限',
+                 'capabilities': [{'name': 'スキル消費SP固定値減少', 'skills': ['ワイルドウォーク', 'ホークブーメラン'], 'value': 3}]}
+        results, new = self.apply(make_dat(), [entry])
+        self.assertEqual(len(results[0].skipped), 1)
+        self.assertEqual(len(results[0].added), 1)
+        self.assertIn('時限効果 5', results[0].target)
+        self.assertIn('[[2,11]],24291,3,24046,3,0];', new['time'])
+        self.assertEqual(new['card'], CARD_TEXT)      # セットレコード側は変えない
+
+    def test_時限効果の説明と対象の説明文を一度に差し替える(self):
+        entry = {'card_name': 'テスト潜在', 'set_with': [{'card_name': '相手'}], 'time_effect': 'テスト時限',
+                 'time_explain': '新説明', 'desc': 'セット説明'}
+        results, new = self.apply(make_dat(), [entry])
+        self.assertEqual(results[0].explain_change, ('20秒間、[ワイルドウォーク]の消費SP -3', '新説明'))
+        self.assertIn('"新説明",[[2,11]]', new['time'])
+        self.assertIn('[11,100,0,,"セット説明",20100,100,0]', new['card'])
+
+    def test_time_explainはtime_effectなしだとエラー(self):
+        _, errors = cp.plan_all(make_dat(), [{'card_name': 'テスト潜在', 'time_explain': 'x'}], None)
+        self.assertEqual(len(errors), 1)
+
+    def test_時限効果が複数あって名前も指定しないとエラー(self):
+        entry = {'card_name': 'テスト潜在', 'set_with': [{'card_name': '相手'}], 'time_effect': True,
+                 'capabilities': [cap('ワイルドウォーク')]}
+        _, errors = cp.plan_all(make_dat(), [entry], None)
+        self.assertEqual(len(errors), 1)
+        self.assertIn('2 件', errors[0])
+
+    def test_時限効果が無い対象に指定するとエラー(self):
+        entry = {'card_name': '別カード', 'time_effect': True, 'capabilities': [cap('ワイルドウォーク')]}
+        _, errors = cp.plan_all(make_dat(), [entry], None)
+        self.assertEqual(len(errors), 1)
+        self.assertIn('0 件', errors[0])
+
     def test_説明文を差し替える(self):
         entry = {'card_name': 'テスト潜在', 'set_with': [{'card_name': '相手'}], 'desc': '新しい説明'}
         results, new = self.apply(make_dat(), [entry])
@@ -274,7 +328,7 @@ class CommandTest(unittest.TestCase):
         root = self.tmp.name
         for rel, text in (('equip/item.dat.js', ITEM_TEXT), ('equip/card.dat.js', CARD_TEXT),
                           ('equip/itemset.dat.js', ITEMSET_TEXT), ('skill/skill.dat.js', SKILL_TEXT),
-                          ('equip/timeitem.dat.js', ''),
+                          ('equip/timeitem.dat.js', TIMEITEM_TEXT),
                           ('battle/use.js', 'if (EquipNumSearch(ITEM_ID_TEST_ARMOR)) {}\n')):
             os.makedirs(os.path.dirname(os.path.join(root, rel)), exist_ok=True)
             with open(os.path.join(root, rel), 'w', encoding='utf-8') as f:
@@ -332,6 +386,29 @@ class CommandTest(unittest.TestCase):
         self.assertEqual(code, 2)
         self.assertIn('存在しない', err)
         self.assertEqual(self.item_text(), ITEM_TEXT)
+
+    def test_時限効果もapplyで書き込まれverifyが通る(self):
+        self.write_yaml('''patch_list:
+  - card_name: テスト潜在
+    set_with: [{card_name: 相手}]
+    time_effect: テスト時限
+    time_explain: 新説明
+    capabilities:
+      - {name: スキル消費SP固定値減少, skill: ホークブーメラン, value: 3}
+''')
+        self.assertEqual(self.run_cli('verify', '--yaml', self.yaml)[0], 1)
+        code, out, _ = self.run_cli('apply', '--yaml', self.yaml)
+        self.assertEqual(code, 0)
+        with open(os.path.join(self.tmp.name, 'equip/timeitem.dat.js'), encoding='utf-8') as f:
+            text = f.read()
+        self.assertIn('"新説明",[[2,11]],24291,3,24046,3,0];', text)
+        self.assertEqual(self.run_cli('verify', '--yaml', self.yaml)[0], 0)
+
+    def test_inspectは時限効果も表示する(self):
+        code, out, _ = self.run_cli('inspect', 'テスト潜在')
+        self.assertEqual(code, 0)
+        self.assertIn('時限効果 5 「テスト時限」', out)
+        self.assertIn('skill: ワイルドウォーク', out)
 
     def test_inspectはYAML書式で表示する(self):
         code, out, _ = self.run_cli('inspect', 'テストアーマー')

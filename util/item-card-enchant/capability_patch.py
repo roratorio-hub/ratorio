@@ -28,8 +28,9 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ENGINE_DIR = os.path.normpath(os.path.join(SCRIPT_DIR, '..', '..', 'engine'))
 PATCH_YAML = os.path.join(SCRIPT_DIR, '能力追加.yaml')
 
-DESC_INDEX = {'item': 10, 'card': 4}
-NAME_INDEX = {'item': 8, 'card': 2}
+DESC_INDEX = {'item': 10, 'card': 4, 'time': 2}      # time は時限効果の explain
+NAME_INDEX = {'item': 8, 'card': 2, 'time': 1}
+CAPS_START = {'item': 11, 'card': 5, 'time': 4}      # 能力コードと値の組が始まる要素の位置
 SET_RECORD_TYPE = 100
 KIND_LABEL = {'item': 'item', 'card': 'card'}
 
@@ -44,6 +45,7 @@ ALLOWED_KEYS = {
     'at_transcendence', 'at_equip_location', 'job_restrict',
 }
 ENTITY_KEYS = ('item_name', 'card_name', 'item_id', 'card_id')
+TIME_SOURCE_KIND = {'item': 1, 'card': 2}            # ITEM_SP_TIME_OBJ の出所 [[1=item / 2=card, ID]]
 
 
 class PatchError(Exception):
@@ -60,16 +62,17 @@ class Tok:
     text: str
 
 
-RE_RECORD = re.compile(r'^\s*(?:(?:ItemObjNew|CardObjNew)\[(\d+)\]\s*=\s*)?(\[)(\d+),')
+RE_RECORD = re.compile(r'^\s*(?:(?:ItemObjNew|CardObjNew|ITEM_SP_TIME_OBJ)\[(\d+)\]\s*=\s*)?(\[)(\d+),')
 RE_TAIL = re.compile(r'^[,;]?\s*(?://.*)?$')
 RE_CODE = re.compile(r'^\d+n?$')
 RE_INT = re.compile(r'^-?\d+$')
 
 
-def tokenize_array(line: str, p: int):
+def tokenize_array(line: str, p: int, nested_ok: bool = False):
     """line[p] == '[' から対応する ']' までを、文字列リテラルを考慮して要素に分割する。
 
-    戻り値: (Tok のリスト, 閉じ括弧の位置)。閉じていない・入れ子があるときは (None, -1)。
+    戻り値: (Tok のリスト, 閉じ括弧の位置)。閉じていないときは (None, -1)。
+    入れ子の配列は、nested_ok=True なら1つの要素として扱い、そうでなければ (None, -1)。
     """
     depth = 0
     in_str = False
@@ -90,7 +93,7 @@ def tokenize_array(line: str, p: int):
             in_str = True
         elif c == '[':
             depth += 1
-            if depth > 1:
+            if depth > 1 and not nested_ok:
                 return None, -1
         elif c == ']':
             depth -= 1
@@ -126,6 +129,11 @@ class Rec:
     def desc_idx(self) -> int:
         return DESC_INDEX[self.kind]
 
+    @property
+    def sources(self) -> list:
+        """時限効果の出所 [(1=item / 2=card, ID), ...]。"""
+        return [(int(a), int(b)) for a, b in re.findall(r'(\d+)\s*,\s*(\d+)', self.toks[3].text)] if self.kind == 'time' else []
+
     def string_at(self, i: int):
         """i 番目の要素が文字列リテラルならその中身、そうでなければ None。"""
         t = self.toks[i].text.strip() if i < len(self.toks) else ''
@@ -143,7 +151,7 @@ class Rec:
 
     @property
     def caps(self) -> list[Cap]:
-        body = self.toks[self.desc_idx + 1:-1]
+        body = self.toks[CAPS_START[self.kind]:-1]
         return [Cap(int(body[i].text.strip().rstrip('n')), int(body[i + 1].text.strip()))
                 for i in range(0, len(body), 2)]
 
@@ -156,7 +164,7 @@ def parse_record_line(line: str, kind: str, lineno: int):
     m = RE_RECORD.match(line)
     if not m:
         return None
-    toks, close = tokenize_array(line, m.start(2))
+    toks, close = tokenize_array(line, m.start(2), nested_ok=(kind == 'time'))
     if toks is None or not RE_TAIL.match(line[close + 1:].rstrip('\n')):
         return None
     rec = Rec(kind, lineno, int(m.group(3)), toks, close)
@@ -164,14 +172,17 @@ def parse_record_line(line: str, kind: str, lineno: int):
         rec.problem = f'行頭の添字 [{m.group(1)}] と先頭要素 {rec.id} が一致しない'
         return rec
     di = DESC_INDEX[kind]
-    if len(toks) < di + 2:
+    cs = CAPS_START[kind]
+    if len(toks) < cs + 1:
         rec.problem = '要素数が足りない'
     elif toks[-1].text.strip() != '0':
         rec.problem = '末尾が 0 で終わっていない'
     elif rec.string_at(di) is None and toks[di].text.strip() != '0':
         rec.problem = '説明文の位置が文字列でも 0 でもない'
+    elif kind == 'time' and not toks[3].text.strip().startswith('[['):
+        rec.problem = '出所の配列が読めない'
     else:
-        body = toks[di + 1:-1]
+        body = toks[cs:-1]
         if len(body) % 2:
             rec.problem = '能力コードと値の組が奇数個'
         elif not all(RE_CODE.match(body[i].text.strip()) and RE_INT.match(body[i + 1].text.strip())
@@ -406,12 +417,12 @@ def format_cap_yaml(code: int, value: int, skills: SkillTable | None, indent: st
 class Dat:
     def __init__(self, item_text: str, card_text: str, itemset_text: str, skill_text: str,
                  timeitem_text: str = ''):
-        self.texts = {'item': item_text, 'card': card_text}
+        self.texts = {'item': item_text, 'card': card_text, 'time': timeitem_text}
         self.lines = {}
         self.recs = {}
         self.by_id = {}
         self.by_name = {}
-        for kind in ('item', 'card'):
+        for kind in ('item', 'card', 'time'):
             lines, recs = parse_records(self.texts[kind], kind)
             self.lines[kind] = lines
             self.recs[kind] = recs
@@ -419,13 +430,12 @@ class Dat:
             by_name = defaultdict(list)
             for r in recs:
                 by_id[r.id].append(r)
-                if not r.problem and r.rtype != SET_RECORD_TYPE and r.name:
+                if kind != 'time' and not r.problem and r.rtype != SET_RECORD_TYPE and r.name:
                     by_name[r.name].append(r)
             self.by_id[kind] = by_id
             self.by_name[kind] = by_name
         self.sets = parse_sets(itemset_text)
         self.skills = SkillTable(skill_text)
-        self.timeitem_text = timeitem_text
         self._consts = None
 
     # -- 解決 ---------------------------------------------------------------
@@ -486,6 +496,11 @@ class Dat:
             raise PatchError(f'セットレコード {hits[0].rec_id} を読めません')
         return rec, hits[0]
 
+    def time_items_for(self, rec: Rec) -> list:
+        """rec（アイテム・カード・セットのレコード）を出所とする時限効果。"""
+        src = (TIME_SOURCE_KIND[rec.kind], rec.id)
+        return [t for t in self.recs['time'] if not t.problem and src in t.sources]
+
     # -- ITEM_ID_* / CARD_ID_* 定数 -----------------------------------------
     def const_names(self, kind: str, rec_id: int) -> list[str]:
         if self._consts is None:
@@ -540,10 +555,11 @@ class EntryResult:
     newlines: list = field(default_factory=list)
     warns: list = field(default_factory=list)
     desc_change: tuple | None = None
+    explain_change: tuple | None = None
 
     @property
     def changed(self) -> bool:
-        return bool(self.added) or self.desc_change is not None
+        return bool(self.added) or self.desc_change is not None or self.explain_change is not None
 
     @property
     def status(self) -> str:
@@ -581,7 +597,20 @@ def plan_entry(dat: Dat, entry: dict, engine_dir: str | None = None) -> EntryRes
         label += ' + ' + '/'.join(str(next(iter(p.values()))) for p in entry['set_with'])
     res = EntryResult(label, target_label)
 
-    existing = target.caps
+    # 能力の追記先。time_effect を指定したときは、対象に紐づく時限効果のレコード
+    caps_rec = target
+    if entry.get('time_effect'):
+        cands = dat.time_items_for(target)
+        want = entry['time_effect']
+        if isinstance(want, str):
+            cands = [t for t in cands if t.name == want]
+        if len(cands) != 1:
+            raise PatchError(f'{target.kind} {target.id} に紐づく時限効果が {len(cands)} 件です'
+                             f'（time_effect に時限効果の名前を指定してください）')
+        caps_rec = cands[0]
+        res.target = f'{target_label} / 時限効果 {caps_rec.id}「{caps_rec.name}」'
+
+    existing = caps_rec.caps
     existing_pairs = {(c.code, c.value) for c in existing}
     existing_codes = {c.code for c in existing}
     existing_lines = {line_key(c.code) for c in existing}
@@ -607,20 +636,32 @@ def plan_entry(dat: Dat, entry: dict, engine_dir: str | None = None) -> EntryRes
                 res.newlines.append(shown)
 
     if insert:
-        pos = target.terminator.start
-        res.edits.append(Edit(target.kind, target.lineno, pos, pos, insert))
+        pos = caps_rec.terminator.start
+        res.edits.append(Edit(caps_rec.kind, caps_rec.lineno, pos, pos, insert))
+
+    def string_edit(rec: Rec, new_text: str):
+        if '"' in new_text or '\n' in new_text or '\\' in new_text:
+            raise PatchError('説明文に " \\ 改行は使えません')
+        if new_text == (rec.string_at(rec.desc_idx) or ''):
+            return None, None
+        tok = rec.toks[rec.desc_idx]
+        lead = len(tok.text) - len(tok.text.lstrip())
+        trail = len(tok.text) - len(tok.text.rstrip())
+        return (Edit(rec.kind, rec.lineno, tok.start + lead, tok.end - trail, f'"{new_text}"'),
+                (rec.string_at(rec.desc_idx) or '', new_text))
 
     if entry.get('desc') is not None:
-        new_desc = str(entry['desc'])
-        if '"' in new_desc or '\n' in new_desc or '\\' in new_desc:
-            raise PatchError('desc に " \\ 改行は使えません')
-        if new_desc != target.desc:
-            tok = target.toks[target.desc_idx]
-            lead = len(tok.text) - len(tok.text.lstrip())
-            trail = len(tok.text) - len(tok.text.rstrip())
-            res.edits.append(Edit(target.kind, target.lineno, tok.start + lead, tok.end - trail,
-                                  f'"{new_desc}"'))
-            res.desc_change = (target.desc, new_desc)
+        edit, change = string_edit(target, str(entry['desc']))
+        if edit:
+            res.edits.append(edit)
+            res.desc_change = change
+    if entry.get('time_explain') is not None:
+        if caps_rec is target:
+            raise PatchError('time_explain は time_effect と一緒に指定してください')
+        edit, change = string_edit(caps_rec, str(entry['time_explain']))
+        if edit:
+            res.edits.append(edit)
+            res.explain_change = change
 
     if engine_dir:
         names = dat.const_names(base.kind, base.id)
@@ -648,6 +689,7 @@ def dat_paths(engine_dir: str) -> dict:
         'itemset': os.path.join(engine_dir, 'equip', 'itemset.dat.js'),
         'skill': os.path.join(engine_dir, 'skill', 'skill.dat.js'),
         'timeitem': os.path.join(engine_dir, 'equip', 'timeitem.dat.js'),
+        'time': os.path.join(engine_dir, 'equip', 'timeitem.dat.js'),
     }
 
 
@@ -703,11 +745,13 @@ def print_results(results: list[EntryResult], verbose: bool = False) -> None:
             print(f'    * 新しい行（同じ条件の同種の能力が未登録）: {s}')
         if r.desc_change:
             print(f'    ~ 説明文: {r.desc_change[0]!r} → {r.desc_change[1]!r}')
+        if r.explain_change:
+            print(f'    ~ 時限効果の説明: {r.explain_change[0]!r} → {r.explain_change[1]!r}')
         for s in r.warns:
             print(f'    ⚠ {s}')
     n_add = sum(len(r.added) for r in results)
     n_conf = sum(len(r.conflicts) for r in results)
-    n_desc = sum(1 for r in results if r.desc_change)
+    n_desc = sum(1 for r in results if r.desc_change or r.explain_change)
     n_changed = sum(1 for r in results if r.changed)
     print(f'--- {len(results)}件中 {n_changed}件を変更（能力 +{n_add}、説明文 {n_desc}件）、'
           f'値の食い違い {n_conf}件、変更なし {sum(1 for r in results if not r.changed)}件 ---')
@@ -746,9 +790,10 @@ def cmd_inspect(args) -> int:
 
 
 def print_record(dat: Dat, rec: Rec, path: str, indent: str = '') -> None:
-    title = f'{rec.kind} {rec.id}' + (f' 「{rec.name}」' if rec.name else '') + f'  ({path}:{rec.lineno + 1})'
+    title = f'{"時限効果" if rec.kind == "time" else rec.kind} {rec.id}' + (f' 「{rec.name}」' if rec.name else '') + f'  ({path}:{rec.lineno + 1})'
     print(f'{indent}{title}')
-    print(f'{indent}  type: {rec.rtype}')
+    if rec.kind != 'time':
+        print(f'{indent}  type: {rec.rtype}')
     print(f'{indent}  desc: {rec.desc!r}')
     if rec.problem:
         print(f'{indent}  ! 読めないレコード: {rec.problem}')
@@ -759,13 +804,15 @@ def print_record(dat: Dat, rec: Rec, path: str, indent: str = '') -> None:
 
 
 def print_timeitems(dat: Dat, rec: Rec, set_recs: list) -> None:
-    srcs = {(1 if rec.kind == 'item' else 2, rec.id)}
-    srcs |= {(1 if r.kind == 'item' else 2, r.id) for r in set_recs if r}
-    pat = re.compile(r'^\s*ITEM_SP_TIME_OBJ\[(\d+)\]\s*=\s*\[\d+,"([^"]*)","([^"]*)",(\[\[.*?\]\]),(.*)0\];')
-    for ln in dat.timeitem_text.split('\n'):
-        m = pat.match(ln)
-        if m and any((int(a), int(b)) in srcs for a, b in re.findall(r'\[(\d+),(\d+)\]', m.group(4))):
-            print(f'\n  時限効果 {m.group(1)}「{m.group(2)}」: {m.group(3)}')
+    seen = set()
+    for r in [rec] + [x for x in set_recs if x]:
+        for t in dat.time_items_for(r):
+            if t.id in seen:
+                continue
+            seen.add(t.id)
+            print()
+            print_record(dat, t, os.path.relpath(dat_paths(ENGINE_DIR)['time'], os.getcwd()), indent='  ')
+            print(f'    (時限効果 {t.id}: 出所 {t.sources})')
 
 
 def cmd_apply(args) -> int:
@@ -783,10 +830,11 @@ def cmd_apply(args) -> int:
         for e in r.edits:
             edits[e.kind].append(e)
     new_texts = {k: '\n'.join(apply_edits(dat.lines[k], edits[k])) if edits[k] else dat.texts[k]
-                 for k in ('item', 'card')}
+                 for k in ('item', 'card', 'time')}
     # 書き込み前に、結果を読み直して全部入っていることを確かめる
     p = dat_paths(args.engine_dir)
-    check = Dat(new_texts['item'], new_texts['card'], read_text(p['itemset']), read_text(p['skill']))
+    check = Dat(new_texts['item'], new_texts['card'], read_text(p['itemset']), read_text(p['skill']),
+                new_texts['time'])
     again, again_errors = plan_all(check, entries, None)
     if again_errors or any(r.changed for r in again):
         print('\n追記後の再検証に失敗したため書き込みません:', file=sys.stderr)
@@ -794,14 +842,14 @@ def cmd_apply(args) -> int:
             print('  ' + e, file=sys.stderr)
         for r in again:
             if r.changed:
-                print(f'  {r.label}: まだ足りません {r.added} {r.desc_change}', file=sys.stderr)
+                print(f'  {r.label}: まだ足りません {r.added} {r.desc_change} {r.explain_change}', file=sys.stderr)
         return 3
     if args.report:
         write_report(args.report, results)
     if args.dry_run:
         print('\n(--dry-run: 書き込みなし)')
         return 0
-    for kind in ('item', 'card'):
+    for kind in ('item', 'card', 'time'):
         if edits[kind]:
             with open(p[kind], 'w', encoding='utf-8', newline='') as f:
                 f.write(new_texts[kind])
@@ -814,7 +862,7 @@ def cmd_verify(args) -> int:
     results, errors = plan_all(dat, load_patch(args.yaml), None)
     bad = [r for r in results if r.changed]
     for r in bad:
-        print(f'[未反映] {r.label}: 足りない能力 {r.added} 説明文 {r.desc_change}')
+        print(f'[未反映] {r.label}: 足りない能力 {r.added} 説明文 {r.desc_change} 時限効果の説明 {r.explain_change}')
     for r in results:
         for c in r.conflicts:
             print(f'[値の食い違い] {r.label}: {c}')
@@ -830,7 +878,7 @@ def write_report(path: str, results: list[EntryResult]) -> None:
         f.write('| 対象 | 状態 | 追加 | 登録済み | 備考 |\n|---|---|---|---|---|\n')
         for r in results:
             notes = [*(f'食い違い: {c}' for c in r.conflicts), *r.warns]
-            if r.desc_change:
+            if r.desc_change or r.explain_change:
                 notes.append('説明文を更新')
             f.write(f'| {r.label} | {r.status} | {len(r.added)} | {len(r.skipped)} | {" / ".join(notes)} |\n')
 
