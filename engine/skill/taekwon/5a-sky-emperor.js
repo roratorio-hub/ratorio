@@ -22,6 +22,7 @@ import {
     SKILL_ID_TENCHI_ICHIYO, SKILL_ID_TENGETSU, SKILL_ID_TENKINO_MI, SKILL_ID_TENKI_SHUREN, SKILL_ID_TENME_RAKUSE,
     SKILL_ID_TENRA_BANSHO, SKILL_ID_TENSE, SKILL_ID_TENYO, SKILL_ID_UNKONO_ZYOTAI
 } from "../skill.dat.js";
+import { SKILL_ID_SHICHISEI_TENKYAKU } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -794,6 +795,58 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** 七星天脚 */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-951.html
+		// SKILL_ID_SHICHISEI_TENKYAKU
+		defineSkill(SKILL_ID_SHICHISEI_TENKYAKU, function() {
+			this.name = "七星天脚";
+			this.kana = "シチセイテンキヤク";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return UsedSkillSearch(SKILL_ID_TENKINO_MI) > 0;
+			}
+			this.dispHitCount = function(skillLv, charaDataManger, option) {
+				// 七星天脚真状態は強化された七星天脚になり、ダメージは7回に分割して与える
+				return (option.GetOptionValue(0) === 1) ? 7 : 1;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				if (option.GetOptionValue(0) === 1) {
+					ratio += 2250 + 2250 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				} else {
+					ratio += 750 + 750 * skillLv;
+					ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				}
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 5;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 3000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
 			}
 			this.genericFormula = true;
 		}),

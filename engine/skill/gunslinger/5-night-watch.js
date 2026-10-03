@@ -22,6 +22,7 @@ import {
     SKILL_ID_MISSION_BOMBARD, SKILL_ID_ONLY_ONE_BULLET, SKILL_ID_PFI, SKILL_ID_SPIRAL_SHOOTING,
     SKILL_ID_VIGILANT_AT_NIGHT, SKILL_ID_WILD_FIRE, SKILL_ID_WILD_SHOT
 } from "../skill.dat.js";
+import { SKILL_ID_TACTICAL_REPOSITIONING } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -818,6 +819,38 @@ export const skills = [
 				return 0;
 			}
 			this.genericFormula = true;
+		}),
+
+		/** タクティカルリポジショニング */
+		// SKILL_ID_TACTICAL_REPOSITIONING
+		defineSkill(SKILL_ID_TACTICAL_REPOSITIONING, function() {
+			this.name = "タクティカルリポジショニング";
+			this.kana = "タクテイカルリホシシヨニンク";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 10;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 0;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
 		}),
 
 ];

@@ -80,6 +80,7 @@ import {
     SKILL_ID_YOMIGAESHI, SKILL_ID_ZIRAISHIN
 } from "../skill/skill.dat.js";
 import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
+import { SERE_KIND_VENTUS_LV1, SERE_KIND_VENTUS_LV2, SERE_KIND_VENTUS_LV3 } from "../const/EnumSereKind.js";
 
 /**
  * 特定スキルの変動詠唱時間を％で取得する。短縮効果が付与されていない場合は100が返される。
@@ -1197,9 +1198,9 @@ export function GetCastFixOfSkillForCastTimeFixed(skillId) {
 	//----------------------------------------------------------------
 	if (UsedSkillSearch(SKILL_ID_SERE_MODE) == 1) {
 		switch (UsedSkillSearch(SKILL_ID_SERE)) {
-		case 7:
-		case 8:
-		case 9:
+		case SERE_KIND_VENTUS_LV1:
+		case SERE_KIND_VENTUS_LV2:
+		case SERE_KIND_VENTUS_LV3:
 			castfix -= 1000;
 		}
 	}

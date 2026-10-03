@@ -69,6 +69,7 @@ import {
     SKILL_ID_KATAR_SHUREN, SKILL_ID_MACE_SHUREN, SKILL_ID_SEIMEINO_CHIKARA, SKILL_ID_SENRYU_SHOTEN,
     SKILL_ID_SIXTH_SENSE, SKILL_ID_SOUL_ATTACK, SKILL_ID_SPEAR_QUICKEN, SKILL_ID_TRUE_SIGHT
 } from "../skill/skill.dat.js";
+import { SKILL_ID_KAGE_MICHI } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_RING_OF_FLAME_LORD, TIME_ITEM_ID_VNDER_CANMER_BAKURETSU_HADO } from "../equip/timeitem.dat.js";
 import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
@@ -554,6 +555,13 @@ export function getCriticalDamageRate() {
      */
     if ((bufLv = g_confDataSanzi[CCharaConfSanzi.CONF_ID_LAUDARAMUS]) > 0) {
         damage_ratio += [0, 6, 9, 12, 15][bufLv];
+    }
+
+    /**
+     * 「蜃気楼・不知火　影満ち」の効果
+     */
+    if ((bufLv = UsedSkillSearch(SKILL_ID_KAGE_MICHI)) > 0) {
+        damage_ratio += 20 * bufLv;
     }
 
     // TODO: 四次対応
