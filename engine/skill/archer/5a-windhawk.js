@@ -640,24 +640,22 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)プライムドソリッドトラップ */
+		/** プライムドソリッドトラップ */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-952.html
 		// SKILL_ID_PRIMED_SOLID_TRAP
 		defineSkill(SKILL_ID_PRIMED_SOLID_TRAP, function() {
-			this.name = "(×)プライムドソリッドトラップ";
+			this.name = "プライムドソリッドトラップ";
 			this.kana = "フライムトソリツトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_EARTH;
-			this.WeaponCondition = function(weapon) {
-				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
-			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				ratio += 800 + 3800 * skillLv;
-				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				ratio += 1800 * advanced_trap_lv;
+				ratio += 96 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -684,24 +682,22 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)プライムドディープブラインドトラップ */
+		/** プライムドディープブラインドトラップ */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-952.html
 		// SKILL_ID_PRIMED_DEEP_BLIND_TRAP
 		defineSkill(SKILL_ID_PRIMED_DEEP_BLIND_TRAP, function() {
-			this.name = "(×)プライムドディープブラインドトラップ";
+			this.name = "プライムドディープブラインドトラップ";
 			this.kana = "フライムトテイイフフライントトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_DARK;
-			this.WeaponCondition = function(weapon) {
-				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
-			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				ratio += 800 + 3800 * skillLv;
-				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				ratio += 1800 * advanced_trap_lv;
+				ratio += 96 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -728,24 +724,22 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)プライムドフレイムトラップ */
+		/** プライムドフレイムトラップ */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-952.html
 		// SKILL_ID_PRIMED_FLAME_TRAP
 		defineSkill(SKILL_ID_PRIMED_FLAME_TRAP, function() {
-			this.name = "(×)プライムドフレイムトラップ";
+			this.name = "プライムドフレイムトラップ";
 			this.kana = "フライムトフレイムトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_FIRE;
-			this.WeaponCondition = function(weapon) {
-				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
-			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				ratio += 800 + 3800 * skillLv;
-				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				ratio += 1800 * advanced_trap_lv;
+				ratio += 96 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -772,24 +766,22 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)プライムドスイフトトラップ */
+		/** プライムドスイフトトラップ */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-952.html
 		// SKILL_ID_PRIMED_SWIFT_TRAP
 		defineSkill(SKILL_ID_PRIMED_SWIFT_TRAP, function() {
-			this.name = "(×)プライムドスイフトトラップ";
+			this.name = "プライムドスイフトトラップ";
 			this.kana = "フライムトスイフトトラツフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_FORCE_WIND;
-			this.WeaponCondition = function(weapon) {
-				return UsedSkillSearch(SKILL_ID_PRIMED_TRAP) > 0;
-			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const advanced_trap_lv = Math.max(LearnedSkillSearch(SKILL_ID_ADVANCED_TRAP), UsedSkillSearch(SKILL_ID_ADVANCED_TRAP));
 				ratio += 800 + 3800 * skillLv;
-				ratio += 0 * advanced_trap_lv;	// TODO: アドバンスドトラップ習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
+				ratio += 1800 * advanced_trap_lv;
+				ratio += 96 * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
