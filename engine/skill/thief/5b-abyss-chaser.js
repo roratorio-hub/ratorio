@@ -22,6 +22,7 @@ import {
     SKILL_ID_HIT_AND_SLIDING, SKILL_ID_MAHOKEN_SHUREN, SKILL_ID_OMEGA_ABYSS_STRIKE, SKILL_ID_STRIP_SHADOW,
     SKILL_ID_TANKEN_YUMI_SHUREN, SKILL_ID_UNLUCKY_RUSH
 } from "../skill.dat.js";
+import { SKILL_ID_PHANTOM_DAGGER } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -815,6 +816,52 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)ファントムダガー */
+		// SKILL_ID_PHANTOM_DAGGER
+		defineSkill(SKILL_ID_PHANTOM_DAGGER, function() {
+			this.name = "(×)ファントムダガー";
+			this.kana = "ファントムタカア";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return [ITEM_KIND_KNIFE, ITEM_KIND_SWORD].includes(weapon);
+			}
+			this.hitCount = function(skillLv, option, weapon) {
+				// 3回連続攻撃が発動した場合は3ヒット
+				return (option.GetOptionValue(0) === 1) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				ratio += 3400 + 1300 * skillLv;
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 110;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
 			}
 			this.genericFormula = true;
 		}),

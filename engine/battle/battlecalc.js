@@ -552,6 +552,7 @@ import {
          SKILL_ID_ZIRAISHIN, SKILL_ID_ZYOKODO, SKILL_ID_ZYUMONZIGIRI,
          SKILL_ID_ZYURYOKU_CHOSE, SKILL_ID_ZYUTSUSHIKI_KAIHO,
 } from "../skill/skill.dat.js";
+import { SKILL_ID_VENOM_IGNITION } from "../skill/skill.dat.js";
 import { UsedSkillSearch, n_A_PassSkill4, n_A_PassSkill7, n_A_PassSkill8, ID_BUFF_MANUK_ISHI, ID_BUFF_VESPER_HONEY } from "../skill/skillstate.js";
 import { DISP_DATA_KEY_STRDEX_BONUS, g_extraInfoDataBridge } from "../ui/CExtraInfoDataBridge.js";
 // === END AUTO-GENERATED IMPORTS ===
@@ -2822,6 +2823,11 @@ export function ComputeBattleResult(retValArray) {
 		w_Cri *= 2;
 	}
 
+	// シャドウクロスの「ベナムイグニッション」状態では、クリティカル率で発生するクリティカルが発生しない
+	if (UsedSkillSearch(SKILL_ID_VENOM_IGNITION) > 0) {
+		w_Cri = 0;
+	}
+
 	// 必ずクリティカルするスキルのクリティカル率の補正
 	switch (n_A_ActiveSkill) {
 		case SKILL_ID_PINGPOINT_ATTACK:
@@ -4849,7 +4855,7 @@ export function ApplyPhysicalDamageRatio(battleCalcInfo, charaData, specData, mo
 	}
 	if (Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT)) > 0) {
 		// ファイトによる、ダメージ強化
-		let w = 20 * Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT));
+		let w = 60 * Math.max(LearnedSkillSearch(SKILL_ID_FIGHT), UsedSkillSearch(SKILL_ID_FIGHT));
 		dmg = Math.floor(dmg * (100 + w) /100);
 	}
 	if(n_B_KYOUKA[8]) {

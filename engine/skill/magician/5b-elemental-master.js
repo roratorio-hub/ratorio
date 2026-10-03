@@ -19,6 +19,13 @@ import {
     SKILL_ID_SPELL_ENCHANTING, SKILL_ID_SUMMON_ALDOR, SKILL_ID_SUMMON_DILBIO, SKILL_ID_SUMMON_PROCERA,
     SKILL_ID_SUMMON_SERPENSE, SKILL_ID_SUMMON_TELEMOTUS, SKILL_ID_TERA_DRIVE, SKILL_ID_VENOM_SWAMP
 } from "../skill.dat.js";
+import { SKILL_ID_ELEMENTAL_INTEGRATION } from "../skill.dat.js";
+import { LearnedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import {
+    SKILL_ID_BURNING_FLAME, SKILL_ID_FROZEN_HAIL, SKILL_ID_STORM_RISE, SKILL_ID_TERRA_BURST,
+    SKILL_ID_VENOM_BOMBARD
+} from "../skill.dat.js";
+import { SERE_KIND_ALDOR, SERE_KIND_DILBIO, SERE_KIND_PROCERA, SERE_KIND_SERPENSE, SERE_KIND_TELEMOTUS } from "../../const/EnumSereKind.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -166,7 +173,7 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
 				let ratio = 0;
 				// ダメージ倍率
-				if (UsedSkillSearch(SKILL_ID_SERE) == 14) { // 14: 水 ディルビオ
+				if (UsedSkillSearch(SKILL_ID_SERE) == SERE_KIND_DILBIO) {
 					// 四次精霊あり
 					ratio = 6000 + 1500 * skillLv;
 					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
@@ -236,7 +243,7 @@ export const skills = [
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaDataManger) {
 				let ratio;
-				if (UsedSkillSearch(SKILL_ID_SERE) == 15) { // 15: 風 プロセラ
+				if (UsedSkillSearch(SKILL_ID_SERE) == SERE_KIND_PROCERA) {
 					ratio = [0, 1400, 1800, 2200, 2600, 3000][skillLv];
 					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				} else {
@@ -285,7 +292,7 @@ export const skills = [
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaDataManger) {
 				let ratio;
-				if (UsedSkillSearch(SKILL_ID_SERE) == 17) { // 17: 毒 サーペンス
+				if (UsedSkillSearch(SKILL_ID_SERE) == SERE_KIND_SERPENSE) {
 					ratio = [0, 1400, 1800, 2200, 2600, 3000][skillLv];
 					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				} else {
@@ -332,7 +339,7 @@ export const skills = [
 			this.damageInterval = 300;
 			this.Power = function(skillLv, charaDataManger) {
 				let ratio;
-				if (UsedSkillSearch(SKILL_ID_SERE) == 13) { // 13: 火 アルドール
+				if (UsedSkillSearch(SKILL_ID_SERE) == SERE_KIND_ALDOR) {
 					ratio = [0, 1400, 1800, 2200, 2600, 3000][skillLv];
 					ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				} else {
@@ -358,7 +365,7 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option, mobData, weapon, parentSkillId) {
 				let ratio = 0;
 				// ダメージ倍率
-				if (UsedSkillSearch(SKILL_ID_SERE) == 16) { // 16: 地 テレモトゥス
+				if (UsedSkillSearch(SKILL_ID_SERE) == SERE_KIND_TELEMOTUS) {
 					// 四次精霊あり
 					ratio = 6000 + 1500 * skillLv;
 					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
@@ -629,23 +636,23 @@ export const skills = [
 				bMatchCond = false;
 				// 属性設定
 				switch (UsedSkillSearch(SKILL_ID_SERE)) {
-					case 13:
+					case SERE_KIND_ALDOR:
 						set_n_A_Weapon_zokusei(ELM_ID_FIRE);
 						bMatchCond = true;
 						break;
-					case 14:
+					case SERE_KIND_DILBIO:
 						set_n_A_Weapon_zokusei(ELM_ID_WATER);
 						bMatchCond = true;
 						break;
-					case 15:
+					case SERE_KIND_PROCERA:
 						set_n_A_Weapon_zokusei(ELM_ID_WIND);
 						bMatchCond = true;
 						break;
-					case 16:
+					case SERE_KIND_TELEMOTUS:
 						set_n_A_Weapon_zokusei(ELM_ID_EARTH);
 						bMatchCond = true;
 						break;
-					case 17:
+					case SERE_KIND_SERPENSE:
 						set_n_A_Weapon_zokusei(ELM_ID_POISON);
 						bMatchCond = true;
 						break;
@@ -733,6 +740,264 @@ export const skills = [
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 5000;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** エレメンタルインテグレーション */
+		// 参考 https://siarodiary.blog.fc2.com/blog-entry-950.html
+		// SKILL_ID_ELEMENTAL_INTEGRATION
+		defineSkill(SKILL_ID_ELEMENTAL_INTEGRATION, function() {
+			this.name = "エレメンタルインテグレーション";
+			this.kana = "エレメンタルインテクレエシヨン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 500;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 20 + 6 * skillLv;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 120 * 1000;
+			}
+		}),
+
+		/** バーニングフレイム */
+		// SKILL_ID_BURNING_FLAME
+		defineSkill(SKILL_ID_BURNING_FLAME, function() {
+			this.name = "バーニングフレイム";
+			this.kana = "ハアニンクフレイム";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_FIRE;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === SERE_KIND_ALDOR) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** フローズンヘイル */
+		// SKILL_ID_FROZEN_HAIL
+		defineSkill(SKILL_ID_FROZEN_HAIL, function() {
+			this.name = "フローズンヘイル";
+			this.kana = "フロオスンヘイル";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WATER;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === SERE_KIND_DILBIO) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 260;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** ストームライズ */
+		// SKILL_ID_STORM_RISE
+		defineSkill(SKILL_ID_STORM_RISE, function() {
+			this.name = "ストームライズ";
+			this.kana = "ストオムライス";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_WIND;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === SERE_KIND_PROCERA) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** テラバースト */
+		// SKILL_ID_TERRA_BURST
+		defineSkill(SKILL_ID_TERRA_BURST, function() {
+			this.name = "テラバースト";
+			this.kana = "テラハアスト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_EARTH;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === SERE_KIND_TELEMOTUS) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 260;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** ベナムボンバード */
+		// SKILL_ID_VENOM_BOMBARD
+		defineSkill(SKILL_ID_VENOM_BOMBARD, function() {
+			this.name = "ベナムボンバード";
+			this.kana = "ヘナムホンハアト";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = CSkillData.ELEMENT_FORCE_POISON;
+			this.hitCount = function(skillLv, option, weapon, parentSkillId) {
+				// 対応する上位精霊の召喚中は3回連続攻撃になる
+				return (UsedSkillSearch(SKILL_ID_SERE) === SERE_KIND_SERPENSE) ? 3 : 2;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const elemental_spirit_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_ELEMENTAL_SPIRIT_MASTERY));
+				ratio += -750 + 1500 * skillLv;
+				ratio += 675 * elemental_spirit_mastery_lv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 230;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
 			}
 			this.genericFormula = true;
 		}),

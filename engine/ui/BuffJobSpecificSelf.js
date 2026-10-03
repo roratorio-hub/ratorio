@@ -333,6 +333,7 @@ export function Click_PassSkillSW(){
 				var objSelect = document.getElementById("A_skill" + sklIdx);
 				HtmlRemoveOptionAll(objSelect);
 
+				// 添字がそのままセーブ値になる。値の一次情報は engine/const/EnumSereKind.js（並びを合わせること）
 				var w_name = [
 					"off",					// 0
 					"火Lv1","火Lv2","火Lv3",	// 1 - 3 

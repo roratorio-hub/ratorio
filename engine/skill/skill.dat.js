@@ -1444,6 +1444,41 @@ export const SKILL_ID_SAVAGE_LUNGE = 1392;
 export const SKILL_ID_GLACIER_NOVA = 1393;
 export const SKILL_ID_GROUND_BLOOM = 1394;
 export const SKILL_ID_ZEPHYR_LINK = 1395;
+export const SKILL_ID_SERVANT_WEAPON_CLEAVE = 1396;
+export const SKILL_ID_SHIELD_SLAM = 1397;
+export const SKILL_ID_WRAITH_DASH = 1398;
+export const SKILL_ID_ELEMENTAL_INTEGRATION = 1399;
+export const SKILL_ID_PRIMED_SOLID_TRAP = 1400;
+export const SKILL_ID_PRIMED_DEEP_BLIND_TRAP = 1401;
+export const SKILL_ID_PRIMED_FLAME_TRAP = 1402;
+export const SKILL_ID_PRIMED_SWIFT_TRAP = 1403;
+export const SKILL_ID_PRIMED_TRAP = 1404;
+export const SKILL_ID_FRAGMENT_BOLT = 1405;
+export const SKILL_ID_FUGUE_DES_FLECHES = 1406;
+export const SKILL_ID_LEX_EXPIATRIX = 1407;
+export const SKILL_ID_PUNITIO = 1408;
+export const SKILL_ID_DAIZEROGEKI_HATENGEKI = 1409;
+export const SKILL_ID_VENOM_IGNITION = 1410;
+export const SKILL_ID_PHANTOM_DAGGER = 1411;
+export const SKILL_ID_OVERDRIVE_PROTOCOL = 1412;
+export const SKILL_ID_RAMPANT_VINE = 1413;
+export const SKILL_ID_SHICHISEI_TENKYAKU = 1414;
+export const SKILL_ID_KORYU_ZIN = 1415;
+export const SKILL_ID_KAGE_GEKIRYU = 1416;
+export const SKILL_ID_SHINKIRO_BUNSHIN_GUNSHU = 1417;
+export const SKILL_ID_KAGE_MICHI = 1418;
+export const SKILL_ID_TACTICAL_REPOSITIONING = 1419;
+export const SKILL_ID_PLUME_PIERCER = 1420;
+export const SKILL_ID_NATURE_RAGE = 1421;
+export const SKILL_ID_WIND_CUTTER_TURBO = 1422;
+export const SKILL_ID_HIGH_MAGNUM_BREAK = 1423;
+export const SKILL_ID_DEER_HARMONY = 1424;
+export const SKILL_ID_TIGER_HARMONY = 1425;
+export const SKILL_ID_BURNING_FLAME = 1426;
+export const SKILL_ID_FROZEN_HAIL = 1427;
+export const SKILL_ID_STORM_RISE = 1428;
+export const SKILL_ID_TERRA_BURST = 1429;
+export const SKILL_ID_VENOM_BOMBARD = 1430;
 
 export const SkillObjNew = [
 		[0,1,"通常攻撃"],
@@ -2843,6 +2878,41 @@ export const SkillObjNew = [
 		[1393,1,"(△)グレイシアノヴァ","AT_GLACIER_NOVA"],
 		[1394,1,"(△)グラウンドブルーム","AT_GROUND_BLOOM"],
 		[1395,1,"ゼファーリンク","AT_ZEPHYR_LINK"],
+		[1396,5,"(×)サーヴァントウェポン：クリーブ","DK_SERVANT_W_CLEAVE"],
+		[1397,5,"(×)シールドスラム","IG_SHIELD_SLAM"],
+		[1398,3,"(×)レイスダッシュ","AG_WRAITH_DASH"],
+		[1399,5,"エレメンタルインテグレーション","EM_ELEMENTAL_INTEGRATION"],
+		[1400,5,"プライムドソリッドトラップ","WH_SOLIDTRAP_ATK"],
+		[1401,5,"プライムドディープブラインドトラップ","WH_DEEPBLINDTRAP_ATK"],
+		[1402,5,"プライムドフレイムトラップ","WH_FLAMETRAP_ATK"],
+		[1403,5,"プライムドスイフトトラップ","WH_SWIFTTRAP_ATK"],
+		[1404,1,"プライムドトラップ","WH_PRIMED_TRAP"],
+		[1405,5,"(×)フラグメントボルト","WH_FRAGMENT_BOLT"],
+		[1406,5,"(×)フーガデフレーシュ","TR_FUGUE_DES_FLECHES"],
+		[1407,5,"(×)レックスエクスピアトリクス","CD_LEX_EXPIATRIX"],
+		[1408,5,"(×)プニティオ","CD_PUNITIO"],
+		[1409,5,"(×)第零撃：破天撃","IQ_BROKENHEAVEN"],
+		[1410,5,"ベナムイグニッション","SHC_VENOMIGNITION"],
+		[1411,5,"(×)ファントムダガー","ABC_PHANTOM_DAGGER"],
+		[1412,4,"(×)オーバードライブプロトコル","MT_OVERDRIVE_PROTOCAL"],
+		[1413,5,"(×)ランパントヴァイン","BO_RAMPANT_VINE"],
+		[1414,5,"七星天脚","SKE_SEVENTH_KICK"],
+		[1415,5,"(×)黄龍陣","SOA_FIELD_OF_KIRIN"],
+		[1416,10,"(×)影激流","SS_KAGEGEKIRYU"],
+		[1417,1,"蜃気楼分身 -群集-","SS_SHINKIROU_GUNSHU"],
+		[1418,5,"影満ち","SS_NOBORU"],
+		[1419,1,"タクティカルリポジショニング","NW_TACTICAL_REPOSITIONING"],
+		[1420,5,"(×)プルームピアサー","AT_PLUME_PIERCER"],
+		[1421,5,"(×)ネイチャーレイジ","AT_NATURE_RAGE"],
+		[1422,10,"(×)ウィンドカッターターボ","HN_WIND_CUTTER_TURBO"],
+		[1423,10,"(×)ハイマグナムブレイク","HN_HIGH_MAGNUM_BREAK"],
+		[1424,1,"ディアーハーモニー","SH_KI_SUL_AND_HYUN_ROK"],
+		[1425,1,"タイガーハーモニー","SH_KI_SUL_AND_CHUL_HO"],
+		[1426,5,"バーニングフレイム","EM_BURNING_FLAME"],
+		[1427,5,"フローズンヘイル","EM_FROZEN_HAIL"],
+		[1428,5,"ストームライズ","EM_STORM_RISE"],
+		[1429,5,"テラバースト","EM_TERRA_BURST"],
+		[1430,5,"ベナムボンバード","EM_VENOM_BOMBARD"],
 
 	/*
 	データ破損せず扱える SkillID の最大値は 11bit = 2048 です

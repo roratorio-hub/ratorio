@@ -64,6 +64,7 @@ import {
     SKILL_ID_SHURASHINDAN, SKILL_ID_SNAKE_EYE, SKILL_ID_SONIC_WAVE, SKILL_ID_SORYUKYAKU, SKILL_ID_SOUL_ATTACK,
     SKILL_ID_TENRACHIMO, SKILL_ID_TRAP_KENKYU, SKILL_ID_WASHINO_ME, SKILL_ID_WIND_CUTTER
 } from "../skill/skill.dat.js";
+import { SKILL_ID_KAGE_MICHI } from "../skill/skill.dat.js";
 import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
 
 
@@ -691,6 +692,11 @@ export function ApplyGuaranteedHitUpPercent() {
 
 		/** ドルイド「エンレイジウルフ」の効果 */
 		n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 2 * UsedSkillSearch(SKILL_ID_ENRAGE_WOLF);
+
+		/** 蜃気楼・不知火「影満ち」の近接物理攻撃で与えるダメージ + 効果 */
+		if (UsedSkillSearch(SKILL_ID_KAGE_MICHI) > 0) {
+			n_tok[ITEM_SP_SHORTRANGE_DAMAGE_UP] += 20;
+		}
 
 		/**
 		 * 幻想叢書カード セイレン

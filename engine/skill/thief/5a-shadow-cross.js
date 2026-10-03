@@ -17,6 +17,7 @@ import {
     SKILL_ID_FATAL_SHADOW_CRAW, SKILL_ID_IMPACT_CRATER, SKILL_ID_POTENT_VENOM, SKILL_ID_SAVAGE_IMPACT,
     SKILL_ID_SHADOW_EXCEED, SKILL_ID_SHADOW_SENSE, SKILL_ID_SHADOW_STAB
 } from "../skill.dat.js";
+import { SKILL_ID_VENOM_IGNITION } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -425,6 +426,38 @@ export const skills = [
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.genericFormula = true;
+		}),
+
+		/** ベナムイグニッション */
+		// SKILL_ID_VENOM_IGNITION
+		defineSkill(SKILL_ID_VENOM_IGNITION, function() {
+			this.name = "ベナムイグニッション";
+			this.kana = "ヘナムイクニツシヨン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 20 + 6 * skillLv;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 120 * 1000;
+			}
 		}),
 
 ];

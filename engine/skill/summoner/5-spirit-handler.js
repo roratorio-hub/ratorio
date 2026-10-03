@@ -19,6 +19,7 @@ import {
     SKILL_ID_SANREI_ITTAI, SKILL_ID_SPIRIT_MASTERY, SKILL_ID_TIGER_HOWLING, SKILL_ID_TIGER_SLASH,
     SKILL_ID_TIGER_STRIKE, SKILL_ID_TURTLE_SPRINKLER
 } from "../skill.dat.js";
+import { SKILL_ID_DEER_HARMONY, SKILL_ID_TIGER_HARMONY } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -199,7 +200,12 @@ export const skills = [
 				// POW補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				// ベースレベル補正
-				return Math.floor(ratio * n_A_BaseLV / 100);				
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// タイガーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_TIGER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;				
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 100;
@@ -406,7 +412,12 @@ export const skills = [
 				// SPL補正
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// ベースレベル補正
-				return Math.floor(ratio * n_A_BaseLV / 100);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// ディアーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_DEER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {
 				return 110;
@@ -624,7 +635,12 @@ export const skills = [
 				ratio += 1475 + 325 * skillLv;
 				ratio += 15 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// Pow係数未検証
 				ratio += 75 * spirit_mastery_lv;	// 修練係数未検証
-				return Math.floor(ratio * n_A_BaseLV / 100);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// タイガーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_TIGER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 170;
@@ -674,7 +690,12 @@ export const skills = [
 				ratio += 2650 + 650 * skillLv;
 				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数未検証
 				ratio += 180 * spirit_mastery_lv;	// 修練係数未検証
-				return Math.floor(ratio * n_A_BaseLV / 100);
+				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				// ディアーハーモニー状態の場合、与えるダメージ + 50%
+				if (UsedSkillSearch(SKILL_ID_DEER_HARMONY) > 0) {
+					ratio = Math.floor(ratio * 1.5);
+				}
+				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 170;
@@ -706,6 +727,70 @@ export const skills = [
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.genericFormula = true;
+		}),
+
+		/** ディアーハーモニー */
+		// SKILL_ID_DEER_HARMONY
+		defineSkill(SKILL_ID_DEER_HARMONY, function() {
+			this.name = "ディアーハーモニー";
+			this.kana = "テイアアハアモニイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
+			}
+		}),
+
+		/** タイガーハーモニー */
+		// SKILL_ID_TIGER_HARMONY
+		defineSkill(SKILL_ID_TIGER_HARMONY, function() {
+			this.name = "タイガーハーモニー";
+			this.kana = "タイカアハアモニイ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 50;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
+			}
 		}),
 
 ];

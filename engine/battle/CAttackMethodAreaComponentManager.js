@@ -100,6 +100,11 @@ import {
          SKILL_ID_TENSE, SKILL_ID_TERRA_HARVEST, SKILL_ID_TERRA_WAVE, SKILL_ID_THUNDERING_CALL,
          SKILL_ID_THUNDERING_FOCUS, SKILL_ID_THUNDERING_ORB,
 } from "../skill/skill.dat.js";
+import {
+         SKILL_ID_DAIZEROGEKI_HATENGEKI, SKILL_ID_FUGUE_DES_FLECHES, SKILL_ID_KORYU_ZIN,
+         SKILL_ID_LEX_EXPIATRIX, SKILL_ID_OVERDRIVE_PROTOCOL, SKILL_ID_PHANTOM_DAGGER,
+         SKILL_ID_PLUME_PIERCER, SKILL_ID_RAMPANT_VINE, SKILL_ID_SHICHISEI_TENKYAKU,
+} from "../skill/skill.dat.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: engine-registry（CSaveController.js との循環 import 回避）
 import { get as registryGet } from "../runtime/engine-registry.js";
@@ -3977,6 +3982,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			case SKILL_ID_SHIHO_GOGYO_ZIN:
 			case SKILL_ID_REIDO_FU:
 			case SKILL_ID_SHIRYO_ZYOKA:
+			case SKILL_ID_KORYU_ZIN:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"暖かい風",
 					[
@@ -4058,8 +4064,96 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			 * リズミカルウェーブ
 			 */
 			case SKILL_ID_RHYTHMICAL_WAVE:
+			case SKILL_ID_FUGUE_DES_FLECHES:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"ミスティックシンフォニー状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * レックスエクスピアトリクス
+			 */
+			case SKILL_ID_LEX_EXPIATRIX:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"アンシラ状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"コンペテンティア状態",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * 第零撃：破天撃
+			 */
+			case SKILL_ID_DAIZEROGEKI_HATENGEKI:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"状態",
+					[
+						[0, "第一章：信念の力"],
+						[1, "第二章：審判者"],
+						[2, "最終章：滅魔の炎"],
+					],
+					0
+				);
+				break;
+			/**
+			 * ファントムダガー
+			 */
+			case SKILL_ID_PHANTOM_DAGGER:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"3回連続攻撃",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * オーバードライブプロトコル
+			 */
+			case SKILL_ID_OVERDRIVE_PROTOCOL:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ABR インフィニティ召喚中",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * ランパントヴァイン
+			 */
+			case SKILL_ID_RAMPANT_VINE:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"クリーパー召喚中",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				break;
+			/**
+			 * 七星天脚
+			 */
+			case SKILL_ID_SHICHISEI_TENKYAKU:
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"七星天脚真状態",
 					[
 						[0, "無し"],
 						[1, "有り"],
@@ -4186,6 +4280,7 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			case SKILL_ID_PINION_SHOT:
 			case SKILL_ID_QUILL_SPEAR:
 			case SKILL_ID_TEMPEST_FLAP:
+			case SKILL_ID_PLUME_PIERCER:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"エイペックスフェーズ",
 					[

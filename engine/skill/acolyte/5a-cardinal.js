@@ -20,6 +20,7 @@ import {
     SKILL_ID_FIDOS_ANIMUS, SKILL_ID_MEDIA_REBOTUM, SKILL_ID_NUMATIC_PROCERA, SKILL_ID_PETITIO,
     SKILL_ID_PETITIO_LEARNED, SKILL_ID_PHREMEN, SKILL_ID_PRESENSE_AKYACE, SKILL_ID_REPARATIO, SKILL_ID_RERIGIO
 } from "../skill.dat.js";
+import { SKILL_ID_LEX_EXPIATRIX, SKILL_ID_PUNITIO } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -688,6 +689,108 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)レックスエクスピアトリクス */
+		// SKILL_ID_LEX_EXPIATRIX
+		defineSkill(SKILL_ID_LEX_EXPIATRIX, function() {
+			this.name = "(×)レックスエクスピアトリクス";
+			this.kana = "レツクスエクスヒアトリクス";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_MAGIC;
+			this.element = function(option) {
+				// アンシラ状態の場合は無属性になる
+				if (option.GetOptionValue(0) === 1) {
+					return CSkillData.ELEMENT_FORCE_VANITY;
+				}
+				return CSkillData.ELEMENT_FORCE_HOLY;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const state_competentia = option.GetOptionValue(1) === 1;
+				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
+				ratio += 250 + 1750 * skillLv;
+				// コンペテンティア状態でない場合は 3/4 倍
+				if (!state_competentia) {
+					ratio = ratio * 3 / 4;
+				}
+				ratio += 0 * fidos_animus_lv;	// TODO: フィドスアニムス習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 250;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 5500 + 800 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 5000;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)プニティオ */
+		// SKILL_ID_PUNITIO
+		defineSkill(SKILL_ID_PUNITIO, function() {
+			this.name = "(×)プニティオ";
+			this.kana = "フニテイオ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = function(weapon) {
+				// 鈍器装備時は遠距離物理攻撃になる
+				return (weapon === ITEM_KIND_CLUB) ? CSkillData.RANGE_LONG : CSkillData.RANGE_SHORT;
+			}
+			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const donki_hon_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_DONKI_HON_SHUREN), UsedSkillSearch(SKILL_ID_DONKI_HON_SHUREN));
+				ratio += 1050 * skillLv;
+				ratio += 0 * donki_hon_shuren_lv;	// TODO: 鈍器＆本修練習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 210;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.genericFormula = true;
 		}),

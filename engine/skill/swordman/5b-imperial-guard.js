@@ -23,6 +23,7 @@ import {
     SKILL_ID_REBOUND_SHIELD, SKILL_ID_SHIELD_SHOOTING, SKILL_ID_SHIELD_SHOOTING_STATE, SKILL_ID_TATE_SHUREN,
     SKILL_ID_ULTIMATE_SACRIFICE, SKILL_ID_YARI_KATATE_KEN_SHUREN
 } from "../skill.dat.js";
+import { SKILL_ID_SHIELD_SLAM } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -716,6 +717,56 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return 0;
 				// return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)シールドスラム */
+		// SKILL_ID_SHIELD_SLAM
+		defineSkill(SKILL_ID_SHIELD_SLAM, function() {
+			this.name = "(×)シールドスラム";
+			this.kana = "シイルトスラム";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = function(weapon) {
+				// ホーリーシールド状態の場合は遠距離物理攻撃になる
+				if (UsedSkillSearch(SKILL_ID_HOLY_SHIELD) > 0) {
+					return CSkillData.RANGE_LONG;
+				}
+				return CSkillData.RANGE_SHORT;
+			}
+			this.element = CSkillData.ELEMENT_VOID;
+			this.WeaponCondition = function(weapon) {
+				return n_A_Equip[EQUIP_REGION_ID_SHIELD] !== ITEM_ID_NOEQUIP_SHIELD;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const tate_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
+				ratio += -400 + 1400 * skillLv;
+				ratio += 0 * tate_shuren_lv;	// TODO: 盾修練習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 290;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
 			}
 			this.genericFormula = true;
 		}),
