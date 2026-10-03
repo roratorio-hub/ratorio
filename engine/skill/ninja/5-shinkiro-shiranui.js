@@ -84,15 +84,15 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
-			this.hitCount = 4;
+			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {
 				let ratio = 0;
 				// 影の舞の習得Lv
 				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), option.GetOptionValue(0));
 				// ダメージ倍率
-				ratio = 500 + 50 * skillLv;				// 基礎倍率
-				ratio += 5 * skillLv * kage_no_mai_lv;	// 修練係数 検証済み
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 特性ステータス補正
+				ratio = 2500 + 100 * skillLv;				// 基礎倍率
+				ratio += 5 * skillLv * kage_no_mai_lv;	// TODO: 2026-10-03 係数未調査
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
 				return Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

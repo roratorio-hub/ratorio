@@ -337,12 +337,12 @@ export const skills = [
 				// 基本倍率
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 					// サウンドブレンド 有り
-					ratio = 4000 + 1000 * skillLv;
-					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
+					ratio = 4750 + 1750 * skillLv;
+					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
 				} else {
 					// サウンドブレンド 無し
-					ratio = 1250 + 350 * skillLv;
-					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
+					ratio = 3000 + 1500 * skillLv;
+					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
 				}
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -738,11 +738,11 @@ export const skills = [
 				const state_mystic_symphony = Math.max(UsedSkillSearch(SKILL_ID_MYSTIC_SYMPHONY), option.GetOptionValue(0));
 				const stage_manner_lv = Math.max(UsedSkillSearch(SKILL_ID_STAGE_MANNER), LearnedSkillSearch(SKILL_ID_STAGE_MANNER));
 				if (state_mystic_symphony === 1) {
-					ratio += 4000 + 1000 * skillLv;
-					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数 検証済み
+					ratio += 4750 + 1750 * skillLv;
+					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
 				} else {
-					ratio += 2250 + 750 * skillLv;
-					ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// Spl係数 検証済み
+					ratio += 4000 + 1000 * skillLv;
+					ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}

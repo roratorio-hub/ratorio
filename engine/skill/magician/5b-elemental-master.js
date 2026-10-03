@@ -89,19 +89,19 @@ export const skills = [
 				return 170;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return [0, 60, 80, 110, 150, 200][skillLv];
+				return 0;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 2000;
 			}
 			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
-				return 500 + 200 * skillLv;
+				return 500;
 			}
 			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
 				return 3000;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 5000;
+				return 3000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;

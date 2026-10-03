@@ -262,11 +262,9 @@ export const skills = [
 				return CSkillData.RANGE_SHORT;
 			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
-				// Lv1 で +35 の誤差があるが Lv2 は誤差ゼロ
-				// スキル倍率とは異なる根本的な計算部分で誤差が生じている可能性がある
 				let ratio = 0;
-				ratio = 600 + 150 * skillLv;
-				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = 1000 + 500 * skillLv;
+				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -387,6 +385,7 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: シャドウエクシード状態はスキル倍率のみに影響するため職固有自己支援から攻撃オプションへ移行する
@@ -420,7 +419,7 @@ export const skills = [
 				return 10 * 1000;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;

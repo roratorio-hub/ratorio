@@ -329,7 +329,7 @@ export const skills = [
 				return 5000;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 60 * 1000;
+				return 120 * 1000;
 			}
 		}),
 

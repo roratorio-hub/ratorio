@@ -900,7 +900,7 @@ export const skills = [
 			}
 
 			this.CoolTime = function(skillLv, charaDataManger) {
-				return -2;
+				return 15 * 1000;
 			}
 
 		}),
