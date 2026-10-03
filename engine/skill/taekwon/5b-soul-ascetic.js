@@ -655,11 +655,12 @@ export const skills = [
 				// 四方五行陣状態の場合はより大きなダメージを与える
 				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
 					ratio += 3100 + 2100 * skillLv;
+					ratio += 68 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				} else {
 					ratio += -300 + 1400 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
-				ratio += 0 * gofu_shuren_lv;	// TODO: 護符修練習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				ratio += 680 * gofu_shuren_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
