@@ -467,14 +467,20 @@ class Dat:
         return f'{kind}:{abs(sid)} {nm}'
 
     def find_set(self, base: Rec, partner_specs: list):
-        partners = sorted(self.signed(self.resolve_entity(p, 'set_with')) for p in partner_specs)
+        """base と partner_specs の組み合わせを条件とするセットを探す。
+
+        セットは「装備の組み合わせ」なので、w_SE 上でどちらが本体の位置にあるかは問わない
+        （例: 時間のサークレットのセットはエンチャント側が本体の位置にある）。
+        """
         base_id = self.signed(base)
-        hits = [s for s in self.sets if s.base == base_id and sorted(s.partners) == partners]
+        wanted = sorted([base_id] + [self.signed(self.resolve_entity(p, 'set_with')) for p in partner_specs])
+        hits = [s for s in self.sets if sorted([s.base] + s.partners) == wanted]
         if len(hits) != 1:
-            near = [s for s in self.sets if s.base == base_id]
-            hint = '; '.join(f'セット{s.rec_id}=[{", ".join(self.display(x) for x in s.partners)}]' for s in near)
+            near = [s for s in self.sets if base_id in [s.base] + s.partners]
+            hint = '; '.join(f'セット{s.rec_id}=[{", ".join(self.display(x) for x in [s.base] + s.partners)}]'
+                             for s in near)
             raise PatchError(f'セット条件に一致する w_SE が {len(hits)} 件です。'
-                             f'本体 {self.display(base_id)} のセット: {hint or "なし"}')
+                             f'{self.display(base_id)} を含むセット: {hint or "なし"}')
         rec = self.rec_by_signed(hits[0].rec_id)
         if rec is None or rec.problem:
             raise PatchError(f'セットレコード {hits[0].rec_id} を読めません')
@@ -569,7 +575,8 @@ def plan_entry(dat: Dat, entry: dict, engine_dir: str | None = None) -> EntryRes
     target, target_label = base, f'{base.kind} {base.id}'
     if entry.get('set_with'):
         target, sdef = dat.find_set(base, entry['set_with'])
-        partners = ', '.join(dat.display(x) for x in sdef.partners)
+        others = [x for x in [sdef.base] + sdef.partners if x != dat.signed(base)]
+        partners = ', '.join(dat.display(x) for x in others)
         target_label = f'{base.kind} {base.id} のセット[{partners}] → {target.kind} {target.id}'
         label += ' + ' + '/'.join(str(next(iter(p.values()))) for p in entry['set_with'])
     res = EntryResult(label, target_label)

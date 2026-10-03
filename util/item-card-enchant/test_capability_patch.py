@@ -32,6 +32,8 @@ export const CardObjNew = [
 	[12,99,"相手",,"",0],
 	[13,99,"別カード","ベツ","説明, カンマ入り [x]",262,15,0],
 	[20,100,0,"","古い説明",0],
+	[15,100,0,"","",0],
+	[16,99,"逆相手",,"",0],
 ];
 CardObjNew[14] = [14,100,0,"","",0];
 '''
@@ -42,6 +44,7 @@ ITEMSET_TEXT = '''export const w_SE = [
 	[-20,-13,-12],
 ];
 w_SE[5] = [101,100,-12,];
+w_SE[6] = [-15,-16,100,];
 ItemIdToSetIdMap[100] = [5,];
 '''
 
@@ -204,6 +207,22 @@ class PlanTest(unittest.TestCase):
         results, new = self.apply(make_dat(), [entry])
         self.assertIn('item 101', results[0].target)
         self.assertIn('[101,100,0,0,0,0,0,0,0,0,"",6291,1,0]', new['item'])
+
+    def test_セットは本体と相手の位置が逆でも見つかる(self):
+        # w_SE[6] は card 16 が本体の位置、item 100 が相手の位置にある
+        entry = {'item_name': 'テストアーマー', 'set_with': [{'card_name': '逆相手'}],
+                 'capabilities': [cap('ワイルドウォーク', 1)]}
+        results, new = self.apply(make_dat(), [entry])
+        self.assertIn('card 15', results[0].target)
+        self.assertIn('[15,100,0,"","",6291,1,0]', new['card'])
+
+    def test_同じ組み合わせのセットが複数あると曖昧としてエラー(self):
+        dup = ITEMSET_TEXT.replace('w_SE[6] = [-15,-16,100,];', 'w_SE[6] = [-15,-12,100,];')
+        dat = cp.Dat(ITEM_TEXT, CARD_TEXT, dup, SKILL_TEXT)
+        _, errors = cp.plan_all(dat, [{'item_name': 'テストアーマー', 'set_with': [{'card_name': '相手'}],
+                                       'capabilities': [cap('ワイルドウォーク')]}], None)
+        self.assertEqual(len(errors), 1)
+        self.assertIn('2 件', errors[0])
 
     def test_説明文を差し替える(self):
         entry = {'card_name': 'テスト潜在', 'set_with': [{'card_name': '相手'}], 'desc': '新しい説明'}
