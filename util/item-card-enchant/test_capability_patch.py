@@ -205,6 +205,20 @@ class PlanTest(unittest.TestCase):
         _, new = self.apply(make_dat(), [entry])
         self.assertIn('243, 7,24046,3,24291,3,0]', new['item'])
 
+    def test_レコードにあってYAMLに無い同種の能力を報告する(self):
+        entry = {'item_name': 'テストアーマー', 'capabilities': [cap('ワイルドウォーク', 1, per_lv=10)]}
+        results, new = self.apply(make_dat(), [entry])
+        self.assertEqual(len(results[0].extras), 1)
+        self.assertIn('ホークブーメラン', results[0].extras[0])
+        self.assertIn('100000000006046,1,', new['item'])      # 報告のみで消さない
+        self.assertEqual(results[0].status, '追加')
+
+    def test_別の種類の能力は照合の対象にしない(self):
+        entry = {'item_name': 'テストアーマー', 'capabilities': [
+            {'name': 'スキル消費SP固定値減少', 'skill': 'ワイルドウォーク', 'value': 3}]}
+        results, _ = self.apply(make_dat(), [entry])
+        self.assertEqual(results[0].extras, [])
+
     def test_新しい行かどうかを区別する(self):
         entry = {'item_name': 'テストアーマー', 'capabilities': [
             cap('ワイルドウォーク', 1, per_lv=10), cap('ワイルドウォーク', 5, at_refine=7)]}

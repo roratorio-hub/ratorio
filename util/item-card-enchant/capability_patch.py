@@ -553,6 +553,7 @@ class EntryResult:
     skipped: list = field(default_factory=list)
     conflicts: list = field(default_factory=list)
     newlines: list = field(default_factory=list)
+    extras: list = field(default_factory=list)
     warns: list = field(default_factory=list)
     desc_change: tuple | None = None
     explain_change: tuple | None = None
@@ -634,6 +635,13 @@ def plan_entry(dat: Dat, entry: dict, engine_dir: str | None = None) -> EntryRes
             res.added.append(shown)
             if line_key(code) not in existing_lines:
                 res.newlines.append(shown)
+
+    # YAML に書いた種類（スキルを対象にとる能力）と同じ種類で、YAML に無いのにレコードにある行
+    families = {split_family(code % 100000)[0] for code in seen_codes} - {None}
+    for c in existing:
+        family, _ = split_family(c.code % 100000)
+        if family in families and c.code not in seen_codes:
+            res.extras.append(format_cap_yaml(c.code, c.value, dat.skills).replace('\n  ', ' / ').lstrip('- '))
 
     if insert:
         pos = caps_rec.terminator.start
@@ -743,6 +751,8 @@ def print_results(results: list[EntryResult], verbose: bool = False) -> None:
             print(f'    ! {s}')
         for s in r.newlines:
             print(f'    * 新しい行（同じ条件の同種の能力が未登録）: {s}')
+        for s in r.extras:
+            print(f'    ? レコードにあって YAML に無い（公式の記載から消えた古い行、または読み落とし）: {s}')
         if r.desc_change:
             print(f'    ~ 説明文: {r.desc_change[0]!r} → {r.desc_change[1]!r}')
         if r.explain_change:
@@ -753,6 +763,9 @@ def print_results(results: list[EntryResult], verbose: bool = False) -> None:
     n_conf = sum(len(r.conflicts) for r in results)
     n_desc = sum(1 for r in results if r.desc_change or r.explain_change)
     n_changed = sum(1 for r in results if r.changed)
+    n_extra = sum(len(r.extras) for r in results)
+    if n_extra:
+        print(f'--- ? レコードにあって YAML に無い行: {n_extra}件（書き換えない。要確認）---')
     print(f'--- {len(results)}件中 {n_changed}件を変更（能力 +{n_add}、説明文 {n_desc}件）、'
           f'値の食い違い {n_conf}件、変更なし {sum(1 for r in results if not r.changed)}件 ---')
 
