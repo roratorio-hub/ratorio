@@ -1,165 +1,87 @@
 patch_list:
-- card_name: 潜在解放(アビスチェイサーVII)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [アビスダガー, デフトスタブ, チェイシングブレイク]
-    value: 100
-- card_name: 潜在解放(アビスチェイサーXX)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [デフトスタブ, ファントムダガー]
-    value: 100
-- card_name: 潜在解放(アリテアIII)
+- card_name: 潜在解放(アリテアI)
   set_with:
   - {card_name: 真理の解放}
   capabilities:
-  - name: 再使用待機時間減少
-    skills: [ロアリングピアサー, ネイチャーレイジ]
-    value: 300
-  - name: 再使用待機時間減少
-    skills: [ロアリングチャージ]
+  - name: スキル固定詠唱ミリ秒減少
+    skills: [グレイシアモノリス, グレイシアシャード, グレイシアストンプ, チリングブラスト, ロアリングピアサー, ロアリングチャージ, フューリアスストーム, テラウェーブ, テラハーベスト, ソリッドストンプ, グラビティホール, ネイチャーレイジ]
     value: 500
-- card_name: 潜在解放(アリテアIV)
-  set_with:
-  - {card_name: 真理の解放}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [ロアリングピアサー, ネイチャーレイジ]
-    value: 200
-  - name: 再使用待機時間減少
-    skills: [ロアリングチャージ]
-    value: 500
-- card_name: 潜在解放(アリテアV)
-  set_with:
-  - {card_name: 真理の解放}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [フューリアスストーム, グラビティホール]
-    value: 100
-- card_name: 潜在解放(アリテアXI)
+- card_name: 潜在解放(ウィンドホークI)
   set_with:
   - {card_name: 豪傑}
   capabilities:
-  - name: 再使用待機時間減少
-    skills: [ピニオンショット, クイールスピア]
-    value: 300
-  - name: 再使用待機時間減少
-    skills: [プルームピアサー]
-    value: 100
-- card_name: 潜在解放(アリテアXII)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [ピニオンショット]
-    value: 200
-  - name: 再使用待機時間減少
-    skills: [プルームピアサー]
-    value: 100
-- card_name: 潜在解放(アリテアXVII)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [クイールスピア]
-    value: 200
-  - name: 再使用待機時間減少
-    skills: [プルームピアサー]
-    value: 100
-- card_name: 潜在解放(アリテアXVIII)
-  set_with:
-  - {card_name: 真理の解放}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [フューリアスストーム, グラビティホール]
-    value: 200
-- card_name: 潜在解放(アリテアXXII)
-  set_with:
-  - {card_name: 真理の解放}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [フューリアスストーム, グラビティホール]
-    value: 100
-- card_name: 潜在解放(ウィンドホークIV)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
+  - name: スキル固定詠唱ミリ秒減少
     skills: [クレッシブボルト, ゲイルストーム, フラグメントボルト]
-    value: 100
-- card_name: 潜在解放(ウィンドホークVI)
+    value: 500
+- card_name: 潜在解放(ウィンドホークVII)
   set_with:
   - {card_name: 豪傑}
   capabilities:
-  - name: 再使用待機時間減少
-    skills: [クレッシブボルト, フラグメントボルト]
-    value: 100
-- card_name: 潜在解放(ウィンドホークXII)
+  - name: スキル固定詠唱ミリ秒減少
+    skills: [フレイムトラップ, スイフトトラップ, ソリッドトラップ, ディープブラインドトラップ]
+    value: 1500
+- card_name: 潜在解放(ウィンドホークVIII)
   set_with:
   - {card_name: 豪傑}
   capabilities:
-  - name: 再使用待機時間減少
-    skills: [ディープブラインドトラップ]
-    value: 2000
-  - name: 再使用待機時間減少
+  - name: スキル固定詠唱ミリ秒減少
     skills: [プライムドフレイムトラップ, プライムドスイフトトラップ, プライムドソリッドトラップ, プライムドディープブラインドトラップ]
-    value: 100
-- card_name: 潜在解放(ウィンドホークXIII)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [フレイムトラップ]
-    value: 2000
-  - name: 再使用待機時間減少
-    skills: [プライムドフレイムトラップ, プライムドスイフトトラップ, プライムドソリッドトラップ, プライムドディープブラインドトラップ]
-    value: 100
-- card_name: 潜在解放(ウィンドホークXIV)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [ゲイルストーム, フラグメントボルト]
-    value: 100
-- card_name: 潜在解放(ウィンドホークXVIII)
-  set_with:
-  - {card_name: 豪傑}
-  capabilities:
-  - name: 再使用待機時間減少
-    skills: [ソリッドトラップ]
-    value: 2000
-  - name: 再使用待機時間減少
-    skills: [プライムドフレイムトラップ, プライムドスイフトトラップ, プライムドソリッドトラップ, プライムドディープブラインドトラップ]
-    value: 100
-- card_name: 潜在解放(カーディナルXX)
+    value: 500
+- card_name: 潜在解放(カーディナルXVI)
   set_with:
   - {card_name: 真理の解放}
   capabilities:
-  - name: 再使用待機時間減少
+  - name: スキル固定詠唱ミリ秒減少
     skills: [ディヴィヌスフロス, レックスエクスピアトリクス]
-    value: 200
-- card_name: 潜在解放(カーディナルXXI)
+    value: 500
+- card_name: 潜在解放(カーディナルXVII)
   set_with:
   - {card_name: 真理の解放}
   capabilities:
-  - name: 再使用待機時間減少
+  - name: スキル固定詠唱ミリ秒減少
     skills: [ディヴィヌスフロス, レックスエクスピアトリクス]
-    value: 300
-- card_name: 潜在解放(バイオロXII)
+    value: 1000
+- card_name: 潜在解放(カーディナルXXII)
+  set_with:
+  - {card_name: 真理の解放}
+  time_effect: 潜在解放(カーディナルXXII)
+  capabilities:
+  - name: スキル固定詠唱割合減少
+    skills: [アルビトリウム, ニューマティックプロセラ, フレーメン, ディヴィヌスフロス, レックスエクスピアトリクス]
+    value: 100
+  desc: 魔法攻撃命中時、一定確率で20秒間、[アルビトリウム]、[ニューマティックプロセラ]、[フレーメン]、[ディヴィヌスフロス]、[レックスエクスピアトリクス]の固定詠唱時間 -100%
+  time_explain: 20秒間、[アルビトリウム]、[ニューマティックプロセラ]、[フレーメン]、[ディヴィヌスフロス]、[レックスエクスピアトリクス]の固定詠唱時間 -100%
+- card_name: 潜在解放(ソウルアセティックXVII)
+  set_with:
+  - {card_name: 真理の解放}
+  time_effect: 潜在解放(ソウルアセティックXVII)
+  capabilities:
+  - name: スキル固定詠唱割合減少
+    skills: [青龍符, 白虎符, 朱雀符, 玄武符, 四方神符, 死霊浄化, 四方五行陣, 黄龍陣]
+    value: 100
+  desc: 魔法攻撃命中時、一定確率で20秒間、[青龍符]、[白虎符]、[朱雀符]、[玄武符]、[四方神符]、[死霊浄化]、[四方五行陣]、[黄龍陣]の固定詠唱時間 -100%
+  time_explain: 20秒間、[青龍符]、[白虎符]、[朱雀符]、[玄武符]、[四方神符]、[死霊浄化]、[四方五行陣]、[黄龍陣]の固定詠唱時間 -100%
+- card_name: 潜在解放(バイオロVI)
   set_with:
   - {card_name: 豪傑}
   capabilities:
-  - name: 再使用待機時間減少
+  - name: スキル固定詠唱ミリ秒減少
+    skills: [メイヘミックソーンズ, ランパントヴァイン]
+    value: 500
+- card_name: 潜在解放(バイオロXIX)
+  set_with:
+  - {card_name: 豪傑}
+  time_effect: 潜在解放(バイオロXIX)
+  capabilities:
+  - name: スキル固定詠唱割合減少
     skills: [メイヘミックソーンズ, ランパントヴァイン]
     value: 100
-- card_name: 潜在解放(バイオロXIII)
+  desc: 物理攻撃命中時、一定確率で20秒間、[メイヘミックソーンズ]、[ランパントヴァイン]の固定詠唱時間 -100%
+  time_explain: 20秒間、[メイヘミックソーンズ]、[ランパントヴァイン]の固定詠唱時間 -100%
+- card_name: 潜在解放(マイスターVII)
   set_with:
   - {card_name: 豪傑}
   capabilities:
-  - name: 再使用待機時間減少
-    skills: [メイヘミックソーンズ, ランパントヴァイン]
-    value: 200
+  - name: スキル固定詠唱ミリ秒減少
+    skills: [スパークブラスター, トリプルレーザー, エナジーキャノネード, 攻撃装置有効化, オーバードライブプロトコル]
+    value: 500
