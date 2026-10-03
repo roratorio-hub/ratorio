@@ -94,7 +94,7 @@ python3 capability_patch.py verify              # 全部入っているか確認
 | `?` | レコードにあるのに YAML に書かれていない同種の能力。公式の記載から消えた古い行か、YAML の書き漏らし。書き換えないので確認する |
 | `⚠` | `engine/` のコードでもそのアイテム・カードを参照している |
 
-書き込むのは `item.dat.js` と `card.dat.js` だけです  
+書き込むのは `item.dat.js` と `card.dat.js`、`time_effect` を指定したときの `timeitem.dat.js` だけです  
 スキル名は `skill.dat.js` に登録されている名前（`(×)` などの接頭辞を除いたもの）で指定します  
 同じ名前のスキルが複数ある場合や、存在しないスキル名はエラーになります  
 

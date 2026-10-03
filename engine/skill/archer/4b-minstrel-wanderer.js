@@ -884,7 +884,7 @@ export const skills = [
 			this.element = CSkillData.ELEMENT_VOID;
 
 			this.CostFixed = function(skillLv, charaDataManger) {
-				return 40 + 10 * skillLv;
+				return 70 + 10 * skillLv;
 			}
 
 			this.CastTimeVary = function(skillLv, charaDataManger) {

@@ -48,10 +48,10 @@ const TABLE: Row[] = [
     ['SHIELD_SLAM', '(×)シールドスラム', 5, 290, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
     ['WRAITH_DASH', '(×)レイスダッシュ', 3, 400, same(3, 0), same(3, 0), same(3, 2000), same(3, 1000), same(3, 500), 0],
     ['ELEMENTAL_INTEGRATION', 'エレメンタルインテグレーション', 5, 500, AP_BUFF, same(5, 1000), same(5, 0), same(5, 500), same(5, 500), 120000],
-    ['PRIMED_SOLID_TRAP', '(×)プライムドソリッドトラップ', 5, 150, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['PRIMED_DEEP_BLIND_TRAP', '(×)プライムドディープブラインドトラップ', 5, 210, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['PRIMED_FLAME_TRAP', '(×)プライムドフレイムトラップ', 5, 170, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['PRIMED_SWIFT_TRAP', '(×)プライムドスイフトトラップ', 5, 170, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['PRIMED_SOLID_TRAP', 'プライムドソリッドトラップ', 5, 150, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['PRIMED_DEEP_BLIND_TRAP', 'プライムドディープブラインドトラップ', 5, 210, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['PRIMED_FLAME_TRAP', 'プライムドフレイムトラップ', 5, 170, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['PRIMED_SWIFT_TRAP', 'プライムドスイフトトラップ', 5, 170, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['PRIMED_TRAP', 'プライムドトラップ', 1, 350, [50], [1000], [0], [500], [500], 60000],
     ['FRAGMENT_BOLT', '(×)フラグメントボルト', 5, 210, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['FUGUE_DES_FLECHES', '(×)フーガデフレーシュ', 5, 230, same(5, 0), same(5, 1500), lv5((l) => 500 + 500 * l), lv5((l) => 1000 * l), same(5, 500), 0],
@@ -62,7 +62,7 @@ const TABLE: Row[] = [
     ['PHANTOM_DAGGER', '(×)ファントムダガー', 5, 110, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
     ['OVERDRIVE_PROTOCOL', '(×)オーバードライブプロトコル', 4, 250, same(4, 0), same(4, 1500), range(4, (l) => 2000 + 500 * l), range(4, (l) => 1000 + 1000 * l), same(4, 500), 0],
     ['RAMPANT_VINE', '(×)ランパントヴァイン', 5, 170, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['SHICHISEI_TENKYAKU', '(×)七星天脚', 5, 230, same(5, 5), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
+    ['SHICHISEI_TENKYAKU', '七星天脚', 5, 230, same(5, 5), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
     ['KORYU_ZIN', '(×)黄龍陣', 5, 300, same(5, 5), same(5, 500), same(5, 1000), same(5, 500), same(5, 500), 0],
     ['KAGE_GEKIRYU', '(×)影激流', 10, 190, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
     ['SHINKIRO_BUNSHIN_GUNSHU', '蜃気楼分身 -群集-', 1, 320, [25], [1000], [0], [0], [500], 60000],
@@ -205,15 +205,14 @@ describe('2026-09 追加スキルの距離・属性・使用条件・ヒット�
         expect(sm.GetSkillRange(id('PUNITIO'), K.ITEM_KIND_SWORD)).toBe(CSkillData.RANGE_SHORT);
         expect(sm.GetSkillRange(id('PUNITIO'), K.ITEM_KIND_CLUB)).toBe(CSkillData.RANGE_LONG);
     });
-    it('プライムド4種: 属性固定・プライムドトラップ状態が使用条件', () => {
+    it('プライムド4種: 属性固定・プライムドトラップ状態に関係なく使える', () => {
+        // プライムドトラップ状態は計算に影響しない単純なスイッチなので、使用条件にはしない（計算機の利便性を優先）
         const elm = { SOLID: 'EARTH', DEEP_BLIND: 'DARK', FLAME: 'FIRE', SWIFT: 'WIND' } as Record<string, string>;
         for (const [k, e] of Object.entries(elm)) {
             const c = `PRIMED_${k}_TRAP`;
             expect(sm.GetElement(id(c), null, null, undefined), c).toBe(CSkillData['ELEMENT_FORCE_' + e]);
-            expect(sm.dataArray[id(c)].WeaponCondition(0), c).toBe(false);
+            expect(sm.dataArray[id(c)].WeaponCondition(0), c).toBe(true);
         }
-        Used[S.SKILL_ID_PRIMED_TRAP] = 1;
-        expect(sm.dataArray[id('PRIMED_SOLID_TRAP')].WeaponCondition(0)).toBe(true);
     });
     it('フラグメントボルト: 弓かつプライムドトラップ状態が使用条件・3分割', () => {
         const d = sm.dataArray[id('FRAGMENT_BOLT')];

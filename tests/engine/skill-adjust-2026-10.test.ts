@@ -230,3 +230,11 @@ describe('ニューマティックプロセラ・フレーメン: 敵の種族�
         });
     }
 });
+
+describe('2026-10 スキル調整: サウンドオブディストラクション', () => {
+    it('消費SPは Lv1〜5 で 80 / 90 / 100 / 110 / 120、再使用待機は 15秒', () => {
+        const sid = id('WM_SOUND_OF_DESTRUCTION');
+        expect(range(5, (l) => sm.GetCostFixed(sid, l, null))).toEqual([80, 90, 100, 110, 120]);
+        expect(range(5, (l) => sm.GetCoolTime(sid, l, null, opt()))).toEqual(same(5, 15000));
+    });
+});

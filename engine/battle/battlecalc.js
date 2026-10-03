@@ -2572,6 +2572,7 @@ export function GetIkariPow(mobData) {
 	var powWork = 0;
 	var lvWork = 0;
 	var effectMax = 0;
+	var divisor = 1;	// 攻撃力増幅係数値 1/divisor
 	// 複数の怒り系をパッシブで設定できるようにするため、適切な怒りを検索する
 	// 怒りは指定したモンスターだけに掛かるバフなのでLearnedSkillを参照することはできない
 	while (true) {
@@ -2587,7 +2588,8 @@ export function GetIkariPow(mobData) {
 			}
 			if (bEffective) {
 				// 有効な場合は、倍率を設定して、処理用ループを抜ける
-				powWork = n_A_BaseLV + n_A_STR + n_A_LUK + n_A_DEX;	// TODO: 2026-10-03 係数未調査
+				powWork = n_A_BaseLV + n_A_STR + n_A_LUK + n_A_DEX;
+				divisor = [0, 25, 20, 15][lvWork];
 				effectMax = 20 + 10 * lvWork;
 				break;
 			}
@@ -2601,7 +2603,8 @@ export function GetIkariPow(mobData) {
 				bEffective &= (mobData[MONSTER_DATA_INDEX_HP] >= 6000);
 			}
 			if (bEffective) {
-				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;	// TODO: 2026-10-03 係数未調査
+				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
+				divisor = [0, 30, 25, 20][lvWork];
 				effectMax = 10 + 5 * lvWork;
 				break;
 			}
@@ -2614,7 +2617,8 @@ export function GetIkariPow(mobData) {
 				bEffective &= (mobData[MONSTER_DATA_INDEX_SIZE] == SIZE_ID_SMALL);
 			}
 			if (bEffective) {
-				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;	// TODO: 2026-10-03 係数未調査
+				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
+				divisor = [0, 30, 25, 20][lvWork];
 				effectMax = 10 + 5 * lvWork;
 				break;
 			}
@@ -2622,7 +2626,7 @@ export function GetIkariPow(mobData) {
 		bEffective = false;
 		break;
 	}
-	pow = 100 + Math.min(effectMax, Math.floor(powWork / (12 - lvWork * 3)));
+	pow = 100 + Math.min(effectMax, Math.floor(powWork / divisor));
 	return pow;
 }
 
