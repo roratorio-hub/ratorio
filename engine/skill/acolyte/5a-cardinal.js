@@ -656,9 +656,9 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const fidos_animus_lv = Math.max(UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS), LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-				ratio += 1000 + 1000 * skillLv;
-				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// Spl係数 検証済み
-				ratio += 300 * fidos_animus_lv;	// 修練係数 検証済み
+				ratio += 1500 + 1100 * skillLv;
+				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 300 * fidos_animus_lv;	// TODO: 2026-10-03 係数未調査
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

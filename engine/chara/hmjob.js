@@ -869,7 +869,7 @@ export function GetPAtk() {
 	}
 	// 四次職支援「武士符」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_BUSHI_FU]) > 0) {
-		value += 2 * bufLv;
+		value += 3 * bufLv;
 	}
 	// 「スピリットハンドラー」スキル「スピリットマスタリー」による効果
 	if (( sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SPIRIT_MASTERY), UsedSkillSearch(SKILL_ID_SPIRIT_MASTERY)) ) > 0) {
@@ -942,7 +942,7 @@ export function GetSMatk() {
 		// 両手杖時限定
 		if (n_A_WeaponType == ITEM_KIND_STUFF) {
 			if (n_tok[ITEM_SP_STUFF2HAND]) {
-				value += [0, 1, 3, 5, 8, 11, 14, 17, 21, 25, 30][sklLv];
+				value += [0, 5, 10, 15, 25, 35, 50, 65, 85, 105, 130][sklLv];
 			}
 		}
 	}
@@ -1014,7 +1014,7 @@ export function GetSMatk() {
 
 	// 四次職支援「法師符」による効果
 	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_HOSHI_FU]) > 0) {
-		value += 2 * bufLv;
+		value += 3 * bufLv;
 	}
 
 	// 「スピリットハンドラー」スキル「スピリットマスタリー」による効果
@@ -1467,7 +1467,7 @@ export function ApplySpecModify(spid, spVal) {
 				}
 
 				if (n_A_WeaponType == ITEM_KIND_KNIFE) {
-					valWork *= 2;
+					valWork = [0, 4, 8, 12, 16, 20, 24, 28, 45, 70, 120][sklLv];
 				}
 
 				spVal += valWork;
@@ -1571,7 +1571,7 @@ export function ApplySpecModify(spid, spVal) {
 		}
 		// 「ナイトウォッチ」スキル「ヒドゥンカード」による効果
 		if ((sklLv = UsedSkillSearch(SKILL_ID_HIDDEN_CARD)) > 0) {
-			spVal += 100 + sklLv * 10;
+			spVal += 100 + sklLv * 15;
 		}		
 		break;
 

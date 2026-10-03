@@ -262,11 +262,9 @@ export const skills = [
 				return CSkillData.RANGE_SHORT;
 			}
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
-				// Lv1 で +35 の誤差があるが Lv2 は誤差ゼロ
-				// スキル倍率とは異なる根本的な計算部分で誤差が生じている可能性がある
 				let ratio = 0;
-				ratio = 600 + 150 * skillLv;
-				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio = 1000 + 500 * skillLv;
+				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}

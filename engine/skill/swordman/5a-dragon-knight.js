@@ -19,6 +19,7 @@ import { MIG_PARAM_ID_POW } from "../../const/EnumMigItemParamId.js";
 import { ItemObjNew } from "../../equip/item.dat.js";
 import { n_A_Equip } from "../../runtime/roro-state.js";
 import { UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { MOB_CONF_DEBUF_ID_SERVANT_SIGN, n_B_IJYOU } from "../../monster/mobconfdebuf.js";
 import {
     SKILL_ID_CHARGING_PIERCE, SKILL_ID_DRAGONIC_AURA, SKILL_ID_DRAGONIC_AURA_STATE, SKILL_ID_DRAGONIC_BREATH,
     SKILL_ID_DRAGONIC_PIERCE, SKILL_ID_DRAGON_TRAINING, SKILL_ID_GIANT_GROWTH, SKILL_ID_HACK_AND_SLASHER,
@@ -56,6 +57,9 @@ export const skills = [
 				}
 				ratio += 0 * Math.max(used_lv_vigor, LearnedSkillSearch(SKILL_ID_VIGOR));   // TODO: 2026-10-03 係数未調査 
 				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW); // TODO: 2026-10-03 係数未調査
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SERVANT_SIGN]) {
+					ratio *= 1.5;
+				}
 				ratio = Math.floor(ratio * n_A_BaseLV / 100); 
 				return ratio;
 			}
@@ -97,11 +101,15 @@ export const skills = [
 			this.name = "サーヴァントウェポン：サイン";
 			this.kana = "サアウアントウエホンサイン";
 			this.maxLv = 5;
-			this.type = CSkillData.TYPE_ACTIVE;
-			this.range = CSkillData.RANGE_SHORT;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.range = function(weapon) {
+				return CSkillData.RANGE_SHORT;
+			}
 			this.Power = function(skillLv, charaData) {       			// スキル倍率
-				return 0;
+				let ratio = 1200 + 1200 * skillLv;
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
+				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
 				return 60;
@@ -124,6 +132,13 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 3500 + 500 * skillLv;
 			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
 		}),
 
 		// ----------------------------------------------------------------
@@ -144,8 +159,8 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaData) {      		 	// スキル倍率
 				let ratio = 0;
-				ratio += 1250 + 50 * skillLv;
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 800 + 800 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -197,8 +212,8 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = 0;
-				ratio += 1250 + 50 * skillLv;
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+				ratio += 800 + 800 * skillLv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -218,7 +233,7 @@ export const skills = [
 				return 1000 * skillLv;
 			}
 			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
-				return 500 * skillLv;
+				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 0;
@@ -461,7 +476,7 @@ export const skills = [
 				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 60 * 1000;
+				return 120 * 1000;
 			}
 		}),
 
@@ -675,6 +690,9 @@ export const skills = [
 				}
 				ratio += 0 * vigor_lv;	// TODO: ヴィゴール習得Lv係数未確定（公式非公開）
 				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SERVANT_SIGN]) {
+					ratio *= 1.5;
+				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

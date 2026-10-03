@@ -615,7 +615,7 @@ export const skills = [
 				return 380;
 			}
 			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
-				return 100 - 5 * skillLv;
+				return 53 - 3 * skillLv;
 			}
 			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
 				return 0;
@@ -630,7 +630,7 @@ export const skills = [
 				return 500;
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
-				return 120 * 1000;
+				return (50 + 10 * skillLv) * 1000;
 			}
 		}),
 
