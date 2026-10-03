@@ -97,6 +97,7 @@ import {
     TIME_ITEM_ID_OWLDUKENO_SILKHAT_AMPLV6
 } from "../equip/timeitem.dat.js";
 import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
+import { SERE_KIND_AQUA_LV1, SERE_KIND_AQUA_LV2, SERE_KIND_AQUA_LV3 } from "../const/EnumSereKind.js";
 
 
 export function ApplyPlayerCritRateVsMonsterShape(charaData, mobData) {
@@ -1265,13 +1266,13 @@ export function ApplyMatkPlus(charaData) {
 
 	    if (UsedSkillSearch(SKILL_ID_SERE_MODE) == 1) {
 	        switch (UsedSkillSearch(SKILL_ID_SERE)) {
-	            case 4:
+	            case SERE_KIND_AQUA_LV1:
 	                w += 40;
 	                break;
-	            case 5:
+	            case SERE_KIND_AQUA_LV2:
 	                w += 80;
 	                break;
-	            case 6:
+	            case SERE_KIND_AQUA_LV3:
 	                w += 120;
 	                break;
 	        }

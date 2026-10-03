@@ -23,6 +23,8 @@ import {
     SKILL_ID_EXPLOSIVE_POWDER, SKILL_ID_FULL_SHADOW_CHARGE, SKILL_ID_HALL_FULL_CHEMICAL_CHARGE,
     SKILL_ID_MEYHEMIC_THORNS, SKILL_ID_MYSTERY_POWDER, SKILL_ID_RESEARCH_REPORT
 } from "../skill.dat.js";
+import { LearnedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { SKILL_ID_RAMPANT_VINE } from "../skill.dat.js";
 
 /** アシディファイドゾーン（水/地/火/風）共通のダメージ計算式（属性のみ異なる）。 */
 function ApplyAcidifiedZoneFormula(env, battleCalcInfo, charaData, specData, mobData, attackMethodConfArray, dmgUnit, bCri, bLeft) {
@@ -711,6 +713,58 @@ export const skills = [
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return 0;
 				//return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** (×)ランパントヴァイン */
+		// SKILL_ID_RAMPANT_VINE
+		defineSkill(SKILL_ID_RAMPANT_VINE, function() {
+			this.name = "(×)ランパントヴァイン";
+			this.kana = "ランハントウアイン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const bionics_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_BIONICS_MASTERY), UsedSkillSearch(SKILL_ID_BIONICS_MASTERY));
+				// クリーパー召喚中はより大きなダメージを与える
+				if (option.GetOptionValue(0) === 1) {
+					ratio += 1450 + 1700 * skillLv;
+				} else {
+					ratio += 1150 + 1150 * skillLv;
+				}
+				ratio += 0 * bionics_mastery_lv;	// TODO: バイオニックスマスタリー習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 170;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 2000 + 400 * skillLv;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 1000 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.genericFormula = true;
 		}),

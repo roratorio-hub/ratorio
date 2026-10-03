@@ -20,6 +20,7 @@ import {
     SKILL_ID_SEIRYU_FU, SKILL_ID_SHIHOZIN_FU, SKILL_ID_SHIHO_FU_ZYOTAI, SKILL_ID_SHIHO_GOGYO_ZIN, 
     SKILL_ID_SHIRYO_ZYOKA, SKILL_ID_SHUGO_FU, SKILL_ID_SUZAKU_FU, SKILL_ID_TENCHI_SHINRE, SKILL_ID_ZYOKODO
 } from "../skill.dat.js";
+import { SKILL_ID_KORYU_ZIN } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -630,6 +631,59 @@ export const skills = [
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 60 * 1000;
 			}
+		}),
+
+		/** (×)黄龍陣 */
+		// SKILL_ID_KORYU_ZIN
+		defineSkill(SKILL_ID_KORYU_ZIN, function() {
+			this.name = "(×)黄龍陣";
+			this.kana = "オウリユウシン";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
+			this.range = CSkillData.RANGE_LONG;
+			this.element = function(option) {
+				// 暖かい風の属性が適用される
+				return option.GetOptionValue(0);
+			}
+			this.WeaponCondition = function(weapon) {
+				// 使用条件：玄武符・四方五行陣のいずれかの状態
+				return UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 4;
+			}
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const gofu_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_GOFU_SHUREN), UsedSkillSearch(SKILL_ID_GOFU_SHUREN));
+				// 四方五行陣状態の場合はより大きなダメージを与える
+				if (UsedSkillSearch(SKILL_ID_SHIHO_FU_ZYOTAI) >= 5) {
+					ratio += 3100 + 2100 * skillLv;
+				} else {
+					ratio += -300 + 1400 * skillLv;
+				}
+				ratio += 0 * gofu_shuren_lv;	// TODO: 護符修練習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 300;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 5;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 1000;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 500;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.genericFormula = true;
 		}),
 
 ];

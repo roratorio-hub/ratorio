@@ -19,6 +19,7 @@ import {
     SKILL_ID_KUNAI_KUSSETSU, SKILL_ID_KUNAI_WAIKYOKU, SKILL_ID_RAIDEN_HOU, SKILL_ID_REIKETSU_HOU,
     SKILL_ID_SEKIEN_HOU, SKILL_ID_SHINKIRO_BUNSHIN
 } from "../skill.dat.js";
+import { SKILL_ID_KAGE_GEKIRYU, SKILL_ID_KAGE_MICHI, SKILL_ID_SHINKIRO_BUNSHIN_GUNSHU } from "../skill.dat.js";
 
 export const skills = [
 		// ----------------------------------------------------------------
@@ -1108,6 +1109,122 @@ export const skills = [
 			}
 			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
 				return 60 * 1000;
+			}
+		}),
+
+		/** (×)影激流 */
+		// SKILL_ID_KAGE_GEKIRYU
+		defineSkill(SKILL_ID_KAGE_GEKIRYU, function() {
+			this.name = "(×)影激流";
+			this.kana = "カケケキリユウ";
+			this.maxLv = 10;
+			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.Power = function(skillLv, charaData, option) {       // スキル倍率
+				let ratio = 0;
+				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), UsedSkillSearch(SKILL_ID_KAGE_NO_MAI));
+				// 影満ち状態の場合はより大きなダメージを与える
+				if (UsedSkillSearch(SKILL_ID_KAGE_MICHI) > 0) {
+					ratio += 1000 + 600 * skillLv;
+				} else {
+					ratio += 800 + 480 * skillLv;
+				}
+				ratio += 0 * kage_no_mai_lv;	// TODO: 影の舞習得Lv係数未確定（公式非公開）
+				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				return Math.floor(ratio * n_A_BaseLV / 100);
+			}
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 190;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 0;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 0;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500 * skillLv;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 0;
+			}
+			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
+				return this._CriActRate100(skillLv, charaData, specData, mobData);
+			}
+			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
+				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;
+			}
+			this.genericFormula = true;
+		}),
+
+		/** 蜃気楼分身 -群集- */
+		// SKILL_ID_SHINKIRO_BUNSHIN_GUNSHU
+		defineSkill(SKILL_ID_SHINKIRO_BUNSHIN_GUNSHU, function() {
+			this.name = "蜃気楼分身 -群集-";
+			this.kana = "シンキロウフンシンクンシユウ";
+			this.maxLv = 1;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 320;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 25;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 0;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 60 * 1000;
+			}
+		}),
+
+		/** 影満ち */
+		// SKILL_ID_KAGE_MICHI
+		defineSkill(SKILL_ID_KAGE_MICHI, function() {
+			this.name = "影満ち";
+			this.kana = "カケミチ";
+			this.maxLv = 5;
+			this.type = CSkillData.TYPE_ACTIVE;
+			this.range = CSkillData.RANGE_SHORT;
+			this.element = CSkillData.ELEMENT_VOID;
+			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
+				return 320;
+			}
+			this.CostAP = function(skillLv, charaDataManger) {          // 消費AP
+				return 20 + 6 * skillLv;
+			}
+			this.CastTimeVary = function(skillLv, charaDataManger) {    // 変動詠唱
+				return 0;
+			}
+			this.CastTimeFixed = function(skillLv, charaDataManger) {   // 固定詠唱
+				return 1000;
+			}
+			this.DelayTimeCommon = function(skillLv, charaDataManger) { // ディレイ
+				return 500;
+			}
+			this.CoolTime = function(skillLv, charaDataManger) {        // クールタイム
+				return 500;
+			}
+			this.LifeTime = function(skillLv, charaDataManger) {        // 持続時間
+				return 120 * 1000;
 			}
 		}),
 

@@ -113,6 +113,7 @@ import {
 } from "../skill/skill.dat.js";
 import { TIME_ITEM_ID_ENCHANT_HONOIKAZUCHINOOKAMI_AR, TIME_ITEM_ID_RALF_FONG_TWIEGE_666 } from "../equip/timeitem.dat.js";
 import { EquipNumSearchFurubitaSet, ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
+import { SERE_KIND_VENTUS_LV1, SERE_KIND_VENTUS_LV2, SERE_KIND_VENTUS_LV3 } from "../const/EnumSereKind.js";
 
 
 export function ApplyMagicalDamageUpAndAspdBase(charaData, n_A_SpeedPOT) {
@@ -1644,9 +1645,9 @@ export function ApplyMagicalDamageUpAndAspdBase(charaData, n_A_SpeedPOT) {
 		//----------------------------------------------------------------
 		if (UsedSkillSearch(SKILL_ID_SERE_MODE) == 1) {
 			switch (UsedSkillSearch(SKILL_ID_SERE)) {
-			case 7:
-			case 8:
-			case 9:
+			case SERE_KIND_VENTUS_LV1:
+			case SERE_KIND_VENTUS_LV2:
+			case SERE_KIND_VENTUS_LV3:
 				aspdPlusValue += 5;
 			}
 		}

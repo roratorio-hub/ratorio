@@ -56,6 +56,7 @@ import {
     TIME_ITEM_ID_TOKUSHU_KANKYO_KATSUDOYO_BOOTS_FUINSARETA_DARKLORD_CARD
 } from "../equip/timeitem.dat.js";
 import { ROUNDDOWN } from "../bridge/stallcalc-bridge.js";
+import { SERE_KIND_ALDOR, SERE_KIND_DILBIO, SERE_KIND_PROCERA, SERE_KIND_TELEMOTUS, SERE_KIND_SERPENSE } from "../const/EnumSereKind.js";
 
 
 export function ApplyElementalMagicalDamageUpPercent() {
@@ -561,19 +562,19 @@ export function ApplyElementalMagicalDamageUpPercent() {
 		// 「エレメンタルマスター」の四次精霊の召喚中による効果
 		//----------------------------------------------------------------
 		switch (UsedSkillSearch(SKILL_ID_SERE)) {
-			case 13:	// 火 アルドール
+			case SERE_KIND_ALDOR:
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_FIRE] += 10;
 				break;
-			case 14:	// 水 ディルビオ
+			case SERE_KIND_DILBIO:
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER] += 10;
 				break;
-			case 15:	// 風 プロセラ
+			case SERE_KIND_PROCERA:
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND] += 10;
 				break;
-			case 16:	// 地 テレモトゥス
+			case SERE_KIND_TELEMOTUS:
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH] += 10;
 				break;
-			case 17:	// 毒 サーペンス
+			case SERE_KIND_SERPENSE:
 				n_tok[ITEM_SP_MAGICAL_DAMAGE_UP_ELM_POISON] += 10;
 				break;
 		}
