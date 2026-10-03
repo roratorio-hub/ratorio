@@ -35,7 +35,7 @@ import {
          SKILL_ID_TANKEN_YUMI_SHUREN, SKILL_ID_TATE_SHUREN, SKILL_ID_TWOHAND_DEFENDING,
          SKILL_ID_TWO_AXE_DEFENDING, SKILL_ID_YARI_KATATE_KEN_SHUREN,
          SKILL_ID_GOLDENE_TONE, SKILL_ID_NATURE_AID, SKILL_ID_OVERCOMING_CRISIS, SKILL_ID_SIXTH_SENSE,
-         SKILL_ID_TEMPERING,
+         SKILL_ID_TEMPERING, SKILL_ID_WILD_WALK,
 } from "../skill/skill.dat.js";
 import { SKILL_ID_VENOM_IGNITION } from "../skill/skill.dat.js";
 import { UsedSkillSearch, n_A_PassSkill, n_A_PassSkill8 } from "../skill/skillstate.js";
@@ -1431,6 +1431,11 @@ export function ApplySpecModify(spid, spVal) {
 		break;
 
 	case ITEM_SP_FLEE_PLUS:
+
+		// 「ウィンドホーク」スキル「ワイルドウォーク」による効果
+		if ((sklLv = UsedSkillSearch(SKILL_ID_WILD_WALK)) > 0) {
+			spVal += 30 * sklLv;
+		}
 
 		// 「シャドウクロス」スキル「シャドウセンス」習得による効果
 		if ((sklLv = Math.max(LearnedSkillSearch(SKILL_ID_SHADOW_SENSE), UsedSkillSearch(SKILL_ID_SHADOW_SENSE))) > 0) {

@@ -14,7 +14,7 @@ import {
     ITEM_SP_CRI_PLUS, ITEM_SP_FLEE_PLUS, ITEM_SP_LONGRANGE_DAMAGE_UP, ITEM_SP_STUFF2HAND,
 } from '@engine/const/EnumItemSpId.js';
 import {
-    MIG_JOB_ID_ARCH_MAGE, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_NIGHT_WATCH, MIG_JOB_ID_SHADOW_CROSS,
+    MIG_JOB_ID_ARCH_MAGE, MIG_JOB_ID_DRAGON_KNIGHT, MIG_JOB_ID_NIGHT_WATCH, MIG_JOB_ID_SHADOW_CROSS, MIG_JOB_ID_WIND_HAWK,
 } from '@engine/data/mig.job.dat.js';
 import { CCharaConfIchizi } from '@engine/chara/CCharaConfIchizi.js';
 import { CCharaConfNizi } from '@engine/chara/CCharaConfNizi.js';
@@ -113,6 +113,12 @@ describe('2026-10 スキル調整: 四次職支援・自己支援・パッシブ
         const at = (lv: number) => run(J, { passive: [S.SKILL_ID_HIDDEN_CARD, lv] }).sp(ITEM_SP_LONGRANGE_DAMAGE_UP);
         const base = at(0);
         expect(range(10, (lv) => at(lv) - base)).toEqual(range(10, (lv) => 100 + 15 * lv));
+    });
+    it('ワイルドウォーク（状態）: Flee が +30×Lv', () => {
+        const J = MIG_JOB_ID_WIND_HAWK;
+        const at = (lv: number) => run(J, { passive: [S.SKILL_ID_WILD_WALK, lv] }).plus(ITEM_SP_FLEE_PLUS);
+        const base = at(0);
+        expect(range(5, (lv) => at(lv) - base)).toEqual([30, 60, 90, 120, 150]);
     });
     it('シャドウセンス: Flee が +10×Lv（Lv8以降は 85/100/150）', () => {
         const J = MIG_JOB_ID_SHADOW_CROSS;

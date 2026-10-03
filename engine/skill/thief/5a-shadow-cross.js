@@ -385,6 +385,7 @@ export const skills = [
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
 			this.range = CSkillData.RANGE_SHORT;
 			this.element = CSkillData.ELEMENT_VOID;
+			this.hitCount = 2;
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				// TODO: シャドウエクシード状態はスキル倍率のみに影響するため職固有自己支援から攻撃オプションへ移行する
@@ -418,7 +419,7 @@ export const skills = [
 				return 10 * 1000;
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData) => {              // クリティカル発生率
-				return this._CriActRate100(skillLv, charaData, specData, mobData);
+				return this._CriActRate100(skillLv, charaData, specData, mobData) / 2;
 			}
 			this.CriDamageRate = (skillLv, charaData, specData, mobData) => {           // クリティカルダメージ倍率
 				return this._CriDamageRate100(skillLv, charaData, specData, mobData) / 2;

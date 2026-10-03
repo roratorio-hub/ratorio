@@ -1,4 +1,6 @@
 import { describe, it, expect, beforeAll, beforeEach, afterEach } from 'vitest';
+import { MONSTER_DATA_INDEX_RACE } from '@engine/const/EnumMonsterDataIndex.js';
+import { RACE_ID_DEMON, RACE_ID_HUMAN, RACE_ID_UNDEAD } from '@engine/const/EnumRaceId.js';
 
 // 2026-10 の公式スキル調整（rotool の記載値）を固定する仕様テスト。
 // 特性ステータス係数・「○○の習得Lv」係数は公式非公開のため従来値のまま TODO を付けてある。
@@ -65,7 +67,7 @@ const TABLE: [string, number, Expect][] = [
     ['EM_ACTIVITY_BURN', 5, { sp: same(5, 170), ap: same(5, 0), fixed: same(5, 500), vary: same(5, 2000), delay: same(5, 3000), cool: same(5, 3000) }],
     ['TR_RHYTHMICAL_WAVE', 5, { sp: same(5, 230), ap: same(5, 0), fixed: same(5, 500), vary: range(5, (l) => 500 + 500 * l), delay: range(5, (l) => 1000 * l), cool: same(5, 500), power: range(5, (l) => 4000 + 1000 * l) }],
     ['CD_DILECTIO_HEAL', 5, { sp: same(5, 380), ap: same(5, 0), fixed: same(5, 0), vary: same(5, 3000), delay: same(5, 500), cool: range(5, (l) => 500 * l) }],
-    ['CD_FRAMEN', 5, { sp: same(5, 440), ap: same(5, 0), fixed: same(5, 500), vary: same(5, 2500), delay: range(5, (l) => 1000 * l), cool: range(5, (l) => 500 * l) }],
+    ['CD_FRAMEN', 5, { sp: same(5, 440), ap: same(5, 0), fixed: same(5, 500), vary: same(5, 2500), delay: range(5, (l) => 1000 * l), cool: range(5, (l) => 500 * l), power: range(5, (l) => 1400 * l) }],
     ['CD_DIVINUS_FLOS', 5, { sp: same(5, 440), ap: same(5, 0), fixed: same(5, 1500), vary: range(5, (l) => 5500 + 800 * l), delay: same(5, 5000), cool: same(5, 500), power: range(5, (l) => 1500 + 1100 * l) }],
     ['SHC_SHADOW_SENSE', 10, { sp: same(10, 0), ap: same(10, 0), fixed: same(10, 0), vary: same(10, 0), delay: same(10, 0), cool: same(10, 0) }],
     ['SHC_FATAL_SHADOW_CROW', 10, { sp: same(10, 310), ap: range(10, (l) => 15 + 1 * l), fixed: same(10, 0), vary: same(10, 0), delay: same(10, 3000), cool: same(10, 3000), life: same(10, 10000), power: range(10, (l) => 1000 + 500 * l) }],
@@ -94,7 +96,7 @@ const TABLE: [string, number, Expect][] = [
     ['AG_SOUL_VC_STRIKE', 5, { sp: same(5, 330), ap: same(5, 0), fixed: range(5, (l) => 500 + 200 * l), vary: same(5, 2000), delay: same(5, 1000), cool: same(5, 500), power: range(5, (l) => 500 + 200 * l) }],
     ['WH_WILD_WALK', 5, { sp: same(5, 170), ap: same(5, 5), fixed: same(5, 0), vary: same(5, 0), delay: range(5, (l) => 1000 * l), cool: same(5, 500), life: range(5, (l) => 4000 * l), power: range(5, (l) => -500 + 1000 * l) }],
     ['TR_METALIC_FURY', 5, { sp: same(5, 130), ap: same(5, 0), fixed: same(5, 0), vary: range(5, (l) => 500 + 500 * l), delay: range(5, (l) => 1000 * l), cool: same(5, 500), power: range(5, (l) => 3000 + 1500 * l) }],
-    ['CD_PNEUMATICUS_PROCELLA', 10, { sp: same(10, 660), ap: same(10, 15), fixed: same(10, 1000), vary: same(10, 19000), delay: same(10, 5000), cool: same(10, 12000), life: same(10, 12000) }],
+    ['CD_PNEUMATICUS_PROCELLA', 10, { sp: same(10, 660), ap: same(10, 15), fixed: same(10, 1000), vary: same(10, 19000), delay: same(10, 5000), cool: same(10, 12000), life: same(10, 12000), power: range(10, (l) => 7000 + 2000 * l) }],
     ['SOA_TALISMAN_OF_BLACK_TORTOISE', 5, { sp: same(5, 360), ap: same(5, 0), fixed: same(5, 500), vary: range(5, (l) => -500 + 1400 * l), delay: same(5, 4000), cool: same(5, 500), life: same(5, 10000), power: range(5, (l) => 9400 + 1000 * l) }],
 ];
 
@@ -161,6 +163,9 @@ describe('2026-10 スキル調整: ヒット数', () => {
     it('影一閃は全Lvで2回連続', () => {
         expect(range(10, (l) => hits('SS_KAGEGISSEN', l))).toEqual(same(10, 2));
     });
+    it('クロススラッシュは全Lvで2回連続', () => {
+        expect(range(5, (l) => hits('SHC_CROSS_SLASH', l))).toEqual(same(5, 2));
+    });
     it('四方神符は 青龍符/白虎符/朱雀符/玄武符/四方五行陣 状態で 2/3/4/5/6回連続', () => {
         const byState = [0, 1, 2, 3, 4, 5].map((st) => {
             Used[S.SKILL_ID_SHIHO_FU_ZYOTAI] = st;
@@ -200,4 +205,28 @@ describe('サーヴァントサイン状態（敵の状態）', () => {
         const row = Mob.MobConfDebufOBJ?.find?.((d: any) => d[0] === Mob.MOB_CONF_DEBUF_ID_SERVANT_SIGN);
         expect(row?.[1]).toBe('サーヴァントサイン状態');
     });
+});
+
+describe('クロススラッシュのクリティカル率', () => {
+    it('自身のクリティカル率の1/2でクリティカルが発生する', () => {
+        const d = sm.dataArray[id('SHC_CROSS_SLASH')];
+        d._CriActRate100 = () => 100;
+        expect(d.CriActRate(1, null, null, [], opt())).toBe(50);
+    });
+});
+
+describe('ニューマティックプロセラ・フレーメン: 敵の種族による倍率の違いは無い', () => {
+    const mobOf = (race: number) => {
+        const mob: any[] = [];
+        mob[MONSTER_DATA_INDEX_RACE] = race;
+        return mob;
+    };
+    for (const ref of ['CD_PNEUMATICUS_PROCELLA', 'CD_FRAMEN']) {
+        it(`${ref}: 不死・悪魔でもそれ以外でも攻撃力が同じ`, () => {
+            const human = range(5, (l) => power(ref, l, opt(), mobOf(RACE_ID_HUMAN)));
+            expect(range(5, (l) => power(ref, l, opt(), mobOf(RACE_ID_UNDEAD)))).toEqual(human);
+            expect(range(5, (l) => power(ref, l, opt(), mobOf(RACE_ID_DEMON)))).toEqual(human);
+            expect(human.every((p) => p > 0)).toBe(true);
+        });
+    }
 });
