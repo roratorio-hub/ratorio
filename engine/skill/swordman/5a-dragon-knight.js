@@ -48,9 +48,15 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaData) {       			// スキル倍率
 				let ratio = 0;
-				ratio = 1250 + (50 * skillLv);
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
-				ratio = Math.floor(ratio * n_A_BaseLV / 100);
+				let used_lv_vigor = UsedSkillSearch(SKILL_ID_VIGOR);
+				if (used_lv_vigor > 0) {
+					ratio = 1000 + 1000 * skillLv;
+				} else {
+					ratio = 800 + 800 * skillLv;
+				}
+				ratio += 0 * Math.max(used_lv_vigor, LearnedSkillSearch(SKILL_ID_VIGOR));   // TODO: 2026-10-03 係数未調査 
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW); // TODO: 2026-10-03 係数未調査
+				ratio = Math.floor(ratio * n_A_BaseLV / 100); 
 				return ratio;
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

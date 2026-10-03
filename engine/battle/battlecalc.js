@@ -2587,8 +2587,8 @@ export function GetIkariPow(mobData) {
 			}
 			if (bEffective) {
 				// 有効な場合は、倍率を設定して、処理用ループを抜ける
-				powWork = n_A_BaseLV + n_A_STR + n_A_LUK + n_A_DEX;
-				effectMax = 70 * lvWork;
+				powWork = n_A_BaseLV + n_A_STR + n_A_LUK + n_A_DEX;	// TODO: 2026-10-03 係数未調査
+				effectMax = 20 + 10 * lvWork;
 				break;
 			}
 		}
@@ -2601,9 +2601,8 @@ export function GetIkariPow(mobData) {
 				bEffective &= (mobData[MONSTER_DATA_INDEX_HP] >= 6000);
 			}
 			if (bEffective) {
-				// 有効な場合は、倍率を設定して、処理用ループを抜ける
-				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
-				effectMax = 50 * lvWork;
+				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;	// TODO: 2026-10-03 係数未調査
+				effectMax = 10 + 5 * lvWork;
 				break;
 			}
 		}
@@ -2615,9 +2614,8 @@ export function GetIkariPow(mobData) {
 				bEffective &= (mobData[MONSTER_DATA_INDEX_SIZE] == SIZE_ID_SMALL);
 			}
 			if (bEffective) {
-				// 有効な場合は、倍率を設定して、処理用ループを抜ける
-				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;
-				effectMax = 50 * lvWork;
+				powWork = n_A_BaseLV + n_A_LUK + n_A_DEX;	// TODO: 2026-10-03 係数未調査
+				effectMax = 10 + 5 * lvWork;
 				break;
 			}
 		}
