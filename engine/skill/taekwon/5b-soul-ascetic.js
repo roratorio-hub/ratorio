@@ -634,6 +634,7 @@ export const skills = [
 		}),
 
 		/** (×)黄龍陣 */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-954.html
 		// SKILL_ID_KORYU_ZIN
 		defineSkill(SKILL_ID_KORYU_ZIN, function() {
 			this.name = "(×)黄龍陣";
