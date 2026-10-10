@@ -54,6 +54,13 @@ function buildModel(jobId: number, skillId: number, lv: number): any {
     return model;
 }
 
+// 通常攻撃トリガーの追撃が発動するべき攻撃方法 [表示名, スキルID, オプション値]
+// （スペルフィストのオプションは [使用ボルト, ボルトLv]）
+const ATTACK_METHODS_NORMAL_ATTACK: [string, number, number[]][] = [
+    ['通常攻撃', S.SKILL_ID_TUZYO_KOGEKI, []],
+    ['スペルフィスト', S.SKILL_ID_SPELL_FIST, [0, 10]],
+];
+
 function run(jobId: number, skillId: number, lv: number) {
     const model = buildModel(jobId, skillId, lv);
     const { specData } = calcCoreFromModel(model);
@@ -106,20 +113,60 @@ describe('エレメンタルインテグレーション（エレメンタルマ�
     const ORDER = [
         S.SKILL_ID_BURNING_FLAME, S.SKILL_ID_FROZEN_HAIL, S.SKILL_ID_STORM_RISE, S.SKILL_ID_TERRA_BURST, S.SKILL_ID_VENOM_BOMBARD,
     ];
-    // n_AS_SKILL は [スキルID, スキルLv, 発動率（千分率）] の配列。次の計算で作り直されるためコピーして返す
-    const autoSpells = (lv: number) => {
-        const model = buildModel(J, S.SKILL_ID_ELEMENTAL_INTEGRATION, lv);
-        model.attackMethod.skillId = S.SKILL_ID_TUZYO_KOGEKI;	// 攻撃方法「通常攻撃」
-        calcFromModel(model);
-        return (AS.n_AS_SKILL as number[][]).map((a) => [...a]);
-    };
+    // スペルフィストは「ボルト効果が乗った通常攻撃」なので、通常攻撃と同じく発動する
+    for (const [label, attackSkillId, optionValueArray] of ATTACK_METHODS_NORMAL_ATTACK) {
+        describe(`攻撃方法「${label}」`, () => {
+            // n_AS_SKILL は [スキルID, スキルLv, 発動率（千分率）] の配列。次の計算で作り直されるためコピーして返す
+            const autoSpells = (lv: number) => {
+                const model = buildModel(J, S.SKILL_ID_ELEMENTAL_INTEGRATION, lv);
+                model.attackMethod.skillId = attackSkillId;
+                model.attackMethod.optionValueArray = optionValueArray;
+                calcFromModel(model);
+                return (AS.n_AS_SKILL as number[][]).map((a) => [...a]);
+            };
 
-    it('未使用のときは発動しない', () => {
-        expect(autoSpells(0).filter((a) => ORDER.includes(a[0]))).toEqual([]);
-    });
-    for (let lv = 1; lv <= 5; lv++) {
-        it(`Lv${lv}: ${lv}番目のスキルが Lv${lv}・発動率25% で発動する`, () => {
-            expect(autoSpells(lv).filter((a) => ORDER.includes(a[0]))).toEqual([[ORDER[lv - 1], lv, 250]]);
+            it('未使用のときは発動しない', () => {
+                expect(autoSpells(0).filter((a) => ORDER.includes(a[0]))).toEqual([]);
+            });
+            for (let lv = 1; lv <= 5; lv++) {
+                it(`Lv${lv}: ${lv}番目のスキルが Lv${lv}・発動率25% で発動する`, () => {
+                    expect(autoSpells(lv).filter((a) => ORDER.includes(a[0]))).toEqual([[ORDER[lv - 1], lv, 250]]);
+                });
+            }
+        });
+    }
+});
+
+describe('四次精霊パッシブ（エレメンタルマスター）の属性ボルト追撃', () => {
+    const J = MIG_JOB_ID_ELEMENTAL_MASTER;
+    const SUPPORT_TO_BOLT: [string, number, number][] = [
+        ['フレイムテクニック', S.SERE_SUPPORT_SKILL_ID_FLAME_TECHNIQUE, S.SKILL_ID_FIRE_BOLT],
+        ['コールドフォース', S.SERE_SUPPORT_SKILL_ID_COLD_FORCE, S.SKILL_ID_COLD_BOLT],
+        ['グレイスブリーズ', S.SERE_SUPPORT_SKILL_ID_GRACE_BREEZE, S.SKILL_ID_LIGHTNING_BOLT],
+        ['アースケア', S.SERE_SUPPORT_SKILL_ID_EARTH_CARE, S.SKILL_ID_EARTH_SPIKE],
+        ['ディープポイズニング', S.SERE_SUPPORT_SKILL_ID_DEEP_POISONING, S.SKILL_ID_POISON_BUSTER],
+    ];
+    const BOLTS = SUPPORT_TO_BOLT.map(([, , boltId]) => boltId);
+
+    for (const [label, attackSkillId, optionValueArray] of ATTACK_METHODS_NORMAL_ATTACK) {
+        describe(`攻撃方法「${label}」`, () => {
+            const autoSpells = (supportSkillId: number) => {
+                const model = buildModel(J, S.SKILL_ID_SERE_SUPPORT_SKILL, supportSkillId);
+                model.attackMethod.skillId = attackSkillId;
+                model.attackMethod.optionValueArray = optionValueArray;
+                calcFromModel(model);
+                return (AS.n_AS_SKILL as number[][]).map((a) => [...a]);
+            };
+
+            it('精霊補助スキル未設定のときは発動しない', () => {
+                expect(autoSpells(0).filter((a) => BOLTS.includes(a[0]))).toEqual([]);
+            });
+            for (const [name, supportSkillId, boltId] of SUPPORT_TO_BOLT) {
+                // ボルト未習得のモデルなので、発動Lvは最低保障の Lv1
+                it(`${name}: 対応するボルトが Lv1・発動率25% で発動する`, () => {
+                    expect(autoSpells(supportSkillId).filter((a) => BOLTS.includes(a[0]))).toEqual([[boltId, 1, 250]]);
+                });
+            }
         });
     }
 });
@@ -179,5 +226,28 @@ describe('ディアーハーモニー・タイガーハーモニー（スピリ�
         expect(power(S.SKILL_ID_TIGER_SLASH, 7)).toBe(tiger);
         Used = { [S.SKILL_ID_TIGER_HARMONY]: 1 };
         expect(power(S.SKILL_ID_DEER_CANON, 7)).toBe(deer);
+    });
+});
+
+describe('スペルフィスト主撃時の追撃ダメージ', () => {
+    // 追撃（オートスペル）は主撃の attackMethodConfArray をそのまま渡されるため、
+    // 計算式が主撃のオプション（スペルフィストの使用ボルト・ボルトLv）を誤読すると値が変わる
+    const appendAve = (boltLv: number, appendSkillId: number) => {
+        const model = buildModel(MIG_JOB_ID_ELEMENTAL_MASTER, S.SKILL_ID_ELEMENTAL_INTEGRATION, 3);
+        model.attackMethod.skillId = S.SKILL_ID_SPELL_FIST;
+        model.attackMethod.optionValueArray = [0, boltLv];
+        const result = calcFromModel(model);
+        for (let i = 0; i < result.GetAppendResultCount(); i++) {
+            const r = result.GetAppendResult(i);
+            if (r.skillId === appendSkillId) return r.dmgUnitArray[0][1] as number;
+        }
+        return null;
+    };
+
+    it('エレメンタルインテグレーションの追撃ダメージが、主撃のボルトLvに依存しない', () => {
+        const lv1 = appendAve(1, S.SKILL_ID_STORM_RISE);
+        const lv10 = appendAve(10, S.SKILL_ID_STORM_RISE);
+        expect(lv1).toBeGreaterThan(0);
+        expect(lv10).toBe(lv1);
     });
 });

@@ -715,10 +715,11 @@ export const skills = [
 			}
 		}),
 
-		/** (×)ウィンドカッターターボ */
+		/** ウィンドカッターターボ */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-955.html
 		// SKILL_ID_WIND_CUTTER_TURBO
 		defineSkill(SKILL_ID_WIND_CUTTER_TURBO, function() {
-			this.name = "(×)ウィンドカッターターボ";
+			this.name = "ウィンドカッターターボ";
 			this.kana = "ウインドカツタアタアホ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -728,8 +729,8 @@ export const skills = [
 				let ratio = 0;
 				const sentogaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
 				ratio += 1700 + 550 * skillLv;
-				ratio += 0 * sentogaku_lv;	// TODO: 独学 -戦闘学-習得Lv係数未確定（公式非公開）（独学補正・ブレイキングリミット補正の適用可否も未確認）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 350 * sentogaku_lv;
+				ratio += 38 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -756,10 +757,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)ハイマグナムブレイク */
+		/** ハイマグナムブレイク */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-956.html
 		// SKILL_ID_HIGH_MAGNUM_BREAK
 		defineSkill(SKILL_ID_HIGH_MAGNUM_BREAK, function() {
-			this.name = "(×)ハイマグナムブレイク";
+			this.name = "ハイマグナムブレイク";
 			this.kana = "ハイマクナムフレイク";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -769,8 +771,8 @@ export const skills = [
 				let ratio = 0;
 				const sentogaku_lv = Math.max(LearnedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU), UsedSkillSearch(SKILL_ID_DOKUGAKU_SENTOGAKU));
 				ratio += 1500 + 225 * skillLv;
-				ratio += 0 * sentogaku_lv;	// TODO: 独学 -戦闘学-習得Lv係数未確定（公式非公開）（独学補正・ブレイキングリミット補正の適用可否も未確認）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 225 * sentogaku_lv;
+				ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

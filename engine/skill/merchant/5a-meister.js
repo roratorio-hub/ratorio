@@ -737,10 +737,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)オーバードライブプロトコル */
+		/** オーバードライブプロトコル */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-958.html
 		// SKILL_ID_OVERDRIVE_PROTOCOL
 		defineSkill(SKILL_ID_OVERDRIVE_PROTOCOL, function() {
-			this.name = "(×)オーバードライブプロトコル";
+			this.name = "オーバードライブプロトコル";
 			this.kana = "オオハアトライフフロトコル";
 			this.maxLv = 4;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -750,13 +751,14 @@ export const skills = [
 				let ratio = 0;
 				const abr_mastery_lv = Math.max(LearnedSkillSearch(SKILL_ID_ABR_MASTERY), UsedSkillSearch(SKILL_ID_ABR_MASTERY));
 				// デュアルキャノン召喚中はより大きなダメージを与える
-				if (UsedSkillSearch(SKILL_ID_ABR_DUAL_CANNON) > 0) {
+				if (option.GetOptionValue(0) === 1) {
 					ratio += 900 + 2400 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio += 1200 + 1500 * skillLv;
+					ratio += 24 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
-				ratio += 0 * abr_mastery_lv;	// TODO: ABRマスタリー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 300 * abr_mastery_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -782,7 +784,7 @@ export const skills = [
 			}
 			this.CriActRate = (skillLv, charaData, specData, mobData, option) => {              // クリティカル発生率
 				// インフィニティ召喚中は自身のクリティカル率でクリティカル攻撃になる
-				if (option.GetOptionValue(0) === 1) {
+				if (option.GetOptionValue(1) === 1) {
 					return this._CriActRate100(skillLv, charaData, specData, mobData);
 				}
 				return 0;
