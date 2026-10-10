@@ -4127,7 +4127,15 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			 */
 			case SKILL_ID_OVERDRIVE_PROTOCOL:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"ABR インフィニティ召喚中",
+					"ABR デュアルキャノン",
+					[
+						[0, "無し"],
+						[1, "有り"],
+					],
+					0
+				);
+				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
+					"ABR インフィニティ",
 					[
 						[0, "無し"],
 						[1, "有り"],

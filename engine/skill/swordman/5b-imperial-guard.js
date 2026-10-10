@@ -721,10 +721,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)シールドスラム */
+		/** シールドスラム */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-961.html
 		// SKILL_ID_SHIELD_SLAM
 		defineSkill(SKILL_ID_SHIELD_SLAM, function() {
-			this.name = "(×)シールドスラム";
+			this.name = "シールドスラム";
 			this.kana = "シイルトスラム";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -743,8 +744,8 @@ export const skills = [
 				let ratio = 0;
 				const tate_shuren_lv = Math.max(LearnedSkillSearch(SKILL_ID_TATE_SHUREN), UsedSkillSearch(SKILL_ID_TATE_SHUREN));
 				ratio += -400 + 1400 * skillLv;
-				ratio += 0 * tate_shuren_lv;	// TODO: 盾修練習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 660 * tate_shuren_lv;
+				ratio += 44 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

@@ -778,10 +778,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)フーガデフレーシュ */
+		/** フーガデフレーシュ */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-960.html
 		// SKILL_ID_FUGUE_DES_FLECHES
 		defineSkill(SKILL_ID_FUGUE_DES_FLECHES, function() {
-			this.name = "(×)フーガデフレーシュ";
+			this.name = "フーガデフレーシュ";
 			this.kana = "フウカテフレエシユ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -796,11 +797,11 @@ export const skills = [
 				const stage_manner_lv = Math.max(LearnedSkillSearch(SKILL_ID_STAGE_MANNER), UsedSkillSearch(SKILL_ID_STAGE_MANNER));
 				if (state_mystic_symphony === 1) {
 					ratio += 2500 + 1000 * skillLv;
+					ratio += 5 * stage_manner_lv * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				} else {
 					ratio += 2000 + 800 * skillLv;
+					ratio += 4 * stage_manner_lv * GetTotalSpecStatus(MIG_PARAM_ID_CON);
 				}
-				ratio += 0 * stage_manner_lv;	// TODO: ステージマナー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_CON);	// TODO: Con係数未確定（公式非公開）
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

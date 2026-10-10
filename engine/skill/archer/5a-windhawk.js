@@ -841,6 +841,7 @@ export const skills = [
 		}),
 
 		/** (×)フラグメントボルト */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-953.html
 		// SKILL_ID_FRAGMENT_BOLT
 		defineSkill(SKILL_ID_FRAGMENT_BOLT, function() {
 			this.name = "(×)フラグメントボルト";
