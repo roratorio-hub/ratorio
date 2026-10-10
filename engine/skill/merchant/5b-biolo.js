@@ -717,10 +717,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)ランパントヴァイン */
+		/** ランパントヴァイン */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-959.html
 		// SKILL_ID_RAMPANT_VINE
 		defineSkill(SKILL_ID_RAMPANT_VINE, function() {
-			this.name = "(×)ランパントヴァイン";
+			this.name = "ランパントヴァイン";
 			this.kana = "ランハントウアイン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -732,11 +733,12 @@ export const skills = [
 				// クリーパー召喚中はより大きなダメージを与える
 				if (option.GetOptionValue(0) === 1) {
 					ratio += 1450 + 1700 * skillLv;
+					ratio += 43 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio += 1150 + 1150 * skillLv;
+					ratio += 23 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
-				ratio += 0 * bionics_mastery_lv;	// TODO: バイオニックスマスタリー習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 300 * bionics_mastery_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

@@ -1112,10 +1112,11 @@ export const skills = [
 			}
 		}),
 
-		/** (×)影激流 */
+		/** 影激流 */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-957.html
 		// SKILL_ID_KAGE_GEKIRYU
 		defineSkill(SKILL_ID_KAGE_GEKIRYU, function() {
-			this.name = "(×)影激流";
+			this.name = "影激流";
 			this.kana = "カケケキリユウ";
 			this.maxLv = 10;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -1127,11 +1128,12 @@ export const skills = [
 				// 影満ち状態の場合はより大きなダメージを与える
 				if (UsedSkillSearch(SKILL_ID_KAGE_MICHI) > 0) {
 					ratio += 1000 + 600 * skillLv;
+					ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio += 800 + 480 * skillLv;
+					ratio += 28 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
-				ratio += 0 * kage_no_mai_lv;	// TODO: 影の舞習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 350 * kage_no_mai_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

@@ -315,12 +315,12 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 	}
 
 	//----------------------------------------------------------------
-	// 通常攻撃時の、エレメンタルインテグレーション追撃効果
+	// 通常攻撃、スペルフィストにおける、エレメンタルインテグレーション追撃効果
 	// 習得レベルに対応する属性の魔法を、スキルLv = エレメンタルインテグレーションのLvで発動する
 	//----------------------------------------------------------------
 	skillLv = UsedSkillSearch(SKILL_ID_ELEMENTAL_INTEGRATION);
 
-	if ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) && (skillLv > 0)) {
+	if (((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) || (n_A_ActiveSkill == SKILL_ID_SPELL_FIST)) && (skillLv > 0)) {
 
 		funcAddAS();
 		n_AS_SKILL[idx][0] = [
@@ -336,7 +336,7 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 	//----------------------------------------------------------------
 	// 四次精霊パッシブモード召喚中
-	// 通常攻撃時の、属性ボルト効果
+	// 通常攻撃、スペルフィストにおける、属性ボルト効果
 	//----------------------------------------------------------------
 	skillKind = UsedSkillSearch(SKILL_ID_SERE_SUPPORT_SKILL)
 	const SERE_SUPPORT_SKILL_TO_BOLT_SKILL = new Map([
@@ -347,7 +347,7 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 		[SERE_SUPPORT_SKILL_ID_DEEP_POISONING, SKILL_ID_POISON_BUSTER],
 	  ]);
 	let boltSkillId = SERE_SUPPORT_SKILL_TO_BOLT_SKILL.get(skillKind);
-	if (boltSkillId && n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) {
+	if (boltSkillId && ((n_A_ActiveSkill == SKILL_ID_TUZYO_KOGEKI) || (n_A_ActiveSkill == SKILL_ID_SPELL_FIST))) {
 		funcAddAS();
 		n_AS_SKILL[idx][0] = boltSkillId;
 		n_AS_SKILL[idx][1] = Math.max(1, LearnedSkillSearch(boltSkillId)); // 最低保障スキルLv = 1
