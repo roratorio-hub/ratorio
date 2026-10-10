@@ -28,7 +28,6 @@ function SwitchBGColor() {
 // 相対パス文字列のままDOMへ入れると挿入先ページの深さに依存してしまう）。
 const NAV_URL = {
   calcx: new URL('../ro4/m/calcx.html', import.meta.url).href,
-  calcxAi: new URL('../ro4/m/calcx-ai.html', import.meta.url).href,
   melonfes: new URL('../pages/melonfes2026monsterdrop.html', import.meta.url).href,
   itemlist: new URL('../pages/itemlist.html', import.meta.url).href,
   cardlist: new URL('../pages/cardlist.html', import.meta.url).href,
@@ -70,7 +69,6 @@ fetch(new URL('./date.json', import.meta.url))
         <ul>
 		  <li class="menu-header"><span>Main</span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.calcx}">計算機</a></span></li>
-		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.calcxAi}">計算機(AIラトリオお試し版)</a></span></li>
       <!--<li class="menu-item"><span class="menu-title"><a href="${NAV_URL.melonfes}">メロン素材検索</a></span></li>-->
       <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.itemlist}">アイテム一覧</a></span></li>
 		  <li class="menu-item"><span class="menu-title"><a href="${NAV_URL.cardlist}">カード一覧</a></span></li>
