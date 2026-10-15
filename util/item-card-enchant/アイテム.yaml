@@ -61,30 +61,6 @@ item_list:
     set_list:
       - set:
         entity_list:
-          - item_name: 星座の印章(力)
-        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
-      - set:
-        entity_list:
-          - item_name: 星座の印章(体力)
-        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
-      - set:
-        entity_list:
-          - item_name: 星座の印章(聡明)
-        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
-      - set:
-        entity_list:
-          - item_name: 星座の印章(魔力)
-        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
-      - set:
-        entity_list:
-          - item_name: 星座の印章(集中)
-        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
-      - set:
-        entity_list:
-          - item_name: 星座の印章(創造)
-        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
-      - set:
-        entity_list:
           - item_name: 星座の印章
         desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
 

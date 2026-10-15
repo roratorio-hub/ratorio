@@ -7269,14 +7269,23 @@ CardIdToSetIdMap[4463] = [3610,];
 	CardIdToSetIdMap[4557] = [3686,];
 	w_SE[3687] = [-4560,-4559,-1348,];
 	CardIdToSetIdMap[4559] = [3687,];
+	CardIdToSetIdMap[1245] = CardIdToSetIdMap[1245].concat([3686]);
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3685,3687]);
 	w_SE[3688] = [5795,5794,5004,];
-	w_SE[3689] = [5796,5794,5005,];
-	w_SE[3690] = [5797,5794,5008,];
-	w_SE[3691] = [5798,5794,5007,];
-	w_SE[3692] = [5799,5794,5009,];
-	w_SE[3693] = [5800,5794,5006,];
-	w_SE[3694] = [5801,5794,5003,];
+	w_SE[3689] = [5795,5794,5005,];
+	w_SE[3690] = [5795,5794,5008,];
+	w_SE[3691] = [5795,5794,5007,];
+	w_SE[3692] = [5795,5794,5009,];
+	w_SE[3693] = [5795,5794,5006,];
+	w_SE[3694] = [5795,5794,5003,];
 	ItemIdToSetIdMap[5794] = [3688,3689,3690,3691,3692,3693,3694,];
+	ItemIdToSetIdMap[5003] = ItemIdToSetIdMap[5003].concat([3694]);
+	ItemIdToSetIdMap[5004] = ItemIdToSetIdMap[5004].concat([3688]);
+	ItemIdToSetIdMap[5005] = ItemIdToSetIdMap[5005].concat([3689]);
+	ItemIdToSetIdMap[5006] = ItemIdToSetIdMap[5006].concat([3693]);
+	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([3691]);
+	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([3690]);
+	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([3692]);
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 	// itemset はセーブデータに書き出されないので
