@@ -2,12 +2,12 @@ enchant_list:
   - enchant:
     - name: スペシャルエンチャント(オーブ)
       item_list:
-        - item_name: アバドン
+        - item_name: フェアリーリング
       slot_list:
         - slot: 4
           refine: 0
           enchant_list:
-            - name: "潜在解放(アビスチェイサーXXII)"
+            - name: "潜在解放(ウィンドホークXXIV)"
         - slot: 3
           refine: 8
           enchant_list:
@@ -28,27 +28,46 @@ enchant_list:
             - name: 詠唱妨害不可
             - name: 英雄の凱歌
 
-    - name: スペシャルエンチャント(ミオン)
+    - name: スペシャルエンチャント(オーブ)
       item_list:
-        - item_name: くわえたクラブのエース
+        - item_name: スノークイーン
       slot_list:
         - slot: 4
           refine: 0
           enchant_list:
-            - name: "潜在解放(アークメイジXXIV)"
+            - name: "潜在解放(ハイパーノービスXXV)"
+        - slot: 3
+          refine: 8
+          enchant_list:
+            - name: 火属性付与(鎧)
+            - name: 水属性付与(鎧)
+            - name: 風属性付与(鎧)
+            - name: 地属性付与(鎧)
+            - name: 聖属性付与(鎧)
+            - name: 闇属性付与(鎧)
+            - name: 念属性付与(鎧)
+            - name: 毒属性付与(鎧)
+            - name: 不死属性付与(鎧)
+        - slot: 2
+          refine: 9
+          enchant_list:
+            - name: "スキルディレイ-15%"
+            - name: "必中攻撃+25%"
+            - name: 詠唱妨害不可
+            - name: 厄災の魔将
 
     - name: スペシャルエンチャント(ミオン)
       item_list:
-        - item_name: クラナネミエリーの傍観者
+        - item_name: 青い花びら
       slot_list:
         - slot: 4
           refine: 0
           enchant_list:
-            - name: "潜在解放(ナイトウォッチXX)"
+            - name: "潜在解放(バイオロXX)"
 
     - name: スペシャルエンチャント(ネコヤン)
       item_list:
-        - item_name: ディメンションクリミナルアーク
+        - item_name: ニクス・グラーティア
       slot_list:
         - slot: 4
           refine: 6
@@ -78,4 +97,4 @@ enchant_list:
             - name: 覇王
             - name: 暴走した魔力
             - name: 大鷲の眼光
-            - name: "潜在覚醒(ストーンスキンI)"
+            - name: "潜在覚醒(アンチマジックI)"

@@ -397,7 +397,7 @@ export const skills = [
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 				let wbairitu = 7000 + 2000 * skillLv;				// 基本倍率
 				wbairitu += 3 * fidos_animus_lv;				// TODO: 2026-10-03 係数未調査
-				wbairitu += 60 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
 
@@ -613,8 +613,8 @@ export const skills = [
 			this.Power = function(skillLv) {
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 				let wbairitu = 1400 * skillLv;					// 基本倍率
-				wbairitu += 30 * skillLv * fidos_animus_lv;			// TODO: 2026-10-03 係数未調査
-				wbairitu += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);		// TODO: 2026-10-03 係数未調査
+				wbairitu += 70 * skillLv * fidos_animus_lv;
+				wbairitu += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
 
@@ -641,8 +641,8 @@ export const skills = [
 				let ratio = 0;
 				const fidos_animus_lv = Math.max(UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS), LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 				ratio += 1500 + 1100 * skillLv;
-				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
-				ratio += 300 * fidos_animus_lv;	// TODO: 2026-10-03 係数未調査
+				ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += 350 * fidos_animus_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -697,12 +697,12 @@ export const skills = [
 				const state_competentia = option.GetOptionValue(1) === 1;
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 				ratio += 250 + 1750 * skillLv;
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				// コンペテンティア状態でない場合は 3/4 倍
 				if (!state_competentia) {
 					ratio = ratio * 3 / 4;
 				}
-				ratio += 0 * fidos_animus_lv;	// TODO: フィドスアニムス習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				ratio += 450 * fidos_animus_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
