@@ -1,0 +1,28 @@
+pet_list:
+  - name: Sユンケア
+    yomi: エスユンケア
+    capabilities:
+      - name: 凍結耐性
+        value: 100
+        at_lv: 100
+      - name: 氷結耐性
+        value: 100
+        at_lv: 100
+      - name: 冷凍耐性
+        value: 100
+        at_lv: 100
+      - name: スキル使用可能
+        skill: エナジーコート
+        skill_lv: 1
+        at_lv: 100
+    wonder_basket: true
+
+  - name: ナハトズィーガー
+    yomi: ナハトズィーガー
+    desc: BaseLv100以上の時、<br>　[Mコメット]で受けるダメージ - 50%
+    capabilities:
+      - name: スキル使用可能
+        skill: ドレインライフ
+        skill_lv: 5
+        at_lv: 100
+    wonder_basket: true

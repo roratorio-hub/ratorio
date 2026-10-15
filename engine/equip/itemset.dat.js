@@ -7286,6 +7286,11 @@ CardIdToSetIdMap[4463] = [3610,];
 	ItemIdToSetIdMap[5007] = ItemIdToSetIdMap[5007].concat([3691]);
 	ItemIdToSetIdMap[5008] = ItemIdToSetIdMap[5008].concat([3690]);
 	ItemIdToSetIdMap[5009] = ItemIdToSetIdMap[5009].concat([3692]);
+	w_SE[3695] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 114)]; // ワンダーエッグバスケット(4235) + Sユンケア
+	w_SE[3696] = [4236,4235,-(ITEM_SET_PET_ID_OFFSET + 115)]; // ワンダーエッグバスケット(4235) + ナハトズィーガー
+	PetIdToSetIdMap[114] = [3695];
+	PetIdToSetIdMap[115] = [3696];
+	ItemIdToSetIdMap[4235] = ItemIdToSetIdMap[4235].concat([3695,3696]);
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 	// itemset はセーブデータに書き出されないので
