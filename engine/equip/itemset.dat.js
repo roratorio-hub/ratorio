@@ -7263,6 +7263,12 @@ CardIdToSetIdMap[4463] = [3610,];
 
 	w_SE[3684] = [-4551,-4550,-2668,];
 	CardIdToSetIdMap[4550] = [3684,];
+	w_SE[3685] = [-4556,-4555,-1348,];
+	CardIdToSetIdMap[4555] = [3685,];
+	w_SE[3686] = [-4558,-4557,-1245,];
+	CardIdToSetIdMap[4557] = [3686,];
+	w_SE[3687] = [-4560,-4559,-1348,];
+	CardIdToSetIdMap[4559] = [3687,];
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 	// itemset はセーブデータに書き出されないので
