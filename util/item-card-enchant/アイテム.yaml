@@ -1,93 +1,7 @@
 item_list:
-  - name: アバドン
-    yomi: アバドン
-    desc: "精錬値が9以上の時、[フェイントボム]使用時、20秒間、[アンリミット]Lv5状態になる。<br>装備解除時、[アンリミット]を解除する"
-    type: 鎧
-    slot: 1
-    weapon_lv: 0
-    atk_or_def: 100
-    weight: 100
-    required_lv: 200
-    required_job: アビスチェイサー
-    capabilities:
-      - name: プレイヤー耐性
-        value: 7
-      - name: スキルダメージ増加
-        skill: チェーンリアクションショット
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: フレンジショット
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: ヒットアンドスライディング
-        value: 1
-        per_lv: 10
-      - name: スキルダメージ増加
-        skill: チェイシングショット
-        value: 1
-        per_lv: 10
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 7
-        per_refine: 1
-      - name: 破損しない
-        value : 1
-        at_refine: 9
-      - name: ASPD増加
-        value: 10
-        at_refine: 7
-      - name: 一般耐性
-        value: 5
-        at_refine: 7
-      - name: ボス耐性
-        value: 5
-        at_refine: 7
-      - name: 全属性への物理ダメージ増加
-        value: 15
-        at_refine: 10
-
-  - name: くわえたクラブのエース
-    yomi: クワエタクラブノエース
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: アークメイジ
-    capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
-
-  - name: クラナネミエリーの傍観者
-    yomi: クラナネミエリーノボウカンシャ
-    type: 下段
-    slot: 0
-    weapon_lv: 0
-    atk_or_def: 0
-    weight: 10
-    required_lv: 200
-    required_job: ナイトウォッチ
-    capabilities:
-      - name: プレイヤー耐性
-        value: 3
-      - name: 小・中・大型モンスターへの物理ダメージ増加
-        value: 1
-        per_lv: 10
-      - name: 小・中・大型モンスターへの魔法ダメージ増加
-        value: 1
-        per_lv: 10
-
-  - name: ディメンションクリミナルアーク
-    yomi: ディメンションクリミナルアーク
-    desc: "精錬値が9以上の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる<br>精錬値が10の時、追加で[Mクラウドキル]で受けるダメージ - 50%"
+  - name: ニクス・グラーティア
+    yomi: ニクス・グラーティア
+    desc: "精錬値が9以上の時、追加で物理・魔法攻撃命中時、一定確率で10秒間、[神力]状態になる<br>精錬値が10の時、追加で[テトラボルテックス]で受けるダメージ - 25%<br>サモナー系が装備時、[テトラボルテックス]で受けるダメージ + 25%"
     type: 肩にかける物
     slot: 1
     weapon_lv: 0
@@ -104,17 +18,17 @@ item_list:
         value: 5
       - name: ASPD増加
         value: 20
-        at_sp_status_100: STA
+        at_sp_status_100: WIS
       - name: スキルディレイ減少
         value: 25
-        at_sp_status_100: STA
+        at_sp_status_100: WIS
       - name: MAXHP増加
         value: 2
         per_refine: 1
       - name: MAXSP増加
         value: 2
         per_refine: 1
-      - name: STA加算
+      - name: WIS加算
         value: 1
         per_refine: 1
       - name: 全基本ステータス加算
@@ -135,7 +49,7 @@ item_list:
       - name: 全属性への魔法ダメージ増加
         value: 15
         at_refine: 7
-      - name: 念属性耐性
+      - name: 無属性耐性
         value: 15
         at_refine: 9
       - name: 小・中・大型モンスターへの物理ダメージ増加
@@ -147,5 +61,312 @@ item_list:
     set_list:
       - set:
         entity_list:
+          - item_name: 星座の印章(力)
+        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
+      - set:
+        entity_list:
+          - item_name: 星座の印章(体力)
+        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
+      - set:
+        entity_list:
+          - item_name: 星座の印章(聡明)
+        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
+      - set:
+        entity_list:
+          - item_name: 星座の印章(魔力)
+        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
+      - set:
+        entity_list:
+          - item_name: 星座の印章(集中)
+        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
+      - set:
+        entity_list:
+          - item_name: 星座の印章(創造)
+        desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
+      - set:
+        entity_list:
           - item_name: 星座の印章
         desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
+
+  - name: フェアリーリング
+    yomi: フェアリーリング
+    type: 鎧
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
+    required_lv: 200
+    required_job: ウィンドホーク
+    capabilities:
+      - name: プレイヤー耐性
+        value: 7
+      - name: スキルダメージ増加
+        skill: フレイムトラップ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: スイフトトラップ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ソリッドトラップ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ディープブラインドトラップ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: プライムドフレイムトラップ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: プライムドスイフトトラップ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: プライムドソリッドトラップ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: プライムドディープブラインドトラップ
+        value: 1
+        per_lv: 10
+      - name: 小・中・大型モンスターへの物理ダメージ増加
+        value: 7
+        per_refine: 1
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: 一般耐性
+        value: 5
+        at_refine: 7
+      - name: ボス耐性
+        value: 5
+        at_refine: 7
+      - name: 破損しない
+        value: 1
+        at_refine: 9
+      - name: スキル消費SP固定値減少
+        skill: エレクトリックショッカー
+        value: 30
+        at_refine: 9
+      - name: 全属性への物理ダメージ増加
+        value: 15
+        at_refine: 10
+
+  - name: スノークイーン
+    yomi: スノークイーン
+    type: 鎧
+    slot: 1
+    weapon_lv: 0
+    atk_or_def: 100
+    weight: 100
+    required_lv: 200
+    required_job: ハイパーノービス
+    capabilities:
+      - name: プレイヤー耐性
+        value: 7
+      - name: スキルダメージ増加
+        skill: ユピテルサンダーストーム
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ヘルズドライブ
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ナパームバルカンストライク
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: メテオストームバスター
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: グラウンドグラビテーション
+        value: 1
+        per_lv: 10
+      - name: スキルダメージ増加
+        skill: ジャックフロストノヴァ
+        value: 1
+        per_lv: 10
+      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        value: 7
+        per_refine: 1
+      - name: ASPD増加
+        value: 10
+        at_refine: 7
+      - name: 一般耐性
+        value: 5
+        at_refine: 7
+      - name: ボス耐性
+        value: 5
+        at_refine: 7
+      - name: 破損しない
+        value: 1
+        at_refine: 9
+      - name: スキル使用可能
+        skill: デリュージ
+        skill_lv: 5
+        at_refine: 9
+      - name: 全属性への魔法ダメージ増加
+        value: 15
+        at_refine: 10
+
+  - name: 青い花びら
+    yomi: アオイハナビラ
+    type: 下段
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 10
+    required_lv: 200
+    required_job: バイオロ
+    capabilities:
+      - name: プレイヤー耐性
+        value: 3
+      - name: 小・中・大型モンスターへの物理ダメージ増加
+        value: 1
+        per_lv: 10
+      - name: 小・中・大型モンスターへの魔法ダメージ増加
+        value: 1
+        per_lv: 10
+
+  - name: "[シャドウ] セレスティアルアーマー"
+    yomi: シャドウセレスティアルアーマー
+    type: シャドウ鎧
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 0
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: MAXSP増加
+        value: 1
+        per_refine: 2
+      - name: MAXSP増加
+        value: 1
+        at_refine: 7
+      - name: MAXSP増加
+        value: 2
+        at_refine: 9
+      - name: MAXSP増加
+        value: 2
+        at_refine: 10
+
+  - name: "[シャドウ] セレスティアルウェポン"
+    yomi: シャドウセレスティアルウェポン
+    type: シャドウ右手
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 0
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: MAXSP増加
+        value: 1
+        per_refine: 2
+      - name: MAXSP増加
+        value: 1
+        at_refine: 7
+      - name: MAXSP増加
+        value: 2
+        at_refine: 9
+      - name: MAXSP増加
+        value: 2
+        at_refine: 10
+
+  - name: "[シャドウ] セレスティアルシールド"
+    yomi: シャドウセレスティアルシールド
+    type: シャドウ左手
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 0
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: MAXSP増加
+        value: 1
+        per_refine: 2
+      - name: MAXSP増加
+        value: 1
+        at_refine: 7
+      - name: MAXSP増加
+        value: 2
+        at_refine: 9
+      - name: MAXSP増加
+        value: 2
+        at_refine: 10
+
+  - name: "[シャドウ] セレスティアルシューズ"
+    yomi: シャドウセレスティアルシューズ
+    type: シャドウ靴
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 0
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: MAXSP増加
+        value: 1
+        per_refine: 2
+      - name: MAXSP増加
+        value: 1
+        at_refine: 7
+      - name: MAXSP増加
+        value: 2
+        at_refine: 9
+      - name: MAXSP増加
+        value: 2
+        at_refine: 10
+
+  - name: "[シャドウ] セレスティアルイヤリング"
+    yomi: シャドウセレスティアルイヤリング
+    type: シャドウアクセサリー(1)
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 0
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: MAXSP増加
+        value: 1
+        per_refine: 2
+      - name: MAXSP増加
+        value: 1
+        at_refine: 7
+      - name: MAXSP増加
+        value: 2
+        at_refine: 9
+      - name: MAXSP増加
+        value: 2
+        at_refine: 10
+
+  - name: "[シャドウ] セレスティアルペンダント"
+    yomi: シャドウセレスティアルペンダント
+    type: シャドウアクセサリー(2)
+    slot: 0
+    weapon_lv: 0
+    atk_or_def: 0
+    weight: 0
+    required_lv: 200
+    required_job: 4次職 拡張4次職
+    capabilities:
+      - name: MAXSP増加
+        value: 1
+        per_refine: 2
+      - name: MAXSP増加
+        value: 1
+        at_refine: 7
+      - name: MAXSP増加
+        value: 2
+        at_refine: 9
+      - name: MAXSP増加
+        value: 2
+        at_refine: 10
