@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
 
 // 2026-09 追加スキル（公式サイト rotool の数値）を固定する仕様テスト。
-// 特性ステータス係数・「○○の習得Lv」係数は公式非公開のため 0 で仮置きしている。
-// そのため、特性ステータス0・習得Lv0・BaseLv100 のときの Power が公式の「攻撃力」と一致することを検証する
-// （係数を実測値で埋めたあとも、この条件では同じ値になる）。
+// 特性ステータス係数・「○○の習得Lv」係数は公式非公開（実測値）のため、
+// 特性ステータス0・習得Lv0・BaseLv100 のときの Power が公式の「攻撃力」と一致することを検証する
+// （係数の値に依らず、この条件では同じ値になる）。
 
 let sm: any;
 let CSkillData: any;
@@ -45,7 +45,7 @@ const lv5 = (f: (l: number) => number) => range(5, f);
 const AP_BUFF = lv5((l) => 20 + 6 * l);
 const TABLE: Row[] = [
     ['SERVANT_WEAPON_CLEAVE', '(×)サーヴァントウェポン：クリーブ', 5, 110, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 500 * l), same(5, 500), 0],
-    ['SHIELD_SLAM', '(×)シールドスラム', 5, 290, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['SHIELD_SLAM', 'シールドスラム', 5, 290, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
     ['WRAITH_DASH', '(×)レイスダッシュ', 3, 400, same(3, 0), same(3, 0), same(3, 2000), same(3, 1000), same(3, 500), 0],
     ['ELEMENTAL_INTEGRATION', 'エレメンタルインテグレーション', 5, 500, AP_BUFF, same(5, 1000), same(5, 0), same(5, 500), same(5, 500), 120000],
     ['PRIMED_SOLID_TRAP', 'プライムドソリッドトラップ', 5, 150, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
@@ -54,24 +54,24 @@ const TABLE: Row[] = [
     ['PRIMED_SWIFT_TRAP', 'プライムドスイフトトラップ', 5, 170, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['PRIMED_TRAP', 'プライムドトラップ', 1, 350, [50], [1000], [0], [500], [500], 60000],
     ['FRAGMENT_BOLT', '(×)フラグメントボルト', 5, 210, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['FUGUE_DES_FLECHES', '(×)フーガデフレーシュ', 5, 230, same(5, 0), same(5, 1500), lv5((l) => 500 + 500 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['FUGUE_DES_FLECHES', 'フーガデフレーシュ', 5, 230, same(5, 0), same(5, 1500), lv5((l) => 500 + 500 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['LEX_EXPIATRIX', '(×)レックスエクスピアトリクス', 5, 250, same(5, 0), same(5, 1500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
-    ['PUNITIO', '(×)プニティオ', 5, 210, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['PUNITIO', 'プニティオ', 5, 210, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
     ['DAIZEROGEKI_HATENGEKI', '(×)第零撃：破天撃', 5, 300, same(5, 10), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
     ['VENOM_IGNITION', 'ベナムイグニッション', 5, 290, AP_BUFF, same(5, 1000), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 120000],
     ['PHANTOM_DAGGER', '(×)ファントムダガー', 5, 110, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['OVERDRIVE_PROTOCOL', '(×)オーバードライブプロトコル', 4, 250, same(4, 0), same(4, 1500), range(4, (l) => 2000 + 500 * l), range(4, (l) => 1000 + 1000 * l), same(4, 500), 0],
-    ['RAMPANT_VINE', '(×)ランパントヴァイン', 5, 170, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['OVERDRIVE_PROTOCOL', 'オーバードライブプロトコル', 4, 250, same(4, 0), same(4, 1500), range(4, (l) => 2000 + 500 * l), range(4, (l) => 1000 + 1000 * l), same(4, 500), 0],
+    ['RAMPANT_VINE', 'ランパントヴァイン', 5, 170, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['SHICHISEI_TENKYAKU', '七星天脚', 5, 230, same(5, 5), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
     ['KORYU_ZIN', '(×)黄龍陣', 5, 300, same(5, 5), same(5, 500), same(5, 1000), same(5, 500), same(5, 500), 0],
-    ['KAGE_GEKIRYU', '(×)影激流', 10, 190, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
+    ['KAGE_GEKIRYU', '影激流', 10, 190, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
     ['SHINKIRO_BUNSHIN_GUNSHU', '蜃気楼分身 -群集-', 1, 320, [25], [1000], [0], [0], [500], 60000],
     ['KAGE_MICHI', '影満ち', 5, 320, AP_BUFF, same(5, 1000), same(5, 0), same(5, 500), same(5, 500), 120000],
     ['TACTICAL_REPOSITIONING', 'タクティカルリポジショニング', 1, 10, [0], [0], [0], [0], [0], 0],
     ['PLUME_PIERCER', '(×)プルームピアサー', 5, 190, same(5, 0), same(5, 0), lv5((l) => 600 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['NATURE_RAGE', '(×)ネイチャーレイジ', 5, 230, same(5, 0), same(5, 500), lv5((l) => -500 + 1400 * l), same(5, 4000), same(5, 500), 0],
-    ['WIND_CUTTER_TURBO', '(×)ウィンドカッターターボ', 10, 80, same(10, 0), same(10, 0), range(10, (l) => 200 * l), range(10, (l) => 500 * l), same(10, 500), 0],
-    ['HIGH_MAGNUM_BREAK', '(×)ハイマグナムブレイク', 10, 80, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
+    ['WIND_CUTTER_TURBO', 'ウィンドカッターターボ', 10, 80, same(10, 0), same(10, 0), range(10, (l) => 200 * l), range(10, (l) => 500 * l), same(10, 500), 0],
+    ['HIGH_MAGNUM_BREAK', 'ハイマグナムブレイク', 10, 80, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
     ['BURNING_FLAME', 'バーニングフレイム', 5, 290, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
     ['FROZEN_HAIL', 'フローズンヘイル', 5, 260, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
     ['STORM_RISE', 'ストームライズ', 5, 290, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
@@ -129,8 +129,9 @@ describe('2026-09 追加スキルのスキル倍率（公式サイトの「攻�
 
     it('クリーブ: 通常 / ヴィゴール状態', () => {
         expect(powers('SERVANT_WEAPON_CLEAVE', 5)).toEqual([2400, 3600, 4800, 6000, 7200]);
+        // ヴィゴール状態は習得Lv1以上が前提なので、公式値（3000%〜）に「450 × ヴィゴールLv(1)」が加わる
         Used[S.SKILL_ID_VIGOR] = 1;
-        expect(powers('SERVANT_WEAPON_CLEAVE', 5)).toEqual([3000, 4500, 6000, 7500, 9000]);
+        expect(powers('SERVANT_WEAPON_CLEAVE', 5)).toEqual([3450, 4950, 6450, 7950, 9450]);
     });
     it('シールドスラム', () => expect(powers('SHIELD_SLAM', 5)).toEqual([1000, 2400, 3800, 5200, 6600]));
     it('レイスダッシュ', () => expect(powers('WRAITH_DASH', 3)).toEqual([1500, 2250, 3000]));
@@ -159,8 +160,7 @@ describe('2026-09 追加スキルのスキル倍率（公式サイトの「攻�
     it('ファントムダガー', () => expect(powers('PHANTOM_DAGGER', 5)).toEqual([4700, 6000, 7300, 8600, 9900]));
     it('オーバードライブプロトコル: 通常 / デュアルキャノン召喚中', () => {
         expect(powers('OVERDRIVE_PROTOCOL', 4)).toEqual([2700, 4200, 5700, 7200]);
-        Used[S.SKILL_ID_ABR_DUAL_CANNON] = 1;
-        expect(powers('OVERDRIVE_PROTOCOL', 4)).toEqual([3300, 5700, 8100, 10500]);
+        expect(powers('OVERDRIVE_PROTOCOL', 4, opt(1))).toEqual([3300, 5700, 8100, 10500]);
     });
     it('ランパントヴァイン: 通常 / クリーパー召喚中', () => {
         expect(powers('RAMPANT_VINE', 5)).toEqual([2300, 3450, 4600, 5750, 6900]);
@@ -272,7 +272,7 @@ describe('2026-09 追加スキルの距離・属性・使用条件・ヒット�
     it('オーバードライブプロトコル: インフィニティ召喚中のみクリティカル', () => {
         const d = sm.dataArray[id('OVERDRIVE_PROTOCOL')];
         d._CriActRate100 = () => 100;
-        expect([0, 1].map((v) => d.CriActRate(1, null, null, [], opt(v)))).toEqual([0, 100]);
+        expect([0, 1].map((v) => d.CriActRate(1, null, null, [], opt(0, v)))).toEqual([0, 100]);
     });
     it('七星天脚: 天気の身が使用条件、強化時は7分割', () => {
         const d = sm.dataArray[id('SHICHISEI_TENKYAKU')];

@@ -685,11 +685,12 @@ export const skills = [
 				const vigor_lv = Math.max(LearnedSkillSearch(SKILL_ID_VIGOR), UsedSkillSearch(SKILL_ID_VIGOR));
 				if (state_vigor) {
 					ratio += 1500 + 1500 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio += 1200 + 1200 * skillLv;
+					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
-				ratio += 0 * vigor_lv;	// TODO: ヴィゴール習得Lv係数未確定（公式非公開）
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 450 * vigor_lv;
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SERVANT_SIGN]) {
 					ratio *= 1.5;
 				}
