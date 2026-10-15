@@ -60,8 +60,14 @@ item_list:
         at_refine: 10
     set_list:
       - set:
-        entity_list:
+        entity_list_any:
           - item_name: 星座の印章
+          - item_name: 星座の印章(力)
+          - item_name: 星座の印章(体力)
+          - item_name: 星座の印章(聡明)
+          - item_name: 星座の印章(魔力)
+          - item_name: 星座の印章(集中)
+          - item_name: 星座の印章(創造)
         desc: 物理・魔法攻撃命中時、一定確率で20秒間、リフレッシュLv1状態になる
 
   - name: フェアリーリング
