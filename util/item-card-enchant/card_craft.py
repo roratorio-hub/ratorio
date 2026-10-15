@@ -2,6 +2,7 @@ import re
 import os
 import yaml
 from craft_util import *
+from set_util import groupSetList, loadExistingSetMapKeys, buildPartnerMapLines
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -60,6 +61,11 @@ if __name__ == "__main__":
     with open(f'{script_dir}/カード・エンチャント.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
 
+    # セットのパートナー側の逆引きマップ行を作るための情報
+    partner_sets = {}
+    with open(f'{script_dir}/../../engine/equip/itemset.dat.js', 'r', encoding='utf-8') as f:
+        defined_items, defined_cards = loadExistingSetMapKeys(f.read())
+
     for enchant_info in config['card_list']:
 
     # ------------------------------------------------------
@@ -90,7 +96,8 @@ if __name__ == "__main__":
         # card.dat.js に記述すべきセット効果の出力
         if 'set_list' in enchant_info:
             card_to_set_record = f"CardIdToSetIdMap[{base_id}] = ["
-            for set_info in enchant_info['set_list']:
+            # 効果が同一のセットは効果レコードを1つ共有する（groupSetList 参照）
+            for set_info, conditions in groupSetList(enchant_info['set_list']):
                 card_id += 1
                 set_card_id = card_id
                 set_desc = set_info.get('desc', '')
@@ -106,19 +113,26 @@ if __name__ == "__main__":
         #  itemset.dat.js
         # ------------------------------------------------------
 
-                # セット条件の出力
-                itemset_id += 1
-                record = f"w_SE[{itemset_id}] = [{card_id * -1},{base_id * -1},"
-                for entity in set_info['entity_list']:
-                    try:
-                        set_entity_id = ITEM_CODE.get(entity['item_name']) if 'item_name' in entity else CARD_OR_ENCH_CODE.get(entity['card_name']) * -1
-                    except:
-                        print(f"{entity} の処理に失敗しました")
-                    record += f"{set_entity_id},"
-                # EOF
-                record += "];"
-                itemset_dat_js.append(record)
-                card_to_set_record += f"{itemset_id},"
+                # セット条件の出力（条件1つにつき w_SE を1行）
+                for entity_list in conditions:
+                    itemset_id += 1
+                    record = f"w_SE[{itemset_id}] = [{set_card_id * -1},{base_id * -1},"
+                    for entity in entity_list:
+                        try:
+                            if 'item_name' in entity:
+                                set_entity_id = ITEM_CODE.get(entity['item_name'])
+                                partner_sets.setdefault(('item', set_entity_id), []).append(itemset_id)
+                            else:
+                                partner_card_id = CARD_OR_ENCH_CODE.get(entity['card_name'])
+                                set_entity_id = partner_card_id * -1
+                                partner_sets.setdefault(('card', partner_card_id), []).append(itemset_id)
+                        except:
+                            print(f"{entity} の処理に失敗しました")
+                        record += f"{set_entity_id},"
+                    # EOF
+                    record += "];"
+                    itemset_dat_js.append(record)
+                    card_to_set_record += f"{itemset_id},"
 
                 # 時限発動効果の出力
                 for time_effect in set_info.get('time_effects', []):
@@ -128,6 +142,9 @@ if __name__ == "__main__":
             # EOF
             card_to_set_record += f"];"
             itemset_dat_js.append(card_to_set_record)
+            defined_cards.add(base_id)
+
+    itemset_dat_js.extend(buildPartnerMapLines(partner_sets, defined_items, defined_cards))
 
     OUTPUT_FILE = [
         ('card.dat.js', card_dat_js),
