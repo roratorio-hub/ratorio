@@ -889,7 +889,7 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 6000 + 1500 * skillLv;
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: Pow係数未確定（公式非公開）
+				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
