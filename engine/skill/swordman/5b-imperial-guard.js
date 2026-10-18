@@ -665,6 +665,7 @@ export const skills = [
 		}),
 
 		/** インペリアルプレッシャー */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-973.html
 		// SKILL_ID_IMPERIAL_PRESSURE
 		defineSkill(SKILL_ID_IMPERIAL_PRESSURE, function() {
 			this.name = "インペリアルプレッシャー";
