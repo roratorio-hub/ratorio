@@ -820,10 +820,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)ファントムダガー */
+		/** ファントムダガー */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-965.html
 		// SKILL_ID_PHANTOM_DAGGER
 		defineSkill(SKILL_ID_PHANTOM_DAGGER, function() {
-			this.name = "(×)ファントムダガー";
+			this.name = "ファントムダガー";
 			this.kana = "ファントムタカア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;

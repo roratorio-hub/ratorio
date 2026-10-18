@@ -74,7 +74,7 @@ export function CCharaConfYozi(confArray) {
 		this.confDataObj[confId] = confData;
 		confId++;
 
-		CCharaConfYozi.CONF_ID_CONPETENTIA = confId;
+		CCharaConfYozi.CONF_ID_COMPETENTIA = confId;
 		confData = [
 			confId,
 			CConfBase.ConfText("コンペテンティア"),
@@ -355,7 +355,7 @@ export function CCharaConfYozi(confArray) {
 			CCharaConfYozi.CONF_ID_ARUGUTUS_VITA,
 			CCharaConfYozi.CONF_ID_ARUGUTUS_TERUM,
 			CCharaConfYozi.CONF_ID_PRESENSE_AKYACE,
-			CCharaConfYozi.CONF_ID_CONPETENTIA,
+			CCharaConfYozi.CONF_ID_COMPETENTIA,
 			CCharaConfYozi.CONF_ID_RERIGIO,
 			CCharaConfYozi.CONF_ID_BENEDICTUM,
 			CCharaConfYozi.CONF_ID_CLIMAX_IMPACT,

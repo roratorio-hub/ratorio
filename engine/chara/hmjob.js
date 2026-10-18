@@ -23,7 +23,7 @@ import { MOB_CONF_DEBUF_ID_JACK_FROST_NOVA, MOB_CONF_DEBUF_ID_TOXIN_OF_MANDARA, 
 import {
          SKILL_ID_ABYSS_SLAYER, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_ATTACK_STANCE,
          SKILL_ID_CHUZITSUNA_SHINNEN, SKILL_ID_CLIMAX_HURRICANE_STATE,
-         SKILL_ID_CONPETENTIA, SKILL_ID_DOKUGAKU_MADOGAKU, SKILL_ID_DOKUGAKU_SENTOGAKU,
+         SKILL_ID_COMPETENTIA, SKILL_ID_DOKUGAKU_MADOGAKU, SKILL_ID_DOKUGAKU_SENTOGAKU,
          SKILL_ID_DONKI_HON_SHUREN, SKILL_ID_FIDOS_ANIMUS, SKILL_ID_GOFU_SHUREN,
          SKILL_ID_GUARD_STANCE, SKILL_ID_HIDDEN_CARD, SKILL_ID_HOLY_SHIELD,
          SKILL_ID_HYOHO_SHUREN, SKILL_ID_INTENSIVE_AIM, SKILL_ID_KENKONA_SHINNEN,
@@ -852,8 +852,8 @@ export function GetPAtk() {
 		value += (1 * Math.min(5, sklLv)) + (2 * Math.min(5, Math.max(0, sklLv - 5)));
 	}
 	// 四次職支援「コンペテンティア」による効果
-	// SKILL_ID_CONPETENTIA
-	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_CONPETENTIA]) > 0) {
+	// SKILL_ID_COMPETENTIA
+	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_COMPETENTIA]) > 0) {
 		value += 20 + 2 * bufLv;
 	}
 	// 四次職支援「プロンテラマーチ」による効果
@@ -990,8 +990,8 @@ export function GetSMatk() {
 	}
 
 	// 四次職支援「コンペテンティア」による効果
-	// SKILL_ID_CONPETENTIA
-	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_CONPETENTIA]) > 0) {
+	// SKILL_ID_COMPETENTIA
+	if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_COMPETENTIA]) > 0) {
 		value += 20 + 2 * bufLv;
 	}
 

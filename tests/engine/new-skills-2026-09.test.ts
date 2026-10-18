@@ -12,10 +12,15 @@ let K: any;
 let E: any;
 let Used: Record<number, number>;
 let Learned: Record<number, number>;
+let Yozi: Record<number, number>;
+let specStatus = 0;
+let ConfYozi: any;
 
 const opt = (...v: number[]) => ({ GetOptionValue: (i: number) => v[i] ?? 0 });
 const range = (n: number, f: (lv: number) => number) => Array.from({ length: n }, (_, i) => f(i + 1));
 const same = (n: number, v: number) => range(n, () => v);
+// 名称の「(×)」（未実測の印）は実測確認のたびに付け外しされる状態表示なので、比較から外す
+const noBadge = (name: string) => name.replace('(×)', '');
 
 beforeAll(async () => {
     S = await import('@engine/skill/skill.dat.js');
@@ -29,7 +34,12 @@ beforeAll(async () => {
     search.RegisterUsedSkillSearch((id: number) => Used[id] ?? 0);
     search.RegisterLearnedSkillSearch((id: number) => Learned[id] ?? 0);
     const hmjob = await import('@engine/bridge/hmjob-bridge.js');
-    hmjob.__registerHmjobFunctions({ GetTotalSpecStatus: () => 0 });
+    hmjob.__registerHmjobFunctions({ GetTotalSpecStatus: () => specStatus });
+    // 四次職支援欄（コンペテンティア等）。CONF_ID_* は InitData() で採番される
+    ConfYozi = (await import('@engine/chara/CCharaConfYozi.js')).CCharaConfYozi;
+    new ConfYozi(new Array(30).fill(0)).InitData();
+    const confBridge = await import('@engine/bridge/chara-conf-bridge.js');
+    confBridge.RegisterGetCharaConfYozi((id: number) => Yozi[id] ?? 0);
     const state = await import('@engine/runtime/ro4-state.js');
     state.set_n_A_BaseLV(100);
 });
@@ -37,6 +47,8 @@ beforeAll(async () => {
 beforeEach(() => {
     Used = {};
     Learned = {};
+    Yozi = {};
+    specStatus = 0;
 });
 
 // [定数名, 名称, maxLv, SP, AP[], 固定詠唱[], 変動詠唱[], ディレイ[], クールタイム[], 持続時間ms]
@@ -44,32 +56,32 @@ type Row = [string, string, number, number, number[], number[], number[], number
 const lv5 = (f: (l: number) => number) => range(5, f);
 const AP_BUFF = lv5((l) => 20 + 6 * l);
 const TABLE: Row[] = [
-    ['SERVANT_WEAPON_CLEAVE', '(×)サーヴァントウェポン：クリーブ', 5, 110, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 500 * l), same(5, 500), 0],
+    ['SERVANT_WEAPON_CLEAVE', 'サーヴァントウェポン：クリーブ', 5, 110, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 500 * l), same(5, 500), 0],
     ['SHIELD_SLAM', 'シールドスラム', 5, 290, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['WRAITH_DASH', '(×)レイスダッシュ', 3, 400, same(3, 0), same(3, 0), same(3, 2000), same(3, 1000), same(3, 500), 0],
+    ['WRAITH_DASH', 'レイスダッシュ', 3, 400, same(3, 0), same(3, 0), same(3, 2000), same(3, 1000), same(3, 500), 0],
     ['ELEMENTAL_INTEGRATION', 'エレメンタルインテグレーション', 5, 500, AP_BUFF, same(5, 1000), same(5, 0), same(5, 500), same(5, 500), 120000],
     ['PRIMED_SOLID_TRAP', 'プライムドソリッドトラップ', 5, 150, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['PRIMED_DEEP_BLIND_TRAP', 'プライムドディープブラインドトラップ', 5, 210, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['PRIMED_FLAME_TRAP', 'プライムドフレイムトラップ', 5, 170, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['PRIMED_SWIFT_TRAP', 'プライムドスイフトトラップ', 5, 170, same(5, 0), same(5, 500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['PRIMED_TRAP', 'プライムドトラップ', 1, 350, [50], [1000], [0], [500], [500], 60000],
-    ['FRAGMENT_BOLT', '(×)フラグメントボルト', 5, 210, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['FRAGMENT_BOLT', 'フラグメントボルト', 5, 210, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['FUGUE_DES_FLECHES', 'フーガデフレーシュ', 5, 230, same(5, 0), same(5, 1500), lv5((l) => 500 + 500 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['LEX_EXPIATRIX', '(×)レックスエクスピアトリクス', 5, 250, same(5, 0), same(5, 1500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
+    ['LEX_EXPIATRIX', 'レックスエクスピアトリクス', 5, 250, same(5, 0), same(5, 1500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
     ['PUNITIO', 'プニティオ', 5, 210, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['DAIZEROGEKI_HATENGEKI', '(×)第零撃：破天撃', 5, 300, same(5, 10), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
+    ['DAIZEROGEKI_HATENGEKI', '第零撃：破天撃', 5, 300, same(5, 10), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
     ['VENOM_IGNITION', 'ベナムイグニッション', 5, 290, AP_BUFF, same(5, 1000), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 120000],
-    ['PHANTOM_DAGGER', '(×)ファントムダガー', 5, 110, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['PHANTOM_DAGGER', 'ファントムダガー', 5, 110, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
     ['OVERDRIVE_PROTOCOL', 'オーバードライブプロトコル', 4, 250, same(4, 0), same(4, 1500), range(4, (l) => 2000 + 500 * l), range(4, (l) => 1000 + 1000 * l), same(4, 500), 0],
     ['RAMPANT_VINE', 'ランパントヴァイン', 5, 170, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['SHICHISEI_TENKYAKU', '七星天脚', 5, 230, same(5, 5), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
-    ['KORYU_ZIN', '(×)黄龍陣', 5, 300, same(5, 5), same(5, 500), same(5, 1000), same(5, 500), same(5, 500), 0],
+    ['KORYU_ZIN', '黄龍陣', 5, 300, same(5, 5), same(5, 500), same(5, 1000), same(5, 500), same(5, 500), 0],
     ['KAGE_GEKIRYU', '影激流', 10, 190, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
     ['SHINKIRO_BUNSHIN_GUNSHU', '蜃気楼分身 -群集-', 1, 320, [25], [1000], [0], [0], [500], 60000],
     ['KAGE_MICHI', '影満ち', 5, 320, AP_BUFF, same(5, 1000), same(5, 0), same(5, 500), same(5, 500), 120000],
     ['TACTICAL_REPOSITIONING', 'タクティカルリポジショニング', 1, 10, [0], [0], [0], [0], [0], 0],
-    ['PLUME_PIERCER', '(×)プルームピアサー', 5, 190, same(5, 0), same(5, 0), lv5((l) => 600 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['NATURE_RAGE', '(×)ネイチャーレイジ', 5, 230, same(5, 0), same(5, 500), lv5((l) => -500 + 1400 * l), same(5, 4000), same(5, 500), 0],
+    ['PLUME_PIERCER', 'プルームピアサー', 5, 190, same(5, 0), same(5, 0), lv5((l) => 600 * l), lv5((l) => 1000 * l), same(5, 500), 0],
+    ['NATURE_RAGE', 'ネイチャーレイジ', 5, 230, same(5, 0), same(5, 500), lv5((l) => -500 + 1400 * l), same(5, 4000), same(5, 500), 0],
     ['WIND_CUTTER_TURBO', 'ウィンドカッターターボ', 10, 80, same(10, 0), same(10, 0), range(10, (l) => 200 * l), range(10, (l) => 500 * l), same(10, 500), 0],
     ['HIGH_MAGNUM_BREAK', 'ハイマグナムブレイク', 10, 80, same(10, 0), same(10, 0), same(10, 0), range(10, (l) => 500 * l), same(10, 500), 0],
     ['BURNING_FLAME', 'バーニングフレイム', 5, 290, same(5, 0), same(5, 500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
@@ -85,9 +97,9 @@ describe('2026-09 追加スキルの基本データ（公式サイトの値）',
     for (const [c, name, maxLv, sp, ap, fixed, vary, delay, ct, life] of TABLE) {
         it(`${name}: 名称・最大Lv・SP・AP・詠唱・ディレイ・クールタイム・持続時間`, () => {
             const id = S['SKILL_ID_' + c];
-            expect(sm.GetSkillName(id)).toBe(name);
+            expect(noBadge(sm.GetSkillName(id))).toBe(name);
             expect(S.SkillObjNew[id][1]).toBe(maxLv);
-            expect(S.SkillObjNew[id][2]).toBe(name);
+            expect(noBadge(S.SkillObjNew[id][2])).toBe(name);
             expect(sm.GetMaxLv(id)).toBe(maxLv);
             const at = (f: (l: number) => number) => range(maxLv, f);
             expect(at((l) => sm.GetCostFixed(id, l, null))).toEqual(same(maxLv, sp));
@@ -151,9 +163,16 @@ describe('2026-09 追加スキルのスキル倍率（公式サイトの「攻�
         Used[S.SKILL_ID_MYSTIC_SYMPHONY] = 1;
         expect(powers('FUGUE_DES_FLECHES', 5)).toEqual([3500, 4500, 5500, 6500, 7500]);
     });
-    it('レックスエクスピアトリクス: 通常 / コンペテンティア状態', () => {
+    it('レックスエクスピアトリクス: 通常 / コンペテンティア状態（四次職支援欄）', () => {
         expect(powers('LEX_EXPIATRIX', 5)).toEqual([1500, 2812, 4125, 5437, 6750]);
-        expect(powers('LEX_EXPIATRIX', 5, opt(0, 1))).toEqual([2000, 3750, 5500, 7250, 9000]);
+        Yozi[ConfYozi.CONF_ID_COMPETENTIA] = 1;
+        expect(powers('LEX_EXPIATRIX', 5)).toEqual([2000, 3750, 5500, 7250, 9000]);
+    });
+    it('レックスエクスピアトリクス: 特性ステータス(SPL)係数はコンペテンティアの有無で変わる（実測 有り45 / 無し33）', () => {
+        specStatus = 100;
+        expect(power('LEX_EXPIATRIX', 5)).toBe(6750 + 33 * 100);
+        Yozi[ConfYozi.CONF_ID_COMPETENTIA] = 3;
+        expect(power('LEX_EXPIATRIX', 5)).toBe(9000 + 45 * 100);
     });
     it('プニティオ', () => expect(powers('PUNITIO', 5)).toEqual([1050, 2100, 3150, 4200, 5250]));
     it('第零撃：破天撃', () => expect(powers('DAIZEROGEKI_HATENGEKI', 5)).toEqual([7500, 9000, 10500, 12000, 13500]));

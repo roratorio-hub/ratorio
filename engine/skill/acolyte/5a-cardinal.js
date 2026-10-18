@@ -12,8 +12,10 @@ import { CSkillData, defineSkill } from "../CSkillData.js";
 import { ITEM_KIND_BOOK, ITEM_KIND_CLUB } from "../../const/EnumItemKind.js";
 import { MIG_PARAM_ID_POW, MIG_PARAM_ID_SPL } from "../../const/EnumMigItemParamId.js";
 import { LearnedSkillSearch, UsedSkillSearch } from "../../bridge/skill-search-bridge.js";
+import { GetCharaConfYozi } from "../../bridge/chara-conf-bridge.js";
+import { CCharaConfYozi } from "../../chara/CCharaConfYozi.js";
 import {
-    SKILL_ID_ARBITRIUM, SKILL_ID_ARUGUTUS_TERUM, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_BENEDICTUM, SKILL_ID_CONPETENTIA,
+    SKILL_ID_ARBITRIUM, SKILL_ID_ARUGUTUS_TERUM, SKILL_ID_ARUGUTUS_VITA, SKILL_ID_BENEDICTUM, SKILL_ID_COMPETENTIA,
     SKILL_ID_DILECTIO_HEAL, SKILL_ID_DIVINUS_FLOS, SKILL_ID_DONKI_HON_SHUREN, SKILL_ID_EFIRIGO,
     SKILL_ID_FIDOS_ANIMUS, SKILL_ID_MEDIA_REBOTUM, SKILL_ID_NUMATIC_PROCERA, SKILL_ID_PETITIO,
     SKILL_ID_PETITIO_LEARNED, SKILL_ID_PHREMEN, SKILL_ID_PRESENSE_AKYACE, SKILL_ID_REPARATIO, SKILL_ID_RERIGIO
@@ -324,8 +326,8 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// コンペテンティア
 		// ----------------------------------------------------------------
-		// SKILL_ID_CONPETENTIA
-		defineSkill(SKILL_ID_CONPETENTIA, function() {
+		// SKILL_ID_COMPETENTIA
+		defineSkill(SKILL_ID_COMPETENTIA, function() {
 			this.name = "コンペテンティア";
 			this.kana = "コンヘテンテイア";
 			this.maxLv = 5;
@@ -358,6 +360,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// ニューマティックプロセラ
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-971.html
 		// SKILL_ID_NUMATIC_PROCERA
 		defineSkill(SKILL_ID_NUMATIC_PROCERA, function() {
 			this.name = "ニューマティックプロセラ";
@@ -396,7 +399,7 @@ export const skills = [
 			this.Power = function(skillLv) {
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 				let wbairitu = 7000 + 2000 * skillLv;				// 基本倍率
-				wbairitu += 3 * fidos_animus_lv;				// TODO: 2026-10-03 係数未調査
+				wbairitu += 3 * fidos_animus_lv;
 				wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
@@ -584,6 +587,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// フレーメン
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-969.html
 		// SKILL_ID_PHREMEN
 		defineSkill(SKILL_ID_PHREMEN, function() {
 			this.name = "フレーメン";
@@ -622,6 +626,7 @@ export const skills = [
 		}),
 
 		/** ディヴィヌスフロス */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-970.html
 		// SKILL_ID_DIVINUS_FLOS
 		defineSkill(SKILL_ID_DIVINUS_FLOS, function() {
 			this.name = "ディヴィヌスフロス";
@@ -677,10 +682,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)レックスエクスピアトリクス */
+		/** レックスエクスピアトリクス */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-963.html
 		// SKILL_ID_LEX_EXPIATRIX
 		defineSkill(SKILL_ID_LEX_EXPIATRIX, function() {
-			this.name = "(×)レックスエクスピアトリクス";
+			this.name = "レックスエクスピアトリクス";
 			this.kana = "レツクスエクスヒアトリクス";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;
@@ -694,13 +700,15 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
-				const state_competentia = option.GetOptionValue(1) === 1;
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
-				ratio += 250 + 1750 * skillLv;
-				ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
-				// コンペテンティア状態でない場合は 3/4 倍
-				if (!state_competentia) {
-					ratio = ratio * 3 / 4;
+				// コンペテンティア状態（四次職支援欄）
+				const competentia_lv = GetCharaConfYozi(CCharaConfYozi.CONF_ID_COMPETENTIA);
+				if (competentia_lv > 0) {
+					ratio += 250 + 1750 * skillLv;
+					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				} else {
+					ratio = [0,1500,2812,4125,5437,6750][skillLv];
+					ratio += 33 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				}
 				ratio += 450 * fidos_animus_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);

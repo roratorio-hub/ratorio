@@ -169,7 +169,7 @@ capabilities:
     code: 100
   - name: 消費SP減少
     code: 102
-  - name: 固定詠唱ミリ秒減少  # スキルに依存しない固定詠唱％減少の定義は存在しないので stallcalc.js で個別対応が必要
+  - name: 固定詠唱ミリ秒減少
     code: 109
   - name: 毒耐性
     code: 150
@@ -425,6 +425,8 @@ capabilities:
     code: 380
   - name: ノックバックしない
     code: 381
+  - name: 固定詠唱割合減少  # スキルを問わない固定詠唱の％減少。複数あっても合算されず最大値のみ有効
+    code: 382
   - name: スキルダメージ増加
     code: 5000
   - name: スキル変動詠唱割合減少

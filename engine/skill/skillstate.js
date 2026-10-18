@@ -86,7 +86,8 @@ export const ID_BUFF_VESPER_HONEY = 34;
 
 /**
  * 有効化されている「職固有自己支援」と「アイテム時限効果」の設定Lvを取得する
- * 「一次職支援設定」から「四次職支援設定」までの情報はサーチされない
+ * 「一次職支援設定」から「四次職支援設定」までの情報は、下の switch に個別に書いたスキルしかサーチされない。
+ * 支援欄の値そのものが欲しいときは bridge/chara-conf-bridge.js の GetCharaConfXxx を使う
  * @param {*} sklId 確認するスキル
  * @param {*} bOnlyUsed true: 時限アイテム効果等も検索する / false: 職業スキルだけを検索する(default)
  * @returns 設定されているLv
