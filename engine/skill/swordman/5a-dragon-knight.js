@@ -672,10 +672,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)サーヴァントウェポン：クリーブ */
+		/** サーヴァントウェポン：クリーブ */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-964.html
 		// SKILL_ID_SERVANT_WEAPON_CLEAVE
 		defineSkill(SKILL_ID_SERVANT_WEAPON_CLEAVE, function() {
-			this.name = "(×)サーヴァントウェポン：クリーブ";
+			this.name = "サーヴァントウェポン：クリーブ";
 			this.kana = "サアウアントウエホンクリイフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -690,7 +691,7 @@ export const skills = [
 					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio += 1200 + 1200 * skillLv;
-					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 数値合わせの結果 30 ではなく 36 が正しいと思われる
 				}
 				ratio += 450 * vigor_lv;
 				// サーヴァントウェポンの定義に合わせて意図的にデバフで分岐させている

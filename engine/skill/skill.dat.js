@@ -2878,7 +2878,7 @@ export const SkillObjNew = [
 		[1393,1,"(△)グレイシアノヴァ","AT_GLACIER_NOVA"],
 		[1394,1,"(△)グラウンドブルーム","AT_GROUND_BLOOM"],
 		[1395,1,"ゼファーリンク","AT_ZEPHYR_LINK"],
-		[1396,5,"(×)サーヴァントウェポン：クリーブ","DK_SERVANT_W_CLEAVE"],
+		[1396,5,"サーヴァントウェポン：クリーブ","DK_SERVANT_W_CLEAVE"],
 		[1397,5,"シールドスラム","IG_SHIELD_SLAM"],
 		[1398,3,"(×)レイスダッシュ","AG_WRAITH_DASH"],
 		[1399,5,"エレメンタルインテグレーション","EM_ELEMENTAL_INTEGRATION"],
