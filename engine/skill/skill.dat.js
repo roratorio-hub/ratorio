@@ -2891,7 +2891,7 @@ export const SkillObjNew = [
 		[1406,5,"フーガデフレーシュ","TR_FUGUE_DES_FLECHES"],
 		[1407,5,"レックスエクスピアトリクス","CD_LEX_EXPIATRIX"],
 		[1408,5,"プニティオ","CD_PUNITIO"],
-		[1409,5,"(×)第零撃：破天撃","IQ_BROKENHEAVEN"],
+		[1409,5,"第零撃：破天撃","IQ_BROKENHEAVEN"],
 		[1410,5,"ベナムイグニッション","SHC_VENOMIGNITION"],
 		[1411,5,"ファントムダガー","ABC_PHANTOM_DAGGER"],
 		[1412,4,"オーバードライブプロトコル","MT_OVERDRIVE_PROTOCAL"],
