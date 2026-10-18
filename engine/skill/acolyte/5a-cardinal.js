@@ -586,6 +586,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// フレーメン
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-969.html
 		// SKILL_ID_PHREMEN
 		defineSkill(SKILL_ID_PHREMEN, function() {
 			this.name = "フレーメン";
