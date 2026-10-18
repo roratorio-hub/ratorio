@@ -685,8 +685,8 @@ export const skills = [
 				let ratio = 0;
 				const yari_katate_shuren_lv = Math.max(UsedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN), LearnedSkillSearch(SKILL_ID_YARI_KATATE_KEN_SHUREN));
 				ratio += 1100 * skillLv;
-				ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
-				ratio += 450 * yari_katate_shuren_lv;	// TODO: 2026-10-03 係数未調査
+				ratio += 35 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
+				ratio += 500 * yari_katate_shuren_lv;
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
