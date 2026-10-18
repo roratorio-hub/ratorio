@@ -360,6 +360,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// ニューマティックプロセラ
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-971.html
 		// SKILL_ID_NUMATIC_PROCERA
 		defineSkill(SKILL_ID_NUMATIC_PROCERA, function() {
 			this.name = "ニューマティックプロセラ";
@@ -398,7 +399,7 @@ export const skills = [
 			this.Power = function(skillLv) {
 				const fidos_animus_lv = Math.max(LearnedSkillSearch(SKILL_ID_FIDOS_ANIMUS), UsedSkillSearch(SKILL_ID_FIDOS_ANIMUS));
 				let wbairitu = 7000 + 2000 * skillLv;				// 基本倍率
-				wbairitu += 3 * fidos_animus_lv;				// TODO: 2026-10-03 係数未調査
+				wbairitu += 3 * fidos_animus_lv;
 				wbairitu += 90 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(wbairitu * n_A_BaseLV / 100);
 			}
