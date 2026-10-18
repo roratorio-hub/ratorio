@@ -34,6 +34,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-972.html
 		// SKILL_ID_SERVANT_WEAPON
 		defineSkill(SKILL_ID_SERVANT_WEAPON, function() {
 			this.name = "サーヴァントウェポン";	// 公式サイトでは「サーヴァントウェポンアタック」と表記
@@ -45,7 +46,7 @@ export const skills = [
 				return CSkillData.RANGE_SHORT;
 			}
 			this.hitCount = function(skillLv) {							// ヒット数
-				return 3;
+				return 1;
 			}
 			this.Power = function(skillLv, charaData) {       			// スキル倍率
 				let ratio = 0;
