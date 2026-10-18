@@ -99,8 +99,6 @@ import {
          SKILL_ID_ROARING_PIERCER, SKILL_ID_SAVAGE_LUNGE, SKILL_ID_SOLID_STOMP, SKILL_ID_TEMPEST_FLAP,
          SKILL_ID_TENSE, SKILL_ID_TERRA_HARVEST, SKILL_ID_TERRA_WAVE, SKILL_ID_THUNDERING_CALL,
          SKILL_ID_THUNDERING_FOCUS, SKILL_ID_THUNDERING_ORB,
-} from "../skill/skill.dat.js";
-import {
          SKILL_ID_DAIZEROGEKI_HATENGEKI, SKILL_ID_FUGUE_DES_FLECHES, SKILL_ID_KORYU_ZIN,
          SKILL_ID_LEX_EXPIATRIX, SKILL_ID_OVERDRIVE_PROTOCOL, SKILL_ID_PHANTOM_DAGGER,
          SKILL_ID_PLUME_PIERCER, SKILL_ID_RAMPANT_VINE, SKILL_ID_SHICHISEI_TENKYAKU,
@@ -4080,14 +4078,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 			case SKILL_ID_LEX_EXPIATRIX:
 				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
 					"アンシラ状態",
-					[
-						[0, "無し"],
-						[1, "有り"],
-					],
-					0
-				);
-				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"コンペテンティア状態",
 					[
 						[0, "無し"],
 						[1, "有り"],

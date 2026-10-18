@@ -46,12 +46,15 @@ import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_SHOULDER
 } from "../const/EnumEquipRegionId.js";
 import { ITEM_KIND_GATLINGGUN, ITEM_KIND_NONE, ITEM_KIND_SPEAR, ITEM_KIND_SPEAR_2HAND } from "../const/EnumItemKind.js";
-import { ITEM_SP_FLEE_PLUS, ITEM_SP_LUCKY_PLUS } from "../const/EnumItemSpId.js";
+import { ITEM_SP_FLEE_PLUS, ITEM_SP_LUCKY_PLUS, ITEM_SP_SKILL_FIXED_TIME } from "../const/EnumItemSpId.js";
 import {
     JOB_ID_ACOLYTE, JOB_ID_ARCBISHOP, JOB_ID_ARCHER, JOB_ID_GENETIC, JOB_ID_GILOTINCROSS, JOB_ID_MAGICIAN,
     JOB_ID_RUNEKNIGHT, JOB_ID_SHADOWCHASER, JOB_ID_SOUL_REAPER, JOB_ID_STAR_EMPEROR, JOB_ID_SWORDMAN, JOB_ID_TAEGWON,
     JOB_ID_THIEF, JOB_ID_WIZARD
 } from "../const/EnumJobId.js";
+import {
+    GetEquippedSPListCardAndElse, GetEquippedSPListEquip, GetEquippedTotalSPShadowSub
+} from "./equipped-sp.js";
 import { GetRndOptTotalValue } from "../equip/hmrndopt.js";
 import {
     ITEM_ID_AEGIR_MANT, ITEM_ID_AEGIS_SYSTEM, ITEM_ID_AMANOZYAKUNO_KIMEN, ITEM_ID_ANSONINO_FUKU,
@@ -78,7 +81,7 @@ import {
     ITEM_ID_TOKUSEN_DORAM_SUITS, ITEM_ID_TOY_SHIELD, ITEM_ID_TOZOKUNO_YUBIWA, ITEM_ID_TSUIGEKISHANO_SHOES,
     ITEM_ID_UNMEI_NO_SHO, ITEM_ID_VALKIRIE_CAPE, ITEM_ID_VALKYRIE_HAMMER, ITEM_ID_VALKYRIE_MANT,
     ITEM_ID_YOZINBONO_SCARF, ITEM_ID_ZIKEIDANNO_YUMI, ITEM_ID_ZINBAORI, ITEM_ID_ZIRKFREEDNO_KABUTO,
-    ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO, ITEM_SET_ID_AQUARIUS_DIADEM_AQUARIUS,
+    ITEM_SET_ID_AKUMASUHAISHANO_KUTSU_DATENSHISAINO_ANKOGAITO,
     ITEM_SET_ID_CELINENO_BROACH_CELINENO_RIBBON, ITEM_SET_ID_CELINENO_BROACH_MIZUMIZUSHI_BARA,
     ITEM_SET_ID_FRONTIER_BOOTS_ZIKEDANNO_YUMI, ITEM_SET_ID_HAIHANENO_BOOTS_KUROHANO_SUITS,
     ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_KAKUSEI_ROBE, ITEM_SET_ID_HEAL_PIERCED_TELEPORT_PIERCED_SARANO_ROBE,
@@ -585,7 +588,7 @@ export function getFixedCastTimeReductionRate() {
     set_n_A_Kotei_Cast_Keigen(0);
     // チェック用変数初期化
     // （固定詠唱短縮効果は、加算等はされず、最大の効果のみが適用される）
-    // （なので、ITEM_SP 定義を検索してやる方法では、共通化ができない）
+    // （なので、ITEM_SP の合計値ではなく、効果ごとの値を候補として積んで最大値を取る）
     let chkary = [0];
     let bufLv = 0;
     let itemCount = 0;
@@ -832,13 +835,6 @@ export function getFixedCastTimeReductionRate() {
     // 「エンチャント　Z-CastFixed」の、装備効果
     //----------------------------------------------------------------
     if (CardNumSearch(CARD_ID_ENCHANT_Z_CASTFIXED)) {
-        chkary.push(50);
-    }
-
-    //----------------------------------------------------------------
-    // 「アクエリアスダイアデム　アクエリアスセット」の、効果
-    //----------------------------------------------------------------
-    if (EquipNumSearch(ITEM_SET_ID_AQUARIUS_DIADEM_AQUARIUS) > 0) {
         chkary.push(50);
     }
 
@@ -1240,6 +1236,15 @@ export function getFixedCastTimeReductionRate() {
         chkary.push(confval);
     }
 
+
+    //----------------------------------------------------------------
+    // アイテムSP「固定詠唱時間 - ◯%」の、効果（装備・シャドウ装備・カード等）
+    //----------------------------------------------------------------
+    chkary.push(
+        ...GetEquippedSPListEquip(ITEM_SP_SKILL_FIXED_TIME),
+        ...GetEquippedTotalSPShadowSub(ITEM_SP_SKILL_FIXED_TIME, true, false),
+        ...GetEquippedSPListCardAndElse(ITEM_SP_SKILL_FIXED_TIME)
+    );
 
     // 最大値のみ有効
     set_n_A_Kotei_Cast_Keigen(Math.max(...chkary));

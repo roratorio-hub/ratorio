@@ -1163,10 +1163,11 @@ export const skills = [
 			}
 		}),
 
-		/** (×)プルームピアサー */
+		/** プルームピアサー */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-966.html
 		// SKILL_ID_PLUME_PIERCER
 		defineSkill(SKILL_ID_PLUME_PIERCER, function() {
-			this.name = "(×)プルームピアサー";
+			this.name = "プルームピアサー";
 			this.kana = "フルウムヒアサア";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -1215,10 +1216,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)ネイチャーレイジ */
+		/** ネイチャーレイジ */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-967.html
 		// SKILL_ID_NATURE_RAGE
 		defineSkill(SKILL_ID_NATURE_RAGE, function() {
-			this.name = "(×)ネイチャーレイジ";
+			this.name = "ネイチャーレイジ";
 			this.kana = "ネイチヤアレイシ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_MAGICAL;

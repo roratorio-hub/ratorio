@@ -1080,7 +1080,7 @@ export const SKILL_ID_ARBITRIUM = 1028;
 export const SKILL_ID_PRESENSE_AKYACE = 1029;
 export const SKILL_ID_FIDOS_ANIMUS = 1030;
 export const SKILL_ID_EFIRIGO = 1031;
-export const SKILL_ID_CONPETENTIA = 1032;
+export const SKILL_ID_COMPETENTIA = 1032;
 export const SKILL_ID_NUMATIC_PROCERA = 1033;
 export const SKILL_ID_DILECTIO_HEAL = 1034;
 export const SKILL_ID_RERIGIO = 1035;
@@ -2483,7 +2483,7 @@ export const SkillObjNew = [
 		[999,1,"通常攻撃"],
 		[1000,1,"通常攻撃"],
 		[1001,1,"x"],
-		[1002,5,"サーヴァントウェポン","DK_SERVANTWEAPON"],	// 公式サイトでは「武器体攻撃」と表記
+		[1002,5,"サーヴァントウェポン","DK_SERVANTWEAPON"],	// 公式サイトでは「サーヴァントウェポンアタック」と表記
 		[1003,5,"サーヴァントウェポン：サイン","DK_SERVANT_W_SIGN"],
 		[1004,5,"サーヴァントウェポン：ファントム","DK_SERVANT_W_PHANTOM"],
 		[1005,5,"サーヴァントウェポン：デモリッション","DK_SERVANT_W_DEMOL"],
@@ -2878,7 +2878,7 @@ export const SkillObjNew = [
 		[1393,1,"(△)グレイシアノヴァ","AT_GLACIER_NOVA"],
 		[1394,1,"(△)グラウンドブルーム","AT_GROUND_BLOOM"],
 		[1395,1,"ゼファーリンク","AT_ZEPHYR_LINK"],
-		[1396,5,"(×)サーヴァントウェポン：クリーブ","DK_SERVANT_W_CLEAVE"],
+		[1396,5,"サーヴァントウェポン：クリーブ","DK_SERVANT_W_CLEAVE"],
 		[1397,5,"シールドスラム","IG_SHIELD_SLAM"],
 		[1398,3,"(×)レイスダッシュ","AG_WRAITH_DASH"],
 		[1399,5,"エレメンタルインテグレーション","EM_ELEMENTAL_INTEGRATION"],
@@ -2889,11 +2889,11 @@ export const SkillObjNew = [
 		[1404,1,"プライムドトラップ","WH_PRIMED_TRAP"],
 		[1405,5,"(×)フラグメントボルト","WH_FRAGMENT_BOLT"],
 		[1406,5,"フーガデフレーシュ","TR_FUGUE_DES_FLECHES"],
-		[1407,5,"(×)レックスエクスピアトリクス","CD_LEX_EXPIATRIX"],
+		[1407,5,"レックスエクスピアトリクス","CD_LEX_EXPIATRIX"],
 		[1408,5,"プニティオ","CD_PUNITIO"],
-		[1409,5,"(×)第零撃：破天撃","IQ_BROKENHEAVEN"],
+		[1409,5,"第零撃：破天撃","IQ_BROKENHEAVEN"],
 		[1410,5,"ベナムイグニッション","SHC_VENOMIGNITION"],
-		[1411,5,"(×)ファントムダガー","ABC_PHANTOM_DAGGER"],
+		[1411,5,"ファントムダガー","ABC_PHANTOM_DAGGER"],
 		[1412,4,"オーバードライブプロトコル","MT_OVERDRIVE_PROTOCAL"],
 		[1413,5,"ランパントヴァイン","BO_RAMPANT_VINE"],
 		[1414,5,"七星天脚","SKE_SEVENTH_KICK"],
@@ -2902,8 +2902,8 @@ export const SkillObjNew = [
 		[1417,1,"蜃気楼分身 -群集-","SS_SHINKIROU_GUNSHU"],
 		[1418,5,"影満ち","SS_NOBORU"],
 		[1419,1,"タクティカルリポジショニング","NW_TACTICAL_REPOSITIONING"],
-		[1420,5,"(×)プルームピアサー","AT_PLUME_PIERCER"],
-		[1421,5,"(×)ネイチャーレイジ","AT_NATURE_RAGE"],
+		[1420,5,"プルームピアサー","AT_PLUME_PIERCER"],
+		[1421,5,"ネイチャーレイジ","AT_NATURE_RAGE"],
 		[1422,10,"ウィンドカッターターボ","HN_WIND_CUTTER_TURBO"],
 		[1423,10,"ハイマグナムブレイク","HN_HIGH_MAGNUM_BREAK"],
 		[1424,1,"ディアーハーモニー","SH_KI_SUL_AND_HYUN_ROK"],
