@@ -624,6 +624,7 @@ export const skills = [
 		}),
 
 		/** ディヴィヌスフロス */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-970.html
 		// SKILL_ID_DIVINUS_FLOS
 		defineSkill(SKILL_ID_DIVINUS_FLOS, function() {
 			this.name = "ディヴィヌスフロス";
