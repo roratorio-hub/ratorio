@@ -154,6 +154,19 @@ const INTENTIONAL_DIVERGENCE_IDS = new Set<string>([
 const INTENTIONAL_DIVERGENCE_FORM_NAMES = new Set<string>([]);
 
 /**
+ * スキル名に付く「(×)」（未実測の印。battlecalc.js が赤字警告を出す）を取り除く。
+ * 実測確認のたびに付け外しされる状態表示で、値の正しさとは無関係なため、
+ * スナップショットの比較・保存の対象から外す。スキル名の増減・改名・並び順は引き続き比較される。
+ */
+export function stripUnmeasuredBadge(snapshot: Record<string, string>): Record<string, string> {
+    const out: Record<string, string> = {};
+    for (const [key, value] of Object.entries(snapshot)) {
+        out[key.split('(×)').join('')] = value.split('(×)').join('');
+    }
+    return out;
+}
+
+/**
  * 全 OBJID_* 要素 + document.calcForm の全 name 付きコントロールの値を
  * DOM から直接評価して返す（副作用なし）。
  *
@@ -315,7 +328,8 @@ export function evalObjidSnapshot(page: Page): Promise<Record<string, string>> {
         }
 
         return snapshot;
-    }, { excludeIds: [...INTENTIONAL_DIVERGENCE_IDS], excludeFormNames: [...INTENTIONAL_DIVERGENCE_FORM_NAMES] });
+    }, { excludeIds: [...INTENTIONAL_DIVERGENCE_IDS], excludeFormNames: [...INTENTIONAL_DIVERGENCE_FORM_NAMES] })
+        .then(stripUnmeasuredBadge);
 }
 
 /**
