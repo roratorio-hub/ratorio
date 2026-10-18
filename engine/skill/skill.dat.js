@@ -1080,7 +1080,7 @@ export const SKILL_ID_ARBITRIUM = 1028;
 export const SKILL_ID_PRESENSE_AKYACE = 1029;
 export const SKILL_ID_FIDOS_ANIMUS = 1030;
 export const SKILL_ID_EFIRIGO = 1031;
-export const SKILL_ID_CONPETENTIA = 1032;
+export const SKILL_ID_COMPETENTIA = 1032;
 export const SKILL_ID_NUMATIC_PROCERA = 1033;
 export const SKILL_ID_DILECTIO_HEAL = 1034;
 export const SKILL_ID_RERIGIO = 1035;
@@ -2889,7 +2889,7 @@ export const SkillObjNew = [
 		[1404,1,"プライムドトラップ","WH_PRIMED_TRAP"],
 		[1405,5,"(×)フラグメントボルト","WH_FRAGMENT_BOLT"],
 		[1406,5,"フーガデフレーシュ","TR_FUGUE_DES_FLECHES"],
-		[1407,5,"(×)レックスエクスピアトリクス","CD_LEX_EXPIATRIX"],
+		[1407,5,"レックスエクスピアトリクス","CD_LEX_EXPIATRIX"],
 		[1408,5,"プニティオ","CD_PUNITIO"],
 		[1409,5,"(×)第零撃：破天撃","IQ_BROKENHEAVEN"],
 		[1410,5,"ベナムイグニッション","SHC_VENOMIGNITION"],

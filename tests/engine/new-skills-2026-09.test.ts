@@ -12,6 +12,9 @@ let K: any;
 let E: any;
 let Used: Record<number, number>;
 let Learned: Record<number, number>;
+let Yozi: Record<number, number>;
+let specStatus = 0;
+let ConfYozi: any;
 
 const opt = (...v: number[]) => ({ GetOptionValue: (i: number) => v[i] ?? 0 });
 const range = (n: number, f: (lv: number) => number) => Array.from({ length: n }, (_, i) => f(i + 1));
@@ -29,7 +32,12 @@ beforeAll(async () => {
     search.RegisterUsedSkillSearch((id: number) => Used[id] ?? 0);
     search.RegisterLearnedSkillSearch((id: number) => Learned[id] ?? 0);
     const hmjob = await import('@engine/bridge/hmjob-bridge.js');
-    hmjob.__registerHmjobFunctions({ GetTotalSpecStatus: () => 0 });
+    hmjob.__registerHmjobFunctions({ GetTotalSpecStatus: () => specStatus });
+    // 四次職支援欄（コンペテンティア等）。CONF_ID_* は InitData() で採番される
+    ConfYozi = (await import('@engine/chara/CCharaConfYozi.js')).CCharaConfYozi;
+    new ConfYozi(new Array(30).fill(0)).InitData();
+    const confBridge = await import('@engine/bridge/chara-conf-bridge.js');
+    confBridge.RegisterGetCharaConfYozi((id: number) => Yozi[id] ?? 0);
     const state = await import('@engine/runtime/ro4-state.js');
     state.set_n_A_BaseLV(100);
 });
@@ -37,6 +45,8 @@ beforeAll(async () => {
 beforeEach(() => {
     Used = {};
     Learned = {};
+    Yozi = {};
+    specStatus = 0;
 });
 
 // [定数名, 名称, maxLv, SP, AP[], 固定詠唱[], 変動詠唱[], ディレイ[], クールタイム[], 持続時間ms]
@@ -55,7 +65,7 @@ const TABLE: Row[] = [
     ['PRIMED_TRAP', 'プライムドトラップ', 1, 350, [50], [1000], [0], [500], [500], 60000],
     ['FRAGMENT_BOLT', '(×)フラグメントボルト', 5, 210, same(5, 0), same(5, 1500), lv5((l) => 2000 + 400 * l), lv5((l) => 1000 * l), same(5, 500), 0],
     ['FUGUE_DES_FLECHES', 'フーガデフレーシュ', 5, 230, same(5, 0), same(5, 1500), lv5((l) => 500 + 500 * l), lv5((l) => 1000 * l), same(5, 500), 0],
-    ['LEX_EXPIATRIX', '(×)レックスエクスピアトリクス', 5, 250, same(5, 0), same(5, 1500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
+    ['LEX_EXPIATRIX', 'レックスエクスピアトリクス', 5, 250, same(5, 0), same(5, 1500), lv5((l) => 5500 + 800 * l), same(5, 5000), same(5, 500), 0],
     ['PUNITIO', 'プニティオ', 5, 210, same(5, 0), same(5, 0), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 0],
     ['DAIZEROGEKI_HATENGEKI', '(×)第零撃：破天撃', 5, 300, same(5, 10), same(5, 0), same(5, 0), same(5, 3000), same(5, 500), 0],
     ['VENOM_IGNITION', 'ベナムイグニッション', 5, 290, AP_BUFF, same(5, 1000), same(5, 0), lv5((l) => 1000 * l), same(5, 500), 120000],
@@ -151,9 +161,16 @@ describe('2026-09 追加スキルのスキル倍率（公式サイトの「攻�
         Used[S.SKILL_ID_MYSTIC_SYMPHONY] = 1;
         expect(powers('FUGUE_DES_FLECHES', 5)).toEqual([3500, 4500, 5500, 6500, 7500]);
     });
-    it('レックスエクスピアトリクス: 通常 / コンペテンティア状態', () => {
+    it('レックスエクスピアトリクス: 通常 / コンペテンティア状態（四次職支援欄）', () => {
         expect(powers('LEX_EXPIATRIX', 5)).toEqual([1500, 2812, 4125, 5437, 6750]);
-        expect(powers('LEX_EXPIATRIX', 5, opt(0, 1))).toEqual([2000, 3750, 5500, 7250, 9000]);
+        Yozi[ConfYozi.CONF_ID_COMPETENTIA] = 1;
+        expect(powers('LEX_EXPIATRIX', 5)).toEqual([2000, 3750, 5500, 7250, 9000]);
+    });
+    it('レックスエクスピアトリクス: 特性ステータス(SPL)係数はコンペテンティアの有無で変わる（実測 有り45 / 無し33）', () => {
+        specStatus = 100;
+        expect(power('LEX_EXPIATRIX', 5)).toBe(6750 + 33 * 100);
+        Yozi[ConfYozi.CONF_ID_COMPETENTIA] = 3;
+        expect(power('LEX_EXPIATRIX', 5)).toBe(9000 + 45 * 100);
     });
     it('プニティオ', () => expect(powers('PUNITIO', 5)).toEqual([1050, 2100, 3150, 4200, 5250]));
     it('第零撃：破天撃', () => expect(powers('DAIZEROGEKI_HATENGEKI', 5)).toEqual([7500, 9000, 10500, 12000, 13500]));

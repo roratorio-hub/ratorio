@@ -4084,14 +4084,6 @@ CAttackMethodAreaComponentManager.GetEffectiveAttackMethodDataArraySubExtractOpt
 					],
 					0
 				);
-				attackMethodOptList = funcCreateOptionList(attackMethodOptList,
-					"コンペテンティア状態",
-					[
-						[0, "無し"],
-						[1, "有り"],
-					],
-					0
-				);
 				break;
 			/**
 			 * 第零撃：破天撃
