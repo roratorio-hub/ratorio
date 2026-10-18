@@ -297,7 +297,7 @@ export function AS_Calc(charaData, specData, mobData, attackMethodConfArray, bat
 
 	//----------------------------------------------------------------
 	// 通常攻撃時の、サーヴァントウェポン追撃効果
-	// 公式サイトでは「武器体攻撃」と表記
+	// 公式サイトでは「サーヴァントウェポンアタック」と表記
 	//----------------------------------------------------------------
 	skillLv = UsedSkillSearch(SKILL_ID_SERVANT_WEAPON);
 

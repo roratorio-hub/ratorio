@@ -23,3 +23,8 @@ patch_list:
   set_with:
   - {card_name: 豪傑}
   desc: '[ダブルボウリングバッシュ][メガソニックブロー][ハイマグナムブレイク]使用時、一定確率でAP回復量 + 10'
+- item_name: アクエリアスダイアデム
+  set_with:
+  - {card_name: アクエリアス}
+  capabilities:
+  - {name: 固定詠唱割合減少, value: 50}

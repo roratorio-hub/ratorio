@@ -395,6 +395,7 @@ export const ITEM_SP_RESIST_STATE_NEW_CRYSTALLIZATION         = 378;
 export const ITEM_SP_RESIST_STATE_NEW_UNHAPPINESS             = 379;
 export const ITEM_SP_NEVER_CAST_CANCEL                        = 380;
 export const ITEM_SP_NEVER_KNOCK_BACK                         = 381;
+export const ITEM_SP_SKILL_FIXED_TIME                         = 382;
 
 // ---- 疑似定数（旧 DefinePseudoEnum） ----
 export const ITEM_SP_DMY                                      = -1;
@@ -947,6 +948,7 @@ export const EnumItemSpId = createEnum('EnumItemSpId', {
     ITEM_SP_RESIST_STATE_NEW_UNHAPPINESS,
     ITEM_SP_NEVER_CAST_CANCEL,
     ITEM_SP_NEVER_KNOCK_BACK,
+    ITEM_SP_SKILL_FIXED_TIME,
 }, {
     ITEM_SP_DMY,
     ITEM_SP_END,

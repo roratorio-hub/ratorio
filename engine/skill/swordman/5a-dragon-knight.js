@@ -34,9 +34,10 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-972.html
 		// SKILL_ID_SERVANT_WEAPON
 		defineSkill(SKILL_ID_SERVANT_WEAPON, function() {
-			this.name = "サーヴァントウェポン";	// 公式サイトでは「武器体攻撃」と表記
+			this.name = "サーヴァントウェポン";	// 公式サイトでは「サーヴァントウェポンアタック」と表記
 			this.kana = "サアウアントウエホン";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -45,18 +46,20 @@ export const skills = [
 				return CSkillData.RANGE_SHORT;
 			}
 			this.hitCount = function(skillLv) {							// ヒット数
-				return 3;
+				return 1;
 			}
 			this.Power = function(skillLv, charaData) {       			// スキル倍率
 				let ratio = 0;
 				let used_lv_vigor = UsedSkillSearch(SKILL_ID_VIGOR);
 				if (used_lv_vigor > 0) {
 					ratio = 1000 + 1000 * skillLv;
+					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio = 800 + 800 * skillLv;
+					ratio += 24 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				}
-				ratio += 0 * Math.max(used_lv_vigor, LearnedSkillSearch(SKILL_ID_VIGOR));   // TODO: 2026-10-03 係数未調査 
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW); // TODO: 2026-10-03 係数未調査
+				ratio += 300 * Math.max(used_lv_vigor, LearnedSkillSearch(SKILL_ID_VIGOR));
+				// オートスペルとして通常攻撃から呼び出されるのでoptionで分岐させることが出来ない
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SERVANT_SIGN]) {
 					ratio *= 1.5;
 				}
@@ -670,10 +673,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)サーヴァントウェポン：クリーブ */
+		/** サーヴァントウェポン：クリーブ */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-964.html
 		// SKILL_ID_SERVANT_WEAPON_CLEAVE
 		defineSkill(SKILL_ID_SERVANT_WEAPON_CLEAVE, function() {
-			this.name = "(×)サーヴァントウェポン：クリーブ";
+			this.name = "サーヴァントウェポン：クリーブ";
 			this.kana = "サアウアントウエホンクリイフ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
@@ -688,9 +692,10 @@ export const skills = [
 					ratio += 45 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				} else {
 					ratio += 1200 + 1200 * skillLv;
-					ratio += 30 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
+					ratio += 36 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// 数値合わせの結果 30 ではなく 36 が正しいと思われる
 				}
 				ratio += 450 * vigor_lv;
+				// サーヴァントウェポンの定義に合わせて意図的にデバフで分岐させている
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SERVANT_SIGN]) {
 					ratio *= 1.5;
 				}

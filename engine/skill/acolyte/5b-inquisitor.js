@@ -873,10 +873,11 @@ export const skills = [
 			this.genericFormula = true;
 		}),
 
-		/** (×)第零撃：破天撃 */
+		/** 第零撃：破天撃 */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-968.html
 		// SKILL_ID_DAIZEROGEKI_HATENGEKI
 		defineSkill(SKILL_ID_DAIZEROGEKI_HATENGEKI, function() {
-			this.name = "(×)第零撃：破天撃";
+			this.name = "第零撃：破天撃";
 			this.kana = "タイ０ケキ　ハテンケキ";
 			this.maxLv = 5;
 			this.type = CSkillData.TYPE_ACTIVE | CSkillData.TYPE_PHYSICAL;
