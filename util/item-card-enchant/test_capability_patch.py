@@ -1,5 +1,6 @@
 import io
 import os
+import re
 import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
@@ -135,13 +136,25 @@ class CodecTest(unittest.TestCase):
         _, big = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_refine': 9})
         self.assertFalse(big)
 
-    def test_BaseLv285以上の条件はSPID最上位桁の7で表しBigIntになる(self):
+    def test_BaseLv285以上の条件は専用の10の19乗の位で表しBigIntになる(self):
         code, big = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285})
-        self.assertEqual(code, 7_000_000_000_000_000_000 + 16)
+        self.assertEqual(code, 10 ** 19 + 16)
         self.assertTrue(big)
 
-    def test_BaseLv285以上の条件は他の条件と併記できる(self):
+    def test_BaseLv285以上の条件は他の全ての条件と併記できる(self):
         self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285, 'at_refine': 9, 'at_transcendence': 2})
+        # 純粋なステータスが30上がる度の条件とも併記できる（別の桁なので衝突しない）
+        code, _ = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285, 'per_status_30': 'INT'})
+        self.assertEqual(code, 10 ** 19 + 4 * 10 ** 18 + 16)
+
+    def test_BaseLv以上の専用桁はEnumItemSpId_jsの定数と一致する(self):
+        # ITEM_SP_BASE_LV_OVER_N_OFFSET のうち 10^19 以上のものが、そのまま at_lv: N の桁の値になる
+        path = os.path.join(cp.ENGINE_DIR, 'const', 'EnumItemSpId.js')
+        with open(path, encoding='utf-8') as f:
+            text = f.read()
+        in_js = {int(n): int(v) // 10 ** 19
+                 for n, v in re.findall(r'^export const ITEM_SP_BASE_LV_OVER_(\d+)_OFFSET\s*=\s*(\d+)n;', text, re.M)}
+        self.assertEqual(in_js, cp.cu.AT_BASE_LV_EX_CODE)
 
     def test_不正な入力はエラーにする(self):
         bad = [
@@ -153,7 +166,6 @@ class CodecTest(unittest.TestCase):
             {'name': 'MAXSP増加', 'value': 1, 'at_refin': 9},
             {'name': 'MAXSP増加', 'value': 1, 'at_lv': 7},
             {'name': 'MAXSP増加', 'value': 1, 'per_status_10': 'XXX'},
-            {'name': 'MAXSP増加', 'value': 1, 'at_lv': 285, 'per_status_30': 'STR'},
             {'name': 'MAXSP増加', 'value': 1, 'at_status_100': 'STR', 'at_status_110': 'STR'},
             {'name': 'MAXSP増加'},
             {'name': 'MAXSP増加', 'value': 'abc'},

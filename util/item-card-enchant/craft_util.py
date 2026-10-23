@@ -100,9 +100,10 @@ AT_BASE_LV_CODE = {
     260: 6,
     165: 7,
 }
-# 「BaseLv N 以上」を SPID 最上位桁（per_status_30 と同じ桁）の値で表すもの。per_status_30 とは併用できない
-AT_BASE_LV_TOP_DIGIT_CODE = {
-    285: 7,
+# 「BaseLv N 以上」専用の桁（SPID の 10^19 の位）。Lv上限の拡張で条件が増えたら、ここと
+# engine/const/EnumItemSpId.js の ITEM_SP_BASE_LV_OVER_N_OFFSET、engine/equip/item-sp-baselv-ex.js の表に足す
+AT_BASE_LV_EX_CODE = {
+    285: 1,
 }
 AT_EQUIP_LOCATION_CODE = {
     '鎧': 1,
@@ -365,12 +366,11 @@ def buildCapabilityRecord(capability):
     elif 'at_sp_status_50' in capability:
         at_status = AT_SP_STATUS_50_CODE[capability['at_sp_status_50']]
     at_baselv = 0
+    at_baselv_ex = 0
     if 'at_lv' in capability:
         at_lv = int(capability['at_lv'])
-        if at_lv in AT_BASE_LV_TOP_DIGIT_CODE:
-            if per_status_30:
-                raise ValueError(f"at_lv: {at_lv} は per_status_30 と同時に指定できません: {capability}")
-            per_status_30 = AT_BASE_LV_TOP_DIGIT_CODE[at_lv]
+        if at_lv in AT_BASE_LV_EX_CODE:
+            at_baselv_ex = AT_BASE_LV_EX_CODE[at_lv]
         else:
             at_baselv = AT_BASE_LV_CODE[at_lv]
 
@@ -397,7 +397,8 @@ def buildCapabilityRecord(capability):
                 capability_code += SKILL_CODE.get(capability['skill'])
             except:
                 print(f"{capability['skill']} が未定義です")
-    code = f"{per_status_30:01d}"               # 純粋なステータス x が30増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
+    code = f"{at_baselv_ex:01d}"                # ベースLvが n 以上のときに（AT_BASE_LV_EX_CODE。Lv285 以上など）
+    code += f"{per_status_30:01d}"              # 純粋なステータス x が30増加する度に発動する {x : 1=Str, 2=Agi, 3=Vit, 4=Int, 5=Dex, 6=Luk}
     code += f"{at_equip_location:01d}"          # 〇〇部位に装備している時に発動する
     code += f"{at_transcendence:01d}"           # 超越段階が n 以上の時に発動する
     code += f"{at_baselv:01d}"                  # ベースLvが n 以上のときに（Lv99は "以下" で判定）
@@ -410,7 +411,7 @@ def buildCapabilityRecord(capability):
     code += f"{capability_code:05d}"            # 発動する効果ID
     code = int(code)
     # BigIntフラグ付与
-    if at_equip_location > 0 or at_transcendence > 0 or per_status_30 > 0:
+    if at_equip_location > 0 or at_transcendence > 0 or per_status_30 > 0 or at_baselv_ex > 0:
         code = f"{code}n"
 
     return f"{code},{value},"

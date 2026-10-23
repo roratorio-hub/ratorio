@@ -4,7 +4,8 @@ import { GetItemSetMemberText } from "../bridge/itemset-bridge.js";
 import "../monster/monster.h.js";
 import "../skill/skill.h.js";
 import "../skill/usableskill.h.js";
-import { toNumberIfSafe, toSafeBigInt } from "../runtime/util.js";
+import { toSafeBigInt } from "../runtime/util.js";
+import { SplitBaseLvOverEx } from "./item-sp-baselv-ex.js";
 import { AutoSpellSkill } from "../skill/autospell.dat.js";
 import { GetAutoSpellTriggerText } from "../skill/autospell.h.js";
 import { CardObjNew } from "./card.dat.js";
@@ -59,7 +60,7 @@ import {
     ITEM_SP_APPEND_STATE_BREAK_SHOULDER, ITEM_SP_APPEND_STATE_BREAK_WEAPON, ITEM_SP_APPEND_STATE_CONFUSE, ITEM_SP_APPEND_STATE_CURSED, ITEM_SP_APPEND_STATE_FROZEN, ITEM_SP_APPEND_STATE_POISON,
     ITEM_SP_APPEND_STATE_SILENCE, ITEM_SP_APPEND_STATE_SLEEP, ITEM_SP_APPEND_STATE_STONE, ITEM_SP_APPEND_STATE_STUN, ITEM_SP_ARMS_ELEMENT, ITEM_SP_ASPD_PLUS,
     ITEM_SP_ASPD_UP, ITEM_SP_ATK_PLUS, ITEM_SP_ATK_PLUS_GVGTE, ITEM_SP_ATK_UP, ITEM_SP_AUTO_SPELL, ITEM_SP_AUTO_SPELL_LEVEL_UNSPECIFIED,
-    ITEM_SP_BASE_LV_BY_1_OFFSET, ITEM_SP_BASE_LV_OVER_170_OFFSET, ITEM_SP_BASE_LV_OVER_285_OFFSET, ITEM_SP_BODY_ELEMENT, ITEM_SP_CON_PLUS, ITEM_SP_COST_DOWN, ITEM_SP_CRITICAL_DAMAGE_UP,
+    ITEM_SP_BASE_LV_BY_1_OFFSET, ITEM_SP_BASE_LV_OVER_170_OFFSET, ITEM_SP_BODY_ELEMENT, ITEM_SP_CON_PLUS, ITEM_SP_COST_DOWN, ITEM_SP_CRITICAL_DAMAGE_UP,
     ITEM_SP_CRITICAL_DAMAGE_UP_RACE_ANGEL, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_ANIMAL, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_DEMON, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_DRAGON, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_FISH, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_HUMAN,
     ITEM_SP_CRITICAL_DAMAGE_UP_RACE_INSECT, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_PLANT, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_SOLID, ITEM_SP_CRITICAL_DAMAGE_UP_RACE_UNDEAD, ITEM_SP_CRITICAL_UP_RACE_ANGEL, ITEM_SP_CRITICAL_UP_RACE_ANIMAL,
     ITEM_SP_CRITICAL_UP_RACE_DEMON, ITEM_SP_CRITICAL_UP_RACE_DRAGON, ITEM_SP_CRITICAL_UP_RACE_FISH, ITEM_SP_CRITICAL_UP_RACE_HUMAN, ITEM_SP_CRITICAL_UP_RACE_INSECT, ITEM_SP_CRITICAL_UP_RACE_PLANT,
@@ -777,20 +778,25 @@ export function GetItemExplainText(spId, spValue) {
 	// 戻り値用テキスト配列
 	textInfoArray = new Array();
 
+	// 『BaseLvが○以上の時』条件（Lv上限の拡張で増える条件。10^19 の位）
+	const baseLvOverEx = SplitBaseLvOverEx(spId);
+	if (baseLvOverEx !== null) {
+		if (Number.isFinite(baseLvOverEx.requiredBaseLv)) {
+			condTextBaseLvOver = "BaseLvが" + baseLvOverEx.requiredBaseLv + "以上の時、追加で";
+		}
+		spId = baseLvOverEx.rest;
+	}
+
 	// 『純粋な○○が△△上がる度に』条件
 	let baseFlag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
 	if (spId >= baseFlag) {
 		// BigInt の場合、小数点以下は自動的に切り捨てられる
 		var pureStatusBy = parseInt(spId / baseFlag);
-		var isBaseLvOver285 = (pureStatusBy === parseInt(toSafeBigInt(ITEM_SP_BASE_LV_OVER_285_OFFSET) / baseFlag));
 		if (1 <= pureStatusBy && pureStatusBy <= 6) {
 			// 論理的に_BY_10_OFFSETとは同時にセットされないはずなので上書きする
 			condTextPureStatus += "純粋な" + statusName[pureStatusBy - 1] +  "が30上がる度に、";
 		}
-		else if (isBaseLvOver285) {
-			condTextBaseLvOver = "BaseLvが285以上の時、追加で";
-		}
-		spId = isBaseLvOver285 ? toNumberIfSafe(spId % baseFlag) : parseInt(spId % baseFlag);
+		spId = parseInt(spId % baseFlag);
 	}
 
 	// 「〇〇に装備時」条件
