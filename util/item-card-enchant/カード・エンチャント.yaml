@@ -1,53 +1,18 @@
 card_list:
-  - name: 潜在解放(ウィンドホークXXIV)
-    yomi: センザイカイホウウィンドホーク24
+  - name: 潜在解放(トルバドゥール&トルヴェールXVIII)
+    yomi: センザイカイホウトルバドゥールトルヴェール18
     type: エンチャント
     set_list:
       - set:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - name: 再使用待機時間減少
-            skill: スイフトトラップ
-            value: 2000
-          - name: 再使用待機時間減少
-            skill: プライムドフレイムトラップ
-            value: 100
-          - name: 再使用待機時間減少
-            skill: プライムドスイフトトラップ
-            value: 100
-          - name: 再使用待機時間減少
-            skill: プライムドソリッドトラップ
-            value: 100
-          - name: 再使用待機時間減少
-            skill: プライムドディープブラインドトラップ
-            value: 100
-
-  - name: 潜在解放(ハイパーノービスXXV)
-    yomi: センザイカイホウハイパーノービス25
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 真理の解放
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ジャックフロストノヴァ
+          - name: スキル固定詠唱ミリ秒減少
+            skill: リズムシューティング
             value: 500
-
-  - name: 潜在解放(バイオロXX)
-    yomi: センザイカイホウバイオロ20
-    type: エンチャント
-    set_list:
-      - set:
-        entity_list:
-          - card_name: 豪傑
-        capabilities:
-          - name: 再使用待機時間減少
-            skill: ランパントヴァイン
-            value: 100
-
-  - name: 潜在覚醒(アンチマジックI)
-    yomi: センザイカクセイアンチマジック1
-    desc: （計算機未実装）<br>[豪傑]、[真理の解放]のいずれかと共に装備時、追加で[アンチマジック]Lv1使用可能<br>[アンチマジック]の再使用待機時間 - 20秒
-    type: エンチャント
+          - name: スキル固定詠唱ミリ秒減少
+            skill: ロゼブロッサム
+            value: 500
+          - name: スキル固定詠唱ミリ秒減少
+            skill: フーガデフレーシュ
+            value: 500
