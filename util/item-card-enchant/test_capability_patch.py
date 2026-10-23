@@ -120,7 +120,7 @@ class CodecTest(unittest.TestCase):
 
     def test_条件キーは全て往復できる(self):
         base = {'name': 'MAXSP増加', 'value': 5}
-        for extra in ({'per_lv': 10}, {'at_lv': 99}, {'at_lv': 250}, {'at_refine': 9}, {'per_refine': 2},
+        for extra in ({'per_lv': 10}, {'at_lv': 99}, {'at_lv': 250}, {'at_lv': 285}, {'at_refine': 9}, {'per_refine': 2},
                       {'at_transcendence': 3}, {'at_equip_location': '靴'}, {'job_restrict': 'RANGER'},
                       {'per_status_10': 'INT'}, {'per_status_30': 'DEX'}, {'at_status_110': 'VIT'},
                       {'at_status_130': 'LUK'}, {'at_status_100': 'STR'}, {'at_sp_status_50': 'POW'},
@@ -135,6 +135,14 @@ class CodecTest(unittest.TestCase):
         _, big = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_refine': 9})
         self.assertFalse(big)
 
+    def test_BaseLv285以上の条件はSPID最上位桁の7で表しBigIntになる(self):
+        code, big = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285})
+        self.assertEqual(code, 7_000_000_000_000_000_000 + 16)
+        self.assertTrue(big)
+
+    def test_BaseLv285以上の条件は他の条件と併記できる(self):
+        self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285, 'at_refine': 9, 'at_transcendence': 2})
+
     def test_不正な入力はエラーにする(self):
         bad = [
             {'name': '存在しない能力', 'value': 1},
@@ -145,6 +153,7 @@ class CodecTest(unittest.TestCase):
             {'name': 'MAXSP増加', 'value': 1, 'at_refin': 9},
             {'name': 'MAXSP増加', 'value': 1, 'at_lv': 7},
             {'name': 'MAXSP増加', 'value': 1, 'per_status_10': 'XXX'},
+            {'name': 'MAXSP増加', 'value': 1, 'at_lv': 285, 'per_status_30': 'STR'},
             {'name': 'MAXSP増加', 'value': 1, 'at_status_100': 'STR', 'at_status_110': 'STR'},
             {'name': 'MAXSP増加'},
             {'name': 'MAXSP増加', 'value': 'abc'},

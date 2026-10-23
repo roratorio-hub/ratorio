@@ -11,7 +11,7 @@ import { IsSameJobClass } from "../data/mig.job.h.js";
 import { g_timeItemConf, g_timeItemConfEffective } from "../runtime/global.js";
 import { g_pureStatus } from "../chara/hmjob.js";
 import { n_A_Arrow, n_A_BaseLV } from "../runtime/ro4-state.js";
-import { toSafeBigInt } from "../runtime/util.js";
+import { toNumberIfSafe, toSafeBigInt } from "../runtime/util.js";
 import { ARROW_ID_ZOKUSE_ZIDO_YA_ATK30, ArrowOBJNew } from "../equip/arrow.dat.js";
 import { CardObjNew } from "../equip/card.dat.js";
 import {
@@ -50,7 +50,7 @@ import {
 } from "../const/EnumEquipRegionId.js";
 import { ITEM_DATA_INDEX_SPBEGIN } from "../const/EnumItemDataIndex.js";
 import {
-    ITEM_SP_ARMS_ELEMENT, ITEM_SP_BASE_LV_BY_1_OFFSET, ITEM_SP_BASE_LV_OVER_170_OFFSET, ITEM_SP_BODY_ELEMENT,
+    ITEM_SP_ARMS_ELEMENT, ITEM_SP_BASE_LV_BY_1_OFFSET, ITEM_SP_BASE_LV_OVER_170_OFFSET, ITEM_SP_BASE_LV_OVER_285_OFFSET, ITEM_SP_BODY_ELEMENT,
     ITEM_SP_ELEMENTAL, ITEM_SP_END, ITEM_SP_EQUIPMENT_LOCATION_BODY, ITEM_SP_INVALIDATE_CARD_SP,
     ITEM_SP_INVALIDATE_ITEM_SP, ITEM_SP_JOB_RESTRICT_NOVICE_OFFSET, ITEM_SP_PET_FRIENDLY_OVER_HIGH,
     ITEM_SP_PET_FRIENDLY_OVER_HIGHEST, ITEM_SP_PURE_STR_90_OFFSET, ITEM_SP_PURE_STR_BY_10_OFFSET,
@@ -240,6 +240,12 @@ export function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact)
 			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// BaseLvが285以上の時の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOver285(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
 
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
@@ -462,6 +468,12 @@ export function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact
 			// ＳＰの定義を取得
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// BaseLvが285以上の時の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOver285(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
 
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
@@ -803,6 +815,12 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 			spDefRemain = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
 
+			// BaseLvが285以上の時の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOver285(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
+
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
 			if (spDefRemain > base_flag) {
@@ -963,6 +981,12 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// BaseLvが285以上の時の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOver285(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
 
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
@@ -1586,6 +1610,27 @@ export function CheckSpDefBaseLvOver(spDefRemain) {
 
 	// 条件を満たす場合は、残りのＳＰ定義値を返す
 	return (spDefRemain % spDefBase);
+}
+
+/**
+ * アイテムに設定されたフラグ付きＳＰ定義ＩＤが、「BaseLvが285以上の時」条件に適合するかを検査する.
+ * この条件は ＳＰ定義ＩＤの最上位桁（「純粋なステータスが30上がる度」と同じ桁）の 7 で表すため、
+ * 「純粋なステータスが30上がる度」とは同時に指定できない.
+ * @param {number|bigint} spDefRemain フラグ付きアイテムSP（BigInt の場合と Int の場合がある）
+ * @returns 条件が無い場合は spDefRemain をそのまま、満たす場合は条件の桁を取り除いた値、満たさない場合は -1
+ */
+export function CheckSpDefBaseLvOver285(spDefRemain) {
+	const markFlag = toSafeBigInt(ITEM_SP_BASE_LV_OVER_285_OFFSET);
+
+	// 条件の桁（7）が指定されていない場合はそのまま返す
+	if (spDefRemain < markFlag || spDefRemain >= markFlag + toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET)) {
+		return spDefRemain;
+	}
+
+	if (n_A_BaseLV < 285) {
+		return -1;
+	}
+	return toNumberIfSafe(BigInt(spDefRemain) - markFlag);
 }
 
 /**

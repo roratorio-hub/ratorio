@@ -272,7 +272,7 @@ _CONDITION_TABLES = {
     'at_sp_status_50': cu.AT_SP_STATUS_50_CODE,
     'at_equip_location': cu.AT_EQUIP_LOCATION_CODE,
     'job_restrict': cu.RESTRICT_JOB_CODE,
-    'at_lv': cu.AT_BASE_LV_CODE,
+    'at_lv': {**cu.AT_BASE_LV_CODE, **cu.AT_BASE_LV_TOP_DIGIT_CODE},
 }
 _AT_STATUS_KEYS = ('at_status_100', 'at_status_110', 'at_status_130',
                    'at_sp_status_100', 'at_sp_status_110', 'at_sp_status_50')
@@ -313,6 +313,8 @@ def encode_cap(cap: dict, skills: SkillTable):
                 raise PatchError(f'{key} の値 {cap[key]!r} は未定義です（{sorted(table)}）')
     if sum(k in cap for k in _AT_STATUS_KEYS) > 1:
         raise PatchError(f'at_status_* は1つしか指定できません（{name}）')
+    if 'per_status_30' in cap and 'at_lv' in cap and _to_int(cap, 'at_lv') in cu.AT_BASE_LV_TOP_DIGIT_CODE:
+        raise PatchError(f'at_lv: {cap["at_lv"]} と per_status_30 は同時に指定できません（{name}）')
 
     skill_id = 0
     plain = {k: v for k, v in cap.items() if k != 'skill'}
@@ -360,7 +362,10 @@ def decode_code(code: int, skills: SkillTable | None = None) -> dict:
     if int(s[10]):
         out['per_status_10'] = rev(cu.PER_STATUS_10_CODE, int(s[10]))
     if int(s[0]):
-        out['per_status_30'] = rev(cu.PER_STATUS_30_CODE, int(s[0]))
+        if int(s[0]) in cu.AT_BASE_LV_TOP_DIGIT_CODE.values():
+            out['at_lv'] = rev(cu.AT_BASE_LV_TOP_DIGIT_CODE, int(s[0]))
+        else:
+            out['per_status_30'] = rev(cu.PER_STATUS_30_CODE, int(s[0]))
     at_status = int(s[8:10])
     if at_status:
         for key in _AT_STATUS_KEYS:

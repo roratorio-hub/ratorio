@@ -563,6 +563,7 @@ export const ITEM_SP_PURE_VIT_BY_30_OFFSET                    = 3000000000000000
 export const ITEM_SP_PURE_INT_BY_30_OFFSET                    = 4000000000000000000n;
 export const ITEM_SP_PURE_DEX_BY_30_OFFSET                    = 5000000000000000000n;
 export const ITEM_SP_PURE_LUK_BY_30_OFFSET                    = 6000000000000000000n;
+export const ITEM_SP_BASE_LV_OVER_285_OFFSET                  = 7000000000000000000n;
 
 /** 列挙型コンテナ（Count / For / GetDefinedName / GetDefinedValue）。 */
 export const EnumItemSpId = createEnum('EnumItemSpId', {
@@ -1115,4 +1116,5 @@ export const EnumItemSpId = createEnum('EnumItemSpId', {
     ITEM_SP_PURE_INT_BY_30_OFFSET,
     ITEM_SP_PURE_DEX_BY_30_OFFSET,
     ITEM_SP_PURE_LUK_BY_30_OFFSET,
+    ITEM_SP_BASE_LV_OVER_285_OFFSET,
 });

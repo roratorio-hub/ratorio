@@ -100,6 +100,10 @@ AT_BASE_LV_CODE = {
     260: 6,
     165: 7,
 }
+# 「BaseLv N 以上」を SPID 最上位桁（per_status_30 と同じ桁）の値で表すもの。per_status_30 とは併用できない
+AT_BASE_LV_TOP_DIGIT_CODE = {
+    285: 7,
+}
 AT_EQUIP_LOCATION_CODE = {
     '鎧': 1,
     '肩にかける物': 2,
@@ -362,7 +366,13 @@ def buildCapabilityRecord(capability):
         at_status = AT_SP_STATUS_50_CODE[capability['at_sp_status_50']]
     at_baselv = 0
     if 'at_lv' in capability:
-        at_baselv = AT_BASE_LV_CODE[capability['at_lv']]
+        at_lv = int(capability['at_lv'])
+        if at_lv in AT_BASE_LV_TOP_DIGIT_CODE:
+            if per_status_30:
+                raise ValueError(f"at_lv: {at_lv} は per_status_30 と同時に指定できません: {capability}")
+            per_status_30 = AT_BASE_LV_TOP_DIGIT_CODE[at_lv]
+        else:
+            at_baselv = AT_BASE_LV_CODE[at_lv]
 
     # 能力値取得
     try:

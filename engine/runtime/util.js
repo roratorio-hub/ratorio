@@ -1236,6 +1236,19 @@ export function toSafeBigInt(value) {
 }
 
 /**
+ * BigInt を、安全な整数の範囲に収まる場合は Number に、収まらない場合はそのまま BigInt で返す.
+ * 超越段階などの BigInt 桁が残るフラグ付きアイテムSPを、後続の Int 前提の処理へ渡すために使う.
+ * @param {bigint|number} value
+ * @returns {bigint|number}
+ */
+export function toNumberIfSafe(value) {
+	if (typeof value === "bigint" && value <= BigInt(Number.MAX_SAFE_INTEGER)) {
+		return Number(value);
+	}
+	return value;
+}
+
+/**
  * HTML要素の子要素を更新するユーティリティ関数
  * @param {string} elementID 更新する要素のID
  * @param {string} htmlString 子要素となるHTML文字列
