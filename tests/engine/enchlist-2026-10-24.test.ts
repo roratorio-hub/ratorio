@@ -120,3 +120,40 @@ describe('ダークカントリーマントのエンチャント枠', () => {
         }
     });
 });
+
+describe('[シャドウ] シーズナルのエンチャント枠（シェイド）', () => {
+    const SEASONAL = (x: string) => `[シャドウ] シーズナル${x}`;
+
+    it.each(['シールド', 'イヤリング'])('%s: 第4スロットは精錬値8以上で Str+3〜Luk+3・厄災の魔将（グループ5）を選べる', (x) => {
+        const slot4 = enchantsOf(SEASONAL(x))[4];
+        const calamity = slot4.filter((c) => c.cardId === findCardId('厄災の魔将'));
+        expect(calamity).toHaveLength(1);
+        expect(calamity[0].refineOver).toBe(8);
+        for (const stat of ['Str+3', 'Agi+3', 'Vit+3', 'Int+3', 'Dex+3', 'Luk+3']) {
+            expect(slot4.some((c) => c.cardId === findCardId(stat) && c.refineOver === 8), stat).toBe(true);
+        }
+    });
+
+    it.each(['シールド', 'イヤリング'])('%s: グループ1〜3の既存の候補（潜在解放・Str+1〜Luk+3）は引き続き選べる', (x) => {
+        const slots = enchantsOf(SEASONAL(x));
+        const latent = slots[4].filter((c) => (CardObjNew as any[])[c.cardId][2].startsWith('潜在解放('));
+        expect(latent).toHaveLength(45);
+        expect(new Set(latent.map((c) => c.refineOver))).toEqual(new Set([0]));
+        expect(cardIds(slots[3])).toContain(findCardId('Str+1'));
+        expect(slots[2].length).toBeGreaterThan(0);
+    });
+
+    it.each(['ウェポン', 'ペンダント'])('%s: 第4スロットは精錬値8以上で英雄の凱歌（グループ4）を選べ、厄災の魔将は選べない', (x) => {
+        const slot4 = enchantsOf(SEASONAL(x))[4];
+        const hero = slot4.filter((c) => c.cardId === findCardId('英雄の凱歌'));
+        expect(hero).toHaveLength(1);
+        expect(hero[0].refineOver).toBe(8);
+        expect(cardIds(slot4)).not.toContain(findCardId('厄災の魔将'));
+    });
+
+    it.each(['アーマー', 'シューズ'])('%s: 英雄の凱歌・厄災の魔将は選べない', (x) => {
+        const slot4 = cardIds(enchantsOf(SEASONAL(x))[4]);
+        expect(slot4).not.toContain(findCardId('英雄の凱歌'));
+        expect(slot4).not.toContain(findCardId('厄災の魔将'));
+    });
+});
