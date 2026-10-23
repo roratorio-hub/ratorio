@@ -1,100 +1,242 @@
 enchant_list:
   - enchant:
-    - name: スペシャルエンチャント(オーブ)
-      item_list:
-        - item_name: フェアリーリング
-      slot_list:
-        - slot: 4
-          refine: 0
-          enchant_list:
-            - name: "潜在解放(ウィンドホークXXIV)"
-        - slot: 3
-          refine: 8
-          enchant_list:
-            - name: 火属性付与(鎧)
-            - name: 水属性付与(鎧)
-            - name: 風属性付与(鎧)
-            - name: 地属性付与(鎧)
-            - name: 聖属性付与(鎧)
-            - name: 闇属性付与(鎧)
-            - name: 念属性付与(鎧)
-            - name: 毒属性付与(鎧)
-            - name: 不死属性付与(鎧)
-        - slot: 2
-          refine: 9
-          enchant_list:
-            - name: "スキルディレイ-15%"
-            - name: "必中攻撃+25%"
-            - name: 詠唱妨害不可
-            - name: 英雄の凱歌
-
-    - name: スペシャルエンチャント(オーブ)
-      item_list:
-        - item_name: スノークイーン
-      slot_list:
-        - slot: 4
-          refine: 0
-          enchant_list:
-            - name: "潜在解放(ハイパーノービスXXV)"
-        - slot: 3
-          refine: 8
-          enchant_list:
-            - name: 火属性付与(鎧)
-            - name: 水属性付与(鎧)
-            - name: 風属性付与(鎧)
-            - name: 地属性付与(鎧)
-            - name: 聖属性付与(鎧)
-            - name: 闇属性付与(鎧)
-            - name: 念属性付与(鎧)
-            - name: 毒属性付与(鎧)
-            - name: 不死属性付与(鎧)
-        - slot: 2
-          refine: 9
-          enchant_list:
-            - name: "スキルディレイ-15%"
-            - name: "必中攻撃+25%"
-            - name: 詠唱妨害不可
-            - name: 厄災の魔将
-
-    - name: スペシャルエンチャント(ミオン)
-      item_list:
-        - item_name: 青い花びら
-      slot_list:
-        - slot: 4
-          refine: 0
-          enchant_list:
-            - name: "潜在解放(バイオロXX)"
-
-    - name: スペシャルエンチャント(ネコヤン)
-      item_list:
-        - item_name: ニクス・グラーティア
-      slot_list:
-        - slot: 4
-          refine: 6
-          enchant_list:
-            - name: グロウファイア
-            - name: グロウウォーター
-            - name: グロウウィンド
-            - name: グロウアース
-            - name: グロウセイント
-            - name: グロウダークネス
-            - name: グロウテレキネシス
-            - name: グロウポイズン
-        - slot: 3
-          refine: 8
-          enchant_list:
-            - name: 英雄の凱歌
-            - name: 起源の王
-            - name: 殺意の怨念
-            - name: 豊穣の女神
-            - name: 厄災の魔将
-            - name: 異境の統轄者
-            - name: 知識の探求者
-            - name: 最果ての支配者
-        - slot: 2
-          refine: 10
-          enchant_list:
-            - name: 覇王
-            - name: 暴走した魔力
-            - name: 大鷲の眼光
-            - name: "潜在覚醒(アンチマジックI)"
+      - name: フロンティア武器エンチャント
+        item_list:
+          - item_name: フロンティアウィザードスタッフ
+          - item_name: フロンティアダガー
+          - item_name: フロンティアスピア
+          - item_name: フロンティアハンターボウ
+          - item_name: フロンティアマジックブック
+          - item_name: フロンティアスターダストブック
+          - item_name: フロンティアアックス
+          - item_name: フロンティアクロー
+          - item_name: フロンティアシャドウカタール
+          - item_name: フロンティアフォックステイル
+          - item_name: フロンティアホーリーステッキ
+          - item_name: フロンティアソウルスタッフ
+          - item_name: フロンティアツーハンドソード
+          - item_name: フロンティアライフル
+          - item_name: フロンティア催眠術師の杖
+          - item_name: フロンティアホール
+          - item_name: フロンティアバイオリン
+          - item_name: フロンティアロープ
+          - item_name: フロンティアツーハンドアックス
+          - item_name: フロンティア風魔手裏剣
+        slot_list:
+          - slot: 4
+            refine: 0
+            enchant_list:
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialLuk
+              - name: 火属性付与(武器)
+              - name: 水属性付与(武器)
+              - name: 風属性付与(武器)
+              - name: 地属性付与(武器)
+              - name: 聖属性付与(武器)
+              - name: 闇属性付与(武器)
+              - name: 念属性付与(武器)
+              - name: 毒属性付与(武器)
+              - name: 知識の探求者
+          - slot: 3
+            refine: 0
+            enchant_list:
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialLuk
+              - name: 潜在解放(ドラゴンナイトVI)
+              - name: 潜在解放(シャドウクロスI)
+              - name: 潜在解放(マイスターI)
+              - name: 潜在解放(アークメイジI)
+              - name: 潜在解放(ソウルアセティックI)
+              - name: 潜在解放(蜃気楼&不知火I)
+              - name: 潜在解放(ウィンドホークI)
+              - name: 潜在解放(ナイトウォッチI)
+              - name: 潜在解放(アビスチェイサーVIII)
+              - name: 潜在解放(インペリアルガードI)
+              - name: 潜在解放(エレメンタルマスターI)
+              - name: 潜在解放(天帝I)
+              - name: 潜在解放(カーディナルI)
+              - name: 潜在解放(ハイパーノービスI)
+              - name: 潜在解放(スピリットハンドラーVIII)
+              - name: 潜在解放(インクイジターI)
+              - name: 潜在解放(トルバドゥール&トルヴェールXVIII)
+              - name: 潜在解放(バイオロVI)
+              - name: 潜在解放(アリテアI)
+          - slot: 2
+            refine: 0
+            enchant_list:
+              - name: Str+7
+              - name: Agi+7
+              - name: Vit+7
+              - name: Int+7
+              - name: Dex+7
+              - name: Luk+7
+              - name: SpecialStr
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialLuk
+              - name: ExtraStr
+              - name: ExtraAgi
+              - name: ExtraVit
+              - name: ExtraInt
+              - name: ExtraDex
+              - name: ExtraLuk
+              - name: 覇王
+              - name: 暴走した魔力
+              - name: 大鷲の眼光
+              - name: 豪傑
+              - name: 真理の解放
+      - name: ディメンショナルブーツエンチャント
+        item_list:
+          - item_name: ディメンショナルブーツ(集中)
+          - item_name: ディメンショナルブーツ(創造)
+          - item_name: ディメンショナルブーツ(魔力)
+          - item_name: ディメンショナルブーツ(力)
+          - item_name: ディメンショナルブーツ
+        slot_list:
+          - slot: 4
+            refine: 0
+            enchant_list:
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 英雄の凱歌
+              - name: 起源の王
+              - name: 殺意の怨念
+              - name: 豊穣の女神
+              - name: 厄災の魔将
+              - name: 異境の統轄者
+              - name: 知識の探求者
+              - name: 最果ての支配者
+          - slot: 3
+            refine: 0
+            enchant_list:
+              - name: Str+5
+              - name: Agi+5
+              - name: Vit+5
+              - name: Int+5
+              - name: Dex+5
+              - name: Luk+5
+              - name: SpecialStr
+              - name: SpecialAgi
+              - name: SpecialVit
+              - name: SpecialInt
+              - name: SpecialDex
+              - name: SpecialLuk
+              - name: 豪傑
+              - name: 真理の解放
+          - slot: 2
+            refine: 0
+            enchant_list:
+              - name: 黒翼の使徒
+      - name: シーズンエンチャント（記念硬貨）グループ１１
+        item_list:
+          - item_name: '[シャドウ] ディザスターシールド'
+          - item_name: '[シャドウ] ディザスターイヤリング'
+        slot_list:
+          - slot: 4
+            refine: 8
+            enchant_list:
+              - name: Str+3
+              - name: Agi+3
+              - name: Vit+3
+              - name: Int+3
+              - name: Dex+3
+              - name: Luk+3
+              - name: 厄災の魔将
+      - name: セレスティアルシャドウエンチャント
+        item_list:
+          - item_name: '[シャドウ] セレスティアルアーマー'
+          - item_name: '[シャドウ] セレスティアルウェポン'
+          - item_name: '[シャドウ] セレスティアルシールド'
+          - item_name: '[シャドウ] セレスティアルシューズ'
+          - item_name: '[シャドウ] セレスティアルイヤリング'
+          - item_name: '[シャドウ] セレスティアルペンダント'
+        slot_list:
+          - slot: 4
+            refine: 0
+            enchant_list:
+              - name: 潜在解放(ドラゴンナイトVIII)
+              - name: 潜在解放(ドラゴンナイトIX)
+              - name: 潜在解放(アークメイジVIII)
+              - name: 潜在解放(アークメイジIX)
+              - name: 潜在解放(ウィンドホークIX)
+              - name: 潜在解放(ウィンドホークX)
+              - name: 潜在解放(ウィンドホークXI)
+              - name: 潜在解放(マイスターX)
+              - name: 潜在解放(マイスターXI)
+              - name: 潜在解放(シャドウクロスX)
+              - name: 潜在解放(シャドウクロスXI)
+              - name: 潜在解放(カーディナルX)
+              - name: 潜在解放(カーディナルXI)
+              - name: 潜在解放(カーディナルXII)
+              - name: 潜在解放(インペリアルガードIX)
+              - name: 潜在解放(インペリアルガードX)
+              - name: 潜在解放(エレメンタルマスターIX)
+              - name: 潜在解放(トルバドゥール&トルヴェールVI)
+              - name: 潜在解放(トルバドゥール&トルヴェールVII)
+              - name: 潜在解放(バイオロVIII)
+              - name: 潜在解放(バイオロIX)
+              - name: 潜在解放(バイオロX)
+              - name: 潜在解放(アビスチェイサーX)
+              - name: 潜在解放(アビスチェイサーXI)
+              - name: 潜在解放(アビスチェイサーXII)
+              - name: 潜在解放(インクイジターVIII)
+              - name: 潜在解放(インクイジターIX)
+              - name: 潜在解放(ソウルアセティックVIII)
+              - name: 潜在解放(ソウルアセティックIX)
+              - name: 潜在解放(ソウルアセティックX)
+              - name: 潜在解放(ナイトウォッチVII)
+              - name: 潜在解放(ナイトウォッチVIII)
+              - name: 潜在解放(蜃気楼&不知火VII)
+              - name: 潜在解放(蜃気楼&不知火VIII)
+              - name: 潜在解放(蜃気楼&不知火IX)
+              - name: 潜在解放(天帝VII)
+              - name: 潜在解放(天帝VIII)
+              - name: 潜在解放(スピリットハンドラーX)
+              - name: 潜在解放(スピリットハンドラーXI)
+              - name: 潜在解放(ハイパーノービスX)
+              - name: 潜在解放(ハイパーノービスXI)
+              - name: 潜在解放(ハイパーノービスXII)
+              - name: 潜在解放(アリテアXIV)
+              - name: 潜在解放(アリテアXV)
+              - name: 潜在解放(アリテアXVI)
+          - slot: 3
+            refine: 0
+            enchant_list:
+              - name: Str+3
+              - name: Agi+3
+              - name: Vit+3
+              - name: Int+3
+              - name: Dex+3
+              - name: Luk+3
