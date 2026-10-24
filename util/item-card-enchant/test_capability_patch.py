@@ -1,5 +1,6 @@
 import io
 import os
+import re
 import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
@@ -120,7 +121,7 @@ class CodecTest(unittest.TestCase):
 
     def test_条件キーは全て往復できる(self):
         base = {'name': 'MAXSP増加', 'value': 5}
-        for extra in ({'per_lv': 10}, {'at_lv': 99}, {'at_lv': 250}, {'at_refine': 9}, {'per_refine': 2},
+        for extra in ({'per_lv': 10}, {'at_lv': 99}, {'at_lv': 250}, {'at_lv': 285}, {'at_refine': 9}, {'per_refine': 2},
                       {'at_transcendence': 3}, {'at_equip_location': '靴'}, {'job_restrict': 'RANGER'},
                       {'per_status_10': 'INT'}, {'per_status_30': 'DEX'}, {'at_status_110': 'VIT'},
                       {'at_status_130': 'LUK'}, {'at_status_100': 'STR'}, {'at_sp_status_50': 'POW'},
@@ -134,6 +135,26 @@ class CodecTest(unittest.TestCase):
         self.assertTrue(big)
         _, big = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_refine': 9})
         self.assertFalse(big)
+
+    def test_BaseLv285以上の条件は専用の10の19乗の位で表しBigIntになる(self):
+        code, big = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285})
+        self.assertEqual(code, 10 ** 19 + 16)
+        self.assertTrue(big)
+
+    def test_BaseLv285以上の条件は他の全ての条件と併記できる(self):
+        self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285, 'at_refine': 9, 'at_transcendence': 2})
+        # 純粋なステータスが30上がる度の条件とも併記できる（別の桁なので衝突しない）
+        code, _ = self.roundtrip({'name': 'MAXSP増加', 'value': 5, 'at_lv': 285, 'per_status_30': 'INT'})
+        self.assertEqual(code, 10 ** 19 + 4 * 10 ** 18 + 16)
+
+    def test_BaseLv以上の専用桁はEnumItemSpId_jsの定数と一致する(self):
+        # ITEM_SP_BASE_LV_OVER_N_OFFSET のうち 10^19 以上のものが、そのまま at_lv: N の桁の値になる
+        path = os.path.join(cp.ENGINE_DIR, 'const', 'EnumItemSpId.js')
+        with open(path, encoding='utf-8') as f:
+            text = f.read()
+        in_js = {int(n): int(v) // 10 ** 19
+                 for n, v in re.findall(r'^export const ITEM_SP_BASE_LV_OVER_(\d+)_OFFSET\s*=\s*(\d+)n;', text, re.M)}
+        self.assertEqual(in_js, cp.cu.AT_BASE_LV_EX_CODE)
 
     def test_不正な入力はエラーにする(self):
         bad = [

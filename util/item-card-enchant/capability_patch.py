@@ -272,7 +272,7 @@ _CONDITION_TABLES = {
     'at_sp_status_50': cu.AT_SP_STATUS_50_CODE,
     'at_equip_location': cu.AT_EQUIP_LOCATION_CODE,
     'job_restrict': cu.RESTRICT_JOB_CODE,
-    'at_lv': cu.AT_BASE_LV_CODE,
+    'at_lv': {**cu.AT_BASE_LV_CODE, **cu.AT_BASE_LV_EX_CODE},
 }
 _AT_STATUS_KEYS = ('at_status_100', 'at_status_110', 'at_status_130',
                    'at_sp_status_100', 'at_sp_status_110', 'at_sp_status_50')
@@ -330,7 +330,9 @@ def encode_cap(cap: dict, skills: SkillTable):
 
 def decode_code(code: int, skills: SkillTable | None = None) -> dict:
     """能力コード → 条件・能力名・スキル名の dict（YAML の能力と同じキー）。"""
-    s = str(code).zfill(19)
+    s = str(code).zfill(20)
+    at_lv_ex = int(s[0])
+    s = s[1:]
     out: dict = {}
     cap_code = int(s[14:19])
     base, skill_id = split_family(cap_code)
@@ -347,6 +349,8 @@ def decode_code(code: int, skills: SkillTable | None = None) -> dict:
         out['per_lv'] = int(s[4:6])
     if int(s[3]):
         out['at_lv'] = rev(cu.AT_BASE_LV_CODE, int(s[3]))
+    if at_lv_ex:
+        out['at_lv'] = rev(cu.AT_BASE_LV_EX_CODE, at_lv_ex)
     if int(s[11:13]):
         out['at_refine'] = int(s[11:13])
     if int(s[13]):

@@ -3,6 +3,7 @@ import sys
 import yaml
 from craft_util import *
 from set_util import groupSetList, loadExistingSetMapKeys, buildPartnerMapLines
+from set_effect_merge import KIND_ITEM, effectPayload, loadReusableEffects
 
 ITEM_CODE = loadItemDict()
 
@@ -33,6 +34,9 @@ if __name__ == "__main__":
     
     with open(f'{script_dir}/アイテム.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
+
+    # 同じ内容のセット効果を新規に作らず再利用するための表（set_effect_merge.py 参照）
+    reusable_effects = loadReusableEffects()
 
     # セットのパートナー側の逆引きマップ行を作るための情報
     partner_sets = {}
@@ -72,14 +76,18 @@ if __name__ == "__main__":
         if 'set_list' in item_info:
             item_to_set_record = f"ItemIdToSetIdMap[{base_id}] = ["
             for set_info, conditions in groupSetList(item_info['set_list']):
-                item_id += 1
-                set_item_id = item_id
                 set_desc = set_info.get('desc', '')
-                record  = f'ItemObjNew[{item_id}] = [{item_id},100,0,0,0,0,0,0,0,0,"{set_desc}",'
-                for capability in set_info.get('capabilities', []):
-                    record += buildCapabilityRecord(capability)
-                record += "0];"
-                item_dat_js.append(record)
+                capability_records = ''.join(buildCapabilityRecord(c) for c in set_info.get('capabilities', []))
+                payload = effectPayload(KIND_ITEM, set_desc, capability_records)
+                # 時限発動効果つき・separate: true のセットは、効果レコードを共有しない
+                can_reuse = not set_info.get('time_effects') and not set_info.get('separate')
+                set_item_id = reusable_effects.get((KIND_ITEM, payload)) if can_reuse else None
+                if set_item_id is None:
+                    item_id += 1
+                    set_item_id = item_id
+                    item_dat_js.append(f'ItemObjNew[{item_id}] = [{item_id},100,{payload}];')
+                    if can_reuse:
+                        reusable_effects[(KIND_ITEM, payload)] = set_item_id
 
         # ------------------------------------------------------
         #  itemset.dat.js
