@@ -12,6 +12,7 @@ import { g_timeItemConf, g_timeItemConfEffective } from "../runtime/global.js";
 import { g_pureStatus } from "../chara/hmjob.js";
 import { n_A_Arrow, n_A_BaseLV } from "../runtime/ro4-state.js";
 import { toSafeBigInt } from "../runtime/util.js";
+import { SplitBaseLvOverEx } from "../equip/item-sp-baselv-ex.js";
 import { ARROW_ID_ZOKUSE_ZIDO_YA_ATK30, ArrowOBJNew } from "../equip/arrow.dat.js";
 import { CardObjNew } from "../equip/card.dat.js";
 import {
@@ -241,6 +242,12 @@ export function GetEquippedSPSubEquip(spid, invalidItemIdArray, bListUp, bExact)
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
 
+			// BaseLvが N 以上の時（拡張）の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOverEx(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
+
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
 			if (spDefRemain > base_flag) {
@@ -462,6 +469,12 @@ export function GetEquippedSPSubShadow(spid, invalidItemIdArray, bListUp, bExact
 			// ＳＰの定義を取得
 			spDefRemain = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = itemData[ ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// BaseLvが N 以上の時（拡張）の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOverEx(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
 
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
@@ -803,6 +816,12 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 			spDefRemain = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = cardData[ CARD_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
 
+			// BaseLvが N 以上の時（拡張）の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOverEx(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
+
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
 			if (spDefRemain > base_flag) {
@@ -963,6 +982,12 @@ export function GetEquippedSPSubSPCardAndElse(spid, invalidCardIdArray, bListUp)
 			// spDefRemain は int の場合と BigInt の場合がある
 			spDefRemain = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx ];
 			spDefValue = timeObj[ TIME_ITEM_DATA_INDEX_SPBEGIN + spDefIdx + 1 ];
+
+			// BaseLvが N 以上の時（拡張）の条件を満たさない場合は、次へ
+			spDefRemain = CheckSpDefBaseLvOverEx(spDefRemain);
+			if (spDefRemain < 0) {
+				continue;
+			}
 
 			// 純粋なステータスが30上がる度に条件を取得
 			let base_flag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);
@@ -1586,6 +1611,23 @@ export function CheckSpDefBaseLvOver(spDefRemain) {
 
 	// 条件を満たす場合は、残りのＳＰ定義値を返す
 	return (spDefRemain % spDefBase);
+}
+
+/**
+ * アイテムに設定されたフラグ付きＳＰ定義ＩＤが、「BaseLvが N 以上の時」（Lv上限の拡張で増える条件。10^19 の位）に適合するかを検査する.
+ * @param {number|bigint} spDefRemain フラグ付きアイテムSP（BigInt の場合と Int の場合がある）
+ * @returns 条件が無い場合は spDefRemain をそのまま、満たす場合は条件の桁を取り除いた値、満たさない場合は -1
+ */
+export function CheckSpDefBaseLvOverEx(spDefRemain) {
+	const baseLvOverEx = SplitBaseLvOverEx(spDefRemain);
+
+	if (baseLvOverEx === null) {
+		return spDefRemain;
+	}
+	if (n_A_BaseLV < baseLvOverEx.requiredBaseLv) {
+		return -1;
+	}
+	return baseLvOverEx.rest;
 }
 
 /**
