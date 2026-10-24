@@ -769,7 +769,7 @@ ITEM_SP_TIME_OBJ[364] = [364,"火属性物理攻撃力 + 30%","火属性物理�
 ITEM_SP_TIME_OBJ_SORT.push(364);
 //
 
-ITEM_SP_TIME_OBJ[365] = [365,"ディメンショナルブーツ","10秒間、固定詠唱時間 -100%",[[1,5899]],382,100,0];
+ITEM_SP_TIME_OBJ[365] = [365,"ディメンショナルブーツ","10秒間、固定詠唱時間 -100%",[[1,5871]],382,100,0];
 ITEM_SP_TIME_OBJ_SORT.push(365);
 // <<< INSERT NEW DATA ABOVE THIS LINE >>>
 

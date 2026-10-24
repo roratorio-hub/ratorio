@@ -3,6 +3,7 @@ import os
 import yaml
 from craft_util import *
 from set_util import groupSetList, loadExistingSetMapKeys, buildPartnerMapLines
+from set_effect_merge import KIND_CARD, effectPayload, loadReusableEffects
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -61,6 +62,9 @@ if __name__ == "__main__":
     with open(f'{script_dir}/カード・エンチャント.yaml', 'r', encoding='utf-8') as f:
         config = yaml.safe_load(f)
 
+    # 同じ内容のセット効果を新規に作らず再利用するための表（set_effect_merge.py 参照）
+    reusable_effects = loadReusableEffects()
+
     # セットのパートナー側の逆引きマップ行を作るための情報
     partner_sets = {}
     with open(f'{script_dir}/../../engine/equip/itemset.dat.js', 'r', encoding='utf-8') as f:
@@ -98,16 +102,21 @@ if __name__ == "__main__":
             card_to_set_record = f"CardIdToSetIdMap[{base_id}] = ["
             # 効果が同一のセットは効果レコードを1つ共有する（groupSetList 参照）
             for set_info, conditions in groupSetList(enchant_info['set_list']):
-                card_id += 1
-                set_card_id = card_id
                 set_desc = set_info.get('desc', '')
-                record  = f'CardObjNew[{card_id}] = [{card_id},100,0,"","{set_desc}",'
-                for capability in set_info.get('capabilities', []):
-                    record += buildCapabilityRecord(capability)
-                record += "0];"
-                card_dat_js.append(record)
-                if 'None' in record:
-                    print(f'エラー：{enchant_info["name"]} に空のデータが挿入されました')
+                capability_records = ''.join(buildCapabilityRecord(c) for c in set_info.get('capabilities', []))
+                payload = effectPayload(KIND_CARD, set_desc, capability_records)
+                # 時限発動効果つき・separate: true のセットは、効果レコードを共有しない
+                can_reuse = not set_info.get('time_effects') and not set_info.get('separate')
+                set_card_id = reusable_effects.get((KIND_CARD, payload)) if can_reuse else None
+                if set_card_id is None:
+                    card_id += 1
+                    set_card_id = card_id
+                    record = f'CardObjNew[{card_id}] = [{card_id},100,{payload}];'
+                    card_dat_js.append(record)
+                    if 'None' in record:
+                        print(f'エラー：{enchant_info["name"]} に空のデータが挿入されました')
+                    if can_reuse:
+                        reusable_effects[(KIND_CARD, payload)] = set_card_id
 
         # ------------------------------------------------------
         #  itemset.dat.js
