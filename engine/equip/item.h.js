@@ -5,6 +5,7 @@ import "../monster/monster.h.js";
 import "../skill/skill.h.js";
 import "../skill/usableskill.h.js";
 import { toSafeBigInt } from "../runtime/util.js";
+import { SplitBaseLvOverEx } from "./item-sp-baselv-ex.js";
 import { AutoSpellSkill } from "../skill/autospell.dat.js";
 import { GetAutoSpellTriggerText } from "../skill/autospell.h.js";
 import { CardObjNew } from "./card.dat.js";
@@ -776,6 +777,15 @@ export function GetItemExplainText(spId, spValue) {
 
 	// 戻り値用テキスト配列
 	textInfoArray = new Array();
+
+	// 『BaseLvが○以上の時』条件（Lv上限の拡張で増える条件。10^19 の位）
+	const baseLvOverEx = SplitBaseLvOverEx(spId);
+	if (baseLvOverEx !== null) {
+		if (Number.isFinite(baseLvOverEx.requiredBaseLv)) {
+			condTextBaseLvOver = "BaseLvが" + baseLvOverEx.requiredBaseLv + "以上の時、追加で";
+		}
+		spId = baseLvOverEx.rest;
+	}
 
 	// 『純粋な○○が△△上がる度に』条件
 	let baseFlag = toSafeBigInt(ITEM_SP_PURE_STR_BY_30_OFFSET);

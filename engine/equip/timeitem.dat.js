@@ -285,6 +285,7 @@ export const TIME_ITEM_ID_ADD_ELEMENTAL_WATER_ATK_30 = 333;
 export const TIME_ITEM_ID_ADD_ELEMENTAL_POISON_ATK_30 = 334;
 export const TIME_ITEM_ID_ADD_ELEMENTAL_DARK_ATK_30 = 335;
 export const TIME_ITEM_ID_ADD_ELEMENTAL_FIRE_ATK_30 = 364;
+export const TIME_ITEM_ID_DIMENSIONAL_BOOTS_NO_FIXED_CAST = 365;
 
 export const ITEM_SP_TIME_OBJ = [
 [0,"装備/カードの時限性補助効果+NPC支援+期間限定","なし",[[0,0]],0],
@@ -768,6 +769,8 @@ ITEM_SP_TIME_OBJ[364] = [364,"火属性物理攻撃力 + 30%","火属性物理�
 ITEM_SP_TIME_OBJ_SORT.push(364);
 //
 
+ITEM_SP_TIME_OBJ[365] = [365,"ディメンショナルブーツ","10秒間、固定詠唱時間 -100%",[[1,5871]],382,100,0];
+ITEM_SP_TIME_OBJ_SORT.push(365);
 // <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 /**
