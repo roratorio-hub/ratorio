@@ -53,7 +53,7 @@ import {
     ITEM_ID_TAURUS_HAT, ITEM_ID_USUDUKIYONO_BOSHI, ITEM_ID_YAGIGENO_MUFFLER, ITEM_ID_ZIKKEN_SEITAI_GOATGATA_CAP,
     ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ARMOR, ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_BOOTS,
     ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_MANT, ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_RING,
-    ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ROBE
+    ITEM_SET_ID_DIAVOLOS_WING_DIAVOLOS_ROBE, ITEM_ID_DARK_COUNTRY_CLOAK
 } from "../equip/item.dat.js";
 import {
     MOB_CONF_PLAYER_ID_SHUZOKU, MOB_CONF_PLAYER_ID_SHUZOKU_DORAM, MOB_CONF_PLAYER_ID_SHUZOKU_HUMAN, n_B_TAISEI
@@ -750,6 +750,9 @@ export function ApplyMagicalSpecializeMonsterMod20211014SubSpecializeMap(charaDa
 		if ((cardCount = CardNumSearch(CARD_ID_JACKONETTE)) > 0) {
 			wX += 30 * cardCount;
 		}
+		if (EquipNumSearch(ITEM_ID_DARK_COUNTRY_CLOAK) > 0) {
+			wX += 30;
+		}		
 	}
 
 	//--------------------------------
@@ -1762,6 +1765,9 @@ export function ApplyPhysicalSpecializeMonster(charaData, specData, mobData, dmg
 		if ((cardCount = CardNumSearch(CARD_ID_JACKONETTE)) > 0) {
 			w += 30 * cardCount;
 		}
+		if (EquipNumSearch(ITEM_ID_DARK_COUNTRY_CLOAK) > 0) {
+			w += 30;
+		}		
 	}
 
 	//--------------------------------
