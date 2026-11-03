@@ -1823,7 +1823,21 @@ export function ApplySpecModify(spid, spVal) {
 
 		// 四次職支援「天地神霊」による効果
 		if ((bufLv = g_confDataYozi[CCharaConfYozi.CONF_ID_TENCHI_SHINRE]) > 0) {
-			spVal += 10 + bufLv;
+			arrayWork = [
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_VANITY,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WATER,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_EARTH,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_FIRE,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_WIND,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_POISON,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_HOLY,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_DARK,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_PSYCO,
+				ITEM_SP_MAGICAL_DAMAGE_UP_ELM_UNDEAD
+			];
+			if (arrayWork.indexOf(spid) >= 0) {
+				spVal += 10 + bufLv;
+			}
 		}
 
 		// 「ハイパーノービス」スキル「ジャックフロストノヴァ」によるデバフ効果
