@@ -76,6 +76,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// 影一閃
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-980.html
 		// SKILL_ID_KAGE_ISSEN
 		defineSkill(SKILL_ID_KAGE_ISSEN, function() {
 			this.name = "影一閃";
@@ -91,8 +92,8 @@ export const skills = [
 				const kage_no_mai_lv = Math.max(LearnedSkillSearch(SKILL_ID_KAGE_NO_MAI), option.GetOptionValue(0));
 				// ダメージ倍率
 				ratio = 2500 + 100 * skillLv;				// 基礎倍率
-				ratio += 5 * skillLv * kage_no_mai_lv;	// TODO: 2026-10-03 係数未調査
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
+				ratio += 20 * skillLv * kage_no_mai_lv;
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				return Math.floor(ratio * n_A_BaseLV / 100);		// BaseLv補正
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP

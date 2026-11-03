@@ -310,6 +310,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// メタリックフューリー
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-977.html
 		// SKILL_ID_METALIC_FURY
 		defineSkill(SKILL_ID_METALIC_FURY, function() {
 			this.name = "メタリックフューリー";
@@ -338,11 +339,11 @@ export const skills = [
 				if (n_B_IJYOU[MOB_CONF_DEBUF_ID_SOUND_BLEND]) {
 					// サウンドブレンド 有り
 					ratio = 4750 + 1750 * skillLv;
-					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
+					ratio += 9 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 				} else {
 					// サウンドブレンド 無し
 					ratio = 3000 + 1500 * skillLv;
-					ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
+					ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 				}
 				// ベースレベル補正
 				return Math.floor(ratio * n_A_BaseLV / 100);
@@ -709,6 +710,7 @@ export const skills = [
 		}),
 
 		/** リズミカルウェーブ */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-978.html
 		// SKILL_ID_RHYTHMICAL_WAVE
 		defineSkill(SKILL_ID_RHYTHMICAL_WAVE, function() {
 			this.name = "リズミカルウェーブ";
@@ -739,10 +741,10 @@ export const skills = [
 				const stage_manner_lv = Math.max(UsedSkillSearch(SKILL_ID_STAGE_MANNER), LearnedSkillSearch(SKILL_ID_STAGE_MANNER));
 				if (state_mystic_symphony === 1) {
 					ratio += 4750 + 1750 * skillLv;
-					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
+					ratio += 9 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 				} else {
 					ratio += 4000 + 1000 * skillLv;
-					ratio += 4 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;	// TODO: 2026-10-03 係数未調査
+					ratio += 6 * GetTotalSpecStatus(MIG_PARAM_ID_SPL) * stage_manner_lv;
 				}
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
