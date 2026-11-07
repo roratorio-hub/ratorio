@@ -264,6 +264,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// ソウルバルカンストライク
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-981.html
 		// SKILL_ID_SOUL_VULKUN_STRIKE
 		defineSkill(SKILL_ID_SOUL_VULKUN_STRIKE, function() {
 			this.name = "ソウルバルカンストライク";
@@ -289,7 +290,7 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaDataManger) {
 				let ratio = 500 + 200 * skillLv;
-				ratio += 2 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: 2026-10-03 係数未調査
+				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.hitCount = function(skillLv, option, weapon) {
@@ -861,6 +862,7 @@ export const skills = [
 		}),
 
 		/** (×)レイスダッシュ */
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-982.html
 		// SKILL_ID_WRAITH_DASH
 		defineSkill(SKILL_ID_WRAITH_DASH, function() {
 			this.name = "(×)レイスダッシュ";
@@ -872,7 +874,7 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				ratio += 750 + 750 * skillLv;
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);	// TODO: Spl係数未確定（公式非公開）
+				ratio += 10 * GetTotalSpecStatus(MIG_PARAM_ID_SPL);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
