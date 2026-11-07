@@ -251,6 +251,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// フェイタルシャドウクロー
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-979.html
 		// SKILL_ID_FATAL_SHADOW_CRAW
 		defineSkill(SKILL_ID_FATAL_SHADOW_CRAW, function() {
 			this.name = "フェイタルシャドウクロー";
@@ -264,7 +265,7 @@ export const skills = [
 			this.Power = function(skillLv, charaData, option) {			// スキル倍率
 				let ratio = 0;
 				ratio = 1000 + 500 * skillLv;
-				ratio += 7 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
+				ratio += 20 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}

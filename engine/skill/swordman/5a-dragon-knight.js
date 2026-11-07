@@ -99,6 +99,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン：サイン
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-974.html
 		// SKILL_ID_SERVANT_WEAPON_SIGN
 		defineSkill(SKILL_ID_SERVANT_WEAPON_SIGN, function() {
 			this.name = "サーヴァントウェポン：サイン";
@@ -111,7 +112,7 @@ export const skills = [
 			}
 			this.Power = function(skillLv, charaData) {       			// スキル倍率
 				let ratio = 1200 + 1200 * skillLv;
-				ratio += 0 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
+				ratio += 24 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				return Math.floor(ratio * n_A_BaseLV / 100);
 			}
 			this.CostFixed = function(skillLv, charaDataManger) {       // 消費SP
@@ -147,6 +148,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン：ファントム
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-975.html
 		// SKILL_ID_SERVANT_WEAPON_PHANTOM
 		defineSkill(SKILL_ID_SERVANT_WEAPON_PHANTOM, function() {
 			this.name = "サーヴァントウェポン：ファントム";
@@ -163,7 +165,7 @@ export const skills = [
 			this.Power = function(skillLv, charaData) {      		 	// スキル倍率
 				let ratio = 0;
 				ratio += 800 + 800 * skillLv;
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
+				ratio += 16 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
@@ -200,6 +202,7 @@ export const skills = [
 		// ----------------------------------------------------------------
 		// サーヴァントウェポン：デモリッション
 		// ----------------------------------------------------------------
+		// 参照 https://siarodiary.blog.fc2.com/blog-entry-976.html
 		// SKILL_ID_SERVANT_WEAPON_DEMOLISION
 		defineSkill(SKILL_ID_SERVANT_WEAPON_DEMOLISION, function() {
 			this.name = "サーヴァントウェポン：デモリッション";
@@ -216,7 +219,7 @@ export const skills = [
 			this.Power = function(skillLv, charaData) {       // スキル倍率
 				let ratio = 0;
 				ratio += 800 + 800 * skillLv;
-				ratio += 5 * GetTotalSpecStatus(MIG_PARAM_ID_POW);	// TODO: 2026-10-03 係数未調査
+				ratio += 16 * GetTotalSpecStatus(MIG_PARAM_ID_POW);
 				ratio = Math.floor(ratio * n_A_BaseLV / 100);
 				return ratio;
 			}
