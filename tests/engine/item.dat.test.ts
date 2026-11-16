@@ -11,7 +11,7 @@ import {
     ItemObjNew,
 } from '@engine/equip/item.dat.js';
 import { get as registryGet } from '@engine/runtime/engine-registry.js';
-import { USABEL_SKILL_ID_HEAL_10 } from '@engine/skill/usableskill.dat.js';
+import { USABEL_SKILL_ID_CLOAKING_3 } from '@engine/skill/usableskill.dat.js';
 import { ITEM_SP_LEARN_SKILL } from '@engine/const/EnumItemSpId.js';
 
 /** ItemObjNew のレコードから、指定した能力コードの値を返す（効果は index 11 以降に [コード,値] の組で並ぶ）. */
@@ -38,8 +38,8 @@ describe('item.dat.js', () => {
     });
 
     describe('偽りの心臓セット', () => {
-        it.each([5574, 5601])('セット効果 %i で使用可能になるスキルはヒールLv10', (setItemId) => {
-            expect(getSpValue(ItemObjNew[setItemId], ITEM_SP_LEARN_SKILL)).toBe(USABEL_SKILL_ID_HEAL_10);
+        it.each([5574, 5601])('セット効果 %i で使用可能になるスキルはクローキングLv3', (setItemId) => {
+            expect(getSpValue(ItemObjNew[setItemId], ITEM_SP_LEARN_SKILL)).toBe(USABEL_SKILL_ID_CLOAKING_3);
         });
     });
 });
