@@ -6,6 +6,7 @@
  * DOM に存在しないカード欄 select を 0 として読み、ロード済みのカード値を全部位分上書きしていた。
  * 同じ関数がシャドウ装備の手動変更（OnChangeCard）からも呼ばれるため、ランダムオプション表示中の
  * シャドウ装備変更でも本体装備のカードが消えていた。
+ * セーブ側も同様に、ランダムオプション表示中はカード欄が無いため、カードが全て0で出力されていた。
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium, type Browser, type Page } from 'playwright';
@@ -135,12 +136,12 @@ describe('ランダムオプション表示のままセーブデータをロー�
                 // ロード後もランダムオプション表示のまま、ロード値が表示されている
                 expect(await snapshotRndOpts(page)).toEqual(baseRndOpts);
 
+                // ランダムオプション表示のままセーブしても、ロードしたデータと一致する（カードが欠落しない）
+                expect(await outputQuery(page)).toBe(query);
+
                 // カード表示に戻すとロード値が復元されている
                 await toggleSlotMode(page);
                 expect(await snapshotCards(page)).toEqual(baseCards);
-
-                // URL出力がロードしたデータと一致する（ロード値が欠けていない）
-                // （ランダムオプション表示中のセーブはカード欄が画面に無く値が出力されないため、カード表示で確認する）
                 expect(await outputQuery(page)).toBe(query);
             } finally {
                 await page.context().close();
