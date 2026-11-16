@@ -200,3 +200,102 @@ describe('generateImage() の出力が画面表示と一致する（マージ前
         }, 60000);
     }
 });
+
+// シャドウ装備のエンチャントが画像に出ること（画像保存でオプション未設定扱いになる不具合の回帰テスト）。
+// 画面操作（onLoadShadow）→ DATA_OBJID_SHADOW_*_CARD_n → model.card → 画像、という配線全体を実ページで検証する。
+// 既存フィクスチャはこの経路を通らない（シャドウ装備のエンチャント入りの本番URLが無い）ため、ここで直接再現する。
+describe('generateImage() がシャドウ装備のエンチャントを出力する', () => {
+    // 装備箇所名（CShadowEquipController.EQPRGN_NAME_*）→ 画像上の見出し
+    const REGIONS: Array<[string, string]> = [
+        ['eqprgn-arms-right', '【右手】'],
+        ['eqprgn-arms-left', '【左手】'],
+        ['eqprgn-body', '【鎧】'],
+        ['eqprgn-foot', '【靴】'],
+        ['eqprgn-accessory-1', '【アクセサリー(1)】'],
+        ['eqprgn-accessory-2', '【アクセサリー(2)】'],
+    ];
+
+    it('エンチャントを設定した各部位のシャドウ装備に、エンチャント名が表示される', async () => {
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        const errors: string[] = [];
+        page.on('pageerror', (e) => errors.push(String(e)));
+
+        const baseQuery = entries[0]?.query ?? '';
+        const qi = baseQuery.indexOf('?');
+        const q = qi >= 0 ? baseQuery.slice(qi) : (baseQuery ? `?${baseQuery}` : '');
+        await page.goto(`${baseUrl}/ro4/m/calcx.html${q}`, { waitUntil: 'networkidle', timeout: 60000 });
+        await page.waitForFunction(async () => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const mod = await dynamicImport('/engine/ui/CExtraInfoDataBridge.js');
+            const reg = (globalThis as any)._ratorioReg;
+            return mod.g_extraInfoDataBridge?.charaData != null
+                && typeof reg?.generateImage === 'function';
+        });
+
+        const result = await page.evaluate(async (regions) => {
+            const dynamicImport = new Function('specifier', 'return import(specifier);') as
+                (specifier: string) => Promise<Record<string, any>>;
+            const { g_shadowEquipController: ctrl } = await dynamicImport('/engine/equip/CShadowEquipController.js');
+            const { CardObjNew } = await dynamicImport('/engine/equip/card.dat.js');
+            const reg = (globalThis as any)._ratorioReg;
+
+            const block = (name: string) =>
+                document.querySelector(`#OBJID_SHADOW_EQUIPS_MIG .equip-block.${name}`) as HTMLElement;
+            const firstEnchantSelect = (name: string) =>
+                block(name).querySelectorAll('.card-select')[1] as HTMLSelectElement;
+            const nonZeroValues = (sel: Element) =>
+                Array.from(sel.querySelectorAll('option')).map((o) => (o as HTMLOptionElement).value).filter((v) => v !== '0' && v !== '');
+
+            // 部位ごとに、エンチャントを持つ選択可能なシャドウ装備を探して、1枠目にエンチャントを設定する
+            const expectedByRegion: Record<string, { itemId: number; enchantId: number; enchantName: string }> = {};
+            for (const [name] of regions) {
+                const itemIds = nonZeroValues(block(name).querySelector('.item-select')!).map(Number);
+                for (const itemId of itemIds) {
+                    // 選択肢を構築させるため、まずエンチャント無しで装備する
+                    ctrl.onLoadShadow(name, itemId, 0, [], [0, 0, 0]);
+                    const enchantIds = nonZeroValues(firstEnchantSelect(name)).map(Number);
+                    if (enchantIds.length === 0) continue;
+                    ctrl.onLoadShadow(name, itemId, 0, [], [enchantIds[0], 0, 0]);
+                    if (ctrl.getEquippedID(name) !== itemId) continue;
+                    expectedByRegion[name] = {
+                        itemId,
+                        enchantId: enchantIds[0],
+                        enchantName: CardObjNew[enchantIds[0]][2],
+                    };
+                    break;
+                }
+            }
+
+            reg.generateImage();
+            const imgdiv = document.getElementById('imgdiv');
+            if (!imgdiv) throw new Error('#imgdiv が生成されませんでした');
+
+            const shadowTextOf = (heading: string): string | null => {
+                const dt = Array.from(imgdiv.querySelectorAll('dt')).find((el) => el.textContent?.trim() === heading);
+                for (let el = dt?.nextElementSibling; el && el.tagName !== 'DT'; el = el.nextElementSibling) {
+                    if (el.classList.contains('shadow')) return el.textContent ?? '';
+                }
+                return null;
+            };
+            const actualByRegion: Record<string, string | null> = {};
+            for (const [name, heading] of regions) actualByRegion[name] = shadowTextOf(heading);
+            imgdiv.remove();
+
+            return { expectedByRegion, actualByRegion };
+        }, REGIONS);
+
+        expect(errors, `ページ内で未捕捉例外: ${errors.join('\n')}`).toEqual([]);
+
+        // エンチャント付きで装備できた部位が1つも無いと検証にならないため、最低限の部位数を要求する
+        const checked = Object.keys(result.expectedByRegion);
+        expect(checked.length, `検証できた部位: ${checked.join(', ')}`).toBeGreaterThanOrEqual(1);
+        for (const name of checked) {
+            const { enchantName } = result.expectedByRegion[name];
+            expect(result.actualByRegion[name], `${name} のシャドウ装備欄`).toContain(enchantName);
+        }
+
+        await context.close();
+    }, 90000);
+});
