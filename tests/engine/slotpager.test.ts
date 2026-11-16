@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as hmcard from '@engine/equip/hmcard.js';
-import { __RebuildSlotAsCardShort } from '@engine/equip/slotpager.js';
+import { __RebuildSlotAsCardShort, SaveSlotStateCardAll } from '@engine/equip/slotpager.js';
+import { GetStatefullData, SetStatefullData } from '@engine/runtime/util.js';
 // dewindow: calc は head-bridge 経由になった（旧 bare global）。
 import { __registerHeadFunctions } from '@engine/bridge/battlecalc-bridge.js';
 import { EQUIP_REGION_ID_ARMS } from '@engine/const/EnumEquipRegionId.js';
@@ -64,6 +65,44 @@ describe('slotpager.js', () => {
             // リスナー配線: ApplyCardShort(eqpRgnId, prefix) → 再計算通知
             expect(applySpy).toHaveBeenCalledWith(eqpRgnId, prefix);
             expect(calc).toHaveBeenCalled();
+        });
+    });
+
+    describe('SaveSlotStateCardAll: 画面のカード欄をステートフルデータへ保存する', () => {
+        afterEach(() => {
+            document.body.innerHTML = '';
+        });
+
+        /** 保持値（ステートフルデータ）の要素を作る */
+        function createStatefullData(id: string, value: number) {
+            const span = document.createElement('span');
+            span.id = id;
+            document.body.appendChild(span);
+            SetStatefullData(id, value);
+        }
+
+        it('カード欄が画面にあるときは、その選択値でステートフルデータを更新する', () => {
+            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 0);
+            const sel = document.createElement('select');
+            sel.id = 'OBJID_ARMS_RIGHT_CARD_1';
+            sel.appendChild(Object.assign(document.createElement('option'), { value: '0' }));
+            sel.appendChild(Object.assign(document.createElement('option'), { value: '4302' }));
+            document.body.appendChild(sel);
+            sel.value = '4302';
+
+            SaveSlotStateCardAll();
+
+            expect(Number(GetStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 0))).toBe(4302);
+        });
+
+        it('カード欄が画面に無いとき（ランダムオプション表示中）は、保持しているカード値を0で上書きしない', () => {
+            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 4302);
+            createStatefullData('DATA_OBJID_HEAD_TOP_CARD_2', 1247);
+
+            SaveSlotStateCardAll();
+
+            expect(Number(GetStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 0))).toBe(4302);
+            expect(Number(GetStatefullData('DATA_OBJID_HEAD_TOP_CARD_2', 0))).toBe(1247);
         });
     });
 });
