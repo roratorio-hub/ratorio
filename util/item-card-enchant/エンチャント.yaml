@@ -1,29 +1,43 @@
 enchant_list:
 - enchant:
-  - name: スペシャルエンチャント(オーブ)
+  - name: スペシャルエンチャント(タロー)
     item_list:
-    - item_name: ブリッツクリーグ
+    - item_name: トゥーサイドダイヤモンドガード
+    slot_list:
+    - slot: 4
+      refine: 8
+      enchant_list:
+      - name: Str+10
+      - name: Agi+10
+      - name: Vit+10
+      - name: Int+10
+      - name: Dex+10
+      - name: Luk+10
+      - name: スキルディレイ-15%
+      - name: 英雄の凱歌
+      - name: 厄災の魔将
+    - slot: 3
+      refine: 9
+      enchant_list:
+      - name: Str+10
+      - name: Agi+10
+      - name: Vit+10
+      - name: Int+10
+      - name: Dex+10
+      - name: Luk+10
+      - name: スキルディレイ-15%
+      - name: スタン耐性
+      - name: 魔力障壁
+      - name: 限界突破
+    - slot: 2
+      refine: 10
+      enchant_list:
+      - name: 天地崩壊
+  - name: スペシャルエンチャント(ミオン)グループ1
+    item_list:
+    - item_name: 力天使のストール
     slot_list:
     - slot: 4
       refine: 0
       enchant_list:
-      - name: 潜在解放(ナイトウォッチXXI)
-    - slot: 3
-      refine: 8
-      enchant_list:
-      - name: 火属性付与(鎧)
-      - name: 水属性付与(鎧)
-      - name: 風属性付与(鎧)
-      - name: 地属性付与(鎧)
-      - name: 聖属性付与(鎧)
-      - name: 闇属性付与(鎧)
-      - name: 念属性付与(鎧)
-      - name: 毒属性付与(鎧)
-      - name: 不死属性付与(鎧)
-    - slot: 2
-      refine: 9
-      enchant_list:
-      - name: スキルディレイ-15%
-      - name: 必中攻撃+25%
-      - name: 詠唱妨害不可
-      - name: 英雄の凱歌
+      - name: 潜在解放(アリテアXXIV)

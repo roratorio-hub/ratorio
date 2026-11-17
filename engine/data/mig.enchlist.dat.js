@@ -1792,8 +1792,11 @@ export const MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE = 470;
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5904] = [961];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5908] = [962,963];
 	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5906] = [964,730];
-	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5909] = [776];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5909] = [966,776];
 	g_constDataManager.enchListDataManager.sourceArray[964] = [964,-1,0,0,[["スペシャルエンチャント(オーブ)","スペシャルエンチャント(オーブ)"]],[],[[[174,[50,[5906,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4645,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[1655,1656,1657,1658,1659,1660,1661,1662,1663,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[1247,1625,1179,1975,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[965] = [965,-1,0,0,[["スペシャルエンチャント(タロー)","スペシャルエンチャント(タロー)"]],[],[[[174,[50,[5907,]]],,[[[178,[27,[4]]],,[[[187,[59,8],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,1975,2043,]]],,[]]]]]],[[178,[27,[3]]],,[[[187,[59,9],[60,4]],,[[[186,[51,[668,673,678,683,688,692,1247,4649,4650,2500,]]],,[]]]]]],[[178,[27,[2]]],,[[[187,[59,10],[60,4]],,[[[186,[51,[2417,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.sourceArray[966] = [966,-1,0,0,[["スペシャルエンチャント(ミオン)グループ1","スペシャルエンチャント(ミオン)グループ1"]],[],[[[174,[50,[5909,]]],,[[[178,[27,[4]]],,[[[187,[59,0],[60,4]],,[[[186,[51,[4647,]]],,[]]]]]],]]],[]];
+	g_constDataManager.enchListDataManager.reverseResolveArrayItemId[5907] = [965];
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 	// enchant はセーブデータに書き出されないので

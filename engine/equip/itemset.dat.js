@@ -7497,6 +7497,9 @@ CardIdToSetIdMap[4463] = [3610,];
 	w_SE[3819] = [-4646,-4645,-1348,];
 	CardIdToSetIdMap[4645] = [3819,];
 	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3819]);
+	w_SE[3820] = [-4648,-4647,-1348,];
+	CardIdToSetIdMap[4647] = [3820,];
+	CardIdToSetIdMap[1348] = CardIdToSetIdMap[1348].concat([3820]);
 	// <<< INSERT NEW DATA ABOVE THIS LINE >>>
 
 	// itemset はセーブデータに書き出されないので
