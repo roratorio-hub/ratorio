@@ -127,6 +127,8 @@ capabilities:
     code: 69
   - name: クリティカルダメージ増加
     code: 70
+  - name: 近距離物理攻撃反射
+    code: 71
   - name: 変動詠唱減少
     code: 73
   - name: スキルディレイ減少
