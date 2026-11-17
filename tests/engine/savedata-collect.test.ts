@@ -21,8 +21,9 @@ vi.mock('@engine/monster/monster.dat.js', async (importActual) => {
 // 参照するため、職データを先にロードしておく（tests/engine/BuffJobSpecificSelf.test.ts と同型）。
 import '@engine/data/mig.job.dat.js';
 import {
-    buildSaveDataUnitsFromState,
+    buildSaveDataUnitsFromState, extractSaveModelFromState,
 } from '@engine/savedata/savedata-collect.js';
+import { SetStatefullData } from '@engine/runtime/util.js';
 import { CSaveDataConst } from '@engine/savedata/CSaveDataConst.js';
 import { n_A_LearnedSkill } from '@engine/skill/learnedskill.js';
 import {
@@ -456,6 +457,36 @@ describe('savedata-collect.js', () => {
         it('MOBユニットは常に出力する（isEmptyUnit()が常にfalse）', () => {
             const unit = findUnit(buildSaveDataUnitsFromState(), SAVE_DATA_UNIT_TYPE_MOB);
             expect(unit).toBeDefined();
+        });
+    });
+
+    describe('extractSaveModelFromState: 本体装備のカード値の入力源', () => {
+        /** 保持値（ステートフルデータ）の要素を作って値を入れる */
+        function createStatefullData(id: string, value: number) {
+            const span = document.createElement('span');
+            span.id = id;
+            document.body.appendChild(span);
+            SetStatefullData(id, value);
+        }
+
+        it('カード欄が画面にあるときは、その選択値を読む', () => {
+            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 1111);
+            const sel = document.createElement('select');
+            sel.id = 'OBJID_ARMS_RIGHT_CARD_1';
+            sel.appendChild(Object.assign(document.createElement('option'), { value: '4302' }));
+            document.body.appendChild(sel);
+            sel.value = '4302';
+
+            const region = extractSaveModelFromState().equip.itemRegions.find((r: any) => r.eqpRgnId === MIG_EQUIP_REGION_ID_ARMS_RIGHT)!;
+            expect(region.cardIds[0]).toBe(4302);
+        });
+
+        it('カード欄が画面に無いとき（ランダムオプション表示中）は、保持しているステートフルデータを読む', () => {
+            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 4302);
+            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_3', 2518);
+
+            const region = extractSaveModelFromState().equip.itemRegions.find((r: any) => r.eqpRgnId === MIG_EQUIP_REGION_ID_ARMS_RIGHT)!;
+            expect(region.cardIds).toEqual([4302, 0, 2518, 0]);
         });
     });
 

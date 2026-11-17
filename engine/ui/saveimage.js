@@ -9,7 +9,6 @@ import { g_equipRndOptTable } from "../equip/rndopttype.h.js";
 import { g_extraInfoDataBridge } from "./CExtraInfoDataBridge.js";
 import { OnDomReady } from "../runtime/dom-ready.js";
 // === END AUTO-GENERATED IMPORTS ===
-import { getShadowEquippedID, getShadowRefined, getShadowRndOptInfoArray } from "../equip/CShadowEquipControllerDataBridge.js";
 // C-6: global.js 管理の共有 conf state
 import {
          n_Nitou,
@@ -62,6 +61,12 @@ import {
          CARD_REGION_ID_ENCHANT_SHOES_1, CARD_REGION_ID_ENCHANT_SHOES_2, CARD_REGION_ID_ENCHANT_SHOES_3,
          CARD_REGION_ID_ENCHANT_ACCESSORY_1_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_2, CARD_REGION_ID_ENCHANT_ACCESSORY_1_3,
          CARD_REGION_ID_ENCHANT_ACCESSORY_2_1, CARD_REGION_ID_ENCHANT_ACCESSORY_2_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_3,
+         CARD_REGION_ID_SHADOW_ARMS_RIGHT_1, CARD_REGION_ID_SHADOW_ARMS_RIGHT_2, CARD_REGION_ID_SHADOW_ARMS_RIGHT_3,
+         CARD_REGION_ID_SHADOW_SHIELD_1, CARD_REGION_ID_SHADOW_SHIELD_2, CARD_REGION_ID_SHADOW_SHIELD_3,
+         CARD_REGION_ID_SHADOW_ENCHANT_BODY_1, CARD_REGION_ID_SHADOW_ENCHANT_BODY_2, CARD_REGION_ID_SHADOW_ENCHANT_BODY_3,
+         CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1, CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2, CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3,
+         CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_1, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_2, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_3,
+         CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_1, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_2, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_3,
 } from "../runtime/common.js";
 import {
          CHARA_DATA_INDEX_DISP_ASPD, CHARA_DATA_INDEX_DISP_ATK_LEFT, CHARA_DATA_INDEX_DISP_ATK_RIGHT,
@@ -90,6 +95,50 @@ OnDomReady(() => {
     e.stopPropagation();
   });
 });
+
+// シャドウ装備の部位表。equip = EQUIP_REGION_ID_SHADOW_*、cards = エンチャント3枠の CARD_REGION_ID_SHADOW_*。
+// 値の出所は extractModelFromDom()（stallcalc-hydrate.js）で、model.shadowEquip / model.card に入る。
+export const SHADOW_EQUIP_SLOTS = {
+  armsRight: { equip: EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, cards: [CARD_REGION_ID_SHADOW_ARMS_RIGHT_1, CARD_REGION_ID_SHADOW_ARMS_RIGHT_2, CARD_REGION_ID_SHADOW_ARMS_RIGHT_3] },
+  armsLeft: { equip: EQUIP_REGION_ID_SHADOW_ARMS_LEFT, cards: [CARD_REGION_ID_SHADOW_SHIELD_1, CARD_REGION_ID_SHADOW_SHIELD_2, CARD_REGION_ID_SHADOW_SHIELD_3] },
+  body: { equip: EQUIP_REGION_ID_SHADOW_BODY, cards: [CARD_REGION_ID_SHADOW_ENCHANT_BODY_1, CARD_REGION_ID_SHADOW_ENCHANT_BODY_2, CARD_REGION_ID_SHADOW_ENCHANT_BODY_3] },
+  foot: { equip: EQUIP_REGION_ID_SHADOW_FOOT, cards: [CARD_REGION_ID_SHADOW_ENCHANT_SHOES_1, CARD_REGION_ID_SHADOW_ENCHANT_SHOES_2, CARD_REGION_ID_SHADOW_ENCHANT_SHOES_3] },
+  accessory1: { equip: EQUIP_REGION_ID_SHADOW_ACCESSORY_1, cards: [CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_1, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_2, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY1_3] },
+  accessory2: { equip: EQUIP_REGION_ID_SHADOW_ACCESSORY_2, cards: [CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_1, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_2, CARD_REGION_ID_SHADOW_ENCHANT_ACCESSORY2_3] },
+};
+
+/**
+ * ランダムオプション配列（[[RndOptID, 値], ...]）を「名称 値」の文字列配列にする。未設定の枠（ID=0）は含めない。
+ * @param {Array<Array<number>>} rndOptInfoArray
+ * @returns {string[]}
+ */
+function FormatRndOptTexts(rndOptInfoArray) {
+  return rndOptInfoArray
+    .filter((value) => value[0] != 0)
+    .map((value) => GetRndOptDispName(g_rndOptArray[value[0]][RND_OPT_DATA_INDEX_SPID]) + " " + value[1]);
+}
+
+/**
+ * シャドウ装備1部位の表示テキスト「[+精錬 ]装備名 ( エンチャント..., ランダムオプション... )」を返す。未装備なら空文字。
+ * @param {object} model extractModelFromDom() の結果（shadowEquip / card を読む）
+ * @param {{equip: number, cards: number[]}} slot SHADOW_EQUIP_SLOTS の要素
+ * @returns {string}
+ */
+export function BuildShadowEquipText(model, slot) {
+  const itemId = model.shadowEquip.itemId[slot.equip] ?? 0;
+  if (itemId == 0) {
+    return "";
+  }
+  const refined = model.shadowEquip.refined[slot.equip] ?? 0;
+  const enchants = slot.cards
+    .map((cardRegionId) => model.card[cardRegionId] ?? 0)
+    .filter((cardId) => cardId != 0)
+    .map((cardId) => CardObjNew[cardId][CARD_DATA_INDEX_NAME]);
+  const rndOpts = FormatRndOptTexts(model.shadowEquip.rndOpt[slot.equip] ?? []);
+
+  const refinedText = refined != 0 ? `+${refined} ` : "";
+  return `${refinedText}${ItemObjNew[itemId][8]} ( ${[...enchants, ...rndOpts].join(", ")} )`;
+}
 
 export function generateImage() {
   const model = get('extractModelFromDom')();
@@ -140,43 +189,13 @@ export function generateImage() {
     return g_equipRndOptTable[id].filter(v=>{return v[0]>0}).length>0? "exists" : "";
   }
   const randopt = (id) => {
-    let text = "[ ";
-    const options = []
-    g_equipRndOptTable[id].forEach(value => {
-      if (value[0] != 0) {
-        options.push(GetRndOptDispName(g_rndOptArray[value[0]][RND_OPT_DATA_INDEX_SPID]) + " " + value[1])
-      }
-    });
-    text += options.join(", ")
-    text += " ]";
-    return text;
+    return "[ " + FormatRndOptTexts(g_equipRndOptTable[id]).join(", ") + " ]";
   }
-  const shadow_exists = (selector) => {
-    return getShadowEquippedID(selector) != 0 ? "exists" : "";
+  const shadow_exists = (slot) => {
+    return BuildShadowEquipText(model, slot) !== "" ? "exists" : "";
   }
-  const shadow = (selector) => {
-    const shadow_id = getShadowEquippedID(selector);
-    if (shadow_id == 0) {
-      return;
-    }
-    const refined = getShadowRefined(selector);
-    const shadow_name = ItemObjNew[shadow_id][8];
-    const opt_info = getShadowRndOptInfoArray(selector)
-
-    let text = "";
-    if (refined != 0) {
-      text += `+${refined} `;
-    }
-    text += shadow_name + " ( ";
-    const options = []
-    opt_info.forEach(value => {
-      if (value[0] != 0) {
-        options.push(GetRndOptDispName(g_rndOptArray[value[0]][RND_OPT_DATA_INDEX_SPID]) + " " + value[1])
-      }
-    })
-    text += options.join(", ")
-    text += " )"
-    return text;
+  const shadow = (slot) => {
+    return BuildShadowEquipText(model, slot);
   }
 
   // 装備部位ごとの装備欄・カード欄まとめ（EQUIP_REGION_ID_* / CARD_REGION_ID_* は calcx.html 側 import 済み）
@@ -634,30 +653,30 @@ export function generateImage() {
         <dt>【鎧】</dt>
         <dd class="ench${enchCount(body.cards)}">${equipSlot(body.equip, body.cards, model.defPlus.body, model.defTranscendence.body)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_BODY)}">${randopt(EQUIP_REGION_ID_BODY)}</dd>
-        <dd class="shadow ${shadow_exists("eqprgn-body")}">${shadow("eqprgn-body")}</dd>
+        <dd class="shadow ${shadow_exists(SHADOW_EQUIP_SLOTS.body)}">${shadow(SHADOW_EQUIP_SLOTS.body)}</dd>
         <dt>【右手】</dt>
         <dd class="ench${enchCount(armsRight.cards, true)}">${equipSlot(armsRight.equip, armsRight.cards, model.weapon.atkPlus, model.weapon.transcendence)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ARMS)}">${randopt(EQUIP_REGION_ID_ARMS)}</dd>
-        <dd class="shadow ${shadow_exists("eqprgn-arms-right")}">${shadow("eqprgn-arms-right")}</dd>
+        <dd class="shadow ${shadow_exists(SHADOW_EQUIP_SLOTS.armsRight)}">${shadow(SHADOW_EQUIP_SLOTS.armsRight)}</dd>
         <dt>【左手】</dt>
         <dd class="ench${enchCount(armsLeftOrShield.cards, n_Nitou)}">${equipSlot(armsLeftOrShield.equip, armsLeftOrShield.cards, n_Nitou ? model.weapon.weapon2AtkPlus : model.defPlus.shield, n_Nitou ? model.weapon.weapon2Transcendence : model.defTranscendence.shield)}</dd>
         <dd class="randopt ${randopt_exists(n_Nitou ? EQUIP_REGION_ID_ARMS_LEFT:EQUIP_REGION_ID_SHIELD)}">${randopt(n_Nitou ? EQUIP_REGION_ID_ARMS_LEFT:EQUIP_REGION_ID_SHIELD)}</dd>
-        <dd class="shadow ${shadow_exists("eqprgn-arms-left")}">${shadow("eqprgn-arms-left")}</dd>
+        <dd class="shadow ${shadow_exists(SHADOW_EQUIP_SLOTS.armsLeft)}">${shadow(SHADOW_EQUIP_SLOTS.armsLeft)}</dd>
         <dt>【肩にかける物】</dt>
         <dd class="ench${enchCount(shoulder.cards)}">${equipSlot(shoulder.equip, shoulder.cards, model.defPlus.shoulder, model.defTranscendence.shoulder)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_SHOULDER)}">${randopt(EQUIP_REGION_ID_SHOULDER)}</dd>
         <dt>【靴】</dt>
         <dd class="ench${enchCount(shoes.cards)}">${equipSlot(shoes.equip, shoes.cards, model.defPlus.shoes, model.defTranscendence.shoes)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_SHOES)}">${randopt(EQUIP_REGION_ID_SHOES)}</dd>
-        <dd class="shadow ${shadow_exists("eqprgn-foot")}">${shadow("eqprgn-foot")}</dd>
+        <dd class="shadow ${shadow_exists(SHADOW_EQUIP_SLOTS.foot)}">${shadow(SHADOW_EQUIP_SLOTS.foot)}</dd>
         <dt>【アクセサリー(1)】</dt>
         <dd class="ench${enchCount(accessory1.cards)}">${equipSlot(accessory1.equip, accessory1.cards)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSORY_1)}">${randopt(EQUIP_REGION_ID_ACCESSORY_1)}</dd>
-        <dd class="shadow ${shadow_exists("eqprgn-accessory-1")}">${shadow("eqprgn-accessory-1")}</dd>
+        <dd class="shadow ${shadow_exists(SHADOW_EQUIP_SLOTS.accessory1)}">${shadow(SHADOW_EQUIP_SLOTS.accessory1)}</dd>
         <dt>【アクセサリー(2)】</dt>
         <dd class="ench${enchCount(accessory2.cards)}">${equipSlot(accessory2.equip, accessory2.cards)}</dd>
         <dd class="randopt ${randopt_exists(EQUIP_REGION_ID_ACCESSORY_2)}">${randopt(EQUIP_REGION_ID_ACCESSORY_2)}</dd>
-        <dd class="shadow ${shadow_exists("eqprgn-accessory-2")}">${shadow("eqprgn-accessory-2")}</dd>
+        <dd class="shadow ${shadow_exists(SHADOW_EQUIP_SLOTS.accessory2)}">${shadow(SHADOW_EQUIP_SLOTS.accessory2)}</dd>
       </dl>
 
       <div id="cp">
@@ -686,7 +705,10 @@ import { CHARA_DATA_INDEX_CAST_PARAM } from "../const/EnumCharaDataIndex.js";
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
     EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
+    EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
+    EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT,
 } from "../const/EnumEquipRegionId.js";
+import { CARD_DATA_INDEX_NAME } from "../const/EnumCardDataIndex.js";
 import { ITEM_SP_IGNORE_DEF_ALL, ITEM_SP_IGNORE_DEF_RACE_ALL, ITEM_SP_IGNORE_MDEF_ALL, ITEM_SP_IGNORE_MDEF_RACE_ALL, ITEM_SP_KIRI_EFFECT } from "../const/EnumItemSpId.js";
 import { RND_OPT_DATA_INDEX_SPID } from "../const/EnumRndOptDataIndex.js";
 register('generateImage', generateImage);
