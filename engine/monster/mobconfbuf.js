@@ -589,15 +589,16 @@ export function BuildUpMobConfBufSelectArea(objRoot, bAsExpand) {
 				objTd.appendChild(objSelect);
 
 				objOption = HtmlCreateElementOption(0, "等倍", objSelect);
-				objOption = HtmlCreateElementOption(1, "１／２", objSelect);
-				objOption = HtmlCreateElementOption(2, "１／５", objSelect);
-				objOption = HtmlCreateElementOption(3, "１／１０", objSelect);
-				objOption = HtmlCreateElementOption(4, "１／２０", objSelect);
-				objOption = HtmlCreateElementOption(5, "１／５０", objSelect);
-				objOption = HtmlCreateElementOption(6, "１／１００", objSelect);
-				objOption = HtmlCreateElementOption(7, "１／２００", objSelect);
-				objOption = HtmlCreateElementOption(8, "１／５００", objSelect);
-				objOption = HtmlCreateElementOption(9, "１／１０００", objSelect);
+				objOption = HtmlCreateElementOption(1, "1/2", objSelect);
+				objOption = HtmlCreateElementOption(2, "1/5", objSelect);
+				objOption = HtmlCreateElementOption(3, "1/10", objSelect);
+				objOption = HtmlCreateElementOption(4, "1/20", objSelect);
+				objOption = HtmlCreateElementOption(5, "1/50", objSelect);
+				objOption = HtmlCreateElementOption(6, "1/100", objSelect);
+				objOption = HtmlCreateElementOption(7, "1/200", objSelect);
+				objOption = HtmlCreateElementOption(8, "1/500", objSelect);
+				objOption = HtmlCreateElementOption(9, "1/1000", objSelect);
+				objOption = HtmlCreateElementOption(10, "1/10000", objSelect);
 
 				// 初期値設定
 				objSelect.setAttribute("value", MobConfBufOBJ[idx][MOB_CONF_BUF_DATA_INDEX_DEFAULT_VALUE]);

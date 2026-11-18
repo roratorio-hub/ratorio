@@ -18,6 +18,10 @@ export class MonsterToughness {
     static DAMPING_1000 = 32;
     /** ダメージ 1/10000 */
     static DAMPING_10000 = 64;
+    /** 物理が効かない */
+    static PHYSICAL_PROTECTION = 128;
+    /** 魔法が効かない */
+    static MAGICAL_PROTECTION = 256;
 
     /** 特性リスト */
     static ToughnessList = new Map([
@@ -433,6 +437,70 @@ export class MonsterToughness {
         ["空虚な小型アムダライス（再現されたダークウィスパー）",MonsterToughness.DAMPING_100],
         ["空虚なアムダライス（再現されたダークウィスパー）",MonsterToughness.DAMPING_100],
         ["再現された不死の君主（再現されたダークウィスパー）",MonsterToughness.DAMPING_1000],
+        //
+        ["強靭な強欲なパンク（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲なパンク（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な特製ビッグベル（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な特製ビッグベン（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な臣下オウルM（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な臣下オウルV（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な臣下ゴブリン三男（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な臣下ゴブリン五男（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な臣下ゴブリン四男（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な臣下ゴブリン次男（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲な臣下ゴブリン長男（ハード）",MonsterToughness.DAMPING_1000],
+        ["強欲なアラーム（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲なエルダー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲なオウルデューク（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲なオウルバロン（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲なクロック（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲なミミック（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲なライドワード（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲な時計塔管理者（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲なアラーム（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲なエルダー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲なオウルデューク（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲なオウルバロン（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲なクロック（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲なミミック（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲なライドワード（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強靭な強欲な時計塔管理者（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION],
+        ["強欲なクランプ（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なアクラウス（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なウィスパー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なオークアーチャー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なジョーカー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なドレインリアー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なバースリー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なハイオーク（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なブリライト（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なペノメナ（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なジョーカー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なドレインリアー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なバースリー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なハイオーク（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なブリライト（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なペノメナ（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なアクラウス（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なウィスパー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なクランプ（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強靭な強欲なオークアーチャー（ハード）",MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION],
+        ["強欲なゴブリンキング（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なタイムホルダー（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲な時計師ブルケ（前半戦）（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲な時計師ブルケ（後半戦）（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なEXジョーカー（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なアークエルダー（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なビッグベル（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なビッグベン（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なエルジェーベト（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なオウルM（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なオウルV（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なジェニファー（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なジェネラルオーク（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なジクラウス（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なタイムキーパー（ハード）",MonsterToughness.DAMPING_10000],
+        ["強欲なネオパンク（ハード）",MonsterToughness.DAMPING_10000],
     ]);
 
     /** 通知メッセージのリスト */
@@ -445,6 +513,8 @@ export class MonsterToughness {
         [MonsterToughness.DAMPING_5 | MonsterToughness.DAMPING_10, "受けるダメージを1/50に減少する"],
         [MonsterToughness.DAMPING_100 | MonsterToughness.DAMPING_AMPLIFY, "受けるダメージを1/100に減少する。ギミック発動中は更に減少する"],
         [MonsterToughness.DAMPING_10 | MonsterToughness.DAMPING_TIME_DECAY, "受けるダメージを1/10に減少する。規定の時間が過ぎると等倍になる。"],
+        [MonsterToughness.DAMPING_1000|MonsterToughness.PHYSICAL_PROTECTION, "魔法のみ有効。受けるダメージを1/1000に減少する"],
+        [MonsterToughness.DAMPING_1000|MonsterToughness.MAGICAL_PROTECTION, "物理のみ有効。受けるダメージを1/1000に減少する"],
     ]);
 
     /**
