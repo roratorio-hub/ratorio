@@ -1,18 +1,27 @@
 card_list:
-  - name: 潜在解放(トルバドゥール&トルヴェールXVIII)
-    yomi: センザイカイホウトルバドゥールトルヴェール18
+  - name: 潜在解放(アリテアXXIV)
+    yomi: センザイカイホウアリテア24
     type: エンチャント
     set_list:
       - set:
         entity_list:
           - card_name: 豪傑
         capabilities:
-          - name: スキル固定詠唱ミリ秒減少
-            skill: リズムシューティング
-            value: 500
-          - name: スキル固定詠唱ミリ秒減少
-            skill: ロゼブロッサム
-            value: 500
-          - name: スキル固定詠唱ミリ秒減少
-            skill: フーガデフレーシュ
-            value: 500
+          - name: 再使用待機時間減少
+            skill: プルームピアサー
+            value: 100
+
+  - name: スタン耐性
+    yomi: スタンタイセイ
+    type: エンチャント
+    capabilities:
+      - name: スタン耐性
+        value: 100
+
+  - name: 魔力障壁
+    yomi: マリョクショウヘキ
+    desc: 物理・魔法攻撃命中時、一定確率で30秒間、[エナジーコート]状態になる
+    type: エンチャント
+    capabilities:
+      - name: MDEF加算
+        value: 30

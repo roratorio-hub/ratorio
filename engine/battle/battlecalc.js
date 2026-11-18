@@ -5640,7 +5640,7 @@ export function ApplyAttackDamageAmplify(mobData, dmg){
 		1, 2, 5,
 		10, 20, 50,
 		100, 200, 500,
-		1000
+		1000,10000
 	];
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE] != 0) {
 		dmg = Math.floor(dmg / dmgDivArray[n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE]]);
