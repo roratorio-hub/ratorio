@@ -72,7 +72,6 @@ import { SetActiveIndexMobConfInput, SetMobConfInput } from "../monster/CMobConf
 import { CTimeItemAreaComponentManager } from "../equip/CTimeItemAreaComponentManager.js";
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from "../equip/equip.js";
 import { RebuildCardSelect, SetCardSlotEnability } from "../equip/hmcard.js";
-import { RebuildRndOptSelect, SetRndOptEnablity } from "../equip/hmrndopt.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
@@ -81,7 +80,7 @@ import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n
 import { SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import { serializeSaveDataUnitsToJSON } from "./CSaveDataUnitJsonCodec.js";
 import { buildSaveDataUnitsFromState } from "./savedata-collect.js";
-import { GetSlotMode, SLOTPAGER_MODE_CARD, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
+import { RunWithCardSlotMode, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from "../runtime/util.js";
 import { Click_A1 } from "../ui/BuffJobSpecificSelf.js";
 import { Click_A4 } from "../ui/BuffGuildAndGospel.js";
@@ -591,8 +590,17 @@ export class CSaveDataManager {
 
 	/**
 	 * 保持しているデータを画面部品に適用する.
+	 * カード欄・ランダムオプション欄はどちらか一方しか画面に存在しないため、
+	 * ランダムオプション表示中でもカード表示にして適用し、終了後に表示を戻す。
 	 */
 	applyDataToControls () {
+		return RunWithCardSlotMode(() => this.#applyDataToControlsBody());
+	}
+
+	/**
+	 * 保持しているデータを画面部品に適用する（カード表示中に呼ぶこと）.
+	 */
+	#applyDataToControlsBody () {
 
 		if (!Array.isArray(this.#saveDataUnitArray)) {
 			return "";
@@ -1193,14 +1201,8 @@ export class CSaveDataManager {
 			if (eqpRgnID === undefined) {
 				continue;
 			}
-			if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
-				RebuildCardSelect(eqpRgnID, itemID);
-				SetCardSlotEnability(eqpRgnID);
-			}
-			else {
-				RebuildRndOptSelect(eqpRgnID, itemID);
-				SetRndOptEnablity(eqpRgnID);
-			}
+			RebuildCardSelect(eqpRgnID, itemID);
+			SetCardSlotEnability(eqpRgnID);
 
 			// カードデータの読み込み
 			const cardCategoryIDArray = [

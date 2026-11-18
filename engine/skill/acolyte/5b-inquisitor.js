@@ -830,7 +830,6 @@ export const skills = [
 				const state_bakuretsu_hado = UsedSkillSearch(SKILL_ID_BAKURETSU_HADO) > 0;
 				return state_bakuretsu_hado;
 			}
-			// Def無視設定は _SUB_ApplyMonsterDefence にある
 			this.Power = function(skillLv, charaData, option) {       // スキル倍率
 				let ratio = 0;
 				const state_enka_metsuma_shindan = option.GetOptionValue(0);

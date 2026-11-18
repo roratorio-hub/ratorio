@@ -156,6 +156,33 @@ export function OnClickSlotModeButton(jobId) {
 
 /************************************************************************************************
  *
+ * 一時的にカード表示にして処理を実行する（ランダムオプション表示中だった場合は終了後に戻す）.
+ * カード欄はカード表示中しか画面に存在しないため、カード欄へ値を設定する処理はこの中で行う。
+ *
+ *-----------------------------------------------------------------------------------------------
+ * @param func カード表示中に実行する処理
+ *-----------------------------------------------------------------------------------------------
+ * @return func の戻り値
+ ************************************************************************************************/
+export function RunWithCardSlotMode(func) {
+
+	const bRestoreRndOptMode = (GetSlotMode() != SLOTPAGER_MODE_CARD);
+	if (bRestoreRndOptMode) {
+		OnClickSlotModeButton();
+	}
+
+	try {
+		return func();
+	}
+	finally {
+		if (bRestoreRndOptMode && (GetSlotMode() == SLOTPAGER_MODE_CARD)) {
+			OnClickSlotModeButton();
+		}
+	}
+}
+
+/************************************************************************************************
+ *
  * スロットの選択状態を保存する（カード用）（すべて）.
  *
  *-----------------------------------------------------------------------------------------------
@@ -244,6 +271,18 @@ export function __SaveSlotStateCard(objidPrefix) {
 	// 当該プリフィクスを持つすべてのスロットの選択状態を保存
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
 		strObjId = objidPrefix + "_CARD_" + idx;
+
+		enchListIdArray = g_charaData.cardCategoryMap.get(rgnText);
+		if (!enchListIdArray) {
+			enchListIdArray = [0, 0, 0, 0];
+			g_charaData.cardCategoryMap.set(rgnText, enchListIdArray);
+		}
+
+		// カード欄が画面に無い（ランダムオプション表示中）場合は、保持している値を上書きしない
+		if (HtmlGetElementById(strObjId) == null) {
+			continue;
+		}
+
 		valueOfObject = HtmlGetObjectValueByIdAsInteger(strObjId, 0);
 		SetStatefullData("DATA_" + strObjId, valueOfObject);
 
@@ -257,12 +296,6 @@ export function __SaveSlotStateCard(objidPrefix) {
 					enchListId = Math.floor(Number(enchListIdText));
 				}
 			}
-		}
-
-		enchListIdArray = g_charaData.cardCategoryMap.get(rgnText);
-		if (!enchListIdArray) {
-			enchListIdArray = [0, 0, 0, 0];
-			g_charaData.cardCategoryMap.set(rgnText, enchListIdArray);
 		}
 
 		enchListIdArray[idx - SLOT_INDEX_CARD_MIN] = enchListId;

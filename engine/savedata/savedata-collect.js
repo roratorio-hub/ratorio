@@ -52,7 +52,7 @@ import {
     SAVE_DATA_UNIT_TYPE_CHARA_DEBUFF,
 } from "./CSaveDataUnit.js";
 import { createEmptySaveModel } from "./save-model.js";
-import { HtmlGetObjectCheckedById, HtmlGetObjectValueByIdAsInteger } from "../runtime/util.js";
+import { HtmlGetElementById, HtmlGetObjectCheckedById, HtmlGetObjectValueByIdAsInteger, GetStatefullData } from "../runtime/util.js";
 import { GetHigherJobSeriesID, JOB_SERIES_ID_SUPERNOVICE } from "../data/mig.job.h.js";
 import { CONST_DATA_KIND_JOB } from "../const/EnumConstDataKind.js";
 import {
@@ -253,6 +253,22 @@ function fillConfigValuesFromMigArray(unit, UnitClass, prefixCount, migArray) {
 }
 
 /**
+ * 本体装備のカード欄の値を読む.
+ * カード欄はカード表示中しか画面に存在しないため、無い場合（ランダムオプション表示中）は
+ * 切替時に保存したステートフルデータの値を使う。
+ * @param {string} cardPrefix カード欄のオブジェクトIDプリフィックス（例: "OBJID_ARMS_RIGHT"）
+ * @param {number} slot スロット番号（1〜4）
+ * @returns {number} カードID
+ */
+function readItemCardId(cardPrefix, slot) {
+    const objId = `${cardPrefix}_CARD_${slot}`;
+    if (HtmlGetElementById(objId) == null) {
+        return Number(GetStatefullData(`DATA_${objId}`, 0)) | 0;
+    }
+    return HtmlGetObjectValueByIdAsInteger(objId, 0);
+}
+
+/**
  * DOM/グローバル/コンポーネントから、セーブに必要な値をすべて読み取る（副作用ゼロ）.
  * 戻り値は `save-model.js` の形（プレーンなスナップショット）。配列はすべてコピーする
  * （ライブ配列への参照を持たせない——`buildSaveDataUnits()` 側で誤って共有・変異させないため）。
@@ -362,7 +378,7 @@ export function extractSaveModelFromState() {
             transcendence: itemTranscendenceSourceMap[eqpRgnId] | 0,
             rndOpt: readRndOpt(eqpRgnId),
             cardCategoryIds: cardCategoryArray ? cardCategoryArray.slice(0, 4) : null,
-            cardIds: [1, 2, 3, 4].map((slot) => HtmlGetObjectValueByIdAsInteger(`${cardPrefix}_CARD_${slot}`, 0)),
+            cardIds: [1, 2, 3, 4].map((slot) => readItemCardId(cardPrefix, slot)),
         };
     });
 
