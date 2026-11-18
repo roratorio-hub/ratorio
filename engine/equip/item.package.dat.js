@@ -120,6 +120,24 @@ export class ItemPackageDat {
                 5792, // ディメンションクリミナルアーク
             ],
         },
+        {
+            name: "ラグ缶2026 Autumn",
+            itemIds: [
+                5798,
+                5797,
+                5796,
+                5794,                
+            ],
+        },
+        {
+            name: "ラグ缶2026 Anniversary",
+            itemIds: [
+                5906,
+                5907,
+                5908,
+                5909,
+            ],
+        },
     ];
 }
 

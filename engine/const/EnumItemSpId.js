@@ -396,6 +396,26 @@ export const ITEM_SP_RESIST_STATE_NEW_UNHAPPINESS             = 379;
 export const ITEM_SP_NEVER_CAST_CANCEL                        = 380;
 export const ITEM_SP_NEVER_KNOCK_BACK                         = 381;
 export const ITEM_SP_SKILL_FIXED_TIME                         = 382;
+export const ITEM_SP_IGNORE_RES_RACE_SOLID                 = 383;
+export const ITEM_SP_IGNORE_RES_RACE_UNDEAD                = 384;
+export const ITEM_SP_IGNORE_RES_RACE_ANIMAL                = 385;
+export const ITEM_SP_IGNORE_RES_RACE_PLANT                 = 386;
+export const ITEM_SP_IGNORE_RES_RACE_INSECT                = 387;
+export const ITEM_SP_IGNORE_RES_RACE_FISH                  = 388;
+export const ITEM_SP_IGNORE_RES_RACE_DEMON                 = 389;
+export const ITEM_SP_IGNORE_RES_RACE_HUMAN                 = 390;
+export const ITEM_SP_IGNORE_RES_RACE_ANGEL                 = 391;
+export const ITEM_SP_IGNORE_RES_RACE_DRAGON                = 392;
+export const ITEM_SP_IGNORE_MRES_RACE_SOLID                = 393;
+export const ITEM_SP_IGNORE_MRES_RACE_UNDEAD               = 394;
+export const ITEM_SP_IGNORE_MRES_RACE_ANIMAL               = 395;
+export const ITEM_SP_IGNORE_MRES_RACE_PLANT                = 396;
+export const ITEM_SP_IGNORE_MRES_RACE_INSECT               = 397;
+export const ITEM_SP_IGNORE_MRES_RACE_FISH                 = 398;
+export const ITEM_SP_IGNORE_MRES_RACE_DEMON                = 399;
+export const ITEM_SP_IGNORE_MRES_RACE_HUMAN                = 400;
+export const ITEM_SP_IGNORE_MRES_RACE_ANGEL                = 401;
+export const ITEM_SP_IGNORE_MRES_RACE_DRAGON               = 402;
 
 // ---- 疑似定数（旧 DefinePseudoEnum） ----
 export const ITEM_SP_DMY                                      = -1;
@@ -950,6 +970,26 @@ export const EnumItemSpId = createEnum('EnumItemSpId', {
     ITEM_SP_NEVER_CAST_CANCEL,
     ITEM_SP_NEVER_KNOCK_BACK,
     ITEM_SP_SKILL_FIXED_TIME,
+    ITEM_SP_IGNORE_RES_RACE_SOLID,
+    ITEM_SP_IGNORE_RES_RACE_UNDEAD,
+    ITEM_SP_IGNORE_RES_RACE_ANIMAL,
+    ITEM_SP_IGNORE_RES_RACE_PLANT,
+    ITEM_SP_IGNORE_RES_RACE_INSECT,
+    ITEM_SP_IGNORE_RES_RACE_FISH,
+    ITEM_SP_IGNORE_RES_RACE_DEMON,
+    ITEM_SP_IGNORE_RES_RACE_HUMAN,
+    ITEM_SP_IGNORE_RES_RACE_ANGEL,
+    ITEM_SP_IGNORE_RES_RACE_DRAGON,
+    ITEM_SP_IGNORE_MRES_RACE_SOLID,
+    ITEM_SP_IGNORE_MRES_RACE_UNDEAD,
+    ITEM_SP_IGNORE_MRES_RACE_ANIMAL,
+    ITEM_SP_IGNORE_MRES_RACE_PLANT,
+    ITEM_SP_IGNORE_MRES_RACE_INSECT,
+    ITEM_SP_IGNORE_MRES_RACE_FISH,
+    ITEM_SP_IGNORE_MRES_RACE_DEMON,
+    ITEM_SP_IGNORE_MRES_RACE_HUMAN,
+    ITEM_SP_IGNORE_MRES_RACE_ANGEL,
+    ITEM_SP_IGNORE_MRES_RACE_DRAGON,
 }, {
     ITEM_SP_DMY,
     ITEM_SP_END,

@@ -3799,9 +3799,6 @@ export function _SUB_ApplyMonsterDefence(mobData, dmg){
 		case SKILL_ID_DRAGONIC_BREATH:	// ドラゴニックブレス
 		case SKILL_ID_ENERGY_CANNONADE: // エナジーキャノネード
 		case SKILL_ID_MIDNIGHT_FALLEN: // ミッドナイトフォーリン
-		case SKILL_ID_SKY_SUN: // 天気身陽
-		case SKILL_ID_BLAZING_FLAME_BLAST: // 烈火気弾
-		case SKILL_ID_CHUL_HO_BATTERING: // タイガーバトリング
 			bPenetrate = true;
 	}
 
@@ -5643,7 +5640,7 @@ export function ApplyAttackDamageAmplify(mobData, dmg){
 		1, 2, 5,
 		10, 20, 50,
 		100, 200, 500,
-		1000
+		1000,10000
 	];
 	if (n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE] != 0) {
 		dmg = Math.floor(dmg / dmgDivArray[n_B_KYOUKA[MOB_CONF_BUF_ID_DAMAGE_DIVIDE]]);

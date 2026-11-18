@@ -1,17 +1,43 @@
 enchant_list:
-  - enchant:
-      - name: シェイド(グループ5)
-        item_list:
-          - item_name: "[シャドウ] シーズナルシールド"
-          - item_name: "[シャドウ] シーズナルイヤリング"
-        slot_list:
-          - slot: 4
-            refine: 8
-            enchant_list:
-              - name: Str+3
-              - name: Agi+3
-              - name: Vit+3
-              - name: Int+3
-              - name: Dex+3
-              - name: Luk+3
-              - name: 厄災の魔将
+- enchant:
+  - name: スペシャルエンチャント(タロー)
+    item_list:
+    - item_name: トゥーサイドダイヤモンドガード
+    slot_list:
+    - slot: 4
+      refine: 8
+      enchant_list:
+      - name: Str+10
+      - name: Agi+10
+      - name: Vit+10
+      - name: Int+10
+      - name: Dex+10
+      - name: Luk+10
+      - name: スキルディレイ-15%
+      - name: 英雄の凱歌
+      - name: 厄災の魔将
+    - slot: 3
+      refine: 9
+      enchant_list:
+      - name: Str+10
+      - name: Agi+10
+      - name: Vit+10
+      - name: Int+10
+      - name: Dex+10
+      - name: Luk+10
+      - name: スキルディレイ-15%
+      - name: スタン耐性
+      - name: 魔力障壁
+      - name: 限界突破
+    - slot: 2
+      refine: 10
+      enchant_list:
+      - name: 天地崩壊
+  - name: スペシャルエンチャント(ミオン)グループ1
+    item_list:
+    - item_name: 力天使のストール
+    slot_list:
+    - slot: 4
+      refine: 0
+      enchant_list:
+      - name: 潜在解放(アリテアXXIV)

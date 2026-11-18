@@ -127,6 +127,8 @@ capabilities:
     code: 69
   - name: クリティカルダメージ増加
     code: 70
+  - name: 近距離物理攻撃反射
+    code: 71
   - name: 変動詠唱減少
     code: 73
   - name: スキルディレイ減少
@@ -323,10 +325,14 @@ capabilities:
     code: 289
   - name: DEF無視
     code: 293
+  - name: RES無視
+    code: 294
   - name: 一般モンスターのMDEF無視
     code: 296
   - name: MDEF無視
     code: 298
+  - name: MRES無視
+    code: 299
   - name: 無形モンスターのDEF無視
     code: 300
   - name: 不死形モンスターのDEF無視
@@ -367,6 +373,46 @@ capabilities:
     code: 318
   - name: 竜形モンスターのMDEF無視
     code: 319
+  - name: 無形モンスターのRES無視
+    code: 383
+  - name: 不死形モンスターのRES無視
+    code: 384
+  - name: 動物形モンスターのRES無視
+    code: 385
+  - name: 植物形モンスターのRES無視
+    code: 386
+  - name: 昆虫形モンスターのRES無視
+    code: 387
+  - name: 魚貝形モンスターのRES無視
+    code: 388
+  - name: 悪魔形モンスターのRES無視
+    code: 389
+  - name: 人間形モンスターのRES無視
+    code: 390
+  - name: 天使形モンスターのRES無視
+    code: 391
+  - name: 竜形モンスターのRES無視
+    code: 392
+  - name: 無形モンスターのMRES無視
+    code: 393
+  - name: 不死形モンスターのMRES無視
+    code: 394
+  - name: 動物形モンスターのMRES無視
+    code: 395
+  - name: 植物形モンスターのMRES無視
+    code: 396
+  - name: 昆虫形モンスターのMRES無視
+    code: 397
+  - name: 魚貝形モンスターのMRES無視
+    code: 398
+  - name: 悪魔形モンスターのMRES無視
+    code: 399
+  - name: 人間形モンスターのMRES無視
+    code: 400
+  - name: 天使形モンスターのMRES無視
+    code: 401
+  - name: 竜形モンスターのMRES無視
+    code: 402
   - name: 無属性魔法ダメージ増加
     code: 340
   - name: 水属性魔法ダメージ増加
