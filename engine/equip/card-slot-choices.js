@@ -350,6 +350,84 @@ export function NormalizeCardSelection(slotChoice, cardId, enchListId) {
     return { cardId: CARD_ID_NONE, enchListId: 0 };
 }
 
+/**
+ * そのスロットの先頭の選択肢（セレクトボックスを作り直した直後の初期選択）を返す.
+ * 「エンチャントなし」を持たない枠（ルーンヘルムの第4スロット）は、先頭のエンチャントになる。
+ * @param {object} slotChoice 1スロット分の選択肢
+ * @returns {{cardId: number, enchListId: number}}
+ */
+export function GetDefaultCardSelection(slotChoice) {
+
+    if (slotChoice.type === SLOT_CHOICE_ENCHANT && !slotChoice.hasNone) {
+        const group = slotChoice.groups.find((g) => g.options.length > 0);
+        if (group) {
+            return { cardId: group.options[0].cardId, enchListId: Number(group.enchListId) };
+        }
+    }
+
+    if (slotChoice.type === SLOT_CHOICE_CARD && slotChoice.cardIds.length > 0) {
+        return { cardId: slotChoice.cardIds[0], enchListId: 0 };
+    }
+
+    return { cardId: CARD_ID_NONE, enchListId: 0 };
+}
+
+/**
+ * 正本のカード・エンチャント種別から、画面に表示する選択を求める.
+ * 選択肢に実在しない値は、「なし」（なければ先頭の選択肢）に置き換える。
+ * @param {object} slotChoice 1スロット分の選択肢
+ * @param {number} cardId 正本のカードID
+ * @param {number} enchListId 正本のエンチャント種別ID
+ * @returns {{cardId: number, enchListId: number}}
+ */
+export function GetDisplayedSelection(slotChoice, cardId, enchListId) {
+
+    if (slotChoice.type === SLOT_CHOICE_CARD) {
+        return { cardId: ResolveCardSelection(slotChoice, cardId), enchListId: 0 };
+    }
+
+    if (slotChoice.type === SLOT_CHOICE_ENCHANT) {
+        const normalized = NormalizeCardSelection(slotChoice, cardId, enchListId);
+        return (normalized.cardId !== CARD_ID_NONE || slotChoice.hasNone) ? normalized : GetDefaultCardSelection(slotChoice);
+    }
+
+    return { cardId: CARD_ID_NONE, enchListId: 0 };
+}
+
+/**
+ * 装備を変えたときの、カード・エンチャントの引き継ぎ結果を求める.
+ *
+ * - カード枠: 現在のカードが新しいアイテムの選択肢にも有れば引き継ぐ。無ければ「なし」
+ * - 一般エンチャント枠: エンチャントの種類は装備に依存するため、先頭の選択肢に戻す
+ * - 使用しない枠: 「なし」
+ * @param {number} eqpRgnId 装備領域ID（本体装備11部位）
+ * @param {number} itemId 変更後のアイテムID
+ * @param {number[]} currentCardIds 現在の各スロットのカードID（長さ4）
+ * @returns {{cardIds: number[], enchListIds: number[]}}
+ */
+export function ResolveCardsOnEquipChange(eqpRgnId, itemId, currentCardIds) {
+
+    const cardIds = [];
+    const enchListIds = [];
+
+    for (const choice of CollectCardSlotChoices(eqpRgnId, itemId)) {
+        let selection;
+        if (choice.type === SLOT_CHOICE_CARD) {
+            selection = { cardId: ResolveCardSelection(choice, currentCardIds[choice.selectionSlot]), enchListId: 0 };
+        }
+        else {
+            selection = GetDefaultCardSelection(choice);
+            if (choice.type === SLOT_CHOICE_DUMMY) {
+                selection = { cardId: CARD_ID_NONE, enchListId: 0 };
+            }
+        }
+        cardIds.push(selection.cardId);
+        enchListIds.push(selection.enchListId);
+    }
+
+    return { cardIds, enchListIds };
+}
+
 //================================================================================================
 // エンチャントリストの収集（旧 hmcard.js。DOM に触れない）
 //================================================================================================

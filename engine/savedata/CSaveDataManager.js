@@ -1030,13 +1030,13 @@ export class CSaveDataManager {
 			// カードIDが設定されている場合は、選択肢として実在する組み合わせへ正規化する
 			// （カテゴリの有無に関わらず検証し、実在しなければカードIDごと「無し(0)」にする）
 			if (cardIdF !== 0) {
+				const normalized = NormalizeCardSelection(slotChoiceF, cardIdF, enchListIdF);
+				cardIdF = normalized.cardId;
+				enchListIdF = normalized.enchListId;
+				// カード欄が表示されていれば反映して、変更を通知する
 				const objSelectF = document.getElementById(objIdPrifixF + "_CARD_" + slotNoF);
 				if (objSelectF) {
-					const normalized = NormalizeCardSelection(slotChoiceF, cardIdF, enchListIdF);
-					cardIdF = normalized.cardId;
-					enchListIdF = normalized.enchListId;
 					objSelectF.value = String(cardIdF);
-					// 変更を通知
 					objSelectF.dispatchEvent(new Event('change', { bubbles: true }));
 				}
 			} else if (enchListIdF !== 0) {

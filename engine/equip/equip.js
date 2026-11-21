@@ -19,29 +19,6 @@ import {
 import { ARROW_ID_NONE, ArrowOBJNew } from "./arrow.dat.js";
 import { CARD_ID_NONE, CardObjNew } from "./card.dat.js";
 import {
-         CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2,
-         CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
-         CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4,
-         CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2,
-         CARD_REGION_ID_ARMS_RIGHT_3, CARD_REGION_ID_ARMS_RIGHT_4, CARD_REGION_ID_BODY,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_2,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_3, CARD_REGION_ID_ENCHANT_ACCESSORY_2_1,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_2_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_3,
-         CARD_REGION_ID_ENCHANT_BODY_1, CARD_REGION_ID_ENCHANT_BODY_2,
-         CARD_REGION_ID_ENCHANT_BODY_3, CARD_REGION_ID_ENCHANT_HEAD_MID_1,
-         CARD_REGION_ID_ENCHANT_HEAD_MID_2, CARD_REGION_ID_ENCHANT_HEAD_MID_3,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_1, CARD_REGION_ID_ENCHANT_HEAD_TOP_2,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_3, CARD_REGION_ID_ENCHANT_HEAD_UNDER_1,
-         CARD_REGION_ID_ENCHANT_HEAD_UNDER_2, CARD_REGION_ID_ENCHANT_HEAD_UNDER_3,
-         CARD_REGION_ID_ENCHANT_SHIELD_1, CARD_REGION_ID_ENCHANT_SHIELD_2,
-         CARD_REGION_ID_ENCHANT_SHIELD_3, CARD_REGION_ID_ENCHANT_SHOES_1,
-         CARD_REGION_ID_ENCHANT_SHOES_2, CARD_REGION_ID_ENCHANT_SHOES_3,
-         CARD_REGION_ID_ENCHANT_SHOULDER_1, CARD_REGION_ID_ENCHANT_SHOULDER_2,
-         CARD_REGION_ID_ENCHANT_SHOULDER_3, CARD_REGION_ID_HEAD_MID,
-         CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_SHIELD, CARD_REGION_ID_SHOES,
-         CARD_REGION_ID_SHOULDER
-} from "../runtime/common.js";
-import {
          ITEM_ID_NOEQUIP_ACCESSORY, ITEM_ID_NOEQUIP_BODY, ITEM_ID_NOEQUIP_HEAD_MID,
          ITEM_ID_NOEQUIP_HEAD_TOP, ITEM_ID_NOEQUIP_HEAD_UNDER, ITEM_ID_NOEQUIP_SHIELD,
          ITEM_ID_NOEQUIP_SHOES, ITEM_ID_NOEQUIP_SHOULDER, ITEM_ID_SUDE, ItemObjNew
@@ -50,14 +27,21 @@ import { GetItemKindNameText, GetItemSP } from "./item.h.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 import { SkillObjNew } from "../skill/skill.dat.js";
 import {
-         GetSlotMode, OnClickSlotModeButton, SaveSlotStateCard, SaveSlotStateCardAll,
-         SaveSlotStateCostumeAll, SaveSlotStateRndEnch, SaveSlotStateRndEnchAll,
-         SLOTPAGER_MODE_CARD, SLOTPAGER_MODE_RNDENCH
+         GetSlotMode, LoadSlotStateRndEnch, RefreshSlotDisplay, SaveSlotStateCardAll,
+         SaveSlotStateCostumeAll, SaveSlotStateRndEnchAll,
+         SLOTPAGER_MODE_CARD
 } from "./slotpager.js";
 import { ClearCardSlot, RebuildCardSelect, SetCardSlotEnability } from "./hmcard.js";
-import { IsMainEquipRegion, SetSlotCardId } from "./equip-slot-state.js";
+import {
+         ClearSlotCards, GetEquipRegionObjIdPrefix, GetSlotCardIds, GetSlotCategoryIds, IsMainEquipRegion,
+         SetSlotCardId, SetSlotCategoryId
+} from "./equip-slot-state.js";
+import {
+         CollectCardSlotChoices, GetDefaultCardSelection, GetDisplayedSelection, NormalizeCardSelection,
+         ResolveCardsOnEquipChange
+} from "./card-slot-choices.js";
 import { LEARNED_SKILL_MAX_COUNT, n_A_LearnedSkill, OnClickSkillSWLearned, UpdateLearnedSkillSettingColoring } from "../skill/learnedskill.js";
-import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, SetRndOptEnablity, SetRndOptEnablityAll, SetUpRndOptValue } from "./hmrndopt.js";
+import { RebuildRndOptSelect, SetRndOptEnablity, SetRndOptEnablityAll } from "./hmrndopt.js";
 import { CItemInfoManager } from "./CItemInfoManager.js";
 import { g_extraInfoDataBridge } from "../ui/CExtraInfoDataBridge.js";
 // === END AUTO-GENERATED IMPORTS ===
@@ -102,8 +86,7 @@ import {
 } from "../runtime/roro-state.js";
 import { ARROW_DATA_INDEX_ID, ARROW_DATA_INDEX_KANA, ARROW_DATA_INDEX_KIND, ARROW_DATA_INDEX_NAME } from "../const/EnumArrowDataIndex.js";
 import { ARROW_KIND_ARROW, ARROW_KIND_BULLET, ARROW_KIND_NONE } from "../const/EnumArrowKind.js";
-import { CARD_DATA_INDEX_KIND, CARD_DATA_INDEX_SPBEGIN } from "../const/EnumCardDataIndex.js";
-import { CARD_KIND_ENCHANT } from "../const/EnumCardKind.js";
+import { CARD_DATA_INDEX_SPBEGIN } from "../const/EnumCardDataIndex.js";
 import { CONST_DATA_KIND_CARD, CONST_DATA_KIND_COSTUME, CONST_DATA_KIND_ITEM, CONST_DATA_KIND_JOB } from "../const/EnumConstDataKind.js";
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
@@ -790,13 +773,13 @@ export function OnChangeRefined() {
  ************************************************************************************************/
 export function OnChangeEquip(eqpRgnId, itemId) {
 
-	// エンチャント設定のクリア
-	ClearEnchantOnChangeEquip(eqpRgnId, itemId);
+	// カード・エンチャント・ランダムオプションの正本を、新しいアイテムに合わせて更新する
+	ResetSlotStateOnChangeEquip(eqpRgnId, itemId);
 
 	// スロット欄の更新
 	if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
 
-		// 選択セレクトボックスの再構築
+		// 選択セレクトボックスの再構築（選択状態は正本から反映される）
 		RebuildCardSelect(eqpRgnId, itemId);
 
 		// 使用可否の設定
@@ -806,11 +789,12 @@ export function OnChangeEquip(eqpRgnId, itemId) {
 
 		// 選択セレクトボックスの再構築
 		RebuildRndOptSelect(eqpRgnId, itemId);
-		// RebuildRndEnchSelect(eqpRgnId, itemId);
+		if (IsMainEquipRegion(eqpRgnId)) {
+			LoadSlotStateRndEnch(eqpRgnId);
+		}
 
 		// 使用可否の設定
 		SetRndOptEnablityAll();
-		// SetEnchSlotsEnablity();
 	}
 
 	// ステートフルデータの更新
@@ -833,240 +817,97 @@ export function OnChangeEquip(eqpRgnId, itemId) {
 
 }
 
-/************************************************************************************************
- *
- * 装備変更に伴うエンチャント設定のクリア.
- *
- *-----------------------------------------------------------------------------------------------
- * @param eqpRgnId 装備領域ＩＤ
- * @param itemId 変更後のアイテムＩＤ
- *-----------------------------------------------------------------------------------------------
- ************************************************************************************************/
-export function ClearEnchantOnChangeEquip(eqpRgnId, itemId) {
+/**
+ * 装備変更に伴い、カード・エンチャント・ランダムオプションの正本を新しいアイテムに合わせて更新する.
+ * カードは引き継げるものだけ残し、一般エンチャントとランダムオプションは種類が装備に依存するため初期化する。
+ * @param {number} eqpRgnId 装備領域ＩＤ
+ * @param {number} itemId 変更後のアイテムＩＤ
+ */
+export function ResetSlotStateOnChangeEquip(eqpRgnId, itemId) {
 
-	var targetidx = 0;
-	var slotidx = 0;
-	var cardRgnId = 0;
-	var itemIdTarget = 0;
-
-	var itemIdArrayToClear = new Array();
-	var cardRegionIdArrayToClear = new Array();
-
-	// エンチャント設定のクリア
-	// （カードの設定は維持するが、エンチャントの種類は装備に依存するので、装備変更と同時にクリアする）
-
-	// 検査対象アイテムＩＤ配列に、変更前、変更後、それぞれのアイテムＩＤを追加
-	itemIdArrayToClear.push(n_A_Equip[eqpRgnId]);
-	itemIdArrayToClear.push(itemId);
-
-	// さらに、クリア対象となるカードデータの配列添字を、添字配列に追加
-	switch (eqpRgnId) {
-
-	case EQUIP_REGION_ID_ARMS:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_3);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_4);
-		break;
-
-	case EQUIP_REGION_ID_ARMS_LEFT:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_3);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_4);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_TOP:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_HEAD_TOP);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_3);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_MID:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_HEAD_MID);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_3);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_UNDER:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_3);
-		break;
-
-	case EQUIP_REGION_ID_SHIELD:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_SHIELD);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_3);
-		break;
-
-	case EQUIP_REGION_ID_BODY:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_BODY);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_3);
-		break;
-
-	case EQUIP_REGION_ID_SHOULDER:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_SHOULDER);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_3);
-		break;
-
-	case EQUIP_REGION_ID_SHOES:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_SHOES);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_3);
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_1:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ACCESSORY_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_3);
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_2:
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ACCESSORY_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_1);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_2);
-		cardRegionIdArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_3);
-		break;
-	}
-
-	// アイテムの定義を検査して、設定をクリアする
-	for (targetidx = 0; targetidx < itemIdArrayToClear.length; targetidx++) {
-
-		// 配列からアイテムＩＤを取り出す
-		itemIdTarget = itemIdArrayToClear[targetidx];
-
-		// （無いとは思うが）有効でないＩＤの場合は、次へ
-		if (ItemObjNew[itemIdTarget] == undefined) {
-			continue;
-		}
-
-		// 当該スロットがエンチャント用の場合、設定状況をクリアする
-		for (slotidx = 0; slotidx < cardRegionIdArrayToClear.length; slotidx++) {
-
-			// 武器以外は、第二スロット以降なら強制クリアでよい
-			switch (eqpRgnId) {
-			case EQUIP_REGION_ID_ARMS:
-			case EQUIP_REGION_ID_ARMS_LEFT:
-				break;
-			default:
-				if (slotidx >= 1) {
-					n_A_card[cardRgnId] = CARD_ID_NONE;
-				}
-				continue;
-			}
-
-			// それ以外の場合は、現在設定されている値がエンチャントの場合、クリアする
-
-			// カード領域ＩＤを配列から取り出す
-			cardRgnId = cardRegionIdArrayToClear[slotidx];
-
-			// 設定状況をクリア
-			const _cardEntry = CardObjNew[n_A_card[cardRgnId]];
-			if (_cardEntry && _cardEntry[CARD_DATA_INDEX_KIND] == CARD_KIND_ENCHANT) {
-				n_A_card[cardRgnId] = CARD_ID_NONE;
-			}
+	if (IsMainEquipRegion(eqpRgnId)) {
+		const resolved = ResolveCardsOnEquipChange(eqpRgnId, itemId, GetSlotCardIds(eqpRgnId));
+		for (let slotIndex = 0; slotIndex < resolved.cardIds.length; slotIndex++) {
+			SetSlotCardId(eqpRgnId, slotIndex, resolved.cardIds[slotIndex]);
+			SetSlotCategoryId(eqpRgnId, slotIndex, resolved.enchListIds[slotIndex]);
 		}
 	}
+
+	for (let idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
+		SetEquipRndOptTable(eqpRgnId, idx, 0, 0);
+	}
+}
+
+/**
+ * カード・エンチャントを、指定アイテムの選択肢に合う値へ直して正本へ書き込む.
+ * @param {number} eqpRgnId 装備領域ＩＤ
+ * @param {number} itemId アイテムＩＤ
+ * @param {number[]} cardIds 各スロットのカードＩＤ
+ * @param {number[]} enchListIds 各スロットのエンチャント種別ＩＤ
+ */
+export function RestoreSlotCards(eqpRgnId, itemId, cardIds, enchListIds) {
+
+	const choices = CollectCardSlotChoices(eqpRgnId, itemId);
+
+	for (let slotIndex = 0; slotIndex < choices.length; slotIndex++) {
+		const displayed = GetDisplayedSelection(choices[slotIndex], cardIds[slotIndex] ?? CARD_ID_NONE, enchListIds[slotIndex] ?? 0);
+		SetSlotCardId(eqpRgnId, slotIndex, displayed.cardId);
+		SetSlotCategoryId(eqpRgnId, slotIndex, displayed.enchListId);
+	}
+}
+
+/**
+ * 指定スロットにカードを装着する（装備中のアイテムの選択肢に有る場合のみ）.
+ * 正本を更新し、表示中の欄にも反映する。
+ * @param {number} eqpRgnId 装備領域ＩＤ
+ * @param {number} slotIndex スロット番号（0〜3）
+ * @param {number} cardId カードＩＤ
+ * @returns {boolean} 装着できたか
+ */
+export function SetEquipSlotCard(eqpRgnId, slotIndex, cardId) {
+
+	const itemId = HtmlGetObjectValueByIdAsInteger(GetEquipRegionObjIdPrefix(eqpRgnId), 0);
+	const normalized = NormalizeCardSelection(CollectCardSlotChoices(eqpRgnId, itemId)[slotIndex], cardId, 0);
+
+	if (normalized.cardId !== cardId) {
+		return false;
+	}
+
+	SetSlotCardId(eqpRgnId, slotIndex, normalized.cardId);
+	SetSlotCategoryId(eqpRgnId, slotIndex, normalized.enchListId);
+	RefreshSlotDisplay(eqpRgnId);
+	return true;
+}
+
+/**
+ * 指定スロットのカード・エンチャントを、そのスロットの先頭の選択肢に戻す.
+ * 正本を更新し、表示中の欄にも反映する。
+ * @param {number} eqpRgnId 装備領域ＩＤ
+ * @param {number} slotIndex スロット番号（0〜3）
+ * @returns {number} 設定したカードＩＤ
+ */
+export function SetEquipSlotCardDefault(eqpRgnId, slotIndex) {
+
+	const itemId = HtmlGetObjectValueByIdAsInteger(GetEquipRegionObjIdPrefix(eqpRgnId), 0);
+	const selection = GetDefaultCardSelection(CollectCardSlotChoices(eqpRgnId, itemId)[slotIndex]);
+
+	SetSlotCardId(eqpRgnId, slotIndex, selection.cardId);
+	SetSlotCategoryId(eqpRgnId, slotIndex, selection.enchListId);
+	RefreshSlotDisplay(eqpRgnId);
+	return selection.cardId;
 }
 
 
 export function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
 
-	var idx = 0;
 	var strObjId = "";
 	var valueOfObject = 0;
 
-	var objIdKind = "";
-	var objIdValue = "";
-
-	var rndOptKind = 0;
-	var rndOptValue = 0;
-
-	var idxMinCard = 1;
-	var idxMaxCard = 4;
-
-	switch (eqpRgnId) {
-
-	case EQUIP_REGION_ID_ARMS:
-		strObjId = "OBJID_ARMS_RIGHT";
-		break;
-
-	case EQUIP_REGION_ID_ARMS_LEFT:
-		strObjId = "OBJID_ARMS_LEFT";
-		break;
-
-	case EQUIP_REGION_ID_HEAD_TOP:
-		strObjId = "OBJID_HEAD_TOP";
-		break;
-
-	case EQUIP_REGION_ID_HEAD_MID:
-		strObjId = "OBJID_HEAD_MID";
-		break;
-
-	case EQUIP_REGION_ID_HEAD_UNDER:
-		strObjId = "OBJID_HEAD_UNDER";
-		break;
-
-	case EQUIP_REGION_ID_SHIELD:
-		strObjId = "OBJID_SHIELD";
-		break;
-
-	case EQUIP_REGION_ID_BODY:
-		strObjId = "OBJID_BODY";
-		break;
-
-	case EQUIP_REGION_ID_SHOULDER:
-		strObjId = "OBJID_SHOULDER";
-		break;
-
-	case EQUIP_REGION_ID_SHOES:
-		strObjId = "OBJID_SHOES";
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_1:
-		strObjId = "OBJID_ACCESSORY_1";
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_2:
-		strObjId = "OBJID_ACCESSORY_2";
-		break;
-	}
+	strObjId = GetEquipRegionObjIdPrefix(eqpRgnId) ?? "";
 
 	// 装備品本体
 	valueOfObject = HtmlGetObjectValueById(strObjId);
 	SetStatefullData("DATA_" + strObjId, valueOfObject);
-
-	// カード・一般エンチャント（本体装備のみ）
-	if (IsMainEquipRegion(eqpRgnId)) {
-		for (idx = idxMinCard; idx <= idxMaxCard; idx++) {
-			valueOfObject = HtmlGetObjectValueByIdAsInteger(strObjId + "_CARD_" + idx, 0);
-			SetSlotCardId(eqpRgnId, idx - idxMinCard, Number.isInteger(valueOfObject) ? valueOfObject : 0);
-		}
-	}
-
-	// ランダムオプション
-	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
-
-		// ランダムオプション種別
-		objIdKind = GetObjectIdRndOptKind(eqpRgnId, idx)
-		rndOptKind = HtmlGetObjectValueByIdAsInteger(objIdKind, 0);
-
-		// ランダムオプション値
-		objIdValue = GetObjectIdRndOptValue(eqpRgnId, idx)
-		rndOptValue = HtmlGetObjectValueByIdAsInteger(objIdValue, 0);
-
-		SetEquipRndOptTable(eqpRgnId, idx, rndOptKind, rndOptValue);
-	}
 }
 
 
@@ -1147,73 +988,32 @@ export function OnClickSwapArms() {
 
 	var idx = 0;
 
-	var armsTypeRight = 0;
-	var itemIdRight = 0;
-	var refinedRight = 0;
-	let transcendenceRight = 0;
-	var cardIdArrayRight = null;
-	var rndoptDataArrayRight = null;
-
-	var armsTypeLeft = 0;
-	var itemIdLeft = 0;
-	var refinedLeft = 0;
-	let transcendenceLeft = 0;
-	var cardIdArrayLeft = null;
-	var rndoptDataArrayLeft = null;
-
-	var slotPageModeOld = 0;
-	var objIdKind = "";
-	var objIdValue = "";
-	var objValue = null;
-
 	// 現在の情報を取得
 
 	// 右手武器
-	armsTypeRight = n_A_WeaponType;
-	itemIdRight = n_A_Equip[EQUIP_REGION_ID_ARMS];
-	refinedRight = n_A_Weapon_ATKplus;
-	transcendenceRight = n_A_Weapon_Transcendence;
-	cardIdArrayRight = [
-		n_A_card[CARD_REGION_ID_ARMS_RIGHT_1],
-		n_A_card[CARD_REGION_ID_ARMS_RIGHT_2],
-		n_A_card[CARD_REGION_ID_ARMS_RIGHT_3],
-		n_A_card[CARD_REGION_ID_ARMS_RIGHT_4],
-	];
-	rndoptDataArrayRight = [];
-	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
-		rndoptDataArrayRight.push(
-			[
-				GetEquipRndOptTableKind(EQUIP_REGION_ID_ARMS, idx),
-				GetEquipRndOptTableValue(EQUIP_REGION_ID_ARMS, idx),
-			]
-		);
-	}
+	const armsTypeRight = n_A_WeaponType;
+	const itemIdRight = n_A_Equip[EQUIP_REGION_ID_ARMS];
+	const refinedRight = n_A_Weapon_ATKplus;
+	const transcendenceRight = n_A_Weapon_Transcendence;
 
 	// 左手武器
-	armsTypeLeft = n_A_Weapon2Type;
-	itemIdLeft = n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT];
-	refinedLeft = n_A_Weapon2_ATKplus;
-	transcendenceLeft = n_A_Weapon2_Transcendence;
-	cardIdArrayLeft = [
-		n_A_card[CARD_REGION_ID_ARMS_LEFT_1],
-		n_A_card[CARD_REGION_ID_ARMS_LEFT_2],
-		n_A_card[CARD_REGION_ID_ARMS_LEFT_3],
-		n_A_card[CARD_REGION_ID_ARMS_LEFT_4],
-	];
-	rndoptDataArrayLeft = [];
-	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
-		rndoptDataArrayLeft.push(
-			[
-				GetEquipRndOptTableKind(EQUIP_REGION_ID_ARMS_LEFT, idx),
-				GetEquipRndOptTableValue(EQUIP_REGION_ID_ARMS_LEFT, idx),
-			]
-		);
-	}
+	const armsTypeLeft = n_A_Weapon2Type;
+	const itemIdLeft = n_A_Equip[EQUIP_REGION_ID_ARMS_LEFT];
+	const refinedLeft = n_A_Weapon2_ATKplus;
+	const transcendenceLeft = n_A_Weapon2_Transcendence;
 
-	// ランダムエンチャント画面の場合は、カード画面にする
-	slotPageModeOld = GetSlotMode();
-	if (slotPageModeOld == SLOTPAGER_MODE_RNDENCH) {
-		OnClickSlotModeButton();
+	// カード・エンチャント・ランダムオプションは正本から取得する
+	const cardIdsRight = GetSlotCardIds(EQUIP_REGION_ID_ARMS);
+	const enchListIdsRight = GetSlotCategoryIds(EQUIP_REGION_ID_ARMS);
+	const rndoptDataArrayRight = [];
+	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
+		rndoptDataArrayRight.push([GetEquipRndOptTableKind(EQUIP_REGION_ID_ARMS, idx), GetEquipRndOptTableValue(EQUIP_REGION_ID_ARMS, idx)]);
+	}
+	const cardIdsLeft = GetSlotCardIds(EQUIP_REGION_ID_ARMS_LEFT);
+	const enchListIdsLeft = GetSlotCategoryIds(EQUIP_REGION_ID_ARMS_LEFT);
+	const rndoptDataArrayLeft = [];
+	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
+		rndoptDataArrayLeft.push([GetEquipRndOptTableKind(EQUIP_REGION_ID_ARMS_LEFT, idx), GetEquipRndOptTableValue(EQUIP_REGION_ID_ARMS_LEFT, idx)]);
 	}
 
 	// アイテムの入れ替え
@@ -1232,42 +1032,16 @@ export function OnClickSwapArms() {
 	// 超越段階の入れ替え
 	HtmlSetObjectValueById("OBJID_ARMS_RIGHT_TRANSCENDENCE", transcendenceLeft);
 	HtmlSetObjectValueById("OBJID_ARMS_LEFT_TRANSCENDENCE", transcendenceRight);
-	
-	// カードの入れ替え
-	for (idx = 0; idx < cardIdArrayRight.length; idx++) {
-		HtmlSetObjectValueById("OBJID_ARMS_RIGHT_CARD_" + (idx + 1), cardIdArrayLeft[idx]);
-		HtmlSetObjectValueById("OBJID_ARMS_LEFT_CARD_" + (idx + 1), cardIdArrayRight[idx]);
-	}
-	SaveSlotStateCard(EQUIP_REGION_ID_ARMS);
-	SaveSlotStateCard(EQUIP_REGION_ID_ARMS_LEFT);
 
-	// ランダムエンチャントの入れ替え
-	OnClickSlotModeButton();
+	// カード・エンチャント・ランダムオプションの入れ替え（正本を書き換えて、表示中の欄に反映する）
+	RestoreSlotCards(EQUIP_REGION_ID_ARMS, itemIdLeft, cardIdsLeft, enchListIdsLeft);
+	RestoreSlotCards(EQUIP_REGION_ID_ARMS_LEFT, itemIdRight, cardIdsRight, enchListIdsRight);
 	for (idx = 0; idx < RND_OPT_SLOT_COUNT; idx++) {
-
-		objIdKind = GetObjectIdRndOptKind(EQUIP_REGION_ID_ARMS, idx);
-		objIdValue = GetObjectIdRndOptValue(EQUIP_REGION_ID_ARMS, idx);
-		objValue = document.getElementById(objIdValue);
-
-		HtmlSetObjectValueById(objIdKind, rndoptDataArrayLeft[idx][0]);
-		SetUpRndOptValue(objValue, rndoptDataArrayLeft[idx][0]);
-		HtmlSetObjectValueById(objIdValue, rndoptDataArrayLeft[idx][1]);
-
-		objIdKind = GetObjectIdRndOptKind(EQUIP_REGION_ID_ARMS_LEFT, idx);
-		objIdValue = GetObjectIdRndOptValue(EQUIP_REGION_ID_ARMS_LEFT, idx);
-		objValue = document.getElementById(objIdValue);
-
-		HtmlSetObjectValueById(objIdKind, rndoptDataArrayRight[idx][0]);
-		SetUpRndOptValue(objValue, rndoptDataArrayRight[idx][0]);
-		HtmlSetObjectValueById(objIdValue, rndoptDataArrayRight[idx][1]);
+		SetEquipRndOptTable(EQUIP_REGION_ID_ARMS, idx, rndoptDataArrayLeft[idx][0], rndoptDataArrayLeft[idx][1]);
+		SetEquipRndOptTable(EQUIP_REGION_ID_ARMS_LEFT, idx, rndoptDataArrayRight[idx][0], rndoptDataArrayRight[idx][1]);
 	}
-	SaveSlotStateRndEnch(EQUIP_REGION_ID_ARMS);
-	SaveSlotStateRndEnch(EQUIP_REGION_ID_ARMS_LEFT);
-
-	// 入力画面を戻す
-	if (slotPageModeOld != GetSlotMode()) {
-		OnClickSlotModeButton();
-	}
+	RefreshSlotDisplay(EQUIP_REGION_ID_ARMS);
+	RefreshSlotDisplay(EQUIP_REGION_ID_ARMS_LEFT);
 
 	// 再計算
 	calc();
@@ -1853,8 +1627,8 @@ export function ClearEquip(eqpRgnId) {
  ************************************************************************************************/
 export function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
 
-	// エンチャント設定のクリア
-	ClearEnchantOnChangeEquip(eqpRgnId, itemId);
+	// カード・エンチャント・ランダムオプションの正本を、新しいアイテムに合わせて更新する
+	ResetSlotStateOnChangeEquip(eqpRgnId, itemId);
 
 	// 装備選択セレクトを更新
 	HtmlSetObjectValueById(objidPrifix, itemId);
@@ -1862,7 +1636,7 @@ export function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
 	// スロット欄の更新
 	if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
 
-		// 選択セレクトボックスの再構築
+		// 選択セレクトボックスの再構築（選択状態は正本から反映される）
 		RebuildCardSelect(eqpRgnId, itemId);
 
 		// 使用可否の設定
@@ -1872,11 +1646,10 @@ export function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
 
 		// 選択セレクトボックスの再構築
 		RebuildRndOptSelect(eqpRgnId, itemId);
-		// RebuildRndEnchSelect(eqpRgnId, itemId);
+		LoadSlotStateRndEnch(eqpRgnId);
 
 		// 使用可否の設定
 		SetRndOptEnablity(eqpRgnId);
-		// SetEnchSlotsEnablity(eqpRgnId);
 	}
 
 	// ステートフルデータを更新
@@ -1926,11 +1699,9 @@ export function IsLongRange(itemId) {
 }
 
 export function copyAccs(from, to){
-	// ランダムオプション入力中はelementがないので処理できない
-	// 中途半端になるので何もしないようにする
-	if (GetSlotMode() != SLOTPAGER_MODE_CARD) {
-		return;
-	}
+
+	const eqpRgnIdFrom = (from == 1) ? EQUIP_REGION_ID_ACCESSORY_1 : EQUIP_REGION_ID_ACCESSORY_2;
+	const eqpRgnIdTo = (to == 1) ? EQUIP_REGION_ID_ACCESSORY_1 : EQUIP_REGION_ID_ACCESSORY_2;
 
 	const id_from = "#OBJID_ACCESSORY_"+from;
 	const id_to = "#OBJID_ACCESSORY_"+to;
@@ -1938,22 +1709,23 @@ export function copyAccs(from, to){
 
 	const elTo = document.querySelector(id_to);
 	if (elTo && Array.from(elTo.options).some((o) => o.value === accs_from)) {
-		// アクセサリ本体をコピー（OnChangeEquip がカード欄を再構築する）
+		// アクセサリ本体をコピー（OnChangeEquip が正本とカード欄を新しいアイテムに合わせて更新する）
 		setSelectValueSynced(id_to, accs_from);
-		// カードは「値」でコピーする（index 不可・上記コメント参照）
-		[1,2,3,4].forEach((i)=>{
-			const fromEl = document.querySelector(`${id_from}_CARD_${i}`);
-			setSelectValueSynced(`${id_to}_CARD_${i}`, fromEl ? fromEl.value : String(CARD_ID_NONE));
-		})
+		// カードは「値」でコピーする（候補リストの並び・件数が一致しないため、コピー先に実在する値だけを写す）
+		RestoreSlotCards(eqpRgnIdTo, parseInt(accs_from, 10), GetSlotCardIds(eqpRgnIdFrom), GetSlotCategoryIds(eqpRgnIdFrom));
 	} else {
 		// ソースのアクセサリが対象に無い → 「装備なし」へリセット
 		// getNoneValue(selector) は TomSelect が選択 option を DOM 末尾へ移動した後に
 		// options[0] を読むため誤値を返す。定数を直接使う。
 		setSelectValueSynced(id_to, String(ITEM_ID_NOEQUIP_ACCESSORY));
-		[1,2,3,4].forEach((i)=>{
-			setSelectValueSynced(`${id_to}_CARD_${i}`, String(CARD_ID_NONE));
-		})
+		ClearSlotCards(eqpRgnIdTo);
 	}
+
+	// 表示中の欄に反映して、再計算する
+	RefreshSlotDisplay(eqpRgnIdTo);
+	OnChangeCard(-1);
+	notifyChanged();
+	LoadTomSelect();
 }
 
 // C-6: hmrndopt.js / learnedskill.js / slotpager.js との循環 import 回避

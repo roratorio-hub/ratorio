@@ -153,3 +153,81 @@ describe('GetCardRegionId: 装備領域・スロットに対応するカード�
         expect(mod.GetCardRegionId(-1, 0)).toBeUndefined();
     });
 });
+
+
+describe('GetDefaultCardSelection: 作り直した直後の初期選択', () => {
+    it('一般エンチャント枠は「エンチャントなし」', () => {
+        const choice = { type: 'enchant', hasNone: true, groups: [{ enchListId: 100, label: 'A', options: [{ cardId: 1, name: 'a1' }] }] };
+        expect(mod.GetDefaultCardSelection(choice)).toEqual({ cardId: 0, enchListId: 0 });
+    });
+    it('「エンチャントなし」を持たない枠は、先頭のエンチャント（と、その種別）', () => {
+        const choice = {
+            type: 'enchant',
+            hasNone: false,
+            groups: [
+                { enchListId: 100, label: 'A', options: [] },
+                { enchListId: 200, label: 'B', options: [{ cardId: 3, name: 'b3' }, { cardId: 4, name: 'b4' }] },
+            ],
+        };
+        expect(mod.GetDefaultCardSelection(choice)).toEqual({ cardId: 3, enchListId: 200 });
+    });
+    it('カード枠は先頭のカード、使用しない枠は「なし」', () => {
+        expect(mod.GetDefaultCardSelection({ type: 'card', cardIds: [0, 10], selectionSlot: 0 })).toEqual({ cardId: 0, enchListId: 0 });
+        expect(mod.GetDefaultCardSelection({ type: 'dummy' })).toEqual({ cardId: 0, enchListId: 0 });
+    });
+});
+
+describe('GetDisplayedSelection: 正本の値から、画面に表示する選択を求める', () => {
+    const enchantChoice = {
+        type: 'enchant',
+        hasNone: true,
+        groups: [{ enchListId: 100, label: 'A', options: [{ cardId: 1, name: 'a1' }] }],
+    };
+    it('実在する値はそのまま表示する', () => {
+        expect(mod.GetDisplayedSelection(enchantChoice, 1, 100)).toEqual({ cardId: 1, enchListId: 100 });
+        expect(mod.GetDisplayedSelection({ type: 'card', cardIds: [0, 10], selectionSlot: 0 }, 10, 0)).toEqual({ cardId: 10, enchListId: 0 });
+    });
+    it('実在しない値は「なし」にする', () => {
+        expect(mod.GetDisplayedSelection(enchantChoice, 9, 100)).toEqual({ cardId: 0, enchListId: 0 });
+        expect(mod.GetDisplayedSelection({ type: 'card', cardIds: [0, 10], selectionSlot: 0 }, 99, 0)).toEqual({ cardId: 0, enchListId: 0 });
+    });
+    it('「エンチャントなし」を持たない枠は、「なし」の代わりに先頭のエンチャントを表示する', () => {
+        const choice = { ...enchantChoice, hasNone: false };
+        expect(mod.GetDisplayedSelection(choice, 0, 0)).toEqual({ cardId: 1, enchListId: 100 });
+    });
+});
+
+describe('ResolveCardsOnEquipChange: 装備変更時の引き継ぎ', () => {
+    it('カード枠は有効なら引き継ぎ、一般エンチャント枠は初期選択へ戻す', () => {
+        const itemId = findItemId('フロンティアダガー');
+        const choices = mod.CollectCardSlotChoices(EQUIP_REGION_ID_ARMS, itemId);
+        const enchantCard = choices[1].groups[0].options[0].cardId;
+
+        // 先頭スロットはカード枠、2番目以降は一般エンチャント枠（フロンティア武器）
+        const resolved = mod.ResolveCardsOnEquipChange(EQUIP_REGION_ID_ARMS, itemId, [CardSortOBJ[CARD_KIND_NONE][1], enchantCard, enchantCard, enchantCard]);
+        expect(resolved.cardIds[0]).toBe(CardSortOBJ[CARD_KIND_NONE][1]);
+        expect(resolved.cardIds.slice(1)).toEqual([0, 0, 0]);
+        expect(resolved.enchListIds).toEqual([0, 0, 0, 0]);
+    });
+
+    it('新しいアイテムで選べないカードは「なし」になる', () => {
+        const itemId = findItemWithoutEnchant();
+        // 防具に武器用のカードを付けていた場合
+        const armsCard = CardSortOBJ[CARD_KIND_ARMS].find((id: number) => id !== 0 && !CardSortOBJ[CARD_KIND_BODY].includes(id))!;
+        const resolved = mod.ResolveCardsOnEquipChange(EQUIP_REGION_ID_BODY, itemId, [armsCard, 0, 0, 0]);
+        expect(resolved.cardIds).toEqual([0, 0, 0, 0]);
+    });
+
+    it('防具のカードは、別の防具へ変えても引き継ぐ', () => {
+        const itemId = findItemWithoutEnchant();
+        const bodyCard = CardSortOBJ[CARD_KIND_BODY].find((id: number) => id !== 0)!;
+        const resolved = mod.ResolveCardsOnEquipChange(EQUIP_REGION_ID_BODY, itemId, [bodyCard, 0, 0, 0]);
+        expect(resolved.cardIds).toEqual([bodyCard, 0, 0, 0]);
+    });
+
+    it('ルーンヘルムの第4スロットは、先頭のエンチャントになる（「エンチャントなし」が無い）', () => {
+        const resolved = mod.ResolveCardsOnEquipChange(EQUIP_REGION_ID_HEAD_TOP, ITEM_ID_RUNE_HELM, [0, 0, 0, 0]);
+        expect(resolved.cardIds[3]).not.toBe(0);
+        expect(resolved.enchListIds[3]).not.toBe(0);
+    });
+});

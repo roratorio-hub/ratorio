@@ -245,9 +245,10 @@ import {
 import { COSTUME_ID_BEGINNER_BO, CostumeOBJ } from "../equip/costume.dat.js";
 import {
          ClearEquipAll, InitEquipDefaultAll, IsLongRange, OnChangeArmsTypeRight,
-         OnChangeCard, OnChangeEquip, RebuildArmorsSelect, SetSuperNoviceFullWeapon,
+         OnChangeCard, OnChangeEquip, RebuildArmorsSelect, RestoreSlotCards, SetSuperNoviceFullWeapon,
          UpdateStatefullDataOnChangeEquip, changeJobSettings, g_bSuperNoviceFullWeapon
 } from "../equip/equip.js";
+import { GetSlotCardIds, GetSlotCategoryIds } from "../equip/equip-slot-state.js";
 import { zokusei } from "../data/element-affinity.dat.js";
 import { ClearCardSlotAll, SetCardSlotEnabilityAll } from "../equip/hmcard.js";
 import { UpdateCharaDataHtml } from "../chara/hmchara.js";
@@ -739,7 +740,7 @@ import {
          SKILL_ID_WERERAPTOR, SKILL_ID_WEREWOLF, SKILL_ID_WOLF_INSTINCT,
 } from "../skill/skill.dat.js";
 import {
-         BreakSlotOfCardAll, BreakSlotOfCostumeAll, BreakSlotOfRndEnchAll, GetSlotMode,
+         BreakSlotOfCardAll, BreakSlotOfCostumeAll, BreakSlotOfRndEnchAll, GetSlotMode, RefreshSlotDisplay,
          RebuildSlotAsCardAll, RebuildSlotAsCostumeAll, RebuildSlotAsRndEnchAll
 } from "../equip/slotpager.js";
 import {
@@ -1038,6 +1039,7 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 	var itemId = 0;
 	var itemIdArray = new Array();
 	var cardIdArrayArray = new Array();
+	var enchListIdArrayArray = new Array();
 
 	var strObjId = "";
 	var objSelect = null;
@@ -1071,100 +1073,9 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 		// 現在装備している ItemID を取得
 		itemId = n_A_Equip[idx];
 
-		// 現在設定しているカード情報を取得
-		switch (idx) {
-		case EQUIP_REGION_ID_ARMS:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_ARMS_RIGHT_1],
-				n_A_card[CARD_REGION_ID_ARMS_RIGHT_2],
-				n_A_card[CARD_REGION_ID_ARMS_RIGHT_3],
-				n_A_card[CARD_REGION_ID_ARMS_RIGHT_4],
-			];
-			break;
-		case EQUIP_REGION_ID_ARMS_LEFT:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_ARMS_LEFT_1],
-				n_A_card[CARD_REGION_ID_ARMS_LEFT_2],
-				n_A_card[CARD_REGION_ID_ARMS_LEFT_3],
-				n_A_card[CARD_REGION_ID_ARMS_LEFT_4],
-			];
-			break;
-		case EQUIP_REGION_ID_HEAD_TOP:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_HEAD_TOP],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_TOP_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_TOP_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_TOP_3],
-			];
-			break;
-		case EQUIP_REGION_ID_HEAD_MID:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_HEAD_MID],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_MID_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_MID_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_MID_3],
-			];
-			break;
-		case EQUIP_REGION_ID_HEAD_UNDER:
-			cardIdArrayArray[idx] = [
-				CARD_ID_NONE,
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_UNDER_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_UNDER_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_HEAD_UNDER_3],
-			];
-			break;
-		case EQUIP_REGION_ID_SHIELD:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_SHIELD],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHIELD_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHIELD_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHIELD_3],
-			];
-			break;
-		case EQUIP_REGION_ID_BODY:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_BODY],
-				n_A_card[CARD_REGION_ID_ENCHANT_BODY_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_BODY_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_BODY_3],
-			];
-			break;
-		case EQUIP_REGION_ID_SHOULDER:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_SHOULDER],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHOULDER_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHOULDER_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHOULDER_3],
-			];
-			break;
-		case EQUIP_REGION_ID_SHOES:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_SHOES],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHOES_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHOES_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_SHOES_3],
-			];
-			break;
-		case EQUIP_REGION_ID_ACCESSORY_1:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_ACCESSORY_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_1_3],
-			];
-			break;
-		case EQUIP_REGION_ID_ACCESSORY_2:
-			cardIdArrayArray[idx] = [
-				n_A_card[CARD_REGION_ID_ACCESSORY_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_1],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_2],
-				n_A_card[CARD_REGION_ID_ENCHANT_ACCESSORY_2_3],
-			];
-			break;
-		default:
-			// これ以外の部位はカード装着不可
-			cardIdArrayArray[idx] = null;
-		}
+		// 現在設定しているカード情報を、正本から取得する
+		cardIdArrayArray[idx] = GetSlotCardIds(idx);
+		enchListIdArrayArray[idx] = GetSlotCategoryIds(idx);
 
 		// 装備制限状態へ移行する場合は、装備可否を判定する
 		if (!bFull) {
@@ -1288,9 +1199,9 @@ export function RefreshSuperNoviceFullWeapon(bFull) {
 
 		OnChangeEquip(idx, itemIdArray[idx]);
 
-		for (idxSlot = 0; idxSlot < cardIdArrayArray[idx].length; idxSlot++) {
-			HtmlSetObjectValueById(strObjId + "_CARD_" + (idxSlot + 1), cardIdArrayArray[idx][idxSlot]);
-		}
+		// カード・エンチャントを正本へ戻して、表示中の欄に反映する
+		RestoreSlotCards(idx, itemIdArray[idx], cardIdArrayArray[idx], enchListIdArrayArray[idx]);
+		RefreshSlotDisplay(idx);
 
 		OnChangeCard(-1);
 	}

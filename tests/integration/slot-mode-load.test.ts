@@ -241,15 +241,13 @@ type SlotOp = {
     fixtures: number[];
     /** 操作を実行する。実行できたら true */
     run: (page: Page) => Promise<boolean>;
-    /** 既知の不具合（ランダムオプション表示中に実行するとカード等が失われる）。現状は不一致になることを検証する */
-    knownBroken?: boolean;
 };
 
 const SLOT_OPS: SlotOp[] = [
-    { name: '本体装備（防具）の変更', fixtures: [4], run: (p) => changeSelectToAnother(p, 'OBJID_BODY'), knownBroken: true },
-    { name: '本体装備（右手武器）の変更', fixtures: [3], run: (p) => changeSelectToAnother(p, 'OBJID_ARMS_RIGHT'), knownBroken: true },
+    { name: '本体装備（防具）の変更', fixtures: [4], run: (p) => changeSelectToAnother(p, 'OBJID_BODY') },
+    { name: '本体装備（右手武器）の変更', fixtures: [3], run: (p) => changeSelectToAnother(p, 'OBJID_ARMS_RIGHT') },
     { name: '左右武器入れ替え', fixtures: [3], run: (p) => clickIfExists(p, '#OBJID_SPAN_SWAP_ARMS input') },
-    { name: 'アクセサリコピー', fixtures: [4], run: (p) => clickIfExists(p, '#OBJID_ACCESSORY_1_COPY'), knownBroken: true },
+    { name: 'アクセサリコピー', fixtures: [4], run: (p) => clickIfExists(p, '#OBJID_ACCESSORY_1_COPY') },
     {
         name: 'スパノビの魂トグル',
         fixtures: [0],
@@ -261,7 +259,6 @@ const SLOT_OPS: SlotOp[] = [
             mod.RefreshSuperNoviceFullWeapon(true);
             return true;
         })`) as Promise<boolean>,
-        knownBroken: true,
     },
     {
         name: 'アイテムパック（ミミミクエスト報酬一式）の適用',
@@ -309,7 +306,7 @@ describe('同じ操作の結果は、操作時の表示モード（カード/ラ
         for (const fixtureIndex of op.fixtures) {
             if (fixtureIndex >= entries.length) continue;
             const { label, query } = entries[fixtureIndex];
-            it(`${label}: ${op.name}${op.knownBroken ? '（既知の不具合: 現状は不一致）' : ''}`, async () => {
+            it(`${label}: ${op.name}`, async () => {
                 // 基準: カード表示のまま操作
                 const basePage = await openCalcx();
                 let base: Awaited<ReturnType<typeof captureNormalized>>;
@@ -335,17 +332,11 @@ describe('同じ操作の結果は、操作時の表示モード（カード/ラ
                     await page.context().close();
                 }
 
-                const facets = diffFacets(base, actual);
-                if (op.knownBroken) {
-                    // 修正後は knownBroken を外す（その時点でこのアサーションが失敗して気付ける）
-                    expect(facets, '既知の不具合が直ったので knownBroken を外してください').toContain('cards');
-                } else {
-                    expect(facets).toEqual([]);
-                    expect(actual.cards).toEqual(base.cards);
-                    expect(actual.rndOpts).toEqual(base.rndOpts);
-                    expect(actual.query).toBe(base.query);
-                    expect(actual.full).toEqual(base.full);
-                }
+                expect(diffFacets(base, actual)).toEqual([]);
+                expect(actual.cards).toEqual(base.cards);
+                expect(actual.rndOpts).toEqual(base.rndOpts);
+                expect(actual.query).toBe(base.query);
+                expect(actual.full).toEqual(base.full);
             }, 180000);
         }
     }

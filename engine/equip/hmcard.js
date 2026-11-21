@@ -28,8 +28,6 @@ import {
          CARD_REGION_ID_SHOULDER
 } from "../runtime/common.js";
 
-import { ItemObjNew } from "./item.dat.js";
-import { GetMaxSlot } from "./item.h.js";
 
 import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById } from "../runtime/util.js";
 
@@ -42,8 +40,8 @@ import { GetFlagAppendedCardName } from "./equip-name.js";
 
 import { setSelectValueSynced } from "./select-sync.js";
 // 選択肢の算出（DOM に触れない）
-import { GetEquipRegionIdByObjIdPrefix, SetSlotCardId } from "./equip-slot-state.js";
-import { CollectCardSlotChoices, GetCardRegionId, ResolveCardSelection, SLOT_CHOICE_ENCHANT, SLOT_CHOICE_CARD } from "./card-slot-choices.js";
+import { GetEquipRegionIdByObjIdPrefix, GetSlotCardId, GetSlotCategoryId, SetSlotCardId, SetSlotCategoryId } from "./equip-slot-state.js";
+import { CollectCardSlotChoices, GetDisplayedSelection, NormalizeCardSelection, SLOT_CHOICE_ENCHANT, SLOT_CHOICE_CARD } from "./card-slot-choices.js";
 // 外部モジュールが hmcard.js 経由で参照しているため再公開する
 export { RebuildCardSelectSubCollectEnchListData } from "./card-slot-choices.js";
 
@@ -61,7 +59,6 @@ import {
     EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
 } from "../const/EnumEquipRegionId.js";
 
-import { ITEM_DATA_INDEX_SLOT } from "../const/EnumItemDataIndex.js";
 
 
 
@@ -653,13 +650,17 @@ function BuildUpCardSlots(eqpRgnId, choices, objArySlots) {
 			break;
 
 		case SLOT_CHOICE_CARD:
-			BuildUpCardSelect(eqpRgnId, objSelect, choice);
+			BuildUpCardSelect(objSelect, choice);
 			break;
 
 		default:
 			HtmlCreateElementOption(CARD_ID_NONE, "-", objSelect);
-			break;
+			continue;
 		}
+
+		// 選択状態は正本（equip-slot-state.js）から反映する。選択肢に実在しない値は「なし」（なければ先頭）にする
+		const displayed = GetDisplayedSelection(choice, GetSlotCardId(eqpRgnId, idxSlot), GetSlotCategoryId(eqpRgnId, idxSlot));
+		objSelect.value = displayed.cardId;
 	}
 }
 
@@ -708,22 +709,15 @@ function BuildUpEnchantSelect(objSelect, choice) {
 }
 
 /**
- * カード枠のセレクトボックスを構築する.
- * 選択状態は、現在のカード（n_A_card）が新しい選択肢にも有ればそれを引き継ぐ。
- * @param {number} eqpRgnId 装備部位ID
+ * カード枠のセレクトボックスの選択肢を構築する.
  * @param {HTMLSelectElement} objSelect 対象のセレクトボックス
  * @param {object} choice カード枠の選択肢
  */
-function BuildUpCardSelect(eqpRgnId, objSelect, choice) {
+function BuildUpCardSelect(objSelect, choice) {
 
 	for (const cardId of choice.cardIds) {
 		HtmlCreateElementOption(cardId, GetFlagAppendedCardName(cardId), objSelect);
 	}
-
-	// 選択項目の復元
-	// （エンチャからカードに変化した場合に存在しないIDを指定してしまう問題の対応として、有効なIDだけを引き継ぐ）
-	const cardRegionId = GetCardRegionId(eqpRgnId, choice.selectionSlot);
-	objSelect.value = ResolveCardSelection(choice, n_A_card[cardRegionId]);
 }
 
 /**
@@ -845,75 +839,38 @@ function __SetCardSlotEnability(objTarget, enabled) {
 export function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 	var idx = 0;
-	var idxOption = 0;
 
 	var cardSCIdx = 0;
 	var cardIdToSet = 0;
 
-	var itemId = 0;
-	var itemData = null;
-
-	var slotCountMax = 0;
-	var slotCountLooped = 0;
-
-	var objSelect = null;
-	var objSelect1 = null;
-	var objOption = null;
-
 	// 変更後のカードショートカットのインデックスを取得
 	cardSCIdx = HtmlGetObjectValueById(objidPrifix + "_CARD_SHORT", 0);
 
-	// 当該装備の情報を取得
-	itemId = n_A_Equip[eqpRgnId];
-	itemData = ItemObjNew[itemId];
-
-	// 最大スロット数を取得
-	slotCountMax = GetMaxSlot(itemData[ITEM_DATA_INDEX_SLOT]);
+	// 当該装備に付けられるカード・エンチャントの選択肢を取得
+	const choices = CollectCardSlotChoices(eqpRgnId, n_A_Equip[eqpRgnId]);
 
 	// カードスロット数分ループ
-	slotCountLooped = 0;
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
 
-		// TODO: 不要な気がしたので実装先送り
-		// 装備のスロット数を越えたら処理終了
-		// if (slotCountMax < ++slotCountLooped) {
-		// 	break;
-		// }
-
-		// 設定対象のセレクトボックスを特定
-		objSelect = document.getElementById(objidPrifix + "_CARD_" + idx);
-		if (!objSelect) {
-			continue;
-		}
-		// 1枚目のSelectオブジェクトを控える
-		if (idx == 1) {
-			objSelect1 = objSelect;
-		}
+		const slotIndex = idx - SLOT_INDEX_CARD_MIN;
 
 		// 設定するＩＤを取得
-		cardIdToSet = CardShortObj[cardSCIdx][idx];
+		cardIdToSet = Number(CardShortObj[cardSCIdx][idx]);
 
 		// MAX値を設定している場合は、1枚目からカードIDをコピーする
 		if (cardIdToSet == CARD_ID_MAX) {
-			cardIdToSet = objSelect1.value;
+			cardIdToSet = GetSlotCardId(eqpRgnId, 0);
 		}
 
 		// 選択可能であることを確認してからセットする
-		for (idxOption = 0; idxOption < objSelect.options.length; idxOption++) {
-
-			objOption = objSelect.options[idxOption];
-
-			if (objOption.value == cardIdToSet) {
-
-				// ショートカットデータから、カードを引き当て
-				HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, cardIdToSet);
-
-				// 正本を更新
-				SetSlotCardId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN, Number(cardIdToSet));
-
-				break;
-			}
+		const normalized = NormalizeCardSelection(choices[slotIndex], cardIdToSet, 0);
+		if (normalized.cardId === cardIdToSet) {
+			SetSlotCardId(eqpRgnId, slotIndex, normalized.cardId);
+			SetSlotCategoryId(eqpRgnId, slotIndex, normalized.enchListId);
 		}
+
+		// 表示中のカード欄へ反映する
+		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, GetSlotCardId(eqpRgnId, slotIndex));
 	}
 
 	// ステータス再計算

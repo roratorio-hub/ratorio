@@ -2,13 +2,13 @@
 import "../runtime/common.js";
 import "../equip/item.h.js";
 import { CardObjNew } from "../equip/card.dat.js";
-import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, OnChangeCard, OnChangeEquip } from "../equip/equip.js";
+import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, OnChangeCard, OnChangeEquip, SetEquipSlotCard, SetEquipSlotCardDefault } from "../equip/equip.js";
+import { EQUIP_SLOT_COUNT } from "../equip/equip-slot-state.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import {
          ITEM_PACK_ID_CLEAR_CARD_ALL, ITEM_PACK_ID_CLEAR_EQUIP_ALL,
          ITEM_PACK_ID_CLEAR_REFINE_ALL, ITEM_PACK_ID_CLEAR_SHADOW_ALL, ItemPackOBJ
 } from "../equip/itempack.dat.js";
-import { GetSlotMode, OnClickSlotModeButton, SLOTPAGER_MODE_RNDENCH, SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "../equip/slotpager.js";
 import { IsMatchJobRestrict } from "../data/mig.job.h.js";
 import { HtmlCreateElement, HtmlCreateTextNode, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById } from "../runtime/util.js";
 import { n_A_LearnedSkill } from "../skill/learnedskill.js";
@@ -357,11 +357,6 @@ export function OnClickQuickControlSetItemPack() {
 	// 選択されたアイテムパックの ID を取得
 	itemPackId = HtmlGetObjectValueByIdAsInteger("OBJID_SELECT_QUICK_CONTROL_ITEMPACK", 0);
 
-	// ランダムエンチャント画面の場合は、カード画面にする
-	if (GetSlotMode() == SLOTPAGER_MODE_RNDENCH) {
-		OnClickSlotModeButton();
-	}
-
 	// 全解除系は特殊処理
 	switch (itemPackId) {
 		case ITEM_PACK_ID_CLEAR_SHADOW_ALL:
@@ -578,70 +573,56 @@ export function OnClickQuickControlSetItemPackSubForItem(itemId, itemRefine) {
 	case ITEM_KIND_GRENADEGUN:
 		OnClickQuickControlSetItemPackSubForClearEquipAllSub("OBJID_SHIELD", EQUIP_REGION_ID_SHIELD);
 		HtmlSetObjectValueById("OBJID_SHIELD_REFINE", 0);
-		for (var idxSlot = SLOT_INDEX_CARD_MIN; idxSlot <= SLOT_INDEX_CARD_MAX; idxSlot++) {
-			OnClickQuickControlSetItemPackSubForClearCardAllSub("OBJID_SHIELD" + "_CARD_" + idxSlot);
+		for (var idxSlot = 0; idxSlot < EQUIP_SLOT_COUNT; idxSlot++) {
+			OnClickQuickControlSetItemPackSubForClearCardAllSub(EQUIP_REGION_ID_SHIELD, idxSlot);
 		}
 	}
 }
 
 export function OnClickQuickControlSetItemPackSubForCard(cardId) {
 
-	var idx = 0;
+	var eqpRgnId = 0;
 
-	var bEquipable = false;
-	var targetObjIdCard = "";
-
-	var objSelect = null;
-
-
-	// 構成要素ごとに、検査対象のセレクトボックスを特定する
+	// 構成要素ごとに、装着先の装備領域を特定する
 	switch (CardObjNew[cardId][CARD_DATA_INDEX_KIND]) {
 	case CARD_KIND_ARMS:
-		targetObjIdCard = "OBJID_ARMS_RIGHT_CARD_1";
+		eqpRgnId = EQUIP_REGION_ID_ARMS;
 		break;
 
 	case CARD_KIND_HEAD:
-		targetObjIdCard = "OBJID_HEAD_TOP_CARD_1";
+		eqpRgnId = EQUIP_REGION_ID_HEAD_TOP;
 		break;
 
 	case CARD_KIND_BODY:
-		targetObjIdCard = "OBJID_BODY_CARD_1";
+		eqpRgnId = EQUIP_REGION_ID_BODY;
 		break;
 
 	case CARD_KIND_SHIELD:
-		targetObjIdCard = "OBJID_SHIELD_CARD_1";
+		eqpRgnId = EQUIP_REGION_ID_SHIELD;
 		break;
 
 	case CARD_KIND_SHOULDER:
-		targetObjIdCard = "OBJID_SHOULDER_CARD_1";
+		eqpRgnId = EQUIP_REGION_ID_SHOULDER;
 		break;
 
 	case CARD_KIND_FOOT:
-		targetObjIdCard = "OBJID_SHOES_CARD_1";
+		eqpRgnId = EQUIP_REGION_ID_SHOES;
 		break;
 
 	case CARD_KIND_ACCESSORY:
-		targetObjIdCard = "OBJID_ACCESSORY_1_CARD_1";
+		eqpRgnId = EQUIP_REGION_ID_ACCESSORY_1;
 		break;
-	}
-	objSelect = document.getElementById(targetObjIdCard);
 
-	// 構成要素が装備欄にリストアップされているかを検査
-	bEquipable = false;
-	for (idx = 0; idx < objSelect.options.length; idx++) {
-		if (objSelect.options[idx].value == cardId) {
-			bEquipable = true;
-			break;
-		}
+	default:
+		return;
 	}
 
-	// 装備できない場合は、処理終了
-	if (!bEquipable) {
+	// 構成要素が装備欄の選択肢にあれば装着する（装備できない場合は、処理終了）
+	if (!SetEquipSlotCard(eqpRgnId, 0, cardId)) {
 		return;
 	}
 
 	// 装備変更
-	HtmlSetObjectValueById(targetObjIdCard, cardId);
 	OnChangeCard(cardId);
 }
 
@@ -722,33 +703,30 @@ export function OnClickQuickControlSetItemPackSubForClearRefineAll() {
 
 export function OnClickQuickControlSetItemPackSubForClearCardAll() {
 
-	var objIdBaseList = [
-		"OBJID_ARMS_LEFT", "OBJID_ARMS_RIGHT",
-		"OBJID_HEAD_TOP", "OBJID_HEAD_MID", "OBJID_HEAD_UNDER",
-		"OBJID_BODY", "OBJID_SHIELD", "OBJID_SHOULDER", "OBJID_SHOES",
-		"OBJID_ACCESSORY_1", "OBJID_ACCESSORY_2",
+	var eqpRgnIdList = [
+		EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_ARMS,
+		EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_MID, EQUIP_REGION_ID_HEAD_UNDER,
+		EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOULDER, EQUIP_REGION_ID_SHOES,
+		EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2,
 	];
 
 	var idx = 0;
 	var idxSlot = 0;
 
-	for (idx = 0; idx < objIdBaseList.length; idx++) {
-		for (idxSlot = SLOT_INDEX_CARD_MIN; idxSlot <= SLOT_INDEX_CARD_MAX; idxSlot++) {
-			OnClickQuickControlSetItemPackSubForClearCardAllSub(objIdBaseList[idx] + "_CARD_" + idxSlot);
+	for (idx = 0; idx < eqpRgnIdList.length; idx++) {
+		for (idxSlot = 0; idxSlot < EQUIP_SLOT_COUNT; idxSlot++) {
+			OnClickQuickControlSetItemPackSubForClearCardAllSub(eqpRgnIdList[idx], idxSlot);
 		}
 	}
 }
 
-export function OnClickQuickControlSetItemPackSubForClearCardAllSub(objId) {
+/**
+ * 指定スロットのカード・エンチャントを、そのスロットの先頭の選択肢に戻す.
+ * @param {number} eqpRgnId 装備領域ID
+ * @param {number} slotIndex スロット番号（0〜3）
+ */
+export function OnClickQuickControlSetItemPackSubForClearCardAllSub(eqpRgnId, slotIndex) {
 
-	var objSelect = null;
-	var cardId = 0;
-
-	objSelect = document.getElementById(objId);
-	cardId = objSelect.options[0].value;
-
-	HtmlSetObjectValueById(objId, cardId);
+	const cardId = SetEquipSlotCardDefault(eqpRgnId, slotIndex);
 	OnChangeCard(cardId);
 }
-
-
