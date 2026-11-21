@@ -27,9 +27,8 @@ import { GetItemKindNameText, GetItemSP } from "./item.h.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 import { SkillObjNew } from "../skill/skill.dat.js";
 import {
-         GetSlotMode, LoadSlotStateRndEnch, RefreshSlotDisplay, SaveSlotStateCardAll,
-         SaveSlotStateCostumeAll, SaveSlotStateRndEnchAll,
-         SLOTPAGER_MODE_CARD
+         GetSlotMode, LoadSlotStateRndEnch, RefreshSlotDisplay, RebuildSlotDisplay, SaveSlotStateRndEnchAll,
+         SaveSlotStateShadowCardAll, SLOTPAGER_MODE_CARD
 } from "./slotpager.js";
 import { ClearCardSlot, RebuildCardSelect, SetCardSlotEnability } from "./hmcard.js";
 import {
@@ -1056,7 +1055,8 @@ export function OnClickSwapArms() {
  */
 export function OnChangeCard(cardId) {
 
-	SaveSlotStateCardAll();
+	// シャドウ装備のカード欄は画面外のステートフルデータへ保持する（本体装備は正本が持つ）
+	SaveSlotStateShadowCardAll();
 
 	StAllCalc();
 
@@ -1079,7 +1079,6 @@ export function OnChangeCard(cardId) {
  * 衣装変更イベントハンドラ.
  */
 export function OnChangeCostume(costumeId) {
-	SaveSlotStateCostumeAll();
 	StAllCalc();
 	CItemInfoManager.OnChangeEquip(CONST_DATA_KIND_COSTUME, costumeId);
  }
@@ -1633,24 +1632,8 @@ export function __ClearEquip(eqpRgnId, objidPrifix, itemId) {
 	// 装備選択セレクトを更新
 	HtmlSetObjectValueById(objidPrifix, itemId);
 
-	// スロット欄の更新
-	if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
-
-		// 選択セレクトボックスの再構築（選択状態は正本から反映される）
-		RebuildCardSelect(eqpRgnId, itemId);
-
-		// 使用可否の設定
-		SetCardSlotEnability(eqpRgnId);
-	}
-	else {
-
-		// 選択セレクトボックスの再構築
-		RebuildRndOptSelect(eqpRgnId, itemId);
-		LoadSlotStateRndEnch(eqpRgnId);
-
-		// 使用可否の設定
-		SetRndOptEnablity(eqpRgnId);
-	}
+	// スロット欄の更新（選択状態は正本から反映される）
+	RebuildSlotDisplay(eqpRgnId, itemId);
 
 	// ステートフルデータを更新
 	UpdateStatefullDataOnChangeEquip(eqpRgnId);

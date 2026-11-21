@@ -466,24 +466,24 @@ describe('savedata-collect.js', () => {
         beforeEach(() => ResetEquipSlotState());
         afterEach(() => ResetEquipSlotState());
 
-        it('カード欄が画面にあるときは、その選択値を読む', () => {
-            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 1111);
-            const sel = document.createElement('select');
-            sel.id = 'OBJID_ARMS_RIGHT_CARD_1';
-            sel.appendChild(Object.assign(document.createElement('option'), { value: '4302' }));
-            document.body.appendChild(sel);
-            sel.value = '4302';
-
-            const region = extractSaveModelFromState().equip.itemRegions.find((r: any) => r.eqpRgnId === MIG_EQUIP_REGION_ID_ARMS_RIGHT)!;
-            expect(region.cardIds[0]).toBe(4302);
-        });
-
-        it('カード欄が画面に無いとき（ランダムオプション表示中）は、正本の値を読む', () => {
+        it('カード・エンチャントは正本の値を読む（表示モードに依らない）', () => {
             SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
             SetSlotCardId(EQUIP_REGION_ID_ARMS, 2, 2518);
 
             const region = extractSaveModelFromState().equip.itemRegions.find((r: any) => r.eqpRgnId === MIG_EQUIP_REGION_ID_ARMS_RIGHT)!;
             expect(region.cardIds).toEqual([4302, 0, 2518, 0]);
+        });
+
+        it('画面にカード欄があっても、画面の値ではなく正本の値を読む', () => {
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
+            const sel = document.createElement('select');
+            sel.id = 'OBJID_ARMS_RIGHT_CARD_1';
+            sel.appendChild(Object.assign(document.createElement('option'), { value: '1111' }));
+            document.body.appendChild(sel);
+            sel.value = '1111';
+
+            const region = extractSaveModelFromState().equip.itemRegions.find((r: any) => r.eqpRgnId === MIG_EQUIP_REGION_ID_ARMS_RIGHT)!;
+            expect(region.cardIds[0]).toBe(4302);
         });
     });
 

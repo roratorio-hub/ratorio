@@ -71,7 +71,6 @@ import { CItemInfoManager } from "../equip/CItemInfoManager.js";
 import { SetActiveIndexMobConfInput, SetMobConfInput } from "../monster/CMobConfInput.js";
 import { CTimeItemAreaComponentManager } from "../equip/CTimeItemAreaComponentManager.js";
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from "../equip/equip.js";
-import { RebuildCardSelect, SetCardSlotEnability } from "../equip/hmcard.js";
 import { CollectCardSlotChoices, NormalizeCardSelection } from "../equip/card-slot-choices.js";
 import { GetEquipRegionIdByObjIdPrefix, SetSlotCardId, SetSlotCategoryId } from "../equip/equip-slot-state.js";
 import { ItemObjNew } from "../equip/item.dat.js";
@@ -82,7 +81,7 @@ import { RefreshMobConfPlayerControlCSS, RefreshMobConfPlayerSelectAreaHeader, n
 import { SetEquipRndOptTable } from "../equip/rndopttype.h.js";
 import { serializeSaveDataUnitsToJSON } from "./CSaveDataUnitJsonCodec.js";
 import { buildSaveDataUnitsFromState } from "./savedata-collect.js";
-import { RunWithCardSlotMode, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
+import { RebuildSlotDisplay, RefreshRndOptEnablity, RefreshSlotDisplay, SLOT_INDEX_CARD_MIN } from "../equip/slotpager.js";
 import { HtmlGetObjectValueByIdAsInteger, HtmlSetObjectCheckedById, HtmlSetObjectValueById, HtmlSelectObjectValueAsInteger, SetStatefullData, floorBigInt32, floorBigInt40 } from "../runtime/util.js";
 import { Click_A1 } from "../ui/BuffJobSpecificSelf.js";
 import { Click_A4 } from "../ui/BuffGuildAndGospel.js";
@@ -592,15 +591,19 @@ export class CSaveDataManager {
 
 	/**
 	 * 保持しているデータを画面部品に適用する.
-	 * カード欄・ランダムオプション欄はどちらか一方しか画面に存在しないため、
-	 * ランダムオプション表示中でもカード表示にして適用し、終了後に表示を戻す。
+	 * カード・ランダムオプションは正本へ書き込み、表示中の欄にだけ反映する（表示モードは問わない）。
 	 */
 	applyDataToControls () {
-		return RunWithCardSlotMode(() => this.#applyDataToControlsBody());
+		const result = this.#applyDataToControlsBody();
+
+		// ランダムオプション表示中は、全部位の欄の使用可否を最終状態に合わせる
+		RefreshRndOptEnablity();
+
+		return result;
 	}
 
 	/**
-	 * 保持しているデータを画面部品に適用する（カード表示中に呼ぶこと）.
+	 * 保持しているデータを画面部品に適用する.
 	 */
 	#applyDataToControlsBody () {
 
@@ -1163,8 +1166,7 @@ export class CSaveDataManager {
 			if (eqpRgnID === undefined) {
 				continue;
 			}
-			RebuildCardSelect(eqpRgnID, itemID);
-			SetCardSlotEnability(eqpRgnID);
+			RebuildSlotDisplay(eqpRgnID, itemID);
 
 			// カードデータの読み込み
 			const cardCategoryIDArray = [
@@ -1205,6 +1207,9 @@ export class CSaveDataManager {
 			for (let idxSlot = 0; idxSlot < 5; idxSlot++) {
 				SetEquipRndOptTable(eqpRgnID, idxSlot, rndOptIDArray[idxSlot], rndOptValueArray[idxSlot])
 			}
+
+			// 表示中の欄へ、正本の値を反映する
+			RefreshSlotDisplay(eqpRgnID);
 		}
 	}
 

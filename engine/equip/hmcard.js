@@ -1,32 +1,9 @@
 // === AUTO-GENERATED IMPORTS ===
-import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
+import { n_A_Equip } from "../runtime/roro-state.js";
 
 import { g_attackMethodBridge } from "../battle/CAttackMethodDataBridge.js";
 
 import { CARD_ID_ARCHER_SKELETON, CARD_ID_GIGANTES, CARD_ID_MAGICAL_MONSTER_ELM_ALL_10UP, CARD_ID_MAGICAL_RACE_ALL_10UP, CARD_ID_MAGICAL_SIZE_ALL_8UP, CARD_ID_MAX, CARD_ID_NONE, CARD_ID_OSEN_SARETA_SAMAYOU_MONO, CARD_ID_PHYSICAL_MONSTER_ELM_ALL_20UP, CARD_ID_PHYSICAL_RACE_ALL_20UP, CARD_ID_PHYSICAL_SIZE_ALL_15UP, CARD_ID_POWERFUL_A_SKELETON, CARD_ID_SHINENNO_KISHI } from "./card.dat.js";
-import {
-         CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2,
-         CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
-         CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4,
-         CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2,
-         CARD_REGION_ID_ARMS_RIGHT_3, CARD_REGION_ID_ARMS_RIGHT_4, CARD_REGION_ID_BODY,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_2,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_3, CARD_REGION_ID_ENCHANT_ACCESSORY_2_1,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_2_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_3,
-         CARD_REGION_ID_ENCHANT_BODY_1, CARD_REGION_ID_ENCHANT_BODY_2,
-         CARD_REGION_ID_ENCHANT_BODY_3, CARD_REGION_ID_ENCHANT_HEAD_MID_1,
-         CARD_REGION_ID_ENCHANT_HEAD_MID_2, CARD_REGION_ID_ENCHANT_HEAD_MID_3,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_1, CARD_REGION_ID_ENCHANT_HEAD_TOP_2,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_3, CARD_REGION_ID_ENCHANT_HEAD_UNDER_1,
-         CARD_REGION_ID_ENCHANT_HEAD_UNDER_2, CARD_REGION_ID_ENCHANT_HEAD_UNDER_3,
-         CARD_REGION_ID_ENCHANT_SHIELD_1, CARD_REGION_ID_ENCHANT_SHIELD_2,
-         CARD_REGION_ID_ENCHANT_SHIELD_3, CARD_REGION_ID_ENCHANT_SHOES_1,
-         CARD_REGION_ID_ENCHANT_SHOES_2, CARD_REGION_ID_ENCHANT_SHOES_3,
-         CARD_REGION_ID_ENCHANT_SHOULDER_1, CARD_REGION_ID_ENCHANT_SHOULDER_2,
-         CARD_REGION_ID_ENCHANT_SHOULDER_3, CARD_REGION_ID_HEAD_MID,
-         CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_SHIELD, CARD_REGION_ID_SHOES,
-         CARD_REGION_ID_SHOULDER
-} from "../runtime/common.js";
 
 
 import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById } from "../runtime/util.js";
@@ -40,7 +17,7 @@ import { GetFlagAppendedCardName } from "./equip-name.js";
 
 import { setSelectValueSynced } from "./select-sync.js";
 // 選択肢の算出（DOM に触れない）
-import { GetEquipRegionIdByObjIdPrefix, GetSlotCardId, GetSlotCategoryId, SetSlotCardId, SetSlotCategoryId } from "./equip-slot-state.js";
+import { ClearSlotCards, GetEquipRegionObjIdPrefix, GetSlotCardId, GetSlotCategoryId, SetSlotCardId, SetSlotCategoryId } from "./equip-slot-state.js";
 import { CollectCardSlotChoices, GetDisplayedSelection, NormalizeCardSelection, SLOT_CHOICE_ENCHANT, SLOT_CHOICE_CARD } from "./card-slot-choices.js";
 // 外部モジュールが hmcard.js 経由で参照しているため再公開する
 export { RebuildCardSelectSubCollectEnchListData } from "./card-slot-choices.js";
@@ -397,6 +374,7 @@ export function ClearCardSlotAll() {
 /************************************************************************************************
  *
  * カード選択状態をクリアする.
+ * 正本をクリアし、カード欄が表示されていれば、その選択も「なし」にする.
  *
  *-----------------------------------------------------------------------------------------------
  * @param eqpRgnId 対象となる装備領域ＩＤ
@@ -405,132 +383,15 @@ export function ClearCardSlotAll() {
  ************************************************************************************************/
 export function ClearCardSlot(eqpRgnId) {
 
-	var objidPrifix = "";
-	var idxArrayToClear = new Array();
-
-	// サブ関数をコール
-	switch (eqpRgnId) {
-	case EQUIP_REGION_ID_ARMS:
-		objidPrifix = "OBJID_ARMS_RIGHT";
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_1);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_2);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_3);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_4);
-		break;
-
-	case EQUIP_REGION_ID_ARMS_LEFT:
-		objidPrifix = "OBJID_ARMS_LEFT";
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_1);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_2);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_3);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_4);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_TOP:
-		objidPrifix = "OBJID_HEAD_TOP";
-		idxArrayToClear.push(CARD_REGION_ID_HEAD_TOP);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_3);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_MID:
-		objidPrifix = "OBJID_HEAD_MID";
-		idxArrayToClear.push(CARD_REGION_ID_HEAD_MID);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_3);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_UNDER:
-		objidPrifix = "OBJID_HEAD_UNDER";
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_3);
-		break;
-
-	case EQUIP_REGION_ID_SHIELD:
-		objidPrifix = "OBJID_SHIELD";
-		idxArrayToClear.push(CARD_REGION_ID_SHIELD);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_3);
-		break;
-
-	case EQUIP_REGION_ID_BODY:
-		objidPrifix = "OBJID_BODY";
-		idxArrayToClear.push(CARD_REGION_ID_BODY);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_3);
-		break;
-
-	case EQUIP_REGION_ID_SHOULDER:
-		objidPrifix = "OBJID_SHOULDER";
-		idxArrayToClear.push(CARD_REGION_ID_SHOULDER);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_3);
-		break;
-
-	case EQUIP_REGION_ID_SHOES:
-		objidPrifix = "OBJID_SHOES";
-		idxArrayToClear.push(CARD_REGION_ID_SHOES);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_3);
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_1:
-		objidPrifix = "OBJID_ACCESSORY_1";
-		idxArrayToClear.push(CARD_REGION_ID_ACCESSORY_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_3);
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_2:
-		objidPrifix = "OBJID_ACCESSORY_2";
-		idxArrayToClear.push(CARD_REGION_ID_ACCESSORY_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_3);
-		break;
-
-	default:
+	const objidPrifix = GetEquipRegionObjIdPrefix(eqpRgnId);
+	if (objidPrifix === undefined) {
 		return;
 	}
 
-	__ClearCardSlot(objidPrifix, idxArrayToClear);
-}
+	ClearSlotCards(eqpRgnId);
 
-/************************************************************************************************
- *
- * カード選択状態をクリアする（サブ関数）.
- *
- *-----------------------------------------------------------------------------------------------
- * @param eqpRgnId 対象となる装備領域ＩＤ
- * @param idxArrayToClear 設定をクリアする配列の添字
- *-----------------------------------------------------------------------------------------------
- * @return なし
- ************************************************************************************************/
-function __ClearCardSlot(objidPrifix, idxArrayToClear) {
-
-	var idx = 0;
-	var strObjId = "";
-	var rgnIdx = 0;
-
-	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrifix);
-
-	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
-		strObjId = objidPrifix + "_CARD_" + idx;
-		HtmlSetObjectValueById(strObjId, CARD_ID_NONE);
-		SetSlotCardId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN, CARD_ID_NONE);
-	}
-
-	for (idx = 0; idx < idxArrayToClear.length; idx++) {
-		rgnIdx = idxArrayToClear[idx];
-		n_A_card[rgnIdx] = CARD_ID_NONE;
+	for (let idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
+		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, CARD_ID_NONE);
 	}
 }
 

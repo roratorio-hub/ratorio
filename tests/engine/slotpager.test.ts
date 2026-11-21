@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as hmcard from '@engine/equip/hmcard.js';
-import { __RebuildSlotAsCardShort, LoadSlotStateCardAll, SaveSlotStateCardAll } from '@engine/equip/slotpager.js';
+import {
+    __RebuildSlotAsCardShort, LoadSlotStateCardAll, RefreshSlotDisplay, SaveSlotStateShadowCardAll, SyncSlotStateFromCardSelect,
+} from '@engine/equip/slotpager.js';
 import { GetStatefullData, SetStatefullData } from '@engine/runtime/util.js';
 // dewindow: calc は head-bridge 経由になった（旧 bare global）。
 import { __registerHeadFunctions } from '@engine/bridge/battlecalc-bridge.js';
@@ -71,7 +73,7 @@ describe('slotpager.js', () => {
         });
     });
 
-    describe('SaveSlotStateCardAll / LoadSlotStateCardAll: 画面のカード欄と正本の受け渡し', () => {
+    describe('カード欄と正本の受け渡し', () => {
         beforeEach(() => {
             ResetEquipSlotState();
         });
@@ -99,59 +101,71 @@ describe('slotpager.js', () => {
             return sel;
         }
 
-        it('カード欄が画面にあるときは、その選択値で正本を更新する', () => {
+        /** happy-dom の select は数値の代入で値が空になるため、値の受け渡しだけを見る input で代用する */
+        function createValueHolder(id: string) {
+            const input = document.createElement('input');
+            input.id = id;
+            document.body.appendChild(input);
+            return input;
+        }
+
+        it('SyncSlotStateFromCardSelect: 選択値を正本へ反映する（種別の無い選択肢は種別 0）', () => {
             const sel = createCardSelect('OBJID_ARMS_RIGHT_CARD_1', ['0', '4302']);
             sel.value = '4302';
 
-            SaveSlotStateCardAll();
+            SyncSlotStateFromCardSelect(EQUIP_REGION_ID_ARMS, 0, sel);
 
             expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 0)).toBe(4302);
-        });
-
-        it('選択中の optgroup のエンチャント種別IDも正本へ保存する（種別の無い選択肢は 0）', () => {
-            const enchant = createCardSelect('OBJID_ARMS_RIGHT_CARD_2', ['0'], [{ listId: 77, values: ['1297'] }]);
-            enchant.value = '1297';
-            const card = createCardSelect('OBJID_ARMS_RIGHT_CARD_1', ['0', '4302']);
-            card.value = '4302';
-
-            SaveSlotStateCardAll();
-
-            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 1)).toBe(1297);
-            expect(GetSlotCategoryId(EQUIP_REGION_ID_ARMS, 1)).toBe(77);
             expect(GetSlotCategoryId(EQUIP_REGION_ID_ARMS, 0)).toBe(0);
         });
 
-        it('カード欄が画面に無いとき（ランダムオプション表示中）は、保持しているカード値を0で上書きしない', () => {
-            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
+        it('SyncSlotStateFromCardSelect: 選択中の optgroup のエンチャント種別IDも反映する', () => {
+            const sel = createCardSelect('OBJID_ARMS_RIGHT_CARD_2', ['0'], [{ listId: 77, values: ['1297'] }]);
+            sel.value = '1297';
+
+            SyncSlotStateFromCardSelect(EQUIP_REGION_ID_ARMS, 1, sel);
+
+            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 1)).toBe(1297);
+            expect(GetSlotCategoryId(EQUIP_REGION_ID_ARMS, 1)).toBe(77);
+        });
+
+        it('SyncSlotStateFromCardSelect: 変更したスロット以外の正本には触れない', () => {
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 2, 2518);
             SetSlotCardId(EQUIP_REGION_ID_HEAD_TOP, 1, 1247);
+            const sel = createCardSelect('OBJID_ARMS_RIGHT_CARD_1', ['0', '4302']);
+            sel.value = '4302';
 
-            SaveSlotStateCardAll();
+            SyncSlotStateFromCardSelect(EQUIP_REGION_ID_ARMS, 0, sel);
 
-            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 0)).toBe(4302);
+            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 2)).toBe(2518);
             expect(GetSlotCardId(EQUIP_REGION_ID_HEAD_TOP, 1)).toBe(1247);
         });
 
-        it('シャドウ装備のカード欄は、正本ではなく画面外のステートフルデータへ保存する', () => {
+        it('SaveSlotStateShadowCardAll: シャドウ装備のカード欄は、画面外のステートフルデータへ保存する', () => {
             const span = document.createElement('span');
             span.id = 'DATA_OBJID_SHADOW_ARMS_RIGHT_CARD_2';
             document.body.appendChild(span);
             const sel = createCardSelect('OBJID_SHADOW_ARMS_RIGHT_CARD_2', ['0', '840']);
             sel.value = '840';
 
-            SaveSlotStateCardAll();
+            SaveSlotStateShadowCardAll();
 
             expect(Number(GetStatefullData('DATA_OBJID_SHADOW_ARMS_RIGHT_CARD_2', 0))).toBe(840);
             expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 1)).toBe(0);
         });
 
+        it('SaveSlotStateShadowCardAll: 画面に無いシャドウ装備のカード欄は、保持している値を上書きしない', () => {
+            const span = document.createElement('span');
+            span.id = 'DATA_OBJID_SHADOW_BODY_CARD_2';
+            document.body.appendChild(span);
+            SetStatefullData('DATA_OBJID_SHADOW_BODY_CARD_2', 1234);
+
+            SaveSlotStateShadowCardAll();
+
+            expect(Number(GetStatefullData('DATA_OBJID_SHADOW_BODY_CARD_2', 0))).toBe(1234);
+        });
+
         it('LoadSlotStateCardAll: 正本の値をカード欄へ復元する', () => {
-            // happy-dom の select は数値の代入で値が空になるため、値の受け渡しだけを見る input で代用する
-            const createValueHolder = (id: string) => {
-                const input = document.createElement('input');
-                input.id = id;
-                document.body.appendChild(input);
-                return input;
-            };
             const sel1 = createValueHolder('OBJID_ARMS_RIGHT_CARD_1');
             const sel3 = createValueHolder('OBJID_HEAD_TOP_CARD_3');
             SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
@@ -161,6 +175,31 @@ describe('slotpager.js', () => {
 
             expect(sel1.value).toBe('4302');
             expect(sel3.value).toBe('1303');
+        });
+
+        it('RefreshSlotDisplay: カード表示中は、カード欄へ正本の値を反映する', () => {
+            const modeFlag = document.createElement('span');
+            modeFlag.id = 'DATA_OBJID_SLOT_MODE_BUTTON';
+            document.body.appendChild(modeFlag);
+            SetStatefullData('DATA_OBJID_SLOT_MODE_BUTTON', 0);
+            const sel1 = createValueHolder('OBJID_ARMS_RIGHT_CARD_1');
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
+
+            RefreshSlotDisplay(EQUIP_REGION_ID_ARMS);
+
+            expect(sel1.value).toBe('4302');
+        });
+
+        it('RefreshSlotDisplay: ランダムオプション表示中は、画面に無いカード欄に触れず正本も変えない', () => {
+            const modeFlag = document.createElement('span');
+            modeFlag.id = 'DATA_OBJID_SLOT_MODE_BUTTON';
+            document.body.appendChild(modeFlag);
+            SetStatefullData('DATA_OBJID_SLOT_MODE_BUTTON', 1);
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
+
+            RefreshSlotDisplay(EQUIP_REGION_ID_ARMS);
+
+            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 0)).toBe(4302);
         });
     });
 });

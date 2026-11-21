@@ -25,10 +25,10 @@ import {
 
 
 // gen_imports.py は CShadowEquipController→slotpager→hmrndopt→CShadowEquipController の
-// 循環を検出して slotpager の import をスキップするが、SaveSlotStateCardAll は
+// 循環を検出して slotpager の import をスキップするが、SaveSlotStateShadowCardAll は
 // onChangeShadow（runtime）でのみ参照され module 評価時には未使用のため循環は安全。
 // 自動生成ブロック外に手動で追加し、--force 再生成でも残るようにする。
-import { SaveSlotStateCardAll } from "./slotpager.js";
+import { SaveSlotStateShadowCardAll } from "./slotpager.js";
 import { CARD_DATA_INDEX_NAME } from "../const/EnumCardDataIndex.js";
 import { CONST_DATA_KIND_ENCHANT_LIST } from "../const/EnumConstDataKind.js";
 import { ITEM_DATA_INDEX_ID, ITEM_DATA_INDEX_KANA, ITEM_DATA_INDEX_KIND, ITEM_DATA_INDEX_NAME, ITEM_DATA_INDEX_WPNLV } from "../const/EnumItemDataIndex.js";
@@ -349,7 +349,7 @@ export class CShadowEquipController {
 		if (objTarget.classList.contains("item-select")) {
 			const objEquipBlock = objTarget.closest(".equip-block");
 			this.#changeShadowItem(objEquipBlock, selectedValue);
-			SaveSlotStateCardAll();
+			SaveSlotStateShadowCardAll();
 		}
 		// 精錬値変更イベントの場合
 		else if (objTarget.classList.contains("item-refined")) {

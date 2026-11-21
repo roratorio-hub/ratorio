@@ -82,7 +82,7 @@ import {
     EQUIP_REGION_ID_SHADOW_ARMS_RIGHT, EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT,
 } from "../const/EnumEquipRegionId.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue } from "../equip/rndopttype.h.js";
-import { GetEquipRegionIdByObjIdPrefix, GetSlotCardId } from "../equip/equip-slot-state.js";
+import { GetEquipRegionIdByObjIdPrefix, GetSlotCardIds } from "../equip/equip-slot-state.js";
 import {
     AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID, OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB,
 } from "../skill/calcautospell.js";
@@ -254,23 +254,6 @@ function fillConfigValuesFromMigArray(unit, UnitClass, prefixCount, migArray) {
 }
 
 /**
- * 本体装備のカード欄の値を読む.
- * カード欄はカード表示中しか画面に存在しないため、無い場合（ランダムオプション表示中）は
- * 正本（equip-slot-state.js）の値を使う。
- * @param {number} eqpRgnId 装備領域ID（本体装備）
- * @param {string} cardPrefix カード欄のオブジェクトIDプリフィックス（例: "OBJID_ARMS_RIGHT"）
- * @param {number} slot スロット番号（1〜4）
- * @returns {number} カードID
- */
-function readItemCardId(eqpRgnId, cardPrefix, slot) {
-    const objId = `${cardPrefix}_CARD_${slot}`;
-    if (HtmlGetElementById(objId) == null) {
-        return GetSlotCardId(eqpRgnId, slot - 1);
-    }
-    return HtmlGetObjectValueByIdAsInteger(objId, 0);
-}
-
-/**
  * DOM/グローバル/コンポーネントから、セーブに必要な値をすべて読み取る（副作用ゼロ）.
  * 戻り値は `save-model.js` の形（プレーンなスナップショット）。配列はすべてコピーする
  * （ライブ配列への参照を持たせない——`buildSaveDataUnits()` 側で誤って共有・変異させないため）。
@@ -381,7 +364,7 @@ export function extractSaveModelFromState() {
             rndOpt: readRndOpt(eqpRgnId),
             // エンチャント種別IDは従来どおりセーブしない（null）
             cardCategoryIds: null,
-            cardIds: [1, 2, 3, 4].map((slot) => readItemCardId(slotEqpRgnId, cardPrefix, slot)),
+            cardIds: GetSlotCardIds(slotEqpRgnId),
         };
     });
 
