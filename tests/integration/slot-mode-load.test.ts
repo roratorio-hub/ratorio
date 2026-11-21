@@ -248,6 +248,7 @@ const SLOT_OPS: SlotOp[] = [
     { name: '本体装備（防具）の変更', fixtures: [4], run: (p) => changeSelectToAnother(p, 'OBJID_BODY') },
     { name: '本体装備（右手武器）の変更', fixtures: [3], run: (p) => changeSelectToAnother(p, 'OBJID_ARMS_RIGHT') },
     { name: '左右武器入れ替え', fixtures: [3], run: (p) => clickIfExists(p, '#OBJID_SPAN_SWAP_ARMS input') },
+    { name: '職業変更（装備・カードの初期化）', fixtures: [0], run: (p) => changeSelectToAnother(p, 'OBJID_SELECT_JOB') },
     { name: 'アクセサリコピー', fixtures: [4], run: (p) => clickIfExists(p, '#OBJID_ACCESSORY_1_COPY') },
     {
         name: 'スパノビの魂トグル',
