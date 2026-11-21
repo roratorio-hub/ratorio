@@ -72,6 +72,7 @@ import { SetActiveIndexMobConfInput, SetMobConfInput } from "../monster/CMobConf
 import { CTimeItemAreaComponentManager } from "../equip/CTimeItemAreaComponentManager.js";
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from "../equip/equip.js";
 import { RebuildCardSelect, SetCardSlotEnability } from "../equip/hmcard.js";
+import { CollectCardSlotChoices, NormalizeCardSelection } from "../equip/card-slot-choices.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
@@ -1017,59 +1018,25 @@ export class CSaveDataManager {
 		 * @param {*} slotNoF スロット番号
 		 * @param {*} enchListIdF エンチャントカテゴリID
 		 * @param {*} cardIdF カードID
+		 * @param {*} slotChoiceF このスロットの選択肢（CollectCardSlotChoices の要素）
 		 */
-		const funcLoadAndSetCard = (objIdPrifixF, slotNoF, enchListIdF, cardIdF) => {
-			// getProp() は BigInt を返す（CSaveDataUnitBase.setProp が toSafeBigInt() を通すため）。
-			// 呼び出し元は変換前の生値を渡してくるため、undefined 補正と合わせてここで
-			// Number へ正規化する（下の `cardIdF !== 0` の strict 比較が BigInt では
-			// 常に不一致になり、意図した分岐が機能していなかったバグの修正）。
-			// エンチャントカテゴリIDの補正
+		const funcLoadAndSetCard = (objIdPrifixF, slotNoF, enchListIdF, cardIdF, slotChoiceF) => {
+			// getProp() は BigInt を返すため、strict 比較ができるよう Number へ正規化する
 			enchListIdF = (enchListIdF === undefined) ? 0 : Number(enchListIdF);
-			// エンチャントIDの補正
 			cardIdF = (cardIdF === undefined) ? 0 : Number(cardIdF);
 			// 従来の設定方法による設定
 			HtmlSetObjectValueById(objIdPrifixF + "_CARD_" + slotNoF, cardIdF);
-			// カードIDが設定されている場合は、選択肢として実在するかを必ず検証する。
-			// 旧実装は enchListIdF（カテゴリ）が非0のときしか検証しておらず、
-			// 「カテゴリ0・カードID非0」という壊れたペア（#1562: エンチャント定義の
-			// 候補入れ替わりで一部スロットが選択肢から消えたセーブデータ）では検証を
-			// 素通りし、実在しないカードIDがそのままステートフルデータへ書き戻されて
-			// いた。この不整合ペアが「職業変更時に装備等を維持する」の内部往復
-			// （SaveSystem→loadFromURL）に再注入されると、旧形式セーブデータの復元処理
-			// が壊れて全装備がリセットされる実害があった（調査ログ参照）。
-			// カテゴリの有無に関わらず必ず検証し、見つからなければカードIDごと
-			// 「無し(0)」に正規化する。
+			// カードIDが設定されている場合は、選択肢として実在する組み合わせへ正規化する
+			// （カテゴリの有無に関わらず検証し、実在しなければカードIDごと「無し(0)」にする）
 			if (cardIdF !== 0) {
-				// 対象のセレクトボックスを取得
-				const objId = objIdPrifixF + "_CARD_" + slotNoF;
-				const objSelectF = document.getElementById(objId);
+				const objSelectF = document.getElementById(objIdPrifixF + "_CARD_" + slotNoF);
 				if (objSelectF) {
-					// 1. まずは指定された optgroup 内に該当の cardId があるか確認
-					//    （カテゴリ不明=0 の場合はここではヒットさせない）
-					let targetOption = (enchListIdF !== 0)
-						? objSelectF.querySelector(`optgroup[data-ench-list-id="${enchListIdF}"] > option[value="${cardIdF}"]`)
-						: null;
-					// 2. 指定カテゴリに見つからない場合、セレクトボックス全体から検索
-					if (!targetOption) {
-						targetOption = objSelectF.querySelector(`option[value="${cardIdF}"]`);
-					}
-					// 3. 反映処理
-					if (targetOption) {
-						// 見つかった場合はその option を選択状態にする
-						objSelectF.value = String(cardIdF);
-						// 親の optgroup から最新の ID を取得して変数を更新
-						const parentGroup = targetOption.closest('optgroup');
-						// 変数 enchListIdF を最新の状態に更新. これにより、次にセーブ処理が走った際に最新のカテゴリIDが保存される
-						enchListIdF = (parentGroup && parentGroup.dataset.enchListId) ? Number(parentGroup.dataset.enchListId) : 0;
-					} else {
-						// どこにも見つからない場合は「無し(0)」にフォールバック（カードIDも合わせて正規化する）
-						objSelectF.value = "0";
-						enchListIdF = 0;
-						cardIdF = 0;
-					}
-					// 4. 変更を通知
-					const event = new Event('change', { bubbles: true });
-					objSelectF.dispatchEvent(event);
+					const normalized = NormalizeCardSelection(slotChoiceF, cardIdF, enchListIdF);
+					cardIdF = normalized.cardId;
+					enchListIdF = normalized.enchListId;
+					objSelectF.value = String(cardIdF);
+					// 変更を通知
+					objSelectF.dispatchEvent(new Event('change', { bubbles: true }));
 				}
 			} else if (enchListIdF !== 0) {
 				// カードIDが「無し」なのにカテゴリだけ残っている不整合も正規化する
@@ -1217,8 +1184,9 @@ export class CSaveDataManager {
 				saveDataUnitItemDef.getProp(CSaveDataConst.propNameCardID3),
 				saveDataUnitItemDef.getProp(CSaveDataConst.propNameCardID4),
 			];
+			const slotChoices = CollectCardSlotChoices(eqpRgnID, itemID);
 			for (let idxSlot = 0; idxSlot < 4; idxSlot++) {
-				funcLoadAndSetCard(objID, (1 + idxSlot), cardCategoryIDArray[idxSlot], cardIDArray[idxSlot]);
+				funcLoadAndSetCard(objID, (1 + idxSlot), cardCategoryIDArray[idxSlot], cardIDArray[idxSlot], slotChoices[idxSlot]);
 			}
 
 			// ランダムオプションデータの読み込み
