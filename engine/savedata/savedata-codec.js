@@ -6,7 +6,8 @@ import {
          AUTO_SPELL_PROB_ARRAY, AUTO_SPELL_SETTING_COUNT, OBJID_OFFSET_AS_SKILL_ID,
          OBJID_OFFSET_AS_SKILL_LV, OBJID_OFFSET_AS_SKILL_PROB, OnChangeSettingAutoSpell
 } from "../skill/calcautospell.js";
-import { g_charaData, g_constDataManager, g_skillManager, g_timeItemConf } from "../runtime/global.js";
+import { g_constDataManager, g_skillManager, g_timeItemConf } from "../runtime/global.js";
+import { GetEquipRegionIdByObjIdPrefix, SetSlotCardId, SetSlotCategoryId } from "../equip/equip-slot-state.js";
 import { calc } from "../battle/battlecalc.js";
 import { CalcStatusPoint } from "../chara/hmjob.js";
 import { CAttackMethodConf } from "../battle/CAttackMethodConf.js";
@@ -3287,8 +3288,6 @@ export function DecodeUrl(loadDataUrl){
 		var objOptgroup = null;
 		var objOption = null;
 
-		var enchListIdArrayF = null;
-		var rgnTextF = null;
 
 		// 従来の設定方法による設定
 		HtmlSetObjectValueById(objIdPrifixF + "_CARD_" + soldNoF, cardIdF);
@@ -3318,19 +3317,10 @@ export function DecodeUrl(loadDataUrl){
 
 		} while (false);
 
-		// エンチャントリストIDデータ設定
-		rgnTextF = objIdPrifixF.replace(/^OBJECT_/, "");
-
-		enchListIdArrayF = g_charaData.cardCategoryMap.get(rgnTextF);
-		if (!enchListIdArrayF) {
-			enchListIdArrayF = [0, 0, 0, 0];
-			g_charaData.cardCategoryMap.set(rgnTextF, enchListIdArrayF);
-		}
-
-		enchListIdArrayF[soldNoF - SLOT_INDEX_CARD_MIN] = enchListIdF;
-
-		// ステートフルデータ設定
-		SetStatefullData("DATA_" + objIdPrifixF + "_CARD_" + soldNoF, cardIdF);
+		// 正本（本体装備のスロット状態）を更新
+		const eqpRgnIdF = GetEquipRegionIdByObjIdPrefix(objIdPrifixF);
+		SetSlotCategoryId(eqpRgnIdF, soldNoF - SLOT_INDEX_CARD_MIN, Number(enchListIdF));
+		SetSlotCardId(eqpRgnIdF, soldNoF - SLOT_INDEX_CARD_MIN, Number(cardIdF));
 	};
 
 

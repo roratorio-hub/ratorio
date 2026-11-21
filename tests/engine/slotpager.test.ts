@@ -1,10 +1,13 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import * as hmcard from '@engine/equip/hmcard.js';
-import { __RebuildSlotAsCardShort, SaveSlotStateCardAll } from '@engine/equip/slotpager.js';
+import { __RebuildSlotAsCardShort, LoadSlotStateCardAll, SaveSlotStateCardAll } from '@engine/equip/slotpager.js';
 import { GetStatefullData, SetStatefullData } from '@engine/runtime/util.js';
 // dewindow: calc は head-bridge 経由になった（旧 bare global）。
 import { __registerHeadFunctions } from '@engine/bridge/battlecalc-bridge.js';
-import { EQUIP_REGION_ID_ARMS } from '@engine/const/EnumEquipRegionId.js';
+import { EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_HEAD_TOP } from '@engine/const/EnumEquipRegionId.js';
+import {
+    GetSlotCardId, GetSlotCategoryId, ResetEquipSlotState, SetSlotCardId,
+} from '@engine/equip/equip-slot-state.js';
 // リファクタリング計画 Phase 9 D3: 再計算ポリシーflagの読み出し元は
 // CSaveController.getSettingProp（engine-registry 経由）。
 import { register as registryRegister } from '@engine/runtime/engine-registry.js';
@@ -68,41 +71,96 @@ describe('slotpager.js', () => {
         });
     });
 
-    describe('SaveSlotStateCardAll: 画面のカード欄をステートフルデータへ保存する', () => {
+    describe('SaveSlotStateCardAll / LoadSlotStateCardAll: 画面のカード欄と正本の受け渡し', () => {
+        beforeEach(() => {
+            ResetEquipSlotState();
+        });
         afterEach(() => {
             document.body.innerHTML = '';
+            ResetEquipSlotState();
         });
 
-        /** 保持値（ステートフルデータ）の要素を作る */
-        function createStatefullData(id: string, value: number) {
-            const span = document.createElement('span');
-            span.id = id;
-            document.body.appendChild(span);
-            SetStatefullData(id, value);
+        /** カード欄の select を作る（options は value の配列。optgroup を使う場合は groups で指定） */
+        function createCardSelect(id: string, values: string[], groups: Array<{ listId: number; values: string[] }> = []) {
+            const sel = document.createElement('select');
+            sel.id = id;
+            for (const v of values) {
+                sel.appendChild(Object.assign(document.createElement('option'), { value: v }));
+            }
+            for (const group of groups) {
+                const optgroup = document.createElement('optgroup');
+                optgroup.setAttribute('data-ench-list-id', String(group.listId));
+                for (const v of group.values) {
+                    optgroup.appendChild(Object.assign(document.createElement('option'), { value: v }));
+                }
+                sel.appendChild(optgroup);
+            }
+            document.body.appendChild(sel);
+            return sel;
         }
 
-        it('カード欄が画面にあるときは、その選択値でステートフルデータを更新する', () => {
-            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 0);
-            const sel = document.createElement('select');
-            sel.id = 'OBJID_ARMS_RIGHT_CARD_1';
-            sel.appendChild(Object.assign(document.createElement('option'), { value: '0' }));
-            sel.appendChild(Object.assign(document.createElement('option'), { value: '4302' }));
-            document.body.appendChild(sel);
+        it('カード欄が画面にあるときは、その選択値で正本を更新する', () => {
+            const sel = createCardSelect('OBJID_ARMS_RIGHT_CARD_1', ['0', '4302']);
             sel.value = '4302';
 
             SaveSlotStateCardAll();
 
-            expect(Number(GetStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 0))).toBe(4302);
+            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 0)).toBe(4302);
         });
 
-        it('カード欄が画面に無いとき（ランダムオプション表示中）は、保持しているカード値を0で上書きしない', () => {
-            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 4302);
-            createStatefullData('DATA_OBJID_HEAD_TOP_CARD_2', 1247);
+        it('選択中の optgroup のエンチャント種別IDも正本へ保存する（種別の無い選択肢は 0）', () => {
+            const enchant = createCardSelect('OBJID_ARMS_RIGHT_CARD_2', ['0'], [{ listId: 77, values: ['1297'] }]);
+            enchant.value = '1297';
+            const card = createCardSelect('OBJID_ARMS_RIGHT_CARD_1', ['0', '4302']);
+            card.value = '4302';
 
             SaveSlotStateCardAll();
 
-            expect(Number(GetStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 0))).toBe(4302);
-            expect(Number(GetStatefullData('DATA_OBJID_HEAD_TOP_CARD_2', 0))).toBe(1247);
+            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 1)).toBe(1297);
+            expect(GetSlotCategoryId(EQUIP_REGION_ID_ARMS, 1)).toBe(77);
+            expect(GetSlotCategoryId(EQUIP_REGION_ID_ARMS, 0)).toBe(0);
+        });
+
+        it('カード欄が画面に無いとき（ランダムオプション表示中）は、保持しているカード値を0で上書きしない', () => {
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
+            SetSlotCardId(EQUIP_REGION_ID_HEAD_TOP, 1, 1247);
+
+            SaveSlotStateCardAll();
+
+            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 0)).toBe(4302);
+            expect(GetSlotCardId(EQUIP_REGION_ID_HEAD_TOP, 1)).toBe(1247);
+        });
+
+        it('シャドウ装備のカード欄は、正本ではなく画面外のステートフルデータへ保存する', () => {
+            const span = document.createElement('span');
+            span.id = 'DATA_OBJID_SHADOW_ARMS_RIGHT_CARD_2';
+            document.body.appendChild(span);
+            const sel = createCardSelect('OBJID_SHADOW_ARMS_RIGHT_CARD_2', ['0', '840']);
+            sel.value = '840';
+
+            SaveSlotStateCardAll();
+
+            expect(Number(GetStatefullData('DATA_OBJID_SHADOW_ARMS_RIGHT_CARD_2', 0))).toBe(840);
+            expect(GetSlotCardId(EQUIP_REGION_ID_ARMS, 1)).toBe(0);
+        });
+
+        it('LoadSlotStateCardAll: 正本の値をカード欄へ復元する', () => {
+            // happy-dom の select は数値の代入で値が空になるため、値の受け渡しだけを見る input で代用する
+            const createValueHolder = (id: string) => {
+                const input = document.createElement('input');
+                input.id = id;
+                document.body.appendChild(input);
+                return input;
+            };
+            const sel1 = createValueHolder('OBJID_ARMS_RIGHT_CARD_1');
+            const sel3 = createValueHolder('OBJID_HEAD_TOP_CARD_3');
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
+            SetSlotCardId(EQUIP_REGION_ID_HEAD_TOP, 2, 1303);
+
+            LoadSlotStateCardAll();
+
+            expect(sel1.value).toBe('4302');
+            expect(sel3.value).toBe('1303');
         });
     });
 });

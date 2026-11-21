@@ -31,7 +31,7 @@ import {
 import { ItemObjNew } from "./item.dat.js";
 import { GetMaxSlot } from "./item.h.js";
 
-import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from "../runtime/util.js";
+import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById } from "../runtime/util.js";
 
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: slotpager.js との循環 import 回避のため slotpager-const.js から直接参照
@@ -42,6 +42,7 @@ import { GetFlagAppendedCardName } from "./equip-name.js";
 
 import { setSelectValueSynced } from "./select-sync.js";
 // 選択肢の算出（DOM に触れない）
+import { GetEquipRegionIdByObjIdPrefix, SetSlotCardId } from "./equip-slot-state.js";
 import { CollectCardSlotChoices, GetCardRegionId, ResolveCardSelection, SLOT_CHOICE_ENCHANT, SLOT_CHOICE_CARD } from "./card-slot-choices.js";
 // 外部モジュールが hmcard.js 経由で参照しているため再公開する
 export { RebuildCardSelectSubCollectEnchListData } from "./card-slot-choices.js";
@@ -522,10 +523,12 @@ function __ClearCardSlot(objidPrifix, idxArrayToClear) {
 	var strObjId = "";
 	var rgnIdx = 0;
 
+	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrifix);
+
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
 		strObjId = objidPrifix + "_CARD_" + idx;
 		HtmlSetObjectValueById(strObjId, CARD_ID_NONE);
-		SetStatefullData("DATA_" + strObjId, CARD_ID_NONE);
+		SetSlotCardId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN, CARD_ID_NONE);
 	}
 
 	for (idx = 0; idx < idxArrayToClear.length; idx++) {
@@ -905,8 +908,8 @@ export function ApplyCardShort(eqpRgnId, objidPrifix) {
 				// ショートカットデータから、カードを引き当て
 				HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, cardIdToSet);
 
-				// ステートフルデータを更新
-				SetStatefullData("DATA_" + objidPrifix + "_CARD_" + idx, cardIdToSet);
+				// 正本を更新
+				SetSlotCardId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN, Number(cardIdToSet));
 
 				break;
 			}

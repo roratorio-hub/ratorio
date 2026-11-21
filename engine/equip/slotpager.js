@@ -1,6 +1,5 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
-import { g_charaData } from "../runtime/global.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlCreateElementOption, HtmlRemoveFromParent, HtmlGetSelectedOptgroup, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData } from "../runtime/util.js";
 import { ApplyCardShort, CardShortObj, RebuildCardSelect, SetCardSlotEnabilityAll } from "./hmcard.js";
@@ -9,6 +8,10 @@ import { GetObjectIdRndOptKind, GetObjectIdRndOptKindTD, GetObjectIdRndOptValue,
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: equip.js との循環 import 回避
 import { equipBridge } from "../bridge/equip-bridge.js";
+// 本体装備のカード・エンチャント種別・衣装の正本
+import {
+    GetCostumeId, GetEquipRegionIdByObjIdPrefix, GetSlotCardId, SetCostumeId, SetSlotCardId, SetSlotCategoryId,
+} from "./equip-slot-state.js";
 
 // C-6: hmcard.js との循環 import 回避のため slotpager-const.js へ移設
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "./slotpager-const.js";
@@ -262,21 +265,16 @@ export function __SaveSlotStateCard(objidPrefix) {
 	var strObjId = "";
 	var valueOfObject = 0;
 
-	var rgnText = objidPrefix.replace(/^OBJID_/, "");
 	var objOptgroup = null;
 	var enchListId = 0;
 	var enchListIdText = 0;
-	var enchListIdArray = null;
+
+	// 本体装備は正本（equip-slot-state.js）、シャドウ装備は画面外のステートフルデータへ保存する
+	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrefix);
 
 	// 当該プリフィクスを持つすべてのスロットの選択状態を保存
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
 		strObjId = objidPrefix + "_CARD_" + idx;
-
-		enchListIdArray = g_charaData.cardCategoryMap.get(rgnText);
-		if (!enchListIdArray) {
-			enchListIdArray = [0, 0, 0, 0];
-			g_charaData.cardCategoryMap.set(rgnText, enchListIdArray);
-		}
 
 		// カード欄が画面に無い（ランダムオプション表示中）場合は、保持している値を上書きしない
 		if (HtmlGetElementById(strObjId) == null) {
@@ -284,7 +282,13 @@ export function __SaveSlotStateCard(objidPrefix) {
 		}
 
 		valueOfObject = HtmlGetObjectValueByIdAsInteger(strObjId, 0);
-		SetStatefullData("DATA_" + strObjId, valueOfObject);
+
+		if (eqpRgnId === undefined) {
+			SetStatefullData("DATA_" + strObjId, valueOfObject);
+			continue;
+		}
+
+		SetSlotCardId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN, valueOfObject);
 
 		// エンチャントリストIDの取得
 		enchListId = 0;
@@ -298,7 +302,7 @@ export function __SaveSlotStateCard(objidPrefix) {
 			}
 		}
 
-		enchListIdArray[idx - SLOT_INDEX_CARD_MIN] = enchListId;
+		SetSlotCategoryId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN, enchListId);
 	}
 }
 
@@ -733,12 +737,12 @@ export function LoadSlotStateCard(eqpRgnId) {
 export function __LoadSlotStateCard(objidPrifix) {
 
 	var idx = 0;
-	var valueOfObject = 0;
+
+	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrifix);
 
 	// 当該プリフィクスを持つすべてのスロットを復元
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
-		valueOfObject = GetStatefullData("DATA_" + objidPrifix + "_CARD_" + idx, 0);
-		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, valueOfObject);
+		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, GetSlotCardId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN));
 	}
 }
 
@@ -828,13 +832,19 @@ export function __SaveSlotStateCostume(objidPrefix) {
 
 	var idx = 0;
 	var strObjId = "";
-	var valueOfObject = 0;
+
+	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrefix);
 
 	// 当該プリフィクスを持つすべてのスロットの選択状態を保存
 	for (idx = SLOT_INDEX_COSTUME_MIN; idx <= SLOT_INDEX_COSTUME_MAX; idx++) {
 		strObjId = objidPrefix + "_COSTUME";
-		valueOfObject = HtmlGetObjectValueByIdAsInteger(strObjId, 0);
-		SetStatefullData("DATA_" + strObjId, valueOfObject);
+
+		// 衣装欄が画面に無い場合は、保持している値を上書きしない
+		if (HtmlGetElementById(strObjId) == null) {
+			continue;
+		}
+
+		SetCostumeId(eqpRgnId, HtmlGetObjectValueByIdAsInteger(strObjId, 0));
 	}
 }
 
@@ -1140,12 +1150,12 @@ export function LoadSlotStateCostume(eqpRgnId) {
 export function __LoadSlotStateCostume(objidPrifix) {
 
 	var idx = 0;
-	var valueOfObject = 0;
+
+	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrifix);
 
 	// 当該プリフィクスを持つすべてのスロットを復元
 	for (idx = SLOT_INDEX_COSTUME_MIN; idx <= SLOT_INDEX_COSTUME_MAX; idx++) {
-		valueOfObject = GetStatefullData("DATA_" + objidPrifix + "_COSTUME", 0);
-		HtmlSetObjectValueById(objidPrifix + "_COSTUME", valueOfObject);
+		HtmlSetObjectValueById(objidPrifix + "_COSTUME", GetCostumeId(eqpRgnId));
 	}
 }
 

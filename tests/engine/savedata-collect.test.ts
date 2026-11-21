@@ -23,7 +23,8 @@ import '@engine/data/mig.job.dat.js';
 import {
     buildSaveDataUnitsFromState, extractSaveModelFromState,
 } from '@engine/savedata/savedata-collect.js';
-import { SetStatefullData } from '@engine/runtime/util.js';
+import { EQUIP_REGION_ID_ARMS } from '@engine/const/EnumEquipRegionId.js';
+import { ResetEquipSlotState, SetSlotCardId } from '@engine/equip/equip-slot-state.js';
 import { CSaveDataConst } from '@engine/savedata/CSaveDataConst.js';
 import { n_A_LearnedSkill } from '@engine/skill/learnedskill.js';
 import {
@@ -461,16 +462,12 @@ describe('savedata-collect.js', () => {
     });
 
     describe('extractSaveModelFromState: 本体装備のカード値の入力源', () => {
-        /** 保持値（ステートフルデータ）の要素を作って値を入れる */
-        function createStatefullData(id: string, value: number) {
-            const span = document.createElement('span');
-            span.id = id;
-            document.body.appendChild(span);
-            SetStatefullData(id, value);
-        }
+        // 正本はモジュール状態なので、他のテストへ値を持ち越さない
+        beforeEach(() => ResetEquipSlotState());
+        afterEach(() => ResetEquipSlotState());
 
         it('カード欄が画面にあるときは、その選択値を読む', () => {
-            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 1111);
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 1111);
             const sel = document.createElement('select');
             sel.id = 'OBJID_ARMS_RIGHT_CARD_1';
             sel.appendChild(Object.assign(document.createElement('option'), { value: '4302' }));
@@ -481,9 +478,9 @@ describe('savedata-collect.js', () => {
             expect(region.cardIds[0]).toBe(4302);
         });
 
-        it('カード欄が画面に無いとき（ランダムオプション表示中）は、保持しているステートフルデータを読む', () => {
-            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_1', 4302);
-            createStatefullData('DATA_OBJID_ARMS_RIGHT_CARD_3', 2518);
+        it('カード欄が画面に無いとき（ランダムオプション表示中）は、正本の値を読む', () => {
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 0, 4302);
+            SetSlotCardId(EQUIP_REGION_ID_ARMS, 2, 2518);
 
             const region = extractSaveModelFromState().equip.itemRegions.find((r: any) => r.eqpRgnId === MIG_EQUIP_REGION_ID_ARMS_RIGHT)!;
             expect(region.cardIds).toEqual([4302, 0, 2518, 0]);

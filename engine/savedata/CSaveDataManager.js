@@ -55,7 +55,7 @@ import {
          OnChangeSettingAutoSpell
 } from "../skill/calcautospell.js";
 import {
-         ResetConfDataAllMIG, g_charaData, g_confDataCustomSkillMIG,
+         ResetConfDataAllMIG, g_confDataCustomSkillMIG,
          g_confDataCustomSpecStatusMIG, g_confDataCustomStatusMIG, g_confDataSpecMIG,
          g_timeItemConf
 } from "../runtime/global.js";
@@ -73,6 +73,7 @@ import { CTimeItemAreaComponentManager } from "../equip/CTimeItemAreaComponentMa
 import { OnChangeArmsTypeLeft, OnChangeArmsTypeRight, changeJobSettings } from "../equip/equip.js";
 import { RebuildCardSelect, SetCardSlotEnability } from "../equip/hmcard.js";
 import { CollectCardSlotChoices, NormalizeCardSelection } from "../equip/card-slot-choices.js";
+import { GetEquipRegionIdByObjIdPrefix, SetSlotCardId, SetSlotCategoryId } from "../equip/equip-slot-state.js";
 import { ItemObjNew } from "../equip/item.dat.js";
 import { OnClickSkillSWLearned, n_A_LearnedSkill } from "../skill/learnedskill.js";
 import { RefreshMobConfBufControlCSS, RefreshMobConfBufSelectAreaHeader, n_B_KYOUKA } from "../monster/mobconfbuf.js";
@@ -1042,16 +1043,10 @@ export class CSaveDataManager {
 				// カードIDが「無し」なのにカテゴリだけ残っている不整合も正規化する
 				enchListIdF = 0;
 			}
-			// エンチャントリストIDデータ設定
-			const rgnTextF = objIdPrifixF.replace(/^OBJID_/, "");
-			let cardCategoryIDArrayF = g_charaData.cardCategoryMap.get(rgnTextF);
-			if (!cardCategoryIDArrayF) {
-				cardCategoryIDArrayF = [0, 0, 0, 0];
-				g_charaData.cardCategoryMap.set(rgnTextF, cardCategoryIDArrayF);
-			}
-			cardCategoryIDArrayF[slotNoF - SLOT_INDEX_CARD_MIN] = enchListIdF;
-			// ステートフルデータ設定
-			SetStatefullData("DATA_" + objIdPrifixF + "_CARD_" + slotNoF, cardIdF);
+			// 正本（本体装備のスロット状態）を更新
+			const eqpRgnIdF = GetEquipRegionIdByObjIdPrefix(objIdPrifixF);
+			SetSlotCategoryId(eqpRgnIdF, slotNoF - SLOT_INDEX_CARD_MIN, enchListIdF);
+			SetSlotCardId(eqpRgnIdF, slotNoF - SLOT_INDEX_CARD_MIN, cardIdF);
 		};
 
 		// データユニットが存在しない場合は、処理しない

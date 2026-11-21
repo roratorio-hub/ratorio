@@ -55,6 +55,7 @@ import {
          SLOTPAGER_MODE_CARD, SLOTPAGER_MODE_RNDENCH
 } from "./slotpager.js";
 import { ClearCardSlot, RebuildCardSelect, SetCardSlotEnability } from "./hmcard.js";
+import { IsMainEquipRegion, SetSlotCardId } from "./equip-slot-state.js";
 import { LEARNED_SKILL_MAX_COUNT, n_A_LearnedSkill, OnClickSkillSWLearned, UpdateLearnedSkillSettingColoring } from "../skill/learnedskill.js";
 import { GetObjectIdRndOptKind, GetObjectIdRndOptValue, RebuildRndOptSelect, SetRndOptEnablity, SetRndOptEnablityAll, SetUpRndOptValue } from "./hmrndopt.js";
 import { CItemInfoManager } from "./CItemInfoManager.js";
@@ -1045,10 +1046,12 @@ export function UpdateStatefullDataOnChangeEquip(eqpRgnId) {
 	valueOfObject = HtmlGetObjectValueById(strObjId);
 	SetStatefullData("DATA_" + strObjId, valueOfObject);
 
-	// カード・一般エンチャント
-	for (idx = idxMinCard; idx <= idxMaxCard; idx++) {
-		valueOfObject = HtmlGetObjectValueById(strObjId + "_CARD_" + idx, 0);
-		SetStatefullData("DATA_" + strObjId + "_CARD_" + idx, valueOfObject);
+	// カード・一般エンチャント（本体装備のみ）
+	if (IsMainEquipRegion(eqpRgnId)) {
+		for (idx = idxMinCard; idx <= idxMaxCard; idx++) {
+			valueOfObject = HtmlGetObjectValueByIdAsInteger(strObjId + "_CARD_" + idx, 0);
+			SetSlotCardId(eqpRgnId, idx - idxMinCard, Number.isInteger(valueOfObject) ? valueOfObject : 0);
+		}
 	}
 
 	// ランダムオプション
