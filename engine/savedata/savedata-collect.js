@@ -362,7 +362,7 @@ export function extractSaveModelFromState() {
             refine: itemRefineSourceMap[eqpRgnId] | 0,
             transcendence: itemTranscendenceSourceMap[eqpRgnId] | 0,
             rndOpt: readRndOpt(eqpRgnId),
-            // エンチャント種別IDは従来どおりセーブしない（null）
+            // エンチャント種別IDはセーブしない（仕様。ロード時は選択肢から種別を引き直す）
             cardCategoryIds: null,
             cardIds: GetSlotCardIds(slotEqpRgnId),
         };
