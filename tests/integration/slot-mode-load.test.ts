@@ -1,18 +1,21 @@
 /**
- * 「入力欄切替」でランダムオプション表示にしたままセーブデータをロードしても、
- * カード・エンチャント欄とランダムオプション欄の両方にロード値が反映されることを検証する。
+ * 「入力欄切替」（カード表示／ランダムオプション表示）の表示モードに依らず、カード・エンチャント・
+ * ランダムオプションの値が失われないことを検証する。
  *
- * 不具合の原因: ロード中に呼ばれる SaveSlotStateCardAll() が、ランダムオプション表示中は
- * DOM に存在しないカード欄 select を 0 として読み、ロード済みのカード値を全部位分上書きしていた。
- * 同じ関数がシャドウ装備の手動変更（OnChangeCard）からも呼ばれるため、ランダムオプション表示中の
- * シャドウ装備変更でも本体装備のカードが消えていた。
- * セーブ側も同様に、ランダムオプション表示中はカード欄が無いため、カードが全て0で出力されていた。
+ * カード欄・ランダムオプション欄は、表示中のモードの分しか画面（DOM）に存在しない。値の正本は
+ * equip-slot-state.js（カード・エンチャント種別・衣装）と g_equipRndOptTable（ランダムオプション）が持ち、
+ * 画面はそこから描画する。
+ *
+ * - ランダムオプション表示のままセーブデータをロードしても、カード・エンチャント欄とランダムオプション欄の
+ *   両方にロード値が反映される。セーブも欠落しない
+ * - 同じ操作を「カード表示で行った場合」と「ランダムオプション表示で行い、カード表示へ戻した場合」で、
+ *   結果（全OBJID・戦闘結果・セーブURL・ランダムオプション欄）が一致する（モード不変性）
  */
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { chromium, type Browser, type Page } from 'playwright';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { startStaticServer, closeServer, loadSaveDataEntries } from '../helpers/objid-snapshot.js';
+import { startStaticServer, closeServer, loadSaveDataEntries, evalObjidSnapshot } from '../helpers/objid-snapshot.js';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const PROJECT_ROOT = join(__dirname, '../..');
@@ -95,6 +98,7 @@ async function toggleSlotMode(page: Page): Promise<void> {
 }
 
 async function outputQuery(page: Page): Promise<string> {
+    await page.check('#OBJID_SWITCH_SAVE_CTRL_MIG');
     await page.click('#OBJID_BUTTON_URL_OUT_MIG');
     await page.waitForTimeout(500);
     const url = await page.inputValue('#OBJID_INPUT_URL_OUT_MIG');
@@ -176,4 +180,236 @@ describe('ランダムオプション表示のままセーブデータをロー�
             await page.context().close();
         }
     }, 120000);
+});
+
+
+//================================================================================================
+// モード不変性: 操作を行う時点の表示モード（カード/ランダムオプション）が結果に影響しないこと
+//================================================================================================
+
+/** 現在の表示モード。カード欄が画面にあればカード表示。 */
+function isCardMode(page: Page): Promise<boolean> {
+    return page.evaluate(() => document.getElementById('OBJID_BODY_CARD_1') !== null);
+}
+
+/** 表示モードをカード表示にそろえる。 */
+async function ensureCardMode(page: Page): Promise<void> {
+    if (!(await isCardMode(page))) await toggleSlotMode(page);
+}
+
+/** 操作後の状態を、カード表示にそろえてから採取する（最後は元のカード表示に戻す）。 */
+async function captureNormalized(page: Page): Promise<{ full: Snapshot; cards: Snapshot; rndOpts: Snapshot; query: string }> {
+    await ensureCardMode(page);
+    const full = await evalObjidSnapshot(page);
+    // URL出力欄とセーブ欄の開閉は、採取のたびに状態が変わるため比較から外す
+    delete full['OBJID_INPUT_URL_OUT_MIG'];
+    delete full['OBJID_SWITCH_SAVE_CTRL_MIG'];
+    const cards = await snapshotCards(page);
+    const query = await outputQuery(page);
+    await toggleSlotMode(page);
+    const rndOpts = await snapshotRndOpts(page);
+    await toggleSlotMode(page);
+    return { full, cards, rndOpts, query };
+}
+
+/** select を現在値と異なる option へ切り替えて change を発火する。切り替えられたら true。 */
+function changeSelectToAnother(page: Page, id: string): Promise<boolean> {
+    return page.evaluate((selectId) => {
+        const select = document.getElementById(selectId) as HTMLSelectElement | null;
+        if (!select) return false;
+        const candidates = [...select.options].filter((o) => o.value !== select.value);
+        const option = candidates[Math.min(2, candidates.length - 1)];
+        if (!option) return false;
+        select.value = option.value;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+        return true;
+    }, id);
+}
+
+/** 要素をクリックする。要素が無ければ false。 */
+function clickIfExists(page: Page, selector: string): Promise<boolean> {
+    return page.evaluate((sel) => {
+        const el = document.querySelector(sel) as HTMLElement | null;
+        if (!el) return false;
+        el.click();
+        return true;
+    }, selector);
+}
+
+type SlotOp = {
+    name: string;
+    /** 対象フィクスチャ（entries の添字） */
+    fixtures: number[];
+    /** 操作を実行する。実行できたら true */
+    run: (page: Page) => Promise<boolean>;
+};
+
+const SLOT_OPS: SlotOp[] = [
+    { name: '本体装備（防具）の変更', fixtures: [4], run: (p) => changeSelectToAnother(p, 'OBJID_BODY') },
+    { name: '本体装備（右手武器）の変更', fixtures: [3], run: (p) => changeSelectToAnother(p, 'OBJID_ARMS_RIGHT') },
+    { name: '左右武器入れ替え', fixtures: [3], run: (p) => clickIfExists(p, '#OBJID_SPAN_SWAP_ARMS input') },
+    { name: '職業変更（装備・カードの初期化）', fixtures: [0], run: (p) => changeSelectToAnother(p, 'OBJID_SELECT_JOB') },
+    { name: 'アクセサリコピー', fixtures: [4], run: (p) => clickIfExists(p, '#OBJID_ACCESSORY_1_COPY') },
+    {
+        name: 'スパノビの魂トグル',
+        fixtures: [0],
+        // RefreshSuperNoviceFullWeapon は魂スキルの select（スーパーノービス限定）の click から呼ばれる関数。
+        // ここでは職業を問わず直接呼ぶ（ページが読み込み済みの同一モジュールインスタンスを取得する）。
+        // （vitest が dynamic import を書き換えるため、ページ側で評価する文字列として渡す）
+        run: (p) => p.evaluate(`import('/engine/status/stallcalc.js').then((mod) => {
+            if (typeof mod.RefreshSuperNoviceFullWeapon !== 'function') return false;
+            mod.RefreshSuperNoviceFullWeapon(true);
+            return true;
+        })`) as Promise<boolean>,
+    },
+    {
+        name: 'アイテムパック（ミミミクエスト報酬一式）の適用',
+        fixtures: [0],
+        run: async (p) => {
+            const ok = await p.evaluate(() => {
+                const sw = document.getElementById('OBJID_QUICK_CONTROL_EXTRACT_CHECKBOX') as HTMLInputElement | null;
+                if (!sw) return false;
+                if (!sw.checked) sw.click();
+                const select = document.getElementById('OBJID_SELECT_QUICK_CONTROL_ITEMPACK') as HTMLSelectElement | null;
+                if (!select) return false;
+                select.value = '17';
+                select.dispatchEvent(new Event('input', { bubbles: true }));
+                const button = [...document.querySelectorAll('#ID_QUICK_CONTROL input[type="button"]')]
+                    .find((el) => (el as HTMLInputElement).value === '適用') as HTMLElement | undefined;
+                if (!button) return false;
+                button.click();
+                return true;
+            });
+            return ok;
+        },
+    },
+];
+
+/** 2つの採取結果の不一致項目を返す（一致なら空配列）。 */
+function diffFacets(
+    base: Awaited<ReturnType<typeof captureNormalized>>,
+    actual: Awaited<ReturnType<typeof captureNormalized>>,
+): string[] {
+    const out: string[] = [];
+    if (JSON.stringify(actual.cards) !== JSON.stringify(base.cards)) out.push('cards');
+    if (JSON.stringify(actual.rndOpts) !== JSON.stringify(base.rndOpts)) out.push('rndOpts');
+    if (actual.query !== base.query) out.push('query');
+    if (JSON.stringify(actual.full) !== JSON.stringify(base.full)) out.push('full');
+    return out;
+}
+
+describe('同じ操作の結果は、操作時の表示モード（カード/ランダムオプション）に依存しない', () => {
+    if (entries.length === 0) {
+        it('フィクスチャなし', () => { console.warn('sample-savedata-new.md にエントリがありません'); });
+        return;
+    }
+
+    for (const op of SLOT_OPS) {
+        for (const fixtureIndex of op.fixtures) {
+            if (fixtureIndex >= entries.length) continue;
+            const { label, query } = entries[fixtureIndex];
+            it(`${label}: ${op.name}`, async () => {
+                // 基準: カード表示のまま操作
+                const basePage = await openCalcx();
+                let base: Awaited<ReturnType<typeof captureNormalized>>;
+                try {
+                    await loadUrl(basePage, query);
+                    expect(await op.run(basePage), `${op.name}を実行できませんでした（基準側）`).toBe(true);
+                    await settle(basePage);
+                    base = await captureNormalized(basePage);
+                } finally {
+                    await basePage.context().close();
+                }
+
+                // 検証: ランダムオプション表示のまま操作
+                const page = await openCalcx();
+                let actual: Awaited<ReturnType<typeof captureNormalized>>;
+                try {
+                    await loadUrl(page, query);
+                    await toggleSlotMode(page);
+                    expect(await op.run(page), `${op.name}を実行できませんでした（検証側）`).toBe(true);
+                    await settle(page);
+                    actual = await captureNormalized(page);
+                } finally {
+                    await page.context().close();
+                }
+
+                expect(diffFacets(base, actual)).toEqual([]);
+                expect(actual.cards).toEqual(base.cards);
+                expect(actual.rndOpts).toEqual(base.rndOpts);
+                expect(actual.query).toBe(base.query);
+                expect(actual.full).toEqual(base.full);
+            }, 180000);
+        }
+    }
+});
+
+describe('表示モードを往復しても、カード・衣装・ランダムオプションの値は保たれる', () => {
+    it('カード欄・衣装欄を変更してモードを往復しても変わらない', async () => {
+        const page = await openCalcx();
+        try {
+            // 衣装を現在値と異なる値へ変更する（初期状態＝ノービスは衣装を選べる）
+            expect(await changeSelectToAnother(page, 'OBJID_HEAD_UNDER_COSTUME'), '衣装を変更できませんでした').toBe(true);
+            // カードを現在値と異なる値へ変更する
+            expect(await changeSelectToAnother(page, 'OBJID_HEAD_TOP_CARD_1'), 'カードを変更できませんでした').toBe(true);
+            await settle(page);
+
+            const costumeBefore = await page.evaluate(() => (document.getElementById('OBJID_HEAD_UNDER_COSTUME') as HTMLSelectElement).value);
+            expect(costumeBefore).not.toBe('0');
+            const before = await captureNormalized(page);
+
+            await toggleSlotMode(page);
+            await toggleSlotMode(page);
+
+            const after = await captureNormalized(page);
+            const costumeAfter = await page.evaluate(() => (document.getElementById('OBJID_HEAD_UNDER_COSTUME') as HTMLSelectElement).value);
+            expect(costumeAfter).toBe(costumeBefore);
+            expect(after.cards).toEqual(before.cards);
+            expect(after.rndOpts).toEqual(before.rndOpts);
+            expect(after.query).toBe(before.query);
+            // プログラムから値を変えた select は TomSelect の表示が追従しないため、TomSelect 側の表示は比較しない
+            const withoutTomSelect = (snapshot: Snapshot) => Object.fromEntries(Object.entries(snapshot).filter(([id]) => !/-ts-(control|dropdown)$/.test(id)));
+            expect(withoutTomSelect(after.full)).toEqual(withoutTomSelect(before.full));
+        } finally {
+            await page.context().close();
+        }
+    }, 180000);
+});
+
+describe('ランダムオプションの値は、モードを往復しても保たれる', () => {
+    it('ランダムオプション欄を変更してモードを往復しても変わらない', async () => {
+        const index = Math.min(6, entries.length - 1);
+        const page = await openCalcx();
+        try {
+            await loadUrl(page, entries[index].query);
+            await toggleSlotMode(page);
+
+            // 選択肢が複数ある値欄を1つ変更する
+            const changed = await page.evaluate(() => {
+                const selects = [...document.querySelectorAll('select[id*="_RNDOPT_VALUE_"]')] as HTMLSelectElement[];
+                for (const select of selects) {
+                    const option = [...select.options].find((o) => o.value !== select.value);
+                    if (!option) continue;
+                    select.value = option.value;
+                    select.dispatchEvent(new Event('change', { bubbles: true }));
+                    return select.id;
+                }
+                return '';
+            });
+            expect(changed, 'ランダムオプション値を変更できませんでした').not.toBe('');
+            await settle(page);
+
+            const rndOptBefore = await snapshotRndOpts(page);
+            expect(rndOptBefore[changed]).toBeDefined();
+            await toggleSlotMode(page);
+            await toggleSlotMode(page);
+            expect(await snapshotRndOpts(page)).toEqual(rndOptBefore);
+
+            // カード表示でセーブしても、その値が出力される（変更前のロード値とは異なる）
+            await toggleSlotMode(page);
+            expect(await outputQuery(page)).not.toBe(entries[index].query);
+        } finally {
+            await page.context().close();
+        }
+    }, 180000);
 });

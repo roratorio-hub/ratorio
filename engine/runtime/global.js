@@ -70,12 +70,6 @@ export let costDownForDisp = 0;
 /** 定義済みデータマネージャ */
 export let g_constDataManager = new CMigConstDataManager();
 
-// TODO: 
-/** キャラクターデータ保持形式移行実験 */
-export let g_charaData = {
-	cardCategoryMap: new Map()
-};
-
 // 性能カスタマイズ ステータス関連
 export const CUSTOM_CONF_STATUS_LIMIT = 30;
 export let g_confDataCustomStatus = Array(CUSTOM_CONF_STATUS_LIMIT).fill(0);

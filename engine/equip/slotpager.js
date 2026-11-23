@@ -1,14 +1,17 @@
 // === AUTO-GENERATED IMPORTS ===
 import "../runtime/common.js";
-import { g_charaData } from "../runtime/global.js";
 import { GetEquipRndOptTableKind, GetEquipRndOptTableValue, SetEquipRndOptTable } from "./rndopttype.h.js";
 import { HtmlGetElementById, HtmlCreateElement, HtmlSetAttribute, HtmlCreateElementOption, HtmlRemoveFromParent, HtmlGetSelectedOptgroup, HtmlGetObjectValueByIdAsInteger, HtmlSetObjectValueById, SetStatefullData, GetStatefullData } from "../runtime/util.js";
-import { ApplyCardShort, CardShortObj, RebuildCardSelect, SetCardSlotEnabilityAll } from "./hmcard.js";
+import { ApplyCardShort, CardShortObj, RebuildCardSelect, SetCardSlotEnability, SetCardSlotEnabilityAll } from "./hmcard.js";
 import { RebuildCostumeSelect, SetCostumeSlotEnabilityAll } from "./hmcostume.js";
-import { GetObjectIdRndOptKind, GetObjectIdRndOptKindTD, GetObjectIdRndOptValue, GetObjectIdRndOptValueTD, RebuildRndOptSelect, SetRndOptEnablityAll, SetUpRndOptValue } from "./hmrndopt.js";
+import { GetObjectIdRndOptKind, GetObjectIdRndOptKindTD, GetObjectIdRndOptValue, GetObjectIdRndOptValueTD, RebuildRndOptSelect, SetRndOptEnablity, SetRndOptEnablityAll, SetUpRndOptValue } from "./hmrndopt.js";
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: equip.js との循環 import 回避
 import { equipBridge } from "../bridge/equip-bridge.js";
+// 本体装備のカード・エンチャント種別・衣装の正本
+import {
+    GetCostumeId, GetEquipRegionIdByObjIdPrefix, GetSlotCardId, SetCostumeId, SetSlotCardId, SetSlotCategoryId,
+} from "./equip-slot-state.js";
 
 // C-6: hmcard.js との循環 import 回避のため slotpager-const.js へ移設
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "./slotpager-const.js";
@@ -21,8 +24,7 @@ import {
 import { notifyChanged } from "../runtime/calc-invalidation.js";
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
-    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHADOW_ACCESSORY_1, EQUIP_REGION_ID_SHADOW_ACCESSORY_2, EQUIP_REGION_ID_SHADOW_ARMS_LEFT, EQUIP_REGION_ID_SHADOW_ARMS_RIGHT,
-    EQUIP_REGION_ID_SHADOW_BODY, EQUIP_REGION_ID_SHADOW_FOOT, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
+    EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
 } from "../const/EnumEquipRegionId.js";
 import { RND_OPT_SLOT_COUNT } from "../const/EnumRndOptTypeDataIndex.js";
 
@@ -94,12 +96,6 @@ export function OnClickSlotModeButton(jobId) {
 	// 現在のモードがカードの場合、ランダムエンチャントに切り替える
 	if (slotModeNow == SLOTPAGER_MODE_CARD) {
 
-		// カードの選択状態を保持
-		SaveSlotStateCardAll();
-
-		// 衣装の選択状態を保持
-		SaveSlotStateCostumeAll();
-
 		// カード欄を破棄
 		BreakSlotOfCardAll();
 
@@ -113,7 +109,7 @@ export function OnClickSlotModeButton(jobId) {
 		SetRndOptEnablityAll();
 		// SetEnchSlotsEnablity();
 
-		// ランダムエンチャント選択状態を復元
+		// ランダムエンチャントの選択状態を正本から反映
 		LoadSlotStateRndEnchAll();
 
 		// モードのフラグを更新
@@ -122,9 +118,6 @@ export function OnClickSlotModeButton(jobId) {
 
 	// 現在のモードがランダムエンチャントの場合、カードに切り替える
 	else {
-		// ランダムエンチャントの選択状態を保持
-		SaveSlotStateRndEnchAll();
-
 		// ランダムエンチャント欄を破棄
 		BreakSlotOfRndEnchAll();
 
@@ -140,10 +133,8 @@ export function OnClickSlotModeButton(jobId) {
 		// 使用可否を設定
 		SetCostumeSlotEnabilityAll();
 
-		// カードの選択状態を復元
+		// カード・衣装の選択状態を正本から反映
 		LoadSlotStateCardAll();
-
-		// 衣装の選択状態を復元
 		LoadSlotStateCostumeAll();
 
 		// モードのフラグを更新
@@ -156,150 +147,121 @@ export function OnClickSlotModeButton(jobId) {
 
 /************************************************************************************************
  *
- * 一時的にカード表示にして処理を実行する（ランダムオプション表示中だった場合は終了後に戻す）.
- * カード欄はカード表示中しか画面に存在しないため、カード欄へ値を設定する処理はこの中で行う。
- *
- *-----------------------------------------------------------------------------------------------
- * @param func カード表示中に実行する処理
- *-----------------------------------------------------------------------------------------------
- * @return func の戻り値
- ************************************************************************************************/
-export function RunWithCardSlotMode(func) {
-
-	const bRestoreRndOptMode = (GetSlotMode() != SLOTPAGER_MODE_CARD);
-	if (bRestoreRndOptMode) {
-		OnClickSlotModeButton();
-	}
-
-	try {
-		return func();
-	}
-	finally {
-		if (bRestoreRndOptMode && (GetSlotMode() == SLOTPAGER_MODE_CARD)) {
-			OnClickSlotModeButton();
-		}
-	}
-}
-
-/************************************************************************************************
- *
- * スロットの選択状態を保存する（カード用）（すべて）.
- *
- *-----------------------------------------------------------------------------------------------
- *-----------------------------------------------------------------------------------------------
- * @return なし
- ************************************************************************************************/
-export function SaveSlotStateCardAll() {
-
-	// 個別関数を全コール
-	SaveSlotStateCard(EQUIP_REGION_ID_ARMS);
-	SaveSlotStateCard(EQUIP_REGION_ID_ARMS_LEFT);
-	SaveSlotStateCard(EQUIP_REGION_ID_HEAD_TOP);
-	SaveSlotStateCard(EQUIP_REGION_ID_HEAD_MID);
-	SaveSlotStateCard(EQUIP_REGION_ID_HEAD_UNDER);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHIELD);
-	SaveSlotStateCard(EQUIP_REGION_ID_BODY);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHOULDER);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHOES);
-	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSORY_1);
-	SaveSlotStateCard(EQUIP_REGION_ID_ACCESSORY_2);
-
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ARMS_RIGHT);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ARMS_LEFT);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_BODY);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_FOOT);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSORY_1);
-	SaveSlotStateCard(EQUIP_REGION_ID_SHADOW_ACCESSORY_2);
-	
-}
-
-/************************************************************************************************
- *
- * スロットの選択状態を保存する（カード用）.
+ * 表示中の欄（カード欄またはランダムオプション欄）へ、正本の値を反映する.
  *
  *-----------------------------------------------------------------------------------------------
  * @param eqpRgnId 対象となる装備領域ＩＤ
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-export function SaveSlotStateCard(eqpRgnId) {
+export function RefreshSlotDisplay(eqpRgnId) {
 
-	const EQUIP_REGION = {
-		[EQUIP_REGION_ID_ARMS]:"OBJID_ARMS_RIGHT",
-		[EQUIP_REGION_ID_ARMS_LEFT]:"OBJID_ARMS_LEFT",
-		[EQUIP_REGION_ID_HEAD_TOP]:"OBJID_HEAD_TOP",
-		[EQUIP_REGION_ID_HEAD_MID]:"OBJID_HEAD_MID",
-		[EQUIP_REGION_ID_HEAD_UNDER]:"OBJID_HEAD_UNDER",
-		[EQUIP_REGION_ID_SHIELD]:"OBJID_SHIELD",
-		[EQUIP_REGION_ID_BODY]:"OBJID_BODY",
-		[EQUIP_REGION_ID_SHOULDER]:"OBJID_SHOULDER",
-		[EQUIP_REGION_ID_SHOES]:"OBJID_SHOES",
-		[EQUIP_REGION_ID_ACCESSORY_1]:"OBJID_ACCESSORY_1",
-		[EQUIP_REGION_ID_ACCESSORY_2]:"OBJID_ACCESSORY_2",
-		[EQUIP_REGION_ID_SHADOW_ARMS_RIGHT]:"OBJID_SHADOW_ARMS_RIGHT",
-		[EQUIP_REGION_ID_SHADOW_ARMS_LEFT]:"OBJID_SHADOW_SHIELD",
-		[EQUIP_REGION_ID_SHADOW_BODY]:"OBJID_SHADOW_BODY",
-		[EQUIP_REGION_ID_SHADOW_FOOT]:"OBJID_SHADOW_SHOES",
-		[EQUIP_REGION_ID_SHADOW_ACCESSORY_1]:"OBJID_SHADOW_ACCESSORY-1",
-		[EQUIP_REGION_ID_SHADOW_ACCESSORY_2]:"OBJID_SHADOW_ACCESSORY-2",
+	if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
+		LoadSlotStateCard(eqpRgnId);
 	}
-
-	__SaveSlotStateCard(EQUIP_REGION[eqpRgnId]);
+	else {
+		LoadSlotStateRndEnch(eqpRgnId);
+	}
 }
 
 /************************************************************************************************
  *
- * スロットの選択状態を保存する（カード用）（サブ関数）.
+ * 指定の部位について、現在の表示モードの欄を作り直し、正本の値を反映する.
  *
  *-----------------------------------------------------------------------------------------------
- * @param objidPrefix オブジェクトＩＤのプリフィックス
+ * @param eqpRgnId 対象となる装備領域ＩＤ
+ * @param itemId 装備中のアイテムＩＤ
  *-----------------------------------------------------------------------------------------------
  * @return なし
  ************************************************************************************************/
-export function __SaveSlotStateCard(objidPrefix) {
+export function RebuildSlotDisplay(eqpRgnId, itemId) {
 
-	var idx = 0;
-	var strObjId = "";
-	var valueOfObject = 0;
+	if (GetSlotMode() == SLOTPAGER_MODE_CARD) {
+		RebuildCardSelect(eqpRgnId, itemId);
+		SetCardSlotEnability(eqpRgnId);
+	}
+	else {
+		RebuildRndOptSelect(eqpRgnId, itemId);
+		LoadSlotStateRndEnch(eqpRgnId);
+		SetRndOptEnablity(eqpRgnId);
+	}
+}
 
-	var rgnText = objidPrefix.replace(/^OBJID_/, "");
-	var objOptgroup = null;
-	var enchListId = 0;
-	var enchListIdText = 0;
-	var enchListIdArray = null;
+/************************************************************************************************
+ *
+ * ランダムオプション表示中なら、全部位の欄の使用可否を現在の状態に合わせる.
+ * （カード表示中は何もしない）
+ *
+ *-----------------------------------------------------------------------------------------------
+ *-----------------------------------------------------------------------------------------------
+ * @return なし
+ ************************************************************************************************/
+export function RefreshRndOptEnablity() {
 
-	// 当該プリフィクスを持つすべてのスロットの選択状態を保存
-	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
-		strObjId = objidPrefix + "_CARD_" + idx;
+	if (GetSlotMode() != SLOTPAGER_MODE_CARD) {
+		SetRndOptEnablityAll();
+	}
+}
 
-		enchListIdArray = g_charaData.cardCategoryMap.get(rgnText);
-		if (!enchListIdArray) {
-			enchListIdArray = [0, 0, 0, 0];
-			g_charaData.cardCategoryMap.set(rgnText, enchListIdArray);
-		}
+/************************************************************************************************
+ *
+ * シャドウ装備のカード欄の選択状態を、画面外のステートフルデータへ保存する（すべて）.
+ * （シャドウ装備のカード・エンチャントは、計算モデルの抽出がステートフルデータから読む）
+ *
+ *-----------------------------------------------------------------------------------------------
+ *-----------------------------------------------------------------------------------------------
+ * @return なし
+ ************************************************************************************************/
+export function SaveSlotStateShadowCardAll() {
 
-		// カード欄が画面に無い（ランダムオプション表示中）場合は、保持している値を上書きしない
-		if (HtmlGetElementById(strObjId) == null) {
-			continue;
-		}
+	const SHADOW_CARD_OBJID_PREFIX = [
+		"OBJID_SHADOW_ARMS_RIGHT",
+		"OBJID_SHADOW_SHIELD",
+		"OBJID_SHADOW_BODY",
+		"OBJID_SHADOW_SHOES",
+		"OBJID_SHADOW_ACCESSORY-1",
+		"OBJID_SHADOW_ACCESSORY-2",
+	];
 
-		valueOfObject = HtmlGetObjectValueByIdAsInteger(strObjId, 0);
-		SetStatefullData("DATA_" + strObjId, valueOfObject);
-
-		// エンチャントリストIDの取得
-		enchListId = 0;
-		objOptgroup = HtmlGetSelectedOptgroup(strObjId, null, null);
-		if (objOptgroup) {
-			if (objOptgroup.hasAttribute("data-ench-list-id")) {
-				enchListIdText = objOptgroup.getAttribute("data-ench-list-id");
-				if (!isNaN(enchListIdText)) {
-					enchListId = Math.floor(Number(enchListIdText));
-				}
+	for (const objidPrefix of SHADOW_CARD_OBJID_PREFIX) {
+		for (let idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
+			const strObjId = objidPrefix + "_CARD_" + idx;
+			if (HtmlGetElementById(strObjId) != null) {
+				SetStatefullData("DATA_" + strObjId, HtmlGetObjectValueByIdAsInteger(strObjId, 0));
 			}
 		}
-
-		enchListIdArray[idx - SLOT_INDEX_CARD_MIN] = enchListId;
 	}
+}
+
+/************************************************************************************************
+ *
+ * カード欄で選ばれた値を、正本へ反映する.
+ *
+ *-----------------------------------------------------------------------------------------------
+ * @param eqpRgnId 対象となる装備領域ＩＤ
+ * @param slotIndex スロット番号（0〜3）
+ * @param objSelect カード欄のセレクトボックス
+ *-----------------------------------------------------------------------------------------------
+ * @return なし
+ ************************************************************************************************/
+export function SyncSlotStateFromCardSelect(eqpRgnId, slotIndex, objSelect) {
+
+	var enchListId = 0;
+	var enchListIdText = 0;
+
+	const cardId = HtmlGetObjectValueByIdAsInteger(objSelect.id, 0);
+	SetSlotCardId(eqpRgnId, slotIndex, Number.isInteger(cardId) ? cardId : 0);
+
+	// エンチャントリストIDの取得
+	const objOptgroup = HtmlGetSelectedOptgroup(objSelect.id, null, null);
+	if (objOptgroup && objOptgroup.hasAttribute("data-ench-list-id")) {
+		enchListIdText = objOptgroup.getAttribute("data-ench-list-id");
+		if (!isNaN(enchListIdText)) {
+			enchListId = Math.floor(Number(enchListIdText));
+		}
+	}
+
+	SetSlotCategoryId(eqpRgnId, slotIndex, enchListId);
 }
 
 /************************************************************************************************
@@ -567,7 +529,12 @@ export function __RebuildSlotAsCard(eqpRgnId, objidPrifix) {
 		// カード選択セレクトボックス
 		objSelect = HtmlCreateElement("select", objTd);
 		HtmlSetAttribute(objSelect, "id", objidPrifix + "_CARD_" + idx);
-		objSelect.addEventListener("change", (e) => { equipBridge.onChangeCard?.(e.currentTarget.value); notifyChanged(); });
+		const slotIndex = idx - SLOT_INDEX_CARD_MIN;
+		objSelect.addEventListener("change", (e) => {
+			SyncSlotStateFromCardSelect(eqpRgnId, slotIndex, e.currentTarget);
+			equipBridge.onChangeCard?.(e.currentTarget.value);
+			notifyChanged();
+		});
 
 		// カード選択セレクトボックスの再構築
 		itemId = GetStatefullData("DATA_" + objidPrifix, 0);
@@ -733,108 +700,12 @@ export function LoadSlotStateCard(eqpRgnId) {
 export function __LoadSlotStateCard(objidPrifix) {
 
 	var idx = 0;
-	var valueOfObject = 0;
+
+	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrifix);
 
 	// 当該プリフィクスを持つすべてのスロットを復元
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
-		valueOfObject = GetStatefullData("DATA_" + objidPrifix + "_CARD_" + idx, 0);
-		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, valueOfObject);
-	}
-}
-
-/************************************************************************************************
- *
- * スロットの選択状態を保存する（衣装用）（すべて）.
- *
- *-----------------------------------------------------------------------------------------------
- *-----------------------------------------------------------------------------------------------
- * @return なし
- ************************************************************************************************/
-export function SaveSlotStateCostumeAll() {
-
-	// 個別関数を全コール
-	SaveSlotStateCostume(EQUIP_REGION_ID_HEAD_UNDER);
-}
-
-/************************************************************************************************
- *
- * スロットの選択状態を保存する（衣装用）.
- *
- *-----------------------------------------------------------------------------------------------
- * @param eqpRgnId 対象となる装備領域ＩＤ
- *-----------------------------------------------------------------------------------------------
- * @return なし
- ************************************************************************************************/
-export function SaveSlotStateCostume(eqpRgnId) {
-
-	// サブ関数をコール
-	switch (eqpRgnId) {
-	case EQUIP_REGION_ID_ARMS:
-		__SaveSlotStateCostume("OBJID_ARMS_RIGHT");
-		break;
-
-	case EQUIP_REGION_ID_ARMS_LEFT:
-		__SaveSlotStateCostume("OBJID_ARMS_LEFT");
-		break;
-
-	case EQUIP_REGION_ID_HEAD_TOP:
-		__SaveSlotStateCostume("OBJID_HEAD_TOP");
-		break;
-
-	case EQUIP_REGION_ID_HEAD_MID:
-		__SaveSlotStateCostume("OBJID_HEAD_MID");
-		break;
-
-	case EQUIP_REGION_ID_HEAD_UNDER:
-		__SaveSlotStateCostume("OBJID_HEAD_UNDER");
-		break;
-
-	case EQUIP_REGION_ID_SHIELD:
-		__SaveSlotStateCostume("OBJID_SHIELD");
-		break;
-
-	case EQUIP_REGION_ID_BODY:
-		__SaveSlotStateCostume("OBJID_BODY");
-		break;
-
-	case EQUIP_REGION_ID_SHOULDER:
-		__SaveSlotStateCostume("OBJID_SHOULDER");
-		break;
-
-	case EQUIP_REGION_ID_SHOES:
-		__SaveSlotStateCostume("OBJID_SHOES");
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_1:
-		__SaveSlotStateCostume("OBJID_ACCESSORY_1");
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_2:
-		__SaveSlotStateCostume("OBJID_ACCESSORY_2");
-		break;
-	}
-}
-
-/************************************************************************************************
- *
- * スロットの選択状態を保存する（衣装用）（サブ関数）.
- *
- *-----------------------------------------------------------------------------------------------
- * @param objidPrefix オブジェクトＩＤのプリフィックス
- *-----------------------------------------------------------------------------------------------
- * @return なし
- ************************************************************************************************/
-export function __SaveSlotStateCostume(objidPrefix) {
-
-	var idx = 0;
-	var strObjId = "";
-	var valueOfObject = 0;
-
-	// 当該プリフィクスを持つすべてのスロットの選択状態を保存
-	for (idx = SLOT_INDEX_COSTUME_MIN; idx <= SLOT_INDEX_COSTUME_MAX; idx++) {
-		strObjId = objidPrefix + "_COSTUME";
-		valueOfObject = HtmlGetObjectValueByIdAsInteger(strObjId, 0);
-		SetStatefullData("DATA_" + strObjId, valueOfObject);
+		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, GetSlotCardId(eqpRgnId, idx - SLOT_INDEX_CARD_MIN));
 	}
 }
 
@@ -1047,7 +918,10 @@ export function __RebuildSlotAsCostume(eqpRgnId, objidPrifix, jobId) {
 		// 衣装選択セレクトボックス
 		objSelect = HtmlCreateElement("select", objTd);
 		HtmlSetAttribute(objSelect, "id", objidPrifix + "_COSTUME");
-		objSelect.addEventListener("change", (e) => { equipBridge.onChangeCostume?.(e.currentTarget.value); });
+		objSelect.addEventListener("change", (e) => {
+			SetCostumeId(eqpRgnId, Number.parseInt(e.currentTarget.value, 10) || 0);
+			equipBridge.onChangeCostume?.(e.currentTarget.value);
+		});
 
 		// 衣装選択セレクトボックスの再構築
 		itemId = GetStatefullData("DATA_" + objidPrifix, 0);
@@ -1140,12 +1014,12 @@ export function LoadSlotStateCostume(eqpRgnId) {
 export function __LoadSlotStateCostume(objidPrifix) {
 
 	var idx = 0;
-	var valueOfObject = 0;
+
+	const eqpRgnId = GetEquipRegionIdByObjIdPrefix(objidPrifix);
 
 	// 当該プリフィクスを持つすべてのスロットを復元
 	for (idx = SLOT_INDEX_COSTUME_MIN; idx <= SLOT_INDEX_COSTUME_MAX; idx++) {
-		valueOfObject = GetStatefullData("DATA_" + objidPrifix + "_COSTUME", 0);
-		HtmlSetObjectValueById(objidPrifix + "_COSTUME", valueOfObject);
+		HtmlSetObjectValueById(objidPrifix + "_COSTUME", GetCostumeId(eqpRgnId));
 	}
 }
 

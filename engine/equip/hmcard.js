@@ -1,91 +1,42 @@
 // === AUTO-GENERATED IMPORTS ===
-import { n_A_Equip, n_A_card } from "../runtime/roro-state.js";
+import { n_A_Equip } from "../runtime/roro-state.js";
+
 import { g_attackMethodBridge } from "../battle/CAttackMethodDataBridge.js";
-import { MigGetBorderFlagText } from "../data/mig.itemsp.h.js";
-import { g_constDataManager } from "../runtime/global.js";
-import {
-         CARD_ID_ARCHER_SKELETON, CARD_ID_ENCHANT_ARMS_ELEMENT_DARK,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_EARTH, CARD_ID_ENCHANT_ARMS_ELEMENT_FIRE,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_HOLY, CARD_ID_ENCHANT_ARMS_ELEMENT_POISON,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_PSYCO, CARD_ID_ENCHANT_ARMS_ELEMENT_WATER,
-         CARD_ID_ENCHANT_ARMS_ELEMENT_WIND, CARD_ID_ENCHANT_BOSOSHITA_MARYOKU,
-         CARD_ID_ENCHANT_DELAY_DOWN_15, CARD_ID_ENCHANT_GOKETSU, CARD_ID_ENCHANT_HAO,
-         CARD_ID_ENCHANT_KOGEKISOKUDO_4, CARD_ID_ENCHANT_KOSOKU,
-         CARD_ID_ENCHANT_KUMANO_CHIKARA, CARD_ID_ENCHANT_KYOGEKI_4,
-         CARD_ID_ENCHANT_KYOGEKI_5, CARD_ID_ENCHANT_MARYOKU_4, CARD_ID_ENCHANT_MDEF_10,
-         CARD_ID_ENCHANT_MEIKYU_4, CARD_ID_ENCHANT_OWASHINO_GANKO,
-         CARD_ID_ENCHANT_SATSUINO_ONNEN, CARD_ID_ENCHANT_SHINO_YOKUDO,
-         CARD_ID_ENCHANT_SHINRINO_KAIHO, CARD_ID_ENCHANT_SPECIAL_AGI,
-         CARD_ID_ENCHANT_SPECIAL_DEX, CARD_ID_ENCHANT_SPECIAL_INT,
-         CARD_ID_ENCHANT_SPECIAL_LUK, CARD_ID_ENCHANT_SPECIAL_STR,
-         CARD_ID_ENCHANT_SPECIAL_VIT, CARD_ID_ENCHANT_TOSHI_10, CARD_ID_ENCHANT_ZOFUKU_4,
-         CARD_ID_ENCHANT_ZOFUKU_5, CARD_ID_GIGANTES, CARD_ID_MAGICAL_MONSTER_ELM_ALL_10UP,
-         CARD_ID_MAGICAL_RACE_ALL_10UP, CARD_ID_MAGICAL_SIZE_ALL_8UP, CARD_ID_MAX,
-         CARD_ID_NONE, CARD_ID_OSEN_SARETA_SAMAYOU_MONO,
-         CARD_ID_PHYSICAL_MONSTER_ELM_ALL_20UP, CARD_ID_PHYSICAL_RACE_ALL_20UP,
-         CARD_ID_PHYSICAL_SIZE_ALL_15UP, CARD_ID_POWERFUL_A_SKELETON,
-         CARD_ID_SHINENNO_KISHI, CardObjNew, CardSortOBJ
-} from "./card.dat.js";
-import {
-         CARD_REGION_ID_ACCESSORY_1, CARD_REGION_ID_ACCESSORY_2,
-         CARD_REGION_ID_ARMS_LEFT_1, CARD_REGION_ID_ARMS_LEFT_2,
-         CARD_REGION_ID_ARMS_LEFT_3, CARD_REGION_ID_ARMS_LEFT_4,
-         CARD_REGION_ID_ARMS_RIGHT_1, CARD_REGION_ID_ARMS_RIGHT_2,
-         CARD_REGION_ID_ARMS_RIGHT_3, CARD_REGION_ID_ARMS_RIGHT_4, CARD_REGION_ID_BODY,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_1, CARD_REGION_ID_ENCHANT_ACCESSORY_1_2,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_1_3, CARD_REGION_ID_ENCHANT_ACCESSORY_2_1,
-         CARD_REGION_ID_ENCHANT_ACCESSORY_2_2, CARD_REGION_ID_ENCHANT_ACCESSORY_2_3,
-         CARD_REGION_ID_ENCHANT_BODY_1, CARD_REGION_ID_ENCHANT_BODY_2,
-         CARD_REGION_ID_ENCHANT_BODY_3, CARD_REGION_ID_ENCHANT_HEAD_MID_1,
-         CARD_REGION_ID_ENCHANT_HEAD_MID_2, CARD_REGION_ID_ENCHANT_HEAD_MID_3,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_1, CARD_REGION_ID_ENCHANT_HEAD_TOP_2,
-         CARD_REGION_ID_ENCHANT_HEAD_TOP_3, CARD_REGION_ID_ENCHANT_HEAD_UNDER_1,
-         CARD_REGION_ID_ENCHANT_HEAD_UNDER_2, CARD_REGION_ID_ENCHANT_HEAD_UNDER_3,
-         CARD_REGION_ID_ENCHANT_SHIELD_1, CARD_REGION_ID_ENCHANT_SHIELD_2,
-         CARD_REGION_ID_ENCHANT_SHIELD_3, CARD_REGION_ID_ENCHANT_SHOES_1,
-         CARD_REGION_ID_ENCHANT_SHOES_2, CARD_REGION_ID_ENCHANT_SHOES_3,
-         CARD_REGION_ID_ENCHANT_SHOULDER_1, CARD_REGION_ID_ENCHANT_SHOULDER_2,
-         CARD_REGION_ID_ENCHANT_SHOULDER_3, CARD_REGION_ID_HEAD_MID,
-         CARD_REGION_ID_HEAD_TOP, CARD_REGION_ID_SHIELD, CARD_REGION_ID_SHOES,
-         CARD_REGION_ID_SHOULDER
-} from "../runtime/common.js";
-import {
-         ITEM_ID_ALPHA_CORE_CARD_ENCHANTABLE,
-         ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE, ITEM_ID_RUNE_HELM, ItemObjNew
-} from "./item.dat.js";
-import { GetMaxSlot } from "./item.h.js";
-import { MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE, MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE } from "../data/mig.enchlist.dat.js";
-import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById, SetStatefullData } from "../runtime/util.js";
+
+import { CARD_ID_ARCHER_SKELETON, CARD_ID_GIGANTES, CARD_ID_MAGICAL_MONSTER_ELM_ALL_10UP, CARD_ID_MAGICAL_RACE_ALL_10UP, CARD_ID_MAGICAL_SIZE_ALL_8UP, CARD_ID_MAX, CARD_ID_NONE, CARD_ID_OSEN_SARETA_SAMAYOU_MONO, CARD_ID_PHYSICAL_MONSTER_ELM_ALL_20UP, CARD_ID_PHYSICAL_RACE_ALL_20UP, CARD_ID_PHYSICAL_SIZE_ALL_15UP, CARD_ID_POWERFUL_A_SKELETON, CARD_ID_SHINENNO_KISHI } from "./card.dat.js";
+
+
+import { HtmlGetElementById, HtmlCreateElement, HtmlCreateElementOption, HtmlRemoveAllChild, HtmlGetObjectValueById, HtmlSetObjectValueById } from "../runtime/util.js";
+
 // === END AUTO-GENERATED IMPORTS ===
 // C-6: slotpager.js との循環 import 回避のため slotpager-const.js から直接参照
 import { SLOT_INDEX_CARD_MIN, SLOT_INDEX_CARD_MAX } from "./slotpager-const.js";
+
 // C-6: equip.js との循環 import 回避のため equip-name.js から直接参照
 import { GetFlagAppendedCardName } from "./equip-name.js";
+
 import { setSelectValueSynced } from "./select-sync.js";
+// 選択肢の算出（DOM に触れない）
+import { ClearSlotCards, GetEquipRegionObjIdPrefix, GetSlotCardId, GetSlotCategoryId, SetSlotCardId, SetSlotCategoryId } from "./equip-slot-state.js";
+import { CollectCardSlotChoices, GetDisplayedSelection, NormalizeCardSelection, SLOT_CHOICE_ENCHANT, SLOT_CHOICE_CARD } from "./card-slot-choices.js";
+// 外部モジュールが hmcard.js 経由で参照しているため再公開する
+export { RebuildCardSelectSubCollectEnchListData } from "./card-slot-choices.js";
+
 
 // C-6: global.js 管理の共有 conf state
 import {
          n_Nitou,
 } from "../runtime/global.js";
+
 // C-6: stallcalc.js 公開関数（foot-bridge 経由）
 import { StAllCalc } from "../bridge/stallcalc-bridge.js";
-import { CARD_DATA_INDEX_NAME } from "../const/EnumCardDataIndex.js";
-import {
-    CARD_KIND_ACCESSORY, CARD_KIND_ACCESSORY_ON1, CARD_KIND_ACCESSORY_ON2, CARD_KIND_ARMS, CARD_KIND_BODY, CARD_KIND_FOOT,
-    CARD_KIND_HEAD, CARD_KIND_MID, CARD_KIND_NONE, CARD_KIND_SHIELD, CARD_KIND_SHOULDER, CARD_KIND_TOP,
-} from "../const/EnumCardKind.js";
-import { CONST_DATA_KIND_ENCHANT_LIST } from "../const/EnumConstDataKind.js";
+
 import {
     EQUIP_REGION_ID_ACCESSORY_1, EQUIP_REGION_ID_ACCESSORY_2, EQUIP_REGION_ID_ARMS, EQUIP_REGION_ID_ARMS_LEFT, EQUIP_REGION_ID_BODY, EQUIP_REGION_ID_HEAD_MID,
     EQUIP_REGION_ID_HEAD_TOP, EQUIP_REGION_ID_HEAD_UNDER, EQUIP_REGION_ID_SHIELD, EQUIP_REGION_ID_SHOES, EQUIP_REGION_ID_SHOULDER,
 } from "../const/EnumEquipRegionId.js";
-import { ITEM_DATA_INDEX_SLOT } from "../const/EnumItemDataIndex.js";
-import { MIG_BORDER_FLAG_ID_OVER } from "../const/EnumMigBorderFlagId.js";
-import {
-    MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BORDER_BASE, MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BORDER_FLAG, MIG_EQUIPABLE_SP_ATTRIBUTE_ID_CARD, MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SLOT, MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_EFFECT_LIST, MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_ENCHANT,
-    MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SELECT, MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT, MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT_V2, MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT_V3, MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT_V4, MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_STAGE,
-    MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_STAGE_V2, MIG_EQUIPABLE_SP_LIST_DATA_ID_REFINE_CONDITION, MIG_EQUIPABLE_SP_LIST_DATA_ID_REFINE_CONDITION_V2, MIG_EQUIPABLE_SP_LIST_DATA_ID_REFINE_CONDITION_V3,
-} from "../const/EnumMigEquipableSpId.js";
+
+
 
 
 export const CardShortObj =[
@@ -423,6 +374,7 @@ export function ClearCardSlotAll() {
 /************************************************************************************************
  *
  * カード選択状態をクリアする.
+ * 正本をクリアし、カード欄が表示されていれば、その選択も「なし」にする.
  *
  *-----------------------------------------------------------------------------------------------
  * @param eqpRgnId 対象となる装備領域ＩＤ
@@ -431,130 +383,15 @@ export function ClearCardSlotAll() {
  ************************************************************************************************/
 export function ClearCardSlot(eqpRgnId) {
 
-	var objidPrifix = "";
-	var idxArrayToClear = new Array();
-
-	// サブ関数をコール
-	switch (eqpRgnId) {
-	case EQUIP_REGION_ID_ARMS:
-		objidPrifix = "OBJID_ARMS_RIGHT";
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_1);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_2);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_3);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_RIGHT_4);
-		break;
-
-	case EQUIP_REGION_ID_ARMS_LEFT:
-		objidPrifix = "OBJID_ARMS_LEFT";
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_1);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_2);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_3);
-		idxArrayToClear.push(CARD_REGION_ID_ARMS_LEFT_4);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_TOP:
-		objidPrifix = "OBJID_HEAD_TOP";
-		idxArrayToClear.push(CARD_REGION_ID_HEAD_TOP);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_TOP_3);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_MID:
-		objidPrifix = "OBJID_HEAD_MID";
-		idxArrayToClear.push(CARD_REGION_ID_HEAD_MID);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_MID_3);
-		break;
-
-	case EQUIP_REGION_ID_HEAD_UNDER:
-		objidPrifix = "OBJID_HEAD_UNDER";
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_HEAD_UNDER_3);
-		break;
-
-	case EQUIP_REGION_ID_SHIELD:
-		objidPrifix = "OBJID_SHIELD";
-		idxArrayToClear.push(CARD_REGION_ID_SHIELD);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHIELD_3);
-		break;
-
-	case EQUIP_REGION_ID_BODY:
-		objidPrifix = "OBJID_BODY";
-		idxArrayToClear.push(CARD_REGION_ID_BODY);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_BODY_3);
-		break;
-
-	case EQUIP_REGION_ID_SHOULDER:
-		objidPrifix = "OBJID_SHOULDER";
-		idxArrayToClear.push(CARD_REGION_ID_SHOULDER);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOULDER_3);
-		break;
-
-	case EQUIP_REGION_ID_SHOES:
-		objidPrifix = "OBJID_SHOES";
-		idxArrayToClear.push(CARD_REGION_ID_SHOES);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_SHOES_3);
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_1:
-		objidPrifix = "OBJID_ACCESSORY_1";
-		idxArrayToClear.push(CARD_REGION_ID_ACCESSORY_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_1_3);
-		break;
-
-	case EQUIP_REGION_ID_ACCESSORY_2:
-		objidPrifix = "OBJID_ACCESSORY_2";
-		idxArrayToClear.push(CARD_REGION_ID_ACCESSORY_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_1);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_2);
-		idxArrayToClear.push(CARD_REGION_ID_ENCHANT_ACCESSORY_2_3);
-		break;
-
-	default:
+	const objidPrifix = GetEquipRegionObjIdPrefix(eqpRgnId);
+	if (objidPrifix === undefined) {
 		return;
 	}
 
-	__ClearCardSlot(objidPrifix, idxArrayToClear);
-}
+	ClearSlotCards(eqpRgnId);
 
-/************************************************************************************************
- *
- * カード選択状態をクリアする（サブ関数）.
- *
- *-----------------------------------------------------------------------------------------------
- * @param eqpRgnId 対象となる装備領域ＩＤ
- * @param idxArrayToClear 設定をクリアする配列の添字
- *-----------------------------------------------------------------------------------------------
- * @return なし
- ************************************************************************************************/
-function __ClearCardSlot(objidPrifix, idxArrayToClear) {
-
-	var idx = 0;
-	var strObjId = "";
-	var rgnIdx = 0;
-
-	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
-		strObjId = objidPrifix + "_CARD_" + idx;
-		HtmlSetObjectValueById(strObjId, CARD_ID_NONE);
-		SetStatefullData("DATA_" + strObjId, CARD_ID_NONE);
-	}
-
-	for (idx = 0; idx < idxArrayToClear.length; idx++) {
-		rgnIdx = idxArrayToClear[idx];
-		n_A_card[rgnIdx] = CARD_ID_NONE;
+	for (let idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
+		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, CARD_ID_NONE);
 	}
 }
 
@@ -646,586 +483,101 @@ export function RebuildCardSelect(eqpRgnId, itemId) {
 	}
 
 
-	// エンチャント情報の収集
-	var idx = 0;
-	var idxSlot = 0;
-	var idxEnchList = 0;
+	// 選択肢を求めて、欄を構築する
+	BuildUpCardSlots(eqpRgnId, CollectCardSlotChoices(eqpRgnId, itemId), objArySlots);
 
-	var enchListId = 0;
-	var enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
-	var enchListIdArray = enchListDataManager.GetEnchListIdArrayByItemId(itemId);
-
-	var enchInfoArrayAllSlots = null;
-	var enchInfoArrayAllSlotsResult = null;
-
-
-	// 結果用配列用意
-	enchInfoArrayAllSlotsResult = [];
-	for (idxSlot = 0; idxSlot < objArySlots.length; idxSlot++) {
-		enchInfoArrayAllSlotsResult[idxSlot] = [];
-	}
-
-	// 対象の全エンチャントリストをループ処理
-	for (idxEnchList = 0; idxEnchList < enchListIdArray.length; idxEnchList++) {
-
-		// エンチャントリストIDを取得
-		enchListId = enchListIdArray[idxEnchList];
-
-		// サブ関数をコールしてデータ配列を収集
-		enchInfoArrayAllSlots = RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsResult);
-
-		// 最終結果に追記
-		for (idxSlot = 0; idxSlot < enchInfoArrayAllSlots.length; idxSlot++) {
-			enchInfoArrayAllSlotsResult[idxSlot] = enchInfoArrayAllSlotsResult[idxSlot].concat(enchInfoArrayAllSlots[idxSlot]);
-		}
-	}
-
-
-	// 選択肢の構築
-	BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArrayAllSlotsResult, objArySlots);
-
-}
-
-/**
- * エンチャントリストデータを収集する
- * @param {*} enchListId 収集対象のエンチャントリストID
- * @param {*} enchInfoArrayAllSlotsBefore これまでに、収集されたデータの配列（アップグレードの判定に使用）
- * @returns 
- */
-export function RebuildCardSelectSubCollectEnchListData(enchListId, enchInfoArrayAllSlotsBefore) {
-	var idx = 0;
-	var idxSlot = 0;
-	var idxEnchList = 0;
-	var enchListData = null;
-	var enchListDataManager = g_constDataManager.GetDataManger(CONST_DATA_KIND_ENCHANT_LIST);
-	var enchInfoArray = null;
-	var enchInfoArrayAllSlots = null;
-
-	var funcTargetIdCollector = function (enchListIdF, slotF, spDataF, paramsF) {
-
-		var idxF = 0;
-		var slotArrayF = null;
-		var childrenF = null;
-		var cardIdArrayF = null;
-		var resultF = null;
-
-
-		resultF = [];
-
-
-		switch (spDataF.GetSpId()) {
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_ENCHANT:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SELECT:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_STAGE:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_STAGE_V2:
-
-			// 対象スロットの配列を取得
-			slotArrayF = spDataF.GetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SLOT);
-
-			if (!Array.isArray(slotArrayF)) {
-				return resultF;
-			}
-
-			// 指定のスロットが含まれなければ、処理打ち切り
-			if (slotArrayF.indexOf(5 - slotF) < 0) {
-				return resultF;
-			}
-
-			break;
-
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT_V2:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT_V3:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_POSITION_NTH_SLOT_V4:
-
-			// 対象スロットの配列を取得
-			slotArrayF = spDataF.GetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_SLOT);
-
-			if (!Array.isArray(slotArrayF)) {
-				return resultF;
-			}
-
-			// 指定のスロットが含まれなければ、処理打ち切り
-			if (slotArrayF.indexOf(slotF) < 0) {
-				return resultF;
-			}
-
-			break;
-
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_REFINE_CONDITION:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_REFINE_CONDITION_V2:
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_REFINE_CONDITION_V3:
-			paramsF = Object.assign({}, paramsF);
-			paramsF.refinedBorderBase = spDataF.GetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BORDER_BASE);
-			paramsF.refinedBorderFlag = spDataF.GetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_BORDER_FLAG);
-			break;
-
-		case MIG_EQUIPABLE_SP_LIST_DATA_ID_ENCHANT_EFFECT_LIST:
-
-			// 深淵の回廊アップグレード
-			if (enchListIdF == MIG_ENCH_LIST_ID_SHINENNO_KAIRO_UPGRADE) {
-				RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayAllSlotsBefore[slotF - 1], resultF, enchListIdF, paramsF);
-			}
-
-			// 思念体武器アップグレード
-			else if (enchListIdF == MIG_ENCH_LIST_ID_SHINENTAIBUKI_UPGRADE) {
-				RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayAllSlotsBefore[slotF - 1], resultF, enchListIdF, paramsF);
-			}
-
-			// その他、一般エンチャントの場合
-			else {
-
-				// 対象エンチャントの配列を取得して、すべてを追加
-				cardIdArrayF = spDataF.GetAttribute(MIG_EQUIPABLE_SP_ATTRIBUTE_ID_CARD);
-
-				for (idxF = 0; idxF < cardIdArrayF.length; idxF++) {
-					resultF.push([enchListIdF, cardIdArrayF[idxF], paramsF]);
-				}
-			}
-			break;
-
-		}
-
-
-		// Collect child data
-		childrenF = spDataF.GetChildren();
-
-		if (childrenF) {
-			for (idxF = 0; idxF < childrenF.length; idxF++) {
-				resultF = resultF.concat(funcTargetIdCollector(enchListIdF, slotF, childrenF[idxF], paramsF));
-			}
-		}
-
-
-		return resultF;
-	};
-
-
-	// データ収集用配列用意
-	enchInfoArrayAllSlots = [];
-	for (idxSlot = 0; idxSlot < (SLOT_INDEX_CARD_MAX - SLOT_INDEX_CARD_MIN + 1); idxSlot++) {
-		enchInfoArrayAllSlots[idxSlot] = [];
-	}
-
-	// エンチャントリストデータ取得
-	enchListData = enchListDataManager.GetDataObject(enchListId);
-
-	// 全SPデータをループ処理
-	enchListData.ForEachSpData(
-		function (valueF, indexF, arrayF) {
-
-			var idxSlotF = 0;
-
-			// 全スロットをループ処理
-			for (idxSlotF = 0; idxSlotF < enchInfoArrayAllSlots.length; idxSlotF++) {
-				enchInfoArrayAllSlots[idxSlotF] = enchInfoArrayAllSlots[idxSlotF].concat(funcTargetIdCollector(enchListId, 1 + idxSlotF, valueF, {}));
-			}
-		}
-	);
-
-	// この時点で、当該エンチャントリストのデータは収集が完了している
-	// エンチャントの並び順定義に従って、エンチャント効果の順番をソートする
-	RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots);
-
-
-	// 収集したデータを返す
-	return enchInfoArrayAllSlots;
-}
-
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinennoKairo(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
-
-	var idx = 0;
-
-	var funcPushNotExist = function (cardIdF) {
-
-		var idxF = 0;
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
-			if (resultArray[idxF][1] == cardIdF) {
-				return;
-			}
-		}
-
-		resultArray.push([enchListId, cardIdF, paramsObject]);
-	}
-
-	// 処理開始前時点でのエンチャントデータを元に、アップグレード可能なものを特定して追加する
-	for (idx = 0; idx < enchInfoArrayBefore.length; idx++) {
-
-		switch (enchInfoArrayBefore[idx][1]) {
-
-		case CARD_ID_ENCHANT_KYOGEKI_4:
-			funcPushNotExist(CARD_ID_ENCHANT_KYOGEKI_5);
-			break;
-
-		case CARD_ID_ENCHANT_ZOFUKU_4:
-			funcPushNotExist(CARD_ID_ENCHANT_ZOFUKU_5);
-			break;
-
-		case CARD_ID_ENCHANT_SPECIAL_STR:
-			funcPushNotExist(CARD_ID_ENCHANT_TOSHI_10);
-			break;
-
-		case CARD_ID_ENCHANT_SPECIAL_AGI:
-			funcPushNotExist(CARD_ID_ENCHANT_KOGEKISOKUDO_4);
-			break;
-
-		case CARD_ID_ENCHANT_SPECIAL_VIT:
-			funcPushNotExist(CARD_ID_ENCHANT_MDEF_10);
-			break;
-
-		case CARD_ID_ENCHANT_SPECIAL_INT:
-			funcPushNotExist(CARD_ID_ENCHANT_MARYOKU_4);
-			break;
-
-		case CARD_ID_ENCHANT_SPECIAL_DEX:
-			funcPushNotExist(CARD_ID_ENCHANT_MEIKYU_4);
-			break;
-
-		case CARD_ID_ENCHANT_SPECIAL_LUK:
-			funcPushNotExist(CARD_ID_ENCHANT_DELAY_DOWN_15);
-			break;
-
-		case CARD_ID_ENCHANT_KUMANO_CHIKARA:
-			funcPushNotExist(CARD_ID_ENCHANT_HAO);
-			break;
-
-		case CARD_ID_ENCHANT_BOSOSHITA_MARYOKU:
-			funcPushNotExist(CARD_ID_ENCHANT_SHINRINO_KAIHO);
-			break;
-
-		case CARD_ID_ENCHANT_KOSOKU:
-			funcPushNotExist(CARD_ID_ENCHANT_SHINO_YOKUDO);
-			break;
-
-		case CARD_ID_ENCHANT_OWASHINO_GANKO:
-			funcPushNotExist(CARD_ID_ENCHANT_GOKETSU);
-			break;
-
-		}
-	}
-}
-
-function RebuildCardSelectSubCollectEnchListDataSubUpgradeShinentaiBuki(enchInfoArrayBefore, resultArray, enchListId, paramsObject) {
-
-	var idx = 0;
-
-	var funcPushNotExist = function (cardIdF) {
-
-		var idxF = 0;
-		for (idxF = 0; idxF < resultArray.length; idxF++) {
-			if (resultArray[idxF][1] == cardIdF) {
-				return;
-			}
-		}
-
-		resultArray.push([enchListId, cardIdF, paramsObject]);
-	}
-
-	// 処理開始前時点でのエンチャントデータを元に、アップグレード可能なものを特定して追加する
-	for (idx = 0; idx < enchInfoArrayBefore.length; idx++) {
-
-		switch (enchInfoArrayBefore[idx][1]) {
-
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_FIRE:
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_WATER:
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_WIND:
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_EARTH:
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_HOLY:
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_DARK:
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_PSYCO:
-		case CARD_ID_ENCHANT_ARMS_ELEMENT_POISON:
-			funcPushNotExist(CARD_ID_ENCHANT_SATSUINO_ONNEN);
-			break;
-
-		case CARD_ID_ENCHANT_OWASHINO_GANKO:
-			funcPushNotExist(CARD_ID_ENCHANT_GOKETSU);
-			break;
-
-		case CARD_ID_ENCHANT_KUMANO_CHIKARA:
-			funcPushNotExist(CARD_ID_ENCHANT_HAO);
-			break;
-
-		case CARD_ID_ENCHANT_BOSOSHITA_MARYOKU:
-			funcPushNotExist(CARD_ID_ENCHANT_SHINRINO_KAIHO);
-			break;
-
-		}
-	}
-}
-
-
-function RebuildCardSelectSubSortCollectedEnchListData(enchInfoArrayAllSlots) {
-
-	var idx = 0;
-	var idxSlot = 0;
-
-	var enchInfoArray = null;
-
-
-	// 全スロットをループ処理
-	for (idxSlot = 0; idxSlot < enchInfoArrayAllSlots.length; idxSlot++) {
-
-		// 当該スロットのエンチャント情報配列を取得
-		enchInfoArray = enchInfoArrayAllSlots[idxSlot];
-
-		// エンチャント情報配列を全処理
-		for (idx = 0; idx < enchInfoArray.length; idx++) {
-
-			// カードIDを元に、順序を特定
-			enchInfoArray[idx][3] = g_constDataManager.enchListDataManager.sortedEnchantCardIdArray.indexOf(enchInfoArray[idx][1]);
-
-			// 該当がない場合は、後ろに設定する
-			if (enchInfoArray[idx][3] < 0) {
-
-				enchInfoArray[idx][3] = g_constDataManager.enchListDataManager.sortedEnchantCardIdArray.length + idx;
-			}
-		}
-
-		// 特定した並び順でソート
-		enchInfoArray.sort(
-			function(a, b) {
-				if (a[3] < b[3]) return -1;
-				if (a[3] > b[3]) return 1;
-				return 0;
-			}
-		);
-	}
 }
 
 /**
  * カードスロットの再構築
- * @param {*} eqpRgnId 装備部位ID
- * @param {*} itemId 装備中のアイテムID
- * @param {*} enchInfoArray カード・エンチャント情報の配列
- * @param {*} objArySlots Selectオブジェクトの配列
+ * @param {number} eqpRgnId 装備部位ID
+ * @param {Array<object>} choices スロットごとの選択肢（CollectCardSlotChoices の戻り値）
+ * @param {Array<HTMLSelectElement|null>} objArySlots Selectオブジェクトの配列（画面に無い欄は null）
  */
-function BuildUpCardSlotsMIG(eqpRgnId, itemId, enchInfoArray, objArySlots) {
+function BuildUpCardSlots(eqpRgnId, choices, objArySlots) {
 
-	var idx = 0;
-	var idxSlot = 0;
-	var idxEnchList = 0;
-	var idxEnchTarget = 0;
+	for (let idxSlot = 0; idxSlot < objArySlots.length; idxSlot++) {
 
-	var enchInfo = null;
-	var enchListIdLast = 0;
-	var cardSortObjTarget = null;
-	var cardIdSelected = 0;
-	var cardId = 0;
-	var cardName = "";
-	var optionData = null;
-	var optionDataArray = null;
-
-	var objSelectGroup = null;
-	var objSelect = null;
-
-
-	// スロット配列分ループ
-	for (idxSlot = 0; idxSlot < objArySlots.length; idxSlot++) {
-
-		// セレクトボックスのオブジェクトを取得
-		objSelect = objArySlots[idxSlot];
-
+		const objSelect = objArySlots[idxSlot];
 		if (!objSelect) {
 			continue;
 		}
 
-		// 追加済み選択肢データ配列を初期化
-		optionDataArray = new Array();
+		const choice = choices[idxSlot];
 
-		// 一般エンチャント用のスロットの場合
-		if (enchInfoArray[idxSlot].length != 0) {
+		switch (choice.type) {
+		case SLOT_CHOICE_ENCHANT:
+			BuildUpEnchantSelect(objSelect, choice);
+			break;
 
-			// 一部の特例を除いて、エンチャントなしを追加
-			if ((itemId == ITEM_ID_RUNE_HELM) && (idxSlot == 3)) {
-				// TODO: ミレニアムシールドのオンオフ機能に使っているため。将来的に削除したい。
-			}
-			else {
-				HtmlCreateElementOption(CARD_ID_NONE, "エンチャントなし", objSelect);
-			}
+		case SLOT_CHOICE_CARD:
+			BuildUpCardSelect(objSelect, choice);
+			break;
 
-			// エンチャント種別を初期化
-			enchListIdLast = -1;
-
-			// エンチャントを追加
-			for (idxEnchList = 0; idxEnchList < enchInfoArray[idxSlot].length; idxEnchList++) {
-
-				// エンチャント情報を取得
-				enchInfo = enchInfoArray[idxSlot][idxEnchList];
-
-				// セレクトボックスのオプショングループを生成
-				if (enchListIdLast != enchInfo[0]) {
-					objSelectGroup = HtmlCreateElement("optgroup", objSelect);
-					objSelectGroup.setAttribute("label", g_constDataManager.GetName(CONST_DATA_KIND_ENCHANT_LIST, enchInfo[0]));
-					objSelectGroup.setAttribute("data-ench-list-id", enchInfo[0]);
-
-					enchListIdLast = enchInfo[0];
-				}
-
-				// エンチャントデータ（カードデータ）を特定
-				cardId = enchInfo[1];
-				cardName = CardObjNew[cardId][CARD_DATA_INDEX_NAME];
-
-				// 選択肢として、既に追加されていないか検査
-				optionData = enchListIdLast + "-" + cardId;
-				if (optionDataArray.indexOf(optionData) >= 0) {
-					continue;
-				}
-				optionDataArray.push(optionData);
-
-				// 精錬条件を追記
-				if (enchInfo[2].refinedBorderBase) {
-					if (enchInfo[2].refinedBorderFlag) {
-						if (!((enchInfo[2].refinedBorderBase == 0) && (enchInfo[2].refinedBorderFlag == MIG_BORDER_FLAG_ID_OVER))) {
-							cardName += " (+" + enchInfo[2].refinedBorderBase + MigGetBorderFlagText(enchInfo[2].refinedBorderFlag, true) + ")";
-						}
-					}
-				}
-
-				// 選択肢を追加
-				HtmlCreateElementOption(cardId, cardName, objSelectGroup);
-			}
-
-			// エンチャント検索ショートカットボタン
-			(function(selectEl) {
-				var parent = selectEl.parentNode;
-				parent.style.position = 'relative';
-				parent.classList.add('ench-search-shortcut-parent');
-
-				var searchBtn = document.createElement('button');
-				searchBtn.type = 'button';
-				searchBtn.className = 'ench-search-shortcut-btn';
-				searchBtn.title = 'エンチャント検索';
-				searchBtn.addEventListener('click', function() {
-					var enchId = selectEl.value;
-					if (!enchId || enchId == '0') return;
-					var enchSearchEl = document.getElementById('ench_search');
-					if (!enchSearchEl) return;
-					// 同じエンチャントで検索中なら解除、そうでなければ検索
-					var newVal = enchSearchEl.value === enchId ? '' : enchId;
-					setSelectValueSynced('#ench_search', newVal);
-				});
-				parent.appendChild(searchBtn);
-			})(objSelect);
-
-			// カード用の処理はしない
+		default:
+			HtmlCreateElementOption(CARD_ID_NONE, "-", objSelect);
 			continue;
 		}
 
-		// カード効果がエンチャントされるものを除外
-		else if ((itemId == ITEM_ID_KAITEI_SHINDENNO_ZAIHO_CARD_ENCHANTABLE) && (idxSlot == 3)) {
+		// 選択状態は正本（equip-slot-state.js）から反映する。選択肢に実在しない値は「なし」（なければ先頭）にする
+		const displayed = GetDisplayedSelection(choice, GetSlotCardId(eqpRgnId, idxSlot), GetSlotCategoryId(eqpRgnId, idxSlot));
+		objSelect.value = displayed.cardId;
+	}
+}
+
+/**
+ * 一般エンチャント枠のセレクトボックスを構築する.
+ * @param {HTMLSelectElement} objSelect 対象のセレクトボックス
+ * @param {object} choice 一般エンチャント枠の選択肢
+ */
+function BuildUpEnchantSelect(objSelect, choice) {
+
+	if (choice.hasNone) {
+		HtmlCreateElementOption(CARD_ID_NONE, "エンチャントなし", objSelect);
+	}
+
+	for (const group of choice.groups) {
+		const objSelectGroup = HtmlCreateElement("optgroup", objSelect);
+		objSelectGroup.setAttribute("label", group.label);
+		objSelectGroup.setAttribute("data-ench-list-id", group.enchListId);
+
+		for (const option of group.options) {
+			HtmlCreateElementOption(option.cardId, option.name, objSelectGroup);
 		}
-		else if ((itemId == ITEM_ID_ALPHA_CORE_CARD_ENCHANTABLE) && (idxSlot == 3)) {
-		}
+	}
 
-		// カード用のスロットの場合
-		else {
+	// エンチャント検索ショートカットボタン
+	(function(selectEl) {
+		var parent = selectEl.parentNode;
+		parent.style.position = 'relative';
+		parent.classList.add('ench-search-shortcut-parent');
 
-			// 頭下段は処理しない
-			// 武器以外、かつ、スロット２番目以降は、ダミー要素を追加して、次へ
-			switch (eqpRgnId) {
-			case EQUIP_REGION_ID_HEAD_UNDER:
-				HtmlCreateElementOption(CARD_ID_NONE, "-", objSelect);
-				continue;
+		var searchBtn = document.createElement('button');
+		searchBtn.type = 'button';
+		searchBtn.className = 'ench-search-shortcut-btn';
+		searchBtn.title = 'エンチャント検索';
+		searchBtn.addEventListener('click', function() {
+			var enchId = selectEl.value;
+			if (!enchId || enchId == '0') return;
+			var enchSearchEl = document.getElementById('ench_search');
+			if (!enchSearchEl) return;
+			// 同じエンチャントで検索中なら解除、そうでなければ検索
+			var newVal = enchSearchEl.value === enchId ? '' : enchId;
+			setSelectValueSynced('#ench_search', newVal);
+		});
+		parent.appendChild(searchBtn);
+	})(objSelect);
+}
 
-			case EQUIP_REGION_ID_ARMS:
-			case EQUIP_REGION_ID_ARMS_LEFT:
-				break;
+/**
+ * カード枠のセレクトボックスの選択肢を構築する.
+ * @param {HTMLSelectElement} objSelect 対象のセレクトボックス
+ * @param {object} choice カード枠の選択肢
+ */
+function BuildUpCardSelect(objSelect, choice) {
 
-			default:
-				if (idxSlot >= 1) {
-					HtmlCreateElementOption(CARD_ID_NONE, "-", objSelect);
-					continue;
-				}
-			}
-		}
-
-
-		// 装備箇所に応じたカードデータの追加
-		switch (eqpRgnId) {
-
-		case EQUIP_REGION_ID_ARMS:
-			if (idxSlot == 0) {
-				cardSortObjTarget = CardSortOBJ[CARD_KIND_NONE];
-			}
-			else {
-				cardSortObjTarget = CardSortOBJ[CARD_KIND_ARMS];
-			}
-			cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_RIGHT_1 + idxSlot];
-			break;
-
-		case EQUIP_REGION_ID_ARMS_LEFT:
-			if (idxSlot == 0) {
-				cardSortObjTarget = CardSortOBJ[CARD_KIND_NONE];
-			}
-			else {
-				cardSortObjTarget = CardSortOBJ[CARD_KIND_ARMS];
-			}
-			cardIdSelected = n_A_card[CARD_REGION_ID_ARMS_LEFT_1 + idxSlot];
-			break;
-
-		case EQUIP_REGION_ID_HEAD_TOP:
-			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_TOP]);
-			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_TOP];
-			break;
-
-		case EQUIP_REGION_ID_HEAD_MID:
-			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_HEAD].concat(CardSortOBJ[CARD_KIND_MID]);
-			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-			cardIdSelected = n_A_card[CARD_REGION_ID_HEAD_MID];
-			break;
-
-		case EQUIP_REGION_ID_SHIELD:
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_SHIELD];
-			cardIdSelected = n_A_card[CARD_REGION_ID_SHIELD];
-			break;
-
-		case EQUIP_REGION_ID_BODY:
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_BODY];
-			cardIdSelected = n_A_card[CARD_REGION_ID_BODY];
-			break;
-
-		case EQUIP_REGION_ID_SHOULDER:
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_SHOULDER];
-			cardIdSelected = n_A_card[CARD_REGION_ID_SHOULDER];
-			break;
-
-		case EQUIP_REGION_ID_SHOES:
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_FOOT];
-			cardIdSelected = n_A_card[CARD_REGION_ID_SHOES];
-			break;
-
-		case EQUIP_REGION_ID_ACCESSORY_1:
-			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSORY].concat(CardSortOBJ[CARD_KIND_ACCESSORY_ON1]);
-			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSORY_1];
-			break;
-
-		case EQUIP_REGION_ID_ACCESSORY_2:
-			// TODO: コードの役割分担を考えると本当は card.dat.js 末尾で処理したほうが良い
-			cardSortObjTarget = CardSortOBJ[CARD_KIND_ACCESSORY].concat(CardSortOBJ[CARD_KIND_ACCESSORY_ON2]);
-			cardSortObjTarget = Array.from(new Set(cardSortObjTarget));
-			cardIdSelected = n_A_card[CARD_REGION_ID_ACCESSORY_2];
-			break;
-
-		}
-		// エンチャからカードに変化した場合に存在しないIDを指定してしまう問題の対応
-		if (!cardSortObjTarget.includes(cardIdSelected)) {
-			cardIdSelected = 0; 
-		}
-
-		for (idx = 0; idx < cardSortObjTarget.length; idx++) {
-			cardId = cardSortObjTarget[idx];
-			cardName = GetFlagAppendedCardName(cardId);
-
-			HtmlCreateElementOption(cardId, cardName, objSelect);
-		}
-
-		// 選択項目の復元
-		objSelect.value = cardIdSelected;
+	for (const cardId of choice.cardIds) {
+		HtmlCreateElementOption(cardId, GetFlagAppendedCardName(cardId), objSelect);
 	}
 }
 
@@ -1348,75 +700,38 @@ function __SetCardSlotEnability(objTarget, enabled) {
 export function ApplyCardShort(eqpRgnId, objidPrifix) {
 
 	var idx = 0;
-	var idxOption = 0;
 
 	var cardSCIdx = 0;
 	var cardIdToSet = 0;
 
-	var itemId = 0;
-	var itemData = null;
-
-	var slotCountMax = 0;
-	var slotCountLooped = 0;
-
-	var objSelect = null;
-	var objSelect1 = null;
-	var objOption = null;
-
 	// 変更後のカードショートカットのインデックスを取得
 	cardSCIdx = HtmlGetObjectValueById(objidPrifix + "_CARD_SHORT", 0);
 
-	// 当該装備の情報を取得
-	itemId = n_A_Equip[eqpRgnId];
-	itemData = ItemObjNew[itemId];
-
-	// 最大スロット数を取得
-	slotCountMax = GetMaxSlot(itemData[ITEM_DATA_INDEX_SLOT]);
+	// 当該装備に付けられるカード・エンチャントの選択肢を取得
+	const choices = CollectCardSlotChoices(eqpRgnId, n_A_Equip[eqpRgnId]);
 
 	// カードスロット数分ループ
-	slotCountLooped = 0;
 	for (idx = SLOT_INDEX_CARD_MIN; idx <= SLOT_INDEX_CARD_MAX; idx++) {
 
-		// TODO: 不要な気がしたので実装先送り
-		// 装備のスロット数を越えたら処理終了
-		// if (slotCountMax < ++slotCountLooped) {
-		// 	break;
-		// }
-
-		// 設定対象のセレクトボックスを特定
-		objSelect = document.getElementById(objidPrifix + "_CARD_" + idx);
-		if (!objSelect) {
-			continue;
-		}
-		// 1枚目のSelectオブジェクトを控える
-		if (idx == 1) {
-			objSelect1 = objSelect;
-		}
+		const slotIndex = idx - SLOT_INDEX_CARD_MIN;
 
 		// 設定するＩＤを取得
-		cardIdToSet = CardShortObj[cardSCIdx][idx];
+		cardIdToSet = Number(CardShortObj[cardSCIdx][idx]);
 
 		// MAX値を設定している場合は、1枚目からカードIDをコピーする
 		if (cardIdToSet == CARD_ID_MAX) {
-			cardIdToSet = objSelect1.value;
+			cardIdToSet = GetSlotCardId(eqpRgnId, 0);
 		}
 
 		// 選択可能であることを確認してからセットする
-		for (idxOption = 0; idxOption < objSelect.options.length; idxOption++) {
-
-			objOption = objSelect.options[idxOption];
-
-			if (objOption.value == cardIdToSet) {
-
-				// ショートカットデータから、カードを引き当て
-				HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, cardIdToSet);
-
-				// ステートフルデータを更新
-				SetStatefullData("DATA_" + objidPrifix + "_CARD_" + idx, cardIdToSet);
-
-				break;
-			}
+		const normalized = NormalizeCardSelection(choices[slotIndex], cardIdToSet, 0);
+		if (normalized.cardId === cardIdToSet) {
+			SetSlotCardId(eqpRgnId, slotIndex, normalized.cardId);
+			SetSlotCategoryId(eqpRgnId, slotIndex, normalized.enchListId);
 		}
+
+		// 表示中のカード欄へ反映する
+		HtmlSetObjectValueById(objidPrifix + "_CARD_" + idx, GetSlotCardId(eqpRgnId, slotIndex));
 	}
 
 	// ステータス再計算
